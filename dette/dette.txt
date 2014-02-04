@@ -1,0 +1,86 @@
+# Le concept de dette technique
+
+Wikipedia:
+
+> Il s'inspire du concept existant de dette dans le contexte du financement des entreprises et l'applique au domaine du développement logiciel.
+> En résumé quand on code au plus vite et de manière non optimale, on contracte une dette technique que l'on rembourse tout au long de la vie 
+> du projet sous forme de temps de développement de plus en plus long et de bugs de plus en plus fréquents.
+
+# Est ce que j'ai de la dette technique chez moi et comment la reconnaitre ?
+
+Oui, sauf exception si vous avez du code vous avez de la dette. ce n'est pas parce qu'on n'en parle pas ou qu'on ne la traite pas qu'il n'y en a pas.
+
+Il y a des expressions et des comportements qui ne trompent pas:
+- On ne touche pas sinon ça va casse, même si à l'heure actuelle ce code fonctionne très bien
+- On duplique par morceaux les fonctionalités d’un composant dans un autre sans le dire
+- "Il n’y a que X qui connait ce morceau de code, personne d'autre n'intervient dessus"
+- Un composant pour lesquels les chiffrages sont anormalement élevés
+
+Souvent les endroits endettés sont connus et partagés informellement par les développeurs. On peut les garder longtemps sous le tapis si les développeurs ne sont pas sensibilisés à ce problème ou si on leur refuse les moyens de s’en occuper. Une réunion courte avec pour thème « Parlez nous des parties du code qui vous posent des problèmes » suffit pour les identifier. 
+
+[Inclure le quadrand de Fowler](http://martinfowler.com/bliki/TechnicalDebtQuadrant.html)
+
+# Comment elle arrive ?
+
+Coder c'est faire de la dette.
+
+La dette volontaire: 
+- des emprunts à court terme calculés pour atteindre un objectif comme une date de livraison importante
+- coder c'est faire des choix et donc parfois se tromper même quand on a pris la meilleure décision possible à ce moment là, que ces choix soient volontaires (un nouveau framework à utiliser) ou moins visibles au fil de l'eau quand on code
+
+La dette involontaire:
+- un composant qui évolue beaucoup et qu'on ne refactore pas suffisament régulièrement
+- un refactoring mal fait et qu'on met en place quand même
+- un composant laissé sans test automatisés tant qu'il est chaud car on n'en ressent pas le besoin puis qui refroidit dans son coin
+- un composant dont la connaissance s'est perdue avec le temps ou les changements de personnes: risque quand on développe un composant particulier dans une techno différente
+
+On a toujours certaines parties du code de moins bonne qualité que les autres, ce n'est pas pas un problème de niveau des développeurs (sauf dans les cas graves) mais une conséquence directe du fait que le développement logiciel est une activité artisanale.
+
+# Pourquoi la traiter
+
+Comme l'indique la définition du code endetté va être plus difficile à faire évoluer et à stabiliser.
+
+L'enjeu est que cette vision soit partagée par l'équipe de développement et le PO.
+Quand on parle de code endetté le PO a souvent une vision de développeurs qui veulent se faire plaisir et faire de la sur-qualité en refactorer pour des raisons esthétiques alors qu'il y a un bien un enjeu de capacité à délivrer.
+Il faut factualiser au maximum la dette en mettant en regard le coût prévu de désendettement et les gains escomptés, mais ça demande de la confiance. Pour les PO sachez que si vous forcez les développeurs à ne pas vous en occuper vous prenez un risque.
+
+# Comment la traiter
+
+La première étape est d'admettre qu'elle existe et de fair un état des lieux. Ensuite en fonction du temps disponible et de l'urgence il sera le moment de commencer à s'en occuper.
+
+On peut la matérialiser dans un backlog: ça permet d'avoir une bonne visibilité et de rester vigiliant, attention cependant au backlog kilométrique qui fait disparaitre les bonnes volontés ou au backlog bouc-émissaire qui permet de dire qu'on n'a pas besoin de traiter les problèmes tant qu'on les identifie.
+
+Dans la vie de tous les jours pour une base de code saine un investissement raisonnable mais régulier permet de traiter les cas simples mais n'est jamais suffisante, pour les autres voir plus bas.
+
+# Règle d'or
+
+Pas d'épuration de dette technique sans tests automatisés. S'il n'y en a pas ou pas assez le premier réflexe doit être d’ajouter des tests même si ça veut dire ne plus avoir de temps pour mener le refactoring maintenant. Le risque est trop grand de ne pas aboutir ou d'aboutir à une situation objectivement pas meilleure tout en ayant l'impression d'avoir progressé.
+
+## Les manière douces sont préférables
+- Au fil de l’eau avec la règle du boy-scout : l'endroit doit être plus propre quand tu le quittes.
+- Un tache de gestion du code réservée à chaque sprint qui porte en partie sur la gestion de la dette sous la responsabilité du tech-lead
+- Journée du Jardinage : 1 fois par mois, l'équipe bloque sa journée sur des tâches de désendettement qui n'ont pas été traité sur le mois
+
+## Les manières plus lourde
+
+Quand un bloc est trop gros, la priorité est de ne pas bloquer les livraison d'élements qui apportent du fonctionnel, on préfèrera bloquer un développeur seul pendant un ou plusieurs sprint en compartimentant les éléments à traiter plutôt que de mobiliser toute l'équipe.
+
+Attention à bien orgnaiser ces tâches qui peuvent plaire à certains mais qui seront une punition pour d'autres.
+
+# Garder le contrôle
+
+Agile et software craftmanship: il faut être vigilant, traiter à temps et en parler, feedback réguliers et de revues de code.
+
+Il faut surtout que l'équipe soit impliquées sur le sujet.
+
+# Les limites de la métaphore, les mots qui fachent
+
+À l'origine La métaphore est dûe à Ward Cunningham qui l'expliquait ainsi (grosso modo): quelques fois, on peut faire un écart /TEMPORAIRE/ à nos règles de qualités du design (simplicité, DRY, etc) en vue de livrer rapidement (comprendre d'ici la fin du sprint) une solution démontrable. 
+
+Pour une dette financière on fait un budget et on établit un contrat signé qu'on sait qu'on peut gérer. La dette du code n'a pas du tout ce fonctionnement la car c'est quelque chose de plus difficile à maitriser.
+
+Parler d'une base de code lourdement endettée c'est se voiler la face, il vaut mieux parler de code de mauvaise qualité ou de code pourri: c'est moins lisse mais au moins les choses sont claires et tout le monde comprend qu'il faut faire quelque chose.
+
+# Conclusion
+- La dette vous en avez, il est primordial de commencer par faire un état des lieux, et de décider ensuite.
+- La dette ce n'est pas que dans le code, c'est aussi l'UDD et hors du code (process, orga)
