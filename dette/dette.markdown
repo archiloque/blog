@@ -1,40 +1,40 @@
 # Le concept de dette technique
 
-D'après Wikipedia:
+D'après Wikipedia :
 
 > Il s'inspire du concept existant de dette dans le contexte du financement des entreprises et l'applique au domaine du développement logiciel.
-> En résumé quand on code au plus vite et de manière non optimale, on contracte une dette technique que l'on rembourse tout au long de la vie 
+> En résumé, quand on code au plus vite et de manière non optimale, on contracte une dette technique que l'on rembourse tout au long de la vie 
 > du projet sous forme de temps de développement de plus en plus long et de bugs de plus en plus fréquents.
 
-# Est ce que j'ai de la dette technique chez moi et comment la reconnaitre ?
+# Est-ce que j'ai de la dette technique chez moi et comment la reconnaître ?
 
-Oui, sauf exception si vous avez du code vous avez de la dette. ce n'est pas parce vous n'en parlez pas ou que vous ne la traitez pas qu'il n'y en a pas, c'est même plutôt le contraire.
+Sauf exception, si vous avez du code, vous avez de la dette. Ce n'est pas parce vous n'en parlez pas ou que vous ne la traitez pas qu'il n'y en a pas, c'est même plutôt le contraire.
 
 Pour savoir où elle se cache, il y a des expressions et des comportements qui ne trompent pas :
-- "On ne touche pas à cette partie sinon ça va casser", même si à l'heure actuelle elle n'a pas de bug
+- "On ne touche pas à cette partie sinon ça va casser", même si elle n'a pas de bug actuellement
 - On duplique par morceaux les fonctionnalités d’un composant dans un autre sans le dire
 - "Il n’y a que X qui connait ce morceau, personne d'autre n'intervient dessus"
-- Un composant pour lesquels les chiffrages sont anormalement élevés par rapport aux autres
+- Un composant pour lequel les chiffrages sont anormalement élevés par rapport aux autres
 
 Les endroits endettés sont souvent connus par les développeurs. On peut les garder longtemps sous le tapis si les membres du projet ne sont pas sensibilisés à ce problème ou si on leur refuse les moyens de s’en occuper. Une réunion courte avec pour thème « Parlez nous des parties du code qui vous posent des problèmes » suffit pour les identifier. 
 
 ![Chat décidé](sophiscated_cat_scaled.png)
 
-*J'ai décidé de m'occupper de ma dette technique*
+*J'ai décidé de m'occuper de ma dette technique*
 
-# Comment elle arrive ?
+# Comment arrive-t-elle ?
 
-Développer c'est faire de la dette.
+Développer, c'est faire de la dette.
 
 La dette volontaire :
 - Des décisions calculées pour atteindre un objectif à court terme comme une date de livraison importante.
-- Développer c'est faire des choix et donc parfois se tromper, même quand on a pris la meilleure décision possible où moment où on l'a fait. C'est valable lorsque ces décisions sont formalisées et visibles (un nouveau framework à utiliser) ou moins visibles au fil de l'eau.
+- Développer c'est faire des choix et donc parfois se tromper, même quand on a pris la meilleure décision possible au moment où on l'a fait. C'est valable lorsque ces décisions sont formalisées et visibles (un nouveau framework à utiliser) ou moins visibles pour les décisions qu'on prend au fil de l'eau en codant.
 
 La dette involontaire:
-- Un composant qui évolue beaucoup et qu'on ne refactore pas suffisament régulièrement.
+- Un composant qui évolue beaucoup et qu'on ne refactore pas suffisamment régulièrement.
 - Un refactoring mal fait mis en place quand même.
-- Un composant laissé sans test automatisés tant qu'il est chaud car on n'en ressent pas le besoin puis qui refroidit dans son coin.
-- Un composant dont la connaissance s'est perdue avec le temps ou les changements de personnes, notament quand on développe un composant particulier dans une technologie spécifique.
+- Un composant laissé sans test automatisé tant qu'il est chaud car on n'en ressent pas le besoin puis qui refroidit dans son coin.
+- Un composant dont la connaissance s'est perdue avec le temps ou les changements de personnes, notamment quand on développe un composant particulier dans une technologie spécifique.
 
 On a toujours certaines parties d'un projet de moins bonne qualité que les autres: ce n'est pas causé par un problème de niveau des développeurs (sauf dans les cas graves) mais une conséquence directe du fait que le développement logiciel est une activité artisanale.
 
@@ -42,7 +42,7 @@ On a toujours certaines parties d'un projet de moins bonne qualité que les autr
 
 # Pourquoi la traiter
 
-Comme l'indique la définition du code endetté va être plus difficile à faire évoluer car pour cela il faudra "rembourser la dette". Investir pour garder la dette technique sous contrôle permet de conserver un système adaptable et d'éviter d'être coincé.
+Comme l'indique la définition, du code endetté va être plus difficile à faire évoluer car, pour cela, il faudra "rembourser la dette". Investir pour garder la dette technique sous contrôle permet de conserver un système adaptable et d'éviter d'être coincé.
 
 ![Chat bloqué](cat_glass_jar.jpg)
 
@@ -50,9 +50,9 @@ Comme l'indique la définition du code endetté va être plus difficile à faire
 
 L'enjeu est que cette vision soit partagée par l'équipe de développement et le product owner ou chef de projet.
 
-Quand on leur parle de code endetté les non développeurs ont souvent une vision de développeurs qui veulent se faire plaisir et faire de la sur-qualité en refactorant pour des raisons esthétiques alors que le sujet est bel est bien un enjeu de capacité à délivrer.
+Les non-développeurs ont souvent une vision erronée du refactoring: quand on leur parle de reprendre du code pour cause de dette ils pensent qu'il s'agit de se faire plaisir avec de la sur-qualité alors que le sujet est bel est bien un enjeu de capacité à délivrer.
 
-Lorsqu'il y a un désaccord sur ce point, il faut factualiser au maximum la dette. Mettre en regard le coût prévu de désendettement et les gains escomptés en terme de risque et de gain de vélocité prévu permet d'échanger de manière concrète. Mais accepter les propositions des développeurs quand choisir de traiter la dette signifie de développer moins de nouvelles fonctionnalités demande une certaine confiance dans leur jugement. Si vous vous fiez aux développeurs dans leur capacité à réaliser ce que vous leur demandez il faut aussi le faire dans ce cas là, ou vous prenez un risque réel sur le futur.
+Lorsqu'il y a un désaccord sur ce point, il faut factualiser au maximum la dette. Mettre en regard le coût prévu de désendettement et les gains escomptés en terme de risque et de gain de vélocité prévu permet d'échanger de manière concrète. Mais accepter les propositions des développeurs quand choisir de traiter la dette signifie de développer moins de nouvelles fonctionnalités demande une certaine confiance dans leur jugement. Si vous vous fiez aux développeurs dans leur capacité à réaliser ce que vous leur demandez, il faut aussi le faire dans ce cas là ou vous prenez un risque réel sur le futur.
 
 # Comment la traiter
 
@@ -101,7 +101,7 @@ La première et la plus importante des choses est que l'équipe au sens large ai
 
 À l'origine La métaphore est due à Ward Cunningham qui l'expliquait grosso modo ainsi: quelques fois, on peut faire un écart /TEMPORAIRE/ à nos règles de qualités du design (simplicité, DRY, etc.) en vue de livrer rapidement (comprendre d'ici la fin du sprint) une solution démontrable. 
 
-Pour une dette financière on élabore un budget soutenable et on établit un contrat signé avec une banque. La dette technique n'a pas du tout ce fonctionnement là car c'est quelque chose que se créé en partie involontairement et de bien plus difficile à maitriser.
+Pour une dette financière on élabore un budget soutenable et on établit un contrat signé avec une banque. La dette technique n'a pas du tout ce fonctionnement là car c'est quelque chose qui se créé en partie involontairement et de bien plus difficile à maitriser.
 
 Parler d'une base de code "lourdement endettée" c'est se voiler la face, il vaut mieux parler de code de mauvaise qualité ou de code pourri: ça fait grincer des dents mais au moins les choses sont claires et tout le monde comprend qu'il faut faire quelque chose.
 
