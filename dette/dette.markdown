@@ -99,7 +99,7 @@ La première et la plus importante des choses est que l'équipe au sens large ai
 
 # Les limites de la métaphore, les mots qui fâchent
 
-À l'origine La métaphore est due à Ward Cunningham qui l'expliquait grosso modo ainsi: quelques fois, on peut faire un écart /TEMPORAIRE/ à nos règles de qualités du design (simplicité, DRY, etc.) en vue de livrer rapidement (comprendre d'ici la fin du sprint) une solution démontrable. 
+À l'origine La métaphore est due à Ward Cunningham qui l'expliquait grosso modo ainsi: quelques fois, on peut faire un écart *temporaire* à nos règles de qualités du design (simplicité, DRY, etc.) en vue de livrer rapidement (comprendre d'ici la fin du sprint) une solution démontrable. 
 
 Pour une dette financière on élabore un budget soutenable et on établit un contrat signé avec une banque. La dette technique n'a pas du tout ce fonctionnement là car c'est quelque chose qui se créé en partie involontairement et de bien plus difficile à maitriser.
 
