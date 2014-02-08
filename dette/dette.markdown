@@ -13,12 +13,12 @@ D'après Wikipedia :
 Sauf exception, si vous avez du code, vous avez de la dette. Ce n'est pas parce vous n'en parlez pas ou que vous ne la traitez pas qu'il n'y en a pas, c'est même plutôt le contraire.
 
 Pour savoir où elle se cache, il y a des expressions et des comportements qui ne trompent pas :
-- "On ne touche pas à cette partie sinon ça va casser", même si elle n'a pas de bug actuellement
-- On duplique par morceaux les fonctionnalités d’un composant dans un autre sans le dire
-- "Il n’y a que X qui connait ce morceau, personne d'autre n'intervient dessus"
-- Un composant pour lequel les chiffrages sont anormalement élevés par rapport aux autres
+- « On ne touche pas à cette partie sinon ça va casser », même si elle n'a pas de bug actuellement.
+- On duplique par morceaux les fonctionnalités d’un composant dans un autre sans le dire.
+- « Il n’y a que X qui connait ce morceau, personne d'autre n'intervient dessus. »
+- Un composant pour lequel les chiffrages sont anormalement élevés par rapport aux autres.
 
-Les endroits endettés sont souvent connus par les développeurs. On peut les garder longtemps sous le tapis si les membres du projet ne sont pas sensibilisés à ce problème ou si on leur refuse les moyens de s’en occuper. Une réunion courte avec pour thème « Parlez nous des parties du code qui vous posent des problèmes » suffit pour les identifier. 
+Les endroits endettés sont souvent connus par les développeurs. On peut les garder longtemps sous le tapis si les membres du projet ne sont pas sensibilisés à ce problème ou si on leur refuse les moyens de s’en occuper. Une réunion courte avec pour thème « Parlez-nous des parties du code qui vous posent des problèmes » suffit pour les identifier. 
 
 ![Chat décidé](sophiscated_cat_scaled.png)
 
@@ -30,7 +30,7 @@ Développer, c'est faire de la dette.
 
 La dette volontaire :
 - Des décisions calculées pour atteindre un objectif à court terme comme une date de livraison importante.
-- Développer c'est faire des choix et donc parfois se tromper, même quand on a pris la meilleure décision possible au moment où on l'a fait. C'est valable lorsque ces décisions sont formalisées et visibles (un nouveau framework à utiliser) ou moins visibles pour les décisions qu'on prend au fil de l'eau en codant.
+- Développer, c'est faire des choix et donc parfois se tromper, même quand on a pris la meilleure décision possible au moment où on l'a fait. C'est valable lorsque ces décisions sont formalisées et visibles (un nouveau framework à utiliser) ou moins visibles pour les décisions qu'on prend au fil de l'eau en codant.
 
 La dette involontaire :
 - Un composant qui évolue beaucoup et qu'on ne refactore pas suffisament régulièrement.
@@ -44,7 +44,7 @@ On a toujours certaines parties d'un projet de moins bonne qualité que les autr
 
 # Pourquoi la traiter
 
-Comme l'indique la définition, du code endetté va être plus difficile à faire évoluer car, pour cela, il faudra "rembourser la dette". Investir pour garder la dette technique sous contrôle permet de conserver un système adaptable et d'éviter d'être coincé.
+Comme l'indique la définition, du code endetté va être plus difficile à faire évoluer car, pour cela, il faudra « rembourser la dette ». Investir pour garder la dette technique sous contrôle permet de conserver un système adaptable et d'éviter d'être coincé.
 
 ![Chat bloqué](cat_glass_jar.jpg)
 
@@ -54,13 +54,13 @@ L'enjeu est que cette vision soit partagée par l'équipe de développement et l
 
 Les non-développeurs ont souvent une vision erronée du refactoring : quand on leur parle de reprendre du code pour cause de dette ils pensent qu'il s'agit de se faire plaisir avec de la sur-qualité alors que le sujet est bel est bien un enjeu de capacité à délivrer.
 
-Lorsqu'il y a un désaccord sur ce point, il faut factualiser au maximum la dette. Mettre en regard le coût prévu de désendettement et les gains escomptés en terme de risque et de gain de vélocité prévu permet d'échanger de manière concrète. Mais accepter les propositions des développeurs quand choisir de traiter la dette signifie de développer moins de nouvelles fonctionnalités demande une certaine confiance dans leur jugement. Si vous vous fiez aux développeurs dans leur capacité à réaliser ce que vous leur demandez, il faut aussi le faire dans ce cas là ou vous prenez un risque réel sur le futur.
+Lorsqu'il y a un désaccord sur ce point, il faut factualiser au maximum la dette. Mettre en regard le coût prévu de désendettement et les gains escomptés en terme de risque et de gain de vélocité prévu permet d'échanger de manière concrète. Mais accepter les propositions des développeurs quand choisir de traiter la dette signifie de développer moins de nouvelles fonctionnalités demande une certaine confiance dans leur jugement. Si vous vous fiez aux développeurs dans leur capacité à réaliser vos demandes, il faut aussi le faire dans ce cas là ou vous prenez un risque réel sur le futur.
 
 # Comment la traiter
 
-La première étape est d'admettre qu'elle existe et de faire un état des lieux. Ensuite, en fonction du temps disponible et de l'urgence, il sera le moment de s'en occuper.
+La première étape est d'admettre qu'elle existe et de faire un état des lieux. 
 
-On peut la matérialiser dans un backlog : ça permet d'avoir une bonne visibilité et de rester vigilant, attention cependant au backlog kilométrique qui fait disparaitre les bonnes volontés et au backlog bouc émissaire où noter les problèmes permet d'éviter de les traiter.
+On peut la matérialiser dans un backlog : ça permet d'avoir une bonne visibilité et de rester vigilant, attention cependant au backlog kilométrique qui étouffe les bonnes volontés et au backlog bouc émissaire où noter les problèmes permet d'éviter de les traiter.
 
 
 Dans la vie de tous les jours et pour une base de code saine, un investissement raisonnable mais régulier permet de traiter les cas simples mais n'est jamais suffisant. Pour les autres cas voir plus bas.
@@ -77,9 +77,9 @@ Si pour une question de temps il est impossible de s'occuper à la fois des test
 
 ## Les manière douces
 
-- Au fil de l’eau avec la règle du boy-scout : à chaque intervention sur un bout de code on essaie de l'améliorer même juste un peu
-- Un tâche technique budgétée à chaque itération qui porte en partie sur la gestion de la dette sous la responsabilité du tech-lead (attention à ne pas la placer systématiquement en fin de planning car il est alors tentant de la remplacer chaque fois par quelque chose de "plus urgent")
-- Journée du jardinage : une fois par mois, l'équipe bloque sa journée sur des tâches de désendettement, ce qui donne en plus l'occasion d'échanger collectivement sur le sujet
+- Au fil de l’eau avec la règle du boy-scout : à chaque intervention sur un bout de code, on essaie de l'améliorer même juste un peu. 
+- Une tâche technique budgétée à chaque itération qui porte en partie sur la gestion de la dette sous la responsabilité du tech-lead (attention à ne pas la placer systématiquement en fin de planning car il est alors tentant de la remplacer chaque fois par quelque chose de « plus urgent »). 
+- Journée du jardinage : une fois par mois, l'équipe bloque sa journée sur des tâches de désendettement, ce qui donne en plus l'occasion d'échanger collectivement sur le sujet.
 
 ## Les manières plus lourdes
 
@@ -87,13 +87,13 @@ Lors d'une longue action de refactoring, la priorité est de ne pas stopper les 
 
 ![Chat caché](cat_mouth_scaled.jpg)
 
-*Votre chef de projet si vous lui proposez que l'équipe consacre 6 mois à temps plein à reprendre le code existant*
+*Votre chef de projet si vous lui proposez que l'équipe consacre six mois à temps plein à reprendre le code existant*
 
-Attention à bien organiser ces tâches qui peuvent plaire à certains mais qui seront une punition pour d'autres. Comme elles peuvent être l'occasion de reprendre de la connaissance sur des composants oubliés, il faut faire attention à maintenir un équilibre entre les membres de l'équipe, pour éviter de basculer d'un "personne ne sait plus" à "X fait tous les refactoring donc maintenant c'est lui qui sait".
+Attention à bien organiser ces tâches qui peuvent plaire à certains mais qui seront une punition pour d'autres. Comme elles peuvent être l'occasion de reprendre de la connaissance sur des composants oubliés, il faut faire attention à maintenir un équilibre entre les membres de l'équipe, pour éviter de basculer d'un « personne ne sait plus » à « X fait tous les refactoring donc maintenant c'est lui qui sait ».
 
 # Garder le contrôle
 
-Sur le long terme, l'important est d'avoir un système qui ne s'endette pas trop et de garder le contrôle. Les apports de l'agile et de software craftmanship sont ici précieux : il faut être vigilant, échanger et traiter à temps. Les feedback réguliers et les revues de code sous une forme ou une autre sont essentiels. Même s'ils sont imparfaits et ne remplacent pas un œil humain, les outils automatisés (détection de duplication ....) sont également utiles.
+Sur le long terme, l'important est d'avoir un système qui ne s'endette pas trop et de garder le contrôle. Les apports de l'agile et de software craftmanship sont ici précieux : il faut être vigilant, échanger et traiter à temps. Les feedback réguliers et les revues de code sous une forme ou une autre sont essentiels. Même s'ils sont imparfaits et ne remplacent pas un œil humain, les outils automatisés (détection de duplication… ) sont également utiles.
 
 La première et la plus importante des choses est que l'équipe au sens large ait conscience des enjeux et soit impliquée sur le sujet.
 
@@ -103,17 +103,16 @@ La première et la plus importante des choses est que l'équipe au sens large ai
 
 # Les limites de la métaphore, les mots qui fâchent
 
-À l'origine, la métaphore est due à Ward Cunningham qui l'expliquait à peu près ainsi : quelques fois, on peut faire un écart /TEMPORAIRE/ à nos règles de qualités du design (simplicité, DRY, etc.) en vue de livrer rapidement (comprendre d'ici la fin de l'itération) une solution démontrable. 
+À l'origine, la métaphore est due à [Ward Cunningham](http://fr.wikipedia.org/wiki/Ward_Cunningham) qui l'expliquait à peu près ainsi : parfois, on peut faire un écart /TEMPORAIRE/ à nos règles de qualités du design (simplicité, DRY, etc.) en vue de livrer rapidement (comprendre d'ici la fin de l'itération) une solution démontrable. 
 
-Pour une dette financière, on élabore un budget soutenable et on établit un contrat signé avec une banque. La dette technique n'a pas du tout ce fonctionnement là car elle se créé en partie involontairement et est bien plus difficile à maitriser.
+Pour une dette financière qui passe par un emprunt, on élabore un budget soutenable et on établit un contrat signé avec une banque. La dette technique n'a pas du tout ce fonctionnement là car elle se créé en partie involontairement et est bien plus difficile à maitriser.
 
-Parler d'une base de code "lourdement endettée" c'est se voiler la face, il vaut mieux parler de code de mauvaise qualité ou de code pourri : cela fait grincer des dents mais au moins les choses sont claires et tout le monde comprend qu'il faut faire quelque chose.
+Parler d'une base de code « lourdement endettée », c'est se voiler la face, il vaut mieux parler de code de mauvaise qualité ou de code pourri : cela fait grincer des dents mais au moins les choses sont claires et tout le monde comprend qu'il faut s'en occuper.
 
-# Conclusion et au delà
+# Conclusion et au-delà
 
 La dette technique vous en avez. Si jusqu'à présent ce n'est pas un sujet que vous traitez, il est vital de faire un état des lieux (et si vous voulez, [on peut vous aider](http://octo.com)).
 
 La dette ce n'est pas que dans le code, c'est aussi vos outils (usine de développement, infrastructure) et vote méthode (process et organisation).
 
-
-*Cet article doit beaucoup aux échanges internes à Octo, que les participants soient remerciés.*
+*Cet article doit beaucoup aux échanges internes à Octo, merci aux participants.*
