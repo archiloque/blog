@@ -1,3 +1,5 @@
+# @@ La dette technique @@
+
 # Le concept de dette technique
 
 D'après Wikipedia :
@@ -58,13 +60,15 @@ Lorsqu'il y a un désaccord sur ce point, il faut factualiser au maximum la dett
 
 La première étape est d'admettre qu'elle existe et de faire un état des lieux. Ensuite, en fonction du temps disponible et de l'urgence, il sera le moment de s'en occuper.
 
-On peut la matérialiser dans un backlog : ça permet d'avoir une bonne visibilité et de rester vigilant, attention cependant au backlog kilométrique qui fait disparaitre les bonnes volontés ou au backlog "bouc émissaire" qui permet de dire que ce n'est pas grave de traiter les problèmes tant qu'on les identifie et qu'on sait qu'ils sont là.
+On peut la matérialiser dans un backlog : ça permet d'avoir une bonne visibilité et de rester vigilant, attention cependant au backlog kilométrique qui fait disparaitre les bonnes volontés et au backlog bouc émissaire où noter les problèmes permet d'éviter de les traiter.
+
 
 Dans la vie de tous les jours et pour une base de code saine, un investissement raisonnable mais régulier permet de traiter les cas simples mais n'est jamais suffisant. Pour les autres cas voir plus bas.
 
 ## Règle d'or
 
-Pas de remboursement de dette technique sans tests automatisés. S'il n'y en a pas ou pas assez le premier pas doit être d’ajouter des tests même si ça veut dire ne plus avoir de temps pour mener le refactoring maintenant. Le risque est trop grand que de ne pas aboutir ou d'aboutir à une situation objectivement pas meilleure tout en ayant l'impression d'avoir progressé.
+Pas de remboursement de dette technique sans tests automatisés. S'il n'y en a pas ou pas assez, le premier pas doit être d’ajouter des tests. 
+Si pour une question de temps il est impossible de s'occuper à la fois des tests et du refactoring, il vaut mieux privilégier les tests quitte à reprendre le code plus tard : le risque est trop grand de ne pas aboutir ou d'aboutir à une situation plus mauvaise tout en ayant l'impression d'avoir progressé.
 
 ![Sans test](light.jpg)
 
@@ -73,23 +77,23 @@ Pas de remboursement de dette technique sans tests automatisés. S'il n'y en a p
 
 ## Les manière douces
 
-- Au fil de l’eau avec la règle du boy-scout : un bout de code doit être plus propre quand tu arrête de travailler dessus que quand tu as commencé.
-- Un tache technique budgétée à chaque itération qui porte en partie sur la gestion de la dette sous la responsabilité du tech-lead (attention à ne pas la placer systématiquement en fin d'itération au risque qu'elle saute à chaque fois)
-- Journée du jardinage : 1 fois par mois, l'équipe bloque sa journée sur des tâches de désendettement qui n'ont pas été traité sur le mois, qui donne en plus l'occasion d'échanger collectivement sur le sujet
+- Au fil de l’eau avec la règle du boy-scout : à chaque intervention sur un bout de code on essaie de l'améliorer même juste un peu
+- Un tâche technique budgétée à chaque itération qui porte en partie sur la gestion de la dette sous la responsabilité du tech-lead (attention à ne pas la placer systématiquement en fin de planning car il est alors tentant de la remplacer chaque fois par quelque chose de "plus urgent")
+- Journée du jardinage : une fois par mois, l'équipe bloque sa journée sur des tâches de désendettement, ce qui donne en plus l'occasion d'échanger collectivement sur le sujet
 
 ## Les manières plus lourdes
 
-Quand un bloc est trop gros, la priorité est de ne pas stopper les livraisons d'éléments qui apportent du fonctionnel pour ne pas modifier la dynamique du projet. Il vaut mieux dédier un développeur seul pendant un ou plusieurs itérations en compartimentant les éléments à traiter plutôt que de mobiliser toute l'équipe.
+Lors d'une longue action de refactoring, la priorité est de ne pas stopper les livraisons d'éléments qui apportent de la valeur fonctionnelle pour ne pas modifier la dynamique du projet. Il vaut mieux dédier un développeur seul pendant une ou plusieurs itérations en compartimentant les éléments à traiter plutôt que de mobiliser toute l'équipe.
 
 ![Chat caché](cat_mouth_scaled.jpg)
 
-*Votre chef de projet si vous lui proposez que l'équipe consacre 6 mois à temps plein à refactorer*
+*Votre chef de projet si vous lui proposez que l'équipe consacre 6 mois à temps plein à reprendre le code existant*
 
-Attention à bien organiser ces tâches qui peuvent plaire à certains mais qui seront une punition pour d'autres. Comme ces taches peuvent être l'occasion de reprendre de la connaissance sur des composants oubliés il faut faire attention à maintenir un équilibre entre les membres de l'équipe, pour éviter de basculer d'un "personne ne sait plus" à "X fait tous les refactoring donc maintenant c'est lui qui sait".
+Attention à bien organiser ces tâches qui peuvent plaire à certains mais qui seront une punition pour d'autres. Comme elles peuvent être l'occasion de reprendre de la connaissance sur des composants oubliés, il faut faire attention à maintenir un équilibre entre les membres de l'équipe, pour éviter de basculer d'un "personne ne sait plus" à "X fait tous les refactoring donc maintenant c'est lui qui sait".
 
 # Garder le contrôle
 
-Sur le long terme l'important est d'avoir un système qui ne s'endette pas trop et de garder le contrôle. Les apports de l'agile et de software craftmanship sont ici précieux : il faut être vigilant, échanger et traiter à temps. Les feedback réguliers et les revues de code sous une forme ou une autre sont essentiels. Même s'ils sont imparfaits et ne remplacent pas un œil humain, les outils automatisés (détection de la duplication ....) sont également utiles.
+Sur le long terme, l'important est d'avoir un système qui ne s'endette pas trop et de garder le contrôle. Les apports de l'agile et de software craftmanship sont ici précieux : il faut être vigilant, échanger et traiter à temps. Les feedback réguliers et les revues de code sous une forme ou une autre sont essentiels. Même s'ils sont imparfaits et ne remplacent pas un œil humain, les outils automatisés (détection de duplication ....) sont également utiles.
 
 La première et la plus importante des choses est que l'équipe au sens large ait conscience des enjeux et soit impliquée sur le sujet.
 
@@ -99,17 +103,17 @@ La première et la plus importante des choses est que l'équipe au sens large ai
 
 # Les limites de la métaphore, les mots qui fâchent
 
-À l'origine La métaphore est due à Ward Cunningham qui l'expliquait grosso modo ainsi : quelques fois, on peut faire un écart *temporaire* à nos règles de qualités du design (simplicité, DRY, etc.) en vue de livrer rapidement (d'ici la fin de l'itération) une solution démontrable. 
+À l'origine, la métaphore est due à Ward Cunningham qui l'expliquait à peu près ainsi : quelques fois, on peut faire un écart /TEMPORAIRE/ à nos règles de qualités du design (simplicité, DRY, etc.) en vue de livrer rapidement (comprendre d'ici la fin de l'itération) une solution démontrable. 
 
-Pour une dette financière on élabore un budget soutenable et on établit un contrat signé avec une banque. La dette technique n'a pas du tout ce fonctionnement là car c'est quelque chose qui se créé en partie involontairement et de bien plus difficile à maitriser.
+Pour une dette financière, on élabore un budget soutenable et on établit un contrat signé avec une banque. La dette technique n'a pas du tout ce fonctionnement là car elle se créé en partie involontairement et est bien plus difficile à maitriser.
 
-Parler d'une base de code "lourdement endettée" c'est se voiler la face, il vaut mieux parler de code de mauvaise qualité ou de code pourri : ça fait grincer des dents mais au moins les choses sont claires et tout le monde comprend qu'il faut faire quelque chose.
+Parler d'une base de code "lourdement endettée" c'est se voiler la face, il vaut mieux parler de code de mauvaise qualité ou de code pourri : cela fait grincer des dents mais au moins les choses sont claires et tout le monde comprend qu'il faut faire quelque chose.
 
 # Conclusion et au delà
 
-La dette vous en avez, si jusqu'à présent ce n'est pas un sujet que vous traité il est vital de faire un état des lieux (et si vous voulez, [on peut vous aider](http://octo.com))
+La dette technique vous en avez. Si jusqu'à présent ce n'est pas un sujet que vous traitez, il est vital de faire un état des lieux (et si vous voulez, [on peut vous aider](http://octo.com)).
 
-La dette ce n'est pas que dans le code, c'est aussi vos outils (usine de développement, infrastructure) et ailleurs (process et organisation)
+La dette ce n'est pas que dans le code, c'est aussi vos outils (usine de développement, infrastructure) et vote méthode (process et organisation).
 
 
 *Cet article doit beaucoup aux échanges internes à Octo, que les participants soient remerciés.*
