@@ -10,7 +10,7 @@ On appelle un *flux* un **ensemble d'appels de services et d'envois de messages 
 
 Monitorer ces flux signifie donc mettre en place un monitoring des activités métier *(Business Activity Monitor)*. Cela consiste à collecter des données dans toutes les couches applicatives pour les corréler. Cela permet d'obtenir **une vision transverse agrégée** de l'activité de votre système d'information. Ce monitoring doit fournir à tout moment **l'état de santé et la performance des fonctions métiers importantes** *(Key Performance Indicator)*.
 
-Dans la suite de l'article un message métier indiquera indifférement le contenu d'un appel de service ou d'un message envoyé.
+Dans la suite de l'article un message métier signifiera indifféremment le contenu d'un appel de service ou d'un message envoyé.
 
 ## Pour avoir un bon monitoring de flux
 
@@ -48,7 +48,7 @@ Pour répondre à ces critères, on peut donc identifier les différentes brique
 
 # Pratiques actuelles
 
-Votre système d'information comporte déjà une partie des blocs techniques dont on a besoin, comme un système de messages ou une base de donnée. Malheuresement les spécificités du monitoring empêchent souvent d'utiliser les mêmes outils :
+Votre système d'information comporte déjà une partie des blocs techniques dont on a besoin, comme un système de messages ou une base de donnée. Malheureusement les spécificités du monitoring empêchent souvent d'utiliser les mêmes outils :
 
 - Du fait du grand nombre de messages entrant dans le système, les middleware classiques n'offrent pas une capacité de traitement suffisante, il est donc nécessaire d'utiliser un **système de communication spécialisé** pour ce type de volume : [AMQP](http://www.amqp.org), [SNMP](http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol), [RSYSLOG](http://www.rsyslog.com), [ZeroMQ)](http://zeromq.org.
 
