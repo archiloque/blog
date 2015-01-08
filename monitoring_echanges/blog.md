@@ -1,6 +1,6 @@
 # Présent et avenir du monitoring de flux 
 
-Avoir un monitoring de flux performant est critique: intégrant tous les flux de données il est à même d'offrir une vision synthétique de tous le système d'information.
+Avoir un monitoring de flux performant est critique: intégrant tous les flux de données il est à même d'offrir une vision synthétique de tout le système d'information.
 
 L'objectif de cet article est de vous permettre de comparer votre système actuel avec les bonnes pratiques généralement observées et de vous donner des pistes d'évolutions.
 
