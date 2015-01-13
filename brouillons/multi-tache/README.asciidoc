@@ -1,6 +1,6 @@
 Le vrai coût du multi-tache pour les développeurs…
 ==============
-2014-01-13
+v1.0, 2014-01-13
 
 (… tel qu’on le présente souvent dans des slides ben c’est du flan)
 
@@ -20,7 +20,7 @@ image::graphe1.png[]
 
 2) Ensuite tout le monde cite ce graphe mais sans donner le texte original, et comme le bouquin date d’avant l’internet impossible de trouver de trouver une source en ligne. 
 
-Donc c’est très louche footnote:[Lire « The Leprechauns of Software Engineering » de Laurent Bossavit (https://leanpub.com/leprechauns) où il déconstruit plusieurs exemples de ce genre de folklore, ensuite quand on voit le même graphe repris partout on prend le réflexe d’aller vérifier.].
+Donc c’est très louche footnote:[Lire link:https://leanpub.com/leprechauns[_The Leprechauns of Software Engineering_] de link:https://twitter.com/morendil[Laurent Bossavit] où il déconstruit plusieurs exemples de ce genre de folklore, ensuite quand on voit le même graphe repris partout on prend le réflexe d’aller vérifier.].
 
 Roulement de tambours, 5 euros et quelques semaines d’attente plus tard, voici l’original:
 
@@ -32,11 +32,26 @@ En fin de chapitre dans une liste de tips il donne des chiffres au jugé comme a
 
 Pour l’usage qu’il propose le chiffre de 20% perdu par tache supplémentaire a peu d’importance. Ainsi si on passe la valeur de 20% à 15% le tableau de départ change peu, et convient tout aussi bien pour le calcul d’avancement:
 
-1	100
-2	42
-3	23
-4	14
-5	8
+[cols="2*", options="header"]
+|===
+|Nombre de taches
+|% du temps passé sur chaque tâche
+
+|1
+|100
+
+|2
+|42
+
+|3
+|23
+
+|4
+|14
+
+|5
+|8
+|===
 
 Donc avoir un chiffre approximatif n’est pas grave car il ne change rien pour ce besoin.
 
