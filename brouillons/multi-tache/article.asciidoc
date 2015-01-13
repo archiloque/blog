@@ -1,0 +1,55 @@
+Le vrai coût du multi-tache pour les développeurs…
+==============
+2014-01-13
+
+(… tel qu’on le présente souvent dans des slides ben c’est du flan)
+
+dans les présentations sur l’orga des projets je suis déjà tombé plusieurs fois sur ce graphique.
+
+image::context-switching.png[]
+
+Exemple chez http://availagility.co.uk/2008/10/28/kanban-flow-and-cadence/ , il est génial ce graphique car son contenu correspond à ce qu’on a envie de démontrer, qui plus est avec de beaux chiffres bien ronds. La source donnée est « Quality Software Management: Systems Thinking » de Gerald Weinberg. L’auteur a un nom connu et le titre du bouquin est sérieux donc on se dit que ça doit être quelque chose de fiable. 
+
+J’ai deux soucis avec ce graphe:
+
+1) D’abord la présentation est très orientée car il compare le temps perdu au temps passé sur *chaque* projet plutôt qu’au temps passé sur *les* projets. Ainsi il dit « avec 3 projets je travaille 20% du temps sur chaque projet et je perds 40% du temps » plutôt que « avec 3 projets je travaille 60% du temps sur les projets et perds 40% du temps ».
+
+Voici la version reformatée:
+
+image::graphe1.png[]
+
+2) Ensuite tout le monde cite ce graphe mais sans donner le texte original, et comme le bouquin date d’avant l’internet impossible de trouver de trouver une source en ligne. 
+
+Donc c’est très louche footnote:[Lire « The Leprechauns of Software Engineering » de Laurent Bossavit (https://leanpub.com/leprechauns) où il déconstruit plusieurs exemples de ce genre de folklore, ensuite quand on voit le même graphe repris partout on prend le réflexe d’aller vérifier.].
+
+Roulement de tambours, 5 euros et quelques semaines d’attente plus tard, voici l’original:
+
+image::source.png[]
+
+Dans le corps du texte l’auteur explique les dangers d’une gestion primaire des taches: un développeur sur deux taches ça ne fait pas 50% d’un développeur sur chacune des taches. 
+
+En fin de chapitre dans une liste de tips il donne des chiffres au jugé comme aide à la planification. Ils permettent de savoir à peu près de combien je vais pouvoir budgéter l’avancement sur mes projets. 
+
+Pour l’usage qu’il propose le chiffre de 20% perdu par tache supplémentaire a peu d’importance. Ainsi si on passe la valeur de 20% à 15% le tableau de départ change peu, et convient tout aussi bien pour le calcul d’avancement:
+
+1	100
+2	42
+3	23
+4	14
+5	8
+
+Donc avoir un chiffre approximatif n’est pas grave car il ne change rien pour ce besoin.
+
+
+Par contre une fois présentée dans le graphe original cette valeur de 20% prend une importance très grande car elle va dicter l’inclinaison des courbes, ainsi en reprenant la version alternative du graphe avec la valeur de 15%:
+
+image::graphe2.png[]
+
+Je viens de démontrer que de travailler sur 2 projets à la fois ne pose pas de problème, et 3 projets est presque envisageable: le contraire du message initial !
+
+
+Si deux groupes de chiffres qui sont équivalents pour le besoin initial donnent des graphes aussi différents au final c’est bien que l’usage qui en est fait dans le graphe est invalide: on leur fait dire quelque choses qu’ils ne disent pas, et la « démonstration » tombe à l’eau. 
+
+
+Si je suis tout à fait d’accord que d’avoir plusieurs projets ou plusieurs taches est contre-productif, mais s’appuyer sur cette slide pour le démontrer est une tromperie. La prochaine fois qu’on vous la présente vous serez vacciné.
+
