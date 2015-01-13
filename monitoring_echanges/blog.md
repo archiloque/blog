@@ -10,6 +10,8 @@ On appelle un *flux* un **ensemble d'appels de services et d'envois de messages 
 
 Monitorer ces flux signifie donc mettre en place un monitoring des activités métier *(Business Activity Monitor)*. Cela consiste à collecter des données dans toutes les couches applicatives pour les corréler. Cela permet d'obtenir **une vision transverse agrégée** de l'activité de votre système d'information. Ce monitoring doit fournir à tout moment **l'état de santé et la performance des fonctions métiers importantes** *(Key Performance Indicator)*.
 
+Le monitoring de flux ne remplace pas le monitoring de composants mais le complète de la même manière que les tests d'intégration complètent les tests unitaires. Chaque brique doit être surveillé isolément d'une manière technique pour identifier les problèmes qui lui sont propres, alors que le monitoring de flux va s'intéresser aux éléments transverses et métier qui nécessitent une vision globale du système. Il y a un bien une zone de recouvrement entre les deux mais il ne faut pas les confondre ou utiliser l'un pour remplacer l'autre.
+
 Dans la suite de l'article un message métier signifiera indifféremment le contenu d'un appel de service ou d'un message envoyé.
 
 ## Pour avoir un bon monitoring de flux
@@ -20,7 +22,7 @@ La fonctionnalité essentielle est d'être capable d'**identifier les flux méti
 
 Le système doit être capable de prendre en compte **des évènements hétérogènes** : si les messages envoyés par les différents composants comportent des éléments communs (horodatage par exemple) ils comportent aussi des informations spécifiques liées au métier du service (nom du service métier, identifiant d'objets). Être capable d'intégrer facilement ces différentes données permettra de construire au plus juste des métriques fonctionnelles qui évolueront en même temps que les services.
 
-Pour pouvoir exploiter ces données, il faut disposer d'un système de **dashboarding configurable** : il ne s'agit pas seulement de prédéfinir un ensemble d'écrans de monitoring fixes, mais aussi de pouvoir s'en servir pour des études ou des investigations. Cela signifie qu'une fois mis en place, il doit être configurable dynamiquement pour pouvoir modifier des écrans ou en créer de nouveaux. Les systèmes de monitoring utilisés habituellement, lourds et fermés sont donc mal adaptés à ce type d'usage.
+Pour pouvoir exploiter au mieux ces données, il faut disposer d'un système de **dashboarding configurable** : il ne s'agit pas seulement de prédéfinir un ensemble d'écrans de monitoring fixes, mais aussi de pouvoir s'en servir pour des études ou des investigations. Les systèmes de monitoring utilisés habituellement sont souvent mal adaptés à ce type d'usage: leur ergonomie "à l'ancienne" rend l'exploration de données pas agréable. Par ailleurs il s'agit beaucoup de solutions monolithiques intégrant monitoring collecte et stockage de données.
 
 La base de données doit fournir des fonctionnalités d'**indexation** avec une couverture maximum, l'idéal étant d'indexer l'intégralité des champs des données. Cela permet de simplifier les investigations en cas d'erreur : on pourra par exemple identifier tous les messages qui concernent un certain numéro de compte. Pour des questions de volume, on pourra limiter l'indexation dans le temps (48 heures au moins), en gardant la possibilité de réindexer des messages passés.
 
@@ -34,7 +36,7 @@ Ensuite le monitoring ne doit **pas entrainer de baisse de performances**, les m
 
 #### Limiter les développements spécifiques
 
-Enfin il faut **Limiter les développements métier dans les briques de monitoring** : si de la configuration ou un peu de développement spécifique est inévitable, surtout pour les métriques les plus précises, il faut éviter de recoder des comportements fonctionnels. Cela se produit souvent quand on veut s'appuyer sur les messages de monitoring pour reproduire l'état du système monitoré. Le résultat est souvent fragile et va rendre plus difficile les évolutions du métier.
+Enfin il faut **Limiter les développements métier dans les briques de monitoring** : si de la configuration ou un peu de développement spécifique est inévitable, surtout pour les métriques les plus précises, il faut éviter de recoder des comportements fonctionnels. Le résultat est souvent fragile et va rendre plus difficile les évolutions du métier.
 
 ### Briques logicielles nécessaires
 
@@ -78,3 +80,7 @@ Ce type d'architecture "big data" permettant un traitement en flux porte le nom 
 Après les moteurs de règles classiques, on commence à se tourner vers des solutions d'analyse plus pointues permettant de mieux mesurer ce qui se passe mais aussi de mieux prévoir. Dans cette optique, la composante métier du monitoring prend de plus en plus de poids et la distinction avec la BI s'efface et nous sommes convaincus qu'on verra bientôt des solutions d'*online machine learning* enrichir ces systèmes.
 
 ![Le futur](futur.png)
+
+# Conclusion
+
+Nous espérons vous avoir convaincu de la valeur qu'apporte le monitoring de flux. Aujourd'hui il est essentiel pour des raisons d'exploitation, demain il vous apportera également de la valeur métier. La mise en place ce type de solution dans un système d'information est un chantier structurant mais qui s'apppuie sur des composants ouverts et bien connus, il n'y donc aucune raison pour ne pas s'y mettre.
