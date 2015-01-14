@@ -2,37 +2,38 @@
 Julien Kirch
 v1.0, 2014-01-13
 
-(… n'est pas forcément celui qu'on présente dans une slide réprise partout)
+(… n'est pas forcément celui qu'on présente partout)
 
 
-
-Dans les présentations sur l’orga des projets je suis déjà tombé plusieurs fois sur ce graphique.
+Dans les présentation sur l'organisation des projets, lorsque'un animateur veut convaincre son auditoire des méfais du multi-tache pour les développeurs, on voit souvent une variation de ce slide:
 
 image::graphe0.png[]
 
-Exemple chez http://availagility.co.uk/2008/10/28/kanban-flow-and-cadence/ , il est génial ce graphique car son contenu correspond à ce qu’on a envie de démontrer, qui plus est avec de beaux chiffres bien ronds. La source donnée est « Quality Software Management: Systems Thinking » de Gerald Weinberg. L’auteur a un nom connu et le titre du bouquin est sérieux donc on se dit que ça doit être quelque chose de fiable.
+Par exemple link:http://availagility.co.uk/2008/10/28/kanban-flow-and-cadence/[ici], link:http://fr.slideshare.net/pawelbrodzinski/successful-evolutionary-change-of-portfolio-management[ici]  (slide 7), link:http://blog.codinghorror.com/the-multi-tasking-myth/[ici] ou link:http://www.infoq.com/articles/multitasking-problems[ici].
 
-J’ai deux soucis avec ce graphe:
+Ce graphique est très efficace:
 
-1) D’abord la présentation est très orientée car il compare le temps perdu au temps passé sur *chaque* projet plutôt qu’au temps passé sur *les* projets. Ainsi il dit « avec 3 projets je travaille 20% du temps sur chaque projet et je perds 40% du temps » plutôt que « avec 3 projets je travaille 60% du temps sur les projets et perds 40% du temps ».
+- le graphique est frappant: on comprend immédiatement qu'il faut bannir complètement le multi-tâche
+- la source donnée est un gage de sérieux: Gerald Weinberg est un nom connu, et le titre du livre (_Quality Software Management: Vol. 1 System Thinking_) impressionne.
 
-Voici la version reformatée:
+Mais ce graphe a deux défauts :
 
-image::graphe1.png[]
+- il est toujours présenté de la même manière : le même aspect avec la même manière de citer la source
+- la manière dont les valeurs ont été déterminées les valeurs n'est jamais précisée
 
-2) Ensuite tout le monde cite ce graphe mais sans donner le texte original, et comme le bouquin date d’avant l’internet impossible de trouver de trouver une source en ligne.
+Cela laisse présager qu'on se trouve devant un anti-pattern classique: un même schéma est recopié par tout le monde, sans que personne ne consulte la source originale, surtout qu'ici le livre est ancien et n'existe pas sous forme électronique. Et ce qui arrive malheureusement souvent c'est que le schéma que tout le monde copie prend des liberté avec sa source footnote:[Lire link:https://leanpub.com/leprechauns[_The Leprechauns of Software Engineering_] de link:https://twitter.com/morendil[Laurent Bossavit] où il déconstruit plusieurs exemples de ce genre de folklore, ensuite quand on voit le même graphe repris partout on prend le réflexe d’aller vérifier.].
 
-Donc c’est très louche footnote:[Lire link:https://leanpub.com/leprechauns[_The Leprechauns of Software Engineering_] de link:https://twitter.com/morendil[Laurent Bossavit] où il déconstruit plusieurs exemples de ce genre de folklore, ensuite quand on voit le même graphe repris partout on prend le réflexe d’aller vérifier.].
+Bref il est temps d'enquêter. Le livre étant ancien link:http://www.amazon.com/exec/obidos/ASIN/0932633226[un peu de patience et quelques euros] permettent de se le procurer.
 
-Roulement de tambours, 5 euros et quelques semaines d’attente plus tard, voici l’original:
+Dans le livre pas de trace du graphique. Au chapitre 17 l'auteur explique les dangers d’une gestion primaire des taches: un développeur sur deux tâches ça ne fait pas 50% d’un développeur sur chacune des taches mais moins.
+
+En fin de chapitre, on trouve ce qu'on est venu chercher:
 
 image::source.png[]
 
-Dans le corps du texte l’auteur explique les dangers d’une gestion primaire des taches: un développeur sur deux taches ça ne fait pas 50% d’un développeur sur chacune des taches.
+Dans une liste de tips il donne des chiffres comme aide à la planification. Ils permettent de savoir à peu près de combien il est possible de budgéter d'avancement sur les projets en fonction de leur nombre.
 
-En fin de chapitre dans une liste de tips il donne des chiffres au jugé comme aide à la planification. Ils permettent de savoir à peu près de combien je vais pouvoir budgéter l’avancement sur mes projets.
-
-Pour l’usage qu’il propose le chiffre de 20% perdu par tache supplémentaire a peu d’importance. Ainsi si on passe la valeur de 20% à 15% le tableau de départ change peu, et convient tout aussi bien pour le calcul d’avancement:
+Les chiffres qu'il donnent sont sorti du chapeau, mais ils conviennent car ici seul l'ordre de grandeur est important. Par exemple si on passe la valeur de perte de 20% à 15% le tableau change peu, cette valeur conviendrait tout aussi bien pour le calcul d’avancement:
 
 [cols="2*", options="header"]
 |===
@@ -55,17 +56,24 @@ Pour l’usage qu’il propose le chiffre de 20% perdu par tache supplémentaire
 |8
 |===
 
-Donc avoir un chiffre approximatif n’est pas grave car il ne change rien pour ce besoin.
+Donc avoir ces chiffres approximatif n’est pas un problème, pour _l'usage qu'en fait l'auteur_ d'un abaque pour calculer l'avancement des taches.
 
+Quand on retourne au schéma de départ, on se rend compte que les valeurs présentées ne sont pas tout à fait les mêmes: au temps passé sur chaque tâche on a ajouté le temps perdu. Disposer de la source permet de se rendre compte que ce choix est très orienté: le graphie compare le temps passé _sur chaque tâche_ au temps perdu _en tout_.
 
-Par contre une fois présentée dans le graphe original cette valeur de 20% prend une importance très grande car elle va dicter l’inclinaison des courbes, ainsi en reprenant la version alternative du graphe avec la valeur de 15%:
+Ainsi si on reprend le graphique original d'une manière un peu plus objective, voici ce qu'on obtient :
+
+image::graphe1.png[]
+
+L'impression n'est plus la même: travailler sur deux projets à la fois ne pose plus tellement de problème. Ma démonstration de départ ne tient plus.
+
+Si on veut démonter le méchanisme jusqu'au bout, il faut se souvenir que dans le tableau original, seul l'ordre de valeur était important. Voici le graphique repris mais avec une perte de 15%:
 
 image::graphe2.png[]
 
-Je viens de démontrer que de travailler sur 2 projets à la fois ne pose pas de problème, et 3 projets est presque envisageable: le contraire du message initial !
+Ici travailler sur trois projets à la fois devient presque envisageable: la conclusion du graphique a changé alors que pour le besoin initial les deux séries de chiffres sont équivalentes.
 
+La conclusion s'impose: en les utilisant dans un contexte différent de celui pour lequel ils ont été donnés, on veut faire dire à des chiffres quelque chose qu'il ne disent pas et la « démonstration » tombe à l'eau.
 
-Si deux groupes de chiffres qui sont équivalents pour le besoin initial donnent des graphes aussi différents au final c’est bien que l’usage qui en est fait dans le graphe est invalide: on leur fait dire quelque choses qu’ils ne disent pas, et la « démonstration » tombe à l’eau.
+Si je suis convaincu que d'avoir plusieurs tâches en parallèle doit être évité, s'appuyer sur cette slide pour le justifier est donc une manipulation. La prochaine fois qu’on vous la présente vous serez vacciné.
 
-
-Si je suis tout à fait d’accord que d’avoir plusieurs projets ou plusieurs taches est contre-productif, mais s’appuyer sur cette slide pour le démontrer est une tromperie. La prochaine fois qu’on vous la présente vous serez vacciné.
+Pour finir: s'il est un peu daté sur certains aspects, le livre de Weinberg a bien plus de valeur que l'usage détourné qui en est fait ici, je vous conseille de le parcourir.
