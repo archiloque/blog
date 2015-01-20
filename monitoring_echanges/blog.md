@@ -6,11 +6,11 @@ L'objectif de cet article est de vous permettre de comparer votre système actue
 
 # Monitoring de flux ?
 
-On appelle un *flux* un **ensemble d'appels de services et d'envois de messages qui ensemble forment un service métier**. Dans un système d'information complexe, un tel flux traverse souvent plusieurs applications et utilise parfois plusieurs technologies : par exemple un utilisateur clique sur un écran qui déclenche un appel REST qui provoque une invocation SOAP dont le traitement envoie une série de messages JMS.
+On appelle un *flux* un **ensemble d'appels de services et/ou d'envois de messages qui ensemble forment un service métier**. Dans un système d'information complexe, un tel flux traverse souvent plusieurs applications et utilise parfois plusieurs technologies : par exemple un utilisateur clique sur un écran qui déclenche un appel REST qui provoque une invocation SOAP dont le traitement envoie une série de messages JMS.
 
-Monitorer ces flux signifie donc mettre en place un monitoring des activités métier *(Business Activity Monitor)*. Cela consiste à collecter des données dans toutes les couches applicatives pour les corréler. Cela permet d'obtenir **une vision transverse agrégée** de l'activité de votre système d'information. Ce monitoring doit fournir à tout moment **l'état de santé et la performance des fonctions métiers importantes** *(Key Performance Indicator)*.
+Monitorer ces flux signifie donc mettre en place un monitoring des activités métier *(Business Activity Monitoring)*. Cela consiste à collecter des données dans toutes les couches applicatives pour les corréler. Cela permet d'obtenir **une vision transverse agrégée** de l'activité de votre système d'information. Ce monitoring doit fournir à tout moment **l'état de santé et la performance des fonctions métiers importantes** *(Key Performance Indicator)*. Dans le passé ces informations étaient souvent calculées séparément pour chaque couche technique.
 
-Le monitoring de flux ne remplace pas le monitoring de composants mais le complète de la même manière que les tests d'intégration complètent les tests unitaires. Chaque brique doit être surveillée isolément d'une manière technique pour identifier les problèmes qui lui sont propres, alors que le monitoring de flux va s'intéresser aux éléments transverses et métier qui nécessitent une vision globale du système. Il y a un bien une zone de recouvrement entre les deux mais il ne faut pas les confondre ou utiliser l'un pour remplacer l'autre.
+Le monitoring de flux **ne remplace pas le monitoring de composants mais le complète** de la même manière que les tests d'intégration complètent les tests unitaires. Chaque brique doit être surveillée isolément d'une manière technique pour identifier les problèmes qui lui sont propres, alors que le monitoring de flux va s'intéresser aux éléments transverses et métier qui nécessitent une vision globale du système. Il y a un bien une zone de recouvrement entre les deux mais il ne faut pas les confondre ou utiliser l'un pour remplacer l'autre.
 
 Dans la suite de l'article un message métier signifiera indifféremment le contenu d'un appel de service ou d'un message envoyé.
 
@@ -19,6 +19,8 @@ Dans la suite de l'article un message métier signifiera indifféremment le cont
 ### Fonctionnalités
 
 La fonctionnalité essentielle est d'être capable d'**identifier les flux métier** dans les messages atomiques. Généralement cela passe par l'utilisation d'un identifiant unique (*correlation id*). Tous les messages d'un même flux devront donc contenir le même identifiant. Cela passe par la mise en place d'une brique spécifique dans les différents applicatifs chargée de générer l'identifiant en début de chaîne et de le propager dans les traitements. Cette brique sera aussi responsable de transmettre une copie des messages pour qu'elle soit intégrée dans le monitoring.
+
+![Correlation](correlation.png)
 
 Le système doit être capable de prendre en compte **des évènements hétérogènes** : si les messages envoyés par les différents composants comportent des éléments communs (horodatage par exemple) ils comportent aussi des informations spécifiques liées au métier du service (nom du service métier, identifiant d'objets). Être capable d'intégrer facilement ces différentes données permettra de construire au plus juste des métriques fonctionnelles qui évolueront en même temps que les services.
 
@@ -46,7 +48,7 @@ Pour répondre à ces critères, on peut donc identifier les différentes brique
 - Une base de données indexée où ils sont stockés.
 - Une console de monitoring pour les exploiter.
 
-![Le futur](present.png)
+![Le présent](present.png)
 
 # Pratiques actuelles
 
@@ -56,7 +58,7 @@ Votre système d'information comporte déjà une partie des blocs techniques don
 
 - Pour le traitement de messages, un système de **[CEP](http://en.wikipedia.org/wiki/Complex_event_processing)** (*complex event processing*) comme [Drool Fusion](http://docs.jboss.org/drools/release/latest/drools-docs/html/DroolsComplexEventProcessingChapter.html) va gérer les aspects techniques. Il va conserver en mémoire un état du système sur lequel on définit des règles déclenchant des traitements ou des alertes.
 
-- La base de données doit stocker des messages ayant des formats hétérogènes et qui évoluent avec les applications. On s'orientera donc généralement vers une solution de stockage de type NoSQL permettant d'avoir des schémas de données dynamiques tout en fournissant partitionnement et scalabalité afin d'absorber le volume et le débit de données entrant. Les fonctionnalités d'indexation d'**[Elastic Search](http://www.elasticsearch.org)** en font généralement un bon choix.
+- La base de données doit **stocker des messages ayant des formats hétérogènes et qui évoluent** avec les applications. On s'orientera donc généralement vers une solution de stockage de type NoSQL permettant d'avoir des schémas de données dynamiques tout en fournissant partitionnement et scalabalité afin d'absorber le volume et le débit de données entrant. Les fonctionnalités d'indexation d'**[Elastic Search](http://www.elasticsearch.org)** en font généralement un bon choix.
 
 - Pour le dashboarding [Kibana](http://www.elasticsearch.org/overview/kibana/) est le produit de référence pour visualiser des données stockées dans Elastic Search : il permet de construire des écrans riches de manière flexible.
 
