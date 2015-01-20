@@ -1,4 +1,4 @@
-# Présent et avenir du monitoring de flux 
+# Présent et avenir du monitoring de flux
 
 Avoir un monitoring de flux performant est critique : intégrant tous les flux de données il est à même d'offrir une vision synthétique de tout le système d'information.
 
@@ -10,7 +10,7 @@ On appelle un *flux* un **ensemble d'appels de services et d'envois de messages 
 
 Monitorer ces flux signifie donc mettre en place un monitoring des activités métier *(Business Activity Monitor)*. Cela consiste à collecter des données dans toutes les couches applicatives pour les corréler. Cela permet d'obtenir **une vision transverse agrégée** de l'activité de votre système d'information. Ce monitoring doit fournir à tout moment **l'état de santé et la performance des fonctions métiers importantes** *(Key Performance Indicator)*.
 
-Le monitoring de flux ne remplace pas le monitoring de composants mais le complète de la même manière que les tests d'intégration complètent les tests unitaires. Chaque brique doit être surveillé isolément d'une manière technique pour identifier les problèmes qui lui sont propres, alors que le monitoring de flux va s'intéresser aux éléments transverses et métier qui nécessitent une vision globale du système. Il y a un bien une zone de recouvrement entre les deux mais il ne faut pas les confondre ou utiliser l'un pour remplacer l'autre.
+Le monitoring de flux ne remplace pas le monitoring de composants mais le complète de la même manière que les tests d'intégration complètent les tests unitaires. Chaque brique doit être surveillée isolément d'une manière technique pour identifier les problèmes qui lui sont propres, alors que le monitoring de flux va s'intéresser aux éléments transverses et métier qui nécessitent une vision globale du système. Il y a un bien une zone de recouvrement entre les deux mais il ne faut pas les confondre ou utiliser l'un pour remplacer l'autre.
 
 Dans la suite de l'article un message métier signifiera indifféremment le contenu d'un appel de service ou d'un message envoyé.
 
@@ -22,7 +22,7 @@ La fonctionnalité essentielle est d'être capable d'**identifier les flux méti
 
 Le système doit être capable de prendre en compte **des évènements hétérogènes** : si les messages envoyés par les différents composants comportent des éléments communs (horodatage par exemple) ils comportent aussi des informations spécifiques liées au métier du service (nom du service métier, identifiant d'objets). Être capable d'intégrer facilement ces différentes données permettra de construire au plus juste des métriques fonctionnelles qui évolueront en même temps que les services.
 
-Pour pouvoir exploiter au mieux ces données, il faut disposer d'un système de **dashboarding configurable** : il ne s'agit pas seulement de prédéfinir un ensemble d'écrans de monitoring fixes, mais aussi de pouvoir s'en servir pour des études ou des investigations. Les systèmes de monitoring utilisés habituellement sont souvent mal adaptés à ce type d'usage: leur ergonomie "à l'ancienne" rend l'exploration de données pas agréable. Par ailleurs il s'agit beaucoup de solutions monolithiques intégrant monitoring collecte et stockage de données.
+Pour pouvoir exploiter au mieux ces données, il faut disposer d'un système de **dashboarding configurable** : il ne s'agit pas seulement de prédéfinir un ensemble d'écrans de monitoring fixes, mais aussi de pouvoir s'en servir pour des études ou des investigations. Les systèmes de monitoring utilisés habituellement sont souvent mal adaptés à ce type d'usage: leur ergonomie "à l'ancienne" rend l'exploration de données pénible. Par ailleurs il s'agit beaucoup de solutions monolithiques intégrant monitoring collecte et stockage de données.
 
 La base de données doit fournir des fonctionnalités d'**indexation** avec une couverture maximum, l'idéal étant d'indexer l'intégralité des champs des données. Cela permet de simplifier les investigations en cas d'erreur : on pourra par exemple identifier tous les messages qui concernent un certain numéro de compte. Pour des questions de volume, on pourra limiter l'indexation dans le temps (48 heures au moins), en gardant la possibilité de réindexer des messages passés.
 
@@ -36,7 +36,7 @@ Ensuite le monitoring ne doit **pas entrainer de baisse de performances**, les m
 
 #### Limiter les développements spécifiques
 
-Enfin il faut **Limiter les développements métier dans les briques de monitoring** : si de la configuration ou un peu de développement spécifique est inévitable, surtout pour les métriques les plus précises, il faut éviter de recoder des comportements fonctionnels. Le résultat est souvent fragile et va rendre plus difficile les évolutions du métier.
+Enfin il faut **limiter les développements métier dans les briques de monitoring** : si de la configuration ou un peu de développement spécifique est inévitable, surtout pour les métriques les plus précises, il faut éviter de recoder des comportements fonctionnels. Le résultat est souvent fragile et va rendre plus difficile les évolutions du métier.
 
 ### Briques logicielles nécessaires
 
@@ -54,7 +54,7 @@ Votre système d'information comporte déjà une partie des blocs techniques don
 
 - Du fait du grand nombre de messages entrant dans le système, les middlewares classiques n'offrent pas une capacité de traitement suffisante, il est donc nécessaire d'utiliser un **système de communication spécialisé** pour ce type de volume : [AMQP](http://www.amqp.org), [SNMP](http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol), [RSYSLOG](http://www.rsyslog.com), [ZeroMQ](http://zeromq.org).
 
-- Pour le traitement de messages, un système de **[CEP](http://en.wikipedia.org/wiki/Complex_event_processing)** (*complex event processing*) comme [Drool Fusion](http://docs.jboss.org/drools/release/latest/drools-docs/html/DroolsComplexEventProcessingChapter.html) va gérer les aspects techniques pour permettre de se concentrer sur les règles à mettre en place.
+- Pour le traitement de messages, un système de **[CEP](http://en.wikipedia.org/wiki/Complex_event_processing)** (*complex event processing*) comme [Drool Fusion](http://docs.jboss.org/drools/release/latest/drools-docs/html/DroolsComplexEventProcessingChapter.html) va gérer les aspects techniques. Il va conserver en mémoire un état du système sur lequel on définit des règles déclenchant des traitements ou des alertes.
 
 - La base de données doit stocker des messages ayant des formats hétérogènes et qui évoluent avec les applications. On s'orientera donc généralement vers une solution de stockage de type NoSQL permettant d'avoir des schémas de données dynamiques tout en fournissant partitionnement et scalabalité afin d'absorber le volume et le débit de données entrant. Les fonctionnalités d'indexation d'**[Elastic Search](http://www.elasticsearch.org)** en font généralement un bon choix.
 
@@ -62,15 +62,15 @@ Votre système d'information comporte déjà une partie des blocs techniques don
 
 # Le futur
 
-Ce type d'architecture reposant sur des briques standard est limité sur deux aspects, le premier est technique et le second fonctionnel. 
+Ce type d'architecture reposant sur des briques standard est limité sur deux aspects, le premier est technique et le second fonctionnel.
 
 ## Toujours plus de messages
 
 La première limite est liée à l'augmentation du nombre de messages à traiter. Dans des systèmes basés sur les nouvelles architectures de micro-services et qui intègrent de nouveaux usages (applications mobiles, Internet des objets) le nombre de messages est démultiplié. L'objectif du système de monitoring étant de continuer à absorber l'intégralité des messages il doit voir ses capacités augmenter dans les mêmes proportions.
 
 Cela entraine la mise en place de plusieurs solutions :
-- Même en choisissant un broker rapide, les solutions de middleware de messages classiques plafonnent à 10 000 messages par seconde. Il faut alors se tourner vers des solutions **«Fast Data»** dont [Kafka](http://kafka.apache.org) semble aujourd'hui devenir la solution de référence.
-- L'intégration de messages dans le système de stockage doit passer par une solution d' **« Event Streaming »**. Les solutions envisageables sont [Apache Storm](https://storm.apache.org) et [Apache Spark Streaming](https://spark.apache.org/streaming/).
+- Même en choisissant un broker rapide, les solutions de middleware de messages classiques plafonnent à quelques milliers de messages par seconde. Il faut alors se tourner vers des solutions **«Fast Data»** dont [Kafka](http://kafka.apache.org) semble aujourd'hui devenir la solution de référence.
+- L'intégration de messages dans le système de stockage doit passer par une solution d' **« Event Streaming »**. Les solutions envisageables sont par exemple [Apache Storm](https://storm.apache.org) ou [Apache Spark Streaming](https://spark.apache.org/streaming/).
 - Le stockage d'un tel volume de données sera réalisé sur **un système de stockage distribué** comme une [Apache Cassandra](http://cassandra.apache.org) ou [HDFS](http://hadoop.apache.org/docs/r1.2.1/hdfs_design.html#Introduction) d'Hadoop. Le stockage dans Elastic Search pourra être conservé pour des besoins de requêtage rapide sur des données récentes.
 
 Ce type d'architecture "big data" permettant un traitement en flux porte le nom de [DataLake](http://www.forbes.com/sites/ciocentral/2011/07/21/big-data-requires-a-big-new-architecture/)
@@ -83,4 +83,4 @@ Après les moteurs de règles classiques, on commence à se tourner vers des sol
 
 # Conclusion
 
-Nous espérons vous avoir convaincu de la valeur qu'apporte le monitoring de flux. Aujourd'hui il est essentiel pour des raisons d'exploitation, demain il vous apportera également de la valeur métier. La mise en place ce type de solution dans un système d'information est un chantier structurant mais qui s'apppuie sur des composants ouverts et bien connus, il n'y donc aucune raison pour ne pas s'y mettre.
+Nous espérons vous avoir convaincu de la valeur qu'apporte le monitoring de flux. Aujourd'hui il est essentiel pour des raisons d'exploitation, demain il vous apportera également de la valeur métier. La mise en place ce type de solution dans un système d'information est un chantier structurant mais qui s'appuie sur des composants ouverts et bien connus, il n'y donc aucune raison pour ne pas s'y mettre.
