@@ -55,11 +55,8 @@ Pour répondre à ces critères, on peut donc identifier les différentes brique
 Votre système d'information comporte déjà une partie des blocs techniques dont on a besoin, comme un système de messages ou une base de données. Malheureusement, les spécificités du monitoring empêchent souvent d'utiliser les mêmes outils :
 
 - Du fait du grand nombre de messages entrant dans le système, les middlewares classiques n'offrent pas une capacité de traitement suffisante, il est donc nécessaire d'utiliser un **système de communication spécialisé** pour ce type de volume : [AMQP](http://www.amqp.org), [SNMP](http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol), [RSYSLOG](http://www.rsyslog.com), [ZeroMQ](http://zeromq.org).
-
 - Pour le traitement de messages, un système de **[CEP](http://en.wikipedia.org/wiki/Complex_event_processing)** (*complex event processing*) comme [Drool Fusion](http://docs.jboss.org/drools/release/latest/drools-docs/html/DroolsComplexEventProcessingChapter.html) va gérer les aspects techniques. Il va conserver en mémoire un état du système sur lequel on définit des règles déclenchant des traitements ou des alertes.
-
 - La base de données doit **stocker des messages ayant des formats hétérogènes et qui évoluent** avec les applications. On s'orientera donc généralement vers une solution de stockage de type NoSQL permettant d'avoir des schémas de données dynamiques tout en fournissant partitionnement et scalabalité afin d'absorber le volume et le débit de données entrant. Les fonctionnalités d'indexation d'**[Elastic Search](http://www.elasticsearch.org)** en font généralement un bon choix.
-
 - Pour le dashboarding [Kibana](http://www.elasticsearch.org/overview/kibana/) est le produit de référence pour visualiser des données stockées dans Elastic Search : il permet de construire des écrans riches de manière flexible.
 
 # Le futur
