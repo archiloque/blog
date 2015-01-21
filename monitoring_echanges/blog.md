@@ -72,7 +72,7 @@ Cela entraine la mise en place de plusieurs solutions :
 - L'intégration de messages dans le système de stockage doit passer par une solution d' **« Event Streaming »**. Les solutions envisageables sont par exemple [Apache Storm](https://storm.apache.org) ou [Apache Spark Streaming](https://spark.apache.org/streaming/).
 - Le stockage d'un tel volume de données sera réalisé sur **un système de stockage distribué** comme une [Apache Cassandra](http://cassandra.apache.org) ou [HDFS](http://hadoop.apache.org/docs/r1.2.1/hdfs_design.html#Introduction) d'Hadoop. Le stockage dans Elastic Search pourra être conservé pour des besoins de requêtage rapide sur des données récentes.
 
-Ce type d'architecture "big data" permettant un traitement en flux porte le nom de [DataLake](http://www.forbes.com/sites/ciocentral/2011/07/21/big-data-requires-a-big-new-architecture/)
+Ce type d'architecture "big data" permettant de combiner plusieurs approches de traitement en conservant un stockage unifié porte le nom de [DataLake](http://www.forbes.com/sites/ciocentral/2011/07/21/big-data-requires-a-big-new-architecture/)
 
 ## Des analyses plus poussées
 
