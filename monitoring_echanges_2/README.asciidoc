@@ -3,11 +3,28 @@ Julien Kirch & Cédric Lunven
 v0.1, 2015-02-17
 :toc:
 
-NOTE: QQQQQ Introduction
 
-NOTE: QQQQQ Annonce du plan
+== Introduction
 
-= Description du système
+Démontrer l'article précédent en fournissant des exemples de code.
+
+QQQQQ
+
+== Annonce du plan
+
+QQQQQ
+
+== À propos du code
+
+Le link:https://github.com/archiloque/monitoring_flux[code proposé dans cet article] à été écrit dans un but illustratif.
+Il est donc le plus simple possible et ne comprend par exemple ni gestion des erreurs ni optimization.
+À vous de vous en inspirer et de l'adapter (il est sous license open source Apache) mais surtout ne le réutilisez pas tel quel.
+
+Les étapes permettant de tester le code vous-même sont décrites dans link:https://github.com/archiloque/monitoring_flux/blob/master/README.asciidoc[la documentation du projet].
+
+Si des portions du code vous semblent peu claires ou que vous avez des suggestions merci de le faire par l'intermédiaire du link:https://github.com/archiloque/monitoring_flux[projet Github], les pull request sont les bienvenues.
+
+== Description du système
 
 Le premier article expliquait que les services métier avaient deux caractéristiques:
 - ils pouvaient combiner services et messages
@@ -23,8 +40,8 @@ image::architecture.png[]
 
 Côté métier
 
-- Un serveur frontend exposant un site web
-- Un serveur middle-end exposant des services pour le frontend
+- Un serveur frontend exposant un site web avec un formulaire qui appelle un unique servive backend
+- Un serveur middle-end exposant deux services pour le frontend
 - Un serveur backend traitant des messages de manière asynchrones à partir d'un bus alimenté par le middle-end
 
 Côté monitoring
@@ -35,26 +52,54 @@ Côté monitoring
 - Une base de donnée indexant les messages et les informations générées par le CEP
 - Un outil de dashboarding pour présenter les informations de monitoring
 
-== Technologies employées
+== Description des différent éléments
 
 image::technologies.png[]
 
-== À propos du code
+=== À propos du monitoring
 
-Le link:https://github.com/archiloque/monitoring_flux[code proposé dans cet article] à été écrit dans un but illustratif.
-Il est donc le plus simple possible et ne comprend par exemple ni gestion des erreurs ni optimization.
-À vous de vous en inspirer et de l'adapter mais surtout ne le réutilisez pas tel quel.
+Pour fournir les données nécessaires, chaque brique embarque du code permettant de récupérer les informations utiles et de les poster dans un bus.
+Pour pénaliser au minimum les performance du code applicatif l'envoi des message s'effectue systématiquement dans un thread dédié, et une gestion d'exception isole le code de monitoring du code métier.
 
-Si des portions du code vous semblent peu claires ou que vous avez des suggestions merci de le faire par l'intermédiaire du link:https://github.com/archiloque/monitoring_flux[projet Github], les pull request sont les bienvenues.
+Conformément aux recommendation du premier article c'est un bus link:http://zeromq.org[ZeroMQ] qui a été choisi pour ses très bonnes performances.
 
-= Détail du monitoring
+=== Frontend
 
-== Frontend
+Le serveur frontend est en link:http://ruby-lang.org[Ruby] et utilise le framework web link:http://sinatrarb.com[Sinatra] qui est parfait pour comme ici exposer facilement des services web.
 
-== Middle end
+- link:https://github.com/archiloque/monitoring_flux/blob/master/frontend/lib/app_base.rb[app_base.rb] qui paramètre le socle de l'application, avec nottament un helper pour appeller les services du middle end
+- le répertoire link:https://github.com/archiloque/monitoring_flux/tree/master/frontend/static[static] qui contient le site web
+- link:https://github.com/archiloque/monitoring_flux/blob/master/frontend/lib/frontend_app.rb[frontend_app.rb] qui expose le service métier qu'appelle le site web
 
-== Backend
+==== Monitoring
 
-== CEP
+Le framework Sinatra fournit les point d'entrées nécessaires pour le monitoring sous forme de méthodes `before` et `after` où toutes les informations de la requète en cours sont accessibles.
 
-== Dashboard
+Les données sont postées dans une link:http://ruby-doc.org/stdlib-2.0.0/libdoc/thread/rdoc/Queue.html[Queue] et consommée dans un thread séparé.
+
+=== Middle end
+
+Le serveur middle end utilise link:http://spring.io[Spring], link:http://projects.spring.io/spring-boot/[Spring Boot] permet de configurer facilement une application et link:http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html[Spring MVC] d'exposer des services REST.
+
+- link:https://github.com/archiloque/monitoring_flux/blob/master/middleend/src/main/java/com/octo/monitoring_flux/middleend/controller/MiddleEndController.java[MiddleEndController.java] contient le controller qui expose les deux services exposés
+- link:https://github.com/archiloque/monitoring_flux/blob/master/middleend/src/main/java/com/octo/monitoring_flux/middleend/RedisProvider.java[RedisProvider.java] fournit l'accès au bus.
+
+==== Monitoring
+
+=== Le bus applicatif
+
+Il s'agit d'un serveur link:http://redis.io[Redis] qui est principalement un cache clé-valeur mais qui peut également servir de bus de message. Ses principaux avantages sont sa facilité de mise en œuvre et sa vitesse.
+
+=== Le backend
+
+Nous avons simulé une application de traitement de messages à l'aide d'un pool de threads :
+ link:https://github.com/archiloque/monitoring_flux/blob/master/backend/src/main/java/com/octo/monitoring_flux/backend/ApplicationBase.java[ApplicationBase.java] fournit le socle applicatif qui consomme les messages depuis Redis et les fait traiter par un pool de thread;java
+- link:https://github.com/archiloque/monitoring_flux/blob/master/backend/src/main/java/com/octo/monitoring_flux/backend/Backend.java[Backend] traite les messages
+
+=== Le CEP
+
+=== La base de donnée
+
+=== Le dashboard
+
+== Conclusion
