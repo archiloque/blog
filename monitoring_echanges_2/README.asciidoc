@@ -1,0 +1,60 @@
+= Monitoring de flux par l'exemple
+Julien Kirch & Cédric Lunven
+v0.1, 2015-02-17
+:toc:
+
+NOTE: QQQQQ Introduction
+
+NOTE: QQQQQ Annonce du plan
+
+= Description du système
+
+Le premier article expliquait que les services métier avaient deux caractéristiques:
+- ils pouvaient combiner services et messages
+- ils pouvaient combiner plusieurs technologies
+
+Un système d'information qui combine ces deux aspects nécéssite d'avoir des outils de monitoring flexibles et qui reposent sur des technologies interropérables.
+
+L'architecture applicative présentée ici prend en compte ces éléments:
+
+== Architecture applicative
+
+image::architecture.png[]
+
+Côté métier
+
+- Un serveur frontend exposant un site web
+- Un serveur middle-end exposant des services pour le frontend
+- Un serveur backend traitant des messages de manière asynchrones à partir d'un bus alimenté par le middle-end
+
+Côté monitoring
+
+- Un module de monitoring dans chaque brique applicative
+- Un bus dédié recevant des messages de chacun de ces modules
+- Un serveur de CEP traitant ces messages
+- Une base de donnée indexant les messages et les informations générées par le CEP
+- Un outil de dashboarding pour présenter les informations de monitoring
+
+== Technologies employées
+
+image::technologies.png[]
+
+== À propos du code
+
+Le link:https://github.com/archiloque/monitoring_flux[code proposé dans cet article] à été écrit dans un but illustratif.
+Il est donc le plus simple possible et ne comprend par exemple ni gestion des erreurs ni optimization.
+À vous de vous en inspirer et de l'adapter mais surtout ne le réutilisez pas tel quel.
+
+Si des portions du code vous semblent peu claires ou que vous avez des suggestions merci de le faire par l'intermédiaire du link:https://github.com/archiloque/monitoring_flux[projet Github], les pull request sont les bienvenues.
+
+= Détail du monitoring
+
+== Frontend
+
+== Middle end
+
+== Backend
+
+== CEP
+
+== Dashboard
