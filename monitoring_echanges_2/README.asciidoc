@@ -67,13 +67,16 @@ Conformément aux recommendation du premier article c'est un bus link:http://zer
 
 Le serveur frontend est en link:http://ruby-lang.org[Ruby] et utilise le framework web link:http://sinatrarb.com[Sinatra] qui est parfait pour comme ici exposer facilement des services web.
 
-- link:https://github.com/archiloque/monitoring_flux/blob/master/frontend/lib/app_base.rb[app_base.rb] qui paramètre le socle de l'application, avec nottament un helper pour appeller les services du middle end
-- le répertoire link:https://github.com/archiloque/monitoring_flux/tree/master/frontend/static[static] qui contient le site web
-- link:https://github.com/archiloque/monitoring_flux/blob/master/frontend/lib/frontend_app.rb[frontend_app.rb] qui expose le service métier qu'appelle le site web
+- link:https://github.com/archiloque/monitoring_flux/blob/master/frontend/lib/app_base.rb[app_base.rb] paramètre le socle de l'application, et fournit une méthode pour appeller des services du serveur middle end.
+- le répertoire link:https://github.com/archiloque/monitoring_flux/tree/master/frontend/static[static] contient le site web
+- link:https://github.com/archiloque/monitoring_flux/blob/master/frontend/lib/frontend_app.rb[frontend_app.rb] expose le service métier qu'appelle le site web et appelle deux service du middle end l'un après l'autre.
 
 ==== Monitoring
 
+Le code de monitoring est situé dans la classe link:https://github.com/archiloque/monitoring_flux/blob/master/frontend/lib/monitoring_base.rb[monitoring_base.rb]
+
 Le framework Sinatra fournit les point d'entrées nécessaires pour le monitoring sous forme de méthodes `before` et `after` où toutes les informations de la requète en cours sont accessibles.
+La méthode permettant d'appeller des services est surchargée pour intercepter les appels.
 
 Les données sont postées dans une link:http://ruby-doc.org/stdlib-2.0.0/libdoc/thread/rdoc/Queue.html[Queue] et consommée dans un thread séparé.
 
