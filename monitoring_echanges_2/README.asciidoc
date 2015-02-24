@@ -1,6 +1,8 @@
 = Monitoring de flux par l'exemple
 Julien Kirch & Cédric Lunven
 v0.1, 2015-02-17
+:ghhp: https://github.com/archiloque/monitoring_flux
+:gh: https://github.com/archiloque/monitoring_flux/blob/master
 :toc:
 
 
@@ -16,13 +18,13 @@ QQQQQ
 
 == À propos du code
 
-Le link:https://github.com/archiloque/monitoring_flux[code proposé dans cet article] à été écrit dans un but illustratif.
+Le link:{ghhp}[code proposé dans cet article] à été écrit dans un but illustratif.
 Il est donc le plus simple possible et ne comprend par exemple ni gestion des erreurs ni optimization.
 À vous de vous en inspirer et de l'adapter (il est sous license open source Apache) mais surtout ne le réutilisez pas tel quel.
 
-Les étapes permettant de tester le code vous-même sont décrites dans link:https://github.com/archiloque/monitoring_flux/blob/master/README.asciidoc[la documentation du projet].
+Les étapes permettant de tester le code vous-même sont décrites dans link:{gh}/README.asciidoc[la documentation du projet].
 
-Si des portions du code vous semblent peu claires ou que vous avez des suggestions merci de le faire par l'intermédiaire du link:https://github.com/archiloque/monitoring_flux[projet Github], les pull request sont les bienvenues.
+Si des portions du code vous semblent peu claires ou que vous avez des suggestions merci de le faire par l'intermédiaire du link:{ghhp}[projet Github], les pull request sont les bienvenues.
 
 == Description du système
 
@@ -67,15 +69,17 @@ Conformément aux recommendation du premier article c'est un bus link:http://zer
 
 Le serveur frontend est en link:http://ruby-lang.org[Ruby] et utilise le framework web link:http://sinatrarb.com[Sinatra] qui est parfait pour comme ici exposer facilement des services web.
 
-- link:https://github.com/archiloque/monitoring_flux/blob/master/frontend/lib/app_base.rb[app_base.rb] paramètre le socle de l'application, et fournit une méthode pour appeller des services du serveur middle end.
+- link:{gh}/frontend/lib/app_base.rb[app_base.rb] paramètre le socle de l'application, et fournit une méthode pour appeller des services du serveur middle end.
 - le répertoire link:https://github.com/archiloque/monitoring_flux/tree/master/frontend/static[static] contient le site web
-- link:https://github.com/archiloque/monitoring_flux/blob/master/frontend/lib/frontend_app.rb[frontend_app.rb] expose le service métier qu'appelle le site web et appelle deux service du middle end l'un après l'autre.
+- link:{gh}/frontend/lib/frontend_app.rb[frontend_app.rb] expose le service métier qu'appelle le site web et appelle deux service du middle end l'un après l'autre.
 
 ==== Monitoring
 
-Le code de monitoring est situé dans la classe link:https://github.com/archiloque/monitoring_flux/blob/master/frontend/lib/monitoring_base.rb[monitoring_base.rb]
+Le code de monitoring est situé dans la classe link:{gh}/frontend/lib/monitoring_base.rb[monitoring_base.rb]
 
-Le framework Sinatra fournit les point d'entrées nécessaires pour le monitoring sous forme de méthodes `before` et `after` où toutes les informations de la requète en cours sont accessibles.
+Le framework Sinatra fournit les point d'entrées nécessaires pour le monitoring sous forme de méthodes link:{gh}/frontend/lib/monitoring_base.rb#L77[`before`] et link:{gh}/frontend/lib/monitoring_base.rb#L93[`after`] où toutes les informations de la requète en cours sont accessibles.
+Pour pouvoir stocker des informations pendant l'execution de la requête, comme l'heure du début de son execution, link:{gh}/frontend/lib/monitoring_base.rb#L8[un champ est ajouté à la classe Request].
+
 La méthode permettant d'appeller des services est surchargée pour intercepter les appels.
 
 Les données sont postées dans une link:http://ruby-doc.org/stdlib-2.0.0/libdoc/thread/rdoc/Queue.html[Queue] et consommée dans un thread séparé.
@@ -84,10 +88,12 @@ Les données sont postées dans une link:http://ruby-doc.org/stdlib-2.0.0/libdoc
 
 Le serveur middle end utilise link:http://spring.io[Spring], link:http://projects.spring.io/spring-boot/[Spring Boot] permet de configurer facilement une application et link:http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html[Spring MVC] d'exposer des services REST.
 
-- link:https://github.com/archiloque/monitoring_flux/blob/master/middleend/src/main/java/com/octo/monitoring_flux/middleend/controller/MiddleEndController.java[MiddleEndController.java] contient le controller qui expose les deux services exposés
-- link:https://github.com/archiloque/monitoring_flux/blob/master/middleend/src/main/java/com/octo/monitoring_flux/middleend/RedisProvider.java[RedisProvider.java] fournit l'accès au bus.
+- link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/controller/MiddleEndController.java[MiddleEndController.java] contient le controller qui expose les deux services exposés.
+- link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/RedisProvider.java[RedisProvider.java] fournit l'accès au bus pour envoyer des messages au backend.
 
 ==== Monitoring
+
+Du fait du choix de la technologie Spring, la mise en place de monitoring demande quelques accrobaties. Un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringInterceptor.java[Intercepteur]
 
 === Le bus applicatif
 
@@ -96,8 +102,8 @@ Il s'agit d'un serveur link:http://redis.io[Redis] qui est principalement un cac
 === Le backend
 
 Nous avons simulé une application de traitement de messages à l'aide d'un pool de threads :
- link:https://github.com/archiloque/monitoring_flux/blob/master/backend/src/main/java/com/octo/monitoring_flux/backend/ApplicationBase.java[ApplicationBase.java] fournit le socle applicatif qui consomme les messages depuis Redis et les fait traiter par un pool de thread;java
-- link:https://github.com/archiloque/monitoring_flux/blob/master/backend/src/main/java/com/octo/monitoring_flux/backend/Backend.java[Backend] traite les messages
+ link:{gh}/backend/src/main/java/com/octo/monitoring_flux/backend/ApplicationBase.java[ApplicationBase.java] fournit le socle applicatif qui consomme les messages depuis Redis et les fait traiter par un pool de thread;java
+- link:{gh}/backend/src/main/java/com/octo/monitoring_flux/backend/Backend.java[Backend] traite les messages
 
 === Le CEP
 
