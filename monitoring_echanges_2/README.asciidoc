@@ -19,8 +19,8 @@ QQQQQ
 == À propos du code
 
 Le link:{ghhp}[code proposé dans cet article] à été écrit dans un but illustratif.
-Il est donc le plus simple possible et ne comprend par exemple ni gestion des erreurs ni optimization.
-À vous de vous en inspirer et de l'adapter (il est sous license open source Apache) mais surtout ne le réutilisez pas tel quel.
+Il est donc le plus simple possible et ne comprend par exemple ni gestion des erreurs ni optimisation.
+À vous de vous en inspirer et de l'adapter (il est sous licence open source Apache) mais surtout ne le réutilisez pas tel quel.
 
 Les étapes permettant de tester le code vous-même sont décrites dans link:{gh}/README.asciidoc[la documentation du projet].
 
@@ -32,7 +32,7 @@ Le premier article expliquait que les services métier avaient deux caractérist
 - ils pouvaient combiner services et messages
 - ils pouvaient combiner plusieurs technologies
 
-Un système d'information qui combine ces deux aspects nécéssite d'avoir des outils de monitoring flexibles et qui reposent sur des technologies interropérables.
+Un système d'information qui combine ces deux aspects nécessite d'avoir des outils de monitoring flexibles et qui reposent sur des technologies interopérables.
 
 L'architecture applicative présentée ici prend en compte ces éléments:
 
@@ -54,22 +54,22 @@ Côté monitoring
 - Une base de donnée indexant les messages et les informations générées par le CEP
 - Un outil de dashboarding pour présenter les informations de monitoring
 
-== Description des différent éléments
+== Description des différents éléments
 
 image::technologies.png[]
 
 === À propos du monitoring
 
 Pour fournir les données nécessaires, chaque brique embarque du code permettant de récupérer les informations utiles et de les poster dans un bus.
-Pour pénaliser au minimum les performance du code applicatif l'envoi des message s'effectue systématiquement dans un thread dédié, et une gestion d'exception isole le code de monitoring du code métier.
+Pour pénaliser au minimum les performances du code applicatif l'envoi des messages s'effectue systématiquement dans un thread dédié, et une gestion d'exception isole le code de monitoring du code métier.
 
-Conformément aux recommendation du premier article c'est un bus link:http://zeromq.org[ZeroMQ] qui a été choisi pour ses très bonnes performances.
+Conformément aux recommandations du premier article c'est un bus link:http://zeromq.org[ZeroMQ] qui a été choisi pour ses très bonnes performances.
 
 === Frontend
 
 Le serveur frontend est en link:http://ruby-lang.org[Ruby] et utilise le framework web link:http://sinatrarb.com[Sinatra] qui est parfait pour comme ici exposer facilement des services web.
 
-- link:{gh}/frontend/lib/app_base.rb[app_base.rb] paramètre le socle de l'application, et fournit une méthode pour appeller des services du serveur middle end.
+- link:{gh}/frontend/lib/app_base.rb[app_base.rb] paramètre le socle de l'application, et fournit une méthode pour appeler des services du serveur middle end.
 - le répertoire link:https://github.com/archiloque/monitoring_flux/tree/master/frontend/static[static] contient le site web
 - link:{gh}/frontend/lib/frontend_app.rb[frontend_app.rb] expose le service métier qu'appelle le site web et appelle deux service du middle end l'un après l'autre.
 
@@ -77,10 +77,12 @@ Le serveur frontend est en link:http://ruby-lang.org[Ruby] et utilise le framewo
 
 Le code de monitoring est situé dans la classe link:{gh}/frontend/lib/monitoring_base.rb[monitoring_base.rb]
 
-Le framework Sinatra fournit les point d'entrées nécessaires pour le monitoring sous forme de méthodes link:{gh}/frontend/lib/monitoring_base.rb#L77[`before`] et link:{gh}/frontend/lib/monitoring_base.rb#L93[`after`] où toutes les informations de la requète en cours sont accessibles.
-Pour pouvoir stocker des informations pendant l'execution de la requête, comme l'heure du début de son execution, link:{gh}/frontend/lib/monitoring_base.rb#L8[un champ est ajouté à la classe Request].
+Le framework Sinatra fournit les point d'entrées nécessaires pour le monitoring sous forme de méthodes link:{gh}/frontend/lib/monitoring_base.rb#L77[`before`] et link:{gh}/frontend/lib/monitoring_base.rb#L93[`after`] où toutes les informations de la requête en cours sont accessibles.
+Pour pouvoir stocker des informations pendant l'exécution de la requête, comme l'heure du début de son exécution, link:{gh}/frontend/lib/monitoring_base.rb#L8[un champ est ajouté à la classe Request].
 
-La méthode permettant d'appeller des services est surchargée pour intercepter les appels.
+La méthode permettant d'appeler des services est link:{gh}/frontend/lib/monitoring_base.rb#L114[surchargée] pour faire deux choses :
+- envoyer des copies de l'appel au système de monitoring
+- ajouter des entêtes http dans l'appel de service pour propager l'identifiant de corrélation  ainsi que l'heure ou l'appel est exécuté.
 
 Les données sont postées dans une link:http://ruby-doc.org/stdlib-2.0.0/libdoc/thread/rdoc/Queue.html[Queue] et consommée dans un thread séparé.
 
@@ -93,7 +95,19 @@ Le serveur middle end utilise link:http://spring.io[Spring], link:http://project
 
 ==== Monitoring
 
-Du fait du choix de la technologie Spring, la mise en place de monitoring demande quelques accrobaties. Un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringInterceptor.java[Intercepteur]
+Du fait du choix de la technologie Spring, la mise en place de monitoring demande quelques acrobaties:
+
+- Un link:http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/HandlerInterceptor.html[HandlerInterceptor] fournit un point d'entrée au début et à la fin de l'exécution de chaque requête http qui permet d'envoyer les messages au monitoring.
+- Il est nécessaire de sous-classer le link:http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html[HttpServletRequest] pour pouvoir stocker des informations pendant l'exécution de la requête, comme l'heure du début de son exécution.
+- Finalement les classes link:http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html[HttpServletRequest] qui représentent la requête et link:https://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html[HttpServletResponse] qui représentent la réponse ne donnent pas d'accès au contenu de la requête ou de la réponse: dans les deux cas le contenu est streamée à la volée, respectivement lorsque la requête est lue par Spring et son contenu désérialisé, et quand la réponse est sérialisé par Spring sous forme de JSON. Il est donc nécessaire de wrapper les deux classes pour enregistrer les contenus quand ils sont transmis, et pouvoir ainsi les relire ensuite.
+
+Le résultat se trouve réparti dans 5 classes :
+
+- link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringServletRequest.java[MonitoringServletRequest] représente la requête, il fournit quelques méthodes utilitaires et utilise un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/RecordingServletInputStream.java[RecordingServletInputStream] pour enregistrer le contenu.
+- link:{gh}/middleend/monitoring/RecordingServletResponse.java[RecordingServletResponse] réprésente la réponse et enregistre le contenu à l'aide d'un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/RecordingServletResponse.java#L62[RecordingServletResponse]
+- link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringInterceptor.java[MonitoringInterceptor] est l'intercepteur qui envoie les messages en récupérant les informations fournies par la requête et la réponse
+
+Le code en charge de l'envoi des messages est situé dans un link:https://github.com/archiloque/monitoring_flux/tree/master/shared[projet partagé] car il est utilisé par le middle end et le backend. L'essentiel du code est situé dans le link:{gh}/shared/src/main/java/com/octo/monitoring_flux/shared/MonitoringMessageSender.java[MonitoringMessageSender] qui utilise un thread dédié à l'envoi des messages alimenté par une link:http://docs.oracle.com/javase/7/docs/api/java/util/Queue.html[Queue].
 
 === Le bus applicatif
 
