@@ -12,7 +12,7 @@ Dans un link:http://blog.octo.com/present-et-avenir-du-monitoring-de-flux/[préc
 
 Cet article est un exemple d'implémentation de monitoring de flux : il fournit un exemple complet et documenté de monitoring d'un mini-système d'information combinant appels de services et envois de messages.
 
-Il doit vous permettre de mieux comprendre les idées développées dans le premier article ainsi qu'à vous fournir des modèle de code.
+Il doit vous permettre de mieux comprendre les idées développées dans le premier article ainsi qu'à vous fournir des modèles de code.
 
 Nous allons commencer par une description globale du système, puis nous passerons en détails chaque élément, en décrivant en détail comment s'effectue l'intégration du monitoring dans le composant.
 
@@ -43,7 +43,7 @@ image::architecture.png[]
 
 Côté métier
 
-- Un serveur frontend exposant un site web avec un formulaire qui appelle un unique servive backend
+- Un serveur frontend exposant un site web avec un formulaire qui appelle un service
 - Un serveur middle-end exposant deux services pour le frontend
 - Un serveur backend traitant des messages de manière asynchrones à partir d'un bus alimenté par le middle-end
 
