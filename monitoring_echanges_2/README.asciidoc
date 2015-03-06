@@ -18,7 +18,7 @@ Nous allons commencer par une description globale du système, puis nous passero
 
 == À propos du code
 
-Le link:{ghhp}[code proposé dans cet article] à été écrit dans un but illustratif.
+Le link:{ghhp}[code proposé dans cet article] a été écrit dans un but illustratif.
 Il est donc le plus simple possible et ne comprend par exemple ni gestion des erreurs ni optimisation.
 À vous de vous en inspirer et de l'adapter (il est sous licence open source Apache) mais surtout ne le réutilisez pas tel quel.
 
@@ -57,7 +57,7 @@ Côté monitoring
 
 === Format des messages de monitoring
 
-Le format des messages de monitoring est important à prévoir dès le début: même si le système de traitement des messages doit être concu pour pouvoir s'adapter facilement à différents cas, partir sur un format simple et flexible permet d'être plus efficace.
+Le format des messages de monitoring est important à prévoir dès le début: même si le système de traitement des messages doit être conçu pour pouvoir s'adapter facilement à différents cas, partir sur un format simple et flexible permet d'être plus efficace.
 
 Dans notre cas, nous avons choisis d'utiliser des messages au format JSON:
 
@@ -105,9 +105,9 @@ Conformément aux recommandations du premier article c'est un bus link:http://ze
 
 Le serveur frontend est en link:http://ruby-lang.org[Ruby] et utilise le framework web link:http://sinatrarb.com[Sinatra] qui est parfait pour comme ici exposer facilement des services web.
 
-- link:{gh}/frontend/lib/app_base.rb[app_base.rb] paramètre le socle de l'application, et fournit une méthode pour appeler des services du serveur middle end.
+- link:{gh}/frontend/lib/app_base.rb[app_base] paramètre le socle de l'application, et fournit une méthode pour appeler des services du serveur middle end.
 - le répertoire link:https://github.com/archiloque/monitoring_flux/tree/master/frontend/static[static] contient le site web
-- link:{gh}/frontend/lib/frontend_app.rb[frontend_app.rb] expose le service métier qu'appelle le site web et appelle deux service du middle end l'un après l'autre.
+- link:{gh}/frontend/lib/frontend_app.rb[frontend_app] expose le service métier qu'appelle le site web et appelle deux service du middle end l'un après l'autre.
 
 ==== Monitoring
 
