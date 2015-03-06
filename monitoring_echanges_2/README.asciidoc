@@ -28,17 +28,16 @@ Pour que l'article ne soit pas trop long, nous avons préféré utiliser des lie
 
 Si des portions du code vous semblent peu claires ou que vous avez des suggestions merci de link:{ghhp/issues}[créer un ticket]; et si vous avez des idées d'améliorations les link:{gh/pulls}[pull request] sont les bienvenues.
 
-== Description du système
+== Le système
 
 Le premier article expliquait que les services métier avaient deux caractéristiques:
+
 - ils pouvaient combiner services et messages
 - ils pouvaient combiner plusieurs technologies
 
 Un système d'information qui combine ces deux aspects nécessite d'avoir des outils de monitoring flexibles et qui reposent sur des technologies interopérables.
 
 L'architecture applicative présentée ici prend en compte ces éléments:
-
-== Architecture applicative
 
 image::architecture.png[]
 
@@ -56,7 +55,42 @@ Côté monitoring
 - Une base de donnée indexant les messages et les informations générées par le CEP
 - Un outil de dashboarding pour présenter les informations de monitoring
 
-== Description des différents éléments
+=== Format des messages de monitoring
+
+Le format des messages de monitoring est important à prévoir dès le début: même si le système de traitement des messages doit être concu pour pouvoir s'adapter facilement à différents cas, partir sur un format simple et flexible permet d'être plus efficace.
+
+Dans notre cas, nous avons choisis d'utiliser des messages au format JSON:
+
+[source,javascript]
+----
+{
+    "correlation_id": "octo.local_MonitoringBase_24389_2015-01-30 11:05:29 UTC_36cddd01-7bcd-4ced-8024-919ff1dbe6ca",  // correlation id
+    "timestamp": "2015-01-30T12:05:29.230+01:00", // message timestamp
+
+    "module_type": "FrontendApp", // module type sending the message
+    "module_id": "FrontendApp_octo.local_001", // module identifier
+    "endpoint": "GET /messages",
+    "message_type": "Send message to backend", // message type
+
+    "begin_timestamp": "2015-02-19T22:11:15.939+01:00", // optional: timestamp of the beginning of the current action
+    "end_timestamp": "2015-02-19T22:11:15.959+01:00", // optional: timestamp of the end of the current action
+    "elapsed_time": 0.020169, // optional: elapsed time of the current action in second
+
+    "params": {
+        // optional: current parameters
+    },
+
+    "headers": {
+        // optional: current headers
+    }
+
+    "result": {
+        // optional: result of current action
+    }
+}
+----
+
+== Détail de chaque composant
 
 image::technologies.png[]
 
