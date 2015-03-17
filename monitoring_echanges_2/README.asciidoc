@@ -162,6 +162,20 @@ Comme le code de réception est spécifique à l'application, le monitoring est 
 
 === Le CEP
 
+Le composant de Complex Event Processing dépile les messages en provenance des différents modules (frondEnd, middleEnd, backEnd). Il réalise alors en parallèle l'insertion
+dans la base de données et la mise à jour d'un état en mémoire. L'évolution de cet état peut générer des alertes qui seront à leur tour persistées dans la base.
+
+Il est implémenté en JAVA à l'aide du framework d'intégration link:http://camel.apache.org/[Apache Camel] et se présente comme une application standalone.
+ 
+  - Les messages sont dépilés depuis ZeroMQ à l'aide d'un link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/zmq[Connecteur] qu'il nous a été nécessaire de réecrire en utilisant
+   la librairie  link:https://github.com/zeromq/jeromq[jeroMQ]. Le composant existant fonctionnait en effet avec des bindings scala non applicables.
+  
+  - L'état en mémoire ainsi que le déclenchement d'alertes sont implémentés en utilisant le framework link:http://www.espertech.com/esper/index.php[Esper]. Camel fournit le
+  link:http://camel.apache.org/esper.html[connecteur] qui permet de s'y interfacer. Les règles sont écrites avec le DSL interne nommé EPL (Event Processing Language).
+  
+  - Les messages et alertes sont persistés dans un cluster ElasticSearch à l'aide du link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/zmq[connecteur existant]. Il faut noter que le 
+  connecteur utilise l'API java qui se déclare comme un nouveau noeud du cluster.
+
 === La base de donnée du monitoring
 
 Il s'agit d'une base link:http://www.elasticsearch.org[Elasticsearch] qui indexe automatiquement les données à leur insertion.
