@@ -176,6 +176,8 @@ Il est implémenté en JAVA à l'aide du framework d'intégration link:http://ca
   - Les messages et alertes sont persistés dans un cluster ElasticSearch à l'aide du link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/zmq[connecteur existant]. Il faut noter que le
   connecteur utilise l'API java qui se déclare comme un nouveau noeud du cluster.
 
+  image::cep.png[]
+
 === La base de donnée du monitoring
 
 Il s'agit d'une base link:http://www.elasticsearch.org[Elasticsearch] qui indexe automatiquement les données à leur insertion.
