@@ -56,8 +56,7 @@ Côté monitoring :
 
 === Format des messages de monitoring
 
-Le format des messages de monitoring est important à prévoir dès le début : même si le système de traitement des messages doit être conçu pour pouvoir s'adapter facilement à différents cas, il est important d'essayer d'utiliser un gabarit commun pour un maximum de cas.
-Cela permet de simplifier tous les éléments qui vont exploiter les messages comme le CEP et les dashboard.
+Il est important de bien définir le format des messages de monitoring : même si le système de traitement doit être conçu pour pouvoir s'adapter facilement à différents cas. L'utilisation d'un gabarit commun permet de simplifier l'exploitation des messages dans le CEP et les dashboard.
 
 Dans notre cas, nous avons choisis d'utiliser des messages au format JSON:
 
@@ -213,4 +212,4 @@ Cette solution a le désavantage d'ajouter une couche supplémentaire d'infrastr
 
 == Conclusion
 
-Les loutres s'envoleront vers des lendemains qui chantent.
+Nous espérons que cet article vous a fourni suffisament d'information pour vous permettre de commencer à implémenter un système de monitoring de flux. Comme dans l'exemple évoqué ici, l'essentiel est de choisir les bons outils et de définir un format de messages, puis de traiter une brique après l'autre en essayant de factoriser le code.
