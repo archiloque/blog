@@ -7,32 +7,29 @@ v0.1, 2015-02-17
 
 == Introduction
 
-Dans un link:http://blog.octo.com/present-et-avenir-du-monitoring-de-flux/[précédent article] nous avons décris ce qu'est le monitoring de flux et les bonnes pratiques pour le mettre en place.
+Après avoir link:http://blog.octo.com/present-et-avenir-du-monitoring-de-flux/[décrit] le monitoring de flux et les bonnes pratiques pour le mettre en place, passons à un cas pratique.
+Nous allons détailler un exemple complet et documenté de monitoring d'un mini-système d'information combinant appels de services et envois de messages, avec des modèles de code.
 
-Cet article est un exemple d'implémentation de monitoring de flux : il fournit un exemple complet et documenté de monitoring d'un mini-système d'information combinant appels de services et envois de messages.
-
-Il doit vous permettre de mieux comprendre les idées développées dans le premier article ainsi qu'à vous fournir des modèles de code.
-
-Nous allons commencer par une description globale du système, puis nous passerons en détails chaque élément, en décrivant en détail comment s'effectue l'intégration du monitoring dans le composant.
-
-== À propos du code
-
+.À propos du code
+****
 Le link:{ghhp}[code proposé dans cet article] a été écrit dans un but illustratif.
 Il est donc le plus simple possible et ne comprend par exemple ni gestion des erreurs ni optimisation.
 À vous de vous en inspirer et de l'adapter (il est sous licence open source Apache) mais surtout ne le réutilisez pas tel quel.
 
 Les étapes permettant de tester le code vous-même sont décrites dans link:{gh}/README.asciidoc[la documentation du projet].
 
-Pour que l'article ne soit pas trop long, nous avons préféré utiliser des liens plutôt que d'inclure le code source directement dans le texte.
+Pour que l'article ne soit pas trop long, nous avons utilisé des liens plutôt que du code source inclu dans le texte.
 
-Si des portions du code vous semblent peu claires ou que vous avez des suggestions merci de link:{ghhp/issues}[créer un ticket]; et si vous avez des idées d'améliorations les link:{gh/pulls}[pull requests] sont les bienvenues.
+Si des portions du code vous semblent peu claires ou que vous avez des suggestions, merci de link:{ghhp/issues}[créer un ticket] ;
+si vous avez des idées d'améliorations les link:{gh/pulls}[pull requests] sont les bienvenues.
+****
 
 == Le système
 
 Le premier article expliquait que les services métier avaient deux caractéristiques:
 
-- ils pouvaient combiner services et messages
-- ils pouvaient combiner plusieurs technologies
+- ils peuvent combiner services et messages;
+- ils peuvent combiner plusieurs technologies.
 
 Un système d'information qui combine ces deux aspects nécessite d'avoir des outils de monitoring flexibles et qui reposent sur des technologies interopérables.
 
@@ -42,23 +39,25 @@ image::architecture.png[]
 
 Côté métier :
 
-- Un serveur frontend exposant un site web avec un formulaire qui appelle un service
-- Un serveur middle-end exposant deux services pour le frontend
-- Un serveur backend traitant des messages de manière asynchrones à partir d'un bus alimenté par le middle-end
+- Un serveur frontend expose un site web avec un formulaire qui appelle un service.
+- Un serveur middle-end expose deux services pour le frontend.
+- Un serveur backend traite des messages de manière asynchrones à partir d'un bus alimenté par le middle-end.
 
 Côté monitoring :
 
-- Un module de monitoring dans chaque brique applicative
-- Un bus dédié recevant des messages de chacun de ces modules
-- Un serveur de CEP traitant ces messages
-- Une base de donnée indexant les messages et les informations générées par le CEP
-- Un outil de dashboarding pour présenter les informations de monitoring
+- un module de monitoring dans chaque brique applicative;
+- un bus dédié recevant des messages de chacun de ces modules;
+- un serveur de CEP traitant ces messages;
+- une base de donnée indexant les messages et les informations générées par le CEP;
+- un outil de dashboarding pour présenter les informations de monitoring.
 
 === Format des messages de monitoring
 
-Il est important de bien définir le format des messages de monitoring : même si le système de traitement doit être conçu pour pouvoir s'adapter facilement à différents cas. L'utilisation d'un gabarit commun permet de simplifier l'exploitation des messages dans le CEP et les dashboard.
+Il est important de bien définir le format des messages de monitoring,
+même si le système de traitement doit être conçu pour pouvoir s'adapter facilement à différents cas.
+L'utilisation d'un gabarit commun permet de simplifier l'exploitation des messages dans le CEP et les dashboard.
 
-Dans notre cas, nous avons choisis d'utiliser des messages au format JSON:
+Dans notre cas, nous avons choisi d'utiliser des messages au format JSON:
 
 [source,javascript]
 ----
@@ -96,9 +95,9 @@ image::technologies.png[]
 === À propos du monitoring
 
 Pour fournir les données nécessaires, chaque brique embarque du code permettant de récupérer les informations utiles et de les poster dans un bus.
-Pour pénaliser au minimum les performances du code applicatif l'envoi des messages s'effectue systématiquement dans un thread dédié, et une gestion d'exception isole le code de monitoring du code métier.
+Pour pénaliser au minimum les performances du code applicatif, l'envoi des messages s'effectue systématiquement dans un thread dédié, et une gestion d'exception isole le code de monitoring du code métier.
 
-Conformément aux recommandations du premier article c'est un bus link:http://zeromq.org[ZeroMQ] qui a été choisi pour ses très bonnes performances.
+Conformément aux recommandations du premier article, c'est un bus link:http://zeromq.org[ZeroMQ] qui a été choisi pour ses très bonnes performances.
 
 === Frontend
 
@@ -106,9 +105,9 @@ Le serveur frontend est en link:http://ruby-lang.org[Ruby] et utilise le framewo
 
 image::frontend.png[]
 
-- link:{gh}/frontend/lib/app_base.rb[app_base] paramètre le socle de l'application, et fournit une méthode pour appeler des services du serveur middle end.
+- link:{gh}/frontend/lib/app_base.rb[app_base] paramètre le socle de l'application, et fournit une méthode pour appeler des services du serveur middle-end.
 - le répertoire link:https://github.com/archiloque/monitoring_flux/tree/master/frontend/static[static] contient le site web
-- link:{gh}/frontend/lib/frontend_app.rb[frontend_app] expose le service métier qu'appelle le site web et appelle deux service du middle end l'un après l'autre.
+- link:{gh}/frontend/lib/frontend_app.rb[frontend_app] expose le service métier qu'appelle le site web et appelle deux services du middle-end l'un après l'autre.
 
 ==== Monitoring
 
@@ -118,67 +117,75 @@ Le framework Sinatra fournit les points d'entrées nécessaires pour le monitori
 Pour pouvoir stocker des informations pendant l'exécution de la requête, comme l'heure du début de son exécution, link:{gh}/frontend/lib/monitoring_base.rb#L8[un champ est ajouté à la classe Request].
 
 La méthode permettant d'appeler des services est link:{gh}/frontend/lib/monitoring_base.rb#L114[surchargée] pour faire deux choses :
-- envoyer des copies de l'appel au système de monitoring
-- ajouter des entêtes http dans l'appel de service pour propager l'identifiant de corrélation  ainsi que l'heure ou l'appel est exécuté.
+- envoyer des copies de l'appel au système de monitoring;
+- ajouter des en-têtes http dans l'appel de service pour propager l'identifiant de corrélation ainsi que l'heure ou l'appel est exécuté.
 
-Les données sont postées dans une link:http://ruby-doc.org/stdlib-2.0.0/libdoc/thread/rdoc/Queue.html[Queue] et consommée dans un thread séparé.
+Les données sont postées dans une link:http://ruby-doc.org/stdlib-2.0.0/libdoc/thread/rdoc/Queue.html[queue] et consommée dans un thread séparé.
 
-=== Middle end
+=== Middle-end
 
-Le serveur middle end utilise link:http://spring.io[Spring], link:http://projects.spring.io/spring-boot/[Spring Boot] permet de configurer facilement une application et link:http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html[Spring MVC] d'exposer des services REST.
+Le serveur middle-end utilisé link:http://spring.io[Spring], link:http://projects.spring.io/spring-boot/[Spring Boot] permet de configurer facilement une application et link:http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html[Spring MVC] d'exposer des services REST.
 
 - link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/controller/MiddleEndController.java[MiddleEndController] contient le controller qui expose les deux services exposés.
 - link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/RedisProvider.java[RedisProvider] fournit l'accès au bus pour envoyer des messages au backend.
 
 ==== Monitoring
 
-Du fait du choix de la technologie Spring, la mise en place de monitoring demande quelques acrobaties:
+Du fait du choix de la technologie Spring, la mise en place de monitoring demande quelques acrobaties :
 
 - Un link:http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/HandlerInterceptor.html[HandlerInterceptor] fournit un point d'entrée au début et à la fin de l'exécution de chaque requête http qui permet d'envoyer les messages au monitoring.
 - Il est nécessaire de sous-classer le link:http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html[HttpServletRequest] pour pouvoir stocker des informations pendant l'exécution de la requête, comme l'heure du début de son exécution.
-- Finalement les classes link:http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html[HttpServletRequest] qui représentent la requête et link:https://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html[HttpServletResponse] qui représentent la réponse ne donnent pas d'accès au contenu de la requête ou de la réponse: dans les deux cas le contenu est streamée, respectivement lorsque la requête est lue par Spring et son contenu désérialisé, et quand la réponse est sérialisé par Spring sous forme de JSON. Il est donc nécessaire de wrapper les deux classes pour enregistrer les contenus quand ils sont transmis, et pouvoir ainsi les relire ensuite.
+- Finalement les classes link:http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html[HttpServletRequest] qui représentent la requête et link:https://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html[HttpServletResponse] qui représentent la réponse ne donnent pas d'accès au contenu de la requête ou de la réponse : dans les deux cas le contenu est streamée, respectivement lorsque la requête est lue par Spring et son contenu désérialisé, et quand la réponse est sérialisé par Spring sous forme de JSON.
+Il est donc nécessaire de wrapper les deux classes pour enregistrer les contenus quand ils sont transmis, et pouvoir ainsi les relire ensuite.
 
 Le résultat se trouve réparti dans 5 classes :
 
 - link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringServletRequest.java[MonitoringServletRequest] représente la requête, il fournit quelques méthodes utilitaires et utilise un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/RecordingServletInputStream.java[RecordingServletInputStream] pour enregistrer le contenu.
-- link:{gh}/middleend/monitoring/RecordingServletResponse.java[RecordingServletResponse] représente la réponse et enregistre le contenu à l'aide d'un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/RecordingServletResponse.java#L62[RecordingServletResponse]
-- link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringInterceptor.java[MonitoringInterceptor] est l'intercepteur qui envoie les messages en récupérant les informations fournies par la requête et la réponse
+- link:{gh}/middleend/monitoring/RecordingServletResponse.java[RecordingServletResponse] représente la réponse et enregistre le contenu à l'aide d'un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/RecordingServletResponse.java#L62[RecordingServletResponse].
+- link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringInterceptor.java[MonitoringInterceptor] est l'intercepteur qui envoie les messages en récupérant les informations fournies par la requête et la réponse.
 
-Le code en charge de l'envoi des messages est situé dans un link:https://github.com/archiloque/monitoring_flux/tree/master/shared[projet partagé] car il est utilisé par le middle end et le backend. L'essentiel du code est situé dans le link:{gh}/shared/src/main/java/com/octo/monitoring_flux/shared/MonitoringMessageSender.java[MonitoringMessageSender] qui utilise un thread dédié à l'envoi des messages alimenté par une link:http://docs.oracle.com/javase/7/docs/api/java/util/Queue.html[Queue].
+Le code en charge de l'envoi des messages est situé dans un link:https://github.com/archiloque/monitoring_flux/tree/master/shared[projet partagé] car il est utilisé par le middle-end et le backend.
+L'essentiel du code est situé dans le link:{gh}/shared/src/main/java/com/octo/monitoring_flux/shared/MonitoringMessageSender.java[MonitoringMessageSender] qui utilise un thread dédié à l'envoi des messages alimenté par une link:http://docs.oracle.com/javase/7/docs/api/java/util/Queue.html[queue].
 
 === Le bus applicatif
 
-Il s'agit d'un serveur link:http://redis.io[Redis]: il est principalement utilisé comme un cache clé-valeur mais son API lui permet également de servir de bus de messages. Ses principaux avantages sont sa facilité de mise en œuvre et sa vitesse de traitement.
+Il s'agit d'un serveur link:http://redis.io[Redis] : il est principalement utilisé comme un cache clé-valeur mais son API lui permet également de servir de bus de messages.
+Ses principaux avantages sont sa facilité de mise en œuvre et sa vitesse de traitement.
 
 === Le backend
 
 Nous avons simulé une application de traitement de messages à l'aide d'un pool de threads :
 
-- link:{gh}/backend/src/main/java/com/octo/monitoring_flux/backend/ApplicationBase.java[ApplicationBase] fournit le socle applicatif qui consomme les messages depuis Redis et les fait traiter par un pool de thread java
-- link:{gh}/backend/src/main/java/com/octo/monitoring_flux/backend/Backend.java[Backend] traite les messages
+- link:{gh}/backend/src/main/java/com/octo/monitoring_flux/backend/ApplicationBase.java[ApplicationBase] fournit le socle applicatif qui consomme les messages depuis Redis et les fait traiter par un pool de thread Java.
+- link:{gh}/backend/src/main/java/com/octo/monitoring_flux/backend/Backend.java[Backend] traite les messages.
 
 ==== Monitoring
 
-Comme le code de réception est spécifique à l'application, le monitoring est complètement intégré au socle applicatif. Pour l'envoi des messages il s'appuie sur le même link:https://github.com/archiloque/monitoring_flux/tree/master/shared[projet partagé] que le middle end.
+Comme le code de réception est spécifique à l'application, le monitoring est complètement intégré au socle applicatif.
+Pour l'envoi des messages, il s'appuie sur le même link:https://github.com/archiloque/monitoring_flux/tree/master/shared[projet partagé] que le middle-end.
 
 === Le CEP
 
-Le composant de Complex Event Processing dépile les messages en provenance des différents modules (frondend, middle end, backend). Il réalise alors en parallèle l'insertion
-dans la base de données et la mise à jour d'un état en mémoire. L'évolution de cet état peut générer des alertes qui seront à leur tour persistées dans la base.
+Le composant de Complex Event Processing dépile les messages en provenance des différents modules (frondend, middle-end, backend).
+Il réalise alors en parallèle l'insertion dans la base de données et la mise à jour d'un état en mémoire.
+L'évolution de cet état peut générer des alertes qui seront à leur tour persistées dans la base.
 
-Il est implémenté en java à l'aide du framework d'intégration link:http://camel.apache.org/[Apache Camel] et se présente comme une application autonome.
+Il est implémenté en Java à l'aide du framework d'intégration link:http://camel.apache.org/[Apache Camel] et se présente comme une application autonome.
 
-- Les messages sont dépilés depuis ZeroMQ à l'aide d'un link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/zmq[Connecteur] qu'il nous a été nécessaire de réécrire en utilisant la librairie  link:https://github.com/zeromq/jeromq[jeroMQ]. Le composant existant fonctionnait en effet avec des bindings scala non applicables.
-
-- L'état en mémoire ainsi que le déclenchement d'alertes sont implémentés en utilisant le framework link:http://www.espertech.com/esper/index.php[Esper]. Camel fournit le link:http://camel.apache.org/esper.html[connecteur] qui permet de s'y interfacer. Les règles sont écrites avec le DSL interne nommé EPL (Event Processing Language) link:{gh}/cep/src/main/resources/applicationContext-camel.xml#L20[dans le fichier de configuration Camel].
-
-- Les messages et alertes sont persistés dans un cluster Elasticsearch à l'aide du link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/zmq[connecteur existant]. Il faut noter que le connecteur utilise l'API java qui se déclare comme un nouveau nœud du cluster.
+- Les messages sont dépilés depuis ZeroMQ à l'aide d'un link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/zmq[Connecteur] qu'il nous a été nécessaire de réécrire en utilisant la librairie  link:https://github.com/zeromq/jeromq[jeroMQ].
+Le composant existant fonctionnait en effet avec des bindings scala non applicables.
+- L'état en mémoire ainsi que le déclenchement d'alertes sont implémentés en utilisant le framework link:http://www.espertech.com/esper/index.php[Esper].
+Camel fournit le link:http://camel.apache.org/esper.html[connecteur] qui permet de s'y interfacer.
+Les règles sont écrites avec le DSL interne nommé EPL (Event Processing Language) link:{gh}/cep/src/main/resources/applicationContext-camel.xml#L20[dans le fichier de configuration Camel].
+- Les messages et alertes sont persistés dans un cluster Elasticsearch à l'aide du link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/zmq[connecteur existant].
+Il faut noter que le connecteur utilise l'API java qui se déclare comme un nouveau nœud du cluster.
 
 image::cep.png[]
 
 === La base de donnée du monitoring
 
-Il s'agit d'une base link:http://elastic.co[Elasticsearch] qui indexe automatiquement les données à leur insertion. Pour que les données soient indexées au mieux il suffit de link:{ghhp}#elasticsearch-index[créer un index à l'avance] pour que les champs soient indexés de la bonne manière.
+Il s'agit d'une base link:http://elastic.co[Elasticsearch] qui indexe automatiquement les données à leur insertion.
+Pour que les données soient indexées au mieux, il suffit de link:{ghhp}#elasticsearch-index[créer un index à l'avance] pour que les champs soient indexés de la bonne manière.
 
 === Le dashboard
 
@@ -190,26 +197,24 @@ image:kibana.png[]
 
 == Les composants difficiles à monitorer
 
-Les cas présentés ici sont favorables car les composants ne sont pas trop compliqués à monitorer, même si le middle end demande un peu de gymnastique.
-Malheureusement dans tout SI d'une certaine taille il existe toujours au moins une brique "boite noire", type portail ou plateforme e-commerce, qu'il est difficile d'outiller convenablement.
-Pour ces composants deux choix sont généralement possibles:
+Les cas présentés ici sont favorables car les composants ne sont pas trop compliqués à monitorer, même si le middle-end demande un peu de gymnastique.
+Malheureusement dans tout SI d'une certaine taille, il existe toujours au moins une brique "boite noire", type portail ou plateforme e-commerce, qu'il est difficile d'outiller convenablement.
+Pour ces composants deux choix sont généralement possibles :
 
 === Utiliser les points d'extensions fourni par l'outil
 
-Cette solution est la plus conforme. Cependant ces API sont souvent d'une qualité inférieure au reste et avant de vous lancer il y a trois choses à vérifier :
+Cette solution est la plus conforme.
+Cependant ces API sont souvent d'une qualité inférieure au reste et avant de vous lancer il y a trois choses à vérifier :
 
 - La documentation est-elle suffisamment détaillée, particulièrement quand des objets internes au composant sont exposés ?
-- Les API sont elles stables ? Comme ces API sont assez proches du moteur des outils, elles sont plus susceptibles de ne pas être compatibles d'une version à l'autre
+- Les API sont elles stables ? Comme ces API sont assez proches du moteur des outils, elles sont plus susceptibles de ne pas être compatibles d'une version à l'autre.
 - Toutes les informations dont vous avez besoin sont-elles exposées ?
 
 En fonction des réponses à ces trois questions, la deuxième solution sera peut-être préférable.
 
 === Utiliser un proxy
 
-L'autre solution est de mettre en place un proxy comme link:http://nginx.org/en/[nginx] devant le composant pour générer les messages de monitoring. En configurant les logs vous devriez pouvoir obtenir les informations dont vous avez besoin, et un composant custom est nécessaire pour les pousser vers le serveur de CEP.
+L'autre solution est de mettre en place un proxy comme link:http://nginx.org/en/[nginx] devant le composant pour générer les messages de monitoring.
+En configurant les logs vous devriez pouvoir obtenir les informations dont vous avez besoin, et un composant custom est nécessaire pour les pousser vers le serveur de CEP.
 
-Cette solution a le désavantage d'ajouter une couche supplémentaire d'infrastructure, mais permet d'éviter d'avoir à développer du code trop spécifique à un outil.
-
-== Conclusion
-
-Nous espérons que cet article vous a fourni assez d'informations pour vous permettre de commencer à implémenter un système de monitoring de flux. Comme dans l'exemple évoqué ici, l'essentiel est de choisir les bons outils et de définir un format de messages, puis de traiter une brique après l'autre en essayant de factoriser le code.
+Cette solution a le désavantage d'ajouter une couche supplémentaire d'infrastructure, mais évite d'avoir à développer du code trop spécifique à un outil.
