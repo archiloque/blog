@@ -25,7 +25,7 @@ Les étapes permettant de tester le code vous-même sont décrites dans link:{gh
 
 Pour que l'article ne soit pas trop long, nous avons préféré utiliser des liens plutôt que d'inclure le code source directement dans le texte.
 
-Si des portions du code vous semblent peu claires ou que vous avez des suggestions merci de link:{ghhp/issues}[créer un ticket]; et si vous avez des idées d'améliorations les link:{gh/pulls}[pull request] sont les bienvenues.
+Si des portions du code vous semblent peu claires ou que vous avez des suggestions merci de link:{ghhp/issues}[créer un ticket]; et si vous avez des idées d'améliorations les link:{gh/pulls}[pull requests] sont les bienvenues.
 
 == Le système
 
@@ -114,7 +114,7 @@ image::frontend.png[]
 
 Le code de monitoring est situé dans la classe link:{gh}/frontend/lib/monitoring_base.rb[monitoring_base.rb]
 
-Le framework Sinatra fournit les point d'entrées nécessaires pour le monitoring sous forme de méthodes link:{gh}/frontend/lib/monitoring_base.rb#L77[`before`] et link:{gh}/frontend/lib/monitoring_base.rb#L93[`after`] où toutes les informations de la requête en cours sont accessibles.
+Le framework Sinatra fournit les points d'entrées nécessaires pour le monitoring sous forme de méthodes link:{gh}/frontend/lib/monitoring_base.rb#L77[`before`] et link:{gh}/frontend/lib/monitoring_base.rb#L93[`after`] où toutes les informations de la requête en cours sont accessibles.
 Pour pouvoir stocker des informations pendant l'exécution de la requête, comme l'heure du début de son exécution, link:{gh}/frontend/lib/monitoring_base.rb#L8[un champ est ajouté à la classe Request].
 
 La méthode permettant d'appeler des services est link:{gh}/frontend/lib/monitoring_base.rb#L114[surchargée] pour faire deux choses :
@@ -136,12 +136,12 @@ Du fait du choix de la technologie Spring, la mise en place de monitoring demand
 
 - Un link:http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/HandlerInterceptor.html[HandlerInterceptor] fournit un point d'entrée au début et à la fin de l'exécution de chaque requête http qui permet d'envoyer les messages au monitoring.
 - Il est nécessaire de sous-classer le link:http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html[HttpServletRequest] pour pouvoir stocker des informations pendant l'exécution de la requête, comme l'heure du début de son exécution.
-- Finalement les classes link:http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html[HttpServletRequest] qui représentent la requête et link:https://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html[HttpServletResponse] qui représentent la réponse ne donnent pas d'accès au contenu de la requête ou de la réponse: dans les deux cas le contenu est streamée à la volée, respectivement lorsque la requête est lue par Spring et son contenu désérialisé, et quand la réponse est sérialisé par Spring sous forme de JSON. Il est donc nécessaire de wrapper les deux classes pour enregistrer les contenus quand ils sont transmis, et pouvoir ainsi les relire ensuite.
+- Finalement les classes link:http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html[HttpServletRequest] qui représentent la requête et link:https://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html[HttpServletResponse] qui représentent la réponse ne donnent pas d'accès au contenu de la requête ou de la réponse: dans les deux cas le contenu est streamée, respectivement lorsque la requête est lue par Spring et son contenu désérialisé, et quand la réponse est sérialisé par Spring sous forme de JSON. Il est donc nécessaire de wrapper les deux classes pour enregistrer les contenus quand ils sont transmis, et pouvoir ainsi les relire ensuite.
 
 Le résultat se trouve réparti dans 5 classes :
 
 - link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringServletRequest.java[MonitoringServletRequest] représente la requête, il fournit quelques méthodes utilitaires et utilise un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/RecordingServletInputStream.java[RecordingServletInputStream] pour enregistrer le contenu.
-- link:{gh}/middleend/monitoring/RecordingServletResponse.java[RecordingServletResponse] réprésente la réponse et enregistre le contenu à l'aide d'un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/RecordingServletResponse.java#L62[RecordingServletResponse]
+- link:{gh}/middleend/monitoring/RecordingServletResponse.java[RecordingServletResponse] représente la réponse et enregistre le contenu à l'aide d'un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/RecordingServletResponse.java#L62[RecordingServletResponse]
 - link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringInterceptor.java[MonitoringInterceptor] est l'intercepteur qui envoie les messages en récupérant les informations fournies par la requête et la réponse
 
 Le code en charge de l'envoi des messages est situé dans un link:https://github.com/archiloque/monitoring_flux/tree/master/shared[projet partagé] car il est utilisé par le middle end et le backend. L'essentiel du code est situé dans le link:{gh}/shared/src/main/java/com/octo/monitoring_flux/shared/MonitoringMessageSender.java[MonitoringMessageSender] qui utilise un thread dédié à l'envoi des messages alimenté par une link:http://docs.oracle.com/javase/7/docs/api/java/util/Queue.html[Queue].
@@ -168,7 +168,7 @@ dans la base de données et la mise à jour d'un état en mémoire. L'évolution
 
 Il est implémenté en java à l'aide du framework d'intégration link:http://camel.apache.org/[Apache Camel] et se présente comme une application autonome.
 
-- Les messages sont dépilés depuis ZeroMQ à l'aide d'un link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/zmq[Connecteur] qu'il nous a été nécessaire de réecrire en utilisant la librairie  link:https://github.com/zeromq/jeromq[jeroMQ]. Le composant existant fonctionnait en effet avec des bindings scala non applicables.
+- Les messages sont dépilés depuis ZeroMQ à l'aide d'un link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/zmq[Connecteur] qu'il nous a été nécessaire de réécrire en utilisant la librairie  link:https://github.com/zeromq/jeromq[jeroMQ]. Le composant existant fonctionnait en effet avec des bindings scala non applicables.
 
 - L'état en mémoire ainsi que le déclenchement d'alertes sont implémentés en utilisant le framework link:http://www.espertech.com/esper/index.php[Esper]. Camel fournit le link:http://camel.apache.org/esper.html[connecteur] qui permet de s'y interfacer. Les règles sont écrites avec le DSL interne nommé EPL (Event Processing Language) link:{gh}/cep/src/main/resources/applicationContext-camel.xml#L20[dans le fichier de configuration Camel].
 
@@ -198,18 +198,18 @@ Pour ces composants deux choix sont généralement possibles:
 
 Cette solution est la plus conforme. Cependant ces API sont souvent d'une qualité inférieure au reste et avant de vous lancer il y a trois choses à vérifier :
 
-- La documentation est-elle suffisament détaillée, particulièrement quand des objets interne au composants sont exposés ?
-- Les API sont elles stables ? Commes ces API sont assez proche du moteur des outils, elles sont plus suceptibles de ne pas être compatibles d'une version à l'autre
+- La documentation est-elle suffisamment détaillée, particulièrement quand des objets internes au composant sont exposés ?
+- Les API sont elles stables ? Comme ces API sont assez proches du moteur des outils, elles sont plus susceptibles de ne pas être compatibles d'une version à l'autre
 - Toutes les informations dont vous avez besoin sont-elles exposées ?
 
 En fonction des réponses à ces trois questions, la deuxième solution sera peut-être préférable.
 
 === Utiliser un proxy
 
-L'autre solution est de mettre en place un proxy comme link:http://nginx.org/en/[nginx] devant le composants pour générer les messages de monitoring. Les configuration de logs sont en principe suffisant pour récupérer les informations dont vous avez besoin, et un composant custom est nécessaire pour les pousser vers le serveur de CEP.
+L'autre solution est de mettre en place un proxy comme link:http://nginx.org/en/[nginx] devant le composant pour générer les messages de monitoring. En configurant les logs vous devriez pouvoir obtenir les informations dont vous avez besoin, et un composant custom est nécessaire pour les pousser vers le serveur de CEP.
 
 Cette solution a le désavantage d'ajouter une couche supplémentaire d'infrastructure, mais permet d'éviter d'avoir à développer du code trop spécifique à un outil.
 
 == Conclusion
 
-Nous espérons que cet article vous a fourni suffisament d'information pour vous permettre de commencer à implémenter un système de monitoring de flux. Comme dans l'exemple évoqué ici, l'essentiel est de choisir les bons outils et de définir un format de messages, puis de traiter une brique après l'autre en essayant de factoriser le code.
+Nous espérons que cet article vous a fourni assez d'informations pour vous permettre de commencer à implémenter un système de monitoring de flux. Comme dans l'exemple évoqué ici, l'essentiel est de choisir les bons outils et de définir un format de messages, puis de traiter une brique après l'autre en essayant de factoriser le code.
