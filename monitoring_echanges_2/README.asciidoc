@@ -62,28 +62,28 @@ Dans notre cas, nous avons choisi d'utiliser des messages au format JSON:
 [source,javascript]
 ----
 {
-    "correlation_id": "octo.local_MonitoringBase_24389_2015-01-30 11:05:29 UTC_36cddd01-7bcd-4ced-8024-919ff1dbe6ca",  // correlation id
-    "timestamp": "2015-01-30T12:05:29.230+01:00", // message timestamp
+    "correlation_id": "octo.local_MonitoringBase_24389_2015-01-30 11:05:29 UTC_36cddd01-7bcd-4ced-8024-919ff1dbe6ca",  // l'id de correlation
+    "timestamp": "2015-01-30T12:05:29.230+01:00", // horodatage du message
 
-    "module_type": "FrontendApp", // module type sending the message
-    "module_id": "FrontendApp_octo.local_001", // module identifier
-    "endpoint": "GET /messages",
-    "message_type": "Send message to backend", // message type
+    "module_type": "FrontendApp", // nom du module qui envoit le message
+    "module_id": "FrontendApp_octo.local_001", // identifiant du module qui envoit le message
+    "endpoint": "GET /messages", // nom du service
+    "message_type": "Send message to backend", // type de message
 
-    "begin_timestamp": "2015-02-19T22:11:15.939+01:00", // optional: timestamp of the beginning of the current action
-    "end_timestamp": "2015-02-19T22:11:15.959+01:00", // optional: timestamp of the end of the current action
-    "elapsed_time": 0.020169, // optional: elapsed time of the current action in second
+    "begin_timestamp": "2015-02-19T22:11:15.939+01:00", // optionnel: horodatage du début de l'action en cours
+    "end_timestamp": "2015-02-19T22:11:15.959+01:00", // optionnel: horodatage de la fin de l'action en cours
+    "elapsed_time": 0.020169, // optionnel: temps mis pour l'action en cours
 
-    "params": {
-        // optional: current parameters
+    "service_params": {
+        // optionnel: paramètres d'appel du service
     },
 
     "headers": {
-        // optional: current headers
+        // optionnel: en-têtes d'appel du service (en-têtes http par exemple)
     }
 
     "result": {
-        // optional: result of current action
+        // optionnel: résultat de l'appel du service
     }
 }
 ----
