@@ -1,6 +1,6 @@
 = Monitoring de flux par l'exemple
-Julien Kirch & Cédric Lunven
-v0.1, 2015-02-17
+Julien Kirch & Cédrick Lunven
+v0.2, 2015-04-01
 :ghhp: https://github.com/archiloque/monitoring_flux
 :gh: https://github.com/archiloque/monitoring_flux/blob/master
 :toc:
@@ -164,7 +164,9 @@ Nous avons simulé une application de traitement de messages à l'aide d'un pool
 Comme le code de réception est spécifique à l'application, le monitoring est complètement intégré au socle applicatif.
 Pour l'envoi des messages, il s'appuie sur le même link:https://github.com/archiloque/monitoring_flux/tree/master/shared[projet partagé] que le middle-end.
 
-=== Le CEP
+=== Le Complex Event Processing
+
+==== Généralités
 
 Le composant de Complex Event Processing dépile les messages en provenance des différents modules (frondend, middle-end, backend).
 Il réalise alors en parallèle l'insertion dans la base de données et la mise à jour d'un état en mémoire.
@@ -181,6 +183,16 @@ Les règles sont écrites avec le DSL interne nommé EPL (Event Processing Langu
 Il faut noter que le connecteur utilise l'API java qui se déclare comme un nouveau nœud du cluster.
 
 image::cep.png[]
+
+==== Interprétation des évènements
+
+Le flux d'évènements est interprété pour construire des indicateurs en temps réels grâce au language d'analyse *Esper Process Language (EPL)*. Ces statuts sont  requêter à intervalles réguliers afin de détecter des comportements anormaux comme des dépassements de seuils. Nous avons cherché ici à remonter trois types d'alerte.
+- Un temps de traitement trop important pour **l'un des composants**
+- Un temps de traitement trop important pour **l'ensemble de la chaîne**
+- Throttling : Un nombre de d'appels supérieur à un seuil fixé dans une unité de temps fixe (ici une moyenne de plus de 3 appels sur 10 secondes)
+
+image::cep-details.png[]
+
 
 === La base de donnée du monitoring
 
