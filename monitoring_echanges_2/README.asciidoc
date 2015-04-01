@@ -186,10 +186,11 @@ image::cep.png[]
 
 ==== Interprétation des évènements
 
-Le flux d'évènements est interprété pour construire des indicateurs en temps réels grâce au language d'analyse *Esper Process Language (EPL)*. Ces statuts sont  requêter à intervalles réguliers afin de détecter des comportements anormaux comme des dépassements de seuils. Nous avons cherché ici à remonter trois types d'alerte.
-- Un temps de traitement trop important pour **l'un des composants**
-- Un temps de traitement trop important pour **l'ensemble de la chaîne**
-- Throttling : Un nombre de d'appels supérieur à un seuil fixé dans une unité de temps fixe (ici une moyenne de plus de 3 appels sur 10 secondes)
+Le flux d'évènements est interprété pour construire des indicateurs en temps réels grâce au language d'analyse *Esper Process Language (EPL)*. Ces statuts sont  requêter à intervalles réguliers afin de détecter des comportements anormaux comme des dépassements de seuils. Nous avons cherché ici à remonter trois types d'alerte :
+
+- Un temps de traitement trop important pour **l'un des composants**.
+- Un temps de traitement trop important pour **l'ensemble de la chaîne**.
+- Throttling : Un nombre de d'appels supérieur à un seuil fixé dans une unité de temps fixe (ici une moyenne de plus de 3 appels sur 10 secondes).
 
 image::cep-details.png[]
 
