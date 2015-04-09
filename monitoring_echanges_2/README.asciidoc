@@ -8,11 +8,10 @@ v0.2, 2015-04-01
 == Introduction
 
 Après avoir link:http://blog.octo.com/present-et-avenir-du-monitoring-de-flux/[décrit] le monitoring de flux et les bonnes pratiques pour le mettre en place, passons à un cas pratique.
-Nous allons détailler un exemple complet et documenté de monitoring d'un mini-système d'information combinant appels de services et envois de messages, avec des modèles de code. 
+Nous allons détailler un exemple complet et documenté de monitoring d'un mini-système d'information combinant appels de services et envois de messages, avec des modèles de code.
 
-Les composants applicatifs présentés dans cet article ont été nommés avec des noms génériques (frontend, middleend et backend) afin que chacun les adaptent à son propre contexte. 
-
-Nous aurions pu, par exemple, imaginer le 'frontend' comme une application mobile ou une application web monopage javascript, le 'middle-end' comme une couche de services REST (API) et, enfin, le backend comme un système de persistance ou encore d'analyse des transactions.
+Les composants applicatifs présentés dans cet article ont des noms génériques (frontend, middleend et backend) afin que chacun puisse facilement les adapter à son propre contexte.
+Nous aurions pu, par exemple, imaginer le 'frontend' comme une application mobile ou une application web monopage javascript, le 'middle-end' comme une couche de services REST (API), et enfin le 'backend' comme un système de persistance ou encore d'analyse des transactions.
 
 .À propos du code
 ****
@@ -170,7 +169,7 @@ Pour l'envoi des messages, il s'appuie sur le même link:https://github.com/arch
 
 === Le Complex Event Processing
 
-==== Généralités
+==== Principes
 
 Le composant de Complex Event Processing dépile les messages en provenance des différents modules (frondend, middle-end, backend).
 Il réalise alors en parallèle l'insertion dans la base de données et la mise à jour d'un état en mémoire.
@@ -183,18 +182,17 @@ Le composant existant fonctionnait en effet avec des bindings scala non applicab
 - L'état en mémoire ainsi que le déclenchement d'alertes sont implémentés en utilisant le framework link:http://www.espertech.com/esper/index.php[Esper].
 Camel fournit le link:http://camel.apache.org/esper.html[connecteur] qui permet de s'y interfacer.
 Les règles sont écrites avec le DSL interne nommé EPL (Event Processing Language) link:{gh}/cep/src/main/resources/applicationContext-camel.xml#L20[dans le fichier de configuration Camel].
-- Les messages et alertes sont persistés dans un cluster Elasticsearch à l'aide du link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/zmq[connecteur existant].
-Il faut noter que le connecteur utilise l'API java qui se déclare comme un nouveau nœud du cluster.
+- Les messages et alertes sont persistés dans un cluster Elasticsearch à l'aide d'un link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/jest[connecteur maison] utilisant la bibliothèque link:https://github.com/searchbox-io/Jest/tree/master/jest[Jest] (il n'est dont pas conçu pour monter en charge). Le connecteur par défaut s'enregistre comme un nœud du cluster Elasticsearch et cela rendait les tests locaux plus compliqués.
 
 image::cep.png[]
 
 ==== Interprétation des évènements
 
-Le flux d'évènements est interprété pour construire des indicateurs en temps réels grâce au language d'analyse *Esper Process Language (EPL)*. Ces statuts sont  requêter à intervalles réguliers afin de détecter des comportements anormaux comme des dépassements de seuils. Nous avons cherché ici à remonter trois types d'alerte :
+Le flux d'évènements est interprété pour construire des indicateurs en temps réels grâce au language d'analyse 'Esper Process Language' (EPL). Ces statuts sont  requêter à intervalles réguliers afin de détecter des comportements anormaux comme des dépassements de seuils. Nous avons cherché ici à remonter trois types d'alerte :
 
-- Un temps de traitement trop important pour **l'un des composants**.
-- Un temps de traitement trop important pour **l'ensemble de la chaîne**.
-- Throttling : Un nombre de d'appels supérieur à un seuil fixé dans une unité de temps fixe (ici une moyenne de plus de 3 appels sur 10 secondes).
+- Un temps de traitement trop important pour 'l'un des composants'.
+- Un temps de traitement trop important pour 'l'ensemble de la chaîne'.
+- Throttling : Un nombre d'appels supérieur à un seuil fixé dans une unité de temps fixe (ici une moyenne de plus de 3 appels sur 10 secondes).
 
 image::cep-details.png[]
 
