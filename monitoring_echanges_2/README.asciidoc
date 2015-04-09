@@ -68,8 +68,8 @@ Dans notre cas, nous avons choisi d'utiliser des messages au format JSON:
     "correlation_id": "octo.local_MonitoringBase_24389_2015-01-30 11:05:29 UTC_36cddd01-7bcd-4ced-8024-919ff1dbe6ca",  // l'id de correlation
     "timestamp": "2015-01-30T12:05:29.230+01:00", // horodatage du message
 
-    "module_type": "FrontendApp", // nom du module qui envoit le message
-    "module_id": "FrontendApp_octo.local_001", // identifiant du module qui envoit le message
+    "module_type": "FrontendApp", // nom du module qui envoie le message
+    "module_id": "FrontendApp_octo.local_001", // identifiant du module qui envoie le message
     "endpoint": "GET /messages", // nom du service
     "message_type": "Send message to backend", // type de message
 
@@ -188,14 +188,15 @@ image::cep.png[]
 
 ==== Interprétation des évènements
 
-Le flux d'évènements est interprété pour construire des indicateurs en temps réels grâce au language d'analyse 'Esper Process Language' (EPL). Ces statuts sont  requêter à intervalles réguliers afin de détecter des comportements anormaux comme des dépassements de seuils. Nous avons cherché ici à remonter trois types d'alerte :
+Le flux d'évènements est interprété pour construire des indicateurs en temps réels grâce au language d'analyse 'Esper Process Language' (EPL). Ces statuts sont  requêtés à intervalles réguliers afin de détecter des comportements anormaux comme des dépassements de seuils.
+
+Nous avons cherché ici à remonter trois types d'alerte :
 
 - Un temps de traitement trop important pour 'l'un des composants'.
 - Un temps de traitement trop important pour 'l'ensemble de la chaîne'.
 - Throttling : Un nombre d'appels supérieur à un seuil fixé dans une unité de temps fixe (ici une moyenne de plus de 3 appels sur 10 secondes).
 
 image::cep-details.png[]
-
 
 === La base de donnée du monitoring
 
@@ -216,7 +217,7 @@ Les cas présentés ici sont favorables car les composants ne sont pas trop comp
 Malheureusement dans tout SI d'une certaine taille, il existe toujours au moins une brique "boite noire", type portail ou plateforme e-commerce, qu'il est difficile d'outiller convenablement.
 Pour ces composants deux choix sont généralement possibles :
 
-=== Utiliser les points d'extensions fourni par l'outil
+=== Utiliser les points d'extensions fournis par l'outil
 
 Cette solution est la plus conforme.
 Cependant ces API sont souvent d'une qualité inférieure au reste et avant de vous lancer il y a trois choses à vérifier :
