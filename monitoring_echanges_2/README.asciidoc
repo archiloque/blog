@@ -8,7 +8,11 @@ v0.2, 2015-04-01
 == Introduction
 
 Après avoir link:http://blog.octo.com/present-et-avenir-du-monitoring-de-flux/[décrit] le monitoring de flux et les bonnes pratiques pour le mettre en place, passons à un cas pratique.
-Nous allons détailler un exemple complet et documenté de monitoring d'un mini-système d'information combinant appels de services et envois de messages, avec des modèles de code.
+Nous allons détailler un exemple complet et documenté de monitoring d'un mini-système d'information combinant appels de services et envois de messages, avec des modèles de code. 
+
+Les composants applicatifs présentés dans cet article ont été nommés avec des noms génériques (frontend, middleend et backend) afin que chacun les adaptent à son propre contexte. 
+
+Nous aurions pu, par exemple, imaginer le 'frontend' comme une application mobile ou une application web monopage javascript, le 'middle-end' comme une couche de services REST (API) et, enfin, le backend comme un système de persistance ou encore d'analyse des transactions.
 
 .À propos du code
 ****
