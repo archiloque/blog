@@ -194,8 +194,8 @@ Le flux d'évènements est interprété pour construire des indicateurs en temps
 
 Nous avons cherché ici à remonter trois types d'alerte :
 
-- Un temps de traitement trop important pour 'l'un des composants'.
-- Un temps de traitement trop important pour 'l'ensemble de la chaîne'.
+- Un temps de traitement trop important pour 'l'un des composants' à l'aide de l'attribut `elapsed_time` des messages.
+- Un temps de traitement trop important pour un flux sur 'l'ensemble de la chaîne', en utilisant l'identifiant de correlation.
 - Throttling : Un nombre d'appels supérieur à un seuil fixé dans une unité de temps fixe (ici une moyenne de plus de 3 appels sur 10 secondes).
 
 image::cep-details.png[]
