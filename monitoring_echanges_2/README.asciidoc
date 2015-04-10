@@ -182,7 +182,7 @@ Le composant existant fonctionnait en effet avec des bindings scala non applicab
 - L'état en mémoire ainsi que le déclenchement d'alertes sont implémentés en utilisant le framework link:http://www.espertech.com/esper/index.php[Esper].
 Camel fournit le link:http://camel.apache.org/esper.html[connecteur] qui permet de s'y interfacer.
 Les règles sont écrites avec le DSL interne nommé EPL (Event Processing Language) link:{gh}/cep/src/main/resources/applicationContext-camel.xml#L20[dans le fichier de configuration Camel].
-- Les messages et alertes sont persistés dans un cluster Elasticsearch à l'aide d'un link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/jest[connecteur maison] utilisant la bibliothèque link:https://github.com/searchbox-io/Jest/tree/master/jest[Jest] (il n'est dont pas conçu pour monter en charge). Le connecteur par défaut s'enregistre comme un nœud du cluster Elasticsearch et cela rendait les tests locaux plus compliqués.
+- Les messages et alertes sont persistés dans un cluster Elasticsearch à l'aide d'un link:{gh}/cep/src/main/java/com/octo/monitoring_flux/cep/jest[connecteur maison] utilisant la bibliothèque link:https://github.com/searchbox-io/Jest/tree/master/jest[Jest] (il n'est donc pas conçu pour monter en charge). Le connecteur par défaut s'enregistre comme un nœud du cluster Elasticsearch et cela rendait les tests locaux plus compliqués.
 
 image::cep.png[]
 
