@@ -143,12 +143,14 @@ Du fait du choix de la technologie Spring, la mise en place de monitoring demand
 
 Le résultat se trouve réparti dans 5 classes :
 
-- link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringServletRequest.java[MonitoringServletRequest] représente la requête, il fournit quelques méthodes utilitaires et utilise un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/RecordingServletInputStream.java[RecordingServletInputStream] pour enregistrer le contenu.
+- link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringServletRequest.java[MonitoringServletRequest] représente la requête, il fournit quelques méthodes utilitaires – dont la récupération de l'identifiant de correlation – et utilise un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/RecordingServletInputStream.java[RecordingServletInputStream] pour enregistrer le contenu.
 - link:{gh}/middleend/monitoring/RecordingServletResponse.java[RecordingServletResponse] représente la réponse et enregistre le contenu à l'aide d'un link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/RecordingServletResponse.java#L62[RecordingServletResponse].
 - link:{gh}/middleend/src/main/java/com/octo/monitoring_flux/middleend/monitoring/MonitoringInterceptor.java[MonitoringInterceptor] est l'intercepteur qui envoie les messages en récupérant les informations fournies par la requête et la réponse.
 
 Le code en charge de l'envoi des messages est situé dans un link:https://github.com/archiloque/monitoring_flux/tree/master/shared[projet partagé] car il est utilisé par le middle-end et le backend.
 L'essentiel du code est situé dans le link:{gh}/shared/src/main/java/com/octo/monitoring_flux/shared/MonitoringMessageSender.java[MonitoringMessageSender] qui utilise un thread dédié à l'envoi des messages et alimenté par une link:http://docs.oracle.com/javase/7/docs/api/java/util/Queue.html[queue].
+
+`RedisProvider` link:https://github.com/archiloque/monitoring_flux/blob/master/middleend/src/main/java/com/octo/monitoring_flux/middleend/RedisProvider.java#L57-57[a été modifié] pour transmettre l'identifiant de correlation dans les messages envoyés au backend.
 
 === Le bus applicatif
 
