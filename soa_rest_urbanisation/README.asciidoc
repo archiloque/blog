@@ -13,6 +13,7 @@ Pourquoi : avoir des services qui répondent le mieux aux besoins et mieux maitr
 Pour qui : tout le monde : les patterns peuvent se mettre en place de façon incrémentale.
 
 Plus particulièrement :
+
 - nombreuses applications
 - métier compliqué : objects métiers riches, et des services complexes
 
@@ -20,7 +21,8 @@ Plus particulièrement :
 
 Besoin : développer des services qui répondent le mieux aux besoins, améliorer la communication.
 
-Mise en place de la communauté des consommateurs entre le fournisseur de service et les consommateurs.
+Mise en place de la communauté des consommateurs entre le fournisseur de service et les consommateurs
+
 - définit les services ensemble en amont
 - gère les versions, permet d'avoir une cadence partagée
 
@@ -31,6 +33,7 @@ Point dur : gestion du budget. En 1-1 c'est facile, là plus compliqué.
 == Réutilisation des modèles de données
 
 Besoin : améliorer le partage des données, améliorer le partage des connaissance.
+
 Eviter que chaque projet ne réinventent un modèle de client avec ses champs spécifiques.
 
 Pour chaque type de donnée transverse, identifé des porteurs qui soient responsable
@@ -40,7 +43,9 @@ Technico-fonctionnel: composante métier, et composante technique, peut être pl
 Porteurs doivent être dans les projets, éviter les architectes-données qui designaient le modèle de donnée de tout le SI en UML.
 
 Le mieux c'est de l'incarner dans les outils, tels qu'on le faisait avec WSDL en SOAP.
+
 Code first ou design first, l'essentiel c'est d'avoir un format qui s'échange.
+
 Rest a plusieurs outils, mais pas encore d'outil assez puissant et largement utilisé.
 
 Bien un modèle de donnée pour les services, pas à utiliser tel-quel pour les modèles de persistance.
@@ -58,11 +63,15 @@ S'appuie sur des mesures techniques : configuration de proxy / firewall , monito
 == Mais c'est compliqué
 
 Il y a des outils mais l'essentiel est un travail entre personnes de groupes différents qu'il faut parvenir à faire travailler ensemble.
+
 Anti-pattern: vouloir piloter par le haut, solution de facilité, mais mène à un SI mal adapté aux besoins.
+
 Cible = négociation + instances pour trancher.
 
 == Et sinon
 
 Modèle client-fournisseur : modèles moins formel où chaque appli est responsable de ses services et de ses données.
+
 Mode négocié vs. mode contractuel.
+
 Peut fonctionner en ayant une bonne formalisation et une bonne rigueur, mais gare au relachement.
