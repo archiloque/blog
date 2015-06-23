@@ -1,0 +1,97 @@
+= Services REST : ne jetez pas (tout) le SOA avec l'eau du bain
+Julien Kirch
+v0.0.1, 2015-06-16
+
+Avec la mise en œuvre des services REST, comme avec toute nouvelle technologie, l'envie est forte de faire table rase du passé et de tout réinventer.
+
+Or on faisait des services bien avant REST, et – même si parfois les outils n'ont pas été à la hauteurs des promesses – certaines pratiques ont fait leurs preuves. Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Oriented Architecture_.
+
+Ces pratiques ont permi de créer des architectures de services qui fonctionnent, et les connaitres permet d'éviter de retomber dans certaines des ornières qui ont valu au SOA sa mauvaise réputation.
+
+== SOA ?
+
+Pour comprendre pourquoi SOA est toujours pertinent, il faut la voir un peu comme la méthode agile : 
+
+SOA n'est pas une solution à mettre en œuvre clé en main mais une grille de lecture et quelques bonnes pratiques permettant de trouver comment répondre à un certain nombre de besoins. Ensuite à chacun de choisir son approche, et d'interpréter les pratiques à son environement.
+
+=== SOA et urbanisation
+
+Aujourd'hui, les parties techniques des services ne sont plus un problème : on dispose d'outils matures qui permettent de les développer et de les exploiter facilement.
+
+Lorsqu'on décide de généraliser l'usage des services au niveau d'un système d'information, les enjeux sont alors de 2 ordres :
+- avoir des services qui répondent le mieux aux besoins
+- garder la maîtrise de son SI dans la durée
+
+Ainsi, même si les outils ont changé, ces besoins des entreprises en terme d'architectures de services sont restés fondamentalement les mêmes, et les patterns d'organisation qui ont fait leurs preuves restent adaptés.
+Dans le jargon des "architectes" de systèmes d'information, l'application de ces pratiques s'appelle "urbaniser".
+
+Comme dans l'urbanisation des villes, les premier temps d'urbanistes "tour d'ivoires" à laissé sa place à la décentralisation.
+
+== Urbanisation c'est pour qui ?
+
+Pour qui : tout le monde : les patterns peuvent se mettre en place de façon incrémentale.
+
+Plus particulièrement :
+
+- nombreuses applications
+- métier compliqué : objects métiers riches, et des services complexes
+
+== 3 patterns
+
+=== Communauté des consommateurs
+
+Besoin : développer des services qui répondent le mieux aux besoins, améliorer la communication.
+
+Mise en place de la communauté des consommateurs entre le fournisseur de service et les consommateurs
+
+- définit les services ensemble en amont
+- gère les versions, permet d'avoir une cadence partagée
+
+Instances régulières + lieux d'échange
+
+Point dur : gestion du budget. En 1-1 c'est facile, là plus compliqué.
+
+=== Réutilisation des modèles de données
+
+Besoin : améliorer le partage des données, améliorer le partage des connaissance.
+
+Eviter que chaque projet ne réinventent un modèle de client avec ses champs spécifiques.
+Préciser qu'on parle bien du modèle d'échange et pas du modèle interne ou de persistance.
+
+Pour chaque type de donnée transverse, identifier des porteurs qui soient responsables.
+Distinguer 2 choses : un dico pour le vocabulaire transverse, un modèle d'échange entre 2 ou plusieurs applis du SI
+
+Modèles de donnée c'est un sujet métier et technique: le sujet peut donc être plusieurs personnes.
+Porteurs doivent être dans les projets, éviter les architectes-données qui designaient le modèle de donnée de tout le SI en UML.
+
+Code first ou design first, l'essentiel c'est d'avoir un format qui s'échange.
+
+Rest a plusieurs outils, mais pas encore d'outil assez puissant et largement utilisé.
+
+=== Pattern royaume-émmissaire
+
+Besoin : garder la maitrise du couplage des applis entre elles, découpler les expositions de services des traitements métier, normer les échanges
+
+Définir des zones dans le SI. Dans une zone tous les services sont accessibles, entre les zones définir des émissaires.
+
+Limiter les services entre zones du SI permet de limiter le couplage des applis, donc de garder un SI évolutif
+
+S'appuie sur des mesures techniques : configuration de proxy / firewall , monitoring.
+
+== Mais c'est compliqué
+
+Il y a des outils mais l'essentiel est un travail entre personnes de groupes différents qu'il faut parvenir à faire travailler ensemble.
+
+Donc oui c'est compliqué, mais un SI c'est autant un effort de personne qu'un effort technique, donc pas de bras pas de chocolat.
+
+Anti-pattern: vouloir piloter par le haut, solution de facilité, mais mène à un SI mal adapté aux besoins.
+
+Cible = négociation + instances pour trancher.
+
+== Et sinon
+
+Modèle client-fournisseur : modèles moins formel où chaque appli est responsable de ses services et de ses données.
+
+Mode négocié vs. mode contractuel.
+
+Peut fonctionner en ayant une bonne formalisation et une bonne rigueur, mais gare au relachement.
