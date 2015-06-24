@@ -2,9 +2,9 @@
 Julien Kirch
 v0.0.1, 2015-06-16
 
-Avec la mise en œuvre des services REST, comme avec toute nouvelle technologie, l'envie est forte de faire table rase du passé et de tout réinventer.
+Avec la mise en œuvre des services RESTful, comme avec toute nouvelle technologie, l'envie est forte de faire table rase du passé et de tout réinventer.
 
-Or on faisait des services bien avant REST, et – même si parfois les outils n'ont pas été à la hauteurs des promesses – certaines pratiques ont fait leurs preuves. Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Oriented Architecture_.
+Cependant, nous n'avons pas attendu l'arrivée des architectures REST pour implémenter des services. Même si parfois les outils n'ont pas été à la hauteurs des promesses, certaines pratiques ont fait leurs preuves. Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Oriented Architecture_.
 
 Ces pratiques ont permi de créer des architectures de services qui fonctionnent, et les connaitres permet d'éviter de retomber dans certaines des ornières qui ont valu au SOA sa mauvaise réputation.
 
@@ -25,18 +25,19 @@ Lorsqu'on décide de généraliser l'usage des services au niveau d'un système 
 Ainsi, même si les outils ont changé, ces besoins des entreprises en terme d'architectures de services sont restés fondamentalement les mêmes, et les patterns d'organisation qui ont fait leurs preuves restent adaptés.
 Dans le jargon des "architectes" de systèmes d'information, l'application de ces pratiques s'appelle "urbaniser".
 
-Comme dans l'urbanisation des villes, les premier temps d'urbanistes "tour d'ivoires" à laissé sa place à la décentralisation.
+Comme dans le cas des villes, les premier temps d'urbanistes "tour d'ivoires" a laissé sa place à une décentralisation : une stratégie et des grands principes globaux puis une autonomie des projets.
 
-== Urbanisation c'est pour qui ?
+== L'urbanisation c'est pour qui ?
 
-Pour qui : tout le monde : les patterns peuvent se mettre en place de façon incrémentale.
+L'urbanisation c'est pour tout le monde dès que vous commencez à mettre en place des services. Et même si vous avez déjà de nombreux services, une gouvernance peut être mise en place de façon incrémentale sans avoir à révolutionner votre manière de travailler.
 
-Plus particulièrement :
 
-- nombreuses applications
-- métier compliqué : objects métiers riches, et des services complexes
 
-== 3 patterns
+Deux situations rendent ces pratiques vitales :
+- de nombreuses applications exposants des services
+- un métier compliqué : avec des objects métiers riches et des services complexes
+
+== 3 patterns SOA qui ont fait leurs preuves
 
 === Communauté des consommateurs
 
@@ -44,8 +45,9 @@ Besoin : développer des services qui répondent le mieux aux besoins, améliore
 
 Mise en place de la communauté des consommateurs entre le fournisseur de service et les consommateurs
 
+- définit qui est le responsable de la donnée, et qui peut donc proposer des services qui va l'exposer
 - définit les services ensemble en amont
-- gère les versions, permet d'avoir une cadence partagée
+- gère les évolutions, les versions, permet d'avoir une cadence partagée
 
 Instances régulières + lieux d'échange
 
@@ -66,7 +68,7 @@ Porteurs doivent être dans les projets, éviter les architectes-données qui de
 
 Code first ou design first, l'essentiel c'est d'avoir un format qui s'échange.
 
-Rest a plusieurs outils, mais pas encore d'outil assez puissant et largement utilisé.
+Rest / JSON a plusieurs outils, mais pas encore d'outil assez puissant et largement utilisé.
 
 === Pattern royaume-émmissaire
 
@@ -78,20 +80,15 @@ Limiter les services entre zones du SI permet de limiter le couplage des applis,
 
 S'appuie sur des mesures techniques : configuration de proxy / firewall , monitoring.
 
-== Mais c'est compliqué
+== SOA : tout repose sur les personnes
 
-Il y a des outils mais l'essentiel est un travail entre personnes de groupes différents qu'il faut parvenir à faire travailler ensemble.
+Les technoligies de services sont maîtrisées, la difficulté de la mise en place une architecture de service est avant tout organisationnelle.
+L'enjeux est de parvenir à faire travailler pour le bien commun des personnes de groupes différents et dont les intérêts peuvent diverger.
 
-Donc oui c'est compliqué, mais un SI c'est autant un effort de personne qu'un effort technique, donc pas de bras pas de chocolat.
+Quand il y a des difficultés, la tentation est toujours là de vouloir reprendre la main en pilotant tout par le haut.
+Malheuresement cette solution de facilité, mène à un SI mal adapté aux besoins, voire à l'anarchie quand les applications vont se mettre à contourner les règles. Il faut donc rester dans la négociation, avec des instances robustes en mesure de trancher les conflits.
 
-Anti-pattern: vouloir piloter par le haut, solution de facilité, mais mène à un SI mal adapté aux besoins.
-
-Cible = négociation + instances pour trancher.
-
-== Et sinon
-
-Modèle client-fournisseur : modèles moins formel où chaque appli est responsable de ses services et de ses données.
-
-Mode négocié vs. mode contractuel.
-
-Peut fonctionner en ayant une bonne formalisation et une bonne rigueur, mais gare au relachement.
+Pour être exhaustif, il existe un alternative à l'approche "gouvernance", et elle est mise en œuvre chez certains géants du web. 
+Il s'agit d'un modèle plus contractuel, où chaque application est reponsable de ses données, et où les échanges entre applications reposent un modèle client-fournisseur.
+Dans un environement rigoureux favorisant l'autonomie des équipes ce modèle peut fonctionner. 
+Cependant, notre conviction est qu'il est risqué s'il est mal appliqué, et qu'il s'adapte mal quand le métier de l'entreprise est complexe. Il est donc à réserver à des cas bien spécifiques.
