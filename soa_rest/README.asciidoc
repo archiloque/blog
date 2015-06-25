@@ -62,30 +62,53 @@ Le mieux est de définir une régle de répartition simple, en considérant sur 
 
 === Réutilisation des modèles de données
 
-Besoin : améliorer le partage des données, améliorer le partage des connaissance.
+Ensuite, pour améliorer les partages de données entre applications, il faut essayer de factoriser et de réutiliser les modèles de données.
 
-Eviter que chaque projet ne réinventent un modèle de client avec ses champs spécifiques.
-Préciser qu'on parle bien du modèle d'échange et pas du modèle interne ou de persistance.
+L'objectif est d'éviter que chaque projet ne réinterprète les différents modèles à sa manière, ou les effets "téléphone arabe" ou les données évoluent subrepticement au fur et à mesure qu'elles transitent.
 
-Pour chaque type de donnée transverse, identifier des porteurs qui soient responsables.
-Distinguer 2 choses : un dico pour le vocabulaire transverse, un modèle d'échange entre 2 ou plusieurs applis du SI
+Pour ce faire, chaque type de donnée transverse doit avoir un projet responsable qui définira le modèle canonique et qui aura à charge de travailler avec les différents projets.
+Il s'agit en général du projet producteur ou référentiel de cette donnée.
 
-Modèles de donnée c'est un sujet métier et technique: le sujet peut donc être plusieurs personnes.
-Porteurs doivent être dans les projets, éviter les architectes-données qui designaient le modèle de donnée de tout le SI en UML.
+Ce modèle étant autant métier que technique, les deux compétences doivent être représentés dans l'instance de décision.
 
-Code first ou design first, l'essentiel c'est d'avoir un format qui s'échange.
+Si cela est nécéessaire, on pourra s'appuyer sur un dictionnaire de données pour le vocabulaire global à l'entreprise,
+à condition de l'utiliser à bon escient et d'éviter de vouloir tout normer.
+À ce sujet il faut bien préciser que le modèle de donnée dont on parle ici est bien le modèle _d'échange_,
+il ne sagit pas du modèle interne ou même de persistance de chaque application :
+utiliser une moulinette pour générer les modèle SQL à partir du modèle d'échange a rarement produit les résultats escomptés !
 
-Rest / JSON a plusieurs outils, mais pas encore d'outil assez puissant et largement utilisé.
+Du point de vue technique, peu importe que ce modèle soit définit dans un outil de modélisation (_design-first_) ou dans des métadonnées (_code-first_),
+l'important est que le résultat soit utilisable facilement par les autres projets.
+
+Sur ce point les outils de modélisation JSON manquent de maturité à ce sujet :
+si JSON Schema fournit des syntaxes permettant de partager et d'étendre des modèles,
+la spécification manque de clarté et les outils les implémentent rarement et pas de manière complète.
+Pour le moment il faut donc customizer les outils existants, ou utiliser les outils JSON s'appuyant sur des XSD.
 
 === Pattern royaume-émmissaire
 
-Besoin : garder la maitrise du couplage des applis entre elles,découpler les expositions de services des traitements métier, normer les échanges
+Fournir un service, c'est se coupler avec les applications qui l'utilisent.
+Même si on sait techniquement gérer des versions de services,
+multiplier les consommateurs c'est multiplier les coûts de maintenance ou de migrations et limiter sa capacité d'évolution.
 
-Définir des zones dans le SI. Dans une zone tous les services sont accessibles, entre les zones définir des émissaires.
+Il est donc nécessaire de cadrer les expositions de services en normant les échanges.
 
-Limiter les services entre zones du SI permet de limiter le couplage des applis, donc de garder un SI évolutif
+Pour ce faire, le pattern royaume-émmissaire propose de séparer le SI en différentes zones,
+qui correspondent aux grappes d'applications partageant les mêmes données,
+et qui en général recoupent l'organisation de l'entreprise.
 
-S'appuie sur des mesures techniques : configuration de proxy / firewall , monitoring.
+Dans un même groupe d'applications (_un royaume_), l'utilisation de services entre applications est libre.
+Par contre entre les royaume, les services _émissaires_ devront être prédéfinis.
+On garde ainsi une souplesse locale, tout en limitant les couplages globaux.
+
+Les services et les données transitant entre royaumes font l'objet d'une attention spécifique,
+l'objectif étant qu'ils soient plus pérennes que les services standard, les migration étant plus compliquées.
+En pratique on définit généralement des services spécifiques pour cela, distincts des services à usage local.
+
+Dans un SI de grande taille, il est même possible d'avoir plusieurs niveaux de royaumes, mais toujours en évitant l'abus de normalisation.
+
+Ce pattern peut très bien s'accompagner de mesures techniques comme des firewall ou des proxys ainsi que du monitoring,
+pour s'assurer que les règles sont bien respectées.
 
 == SOA : tout dépend des personnes
 
