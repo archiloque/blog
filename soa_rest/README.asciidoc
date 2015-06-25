@@ -4,7 +4,8 @@ v0.0.1, 2015-06-16
 
 Avec la mise en œuvre des services RESTful, comme avec toute nouvelle technologie, l'envie est forte de faire table rase du passé et de tout réinventer.
 
-Cependant, nous n'avons pas attendu l'arrivée des architectures REST pour implémenter des services. Même si parfois les outils n'ont pas été à la hauteurs des promesses, certaines pratiques ont fait leurs preuves.
+Cependant, nous n'avons pas attendu l'arrivée des architectures REST pour implémenter des services.
+Même si parfois les outils n'ont pas été à la hauteur des promesses, certaines pratiques ont fait leurs preuves.
 Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Oriented Architecture_.
 
 Ces pratiques ont permis de créer des architectures de services qui fonctionnent, et les connaitre permet d'éviter de retomber dans certaines des ornières qui ont valu au SOA sa mauvaise réputation.
@@ -29,7 +30,8 @@ Ainsi, même si les outils ont changé, ces besoins des entreprises en terme d'a
 et les patterns d'organisation qui ont fait leurs preuves restent adaptés.
 Dans le jargon des "architectes" de systèmes d'information, l'application de ces pratiques s'appelle "urbaniser".
 
-Comme dans le cas des villes, les premier temps d'urbanistes "tour d'ivoires" a laissé sa place à une décentralisation : une stratégie et des grands principes globaux puis une autonomie des projets.
+Comme dans le cas des villes, les premiers temps d'urbanistes "tour d'ivoires" a laissé sa place à une décentralisation :
+une stratégie et des grands principes globaux puis une autonomie des projets.
 
 == L'urbanisation c'est pour qui ?
 
@@ -38,7 +40,7 @@ L'urbanisation c'est pour tout le monde dès que vous commencez à mettre en pla
 Deux situations rendent ces pratiques vitales :
 
 - de nombreuses applications exposants des services
-- un métier riche utilisant des données trés structurées et des services complexes
+- un métier riche utilisant des données très structurées et des services complexes
 
 == 3 patterns SOA qui ont fait leurs preuves
 
@@ -58,7 +60,7 @@ Prioriser les demandes qui bénéficient au maximum de personnes permet d'incite
 
 Dans ce type de fonctionnement, les questions les plus délicates sont celles qui concernent le budget,
 lorsqu'il faut par exemple décider quelle(s) clé(s) de répartition utiliser pour répartir le coût d'un nouveau service qui profitera à plusieurs projets.
-Le mieux est de définir une régle de répartition simple, en considérant sur le long terme les choses vont s'équilibrer.
+Le mieux est de définir une règle de répartition simple, en considérant sur le long terme les choses vont s'équilibrer.
 
 === Réutilisation des modèles de données
 
@@ -71,13 +73,14 @@ Il s'agit en général du projet producteur ou référentiel de cette donnée.
 
 Ce modèle étant autant métier que technique, les deux compétences doivent être représentés dans l'instance de décision.
 
-Si cela est nécéessaire, on pourra s'appuyer sur un dictionnaire de données pour le vocabulaire global à l'entreprise,
+Si cela est nécessaire, on pourra s'appuyer sur un dictionnaire de données pour le vocabulaire global à l'entreprise,
 à condition de l'utiliser à bon escient et d'éviter de vouloir tout normer.
+
 À ce sujet il faut bien préciser que le modèle de donnée dont on parle ici est bien le modèle _d'échange_,
-il ne sagit pas du modèle interne ou même de persistance de chaque application :
+il ne s'agit pas du modèle interne ou même de persistance de chaque application :
 utiliser une moulinette pour générer les modèle SQL à partir du modèle d'échange a rarement produit les résultats escomptés !
 
-Du point de vue technique, peu importe que ce modèle soit définit dans un outil de modélisation (_design-first_) ou dans des métadonnées (_code-first_),
+Du point de vue technique, peu importe que ce modèle soit défini dans un outil de modélisation (_design-first_) ou dans des métadonnées (_code-first_),
 l'important est que le résultat soit utilisable facilement par les autres projets.
 
 Sur ce point les outils de modélisation JSON manquent de maturité à ce sujet :
@@ -85,7 +88,7 @@ si JSON Schema fournit des syntaxes permettant de partager et d'étendre des mod
 la spécification manque de clarté et les outils les implémentent rarement et pas de manière complète.
 Pour le moment il faut donc customizer les outils existants, ou utiliser les outils JSON s'appuyant sur des XSD.
 
-=== Pattern royaume-émmissaire
+=== Pattern royaume-émissaire
 
 Fournir un service, c'est se coupler avec les applications qui l'utilisent.
 Même si on sait techniquement gérer des versions de services,
@@ -93,17 +96,17 @@ multiplier les consommateurs c'est multiplier les coûts de maintenance ou de mi
 
 Il est donc nécessaire de cadrer les expositions de services en normant les échanges.
 
-Pour ce faire, le pattern royaume-émmissaire propose de séparer le SI en différentes zones,
+Pour ce faire, le pattern royaume-émissaire propose de séparer le SI en différentes zones,
 qui correspondent aux grappes d'applications partageant les mêmes données,
 et qui en général recoupent l'organisation de l'entreprise.
 
 Dans un même groupe d'applications (_un royaume_), l'utilisation de services entre applications est libre.
-Par contre entre les royaume, les services _émissaires_ devront être prédéfinis.
+Par contre entre les royaumes, les services _émissaires_ devront être prédéfinis.
 On garde ainsi une souplesse locale, tout en limitant les couplages globaux.
 
 Les services et les données transitant entre royaumes font l'objet d'une attention spécifique,
-l'objectif étant qu'ils soient plus pérennes que les services standard, les migration étant plus compliquées.
-En pratique on définit généralement des services spécifiques pour cela, distincts des services à usage local.
+l'objectif étant qu'ils soient plus pérennes que les services standard, les migrations étant plus compliquées.
+En pratique on définit généralement des services spécifiques, distincts des services à usage local.
 
 Dans un SI de grande taille, il est même possible d'avoir plusieurs niveaux de royaumes, mais toujours en évitant l'abus de normalisation.
 
