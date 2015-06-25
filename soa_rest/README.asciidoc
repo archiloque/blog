@@ -44,17 +44,21 @@ Deux situations rendent ces pratiques vitales :
 
 === Communauté des consommateurs
 
-Besoin : développer des services qui répondent le mieux aux besoins, améliorer la communication.
+Quand une application expose des services, il est important que chacun d'eux convienne au maximum de consommateurs différents.
+L'objectif est d'éviter de développer des services à la demande pour chaque nouveau client, même si chacun d'eux a ses besoins et ses contraintes propres.
 
-Mise en place de la communauté des consommateurs entre le fournisseur de service et les consommateurs
+Pour ce faire, il faut regrouper les consommateurs de chaque ensemble de services pour qu'ils définissent collectivement les contrats de services avec l'application en charge des les implémenter.
+Cela s'applique en amont lorsqu'il s'agit de créer un nouveau service, puis tout au long de sa vie pour définir de manière collégiales les évolutions avec leur calendrier.
 
-- définit qui est le responsable de la donnée, et qui peut donc proposer des services qui va l'exposer
-- définit les services ensemble en amont
-- gère les évolutions, les versions, permet d'avoir une cadence partagée
+Concrètement il s'agit d'identifier les différents projets et des porteurs dans chacun d'eux, puis d'instaurer des échanges entre ces personnes avec des points de rencontres réguliers.
 
-Instances régulières + lieux d'échange
+Même si des besoins spécifiques d'un consommateur peuvent nécessiter la création de services à son seul usage, il faut que cela reste l'exception,
+et qu'aucune demande ne se fasse en direct sans passer par la communauté.
+Prioriser les demandes qui bénéficient au maximum de personnes permet d'inciter les récalcitrants à coopérer.
 
-Point dur : gestion du budget. En 1-1 c'est facile, là plus compliqué.
+Dans ce type de fonctionnement, les questions les plus délicates sont celles qui concernent le budget,
+lorsqu'il faut par exemple décider quelle(s) clé(s) de répartition utiliser pour répartir le coût d'un nouveau service qui profitera à plusieurs projets.
+Le mieux est de définir une régle de répartition simple, en considérant sur le long terme les choses vont s'équilibrer.
 
 === Réutilisation des modèles de données
 
