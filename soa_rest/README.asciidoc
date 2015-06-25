@@ -4,15 +4,17 @@ v0.0.1, 2015-06-16
 
 Avec la mise en œuvre des services RESTful, comme avec toute nouvelle technologie, l'envie est forte de faire table rase du passé et de tout réinventer.
 
-Cependant, nous n'avons pas attendu l'arrivée des architectures REST pour implémenter des services. Même si parfois les outils n'ont pas été à la hauteurs des promesses, certaines pratiques ont fait leurs preuves. Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Oriented Architecture_.
+Cependant, nous n'avons pas attendu l'arrivée des architectures REST pour implémenter des services. Même si parfois les outils n'ont pas été à la hauteurs des promesses, certaines pratiques ont fait leurs preuves.
+Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Oriented Architecture_.
 
-Ces pratiques ont permi de créer des architectures de services qui fonctionnent, et les connaitres permet d'éviter de retomber dans certaines des ornières qui ont valu au SOA sa mauvaise réputation.
+Ces pratiques ont permis de créer des architectures de services qui fonctionnent, et les connaitre permet d'éviter de retomber dans certaines des ornières qui ont valu au SOA sa mauvaise réputation.
 
 == SOA ?
 
 Pour comprendre pourquoi SOA est toujours pertinent, il faut la voir un peu comme la méthode agile : 
 
-SOA n'est pas une solution à mettre en œuvre clé en main mais une grille de lecture et quelques bonnes pratiques permettant de trouver comment répondre à un certain nombre de besoins. Ensuite à chacun de choisir son approche, et d'interpréter les pratiques à son environement.
+SOA n'est pas une solution à mettre en œuvre clé en main mais une grille de lecture et quelques bonnes pratiques permettant de trouver comment répondre à un certain nombre de besoins.
+Ensuite à chacun de choisir son approche, et d'interpréter les pratiques à son environnement.
 
 === SOA et urbanisation
 
@@ -23,7 +25,8 @@ Lorsqu'on décide de généraliser l'usage des services au niveau d'un système 
 - avoir des services qui répondent le mieux aux besoins
 - garder la maîtrise de son SI dans la durée
 
-Ainsi, même si les outils ont changé, ces besoins des entreprises en terme d'architectures de services sont restés fondamentalement les mêmes, et les patterns d'organisation qui ont fait leurs preuves restent adaptés.
+Ainsi, même si les outils ont changé, ces besoins des entreprises en terme d'architectures de services sont restés fondamentalement les mêmes,
+et les patterns d'organisation qui ont fait leurs preuves restent adaptés.
 Dans le jargon des "architectes" de systèmes d'information, l'application de ces pratiques s'appelle "urbaniser".
 
 Comme dans le cas des villes, les premier temps d'urbanistes "tour d'ivoires" a laissé sa place à une décentralisation : une stratégie et des grands principes globaux puis une autonomie des projets.
@@ -32,11 +35,10 @@ Comme dans le cas des villes, les premier temps d'urbanistes "tour d'ivoires" a 
 
 L'urbanisation c'est pour tout le monde dès que vous commencez à mettre en place des services. Et même si vous avez déjà de nombreux services, une gouvernance peut être mise en place de façon incrémentale sans avoir à révolutionner votre manière de travailler.
 
-
-
 Deux situations rendent ces pratiques vitales :
+
 - de nombreuses applications exposants des services
-- un métier compliqué : avec des objects métiers riches et des services complexes
+- un métier riche utilisant des données trés structurées et des services complexes
 
 == 3 patterns SOA qui ont fait leurs preuves
 
@@ -73,7 +75,7 @@ Rest / JSON a plusieurs outils, mais pas encore d'outil assez puissant et largem
 
 === Pattern royaume-émmissaire
 
-Besoin : garder la maitrise du couplage des applis entre elles, découpler les expositions de services des traitements métier, normer les échanges
+Besoin : garder la maitrise du couplage des applis entre elles,découpler les expositions de services des traitements métier, normer les échanges
 
 Définir des zones dans le SI. Dans une zone tous les services sont accessibles, entre les zones définir des émissaires.
 
@@ -87,11 +89,15 @@ Les technologies de services sont maîtrisées, la difficulté de la mise en pla
 L'enjeux est de parvenir à faire travailler pour le bien commun des personnes de groupes différents et dont les intérêts peuvent diverger.
 
 Quand il y a des difficultés, la tentation est toujours là de vouloir reprendre la main en pilotant tout par le haut.
-Malheuresement cette solution de facilité, mène à un SI mal adapté aux besoins, voire à l'anarchie quand les applications vont se mettre à contourner les règles. Il faut donc rester dans la négociation, avec des instances robustes en mesure de trancher les conflits.
+Malheureusement cette solution de facilité, mène à un SI mal adapté aux besoins,
+voire à l'anarchie quand les applications vont se mettre à contourner les règles.
+Il faut donc rester dans la négociation, avec des instances robustes en mesure de trancher les conflits.
 
 === Une alternative : le modèle contractuel
 
 Il existe une alternative à l'approche "gouvernance", et elle est mise en œuvre chez certains géants du web. 
-Il s'agit d'un modèle plus contractuel, où chaque application est reponsable de ses données, et où les échanges entre applications reposent un modèle client-fournisseur.
-Dans un environement rigoureux favorisant une grande autonomie des équipes ce modèle peut fonctionner. 
-Cependant, notre conviction est qu'il est risqué s'il est mal appliqué, et qu'il s'adapte mal quand le métier de l'entreprise est complexe. Il est donc à réserver à des cas bien spécifiques.
+Il s'agit d'un modèle plus contractuel, où chaque application est responsable de ses données,
+et où les échanges entre applications reposent un modèle client-fournisseur.
+Dans un environnement rigoureux favorisant une grande autonomie des équipes ce modèle peut fonctionner. 
+Cependant, notre conviction est qu'il est risqué s'il est mal appliqué,
+et qu'il s'adapte mal quand le métier de l'entreprise est complexe. Il est donc à réserver à des cas bien spécifiques.
