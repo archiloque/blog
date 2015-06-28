@@ -1,6 +1,5 @@
 = Services REST : ne jetez pas (tout) le SOA avec l'eau du bain
 Julien Kirch
-v0.0.1, 2015-06-16
 
 Avec la mise en œuvre des services RESTful, comme avec toute nouvelle technologie, l'envie est forte de faire table rase du passé et de tout réinventer.
 
@@ -8,43 +7,44 @@ Cependant, nous n'avons pas attendu l'arrivée des architectures REST pour impl�
 Même si parfois les outils n'ont pas été à la hauteur des promesses, certaines pratiques ont fait leurs preuves.
 Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Oriented Architecture_.
 
-Ces pratiques ont permis de créer des architectures de services qui fonctionnent, et les connaitre permet d'éviter de retomber dans certaines des ornières qui ont valu au SOA sa mauvaise réputation.
+Ces pratiques ont permis de créer des architectures de services qui fonctionnent, et évitent de retomber dans certaines des ornières qui ont valu au SOA sa mauvaise réputation.
 
 == SOA ?
 
 Pour comprendre pourquoi SOA est toujours pertinent, il faut la voir un peu comme la méthode agile : 
 
-SOA n'est pas une solution à mettre en œuvre clé en main mais une grille de lecture et quelques bonnes pratiques permettant de trouver comment répondre à un certain nombre de besoins.
+SOA n'est pas une solution clé en main mais une grille de lecture et quelques bonnes pratiques apportant des réponses à un certain nombre de besoins.
 Ensuite à chacun de choisir son approche, et d'interpréter les pratiques à son environnement.
 
 === SOA et urbanisation
 
-Aujourd'hui, les parties techniques des services ne sont plus un problème : on dispose d'outils matures qui permettent de les développer et de les exploiter facilement.
+Aujourd'hui, les parties techniques des services ne sont plus un problème : on dispose d'outils matures pour les développer et les exploiter facilement.
 
-Lorsqu'on décide de généraliser l'usage des services au niveau d'un système d'information, les enjeux sont alors de 2 ordres :
+Lorsqu'on décide de généraliser l'usage des services au niveau d'un système d'information, les enjeux sont de deux ordres :
 
 - avoir des services qui répondent le mieux aux besoins
 - garder la maîtrise de son SI dans la durée
 
-Ainsi, même si les outils ont changé, ces besoins des entreprises en terme d'architectures de services sont restés fondamentalement les mêmes,
+Même si les outils ont changé, ces besoins des entreprises en terme d'architectures de services sont restés identiques,
 et les patterns d'organisation qui ont fait leurs preuves restent adaptés.
 Dans le jargon des "architectes" de systèmes d'information, l'application de ces pratiques s'appelle "urbaniser".
 
-Comme dans le cas des villes, les premiers temps d'urbanistes "tour d'ivoires" ont laissé la place à une décentralisation :
+Les urbanistes planificateurs des années 2000 ont laissé la place à une approché décentralisée :
 une stratégie et des grands principes globaux puis une autonomie des projets.
 
 == L'urbanisation c'est pour qui ?
 
-L'urbanisation c'est pour tout le monde dès que vous commencez à mettre en place des services. Et même si vous avez déjà de nombreux services, une gouvernance peut être mise en place de façon incrémentale sans avoir à révolutionner votre manière de travailler.
+L'urbanisation vous concerne dès que vous commencez à mettre en place des services. 
+Même si vous avez déjà de nombreux services, une gouvernance peut être mise en place de façon incrémentale sans avoir à révolutionner votre manière de travailler.
 
 Deux situations rendent ces pratiques vitales :
 
 - de nombreuses applications exposants des services
 - un métier riche utilisant des données très structurées et des services complexes
 
-== 3 patterns SOA qui ont fait leurs preuves
+Pour atteindre ces objectifs, voici 3 patterns qui ont fait leurs preuves :
 
-=== Communauté des consommateurs
+== Communauté des consommateurs
 
 Quand une application expose des services, il est important que chacun d'eux convienne au maximum de consommateurs différents.
 L'objectif est d'éviter de développer des services à la demande pour chaque nouveau client, même si chacun d'eux a ses besoins et ses contraintes propres.
@@ -52,28 +52,30 @@ L'objectif est d'éviter de développer des services à la demande pour chaque n
 Pour ce faire, il faut regrouper les consommateurs de chaque ensemble de services pour qu'ils définissent collectivement les contrats de services avec l'application en charge des les implémenter.
 Cela s'applique en amont lorsqu'il s'agit de créer un nouveau service, puis tout au long de sa vie pour définir de manière collégiale les évolutions avec leur calendrier.
 
-Concrètement il s'agit d'identifier les différents projets et des porteurs dans chacun d'eux, puis d'instaurer des échanges entre ces personnes avec des points de rencontres réguliers.
+Concrètement, il s'agit d'identifier les différents projets et des porteurs dans chacun d'eux,
+puis d'instaurer des échanges entre ces personnes avec des points de rencontres réguliers.
 
-Même si des besoins spécifiques d'un consommateur peuvent nécessiter la création de services à son seul usage, il faut que cela reste l'exception,
+Même si les besoins spécifiques d'un consommateur nécessitent la création de services à son seul usage,
+il faut que cela reste l'exception,
 et qu'aucune demande ne se fasse en direct sans passer par la communauté.
 Prioriser les demandes qui bénéficient au maximum de personnes permet d'inciter les récalcitrants à coopérer.
 
 Dans ce type de fonctionnement, les questions les plus délicates sont celles qui concernent le budget,
-lorsqu'il faut par exemple décider quelle(s) clé(s) de répartition utiliser pour répartir le coût d'un nouveau service qui profitera à plusieurs projets.
+lorsqu'il faut par exemple décider quelle(s) clé(s) de répartition utiliser pour partager le coût d'un nouveau service qui profitera à plusieurs projets.
 Le mieux est de définir une règle de répartition simple, en considérant que sur le long terme les choses vont s'équilibrer.
 
-=== Réutilisation des modèles de données
+== Réutilisation des modèles de données
 
 Ensuite, pour améliorer les partages de données entre applications, il faut essayer de factoriser et de réutiliser les modèles de données.
 
-L'objectif est d'éviter que chaque projet ne réinterprète les différents modèles à sa manière, ou les effets "téléphone arabe" ou les données évoluent subrepticement au fur et à mesure qu'elles transitent.
+L'objectif est d'éviter que chaque projet ne réinterprète les différents modèles à sa manière, ou les effets "téléphone arabe" quand les données évoluent subrepticement au fur et à mesure qu'elles transitent.
 
 Pour ce faire, chaque type de donnée transverse doit avoir un projet responsable qui définira le modèle canonique et qui aura à charge de travailler avec les différents projets.
 Il s'agit en général du projet producteur ou référentiel de cette donnée.
 
-Ce modèle étant autant métier que technique, les deux compétences doivent être représentés dans l'instance de décision.
+Ce modèle étant autant métier que technique, les deux compétences doivent être représentées dans l'instance de décision.
 
-Si cela est nécessaire, on pourra s'appuyer sur un dictionnaire de données pour le vocabulaire global à l'entreprise,
+Si nécessaire, on pourra s'appuyer sur un dictionnaire de données pour le vocabulaire global à l'entreprise,
 à condition de l'utiliser à bon escient et d'éviter de vouloir tout normer.
 
 À ce sujet il faut bien préciser que le modèle de donnée dont on parle ici est bien le modèle _d'échange_,
@@ -85,18 +87,18 @@ l'important est que le résultat soit utilisable facilement par les autres proje
 
 Sur ce point les outils de modélisation JSON manquent de maturité à ce sujet :
 si JSON Schema fournit des syntaxes permettant de partager et d'étendre des modèles,
-la spécification manque de clarté et les outils les implémentent rarement et pas de manière complète.
-Pour le moment il faut donc customizer les outils existants, ou utiliser les outils JSON s'appuyant sur des XSD.
+la spécification manque de clarté et les outils les implémentent rarement et de manière incomplète.
+Pour le moment il faut donc customiser les outils existants, ou utiliser les outils JSON s'appuyant sur des XSD.
 
-=== Pattern royaume-émissaire
+== Pattern royaume-émissaire
 
 Fournir un service, c'est se coupler avec les applications qui l'utilisent.
 Même si on sait techniquement gérer des versions de services,
-multiplier les consommateurs c'est multiplier les coûts de maintenance ou de migrations et limiter sa capacité d'évolution.
+multiplier les consommateurs, c'est multiplier les coûts de maintenance ou de migrations et limiter sa capacité d'évolution.
 
 Il est donc nécessaire de cadrer les expositions de services en normant les échanges.
 
-Pour ce faire, le pattern royaume-émissaire propose de séparer le SI en différentes zones,
+Dans cette optique, le pattern royaume-émissaire propose de séparer le SI en différentes zones,
 qui correspondent aux grappes d'applications partageant les mêmes données,
 et qui en général recoupent l'organisation de l'entreprise.
 
@@ -105,13 +107,13 @@ Par contre entre les royaumes, les services _émissaires_ devront être prédéf
 On garde ainsi une souplesse locale, tout en limitant les couplages globaux.
 
 Les services et les données transitant entre royaumes font l'objet d'une attention spécifique,
-l'objectif étant qu'ils soient plus pérennes que les services standards, les migrations étant plus compliquées.
-En pratique on définit généralement des services spécifiques, distincts des services à usage local.
+l'objectif étant qu'ils soient plus pérennes que les services standards, car les migrations sont plus compliquées.
+En pratique, on définit généralement des services spécifiques, distincts des services à usage local.
 
 Ce pattern peut très bien s'accompagner de mesures techniques comme des firewalls ou des proxys ainsi que du monitoring,
 pour s'assurer que les règles sont bien respectées.
 
-==== Un outil et pas une fin en soi
+=== Un outil et pas une fin en soi
 
 Ce modèle suppose un fonctionnement hiérarchique pour arbitrer et organiser les échanges entre les différentes entités.
 Il y a une opposition naturelle entre les demandes locales des projets et les choix globaux pour le bien du système.
@@ -121,7 +123,7 @@ ne pas avoir d'équipe dédiée à cela, mais avoir des décideurs juges et part
 
 == SOA : tout dépend des personnes
 
-Les technologies de services sont maîtrisées, la difficulté de la mise en place une architecture de service est avant tout organisationnelle.
+Les technologies de services sont maîtrisées, la difficulté de la mise en place d'une architecture de service est donc avant tout organisationnelle.
 L'enjeu est de parvenir à faire travailler pour le bien commun des personnes de groupes différents et dont les intérêts peuvent diverger.
 
 Quand il y a des difficultés, la tentation est toujours là de vouloir reprendre la main en pilotant tout par le haut.
@@ -131,9 +133,9 @@ Il faut donc rester dans la négociation, avec des instances robustes en mesure 
 
 === Une alternative : le modèle contractuel
 
-Il existe une alternative à l'approche "gouvernance", et elle est mise en œuvre chez certains géants du web. 
+Il existe une alternative à l'approche "gouvernance", mise en œuvre chez certains géants du web. 
 Il s'agit d'un modèle plus contractuel, où chaque application est responsable de ses données,
 et où les échanges entre applications reposent sur un modèle client-fournisseur.
-Dans un environnement rigoureux favorisant une grande autonomie des équipes ce modèle peut fonctionner. 
+Dans un environnement rigoureux favorisant une grande autonomie des équipes, ce modèle peut fonctionner. 
 Cependant, notre conviction est qu'il est risqué s'il est mal appliqué,
 et qu'il s'adapte mal quand le métier de l'entreprise est complexe. Il est donc à réserver à des cas bien spécifiques.
