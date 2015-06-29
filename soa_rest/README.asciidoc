@@ -11,30 +11,31 @@ Ces pratiques ont permis de créer des architectures de services qui fonctionnen
 
 == SOA ?
 
-Pour comprendre pourquoi SOA est toujours pertinent, il faut la voir un peu comme la méthode agile : 
+Pour comprendre pourquoi SOA est toujours pertinent, il faut la voir un peu comme la méthode agile :
 
 SOA n'est pas une solution clé en main mais une grille de lecture et quelques bonnes pratiques apportant des réponses à un certain nombre de besoins.
 Ensuite à chacun de choisir son approche, et d'interpréter les pratiques à son environnement.
 
 === SOA et urbanisation
 
-Aujourd'hui, les parties techniques des services ne sont plus un problème : on dispose d'outils matures pour les développer et les exploiter facilement.
+Aujourd'hui, les parties techniques des services ne sont plus un problème : les outils pour les développer sont matures et ils permettent de les exploiter facilement.
 
-Lorsqu'on décide de généraliser l'usage des services au niveau d'un système d'information, les enjeux sont de deux ordres :
+La généralisation de l'usage des services au niveau d'un système d'information implique des enjeux de deux ordres :
 
 - avoir des services qui répondent le mieux aux besoins
 - garder la maîtrise de son SI dans la durée
 
-Même si les outils ont changé, ces besoins des entreprises en terme d'architectures de services sont restés identiques,
+Même si les outils ont changé, les besoins des entreprises en terme d'architectures de services sont restés identiques,
 et les patterns d'organisation qui ont fait leurs preuves restent adaptés.
-Dans le jargon des "architectes" de systèmes d'information, l'application de ces pratiques s'appelle "urbaniser".
+Dans le jargon des "architectes" de systèmes d'information, l'application de ces pratiques fait partie de ce qu'on appelle "l'urbanisation".
 
-Les urbanistes planificateurs des années 2000 ont laissé la place à une approché décentralisée :
+Les urbanistes planificateurs des années 2000 qui décidaient de tout sans s'impliquer dans la réalisation ont laissé la place à une approché décentralisée :
 une stratégie et des grands principes globaux puis une autonomie des projets.
+Cela donne une meilleure flexibilité tout en conservant une cohérence globale
 
-== L'urbanisation c'est pour qui ?
+== C'est pour qui ?
 
-L'urbanisation vous concerne dès que vous commencez à mettre en place des services. 
+Le SOA vous concerne dès que vous commencez à mettre en place des services.
 Même si vous avez déjà de nombreux services, une gouvernance peut être mise en place de façon incrémentale sans avoir à révolutionner votre manière de travailler.
 
 Deux situations rendent ces pratiques vitales :
@@ -46,10 +47,10 @@ Pour atteindre ces objectifs, voici 3 patterns qui ont fait leurs preuves :
 
 == Communauté des consommateurs
 
-Quand une application expose des services, il est important que chacun d'eux convienne au maximum de consommateurs différents.
+Quand une application expose des services, il est important qu'ils soient utilisables par le plus grand nombre de consommateurs différents
 L'objectif est d'éviter de développer des services à la demande pour chaque nouveau client, même si chacun d'eux a ses besoins et ses contraintes propres.
 
-Pour ce faire, il faut regrouper les consommateurs de chaque ensemble de services pour qu'ils définissent collectivement les contrats de services avec l'application en charge des les implémenter.
+Pour ce faire, il faut réunir les consommateurs de chaque ensemble de services pour qu'ils définissent collectivement les contrats de services de l'application qui les fournit.
 Cela s'applique en amont lorsqu'il s'agit de créer un nouveau service, puis tout au long de sa vie pour définir de manière collégiale les évolutions avec leur calendrier.
 
 Concrètement, il s'agit d'identifier les différents projets et des porteurs dans chacun d'eux,
@@ -62,7 +63,7 @@ Prioriser les demandes qui bénéficient au maximum de personnes permet d'incite
 
 Dans ce type de fonctionnement, les questions les plus délicates sont celles qui concernent le budget,
 lorsqu'il faut par exemple décider quelle(s) clé(s) de répartition utiliser pour partager le coût d'un nouveau service qui profitera à plusieurs projets.
-Le mieux est de définir une règle de répartition simple, en considérant que sur le long terme les choses vont s'équilibrer.
+Le mieux est de définir une règle de répartition simple, en considérant que sur le long terme les choses s'équilibreront.
 
 == Réutilisation des modèles de données
 
@@ -70,7 +71,7 @@ Ensuite, pour améliorer les partages de données entre applications, il faut es
 
 L'objectif est d'éviter que chaque projet ne réinterprète les différents modèles à sa manière, ou les effets "téléphone arabe" quand les données évoluent subrepticement au fur et à mesure qu'elles transitent.
 
-Pour ce faire, chaque type de donnée transverse doit avoir un projet responsable qui définira le modèle canonique et qui aura à charge de travailler avec les différents projets.
+Pour ce faire, chaque type de donnée transverse doit être sous la responsabilté d'une equipe qui en définira le modèle canonique et qui aura à charge de travailler avec les différents projets.
 Il s'agit en général du projet producteur ou référentiel de cette donnée.
 
 Ce modèle étant autant métier que technique, les deux compétences doivent être représentées dans l'instance de décision.
@@ -104,10 +105,10 @@ et qui en général recoupent l'organisation de l'entreprise.
 
 Dans un même groupe d'applications (_un royaume_), l'utilisation de services entre applications est libre.
 Par contre entre les royaumes, les services _émissaires_ devront être prédéfinis.
-On garde ainsi une souplesse locale, tout en limitant les couplages globaux.
+Cela permet de conserver une souplesse locale, tout en limitant les couplages globaux.
 
-Les services et les données transitant entre royaumes font l'objet d'une attention spécifique,
-l'objectif étant qu'ils soient plus pérennes que les services standards, car les migrations sont plus compliquées.
+Les services et les données transitant entre royaumes doivent faire l'objet d'une attention spécifique,
+l'objectif étant qu'ils soient plus pérennes que les services standards, car leurs migrations sont plus compliquées.
 En pratique, on définit généralement des services spécifiques, distincts des services à usage local.
 
 Ce pattern peut très bien s'accompagner de mesures techniques comme des firewalls ou des proxys ainsi que du monitoring,
