@@ -18,7 +18,7 @@ Ensuite à chacun de choisir son approche, et d'interpréter les pratiques à so
 
 === SOA et urbanisation
 
-Aujourd'hui, les parties techniques des services ne sont plus un problème : les outils pour les développer sont matures et ils permettent de les exploiter facilement.
+Aujourd'hui, les parties techniques des services ne sont plus un problème : les outils pour les développer sont matures et ils permettent de les exploiter facilement (frameworks d'exposition, outils de monitoring, briques d'API management ...).
 
 La généralisation de l'usage des services au niveau d'un système d'information implique des enjeux de deux ordres :
 
@@ -89,7 +89,7 @@ l'important est que le résultat soit utilisable facilement par les autres proje
 Sur ce point les outils de modélisation JSON manquent de maturité à ce sujet :
 si JSON Schema fournit des syntaxes permettant de partager et d'étendre des modèles,
 la spécification manque de clarté et les outils les implémentent rarement et de manière incomplète.
-Pour le moment il faut donc customiser les outils existants, ou utiliser les outils JSON s'appuyant sur des XSD.
+Pour le moment il faut donc étender les outils existants, ou utiliser les outils JSON s'appuyant sur des XSD.
 
 == Pattern royaume-émissaire
 
