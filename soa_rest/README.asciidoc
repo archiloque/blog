@@ -13,14 +13,14 @@ Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Orie
 
 Ces pratiques ont permis de créer des architectures de services qui fonctionnent, et évitent de retomber dans certaines des ornières qui ont valu au SOA sa mauvaise réputation.
 
-== SOA ?
+== Quésaco SOA ?
 
 Pour comprendre pourquoi SOA est toujours pertinent, il faut la voir un peu comme la méthode agile :
 
 SOA n'est pas une solution clé en main mais une grille de lecture et quelques bonnes pratiques apportant des réponses à un certain nombre de besoins.
 Ensuite à chacun de choisir son approche, et d'interpréter les pratiques à son environnement.
 
-=== SOA et urbanisation
+=== SOA : essentiel pour réussir ses services
 
 Aujourd'hui, les parties techniques des services ne sont plus un problème : les outils pour les développer sont matures et ils permettent de les exploiter facilement (frameworks d'exposition, outils de monitoring, briques d'API management ...).
 
@@ -37,7 +37,7 @@ Les urbanistes planificateurs des années 2000 qui décidaient de tout sans s'im
 une stratégie et des grands principes globaux puis une autonomie des projets.
 Cela donne une meilleure flexibilité tout en conservant une cohérence globale
 
-== C'est pour qui ?
+=== SOA c'est pour qui ?
 
 Le SOA vous concerne dès que vous commencez à mettre en place des services.
 Même si vous avez déjà de nombreux services, une gouvernance peut être mise en place de façon incrémentale sans avoir à révolutionner votre manière de travailler.
@@ -47,9 +47,14 @@ Deux situations rendent ces pratiques vitales :
 - de nombreuses applications exposants des services
 - un métier riche utilisant des données très structurées et des services complexes
 
-Pour atteindre ces objectifs, voici 3 patterns qui ont fait leurs preuves :
+== Trois patterns SOA
 
-== Communauté des consommateurs
+Pour atteindre ces objectifs, voici 3 patterns ciblant les besoins principaux d'une architecture de service :
+- développer des services qui répondent le mieux aux besoins de tous
+- bien partager les données entre application
+- limiter le couplage des services
+
+=== Communauté des consommateurs
 
 Quand une application expose des services, il est important qu'ils soient utilisables par le plus grand nombre de consommateurs différents
 L'objectif est d'éviter de développer des services à la demande pour chaque nouveau client, même si chacun d'eux a ses besoins et ses contraintes propres.
@@ -69,7 +74,7 @@ Dans ce type de fonctionnement, les questions les plus délicates sont celles qu
 lorsqu'il faut par exemple décider quelle(s) clé(s) de répartition utiliser pour partager le coût d'un nouveau service qui profitera à plusieurs projets.
 Le mieux est de définir une règle de répartition simple, en considérant que sur le long terme les choses s'équilibreront.
 
-== Réutilisation des modèles de données
+=== Réutilisation des modèles de données
 
 Ensuite, pour améliorer les partages de données entre applications, il faut essayer de factoriser et de réutiliser les modèles de données.
 
@@ -95,7 +100,7 @@ si JSON Schema fournit des syntaxes permettant de partager et d'étendre des mod
 la spécification manque de clarté et les outils les implémentent rarement et de manière incomplète.
 Pour le moment il faut donc étender les outils existants, ou utiliser les outils JSON s'appuyant sur des XSD.
 
-== Pattern royaume-émissaire
+=== Pattern royaume-émissaire
 
 Fournir un service, c'est se coupler avec les applications qui l'utilisent.
 Même si on sait techniquement gérer des versions de services,
@@ -118,7 +123,7 @@ En pratique, on définit généralement des services spécifiques, distincts des
 Ce pattern peut très bien s'accompagner de mesures techniques comme des firewalls ou des proxys ainsi que du monitoring,
 pour s'assurer que les règles sont bien respectées.
 
-=== Un outil et pas une fin en soi
+=== Organiser les expositions de services : un outil pour votre SI et pas une fin en soi
 
 Ce modèle suppose un fonctionnement hiérarchique pour arbitrer et organiser les échanges entre les différentes entités.
 Il y a une opposition naturelle entre les demandes locales des projets et les choix globaux pour le bien du système.
@@ -136,7 +141,7 @@ Malheureusement cette solution de facilité mène à un SI mal adapté aux besoi
 voire à l'anarchie quand les applications vont se mettre à contourner les règles.
 Il faut donc rester dans la négociation, avec des instances robustes en mesure de trancher les conflits.
 
-=== Une alternative : le modèle contractuel
+== Une alternative à l'approche SOA : le modèle contractuel
 
 Il existe une alternative à l'approche "gouvernance", mise en œuvre chez certains géants du web. 
 Il s'agit d'un modèle plus contractuel, où chaque application est responsable de ses données,
