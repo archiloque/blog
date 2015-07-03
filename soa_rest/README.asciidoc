@@ -65,6 +65,8 @@ Cela s'applique en amont lorsqu'il s'agit de créer un nouveau service, puis tou
 
 Concrètement, il s'agit d'identifier les différents projets et des porteurs dans chacun d'eux,
 puis d'instaurer des échanges entre ces personnes avec des points de rencontres réguliers.
+La cible n'est pas de seulement se mettre d'accord sur les besoin, mais de définir ensemble la totalité des contrats de service : 
+signatures des appels, volumétrie et SLA.
 
 Même si les besoins spécifiques d'un consommateur nécessitent la création de services à son seul usage,
 il faut que cela reste l'exception,
@@ -121,10 +123,15 @@ Les services et les données transitant entre royaumes doivent faire l'objet d'u
 l'objectif étant qu'ils soient plus pérennes que les services standards, car leurs migrations sont plus compliquées.
 En pratique, on définit généralement des services spécifiques, distincts des services à usage local.
 
+Pour que ces services répondent au mieux aux besoins, ces services doivent être définis en appliquant le modèle "communauté des consommateurs" en réunissant toutes les parties prenantes.
+
 Ce pattern peut très bien s'accompagner de mesures techniques comme des firewalls ou des proxys ainsi que du monitoring,
 pour s'assurer que les règles sont bien respectées.
 
-=== Organiser les expositions de services : un outil pour votre SI et pas une fin en soi
+Bien que la division du SI en zones y fasse penser, résistez à la tentation d'administrer ces services à l'aide d'un outil d'architecture d'entreprise,
+mieux vaut s'appuyer sur les outils de publication d'API en y ajoutant les metadonnées nécessaires.
+
+==== Organiser les expositions de services : un outil pour votre SI et pas une fin en soi
 
 Ce modèle suppose un fonctionnement hiérarchique pour arbitrer et organiser les échanges entre les différentes entités.
 Il y a une opposition naturelle entre les demandes locales des projets et les choix globaux pour le bien du système.
