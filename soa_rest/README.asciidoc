@@ -1,4 +1,5 @@
 = Services REST : ne jetez pas (tout) le SOA avec l'eau du bain
+:icons: font
 
 Avec l'arrivée de REST, on a bien envie d'oublier tout ce qu'on faisait avant car c'était forcément moins bien.
 Mais, si la technique a changé, les bonnes pratiques SOA sont toujours aussi pertinente, et permettent de mettre en œuvre des services qui répondent aux besoins tout en gardant la maitrise de son système d'information.
@@ -149,3 +150,22 @@ et où les échanges entre applications reposent sur un modèle client-fournisse
 Dans un environnement rigoureux favorisant une grande autonomie des équipes, ce modèle peut fonctionner. 
 Cependant, notre conviction est qu'il est risqué s'il est mal appliqué,
 et qu'il s'adapte mal quand le métier de l'entreprise est complexe. Il est donc à réserver à des cas bien spécifiques.
+
+'''
+
+[TIP]
+.À retenir
+====
+SOA est une grille de lecture et des bonnes pratiques.
+Il vise à permettre à développer des services les plus adaptés tout en gardant la maitrise de son SI.
+
+L'enjeux de ces pratiques n'est pas technique mais organisationnelle,
+elles nécéssitent de faire travailler ensemble les différents projets. 
+
+Trois patterns à mettre en œuvre:
+
+- communauté des consommateurs pour développer des services qui répondent le mieux aux besoins de tous
+- réutilisation des modèles de données pour bien partager les données entre application
+- royaume-émissaire pour limiter le couplage des services
+
+====
