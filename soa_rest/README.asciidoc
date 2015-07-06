@@ -14,7 +14,7 @@ Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Orie
 
 Ces pratiques ont permis de créer des architectures de services qui fonctionnent, et évitent de retomber dans certaines des ornières qui ont valu au SOA sa mauvaise réputation.
 
-== Quésaco SOA ?
+== Quèsaco SOA ?
 
 Pour comprendre pourquoi SOA est toujours pertinent, il faut la voir un peu comme la méthode agile :
 
@@ -23,7 +23,7 @@ Ensuite à chacun de choisir son approche, et d'interpréter les pratiques à so
 
 === SOA : essentiel pour réussir ses services
 
-Aujourd'hui, les parties techniques des services ne sont plus un problème : les outils pour les développer sont matures et ils permettent de les exploiter facilement (frameworks d'exposition, outils de monitoring, briques d'API management ...).
+Aujourd'hui, les parties techniques des services ne sont plus un problème : les outils pour les développer sont matures et ils permettent de les exploiter facilement (frameworks d'exposition, outils de monitoring, briques d'API management…).
 
 La généralisation de l'usage des services au niveau d'un système d'information implique des enjeux de deux ordres :
 
@@ -65,7 +65,7 @@ Cela s'applique en amont lorsqu'il s'agit de créer un nouveau service, puis tou
 
 Concrètement, il s'agit d'identifier les différents projets et des porteurs dans chacun d'eux,
 puis d'instaurer des échanges entre ces personnes avec des points de rencontres réguliers.
-La cible n'est pas de seulement se mettre d'accord sur les besoin, mais de définir ensemble la totalité des contrats de service : 
+La cible n'est pas de seulement se mettre d'accord sur les besoins, mais de définir ensemble la totalité des contrats de service :
 signatures des appels, volumétrie et SLA.
 
 Même si les besoins spécifiques d'un consommateur nécessitent la création de services à son seul usage,
@@ -83,7 +83,7 @@ Ensuite, pour améliorer les partages de données entre applications, il faut es
 
 L'objectif est d'éviter que chaque projet ne réinterprète les différents modèles à sa manière, ou les effets "téléphone arabe" quand les données évoluent subrepticement au fur et à mesure qu'elles transitent.
 
-Pour ce faire, chaque type de donnée transverse doit être sous la responsabilté d'une equipe qui en définira le modèle canonique et qui aura à charge de travailler avec les différents projets.
+Pour ce faire, chaque type de donnée transverse doit être sous la responsabilité d'une équipe qui en définira le modèle canonique et qui aura à charge de travailler avec les différents projets.
 Il s'agit en général du projet producteur ou référentiel de cette donnée.
 
 Ce modèle étant autant métier que technique, les deux compétences doivent être représentées dans l'instance de décision.
@@ -101,7 +101,7 @@ l'important est que le résultat soit utilisable facilement par les autres proje
 Sur ce point les outils de modélisation JSON manquent de maturité à ce sujet :
 si JSON Schema fournit des syntaxes permettant de partager et d'étendre des modèles,
 la spécification manque de clarté et les outils les implémentent rarement et de manière incomplète.
-Pour le moment il faut donc étender les outils existants, ou utiliser les outils JSON s'appuyant sur des XSD.
+Pour le moment il faut donc étendre les outils existants, ou utiliser les outils JSON s'appuyant sur des XSD.
 
 === Pattern royaume-émissaire
 
@@ -151,10 +151,10 @@ Il faut donc rester dans la négociation, avec des instances robustes en mesure 
 
 == Une alternative à l'approche SOA : le modèle contractuel
 
-Il existe une alternative à l'approche "gouvernance", mise en œuvre chez certains géants du web. 
+Il existe une alternative à l'approche "gouvernance", mise en œuvre chez certains géants du web.
 Il s'agit d'un modèle plus contractuel, où chaque application est responsable de ses données,
 et où les échanges entre applications reposent sur un modèle client-fournisseur.
-Dans un environnement rigoureux favorisant une grande autonomie des équipes, ce modèle peut fonctionner. 
+Dans un environnement rigoureux favorisant une grande autonomie des équipes, ce modèle peut fonctionner.
 Cependant, notre conviction est qu'il est risqué s'il est mal appliqué,
 et qu'il s'adapte mal quand le métier de l'entreprise est complexe. Il est donc à réserver à des cas bien spécifiques.
 
@@ -167,9 +167,9 @@ SOA est une grille de lecture et des bonnes pratiques.
 Il vise à permettre à développer des services les plus adaptés tout en gardant la maitrise de son SI.
 
 L'enjeux de ces pratiques n'est pas technique mais organisationnelle,
-elles nécéssitent de faire travailler ensemble les différents projets. 
+elles nécessitent de faire travailler ensemble les différents projets.
 
-Trois patterns à mettre en œuvre:
+Trois patterns à mettre en œuvre :
 
 - communauté des consommateurs pour développer des services qui répondent le mieux aux besoins de tous
 - réutilisation des modèles de données pour bien partager les données entre application
