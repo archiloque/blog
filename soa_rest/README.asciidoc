@@ -73,6 +73,8 @@ il faut que cela reste l'exception,
 et qu'aucune demande ne se fasse en direct sans passer par la communauté.
 Prioriser les demandes qui bénéficient au maximum de personnes permet d'inciter les récalcitrants à coopérer.
 
+image::communaute.png[]
+
 Dans ce type de fonctionnement, les questions les plus délicates sont celles qui concernent le budget,
 lorsqu'il faut par exemple décider quelle(s) clé(s) de répartition utiliser pour partager le coût d'un nouveau service qui profitera à plusieurs projets.
 Le mieux est de définir une règle de répartition simple, en considérant que sur le long terme les choses s'équilibreront.
@@ -85,6 +87,8 @@ L'objectif est d'éviter que chaque projet ne réinterprète les différents mod
 
 Pour ce faire, chaque type de donnée transverse doit être sous la responsabilité d'une équipe qui en définira le modèle canonique et qui aura à charge de travailler avec les différents projets.
 Il s'agit en général du projet producteur ou référentiel de cette donnée.
+
+image::modele.png[]
 
 Ce modèle étant autant métier que technique, les deux compétences doivent être représentées dans l'instance de décision.
 
@@ -127,6 +131,8 @@ Pour que ces services répondent au mieux aux besoins, ces services doivent êtr
 
 Ce pattern peut très bien s'accompagner de mesures techniques comme des firewalls ou des proxys ainsi que du monitoring,
 pour s'assurer que les règles sont bien respectées.
+
+image::royaume.png[]
 
 Bien que la division du SI en zones y fasse penser, résistez à la tentation d'administrer ces services à l'aide d'un outil d'architecture d'entreprise,
 mieux vaut s'appuyer sur les outils de publication d'API en y ajoutant les metadonnées nécessaires.
