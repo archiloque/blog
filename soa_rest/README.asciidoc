@@ -2,21 +2,24 @@
 :icons: font
 
 Avec l'arrivée de REST, on a bien envie d'oublier tout ce qu'on faisait avant car c'était forcément moins bien.
-Mais, si la technique a changé, les bonnes pratiques SOA sont toujours aussi pertinente, et permettent de mettre en œuvre des services qui répondent aux besoins tout en gardant la maitrise de son système d'information.
+Mais, si les technologies ont changé, les bonnes pratiques SOA sont toujours aussi pertinente, et permettent de mettre en œuvre des services qui répondent aux besoins tout en gardant la maitrise de son système d'information.
 
 '''
 
 Avec la mise en œuvre des services RESTful, comme avec toute nouvelle technologie, l'envie est forte de faire table rase du passé et de tout réinventer.
 
 Cependant, nous n'avons pas attendu l'arrivée des architectures REST pour implémenter des services.
-Même si parfois les outils n'ont pas été à la hauteur des promesses, certaines pratiques ont fait leurs preuves.
+Même si parfois les outils n'ont pas été à la hauteur des promesses, certaines bonnes pratiques ont fait leurs preuves.
 Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Oriented Architecture_.
 
 Ces pratiques ont permis de créer des architectures de services qui fonctionnent, et évitent de retomber dans certaines des ornières qui ont valu au SOA sa mauvaise réputation.
 
 == Quèsaco SOA ?
 
-Pour comprendre pourquoi SOA est toujours pertinent, il faut la voir un peu comme la méthode agile :
+On mélange souvent SOA et SOAP car la première vague de SOA a beaucoup utilisé cette technologie.
+Mais il faut bien distinguer les deux car l'approche SOA n'est pas liée à un type de service particulier. Et si SOAP commencer à avoir fait ton temps, SOA est toujours aussi pertinent.
+
+Pour comprendre pourquoi, le mieux est de la voir un peu comme la méthode agile :
 
 SOA n'est pas une solution clé en main mais une grille de lecture et quelques bonnes pratiques apportant des réponses à un certain nombre de besoins.
 Ensuite à chacun de choisir son approche, et d'interpréter les pratiques à son environnement.
@@ -48,6 +51,15 @@ Deux situations rendent ces pratiques vitales :
 - de nombreuses applications exposants des services
 - un métier riche utilisant des données très structurées et des services complexes
 
+=== Une alternative à l'approche SOA : le modèle contractuel
+
+Certains géants du web utilisent une approche alternative à l'approche "gouvernance" portée par SOA.
+Il s'agit d'un modèle plus contractuel, où chaque application est responsable de ses données,
+et où les échanges entre applications reposent sur un modèle client-fournisseur.
+Dans un environnement rigoureux favorisant une grande autonomie des équipes et où un modèle plus collaborationel n'est pas souhaitable, ce modèle peut fonctionner.
+Cependant, notre conviction est qu'il est risqué s'il est mal appliqué,
+et qu'il s'adapte mal quand le métier de l'entreprise est complexe. Il est donc à réserver à des cas bien spécifiques.
+
 == Trois patterns SOA
 
 Pour atteindre ces objectifs, voici 3 patterns ciblant les besoins principaux d'une architecture de service :
@@ -66,7 +78,7 @@ Cela s'applique en amont lorsqu'il s'agit de créer un nouveau service, puis tou
 Concrètement, il s'agit d'identifier les différents projets et des porteurs dans chacun d'eux,
 puis d'instaurer des échanges entre ces personnes avec des points de rencontres réguliers.
 La cible n'est pas de seulement se mettre d'accord sur les besoins, mais de définir ensemble la totalité des contrats de service :
-signatures des appels, volumétrie et SLA.
+signatures des appels, SLA (dont performance et volumétrie).
 
 Même si les besoins spécifiques d'un consommateur nécessitent la création de services à son seul usage,
 il faut que cela reste l'exception,
@@ -94,6 +106,8 @@ Ce modèle étant autant métier que technique, les deux compétences doivent ê
 
 Si nécessaire, on pourra s'appuyer sur un dictionnaire de données pour le vocabulaire global à l'entreprise,
 à condition de l'utiliser à bon escient et d'éviter de vouloir tout normer.
+
+Les API REST axées sur les ressources rend cette idée beaucoup plus naturelle qu'en SOAP où on avait parfois tendance à définir des types de donnée ad-hoc pour chaque service.
 
 À ce sujet il faut bien préciser que le modèle de donnée dont on parle ici est bien le modèle _d'échange_,
 il ne s'agit pas du modèle interne ou même de persistance de chaque application :
@@ -124,7 +138,7 @@ Par contre entre les royaumes, les services _émissaires_ devront être prédéf
 Cela permet de conserver une souplesse locale, tout en limitant les couplages globaux.
 
 Les services et les données transitant entre royaumes doivent faire l'objet d'une attention spécifique,
-l'objectif étant qu'ils soient plus pérennes que les services standards, car leurs migrations sont plus compliquées.
+l'objectif étant qu'ils soient plus pérennes que les services standard, car leurs migrations sont plus compliquées.
 En pratique, on définit généralement des services spécifiques, distincts des services à usage local.
 
 Pour que ces services répondent au mieux aux besoins, ces services doivent être définis en appliquant le modèle "communauté des consommateurs" en réunissant toutes les parties prenantes.
@@ -145,6 +159,16 @@ La tendance logique est alors que l'instance perde de vue que sa mission est d'a
 Pour éviter cela, la recette est toujours la même :
 ne pas avoir d'équipe dédiée à cela, mais avoir des décideurs juges et parties en choisissant parmi les projets des personnes d'expérience ayant une vision globale, quitte à les former pour cela.
 
+=== SOA et Open API
+
+Les 3 patterns présentés ici sont décrits dans la perspective de services internes d'une entreprise.
+
+Open API où les services sont exposés sur internet de manière ouverte à tous nécessite d'adapter les pattens. Mais comme Open API est une généralisation de l'approche service, cette adaptation se fait très naturellement :
+
+- Royaume-émissaire va correspondre à la coupure entre services internes et externes.
+- La réutilisation des modèles va permettre d'offrir une API consistante à vos différents services (à l'inverse de certains géants du web), même si en interne ils sont issus d'applications totalement différentes.
+- La communauté des consommateurs ne regroupera plus tous les consommateurs mais des partenaires identifiés avec qui vous avez tissés des liens. Ces partenaires doivent être représentatif de votre cible d'utilisateurs en terme d'usage et de taille, afin d'augmenter les chances que vos services répondent aux besoin de l'ensemble de vos clients. Vous pouvez ensuite valider ces services en les déployant d'abord pour ces partenaires, et les ouvrir au public dans un second temps après d'éventuels ajustements.
+
 == SOA : tout dépend des personnes
 
 Les technologies de services sont maîtrisées, la difficulté de la mise en place d'une architecture de service est donc avant tout organisationnelle.
@@ -155,24 +179,16 @@ Malheureusement cette solution de facilité mène à un SI mal adapté aux besoi
 voire à l'anarchie quand les applications vont se mettre à contourner les règles.
 Il faut donc rester dans la négociation, avec des instances robustes en mesure de trancher les conflits.
 
-== Une alternative à l'approche SOA : le modèle contractuel
-
-Il existe une alternative à l'approche "gouvernance", mise en œuvre chez certains géants du web.
-Il s'agit d'un modèle plus contractuel, où chaque application est responsable de ses données,
-et où les échanges entre applications reposent sur un modèle client-fournisseur.
-Dans un environnement rigoureux favorisant une grande autonomie des équipes, ce modèle peut fonctionner.
-Cependant, notre conviction est qu'il est risqué s'il est mal appliqué,
-et qu'il s'adapte mal quand le métier de l'entreprise est complexe. Il est donc à réserver à des cas bien spécifiques.
-
 '''
 
 [TIP]
 .À retenir
 ====
 SOA est une grille de lecture et des bonnes pratiques.
+
 Il vise à permettre à développer des services les plus adaptés tout en gardant la maitrise de son SI.
 
-L'enjeux de ces pratiques n'est pas technique mais organisationnelle,
+L'enjeu de ces pratiques n'est pas technique mais organisationnelle,
 elles nécessitent de faire travailler ensemble les différents projets.
 
 Trois patterns à mettre en œuvre :
