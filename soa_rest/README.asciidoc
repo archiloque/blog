@@ -50,19 +50,22 @@ Cela donne une meilleure flexibilité tout en conservant une cohérence globale.
 La SOA vous concerne dès que vous commencez à mettre en place des services.
 Même si vous avez déjà de nombreux services, une gouvernance peut être mise en place de façon incrémentale sans avoir à révolutionner votre manière de travailler.
 
-Deux situations rendent ces pratiques vitales :
+Les deux situations où les pratiques vitales sont les plus utiles :
 
-- de nombreuses applications exposant des services
-- un métier riche utilisant des données très structurées et des services complexes
+- de nombreuses applications exposant des services, car cela augmente les risques de couplage et les conséquences de services mal conçus
+- un métier riche utilisant des données très structurées et des services complexes, parce qu'il est plus difficile dans ce cas de savoir qui fait quoi avec les données
 
 === Une alternative à l'approche SOA : le modèle contractuel
 
 Certains géants du web utilisent une approche alternative à l'approche "gouvernance" portée par la SOA.
-Il s'agit d'un modèle plus contractuel, où chaque application est responsable de ses données,
-et où les échanges entre applications reposent sur un modèle client-fournisseur.
-Dans un environnement rigoureux favorisant une grande autonomie des équipes et où un modèle plus collaboratif n'est pas souhaitable, ce modèle peut fonctionner.
-Cependant, notre conviction est qu'il est risqué s'il est mal appliqué,
-et qu'il s'adapte mal quand le métier de l'entreprise est complexe. Il est donc à réserver à des cas bien spécifiques.
+Il s'agit d'un modèle plus contractuel, où chaque application est responsable de ses données et définit seule les services qu'elle expose.
+Les contacts entre applications reposent alors sur un modèle client-fournisseur formalisé plutôt que des échanges collaboratifs.
+
+Dans un environnement rigoureux où la collaboration entre équipes est difficile, ce modèle peut fonctionner et permet de tout de même de créer des services.
+
+Cependant, notre conviction est qu'il est risqué (services mal adaptés, conflits entre applications),
+et qu'il s'applique mal quand le métier de l'entreprise est complexe.
+Il est donc à réserver à des cas bien spécifiques.
 
 == Trois patterns SOA
 
@@ -114,6 +117,8 @@ Il s'agit en général du projet producteur ou référentiel de cette donnée.
 
 image::modele.png[]
 
+_Ici il a été décidé le cœur métier est le mieux placé pour définit le modèle canonique des produit et des clients, car c'est lui qui embarque le plus de logique, le CRM et la BI utilisent ce modèle pour leurs échanges et peuvent l'enrichir pour leurs propres services._
+
 Ce modèle étant autant métier que technique, les deux compétences doivent être représentées dans l'instance de décision.
 
 Si nécessaire, on pourra s'appuyer sur un dictionnaire de données pour le vocabulaire global à l'entreprise,
@@ -124,7 +129,7 @@ où on avait parfois tendance à définir des types de donnée ad-hoc pour chaqu
 
 À ce sujet il faut bien préciser que le modèle de donnée dont on parle ici est bien le modèle _d'échange_,
 il ne s'agit pas du modèle interne ou même de persistance de chaque application :
-utiliser une moulinette pour générer le modèle SQL à partir du modèle d'échange a rarement produit les résultats escomptés !
+utiliser une moulinette pour générer le modèle SQL à partir du modèle d'échange a rarement produit les résultats escomptés en terme d'efficacité !
 
 Du point de vue technique, peu importe que ce modèle soit défini dans un outil de modélisation (_design-first_) ou dans des métadonnées (_code-first_),
 l'important est que le résultat soit utilisable facilement par les autres projets.
@@ -182,7 +187,7 @@ Open API où les services sont exposés sur Internet de manière ouverte à tous
 Mais comme Open API est une généralisation de l'approche service, cette adaptation se fait très naturellement :
 
 - Royaume-émissaire va correspondre à la coupure entre services internes et externes.
-- La réutilisation des modèles va permettre d'offrir une API consistante à vos différents services (à l'inverse de certains géants du web), même si en interne ils sont issus d'applications totalement différentes.
+- La réutilisation des modèles va permettre d'offrir une API consistante à vos différents services, même si en interne ils sont issus d'applications totalement différentes.
 - La communauté des consommateurs ne regroupera plus tous les consommateurs mais des partenaires identifiés avec qui vous avez tissés des liens. Ces partenaires doivent être représentatifs de votre cible d'utilisateurs en terme d'usage et de taille, afin d'augmenter les chances que vos services répondent aux besoin de l'ensemble de vos clients. Vous pouvez ensuite valider ces services en les déployant d'abord pour ces partenaires, et les ouvrir au public dans un second temps après d'éventuels ajustements.
 
 == SOA : tout dépend des personnes
