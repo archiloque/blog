@@ -67,6 +67,7 @@ et qu'il s'adapte mal quand le métier de l'entreprise est complexe. Il est donc
 == Trois patterns SOA
 
 Pour atteindre ces objectifs, voici 3 patterns ciblant les besoins principaux d'une architecture de service :
+
 - développer des services qui répondent le mieux aux besoins de tous
 - bien partager les données entre application
 - limiter le couplage des services
@@ -83,8 +84,11 @@ puis tout au long de sa vie pour définir de manière collégiale les évolution
 
 Concrètement, il s'agit d'identifier les différents projets et des porteurs dans chacun d'eux,
 puis d'instaurer des échanges entre ces personnes avec des points de rencontre réguliers.
+
 Le but n'est pas de seulement de s'accorder sur les besoins, mais de définir ensemble la totalité des contrats de service :
-signatures des appels, SLA (dont performance et volumétrie).
+
+- signatures des appels, y compris les cas d'erreurs
+- SLA, dont performance et volumétrie
 
 Même si les besoins spécifiques d'un consommateur nécessitent la création de services à son seul usage,
 il faut que cela reste l'exception,
