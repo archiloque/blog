@@ -1,4 +1,4 @@
-= Services REST : ne jetez pas (tout) le SOA avec l'eau du bain
+= Services REST : ne jetez pas la SOA avec l'eau du bain
 :icons: font
 
 Avec l'arrivée de REST, on est tenté d'oublier tout ce qu'on faisait avant car c'était forcément moins bien.
@@ -14,7 +14,7 @@ Même si parfois les outils n'ont pas été à la hauteur des promesses, certai
 Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Oriented Architecture_.
 
 Ces pratiques ont permis de créer des architectures de services qui fonctionnent,
-et évitent de retomber dans certaines des ornières qui ont valu au SOA sa mauvaise réputation.
+et évitent de retomber dans certaines des ornières qui ont valu à la SOA sa mauvaise réputation.
 
 == Quèsaco SOA ?
 
@@ -25,7 +25,7 @@ Et si SOAP commence à avoir fait son temps, SOA est toujours aussi pertinente.
 Pour comprendre pourquoi, le mieux est de la voir un peu comme la méthode agile :
 
 SOA n'est pas une solution clé en main mais une grille de lecture et des patterns apportant des réponses à un certain nombre de besoins.
-Ensuite à chacun de choisir son approche, et d'interpréter les pratiques à son environnement.
+Ensuite à chacun de choisir son approche, et d'adapter les pratiques à son environnement.
 
 === SOA : essentielle pour réussir ses services
 
@@ -34,14 +34,14 @@ les outils pour les développer sont matures et ils permettent de les exploiter 
 
 La généralisation de l'usage des services au niveau d'un système d'information implique des enjeux de deux ordres :
 
-- avoir des services qui répondent le mieux aux besoins
-- garder la maîtrise de son SI dans la durée
+- avoir des services qui répondent le mieux aux besoins ;
+- garder la maîtrise de son SI dans la durée.
 
-Même si les outils ont changé, les besoins des entreprises en terme d'architectures de services sont restés identiques,
+Même si les outils ont changé, les besoins des entreprises en matière d'architectures de services sont restés identiques,
 et les patterns d'organisation restent adaptés.
 Dans le jargon des "architectes" de systèmes d'information, l'application de ces pratiques fait partie de ce qu'on appelle "l'urbanisation".
 
-Les urbanistes planificateurs des années 2000 qui décidaient de tout sans s'impliquer dans la réalisation ont laissé la place à une approché décentralisée :
+Les urbanistes planificateurs des années 2000 qui décidaient de tout sans s'impliquer dans la réalisation ont laissé la place à une approche décentralisée :
 une stratégie et des grands principes globaux puis une autonomie des projets.
 Cela donne une meilleure flexibilité tout en conservant une cohérence globale.
 
@@ -50,16 +50,16 @@ Cela donne une meilleure flexibilité tout en conservant une cohérence globale.
 La SOA vous concerne dès que vous commencez à mettre en place des services.
 Même si vous avez déjà de nombreux services, une gouvernance peut être mise en place de façon incrémentale sans avoir à révolutionner votre manière de travailler.
 
-Les deux situations où les pratiques vitales sont les plus utiles :
+Les deux situations où ces pratiques sont les plus utiles :
 
-- de nombreuses applications exposant des services, car cela augmente les risques de couplage et les conséquences de services mal conçus
-- un métier riche utilisant des données très structurées et des services complexes, parce qu'il est plus difficile dans ce cas de savoir qui fait quoi avec les données
+- de nombreuses applications exposant des services, car cela augmente les risques de couplage et les conséquences de services mal conçus ;
+- un métier riche utilisant des données très structurées et des services complexes, parce qu'il est plus difficile dans ce cas de savoir qui fait quoi avec les données.
 
-=== Une alternative à l'approche SOA : le modèle contractuel
+=== Une alternative à l'approche SOA : le modèle unilatéral
 
 Certains géants du web utilisent une approche alternative à l'approche "gouvernance" portée par la SOA.
-Il s'agit d'un modèle plus contractuel, où chaque application est responsable de ses données et définit seule les services qu'elle expose.
-Les contacts entre applications reposent alors sur un modèle client-fournisseur formalisé plutôt que des échanges collaboratifs.
+Il s'agit d'un modèle plus unilatéral, où chaque application est responsable de ses données et définit seule les services qu'elle expose.
+L'accent est mis sur la formalisation et la contractualisation et les consommateurs ont beaucoup moins leur mot à dire.
 
 Dans un environnement rigoureux où la collaboration entre équipes est difficile, ce modèle peut fonctionner et permet de tout de même de créer des services.
 
@@ -67,13 +67,15 @@ Cependant, notre conviction est qu'il est risqué (services mal adaptés, confli
 et qu'il s'applique mal quand le métier de l'entreprise est complexe.
 Il est donc à réserver à des cas bien spécifiques.
 
+À noter que dans le modèle SOA la formalisation est tout aussi essentielle mais elle se fait pour matérialiser des décisions et des engagements qui sont définis ensemble.
+
 == Trois patterns SOA
 
 Pour atteindre ces objectifs, voici 3 patterns ciblant les besoins principaux d'une architecture de service :
 
-- développer des services qui répondent le mieux aux besoins de tous
-- bien partager les données entre application
-- limiter le couplage des services
+- développer des services qui répondent le mieux aux besoins de tous ;
+- bien partager les données entre application ;
+- limiter le couplage des services.
 
 === Communauté des consommateurs
 
@@ -90,8 +92,8 @@ puis d'instaurer des échanges entre ces personnes avec des points de rencontre 
 
 Le but n'est pas de seulement de s'accorder sur les besoins, mais de définir ensemble la totalité des contrats de service :
 
-- signatures des appels, y compris les cas d'erreurs
-- SLA, dont performance et volumétrie
+- signatures des appels, y compris les cas d'erreurs ;
+- SLA, dont performance et volumétrie.
 
 Même si les besoins spécifiques d'un consommateur nécessitent la création de services à son seul usage,
 il faut que cela reste l'exception,
@@ -187,7 +189,7 @@ Open API où les services sont exposés sur Internet de manière ouverte à tous
 Mais comme Open API est une généralisation de l'approche service, cette adaptation se fait très naturellement :
 
 - Royaume-émissaire va correspondre à la coupure entre services internes et externes.
-- La réutilisation des modèles va permettre d'offrir une API consistante à vos différents services, même si en interne ils sont issus d'applications totalement différentes.
+- La réutilisation des modèles va permettre d'offrir une API cohérente à vos différents services, même si en interne ils sont issus d'applications totalement différentes.
 - La communauté des consommateurs ne regroupera plus tous les consommateurs mais des partenaires identifiés avec qui vous avez tissés des liens. Ces partenaires doivent être représentatifs de votre cible d'utilisateurs en terme d'usage et de taille, afin d'augmenter les chances que vos services répondent aux besoin de l'ensemble de vos clients. Vous pouvez ensuite valider ces services en les déployant d'abord pour ces partenaires, et les ouvrir au public dans un second temps après d'éventuels ajustements.
 
 == SOA : tout dépend des personnes
@@ -214,8 +216,8 @@ elles nécessitent de faire travailler ensemble les différents projets.
 
 Trois patterns à mettre en œuvre :
 
-- communauté des consommateurs pour développer des services qui répondent le mieux aux besoins de tous
-- réutilisation des modèles de données pour bien partager les données entre application
-- royaume-émissaire pour limiter le couplage des services
+- communauté des consommateurs pour développer des services qui répondent le mieux aux besoins de tous ;
+- réutilisation des modèles de données pour bien partager les données entre application ;
+- royaume-émissaire pour limiter le couplage des services.
 
 ====
