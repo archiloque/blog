@@ -1,0 +1,131 @@
+= Les microservices sans le hype : qu'est ce que c'est, à quoi ça sert, est ce qu'il m'en faut ?
+:icons: font
+
+En 2015 le pic des microservices est atteint : pas une conférence sans un ingénieur de Netflix pour vous vendre du rêve, pas une semaine sans nouveau framework magique pour tout faire sans se poser de question. Un article qui fait le point pour sortir du hype et prendre un peu de recul car tout le monde n'est pas (encore) une startup ou un Géant du Web.
+
+'''
+
+= Les problèmes des projets
+
+== Complexité
+
+Projets ont tendance à toujours croître, et un moment ils deviennent tellement complexes qu'il devient difficile de travailler sur le code.
+
+== Scallabilité
+
+Difficile de résoudres les soucis de scalablité dans les monolithes.
+
+== Résilience
+
+Compliqué d'avoir des sytèmes complexes fiables car des erreurs apparaissent dans la multiplications des interractions.
+
+== Technologie
+
+Dans des gros projets il peut être compliqué de faire des évolutions technologiques car on veut garder une cohérence et il faut tout faire migrer. On se prive d'outils spécialisé qui permettent d'etre plus performant pour des cas spécifiques car on cherche des choses qui sont utiles à tout le projet.
+
+== Innovation métier
+
+Compliqué d'organiser une zone d'inovation dans un gros projet quand le métier veut tester des nouvelles idées.
+
+= C'est quoi les microservices
+
+Petites applis avec chacun un domaine fonctionnel. Chacun est  un projet indépendant avec une pizza-team.
+
+Si vous ne comprenez pas pourquoi ils ont choisis d'appeller ça "microservices" c'est que vous avez bien compris, de la même manière ils appellent "monolithes" les systèmes classiques car un terme qui marque.
+
+= Avantages
+
+== Ca tient dans la tête et facile à maintenir
+
+== Evolutions techno
+
+Plus facile d'utiliser des technos différentes.
+
+== Facile à gérer
+
+Pizza team avec un PO.
+
+== Scallabilité
+
+Plus facile de résoudre des problèmes en refactorant ou en ajoutant des instances.
+
+== Résilience
+
+Services plus atomiques : plus facile d'avoir du code fiable.
+
+== Innovation
+
+Si tout est structuré en services il est facile de démarrer un nuoveau projet en utilisant les données des autres, et si KO on jette.
+
+= Les prérequis et les limites
+
+Ceux qu'on avait déjà dans la SOA classique, mais avec un niveau supplémentaire : avant on pouvait s'en accomoder même si ça grinçait alors que là c'est devenu critique.
+
+== Le système devient distribué
+
+On distribue les état du système entre plusieurs briques, donc soucis de cohérence de données et de transactionalité.
+
+Plus difficile à tester en mode connecté.
+
+== Évolutions transverses
+
+Plus difficile de mettre en œuvre les évolutions transverses : dans un projet tu peux le faire en une fois, là sur plusieurs projets. Ça demande de forcer une synchronization ou de gérer des versions et de la compatibilité.
+
+== Démarrage de projet rapides
+
+Il ne faut pas qu'il y ait trop de coût orga pour créer un nouveau projet : créer les équipes, déplacer les personnes... peut être très coûteux.
+
+== Devops et provisionning
+
+Multiplie les applications et les déploiements, donc il faut un workflow très efficace au niveau outil et process.
+
+== Maturité d'exploitation et monitoring
+
+Beaucoup plus de services avec des dépendances partout ça suppose :
+
+- un très bon monitoring de flux pour pouvoir rapidement savoir où se posent les problèmes
+- une grande maturité d'exploitation car ça va multiplier les pannes
+
+== Résilience
+
+Systèmes distribués ils y a toute une nouvelle classe d'erreurs qui sont intrinsèquement difficile à résoudre.
+
+== Connaissance métier
+
+Ça tient dans la tête mais on le risque de perte de connaissance est plus élevé quand les gens partent, et problème en cas de mise en pause d'un projet.
+
+== Technos
+
+Risque de technos mal choisies car choix moins stratégique : demande de faire des choix cohérents.
+Dans un monolithe on est poussé de faire des migrations régulières alors que dans microservices on peut plus facilement choisir de ne pas le faire, surtout que plus facilement en mode maintenance. La théorie c'est "on jette et on recommence" mais il faut une orga qui accepte que c'est un process normal dans la vie d'un projet et pas le signe d'un échec.
+
+Tendance à avoir moins de réutilisation : permet l'inovation mais donc plus compliqué de gérer les développeurs.
+
+== Micro gestion
+
+Gros projet : plus facile d'avoir une gestion stratégique, chaque projet avec un PO ça demande d'être mature dans ses priorisations.
+
+== Innovation
+
+Il faut arriver à arbitrer entre POC et pérénité.
+
+= Est ce qu'il m'en faut
+
+La SOA c'est pour gérer la complexité orga et métier en distribuant les choses. Il faut avoir une douleur forte sur ces aspects, on va diminuer la complexité d'un gros élement sur certains axes en le séparant en plusieurs, mais en échange on aura un surcout à d'autres endroits.
+
+On peut avoir des monolithes bien organisés, scalables ... mais de séparer en plusieurs composants si c'est bien fait ça force les choses à être sous contrôle, si c'est mal fait on va dans le mur.
+
+Il faut être mature sur un certain nombre de choses sinon on court à la catastrophe.
+
+Ne vous dites pas qu'il vous faut des microservices : demandez vous si vous avez ces deux problème, et voyez si c'est bon pour vous.
+
+= Comment j'y vais
+
+Pas de magic bullet.
+
+Monolithe vs. microservices : compliqué de déterminer a priori les limites entre projets.
+Cas qui va bien : "2ème système" lors d'une refonte.
+Sinon casse-gueule, et plus cher quand tu te trompes.
+
+Cas classique c'est le monolithe que tu "pèles" des services à l'extérieur,
+mais ça demande d'avoir très bien préparé son code sinon il faut détricoter, nottament au niveau données.
