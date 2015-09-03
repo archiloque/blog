@@ -67,6 +67,12 @@ On distribue les état du système entre plusieurs briques, donc soucis de cohé
 
 Plus difficile à tester en mode connecté.
 
+== Mauvais plan pour les appels non unitaires
+
+Les appels de services qui font appels à plusieurs domaines demandent de multiplier les appels de services. Ça multiplie les possibilité d'erreurs et ça ajoute les latences.
+
+Au pire ça demande d'ajouter des appels spécifiques (bulk ou custom) et du cache.
+
 == Évolutions transverses
 
 Plus difficile de mettre en œuvre les évolutions transverses : dans un projet tu peux le faire en une fois, là sur plusieurs projets. Ça demande de forcer une synchronization ou de gérer des versions et de la compatibilité.
