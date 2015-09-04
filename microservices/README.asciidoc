@@ -5,31 +5,40 @@ En 2015 le pic des microservices est atteint : pas une conférence sans un ingé
 
 '''
 
-= Les problèmes des projets
+= Les problèmes des gros projets classiques
+
+Des problèmes qu'on connait et pour lesquels on a des recettes, qu'elles soient techniques ou organisationnelles.
+Malheureusement ces recettes sont souvent mise en œuvre imparfaitement, et avec le projet qui s'aggrandit au fur et à mesure ça demande de plus en plus de vigilence alors qu'on a tendance à être de moins en moins rigoureux.
 
 == Complexité
 
 Projets ont tendance à toujours croître, et un moment ils deviennent tellement complexes qu'il devient difficile de travailler sur le code.
 
-== Scallabilité
+== Scallabilité horizontale
 
-Difficile de résoudres les soucis de scalablité dans les monolithes.
+Rendre scalable un monolithe qui n'a pas été conçu pour demande des interventions qui peuvent être lourdes.
 
-== Résilience
+== Fiabilité
 
-Compliqué d'avoir des sytèmes complexes fiables car des erreurs apparaissent dans la multiplications des interractions.
+Compliqué d'avoir des sytèmes complexes fiables car des erreurs apparaissent dans la multiplications des interactions.
+Avoir une architecture applicative solide basé sur des composants logicielle aide beaucoup, mais il est difficile d'être suffisament rigoureux pour
 
 == Technologie
 
-Dans des gros projets il peut être compliqué de faire des évolutions technologiques car on veut garder une cohérence et il faut tout faire migrer. On se prive d'outils spécialisé qui permettent d'etre plus performant pour des cas spécifiques car on cherche des choses qui sont utiles à tout le projet.
+Dans des gros projets il peut être compliqué de faire des évolutions technologiques car on veut garder une cohérence dans le projet et il faut tout faire migrer.
+On se prive d'outils spécialisés qui permettent d'etre plus performant pour des cas spécifiques car on cherche des choses qui sont utiles à tout le projet.
+Accépter qu'un projets soit multi-technos, voir multi-languages c'est un choix qu'on fait difficilement car on perd une partie des bénéfices escomptés des gros projets (personnes interchangeables, capitalisation).
 
-== Innovation métier
+== Innovation métier et méthodo
 
 Compliqué d'organiser une zone d'inovation dans un gros projet quand le métier veut tester des nouvelles idées.
+De même manière difficile de faire de l'agile car ça suppose de pouvoir adapter son orga et ses méthodes de travail.
 
 = C'est quoi les microservices
 
 Petites applis avec chacun un domaine fonctionnel. Chacun est  un projet indépendant avec une pizza-team.
+
+Plutôt que de reposer sur des recettes qu'il faut suivre pour avoir un projet monolithe qui se passe bien, on limite volontairement la taille des projets pour bordder le risque.
 
 Si vous ne comprenez pas pourquoi ils ont choisis d'appeller ça "microservices" c'est que vous avez bien compris, de la même manière ils appellent "monolithes" les systèmes classiques car un terme qui marque.
 
@@ -45,13 +54,13 @@ Plus facile d'utiliser des technos différentes.
 
 Pizza team avec un PO.
 
-== Scallabilité
+== Scallabilité horizontable
 
-Plus facile de résoudre des problèmes en refactorant ou en ajoutant des instances.
+Plus facile de résoudre des problèmes en refactorant le code ou en le réécrivant complètement.
 
-== Résilience
+== Fiabilité
 
-Services plus atomiques : plus facile d'avoir du code fiable.
+Avec des projets plus petits on a moins d'interférences entre les différentes briques donc moins de bug, et les échanges avec les autres passent par des services formalisés donc pas d'effets de bord non prévus.
 
 == Innovation
 
@@ -65,7 +74,7 @@ Ceux qu'on avait déjà dans la SOA classique, mais avec un niveau supplémentai
 
 On distribue les état du système entre plusieurs briques, donc soucis de cohérence de données et de transactionalité.
 
-Plus difficile à tester en mode connecté.
+Plus difficile à tester en mode connecté : les tests d'intégration deviennent très compliqués.
 
 == Mauvais plan pour les appels non unitaires
 
@@ -77,9 +86,10 @@ Au pire ça demande d'ajouter des appels spécifiques (bulk ou custom) et du cac
 
 Plus difficile de mettre en œuvre les évolutions transverses : dans un projet tu peux le faire en une fois, là sur plusieurs projets. Ça demande de forcer une synchronization ou de gérer des versions et de la compatibilité.
 
-== Démarrage de projet rapides
+== Démarrage de projet rapides et allocation de personnes.
 
-Il ne faut pas qu'il y ait trop de coût orga pour créer un nouveau projet : créer les équipes, déplacer les personnes... peut être très coûteux.
+Il ne faut pas qu'il y ait trop de coût orga pour créer un nouveau projet : créer les équipes, paperasse, définition de budget ... peut être très coûteux.
+Pendant la phase de développement un petit projet est plus sensible aux variations dans le volume de travail alors qu'avec un gros projet on peut réallouer la capacité à faire entre différentes parties, il faut donc pouvoir facilement ajouter ou supprimer des personnes.
 
 == Devops et provisionning
 
@@ -92,7 +102,7 @@ Beaucoup plus de services avec des dépendances partout ça suppose :
 - un très bon monitoring de flux pour pouvoir rapidement savoir où se posent les problèmes
 - une grande maturité d'exploitation car ça va multiplier les pannes
 
-== Résilience
+== Fiabilité
 
 Systèmes distribués ils y a toute une nouvelle classe d'erreurs qui sont intrinsèquement difficile à résoudre.
 
@@ -109,7 +119,7 @@ Tendance à avoir moins de réutilisation : permet l'inovation mais donc plus co
 
 == Micro gestion
 
-Gros projet : plus facile d'avoir une gestion stratégique, chaque projet avec un PO ça demande d'être mature dans ses priorisations.
+Gros projet : plus facile d'avoir une gestion stratégique, le mode microservice avec chaque projet avec un PO ça demande d'être mature dans ses priorisations.
 
 == Innovation
 
@@ -129,9 +139,11 @@ Ne vous dites pas qu'il vous faut des microservices : demandez vous si vous avez
 
 Pas de magic bullet.
 
-Monolithe vs. microservices : compliqué de déterminer a priori les limites entre projets.
-Cas qui va bien : "2ème système" lors d'une refonte.
-Sinon casse-gueule, et plus cher quand tu te trompes.
+Monolithe vs. microservices : compliqué de déterminer a priori les limites où il faut découper les microservices, et se trouper est coûteux car il faut faire du refactoring cross-projet.
 
-Cas classique c'est le monolithe que tu "pèles" des services à l'extérieur,
-mais ça demande d'avoir très bien préparé son code sinon il faut détricoter, nottament au niveau données.
+Cas qui va bien : "2ème système" lors d'une refonte.
+
+Cas classique c'est le monolithe que tu "pèles" des services à l'extérieur en externalisant des partie à la bordure du système : on ne se retrouve pas avec 50 mini-appli mais une appli moyenne avec les choses où c'est trop compliqué et / ou ça ne vaut pas la peine de découper, et quelques micro-servcies qui gravitent atour, et qui vont s'en éloigner avec le temps.
+
+
+Ça demande d'avoir très bien préparé son code sinon il faut beaucoup détricoter, et ça pose toujours des soucis au niveau des données.
