@@ -1,42 +1,67 @@
-= Open-source : le code et la communauté
+= Open-source = code + license + communauté
+Julien Kirch
+v1.0, 2015-09-01
 
-Open source il y a la loi et l'esprit de la loi
+Quand on parle d'open source c'est beaucoup pour parler des licenses et un peu du code mais beaucoup moins souvent des participants aux différents projets.
 
-La loi c'est la license qui garantit un certain nombre de droits, et qui est nécessaire pour pouvoir dire qu'un projet est open-source.
-L'esprit de la loi c'est la manière dont ce projet fonctionne : les interactions entre les participants du project au sens large, que ce soit ceux qui participent directement au développement et les simples utilisateurs.
+Les licenses ouvertes donnent le droit aux utilisateurs de modifier les logiciels qu'ils utilisent.
+Mais pour que les changements ainsi effectués profitent au maximum de monde,
+il faut éviter que chacun ne travaille dans son coin, mais qu'ils se fassent de manière collaborative et s'aditionnent et faire ainsi progresser le logiciel.
 
-Car les valeurs de collaboration et de communauté sont au centre de l'open source, la license c'est une manière de garantir un bon comportement, nottament de ceux qui voudraient ne pas jouer le jeu, mais ce n'est pas en principe une fin en soit.
+À l'opposé des logiciels fermés crées par des entreprises de manière pyramidale,
+l'idéal-type du projet open source est développé par une communauté de contributeurs qui apportent tous leur pierre à l'édifice et qui peuvent tous donner leur avis.
 
-D'un projet à l'autre, les modèles de développement et donc les communautés différent beaucoup : des projets complètements fermés mais à license ouverte aux projets ouverts qui font tout pour acceuillir de nouveaux membres.
+Dans la réalité, les modèles de développement et donc les communautés différent beaucoup d'un projet à l'autre:
+depuis les projets au fonctionnement opaque mais à license ouverte aux projets très ouverts qui font tout pour acceuillir de nouveaux membres.
 
 Ces différences sont peu visibles aux non-initiés, mais elles sont très importantes pour se faire un avis sur un projet :
 
-- parce que le label "open-source" a une valeur d'affichage, et que c'est dans son rapport à la communauté qu'on peut juger si un projet est légitime à profiter de ce label
-- pour choisir un projet plutôt qu'un autre, pour des raisons ethiques ou pour savoir si un projet a des chance de bénéficer des garanties de qualité et de durée de vie qu'on les projets open source communautaires
+- parce que le label "open-source" a une valeur d'affichage, et que de savoir comment ce projet fonctionne permet de juger si un projet est légitime à profiter de ce label;
+- pour choisir un projet plutôt qu'un autre, que ce soit pour des raisons ethiques ou pour savoir si on peut compter sur le support de la communauté en cas de problème
 
-Les différents projets ont chacun leur spécificités, mais on peut comprendre l'essentiel avec 4 modèles principaux :
+Chaque projet a ses spécificité, mais quatre familles permettent de comprendre l'essentiel des fonctionnements :
 
 == Le dépot de code
 
-Les projets ou le développement est fermé et où il est simplement possible de télécharger le code. Souvent ce code n'est pas exploitable directement car il est incomplet et/ou manque de documentation.
+Les projets ""à sens unique" ou le développement est fermé et où il est simplement possible de télécharger le code. Souvent ce code n'est pas utilisable directement car il est incomplet et/ou manque de documentation.
 
 3 cas principaux :
 
-- les petits projets où une personne se dit que quelque chose qu'elle a réalisé pourrait servir à d'autres, elle est prête à le rendre accessible mais pas à fournir d'effort supplémentaire. C'est parfaitement OK car c'est fait dans un but altruiste et les gens qui produisent des choses sur leur temps libre ne sont pas tenus link:http://www.drmaciver.com/2015/04/its-ok-for-your-open-source-library-to-be-a-bit-shitty/[de ne pas avoir le même niveau de qualité que dans un cadre professionel].
+=== Les minis projets perso
 
-- les projets qui utilisent du code open-source et qui sont contraint par la license à republier à leur tour certaines parties de leur code. Certains le font link:http://floss.freebox.fr[volontairement] et d'autres link:https://sfconservancy.org/linux-compliance/about.html[sous la contrainte]. Dans ce cas là les entreprises communiquent peu sur le sujet.
+Les petits projets où une personne à développé quelque chose pour elle et se dit que ça pourrait servir à d'autres.
+Elle est prête à le rendre accessible mais pas à fournir d'effort supplémentaire.
+C'est une manière tout à fait légitime de faire de l'open source :
+il s'agit d'une contribution  à but altruiste et, même si l'open source et un bon terrain de jeux pour essayer de faire les choses bien,
+quand on développe quelque chose sur son temps libre, on n'est pas tenu link:http://www.drmaciver.com/2015/04/its-ok-for-your-open-source-library-to-be-a-bit-shitty/[d'avoir le même niveau de qualité que dans un cadre professionel].
 
-- Les projets qui communiquent sur l'open-source pour capitaliser sur l'image mais qui dans la réalité appliquent un mode de développement fermé, même s'il est parfois possible de participer ponctuellement. Le cas le plus notable est link:https://source.android.com/source/code-lines.html[Android] où Google distribue certaines parties du code, et ne rend disponibles les nouveautés qu'après un certain temps.
+=== Ceux qui sont obligés
+
+Les projets qui utilisent du code open-source et qui sont contraint par la license à publier leurs modifications.
+Il appliquent cette obligation a minima, certains link:http://floss.freebox.fr[volontairement] et d'autres link:https://sfconservancy.org/linux-compliance/about.html[sous la contrainte]. Dans ce cas là les entreprises communiquent généralement peu sur le sujet car – même si elles respectent la règle du jeu – elles profitent du travail d'un projet sans contribuer dans les mêmes proportions.footnote:[Il arrive parfois que des développeurs du projet d'origine utilisent du code ainsi publié en le réincorporant après adaptation.]
+
+=== Les profiteurs
+
+- Les projets qui communiquent sur l'open-source pour capitaliser sur l'image mais qui dans la réalité appliquent un mode de développement fermé. Le cas le plus notable est link:https://source.android.com/source/code-lines.html[Android] où Google distribue certaines parties du code, et ne rend disponibles les nouveautés qu'après un certain temps.
 
 == Le développement public
 
 Les projets où on peut suivre le développement mais pas ou peu participer, ici trois grandes familles :
 
-- les projets réalisés par des consortiums, l'open source c'est un choix de license qui arrange les contributeurs, et le développement est ouvert car ça facilite les choses.
+=== Les consortiums
 
-- les projets étatiques où le développement open-source est devenu la règle ou même la loi, dans ce cas les projets, par leur nature, n'appellent souvent pas à contribution.
+Les projets réalisés par des consortiums d'entreprises comme  link:https://fr.wikipedia.org/wiki/GENIVI_Alliance[Genivi], choisir une license open source est une garantie pour les participants, et le développement est ouvert car ça facilite les choses.
 
-- les entreprises qui publient des projets matures et poursuivent le développement de manière pubique. C'est un mouvement qui a pris de l'ampleur ces dernières années. Deux raisons principales : pour l'image de l'entreprise afin d'atirer des profils, et pour faire plaisir aux employés car cela leur donne de la visibilité.
+=== Les étatiques
+
+Les projets étatiques où le développement open-source est devenu la règle (ou même la loi)
+mais qui sont des développements spécifiques et n'appellent donc pas à la réutilisation et donc à la contributation,
+par exemple les link:https://github.com/alphagov[très nombreux projets du service numérique du gouvernement britanique].
+
+=== Les publicitaires
+
+Les entreprises qui publient des projets matures et poursuivent le développement de manière publique mais sans chercher activement à recruter des participants.
+C'est un mouvement qui a pris de l'ampleur ces dernières années pour deux raisons principales : pour l'image de l'entreprise afin d'atirer des profils, et pour faire plaisir aux employés car cela leur donne de la visibilité, l'archétype étant link:https://github.com/Netflix[Netflix].footnote:[Le cas extrème est celui des entreprise qui ont décidé d'arrêter le développement d'un projet et qui choisissent de masquer cette décision en "confiant" le code à la communauté, comme cela a été fait pour link:http://www.zdnet.fr/actualites/oracle-confie-openoffice-a-la-fondation-apache-39761400.htm[OpenOffice].]
 
 == La communauté des pairs
 
@@ -46,7 +71,7 @@ C'est un modèle qui a fait ses preuves, mais qui souffre de 2 défauts :
 - le coeur du projet étant souvent composé de développeurs, l'apport des membres non développeurs est moins valorisé et ils participent peu aux projets, ce qui explique les manques en matière de documentation ou d'utilisabilité dont souffrent ces projets
 - le modèle de cooptation informel, souvent trompeusement qualifié de méritocratie, encouragent les comportements de "bandes de potes" qui mènent à des communautés sans diversité, voire link:https://modelviewculture.com/pieces/leaving-toxic-open-source-communities[toxiques], qui usent les personnes et découragent les nouveaux qui ne sont pas prêt à subir ce genre de choses
 
-== La communauté ouverte 
+== La communauté ouverte
 
 Il s'agit des projets ayant fait le choix d'avoir un projet avec une communauté ouverte, et qui sont donc prêt à consacrer des efforts à cela.
 C'est une manière de faire qui s'est multipliée récement, grâce aux critiques du modèle précédent.
