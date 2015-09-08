@@ -17,7 +17,8 @@ depuis les projets au fonctionnement opaque mais à license ouverte aux projets 
 Ces différences sont peu visibles aux non-initiés, mais elles sont très importantes pour se faire un avis sur un projet :
 
 - parce que le label "open-source" a une valeur d'affichage, et que de savoir comment ce projet fonctionne permet de juger si un projet est légitime à profiter de ce label;
-- pour choisir un projet plutôt qu'un autre, que ce soit pour des raisons ethiques ou pour savoir si on peut compter sur le support de la communauté en cas de problème
+- pour choisir un projet plutôt qu'un autre lorsqu'on cherche un logiciel, que ce soit pour des raisons ethiques ou pour savoir si on peut compter sur le support de la communauté en cas de problème
+- lorsqu'on a envie de contribuer à un projet, pour apprendre des choses ou parce qu'il vous intéresse, et qu'on veut savoir si c'est une bonne idée
 
 Chaque projet a ses spécificité, mais quatre familles permettent de comprendre l'essentiel des fonctionnements :
 
@@ -48,9 +49,39 @@ Les projets qui communiquent sur l'open-source pour capitaliser sur l'image mais
 
 Les projets où on peut suivre le développement mais pas ou peu participer, ici trois grandes familles :
 
-=== Les consortiums
+=== Les hameçonneurs
+
+Il s'agit des projets où le développement d'un outil en open source fait partie de la stratégie économique d'une entreprise.
+Ce modèles sont très à la mode chez les éditeurs de logiciels et peut prendre plusieurs formes, suivant les cas l'intérêt de l'éditeur n'est pas forcément aligné avec celui de la communauté.
+
+==== La vente de support en cas de problème.
+
+Dans de nombreuses entreprises de grandes taille il est nécessaire d'avoir du support pour tous les logiciel qu'elle utilise pour avoir quelqu'un à appeler en cas de problème plutôt que de reposer uniquement sur ses compétences internes.
+Pour minimiser ses coûts de support, l'entreprise qui développe le logiciel aura tout intérêt à ce qu'il soit bien documenté et comporte le moins de bugs possibles.
+
+==== La vente de licenses
+
+Certaines licenses comme la link:http://fsffrance.org/gpl/gpl-fr.fr.html[GPL] imposent des obligations aux utilisateurs, et nottament de redistribuer les modifications qu'ils effectuent sur ces logiciels s'ils vendent des produits qui les utilisent.
+Or pour un certain nombre de raisons certaines entreprises préfèrent ne pas le faire.
+Ainsi pour certains logiciels comme la base de donnée link:https://fr.wikipedia.org/wiki/MySQL[MySQL] il est possible de payer pour obtenir le droit d'utiliser l'outil sans avoir à appliquer ces obligations.
+
+Cela signifie que pour contribuer au projet, il faut donner à l'éditeur le droit de revendre ainsi le résultat de son travail.
+
+==== La vente d'accompagnement pour la mise en place
+
+Pour des logiciels difficiles à mettre en œuvre et/ou pour lequel l'utilisateur n'a pas d'expérience il est nécessaire de se faire aider et l'éditeur peut fournir cette aide.
+Dans ce cas il aura tout intéret à ce que son produit soit compliqué et mal ou partiellement documenté, et pour aller pour cela jusqu'à refuser les contributions sur ces sujets.
+
+=== Le cœur ouvert
+
+Il s'agit de fournir le noyau du logiciel en open source mais de faire payer les fonctionalités avancées.
+Ici l'opposition avec la communauté pourra parfois être frontale pour décourager la création de fonctionalités qui pourraient concurencer avec la version payante,
+en allant parfois jusqu'à supprimer des modules existants pour couper l'herbe sous le pieds de de développeurs trop entreprenant. La base de donnée link:https://en.wikipedia.org/wiki/MySQL_Enterprise[MySQL] en est un bon exemple.
+
+=== Les consortiums d'entreprises
 
 Les projets réalisés par des consortiums d'entreprises comme  link:https://fr.wikipedia.org/wiki/GENIVI_Alliance[Genivi], choisir une license open source est une garantie pour les participants, et le développement est ouvert car ça facilite les choses.
+La participation des extérieurs est très variables : si parfois ils sont les bienvenus en général il est nécéssaire d'adhérer au projet pour contribuer ce qui demande un investissement en temps et en argent.
 
 === Les étatiques
 
@@ -65,24 +96,20 @@ C'est un mouvement qui a pris de l'ampleur ces dernières années pour deux rais
 
 == La communauté des pairs
 
-Il s'agit du modèle de développement classique des communauté open-source : des contributeurs, souvent techniques, s'aggrégent sur un projet et travaillent ensemble sans particulièrement se préoccuper du reste du monde. Ceux qui ont l'envie et la patience peuvent devenir contributeurs à leur tour suivant des méchanismes de promotions ou de cooptation informels.
+Il s'agit du modèle de développement classique des communauté open-source : des contributeurs, souvent avec des profils techniques, s'aggrégent sur un projet et travaillent ensemble sans particulièrement se préoccuper du reste du monde.
+Ceux qui ont l'envie et la patience peuvent devenir contributeurs à leur tour suivant des méchanismes de promotions ou de cooptation informels et en apprenant petit à petit le mode de fonctionnement du projet.
 
 C'est un modèle qui a fait ses preuves, mais qui souffre de 2 défauts :
-- le coeur du projet étant souvent composé de développeurs, l'apport des membres non développeurs est moins valorisé et ils participent peu aux projets, ce qui explique les manques en matière de documentation ou d'utilisabilité dont souffrent ces projets
-- le modèle de cooptation informel, souvent trompeusement qualifié de méritocratie, encouragent les comportements de "bandes de potes" qui mènent à des communautés sans diversité, voire link:https://modelviewculture.com/pieces/leaving-toxic-open-source-communities[toxiques], qui usent les personnes et découragent les nouveaux qui ne sont pas prêt à subir ce genre de choses
 
-== La communauté ouverte
+- Le cœur du projet étant souvent composé de développeurs, l'apport des membres non-développeur est moins valorisé et leur voix est moins entendue.
+Ils sont donc moins incité à participer et/ou risquent de se décourager.
+C'est un des méchanismes qui explique les manques en matière de documentation ou d'utilisabilité dont souffrent ces projets.
+- Le modèle de cooptation informel, souvent trompeusement qualifié de méritocratie, encourage les comportements de "bandes de potes" qui mènent à des communautés sans diversité, voire link:https://modelviewculture.com/pieces/leaving-toxic-open-source-communities[toxiques], qui usent les personnes et découragent les nouveaux qui ne sont pas prêt à subir ce genre de choses. La communauté développant le cœur du système Linux est ainsi célèbre pour ses échanges au ton abrasif et parfois insultant, et le justifiant par le fait que la maitrise technique excuse tout.
 
-Il s'agit des projets ayant fait le choix d'avoir un projet avec une communauté ouverte, et qui sont donc prêt à consacrer des efforts à cela.
-C'est une manière de faire qui s'est multipliée récement, grâce aux critiques du modèle précédent.
-Ça demande un travail continuel pour éviter que les vieux réflexes ne reviennent, et ça demande parfois de prendre des décisions difficile comme d'exclure des membres dont le comportement pose problème, alors que dans le mode classique, ce sont les autres qui s'en vont.
+== La communauté accueillante
 
+Il s'agit des projets ayant fait le choix d'avoir un projet avec une communauté accueillante, et qui sont donc prêt à consacrer des efforts à cela.
+Cela demande un travail continuel pour passer du temps avec les nouveaus venus et éviter que les vieux réflexes ne reviennent, et il faut parfois prendre des décisions difficiles,
+comme lorsqu'il s'agit d'exclure des membres dont les contributions ont de la valeur mais dont le comportement n'est pas acceptable.
 
-
----
-
-https://modelviewculture.com/pieces/the-open-source-identity-crisis
-http://contributor-covenant.org
-http://bundler.io
-https://gnome.org/opw/
-https://modelviewculture.com/pieces/leaving-toxic-open-source-communities
+C'est une manière de faire qui s'est multipliée récement, grâce aux critiques du modèle précédent, les projets link:http://emberjs.com[ember] et link:https://www.rust-lang.org/index.html[rust] en sont de bons exemples.
