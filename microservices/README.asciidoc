@@ -1,14 +1,20 @@
 = Les microservices sans le hype : qu'est ce que c'est, à quoi ça sert, est ce qu'il m'en faut ?
 :icons: font
 
-En 2015 le pic des microservices est atteint : pas une conférence sans un ingénieur de Netflix pour vous vendre du rêve, pas une semaine sans nouveau framework magique pour tout faire sans se poser de question. Un article qui fait le point pour sortir du hype et prendre un peu de recul car tout le monde n'est pas (encore) une startup ou un Géant du Web.
+En 2015 le pic des microservices est atteint : pas une conférence sans un ingénieur de Netflix pour vous vendre du rêve,
+pas une semaine sans nouveau framework magique pour tout faire sans se poser de question.
 
-'''
+Un article qui fait le point pour sortir du hype et prendre un peu de recul
+car tout le monde n'est pas (encore) une startup ou un Géant du Web.
+
+
+
 
 = Les problèmes des gros projets classiques
 
 Des problèmes qu'on connait et pour lesquels on a des recettes, qu'elles soient techniques ou organisationnelles.
-Malheureusement ces recettes sont souvent mise en œuvre imparfaitement, et avec le projet qui s'aggrandit au fur et à mesure ça demande de plus en plus de vigilence alors qu'on a tendance à être de moins en moins rigoureux.
+Malheureusement ces recettes sont souvent mise en œuvre imparfaitement,
+et avec le projet qui s'aggrandit au fur et à mesure ça demande de plus en plus de vigilence alors qu'on a tendance à être de moins en moins rigoureux.
 
 == Complexité
 
@@ -25,9 +31,12 @@ Avoir une architecture applicative solide basé sur des composants logicielle ai
 
 == Technologie
 
-Dans des gros projets il peut être compliqué de faire des évolutions technologiques car on veut garder une cohérence dans le projet et il faut tout faire migrer.
-On se prive d'outils spécialisés qui permettent d'etre plus performant pour des cas spécifiques car on cherche des choses qui sont utiles à tout le projet.
-Accépter qu'un projets soit multi-technos, voir multi-languages c'est un choix qu'on fait difficilement car on perd une partie des bénéfices escomptés des gros projets (personnes interchangeables, capitalisation).
+Dans des gros projets il peut être compliqué de faire des évolutions technologiques
+car on veut garder une cohérence dans le projet et il faut tout faire migrer.
+On se prive d'outils spécialisés qui permettent d'etre plus performant pour des cas spécifiques
+car on cherche des choses qui sont utiles à tout le projet.
+Accépter qu'un projets soit multi-technos, voir multi-languages c'est un choix qu'on fait difficilement
+car on perd une partie des bénéfices escomptés des gros projets (personnes interchangeables, capitalisation).
 
 == Innovation métier et méthodo
 
@@ -88,8 +97,11 @@ Plus difficile de mettre en œuvre les évolutions transverses : dans un projet 
 
 == Démarrage de projet rapides et allocation de personnes.
 
-Il ne faut pas qu'il y ait trop de coût orga pour créer un nouveau projet : créer les équipes, paperasse, définition de budget ... peut être très coûteux.
-Pendant la phase de développement un petit projet est plus sensible aux variations dans le volume de travail alors qu'avec un gros projet on peut réallouer la capacité à faire entre différentes parties, il faut donc pouvoir facilement ajouter ou supprimer des personnes.
+Il ne faut pas qu'il y ait trop de coût orga pour créer un nouveau projet :
+créer les équipes, paperasse, définition de budget ... peut être très coûteux.
+Pendant la phase de développement un petit projet est plus sensible aux variations dans le volume de travail
+alors qu'avec un gros projet on peut réallouer la capacité à faire entre différentes parties,
+il faut donc pouvoir facilement ajouter ou supprimer des personnes.
 
 == Devops et provisionning
 
@@ -113,7 +125,10 @@ Systèmes distribués ils y a toute une nouvelle classe d'erreurs qui sont intri
 == Technos
 
 Risque de technos mal choisies car choix moins stratégique : demande de faire des choix cohérents.
-Dans un monolithe on est poussé de faire des migrations régulières alors que dans microservices on peut plus facilement choisir de ne pas le faire, surtout que plus facilement en mode maintenance. La théorie c'est "on jette et on recommence" mais il faut une orga qui accepte que c'est un process normal dans la vie d'un projet et pas le signe d'un échec.
+Dans un monolithe on est poussé de faire des migrations régulières
+alors que dans microservices on peut plus facilement choisir de ne pas le faire,
+surtout que plus facilement en mode maintenance. La théorie c'est "on jette et on recommence"
+mais il faut une orga qui accepte que c'est un process normal dans la vie d'un projet et pas le signe d'un échec.
 
 Tendance à avoir moins de réutilisation : permet l'inovation mais donc plus compliqué de gérer les développeurs.
 
@@ -127,7 +142,10 @@ Il faut arriver à arbitrer entre POC et pérénité.
 
 = Est ce qu'il m'en faut
 
-La SOA c'est pour gérer la complexité orga et métier en distribuant les choses. Il faut avoir une douleur forte sur ces aspects, on va diminuer la complexité d'un gros élement sur certains axes en le séparant en plusieurs, mais en échange on aura un surcout à d'autres endroits.
+La SOA c'est pour gérer la complexité orga et métier en distribuant les choses.
+Il faut avoir une douleur forte sur ces aspects,
+on va diminuer la complexité d'un gros élement sur certains axes en le séparant en plusieurs,
+mais en échange on aura un surcout à d'autres endroits.
 
 On peut avoir des monolithes bien organisés, scalables ... mais de séparer en plusieurs composants si c'est bien fait ça force les choses à être sous contrôle, si c'est mal fait on va dans le mur.
 
@@ -147,3 +165,11 @@ Cas classique c'est le monolithe que tu "pèles" des services à l'extérieur en
 
 
 Ça demande d'avoir très bien préparé son code sinon il faut beaucoup détricoter, et ça pose toujours des soucis au niveau des données.
+
+[TIP]
+.Liens
+====
+
+- link:http://philcalcado.com/2015/09/08/how_we_ended_up_with_microservices.html[How we ended up with microservices]
+- link:http://sanderhoogendoorn.com/blog/index.php/microservices-the-good-the-bad-and-the-ugly/[Microservices. The good, the bad and the ugly]
+- link:http://blog.acolyer.org/2015/09/10/out-of-the-fire-swamp-part-iii-go-with-the-flow/[Out of the Fire Swamp – Part III, Go with the flow]
