@@ -7,72 +7,84 @@ pas une semaine sans nouveau framework magique pour tout faire sans se poser de 
 Cet article fait le point sur les aspects architecturaux des microservices qui sont souvent négligés.
 Car, comme pour la SOA dont il est une déclinaison, on oublie trop souvent que choisir un style d'architecture pour un système d'information a des conséquences sur la vie des projets et l'organisation de l'entreprise.
 
-%TOC%
+= Pourquoi les microservices : les problèmes des gros projets
 
-= Comment on a inventé les microservices : les problèmes des gros projets
+Avec le temps et le développement de nouvelles fonctionalités, les projects informatiques ont tendance à grossir.
+Un certain nombre de problèmes se développent en même temps que le code s'étend.
 
-Des problèmes qu'on connait et pour lesquels on a des recettes, qu'elles soient techniques ou organisationnelles.
-Malheureusement ces recettes sont souvent mise en œuvre imparfaitement,
-et avec le projet qui s'aggrandit au fur et à mesure ça demande de plus en plus de vigilence alors qu'on a tendance à être de moins en moins rigoureux.
+== Complexité du code
 
-== Complexité
+Avec la quantité de code qui augmente le projet devient de plus en plus complexe : même avec une solide architecture logicielle solide et une organisation en composants les interractions entre les différentes briques augmentent.
 
-Projets ont tendance à toujours croître, et un moment ils deviennent tellement complexes qu'il devient difficile de travailler sur le code.
+Cette complexité a deux désavantages :
 
-== Scallabilité horizontale
+=== Évolutivité et fiabilité
 
-Rendre scalable un monolithe qui n'a pas été conçu pour demande des interventions qui peuvent être lourdes.
+Au delà d'une certaine complexité, il est impossible d'avoir en tête un modèle du code avec suffisament de détail. Même avec une base de test solide, il devient plus difficile d'ajouter proprement des nouvelles fonctionalité et de faire des refactoring.
 
-== Fiabilité
+Avec la multiplication des composants et des couches, on retrouve des problématique d'intégration à l'intérieur même du projet.
+On a alors deux problèmes :
 
-Compliqué d'avoir des sytèmes complexes fiables car des erreurs apparaissent dans la multiplications des interactions.
-Avoir une architecture applicative solide basé sur des composants logicielle aide beaucoup, mais il est difficile d'être suffisament rigoureux pour
+- Des "rustines" qui contournent les règles qui rendent plus  difficile de prévoir les conséquence d'un appel.
+- Les contrats de service à l'intérieur d'un même projet sont moins bien formalisés qu'entre projets, on oublie donc plus facilement des cas limites.
 
-== Technologie
+La conséquent est un manque de fiabilité du système.
 
-Dans des gros projets il peut être compliqué de faire des évolutions technologiques
-car on veut garder une cohérence dans le projet et il faut tout faire migrer.
-On se prive d'outils spécialisés qui permettent d'etre plus performant pour des cas spécifiques
-car on cherche des choses qui sont utiles à tout le projet.
-Accépter qu'un projets soit multi-technos, voir multi-languages c'est un choix qu'on fait difficilement
-car on perd une partie des bénéfices escomptés des gros projets (personnes interchangeables, capitalisation).
+=== Scallabilité horizontale
 
-== Innovation métier et méthodo
-
-Compliqué d'organiser une zone d'inovation dans un gros projet quand le métier veut tester des nouvelles idées.
-De même manière difficile de faire de l'agile car ça suppose de pouvoir adapter son orga et ses méthodes de travail.
-
-= C'est quoi les microservices
-
-Petites applis avec chacun un domaine fonctionnel. Chacun est  un projet indépendant avec une pizza-team.
-
-Plutôt que de reposer sur des recettes qu'il faut suivre pour avoir un projet monolithe qui se passe bien, on limite volontairement la taille des projets pour bordder le risque.
-
-Si vous ne comprenez pas pourquoi ils ont choisis d'appeller ça "microservices" c'est que vous avez bien compris, de la même manière ils appellent "monolithes" les systèmes classiques car un terme qui marque.
-
-= Avantages
-
-== Ca tient dans la tête et facile à maintenir
-
-== Evolutions techno
-
-Plus facile d'utiliser des technos différentes.
-
-== Facile à gérer
-
-Pizza team avec un PO.
-
-== Scallabilité horizontable
-
-Plus facile de résoudre des problèmes en refactorant le code ou en le réécrivant complètement.
-
-== Fiabilité
-
-Avec des projets plus petits on a moins d'interférences entre les différentes briques donc moins de bug, et les échanges avec les autres passent par des services formalisés donc pas d'effets de bord non prévus.
+Rendre scalable un monolithe qui n'a pas été conçu pour demande des interventions qui peuvent être lourdes
+s'il faut modifier des comportements qui sont structurants pour le projet.
 
 == Innovation
 
-Si tout est structuré en services il est facile de démarrer un nuoveau projet en utilisant les données des autres, et si KO on jette.
+Pour mieux capitaliser les investissement et faciliter la gestion des personnes, il est naturel de vouloir avoir une cohérence dans les projets au niveau d'un SI : même manière de travailler, mêmes languages, même framework.
+
+En principe les projets doivent suivre la stratégie générale, mais ont certaine marge de manœuvre en fonction de leur spécificité et peuvent faire preuve d'innovation.
+
+Pour les gros projets, la même tension à lieu à l'intérieur même du projet, l'ensemble du projet faisant office de SI vis-à-vis des différents composants, limitant la capacité d'innovation sur trois aspects :
+
+- Techologique : on préfère les projets mono-technos, et mono-languages, même quand il y a des besoins spécifiques.
+- Métier et orga : plus dificile de se ménager des zones d'innovations quand on est dans un groupe plus grand
+
+= L'idée des microservices
+
+Les problèmes qu'on vient de décrire sont connus et on dispose de recettes permettant de limiter les risques, par exemple du côté des pratiques agiles ou de link:http://blog.octo.com/software-craftsmanship-une-culture-a-transmettre/[l'artisanat logiciel].
+
+Malheuresement ces recettes demandent d'être rigoureux en permanence,
+et de l'être de plus en plus avec l'augmentation de la taille des projets et le remplacement des personnes.
+
+Elles sont donc souvent mis en œuvre imparfaitement
+et le résultat ce sont des projets inmaintenables qu'on traine des années avant de pouvoir les remplacer.
+
+À ce problème, la réponse des microservices est simple et assez radicale :
+pour éviter de tomber dans les problèmes qu'on les gros projets,
+il suffit de ne pas avoir de gros projet.
+
+On va donc limiter volontairement la taille des projet à quelques personnes pour n'avoir que des link:http://blog.octo.com/2-pizza-team/[pizza team] jusqu'à 7 personnes tout compris. En découpant au besoin les équipes existantes pour s'y conformer.
+
+Si vous ne comprenez pas pourquoi cela s'appelle "microservices" c'est normal : il s'agit d'un buzzword. Dans la même veine les applications classiques seront appelés "monolithes" pour mettre en avant ce qu'on leur repproche.
+
+= Avantages de l'approche microservices
+
+== Complexité
+
+Ça tient dans la tête et facile à maintenir car les tests vont pouvoir valider tous les cas.
+
+=== Scallabilité horizontable
+
+Plus facile de résoudre des problèmes en refactorant le code ou en le réécrivant complètement.
+
+=== Fiabilité
+
+On a explicité les interface donc moins d'interférences entre les différentes briques et donc moins de bug.
+
+De même avec les appels de services on a plus tendance à prendre en compte les cas d'erreurs que dans des appels internes.
+
+== Innovation
+
+- Tech : chaque projet a sa marge de manœuvre
+- Métier : Si tout est structuré en services il est facile de démarrer un nouveau projet en utilisant les données des autres et d'expérimenter, et si KO on jette.
+- Orga : avec des petites équipes il est facile d'expérimenter de nouvelles approches
 
 = Les prérequis et les limites
 
@@ -82,17 +94,29 @@ Ceux qu'on avait déjà dans la SOA classique, mais avec un niveau supplémentai
 
 On distribue les état du système entre plusieurs briques, donc soucis de cohérence de données et de transactionalité.
 
+Même quand on peut se passer de transaction : on a souvent des références cross-applications, et donc un système de gestion d'évènements asynchrones voire de cache à mettre en œuvre.
+
 Plus difficile à tester en mode connecté : les tests d'intégration deviennent très compliqués.
 
-== Mauvais plan pour les appels non unitaires
+On peut limiter les erreurs locales avec l'approche "design for failure" mais ça ne supprime pas les questions de fond.
 
-Les appels de services qui font appels à plusieurs domaines demandent de multiplier les appels de services. Ça multiplie les possibilité d'erreurs et ça ajoute les latences.
+== Services à valeur ajoutée
+
+Même si l'approche REST propose de manipuler des entités simples, on a toujours une proportion d'appels "à valeurs ajoutés" qui qui font appels à plusieurs domaines.
+
+Lorsqu'ils sont placés dans des applications différentes, ça multiplie les cas d'erreurs à gérer, et ça ajoute des latences reseau.
 
 Au pire ça demande d'ajouter des appels spécifiques (bulk ou custom) et du cache.
 
 == Évolutions transverses
 
-Plus difficile de mettre en œuvre les évolutions transverses : dans un projet tu peux le faire en une fois, là sur plusieurs projets. Ça demande de forcer une synchronization ou de gérer des versions et de la compatibilité.
+Plus difficile de mettre en œuvre les évolutions transverses : dans un projet tu peux le faire en une fois, là sur plusieurs projets indépendants c'est plus compliqués.
+Ça demande de forcer une synchronization ou de gérer des versions et de la compatibilité.
+
+Rendu encore plus difficile quand on veut itérer rapidement sur des nouvelles versions de services car ça demande à chacun de se synchronizer en permanence.
+
+Pour garder une certaine souplesse, la solution naturelle est alors d'isoler des grappes de projets des autres en limitant les interconnections entre groupes (pattern link:http://blog.octo.com/services-rest-ne-jetez-pas-la-soa-avec-leau-du-bain/[Royaume-émissaire]).
+Le risque est alors d'ajouter une couche de management intermédiaire qui ne soit pas au contact direct des projets.
 
 == Démarrage de projet rapides et allocation de personnes.
 
@@ -100,11 +124,15 @@ Il ne faut pas qu'il y ait trop de coût orga pour créer un nouveau projet :
 créer les équipes, paperasse, définition de budget ... peut être très coûteux.
 Pendant la phase de développement un petit projet est plus sensible aux variations dans le volume de travail
 alors qu'avec un gros projet on peut réallouer la capacité à faire entre différentes parties,
-il faut donc pouvoir facilement ajouter ou supprimer des personnes.
+il faut donc pouvoir ajouter ou supprimer des personnes sans que ça pose trop de contrainte.
+
+On ne parle pas de pools de développeurs partagés ou de déplacer les personnes comme des pions, mais d'avoir une certaine souplesse.
 
 == Devops et provisionning
 
-Multiplie les applications et les déploiements, donc il faut un workflow très efficace au niveau outil et process.
+On multiplie les applications et donc les déploiements, donc il faut un workflow très efficace au niveau outil et process.
+
+D'autant plus vrai pour les tests et les POC où on veut des environements temporaire sous forme de sandbox.
 
 == Maturité d'exploitation et monitoring
 
@@ -112,6 +140,7 @@ Beaucoup plus de services avec des dépendances partout ça suppose :
 
 - un très bon monitoring de flux pour pouvoir rapidement savoir où se posent les problèmes
 - une grande maturité d'exploitation car ça va multiplier les pannes
+- un monitoring accessibles aux consommatteurs des services pour qu'ils puissent voir d'où vient la panne quand ça a un impact sur eux
 
 == Fiabilité
 
@@ -119,34 +148,30 @@ Systèmes distribués ils y a toute une nouvelle classe d'erreurs qui sont intri
 
 == Connaissance métier
 
-Ça tient dans la tête mais on le risque de perte de connaissance est plus élevé quand les gens partent, et problème en cas de mise en pause d'un projet.
+Ça tient dans la tête mais on le risque de perte de connaissance est plus élevé quand les gens partent, ainsi quand un petit projet est mis en pause on peut perdre tout le monde alors que sur un plus gros il y a plus facilement une partie du développement qui continue.
 
 == Technos
 
 Risque de technos mal choisies car choix moins stratégique : demande de faire des choix cohérents.
 Dans un monolithe on est poussé de faire des migrations régulières
 alors que dans microservices on peut plus facilement choisir de ne pas le faire,
-surtout que plus facilement en mode maintenance. La théorie c'est "on jette et on recommence"
+surtout que plus facilement en mode maintenance.
+La théorie c'est "on jette et on recommence"
 mais il faut une orga qui accepte que c'est un process normal dans la vie d'un projet et pas le signe d'un échec.
-
-Tendance à avoir moins de réutilisation : permet l'inovation mais donc plus compliqué de gérer les développeurs.
 
 == Micro gestion
 
 Gros projet : plus facile d'avoir une gestion stratégique, le mode microservice avec chaque projet avec un PO ça demande d'être mature dans ses priorisations.
 
-== Innovation
-
-Il faut arriver à arbitrer entre POC et pérénité.
-
 = Est ce qu'il m'en faut
 
 La SOA c'est pour gérer la complexité orga et métier en distribuant les choses.
-Il faut avoir une douleur forte sur ces aspects,
-on va diminuer la complexité d'un gros élement sur certains axes en le séparant en plusieurs,
-mais en échange on aura un surcout à d'autres endroits.
+Il faut avoir un besoin fort sur ces aspects.
+On va diminuer la complexité d'un gros élement sur certains axes en le séparant en plusieurs,
+mais en échange on aura un surcoût à d'autres endroits.
 
-On peut avoir des monolithes bien organisés, scalables ... mais de séparer en plusieurs composants si c'est bien fait ça force les choses à être sous contrôle, si c'est mal fait on va dans le mur.
+On peut avoir des monolithes bien organisés, scalables ... mais ça demande une forte discipline interne.
+Séparer en plusieurs composants si c'est bien fait ça force les choses à être sous contrôle, par contre si c'est mal fait ça peut cumuler les inconvénients avec peu d'avantages.
 
 Il faut être mature sur un certain nombre de choses sinon on court à la catastrophe.
 
@@ -156,14 +181,20 @@ Ne vous dites pas qu'il vous faut des microservices : demandez vous si vous avez
 
 Pas de magic bullet.
 
+== From scracth : difficile
+
 Monolithe vs. microservices : compliqué de déterminer a priori les limites où il faut découper les microservices, et se trouper est coûteux car il faut faire du refactoring cross-projet.
 
-Cas qui va bien : "2ème système" lors d'une refonte.
+== Cas favorable : refonte d'un système
 
-Cas classique c'est le monolithe que tu "pèles" des services à l'extérieur en externalisant des partie à la bordure du système : on ne se retrouve pas avec 50 mini-appli mais une appli moyenne avec les choses où c'est trop compliqué et / ou ça ne vaut pas la peine de découper, et quelques micro-servcies qui gravitent atour, et qui vont s'en éloigner avec le temps.
+Cas classique c'est le monolithe que tu "pèles" des services à l'extérieur en externalisant des partie à la bordure du système : on ne se retrouve pas avec 50 mini-appli mais :
 
+- une appli moyenne avec les choses où c'est trop compliqué et / ou ça ne vaut pas la peine de découper
+- quelques micro-servcies qui gravitent atour, et qui vont s'en éloigner avec le temps.
 
-Ça demande d'avoir très bien préparé son code sinon il faut beaucoup détricoter, et ça pose toujours des soucis au niveau des données.
+Pas focément à sens unique : ne pas hésiter à réintégrer des projets qui ont été sorti ou à en fusionner, en fonction de besoin métier ou archi.
+
+Ça demande d'avoir très bien préparé son code sinon il faut beaucoup détricoter, et il y a toujours les problèmes de cohérence de données.
 
 [TIP]
 .Liens
