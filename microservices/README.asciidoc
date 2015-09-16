@@ -66,6 +66,8 @@ Le découpage se faire par domaine métier, en groupant les types de données qu
 
 Si vous ne comprenez pas pourquoi cela s'appelle "microservices" c'est normal : il s'agit d'un buzzword. Dans la même veine les applications classiques seront appelés "monolithes" pour mettre en avant ce qu'on leur repproche.
 
+image::microservices.png[]
+
 = Avantages de l'approche microservices
 
 == Complexité
@@ -119,6 +121,8 @@ Rendu encore plus difficile quand on veut itérer rapidement sur des nouvelles v
 
 Pour garder une certaine souplesse, la solution naturelle est alors d'isoler des grappes de projets des autres en limitant les interconnections entre groupes (pattern link:http://blog.octo.com/services-rest-ne-jetez-pas-la-soa-avec-leau-du-bain/[Royaume-émissaire]).
 Le risque est alors d'ajouter une couche de management intermédiaire qui ne soit pas au contact direct des projets.
+
+image::royaumes.png[]
 
 == Démarrage de projet rapides et allocation de personnes.
 
@@ -194,9 +198,13 @@ Cas classique c'est le monolithe que tu "pèles" des services à l'extérieur en
 - une appli moyenne avec les choses où c'est trop compliqué et / ou ça ne vaut pas la peine de découper
 - quelques micro-servcies qui gravitent atour, et qui vont s'en éloigner avec le temps.
 
-Pas focément à sens unique : ne pas hésiter à réintégrer des projets qui ont été sorti ou à en fusionner, en fonction de besoin métier ou archi.
+image::decoupage.png[]
+
+Pas forcément à sens unique : ne pas hésiter à réintégrer des projets qui ont été sorti ou à en fusionner, en fonction de besoin métier ou archi.
 
 Ça demande d'avoir très bien préparé son code sinon il faut beaucoup détricoter, et il y a toujours les problèmes de cohérence de données.
+
+
 
 [TIP]
 .Liens
