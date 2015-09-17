@@ -5,7 +5,7 @@ En 2015 le pic des microservices est atteint : pas une conférence sans un ingé
 pas une semaine sans nouveau framework magique pour tout faire sans se poser de question.
 
 Cet article fait le point sur les aspects architecturaux des microservices qui sont souvent négligés.
-Car, comme pour la SOA dont il est une déclinaison, on oublie trop souvent que choisir un style d'architecture pour un système d'information a des conséquences sur la vie des projets et l'organisation de l'entreprise.
+Car on oublie trop souvent que choisir un style d'architecture pour un système d'information a des conséquences sur la vie des projets et l'organisation de l'entreprise.
 
 = Pourquoi les microservices : les problèmes des gros projets
 
@@ -56,11 +56,9 @@ et de l'être de plus en plus avec l'augmentation de la taille des projets et le
 Elles sont donc souvent mis en œuvre imparfaitement
 et le résultat ce sont des projets inmaintenables qu'on traine des années avant de pouvoir les remplacer.
 
-À ce problème, la réponse des microservices est simple et assez radicale :
-pour éviter de tomber dans les problèmes qu'on les gros projets,
-il suffit de ne pas avoir de gros projet.
+À ce problème, la réponse des microservices est simple et assez radicale : pour éviter d'avoir les problème des gros projets il suffit de n'avoir que des petits projets.
 
-On va donc limiter volontairement la taille des projet à quelques personnes pour n'avoir que des link:http://blog.octo.com/2-pizza-team/[pizza team] jusqu'à 7 personnes tout compris. En découpant au besoin les équipes existantes pour s'y conformer.
+On va donc limiter volontairement la taille des projet à quelques personnes pour avoir des link:http://blog.octo.com/2-pizza-team/[pizza team] d'une taille maximale de 7 personnes tout compris. En découpant au besoin les équipes existantes pour s'y conformer.
 
 Le découpage se faire par domaine métier, en groupant les types de données qui ont des liens fort, et en séparant quand les données sont suffisament indépendantes.
 
@@ -87,22 +85,29 @@ De même avec les appels de services on a plus tendance à prendre en compte les
 == Innovation
 
 - Tech : chaque projet a sa marge de manœuvre
-- Métier : Si tout est structuré en services il est facile de démarrer un nouveau projet en utilisant les données des autres et d'expérimenter, et si KO on jette.
+- Métier : Si tout est structuré en services il est facile de démarrer un nouveau projet en utilisant les données des autres et d'expérimenter, et plus facile de décomissionner.
 - Orga : avec des petites équipes il est facile d'expérimenter de nouvelles approches
 
 = Les prérequis et les limites
 
-Ceux qu'on avait déjà dans la SOA classique, mais avec un niveau supplémentaire : avant on pouvait s'en accomoder même si ça grinçait alors que là c'est devenu critique.
+Ceux qu'on avait déjà dans la SOA classique, dont les microservices sont une déclinaisonn.
+Mais avec un niveau supplémentaire : avant on pouvait s'en accomoder même si ça grinçait alors que là c'est devenu critique.
 
 == Le système devient distribué
 
-On distribue les état du système entre plusieurs briques, donc soucis de cohérence de données et de transactionalité.
+Avec des applications classiques on essaie de faire en sorte d'avoir des états indépendants entre les différentes applications.
+
+Dans le passage au microservices, le système devient distribué, ce qui introduit tout une nouvelle typologie d'erreurs qui sont intrinsèquement difficile à résoudre.
+
+Le cas le plus compliqué est celui des transactions :
+il faut alors gérer des transactions link:https://en.wikipedia.org/wiki/Two-phase_commit_protocol[en deux phases] ou gérer des annulations.
 
 Même quand on peut se passer de transaction : on a souvent des références cross-applications, et donc un système de gestion d'évènements asynchrones voire de cache à mettre en œuvre.
 
-Plus difficile à tester en mode connecté : les tests d'intégration deviennent très compliqués.
+Il faut également gérer les cas d'indisponibilités des services externes. On peut limiter les risques avec l'approche "design for failure" mais ça demande d'être très rigoureux et ça ajoute de travail.
 
-On peut limiter les erreurs locales avec l'approche "design for failure" mais ça ne supprime pas les questions de fond.
+Finalement il est plus difficile de tester le système.
+Les tests d'intégration deviennent très compliqués du fait de la multiplication des applications : il faut préparer les données, tester les erreurs.
 
 == Services à valeur ajoutée
 
@@ -148,30 +153,21 @@ Beaucoup plus de services avec des dépendances partout ça suppose :
 - une grande maturité d'exploitation car ça va multiplier les pannes
 - un monitoring accessibles aux consommatteurs des services pour qu'ils puissent voir d'où vient la panne quand ça a un impact sur eux
 
-== Fiabilité
-
-Systèmes distribués ils y a toute une nouvelle classe d'erreurs qui sont intrinsèquement difficile à résoudre.
-
-== Connaissance métier
-
-Ça tient dans la tête mais on le risque de perte de connaissance est plus élevé quand les gens partent, ainsi quand un petit projet est mis en pause on peut perdre tout le monde alors que sur un plus gros il y a plus facilement une partie du développement qui continue.
-
 == Technos
 
-Risque de technos mal choisies car choix moins stratégique : demande de faire des choix cohérents.
-Dans un monolithe on est poussé de faire des migrations régulières
-alors que dans microservices on peut plus facilement choisir de ne pas le faire,
-surtout que plus facilement en mode maintenance.
-La théorie c'est "on jette et on recommence"
-mais il faut une orga qui accepte que c'est un process normal dans la vie d'un projet et pas le signe d'un échec.
+Risque de technos mal choisies car choix moins stratégique : il faut quand même faire des choix pérènnes car le but n'est pas de tout jeter au bout de 6 mois : il ne s'agit pas de POC technologiques.
+
+Risque de négliger le craftmanship car il y a moins d'enjeux et moins de risque. C'est vrai que dans un projet plus petit la dette technique coûte moins cher, mais un des objectifs c'est quand même d'être plus réactif.
+
+De plus, si les applications ont des scopes réduits, elles seront régulièrement mises en pause pendant les moments où il n'y a pas d'évolution sur ce domaine précis. Dans ce cas la connaissance se perdra plus facilement.
 
 == Micro gestion
 
 Gros projet : plus facile d'avoir une gestion stratégique, le mode microservice avec chaque projet avec un PO ça demande d'être mature dans ses priorisations.
 
-= Est ce qu'il m'en faut
+= Est ce qu'il m'en faut ?
 
-La SOA c'est pour gérer la complexité orga et métier en distribuant les choses.
+La SOA c'est pour gérer la complexité organisationnelle et métier en distribuant les choses.
 Il faut avoir un besoin fort sur ces aspects.
 On va diminuer la complexité d'un gros élement sur certains axes en le séparant en plusieurs,
 mais en échange on aura un surcoût à d'autres endroits.
@@ -181,7 +177,7 @@ Séparer en plusieurs composants si c'est bien fait ça force les choses à êtr
 
 Il faut être mature sur un certain nombre de choses sinon on court à la catastrophe.
 
-Ne vous dites pas qu'il vous faut des microservices : demandez vous si vous avez ces deux problème, et voyez si c'est bon pour vous.
+Ne vous dites pas qu'il vous faut des microservices : demandez vous si vous avez ces deux problème, et si vous avez bien ces deux problèmes posez vous la question.
 
 = Comment j'y vais
 
@@ -189,22 +185,23 @@ Pas de magic bullet.
 
 == From scracth : difficile
 
-Monolithe vs. microservices : compliqué de déterminer a priori les limites où il faut découper les microservices, et se trouper est coûteux car il faut faire du refactoring cross-projet.
+Monolithe vs. microservices : compliqué de déterminer a priori les limites où il faut découper les microservices.
+Se tromper est coûteux car il faut faire du refactoring cross-projet.
 
-== Cas favorable : refonte d'un système
+== Cas favorable : peler un monolithe
 
 Cas classique c'est le monolithe que tu "pèles" des services à l'extérieur en externalisant des partie à la bordure du système : on ne se retrouve pas avec 50 mini-appli mais :
 
 - une appli moyenne avec les choses où c'est trop compliqué et / ou ça ne vaut pas la peine de découper
-- quelques micro-servcies qui gravitent atour, et qui vont s'en éloigner avec le temps.
+- quelques micro-service qui gravitent atour, et qui vont s'en éloigner avec le temps.
 
 image::decoupage.png[]
 
+C'est rendu d'autant plus facile que l'application initiale est bien structurée en couche technique et en briques métier, sinon il faut beaucoup détricoter.
+
+Avant toute chose régler les problèmes que va poser la distribution des données : c'est très structurant et ça peut empêcher l'opération.
+
 Pas forcément à sens unique : ne pas hésiter à réintégrer des projets qui ont été sorti ou à en fusionner, en fonction de besoin métier ou archi.
-
-Ça demande d'avoir très bien préparé son code sinon il faut beaucoup détricoter, et il y a toujours les problèmes de cohérence de données.
-
-
 
 [TIP]
 .Liens
