@@ -1,74 +1,113 @@
 = L'architecture microservices sans le hype : qu'est ce que c'est, à quoi ça sert, est ce qu'il m'en faut ?
 :icons: font
 
-En 2015 le pic des microservices est atteint : pas une conférence sans un ingénieur de Netflix pour vous vendre du rêve,
+En 2015 le pic des microservices est atteint :
+pas une conférence sans un ingénieur de Netflix pour vous vendre du rêve,
 pas une semaine sans nouveau framework magique pour tout faire sans se poser de question.
 
-Cet article fait le point sur les aspects architecturaux des microservices qui sont souvent négligés.
-Car on oublie trop souvent que choisir un style d'architecture pour un système d'information a des conséquences sur la vie des projets et l'organisation de l'entreprise.
+Cet article fait le point sur les aspects architecturaux des microservices.
+S'ils sont moins discutés que les questions d'implémentations ils sont au moins aussi importants,
+parce que choisir un style d'architecture pour un système d'information a des conséquences structurantes sur la vie des projets et l'organisation de l'entreprise.
 
 = Pourquoi les microservices : les problèmes des gros projets
 
-Avec le temps et le développement de nouvelles fonctionalités, les projects informatiques ont tendance à grossir.
-Un certain nombre de problèmes se développent en même temps que le code s'étend.
+L'architecure microservices a été inventée pour résoudre un certain nombre de problèmes causés par les gros projets.
 
-== Complexité du code
+Avec le temps, les projects informatiques ont tendance à grossir : on étend petit à petit les fonctionalités existantes, on en ajoute d'autres, et on supprimer rarement les anciennes.
 
-Avec la quantité de code qui augmente le projet devient de plus en plus complexe : même avec une solide architecture logicielle solide et une organisation en composants les interractions entre les différentes briques augmentent.
+En même temps que le code et le projet s'étend, un certain nombre de douleurs apparaissent :
+
+== Complexité
+
+Avec la quantité de code qui augmente, le code devient de plus en plus complexe.
+Même avec une architecture logicielle solide, les interdépendances entre les différentes briques augmentent avec le temps.
 
 Cette complexité a deux désavantages :
 
 === Évolutivité et fiabilité
 
-Au delà d'une certaine complexité, il est impossible d'avoir en tête un modèle du code avec suffisament de détail. Même avec une base de test solide, il devient plus difficile d'ajouter proprement des nouvelles fonctionalité et de faire des refactoring.
+Les nouvelles fontionalités métier deviennent de plus en plus complexes, et les différentes briques ont de plus en plus d'interractions.
+On a beau organiser le code en couches et en composants, il y a toujours des cas particuliers et des rustines qui rendent les choses plus floues.
 
-Avec la multiplication des composants et des couches, on retrouve des problématique d'intégration à l'intérieur même du projet.
-On a alors deux problèmes :
+Au delà d'un certain seuil, il devient impossible d'avoir en tête un modèle global du projet.
 
-- Des "rustines" qui contournent les règles qui rendent plus  difficile de prévoir les conséquence d'un appel.
-- Les contrats de service à l'intérieur d'un même projet sont moins bien formalisés qu'entre projets, on oublie donc plus facilement des cas limites.
-
-La conséquent est un manque de fiabilité du système.
+Même avec une base de tests solide, la multiplications des effets de bord de chaque action rend le système moins fiable, et il devient alors plus difficile d'ajouter proprement des nouvelles fonctionalité et de faire des refactoring.
 
 === Scallabilité horizontale
 
-Rendre scalable un monolithe qui n'a pas été conçu pour demande des interventions qui peuvent être lourdes
-s'il faut modifier des comportements qui sont structurants pour le projet.
+Augmenter la scalabilité d'un système peut demander de modifier des éléments structurants du projet.
+
+Plus un projet est gros, plus ces interventions deviennent coûteuses et risquées.
+
+Le risque est alors de se retrouver avec un système qu'il est impossible de faire évoluer pour un nouveau cas d'usage.
 
 == Innovation
 
-Pour mieux capitaliser les investissement et faciliter la gestion des personnes, il est naturel de vouloir avoir une cohérence dans les projets au niveau d'un SI : même manière de travailler, mêmes languages, même framework.
+=== Innovation technologique
 
-En principe les projets doivent suivre la stratégie générale, mais ont certaine marge de manœuvre en fonction de leur spécificité et peuvent faire preuve d'innovation.
+Pour capitaliser les investissements et faciliter la gestion des personnes, il est normal de vouloir avoir une cohérence entre les différentes projets d'une entreprises : même manière de travailler, mêmes languages, même outils.
 
-Pour les gros projets, la même tension à lieu à l'intérieur même du projet, l'ensemble du projet faisant office de SI vis-à-vis des différents composants, limitant la capacité d'innovation sur trois aspects :
+Chaque projet est invité à suivre des choix transverses, et peut s'en écarter en fonction de ses spécificités, à condition de pouvoir le justifier.
 
-- Techologique : on préfère les projets mono-technos, et mono-languages, même quand il y a des besoins spécifiques.
-- Métier et orga : plus dificile de se ménager des zones d'innovations quand on est dans un groupe plus grand
+Pour les gros projets, la même tension à lieu à l'intérieur même des projets : pour éviter la fragmentation, chaque évolution technique doit pouvoir être propagée à l'intégralité du code.
 
-= L'idée des microservices
+Avec le temps les modifications deviennent donc plus coûteuses, et il devient plus difficile d'introduire de nouveaux outils pour des besoins spécifiques.
 
-Les problèmes qu'on vient de décrire sont connus et on dispose de recettes permettant de limiter les risques, par exemple du côté des pratiques agiles ou de link:http://blog.octo.com/software-craftsmanship-une-culture-a-transmettre/[l'artisanat logiciel].
+=== Innovation métier
+
+Pour répondre aux nouveaux besoins métier, il faut être capable de ménager une zone d'innovation à l'intérieur des projets.
+
+Car si certaines nouveautés sont mises en œuvre par de nouveaux projets, la plupart se font sur des projets existant.
+
+Or plus un projet est gros, plus il est critique pour l'entreprise, moins on va prendre de risques de le modifier pour tester de nouveaux produits ou de nouveaux marchés, et petit à petit les enjeux de stabilité vont prendre le pas sur la capacité d'innovation.
+
+= L'idée de l'architecture de microservices
+
+Les problèmes qu'on vient de décrire link:http://www.octo.com/fr/publications/4-une-politique-pour-le-systeme-d-information[sont connus depuis longtemps],
+et des outils comme l'agile ou link:http://blog.octo.com/software-craftsmanship-une-culture-a-transmettre/[l'artisanat logiciel] permettent de limiter leur impact.
 
 Malheuresement ces recettes demandent d'être rigoureux en permanence,
-et de l'être de plus en plus avec l'augmentation de la taille des projets et le remplacement des personnes.
+et de l'être de plus en plus, au fur à et mesure qu'un projet grossit et que les personnes changent.
 
-Elles sont donc souvent mis en œuvre imparfaitement
-et le résultat ce sont des projets inmaintenables qu'on traine des années avant de pouvoir les remplacer.
+Elles sont donc souvent mis en œuvre sur le papier ou imparfaitement
+et le résultat ce sont des projets inmaintenables qu'on traine des années avant de les jeter à la poubelle pour les réécrire.
 
-À ce problème, la réponse des microservices est simple et assez radicale : pour éviter d'avoir les problème des gros projets il suffit de n'avoir que des petits projets.
+À ce danger, la réponse des microservices est simple et assez radicale :
+pour éviter d'avoir les problème des gros projets, il suffit de n'avoir que des petits projets.
 
-On va donc limiter volontairement la taille des projet à quelques personnes pour avoir des link:http://blog.octo.com/2-pizza-team/[pizza team] d'une taille maximale de 7 personnes tout compris. En découpant au besoin les équipes existantes pour s'y conformer.
+On va donc limiter la taille des projet à quelques personnes pour avoir des link:http://blog.octo.com/2-pizza-team/[pizza team] d'une taille maximale de 7 personnes tout compris.
+En découpant au besoin les projets et les équipes existantes pour s'y conformer.
 
-Le découpage se faire par domaine métier, en groupant les types de données qui ont des liens fort, et en séparant quand les données sont suffisament indépendantes.
+Il ne s'agit pas de séparer les gros projets en sous-équipes mais bien de projets _indépendants_ : chacun a son organisation, son calendrier, sa base de code, et ses données.
 
-Si vous ne comprenez pas pourquoi cela s'appelle "microservices" c'est normal : il s'agit d'un buzzword. Dans la même veine les applications classiques seront appelés "monolithes" pour mettre en avant ce qu'on leur repproche.
+Les échanges entre les projets se fait par des services, qu'il s'agisse d'appels de services (REST / JSON) ou de messages.
 
 image::microservices.png[]
 
+Le découpage se fait par domaine métier, en groupant les services et les types de données qui ont des liens fort, et en séparant quand ils sont suffisament indépendants.
+
+Si vous ne comprenez pas pourquoi cela s'appelle "microservices" c'est normal :
+il s'agit d'un buzzword pour rendre le concept attractif.
+Dans la même veine,
+les admirateurs de cette approche appellent "monolithes" les applications classiques,
+pour mettre en avant leur côté négatif, voir menaçant.
+
+Cette architecture est ainsi à la conflucence de plusieurs mouvements de fond de l'informatique:
+
+- la SOA a mise en avant les avantages de l'approche services
+- l'agile et le link:http://blog.octo.com/lean-startup/[lean startup] a fourni les modèles d'organisation des équipes
+- l'industrialisation des déploiement et la virtualisation, permet de baisser les coût d'exploitation et de mise en production
+- le NoSQL a décrispé les choses du côté de l'intégrité des données
+
 = Avantages de l'approche microservices
 
-== Complexité
+= Complexité
+
+== Fiabilité
+
+Contraindre la taille des projets permet de limiter les cas particulier, et comme tout le projet dans la tête, on sait exactement comment tout se comporte.
+
+Comme les échanges avec les autres domaines utilisent des appels de services, les contrats sont formalisés. Il est donc plus facile de prendre en compte toutes les possibilités
 
 Ça tient dans la tête et facile à maintenir car les tests vont pouvoir valider tous les cas.
 
