@@ -1,21 +1,22 @@
-= L'architecture microservices sans le hype : qu'est ce que c'est, à quoi ça sert, est ce qu'il m'en faut ?
+= L'architecture microservices sans la hype : qu'est-ce que c'est, à quoi ça sert, est-ce qu'il m'en faut ?
 :icons: font
 
-En 2015 le pic des microservices est atteint :
+En 2015, le pic des microservices est atteint :
 pas une conférence sans un ingénieur de Netflix pour vous vendre du rêve,
 pas une semaine sans nouveau framework magique pour tout faire sans se poser de question.
 
-Cet article fait le point sur les aspects architecturaux des microservices.
-S'ils sont moins discutés que les questions d'implémentations ils sont au moins aussi importants,
+Le résultat est une focalisation sur les outils et les belles histoires plutôt que les questions de fond.
+
+Il nous a donc semblé nécéssaire de faire le point sur les aspects architecturaux des microservices,
 parce que choisir un style d'architecture pour un système d'information a des conséquences structurantes sur la vie des projets et l'organisation de l'entreprise.
 
 = Pourquoi les microservices : les problèmes des gros projets
 
 L'architecture microservices a été inventée pour résoudre un certain nombre de problèmes causés par les gros projets.
 
-Avec le temps, les projets informatiques ont tendance à grossir : on étend petit à petit les fonctionnalités existantes, on en ajoute d'autres, et on supprimer rarement les anciennes.
+Avec le temps, les projets informatiques ont tendance à grossir : on étend petit à petit les fonctionnalités existantes, on en ajoute d'autres, et on supprime rarement les anciennes.
 
-En même temps que le code et le projet s'étend, un certain nombre de douleurs apparaissent :
+En même temps que le code et le projet s'étendent, un certain nombre de douleurs apparaissent :
 
 == Complexité
 
@@ -26,10 +27,10 @@ Cette complexité a deux désavantages :
 
 === Évolutivité et fiabilité
 
-Les nouvelles fontionnalités métier deviennent de plus en plus complexes, et les différentes briques ont de plus en plus d'interactions.
+Les nouvelles fontionnalités métier deviennent de plus en plus complexes, et les différentes briques ont de plus en plus d'interactions.REPETITION
 On a beau organiser le code en couches et en composants, il y a toujours des cas particuliers et des rustines qui rendent les choses plus floues.
 
-Au delà d'un certain seuil, il devient impossible d'avoir en tête un modèle global du projet.
+Au-delà d'un certain seuil, il devient impossible d'avoir en tête un modèle global du projet.
 
 Même avec une base de tests solide, la multiplication des effets de bord de chaque action rend le système moins fiable, et il devient alors plus difficile d'ajouter proprement des nouvelles fonctionnalités et de faire des refactoring.
 
@@ -49,9 +50,9 @@ Pour capitaliser les investissements et faciliter la gestion des personnes, il e
 
 Chaque projet est invité à suivre des choix transverses, et peut s'en écarter en fonction de ses spécificités, à condition de pouvoir le justifier.
 
-Pour les gros projets, la même tension à lieu à l'intérieur même des projets : pour éviter la fragmentation, chaque évolution technique doit pouvoir être propagée à l'intégralité du code.
+Pour les gros projets, la même tension a lieu à l'intérieur même des projets : pour éviter la fragmentation, chaque évolution technique doit pouvoir être propagée à l'intégralité du code.
 
-Avec le temps les modifications deviennent donc plus coûteuses, et il devient plus difficile d'introduire de nouveaux outils pour des besoins spécifiques.
+Avec le temps, les modifications deviennent donc plus coûteuses, et il devient plus difficile d'introduire de nouveaux outils pour des besoins spécifiques.
 
 === Innovation métier
 
@@ -66,11 +67,10 @@ Or plus un projet est gros, plus il est critique pour l'entreprise, moins on va 
 Les problèmes qu'on vient de décrire link:http://www.octo.com/fr/publications/4-une-politique-pour-le-systeme-d-information[sont connus depuis longtemps],
 et des outils comme l'agile ou link:http://blog.octo.com/software-craftsmanship-une-culture-a-transmettre/[l'artisanat logiciel] permettent de limiter leur impact.
 
-Malheureusement ces recettes demandent d'être rigoureux en permanence,
+Malheureusement, ces recettes demandent d'être rigoureux en permanence,
 et de l'être de plus en plus, au fur à et mesure qu'un projet grossit et que les personnes changent.
 
-Elles sont donc souvent mises en œuvre sur le papier ou imparfaitement
-avec pour conséquence des projets inmaintenables qu'on traine des années avant de les remplacer.
+Elles sont donc souvent mises en œuvre sur le papier ou imparfaitement, avec pour conséquence des projets inmaintenables qu'on traine des années avant de les remplacer.
 
 À ce danger, la réponse des microservices est simple et assez radicale :
 pour éviter d'avoir les problèmes des gros projets, il suffit de n'avoir que des petits projets.
@@ -84,17 +84,14 @@ Les échanges entre les projets se fait par des services, qu'il s'agisse d'appel
 
 image::microservices.png[]
 
-Le découpage se fait par domaine métier, en groupant les services et les types de données qui ont des liens fort, et en séparant quand ils sont suffisamment indépendants.
+Le découpage se fait par domaine métier, en groupant les services et les types de données qui ont des liens forts, et en séparant quand ils sont suffisamment indépendants.
 
-Si vous ne comprenez pas pourquoi cela s'appelle "microservices" c'est normal :
-il s'agit d'un buzzword pour rendre le concept attractif.
-Dans la même veine,
-les admirateurs de cette approche appellent "monolithes" les applications classiques,
-pour mettre en avant leur côté négatif, voir menaçant.
+Si vous ne comprenez pas pourquoi cela s'appelle "microservices", c'est normal : il s'agit d'un buzzword pour rendre le concept attractif.
+Dans la même veine, les admirateurs de cette approche appellent "monolithes" les applications classiques, pour mettre en avant leur côté négatif, voire menaçant.
 
 Cette architecture est ainsi à la confluence de plusieurs mouvements de fond de l'informatique :
 
-- la SOA a mise en avant les avantages de l'approche services ;
+- la SOA a mis en avant les avantages de l'approche services ;
 - l'agile et le link:http://blog.octo.com/lean-startup/[lean startup] a fourni les modèles d'organisation des équipes ;
 - l'industrialisation des déploiements et la virtualisation permettent de baisser les coût de mise en production et d'exploitation ;
 - le NoSQL a décrispé les choses du côté de l'intégrité des données.
@@ -107,9 +104,7 @@ Cette architecture est ainsi à la confluence de plusieurs mouvements de fond de
 
 Contraindre la taille permet de limiter les cas particuliers, et d'avoir en tête l'intégralité des comportements.
 
-Cela permet également de garder la dette technique sous contrôle, et d'ainsi avoir un code qui évolue
-
-Passer par des appels de services pour communiquer avec les autres domaines formalise les échanges. Les contrats d'interface sont allés plus carrés, et il est plus facile de prendre en compte tous les cas, y compris les cas d'erreurs.
+Cela permet également de garder la dette technique sous contrôle, et d'ainsi avoir un code qui évolue. Passer par des appels de services pour communiquer avec les autres domaines formalise les échanges. Les contrats d'interface sont alors plus carrés, et il est plus facile de prendre en compte tous les cas, y compris les cas d'erreurs.
 
 === Scalabilité horizontale
 
@@ -123,7 +118,7 @@ Les bases de codes et les équipes sont indépendantes et peut donc faire ses ch
 
 === Innovation métier
 
-Si tout le système d'information est structuré en services il est facile d'expérimenter en démarrant un nouveau projet s'appuyant sur les données des autres, et plus facile de décomissionner car c'est l'ensemble d'un projet qui sera supprimé.
+Si tout le système d'information est structuré en services, il est facile d'expérimenter en démarrant un nouveau projet s'appuyant sur les données des autres, et plus facile de décomissionner car c'est l'ensemble d'un projet qui sera supprimé.
 
 = Les prérequis et les limites
 
@@ -151,7 +146,7 @@ L'approche link:http://blog.octo.com/design-for-failure/[_design for failure_] p
 
 Il faut également bien maitriser l'ensemble des link:https://fr.wikipedia.org/wiki/Service_level_agreement[qualité de services] des différentes applications pour ne pas se faire surprendre.
 
-Finalement le système devient plus difficile à tester : les tests d'intégrations à effectuer deviennent plus nombreux, et demandent de bien préparer les données, et d'être bien outillé pour pouvoir tester les cas d'erreurs techniques et métier.
+Finalement le système devient plus difficile à tester : les tests d'intégration à effectuer deviennent plus nombreux, et demandent de bien préparer les données et d'être bien outillé pour pouvoir tester les cas d'erreurs techniques et métier.
 
 == Services à valeur ajoutée
 
@@ -159,7 +154,7 @@ Même si l'approche REST propose de manipuler des entités simples, il y a toujo
 
 Dans le cas des microservices, cela signifie de composer des appels entre plusieurs applications.
 
-Cela a pour effet de multiplier les cas d'erreurs à gérer (problèmes des systèmes distribués) et de multiplier les latences réseaux.
+Cela a pour effet de multiplier les cas d'erreurs à gérer (problème des systèmes distribués) et de multiplier les latences réseaux.
 
 Pour les cas les plus critiques, il devient nécessaire d'ajouter des services spécifiques dans les différentes applications, voire d'ajouter des caches de donnée, entrainant des problèmes de cohérence.
 
@@ -181,71 +176,58 @@ image::royaumes.png[]
 
 Multiplier les applications, c'est multiplier le nombre de déploiements et d'instances de serveurs.
 
-Pour éviter les erreurs et les surcoûts trop importants, il faut un workflow très efficace au niveau outils et process
-
-Cela est d'autant plus vrai pour les tests et les POC où on veut des environnements temporaires sous forme de sandbox.
+Pour éviter les erreurs et les surcoûts trop importants, il faut un workflow très efficace au niveau outils et process. Cela est d'autant plus vrai pour les tests et les POC où on veut des environnements temporaires sous forme de sandbox.
 
 == Démarrage de projet rapides et allocation de personnes.
 
-Choisir les personnes, organiser les transferts, constituer un budget ... : dans une organisation classique, créer un nouveau projet peut prendre beaucoup de temps et de l'argent.
+Choisir les personnes, organiser les transferts, constituer un budget ... : dans une organisation classique, créer un nouveau projet peut prendre beaucoup de temps et d'argent.
 
-Pour qu'il soit viable de multiplier les projets qui vivent chacun leur vie, il faut que cet aspect organisationnel soit industrialisé pour qu'il ne soit pas un frein.
+Pour qu'il soit viable de multiplier les projets qui vivent chacun leur vie, il faut que cet aspect organisationnel soit industrialisé.
 
-Avec un gros projet on peut réallouer la capacité à faire entre différentes parties, alors que des structures plus petites sont sensibles aux variations du volume de travail. Il faut donc pouvoir agrandir ou diminuer des équipes sans que ça pose trop de contraintes.
+Avec un gros projet, on peut réallouer la capacité à faire entre différentes parties, alors que des structures plus petites sont sensibles aux variations du volume de travail. Il faut donc pouvoir agrandir ou diminuer des équipes sans que ça pose trop de contraintes.
 
-On ne parle pas de mettre en place pools de développeurs partagés ou de déplacer les personnes comme des pions, mais d'avoir une certaine souplesse.
+On ne parle pas de mettre en place des pools de développeurs partagés ou de déplacer les personnes comme des pions, mais d'avoir une certaine souplesse.
 
 == Maturité d'exploitation et monitoring
 
-Beaucoup plus de services très interdépendants cela nécessite :
+Beaucoup plus de services très interdépendants nécessite :
 
 - un très bon link:http://blog.octo.com/present-et-avenir-du-monitoring-de-flux/[monitoring de flux]
 pour savoir rapidement où se posent les problèmes ;
-- une grande maturité d'exploitation car ça va multiplier les pannes ;
-- un monitoring accessible aux consommateurs des services
-pour qu'ils puissent comprendre d'où viennent les pannes
+- une grande maturité d'exploitation car cela va multiplier les pannes ;
+- un monitoring accessible aux consommateurs des services pour qu'ils puissent comprendre d'où viennent les pannes
 lorsqu'elles ont des conséquences pour eux.
 
 == Technologie
 
 Les choix technologiques étant plus nombreux et plus décentralisés, il est plus facile de se tromper :
 les arbitrages entre innovation et pérennité sont plus difficiles.
-Permettre de l'innovation pour répondre à de nouveaux besoins, c'est accepter qu'une partie du temps on va faire des erreurs.
+Permettre de l'innovation pour répondre à de nouveaux besoins, c'est accepter de commettre des erreurs une partie du temps.
 
-Il y a aussi le risque de négliger les bonnes pratiques de développement
-car il y a moins d'enjeux et moins de risque et on a donc tendance à baisser la garde.
+Il y a aussi le risque de négliger les bonnes pratiques de développement, car il y a moins d'enjeux et de risques.
 
-Finalement, des applications plus petites seront probablement mises en pause régulièrement
-pendant les moments où il n'y a pas d'évolution à développer sur dans domaine qu'elles couvrent.
-Dans ce cas là, les connaissances se perdront plus facilement.
+Finalement, des applications plus petites seront probablement mises en pause régulièrement pendant les moments où il n'y a pas d'évolution à développer dans des domaines qu'elles couvrent.
+Dans ce cas, les connaissances se perdront plus facilement.
 
 == Difficulté de garder une stratégie
 
 Pour des gros projets liés aux produits de l'entreprises, la vision stratégique vient directement du métier.
 Les partenaires étant peu nombreux, il est facile d'arbitrer entre les différentes demandes en fonction du poids de chacun.
 
-Avec des microservices, de nombreux projets techniques seront éloignés du business et auront de nombreux interlocuteurs.
+Avec des microservices, de nombreux projets techniques seront éloignés du business et auront de nombreux interlocuteurs. Il faut donc une organisation mature dans sa gestion des priorités et dans ses mécanismes de priorisation.
 
-Il faut donc une organisation mature dans sa gestion des priorités et dans ses mécanismes de priorisation.
+= Est-ce qu'il m'en faut ?
 
-= Est ce qu'il m'en faut ?
+L'approche fondamentale de la SOA consiste à gérer la complexité organisationnelle et métier en la distribuant.
 
-L'approche fondamentale de la SOA c'est de parvenir à gérer la complexité organisationnelle et métier en la distribuant.
+En séparant les projets, on diminue la complexité sur certains axes en échange d'un surcoût à d'autres endroits, notamment celui d'avoir un système plus distribué.
 
-En séparant les projets, on diminue la complexité sur certains axes
-en échange d'un surcoût à d'autres endroits,
-notamment celui d'avoir un système plus distribué.
+On peut avoir des monolithes bien organisés, scalables, évolutifs..., mais cela demande une forte discipline de tous les instants.
+La vision de l'architecture microservices est de ne pas prendre de risques pour être certain de garder le contrôle.
 
-On peut avoir des monolithes bien organisés, scalables, évolutifs ...
-mais ça demande une forte discipline de tous les instants.
-La vision de l'architecture microservices est de pas prendre de risques
-pour être certain de garder le contrôle.
+Par contre, si cela est mis en œuvre dans un environnement mal adapté ou d'une mauvaise manière, on va cumuler les inconvénients sans bénéficier des avantages, et on court alors à la catastrophe plus certainement que dans une architecture plus classique.
 
-Par contre si cela est mis en œuvre dans un environnement mal adapté ou d'une mauvaise manière,
-on va cumuler les inconvénients sans bénéficier des avantages,
-et dans ce cas on court à la catastrophe plus certainement que dans une architecture plus classique.
-
-Donc surtout ne vous dites pas qu'il vous faut des microservices, demandez vous :
+Donc surtout ne vous dites pas qu'il vous faut des microservices, demandez-vous :
 
 - si vous avez ces problèmes ;
 - si vous avez les prérequis nécessaires.
@@ -254,7 +236,7 @@ Et dans ce cas seulement posez vous la question.
 
 = Comment j'y vais
 
-On fois décidé que les microservices sont la bonne solution, encore faut-il parvenir à mettre en place cette architecture.
+Une fois décidé que les microservices sont la bonne solution, encore faut-il parvenir à mettre en place cette architecture.
 
 S'il n'y a pas de solution magique, quelques approches semblent émerger.
 
@@ -262,32 +244,29 @@ S'il n'y a pas de solution magique, quelques approches semblent émerger.
 
 La situation la plus attirante est celle d'un nouveau système à créer à partir de zéro : rien à remettre en cause ni à gérer, cela semble la situation idéale.
 
-Malheureusement partir sur des microservices à partir de rien est le cas le plus difficile :
+Malheureusement partir sur des microservices à partir de rien représente le cas le plus difficile :
 
-- il est compliqué de déterminer a priori les limites où il faut découper les différents projets,
-car on ne sait pas comment le système va évoluer
-- comme on l'a déjà vu les évolutions sont plus coûteuses
-car il faut faire du refactoring cross-projet.
+- il est compliqué de déterminer a priori les limites où il faut découper les différents projets, car on ne sait pas comment le système va évoluer
+- comme on l'a déjà vu, les évolutions sont plus coûteuses, car il faut faire du refactoring cross-projet.
 
 À moins d'être déjà mature sur un sujet, il vaut mieux donc partir sur un monolithe dans un premier temps.
 
 == Le cas favorable : peler un monolithe
 
-Le cas le plus favorable est celui monolithe qu'on "pèle". En examinant son organisation et sa structure on va externaliser les morceaux à la bordure du système suivant les lignes de découpes qui sont apparues naturellement.
+Le cas le plus favorable est celui monolithe qu'on "pèle". En examinant son organisation et sa structure, on va externaliser les morceaux à la bordure du système suivant les lignes de découpes qui sont apparues naturellement.
 
 L'objectif n'est pas de se retrouver avec 50 mini-projets mais plutôt :
 
-- une ou plusieurs applications "cœur" de taille moyenne,
-qui sont cohérentes entre elles ;
+- une ou plusieurs applications "cœur" de taille moyenne, cohérentes entre elles ;
 - des microservice qui gravitent autour, et qui vont s'en éloigner avec le temps.
 
 image::decoupage.png[]
 
-Cette opération est rendue d'autant plus facile que l'application initiale est bien structurée en couche technique et en briques métier et que cette restructuration est respectée. Dans le cas contraire il faut beaucoup détricoter pour pouvoir extraire certaines parties du code.
+Cette opération est rendue d'autant plus facile que l'application initiale est bien structurée en couche technique et en briques métier et que cette restructuration est respectée. Dans le cas contraire, il faut beaucoup détricoter pour extraire certaines parties du code.
 
 Avant de s'attaquer au découpage, il faut examiner les problèmes que posent la distribution des données : c'est l'élément le plus structurant et ça peut rendre l'opération impossible.
 
-Finalement il faut éviter d'être dogmatique en considérant que l'opération est forcément à sens unique. Si par suite d'autres évolutions des projets sont amenés à se rapprochent et que leur séparation pose plus de problèmes qu'elle n'en résout, il ne faut pas hésiter à les refusionner.
+Finalement, il faut éviter d'être dogmatique en considérant que l'opération est forcément à sens unique. Si par la suite d'autres évolutions des projets se rapprochent et que leur séparation pose plus de problèmes qu'elle n'en résout, il ne faut pas hésiter à les refusionner.
 
 [TIP]
 .Pour aller plus loin
