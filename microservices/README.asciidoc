@@ -7,7 +7,7 @@ pas une semaine sans nouveau framework magique pour tout faire sans se poser de 
 
 Le résultat est une focalisation sur les outils et les belles histoires plutôt que les questions de fond.
 
-Il nous a donc semblé nécéssaire de faire le point sur les aspects architecturaux des microservices,
+Il nous a donc semblé nécessaire de faire le point sur les aspects architecturaux des microservices,
 parce que choisir un style d'architecture pour un système d'information a des conséquences structurantes sur la vie des projets et l'organisation de l'entreprise.
 
 = Pourquoi les microservices : les problèmes des gros projets
@@ -27,12 +27,12 @@ Cette complexité a deux désavantages :
 
 === Évolutivité et fiabilité
 
-Les nouvelles fontionnalités métier deviennent de plus en plus complexes, et les différentes briques ont de plus en plus d'interactions.REPETITION
+Plus le temps passe plus les nouvelles fontionnalités métier deviennent complexes, et plus les différentes briques ont d'interactions.
 On a beau organiser le code en couches et en composants, il y a toujours des cas particuliers et des rustines qui rendent les choses plus floues.
 
 Au-delà d'un certain seuil, il devient impossible d'avoir en tête un modèle global du projet.
 
-Même avec une base de tests solide, la multiplication des effets de bord de chaque action rend le système moins fiable, et il devient alors plus difficile d'ajouter proprement des nouvelles fonctionnalités et de faire des refactoring.
+Même avec une base de tests solide, la multiplication des effets de bord de chaque action rend le système moins fiable, et il devient alors plus difficile d'ajouter proprement des nouvelles fonctionnalités et de faire des refactorings.
 
 === Scalabilité horizontale
 
@@ -58,7 +58,7 @@ Avec le temps, les modifications deviennent donc plus coûteuses, et il devient 
 
 Pour répondre aux nouveaux besoins métier, il faut être capable de ménager une zone d'innovation à l'intérieur des projets.
 
-Car si certaines nouveautés sont mises en œuvre par de nouveaux projets, la plupart se font sur des projets existant.
+Car si certaines nouveautés sont mises en œuvre par de nouveaux projets, la plupart se font sur des projets existants.
 
 Or plus un projet est gros, plus il est critique pour l'entreprise, moins on va prendre de risques de le modifier pour tester de nouveaux produits ou de nouveaux marchés, et petit à petit les enjeux de stabilité vont prendre le pas sur la capacité d'innovation.
 
@@ -75,12 +75,12 @@ Elles sont donc souvent mises en œuvre sur le papier ou imparfaitement, avec po
 À ce danger, la réponse des microservices est simple et assez radicale :
 pour éviter d'avoir les problèmes des gros projets, il suffit de n'avoir que des petits projets.
 
-On va donc limiter la taille des projet à quelques personnes pour avoir des link:http://blog.octo.com/2-pizza-team/[pizza team] d'une taille maximale de 7 personnes tout compris.
+On va donc limiter la taille des projets à quelques personnes pour avoir des link:http://blog.octo.com/2-pizza-team/[pizza teams] d'une taille maximale de 7 personnes tout compris.
 En découpant au besoin les projets et les équipes existantes pour s'y conformer.
 
-Il ne s'agit pas de séparer les gros projets en sous-équipes mais bien de projets _indépendants_ : chacun a son organisation, son calendrier, sa base de code, et ses données.
+Il ne s'agit pas de séparer les gros projets en sous-équipes mais bien de projets _indépendants_ : chacun a son organisation, son calendrier, sa base de code et ses données.
 
-Les échanges entre les projets se fait par des services, qu'il s'agisse d'appels de services (REST / JSON) ou de messages.
+Les échanges entre les projets se font par des services, qu'il s'agisse d'appels de services (REST / JSON) ou de messages.
 
 image::microservices.png[title="Plutôt que des gros projets on préfère des petits projets indépendants, avec chacun son équipe, son code et ses données"]
 
@@ -92,8 +92,8 @@ Dans la même veine, les admirateurs de cette approche appellent "monolithes" le
 Cette architecture est ainsi à la confluence de plusieurs mouvements de fond de l'informatique :
 
 - la SOA a mis en avant les avantages de l'approche services ;
-- l'agile et le link:http://blog.octo.com/lean-startup/[lean startup] a fourni les modèles d'organisation des équipes ;
-- l'industrialisation des déploiements et la virtualisation permettent de baisser les coût de mise en production et d'exploitation ;
+- l'agile et le link:http://blog.octo.com/lean-startup/[lean startup] ont fourni les modèles d'organisation des équipes ;
+- l'industrialisation des déploiements et la virtualisation permettent de baisser les coûts de mise en production et d'exploitation ;
 - le NoSQL a décrispé les choses du côté de l'intégrité des données.
 
 = Avantages de l'approche microservices
@@ -104,7 +104,7 @@ Cette architecture est ainsi à la confluence de plusieurs mouvements de fond de
 
 Contraindre la taille permet de limiter les cas particuliers, et d'avoir en tête l'intégralité des comportements.
 
-Cela permet également de garder la dette technique sous contrôle, et d'ainsi avoir un code qui évolue. Passer par des appels de services pour communiquer avec les autres domaines formalise les échanges. Les contrats d'interface sont alors plus carrés, et il est plus facile de prendre en compte tous les cas, y compris les cas d'erreurs.
+Cela permet également de garder la dette technique sous contrôle, et d'avoir ainsi un code capable d'évoluer. Passer par des appels de services pour communiquer avec les autres domaines formalise les échanges. Les contrats d'interface sont alors plus carrés, et il est plus facile de prendre en compte tous les cas, y compris les cas d'erreurs.
 
 === Scalabilité horizontale
 
@@ -114,7 +114,7 @@ Avec des applications d'une taille limitée, il est plus facile d'augmenter la s
 
 === Innovation technologique
 
-Les bases de codes et les équipes sont indépendantes et peut donc faire ses choix techniques en fonction de ses besoins propres.
+Les bases de codes et les équipes sont indépendantes et peuvent donc faire leurs choix techniques en fonction de leurs besoins propres.
 
 === Innovation métier
 
@@ -128,13 +128,14 @@ Les microservices étant une déclinaison des architectures SOA classiques, on r
 
 == Le système devient distribué
 
-Les architectures classiques permettent de faire en sorte d'avoir des états indépendants entre les différentes applications : chacun est maître de son domaine métier.
+Les architectures classiques permettent de faire en sorte d'avoir des états indépendants entre les différentes applications :
+chacun est maître de son domaine métier.
 
-Dans le passage au microservices, le système devient largement distribué.
-Cela introduit de nouvelle classes de problèmes particulièrement difficiles.
+Lors du passage aux microservices, le système devient largement distribué.
+Cela introduit de nouvelles classes de problèmes particulièrement difficiles.
 
-Le cas le plus compliqué est celui des transactions : à chaque fois qu'une transaction est à cheval entre deux applications,
-il faut alors gérer des transactions link:https://en.wikipedia.org/wiki/Two-phase_commit_protocol[en deux phases] ou gérer des annulations.
+Le cas le plus compliqué est celui des transactions : à chaque fois qu'une transaction est partagée entre deux applications,
+il faut gérer des transactions link:https://en.wikipedia.org/wiki/Two-phase_commit_protocol[en deux phases] ou gérer des annulations.
 Dans un système basé sur des services, il n'existe pas d'outil permettant de le prendre en compte de manière automatisée.
 Il faut donc le faire manuellement à chaque endroit du code.
 
@@ -144,7 +145,7 @@ Ensuite il y a les cas d'indisponibilités des services externes.
 Car utiliser les services d'une autre application c'est devenir dépendant d'elle.
 L'approche link:http://blog.octo.com/design-for-failure/[_design for failure_] permet de limiter les risques mais demande d'avoir une ingénierie rigoureuse.
 
-Il faut également bien maitriser l'ensemble des link:https://fr.wikipedia.org/wiki/Service_level_agreement[qualité de services] des différentes applications pour ne pas se faire surprendre.
+Il faut également bien maitriser l'ensemble des link:https://fr.wikipedia.org/wiki/Service_level_agreement[qualités de services] (SLA) des différentes applications pour ne pas se faire surprendre.
 
 Finalement le système devient plus difficile à tester : les tests d'intégration à effectuer deviennent plus nombreux, et demandent de bien préparer les données et d'être bien outillé pour pouvoir tester les cas d'erreurs techniques et métier.
 
@@ -152,11 +153,11 @@ Finalement le système devient plus difficile à tester : les tests d'intégrati
 
 Même si l'approche REST propose de manipuler des entités simples, il y a toujours une proportion d'appels "à valeurs ajoutés" qui font appels à plusieurs domaines métier.
 
-Dans le cas des microservices, cela signifie de composer des appels entre plusieurs applications.
+Dans le cas des microservices, cela signifie composer des appels entre plusieurs applications.
 
-Cela a pour effet de multiplier les cas d'erreurs à gérer (problème des systèmes distribués) et de multiplier les latences réseaux.
+Cela a pour effet de multiplier les cas d'erreurs à gérer (problème des systèmes distribués) et d'additionner les latences réseau.
 
-Pour les cas les plus critiques, il devient nécessaire d'ajouter des services spécifiques dans les différentes applications, voire d'ajouter des caches de donnée, entrainant des problèmes de cohérence.
+Pour les cas les plus critiques, il devient nécessaire d'ajouter des services spécifiques dans les différentes applications, voire d'ajouter des caches de données, entrainant des problèmes de cohérence.
 
 == Évolutions transverses
 
@@ -206,7 +207,7 @@ Permettre de l'innovation pour répondre à de nouveaux besoins, c'est accepter 
 
 Il y a aussi le risque de négliger les bonnes pratiques de développement, car il y a moins d'enjeux et de risques.
 
-Finalement, des applications plus petites seront probablement mises en pause régulièrement pendant les moments où il n'y a pas d'évolution à développer dans des domaines qu'elles couvrent.
+Finalement, des applications plus petites seront probablement mises en pause régulièrement pendant les moments où il n'y a pas d'évolution à développer dans les domaines qu'elles couvrent.
 Dans ce cas, les connaissances se perdront plus facilement.
 
 == Difficulté de garder une stratégie
@@ -225,7 +226,7 @@ En séparant les projets, on diminue la complexité sur certains axes en échang
 On peut avoir des monolithes bien organisés, scalables, évolutifs..., mais cela demande une forte discipline de tous les instants.
 La vision de l'architecture microservices est de ne pas prendre de risques pour être certain de garder le contrôle.
 
-Par contre, si cela est mis en œuvre dans un environnement mal adapté ou d'une mauvaise manière, on va cumuler les inconvénients sans bénéficier des avantages, et on court alors à la catastrophe plus certainement que dans une architecture plus classique.
+Par contre, si cela est mis en œuvre dans un environnement mal adapté ou d'une mauvaise manière, on va cumuler les inconvénients sans bénéficier des avantages, et on prend alors beaucoup plus de risques que dans une architecture de services plus classique.
 
 Donc surtout ne vous dites pas qu'il vous faut des microservices, demandez-vous :
 
@@ -253,7 +254,7 @@ Malheureusement partir sur des microservices à partir de rien représente le ca
 
 == Le cas favorable : peler un monolithe
 
-Le cas le plus favorable est celui monolithe qu'on "pèle". En examinant son organisation et sa structure, on va externaliser les morceaux à la bordure du système suivant les lignes de découpes qui sont apparues naturellement.
+Le cas le plus favorable est celui monolithe qu'on "pèle". En examinant son organisation et sa structure, on va externaliser les morceaux à la bordure du système suivant les lignes de découpe qui sont apparues naturellement.
 
 L'objectif n'est pas de se retrouver avec 50 mini-projets mais plutôt :
 
