@@ -82,7 +82,7 @@ Il ne s'agit pas de séparer les gros projets en sous-équipes mais bien de proj
 
 Les échanges entre les projets se fait par des services, qu'il s'agisse d'appels de services (REST / JSON) ou de messages.
 
-image::microservices.png[]
+image::microservices.png[title="Plutôt que des gros projets on préfère des petits projets indépendants, avec chacun son équipe, son code et ses données"]
 
 Le découpage se fait par domaine métier, en groupant les services et les types de données qui ont des liens forts, et en séparant quand ils sont suffisamment indépendants.
 
@@ -170,7 +170,7 @@ Le problème est encore aggravé lorsqu'on veut itérer rapidement car cela dema
 Pour garder une certaine souplesse, la solution naturelle est alors d'isoler des grappes de projets des autres en limitant les interconnections entre groupes (pattern link:http://blog.octo.com/services-rest-ne-jetez-pas-la-soa-avec-leau-du-bain/[Royaume-émissaire]).
 Le risque est alors d'ajouter une couche de management intermédiaire qui ne soit pas au contact direct des projets.
 
-image::royaumes.png[]
+image::royaumes.png[title="Des projets groupés et des services spécifiques pour les communications inter-groupes"]
 
 == DevOps et provisionning
 
@@ -260,7 +260,7 @@ L'objectif n'est pas de se retrouver avec 50 mini-projets mais plutôt :
 - une ou plusieurs applications "cœur" de taille moyenne, cohérentes entre elles ;
 - des microservice qui gravitent autour, et qui vont s'en éloigner avec le temps.
 
-image::decoupage.png[]
+image::decoupage.png[title="Pour découper un monolithe on isole des groupes de fonctionalités cohérentes entre elles pour en faire des projets"]
 
 Cette opération est rendue d'autant plus facile que l'application initiale est bien structurée en couche technique et en briques métier et que cette restructuration est respectée. Dans le cas contraire, il faut beaucoup détricoter pour extraire certaines parties du code.
 
