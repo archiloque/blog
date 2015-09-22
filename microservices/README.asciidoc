@@ -219,25 +219,28 @@ Avec des microservices, de nombreux projets techniques seront éloignés du busi
 
 = Est-ce qu'il m'en faut ?
 
-L'approche fondamentale de la SOA consiste à gérer la complexité organisationnelle et métier en la distribuant.
+L'approche fondamentale de la SOA consiste à garder le contrôle de la complexité organisationnelle et métier en la distribuant.
 
 En séparant les projets, on diminue la complexité sur certains axes en échange d'un surcoût à d'autres endroits, notamment celui d'avoir un système plus distribué.
 
 On peut avoir des monolithes bien organisés, scalables, évolutifs..., mais cela demande une forte discipline de tous les instants.
-La vision de l'architecture microservices est de ne pas prendre de risques pour être certain de garder le contrôle.
+La vision de l'architecture microservices est de ne pas prendre ces risques pour être certain de garder le contrôle.
 
 Par contre, si cela est mis en œuvre dans un environnement mal adapté ou d'une mauvaise manière, on va cumuler les inconvénients sans bénéficier des avantages, et on prend alors beaucoup plus de risques que dans une architecture de services plus classique.
 
 Donc surtout ne vous dites pas qu'il vous faut des microservices, demandez-vous :
 
-- si vous avez ces problèmes ;
-- si vous avez les prérequis nécessaires.
+- si vous avez les problèmes que cette approche adresse ;
+- si vous avez les prérequis nécessaires, ou si vous êtes prêt à les atteindre.
 
-Et dans ce cas seulement posez vous la question.
+Dans ce cas seulement posez vous la question.
+
+Et n'oubliez pas qu'une architecture est un outil qu'on adapte à ses besoins et pas un dogme à respecter :
+si ce qui vous convient est une solution hybride reprennant certaines des idées des microservices et pas d'autres, lancez vous !
 
 = Comment j'y vais
 
-Une fois décidé que les microservices sont la bonne solution, encore faut-il parvenir à mettre en place cette architecture.
+Une fois décidé qu'un architecture microservices est la bonne solution, encore faut-il parvenir à la mettre en place.
 
 S'il n'y a pas de solution magique, quelques approches semblent émerger.
 
@@ -263,7 +266,7 @@ L'objectif n'est pas de se retrouver avec 50 mini-projets mais plutôt :
 
 image::decoupage.png[title="Pour découper un monolithe on isole des groupes de fonctionalités cohérentes entre elles pour en faire des projets"]
 
-Cette opération est rendue d'autant plus facile que l'application initiale est bien structurée en couche technique et en briques métier et que cette restructuration est respectée. Dans le cas contraire, il faut beaucoup détricoter pour extraire certaines parties du code.
+Cette opération est rendue d'autant plus facile que l'application initiale est bien structurée en couches techniques et en briques métier et que cette restructuration est respectée. Dans le cas contraire, il faut beaucoup détricoter pour extraire certaines parties du code.
 
 Avant de s'attaquer au découpage, il faut examiner les problèmes que posent la distribution des données : c'est l'élément le plus structurant et ça peut rendre l'opération impossible.
 
