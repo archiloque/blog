@@ -199,7 +199,7 @@ pour savoir rapidement où se posent les problèmes ;
 - un monitoring accessible aux consommateurs des services pour qu'ils puissent comprendre d'où viennent les pannes
 lorsqu'elles ont des conséquences pour eux.
 
-== Technologie
+== Technologie et maintient des compétences
 
 Les choix technologiques étant plus nombreux et plus décentralisés, il est plus facile de se tromper :
 les arbitrages entre innovation et pérennité sont plus difficiles.
@@ -207,15 +207,15 @@ Permettre de l'innovation pour répondre à de nouveaux besoins, c'est accepter 
 
 Il y a aussi le risque de négliger les bonnes pratiques de développement, car il y a moins d'enjeux et de risques.
 
-Finalement, des applications plus petites seront probablement mises en pause régulièrement pendant les moments où il n'y a pas d'évolution à développer dans les domaines qu'elles couvrent.
-Dans ce cas, les connaissances se perdront plus facilement.
+Finalement, des applications plus petites ont plus facilement des périodes de pause où il n'y a pas d'évolution à développer dans les domaines qu'elles couvrent.
+Dans ce cas, les membres de l'équipes sont répartis ailleurs et les risques de perte de connaissance sont important.
 
-== Difficulté de garder une stratégie
+== Stratégie et gouvernance
 
 Pour des gros projets liés aux produits de l'entreprises, la vision stratégique vient directement du métier.
 Les partenaires étant peu nombreux, il est facile d'arbitrer entre les différentes demandes en fonction du poids de chacun.
 
-Avec des microservices, de nombreux projets techniques seront éloignés du business et auront de nombreux interlocuteurs. Il faut donc une organisation mature dans sa gestion des priorités et dans ses mécanismes de priorisation.
+Avec des microservices, de nombreux projets techniques seront éloignés du business et auront de nombreux interlocuteurs. Il faut donc une organisation mature dans sa communication, sa gestion des priorités et dans ses mécanismes de priorisation.
 
 = Est-ce qu'il m'en faut ?
 
@@ -226,12 +226,14 @@ En séparant les projets, on diminue la complexité sur certains axes en échang
 On peut avoir des monolithes bien organisés, scalables, évolutifs..., mais cela demande une forte discipline de tous les instants.
 La vision de l'architecture microservices est de ne pas prendre ces risques pour être certain de garder le contrôle.
 
-Par contre, si cela est mis en œuvre dans un environnement mal adapté ou d'une mauvaise manière, on va cumuler les inconvénients sans bénéficier des avantages, et on prend alors beaucoup plus de risques que dans une architecture de services plus classique.
+Par contre, si cela est mis en œuvre dans un environnement mal adapté ou d'une mauvaise manière,
+on va cumuler les inconvénients sans bénéficier des avantages,
+et on prend alors beaucoup plus de risques que dans une architecture de services plus classique.
 
 Donc surtout ne vous dites pas qu'il vous faut des microservices, demandez-vous :
 
 - si vous avez les problèmes que cette approche adresse ;
-- si vous avez les prérequis nécessaires, ou si vous êtes prêt à les atteindre.
+- si vous avez les prérequis nécessaires, ou si vous êtes prêt à faire en sorte de les atteindre _avant_ d'entamer la migration.
 
 Dans ce cas seulement posez vous la question.
 
@@ -266,7 +268,12 @@ L'objectif n'est pas de se retrouver avec 50 mini-projets mais plutôt :
 
 image::decoupage.png[title="Pour découper un monolithe on isole des groupes de fonctionalités cohérentes entre elles pour en faire des projets"]
 
-Cette opération est rendue d'autant plus facile que l'application initiale est bien structurée en couches techniques et en briques métier et que cette restructuration est respectée. Dans le cas contraire, il faut beaucoup détricoter pour extraire certaines parties du code.
+Cette opération est rendue d'autant plus facile que l'application initiale est bien structurée en couches techniques et en briques métier
+et que cette restructuration est respectée. Les bonnes pratiques du développement logiciel permettent ainsi d'avoir des projets "microservices-ready". Dans le cas contraire, il faut beaucoup détricoter pour extraire certaines parties du code.
+
+De tests automatisés sont essentiels pour limiter les risques.
+En leur absence il faut considérer l'application comme du legacy
+et utiliser link:http://www.amazon.fr/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052[les techniques appropriées] pour la désendetter.
 
 Avant de s'attaquer au découpage, il faut examiner les problèmes que posent la distribution des données : c'est l'élément le plus structurant et ça peut rendre l'opération impossible.
 
