@@ -242,7 +242,7 @@ si ce qui vous convient est une solution hybride reprennant certaines des idées
 
 = Comment j'y vais
 
-Une fois décidé qu'un architecture microservices est la bonne solution, encore faut-il parvenir à la mettre en place.
+Une fois décidé qu'une architecture microservices est la bonne solution, encore faut-il parvenir à la mettre en place.
 
 S'il n'y a pas de solution magique, quelques approches semblent émerger.
 
@@ -271,7 +271,7 @@ image::decoupage.png[title="Pour découper un monolithe on isole des groupes de 
 Cette opération est rendue d'autant plus facile que l'application initiale est bien structurée en couches techniques et en briques métier
 et que cette restructuration est respectée. Les bonnes pratiques du développement logiciel permettent ainsi d'avoir des projets "microservices-ready". Dans le cas contraire, il faut beaucoup détricoter pour extraire certaines parties du code.
 
-De tests automatisés sont essentiels pour limiter les risques.
+Des tests automatisés sont essentiels pour limiter les risques.
 En leur absence il faut considérer l'application comme du legacy
 et utiliser link:http://www.amazon.fr/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052[les techniques appropriées] pour la désendetter.
 
