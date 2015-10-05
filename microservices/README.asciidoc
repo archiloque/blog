@@ -3,7 +3,7 @@
 
 En 2015, le pic des microservices est atteint :
 pas une conférence sans un ingénieur de Netflix pour vous vendre du rêve,
-pas une semaine sans nouveau framework magique pour tout faire sans se poser de question.
+link:http://senecajs.org[pas] link:https://github.com/sunng87/slacker-cluster[une] link:http://lumen.laravel.com[semaine] link:https://github.com/advantageous/qbit[sans] link:https://github.com/k-bx/owlcloud[nouveau] link:https://github.com/go-kit/kit[framework] link:http://nameko.readthedocs.org/en/latest/[magique] pour tout faire sans se poser de question.
 
 Le résultat est une focalisation sur les outils et les belles histoires plutôt que les questions de fond.
 
@@ -36,7 +36,7 @@ Même avec une base de tests solide, la multiplication des effets de bord de cha
 
 === Scalabilité horizontale
 
-Augmenter la scalabilité d'un système peut demander de modifier des éléments structurants du projet.
+Améliorer la scalabilité d'un système peut demander de modifier des éléments structurants du projet.
 
 Plus un projet est gros, plus ces interventions deviennent coûteuses et risquées.
 
@@ -84,7 +84,9 @@ Les échanges entre les projets se font par des services, qu'il s'agisse d'appel
 
 image::microservices.png[title="Plutôt que des gros projets on préfère des petits projets indépendants, avec chacun son équipe, son code et ses données"]
 
-Le découpage se fait par domaine métier, en groupant les services et les types de données qui ont des liens forts, et en séparant quand ils sont suffisamment indépendants.
+Le découpage se fait par domaine métier,
+en groupant les services et les types de données qui ont des liens forts,
+et en séparant quand ils sont suffisamment indépendants.
 
 Si vous ne comprenez pas pourquoi cela s'appelle "microservices", c'est normal : il s'agit d'un buzzword pour rendre le concept attractif.
 Dans la même veine, les admirateurs de cette approche appellent "monolithes" les applications classiques, pour mettre en avant leur côté négatif, voire menaçant.
@@ -96,7 +98,7 @@ Cette architecture est ainsi à la confluence de plusieurs mouvements de fond de
 - l'industrialisation des déploiements et la virtualisation permettent de baisser les coûts de mise en production et d'exploitation ;
 - le NoSQL a décrispé les choses du côté de l'intégrité des données.
 
-= Avantages de l'approche microservices
+= Les avantages de l'approche microservices
 
 == Complexité
 
@@ -108,7 +110,7 @@ Cela permet également de garder la dette technique sous contrôle, et d'avoir a
 
 === Scalabilité horizontale
 
-Avec des applications d'une taille limitée, il est plus facile d'augmenter la scalabilité en refactorant le code ou en la réécrivant complètement.
+Avec des applications d'une taille limitée, il est plus facile d'augmenter la scalabilité en refactorant le code ou en la réécrivant complètement en fonction des nouveaux besoins.
 
 == Innovation
 
@@ -132,7 +134,7 @@ Les architectures classiques permettent de faire en sorte d'avoir des états ind
 chacun est maître de son domaine métier.
 
 Lors du passage aux microservices, le système devient largement distribué.
-Cela introduit de nouvelles classes de problèmes particulièrement difficiles.
+Cela introduit de nouvelles classes de problèmes link:https://fr.wikipedia.org/wiki/Théorème_CAP[particulièrement difficiles].
 
 Le cas le plus compliqué est celui des transactions : à chaque fois qu'une transaction est partagée entre deux applications,
 il faut gérer des transactions link:https://en.wikipedia.org/wiki/Two-phase_commit_protocol[en deux phases] ou gérer des annulations.
@@ -164,7 +166,7 @@ Pour les cas les plus critiques, il devient nécessaire d'ajouter des services s
 Avec des projets séparés et donc des équipes indépendantes,
 les évolutions transverses sont plus difficiles à mettre en œuvre.
 Cela demande aux différents groupes de se synchroniser
-ou d'instaurer un système complexe de cycle de vie des versions.
+ou link:http://blog.octo.com/transformation-agile-est-ce-safe-pour-moi/[d'instaurer un système complexe de cycle de vie des versions].
 
 Le problème est encore aggravé lorsqu'on veut itérer rapidement car cela demande à chacun de se synchroniser en permanence.
 
@@ -177,7 +179,7 @@ image::royaumes.png[title="Des projets groupés et des services spécifiques pou
 
 Multiplier les applications, c'est multiplier le nombre de déploiements et d'instances de serveurs.
 
-Pour éviter les erreurs et les surcoûts trop importants, il faut un workflow très efficace au niveau outils et process. Cela est d'autant plus vrai pour les tests et les POC où on veut des environnements temporaires sous forme de sandbox.
+Pour éviter les erreurs et les surcoûts trop importants, il faut un workflow très efficace au niveau outils et process avec des déploiements le plus automatisé possible. Cela est d'autant plus vrai pour les tests et les POC où on veut des environnements temporaires sous forme de sandbox.
 
 == Démarrage de projet rapides et allocation de personnes.
 
@@ -207,7 +209,7 @@ Permettre de l'innovation pour répondre à de nouveaux besoins, c'est accepter 
 
 Il y a aussi le risque de négliger les bonnes pratiques de développement, car il y a moins d'enjeux et de risques.
 
-Finalement, des applications plus petites ont plus facilement des périodes de pause où il n'y a pas d'évolution à développer dans les domaines qu'elles couvrent.
+Finalement, des applications plus petites ont plus facilement des périodes de pause où il n'y a pas d'évolution à développer dans les domaines qu'elles couvrent, avec par exemple une bascule dans un mode TMA.
 Dans ce cas, les membres de l'équipes sont répartis ailleurs et les risques de perte de connaissance sont important.
 
 == Stratégie et gouvernance
@@ -269,7 +271,9 @@ L'objectif n'est pas de se retrouver avec 50 mini-projets mais plutôt :
 image::decoupage.png[title="Pour découper un monolithe on isole des groupes de fonctionalités cohérentes entre elles pour en faire des projets"]
 
 Cette opération est rendue d'autant plus facile que l'application initiale est bien structurée en couches techniques et en briques métier
-et que cette restructuration est respectée. Les bonnes pratiques du développement logiciel permettent ainsi d'avoir des projets "microservices-ready". Dans le cas contraire, il faut beaucoup détricoter pour extraire certaines parties du code.
+et que cette restructuration est respectée.
+Les bonnes pratiques du développement logiciel permettent ainsi d'avoir des projets "microservices-ready".
+Dans le cas contraire, il faut beaucoup détricoter pour extraire certaines parties du code.
 
 Des tests automatisés sont essentiels pour limiter les risques.
 En leur absence il faut considérer l'application comme du legacy
@@ -277,7 +281,13 @@ et utiliser link:http://www.amazon.fr/Working-Effectively-Legacy-Michael-Feather
 
 Avant de s'attaquer au découpage, il faut examiner les problèmes que posent la distribution des données : c'est l'élément le plus structurant et ça peut rendre l'opération impossible.
 
-Finalement, il faut éviter d'être dogmatique en considérant que l'opération est forcément à sens unique. Si par la suite d'autres évolutions des projets se rapprochent et que leur séparation pose plus de problèmes qu'elle n'en résout, il ne faut pas hésiter à les refusionner.
+Finalement, il faut éviter d'être dogmatique en considérant que l'opération est forcément à sens unique.
+
+Si par la suite d'autres évolutions des projets se rapprochent et que leur séparation pose plus de problèmes qu'elle n'en résout,
+il ne faut pas hésiter à les refusionner.
+Refusionner deux projets n'est pas un aveu d'échec mais plutôt un bon signe car cela indique indique que lorsque votre métier évolue votre informatique est capable de s'adapter.
+
+
 
 [TIP]
 .Pour aller plus loin
@@ -288,3 +298,5 @@ Finalement, il faut éviter d'être dogmatique en considérant que l'opération 
 - link:http://blog.acolyer.org/2015/09/10/out-of-the-fire-swamp-part-iii-go-with-the-flow/[Out of the Fire Swamp – Part III, Go with the flow] sur les questions de données
 - link:https://www.nginx.com/blog/introduction-to-microservices/[Introduction to Microservices] sur le blog de Nginx
 - link:http://martinfowler.com/bliki/MonolithFirst.html[MonolithFirst] par Martin Fowler
+- link:https://www.thoughtworks.com/radar/techniques/inverse-conway-maneuver[Manœuvre de Conway inversée] chez ThoughtWorks
+- link:https://en.wikipedia.org/wiki/Domain-driven_design[Domain-driven design]
