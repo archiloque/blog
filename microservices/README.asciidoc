@@ -10,6 +10,15 @@ Le résultat est une focalisation sur les outils et les belles histoires plutôt
 Il nous a donc semblé nécessaire de faire le point sur les aspects architecturaux des microservices,
 parce que choisir un style d'architecture pour un système d'information a des conséquences structurantes sur la vie des projets et l'organisation de l'entreprise.
 
+= Note de vocabulaire
+
+Avant d'entrer dans le vif du sujet il est nécessaire de préciser deux notions :
+
+- On désigne par _service_ un service métier, c'est à dire un groupe de services techniques (REST, SOAP ...) qui ensemble fournissent une fonctionalité qui a un sens métier
+
+- _Projet_ designe un projet de développement informatique sur l'ensemble de son cycle de vie
+ et pas seulement pendant sa "phase projet" avant une bascule en mode maintenance.
+
 = Pourquoi les microservices : les problèmes des gros projets
 
 L'architecture microservices a été inventée pour résoudre un certain nombre de problèmes causés par les gros projets.
@@ -88,7 +97,12 @@ Le découpage se fait par domaine métier,
 en groupant les services et les types de données qui ont des liens forts,
 et en séparant quand ils sont suffisamment indépendants.
 
-Si vous ne comprenez pas pourquoi cela s'appelle "microservices", c'est normal : il s'agit d'un buzzword pour rendre le concept attractif.
+Si l'exemple-type est d'avoir une unité de déploiement par projet, la régle est plutôt de n'avoir _au plus_ qu'une équipe par unité de déploiement.
+Si domaine métier bien découpé est implémenté en plusieurs applications séparées, elles seront portées par la même équipe.
+
+image::deploiement.png[]
+
+Si vous ne comprenez pas pourquoi tout cela s'appelle "microservices", c'est normal : il s'agit d'un buzzword pour rendre le concept attractif.
 Dans la même veine, les admirateurs de cette approche appellent "monolithes" les applications classiques, pour mettre en avant leur côté négatif, voire menaçant.
 
 Cette architecture est ainsi à la confluence de plusieurs mouvements de fond de l'informatique :
