@@ -1,0 +1,38 @@
+= How to implement an Asciidoctor backend / templates ?
+Julien Kirch
+v1.0, 2016-02-09
+:article_lang: en
+:article_description: A simple hack to start implemeting an Asciidoctor backend when you need to export your content is a specific format.
+
+link:http://asciidoctor.org[Asciidoctor] is a great tool to write documentation or blog articles: the syntax is less quirky than Markdown and it supports many elements.
+
+Several export formats are available out of the box, and when you want to export your content in a specific format you can even add your link:https://github.com/asciidoctor/asciidoctor-backends[own templates].
+
+When writing your own templates, you must create a specific file for each element type so the engine can convert it, see for example the link:https://github.com/asciidoctor/asciidoctor-backends/tree/master/erb/html5[html5 backend].
+
+Unfortunately there's no documentation on what attributes are available for each element type. The simplest way to find it is to peek on several examples until you can figure it out. Here's a small script to make things easier:
+
+- Create a new directory called `template_hack`
+- Save this file as `helpers.rb` in the `template_hack` directory
+
+++++
+<script src="https://gist.github.com/archiloque/5d212fa618abfaed624c.js"></script>
+++++
+
+- Use it to convert your `my_ascii_file.adoc`:
+
+ asciidoctor -T template_hack/ my_ascii_file.adoc
+
+- Read the log to find what file you need to implement and for each one what is the ruby class that represents it:
+
+....
+"Convert Asciidoctor::Inline with inline_anchor template"
+"Convert Asciidoctor::Inline with inline_quoted template"
+"Convert Asciidoctor::Block with paragraph template for paragraph"
+"Convert Asciidoctor::Block with quote template for quote"
+"Convert Asciidoctor::Block with preamble template for preamble"
+"Convert Asciidoctor::List with olist template"
+"Convert Asciidoctor::Section with section template"
+....
+
+- Implement each template by looking at the Asciidoctor class where you can find the attributes and methods you need
