@@ -2,24 +2,24 @@
 Julien Kirch
 v1.0, 2016-02-10
 :article_lang: en
-:article_description: SQL is a incredible tool but it's easy to do bad things ORM are handy but dangerous, for both of them the best strategy is to watch what is happening.
+:article_description: SQL is an incredible tool but it's easy to do bad things ORM are handy but dangerous, for both of them the best strategy is to watch what is happening.
 
-== SQL : a fine tool of the trade
+== SQL: a fine tool of the trade
 
-For structured data I love SQL : it's link:http://www.dbdebunk.com/2012/07/null-confusion.html[not perfect] but good enough: the model is easy yet expressive and the syntax is plain.
+For structured data I love SQL: it's link:http://www.dbdebunk.com/2012/07/null-confusion.html[not perfect] but good enough: the model is easy yet expressive and the syntax is plain.
 
 == A good ORM is a nice thing
 
-My criteria to choose an ORM are :
+My criteria to choose an ORM are:
 
 - It should provide a good API to code simple queries with a readable syntax.
 - It shouldn't prevent me from writing my own SQL when I need it, because sometimes it's the best solution (2 lines of SQL vs. 5 lines of "SQL-masqueraded as chained method invocations" horrors). Bonus point if it provides some help to read the query result.
 
-In Ruby link:http://sequel.jeremyevans.net[Sequel] is my tool of choice in Ruby :
+In Ruby link:http://sequel.jeremyevans.net[Sequel] is my tool of choice:
 
-- it matches my two prerequisites
-- the documentation is good enough for most cases
-- the code is clear enough for other cases.
+- It matches my two prerequisites.
+- The documentation is good enough for most cases.
+- The code is clear enough for other cases.
 
 == But you can't trust any of them
 
@@ -30,25 +30,25 @@ In Ruby link:http://sequel.jeremyevans.net[Sequel] is my tool of choice in Ruby 
 
 The bad thing is that both problems are unfit for unit tests:
 
-- You can't easily test that a query are using the right index.
-- Testing that some code is using the right number of queries takes to much work and maintenance.
+- You can't easily test that a query is using the right index.
+- Testing that some code is performing the correct number of queries takes too much work and maintenance.
 
-So an acceptable solution is to enable metrics for both of them, and then to use the metrics as much as you can.
+So an acceptable solution is to enable metrics for both of them, and then to use those metrics as much as you can.
 
-== Just a small hack and we're here
+== Just a small hack and we're there
 
 The best way to enable metrics is to provide them bundled with the operation they measure.
 
-For a start, you can use custom http headers.
+For a start, you can use custom HTTP headers.
 
 It's done in two steps:
 
-- count the queries and execution time in the ORM
-- send the data back in the service result
+- Count the queries and execution time in the ORM.
+- Send the data back in the service result.
 
 An example with the link:http://sinatrarb.com[Sinatra] web framework with the Sequel ORM:
 
-- I need to hack a bit into Sequel to retrieve the data
+- I need to hack a bit into Sequel to retrieve the data.
 - I store the data in link:https://en.wikipedia.org/wiki/Thread-local_storage[Thread local] variables so I can store the values somewhere and read them somewhere else.
 
 ++++
@@ -79,13 +79,13 @@ curl -v "http://localhost:9292"
 OK
 ....
 
-Warning: you may want to disable the data in production environments.
+Warning: you may want to hide the metrics in production environments.
 
 
 == And now ?
 
 Now that we have the basic structure, you can do plenty of things:
 
-- obviously you can have a look at them when an http request takes too long, it's a great help for testers and developers of client applications
-- you can add triggers alerts when thresholds are exceeded, like making the call fail so somebody will notice it
+- Obviously you can have a look at them when an HTTP request takes too long, it's a great help for testers and developers of client applications.
+- You can add triggers alerts when thresholds are exceeded, like making the call fail so somebody will notice it.
 - ...
