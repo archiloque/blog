@@ -107,6 +107,6 @@ class TestApp < Minitest::Test
       # Test an attribute
       last_app_attribute('content').must_equal 'OK'
     end
-    
+
   end
 end
