@@ -2,11 +2,13 @@ require 'sinatra/base'
 require 'sequel'
 require 'logger'
 
-# Add hooks in sequel logging since it's called for each query
+# Add hooks in sequel logging
+# since it's called for each query
 module Sequel
   class Database
 
-    # Alias a method so we can override it but still call the original
+    # Alias a method so we can override it
+    # but still call the original
     alias :log_yield_old :log_yield
 
     # This method is called for each query
@@ -16,7 +18,8 @@ module Sequel
       log_yield_old(sql, args, &block)
     end
 
-    # Alias a method so we can override it but still call the original
+    # Alias a method so we can override it
+    # but still call the original
     alias :log_duration_old :log_duration
 
     # This method is called to measure duration
@@ -31,7 +34,10 @@ end
 
 class App < Sinatra::Base
 
-  DB = Sequel.sqlite '', :loggers => [Logger.new(STDOUT)]
+  DB = Sequel.sqlite(
+    '',
+    :loggers => [Logger.new(STDOUT)]
+  )
 
   # Hook called before each call
   before do
@@ -44,8 +50,10 @@ class App < Sinatra::Base
   after do
     # Set the headers
     current_thread = Thread.current
-    headers['X-QUERIES-COUNT'] = current_thread[:queries_count].to_s
-    headers['X-QUERIES-DURATION'] = current_thread[:queries_duration].to_s
+    headers['X-QUERIES-COUNT'] =
+      current_thread[:queries_count].to_s
+    headers['X-QUERIES-DURATION'] =
+      current_thread[:queries_duration].to_s
     # Clean the thread local variables
     current_thread[:queries_count] = nil
     current_thread[:queries_duration] = nil

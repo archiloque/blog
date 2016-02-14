@@ -26,13 +26,16 @@ module Asciidoctor
       value = nil
       if node.is_a? Asciidoctor::Block
         value = node.content
-        log_line = "Convert #{node.class} with #{template_name} for #{node.context}"
+        log_line =
+          "#{node.class} uses #{template_name} for #{node.context}"
       elsif node.is_a? Asciidoctor::AbstractBlock
         value = node.content
-        log_line = "Convert #{node.class} with #{template_name} template"
+        log_line =
+          "#{node.class} uses #{template_name}"
       elsif node.is_a? Asciidoctor::Inline
         value = node.text
-        log_line = "Convert #{node.class} with #{template_name} template"
+        log_line =
+          "#{node.class} uses #{template_name}"
       else
         raise "Can convert #{node.class}"
       end
