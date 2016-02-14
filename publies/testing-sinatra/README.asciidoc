@@ -1,0 +1,37 @@
+= Testing rendering attribute in Sinatra application
+Julien Kirch
+v1.0, 2016-02-14
+:article_lang: en
+
+link:http://www.sinatrarb.com[Sinatra] is my framework of choice when writing simple Ruby applications for my personal needs.
+
+link:https://github.com/brynary/rack-test[Rack:Test] is nice to test Sinatra applications in black box so it's enough when the application is an JSON API.
+But when you write a classical web application that serves html pages it's easier to do some white box testing, and in Sinatra this means access the attributes of the application instance.
+
+The nice thing with Ruby is that it's so dynamic that when you use a framework easy to debug and you have a little patience, it's easy to transform a black box into a white one.
+
+As other may find this trick useful, this is a code sample to access your Sinatra app attributes from your tests.
+
+The application serving JSON and html :
+
+[source,ruby]
+.app.rb
+----
+include::app.rb[]
+----
+
+A very simple template :
+
+[source,erb]
+.index.html.erb
+----
+include::index.html.erb[]
+----
+
+And the test  :
+
+[source,ruby]
+.test_app.rb
+----
+include::test_app.rb[]
+----
