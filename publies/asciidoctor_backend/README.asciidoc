@@ -15,9 +15,10 @@ Unfortunately there's no documentation on what attributes are available for each
 - Create a new directory called `template_hack`
 - Save this file as `helpers.rb` in the `template_hack` directory
 
-++++
-<script src="https://gist.github.com/archiloque/5d212fa618abfaed624c.js"></script>
-++++
+[source,ruby]
+----
+include::helpers.rb[]
+----
 
 - Use it to convert your `my_ascii_file.adoc`:
 

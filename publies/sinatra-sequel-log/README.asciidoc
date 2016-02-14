@@ -51,9 +51,11 @@ An example with the link:http://sinatrarb.com[Sinatra] web framework with the Se
 - I need to hack a bit into Sequel to retrieve the data.
 - I store the data in link:https://en.wikipedia.org/wiki/Thread-local_storage[Thread local] variables so I can store the values somewhere and read them somewhere else.
 
-++++
-<script src="https://gist.github.com/archiloque/bf9133fac9821f22cf40.js"></script>
-++++
+[source,ruby]
+.app.rb
+----
+include::app.rb[]
+----
 
 And here we are:
 
