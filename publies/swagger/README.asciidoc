@@ -3,7 +3,7 @@ Julien Kirch
 v1.0, 2016-02-09
 :article_lang: en
 :article_description: some guidance on how to use your swagger info.
-:ignore_files: petstore_1.rb, petstore_2.rb, test_petstore.rb
+:ignore_files: petstore_1.rb, petstore_2.rb, test_petstore.rb, swagger_1.json, swagger_2.json
 == Introducing Swagger
 
 link:http://swagger.io[Swagger] is a technical description of a REST API which is readable yet powerful.
@@ -13,90 +13,12 @@ Example:
 
 [source, json]
 ----
-"/api/source/{source_id}/element": {
-  "get": {
-    "summary": "Get API elements for a source, ordered by creation date",
-    "tags": [
-      "api"
-    ],
-    "parameters": [
-      {
-        "name": "source_id",
-        "in": "path",
-        "required": true,
-        "type": "integer",
-        "description": "The unique id"
-      },
-      {
-        "name": "page",
-        "in": "query",
-        "required": false,
-        "type": "integer",
-        "description": "The page index",
-        "default": 1,
-        "example": 100,
-        "minimum": 1,
-        "exclusiveMinimum": false
-      },
-      {
-        "name": "per_page",
-        "in": "query",
-        "required": false,
-        "type": "integer",
-        "description": "Number of items per page",
-        "default": 100,
-        "example": 100,
-        "minimum": 1,
-        "maximum": 100,
-        "exclusiveMinimum": false,
-        "exclusiveMaximum": false
-      }
-    ],
-    "responses": {
-      "200": {
-        "schema": {
-          "$ref": "#/definitions/Elements"
-        }
-      },
-      "404": {
-        "schema": {
-          "$ref": "#/definitions/Error"
-        },
-        "description": "If the API source is not found"
-      }
-    }
-  }
-}
+include::swagger_1.json[]
 ----
 
 [source, json]
 ----
-"Element": {
-  "type": "object",
-  "properties": {
-    "id": {
-      "description": "The unique element id",
-      "type": "integer"
-    },
-    "source": {
-      "description": "The source id",
-      "type": "integer"
-    },
-    "created_at": {
-      "description": "The creation date",
-      "type": "dateTime"
-    },
-    "timestamp": {
-      "description": "The element timestamp",
-      "type": "dateTime"
-    }
-  },
-  "required": [
-    "id",
-    "source",
-    "created_at"
-  ]
-}
+include::swagger_2.json[]
 ----
 
 What is mainly viewed as a documentation for the API consumers is actually  a _technical specification_ of your API,

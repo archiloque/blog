@@ -1,0 +1,26 @@
+"Element": {
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The unique element id",
+      "type": "integer"
+    },
+    "source": {
+      "description": "The source id",
+      "type": "integer"
+    },
+    "created_at": {
+      "description": "The creation date",
+      "type": "dateTime"
+    },
+    "timestamp": {
+      "description": "The element timestamp",
+      "type": "dateTime"
+    }
+  },
+  "required": [
+    "id",
+    "source",
+    "created_at"
+  ]
+}
