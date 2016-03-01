@@ -7,13 +7,13 @@ v1.0, 2016-02-09
 == Introducing Swagger
 
 link:http://swagger.io[Swagger] is a technical description of a REST API which is readable yet powerful.
-You can use it to define precisely define your services: what parameters should be used, the return codes and types, characteristics of each fields, etc.
+You can use it to define precisely your services: what parameters should be used, return codes and types, characteristics of each fields, etc.
 
 Example:
 
 [source, json]
 ----
-"/api/api/source/{source_id}/element": {
+"/api/source/{source_id}/element": {
   "get": {
     "summary": "Get API elements for a source, ordered by creation date",
     "tags": [
@@ -105,15 +105,15 @@ and this has many consequences on what you should do with it.
 == The only thing worse than no specification is a wrong specification
 
 If you want your specification to be useful you need it to be right.
-In this case it means the swagger content should be coherent with your code.
+In this case, it means the swagger content should be coherent with your code.
 
-The best way do to it is to make your services unit tests swagger-aware:
+The best way to do it is to make your services unit tests swagger-aware:
 
 - Read your swagger info at the beginning of your tests.
 - Each time you call a service in a test, validate that the parameters and results match the swagger's content.
 - If it doesn't, fail the test.
 
-There's existing tool do it for it for several frameworks; and if it doesn't you can hack one in a few hours (I've done it link:https://github.com/archiloque/sinatra-swagger-exposer[myself]).
+There's existing tool for several frameworks doing it for you; and if it doesn't you can hack one in a few hours (I've done it link:https://github.com/archiloque/sinatra-swagger-exposer[myself]).
 
 === The generated swagger case
 
@@ -125,7 +125,7 @@ But I have a bad news for you, there's two reasons why you still should do it:
 
 ==== All metadata are not checked
 
-All the metadata information are not checked, for example if you specify the number minimum for a number of the max length for a string, they won't be checked automatically.
+All the metadata information is not checked, for example if you specify the minimum number for the value of the max length of a string, it won't be checked automatically.
 
 ==== Don't break the API
 
