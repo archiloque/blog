@@ -1,0 +1,30 @@
+= Script to clear a PostgreSQL database
+Julien Kirch
+v1.0, 2016-03-20
+:article_lang: en
+:article_description: A simple Ruby script to clear everything from a database.
+:ignore_files: clear_postgresql.rb
+
+For testing it's often handy to wipe all your database and to recreate everything, but some hosting providers don't give you the access rights to drop and recreate a database so you need to clear everything the hard way.
+
+Here's a Ruby script that does exactly that : it removes triggers, functions, tables and sequences from a database.
+
+It's only dependency is the link:https://bitbucket.org/ged/ruby-pg/wiki/Home[pg] gem, so it should work whatever ORM you use, and even if you don't use one.
+
+[source, ruby]
+----
+include::clear_postgresql.rb[]
+----
+
+Usage:
+
+[source, ruby]
+----
+clear_database(
+  'database_host',
+  5432,
+  'database_user',
+  'database_password',
+  'database_schema'
+)
+----
