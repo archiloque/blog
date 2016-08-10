@@ -1,0 +1,166 @@
+= Gérer les évolutions des services dans votre SI
+:toc:
+
+== On parle de quoi
+
+Sous-titre "Versionner les services dans votre SI ça ne veut pas dire modifier une configuration de /v1/ à /v2/"
+
+=== Services à l'intérieur d'un SI
+
+Consommateur et producteur à l'intérieur
+
+Gestion des évolutions : on ne parle pas de comment designer vos services : n'explique pas comment faire du REST
+
+Exposer un service c'est un contrat avec un engagement
+
+=== Objectif d'une bonne gestion
+
+* Pouvoir introduire de nouvelles versions pour répondre aux nouvelles demandes
+* Décomissionner les anciennes versions
+* Un pur sujet de management de SI
+* Sujet très compliqué, peu s'en sortent bien
+
+=== On va parler de mots qui fâchent : gouvernance, planning, budget
+
+`Mettre des exemples`
+
+== Généralités
+
+=== Différence entre modèle "vendeur" et modèle "acheteur"
+
+* En interne : les clients demandent (acheteurs)
+* En public : on propose un service aux clients (vendeur)
+* En interne : on est sur les deux
+** Dans le cas de projets de tailles équivalentes, si pas d'énorme projet qui écrase tout
+** Important : connaitre ses consommateurs
+* Partenaires : souvent entre les deux, voire encore plus compliqué qu'en interne
+
+=== On parle beaucoup des géants du web mais ils ne sont pas le bon exemple pour les API internes
+
+* Ils parlent peu de ce sujet : plutôt API publiques et implémentation
+* Différence dans la complexité du produits entre les géant du web et certains de nos clients : beaucoup plus de dépendances sur des choses plus complexes
+
+=== Différences entre API externes et internes
+
+* Contractualisation beaucoup plus faible
+** Un DSI  va faire un optimum global
+** En général : engagement moral, pas de pénalité en cas de soucis
+*** Au pire on négocie une extension de budget
+** En général en interne, si un consommateur n'est pas prêt, on ne va pas le débrancher
+
+== Principes
+
+=== Il faut décider qui décide et comment on décide : DSI, instance de gouvernance ...
+
+* Pas subir la non décision
+* Axe décisions : optimum global / privilégier certains projets / ... : arbitrer
+* Ça peut dépendre des projets (pas forcément une règle unique), et changer dans la vie des projets
+* Ce qu'il faut éviter c'est le flou : une mauvaise stratégie c'est mieux qu'une stratégie floue
+* Penser aux projets en TMA
+
+=== Deux forces opposées
+
+* Minimum de changement de versions pour ceux que les nouvelles fonctionnalités n'intéresse pas
+* Beaucoup de changements de versions pour ceux que ça intéresse
+* Les projets peuvent basculer de l'un à l'autre
+
+== Ce qu'il faut exposer, ou pas
+
+=== Plus on expose plus on créé d'adhérence
+
+* Moins on expose moins on en créé
+
+=== N'exposez pas tout par défaut (toutes les données, tous les champs) : faite le en progressif
+
+=== Limiter les consommateurs tant que votre API n'est pas sèche
+
+=== Faites attention quand vous exposer les données que vous même consommez ou vous créez des cascades de dépendances
+
+* Si j'utilise les données de l'appli A, et même si je dois les stocker, je ne les republie pas, sinon je dois changer les services que j'expose quand A change les siens, ou alors je créé une divergence
+
+=== Royaume émissaire
+
+* Certaines données ont vocation à rester dans une certaine zone métier, ne les déversez pas dans tout le SI
+
+=== Ne pas lier l'exposition avec la représentation interne
+* On est capable de ne pas changer l'API même si l'interne n'évolue pas
+
+=== Importance de savoir qui utilise quoi : il faut du monitoring
+
+image::zones.png[title="Les zones de services"]
+
+== Comment exposer
+
+=== Nombre de versions
+* Arbitrage entre travail pour le producteur et pour les consommateurs
+* Deux (idéal) ou trois versions en parallèle
+** Chevauchement temporaire entre deux version (on attend entre la sortie de la N+1 et le décomissionnement de la N-1) : permet de sauter une version sur deux pour les consommateurs
+
+image::versions.png[title="Un exemple de gestion de version"]
+
+=== Quand et quoi communiquer
+
+* Cas idéal : définir le contrat en commnun
+* Au minimum : communiquer dès que l'interface a été définie
+* Contrat d'API : interface  + données d'exemples + mocks
+** Mocks des consommateurs pour tester
+** S'outiller (swagger)
+
+=== Compatibilité gérée par l'API Management ou l'ESB
+
+* Pas magique : on change de version majeure c'est qu'on change le comportement métier
+* Code métier dans un middleware qui est souvent géré par une équipe qui ne connait pas le métier
+* L'équipe du middleware devient le goulot d'étranglement pour les projets qui veulent évoluer
+
+=== Changements rétro-compatibles qui devraient être "transparents" pour éviter une montée de version
+* Peut être une bonne idée
+* Peut être dangereux quand on le pousse trop loin : risque de tordre les contrats
+** Si tu as peur de changer le contrat, c'est qu'il y a problème
+* Demande de très bien communiquer
+
+== À quel rythme ?
+
+=== Pas de solution miracle : question à laquelle vous devez répondre vous même
+
+=== Deux stratégies
+
+* Cadencé : une fois tous les X mois
+** Rythme de modification de l'API n'est pas le rythme de livraison de projet
+**  Plus prévisible pour les consommateurs, permet de s'organiser et de préprovisionner
+*** Ça aide d'avoir une roadmap
+*** Principe de moindre surprise
+* Opportuniste : quand vous en avez besoin
+**   Permet plus de fluidité
+
+=== Royaume / émissaire API à deux vitesses
+
+* les services qui sont pour le royaumes peuvent bouger rapidement
+** d'ailleurs ils ont tendance à bouger ensemble
+* les services qui sont pour tout le SI bouger à un rythme plus lent
+
+=== Si un projet client qui ne peut pas évoluer
+
+* s'il faut maintenir une version spécifique, faire migrer tous les autres
+* Coût continu, et qui va augmenter au fur et à mesure que votre interface va évoluer
+** Ils paient
+
+== Budget
+
+=== Budget des consommateurs
+
+* Le problème se pose quand je dois faire une MAJ alors que ça ne m'intéresse pas, quand j'ai besoin d'une nouveauté on trouve toujours des sous
+** Dette technique du SI : le métier préfère coder du neuf
+* Pas de réponse unique
+* Qui paie ?
+** Prébudgéter, c'est acceptable si roadmap claire et prévisible
+** le(s) premier(s) consommateur(s) ?
+** un pot commun ?
+* Comment on s'assure que ça soit priorisé
+** Importance de la gouvernance, voir principe
+
+=== Budget du projet qui expose les services
+* le(s) premier(s) consommateur(s) ?
+** risque que les autres attendent
+* un pot commun ?
+** au prorata de la consommation
+** Un % du budget du projet
