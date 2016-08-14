@@ -12,6 +12,11 @@ Les middlewares :
 - logiciels d'entreprise
 - appliance, nottament réseau
 
+À quoi on les reconnait
+- outils transverses
+- choix pas à la main d'un projet
+- besoins souvent fantasmés car choisis pour durer
+
 === De quoi on parle ?
 
 Souvent des outils datés, qui ont pris du retard sur le reste de l'informatique.
@@ -20,29 +25,53 @@ Dans les années 2000 on savait moins de chose et souvent pas d'alternative.
 
 Maitenant ça n'est plus le cas.
 
+
 === Pourquoi lire l'article ?
 
 ==== Si vous devez en choisir un
 
+Critères à ajouter dans votre grille d'évaluation
+
 ==== Si vous ne pensez pas devoir changer
 
 Ça permet de vous rappeller les douleurs avec ce genre d'outils.
-Souvent on les considère comme des éléments inamovibles, mais si investissez dans une transformation pour aller plus vite, pensez aussi à ce genre d'outils car ils vous ralentissent et démotivent vos équipes.
 
+Souvent on les considère comme des éléments inamovibles, mais si investissez dans une transformation agile pensez aussi à ce genre d'outils car
 
+- ils peuvent devenir un goulet d'étranglement
+- ils peuvent démotiver les équipes
 
 == Licenses, prix et contraintes projets
 
 Problèmes quand la license / le support / le prix font que tu es obligé de choisir une solution sous-optimale.
 
+Sois pas d'environement de test, ou d'avoir deux solutions (gold / silver).
+
 == Développement en équipe et gestion de version
 
+Problème nottament avec les outils qui viennent avec un IDEs
+
+Usage limités à une seule personne à la fois : convennait très bien quand on a une équipe dédiée à l'outil et qu'on a des cycles de livraisons lents.
+
+Configuration sauvegardée dans un format binaire ou difficile à modifier (type objet java séraialisé)
+
+- impossible de faire des merges en utilisant un gestionnaire de version
+- passage d'un environement : obligé de refaire les mêmes manipulations avec risque d'erreur
+
+Critère facile : si l'outil vient avec ses ensembles de fichier Chef / Puppet / Ansible, mais jetez quand même un œil (parfois configuration de base qu'on modifie ensuite avec l'IDE...).
+
 == Test
+
+Facilité de tester de manière automatisé.
 
 == Build et déploiement
 
 == Monitoring
 
+== Log
+
 === Récupérable par un outil extérieur
+
 === Parsable
+
 === Configurable
