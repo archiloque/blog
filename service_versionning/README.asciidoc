@@ -19,6 +19,7 @@ Exposer un service c'est un contrat avec un engagement
 * Décomissionner les anciennes versions
 * Un pur sujet de management de SI
 * Sujet très compliqué, peu s'en sortent bien
+* Pas de silver bullet où de pattern qu'il suffit de dérouler : quelques pratiques à éviter, et beaucoup de choses à décider pour vous
 
 === On va parler de mots qui fâchent : gouvernance, planning, budget
 
@@ -122,6 +123,8 @@ image::versions.png[title="Un exemple de gestion de version"]
 
 === Pas de solution miracle : question à laquelle vous devez répondre vous même
 
+=== Ça depénd des projets et ça peut changer dans la vie des projets
+
 === Deux stratégies
 
 * Cadencé : une fois tous les X mois
@@ -146,21 +149,70 @@ image::versions.png[title="Un exemple de gestion de version"]
 
 == Budget
 
+Une fois toutes les bonnes résolutions prises, reste une question, probablement la plus importante : qui paie ?
+
+Comme dans certains des autres sujets traités, il n'y a pas de réponse qui convienne dans tous les cas.
+La différence ici c'est qu'il vaut peut-être mieux choisir une même approche pour tous les projets pour limiter le nombre de fois où on se pose la question.
+Les prises de décisions sur les questions de budgets étant extrêmement difficiles, cela permet de limiter les conflits, même si à chaque cycle budgétaire la tentation est grande de tout remettre en cause.
+
 === Budget des consommateurs
 
-* Le problème se pose quand je dois faire une MAJ alors que ça ne m'intéresse pas, quand j'ai besoin d'une nouveauté on trouve toujours des sous
-** Dette technique du SI : le métier préfère coder du neuf
-* Pas de réponse unique
-* Qui paie ?
-** Prébudgéter, c'est acceptable si roadmap claire et prévisible
-** le(s) premier(s) consommateur(s) ?
-** un pot commun ?
-* Comment on s'assure que ça soit priorisé
-** Importance de la gouvernance, voir principe
+Quand un consommateur de service a besoin de nouvelles fonctionnalités il n'aura pas de soucis à financer la migration vers la nouvelle version d'une API qui va lui fournir ce dont il a besoin.
+
+Les questions de budget se posent quand le consommateur est satisfait de ce qu'il a déjà et qu'il faut migrer à la version suivante.
+Le problème se plus particulièrement pour les projets qui sont passé en maintenance, particulièrement en link:https://fr.wikipedia.org/wiki/Tierce_maintenance_applicative[TMA].
+
+Du point du vue du métier, qui a généralement la main sur les questions budgétaire, cette migration n'apporte rien, il est donc logique qu'il soit réticent à dépenser de l'argent pour cela.
+
+Il s'agit du même arbitrage que celui qui se pose pour traiter la dette technique d'un projet, sauf qu'on se place ici au niveau du SI.
+Cela rend les choses plus compliqué car les intervenants sont plus nombreux.
+Le critère primordial pour choisir une solution n'est pas de fâcher le moins de monde possible, mais de s'assurer que le budget soit là pour que les migrations aient bien lieu en temps et en heure.
+
+Trois approches possibles :
+
+- Si la roadmap du projet qui expose les services est suffisamment claire et prévisible, il est possible de préalouer le coût des migrations dans chaque projet, au même titre que les autres dépenses externes comme l'infrastructure.
+- Les consommateurs demandeurs de la nouvelle version peuvent payer pour faire migrer les autres. Cela a pour effet d'augmenter le prix des demandes d'évolutions, donc de les diminuer.
+- Un pot commun sous forme d'une taxe "X% du budget" appliquée à tous les consommateurs. Cela permet aux gros projets d'aider à financer les migrations des petits, pour que ceux-ci ne bloquent pas.
+
+Une chose à surveiller dans les deux dernières approches : comme ce n'est pas le projet qui paie, il peut être tentant de gonfler la note, en profitant de la migration pour traiter d'autres sujets.
+Sans aller jusqu'à demander de comptes détaillés, gardez donc l'œil ouvert.
 
 === Budget du projet qui expose les services
-* le(s) premier(s) consommateur(s) ?
-** risque que les autres attendent
-* un pot commun ?
-** au prorata de la consommation
-** Un % du budget du projet
+
+Quand un projet expose des services il le fait pour les autres, que ceux-ci contribuent à son budget.
+
+La manière dont les consommateurs financent les évolutions influe sur le rapport du force vis-à-vis du projet :
+plus l'un d'entre eux la sentiment de penser d'argent, plus il va vouloir se faire entendre lors des décisions.
+Ce n'est pas une mauvaise chose en soit — il est normal que certains projets aient plus d'influence que d'autres —, mais c'est à prendre en compte.
+
+Trois approches :
+
+==== Faire payer les demandeurs d'une évolution
+
+C'est l'approche la plus directe, cependant elle a deux effets secondaires :
+
+- Désavantager les petits projets par rapport aux gros.
+- Provoquer une forme d'attentisme : si un projet a besoin d'un nouveau service mais qu'il sait que le projet d'à côté l'a déjà demandé, il a tout intérêt à se taire et à laisser l'autre payer, vu qu'il y aura aussi accès.
+
+Sur ce budget, une part est réservée pour financer la maintenance de l'existant.
+
+=== Un pot commun
+
+Il s'agit de mettre en commun les ressources des différents projets.
+Deux axes simples pour la répartition :
+
+- Une taxe "X% du budget";
+- Au prorata de la consommation de service (au nombre d'appel).
+
+La première alternative désavantage les gros projets s'ils utilisent peu les services.
+La deuxième paraît plus juste du point de vue d'une approche service, mais elle ne reflète pas le coût réel pour le projet.
+
+=== Composer les deux
+
+Il est également possible de composer les deux approches :
+- faire payer les demandeurs pour les évolutions;
+- un pot commun pour la maintenance.
+
+C'est une approche tentante car elle semble plus juste, cependant elle demande de savoir dans quelle case mettre chaque tâche.
+Elle peut être intéressante sur des très gros projets en V, où les aspects budgétaires soient suivis de prêts et où la maintenance fait l'objet de chantiers spécifiques.
+Cependant dans des projets plus petits et agiles qui ont appris à refactorer en permanence, mieux vaut une approche plus basique qui évitera de bureaucratiser le projet.
