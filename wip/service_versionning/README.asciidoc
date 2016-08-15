@@ -1,72 +1,55 @@
 = Gérer les évolutions des services dans votre SI
 :toc:
 
+Sous-titre "Versionner les services dans votre SI ça n'est pas passer de `/v1/` à `/v2/` "
+
 == On parle de quoi
 
-Sous-titre "Versionner les services dans votre SI ça ne veut pas dire modifier une configuration de /v1/ à /v2/"
+L'essentiel des discussions sur les services porte sur les questions de technique et de design.
+Sur ces deux aspects on commence maintenant à disposer de pratiques bien établies et qui donnent de bons résultats.
 
-=== Services à l'intérieur d'un SI
+Malheureusement dans mon expérience, dans les grandes entreprises, la difficulté la plus grave qu'on rencontre avec les services n'est pas une de celle là : il s'agit des problématiques de versionnement.
 
-Consommateur et producteur à l'intérieur
+Poser le problème est très simple :
 
-Gestion des évolutions : on ne parle pas de comment designer vos services : n'explique pas comment faire du REST
+- pouvoir introduire de nouvelles versions de services pour répondre aux nouvelles demandes;
+- pouvoir décomissionner les anciennes versions pour limiter le travail de maintenance et garder un SI évolutif.
 
-Exposer un service c'est un contrat avec un engagement
+Ce problème existe depuis les débuts de la SOA, mais chaque avancée dans l'organisation des projets (cycles plus courts, agile et maintenant micro-service) le rend plus critique, et aucune solution miracle n'a encore été inventée pour rendre les choses plus faciles.
 
-=== Objectif d'une bonne gestion
+Très peu de grandes organisations s'en sortent bien, car cette question mélange tous les sujets qui fâchent : gouvernance, planning et budget.
 
-* Pouvoir introduire de nouvelles versions pour répondre aux nouvelles demandes
-* Décomissionner les anciennes versions
-* Un pur sujet de management de SI
-* Sujet très compliqué, peu s'en sortent bien
-* Pas de silver bullet où de pattern qu'il suffit de dérouler : quelques pratiques à éviter, et beaucoup de choses à décider pour vous
+== La spécificité des services à l'intérieur d'un SI
 
-=== On va parler de mots qui fâchent : gouvernance, planning, budget
+Un service est à l'intérieur d'un SI quand il est exposé et consommé par des applications du SI.
 
-`Mettre des exemples`
+Quand un service est exposé ou provient de l'extérieur, il fait l'objet d'une contractualisation. Sans obligatoirement aller jusqu'à un engagement de service détaillé, les engagements sont formalisés et les décisions sont prises.
 
-== Généralités
+En interne, la contractualisation est beaucoup plus faible voire inexistante : on se met d'accord informellement, les engagement sont moraux, et au pire on négociera une extension de budget et de calendrier.
 
-=== Différence entre modèle "vendeur" et modèle "acheteur"
+L'avantage est qu'on est libre de décider ce qu'on veut et donc de choisir les solutions les plus adaptées, l'inconvénient est que si c'est mal fait le chaos règne.
+Une des missions d'un DSI est de s'assurer la bonne marche du SI, faire en sorte que les services évoluent correctement en est un aspect essentiel.
 
-* En interne : les clients demandent (acheteurs)
-* En public : on propose un service aux clients (vendeur)
-* En interne : on est sur les deux
-** Dans le cas de projets de tailles équivalentes, si pas d'énorme projet qui écrase tout
-** Important : connaitre ses consommateurs
-* Partenaires : souvent entre les deux, voire encore plus compliqué qu'en interne
+Le cas des services avec des partenaires est un peu particulier : il est souvent "pire" que celui des services internes.
+En effet pour les services internes, en escaladant suffisamment haut dans la hiérarchie, il est généralement possible d'arbitrer toutes les questions.
+Par contre, entre partenaires, la situation est souvent beaucoup plus floue : officiellement on a un contrat mais dans la réalité tout est négociable et tout peut être remis en question.
 
-=== On parle beaucoup des géants du web mais ils ne sont pas le bon exemple pour les API internes
-
-* Ils parlent peu de ce sujet : plutôt API publiques et implémentation
-* Différence dans la complexité du produits entre les géant du web et certains de nos clients : beaucoup plus de dépendances sur des choses plus complexes
-
-=== Différences entre API externes et internes
-
-* Contractualisation beaucoup plus faible
-** Un DSI  va faire un optimum global
-** En général : engagement moral, pas de pénalité en cas de soucis
-*** Au pire on négocie une extension de budget
-** En général en interne, si un consommateur n'est pas prêt, on ne va pas le débrancher
+Il est intéressant de noter que les géants du web communiquent peu sur ce sujet : ils peuvent être très bavard sur les outils ou les organisations projets, mais le sont beaucoup moins sur les questions d'organisation globale.
 
 == Principes
 
-=== Il faut décider qui décide et comment on décide : DSI, instance de gouvernance ...
+Dans le domaine de la gouvernance de service, il n'y a pas de link:http://worrydream.com/refs/Brooks-NoSilverBullet.pdf[solution magique] qui s'applique dans tous les cas.
+La meilleure solution sera celle qui est adaptée à votre contexte, et particulièrement celle que vous serez capable de mettre en œuvre.
+Mais le plus est qu'il vaut mieux vaut choisir une stratégie, même si elle n'est pas la meilleure, plutôt que de ne pas avoir de stratégie et laisser régner le flou.
 
-Deux idées principales :
-- Il n'y a pas de link:http://worrydream.com/refs/Brooks-NoSilverBullet.pdf[solution magique], tout au plus 
-
-* Pas subir la non décision
-* Axe décisions : optimum global / privilégier certains projets / ... : arbitrer
-* Ça peut dépendre des projets (pas forcément une règle unique), et changer dans la vie des projets
-* Ce qu'il faut éviter c'est le flou : une mauvaise stratégie c'est mieux qu'une stratégie floue
-* Penser aux projets en TMA
+Une fois qu'une stratégie est choisie, l'étape suivante est de décider comment seront prises les différentes décisions.
+L'idéal est qu'elles le soient le plus localement possible, c'est à dire au niveau des projets, sous réserve que l'intérêt global du SI soit respecté.
 
 === Deux forces opposées, et un projet au milieu
 
 La difficulté de la gestion de version vient du fait qu'elle est à la confluence de deux forces opposées :
 
-- les consommateurs qui ont besoins de nouvelles fonctionalités les veulent le plus vite possible ;
+- les consommateurs qui ont besoins de nouvelles fonctionnalités les veulent le plus vite possible ;
 - les consommateurs qui n'en ont pas besoin ne veulent pas bouger.
 
 Les projets qui exposent les services sont pris entre ces deux feux.
@@ -83,7 +66,7 @@ Pour cela plusieurs solutions :
 
 === N'exposez que ce dont vous avez besoin
 
-Même si avec les outils récents il est facile d'exposer l'intégralité de vos données en REST il ne faut surtout pas le faire. D'une part vous créez une adhérence inutile, d'autre part l'API que vous créerez sera calquée sur la repréesentation interne de vos donnée et ne sera probablement pas adaptée à vos consommateurs.
+Même si avec les outils récents il est facile d'exposer l'intégralité de vos données en REST il ne faut surtout pas le faire. D'une part vous créez une adhérence inutile, d'autre part l'API que vous créerez sera calquée sur la représentation interne de vos données et ne sera probablement pas adaptée à vos consommateurs.
 
 === Limitez les consommateurs tant qu'une API n'est pas sèche
 
