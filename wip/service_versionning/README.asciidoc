@@ -1,4 +1,5 @@
 = Gérer les évolutions des services dans votre SI
+:toc:
 
 == On parle de quoi
 
@@ -89,34 +90,62 @@ Exposer un service c'est un contrat avec un engagement
 
 image::zones.png[title="Les zones de services"]
 
-== Comment exposer
+== Comment exposer ?
 
-=== Nombre de versions
-* Arbitrage entre travail pour le producteur et pour les consommateurs
-* Deux (idéal) ou trois versions en parallèle
-** Chevauchement temporaire entre deux version (on attend entre la sortie de la N+1 et le décomissionnement de la N-1) : permet de sauter une version sur deux pour les consommateurs
+=== Nombre de versions à maintenir
+
+Le choix du nombre de versions à maintenir est un arbitrage entre le producteur de services et les consommateurs :
+
+- plus le nombre de version est faible, moins le consommateur a besoin de faire de la maintenance ;
+- plus le nombre de version est élevé, plus les consommateurs ont de souplesse dans leurs migrations.
+
+Le modèle le plus observé est d'avoir deux versions en parallèle en régime de croisière, et ponctuellement trois lors d'une bascule.
+Avec deux versions, le travail de maintenance est raisonnable pour le fournisseur de service, et de laisser passer du temps entre la publication d'une nouvelle version et le décommissionnement de la version N-2 permet aux consommateurs qui le souhaitent de sauter une version sur deux.
 
 image::versions.png[title="Un exemple de gestion de version"]
 
+Une contrainte forte qui peut limiter le nombre de version est la capacité à conserver la compatibilité lors d'une mise à jour importante du modèle de donnée.
+Une restructuration peut par exemple nécessiter de supprimer certaines opérations existantes : qu'elles soient devenues trop couteuses  en calcul, trop lentes, ou tout simplement impossibles (par exemple si une clé de partitionnement est désormais obligatoire).
+Ces cas là sont à anticiper le plus possible, pour pouvoir s'organiser avec les consommateurs de donnée.
+
 === Quand et quoi communiquer
 
-* Cas idéal : définir le contrat en commnun
-* Au minimum : communiquer dès que l'interface a été définie
-* Contrat d'API : interface  + données d'exemples + mocks
-** Mocks des consommateurs pour tester
-** S'outiller (swagger)
+Le cas idéal est toujours celui où les contrats d'interface sont définis en commun entre producteur et consommateurs.
+Dans cette situation, la communication est permanente et les problèmes sont identifiés au plus tôt.
+
+Dans tous les cas, il faut communique officiellement dès qu'une interface a été définie, avant même que le code soit déployé ou même rédigé.
+Pour être utilisable par les consommateurs, il ne faut pas vous limiter à un descriptif où à un contrat d'interface mais vous devez fournir :
+
+- un contrat d'interface formalisé, peu importe le format tant qu'il est utilisable par vos utilisateurs (swagger, WSDL, RAML…);
+- un document expliquant le service : si le contrat d'interface peut être suffisant pour bidouiller un appel par essai et erreur, se servir correctement d'un service nécessite de comprendre sa logique, et pour cela rien ne remplace du texte et des schémas ;
+- des données d'exemples d'entrée et de sortie ;
+- des mocks permettant de simuler des appels.
+
+Si un seul de ces éléments manque, vous allez perdre du temps aux consommateurs et à vous-même : cela revient à avoir du code sans test et/ou sans documentation.
+
+=== Modifications rétro-compatibilité dans les évolutions mineures
+
+Si vous utilisez une gestion de version link:http://semver.org/lang/fr/[sémantique] avec des versions majeures et mineures, il est possible de pousser des évolutions dans les versions mineures, sous condition qu'elles soient rétro-compatibles.
+
+Nous vous encourageons à suivre cette approche car elle permet d'ajouter de la flexibilité à vos services.
+
+Même si les changements sont — en principe — transparents, attention à tout de même bien communiquer avec les consommateurs, notament pour savoir quand telle version est déployée dans tel environnement. Cela vous évitera de perdre du temps.
+
+Cette approche doit toutefois être appliquée avec discernement :
+si les évolutions majeures sont trop compliquées à mettre en œuvre, la risque est de vouloir faire passer le maximum de changement dans des versions mineures, en tordant les contrats de service.
+Cela se remarque facilement à la lecture de la documentation où l'on se retrouve avec des choses comme "le paramètre `montant` représente la somme de l'opération, sauf si la valeur est -1 dans ce cas cela signifie qu'il faut annuler l'opération précédente".
+
+Le fait qu'on soit tenté d'aller dans cette direction est une indication claire qu'il faut travailler pour fluidifier les montées de versions majeures, voire qu'il faut en faire plus souvent.
 
 === Compatibilité gérée par l'API Management ou l'ESB
 
-* Pas magique : on change de version majeure c'est qu'on change le comportement métier
-* Code métier dans un middleware qui est souvent géré par une équipe qui ne connait pas le métier
-* L'équipe du middleware devient le goulot d'étranglement pour les projets qui veulent évoluer
+Une des solutions mise en avant par les vendeurs d'ESB et d'API management consiste à gérer la rétro-compatiblité dans leur outil plutôt que dans du code applicatif.
+En effet ces outils proposent souvent des fonctionnalités spécifiques permettant de câbler des appels à l'aide d'un outil graphique ou d'un DSL.
 
-=== Changements rétro-compatibles qui devraient être "transparents" pour éviter une montée de version
-* Peut être une bonne idée
-* Peut être dangereux quand on le pousse trop loin : risque de tordre les contrats
-** Si tu as peur de changer le contrat, c'est qu'il y a problème
-* Demande de très bien communiquer
+On ne va traiter ce sujet en détail ici car il nécessiterait un article à lui tout seul.
+
+Pour résumer notre approche : cela peut être pertinent mais uniquement à petite dose et quand le code de compatibilité est simple et pas trop métier.
+Faite particulièrement attention quand ce travail est à la charge d'une équipe transverse : rappelez-vous que cette équipe connaît moins bien le métier, et que vous ne maîtrisez pas son planning.
 
 == À quel rythme ?
 
