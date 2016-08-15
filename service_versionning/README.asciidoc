@@ -1,5 +1,4 @@
 = Gérer les évolutions des services dans votre SI
-:toc:
 
 == On parle de quoi
 
@@ -121,38 +120,97 @@ image::versions.png[title="Un exemple de gestion de version"]
 
 == À quel rythme ?
 
-=== Pas de solution miracle : question à laquelle vous devez répondre vous même
+Une fois qu'on sait comment faire, la prochaine étape est le "quand ?".
 
-=== Ça depénd des projets et ça peut changer dans la vie des projets
+Tout d'abord il n'y a pas de solution miracle valable dans tous les cas.
+En fonction de votre organisation, il est même possible qu'il n'y ait pas de solution unique qui convienne pour vous.
+D'une part la solution la plus adaptée dépend d'un projet à l'autre, et varie dans la vie des projets, d'autre part il s'agit d'un choix qui n'a pas d'impact global au niveau du SI.
+Il est donc possible de déléguer cette décision au niveau du projet, c'est à dire par le groupe formé par le projet qui expose les services et les consommateurs de ses différents services.
 
-=== Deux stratégies
+Il y a deux stratégies possibles :
 
-* Cadencé : une fois tous les X mois
-** Rythme de modification de l'API n'est pas le rythme de livraison de projet
-**  Plus prévisible pour les consommateurs, permet de s'organiser et de préprovisionner
-*** Ça aide d'avoir une roadmap
-*** Principe de moindre surprise
-* Opportuniste : quand vous en avez besoin
-**   Permet plus de fluidité
+=== Rythme cadencé
 
-=== Royaume / émissaire API à deux vitesses
+Il s'agit de prévoir les évolution de services à un rythme régulier "tous les X", en général tous les X mois.
+Ce rythme ne correspond pas au rythme de release du projet : il peut livrer régulièrement sans modifier les services qu'il expose.
+Par ailleurs il s'agit de cadencer la possibilité de faire évoluer les services : ce n'est pas parce qu'on a réservé un créneau qu'il faut forcément s'en servir. S'il n'y a rien à changer alors on le passe.
 
-* les services qui sont pour le royaumes peuvent bouger rapidement
-** d'ailleurs ils ont tendance à bouger ensemble
-* les services qui sont pour tout le SI bouger à un rythme plus lent
+Cette possibilité est plus contraignante pour le projet qui expose, mais la prévisibilité permet aux consommateurs de s'organiser, voire de provisionner les budget de migrations.
 
-=== Si un projet client qui ne peut pas évoluer
+Elle est par exemple la plus indiquée dans un contexte non agile où on préfère la prévisibilité à la vitesse.
 
-* s'il faut maintenir une version spécifique, faire migrer tous les autres
-* Coût continu, et qui va augmenter au fur et à mesure que votre interface va évoluer
-** Ils paient
+=== Rythme opportuniste
+
+Dans cette stratégie on fait évoluer le service quand on en a besoin.
+
+Il ne s'agit pas de le faire à l'arrache : il faut bien entendu anticiper les modifications, et laisser aux consommateurs le temps de migrer : on ne dégrade pas la qualité sous prétexte qu'on est plus adaptable.
+
+Mais plutôt que de prévoir des créneaux à l'avance, on préfère le faire en cas de besoin.
+
+Cette approche convient le mieux en début et en fin de projet :
+
+- au début les changements sont les fréquents, pouvoir agir à la demande est plus pratique ;
+- en fin de projet lorsque les choses se sont stabilisées, les modifications deviennent occasionnels.
+
+=== Majeur et mineur
+
+Il est possible de mixer les deux approches :
+- une approche cadencée pour les versions majeures;
+- une approche opportuniste pour les versions mineures.
+
+Ainsi on anticipe les changements bloquants, et on peut fournir au plus tôt les changements transparents.
+
+=== Royaume / émissaire
+
+Le cas du royaume émissaire va complexifier le tableau : les services qui restent à l'intérieur d'une même zone du SI vont avoir tendance à bouger plus rapidement que les services entre zones.
+On peut donc avoir une politique différente pour les deux types de services.
+
+Les projets à l'intérieur d'une même zone ayant naturellement tendance à bouger ensemble, suivant que les évolutions du métier porte sur l'un puis l'autre sujet, ils vont probablement adopter un rythme similaire.
+
+== Si un projet client ne peut pas évoluer
+
+Il s'agit d'une question qui ne se poserait pas dans un monde parfait, mais qui en pratique arrive régulièrement : que faire si un projet ne peut pas évoluer et que la solution la plus évidente serait de conserver pour une version de vos service pour lui ?
+
+En anticipant sur la partie suivante, nous allons parler budget.
+
+Avant de choisir cette solution, il faut se rappeler que ce type de compatibilité a un prix.
+Ce prix ne se solde pas en une fois mais il s'agit d'un surcoût qui s'ajoute à chaque évolution pour maintenir la rétro-compatibilité.
+Par ailleurs ce prix va augmenter au fur et à mesure que la version gelée s'écarte de la version standard et que la rétro-compatibilité devient de plus en plus complexe.
+
+Ce prix est de trois ordres :
+
+- en argent pour le temps passé ;
+- en complexité dans le code pour gérer la compatibilité ;
+- en motivation pour les développeurs qui doivent prendre en compte cette contrainte lors de chaque évolution.
+
+La seule solution viable, si on veut conserver une rétro-compatibilité pour un consommateur c'est ce que ce soit lui qui finance ce budget.
+Cette approche a trois avantages :
+
+- Elle est dissuasive car les projets sont incités à migre ;
+- Elle est équitable car c'est le demandeur qui paie ;
+- Elle va dans le bon sens car, avec le prix qui va augmenter avec le temps, il y a l'espoir qu'à un certain moment le consommateur saute le pas et se décide à migrer.
+
+Le dernier avantage ne devrait avoir à s'appliquer car, dans un monde idéal, lorsqu'on décide de maintenir une compatibilité c'est pour un temps limité et qui devrait être fixé dès le début.
+Dans les fait lorsqu'un projet décroche une telle exception il est tentant de jouer les prolongation, l'augmentation du prix est donc là pour contrebalancer cette tendance.
+
+Ne pas faire payer le consommateur revient à donner une prime à ceux qui ne jouent pas le jeux : si vous ne migrez pas, non seulement vous n'avez plus à vous embêter, mais en plus vous ne payer rien !
+
+=== Il ne doit en rester qu'un
+
+Si malgré tout vous faites le choix de garder une version pour un consommateur, il est très important de tout faire pour faire migrer tous les autres.
+En effet une fois que l'exception sera connue, d'autres vont être tentés de s'engouffrer dans la brèche qui vient d'être ouverte et de rester sur la même version.
+Économiquement cette approche est attirante car le prix de la maintenance est alors réparti entre tous les projets, à la limite un projet qui voudrait arrêter de migrer aurait même intérêt à en convaincre d'autres pour diviser sa note.
+
+Mais cette approche est très dangereuse : plus il y a de consommateurs bloqués sur une version, plus il y a de chances que vous ayant à maintenir cette version longtemps, voire indéfiniment.
+
+C'est l'un où des cas où la gouvernance stratégique a sa place : car l'optimisation globale du SI s'oppose directement à des solutions opportunistes.
 
 == Budget
 
 Une fois toutes les bonnes résolutions prises, reste une question, probablement la plus importante : qui paie ?
 
 Comme dans certains des autres sujets traités, il n'y a pas de réponse qui convienne dans tous les cas.
-La différence ici c'est qu'il vaut peut-être mieux choisir une même approche pour tous les projets pour limiter le nombre de fois où on se pose la question.
+La différence ici c'est qu'il vaut peut-être mieux choisir une même approche pour tous les projets pour limiter le nombre de fois où on rouvre ce débat.
 Les prises de décisions sur les questions de budgets étant extrêmement difficiles, cela permet de limiter les conflits, même si à chaque cycle budgétaire la tentation est grande de tout remettre en cause.
 
 === Budget des consommateurs
@@ -207,11 +265,9 @@ Deux axes simples pour la répartition :
 La première alternative désavantage les gros projets s'ils utilisent peu les services.
 La deuxième paraît plus juste du point de vue d'une approche service, mais elle ne reflète pas le coût réel pour le projet.
 
-=== Composer les deux
+=== Composer les deux ?
 
-Il est également possible de composer les deux approches :
-- faire payer les demandeurs pour les évolutions;
-- un pot commun pour la maintenance.
+Il est également possible de composer les deux approches : faire payer les demandeurs pour les évolutions et un pot commun pour la maintenance.
 
 C'est une approche tentante car elle semble plus juste, cependant elle demande de savoir dans quelle case mettre chaque tâche.
 Elle peut être intéressante sur des très gros projets en V, où les aspects budgétaires soient suivis de prêts et où la maintenance fait l'objet de chantiers spécifiques.
