@@ -53,44 +53,47 @@ Exposer un service c'est un contrat avec un engagement
 
 === Il faut décider qui décide et comment on décide : DSI, instance de gouvernance ...
 
+Deux idées principales :
+- Il n'y a pas de link:http://worrydream.com/refs/Brooks-NoSilverBullet.pdf[solution magique], tout au plus 
+
 * Pas subir la non décision
 * Axe décisions : optimum global / privilégier certains projets / ... : arbitrer
 * Ça peut dépendre des projets (pas forcément une règle unique), et changer dans la vie des projets
 * Ce qu'il faut éviter c'est le flou : une mauvaise stratégie c'est mieux qu'une stratégie floue
 * Penser aux projets en TMA
 
-=== Deux forces opposées
+=== Deux forces opposées, et un projet au milieu
 
-* Minimum de changement de versions pour ceux que les nouvelles fonctionnalités n'intéresse pas
-* Beaucoup de changements de versions pour ceux que ça intéresse
-* Les projets peuvent basculer de l'un à l'autre
+La difficulté de la gestion de version vient du fait qu'elle est à la confluence de deux forces opposées :
 
-== Ce qu'il faut exposer, ou pas
+- les consommateurs qui ont besoins de nouvelles fonctionalités les veulent le plus vite possible ;
+- les consommateurs qui n'en ont pas besoin ne veulent pas bouger.
 
-=== Plus on expose plus on créé d'adhérence
+Les projets qui exposent les services sont pris entre ces deux feux.
+Ce qu'il faut éviter à tout prix c'est que l'arbitrage entre les deux soit déléguée directement au projet.
+Il s'agit du même mode de fonctionnement qu'un responsable technique à qui on demande de prioriser les demandes de deux responsables métier : cela n'aboutit à rien de bon tout en créant de la frustration.
 
-* Moins on expose moins on en créé
+== Exposer le minimum au minimum de clients
 
-=== N'exposez pas tout par défaut (toutes les données, tous les champs) : faite le en progressif
+L'exposition de service est régie par un principe simple : exposer un service c'est créer un contrat qu'on s'engage à respecter à vis à vis des consommateurs de service, c'est donc créer l'adhérence dans le SI.
 
-=== Limiter les consommateurs tant que votre API n'est pas sèche
+L'un des objectifs de l'approche services étant de minimiser l'adhérence entre les applications pour permettre au système d'évoluer le plus facilement possible, la conséquence est simple : il vaut mieux exposer le minimum de choses.
 
-=== Faites attention quand vous exposer les données que vous même consommez ou vous créez des cascades de dépendances
+Pour cela plusieurs solutions :
 
-* Si j'utilise les données de l'appli A, et même si je dois les stocker, je ne les republie pas, sinon je dois changer les services que j'expose quand A change les siens, ou alors je créé une divergence
+=== N'exposez que ce dont vous avez besoin
 
-=== Royaume émissaire
+Même si avec les outils récents il est facile d'exposer l'intégralité de vos données en REST il ne faut surtout pas le faire. D'une part vous créez une adhérence inutile, d'autre part l'API que vous créerez sera calquée sur la repréesentation interne de vos donnée et ne sera probablement pas adaptée à vos consommateurs.
 
-* Certaines données ont vocation à rester dans une certaine zone métier, ne les déversez pas dans tout le SI
+=== Limitez les consommateurs tant qu'une API n'est pas sèche
 
-=== Ne pas lier l'exposition avec la représentation interne
-* On est capable de ne pas changer l'API même si l'interne n'évolue pas
+Lorsque vous sortez un nouveau service il y a de grandes chances que vous ne tombiez pas juste du premier coup. Tant que vous n'êtes pas confiant dans la maturité d'une API il vaut mieux donc limiter les consommateurs.
 
-=== Importance de savoir qui utilise quoi : il faut du monitoring
+=== Royaume / émissaire
+
+Segmentez vos services entre ceux qui ont vocation à être utilisé par l'ensemble des applications et ceux qui ne sont utilisé que par les applications "proches". Cela permet de cranter les choses en terme d'exposition ou de rythme de migrations.
 
 image::zones.png[title="Les zones de services"]
-
-== Comment exposer ?
 
 === Nombre de versions à maintenir
 
