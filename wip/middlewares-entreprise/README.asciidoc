@@ -1,0 +1,68 @@
+= Middleware d'entreprises : nous ne sommes plus en l'an 2000
+Julien Kirch
+v1.0, 2015-09-01
+
+== De quoi on parle ?
+
+Quand j'ai commencé à travailler dans les années 2000, [line-through]#les dinosaures dominaient le monde# les projets étaient en train de changer.
+Grâce aux tests automatisés, à l'extreme programming et aux nouveaux outils qui arrivaient comme les serveurs d'applications et Subversion, on apprenait à développer mieux et plus vite.
+
+L'un des points qui posait problème était les middleware d'entreprises : ils nous semblaient lourds et inadaptés à nos nouvelles pratiques, et ont commencé à devenir des goulets d’étranglement.
+
+Presque 15 ans plus tard, les pratiques ont bien changé, mais malheureusement ce n'est pas le cas pour un certains nombres d'outils : ils ont enrichis leurs fonctionnalité, mais ne se sont pas transformés.
+
+Dans différents domaines, ces outils peuvent désormais être un vrai frein pour votre capacité à délivrer.
+
+Prendre conscience de ces limitations peut vous aider dans deux situations :
+
+- si vous devez choisir un nouvel outil, cela vous permettra d'être certain que vos critères d'évaluation couvrent bien ces caractéristiques ;
+- si vous avez déjà ces outils, cela vous permettra de vous rappeller les limites qu'il vous impose, et vous fera peut-être réaliser qu'il est temps d'en changer.
+
+=== C'est quoi un middleware d'entreprise ?
+
+image::easter.jpg[title="Des middleware d'entreprise dans leur habitat naturel, photo par Arian Zwegers en CC"]
+
+Il s'agit d'un groupe aux limites assez floues mais qu'on peut délimiter par un certains nombres de caractéristiques :
+
+- il s'agit d'outils transverses ;
+- ils peuvent être structurants pour le SI suivant l'usage qui en est fait ;
+- il s'agit d'un des derniers bastions des logiciels propriétaires ;
+- leur choix n'est pas laissé à la main de chaque projet mais est effectué de manière transverse, souvent par une cellule d'architecture et/ou l'équipe en charge de l'exploitation ;
+- ils sont choisis pour durer, et donc sont souvent évalués pour leur capacité à répondre à des besoins qu'on a identifié, mais qui après coup ne se réalisent pas toujours.
+
+== Licenses, prix et contraintes projets
+
+Problèmes quand la license / le support / le prix font que tu es obligé de choisir une solution sous-optimale.
+
+Sois pas d'environement de test, ou d'avoir deux solutions (gold / silver).
+
+== Développement en équipe et gestion de version
+
+Problème nottament avec les outils qui viennent avec un IDEs
+
+Usage limités à une seule personne à la fois : convennait très bien quand on a une équipe dédiée à l'outil et qu'on a des cycles de livraisons lents.
+
+Configuration sauvegardée dans un format binaire ou difficile à modifier (type objet java séraialisé)
+
+- impossible de faire des merges en utilisant un gestionnaire de version
+- passage d'un environement : obligé de refaire les mêmes manipulations avec risque d'erreur
+
+Critère facile : si l'outil vient avec ses ensembles de fichier Chef / Puppet / Ansible, mais jetez quand même un œil (parfois configuration de base qu'on modifie ensuite avec l'IDE...).
+
+== Test
+
+Facilité de tester de manière automatisé.
+
+== Build et déploiement
+
+- Fichiers de configuration templatisables dans une syntaxe lisible (le xml ne compte plus).
+- Variables à un seul endroit
+- Diffables
+
+== Monitoring
+
+== Log
+
+- Faciles à parser
+- Horodatés
+- Flushés
