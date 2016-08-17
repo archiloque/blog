@@ -1,22 +1,22 @@
 = Gérer les évolutions des services dans votre SI
 
-Sous-titre "Versionner les services dans votre SI ça n'est pas passer de `/v1/` à `/v2/` "
+Sous-titre "Versionner les services dans votre SI, cela n'est pas passer de `/v1/` à `/v2/` "
 
 == On parle de quoi
 
-L'essentiel des discussions sur les services porte sur les questions de technique et de design.
-Sur ces deux aspects on commence maintenant à disposer de pratiques bien établies et qui donnent de bons résultats.
+L'essentiel des discussions sur les services porte sur les questions de design et de technique.
+Sur ces deux aspects, link:http://blog.octo.com/designer-une-api-rest/[on commence maintenant à disposer de pratiques bien établies et qui donnent de bons résultats].
 
-Malheureusement dans mon expérience, dans les grandes entreprises, la difficulté la plus grave qu'on rencontre avec les services n'est pas une de celle là : il s'agit des problématiques de versionnement.
+Malheureusement dans mon expérience des les grandes entreprises, la difficulté la plus grave qu'on rencontre avec les services n'est pas une de celle là : il s'agit des problématiques de versionnement.
 
 Poser le problème est très simple :
 
-- pouvoir introduire de nouvelles versions de services pour répondre aux nouvelles demandes;
+- pouvoir introduire de nouvelles versions de services pour répondre aux nouvelles demandes ;
 - pouvoir décomissionner les anciennes versions pour limiter le travail de maintenance et garder un SI évolutif.
 
-Ce problème existe depuis les débuts de la SOA, mais chaque avancée dans l'organisation des projets (cycles plus courts, agile et maintenant micro-service) le rend plus critique, et aucune solution miracle n'a encore été inventée pour rendre les choses plus faciles.
+Ce problème existe depuis les débuts de la SOA, mais chaque avancée dans l'organisation des projets (cycles plus courts, agile et maintenant micro-services) le rend plus critique, et aucune solution miracle n'a encore été inventée pour rendre les choses plus faciles.
 
-Très peu de grandes organisations s'en sortent bien, car cette question mélange tous les sujets qui fâchent : gouvernance, planning et budget.
+Très peu de grandes organisations s'en sortent bien, car cette question mélange tous les sujets qui critiques : gouvernance, planning et budget.
 
 == La spécificité des services à l'intérieur d'un SI
 
@@ -24,7 +24,7 @@ Un service est à l'intérieur d'un SI quand il est exposé et consommé par des
 
 Quand un service est exposé ou provient de l'extérieur, il fait l'objet d'une contractualisation. Sans obligatoirement aller jusqu'à un engagement de service détaillé, les engagements sont formalisés et les décisions sont prises.
 
-En interne, la contractualisation est beaucoup plus faible voire inexistante : on se met d'accord informellement, les engagement sont moraux, et au pire on négociera une extension de budget et de calendrier.
+En interne, la contractualisation est beaucoup plus faible voire inexistante : on se met d'accord de façon informelle, les engagements sont moraux, et au pire on négociera une extension de budget et de calendrier.
 
 L'avantage est qu'on est libre de décider ce qu'on veut et donc de choisir les solutions les plus adaptées, l'inconvénient est que si c'est mal fait le chaos règne.
 Une des missions d'un DSI est de s'assurer la bonne marche du SI, faire en sorte que les services évoluent correctement en est un aspect essentiel.
@@ -38,7 +38,7 @@ Il est intéressant de noter que les géants du web communiquent peu sur ce suje
 == Principes
 
 Dans le domaine de la gouvernance de service, il n'y a pas de link:http://worrydream.com/refs/Brooks-NoSilverBullet.pdf[solution magique] qui s'applique dans tous les cas.
-La meilleure solution sera celle qui est adaptée à votre contexte, et particulièrement celle que vous serez capable de mettre en œuvre.
+La meilleure solution sera celle qui est adaptée à votre contexte, et particulièrement celle que vous seriez capable de mettre en œuvre.
 Mais le plus est qu'il vaut mieux vaut choisir une stratégie, même si elle n'est pas la meilleure, plutôt que de ne pas avoir de stratégie et laisser régner le flou.
 
 Une fois qu'une stratégie est choisie, l'étape suivante est de décider comment seront prises les différentes décisions.
@@ -46,18 +46,18 @@ L'idéal est qu'elles le soient le plus localement possible, c'est à dire au ni
 
 === Deux forces opposées, et un projet au milieu
 
-La difficulté de la gestion de version vient du fait qu'elle est à la confluence de deux forces opposées :
+La difficulté de la gestion de versions vient du fait qu'elle est à la confluence de deux forces opposées :
 
 - les consommateurs qui ont besoins de nouvelles fonctionnalités les veulent le plus vite possible ;
 - les consommateurs qui n'en ont pas besoin ne veulent pas bouger.
 
-Les projets qui exposent les services sont pris entre ces deux feux.
+Les applications du SO qui exposent leurs services sont pris entre ces deux feux.
 Ce qu'il faut éviter à tout prix c'est que l'arbitrage entre les deux soit déléguée directement au projet.
 Il s'agit du même mode de fonctionnement qu'un responsable technique à qui on demande de prioriser les demandes de deux responsables métier : cela n'aboutit à rien de bon tout en créant de la frustration.
 
 == Exposer le minimum au minimum de clients
 
-L'exposition de service est régie par un principe simple : exposer un service c'est créer un contrat qu'on s'engage à respecter à vis à vis des consommateurs de service, c'est donc créer l'adhérence dans le SI.
+L'exposition de services est régie par un principe simple : exposer un service c'est créer un contrat qu'on s'engage à respecter vis à vis des consommateurs de service, c'est donc créer l'adhérence dans le SI.
 
 L'un des objectifs de l'approche services étant de minimiser l'adhérence entre les applications pour permettre au système d'évoluer le plus facilement possible, la conséquence est simple : il vaut mieux exposer le minimum de choses.
 
@@ -71,27 +71,31 @@ Même si avec les outils récents il est facile d'exposer l'intégralité de vos
 
 Lorsque vous sortez un nouveau service il y a de grandes chances que vous ne tombiez pas juste du premier coup. Tant que vous n'êtes pas confiant dans la maturité d'une API il vaut mieux donc limiter les consommateurs.
 
-=== Royaume / émissaire
+=== Zones du SI
 
-Segmentez vos services entre ceux qui ont vocation à être utilisé par l'ensemble des applications et ceux qui ne sont utilisé que par les applications "proches". Cela permet de cranter les choses en terme d'exposition ou de rythme de migrations.
+Segmentez vos services entre ceux qui ont vocation à être utilisé par l'ensemble des applications et ceux qui ne sont utilisés que par les applications "proches". Cela permet de cranter les choses en termes d'exposition ou de rythme de migrations.
+
+Les services utilisés par plusieurs zones sont d'ailleurs souvent aussi exposés à l'extérieur, ils suivent donc d'autres règles.
 
 image::zones.png[title="Les zones de services"]
 
-=== Nombre de versions à maintenir
+=== Nombre de versions à maintenir en parallèle
 
-Le choix du nombre de versions à maintenir est un arbitrage entre le producteur de services et les consommateurs :
+Le choix du nombre de versions à maintenir en parallèle est un arbitrage entre le fournisseur de services et les consommateurs :
 
-- plus le nombre de version est faible, moins le consommateur a besoin de faire de la maintenance ;
-- plus le nombre de version est élevé, plus les consommateurs ont de souplesse dans leurs migrations.
+- plus le nombre de version à maintenir est faible, moins le fournisseur de services a besoin de faire de la maintenance, mais plus le consommateur a besoin de se mettre à jour souvent ;
+- plus le nombre de version est élevé, plus le fournisseur de services a besoin de faire de la maintenance, mais plus les consommateurs ont de souplesse dans leurs migrations.
 
 Le modèle le plus observé est d'avoir deux versions en parallèle en régime de croisière, et ponctuellement trois lors d'une bascule.
 Avec deux versions, le travail de maintenance est raisonnable pour le fournisseur de service, et de laisser passer du temps entre la publication d'une nouvelle version et le décommissionnement de la version N-2 permet aux consommateurs qui le souhaitent de sauter une version sur deux.
 
 image::versions.png[title="Un exemple de gestion de version"]
 
-Une contrainte forte qui peut limiter le nombre de version est la capacité à conserver la compatibilité lors d'une mise à jour importante du modèle de donnée.
+Dans le cas d'une application qui évolue rapidement et qui aurait donc besoin de mettre à jour les services qu'elle expose de manière rapprochée, alors qu'un consommateur n'est pas en mesure de suivre ce rythme, vous pouvez mettre en œuvre le modèle "Zones du SI" et dégraffer les services destinés à cette application du reste des services.
+
+Une contrainte forte qui peut limiter le nombre de versions est la capacité à conserver la compatibilité lors d'une mise à jour importante du modèle de donnée.
 Une restructuration peut par exemple nécessiter de supprimer certaines opérations existantes : qu'elles soient devenues trop couteuses  en calcul, trop lentes, ou tout simplement impossibles (par exemple si une clé de partitionnement est désormais obligatoire).
-Ces cas là sont à anticiper le plus possible, pour pouvoir s'organiser avec les consommateurs de donnée.
+Ces cas là sont à anticiper le plus possible, pour pouvoir s'organiser avec les consommateurs de données.
 
 === Quand et quoi communiquer
 
@@ -114,7 +118,7 @@ Si vous utilisez une gestion de version link:http://semver.org/lang/fr/[sémanti
 
 Nous vous encourageons à suivre cette approche car elle permet d'ajouter de la flexibilité à vos services.
 
-Même si les changements sont — en principe — transparents, attention à tout de même bien communiquer avec les consommateurs, notament pour savoir quand telle version est déployée dans tel environnement. Cela vous évitera de perdre du temps.
+Même si les changements sont — en principe — transparents, attention à tout de même bien communiquer avec les consommateurs, notamment pour savoir quand telle version est déployée dans tel environnement. Cela vous évitera de perdre du temps.
 
 Cette approche doit toutefois être appliquée avec discernement :
 si les évolutions majeures sont trop compliquées à mettre en œuvre, la risque est de vouloir faire passer le maximum de changement dans des versions mineures, en tordant les contrats de service.
@@ -129,7 +133,7 @@ En effet ces outils proposent souvent des fonctionnalités spécifiques permetta
 
 On ne va traiter ce sujet en détail ici car il nécessiterait un article à lui tout seul.
 
-Pour résumer notre approche : cela peut être pertinent mais uniquement à petite dose et quand le code de compatibilité est simple et pas trop métier.
+Pour résumer notre approche : cela peut être pertinent mais uniquement à petite dose et quand le code de compatibilité est simple et très peu métier.
 Faite particulièrement attention quand ce travail est à la charge d'une équipe transverse : rappelez-vous que cette équipe connaît moins bien le métier, et que vous ne maîtrisez pas son planning.
 
 == À quel rythme ?
@@ -139,19 +143,19 @@ Une fois qu'on sait comment faire, la prochaine étape est le "quand ?".
 Tout d'abord il n'y a pas de solution miracle valable dans tous les cas.
 En fonction de votre organisation, il est même possible qu'il n'y ait pas de solution unique qui convienne pour vous.
 D'une part la solution la plus adaptée dépend d'un projet à l'autre, et varie dans la vie des projets, d'autre part il s'agit d'un choix qui n'a pas d'impact global au niveau du SI.
-Il est donc possible de déléguer cette décision au niveau du projet, c'est à dire par le groupe formé par le projet qui expose les services et les consommateurs de ses différents services.
+Il est donc possible de déléguer cette décision au niveau du groupe formé par le projet qui expose les services et les consommateurs de ses différents services.
 
 Il y a deux stratégies possibles :
 
 === Rythme cadencé
 
-Il s'agit de prévoir les évolution de services à un rythme régulier "tous les X", en général tous les X mois.
+Il s'agit de prévoir les évolutions de services à un rythme régulier "tous les X", en général tous les X mois.
 Ce rythme ne correspond pas au rythme de release du projet : il peut livrer régulièrement sans modifier les services qu'il expose.
 Par ailleurs il s'agit de cadencer la possibilité de faire évoluer les services : ce n'est pas parce qu'on a réservé un créneau qu'il faut forcément s'en servir. S'il n'y a rien à changer alors on le passe.
 
 Cette possibilité est plus contraignante pour le projet qui expose, mais la prévisibilité permet aux consommateurs de s'organiser, voire de provisionner les budget de migrations.
 
-Elle est par exemple la plus indiquée dans un contexte non agile où on préfère la prévisibilité à la vitesse.
+Elle est par exemple la plus indiquée dans un contexte non agile où on préfère la prévisibilité à la vitesse, particulièrement quand un rythme global est imposé à tout le SI.
 
 === Rythme opportuniste
 
@@ -174,9 +178,9 @@ Il est possible de mixer les deux approches :
 
 Ainsi on anticipe les changements bloquants, et on peut fournir au plus tôt les changements transparents.
 
-=== Royaume / émissaire
+=== Zones du SI
 
-Le cas du royaume émissaire va complexifier le tableau : les services qui restent à l'intérieur d'une même zone du SI vont avoir tendance à bouger plus rapidement que les services entre zones.
+Le cas des zones du SI va complexifier le tableau : les services qui restent à l'intérieur d'une même zone vont avoir tendance à bouger plus rapidement que les services entre zones.
 On peut donc avoir une politique différente pour les deux types de services.
 
 Les projets à l'intérieur d'une même zone ayant naturellement tendance à bouger ensemble, suivant que les évolutions du métier porte sur l'un puis l'autre sujet, ils vont probablement adopter un rythme similaire.
@@ -200,7 +204,7 @@ Ce prix est de trois ordres :
 La seule solution viable, si on veut conserver une rétro-compatibilité pour un consommateur c'est ce que ce soit lui qui finance ce budget.
 Cette approche a trois avantages :
 
-- Elle est dissuasive car les projets sont incités à migre ;
+- Elle est dissuasive car les projets sont incités à migrer ;
 - Elle est équitable car c'est le demandeur qui paie ;
 - Elle va dans le bon sens car, avec le prix qui va augmenter avec le temps, il y a l'espoir qu'à un certain moment le consommateur saute le pas et se décide à migrer.
 
@@ -208,6 +212,8 @@ Le dernier avantage ne devrait avoir à s'appliquer car, dans un monde idéal, l
 Dans les fait lorsqu'un projet décroche une telle exception il est tentant de jouer les prolongation, l'augmentation du prix est donc là pour contrebalancer cette tendance.
 
 Ne pas faire payer le consommateur revient à donner une prime à ceux qui ne jouent pas le jeux : si vous ne migrez pas, non seulement vous n'avez plus à vous embêter, mais en plus vous ne payer rien !
+
+Une des solutions alternatives est de demander au projet consommateur d'implémenter lui-même la compatibilité dans un module dont il a la responsabilité et qu'il déploiera chez lui. Cela a l'avantage de simplifier l'organisation mais ne fonctionne que dans certains cas : par exemple si un service complexe est découpé en plusieurs service, il peut devenir impossible d'implémenter une rétro-compatibilité hors de l'application maître sans dégrader les temps de réponses.
 
 === Il ne doit en rester qu'un
 
@@ -217,7 +223,7 @@ En effet une fois que l'exception sera connue, d'autres vont être tentés de s'
 
 Mais cette approche est très dangereuse : plus il y a de consommateurs bloqués sur une version, plus il y a de chances que vous ayant à maintenir cette version longtemps, voire indéfiniment.
 
-C'est l'un où des cas où la gouvernance stratégique a sa place : car l'optimisation globale du SI s'oppose directement à des solutions opportunistes.
+C'est l'un où des cas où la gouvernance stratégique a sa place : l'optimisation globale du SI s'oppose directement à des solutions opportunistes.
 
 == Budget
 
@@ -229,7 +235,7 @@ Les prises de décisions sur les questions de budgets étant extrêmement diffic
 
 === Budget des consommateurs
 
-Quand un consommateur de service a besoin de nouvelles fonctionnalités il n'aura pas de soucis à financer la migration vers la nouvelle version d'une API qui va lui fournir ce dont il a besoin.
+Quand un consommateur de services a besoin de nouvelles fonctionnalités il n'aura pas de soucis à financer la migration vers la nouvelle version d'une API qui va lui fournir ce dont il a besoin.
 
 Les questions de budget se posent quand le consommateur est satisfait de ce qu'il a déjà et qu'il faut migrer à la version suivante.
 Le problème se plus particulièrement pour les projets qui sont passé en maintenance, particulièrement en link:https://fr.wikipedia.org/wiki/Tierce_maintenance_applicative[TMA].
@@ -242,7 +248,7 @@ Le critère primordial pour choisir une solution n'est pas de fâcher le moins d
 
 Trois approches possibles :
 
-- Si la roadmap du projet qui expose les services est suffisamment claire et prévisible, il est possible de préalouer le coût des migrations dans chaque projet, au même titre que les autres dépenses externes comme l'infrastructure.
+- Si la roadmap du projet qui expose les services est suffisamment claire et prévisible, il est possible de préallouer le coût des migrations dans chaque projet, au même titre que les autres dépenses externes comme l'infrastructure.
 - Les consommateurs demandeurs de la nouvelle version peuvent payer pour faire migrer les autres. Cela a pour effet d'augmenter le prix des demandes d'évolutions, donc de les diminuer.
 - Un pot commun sous forme d'une taxe "X% du budget" appliquée à tous les consommateurs. Cela permet aux gros projets d'aider à financer les migrations des petits, pour que ceux-ci ne bloquent pas.
 
@@ -281,7 +287,7 @@ La deuxième paraît plus juste du point de vue d'une approche service, mais ell
 
 === Composer les deux ?
 
-Il est également possible de composer les deux approches : faire payer les demandeurs pour les évolutions et un pot commun pour la maintenance.
+Il est également possible de composer les deux approches : faire payer les demandeurs pour les évolutions (version N) et un pot commun pour la maintenance (version N-1).
 
 C'est une approche tentante car elle semble plus juste, cependant elle demande de savoir dans quelle case mettre chaque tâche.
 Elle peut être intéressante sur des très gros projets en V, où les aspects budgétaires soient suivis de prêts et où la maintenance fait l'objet de chantiers spécifiques.
