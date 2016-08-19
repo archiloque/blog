@@ -2,7 +2,7 @@
 Julien Kirch
 v1.0, 2015-09-01
 
-== De quoi on parle ?
+== De quoi s'agit-il ?
 
 Quand j'ai commencé à travailler dans les années 2000, [line-through]#les dinosaures dominaient le monde# les projets étaient en train de changer.
 Grâce aux tests automatisés, à l'extreme programming et aux nouveaux outils qui arrivaient comme les serveurs d'applications et Subversion, on apprenait à développer mieux et plus vite.
@@ -14,6 +14,8 @@ Malheureusement ce n'est pas le cas pour un certains nombres d'outils : ils ont 
 
 Dans différents domaines, ces outils peuvent désormais être un vrai frein pour votre capacité à délivrer.
 Il faut garder en tête qu'un environnement technique est toujours nivelé par le bas : le plus mauvais outil dicte ses contraintes à toute la chaîne.
+
+S'il est est parfois possible de contourner ces limitations, il s'agit généralement de rustines fragiles. Et rappellez-vous que les outils sont sensé vous aider et pas se mettre sur votre route pour vous empêcher de travailler.
 
 Prendre conscience de ces limitations peut vous aider dans deux situations :
 
@@ -58,7 +60,10 @@ Si le serveur de license est hébergé par l'éditeur sur Internet :
 
 === Le prix
 
-Le prix est un critère de choix pour sélectionner la solution, mais il 
+Le prix est un critère de choix pour sélectionner la solution, mais il peut aussi avoir des conséquence sur la manière de l'utiliser.
+
+Si le prix est payé par serveur, il y a un intérêt direct à diminuer autant que possible le nombre d'instances.
+La conséquence est souvent une tentation de mutualiser les serveurs entre applications au delà du raisonable,
 
 Problèmes quand la license / le support / le prix font que tu es obligé de choisir une solution sous-optimale.
 
