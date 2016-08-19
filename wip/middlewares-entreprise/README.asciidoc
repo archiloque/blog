@@ -9,10 +9,11 @@ Grâce aux tests automatisés, à l'extreme programming et aux nouveaux outils q
 
 L'un des points qui posait problème était les middleware d'entreprises : ils nous semblaient lourds et inadaptés à nos nouvelles pratiques, et ont commencé à devenir des goulets d’étranglement.
 
-Presque 15 ans plus tard, avec l'agile et le Devops, les pratiques ont bien changé.
+Presque 15 ans plus tard, avec les pratiques agiles et le Devops, les pratiques ont bien changé.
 Malheureusement ce n'est pas le cas pour un certains nombres d'outils : ils ont enrichis leurs fonctionnalité, mais ne se sont pas transformés.
 
 Dans différents domaines, ces outils peuvent désormais être un vrai frein pour votre capacité à délivrer.
+=> dans une stack, une brique qui pue dégrade toute la chaine
 
 Prendre conscience de ces limitations peut vous aider dans deux situations :
 
@@ -27,43 +28,88 @@ Il s'agit d'un groupe aux limites assez floues mais qu'on peut délimiter par un
 
 - il s'agit d'outils transverses ;
 - ils peuvent être structurants pour le SI suivant l'usage qui en est fait ;
-- il s'agit d'un des derniers bastions des logiciels propriétaires ;
 - leur choix n'est pas laissé à la main de chaque projet mais est effectué de manière transverse, souvent par une cellule d'architecture et/ou l'équipe en charge de l'exploitation ;
 - ils sont choisis pour durer, et donc sont souvent évalués pour leur capacité à répondre à des besoins qu'on a identifié, mais qui après coup ne se réalisent pas toujours.
 
-== Licenses, prix et contraintes projets
+== Logiciels propriétaires
+
+Les middleware d'entreprises est un des derniers bastions des logiciels propriétaires.
+Le problème n'est pas le fait d'utiliser des logiciels propriétaires, mais les conséquences des pratiques de certains éditeurs sur l'utilisation des logiciels.
+
+=== La gestion des licenses
+
+Tout d'abord il y a la gestion des licences : si nous comprenons que l'éditeur veuille s'assurer que ses logiciels soient dûment utilisés, mais il faut que cela soit fait proprement.
+
+L'idéal est un fichier de license fixe à copier sur les serveurs, que cela soit un fichier unique ou un fichier par environement : cela se paramètre parfaitement.
+
+La capacité des outils de middleware à être élastique est souvent mise en avant, mais quad
+
+Les fichiers de licenses à renouveller régulièrement
+
+La pire situation est un "serveur de license" que link:https://en.wikipedia.org/wiki/Phoning_home[l'outil appele pour valider sa licence].
+Non seulement cela ajoute de la complexité dans le SI sans bénéfice direct pour vous, mais la mise en œeuvre pose souvent deux types de soucis :
+- Ces serveurs sont souvent moins bien outillés et documentés que les serveurs opérationnels, les installer et les opérer est souvent plus difficile.
+- Ces serveurs sont rarement prévus pour fonctionner en haute disponibilité et il s'agit donc de link:https://fr.wikipedia.org/wiki/Point_individuel_de_défaillance[SPOFs]. Quand ils sont seulement utilisés dans un but de collecte d'information cela est juste pas très professionel. Quand les serveurs opérationnels doivent appeller le serveur de license régulièrement ou lors de chaque démarrage pour pouvoir fonctionner, un serveur de license non accessible c'est un morceau ou tout votre SI qui s'arrête.
+
+=== Le prix
 
 Problèmes quand la license / le support / le prix font que tu es obligé de choisir une solution sous-optimale.
 
+Model de pricing et Elasticité : s'il faut renégocier alors que tu as un pic de charge, ils vont se faire plaisir.
+
 Sois pas d'environement de test, ou d'avoir deux solutions (gold / silver).
+
+== Architecture
+
+Souvent HA sauf la console d'admin
+Clustering dynamique
+
+=== Physique ou virtuel ?
+
+Deployable en VM sauf bonne raison
+Appliance logique : tout est industrialisable à partie de l'image de base cloud-init
+Applicance Difficile à opérer, faille de sécu, difficile à instancier si physique
+Futur docker ?
+
+Logiciel > Docker > VM > Machine Physique
+
+== Déploiement et configuration
+
+Pas besoin d'outil extérieur pour builder
+
+Critère facile : si l'outil vient avec ses ensembles de fichier Chef / Puppet / Ansible, mais jetez quand même un œil (parfois configuration de base qu'on modifie ensuite avec l'IDE...).
+
+Packaging : suivre les standard LSB
+
+- Fichiers de configuration templatisables dans une syntaxe lisible
+  - Pas dans un format binaire ou difficile à modifier (type objet java sérailisé)
+- les variables à un seul endroit
+- Diffables
+
+Passage d'un environement à l'autre: obligé de refaire les mêmes manipulations avec risque d'erreur
 
 == Développement en équipe et gestion de version
 
-Problème nottament avec les outils qui viennent avec un IDEs
+Problème notament avec les outils qui viennent avec un IDEs
 
 Usage limités à une seule personne à la fois : convennait très bien quand on a une équipe dédiée à l'outil et qu'on a des cycles de livraisons lents.
-
-Configuration sauvegardée dans un format binaire ou difficile à modifier (type objet java séraialisé)
-
 - impossible de faire des merges en utilisant un gestionnaire de version
-- passage d'un environement : obligé de refaire les mêmes manipulations avec risque d'erreur
-
-Critère facile : si l'outil vient avec ses ensembles de fichier Chef / Puppet / Ansible, mais jetez quand même un œil (parfois configuration de base qu'on modifie ensuite avec l'IDE...).
 
 == Test
 
 Facilité de tester de manière automatisé.
 
-== Build et déploiement
+== Exploitabilité
 
-- Fichiers de configuration templatisables dans une syntaxe lisible (le xml ne compte plus).
-- Variables à un seul endroit
-- Diffables
+=== Monitoring
 
-== Monitoring
+Pas de polling pour avoir l'info
+Une API
+Un format standard (JMX, SNMP)
 
-== Log
+=== Log
 
-- Faciles à parser
+- Connecteur standard : syslog au minimum
+- Faciles à parser et univoques, JSON monoligne
 - Horodatés
 - Flushés
