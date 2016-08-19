@@ -13,7 +13,7 @@ Presque 15 ans plus tard, avec les pratiques agiles et le Devops, les pratiques 
 Malheureusement ce n'est pas le cas pour un certains nombres d'outils : ils ont enrichis leurs fonctionnalité, mais ne se sont pas transformés.
 
 Dans différents domaines, ces outils peuvent désormais être un vrai frein pour votre capacité à délivrer.
-=> dans une stack, une brique qui pue dégrade toute la chaine
+Il faut garder en tête qu'un environnement technique est toujours nivelé par le bas : le plus mauvais outil dicte ses contraintes à toute la chaîne.
 
 Prendre conscience de ces limitations peut vous aider dans deux situations :
 
@@ -40,18 +40,25 @@ Le problème n'est pas le fait d'utiliser des logiciels propriétaires, mais les
 
 Tout d'abord il y a la gestion des licences : si nous comprenons que l'éditeur veuille s'assurer que ses logiciels soient dûment utilisés, mais il faut que cela soit fait proprement.
 
-L'idéal est un fichier de license fixe à copier sur les serveurs, que cela soit un fichier unique ou un fichier par environement : cela se paramètre parfaitement.
+L'idéal est un fichier de license fixe à copier sur les serveurs, que cela soit un fichier unique ou un fichier par environement : avec des outils de déploiement, il n'y a pas de dégradation par rapport à un outil ouvert.
 
-La capacité des outils de middleware à être élastique est souvent mise en avant, mais quad
-
-Les fichiers de licenses à renouveller régulièrement
+La capacité des outils de middleware à être élastique est maintenant souvent mise en avant (et on en reparlera plus bas). Si ce sujet est important pour vous, vérifiez que d'ajouter des nœuds dans un cluster ne nécéssitera pas de changer en même temps le fichier de license dans chacun des serveurs, y compris les serveurs existans.
 
 La pire situation est un "serveur de license" que link:https://en.wikipedia.org/wiki/Phoning_home[l'outil appele pour valider sa licence].
-Non seulement cela ajoute de la complexité dans le SI sans bénéfice direct pour vous, mais la mise en œeuvre pose souvent deux types de soucis :
-- Ces serveurs sont souvent moins bien outillés et documentés que les serveurs opérationnels, les installer et les opérer est souvent plus difficile.
-- Ces serveurs sont rarement prévus pour fonctionner en haute disponibilité et il s'agit donc de link:https://fr.wikipedia.org/wiki/Point_individuel_de_défaillance[SPOFs]. Quand ils sont seulement utilisés dans un but de collecte d'information cela est juste pas très professionel. Quand les serveurs opérationnels doivent appeller le serveur de license régulièrement ou lors de chaque démarrage pour pouvoir fonctionner, un serveur de license non accessible c'est un morceau ou tout votre SI qui s'arrête.
+
+Deux cas ce posent.
+
+Si le serveur de license est installé localement, non seulement cela ajoute de la complexité dans le SI sans bénéfice pour vous, mais la mise en œeuvre pêche souvent à deux endroits :
+- Ils sont souvent moins bien outillés et documentés que les serveurs opérationnels, les installer et les opérer est souvent plus difficile.
+- Ils sont rarement prévus pour fonctionner en haute disponibilité et il s'agit donc de link:https://fr.wikipedia.org/wiki/Point_individuel_de_défaillance[SPOFs]. Quand ils sont seulement utilisés dans un but de collecte d'information cela est juste pas très professionel. Mais quand les serveurs opérationnels doivent appeller le serveur de license régulièrement ou lors de chaque démarrage pour pouvoir fonctionner, un serveur de license non accessible c'est un morceau ou tout votre SI qui s'arrête.
+
+Si le serveur de license est hébergé par l'éditeur sur Internet :
+- Le même risque opérationnel se pose en cas de serveur indisponible : êtes vous prêt à vous passer de votre ESB à usage strictement interne si votre connexion internet tombe ?
+- Un risque de sécurité  : sans tomber dans la paranoïa, un serveur qui fait un appel sortant que vous ne maitrîsez pas est toujours dangereux. À vous d'en évaluer les conséquences.
 
 === Le prix
+
+Le prix est un critère de choix pour sélectionner la solution, mais il 
 
 Problèmes quand la license / le support / le prix font que tu es obligé de choisir une solution sous-optimale.
 
