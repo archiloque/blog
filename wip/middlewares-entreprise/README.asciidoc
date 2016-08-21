@@ -15,12 +15,12 @@ Malheureusement ce n'est pas le cas pour un certains nombres d'outils : ils ont 
 Dans différents domaines, ces outils peuvent désormais être un vrai frein pour votre capacité à délivrer.
 Il faut garder en tête qu'un environnement technique est toujours nivelé par le bas : le plus mauvais outil dicte ses contraintes à toute la chaîne.
 
-S'il est est parfois possible de contourner ces limitations, il s'agit généralement de rustines fragiles. Et rappellez-vous que les outils sont sensé vous aider et pas se mettre sur votre route pour vous empêcher de travailler.
+S'il est parfois possible de contourner ces limitations, il s'agit généralement de rustines fragiles. Et rappelez-vous que les outils sont sensé vous aider et pas se mettre sur votre route pour vous empêcher de travailler.
 
 Prendre conscience de ces limitations peut vous aider dans deux situations :
 
 - Si vous devez choisir un nouvel outil, cela vous permettra d'être certain que vos critères d'évaluation couvrent bien ces caractéristiques. Chez Octo, lors des missions de sélections d'outils, cela fait longtemps que ces prérequis font partie des éléments critiques.
-- Si vous avez déjà ces outils, cela vous permettra de vous rappeller les limites qu'il vous impose, et vous fera peut-être réaliser qu'il est temps d'en changer.
+- Si vous avez déjà ces outils, cela vous permettra de vous rappeler les limites qu'il vous impose, et vous fera peut-être réaliser qu'il est temps d'en changer.
 
 === C'est quoi un middleware d'entreprise ?
 
@@ -38,34 +38,37 @@ Il s'agit d'un groupe aux limites assez floues mais qu'on peut délimiter par un
 Les middleware d'entreprises est un des derniers bastions des logiciels propriétaires.
 Le problème n'est pas le fait d'utiliser des logiciels propriétaires, mais les conséquences des pratiques de certains éditeurs sur l'utilisation des logiciels.
 
-=== La gestion des licenses
+=== La gestion des licences
 
 Tout d'abord il y a la gestion des licences : si nous comprenons que l'éditeur veuille s'assurer que ses logiciels soient dûment utilisés, mais il faut que cela soit fait proprement.
 
-L'idéal est un fichier de license fixe à copier sur les serveurs, que cela soit un fichier unique ou un fichier par environement : avec des outils de déploiement, il n'y a pas de dégradation par rapport à un outil ouvert.
+L'idéal est un fichier de licence fixe à copier sur les serveurs, que cela soit un fichier unique ou un fichier par environnement : avec des outils de déploiement, il n'y a pas de dégradation par rapport à un outil ouvert.
 
-La capacité des outils de middleware à être élastique est maintenant souvent mise en avant (et on en reparlera plus bas). Si ce sujet est important pour vous, vérifiez que d'ajouter des nœuds dans un cluster ne nécéssitera pas de changer en même temps le fichier de license dans chacun des serveurs, y compris les serveurs existans.
+La capacité des outils de middleware à être élastique est maintenant souvent mise en avant (et on en reparlera plus bas). Si ce sujet est important pour vous, vérifiez que d'ajouter des nœuds dans un cluster ne nécessitera pas de changer en même temps le fichier de licence dans chacun des serveurs, y compris les serveurs existants.
 
-La pire situation est un "serveur de license" que link:https://en.wikipedia.org/wiki/Phoning_home[l'outil appele pour valider sa licence].
+Depuis que les link:https://fr.wikipedia.org/wiki/Dongle[dongle matériels] ont quasiment disparus, la pire situation est un "serveur de licence" que link:https://en.wikipedia.org/wiki/Phoning_home[l'outil appelle pour valider sa licence].
 
-Deux cas ce posent.
+Deux cas se posent.
 
-Si le serveur de license est installé localement, non seulement cela ajoute de la complexité dans le SI sans bénéfice pour vous, mais la mise en œeuvre pêche souvent à deux endroits :
+==== Serveur de licence local
+
+- Cela ajoute de la complexité dans le SI sans bénéfice pour vous.
 - Ils sont souvent moins bien outillés et documentés que les serveurs opérationnels, les installer et les opérer est souvent plus difficile.
-- Ils sont rarement prévus pour fonctionner en haute disponibilité et il s'agit donc de link:https://fr.wikipedia.org/wiki/Point_individuel_de_défaillance[SPOFs]. Quand ils sont seulement utilisés dans un but de collecte d'information cela est juste pas très professionel. Mais quand les serveurs opérationnels doivent appeller le serveur de license régulièrement ou lors de chaque démarrage pour pouvoir fonctionner, un serveur de license non accessible c'est un morceau ou tout votre SI qui s'arrête.
+- Ils sont rarement prévus pour fonctionner en haute disponibilité et il s'agit donc de link:https://fr.wikipedia.org/wiki/Point_individuel_de_défaillance[SPOFs]. Quand ils sont seulement utilisés dans un but de collecte d'information cela est juste pas très professionnel. Mais quand les serveurs opérationnels doivent appeler le serveur de licence régulièrement ou lors de chaque démarrage pour pouvoir fonctionner, un serveur de licence non accessible c'est un morceau ou tout votre SI qui s'arrête.
 
-Si le serveur de license est hébergé par l'éditeur sur Internet :
+==== Serveur hébergé par l'éditeur
+
 - Le même risque opérationnel se pose en cas de serveur indisponible : êtes vous prêt à vous passer de votre ESB à usage strictement interne si votre connexion internet tombe ?
-- Un risque de sécurité  : sans tomber dans la paranoïa, un serveur qui fait un appel sortant que vous ne maitrîsez pas est toujours dangereux. À vous d'en évaluer les conséquences.
+- Un risque de sécurité  : sans tomber dans la paranoïa, un serveur qui fait un appel sortant que vous ne maitrisez pas est toujours dangereux. À vous d'en évaluer les conséquences.
 
 === Le prix
 
-Le prix est un critère de choix pour sélectionner la solution, mais il peut aussi avoir des conséquence sur la manière de l'utiliser.
+Le prix est d'abord un critère de choix pour sélectionner la solution, mais il peut aussi avoir des conséquences sur la manière de l'utiliser.
 
 Si le prix est payé par serveur, il y a un intérêt direct à diminuer autant que possible le nombre d'instances.
-La conséquence est souvent une tentation de mutualiser les serveurs entre applications au delà du raisonable,
+La conséquence est souvent une tentation de mutualiser les serveurs entre applications au delà du raisonnable,
 
-Problèmes quand la license / le support / le prix font que tu es obligé de choisir une solution sous-optimale.
+Problèmes quand la licence / le support / le prix font que tu es obligé de choisir une solution sous-optimale.
 
 Model de pricing et Elasticité : s'il faut renégocier alors que tu as un pic de charge, ils vont se faire plaisir.
 
