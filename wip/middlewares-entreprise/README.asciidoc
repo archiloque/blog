@@ -52,32 +52,57 @@ Deux cas se posent.
 
 ==== Serveur de licence local
 
+Quand vous devez installer vous-même un serveur de license.
+
 - Cela ajoute de la complexité dans le SI sans bénéfice pour vous.
 - Ils sont souvent moins bien outillés et documentés que les serveurs opérationnels, les installer et les opérer est souvent plus difficile.
 - Ils sont rarement prévus pour fonctionner en haute disponibilité et il s'agit donc de link:https://fr.wikipedia.org/wiki/Point_individuel_de_défaillance[SPOFs]. Quand ils sont seulement utilisés dans un but de collecte d'information cela est juste pas très professionnel. Mais quand les serveurs opérationnels doivent appeler le serveur de licence régulièrement ou lors de chaque démarrage pour pouvoir fonctionner, un serveur de licence non accessible c'est un morceau ou tout votre SI qui s'arrête.
 
 ==== Serveur hébergé par l'éditeur
 
+Quand le serveur est hébergé par l'éditeur.
+
 - Le même risque opérationnel se pose en cas de serveur indisponible : êtes vous prêt à vous passer de votre ESB à usage strictement interne si votre connexion internet tombe ?
 - Un risque de sécurité  : sans tomber dans la paranoïa, un serveur qui fait un appel sortant que vous ne maitrisez pas est toujours dangereux. À vous d'en évaluer les conséquences.
 
 === Le prix
 
-Le prix est d'abord un critère de choix pour sélectionner la solution, mais il peut aussi avoir des conséquences sur la manière de l'utiliser.
+Le prix est d'abord un critère de choix pour sélectionner la solution, mais il peut aussi avoir des conséquences sur son utilisation.
 
-Si le prix est payé par serveur, il y a un intérêt direct à diminuer autant que possible le nombre d'instances.
-La conséquence est souvent une tentation de mutualiser les serveurs entre applications au delà du raisonnable,
+==== Mutualiser les instances
 
-Problèmes quand la licence / le support / le prix font que tu es obligé de choisir une solution sous-optimale.
+Si le prix est payé par serveur, pour économiser vous aurez intérêt à diminuer le nombre d'instances.
+La conséquence est souvent une tentation de mutualiser les serveurs au delà du raisonnable.
+Le cas qu'on rencontre couramment est celui des serveurs d'applications Java. Les limitations du modèle J2E font que, malgré ce qu'en disent certains vendeurs, utiliser un seul serveur pour plusieurs applications pose un tas de problèmes : ressources non isolées, fuites mémoires…
+Les utilisateurs qui ont le choix utilisent systématiquement un serveur par applications, les seuls qui mutualisent leurs serveurs sont ceux qui le font pour limiter leur coûts de license, et la contrepartie est de rendre leur système moins fiable.
 
-Model de pricing et Elasticité : s'il faut renégocier alors que tu as un pic de charge, ils vont se faire plaisir.
+==== Mutualiser les environements
 
-Sois pas d'environement de test, ou d'avoir deux solutions (gold / silver).
+On peut aussi être amené à mutualiser les environnements : en fonction de la pression sur les prix, on mutualisera les serveurs de plusieurs environnements au lieu de les isoler.
+
+Les problèmes que cela pose dépendent de la manière dont la mutualisation est faite :
+
+- Les environnements de pré-production et de production sont souvent les seuls à fonctionner en cluster, augmentant d'autant les prix. Quand ils s'executent sur les mêmes serveurs, les tests de performances effectués en pré-production risquent de faire tomber la production.
+- Si les environnements de tests sont mutualisés et celui de production dédié, le risque est celui d'avoir des configuration différente dans les deux cas et donc d'avoir des régressions.
+
+==== Deux solutions
+
+La dernière possibilité est d'être obligé d'utiliser deux systèmes différents : un système pour les besoins "critiques", et un autre système pour les besoins "non critiques".
+Cette approche repose sur l'idée est que pour les besoins les plus importants, seule peut convenir une solution vendue par un grand éditeur.
+Il s'agit d'une survivance des années 2000 où les solutions open-souces ou vendues par des petits éditeurs étaient souvent moins avancées, et leur support réputé moins fiable.
+Étant donné le prix de la solution critique il n'est malheuresement pas possible de l'utiliser partout.
+Il est donc nécessaire de choisir une deuxième solution pour les autres besoins, ce qui complexifie votre système et augmente son coût.
 
 == Architecture
 
-Souvent HA sauf la console d'admin
-Clustering dynamique
+Après les question de licenses l'architecture.
+
+La haute disponibilité fait désormais partie des fonctionalités standard exigées des produits, mais une subtilité est tout de même à vérifier :
+dans le cas où en plus des serveurs d'execution, existe un serveur d'administration, celui-ci peut ne pas être en haute disponibilité.
+Même si la criticité est moindre (quand le serveur d'administration est indisponible, le système devrait continuer à fonctionner le temps qu'il soit réparé), il s'agit tout de même d'un point de fragilité.
+
+L'autre élément à eximaniner est l'élasticité car, si beaucoup de produits revendiquent cette propriété, certains prennent des libertés avec son usage courant.
+Vérifiez l'impact de l'ajout ou la suppression d'un nœud : selon les outils cela peut aller de "aucun" à "il faut redémarrer tous les serveurs" en passant par "dégradation pendant le rééquilibrage de données".
 
 === Physique ou virtuel ?
 
