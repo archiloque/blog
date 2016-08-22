@@ -33,6 +33,9 @@ Il s'agit d'un groupe aux limites assez floues mais qu'on peut délimiter par un
 - leur choix n'est pas laissé à la main de chaque projet mais est effectué de manière transverse, souvent par une cellule d'architecture et/ou l'équipe en charge de l'exploitation ;
 - ils sont choisis pour durer, et donc sont souvent évalués pour leur capacité à répondre à des besoins qu'on a identifié, mais qui après coup ne se réalisent pas toujours.
 
+Les exemples les plus courants sont les link:https://fr.wikipedia.org/wiki/Message-oriented_middleware[bus de messages], les link:https://en.wikipedia.org/wiki/Enterprise_service_bus[bus d'entreprises], les link:https://fr.wikipedia.org/wiki/Extract-transform-load[ETL], les outils d'API management et les appliances de sécurité.
+Même s'il ne s'agit pas de middlewares, de nombreuses briques logicielles suivent les mêmes règles, par exemples les link:https://fr.wikipedia.org/wiki/Java_EE[serveurs d'applications] ou les technologies de virtualisation.
+
 == Logiciels propriétaires
 
 Les middleware d'entreprises est un des derniers bastions des logiciels propriétaires.
@@ -97,21 +100,31 @@ Il est donc nécessaire de choisir une deuxième solution pour les autres besoin
 
 Après les question de licenses l'architecture.
 
+=== Haute disponibilité
+
 La haute disponibilité fait désormais partie des fonctionalités standard exigées des produits, mais une subtilité est tout de même à vérifier :
 dans le cas où en plus des serveurs d'execution, existe un serveur d'administration, celui-ci peut ne pas être en haute disponibilité.
 Même si la criticité est moindre (quand le serveur d'administration est indisponible, le système devrait continuer à fonctionner le temps qu'il soit réparé), il s'agit tout de même d'un point de fragilité.
+
+=== Élasticité
 
 L'autre élément à eximaniner est l'élasticité car, si beaucoup de produits revendiquent cette propriété, certains prennent des libertés avec son usage courant.
 Vérifiez l'impact de l'ajout ou la suppression d'un nœud : selon les outils cela peut aller de "aucun" à "il faut redémarrer tous les serveurs" en passant par "dégradation pendant le rééquilibrage de données".
 
 === Physique ou virtuel ?
 
-Deployable en VM sauf bonne raison
-Appliance logique : tout est industrialisable à partie de l'image de base cloud-init
-Applicance Difficile à opérer, faille de sécu, difficile à instancier si physique
-Futur docker ?
+La virtualisation est désormais la règle.
+Un logiciel qui nécessite d'être hébergé sur du bare metal aura donc besoin d'une bonne raison pour cela.
 
-Logiciel > Docker > VM > Machine Physique
+En dehors de quelques systèmes de niche (sécurité, très haute performance), les appliances physiques sont désormais une espèce disparue.
+Leur remplacement par des appliances virtuelles supprimer la contrainte physique, mais pas les autres :
+
+- une brique que vous ne pourrez pas monitorer de la même manière que les autres ;
+- un risque car il faut faire confiance à l'éditeur pour maintenir le système à jour et sécurisé.
+
+Il s'agit donc toujourd d'un pis-aller.
+En cas d'appliance, vérifiez que l'image est compatible avec link:https://help.ubuntu.com/community/CloudInit[cloud-init], ce qui vous permettra de l'ajouter facilement dans vos outils de provisionning.
+L'avenir dans ce domaine est probablement d'aller vers du Docker : l'éditeur aura toujours la main sur l'installation, mais cela permettra de jeter un œil dans la boite noire tout en économisant des resourses.
 
 == Déploiement et configuration
 
