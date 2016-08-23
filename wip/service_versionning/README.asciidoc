@@ -9,7 +9,8 @@ L'essentiel des discussions sur les services porte sur les questions de design e
 Sur ces deux aspects, on commence maintenant à link:http://blog.octo.com/designer-une-api-rest/[disposer de pratiques bien établies].
 Cet article ne traitera donc pas de ces aspects.
 
-Malheureusement, d'après mon expérience avec les grandes entreprises, la difficulté la plus grave dans ce domaine concerne le versionnement.
+Malheureusement, d'après mon expérience avec les grandes entreprises, la difficulté la plus grave dans ce domaine concerne le versionnement, et particulièrement le versionnement des services à l'intérieur du SI.
+Ces services sont ceux qui sont exposés et consommés par des applications du SI.
 
 Poser le problème est très simple :
 
@@ -26,8 +27,6 @@ Ensuite nous verrons comment et à quel rythme exposer ces services, et en cas d
 Pour finir sur les questions de budgets.
 
 == La spécificité des services à l'intérieur d'un SI
-
-Un service est à l'intérieur d'un SI quand il est exposé et consommé par des applications du SI.
 
 Quand un service est exposé ou provient de l'extérieur, il fait l'objet d'une contractualisation.
 Sans obligatoirement aller jusqu'à un engagement de service détaillé, les engagements sont formalisés et les décisions sont prises.
