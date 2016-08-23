@@ -1,4 +1,5 @@
-= Gérer les évolutions des services dans votre SI
+= Gérer les évolutions des services à l'intérieur de votre SI
+:toc:
 
 Sous-titre "Cela n'est pas passer de `/v1/` à `/v2/` "
 
@@ -6,6 +7,7 @@ Sous-titre "Cela n'est pas passer de `/v1/` à `/v2/` "
 
 L'essentiel des discussions sur les services porte sur les questions de design et de technique.
 Sur ces deux aspects, on commence maintenant à link:http://blog.octo.com/designer-une-api-rest/[disposer de pratiques bien établies].
+Cet article ne traitera donc pas de ces aspects.
 
 Malheureusement, d'après mon expérience avec les grandes entreprises, la difficulté la plus grave dans ce domaine concerne le versionnement.
 
@@ -16,8 +18,12 @@ Poser le problème est très simple :
 
 Ce problème existe depuis les débuts de la SOA, mais chaque avancée dans l'organisation des projets (cycles plus courts, agile et maintenant micro-services) le rend plus critique, et aucune solution miracle n'a encore été inventée pour faciliter la tâche.
 
-Très peu de grandes organisations s'en sortent bien, car cette question mélange les domaines les plus critiques :
+La plupart des grandes organisations s'en sortent mal, car cette question mélange les domaines les plus critiques :
 gouvernance, planning et budget.
+
+Nous allons commencer par voir ce qui fait la spécificité des services à l'intérieur de votre SI et les principes de gouvernances qu'on peut leur appliquer.
+Ensuite nous verrons comment et à quel rythme exposer ces services, et en cas de besoin, comment faire quand un consommateur de service ne plus évoluer ?
+Pour finir sur les questions de budgets.
 
 == La spécificité des services à l'intérieur d'un SI
 
@@ -27,8 +33,7 @@ Quand un service est exposé ou provient de l'extérieur, il fait l'objet d'une 
 Sans obligatoirement aller jusqu'à un engagement de service détaillé, les engagements sont formalisés et les décisions sont prises.
 
 En interne, la contractualisation est beaucoup plus faible, voire inexistante : on se met d'accord de façon informelle, les engagements sont moraux, et au pire on négociera une extension de budget et de calendrier.
-
-L'avantage est d'être libre de décider ce qu'on veut et donc de choisir les solutions les plus adaptées, en revanche, le chaos règne si la contractualisation est mal faite.
+Sans contrainte externe, on peut choisir les solutions les plus adaptées, en revanche, le chaos règne si la contractualisation est mal faite.
 Une des missions d'un DSI est de s'assurer la bonne marche du SI, faire en sorte que les services évoluent correctement en est un aspect essentiel.
 
 Le cas des services avec des partenaires est un peu particulier :
@@ -40,7 +45,7 @@ officiellement, on a un contrat mais, dans la réalité, tout est négociable et
 Il est intéressant de noter que les géants du web communiquent peu sur ce sujet :
 ils peuvent être très bavards sur les outils ou les organisations projets, mais le sont beaucoup moins sur les questions d'organisation globale.
 
-== Principes
+== Principes de gouvernance
 
 Dans le domaine de la gouvernance de service, il n'y a pas de link:http://worrydream.com/refs/Brooks-NoSilverBullet.pdf[solution magique],
 la meilleure solution sera celle que vous serez capable de mettre en œuvre.
@@ -88,9 +93,9 @@ Les services utilisés par plusieurs zones sont d'ailleurs souvent aussi exposé
 
 image::zones.png[title="Les zones de services"]
 
-=== Nombre de versions à maintenir en parallèle
+=== Nombre de versions majeures à maintenir en parallèle
 
-Le choix du nombre de versions à maintenir en parallèle est un arbitrage entre le fournisseur de services et les consommateurs :
+Le choix du nombre de versions majeures à maintenir en parallèle est un arbitrage entre le fournisseur de services et les consommateurs :
 
 - plus le nombre de versions à maintenir est faible, moins le fournisseur de services a besoin de faire de la maintenance, mais plus les consommateurs doivent se mettre à jour souvent ;
 - plus le nombre de version est élevé, plus le fournisseur de services est obligé de faire de la maintenance, mais plus les consommateurs ont de souplesse dans leurs migrations.
@@ -106,21 +111,6 @@ La capacité à conserver la compatibilité lors d'une mise à jour importante d
 Une restructuration peut par exemple nécessiter de supprimer certaines opérations existantes : qu'elles soient devenues trop coûteuses  en calcul, trop lentes, ou tout simplement impossibles (par exemple si une clé de partitionnement est désormais obligatoire).
 Ces cas là sont à anticiper le plus possible, pour pouvoir s'organiser avec les consommateurs de données.
 
-=== Quand et quoi communiquer
-
-Le cas idéal est toujours celui où les contrats d'interface sont définis en commun entre producteur et consommateurs.
-Dans cette situation, la communication est permanente et les problèmes sont identifiés au plus tôt.
-
-Dans tous les cas, il faut communique officiellement dès qu'une interface a été définie, avant même que le code soit déployé ou même rédigé.
-Pour être utilisable par les consommateurs, il ne faut pas vous limiter à un descriptif où à un contrat d'interface mais vous devez fournir :
-
-- un contrat d'interface formalisé, peu importe le format tant qu'il est utilisable par vos utilisateurs (swagger, WSDL, RAML…);
-- un document expliquant le service : si le contrat d'interface peut être suffisant pour bidouiller un appel par essai et erreur, se servir correctement d'un service nécessite de comprendre sa logique, et pour cela rien ne remplace du texte et des schémas ;
-- des données d'exemples d'entrée et de sortie ;
-- des mocks permettant de simuler des appels.
-
-Si un seul de ces éléments manque, vous allez faire perdre du temps aux consommateurs et à vous-même : cela revient à avoir du code sans test et/ou sans documentation.
-
 === Modifications rétro-compatibilité dans les évolutions mineures
 
 Si vous utilisez une gestion de version link:http://semver.org/lang/fr/[sémantique] avec des versions majeures et mineures, il est possible de pousser des évolutions dans les versions mineures, sous condition qu'elles soient rétro-compatibles.
@@ -134,6 +124,21 @@ si les évolutions majeures sont trop compliquées à mettre en œuvre, le risqu
 Cela se remarque facilement à la lecture de la documentation où l'on se retrouve avec des phrases telles que "le paramètre `montant` représente la somme de l'opération, sauf si la valeur est `-1` dans ce cas cela signifie qu'il faut annuler l'opération précédente".
 
 Le fait qu'on soit tenté d'aller dans cette direction est une indication claire qu'il faut travailler pour fluidifier les montées de versions majeures, voire qu'il faut en faire plus souvent.
+
+=== Quand et quoi communiquer
+
+Le cas idéal est toujours celui où les contrats d'interface sont définis en commun entre producteur et consommateurs.
+Dans cette situation, la communication est permanente et les problèmes sont identifiés au plus tôt.
+
+Dans tous les cas, il faut communique officiellement dès qu'une interface a été définie, avant même que le code soit déployé ou même écrit.
+Pour être utilisable par les consommateurs, il ne faut pas vous limiter à un descriptif où à un contrat d'interface mais vous devez fournir :
+
+- un contrat d'interface formalisé et complet (y compris les cas d'erreurs), peu importe le format tant qu'il est utilisable par vos utilisateurs (swagger, WSDL, RAML…);
+- un document expliquant le service : si le contrat d'interface peut être suffisant pour bidouiller un appel par essai et erreur, se servir correctement d'un service nécessite de comprendre sa logique, et pour cela rien ne remplace du texte et des schémas ;
+- des données d'exemples d'entrée et de sortie ;
+- des mocks permettant de simuler des appels, qu'ils soient générés à partir de votre outil de description ou qu'ils soient codés à la main.
+
+Si un seul de ces éléments manque, vous allez faire perdre du temps aux consommateurs et à vous-même : cela revient à avoir du code sans test et/ou sans documentation.
 
 === Compatibilité gérée par l'API Management ou l'ESB
 
@@ -215,7 +220,7 @@ Cette approche présente trois avantages :
 - elle est équitable car c'est le demandeur qui paie ;
 - elle va dans le bon sens car, avec le prix qui va augmenter avec le temps, il y a l'espoir que le consommateur finisse par sauter le pas et se décide à migrer.
 
-Le dernier avantage ne devrait avoir à s'appliquer, en théorie, car le maintien d'une compatibilité devrait durer un temps limité, fixé dès le début.
+Le dernier avantage ne devrait pas avoir à s'appliquer, en théorie, car le maintien d'une compatibilité devrait durer un temps limité, fixé dès le début.
 Dans les faits, lorsqu'un projet décroche une telle exception, il est tentant de jouer les prolongation, l'augmentation du prix est donc là pour contrebalancer cette tendance.
 
 Ne pas faire payer le consommateur revient à donner une prime à ceux qui ne jouent pas le jeu : si vous ne migrez pas, non seulement vous n'avez plus à vous embêter, mais en plus vous ne payez rien !
