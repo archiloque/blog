@@ -76,7 +76,7 @@ Le prix est d'abord un critère de choix pour sélectionner la solution, mais il
 
 ==== Mutualiser les instances
 
-Si le prix est payé par serveur, pour économiser vous aurez intérêt à diminuer le nombre d'instances.
+Si le prix est payé par serveur ou par processeur, pour économiser vous aurez intérêt à diminuer le nombre d'instances.
 La conséquence est souvent une tentation de mutualiser les serveurs au delà du raisonnable.
 Le cas qu'on rencontre couramment est celui des serveurs d'applications Java. Les limitations du modèle J2E font que, malgré ce qu'en disent certains vendeurs, utiliser un seul serveur pour plusieurs applications pose un tas de problèmes : ressources non isolées, fuites mémoires…
 Les utilisateurs qui ont le choix utilisent systématiquement un serveur par applications, les seuls qui mutualisent leurs serveurs sont ceux qui le font pour limiter leur coûts de licence, et la contrepartie est de rendre leur système moins fiable.
@@ -138,7 +138,7 @@ L'avenir dans ce domaine est probablement d'aller vers du Docker : l'éditeur ga
 
 == Déploiement et configuration
 
-Pour l'installation l'outil doit être fourni sous forme d'un package installable adapté à votre distribution (deb, apt, rpm…).
+Pour l'installation l'outil doit être fourni sous forme d'un package installable adapté à votre distribution (deb, rpm…).
 Pour être facilement exploitable, il doit respecter la norme link:https://en.wikipedia.org/wiki/Linux_Standard_Base[LSB] : cela vous permettra par exemple de trouver facilement les différents fichiers.
 
 Pour la configuration du socle du logiciel, des recettes de déploiements type Chef / Puppet / Ansible sont désormais la norme.
