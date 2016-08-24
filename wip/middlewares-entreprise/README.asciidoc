@@ -22,6 +22,8 @@ Prendre conscience de ces limitations peut vous aider dans deux situations :
 - Si vous devez choisir un nouvel outil, cela vous permettra d'être certain que vos critères d'évaluation couvrent bien ces caractéristiques. Chez Octo, lors des missions de sélections d'outils, cela fait longtemps que ces prérequis font partie des éléments critiques.
 - Si vous avez déjà ces outils, cela vous permettra de vous rappeler les limites qu'il vous impose, et vous fera peut-être réaliser qu'il est temps d'en changer.
 
+En revanche, cet article ne vous aidera pas à savoir si ce genre d'outil est encore nécessaire, il s'agit d'un autre sujet qui mérite d'être traité à part.
+
 === C'est quoi un middleware d'entreprise ?
 
 image::easter.jpg[title="Des middleware d'entreprise dans leur habitat naturel, photo par Arian Zwegers en CC"]
@@ -55,7 +57,7 @@ Deux cas se posent.
 
 ==== Serveur de licence local
 
-Quand vous devez installer vous-même un serveur de license.
+Quand vous devez installer vous-même un serveur de licence.
 
 - Cela ajoute de la complexité dans le SI sans bénéfice pour vous.
 - Ils sont souvent moins bien outillés et documentés que les serveurs opérationnels, les installer et les opérer est souvent plus difficile.
@@ -77,41 +79,39 @@ Le prix est d'abord un critère de choix pour sélectionner la solution, mais il
 Si le prix est payé par serveur, pour économiser vous aurez intérêt à diminuer le nombre d'instances.
 La conséquence est souvent une tentation de mutualiser les serveurs au delà du raisonnable.
 Le cas qu'on rencontre couramment est celui des serveurs d'applications Java. Les limitations du modèle J2E font que, malgré ce qu'en disent certains vendeurs, utiliser un seul serveur pour plusieurs applications pose un tas de problèmes : ressources non isolées, fuites mémoires…
-Les utilisateurs qui ont le choix utilisent systématiquement un serveur par applications, les seuls qui mutualisent leurs serveurs sont ceux qui le font pour limiter leur coûts de license, et la contrepartie est de rendre leur système moins fiable.
+Les utilisateurs qui ont le choix utilisent systématiquement un serveur par applications, les seuls qui mutualisent leurs serveurs sont ceux qui le font pour limiter leur coûts de licence, et la contrepartie est de rendre leur système moins fiable.
 
-==== Mutualiser les environements
+==== Mutualiser les environnements
 
 On peut aussi être amené à mutualiser les environnements : en fonction de la pression sur les prix, on mutualisera les serveurs de plusieurs environnements au lieu de les isoler.
 
 Les problèmes que cela pose dépendent de la manière dont la mutualisation est faite :
 
-- Les environnements de pré-production et de production sont souvent les seuls à fonctionner en cluster, augmentant d'autant les prix. Quand ils s'executent sur les mêmes serveurs, les tests de performances effectués en pré-production risquent de faire tomber la production.
+- Les environnements de pré-production et de production sont souvent les seuls à fonctionner en cluster, augmentant d'autant les prix. Quand ils s'exécutent sur les mêmes serveurs, les tests de performances effectués en pré-production risquent de faire tomber la production.
 - Si les environnements de tests sont mutualisés et celui de production dédié, le risque est celui d'avoir des configuration différente dans les deux cas et donc d'avoir des régressions.
 
-==== Deux solutions
+==== Être forcé d'utiliser deux outils
 
-La dernière possibilité est d'être obligé d'utiliser deux systèmes différents : un système pour les besoins "critiques", et un autre système pour les besoins "non critiques".
+La dernière possibilité est d'être obligé d'utiliser deux outils différents : un pour les besoins "critiques", et un autre pour les besoins "non critiques".
 Cette approche repose sur l'idée est que pour les besoins les plus importants, seule peut convenir une solution vendue par un grand éditeur.
-Il s'agit d'une survivance des années 2000 où les solutions open-souces ou vendues par des petits éditeurs étaient souvent moins avancées, et leur support réputé moins fiable.
-Étant donné le prix de la solution critique il n'est malheuresement pas possible de l'utiliser partout.
+Il s'agit d'une survivance des années 2000 où les solutions open-sources ou vendues par des petits éditeurs étaient souvent moins avancées, et leur support réputé moins fiable.
+Étant donné le prix de la solution critique il n'est malheureusement pas possible de l'utiliser partout.
 Il est donc nécessaire de choisir une deuxième solution pour les autres besoins, ce qui complexifie votre système et augmente son coût.
 
 == Architecture
 
-Après les question de licenses l'architecture.
-
 === Haute disponibilité
 
-La haute disponibilité fait désormais partie des fonctionalités standard exigées des produits, mais une subtilité est tout de même à vérifier :
-dans le cas où en plus des serveurs d'execution, existe un serveur d'administration, celui-ci peut ne pas être en haute disponibilité.
+La haute disponibilité fait désormais partie des fonctionnalités standard exigées des produits, mais une subtilité est tout de même à vérifier :
+dans le cas où en plus des serveurs d'exécution, existe un serveur d'administration, celui-ci peut ne pas être en haute disponibilité.
 Même si la criticité est moindre (quand le serveur d'administration est indisponible, le système devrait continuer à fonctionner le temps qu'il soit réparé), il s'agit tout de même d'un point de fragilité.
 
 === Élasticité
 
 L'autre élément à examiner est l'élasticité.
-Même si vous n'avez pas besoin d'ajouter ou de supprimer des instances à chaque instant, une augmentation de traffic peut nécessiter d'ajouter une instance d'ici quelques mois et il est important d'en connaître les impacts.
+Même si vous n'avez pas besoin d'ajouter ou de supprimer des instances à chaque instant, une augmentation de trafic peut nécessiter d'ajouter une instance d'ici quelques mois et il est important d'en connaître les impacts.
 Si beaucoup de produits revendiquent désormais cette propriété, certains prennent des libertés avec sa définition courante :
-selon les outils, changer le nombre d'instance peut être totalement transparent, diminuer les performance pendant le rééquilibrage de données, ou même nécéssiter de redémarrer tous les serveurs pour propager une configuration.
+selon les outils, changer le nombre d'instance peut être totalement transparent, diminuer les performance pendant le rééquilibrage de données, ou même nécessiter de redémarrer tous les serveurs pour propager une configuration.
 
 === Physique ou virtuel ?
 
@@ -119,74 +119,83 @@ Pour l'hébergement la virtualisation est désormais la règle.
 Un logiciel qui nécessite d'être hébergé sur du bare metal aura donc besoin d'une bonne raison pour cela.
 Encourager l'utilisation du bare metal pour gagner des performances est un chose, la forcer en est une autre.
 
-En dehors de quelques systèmes de niche (sécurité, très haute performance), les appliances physiques sont désormais une espèce disparue et avec eu le besoin de déplacer des serveurs et de recabler des baies quand une configuration changeait.
+En dehors de quelques systèmes de niche (sécurité, très haute performance), les appliances physiques sont désormais une espèce disparue et avec eux le besoin de déplacer et de recabler des serveurs quand une configuration changeait.
 Le remplacement par des appliances virtuelles supprimer la contrainte physique, mais pas les autres :
 
 - vous ne pourrez pas monitorer cette brique de la même manière que les autres ;
-- il faut faire confiance à l'éditeur pour maintenir le système à jour et sécurisé, ce qui devient de moins en moins acceptable avec la multiplication des failles publiées.
+- il faut faire confiance à l'éditeur pour maintenir le système à jour et sécurisé, ce qui devient de moins en moins acceptable avec la multiplication des failles de sécurités publiées.
 
-Il s'agit donc toujourd d'un pis-aller.
+image::waiting.gif[title="Quand tu attends une nouvelle image disque après une mise à jour critique d'OpenSSL"]
 
-Vérifiez que l'image est compatible avec link:https://help.ubuntu.com/community/CloudInit[cloud-init], ce qui vous permettra de l'intégrer facilement dans vos outils de provisionning, sinon un coût et un délai suplémentaire est à prévoir.
+Il s'agit donc toujours d'un pis-aller.
+
+En cas d'applicance logique :
+
+- La solution doit être compatible avec les différents systèmes de virtualisation du marché. Si l'outil ne fonctionne qu'avec VMware, et même si vous utilisez actuellement, il est important de se laisser la possibilité de migrer vers une autre solution.
+- L'image doit utiliser link:https://help.ubuntu.com/community/CloudInit[cloud-init], ce qui vous permettra de l'intégrer facilement dans vos outils de provisionning, sinon un coût et un délai supplémentaires sont à prévoir.
 
 L'avenir dans ce domaine est probablement d'aller vers du Docker : l'éditeur gardera la main sur l'installation et les projets  .
 
 == Déploiement et configuration
 
 Pour l'installation l'outil doit être fourni sous forme d'un package installable adapté à votre distribution (deb, apt, rpm…).
-Pour être facilement exploitable, il doit respecter la normer link:https://en.wikipedia.org/wiki/Linux_Standard_Base[LSB] : cela vous permettra par exemple de trouver facilement les différents fichiers.
+Pour être facilement exploitable, il doit respecter la norme link:https://en.wikipedia.org/wiki/Linux_Standard_Base[LSB] : cela vous permettra par exemple de trouver facilement les différents fichiers.
 
 Pour la configuration du socle du logiciel, des recettes de déploiements type Chef / Puppet / Ansible sont désormais la norme.
-S'ils sont fournis pour un outil qui n'est pas celui que vous utilisez, le portage ne devrait pas compliqué à condition que l'éditeur ait bien fait son travail.
+S'ils sont fournis pour un outil qui n'est pas celui que vous utilisez, le portage ne devrait pas être compliqué à condition que l'éditeur ait bien fait son travail.
 
 Pour être facilement utilisables, les fichiers de configurations doivent respecter certains critères :
 
 - ils doivent être lisibles et éditables facilement par des humains, pas question par exemple d'avoir des fichiers contenant des objets java séralisés en XML, ou du XML avec des champs CDATA ;
 - chaque variable doit être présente à un seul endroit, gare par exemple aux outils sous forme de composants où chacun a son fichier de configuration propre qui duplique les mêmes éléments sans possibilité de partager les parties identiques.
 
-Le cas à exclure absolument est celui de configuration
-
-- Fichiers de configuration templatisables dans une syntaxe lisible
-  - Pas dans un format binaire ou difficile à modifier (type objet java sérailisé)
-- les variables à un seul endroit
-- Diffables
-
-Passage d'un environement à l'autre: obligé de refaire les mêmes manipulations avec risque d'erreur
-
 == Développement en équipe et gestion de version
 
-Sur le papier, une des fonctionalités les plus mises en avant des middleware d'entreprise était d'avoir un outil graphique permettant d'utiliser l'outil sans utiliser de terminal ou d'éditer de fichiers.
+Sur le papier, une des fonctionnalités les plus mises en avant des middleware d'entreprise était d'avoir un outil graphique permettant d'utiliser l'outil sans utiliser de terminal ou d'éditer de fichiers.
 
-Malheuresement l'effet waou passé, les ennuis commencent.
+Si cette but est louable, c'est la manière dont il est mis en pratique qui pose problème.
 
 D'abord sous prétexte de ne pas avoir besoin d'éditer de fichiers, les fichiers générés par ces outils sont souvent des fichiers binaires.
 Il est donc impossible d'éditer les fichiers directement et tout doit donc passer par l'éditeur fourni.
-Tous les workflows automatiques reposant sur la capacité à modifier des fichiers tectuels sont inapliquables, comme le report de modifications entre branches via un outil de gestion de version ou entre environnements via un outil de déploiement.
+Tous les workflows automatiques reposant sur la capacité à modifier des fichiers textuels sont inapplicables, comme le report de modifications entre branches via un outil de gestion de version ou entre environnements via un outil de déploiement.
 Remplacer ces opérations qui s'automatisent facilement par des opérations manuelles coûte du temps et pose des risques : vous pouvez dire adieu à votre pipeline de déploiement automatisé et bonjour aux régressions.
-Même si on préférerait ne jamais avoir eu cette idée, on peut s'en sortir en utilisant un outil comme link:http://www.seleniumhq.org[Selenium] ou link:http://www.sikuli.org[Sikuli] pour piloter la saisie de la configuration dans l'outil graphique, mais il s'agit d'une approche coûteuse et fragile à n'utiliser qu'en dernier ressort.
+Même si on préférerait ne jamais avoir eu cette idée, on peut s'en sortir en utilisant un outil comme link:http://www.seleniumhq.org[Selenium] ou  link:http://www.sikuli.org[Sikuli] pour piloter la saisie de la configuration dans l'outil graphique, mais il s'agit d'une approche coûteuse et fragile à n'utiliser qu'en dernier ressort.
 
 Ensuite les outils utilisant cette approche sont conçus pour être utilisés par une seule personne à la fois.
 Dans les organisations où un groupe de personne bien identifié est en charge de chaque outil, cette limite est acceptable.
-On fait une demande à l'équipe en question, qui s'en charge dès qu'elle le peut, en jonglant entre les priorités et ses resources souvent limitées.
-Avec le raccourcicement des cycles de développement, ce type de fonctionnement devient invivable : tout est fait pour limiter la dépendance entre équipes et favoriser l'autonomie des équipes.
+On fait une demande à l'équipe en question, qui s'en charge dès qu'elle le peut, en jonglant entre les priorités et ses ressources souvent limitées.
+Avec le raccourcissement des cycles de développement, ce type de fonctionnement devient invivable : tout est fait pour limiter la dépendance entre équipes et favoriser l'autonomie des équipes.
 Ce type d'outil devient donc inadapté : pas question de devoir réserver son tour pour avoir le droit de configurer un outil.
-Les middlerware étant souvent transversers, impossible non plus d'avoir une instance par équipe, on est donc coincé.
+Les middlewares étant souvent transverses, impossible non plus d'avoir une instance par équipe.
 
-== Test
+== Test unitaires
 
-Facilité de tester de manière automatisé.
+Les outils embarquant du code ou du pseudo-code comme les ESB doivent fournir des fonctionnalités permettant d'écrire des tests unitaires automatisés.
+Ces tests doivent pouvoir se greffer dans votre usine de build, c'est à dire :
+
+- exécution depuis une ligne de commande et pas par un client graphique ;
+- résultat être facilement exploitable: messages d'erreurs clair et utilisation de code de retour pour indiquer le résultat des tests.
 
 == Exploitabilité
 
+Derniers prérequis : l'exploitabilité de la solution.
+Sur les outils d'entreprises, l'outil graphique de configuration dont on a parlé plus haut s'accompagnait souvent d'une console d'administration intégrée.
+Celle-ci fournissait du monitoring et des logs centralisés à une époque où ils étaient encore l'exception.
+Ce n'est plus le cas désormais, et malheureusement — comme pour la configuration — quand on choisit de ne pas utiliser l'outil fournit pour regarder sous le capot les choses ne sont pas si rose.
+
 === Monitoring
 
-Pas de polling pour avoir l'info
-Une API
-Un format standard (JMX, SNMP)
+L'application doit pouvoir se monitorer aussi facilement que les autres briques de votre SI :
+
+- utilisation de formats standards : JMX, SNMP, HTTP, REST, JSON, XML ;
+- le polling ne doit pas être nécessaire : tous les changements d'états doivent être poussés ;
+- les informations doivent être accessibles via une API.
 
 === Log
 
-- Connecteur standard : syslog au minimum
-- Faciles à parser et univoques, JSON monoligne
-- Horodatés
-- Flushés
+Pour être utile, un log doit être accessible et lisible et s'intégrer dans votre chaîne de traitement existante, ce qui nécessite :
+
+- des connecteurs standard pour l'écriture, link:https://fr.wikipedia.org/wiki/Syslog[Syslog] est un minimum ;
+- des formats faciles à parser et univoques : des entrées monolignes car c'est ce que savent traiter la majorité des outils et un format unique par type de log.
+
+image::log.gif[title="Votre parseur de log quand il rencontre une stacktrace Java au milieu d'un fichier de log d'accès"]
