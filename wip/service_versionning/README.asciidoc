@@ -1,7 +1,7 @@
 = Gérer les évolutions des services à l'intérieur de votre SI
 :toc:
 
-Sous-titre "Cela n'est pas passer de `/v1/` à `/v2/` "
+Sous-titre "Cela n'est pas seulement changer une configuration de `/v1/` à `/v2/` : c'est de la gouvernance, du planning et du budget"
 
 == On parle de quoi
 
@@ -23,8 +23,7 @@ La plupart des grandes organisations s'en sortent mal, car cette question mélan
 gouvernance, planning et budget.
 
 Nous allons commencer par voir ce qui fait la spécificité des services à l'intérieur de votre SI et les principes de gouvernances qu'on peut leur appliquer.
-Ensuite nous verrons comment et à quel rythme exposer ces services, et en cas de besoin, comment faire quand un consommateur de service ne plus évoluer ?
-Pour finir sur les questions de budgets.
+Ensuite nous verrons comment et à quel rythme exposer de nouvelles version, et en cas de besoin, comment faire quand un consommateur de service ne peut plus évoluer. Nous terminerons sur la question de budgets pour savoir comment .
 
 == La spécificité des services à l'intérieur d'un SI
 
@@ -65,7 +64,7 @@ Il faut éviter à tout prix que l'arbitrage entre les deux soit délégué dire
 Il s'agit du même mode de fonctionnement qu'un responsable technique à qui on demande de prioriser les demandes de deux responsables métier :
 cela n'aboutit à rien de bon tout en créant de la frustration.
 
-== Exposer le minimum au minimum de clients
+== Quoi exposer ?
 
 L'exposition de services est régie par un principe simple : exposer un service, c'est créer un contrat qu'on s'engage à respecter vis-à-vis de ses consommateurs, et donc créer l'adhérence dans le SI.
 
@@ -78,12 +77,12 @@ Pour cela, plusieurs solutions :
 Même s'il est facile d'exposer l'intégralité de vos données en REST avec les outils récents  il ne faut surtout pas le faire.
 D'une part, vous créez une adhérence inutile, d'autre part l'API que vous créerez sera calquée sur la représentation interne de vos données et ne sera probablement pas adaptée à vos consommateurs.
 
-=== Limitez les consommateurs tant qu'une API n'est pas sèche
+=== N'exposez pas trop tôt
 
 Lorsque vous sortez un nouveau service, il y a de grandes chances que vous ne tombiez pas juste du premier coup.
 Tant que vous n'êtes pas confiant dans la maturité d'une API, il vaut mieux donc limiter le nombre de consommateurs.
 
-=== Zones du SI
+=== N'exposez pas tout à tout le monde
 
 Segmentez vos services entre ceux qui ont vocation à être utilisés par l'ensemble des applications et ceux qui ne le sont que par les applications "proches".
 Cela permet de cranter les choses en termes d'exposition ou de rythme de migration.
@@ -92,9 +91,12 @@ Les services utilisés par plusieurs zones sont d'ailleurs souvent aussi exposé
 
 image::zones.png[title="Les zones de services"]
 
-=== Nombre de versions majeures à maintenir en parallèle
+=== Versions majeures à maintenir en parallèle
 
-Le choix du nombre de versions majeures à maintenir en parallèle est un arbitrage entre le fournisseur de services et les consommateurs :
+Une version majeure d'un service est une version qui n'est pas compatible avec la version précédente.
+Pour un consommateur, passer d'une version à l'autre peut donc demander des modifications.
+Pour que les projets puisse organiser ces migrations correctement, il est d'usage de maintenir plusieurs versions disponibles pendant un certain temps.
+Le choix du nombre de versions à maintenir en parallèle est un arbitrage entre le fournisseur de services et les consommateurs :
 
 - plus le nombre de versions à maintenir est faible, moins le fournisseur de services a besoin de faire de la maintenance, mais plus les consommateurs doivent se mettre à jour souvent ;
 - plus le nombre de version est élevé, plus le fournisseur de services est obligé de faire de la maintenance, mais plus les consommateurs ont de souplesse dans leurs migrations.
@@ -110,7 +112,7 @@ La capacité à conserver la compatibilité lors d'une mise à jour importante d
 Une restructuration peut par exemple nécessiter de supprimer certaines opérations existantes : qu'elles soient devenues trop coûteuses  en calcul, trop lentes, ou tout simplement impossibles (par exemple si une clé de partitionnement est désormais obligatoire).
 Ces cas là sont à anticiper le plus possible, pour pouvoir s'organiser avec les consommateurs de données.
 
-=== Modifications rétro-compatibilité dans les évolutions mineures
+=== Modifications rétro-compatibles dans les évolutions mineures
 
 Si vous utilisez une gestion de version link:http://semver.org/lang/fr/[sémantique] avec des versions majeures et mineures, il est possible de pousser des évolutions dans les versions mineures, sous condition qu'elles soient rétro-compatibles.
 
@@ -124,7 +126,7 @@ Cela se remarque facilement à la lecture de la documentation où l'on se retrou
 
 Le fait qu'on soit tenté d'aller dans cette direction est une indication claire qu'il faut travailler pour fluidifier les montées de versions majeures, voire qu'il faut en faire plus souvent.
 
-=== Quand et quoi communiquer
+=== Quand et quoi communiquer ?
 
 Le cas idéal est toujours celui où les contrats d'interface sont définis en commun entre producteur et consommateurs.
 Dans cette situation, la communication est permanente et les problèmes sont identifiés au plus tôt.
@@ -139,7 +141,7 @@ Pour être utilisable par les consommateurs, il ne faut pas vous limiter à un d
 
 Si un seul de ces éléments manque, vous allez faire perdre du temps aux consommateurs et à vous-même : cela revient à avoir du code sans test et/ou sans documentation.
 
-=== Compatibilité gérée par l'API Management ou l'ESB
+=== Un middleware pour gérer la compatibilité ?
 
 Une des solutions mise en avant par les vendeurs d'ESB et d'API management consiste à gérer la rétro-compatiblité dans leur outil plutôt que dans du code applicatif.
 En effet, ces outils proposent souvent des fonctionnalités spécifiques permettant de câbler des appels à l'aide d'un outil graphique ou d'un DSL.
@@ -181,7 +183,7 @@ Cette approche convient le mieux en début et en fin de projet :
 - au début les changements sont les fréquents, pouvoir agir à la demande est plus pratique ;
 - en fin de projet lorsque les choses se sont stabilisées, les modifications deviennent occasionnels.
 
-=== Majeur et mineur
+=== Versions majeures et mineures
 
 Il est possible de mixer les deux approches :
 - une approche cadencée pour les versions majeures;
@@ -189,14 +191,14 @@ Il est possible de mixer les deux approches :
 
 Ainsi, les changements bloquants sont anticipés, et on peut fournir au plus tôt les changements transparents.
 
-=== Zones du SI
+=== Rythme entre zones du SI
 
 Le cas des zones du SI va complexifier le tableau : les services qui restent à l'intérieur d'une même zone vont avoir tendance à bouger plus rapidement que les services entre zones.
 On peut donc avoir une politique différente pour les deux types de services.
 
 Les projets à l'intérieur d'une même zone ayant naturellement tendance à bouger ensemble, suivant que les évolutions du métier portent sur l'un puis l'autre sujet, ils vont probablement adopter un rythme similaire.
 
-== Si un projet client ne peut pas évoluer
+== Si un consommateur est bloqué sur une ancienne version ?
 
 La question ne se poserait pas dans un monde parfait, mais en pratique, elle arrive régulièrement : que faire si un projet ne peut pas évoluer et que la solution la plus évidente serait de conserver pour une version de vos service pour lui ?
 
@@ -227,7 +229,7 @@ Ne pas faire payer le consommateur revient à donner une prime à ceux qui ne jo
 Une des solutions alternatives consiste à demander au projet consommateur d'implémenter lui-même la compatibilité dans un module dont il a la responsabilité et qu'il déploiera chez lui. Cette option simplifie l'organisation mais ne fonctionne que dans certains cas :
 par exemple si un service complexe est découpé en plusieurs services, il peut devenir impossible d'implémenter une rétro-compatibilité hors de l'application maître sans dégrader les temps de réponse.
 
-=== Il ne doit en rester qu'un
+=== Évitez la contagion
 
 Si, malgré tout, vous faites le choix de garder une version pour un consommateur, il est très important de tout faire pour faire migrer toutes les autres.
 En effet, une fois que l'exception sera connue, d'autres vont être tentés de s'engouffrer dans la brèche.
@@ -237,7 +239,7 @@ Cette approche est très dangereuse : plus il y a de consommateurs bloqués sur 
 
 C'est l'un des cas où la gouvernance stratégique a sa place : l'optimisation globale du SI s'oppose directement à des solutions opportunistes.
 
-== Budget
+== Qui paie ?
 
 Une fois toutes les bonnes résolutions prises, reste une question, probablement la plus importante : qui paie ?
 
@@ -296,10 +298,28 @@ Deux axes simples pour la répartition :
 La première alternative désavantage les gros projets s'ils utilisent peu les services.
 La deuxième paraît plus juste du point de vue d'une approche service, mais elle ne reflète pas le coût réel pour le projet.
 
-=== Composer les deux approche
+=== Composer les deux approches ?
 
 Il est également possible de composer les deux approches : faire payer les demandeurs pour les évolutions (version N) et un pot commun pour la maintenance (version N-1).
 
 C'est une approche tentante car elle semble plus juste, cependant elle demande de savoir dans quelle case mettre chaque tâche.
 Elle peut être intéressante sur des très gros projets en V, où les aspects budgétaires sont suivis de près et où la maintenance fait l'objet de chantiers spécifiques.
 Cependant dans des projets plus petits et agiles qui ont appris à refactorer en permanence, mieux vaut une approche plus basique qui évitera de bureaucratiser le projet.
+
+'''
+
+[TIP]
+.À retenir
+====
+La gestion de version de vos services est un problème technique, mais aussi de gouvernance, de planning et de budget.
+Suivant votre réussite dans ce domaine votre SI évoluera sans douleur ou accumulera de la dette.
+
+Le plus important est de s'appuyer sur quelques principes directeurs et d'être capable d'arbitrer rapidement quand des questions se posent.
+
+Principaux axes :
+
+- Exposer un service c'est créer un point d'adhérence entre deux systèmes, il faut donc le faire à bon escient.
+- Les changements de versions rythment la vie de votre SI, il faut savoir le faire au bon tempo tout en prenant garde de ne laisser aucun projet en arrière.
+- Exposer et maintenir des services a un coût, et suivant vos pratiques il ne se budgète pas de la même manière.
+
+====
