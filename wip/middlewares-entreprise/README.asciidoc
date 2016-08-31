@@ -1,4 +1,5 @@
 = Middleware d'entreprises : nous ne sommes plus en l'an 2000
+:data-uri:
 Julien Kirch
 v1.0, 2015-09-23
 
@@ -12,7 +13,7 @@ L'un des points qui posait problème était les middleware d'entreprises : ils n
 Presque 15 ans plus tard, avec les pratiques agiles et le Devops, les pratiques ont bien changé.
 Malheureusement ce n'est pas le cas pour un certains nombres d'outils : ils ont enrichis leurs fonctionnalité, mais ne se sont pas transformés.
 
-Dans différents domaines, ces outils peuvent désormais être un vrai frein pour votre capacité à délivrer.
+Parfois non industrialisables, non testables ou difficile à intégrer dans votre SI : ces outils peuvent désormais être un vrai frein pour votre capacité à délivrer.
 Il faut garder en tête qu'un environnement technique est toujours nivelé par le bas : le plus mauvais outil dicte ses contraintes à toute la chaîne.
 
 S'il est parfois possible de contourner ces limitations, il s'agit généralement de rustines fragiles. Et rappelez-vous que les outils sont sensé vous aider et pas se mettre sur votre route pour vous empêcher de travailler.
@@ -28,20 +29,28 @@ En revanche, cet article ne vous aidera pas à savoir si ce genre d'outil est en
 
 image::easter.jpg[title="Des middleware d'entreprise dans leur habitat naturel, photo par Arian Zwegers en CC"]
 
+La link:https://fr.wikipedia.org/wiki/Middleware[définition wikipedia] cadre un peu le sujet :
+
+[quote]
+____
+En architecture informatique, un middleware (anglicisme) ou intergiciel est un logiciel tiers qui crée un réseau d'échange d'informations entre différentes applications informatiques. Le réseau est mis en œuvre par l'utilisation d'une même technique d'échange d'informations dans toutes les applications impliquées à l'aide de composants logiciels.
+____
+
 Il s'agit d'un groupe aux limites assez floues mais qu'on peut délimiter par un certains nombres de caractéristiques :
 
 - il s'agit d'outils transverses ;
 - ils peuvent être structurants pour le SI suivant l'usage qui en est fait ;
+- ils n'apportent pas de valeur métier à proprement parler mais des fonctionnalités techniques ;
 - leur choix n'est pas laissé à la main de chaque projet mais est effectué de manière transverse, souvent par une cellule d'architecture et/ou l'équipe en charge de l'exploitation ;
-- ils sont choisis pour durer, et donc sont souvent évalués pour leur capacité à répondre à des besoins qu'on a identifié, mais qui après coup ne se réalisent pas toujours.
+- ils sont choisis pour durer, et donc sont souvent évalués pour leur capacité à répondre à des besoins futurs.
 
 Les exemples les plus courants sont les link:https://fr.wikipedia.org/wiki/Message-oriented_middleware[bus de messages], les link:https://en.wikipedia.org/wiki/Enterprise_service_bus[bus d'entreprises], les link:https://fr.wikipedia.org/wiki/Extract-transform-load[ETL], les outils d'API management et les appliances de sécurité.
 Même s'il ne s'agit pas de middlewares, de nombreuses briques logicielles suivent les mêmes règles, par exemples les link:https://fr.wikipedia.org/wiki/Java_EE[serveurs d'applications] ou les technologies de virtualisation.
 
 == Logiciels propriétaires
 
-Les middleware d'entreprises est un des derniers bastions des logiciels propriétaires.
-Le problème n'est pas le fait d'utiliser des logiciels propriétaires, mais les conséquences des pratiques de certains éditeurs sur l'utilisation des logiciels.
+Les middleware d'entreprises est un des domaines où les logiciels propriétaires sont encore très représentés.
+Selon les pratiques des éditeurs, cela peut avoir des conséquences sur leur utilisation.
 
 === La gestion des licences
 
@@ -70,7 +79,7 @@ Quand le serveur est hébergé par l'éditeur.
 - Le même risque opérationnel se pose en cas de serveur indisponible : êtes vous prêt à vous passer de votre ESB à usage strictement interne si votre connexion internet tombe ?
 - Un risque de sécurité  : sans tomber dans la paranoïa, un serveur qui fait un appel sortant que vous ne maitrisez pas est toujours dangereux. À vous d'en évaluer les conséquences.
 
-=== Le prix
+=== Les conséquences du coût des licenses
 
 Le prix est d'abord un critère de choix pour sélectionner la solution, mais il peut aussi avoir des conséquences sur son utilisation.
 
@@ -93,12 +102,30 @@ Les problèmes que cela pose dépendent de la manière dont la mutualisation est
 ==== Être forcé d'utiliser deux outils
 
 La dernière possibilité est d'être obligé d'utiliser deux outils différents : un pour les besoins "critiques", et un autre pour les besoins "non critiques".
+
+Cela peut arriver dans deux cas.
+
+==== Deux outils en fonction des projets
+
 Cette approche repose sur l'idée est que pour les besoins les plus importants, seule peut convenir une solution vendue par un grand éditeur.
 Il s'agit d'une survivance des années 2000 où les solutions open-sources ou vendues par des petits éditeurs étaient souvent moins avancées, et leur support réputé moins fiable.
 Étant donné le prix de la solution critique il n'est malheureusement pas possible de l'utiliser partout.
 Il est donc nécessaire de choisir une deuxième solution pour les autres besoins, ce qui complexifie votre système et augmente son coût.
 
+=== Un outil pour la production, un outil pour la recette
+
+Si pour certains éditeurs les licenses ne sont nécessaires que pour la production, pour d'autres il en faut une pour tous les serveurs.
+Même si les prix sont alors souvent dégressifs en fonction de l'usage, par exemple les instances de recette à moitié prix, cela peut faire vite monter l'addition quand les environnements se multiplient.
+
+La solution qui est parfois choisie est alors d'utiliser l'outil propriétaire pour la production et la pré-production est un outil open source pour les autres usages, du développement à la recette.
+Cela se voit beaucoup pour les serveurs d'application Java, et parfois pour des bases de données SQL.
+
+Le problème est alors que, même s'ils sont basés sur des standards, les deux ne sont jamais complètement compatibles.
+Cela ajoute donc des bugs supplémentaires qui sont à corrigés par l'équipe, bugs détectés très tard dans le cycle du projet et qui ne peuvent pas être testés sur l'environnement de non-régression.
+
 == Architecture
+
+La qualité de service attendu des systèmes a beaucoup monté ces dernières années, et par conséquent les prérequis en terme d'architecture.
 
 === Haute disponibilité
 
@@ -106,12 +133,14 @@ La haute disponibilité fait désormais partie des fonctionnalités standard exi
 dans le cas où en plus des serveurs d'exécution, existe un serveur d'administration, celui-ci peut ne pas être en haute disponibilité.
 Même si la criticité est moindre (quand le serveur d'administration est indisponible, le système devrait continuer à fonctionner le temps qu'il soit réparé), il s'agit tout de même d'un point de fragilité.
 
-=== Élasticité
+=== Scalabilité
 
-L'autre élément à examiner est l'élasticité.
-Même si vous n'avez pas besoin d'ajouter ou de supprimer des instances à chaque instant, une augmentation de trafic peut nécessiter d'ajouter une instance d'ici quelques mois et il est important d'en connaître les impacts.
+L'autre élément à examiner est la scalabilité.
+Même si on parle beaucoup d'elasticité, on a rarement besoin d'ajouter ou de supprimer des instances à tout bout de champs.
+Par contre une augmentation de trafic peut nécessiter d'ajouter une instance d'ici quelques mois et il est important d'en connaître les impacts.
+
 Si beaucoup de produits revendiquent désormais cette propriété, certains prennent des libertés avec sa définition courante :
-selon les outils, changer le nombre d'instance peut être totalement transparent, diminuer les performance pendant le rééquilibrage de données, ou même nécessiter de redémarrer tous les serveurs pour propager une configuration.
+selon les outils, changer le nombre d'instance peut se faire à chaud et être totalement transparent, peut diminuer les performance pendant le rééquilibrage de données, ou même nécessiter un arrêt complet.
 
 === Physique ou virtuel ?
 
@@ -139,7 +168,7 @@ L'avenir dans ce domaine est probablement d'aller vers du Docker : l'éditeur ga
 == Déploiement et configuration
 
 Pour l'installation l'outil doit être fourni sous forme d'un package installable adapté à votre distribution (deb, rpm…).
-Pour être facilement exploitable, il doit respecter la norme link:https://en.wikipedia.org/wiki/Linux_Standard_Base[LSB] : cela vous permettra par exemple de trouver facilement les différents fichiers.
+Pour être facilement exploitable, le mieux est de respecter la norme link:https://en.wikipedia.org/wiki/Linux_Standard_Base[LSB] : cela vous permettra par exemple de trouver facilement les différents fichiers.
 
 Pour la configuration du socle du logiciel, des recettes de déploiements type Chef / Puppet / Ansible sont désormais la norme.
 S'ils sont fournis pour un outil qui n'est pas celui que vous utilisez, le portage ne devrait pas être compliqué à condition que l'éditeur ait bien fait son travail.
@@ -159,6 +188,7 @@ D'abord sous prétexte de ne pas avoir besoin d'éditer de fichiers, les fichier
 Il est donc impossible d'éditer les fichiers directement et tout doit donc passer par l'éditeur fourni.
 Tous les workflows automatiques reposant sur la capacité à modifier des fichiers textuels sont inapplicables, comme le report de modifications entre branches via un outil de gestion de version ou entre environnements via un outil de déploiement.
 Remplacer ces opérations qui s'automatisent facilement par des opérations manuelles coûte du temps et pose des risques : vous pouvez dire adieu à votre pipeline de déploiement automatisé et bonjour aux régressions.
+
 Même si on préférerait ne jamais avoir eu cette idée, on peut s'en sortir en utilisant un outil comme link:http://www.seleniumhq.org[Selenium] ou  link:http://www.sikuli.org[Sikuli] pour piloter la saisie de la configuration dans l'outil graphique, mais il s'agit d'une approche coûteuse et fragile à n'utiliser qu'en dernier ressort.
 
 Ensuite les outils utilisant cette approche sont conçus pour être utilisés par une seule personne à la fois.
