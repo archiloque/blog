@@ -1,4 +1,5 @@
 = Gérer les évolutions des services à l'intérieur de votre SI
+:data-uri:
 :toc:
 
 Sous-titre "Cela n'est pas seulement changer une configuration de `/v1/` à `/v2/` : c'est de la gouvernance, du planning et du budget"
@@ -10,22 +11,25 @@ Sur ces deux aspects, on commence maintenant à link:http://blog.octo.com/design
 Cet article ne traitera donc pas de ces aspects.
 
 Malheureusement, d'après mon expérience avec les grandes entreprises, la difficulté la plus grave dans ce domaine concerne le versionnement, et particulièrement le versionnement des services à l'intérieur du SI.
-Ces services sont ceux qui sont exposés et consommés par des applications du SI.
+Ces traitements sont ceux qui sont exposés et consommés par des applications du SI.
 
 Poser le problème est très simple :
 
 - introduire de nouvelles versions de services pour répondre aux nouvelles demandes ;
 - décomissionner les anciennes versions pour limiter le travail de maintenance et garder un SI évolutif.
 
-Ce problème existe depuis les débuts de la SOA, mais chaque avancée dans l'organisation des projets (cycles plus courts, agile et maintenant micro-services) le rend plus critique, et aucune solution miracle n'a encore été inventée pour faciliter la tâche.
+Ce problème existe depuis qu'on fait de l'intégration entre projets, mais chaque avancée dans la manière de travailler (cycles plus courts, agile et maintenant micro-services) le rend plus critique, et aucune solution miracle n'a encore été inventée pour faciliter la tâche.
 
 La plupart des grandes organisations s'en sortent mal, car cette question mélange les domaines les plus critiques :
 gouvernance, planning et budget.
 
-Nous allons commencer par voir ce qui fait la spécificité des services à l'intérieur de votre SI et les principes de gouvernances qu'on peut leur appliquer.
-Ensuite nous verrons comment et à quel rythme exposer de nouvelles version, et en cas de besoin, comment faire quand un consommateur de service ne peut plus évoluer. Nous terminerons sur la question de budgets pour savoir comment .
+Nous allons commencer par voir les spécificités des services à l'intérieur de votre SI et les principes de gouvernances qu'on peut leur appliquer.
+Ensuite nous verrons comment et à quel rythme exposer de nouvelles version, et en cas de besoin, comment faire quand un consommateur de service ne peut plus évoluer.
+Nous terminerons sur la question de budgets pour savoir comment .
 
-== La spécificité des services à l'intérieur d'un SI
+== Les spécificités des services à l'intérieur d'un SI
+
+=== Contractualisation faible
 
 Quand un service est exposé ou provient de l'extérieur, il fait l'objet d'une contractualisation.
 Sans obligatoirement aller jusqu'à un engagement de service détaillé, les engagements sont formalisés et les décisions sont prises.
@@ -42,6 +46,16 @@ officiellement, on a un contrat mais, dans la réalité, tout est négociable et
 
 Il est intéressant de noter que les géants du web communiquent peu sur ce sujet :
 ils peuvent être très bavards sur les outils ou les organisations projets, mais le sont beaucoup moins sur les questions d'organisation globale.
+
+=== Faible importance donnée au sujet
+
+Les services exposés aux autres projets internes sont souvent négligées par rapport aux fonctionalités exposées aux utilisateurs.
+Comme ils sont moins visibles et moins valorisée, on leur donne naturellement moins d'importance.
+De plus, comme ce sujet est généralement vu comme quelque chose d'uniquement technique, il n'intéresse souvent pas le métier et la MOA.
+Dans un SI, servir les autres projets et aussi important que de servir les utilisateurs. Il faut que l'ensemble des acteurs en ait conscience, et pas seulement les développeurs.
+
+Si les consommateurs de services se plaignent de ne pas être entendus, le problème peut également venir de la manière dont les projets sont évalués.
+Ainsi si le niveau de satisfactions des consommateurs de services est pris en compte pour savoir si un projet est un succès, leurs besoins seront probablement mieux pris en compte que si seuls comptent les clients extérieur.
 
 == Principes de gouvernance
 
@@ -64,7 +78,7 @@ Il faut éviter à tout prix que l'arbitrage entre les deux soit délégué dire
 Il s'agit du même mode de fonctionnement qu'un responsable technique à qui on demande de prioriser les demandes de deux responsables métier :
 cela n'aboutit à rien de bon tout en créant de la frustration.
 
-== Quoi exposer ?
+== Comment exposer ?
 
 L'exposition de services est régie par un principe simple : exposer un service, c'est créer un contrat qu'on s'engage à respecter vis-à-vis de ses consommateurs, et donc créer l'adhérence dans le SI.
 
@@ -74,8 +88,13 @@ Pour cela, plusieurs solutions :
 
 === N'exposez que ce dont vous avez besoin
 
-Même s'il est facile d'exposer l'intégralité de vos données en REST avec les outils récents  il ne faut surtout pas le faire.
-D'une part, vous créez une adhérence inutile, d'autre part l'API que vous créerez sera calquée sur la représentation interne de vos données et ne sera probablement pas adaptée à vos consommateurs.
+Pour limiter l'adhérence, la première étape est de n'exposer que ce dont vous avez besoin.
+Avec les outils récents, il est facile et tentant d'exposer l'intégralité de vos données dès le début, mais il vaut mieux le faire plutôt à la demande.
+Tant qu'une donnée n'est pas accessible à l'extérieur vous n'avez pas de compte à rendre si vous voulez la modifier ou même la supprimer.
+
+L'autre avantage est que si vous exposer des informations sans avoir de besoins extérieur pour désigner votre API, vos services seront probablement calqués sur votre usage interne.
+Lorsqu'un premier consommateur voudra utiliser cette donnée, il est possible que son besoin nécessite de modifier le contrat de service.
+Dans ce cas l'exposition initiale n'aura donc servi à rien.
 
 === N'exposez pas trop tôt
 
@@ -84,10 +103,14 @@ Tant que vous n'êtes pas confiant dans la maturité d'une API, il vaut mieux do
 
 === N'exposez pas tout à tout le monde
 
-Segmentez vos services entre ceux qui ont vocation à être utilisés par l'ensemble des applications et ceux qui ne le sont que par les applications "proches".
-Cela permet de cranter les choses en termes d'exposition ou de rythme de migration.
+Les SI de grande taille (de plusieurs dizaines à plusieurs centaines d'applications) sont généralement déjà séparés en domaines métier.
+Mais souvent cette séparation n'est qu'une vision logique sur des schémas et ne se retrouve pas dans l'implémentation.
 
-Les services utilisés par plusieurs zones sont d'ailleurs souvent aussi exposés à l'extérieur, ils suivent donc d'autres règles.
+Notre conseil est de s'appuyer sur cette cartographie pour isoler les services des différents blocs : segmentez vos services entre ceux qui ont vocation à être utilisés par l'ensemble du SI et ceux qui ne le sont que par les applications "proches".
+
+Cela permet de cranter les choses en termes d'exposition ou de rythme de migration car les deux groups de services peuvent évoluer différement.
+
+Attention à ne pas trop alourdir le process permettant de faire évoluer les services transverses : rappellez vous que l'objectif n'est pas de les figer mais de les faire évoluer au mieux. Ces services sont d'ailleurs souvent aussi exposés à l'extérieur, dans ce cas ils suivent généralement d'autres règles.
 
 image::zones.png[title="Les zones de services"]
 
@@ -118,7 +141,7 @@ Si vous utilisez une gestion de version link:http://semver.org/lang/fr/[sémanti
 
 Nous vous encourageons à suivre cette approche car elle permet d'ajouter de la flexibilité à vos services.
 
-Même si les changements sont — en principe — transparents, attention à tout de même bien communiquer avec les consommateurs, notamment pour savoir quand telle version est déployée dans tel environnement. Cela vous évitera de perdre du temps.
+Même si les changements sont — en principe — transparents, attention à tout de même bien communiquer avec les consommateurs, notamment pour savoir quand telle version est déployée dans tel environnement. Cela vous évitera de perdre du temps. Les outils d'API management peuvent fournir cette fonctionalité, mais une page wiki et des mails feront tout aussi bien l'affaire.
 
 Cette approche doit toutefois être appliquée avec discernement :
 si les évolutions majeures sont trop compliquées à mettre en œuvre, le risque est de vouloir faire passer le maximum de changements dans des versions mineures, en tordant les contrats de service.
@@ -134,10 +157,12 @@ Dans cette situation, la communication est permanente et les problèmes sont ide
 Dans tous les cas, il faut communique officiellement dès qu'une interface a été définie, avant même que le code soit déployé ou même écrit.
 Pour être utilisable par les consommateurs, il ne faut pas vous limiter à un descriptif où à un contrat d'interface mais vous devez fournir :
 
-- un contrat d'interface formalisé et complet (y compris les cas d'erreurs), peu importe le format tant qu'il est utilisable par vos utilisateurs (swagger, WSDL, RAML…);
+- un contrat d'interface formalisé et complet (y compris les cas d'erreurs), peu importe le format tant qu'il est utilisable par vos utilisateurs (swagger, WSDL, RAML…) ;
 - un document expliquant le service : si le contrat d'interface peut être suffisant pour bidouiller un appel par essai et erreur, se servir correctement d'un service nécessite de comprendre sa logique, et pour cela rien ne remplace du texte et des schémas ;
+- le SLA ;
 - des données d'exemples d'entrée et de sortie ;
-- des mocks permettant de simuler des appels, qu'ils soient générés à partir de votre outil de description ou qu'ils soient codés à la main.
+- des mocks permettant de simuler des appels, qu'ils soient générés à partir de votre outil de description ou qu'ils soient codés à la main ;
+- les personnes à contacter en cas de questions et de questions, en s'assurant qu'ils soient disponibles et motivés pour remplir ce rôle.
 
 Si un seul de ces éléments manque, vous allez faire perdre du temps aux consommateurs et à vous-même : cela revient à avoir du code sans test et/ou sans documentation.
 
@@ -202,8 +227,21 @@ Les projets à l'intérieur d'une même zone ayant naturellement tendance à bou
 
 La question ne se poserait pas dans un monde parfait, mais en pratique, elle arrive régulièrement : que faire si un projet ne peut pas évoluer et que la solution la plus évidente serait de conserver pour une version de vos service pour lui ?
 
-En anticipant sur la partie suivante, nous allons parler budget.
+=== Analyser comment vous en êtes arrivé là
 
+Tout d'abord analysez comment cela a pu se produire.
+
+En effet, cette situation est le signe clair que quelque chose s'est mal passé.
+Souvent elle n'est pas la conséquence d'un évènement ponctuel mais d'une longue chaîne de décisions qui a petit à petit rendu le problème inévitable.
+Faire en sorte que cela ne se reproduise pas est primordial : si vous vous contentez de traiter le symptome, le problème se reproduira.
+
+En général, cette situation trouve son origine dans une mauvaise priorisation, et la solution va donc passer par une meilleure implication du métier.
+Si les demandes de mises à jour sont poussées par les développeurs elles seront facile à ignorer.
+En revanche si le métier a compris que faire en sorte de migrer les consommateurs de service va permettre que les développeurs passent moins de temps en maintenance et plus de temps à développer de nouvelles fonctionalités, ils seront probablement écoutés.
+
+=== Traitez le problème
+
+Ensuite, en anticipant sur la partie suivante, nous allons parler budget.
 Avant de choisir cette solution, il faut se rappeler que ce type de compatibilité a un prix.
 Ce prix ne se solde pas en une fois mais il s'agit d'un surcoût qui s'ajoute à chaque évolution pour maintenir la rétro-compatibilité.
 Par ailleurs, ce prix va augmenter au fur et à mesure que la version gelée s'écarte de la version standard et que la rétro-compatibilité devient de plus en plus complexe.
@@ -316,10 +354,10 @@ Suivant votre réussite dans ce domaine votre SI évoluera sans douleur ou accum
 
 Le plus important est de s'appuyer sur quelques principes directeurs et d'être capable d'arbitrer rapidement quand des questions se posent.
 
-Principaux axes :
+Les point d'attentions :
 
 - Exposer un service c'est créer un point d'adhérence entre deux systèmes, il faut donc le faire à bon escient.
 - Les changements de versions rythment la vie de votre SI, il faut savoir le faire au bon tempo tout en prenant garde de ne laisser aucun projet en arrière.
-- Exposer et maintenir des services a un coût, et suivant vos pratiques il ne se budgète pas de la même manière.
+- Exposer et consommer des services a un coût, et suivant vos pratiques ils ne se budgètent pas de la même manière.
 
 ====
