@@ -7,10 +7,10 @@ v1.0, 2015-09-23
 Quand j'ai commencé à travailler dans les années 2000, [line-through]#les dinosaures dominaient le monde# les projets étaient en train de changer.
 Grâce aux tests automatisés, à l'extreme programming et aux nouveaux outils qui arrivaient comme les serveurs d'applications et Subversion, on apprenait à développer mieux et plus vite.
 
-L'un des points qui posait problème était les middleware d'entreprises : ils nous semblaient lourds et inadaptés à nos nouvelles pratiques, et ont commencé à devenir des goulets d’étranglement.
+L'un des points qui posait problème était les middlewares d'entreprises : ils nous semblaient lourds et inadaptés à nos nouvelles pratiques, et ont commencé à devenir des goulets d’étranglement.
 
 Presque 15 ans plus tard, avec les pratiques agiles et le Devops, les pratiques ont bien changé.
-Malheureusement ce n'est pas le cas pour un certains nombres d'outils : ils ont enrichis leurs fonctionnalité, mais ne se sont pas transformés.
+Malheureusement ce n'est pas le cas pour un certains nombres d'outils : ils ont enrichis leurs fonctionnalités, mais ne se sont pas transformés.
 
 Dans différents domaines, ces outils peuvent désormais être un vrai frein pour votre capacité à délivrer.
 Il faut garder en tête qu'un environnement technique est toujours nivelé par le bas : le plus mauvais outil dicte ses contraintes à toute la chaîne.
@@ -20,7 +20,7 @@ S'il est parfois possible de contourner ces limitations, il s'agit généralemen
 Prendre conscience de ces limitations peut vous aider dans deux situations :
 
 - Si vous devez choisir un nouvel outil, cela vous permettra d'être certain que vos critères d'évaluation couvrent bien ces caractéristiques. Chez Octo, lors des missions de sélections d'outils, cela fait longtemps que ces prérequis font partie des éléments critiques.
-- Si vous avez déjà ces outils, cela vous permettra de vous rappeler les limites qu'il vous impose, et vous fera peut-être réaliser qu'il est temps d'en changer.
+- Si vous avez déjà ces outils, cela vous permettra de vous rappeler les limites qu'ils vous imposent, et vous fera peut-être réaliser qu'il est temps d'en changer.
 
 En revanche, cet article ne vous aidera pas à savoir si ce genre d'outil est encore nécessaire, il s'agit d'un autre sujet qui mérite d'être traité à part.
 
@@ -45,7 +45,7 @@ Le problème n'est pas le fait d'utiliser des logiciels propriétaires, mais les
 
 === La gestion des licences
 
-Tout d'abord il y a la gestion des licences : si nous comprenons que l'éditeur veuille s'assurer que ses logiciels soient dûment utilisés, mais il faut que cela soit fait proprement.
+Tout d'abord il y a la gestion des licences : nous comprenons que l'éditeur veuille s'assurer que ses logiciels soient dûment utilisés, mais il faut que cela soit fait proprement.
 
 L'idéal est un fichier de licence fixe à copier sur les serveurs, que cela soit un fichier unique ou un fichier par environnement : avec des outils de déploiement, il n'y a pas de dégradation par rapport à un outil ouvert.
 
@@ -61,7 +61,7 @@ Quand vous devez installer vous-même un serveur de licence.
 
 - Cela ajoute de la complexité dans le SI sans bénéfice pour vous.
 - Ils sont souvent moins bien outillés et documentés que les serveurs opérationnels, les installer et les opérer est souvent plus difficile.
-- Ils sont rarement prévus pour fonctionner en haute disponibilité et il s'agit donc de link:https://fr.wikipedia.org/wiki/Point_individuel_de_défaillance[SPOFs]. Quand ils sont seulement utilisés dans un but de collecte d'information cela est juste pas très professionnel. Mais quand les serveurs opérationnels doivent appeler le serveur de licence régulièrement ou lors de chaque démarrage pour pouvoir fonctionner, un serveur de licence non accessible c'est un morceau ou tout votre SI qui s'arrête.
+- Ils sont rarement prévus pour fonctionner en haute disponibilité ce qui en fait des link:https://fr.wikipedia.org/wiki/Point_individuel_de_défaillance[SPOFs]. Quand ils sont seulement utilisés dans un but de collecte d'information cela est juste pas très professionnel. Mais quand les serveurs opérationnels doivent appeler le serveur de licence régulièrement ou lors de chaque démarrage pour pouvoir fonctionner, un serveur de licence non accessible c'est un morceau ou tout votre SI qui s'arrête.
 
 ==== Serveur hébergé par l'éditeur
 
@@ -108,19 +108,19 @@ Même si la criticité est moindre (quand le serveur d'administration est indisp
 
 === Élasticité
 
+Même si vous n'avez pas besoin d'ajouter ou de supprimer des instances à tout bout de champ, une augmentation de trafic peut nécessiter d'ajouter une instance d'ici quelques mois et il est important d'en connaître les impacts.
 L'autre élément à examiner est l'élasticité.
-Même si vous n'avez pas besoin d'ajouter ou de supprimer des instances à chaque instant, une augmentation de trafic peut nécessiter d'ajouter une instance d'ici quelques mois et il est important d'en connaître les impacts.
 Si beaucoup de produits revendiquent désormais cette propriété, certains prennent des libertés avec sa définition courante :
-selon les outils, changer le nombre d'instance peut être totalement transparent, diminuer les performance pendant le rééquilibrage de données, ou même nécessiter de redémarrer tous les serveurs pour propager une configuration.
+selon les outils, changer le nombre d'instance peut être totalement transparent, peut diminuer les performances pendant le rééquilibrage de données, ou peut même nécessiter de redémarrer tous les serveurs pour propager une configuration.
 
 === Physique ou virtuel ?
 
-Pour l'hébergement la virtualisation est désormais la règle.
+Pour l'hébergement, la virtualisation est désormais la règle.
 Un logiciel qui nécessite d'être hébergé sur du bare metal aura donc besoin d'une bonne raison pour cela.
 Encourager l'utilisation du bare metal pour gagner des performances est un chose, la forcer en est une autre.
 
-En dehors de quelques systèmes de niche (sécurité, très haute performance), les appliances physiques sont désormais une espèce disparue et avec eux le besoin de déplacer et de recabler des serveurs quand une configuration changeait.
-Le remplacement par des appliances virtuelles supprimer la contrainte physique, mais pas les autres :
+En dehors de quelques systèmes de niche (sécurité, très haute performance), les appliances physiques sont désormais une espèce disparue et avec eux, le besoin de déplacer et de recabler des serveurs quand une configuration changeait.
+Le remplacement par des appliances virtuelles supprime la contrainte physique, mais pas les autres :
 
 - vous ne pourrez pas monitorer cette brique de la même manière que les autres ;
 - il faut faire confiance à l'éditeur pour maintenir le système à jour et sécurisé, ce qui devient de moins en moins acceptable avec la multiplication des failles de sécurités publiées.
@@ -131,7 +131,7 @@ Il s'agit donc toujours d'un pis-aller.
 
 En cas d'applicance logique :
 
-- La solution doit être compatible avec les différents systèmes de virtualisation du marché. Si l'outil ne fonctionne qu'avec VMware, et même si vous utilisez actuellement, il est important de se laisser la possibilité de migrer vers une autre solution.
+- La solution doit être compatible avec les différents systèmes de virtualisation du marché. Si l'outil ne fonctionne qu'avec VMware, et même si vous utilisez VMware actuellement, il est important de se laisser la possibilité de migrer vers une autre solution.
 - L'image doit utiliser link:https://help.ubuntu.com/community/CloudInit[cloud-init], ce qui vous permettra de l'intégrer facilement dans vos outils de provisionning, sinon un coût et un délai supplémentaires sont à prévoir.
 
 L'avenir dans ce domaine est probablement d'aller vers du Docker : l'éditeur gardera la main sur l'installation et les projets  .
@@ -164,7 +164,7 @@ Même si on préférerait ne jamais avoir eu cette idée, on peut s'en sortir en
 Ensuite les outils utilisant cette approche sont conçus pour être utilisés par une seule personne à la fois.
 Dans les organisations où un groupe de personne bien identifié est en charge de chaque outil, cette limite est acceptable.
 On fait une demande à l'équipe en question, qui s'en charge dès qu'elle le peut, en jonglant entre les priorités et ses ressources souvent limitées.
-Avec le raccourcissement des cycles de développement, ce type de fonctionnement devient invivable : tout est fait pour limiter la dépendance entre équipes et favoriser l'autonomie des équipes.
+Avec le raccourcissement des cycles de développement, ce type de fonctionnement devient invivable : tout est fait pour limiter les dépendances entre équipes et favoriser l'autonomie des équipes.
 Ce type d'outil devient donc inadapté : pas question de devoir réserver son tour pour avoir le droit de configurer un outil.
 Les middlewares étant souvent transverses, impossible non plus d'avoir une instance par équipe.
 
