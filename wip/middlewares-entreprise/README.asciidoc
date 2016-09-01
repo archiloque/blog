@@ -5,7 +5,6 @@ v1.0, 2015-09-23
 
 Sous-titre "Si vous voulez faire évoluer vos pratiques et en tirer des bénéfices, vos outils doivent être à la hauteur"
 
-
 == De quoi s'agit-il ?
 
 Quand j'ai commencé à travailler dans les années 2000, [line-through]#les dinosaures dominaient le monde# les projets étaient en train de changer.
@@ -82,7 +81,7 @@ Quand le serveur est hébergé par l'éditeur.
 - Le même risque opérationnel se pose en cas de serveur indisponible : êtes vous prêt à vous passer de votre ESB à usage strictement interne si votre connexion internet tombe ?
 - Un risque de sécurité  : sans tomber dans la paranoïa, un serveur qui fait un appel sortant que vous ne maitrisez pas est toujours dangereux. À vous d'en évaluer les conséquences.
 
-=== Les conséquences du coût des licenses
+=== Les conséquences du coût des licences
 
 Le prix est d'abord un critère de choix pour sélectionner la solution, mais il peut aussi avoir des conséquences sur son utilisation.
 
@@ -117,7 +116,7 @@ Il est donc nécessaire de choisir une deuxième solution pour les autres besoin
 
 === Un outil pour la production, un outil pour la recette
 
-Si pour certains éditeurs les licenses ne sont nécessaires que pour la production, pour d'autres il en faut une pour tous les serveurs.
+Si pour certains éditeurs les licences ne sont nécessaires que pour la production, pour d'autres il en faut une pour tous les serveurs.
 Même si les prix sont alors souvent dégressifs en fonction de l'usage, par exemple les instances de recette à moitié prix, cela peut faire vite monter l'addition quand les environnements se multiplient.
 
 La solution qui est parfois choisie est alors d'utiliser l'outil propriétaire pour la production et la pré-production est un outil open source pour les autres usages, du développement à la recette.
@@ -139,7 +138,7 @@ Même si la criticité est moindre (quand le serveur d'administration est indisp
 === Scalabilité
 
 L'autre élément à examiner est la scalabilité.
-Même si on parle beaucoup d'elasticité, on a rarement besoin d'ajouter ou de supprimer des instances à tout bout de champs.
+Même si on parle beaucoup d'élasticité, on a rarement besoin d'ajouter ou de supprimer des instances à tout bout de champs.
 Par contre une augmentation de trafic peut nécessiter d'ajouter une instance d'ici quelques mois et il est important d'en connaître les impacts.
 
 Si beaucoup de produits revendiquent désormais cette propriété, certains prennent des libertés avec sa définition courante :
@@ -166,7 +165,7 @@ En cas d'applicance logique :
 - La solution doit être compatible avec les différents systèmes de virtualisation du marché. Si l'outil ne fonctionne qu'avec VMware, et même si vous utilisez VMware actuellement, il est important de se laisser la possibilité de migrer vers une autre solution.
 - L'image doit utiliser link:https://help.ubuntu.com/community/CloudInit[cloud-init], ce qui vous permettra de l'intégrer facilement dans vos outils de provisionning, sinon un coût et un délai supplémentaires sont à prévoir.
 
-L'avenir dans ce domaine est probablement d'aller vers du Docker : l'éditeur gardera la main sur l'installation et les projets  .
+L'avenir dans ce domaine est probablement d'aller vers du Docker : l'éditeur gardera la main sur l'installation et les projets.
 
 == Déploiement et configuration
 
@@ -201,7 +200,7 @@ Avec le raccourcissement des cycles de développement, ce type de fonctionnement
 Ce type d'outil devient donc inadapté : pas question de devoir réserver son tour pour avoir le droit de configurer un outil.
 Les middlewares étant souvent transverses, impossible non plus d'avoir une instance par équipe.
 
-== Test unitaires
+== Tests unitaires
 
 Les outils embarquant du code ou du pseudo-code comme les ESB doivent fournir des fonctionnalités permettant d'écrire des tests unitaires automatisés.
 Ces tests doivent pouvoir se greffer dans votre usine de build, c'est à dire :
@@ -232,3 +231,20 @@ Pour être utile, un log doit être accessible et lisible et s'intégrer dans vo
 - des formats faciles à parser et univoques : des entrées monolignes car c'est ce que savent traiter la majorité des outils et un format unique par type de log.
 
 image::log.gif[title="Votre parseur de log quand il rencontre une stacktrace Java au milieu d'un fichier de log d'accès"]
+
+
+'''
+
+[TIP]
+.À retenir
+====
+Des outils de middleware peuvent être un vrai frein pour votre capacité à délivrer mieux et plus vite.
+Lorsque vous choisissez un tel outil, il faut absolument vérifier ces prérequis :
+
+- est ce que con utilisation pose des contraintes spécifiques qui gènent son utilisation ?
+- est ce qu'il est testable ?
+- est ce qu'il s'intègre dans vos process de développement ?
+- est ce qu'il s'intègre dans vos process de déploiement ?
+- est ce qu'il est facile à opérer ?
+
+====
