@@ -28,7 +28,7 @@ Le plus important est de choisir une stratégie, même si elle n'est pas la meil
 
 Nous allons commencer par voir les spécificités des services à l'intérieur de votre SI et les principes de gouvernances qu'on peut leur appliquer.
 Ensuite nous verrons comment et à quel rythme exposer de nouvelles versions, et en cas de besoin, comment faire quand un consommateur de service ne peut plus évoluer.
-Nous terminerons sur la question de budgets pour savoir comment.
+Nous terminerons sur la question de budgets pour savoir comment peut s'organiser le financement.
 
 == Les spécificités des services à l'intérieur d'un SI
 
@@ -80,7 +80,7 @@ Il faut éviter à tout prix que l'arbitrage entre les deux soit délégué dire
 
 L'exposition de services est régie par un principe simple : exposer un service, c'est créer un contrat qu'on s'engage à respecter vis-à-vis de ses consommateurs, et donc créer l'adhérence dans le SI.
 
-Comme un des objectifs de l'approche services est de minimiser l'adhérence entre les applications pour que le système évolue le plus facilement possible, il est préférable que la surface d'exposition sous la plus réduite possible.
+Comme un des objectifs de l'approche services est de minimiser l'adhérence entre les applications pour que le système évolue le plus facilement possible, il est préférable que la surface d'exposition soit la plus réduite possible.
 
 Pour cela, plusieurs solutions :
 
@@ -161,7 +161,7 @@ Pour être utilisable par les consommateurs, il ne faut pas vous limiter à un d
 - le SLA ;
 - des données d'exemples d'entrée et de sortie ;
 - des mocks permettant de simuler des appels, qu'ils soient générés à partir de votre outil de description ou qu'ils soient codés à la main ;
-- les personnes à contacter en cas de questions et de questions, en s'assurant qu'ils soient disponibles et motivés pour remplir ce rôle.
+- les personnes à contacter en cas de questions et de problèmes, en s'assurant qu'ils soient disponibles et motivés pour remplir ce rôle.
 
 Si un seul de ces éléments manque, vous allez faire perdre du temps aux consommateurs et à vous-même : cela revient à avoir du code sans test et/ou sans documentation.
 
@@ -301,7 +301,7 @@ Le critère primordial n'est pas de fâcher le moins de monde possible, mais de 
 Nous avons rencontré quatre approches :
 
 - Si la roadmap du projet qui expose les services est suffisamment claire et prévisible, il est possible de préallouer le coût des migrations dans chaque projet, au même titre que les autres dépenses externes comme l'infrastructure.
-- Les consommateurs demandeurs de la nouvelle version peuvent payer pour faire migrer les autres. Cela a pour effet d'augmenter le prix des demandes d'évolutions, donc de les diminuer.
+- Les consommateurs demandeurs de la nouvelle version peuvent payer pour faire migrer les autres. Cela a pour effet d'augmenter le prix des demandes d'évolutions, et donc diminier leur nombre.
 - Un pot commun sous forme d'une taxe "X% du budget" appliquée à tous les consommateurs. Cela permet aux gros projets d'aider à financer les migrations des petits, pour que ceux-ci ne bloquent pas.
 - Un pot commun à l'ensemble des projets. Cela permet d'avoir un pilotage par les risques à l'échelle du SI, mais l'arbitrage est difficile et peut être coûteux.
 
