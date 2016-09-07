@@ -1,4 +1,4 @@
-= Middleware d'entreprise : ce qu'il faut vérifier avant d'acheter
+= Middleware et autre outils : ce qu'il faut vérifier avant d'acheter
 :data-uri:
 Julien Kirch
 v1.0, 2015-09-23
@@ -16,27 +16,23 @@ Presque 15 ans plus tard, avec les pratiques agiles et le Devops, les pratiques 
 Malheureusement ce n'est pas le cas pour un certains nombres d'outils : ils ont enrichis leurs fonctionnalités, mais ne se sont pas transformés.
 
 Parfois non industrialisables, non testables ou difficile à intégrer dans votre SI : ces outils peuvent désormais être un vrai frein pour votre capacité à délivrer.
-Il faut garder en tête qu'un environnement technique est toujours nivelé par le bas : le plus mauvais outil dicte ses contraintes à toute la chaîne.
+Un environnement technique est toujours nivelé par le bas : le plus mauvais outil dicte ses contraintes à toute la chaîne, du développement à l'exploitation.
+L'utilisation d'une seule mauvaise brique peut donc être structurante et avoir des conséquences très lourdes.
 
-S'il est parfois possible de contourner ces limitations, il s'agit généralement de rustines fragiles. Et rappelez-vous que les outils sont sensé vous aider et pas se mettre sur votre route pour vous empêcher de travailler.
+S'il est parfois possible de contourner ces limitations, il s'agit généralement de mettre en place rustines fragiles.
+Et rappelez-vous que les outils sont sensé vous aider et pas se mettre sur votre route pour vous empêcher de travailler.
 
 Prendre conscience de ces limitations peut vous aider dans deux situations :
 
-- Si vous devez choisir un nouvel outil, cela vous permettra d'être certain que vos critères d'évaluation couvrent bien ces caractéristiques. Chez Octo, lors des missions de sélections d'outils, cela fait longtemps que ces prérequis font partie des éléments critiques.
+- Si vous devez choisir un nouvel outil, cela vous permettra d'être certain que vos critères d'évaluation couvrent bien ces caractéristiques.
+Chez Octo, lors des missions de sélections d'outils, cela fait longtemps qu'ils font partie des prérequis.
 - Si vous avez déjà ces outils, cela vous permettra de vous rappeler les limites qu'ils vous imposent, et vous fera peut-être réaliser qu'il est temps d'en changer.
 
 En revanche, cet article ne vous aidera pas à savoir si ce genre d'outil est encore nécessaire, il s'agit d'un autre sujet qui mérite d'être traité à part.
 
-=== C'est quoi un middleware d'entreprise ?
+=== De quels outils parle-t-on ?
 
 image::easter.jpg[title="Des middleware d'entreprise dans leur habitat naturel, photo par Arian Zwegers en CC"]
-
-La link:https://fr.wikipedia.org/wiki/Middleware[définition wikipedia] cadre un peu le sujet :
-
-[quote]
-____
-En architecture informatique, un middleware (anglicisme) ou intergiciel est un logiciel tiers qui crée un réseau d'échange d'informations entre différentes applications informatiques. Le réseau est mis en œuvre par l'utilisation d'une même technique d'échange d'informations dans toutes les applications impliquées à l'aide de composants logiciels.
-____
 
 Il s'agit d'un groupe aux limites assez floues mais qu'on peut délimiter par un certains nombres de caractéristiques :
 
@@ -46,12 +42,12 @@ Il s'agit d'un groupe aux limites assez floues mais qu'on peut délimiter par un
 - leur choix n'est pas laissé à la main de chaque projet mais est effectué de manière transverse, souvent par une cellule d'architecture et/ou l'équipe en charge de l'exploitation ;
 - ils sont choisis pour durer, et donc sont souvent évalués pour leur capacité à répondre à des besoins futurs.
 
-Les exemples les plus courants sont les link:https://fr.wikipedia.org/wiki/Message-oriented_middleware[bus de messages], les link:https://en.wikipedia.org/wiki/Enterprise_service_bus[bus d'entreprises], les link:https://fr.wikipedia.org/wiki/Extract-transform-load[ETL], les outils d'API management et les appliances de sécurité.
-Même s'il ne s'agit pas de middlewares, de nombreuses briques logicielles suivent les mêmes règles, par exemples les link:https://fr.wikipedia.org/wiki/Java_EE[serveurs d'applications] ou les technologies de virtualisation.
+Les exemples les plus caractéristiques sont les middleware d'entreprise : link:https://fr.wikipedia.org/wiki/Message-oriented_middleware[bus de messages], les link:https://en.wikipedia.org/wiki/Enterprise_service_bus[bus d'entreprises], link:https://fr.wikipedia.org/wiki/Extract-transform-load[ETL], outils d'API management et appliances de sécurité.
+De nombreuses autres briques logicielles suivent tout ou partie des mêmes règles, par exemples les link:https://fr.wikipedia.org/wiki/Java_EE[serveurs d'applications] ou les base de données.
 
 == Logiciels propriétaires
 
-Les middleware d'entreprises est un des domaines où les logiciels propriétaires sont encore très représentés.
+Les "logiciels d'entreprises est un des domaines où les logiciels propriétaires sont encore très représentés.
 Selon les pratiques des éditeurs, cela peut avoir des conséquences sur leur utilisation.
 
 === La gestion des licences
