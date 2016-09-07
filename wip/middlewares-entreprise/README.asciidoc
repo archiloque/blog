@@ -96,12 +96,11 @@ Les problèmes que cela pose dépendent de la manière dont la mutualisation est
 - Les environnements de pré-production et de production sont souvent les seuls à fonctionner en cluster, augmentant d'autant les prix. Quand ils s'exécutent sur les mêmes serveurs, les tests de performance effectués en pré-production risquent de perturber la production.
 - Si les environnements de tests sont mutualisés et celui de production dédié, le risque est d'avoir des configurations différentes et donc des régressions.
 
-image::fail.gif[title="Quand un test de performance fait crasher les serveurs de pré-production, mais qu'ils sont mutualisés avec les serveurs de production"]
+image::fail.gif[title="Quand un test de performance fait tomber les serveurs de pré-production, et qu'ils sont mutualisés avec les serveurs de production"]
 
 ==== Être forcé d'utiliser deux outils
 
-Pour des raisons de coûts, il est parfois nécessaire d'utiliser deux outils différents : un pour les besoins "critiques", et un autre pour les besoins "non critiques".
-
+Pour des raisons de coûts, il est parfois nécessaire d'utiliser deux outils différents.
 Cela peut arriver dans deux cas.
 
 ==== Deux outils en fonction des projets
