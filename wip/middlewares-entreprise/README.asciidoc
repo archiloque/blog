@@ -92,6 +92,8 @@ La conséquence est souvent une tentation de mutualiser les serveurs au delà du
 Le cas qu'on rencontre couramment est celui des serveurs d'applications Java. Les limitations du modèle J2E font que — malgré ce qu'en disent certains éditeurs — utiliser un seul serveur pour plusieurs applications pose un tas de problèmes : ressources non isolées, fuites mémoires…
 Les utilisateurs qui ont le choix utilisent systématiquement un serveur par applications, les seuls qui mutualisent leurs serveurs sont ceux qui le font pour limiter leur coûts de licence, et la contrepartie est de rendre leur système moins fiable.
 
+image::fail.gif[title="Quand un test de performance fait crasher les serveurs de pré-production, mais qu'ils sont mutualisés avec les serveurs de production"]
+
 ==== Mutualiser les environnements
 
 On peut aussi être amené à mutualiser les environnements : en fonction de la pression sur les prix, on mutualisera les serveurs de plusieurs environnements au lieu de les isoler.
@@ -156,7 +158,7 @@ Le remplacement par des appliances virtuelles supprime la contrainte physique, m
 - vous ne pourrez pas monitorer cette brique de la même manière que les autres ;
 - il faut faire confiance à l'éditeur pour maintenir le système à jour et sécurisé, ce qui devient de moins en moins acceptable avec la multiplication des failles de sécurités publiées.
 
-image::waiting.gif[title="Quand tu attends une nouvelle image disque après une mise à jour critique d'OpenSSL"]
+image::waiting.gif[title="Quand tu attends que l'éditeur publie un correctif de son image disque après une mise à jour critique d'OpenSSL"]
 
 Il s'agit donc toujours d'un pis-aller.
 
