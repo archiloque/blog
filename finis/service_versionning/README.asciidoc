@@ -1,5 +1,4 @@
 = Gérer les évolutions des services à l'intérieur de votre SI
-:data-uri:
 
 Sous-titre "Cela n'est pas seulement changer une configuration de `/v1/` à `/v2/` : c'est de la gouvernance, du planning et du budget"
 
@@ -12,7 +11,7 @@ Cet article ne traitera donc pas de ces aspects.
 Malheureusement, d'après mon expérience avec les grandes entreprises, la difficulté la plus grave dans ce domaine concerne le versionnement, et particulièrement le versionnement des services à l'intérieur du SI.
 Ces traitements sont ceux qui sont exposés et consommés par des applications du SI.
 
-Poser le problème est très simple :
+Le besoin est très simple :
 
 - introduire de nouvelles versions de services pour répondre aux nouvelles demandes ;
 - décomissionner les anciennes versions pour limiter le travail de maintenance et garder un SI évolutif.
@@ -212,6 +211,7 @@ Cette approche convient le mieux en début et en fin de projet :
 === Versions majeures et mineures
 
 Il est possible de mixer les deux approches :
+
 - une approche cadencée pour les versions majeures;
 - une approche opportuniste pour les versions mineures.
 
@@ -346,11 +346,8 @@ C'est une approche tentante car elle semble plus juste, cependant elle demande d
 Elle peut être intéressante sur des très gros projets en V, où les aspects budgétaires sont suivis de près et où la maintenance fait l'objet de chantiers spécifiques.
 Cependant dans des projets plus petits et agiles qui ont appris à refactorer en permanence, mieux vaut une approche plus basique qui évitera de bureaucratiser le projet.
 
-'''
+== À retenir
 
-[TIP]
-.À retenir
-====
 La gestion de version de vos services est avant tout un sujet de gouvernance, de planning et de budget.
 Et cette question ne peut pas se régler au niveau des projets mais globalement au niveau du SI.
 Suivant votre réussite dans ce domaine votre SI évoluera sans douleur ou accumulera de la dette.
@@ -362,5 +359,3 @@ Les points d'attention :
 - Exposer un service c'est créer un point d'adhérence entre deux systèmes, il faut donc le faire à bon escient.
 - Les changements de versions rythment la vie de votre SI, il faut savoir le faire au bon tempo tout en prenant garde de ne laisser aucun projet en arrière.
 - Exposer et consommer des services a un coût, et suivant vos pratiques ils ne se budgètent pas de la même manière.
-
-====
