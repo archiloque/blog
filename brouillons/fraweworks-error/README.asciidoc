@@ -1,0 +1,105 @@
+= Error handling in frameworks
+Julien Kirch
+v0.1, 2016-09-20
+:article_image: please.jpg
+:article_description: Think of the users
+
+Another "week-end project", another few hours spent spelunking a framework that looked handy but had a very bad error handling:
+nearly each time I tried to use a new API from it I got an indecipherable error (why a `NullPointerExeception` when a mandatory parameter is missing?) and I had to debug the code to understand what was happening.
+
+Now my code works but:
+
+- even with test cases, I'm not really confident in it;
+- if I want to modify it in a few weeks or months, I'll probably spend most of my time relearning the hidden idiosyncrasies of the frameworks instead of adding the functionalities I want.
+
+All because of bad error handling.
+
+It probably happened to you too, even several times, even after using a framework for a long time.
+
+== Why it matters?
+
+I wasted some time but the job is done so it doesn't look so serious.
+But if you're a framework developer, good error handling should be a priority.
+
+=== Angry developers
+
+When I look for a framework, the best way to find the right one is often to ask a trusted peer.
+And the best way to convince me to not use a framework is to tell me "this one is powerful and made a great first impression but then the error handling was so bad I nearly ragequited".
+
+Developers are craftmen: they remember when they used a tool they enjoyed, but their most vivid memories are when they used something they didn't like, and those are the memories they like to share the most.
+
+So if you want people to use your framework and you rely on mouth to ear for people to learn about it, you're best shot it so to make it pleasant to use.
+The alternative is people talking about it, but to warn other to not use it. "There's no such thing as bad publicity" definitely doesn't apply to frameworks.
+
+=== Your time vs time of your users
+
+The other reason is effectiveness: when a use case is hard to debug because of a bad error handling, many of your users will waste time (and curse your name).
+On the other hand if you spend some time improving the code, only one person will spend some time.
+
+== Why developers skip it?
+
+=== It takes time
+
+When you add a feature, more time is spent on writing tests that on the executed code.
+In most case, it will be the same for error management, and don't forget the unit tests for error management, so your time will be spend in this order:
+
+. Test for error management
+. Error management code
+. Test for non-error management code
+. Non-error management code
+
+It doesn't sound too appealing, specially when your time is limited and you simply want to add a feature to scratch your own itch.
+
+=== It makes the code more complicated
+
+When you don't have any error handling, the code is reduced to it's core.
+It's easier to read and to maintain.
+
+A good error handling often mean adding a thick layer between the exterior and your functional code that does nothing but checking for errors.
+
+On the other hand, when it's nicely done, the impact can be low:
+
+- As it's functionally a separate layer, put it in a separate layer. I know having a validation layer sounds enterprisy but having the concern separated keeps the code simpler, and avoid mixing the both kinds of code.
+- Make the validation code clean: don't copy/paste validation rules but create reusable chunks of code. This will make the validation code faster to write and test and more readable.
+
+=== For enterprise frameworks
+
+For enterprise frameworks, the incentives can make bad error handling a good thing:
+
+- If the company make money by selling trainings and support, having a powerful but difficult to use solution will help you selling more of them.
+- Developers that had to spend time to learn how to use your solutions will try to highlight this hard-learned competence and will be eager to reuse the same tool to make them appear valuable. From this, improving the usability of these frameworks would definitely hurt your existing users.
+
+I don't say that all enterprise frameworks that have bad error handling do it because of these reasons, but if a framework is in a bad shape regarding it, these can help to deter initiatives to improve the situation.
+
+== What is a good error handling?
+
+= Don't need to know internals to understand the error
+
+When you write an error message, the first reflex is to think that the user that will face the error will know the internals of your frameworks as well as you.
+The results are terse error messages that contain information requiring an intimate knowledge of your tool to be used.
+As a user the experience is horrible: you just hit a problem and want to fix it fast, but first you'll have to stop and learn more information, information that you though you didn't need.
+
+The error messages must help your users, not yourselves.
+An error message is well written when it doesn't not require more knowledge than using the API.
+The easiest way to do it is to check the error cases as soon as possible in the code flow, since in this case you'll have all the required information, and you known how the user has reached this code.
+
+If internal knowledge is required to understand your error message but not to call the API, it's generally a sign that your API is probably trying to do too much magic to hide complexity to your user, but the complexity leaks in the error case.
+In this case the best course of action is to rework your API to solve this problem.
+
+= Message should be helpful
+
+Having an error message stating the problems is a requirement, but if you can it's even better if it can help solving the problem.
+For example instead of `invalid status XXX` you should write `status XXX only reachable when YYY, see workflow.txt for details`.
+
+It's not doable in all cases, and sometimes you must resist the idea of being helpful when you're not 100% sure of the reason of the error. For example an error `invalid status XXX, may be caused be YYY` may help but may also lead the user in a wrong direction.
+
+= Error checking must be extensive and ruthless
+
+When validating parameters, you must be extensive and ruthless.
+A motto often heard is "Be conservative in what you do, be liberal in what you accept from others".
+It's a nice idea if being liberal doesn't lead to unclear problems and more time lost for your users because the rules are too lax.
+
+The worst case is when you have automagic configuration that tries to interpret the user's intend: if things goes well it's a really smooth experience for the user, but if things goes wrong it may be terrible.
+
+My approach is "be conservative but be totally explicit": if your requirements are very precise but well documented, errors are easy to fix and you're sure to not introduce any ambiguity or leaky magic.
+Use magic only in controlled conditions when you're sure to not do more harm than good.
