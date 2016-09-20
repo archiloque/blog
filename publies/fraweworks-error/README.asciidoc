@@ -1,8 +1,8 @@
-= Error handling in frameworks: think of the users
+= Error handling in frameworks
 Julien Kirch
 v0.1, 2016-09-20
 :article_image: please.jpg
-:article_description: QQQ
+:article_description: Think of the users
 
 Another "week-end project", another few hours spent spelunking a framework that looked handy but had a very bad error handling:
 nearly each time I tried to use a new API from it I got an indecipherable error (why a `NullPointerExeception` when a mandatory parameter is missing?) and I had to debug the code to understand what was happening.
