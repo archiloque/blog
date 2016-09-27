@@ -1,0 +1,80 @@
+= Gérer les évolutions des services à l'intérieur de votre SI
+
+Sous-titre QQQ
+
+## Prérequis
+
+* Demande de l'investissement
+* Demande d'avoir des personnes qui veulent que les tests fonctionnent à l'échelle du SI
+	* Au niveau de l'infra
+	* Dans les projets
+* Culture de l'amélioration et de la coopération et pas du blame
+	* Bug : interactions entre application, plus facile de corriger si les gens travaillent ensemble
+	* Sinon on se refile la patate chaude avec des tickets Jira
+
+## À quoi utiliser les environnements de recette ?
+
+* Faire des tests de bout en bout
+	* Tester code et ce qu'il y a autour
+		* Middlewares
+	* Comportements complexes
+		* Exemple : appels de services + asynchrone
+	* Tests à automatism et à lancer régulièrement
+* Peut être utilisé en développement pour valider des choses
+	* Utilisation ponctuelle : ne remplace pas les mock
+* À quoi ne doivent pas servir les environnements de recette ?
+	* Tout test qui peut se faire en isolation
+	* Tester les middleware et l'infra
+		* Ils doivent avoir leur propre environnent de recette; sur l'environnement de recette des applis ils ont un SLA
+
+## Applications et environnements de recette
+
+* Recette : tester pour soi et pour les autres
+	* Aspect de haute dispo : si pas possible de faire de test le projet est bloqué
+	* Éviter d'avoir à programmer les tests de recette
+	* Les autres doivent être dispo pour mes tests
+	* Je dois être dispo pour les tests des autres
+* J'ai besoin de pouvoir tester la version en cours pour la maintenance et la version suivante pour les évolutions
+* Les autres ont besoin de pouvoir tester la version en cours et la version suivante
+* Schéma qui montre deux instances de chaque application, avec bascule
+* Cas de cycles de développement très courts
+	* Seule la version courante des applis est dispo pour les autres
+
+## Quelles données ?
+
+* Besoins
+	* Tester les différents cas
+	* Ne pas passer trop de temps à les maintenir
+* 2 approches
+	* Données de production
+		* Solution de facilité
+		* Problèmes de l'anonymisation
+		* Problème de filtrage (on ne remonte pas toutes les données)
+		* Problème d'avoir les données qu'on veut pour tester tous les cas
+	* Données de référence pour chaque projet
+		* Simplifie les tests car on connait les valeurs
+		* Demande un travail continu de mis à jour
+		* Demande une synchronization entre les projets pour avoir des données cohérentes
+		* Peut être aussi utile pour les tests unitaires et pour les mocks
+
+## Comment faire ?
+
+* Un environnement commun
+	* Approche la plus simple
+	* Problème de données et de dispo
+* Un environnement complet pour chaque projet = ensemble des applications autour et des middleware
+	* Permet à chacun de faire ses tests de manière autonome
+	* Nécessite des middleware bien adaptés
+	* Les développeurs deviennent éditeur d'un logiciel
+		* Nécessite des applis bien packagées et faciles à utiliser
+			* Les autres applis sont capable de diagnostiquer les erreurs sans demander à un de tes développeirs
+		* Si bien fait = améliore la qualité des livrables et des process
+		* Mais un projet qui fait mal son boulot fait souffrir les autres
+			* Demande une pression hiérarchique
+
+'''
+[TIP]
+.À retenir
+====
+QQQ
+====
