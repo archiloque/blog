@@ -37,7 +37,7 @@ TIP: Cela permet également d'utiliser les mêmes outils de monitoring et d'aler
 
 Toute interruption de service pour maintenance doit alors être communiquée et validée, donc plus questions de décider qu'une application sera indisponible pendant une semaine le temps de tester une mise à jour ou un nouvel outil.
 
-La garantie s'étend bien entendu aux différents middleware (sécurité, intégration…): plus question de faire des tests "unitaires" en environnement d'intégration, ou de ne faire que des tests d'intégrations au risque de bloquer tout les autres.
+La garantie s'étend bien entendu aux différents middleware (sécurité, intégration…): plus question de faire des tests "unitaires" en environnement d'intégration, ou de ne faire que des tests d'intégrations au risque de bloquer tous les autres.
 Chaque brique, même non applicative, doit avoir son propre environnement de test "unitaire" et ses jeux de tests qui permettent de valider le maximum de choses de manière indépendante.
 
 ### Aider aux investigations
@@ -49,8 +49,8 @@ Pendant la phase d'investigation, on ne sait pas forcément quelle est la source
 Quand une bonne entente règne entre les équipes, chacune fournit son aide sans trop se faire tirer l'oreille.
 À l'inverse, quand la situation est plus tendue, par exemple quand chaque équipe est objectivée sur son avancement propre plutôt que sa contribution globale, les équipes aideront moins volontiers les autres.
 
-Cela se matérialise par le fait de faire trainer les choses en espérant que ça se tasse, et/ou de demander des preuves que le problème vient de leur côté.
-Cela ralentit tout le système tout en créant de la frustration, et à long terme peut entrainer la création d'un cercle vicieux.
+Cela se matérialise par le fait de faire traîner les choses en espérant que ça se tasse, et/ou de demander des preuves que le problème vient de leur côté.
+Cela ralentit tout le système tout en créant de la frustration, et à long terme peut entraîner la création d'un cercle vicieux.
 
 Une bonne gouvernance fera donc en sorte que les projets soient bien disposés à participer aux efforts d'investigations communs.
 Cela passe par le fait d'accepter que ces tâches prennent du temps, et réduisent donc la capacité à faire des équipes.
