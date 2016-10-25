@@ -12,8 +12,8 @@ Si vous ne pratiquez pas le link:http://blog.octo.com/continuous-deployment/[dé
 aux difficultés inhérentes aux bugs d'intégrations (de quels côté est le problèmes ?) s'ajoutent les contraintes de calendrier et d'indisponibilité.
 Ce n'est pas une fatalité, si les tests d'intégrations sont toujours un point d'attention, les choses peuvent bien se passer.
 
-L'objectifs de cet article est de vous aider à améliorer la situation en vous indiquant les points d'attentions à surveiller et les antipatterns à éviter.
-Pour cela nous allons commencer par parler gouverance, puis la question des données, pour terminer sur le déploiement des applications.
+L'objectif de cet article est de vous aider à améliorer la situation en vous indiquant les points d'attentions à surveiller et les antipatterns à éviter.
+Pour cela nous allons commencer par parler gouvernance, puis la question des données, pour terminer sur le déploiement des applications.
 
 ## Gouvernance
 
@@ -31,23 +31,23 @@ Le problème est que souvent on ne s'applique pas à soi-même  le niveau d'exig
 on râle quand on est bloqué par quelqu'un d'autre, mais sans faire en sorte que nos propres applications soit en permanence accessible, sans comprendre qu'en agissant ainsi on reproduit le problème pour les autres.
 
 Il est possible d'améliorer la situation en mettant en place une garantie de service (SLA), un peu comme en production.
-Il ne s'agit pas de dire que les environnements d'intégration sont aussi critiques que la production, mais d'acter qu'une interruption de service en intégration est suffisament domageable pour que les interruptions soient traitées avec l'urgence nécessaire, sans qu'il y ait besoin d'avoir à argumenter ou escalader.
+Il ne s'agit pas de dire que les environnements d'intégration sont aussi critiques que la production, mais d'acter qu'une interruption de service en intégration est suffisamment dommageable pour que les interruptions soient traitées avec l'urgence nécessaire, sans qu'il y ait besoin d'avoir à argumenter ou escalader.
 
 TIP: Cela permet également d'utiliser les mêmes outils de monitoring et d'alerting qu'en production, ce qui permet de les tester en même temps que le reste des applications.
 
 Toute interruption de service pour maintenance doit alors être communiquée et validée, donc plus questions de décider qu'une application sera indisponible pendant une semaine le temps de tester une mise à jour ou un nouvel outil.
 
-La garantie s'étend bien entendu aux différents middleware (sécurité, intégration…): plus question de faire des tests "unitaires" en environement d'intégration, ou de ne faire que des tests d'intégrations au risque de bloquer tout les autres.
+La garantie s'étend bien entendu aux différents middleware (sécurité, intégration…): plus question de faire des tests "unitaires" en environnement d'intégration, ou de ne faire que des tests d'intégrations au risque de bloquer tout les autres.
 Chaque brique, même non applicative, doit avoir son propre environnement de test "unitaire" et ses jeux de tests qui permettent de valider le maximum de choses de manière indépendante.
 
 ### Aider aux investigations
 
-Pendant les tests d'intégration, on rencontre régulièrement des problèmes à la frontières entre les applications et qui peuvent être difficiles à diagnostiquer.
+Pendant les tests d'intégration, on rencontre régulièrement des problèmes à la frontière entre les applications et qui peuvent être difficiles à diagnostiquer.
 
 Pendant la phase d'investigation, on ne sait pas forcément quelle est la source du bug et on peut ainsi avoir besoin de l'aide de toutes les équipes, sans être certain que le problème vienne de son côté.
 
 Quand une bonne entente règne entre les équipes, chacune fournit son aide sans trop se faire tirer l'oreille.
-À l'inverse, quand la situation est plus tendue, par exemple quand chaque équipe est objectivée sur son avancement propre plutôt que sa contribution globale, les équipes aideront moins volontier les autres.
+À l'inverse, quand la situation est plus tendue, par exemple quand chaque équipe est objectivée sur son avancement propre plutôt que sa contribution globale, les équipes aideront moins volontiers les autres.
 
 Cela se matérialise par le fait de faire trainer les choses en espérant que ça se tasse, et/ou de demander des preuves que le problème vient de leur côté.
 Cela ralentit tout le système tout en créant de la frustration, et à long terme peut entrainer la création d'un cercle vicieux.
@@ -58,90 +58,137 @@ Cela passe par le fait d'accepter que ces tâches prennent du temps, et réduise
 TIP: Si une équipe se plaint de passer trop de temps à aider aux investigations, c'est souvent le signe qu'elle n'investit pas assez dans les outils (monitoring et log) qui lui permettrait d'être plus efficace ou de permettre aux autres d'êtres autonomes.
 Ces mêmes outils serviront ensuite pour aider à diagnostiquer des problèmes en productions, il s'agit donc d'un investissement rentable.
 
-
 ### Prioriser les corrections d'erreur
 
 Une fois une investigation terminée et une erreur identifiée, reste à la corriger.
 
 Toutes les équipes ont une procédure, officielle ou officieuse, pour corriger rapidement les bugs bloquant lorsqu'ils apparaissent lors des tests d'intégration.
-Malheuresement cette action est souvent plus beaucoup difficile à activer lorsqu'il s'agit d'un bug qui bloque quelqu'un d'autre.
+Malheureusement cette action est souvent plus beaucoup difficile à activer lorsqu'il s'agit d'un bug qui bloque quelqu'un d'autre.
 
 Cela ne veut pas dire qu'il faut utiliser systématiquement cette procédure d'urgence, mais que "est ce que ça nous gène nous ou quelqu'un d'autre ?" ne devrait pas faire partie des critères permettant de décider ou non de l'appliquer.
 
-## PLAN
-
-## Applications et environnements de recette
-
-* Recette : tester pour soi et pour les autres
-** Aspect de haute dispo : si pas possible de faire de test le projet est bloqué
-** Éviter d'avoir à programmer les tests de recette
-** Les autres doivent être dispo pour mes tests
-** Je dois être dispo pour les tests des autres
-* J'ai besoin de pouvoir tester la version en cours pour la maintenance et la version suivante pour les évolutions
-* Les autres ont besoin de pouvoir tester la version en cours et la version suivante
-* Schéma qui montre deux instances de chaque application, avec bascule
-* Cas de cycles de développement très courts
-** Seule la version courante des applis est dispo pour les autres
-
-### Mono-instance
-
-image::mono.png[]
-
-### Instances en parallèle
-
-image::bi.png[]
-
-## Quelles données pour les tests ?
-
-Une fois décidé de la manière de déployer les applications, reste le sujet des données à utiliser pour les tests.
+## Quelles données pour les tests d'intégrations ?
 
 ### Un système distribué a des incohérences de données
 
 Le premier point et que, quelque soit la manière dont vous vous y prenez, vous aurez des incohérences de données entre vos systèmes.
 Dès qu'un système est distribué, ce problème est là.
-Les environements d'intégrations, avec des applications en cours de tests (donc avec plus de bugs) et des bidouilles sur les données, sont un terreau fertile pour qu'ils apparaissent.
 
-La meilleure stratégie face à cela est d'accpter la réalité de la situation, c'est à dire que le problème est là, et s'y confronter.
+Les environnements d'intégrations, avec des applications en cours de tests (donc avec plus de bugs) et où on bidouille beaucoup les données pour tester certains cas bizarres, sont un terreau fertile pour qu'ils apparaissent.
+Si on s'y prend mal, ça se traduit en cheveux arrachés et en heures perdues en investigations.
+
+La meilleure stratégie face à cela est d'accepter la réalité de la situation, c'est à dire que le problème est là, et s'y confronter.
 
 Cela veut dire rendre vos systèmes robustes, ce qui ne veut pas dire bidouiller les données ou ignorer les erreurs, mais avoir un monitoring et un reporting qui vous permettent de les identifier rapidement et pouvoir effectuer des corrections propres.
 
-La bonne nouvelle est que cet investissement vous servira également en production, est lorsqu'un problème de donnée bloquera vos système, vous serez bien content d'avoir pris auparavant le temps de vous outiller pour vos tests.
+La bonne nouvelle est que cet investissement vous servira également en production, est lorsqu'un problème de donnée bloquera vos systèmes, vous serez bien content d'avoir pris auparavant le temps de vous outiller pour vos tests.
 
-### Utiliser des données de production
+### De quoi a-t-on besoin vis-à-vis des données ?
+
+Pour pouvoir faire des tests d'intégrations, les données doivent répondre à deux besoins :
+
+- des données couvrant les différents cas à tester, pour éviter d'avoir à les modifier manuellement ;
+- des données cohérentes entre les applications, car sinon il n'est pas possible de jouer les tests.
+
+Les deux nécessitent une bonne coordination entre les applications.
+C'est évident pour le deuxième besoin, mais c'est aussi le cas pour le premier :
+par exemple si une application A gère des clients et une application B les comptes de ces clients, pouvoir tester certains cas de B peut nécessiter d'avoir des clients avec des statuts particuliers dans A.
+
+Pour obtenir ces données, deux stratégies se distinguent :
 
 ### Utiliser des données de référence
 
-## PLAN
+Dans cette approche, chaque application vient avec des données prédéfinies qui sont utilisées pour les tests.
+Elles sont appelées "données de références" car elles représentent les différents cas possibles permettant de jouer les tests.
 
-* Besoins
-** Tester les différents cas
-** Ne pas passer trop de temps à les maintenir
-* 2 approches
-** Données de production
-	** Solution de facilité
-	** Problèmes de l'anonymisation
-	** Problème de filtrage (on ne remonte pas toutes les données)
-	** Problème d'avoir les données qu'on veut pour tester tous les cas
-** Données de référence pour chaque projet
-	** Simplifie les tests car on connait les valeurs
-	** Demande un travail continu de mis à jour
-	** Demande une synchronization entre les projets pour avoir des données cohérentes
-	** Peut être aussi utile pour les tests unitaires et pour les mocks
+Elles peuvent prendre plusieurs formes, et pas seulement celles de données statiques :
+- bases de donnée qu'on va recopier (solution basique mais qui rend plus difficile de versionner les données avec le code) ;
+- scripts SQL ;
+- données dans des fichier de configuration (XML par exemple) ;
+- code permettant d'insérer les données de manière paramétrable, éventuellement avec une API (il s'agit généralement d'une API minimaliste et distincte de l'API applicative "normale" car elle devra permettre de facilement créer des données de différents types sans avoir à manipuler d'action métier).
 
-## Comment faire ?
+Quelle que soit la solution choisie, maintenir ces données a un coût : lorsqu'on ajoute un nouveau cas, ou lorsque le format de données change il faut effectuer une mise à jour.
+Par contre, ces mêmes données peuvent servir pour les tests métiers voire pour les tests unitaires, ce qui amortit l'investissement.
 
-* Un environnement commun
-** Approche la plus simple
-** Problème de données et de dispo
-* Un environnement complet pour chaque projet = ensemble des applications autour et des middleware
-** Permet à chacun de faire ses tests de manière autonome
-** Nécessite des middleware bien adaptés
-** Les développeurs deviennent éditeur d'un logiciel
-	** Nécessite des applis bien packagées et faciles à utiliser
-		** Les autres applis sont capable de diagnostiquer les erreurs sans demander à un de tes développeirs
-	** Si bien fait = améliore la qualité des livrables et des process
-	** Mais un projet qui fait mal son boulot fait souffrir les autres
-		** Demande une pression hiérarchique
+Ce coût sera d'autant plus élevé que les dépendances entre application sont importantes, et que la solution choisie est basique.
+Ainsi si on reprend le cas de l'application de clients A et l'application B de compte, si B a besoin d'un nouveau client dans A et que A gère ses données de référence dans une base, il faudra qu'un développeur de A insère les données dans la base. Mais si A met à disposition de B une API permettant de créer des données, B pourra le faire de manière autonome.
+
+Cette solution est idéalement à démarrer en début de développement quand la structure des données est assez simple et qu'on peut les faire évoluer au fur et à mesure.
+Si vous manquez de tests d'intégrations et que vous voulez mettre en place cette solution alors que vos données sont déjà complexes, il s'agira d'un vrai chantier à préparer et à planifier.
+
+Avec cette solution, vous êtes certain·e d'avoir les données dont vous avez besoin : elle peut sembler coûteuse mais elle est fiable.
+
+### Utiliser des données de production
+
+L'autre approche consiste à recopier les données issues de la production.
+
+Cette approche a l'avantage de demander peu d'investissement  quand on peut s'appuyer sur les outils de sauvegarde et de rechargement déjà en place.
+
+Elle a cependant plusieurs inconvénients :
+
+D'abord celui, assez théorique, de la confidentialité. Assez théorique car, même si on en parle beaucoup, en pratique c'est une question qui est souvent peu prise en compte en dehors des banques  Les accès aux serveurs de production sont souvent limités et audités, et les accès aux serveurs d'intégration sont en général très ouverts pour permettre de pouvoir facilement et rapidement investiguer les problèmes. Copier les données de la production à l'intégration c'est donc permettre à beaucoup de monde de le lire. Une solution possible est d'anonymiser les données, mais cela rend les choses plus complexes tout en rendant les données plus difficiles à utiliser et c'est donc rarement fait.
+
+Ensuite il y a le problème de trouver les différentes données qui sont nécessaires aux tests.
+Pour des cas simples on peut s'appuyer sur des données "connues", comme un client avec un identifiant facile à retenir, mais en prenant le risque qu'elle change.
+Mais pour les cas plus compliqué cela passe souvent par un ensemble de scripts permettant de chercher un enregistrement qui a telle ou telle caractéristique.
+Scripts qu'il faut maintenir, et transmettre ces scripts d'une équipe à l'autre.
+
+Enfin se pose le problème des données qui n'existent pas en production, soit qu'il n'y ait aucune entrée qui corresponde, ou qu'il s'agisse d'un nouveau cas d'usage.
+Il faut donc prévoir de pouvoir les créer.
+
+Au fur et à mesure que la couverture de tests s'étend, cette solution tend à demander autant de travail que d'avoir des données de référence, tout en étant plus fragile.
+
+## Déploiement applicatif
+
+Une fois réglé le sujet des données, reste celui du déploiement applicatif.
+
+### De quoi a-t-on besoin vis-à-vis des applications ?
+
+L'objectif est de pouvoir tester les nouvelles versions de chaque application, tout en permettant à l'ensemble des autres applications de faire de même.
+
+## Déploiement "un pour un"
+
+image::mono.png[]
+
+C'est la manière de faire standard où on réplique la topologie de production, avec une instance de chaque application souvent avec moins d'instances de serveurs.
+
+Quand on veut tester une nouvelle version on l'installe à la place de la précédente, en utilisant le même process qu'en production.
+
+Cela permet de n'avoir aucun développement spécifique, à part un peu de configuration, mais elle a deux limites.
+
+Tout d'abord en cas de bug bloquant sur une application, il peut être nécessaire de revenir à la version précédente pour ne pas bloquer les autres, ce qui peut empêcher d'investiguer le problème.
+Ensuite le calendrier de déploiement sur l'environnement de recette doit correspondre au calendrier de mise en production. Par exemple prenons deux applications A et B, B utilisant des services de A. Si la prochaine version N+1 de B doit être déployée avant la prochaine version N+1 de A, il faut attendre que les tests de la version N+1 de B soient terminés avant de déployer la version N+1 de A en recette, car sinon on risque de rater des bugs liés au fait de connecter la version N+1 de B à la version N de A.
+
+image::mono_versions.png[]
+
+Ainsi si le test de B prend du retard A ne peut pas commencer ses tests, et si A veut commencer ses tests plus tôt car sa version est plus risquée, elle doit s'organiser avec B.
+Ce problème devenant de plus en plus complexe quand le nombre d'applications augmente.
+
+### Instances en parallèle
+
+Il s'agit d'une manière de faire où une complexité plus grande permet d'avoir plus de liberté.
+Dans cette approche, chaque application dispose de deux installation : une installation en version courante, et une installation dans la version à tester.
+
+image::bi.png[]
+
+Cela permet à chaque application de choisir sur quelle version de service se brancher, et donc supprime le problème de dépendance.
+Par exemple la version N+1 de l'application B peut choisir d'utiliser la version N ou la version N+1 de A.
+
+Bien entendu cette solution demande d'ajouter de la configuration spécifique pour gérer les instances supplémentaires ainsi que la configuration du routage.
+
+### Un SI de recette pour chaque application
+
+L'idée ici est de fournir à chaque application un environnement de recette dédié avec l'ensemble des applications dont il a besoin.
+Ainsi chacun est maître chez soi et peut choisir quelle version de chaque application il veut déployer.
+À cela ajoute l'avantage d'avoir la maitrise complète des données: chacun peut à sa guise remettre à zéro toutes les données sur son environnement sans toucher les autres.
+
+Deux prérequis sont absolument essentiels :
+- un haut niveau d'industrialisation permettant de déployer un environnement rapidement et sans intervention manuelle ;
+- un bon niveau d'observabilité et une bonne qualité de diagnostique : cela permet d'éviter que les développeurs d'une application ne passent leur temps à investiguer les problèmes dans les environnements des autres, car en multipliant les instances on multiplies les risques de problèmes.
+
+Dans un environnement industrialisé, la mise en place de cette approche devrait être assez simple, et peut se faire un projet à la fois.
+
+Cela revient presque à transformer chaque équipe en éditeur car ses applications sont déployées et utilisées par d'autres personnes hors de son contrôle immédiat.
 
 '''
 [TIP]
@@ -149,6 +196,7 @@ La bonne nouvelle est que cet investissement vous servira également en producti
 ====
 
 - Chaque équipe a tendance à s'intéresser à ses besoins et à négliger ceux des autres, une bonne gouvernance permet d'en limiter les conséquences néfastes.
-- Vous aurez des problèes d'incohérence de données, mais si vous vous outillez pour bien les résoudre, vous pourrez utiliser les mêmes outils en production.
-
+- Vous aurez des problèmes d'incohérence de données, mais si vous vous outillez pour bien les résoudre, vous pourrez utiliser les mêmes outils en production.
+- Pour gérer les données de vos tests, vous pouvez utiliser des données de référence, ou vous appuyer sur des données de production.
+- Différentes topologies de déploiement sont possibles en fonction de vos besoins et de vos moyens.
 ====
