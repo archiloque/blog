@@ -4,7 +4,7 @@
 :maintenant: Et maintenant ?
 
 // Idées à prendre :
-// - BPM
+// - Cartographie détaillée de SI
 // - CORBA
 // - Central architecture team
 // - Cheap outsourcing
@@ -32,7 +32,33 @@ Les paris sont ouverts sur les entrées à ajouter d'ici quelques années, même
 
 ---
 
-= Les outils de portail d'entreprise
+= Les outils de BPM (Business Process Management)
+
+*{idee}*
+Une application consiste à appliquer des traitements métier à des données.
+Quand le métier change, il est long et coûteux de modifier le code de l'application.
+En modélisant correctement ces processus métier, ils se décomposent en un certains nombres de process unitaires.
+En fonction du domaine métier de l'entreprise, il doit être possible de définir un modèle commun à tous ses process unitaires.
+En écrivant le code de manière à exposer une interface correspondant à ce modèle et en rendant cette interface paramétrable,
+il devrait être possible d'adapter les applications aux changement métier uniquement en reconfigurant et en modifiant l'enchainements de ces process unitaires.
+Pour ce faire plus besoin de passer par des développeurs car il suffit d'utiliser des outils graphiques qui permettent de modifier les comportements métiers en quelques clicks.
+
+*{pourquoi}*
+Lorsque le métier d'une entreprise est suffisament complexe pour qu'on envisage d'utiliser un outil de ce type, il est souvent très difficile de le modéliser d'une manière exploitable :
+
+- soit le modèle est sur-adapté au métier actuel, et lorque le métier change la modélisation change avec lui ;
+- soit le modèle est très générique, et il est inutilisable car trop compliqué.
+
+D'autre part, le fait de vouloir faire correspondre les implémentation de comportements métier à un modèle leur ajoute de la complexité.
+Pour pouvoir éconmiser du temps ensuite avec l'outil de BPM, le développement initial sera donc plus long et plus risqué.
+
+Au final ce type d'outil n'a presque jamais remplis ses promesses, et les projets qui l'ont adaptés ont généralement aboutis à des usines à gaz.
+Les quelques cas favorables sont ceux où le métier de l'entreprise consiste fondamentalement à composer des produits à l'aide d'élements unitaires et à les modifier en permancence. Les produits financiers et les assurances en sont en bon exemple.
+
+*{maintenant}*
+Ce type d'outil existe toujours dans les gammes des différents vendeurs de logiciels d'entreprises mais ne sont quasiment plus utilisés.
+
+= Les outils de portail
 
 *{idee}*
 Les pages d'accueil des sites intranet des grandes entreprises sont composés de plusieurs éléments disparates : calendrier, fils de news, annuaire, liens vers application.
@@ -46,7 +72,19 @@ Ensuite la vérité est que les gens "n'utilisent" pas les portails intranet :
 ils y accèdent car c'est la page par défaut de leur navigateur, et s'en servent presque uniquement comme d'une liste de liens pour aller sur leurs applications métier.
 
 *{maintenant}*
-Les CMS remplissent généralement ce rôle : ils fournissent les quelques composants qui sont réellement nécessaires sur une page d'accueil, et permettant de publier le contenu qui constitue l'essentiel des pages.
+Mêmes si ces outils existent toujours, les portails continuent à être développés avec des CMS :
+ils fournissent les quelques composants qui sont réellement nécessaires sur une page d'accueil, et permettant de publier le contenu qui constitue l'essentiel des pages.
+
+= XML pour tout faire
+
+*{idee}*
+Excepteur est voluptate qui ad esse eu est magna duis ea velit labore ipsum.
+
+*{pourquoi}*
+Amet Lorem ullamco consectetur cillum irure qui incididunt dolore eu voluptate voluptate sint.
+
+*{maintenant}*
+Esse nostrud elit sit qui esse sit laborum magna dolore aute exercitation.
 
 ---
 
