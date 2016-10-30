@@ -1,4 +1,4 @@
-= Ces idées qui auraient du révolutionner l'informatique d'entreprises mais qui ont fait pschit
+= Ces idées qui auraient du révolutionner l'informatique d'entreprise mais qui ont fait pschit
 :idee: Idée :
 :pourquoi: Pourquoi ça n'a pas fonctionné ?
 :maintenant: Et maintenant ?
@@ -15,8 +15,7 @@
 // - MDA
 // - ODS
 // - SOAP
-// - UML
-// - XML for everything
+// - XML pour tout faire
 // - Métriques de code
 
 = Introduction
@@ -75,16 +74,33 @@ ils y accèdent car c'est la page par défaut de leur navigateur, et s'en serven
 Mêmes si ces outils existent toujours, les portails continuent à être développés avec des CMS :
 ils fournissent les quelques composants qui sont réellement nécessaires sur une page d'accueil, et permettant de publier le contenu qui constitue l'essentiel des pages.
 
-= XML pour tout faire
+= UML
 
 *{idee}*
-Excepteur est voluptate qui ad esse eu est magna duis ea velit labore ipsum.
+Représenter des élements d'un système par des schémas est compliqué.
+Par ailleurs, comme on dessine toujours un peu les mêmes choses, à chaque fois on passe  du temps à réinventer un peu la roue pour savoir comment on représente telle ou telle choses.
+À cela s'ajoute le risque d'être mal compris
+
+UML se veut un ensembe normé de représentations permettant de schématiser les différents types de diagrammes nécessaires à décrire un système.
+Ainsi plus besoin de réfléchir à la manière de représenter les choses, et plus de risque d'être mal compris : si tout le monde parle UML, tout le monde se comprend.
+
+En poussant l'idée jusqu'au bout, le développement d'un projet démarrerait par la création d'une modélisation du système dans un éditeur d'UML, puis cette modélisation permettrait de générer la structure du code dans laquelle il ne resterait plus qu'à remplir les trous.
 
 *{pourquoi}*
-Amet Lorem ullamco consectetur cillum irure qui incididunt dolore eu voluptate voluptate sint.
+Faire des schéma normés est parfait pour faire de documentation normalisées.
+Malheureusement on a rarement besoin de ce type de documentation : pour ces informations mieux vaut regarder dans le code.
+
+Quand on a besoin de faire un schéma, on le fait le plus souvent pour expliquer un point précis, et on va chercher la meilleure représentation pour expliquer ce point.
+Utiliser un représentation normée nous prive de cette possibilité.
+
+Multiplier les types de schémas comme l'ont fait les versions successives d'UML est une tentative de répondre à ce problème car dans le lot on pourrait trouver le type de schéma dont on a besoin.
+Mais il s'agit d'une fuite en avant qui permet de ne pas remettre en cause l'idée de base.
+
+Quand à utiliser UML pour créer le squelette de code des projets, si elle a permi à des link:https://en.wikipedia.org/wiki/Rational_Software[éditeurs de faire fortune], elle n'a mené qu'à du temps perdu et des impasses : forcer le design du code à correspondre à un design "logique" c'est se priver de toute liberté et aboutit à des usines à gaz où à des systèmes non fonctionnels.
 
 *{maintenant}*
-Esse nostrud elit sit qui esse sit laborum magna dolore aute exercitation.
+UML _stricto sensu_ est totalement tombé en désuétude.
+Le seul type de diagramme encore utilisé tel quel est le link:https://fr.wikipedia.org/wiki/Diagramme_de_séquence[diagramme de séquence] : il est simple à mémoriser et a une vraie utilité, et à l'occasion certains s'inspirent des diagrammes de classes pour des schéma sur des tableaux.
 
 ---
 
