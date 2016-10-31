@@ -1,16 +1,19 @@
 = Tests d'intégration et services: ce qu'il faut savoir pour que ça se passe bien
 
-Sous-titre "Des points d'attentions et des suggestions pour améliorer les chose"
+Sous-titre "Des points d'attentions et des suggestions pour améliorer les choses"
 
 ## De quoi parle-t-on ?
 
 Si votre système d'information comprend des échanges entre applications,
-que cela soit sous forme de services de messages ou de fichiers, il est probable que vous testiez ces dépendances à l'aide de tests d'intégration.
+que cela soit sous forme de services, de messages ou de fichiers, il est probable que vous testiez ces dépendances à l'aide de tests d'intégration.
 Ils permettent de valider les comportements dans des conditions aussi proches que possible des conditions réelles.
 
 Si vous ne pratiquez pas le link:http://blog.octo.com/continuous-deployment/[déploiement continu], ces tests sont souvent source de tensions entre projets :
 aux difficultés inhérentes aux bugs d'intégrations (de quels côté est le problèmes ?) s'ajoutent les contraintes de calendrier et d'indisponibilité.
 Ce n'est pas une fatalité, si les tests d'intégrations sont toujours un point d'attention, les choses peuvent bien se passer.
+
+Dans certaines entreprises, le cycle de vie des projets comprend parfois un environnement d'intégration pour tester la tuyauterie technique et un environnement de recette pour tester les comportement métier.
+Dans ce cas, ce qui est décrit dans l'article s'applique à ces deux environnements.
 
 L'objectif de cet article est de vous aider à améliorer la situation en vous indiquant les points d'attentions à surveiller et les antipatterns à éviter.
 Pour cela nous allons commencer par parler gouvernance, puis la question des données, pour terminer sur le déploiement des applications.
@@ -20,9 +23,10 @@ Pour cela nous allons commencer par parler gouvernance, puis la question des don
 Les tests d'intégrations est l'étape où on commence à assembler les briques applicatives unitaires pour construire un SI.
 On passe donc du chacun pour soi, à un système commun.
 
-Chaque application a tendance à se concentrer sur ses propres besoins tout en négligeant ceux des autres : elle se voit seule au monde à faire ses tests et les autres qui sont là pour elle, sans réaliser que pour les autres la situation est exactement la même.
+Chaque application a tendance à se concentrer sur ses propres besoins tout en négligeant ceux des autres :
+elle se voit seule au monde à faire ses tests et les autres qui sont là pour elle, sans réaliser que pour les autres la situation est exactement la même.
 Il est donc normal que des problèmes de gouvernance s'y posent,
-et que des arbitrages soient nécessaires.
+et que des arbitrages soient nécessaires pour l'intérêt du bien commun.
 
 ### Garantir une qualité de service
 
@@ -44,7 +48,7 @@ Chaque brique, même non applicative, doit avoir son propre environnement de tes
 
 Pendant les tests d'intégration, on rencontre régulièrement des problèmes à la frontière entre les applications et qui peuvent être difficiles à diagnostiquer.
 
-Pendant la phase d'investigation, on ne sait pas forcément quelle est la source du bug et on peut ainsi avoir besoin de l'aide de toutes les équipes, sans être certain que le problème vienne de son côté.
+Pendant la phase d'investigation, on ne sait pas forcément quelle est la source du bug et on peut ainsi avoir besoin de l'aide de n'importe quelle équipe, sans être certain que le problème vienne de son côté.
 
 Quand une bonne entente règne entre les équipes, chacune fournit son aide sans trop se faire tirer l'oreille.
 À l'inverse, quand la situation est plus tendue, par exemple quand chaque équipe est objectivée sur son avancement propre plutôt que sa contribution globale, les équipes aideront moins volontiers les autres.
@@ -63,9 +67,26 @@ Ces mêmes outils serviront ensuite pour aider à diagnostiquer des problèmes e
 Une fois une investigation terminée et une erreur identifiée, reste à la corriger.
 
 Toutes les équipes ont une procédure, officielle ou officieuse, pour corriger rapidement les bugs bloquant lorsqu'ils apparaissent lors des tests d'intégration.
-Malheureusement cette action est souvent plus beaucoup difficile à activer lorsqu'il s'agit d'un bug qui bloque quelqu'un d'autre.
+Malheureusement cette action est souvent plus beaucoup difficile à activer lorsqu'un bug dans une application bloque quelqu'un d'autre.
 
 Cela ne veut pas dire qu'il faut utiliser systématiquement cette procédure d'urgence, mais que "est ce que ça nous gène nous ou quelqu'un d'autre ?" ne devrait pas faire partie des critères permettant de décider ou non de l'appliquer.
+
+## Ne plus avoir d'équipe d'intégration
+
+Dans le passé, lorsque l'administration système et les déploiment n'étaient pas totalement automatisés, il existait souvent des équipes d'intégrations.
+
+Ces équipes étaient chargées de s'occuper des serveurs, de faire les déploiements, et souvent d'aider aux investigations.
+Comme son objectif était de faire fonctionner la plateforme elle était forcée de s'occuper des bugs dont personne ne voulait.
+Sans avoir de connaissance métier, et sans l'aide des développeurs concernés, son rôle était d'identifier les cause des problèmes avec une certitude suffisante pour que les prokets soient obligés de s'y intéresser.
+Cela signifie des durées de corrections allongés et des efforts gâchés.
+
+Ce mode de fonctionnement est très confortable pour les équipes projets car ils savent que s'ils négligent cette partie de leur travail, quelqu'un le fera à leur place.
+Elle a tendance à entretenir un cercle vicieux de non implication.
+
+Notre conseil à ce sujet est de ne pas avoir ce type d'équipe.
+Commencez par investir dans les l'automatisation des déploiements.
+Une fois les déploiement industrialisés, les membres de cette équipe peuvent essaimer ailleurs, notament directement dans les projets pour aller vers du Devops.
+Privés de filet de sécurité, les projets sont alors obligés de s'intéresser à leur bugs.
 
 ## Quelles données pour les tests d'intégrations ?
 
@@ -100,12 +121,15 @@ Pour obtenir ces données, deux stratégies se distinguent :
 
 Dans cette approche, chaque application vient avec des données prédéfinies qui sont utilisées pour les tests.
 Elles sont appelées "données de références" car elles représentent les différents cas possibles permettant de jouer les tests.
+Elles se préparent avec l'aides des personnes du métier qui connaissent les cas à tester.
 
 Elles peuvent prendre plusieurs formes, et pas seulement celles de données statiques :
 - bases de donnée qu'on va recopier (solution basique mais qui rend plus difficile de versionner les données avec le code) ;
 - scripts SQL ;
 - données dans des fichier de configuration (XML par exemple) ;
 - code permettant d'insérer les données de manière paramétrable, éventuellement avec une API (il s'agit généralement d'une API minimaliste et distincte de l'API applicative "normale" car elle devra permettre de facilement créer des données de différents types sans avoir à manipuler d'action métier).
+
+Pour des métiers très complexes, il peut être pertinent des développer des outils permettant d'extraire des données de la production et de les anonymiser afin d'en faire des données de référence.
 
 Quelle que soit la solution choisie, maintenir ces données a un coût : lorsqu'on ajoute un nouveau cas, ou lorsque le format de données change il faut effectuer une mise à jour.
 Par contre, ces mêmes données peuvent servir pour les tests métiers voire pour les tests unitaires, ce qui amortit l'investissement.
@@ -141,6 +165,19 @@ Il faut donc prévoir de pouvoir les créer.
 
 Au fur et à mesure que la couverture de tests s'étend, cette solution tend à demander autant de travail que d'avoir des données de référence, tout en étant plus fragile.
 
+### La réinitialisation des données
+
+Le dernier point important est la réinialisation des données.
+Quel que soit la manière dont les données d'intégrations soient obtenues, il est nécessaire de pouvoir régulièrement remettre les données à zero.
+Cela évite d'avoir des données qui se dégradent petit à petit au fur et à mesure que des tests sont joués et des erreurs détectées.
+
+Du point de vur technique, la seule approche viable est une réinialisation automatisée.
+Ceci permet d'éviter d'y passer du temps, et de s'assurer que tous les sytèmes soient bien remis à jour en même temps et d'ainsi éviter les incohérences.
+
+Du point de vue organisationnelle, il faut que cette réinialisation puisse se faire régulièrement avec le minimum de tractations.
+Le mieux est d'avoir un processus programmé à intervalle régulier, tout en pouvant le désactiver en cas de besoin.
+Cela permet d'éviter d'avoir à se mettre d'accord à chaque fois.
+
 ## Déploiement applicatif
 
 Une fois réglé le sujet des données, reste celui du déploiement applicatif.
@@ -151,16 +188,16 @@ L'objectif est de pouvoir tester les nouvelles versions de chaque application, t
 
 ## Déploiement "un pour un"
 
-image::mono.png[]
-
 C'est la manière de faire standard où on réplique la topologie de production, avec une instance de chaque application souvent avec moins d'instances de serveurs.
 
 Quand on veut tester une nouvelle version on l'installe à la place de la précédente, en utilisant le même process qu'en production.
 
+image::mono.png[]
+
 Cela permet de n'avoir aucun développement spécifique, à part un peu de configuration, mais elle a deux limites.
 
 Tout d'abord en cas de bug bloquant sur une application, il peut être nécessaire de revenir à la version précédente pour ne pas bloquer les autres, ce qui peut empêcher d'investiguer le problème.
-Ensuite le calendrier de déploiement sur l'environnement de recette doit correspondre au calendrier de mise en production. Par exemple prenons deux applications A et B, B utilisant des services de A.
+Ensuite le calendrier de déploiement sur l'environnement d'intégration doit correspondre au calendrier de mise en production. Par exemple prenons deux applications A et B, B utilisant des services de A.
 Si la prochaine version N+1 de B doit être déployée avant la prochaine version N+1 de A, il faut attendre que les tests de la version N+1 de B soient terminés avant de déployer la version N+1 de A en recette, car sinon on risque de rater des bugs liés au fait de connecter la version N+1 de B à la version N de A.
 
 image::mono_versions.png[]
@@ -180,19 +217,24 @@ Par exemple la version N+1 de l'application B peut choisir d'utiliser la version
 
 Bien entendu cette solution demande d'ajouter de la configuration spécifique pour gérer les instances supplémentaires ainsi que la configuration du routage.
 
-### Un SI de recette pour chaque application
+### Un SI d'intégration pour chaque application
 
-L'idée ici est de fournir à chaque application un environnement de recette dédié avec l'ensemble des applications dont il a besoin.
+L'idée ici est de fournir à chaque application un environnement d'intégration dédié avec l'ensemble des applications dont il a besoin.
 Ainsi chacun est maître chez soi et peut choisir quelle version de chaque application il veut déployer.
 À cela ajoute l'avantage d'avoir la maitrise complète des données: chacun peut à sa guise remettre à zéro toutes les données sur son environnement sans toucher les autres.
 
-Deux prérequis sont absolument essentiels :
+Trois prérequis sont absolument essentiels :
+
 - un haut niveau d'industrialisation permettant de déployer un environnement rapidement et sans intervention manuelle ;
+- des ressources matérielles et logicielles (licenses) disponibles ;
 - un bon niveau d'observabilité et une bonne qualité de diagnostique : cela permet d'éviter que les développeurs d'une application ne passent leur temps à investiguer les problèmes dans les environnements des autres, car en multipliant les instances on multiplies les risques de problèmes.
 
 Dans un environnement industrialisé, la mise en place de cette approche devrait être assez simple, et peut se faire un projet à la fois.
 
 Cela revient presque à transformer chaque équipe en éditeur car ses applications sont déployées et utilisées par d'autres personnes hors de son contrôle immédiat.
+
+Cette approche semble aller dans le sens de l'histoire et va donc peut-être peu à peu se généraliser.
+Nous vous conseillons donc de vous y intéresser.
 
 '''
 [TIP]
@@ -202,5 +244,5 @@ Cela revient presque à transformer chaque équipe en éditeur car ses applicati
 - Chaque équipe a tendance à s'intéresser à ses besoins et à négliger ceux des autres, une bonne gouvernance permet d'en limiter les conséquences néfastes.
 - Vous aurez des problèmes d'incohérence de données, mais si vous vous outillez pour bien les résoudre, vous pourrez utiliser les mêmes outils en production.
 - Pour gérer les données de vos tests, vous pouvez utiliser des données de référence, ou vous appuyer sur des données de production.
-- Différentes topologies de déploiement sont possibles en fonction de vos besoins et de vos moyens.
+- Différentes topologies de déploiement sont possibles en fonction de vos besoins, de vos moyens, et de votre capacité de coordnation.
 ====
