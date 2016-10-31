@@ -126,7 +126,10 @@ Cette approche a l'avantage de demander peu d'investissement  quand on peut s'ap
 
 Elle a cependant plusieurs inconvénients :
 
-D'abord celui, assez théorique, de la confidentialité. Assez théorique car, même si on en parle beaucoup, en pratique c'est une question qui est souvent peu prise en compte en dehors des banques  Les accès aux serveurs de production sont souvent limités et audités, et les accès aux serveurs d'intégration sont en général très ouverts pour permettre de pouvoir facilement et rapidement investiguer les problèmes. Copier les données de la production à l'intégration c'est donc permettre à beaucoup de monde de le lire. Une solution possible est d'anonymiser les données, mais cela rend les choses plus complexes tout en rendant les données plus difficiles à utiliser et c'est donc rarement fait.
+D'abord celui, assez théorique, de la confidentialité. Assez théorique car, même si on en parle beaucoup, en pratique c'est une question qui est souvent peu prise en compte en dehors des banques et des systèmes de paiement.
+Les accès aux serveurs de production sont souvent limités et audités, et les accès aux serveurs d'intégration sont en général très ouverts pour permettre de pouvoir facilement et rapidement investiguer les problèmes.
+Copier les données de la production à l'intégration c'est donc permettre à beaucoup de monde de le lire.
+Une solution possible est d'anonymiser les données, mais cela rend les choses plus complexes tout en rendant les données plus difficiles à utiliser et c'est donc rarement fait.
 
 Ensuite il y a le problème de trouver les différentes données qui sont nécessaires aux tests.
 Pour des cas simples on peut s'appuyer sur des données "connues", comme un client avec un identifiant facile à retenir, mais en prenant le risque qu'elle change.
@@ -157,7 +160,8 @@ Quand on veut tester une nouvelle version on l'installe à la place de la préc�
 Cela permet de n'avoir aucun développement spécifique, à part un peu de configuration, mais elle a deux limites.
 
 Tout d'abord en cas de bug bloquant sur une application, il peut être nécessaire de revenir à la version précédente pour ne pas bloquer les autres, ce qui peut empêcher d'investiguer le problème.
-Ensuite le calendrier de déploiement sur l'environnement de recette doit correspondre au calendrier de mise en production. Par exemple prenons deux applications A et B, B utilisant des services de A. Si la prochaine version N+1 de B doit être déployée avant la prochaine version N+1 de A, il faut attendre que les tests de la version N+1 de B soient terminés avant de déployer la version N+1 de A en recette, car sinon on risque de rater des bugs liés au fait de connecter la version N+1 de B à la version N de A.
+Ensuite le calendrier de déploiement sur l'environnement de recette doit correspondre au calendrier de mise en production. Par exemple prenons deux applications A et B, B utilisant des services de A.
+Si la prochaine version N+1 de B doit être déployée avant la prochaine version N+1 de A, il faut attendre que les tests de la version N+1 de B soient terminés avant de déployer la version N+1 de A en recette, car sinon on risque de rater des bugs liés au fait de connecter la version N+1 de B à la version N de A.
 
 image::mono_versions.png[]
 
