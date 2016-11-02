@@ -35,6 +35,8 @@ Comme le reste du code, les services doivent être couverts par des tests unitai
 
 Si une équipe ne fait pas ces tests unitaires, elle va se retrouver avec un tas de bugs pendant la phase d'intégration.
 Cela représente un gaspillage, car faire des corrections pendant l'intégration prend plus de temps que pendant le développement.
+Gaspillage de temps également pour les équipent qui dépendent de ce code et qui seront donc ralenties dans leurs propres tests d'intégration.
+
 De plus, si elle dépense son temps de tests sur les cas qui auraient du être vérifiés plus tôt, elle risque de passer à côté des erreurs moins évidentes, qui seront donc découvertes après la mise en production.
 
 Le role de la gouvernance est donc de rendre les tests unitaires obligatoires sur les services, et de faire en sorte que cette règle soit appliquée.
