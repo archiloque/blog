@@ -28,6 +28,17 @@ elle se voit seule au monde à faire ses tests et les autres applications sont �
 Il est donc normal que des problèmes de gouvernance se posent,
 et que des arbitrages soient nécessaires pour l'intérêt commun.
 
+### Les services doivent être testés unitairement
+
+Si, dans le cycle projet, les tests d'intégrations sont le premier moment où on teste les services en mode connecté, cela ne doit être le premier moment où les projets testent leurs services.
+Comme le reste du code, les services doivent être couverts par des tests unitaires à l'aide de mocks.
+
+Si une équipe ne fait pas ces tests unitaires, elle va se retrouver avec un tas de bugs pendant la phase d'intégration.
+Cela représente un gaspillage, car faire des corrections pendant l'intégration prend plus de temps que pendant le développement.
+De plus, si elle dépense son temps de tests sur les cas qui auraient du être vérifiés plus tôt, elle risque de passer à côté des erreurs moins évidentes, qui seront donc découvertes après la mise en production.
+
+Le role de la gouvernance est donc de rendre les tests unitaires obligatoires sur les services, et de faire en sorte que cette règle soit appliquée.
+
 ### Garantir une qualité de service
 
 Lorsqu'une équipe fait ses tests d'intégration, elle demande que toutes les applications dont elle a besoin fonctionnent pour pouvoir avancer le plus vite possible.
@@ -66,6 +77,7 @@ Ces mêmes outils serviront ensuite pour aider à diagnostiquer des problèmes e
 
 Une fois une investigation terminée et une erreur identifiée, reste à la corriger.
 
+Parfois pendant les tests d'intégration, une équipe détecte un problème dans un service qu'elle appelle et qui est déjà déployé, et ce bug l'empêche de passer son code en production.
 Toutes les équipes ont une procédure, officielle ou officieuse, pour corriger rapidement les bugs bloquant lorsqu'ils apparaissent lors des tests d'intégration.
 Malheureusement, cette action est souvent plus beaucoup difficile à activer lorsqu'un bug dans une application bloque quelqu'un d'autre.
 
@@ -204,6 +216,10 @@ image::mono_versions.png[]
 
 Ainsi, si le test de B prend du retard, A ne peut pas commencer ses tests, et si A veut commencer ses tests plus tôt car sa version est plus risquée, elle doit s'organiser avec B.
 Ce problème devenant de plus en plus complexe quand le nombre d'applications augmente.
+
+Quand la situation devient douloureuse, la solution la plus tentante est souvent d'essayer d'augmenter le niveau de planification.
+Or plus on planifie, plus les situations deviennent inextricables en cas de retard.
+Ce cercle vicieux aboutit souvent à devoir ne pas jouer certains tests pour gagner du temps, et ainsi commencer à sacrifier la qualité.
 
 ### Instances en parallèle
 
