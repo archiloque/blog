@@ -15,7 +15,6 @@
 // - ODS
 // - GED
 // - Moteurs de workflow
-// - Serveurs d'applications d'entreprise
 
 = Introduction
 
@@ -101,6 +100,39 @@ Quand à utiliser UML pour créer le squelette de code des projets, si elle a pe
 *{maintenant}*
 UML _stricto sensu_ est totalement tombé en désuétude.
 Le seul type de diagramme encore utilisé tel quel est le link:https://fr.wikipedia.org/wiki/Diagramme_de_séquence[diagramme de séquence] : il est simple à mémoriser et a une vraie utilité, et à l'occasion certains s'inspirent des diagrammes de classes pour des schéma sur des tableaux.
+
+= Les serveurs d'application Java d'entreprise (et J2EE)
+
+*{idee}*
+Depuis les débuts de JEE, c'est à dire les années 2000, les serveurs d'applications Java se sont séparées en deux familles :
+
+- les serveurs de servlets, comme Tomcat
+- les serveurs "full JEE" comme IBM WebSphere
+
+Les serveurs de servlets fournissent le minimum de fonctionalités essentielles. Pour les besoins supplémentaires il faut utiliser des bibliothèques supplémentaires, ce qui demande du temps et peut poser des risques de maintenance.
+
+L'idée des serveur "full JEE" est de fournir l'intégralité des fonctionnalités dont une application "d'entreprise" a généralement besoin.
+
+L'objectif est double :
+
+- que les développeur n'aient à se préoccuper que de développer leur application, toutes les briques techniques étant déjà définies pour eux par J2EE ;
+- fournir un socle commun à tous les serveurs, ce qui permettrait aux utilisateurs de facilement passer d'un serveur à un autre.
+
+*{pourquoi}*
+Tout d'abord, si Sun a eu un coup de génie avec Java, il n'en a pas été de même avec les API JEE.
+Dans la majorité des cas, ces API — au moins dans les premières versions — sont mal conçues, même quand elles s'inspirent fortement de bibliothèques existantes.
+
+Elles sont souvent beaucoup trop complexes à utiliser, car voulant pouvoir traiter tous les cas possibles, sans fournir de raccourcis pour les besoins simples.
+
+Ensuite les implémentations fournies par les vendeurs ne sont souvent pas la hauteur.
+Souvent truffées de bugs, elles sont également parfois incomplètes car certains éditeurs choisissent de n'implémenter que les parties de J2EE dont ils pensent que leurs clients vont se servir.
+
+Après s'être fait piéger un certain nombre de fois, les utilisateurs ont alors compris la leçon.
+Pour avoir une solution simple et fiable il faut exiger le minimum du serveur d'application, et pour le reste s'appuyer sur des briques alternatives, souvent open-source.
+
+*{maintenant}*
+Seules certaines grandes structures continuent à utiliser des serveurs JEE, mais n'utilisent que très rarement les fonctionalités avancées qui sont sensés être leur différenciant et qui justifient leur prix.
+Tous les autres ont migrés sur des serveurs légers, la tendance étant maintenant d'utiliser le serveur comme une bibliothèque servant à démarrer le code plutôt que comme un conteneur.
 
 ---
 
