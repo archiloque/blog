@@ -12,7 +12,7 @@ Si vous ne pratiquez pas le link:http://blog.octo.com/continuous-deployment/[dé
 aux difficultés inhérentes aux bugs d'intégration (de quel côté se situe le problème ?) s'ajoutent les contraintes de calendrier et d'indisponibilité.
 Ce n'est pas une fatalité, si les tests d'intégrations sont toujours un point d'attention, les opérations peuvent bien se passer.
 
-Dans certaines entreprises, le cycle de vie des projets comprend parfois un environnement d'intégration pour tester la tuyauterie technique et un environnement de recette pour tester les comportement métier.
+Dans certaines entreprises, le cycle de vie des projets comprend parfois un environnement d'intégration pour tester la tuyauterie technique et un environnement de recette pour tester les comportements métier.
 Dans ce cas, ce qui est décrit dans l'article s'applique à ces deux environnements.
 
 L'objectif de cet article est de vous aider à améliorer la situation en vous indiquant les points d'attention à surveiller et les antipatterns à éviter.
@@ -39,7 +39,7 @@ Gaspillage de temps également pour les équipent qui dépendent de ce code et q
 
 De plus, si elle dépense son temps de tests sur les cas qui auraient du être vérifiés plus tôt, elle risque de passer à côté des erreurs moins évidentes, qui seront donc découvertes après la mise en production.
 
-Le role de la gouvernance est donc de rendre les tests unitaires obligatoires sur les services, et de faire en sorte que cette règle soit appliquée.
+Le rôle de la gouvernance est donc de rendre les tests unitaires obligatoires sur les services, et de faire en sorte que cette règle soit appliquée.
 
 ### Garantir une qualité de service
 
@@ -91,7 +91,7 @@ Dans le passé, lorsque l'administration système et les déploiements n'étaien
 
 Ces équipes étaient chargées de s'occuper des serveurs, de faire les déploiements, et souvent d'aider aux investigations.
 Comme son objectif était de faire fonctionner la plateforme, elle était forcée de s'occuper des bugs dont personne ne voulait.
-Sans avoir de connaissance métier, et sans l'aide des développeurs concernés, son rôle était d'identifier les cause des problèmes avec une certitude suffisante pour que les projets soient obligés de s'y intéresser.
+Sans avoir de connaissance métier, et sans l'aide des développeurs concernés, son rôle était d'identifier les causes des problèmes avec une certitude suffisante pour que les projets soient obligés de s'y intéresser.
 Cela se traduit par des durées de corrections allongés et des efforts gâchés.
 
 Ce mode de fonctionnement est très confortable pour les équipes projets car ils savent que, s'ils négligent cette partie de leur travail, quelqu'un le fera à leur place.
@@ -100,7 +100,7 @@ Elle a tendance à entretenir un cercle vicieux de non implication.
 Nous déconseillons ce type d'équipe.
 Commencez par investir dans l'automatisation des déploiements.
 Une fois les déploiement industrialisés, les membres de cette équipe peuvent essaimer ailleurs, notamment directement dans les projets pour aller vers du devops.
-Privés de filet de sécurité, les projets sont alors obligés de s'intéresser à leur bugs.
+Privés de filet de sécurité, les projets sont alors obligés de s'intéresser à leurs bugs.
 
 ## Quelles données pour les tests d'intégration ?
 
@@ -182,11 +182,11 @@ Au fur et à mesure que la couverture de tests s'étend, cette solution tend à 
 ### La réinitialisation des données
 
 La réinialisation des données constitue le dernier point important.
-Quelle que soit la manière dont les données d'intégrations sont obtenues, il est nécessaire de pouvoir régulièrement remettre les données à zero.
+Quelle que soit la manière dont les données d'intégrations sont obtenues, il est nécessaire de pouvoir régulièrement remettre les données à zéro.
 Cela évite d'avoir des données qui se dégradent petit à petit au fur et à mesure que des tests sont joués et des erreurs détectées.
 
 Du point de vue technique, la seule approche viable est une réinialisation automatisée.
-Elle évite d'avoir à passer du temps à s'assurer que tous les sytèmes sont bien remis à jour en même temps, évitant ainsi les incohérences.
+Elle évite d'avoir à passer du temps à s'assurer que tous les systèmes sont bien remis à jour en même temps, évitant ainsi les incohérences.
 
 Du point de vue organisationnel, il faut que cette réinialisation puisse se faire régulièrement avec le minimum de tractations.
 Le mieux est d'avoir un processus programmé à intervalle régulier, tout en pouvant le désactiver en cas de besoin.
@@ -196,7 +196,7 @@ Cela évite d'avoir à se mettre d'accord à chaque fois.
 
 Une fois réglé le sujet des données, reste celui du déploiement applicatif.
 
-### Quels besoin vis-à-vis des applications ?
+### Quel besoin vis-à-vis des applications ?
 
 L'objectif est de pouvoir tester les nouvelles versions de chaque application, tout en permettant à l'ensemble des autres applications de faire de même.
 
@@ -244,7 +244,7 @@ Ainsi, chacun est maître chez soi et peut choisir quelle version de chaque appl
 Trois prérequis sont absolument essentiels :
 
 - un haut niveau d'industrialisation permettant de déployer un environnement rapidement et sans intervention manuelle ;
-- des ressources matérielles et logicielles (licenses) disponibles ;
+- des ressources matérielles et logicielles (licences) disponibles ;
 - un bon niveau d'observabilité et une bonne qualité de diagnostic : cela évite que les développeurs d'une application passent leur temps à investiguer les problèmes dans les environnements des autres, car en multipliant les instances, on multiplies les risques de problème.
 
 Dans un environnement industrialisé, la mise en place de cette approche devrait être assez simple, et peut se faire un projet à la fois.
