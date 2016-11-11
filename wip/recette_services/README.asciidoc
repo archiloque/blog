@@ -6,7 +6,7 @@ Sous-titre "Des points d'attention et des suggestions pour améliorer les choses
 
 Si votre système d'information comprend des échanges entre applications,
 que cela soit sous forme de services, de messages ou de fichiers, il est probable que vous testiez ces dépendances à l'aide de tests d'intégration.
-Ils permettent de valider les comportements dans des conditions aussi proches que possible des conditions réelles.
+Ils permettent de valider les comportements dans un en environement de déploiement aussi proche que possible des conditions réelles.
 
 Si vous ne pratiquez pas le link:http://blog.octo.com/continuous-deployment/[déploiement continu], ces tests sont souvent source de tensions entre projets :
 aux difficultés inhérentes aux bugs d'intégration (de quel côté se situe le problème ?) s'ajoutent les contraintes de calendrier et d'indisponibilité.
@@ -31,7 +31,8 @@ et que des arbitrages soient nécessaires pour l'intérêt commun.
 ### Les services doivent être testés unitairement
 
 Si, dans le cycle projet, les tests d'intégrations sont le premier moment où on teste les services en mode connecté, cela ne doit être le premier moment où les projets testent leurs services.
-Comme le reste du code, les services doivent être couverts par des tests unitaires à l'aide de mocks.
+
+Comme le reste du code, les services doivent être couverts par des tests unitaires, par exemple en utilisant des mocks.
 
 Si une équipe ne fait pas ces tests unitaires, elle va se retrouver avec un tas de bugs pendant la phase d'intégration.
 Cela représente un gaspillage, car faire des corrections pendant l'intégration prend plus de temps que pendant le développement.
@@ -50,7 +51,7 @@ on râle quand on est bloqué par quelqu'un d'autre, sans faire en sorte que nos
 Il est possible d'améliorer la situation en mettant en place une garantie de service (SLA), un peu comme en production.
 Il ne s'agit pas de dire que les environnements d'intégration sont aussi critiques que la production, mais d'acter que les interruptions de service en intégration sont suffisamment dommageables pour qu'elles soient traitées avec l'urgence nécessaire, sans qu'il y ait besoin pour cela d'avoir à argumenter ou escalader.
 
-TIP: On peut ainsi utiliser les mêmes outils de monitoring et d'alerting qu'en production, ce qui permet de les tester en même temps que le reste des applications.
+TIP: On peut ainsi, sous réserve des questions de licenses, utiliser les mêmes outils de monitoring et d'alerting qu'en production, ce qui permet de les tester en même temps que le reste des applications.
 
 Toute interruption de service pour maintenance doit alors être communiquée et validée, donc plus question de décider qu'une application sera indisponible pendant une semaine le temps de tester une mise à jour ou un nouvel outil.
 
@@ -138,6 +139,7 @@ Elles sont appelées "données de références" car elles représentent les diff
 Elles se préparent avec les personnes du métier qui connaissent les cas à tester.
 
 Elles peuvent prendre plusieurs formes, et pas seulement celles de données statiques :
+
 - bases de données qu'on va recopier (solution basique mais qui rend plus difficile de versionner les données avec le code) ;
 - scripts SQL ;
 - données dans des fichier de configuration (XML par exemple) ;
