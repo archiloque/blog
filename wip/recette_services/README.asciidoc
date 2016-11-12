@@ -6,16 +6,16 @@ Sous-titre "Des points d'attention et des suggestions pour améliorer les choses
 
 Si votre système d'information comprend des échanges entre applications,
 que cela soit sous forme de services, de messages ou de fichiers, il est probable que vous testiez ces dépendances à l'aide de tests d'intégration.
-Ils permettent de valider les comportements dans un en environement de déploiement aussi proche que possible des conditions réelles.
+Ils permettent de valider les interactions entres composants en conditions réelles.
 
-Si vous ne pratiquez pas le link:http://blog.octo.com/continuous-deployment/[déploiement continu], ces tests sont souvent source de tensions entre projets :
+Ces tests sont souvent source de tensions entre projets :
 aux difficultés inhérentes aux bugs d'intégration (de quel côté se situe le problème ?) s'ajoutent les contraintes de calendrier et d'indisponibilité.
 Ce n'est pas une fatalité, si les tests d'intégrations sont toujours un point d'attention, les opérations peuvent bien se passer.
 
 Dans certaines entreprises, le cycle de vie des projets comprend parfois un environnement d'intégration pour tester la tuyauterie technique et un environnement de recette pour tester les comportements métier.
 Dans ce cas, ce qui est décrit dans l'article s'applique à ces deux environnements.
 
-L'objectif de cet article est de vous aider à améliorer la situation en vous indiquant les points d'attention à surveiller et les antipatterns à éviter.
+L'objectif de cet article est de vous aider à ce que ces situations complexes se passent le mieux possible en vous indiquant les points d'attention à surveiller et les antipatterns à éviter.
 Nous parlerons gouvernance, puis données, pour terminer sur le déploiement des applications.
 
 ## Gouvernance
@@ -24,7 +24,7 @@ Les tests d'intégration constituent l'étape où l'on commence à assembler les
 On passe donc du chacun pour soi à un système commun.
 
 Chaque application a tendance à se concentrer sur ses propres besoins tout en négligeant ceux des autres :
-elle se voit seule au monde à faire ses tests et les autres applications sont à son service, sans réaliser que, pour les autres, la situation est exactement la même.
+elle se voit seule au monde à faire ses tests et les autres applications sont à son service, sans prendre en compte que, pour les autres, la situation est exactement la même.
 Il est donc normal que des problèmes de gouvernance se posent,
 et que des arbitrages soient nécessaires pour l'intérêt commun.
 
@@ -33,6 +33,10 @@ et que des arbitrages soient nécessaires pour l'intérêt commun.
 Si, dans le cycle projet, les tests d'intégrations sont le premier moment où on teste les services en mode connecté, cela ne doit être le premier moment où les projets testent leurs services.
 
 Comme le reste du code, les services doivent être couverts par des tests unitaires, par exemple en utilisant des mocks.
+
+image::triangle.png[]
+
+Les tests d'intégrations sont en plus des tests unitaires.
 
 Si une équipe ne fait pas ces tests unitaires, elle va se retrouver avec un tas de bugs pendant la phase d'intégration.
 Cela représente un gaspillage, car faire des corrections pendant l'intégration prend plus de temps que pendant le développement.
@@ -44,19 +48,19 @@ Le rôle de la gouvernance est donc de rendre les tests unitaires obligatoires s
 
 ### Garantir une qualité de service
 
-Lorsqu'une équipe fait ses tests d'intégration, elle demande que toutes les applications dont elle a besoin fonctionnent pour pouvoir avancer le plus vite possible.
-Malheureusement, souvent on ne s'applique pas à soi-même  le niveau d'exigence qu'on fait peser sur les autres équipes :
-on râle quand on est bloqué par quelqu'un d'autre, sans faire en sorte que nos propres applications soit en permanence accessibles, sans comprendre qu'en agissant ainsi, on reproduit le problème pour les autres.
+Pour que les équipes ne soient pas bloquées pendant les tests d'intégration, il faut que les applications soient accessibles en permanence.
 
-Il est possible d'améliorer la situation en mettant en place une garantie de service (SLA), un peu comme en production.
+Pour cela il est possible de mettre en place une garantie de service (SLA), un peu comme en production.
 Il ne s'agit pas de dire que les environnements d'intégration sont aussi critiques que la production, mais d'acter que les interruptions de service en intégration sont suffisamment dommageables pour qu'elles soient traitées avec l'urgence nécessaire, sans qu'il y ait besoin pour cela d'avoir à argumenter ou escalader.
 
-TIP: On peut ainsi, sous réserve des questions de licenses, utiliser les mêmes outils de monitoring et d'alerting qu'en production, ce qui permet de les tester en même temps que le reste des applications.
+TIP: On peut ainsi, sous réserve des questions de license, utiliser les mêmes outils de monitoring et d'alerting qu'en production, ce qui permet de les tester en même temps que le reste des applications.
 
 Toute interruption de service pour maintenance doit alors être communiquée et validée, donc plus question de décider qu'une application sera indisponible pendant une semaine le temps de tester une mise à jour ou un nouvel outil.
 
-La garantie s'étend bien entendu aux différents middleware (sécurité, intégration… ) : on arrête de faire des tests "unitaires" en environnement d'intégration, ou de ne faire que des tests d'intégration au risque de bloquer tous les autres.
+La garantie s'étend bien entendu aux différents middleware (sécurité, intégration … ) : on arrête de faire des tests "unitaires" en environnement d'intégration, ou de ne faire que des tests d'intégration au risque de bloquer tous les autres.
 Chaque brique, même non applicative, doit avoir son propre environnement de test "unitaire" et ses jeux de tests validant le maximum de choses de manière indépendante.
+
+La manière de mettre en œuvre ce SLA dépend de la manière dont vos applications sont déployées, comme on va le voir plus bas.
 
 ### Aider aux investigations
 
@@ -71,9 +75,9 @@ Cela se matérialise par le fait de faire traîner les choses en espérant que �
 Cette attitude ralentit tout le système tout en créant de la frustration, et à long terme, elle peut entraîner la création d'un cercle vicieux.
 
 Une bonne gouvernance fera donc en sorte que les projets soient bien disposés à participer aux efforts d'investigation communs.
-Il faut accepter que ces tâches prennent du temps, et réduisent donc la capacité à faire des équipes.
+Il faut accepter que ces tâches prennent du temps, temps qui donc être correctement budgété.
 
-TIP: Si une équipe se plaint de passer trop de temps à aider aux investigations, c'est souvent le signe qu'elle n'investit pas assez dans les outils (monitoring et log) qui la rendraient plus efficace ou de permettraient aux autres d'êtres autonomes.
+TIP: Si une équipe se plaint de passer trop de temps à aider aux investigations, c'est souvent le signe qu'elle est sous-effectif ou qu'elle n'investit pas assez dans les outils (monitoring et log) qui la rendraient plus efficace ou de permettraient aux autres d'êtres autonomes.
 Ces mêmes outils serviront ensuite pour aider à diagnostiquer des problèmes en production, cet investissement est donc rentable.
 
 ### Prioriser les corrections d'erreur
@@ -86,14 +90,17 @@ Malheureusement, cette action est souvent plus beaucoup difficile à activer lor
 
 Cela ne signifie pas qu'il faut utiliser systématiquement cette procédure d'urgence, mais que "est ce que ça nous gène nous ou quelqu'un d'autre ?" ne devrait pas faire partie des critères qui sont pris en compte quand il faut décider si on l'applique ou pas.
 
-## Se passer d'équipe d'intégration
+Si le problème se pose régulièrement, la moins mauvaise solution reste de donner à quelqu'un·e (une personne ou une entité) le mandat pour arbitrer ces situation pour défendre l'intérêt global.
+Elle devra avoir la légitimité nécessaire pour que ses décisions soient appliquées, et être disponible rapidement pour pouvoir agir dès que nécessaire.
+
+## Ne plus avoir d'équipe d'intégration
 
 Dans le passé, lorsque l'administration système et les déploiements n'étaient pas totalement automatisés, il existait souvent des équipes d'intégration.
 
 Ces équipes étaient chargées de s'occuper des serveurs, de faire les déploiements, et souvent d'aider aux investigations.
 Comme son objectif était de faire fonctionner la plateforme, elle était forcée de s'occuper des bugs dont personne ne voulait.
 Sans avoir de connaissance métier, et sans l'aide des développeurs concernés, son rôle était d'identifier les causes des problèmes avec une certitude suffisante pour que les projets soient obligés de s'y intéresser.
-Cela se traduit par des durées de corrections allongés et des efforts gâchés.
+Cela s'est traduit par des durées de corrections allongés et des efforts gâchés.
 
 Ce mode de fonctionnement est très confortable pour les équipes projets car ils savent que, s'ils négligent cette partie de leur travail, quelqu'un le fera à leur place.
 Elle a tendance à entretenir un cercle vicieux de non implication.
@@ -113,7 +120,7 @@ Dès qu'un système est distribué, ce problème surgit.
 Les environnements d'intégration, avec des applications en cours de test (donc avec plus de bugs) et où on bidouille beaucoup les données pour tester certains cas bizarres, sont un terreau fertile pour qu'ils apparaissent.
 Si on s'y prend mal, cela se traduit en cheveux arrachés et en heures perdues en investigation.
 
-Face à cela, la meilleure stratégie consiste à accepter la réalité de la situation et à s'y confronter.
+Face à cela, la meilleure stratégie consiste à accepter la complexité de la situation et à s'y confronter.
 
 Vos systèmes doivent être robustes, ce qui ne veut pas dire bidouiller les données ou ignorer les erreurs, mais avoir un monitoring et un reporting qui les identifient rapidement, pour pouvoir les corriger.
 
@@ -121,13 +128,14 @@ Bonne nouvelle, cet investissement vous servira également en production, et lor
 
 ### Quels besoins vis-à-vis des données ?
 
-Pour faire des tests d'intégration, les données doivent répondre à deux besoins :
+Pour faire des tests d'intégration, les données doivent répondre à trois besoins :
 
 - des données couvrant les différents cas à tester, pour éviter d'avoir à les modifier manuellement ;
-- des données cohérentes entre les applications, car sinon il n'est pas possible de jouer les tests.
+- que les données nécessaires aux tests de chaque applications soient cohérentes entre elles, car sinon il n'est pas possible de jouer les tests ;
+- que les données de tests chaque applications soient indépendantes (les données fournies par l'application A et nécessaires aux tests de l'applications B sont indépendantes des données nécessaires à l'application C).
 
-Les deux nécessitent une bonne coordination entre les applications.
-C'est évident pour le deuxième besoin, mais c'est aussi le cas pour le premier :
+Les trois nécessitent une bonne coordination entre les applications.
+C'est évident pour les deuxième et troisième besoin, mais c'est aussi le cas pour le premier :
 par exemple si une application A gère des clients et une application B les comptes de ces clients, pouvoir tester certains cas de B peut nécessiter d'avoir des clients avec des statuts particuliers dans A.
 
 Pour obtenir ces données, deux stratégies se distinguent :
@@ -142,12 +150,12 @@ Elles peuvent prendre plusieurs formes, et pas seulement celles de données stat
 
 - bases de données qu'on va recopier (solution basique mais qui rend plus difficile de versionner les données avec le code) ;
 - scripts SQL ;
-- données dans des fichier de configuration (XML par exemple) ;
+- données dans des fichiers de configuration (XML par exemple) ;
 - code permettant d'insérer les données de manière paramétrable, éventuellement avec une API : il s'agit généralement d'une API minimaliste et distincte de l'API applicative "normale" car elle devra permettre de facilement créer des données de différents types sans avoir à manipuler d'action métier.
 
 Pour des métiers très complexes, il peut être pertinent de développer des outils permettant d'extraire des données de la production et de les anonymiser afin d'en faire des données de référence.
 
-Quelle que soit la solution choisie, maintenir ces données présente un coût : lorsqu'on ajoute un nouveau cas, ou lorsque le format de données change, une mise à jour s'impose.
+Quel que soit la solution choisie, maintenir ces données présente un coût : lorsqu'on ajoute un nouveau cas, ou lorsque le format de données change, une mise à jour s'impose.
 Par contre, ces mêmes données peuvent servir pour les tests métiers voire pour les tests unitaires, ce qui amortit l'investissement.
 
 Ce coût sera d'autant plus élevé que les dépendances entre application sont importantes, et que la solution choisie est basique.
@@ -253,7 +261,7 @@ Dans un environnement industrialisé, la mise en place de cette approche devrait
 
 Cela revient presque à transformer chaque équipe en éditeur car ses applications sont déployées et utilisées par d'autres personnes hors de son contrôle immédiat.
 
-Cette approche semble aller dans le sens de l'histoire et va peut-être peu à peu se généraliser.
+Cette approche directement issue du devops semble aller dans le sens de l'histoire et va peut-être peu à peu se généraliser.
 Nous vous conseillons donc de vous y intéresser.
 
 '''
@@ -261,7 +269,9 @@ Nous vous conseillons donc de vous y intéresser.
 .À retenir
 ====
 
-- Chaque équipe a tendance à s'intéresser à ses besoins et à négliger ceux des autres, une bonne gouvernance permet d'en limiter les conséquences néfastes.
+- Chaque équipe a tendance à s'intéresser à ses besoins et à négliger ceux des autres, une bonne gouvernance permet d'en limiter les conséquences néfastes en mettant l'accent sur les objectifs communs.
+- Pour obtenir des résultats il faut vous en donner les moyens.
+- Une bonne stratégie de tests permet l'autonomie et l'indépendance des différentes équipes.
 - Vous aurez des problèmes d'incohérence de données, mais si vous vous outillez pour bien les résoudre, vous pourrez utiliser les mêmes outils en production.
 - Pour gérer les données de vos tests, vous pouvez utiliser des données de référence, ou vous appuyer sur des données de production.
 - Différentes topologies de déploiement sont possibles en fonction de vos besoins, de vos moyens, et de votre capacité de coordination.
