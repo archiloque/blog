@@ -45,7 +45,7 @@ a) En Java il n’y a pas de facilité pour faire de la délégation, donc tu te
 Pour sortir du problème : la délégation build-in pour éviter d’avoir du code à faible valeur ajoutée.
 
 L’autre problème de la délégation, c’est quand tu as besoin de beaucoup manipuler les attributs de l’objet à qui tu veux déléguer : dans ce cas l’héritage demande moins de code, même si cet héritage n’as pas de sens du point de vue OO.
-En principe une /bonne/ conception OO permettrait d’avoir des responsabilités bien isolées, en pratique le problème se pose quand même.
+En principe une _bonne_ conception OO permettrait d’avoir des responsabilités bien isolées, en pratique le problème se pose quand même.
 
 b) Pour du reuse de code, le problème c’est qu’en OO avoir des helpers « extérieurs » est mal vu, donc tu hérites pour récupérer du code.
 Et tu te retrouves avec des classes parents avec à boire et à manger, car certaines méthodes servent à certains héritiers et d’autres à d’autres.
