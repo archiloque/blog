@@ -1,0 +1,81 @@
+= The innovation hype process
+Julien Kirch
+v0.1, 2017-01-01
+:article_image: schema.png
+:article_lang: en
+:article_description: We're all in, and it won't stop
+
+It's a process that repeats itself year after year.
+When you're working in the system for some time and become cynical enough, you start to notice it.
+
+== How it works?
+
+image::schema.png[]
+
+. An innovating company identifies something that they are doing and which work.
+. They make it a model.
+. They communicate on it using blog posts and talks.
+. A consulting company selects one of these models.
+. They package it in a form that can be sold to clients.
+. Big corporations apply it.
+
+== The problem
+
+The problem with this process is that *each step add some bias* :
+
+. When the 1^st^ company tries to identify something that work, they may select something that works, or something that they do and seem to work.
+. When you make a model of something, you tend to simplify it and risk to remove some critical elements. Furthermore, as the model is created by people that work inside the same system they try to isolate, identifying the prerequisites and the limits is very difficult.
+. Blog posts goes viral and talks are selected by conferences' committees because they are appealing and not because their content is right.
+. Consulting companies main select models based on their ability to sell them to clients and not on their ability to improve things.
+. When packaging the model, they'll tend to remove prerequisites and requirements that are not compatible with what they clients can or want to do.
+. Clients' CTOs select models on their ability to sell it to the rest of the company.
+. They tend to partially apply the recommendations by applying only those that require no or limited change.
+
+When all those bias are added, the resulting implementations have only a slight resemblance to the initial observations.
+Then people wonder why things goes wrong!
+
+== A few examples
+
+=== Agile
+
+- Started as a mean to learn to adapt.
+- Packaged as SCRUM in a "ready to use" package.
+- Application is often limited to "iterative implementation" and "daily status meeting".
+
+=== DevOps
+
+- Started as an observation of small startups where developers and ops work together because the whole company is a single team.
+- Packaged as a way to transform big organizations by making large teams work together.
+- Application is limited to choosing DevOps tools.
+
+=== Digital
+
+- Started as global and fast way to change using major organizational shifts.
+- Packaged as a controlled way to improve things.
+- Application is creating a CDO role with no real power.
+
+== Why it goes on?
+
+It goes on because this process is beneficial to all actors:
+
+Innovating companies get free PR, morale boost when other people want to copy them. Having their mental model of how they work validated by other is strengthening their cohesion.
+
+Consulting companies get the constant flows of new ideas they need to justify selling new transformations plan every other year. As these ideas come from innovating companies, they are easy to sell.
+
+Clients buy dreams in a easy-to-use package, and even if they doesn't work there is always the next idea to try.
+
+== Is it a bad thing?
+
+It's a bad thing for two reasons:
+
+- It's white lies all the way down, from a moral point of view the process is a bit revolting.
+- Clients are limiting themselves: when you do daily standups and stop your transformation because you think you've become agile, you'll never be able to change.
+
+But, unfortunately, I'm not sure that doing it the hard way would be better :
+even when companies half ass a lightweight plan, they still make visible progress.
+
+Iterative implementation is not agile, but it's still better than complete waterfall. "DevOps tools" are not DevOps, but they improve the situation (except of course if you buy them form an enterprise vendor).
+
+On the other hand, if you tried to sell real hard changes to companies, they probably wouldn't buy it, so there wouldn't be any improvement at all.
+
+So the current process is terribly flawed, but it's perhaps the best we can do.
