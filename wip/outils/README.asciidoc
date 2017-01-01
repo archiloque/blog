@@ -1,0 +1,196 @@
+= Quelques conseils pour améliorer votre process de choix d'outil
+:toc:
+
+Sous-titre: "Une bonne démarche améliorera vos chances de choisir l'outil qui le mieux adapté"
+
+Choisir des outils est une des tâches les plus importantes dans l'informatique d'entreprises :
+sélectionner un bon produit peut simplifier la vie des projets, alors qu'une solution mal adaptée peut transformer un plan stratégique en désastre.
+
+Octo intervient sur ce type de sujet depuis ses début : d'abord en s'appuyant sur ses connaissances des produits, puis plus tard grâce à son savoir faire dans la démarche elle-même.
+Tout comme les outils, notre manière de faire à peu à peu évolué, s'enrichissant des retours d'expérience, et s'adaptant aux nouvelles pratiques.
+
+L'objectif ici n'est pas de vous donner un déroulé complet de A à Z, mais de vous donner quelques conseils qui ont fait leur preuves.
+Comme tout ce qui touche aux process, il ne s'agit pas de "bonnes pratiques" à appliquer dans tous les cas et au pied de la lettre.
+Il s'agit seulement de vous donner des idées que nous avons appliqué et qui ont fonctionné dans certains cas.
+
+== Le process type
+
+Pour se fixer les idées, voici le process type pour choisir un outil :
+
+. Identification du besoin d'un certain type d'outil ;
+. Création d'une short-list des solutions qui semblent les mieux adaptéés, en s'appuyant sur une connaissance de l'écosystème ou sur des comparatifs (quandrants Gartner) ;
+. Constitution d'une grille d'évalution des outils comprenant l'ensemble des fonctionalités donc on a besoin, pondérées en fonction de leur importance ;
+. Envoi de cette grille (sans les poids) aux éditeurs pour qu'ils la remplissent ;
+. Dépouillement des réponses des éditeurs ;
+. Sélection du ou des gagnants ou des finalistes ;
+. POC(s) pour départager les finalistes ou valider le(s) choix ;
+. Négociation commerciale ;
+. Déploiement
+
+== À propos du process : apprenez à changer
+
+Avant d'aller sur le terrain, parlons du process en lui-même.
+
+S'il est une chose que l'agile nous a appris, c'est qu'une des meilleures manière de mieux faire était d'apprendre à adapter notre manière de travailler.
+D'abord limitée aux projets, cette approche de faire a ensuite touché les interractions avec le métier, puis celle avec la productions.
+
+Les processus d'architecture d'entreprise restent un des derniers bastions pas encore conquis par ce mouvement.
+Les architectes d'entreprise sont souvent caricaturé·e·s comme une tour d'ivoire : sûrs de savoir tout mieux que tout le monde, et refusant de se mettre à l'écoute de la réalité du terrain.
+
+Le choix d'outil est un très bon exemple car il s'agit d'un domain où il·elle·s peuvent, imposer leurs choix aux autres, et où ce choix à de grandes conséquences, en bien ou en mal.
+Ce process est un de ceux qui évolue le plus lentement, d'autant qu'il est souvent structuré par le fonctionnement des départements achats.
+Il est adapté aux éditeurs classiques de _logiciels d'entreprise_ qui sont organisés de manière à pouvoir investir beaucoup de temps en avant-vente.
+
+Cette manière de faire est souvent incompatible avec des solutions qui ciblent des clients de plus petite taille comme des offres en SAAS ou des outils open source indépendants.
+Les entreprises qui développent ces logiciels proposent des offres standardisées "à prendre ou à laisser", et ne s'embarqueront pas dans une négociation.
+Ces solutions sont souvent les plus innovantes, et sont donc plébicitées par les projets.
+
+Notre conviction est simple : si l'architecture d'entreprise n'apprend pas à écouter et à s'adapter, elle prend le risque de perdre sa crédibilité et de devenir inaudible.
+Elle pourrait se retrouver cantonnée aux systèmes legacy du _slow-IT_ , n'ayant pas son mot à dire sur les décisions — pourtant stratégiques — prises par les nouveaux projets.
+Indépendamment des questions d'ego, cela signifie que les missions de l'architecture d'entreprise, porter une vision et une cohérence, ne seront plus remplies.
+
+Dans ce but, les conseils donnés dans la suite de l'article ont deux objectifs : vous donner des idées pour mieux faire, mais surtout vous faire réaliser qu'on peut mieux faire.
+Avant de lancer votre prochain chantier de choix d'outil, nous vous encourageons donc à travailler sur votre manière de procéder.
+Ensuite, lorsque vous aurez les premiers retours sur la solution, il sera temps de procéder à une rétrospective afin d'en tirer les leçons pour la fois suivante.
+
+== Après avoir identifié que vous avez besoin d'un outil
+
+Une fois que vous avez décidé qu'il vous faut un outil, il est  tentant de se lancer immédiatement dans la construction de la grille, et ainsi de se perdre dans les détails.
+
+Avant cela, nous vous conseillont de plutôt commencer par répondre à plusieurs questions stratégiques.
+Ces questions sont déterminantes pour le choix de l'outil.
+Si vous n'e les traitez pas vous même au début du proces, c'est l'outil que vous choisirez qui imposera ses propres réponses.
+
+=== Pour quels besoins ?
+
+À Octo on dirait link:http://www.usievents.com/fr/talks/28-start-with-why-simon-sinek[c'est quoi ton Why ?]
+
+À propos des outils, j'entends régulièrement dire "Qui peut le plus peut le moins".
+Il s'agit d'une conception fausse, voire même dangereurse.
+
+=== Quelle organisation ?
+
+Ensuite il faut déterminer le type d'organisation que vous allez mettre en place.
+
+Il y a de nombreuses manière d'utiliser des outils transverses : voulez-vous mettre en place une équipe dédiée, avoir des compétences localisées dans les projets, s'appuyer sur une expertise extérieure … ?
+
+Cette question est déterminante pour deux facettes de l'outil :
+
+Un outil compliqué à utiliser est acceptable si peu de personnes ont à le manipuler.
+Si vous prévoyez que beaucoup de monde aura à le faire, avoir un logiciel simple d'emploi est essentiel.
+Les outils les plus riches étant souvent les moins accessibles, il vous faudra peut-être privilégier une solution plus simple et donc renoncer à certaines fonctionalités avancées, ou prévoir un investissement important en formation.
+
+L'autre facette est la gestion de droits.
+Pour une utilisation centralisé, un gestion de droit minimal peut probablement suffire.
+Sinon, des étapes de validations ou des audits d'utilisation sont peut-être nécessaires, ce qui signifie que l'outil doit les fournir.
+Ce type de besoins est surtout présent dans les grandes entreprises.
+Les outils qui y répondent seront donc plutôt parmi ceux proposés par les gros éditeurs.
+
+Ainsi, sur ces deux aspects, l'organisation impose des contraintes sur le choix de l'outil.
+Il est donc important de traiter ce sujet en amont afin d'orienter correctement le processus et d'éviter de choisir un outil inadapté.
+Dans certains cas, si contraintes résultantes ne sont pas acceptables, il pourra être nécessaire d'ajuster l'organisation à ce que les outils proposent.
+
+== Construire la grille d'évaluation
+
+=== Comment formuler les questions
+
+Si vous envoyez votre grille aux éditeurs pour qu'ils la remplissent, la formulation des question est très importante.
+
+Pour le comprendre, mettez vous à la place des personnes en charge de répondre :
+ils veulent gagner des contrats et sont sous l'eau et essaient donc de répondre.
+
+Si vous posez des questions ouvertes, vous prenez le risque qu'ils répondent partiellement et/ou qu'ils l'interpètent d'une manière qui les arrangent.
+
+Il faut donc posez des questions fermées et précises : cela le permet de répondre rapidement s'ils ont la réponse, de les forcer à chercher s'ils ne l'ont pas, et limite les chances qu'ils écrivent des demi-vérités.
+
+Quelques exemple :
+
+- [line-through]#Quelles sont les fonctionalités de scalabilité de l'application ?#
+- Quelles sont les fonctionalités de scalabilité horizontales (mémoire, CPU) de l'application ?
+- Quelles sont les fonctionalités de scalabilité verticales (clustering) de l'application ?
+- Le modèle de clustering nécessite-t-il une instance primaire ?
+- [line-through]#Est-il possible d'utiliser SNMP pour monitorer la plateforme ?#
+- Le monitoring SNMP est-il supporté nativement ?
+
+=== Limiter le nombre de poids
+
+Tous les besoins n'ont pas la même importance.
+Pour mettre en avant l'importance de certaines fonctionnalités, la méthode habituelle est d'attribuer à chacune un poids pour leur donner plus ou moins importance dans la note de chaque produit.
+Une macro permet de facilement faire le calcul.
+
+Quand la pondération est faite en comité, afin de s'assurer que les besoins des différents intervenant·e·s sont couverts, la tendance est d'affiner la notation, jusqu'à parfois obtenir une gradation de 1 à 20, parfois avec des demi-point.
+
+Il s'agit du même travers qui aboutissait aux séances de chiffrages qui avaient lieu lors des cadrages de projects à l'ancienne : penser que plus on investit de temps pour préciser des chiffres, plus le résultat du process sera bon.
+
+L'expérience prouve que ce n'est pas le cas, et que le fait de se focaliser sur les chiffres a même tendance à se désintéresser des besoins.
+
+De fait,  les questions peuvent souvent être regroupées en trois catégories  :
+
+- les fonctionnalités essentielles, sans lesquelles le produit n'est pas utilisable ;
+- les fonctionalités utiles ;
+- les fonctionnalités accessoires qui ne sont pas vraiment utile, mais qui nous intéressent.
+
+Calculer la note d'un produit est alors très simple :
+
+- si un outil ne supporte pas une fonctionalité essentielle, par définition il ne peut pas être choisi ;
+- un point par fonctionalité utile ;
+- les fonctionnalités accessoires ne sont pas comptabilisées.
+
+=== Bien prendre en compte tout le monde
+
+La prod
+
+Les développeurs
+
+Possiblement le métier, voir s'il a des besoins qui sont important dans le choix d'outil
+
+=== Bien choisir ses questions
+
+Si vous avez un truc obligatoire mais qui limite beaucoup le choix, regardez si on peut faire autrement
+
+Questionnez les features "obligatoires pour tous les composants", car ils ont été conçus pour les composants existants et ne sont donc pas forcément adaptés
+
+* Pour cela c'est bien d'avoir les use cases !
+
+== Tester les outils avant de signer
+
+Après avoir dépouillé les résultats de la grille de questions, vous avez deux solutions : directement sélectionner un outil, ou commencer par les tester.
+
+Nous recommandons de tester les outils avant de procéder à un choix définitif.
+
+=== Vous faire une idée de l'outil
+
+
+
+À force de lire de la documentation et des listes de fonctionalités, eten complétant les trous avec d'autres outils qui lui ressemblent, on se forme une certaine image d'un logiciel.
+
+Malheureusement cette idée est souvent fausse, en bien ou en mal.
+
+
+Avant de vous lancer il est important de vous faire une idée de l'outil en l'essayant.
+Tout d'abord son ergonomie : s'il s'agit d'un outil dont l'interface — graphique ou non — va être très utilisée, il faut la tester pour voir si elle est satisfaisante.
+Ensuite
+
+=== Tester les éventuelles fonctionalités spécifiques
+
+
+
+
+Ancien Plan :
+
+- Sélectionner un outil
+Une fois le dépouillement des réponses
+
+=== Si vous ne pouvez pas rater votre POC, c'est pas un POC
+
+=== Deux types de POC : pour choisir entre deux outils ou pour valider un pré-choix
+
+Mieux de comparer les outils si on peut, sinon difficile de se faire une idée
+
+=== Réfléchissez à ce que vous voulez POCer
+
+Souvent un POC outil + projet, ça va biaiser
+
+Important de tester les réponses des vendeurs sur des sujets structurants
+
+=== Attention à l'aide de l'éditeur : ça vous accélère, mais vous saurez pas si l'outil est facile à apprendre, ce qui peut être utile si plusieurs équipes doivent l'utiliser
