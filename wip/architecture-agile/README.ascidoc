@@ -1,0 +1,127 @@
+= Agile et architecture de SI : réussir son premier projet
+
+Blurb : Comment s'y prendre.
+
+Lorsqu'une grande entreprise se met à l'agile, même si le premier projet est partois déconnecté du SI, il faut bien un moment s'y raccorder.
+
+La méfiance est alors souvent de mise de part et d'autre : quand on cherche un contre-exemple à l'agile c'est souvent l'architecture de SI qui vient à l'esprit.
+
+Lorsque ce premier projet se passe bien, des liens entre coach agiles et architectes peuvent se créer.
+Cela peut être le début de la "transformation IT" donc beaucoup parlent mais que peu réussissent.
+
+Dans le cas contraire chacun reste sur ses positions, le projet est en danger, et les perspectives de changements s'éloignent.
+
+Fruits de retours d'expériences de nos missions, cet article va vous permettre d'avoir toutes les chances de votre côté pour réussir ce premier projet.
+
+== Premier projet agile : avec ou sans SI ?
+
+Pour démarrer en agile, un projet déconnecté du SI permet de limiter les risques.
+C'est sans doute la meilleure solution lorsque l'enjeux est de prouver que l'agile fonctionne, et il y des situations où c'est encore le cas.
+
+Cependant elle pose un risque car elle créé une attente qui va être déçue.
+
+Lorsqu'un tel projet réussi, il devient une référence qui sert de point de comparaison.
+Il atire aussi les jalousies car il n'a pas eu à subir les mêmes contraintes ques les autres.
+Les projets suivants où le SI interviendra auront sans doute d'avantages de difficultés, difficultés qui seront jugées en fonction du premier projet.
+
+Il faudra alors lutter contre l'idée que "en fait l'agile ça ne fonctionne pas dans la vraie vie", et cela même si ces projets donnent  objectivement de meilleurs résultats que les projets non agiles.
+
+Un premier projet agile connecté au SI sera plus difficile et sa réussite sera probablement moins éclatante.
+Cependant cette réussite sera incontestable, et devrait être représentative de la suite.
+Il permettra aussi de commencer plus tôt à faire bouger les lignes dans le reste du SI.
+
+À vous de décider en connaissance fonction du but que vous visez avec ce projet.
+
+== Le rôle de l'architecte ?
+
+* Fait le lien entre le SI "non agile" et le projet agile
+	* Vers l'agile = pousse les contraintes.
+	* Vers l'extérieur = négocie de la liberté, est identifie les éléments structurants.
+		* Va être "agent agilifiant" pour certains interlocuteur : il faut avoir la fibre pédagogique.
+	* Rôle qui peut être ingrat, qui demande de savoir travailler en retrait (ne pas pousser "ses idées")
+* Doit savoir parler les deux langues -> doit avoir expérimenté les deux.
+
+== D'ailleurs, faut-il un architecte ?
+
+* En non agile on a des abaques pour déterminer s'il faut un archi, en agile souvent on parle très peu de ce rôle.
+* Pas nécessairement (Le PO, le Coach, le responsable de prod, et l'architecte de SI)
+	* 1. Il faut quelqu'un qui fasse ce travail.
+	* 2. Il faut quelqu'un d'expérimenté avec les deux facettes.
+* C'est un travail consommateur de temps, et très fragmenté (beaucoup d'interlocuteurs). Donc difficile de faire faire par quelqu'un qui développe.
+* Plus pratique si c'est quelqu'un de dédié, qui pourra aider l'équipe en "nice to have" mais jamais de manière bloquante.
+* Travail important au début du projet, ensuite transmissible à l'équipe.
+
+== L'architecte avec l'équipe agile
+
+=== Doit expliquer les contraintes
+
+* Apporteur de mauvaises nouvelles.
+* Bien travailler la relation.
+	* Pas que les développeur mais toute l'équipe y compris le/la PO et le/la coach.
+
+image::gbuc.gif[title="Le PO, le tech lead, le coach et l'architecte"]
+
+=== Doit détecter les choix qui peuvent être structurants et qui doivent être anticipés.
+
+=== Doit avoir une vision stratégique pour faire une optimisation globale
+
+* Utiliser des solutions transverses
+* Doit savoir quand la solution n'est pas en phase avec le besoin
+
+=== Dépend du type d'équipe
+
+* 1. Équipe qui a l'habitude du 100% agile : il faut arriver à leur donner les contraintes sans passer pour un méchant et sans les démotiver.
+* 2. Équipe "autochtone" qui découvre l'agile.
+	* Arriver à les garder motivés si on leur a vendu du rêve et qu'ils voient la réalité revenir.
+	* Parfois ne jouent pas le jeu "l'agile ça n'est pas ça" : l'architecte n'a pas à porter le fonctionnement sur ses épaules.
+
+== L'architecte avec le monde extérieur : archi, infra, et autres projets
+
+=== Ils ne savent souvent pas ce que ça veut dire agile.
+
+* Peuvent être curieux, car ils voient ça comme une manière de progresser, ou une menace.
+* Important de montrer qu'on sait faire et qu'on comprend leurs préoccupations, mais que l'adaptation est nécessaire.
+
+=== Prendre les process, et comprendre les besoins pour adresser les besoins tout en aménageant le process.
+
+* "On n'a pas 3 mois de délais, quel est le délai minimum ?, quels sont les infos nécessaires ?"
+* Sentir quelles contraintes on peut transmettre au projet, et lesquelles seraient trop dure = il faut un bon alignement avec l'équipes et notamment le coach.
+* Bonne connaissance du devops pour savoir comment transformer les process
+
+=== Demande d'avoir du doigté
+
+* Les projets agiles ont souvent droits à des passe-droit, car suivre le process à la lettre coupe l'agilité.
+* Mais savoir utiliser à bon escient pour ne pas consommer trop vite ce capital pour rester dans l'échange et ne pas basculer systématiquement dans l'arbitrage.
+
+== L'anatomie d'un architecte SI pour projet agile
+
+image::loutre.png[title="Méredith, architecte SI et agiliste convaincue chez Octo"]
+
+=== Connaissance en architecture de SI
+
+=== Connaissance en agile
+
+=== Connaissance en devops
+
+=== Approche de facilitateur
+
+=== Endurance
+
+== De l'importance de commencer tôt
+
+=== Les contraintes du SI peuvent être structurantes sur le fonctionnement de l'équipe
+
+* Vitesse de livraison
+* Tests
+
+=== Eviter de partir sur un plan choisit par l'équipe et qui ensuite doit être remis en question
+
+=== Identifier et attaquer rapidement les US qui int une adhérence SI
+
+== En résumé
+
+- L'architecture de SI et l'agile ne sont pas énemies, mais faire fonctionner les deux ensemble demande de la bonne volonté et des efforts.
+- Lors de votre premier projet agile interagissant avec votre SI, l'architecte a un rôle très important.
+- Pour remplir son rôle, il·elle doit connaître l'architecture de SI et l'agile.
+- Il·elle doit avoir une posture de facilitateur·rice pour comprendre les contraintes du SI et des process pour aggrandir l'espace de liberté du projet.
+- Pour le projet, il·elle sera l'apporteur de mauvaises nouvelles, avoir une relation de confiance avec le reste de l'équipe est très importante pour éviter les antagonismes.
