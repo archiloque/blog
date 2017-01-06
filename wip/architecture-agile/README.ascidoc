@@ -2,12 +2,12 @@
 
 Blurb : Comment s'y prendre.
 
-Lorsqu'une grande entreprise se met à l'agile, même si le premier projet est partois déconnecté du SI, il faut bien un moment s'y raccorder.
+Lorsqu'une grande entreprise se met à l'agile, même si le premier projet est parfois déconnecté du SI, il faut bien un moment s'y raccorder.
 
 La méfiance est alors souvent de mise de part et d'autre : quand on cherche un contre-exemple à l'agile c'est souvent l'architecture de SI qui vient à l'esprit.
 
 Lorsque ce premier projet se passe bien, des liens entre coach agiles et architectes peuvent se créer.
-Cela peut être le début de la "transformation IT" donc beaucoup parlent mais que peu réussissent.
+Cela peut être le début de cette "transformation agile" donc beaucoup parlent mais que peu réussissent.
 
 Dans le cas contraire chacun reste sur ses positions, le projet est en danger, et les perspectives de changements s'éloignent.
 
@@ -21,7 +21,7 @@ C'est sans doute la meilleure solution lorsque l'enjeux est de prouver que l'agi
 Cependant elle pose un risque car elle créé une attente qui va être déçue.
 
 Lorsqu'un tel projet réussi, il devient une référence qui sert de point de comparaison.
-Il atire aussi les jalousies car il n'a pas eu à subir les mêmes contraintes ques les autres.
+Il attire aussi les jalousies car il n'a pas eu à subir les mêmes contraintes que les autres.
 Les projets suivants où le SI interviendra auront sans doute d'avantages de difficultés, difficultés qui seront jugées en fonction du premier projet.
 
 Il faudra alors lutter contre l'idée que "en fait l'agile ça ne fonctionne pas dans la vraie vie", et cela même si ces projets donnent  objectivement de meilleurs résultats que les projets non agiles.
@@ -32,96 +32,155 @@ Il permettra aussi de commencer plus tôt à faire bouger les lignes dans le res
 
 À vous de décider en connaissance fonction du but que vous visez avec ce projet.
 
-== Le rôle de l'architecte ?
+== Le rôle de l'architecte sur ce projet
 
-* Fait le lien entre le SI "non agile" et le projet agile
-	* Vers l'agile = pousse les contraintes.
-	* Vers l'extérieur = négocie de la liberté, est identifie les éléments structurants.
-		* Va être "agent agilifiant" pour certains interlocuteur : il faut avoir la fibre pédagogique.
-	* Rôle qui peut être ingrat, qui demande de savoir travailler en retrait (ne pas pousser "ses idées")
-* Doit savoir parler les deux langues -> doit avoir expérimenté les deux.
+Comme sur une projet classique, l'architecte a un rôle d'interface entre le projet et le SI : cellules d'architecture transverses, personnes de la production et de l'infrastructure, sécurité…
 
-== D'ailleurs, faut-il un architecte ?
+La différence c'est que pour le premier projet agile, l'architecte doit avoir un rôle d'agent agilifiant vis-à-vis du SI pour essayer d'aménager les process pour le bien du projet.
 
-* En non agile on a des abaques pour déterminer s'il faut un archi, en agile souvent on parle très peu de ce rôle.
-* Pas nécessairement (Le PO, le Coach, le responsable de prod, et l'architecte de SI)
-	* 1. Il faut quelqu'un qui fasse ce travail.
-	* 2. Il faut quelqu'un d'expérimenté avec les deux facettes.
-* C'est un travail consommateur de temps, et très fragmenté (beaucoup d'interlocuteurs). Donc difficile de faire faire par quelqu'un qui développe.
-* Plus pratique si c'est quelqu'un de dédié, qui pourra aider l'équipe en "nice to have" mais jamais de manière bloquante.
-* Travail important au début du projet, ensuite transmissible à l'équipe.
+image::lessive.jpg[title=Exigez un·e architecte 2 en 1 avec pouvoir agilifiant !]
 
-== L'architecte avec l'équipe agile
+Dans un projet classique, le projet avance au rythme des process de l'entreprise.
+Ainsi si les projets délivrent une nouvelle version tous les trimestres, avoir besoin de deux mois pour ouvrir un flux réseau n'est pas un problème, il suffit d'être bien organisé.
 
-=== Doit expliquer les contraintes
+Par contre si le projet envisage de livre une version tous les mois, voire toutes les deux semaines, ça va coincer.
+Dans ces situations, il faut trouver un terrain d'entente.
 
-* Apporteur de mauvaises nouvelles.
-* Bien travailler la relation.
-	* Pas que les développeur mais toute l'équipe y compris le/la PO et le/la coach.
+Vis-à-vis du projet, il·elle doit détecter ces contraintes structurantes afin de pouvoir préparer le terrain pour que le projet ait la voie libre.
 
-image::gbuc.gif[title="Le PO, le tech lead, le coach et l'architecte"]
+Il·elle joue le rôle d'un donc interprète entre les deux mondes.
+Il est donc nécessaire qu'il·elle parle les deux langues.
 
-=== Doit détecter les choix qui peuvent être structurants et qui doivent être anticipés.
+== D'ailleurs, faut-il un·e architecte SI ?
 
-=== Doit avoir une vision stratégique pour faire une optimisation globale
+Même si votre projet a des interconnexions avec le SI, la présence d'un·e architecte n'est pas forcément nécessaire.
 
-* Utiliser des solutions transverses
-* Doit savoir quand la solution n'est pas en phase avec le besoin
+Elle dépendra du niveau d'adhérence, car c'est lui qui détermine l'effort à fournir.
 
-=== Dépend du type d'équipe
+Dans tous les cas, la présence d'un·e architecte est souhaitable lors de la phase de cadrage afin d'identifier les risques et les sujets qui seront à traiter.
+En fonctions de ces informations, il est alors possible de déterminer le niveau d'implication nécessaire.
 
-* 1. Équipe qui a l'habitude du 100% agile : il faut arriver à leur donner les contraintes sans passer pour un méchant et sans les démotiver.
-* 2. Équipe "autochtone" qui découvre l'agile.
-	* Arriver à les garder motivés si on leur a vendu du rêve et qu'ils voient la réalité revenir.
-	* Parfois ne jouent pas le jeu "l'agile ça n'est pas ça" : l'architecte n'a pas à porter le fonctionnement sur ses épaules.
+En l'absence d'un·e architecte, c'est souvent le·a tech-lead qui endosse cette casquette.
 
-== L'architecte avec le monde extérieur : archi, infra, et autres projets
+Le travail d'architecte SI sur un projet peut être consommateur de temps quand il faut remplir des documents, et être très fragmenté en fonction des disponibilités des interlocuteurs.
 
-=== Ils ne savent souvent pas ce que ça veut dire agile.
+Il est donc difficilement compatible, avec l'engagement qu'on attend d'un·e tech-lead, qui risque alors de devoir négliger un des deux aspects.
 
-* Peuvent être curieux, car ils voient ça comme une manière de progresser, ou une menace.
-* Important de montrer qu'on sait faire et qu'on comprend leurs préoccupations, mais que l'adaptation est nécessaire.
+Si le travail d'architecture n'est pas suffisant pour occuper une personne à temps plein, il est possible de lui confier des taches techniques qui ne sont pas sur le chemin critiques des itérations.
+Cela lui permet de s'interrompre à tout moment sans provoquer de retards.
 
-=== Prendre les process, et comprendre les besoins pour adresser les besoins tout en aménageant le process.
+== L'architecte et l'équipe agile
 
-* "On n'a pas 3 mois de délais, quel est le délai minimum ?, quels sont les infos nécessaires ?"
-* Sentir quelles contraintes on peut transmettre au projet, et lesquelles seraient trop dure = il faut un bon alignement avec l'équipes et notamment le coach.
-* Bonne connaissance du devops pour savoir comment transformer les process
+Vis-à-vis de l'équipe, son rôle principal va être de traiter les contraintes venues de l'extérieur. Il·elle se fait alors un peu l'apporteur·se de mauvaises nouvelles.
 
-=== Demande d'avoir du doigté
+Son travail va avoir pour effet de mettre l'équipe sous tension :
 
-* Les projets agiles ont souvent droits à des passe-droit, car suivre le process à la lettre coupe l'agilité.
-* Mais savoir utiliser à bon escient pour ne pas consommer trop vite ce capital pour rester dans l'échange et ne pas basculer systématiquement dans l'arbitrage.
+- le·a PO en influant négativement sur ses demandes ;
+- le·a coach en ajoutant des contraintes ou des lenteurs au process ;
+- le tech-lead en limitant ses choix.
+
+L'ensemble de l'équipe doit malgré tout avoir confiance en l'architecte sur le fait qu'il·elle travaille pour le bien commun, et n'est pas du côté du SI.
+
+La relation qu'il·elle entretient avec l'équipe est donc très importante.
+
+image::lego.jpeg[title="Coach, PO, tech-lead et architecte SI sont sur sur le même bateau"]
+
+Son travail est de savoir en permanence faire la part des chose entre l'existant du SI et des process et les besoins du projet.
+
+S'il penche trop du côté du SI, il·elle nuira à l'agilité du projet, s'il prend partie pour le projet et ne sais pas choisir ses combats, il·elle deviendra inaudible.
+
+En cas de problème, il·elle peut prendre partie, mais sans tenter d'imposer son point de vue.
+Ainsi si le tech-lead n'est pas d'accord avec le SI, l'architecte peut proposer une solution, mais il·elle ne doit jamais tenter de l'imposer sous peine d'abimer le lien avec le tech-lead.
+Dans ce cas de figure, il faut tenter de concilier les deux positions, et en cas d'échec de faire appel à un arbitrage.
+
+Une bonne expérience de l'agile est donc nécessaire, pour lui permettre de savoir quand une contrainte est acceptable pour le projet, et quand il faut la remettre en cause.
+Sans cela il devra passer beaucoup de temps à se synchroniser avec l'équipe avant de pouvoir donner un avis, c'est le syndrome du proxy-PO appliqué à l'architecture.
+
+L'enjeux dépend aussi de l'historique de l'équipe :
+
+- S'il s'agit d'une équipe qui a l'habitude de l'agile et peu celle des adhérence SI, il·elle doit réussir à leur faire intégrer les contraintes sans les démotiver et sans les braquer contre lui.
+- S'il s'agit d'une équipe "autochtone" qui découvre l'agile. Deux cas sont possibles. S'il·elle·s sont très motivés par l'agile il faut, comme ci-dessous éviter que le soufflé ne retombe. S'il·elle·s sont méfiants, il faut leur montrer qu'on peut travailler mieux, même en restant dans un contexte proche.
+
+== L'architecte et le reste du SI
+
+=== L'architecte pédagogue
+
+En début de projet, un travail de pédagogue est essentiel.
+
+En effet, beaucoup de ses interlocuteurs n'ont probablement jamais travaillé avec une approche agile.
+Pour certain·e,s agile pourra être synonyme de "à l'arrache".
+Pour des personnes qui accordent souvent une grande importance au respect des procédures, il s'agit d'une critique très dure.
+Il faudra donc prendre le temps de s'expliquer pour venir à bout des préconceptions fausses.
+
+Une approche possible est de commencer par les convaincre que
+leurs préoccupations sont partagées, puis de leur expliquer que l'objectif est de répondre à leurs attentes tout en transformant la manière donc on veut y parvenir.
+
+Une expérience significative de l'architecture du SI permet de se faire identifier comme un pair.
+Avoir expérimenter l'agile directement donnera du poids au discours.
+
+=== Satisfaire les besoins en aménageant le process
+
+Pour faire bouger les choses, la marche à suivre tient en trois étapes :
+
+. Comprendre le fonctionnement actuel ;
+. Identifier sa finalité ;
+. Identifier les contraintes limitantes pour le projet ;
+. Chercher une manière de répondre aux finalités, tout en aménageant le process pour réduire le poids des contraintes.
+
+Par exemple prenons l'hypothèse où une demande d'ouverture de flux doit se faire un mois à l'avance, et que le formulaire de demande d'ouverture contient une description du format du flux.
+
+Avoir un format un mois à l'avance demande de traiter le point en avance de phase, ce qui ajoute une contrainte an projet.
+Après discussion, le mois
+d'attente sert à allouer la personne qui s'en occupera, mais que le format de flux est uniquement nécessaire pour garder une trace dans la demande.
+Peut-être est il alors possible de faire la demande sans le format, tant que celui-ci est renseigné avant la mise en place de la règle.
+La contrainte projet est alors plus légère.
+
+Pour chaque tâche, il faut donc mesurer si les contraintes sont gênantes pour le projet ou si elle sont acceptable.
+Cela nécessite de l'expérience, et une vision partagée avec l'équipe.
+Cela évite de par exemple d'accepter des choses sans se rendre compte qu'elles posent problème.
+
+Une expérience DevOps est un atout.
+Il ne s'agit pas des outils (il n'est pas question de convaincre le SI de migrer vers un Chef ou Ansible), mais du fait que l'approche à suivre est sensiblement la même que celle qui est nécessaire dans une stratégie DevOps de rapprochement des pratiques.
+
+=== Avoir du doigté, sans se faire marcher dessus
+
+Il n'est pas possible de tout remettre en cause.
+Il faut donc savoir choisir des combats, et dans chacun d'entre eux savoir faire la part des choses entre ce qui n'est pas parfait et ce qui ne serait pas acceptable.
+
+À essayer de trop faire bouger les choses, le risque est de se griller.
+
+À l'inverse, pour les points particulièrement importants, il ne faut pas hésiter à mobiliser le PO du projet et d'autres sponsors qui pourront faire valoir les contraintes métier.
+
+Les projets agiles ont également souvent des passe-droit, il faut savoir s'en servir en sans en abuser.
 
 == L'anatomie d'un architecte SI pour projet agile
 
 image::loutre.png[title="Méredith, architecte SI et agiliste convaincue chez Octo"]
 
-=== Connaissance en architecture de SI
-
-=== Connaissance en agile
-
-=== Connaissance en devops
-
-=== Approche de facilitateur
-
-=== Endurance
+- Connaissance en architecture de SI : pour faire son travail, et être pris·e au sérieux
+- Connaissance en agile : pour pouvoir travailler avec l'équipe, et savoir déterminer quels contraintes du SI sont limitantes pour l'équipe :
+- Connaissance en DevOps : pour proposer les changements de process qui vont dans le sens de l'agile ;
+- Approche de facilitateur : pour être au service du bien commun plutôt que de ses marottes ;
+- Endurance : pour tenir le coup sur le long terme sans baisser les bras.
 
 == De l'importance de commencer tôt
 
-=== Les contraintes du SI peuvent être structurantes sur le fonctionnement de l'équipe
+Il est vital que l'intervention de l'architecte ait lieu au plus tôt dans la vie du projet.
+Si le rôle de l'architecte est tenu par un·e tech-lead, il·elle devra fournir un gros investissement sur l'architecture lors de la phase de démarrage.
 
-* Vitesse de livraison
-* Tests
+Les contraintes du SI peuvent être structurantes sur le fonctionnement de l'équipe agile, par exemple en influant sur la manière de faire des tests, ou la manière de livrer.
+Déterminer ces contraintes au plus tôt permet de partir dès le début sur un fonctionnement adapté (taille d'itérations, process…), plutôt que d'avoir à le modifier après-coup.
 
-=== Eviter de partir sur un plan choisit par l'équipe et qui ensuite doit être remis en question
-
-=== Identifier et attaquer rapidement les US qui int une adhérence SI
+Les stories qui ont une adhérence avec le SI doivent être identifiées.
+En général elles ne peuvent pas être réalisées en une itération, à cause de leur partie SI.
+Il faudra donc les identifier pour les préparer du point de vue SI, avant que le travail de développement puisse se faire sans blocage.
+Cela demande d'y faire attention lors des phases de planning d'itération.
+Ils peuvent faire l'objet d'une zone de Kanban spécifique avec ses propres étapes, afin d'éviter de polluer la partie développement.
 
 == En résumé
 
-- L'architecture de SI et l'agile ne sont pas énemies, mais faire fonctionner les deux ensemble demande de la bonne volonté et des efforts.
+- L'architecture de SI et l'agile ne sont pas ennemies, mais faire fonctionner les deux ensemble demande de la bonne volonté et des efforts.
 - Lors de votre premier projet agile interagissant avec votre SI, l'architecte a un rôle très important.
 - Pour remplir son rôle, il·elle doit connaître l'architecture de SI et l'agile.
-- Il·elle doit avoir une posture de facilitateur·rice pour comprendre les contraintes du SI et des process pour aggrandir l'espace de liberté du projet.
+- Il·elle doit avoir une posture de facilitateur·rice pour comprendre les contraintes du SI et des process pour agrandir l'espace de liberté du projet.
 - Pour le projet, il·elle sera l'apporteur de mauvaises nouvelles, avoir une relation de confiance avec le reste de l'équipe est très importante pour éviter les antagonismes.
