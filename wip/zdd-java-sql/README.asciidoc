@@ -58,14 +58,13 @@ Ainsi dans notre exemple,  en  `/v1` les adresses sont stockées dans la table `
 Pendant la période de compatibilité, il faut que les appels à  `/v1` qui mette à jour le nom de la personne et son adresse modifient les deux tables de manière transactionnelle pour éviter qu'une lecture qui se produit au même moment ne renvoie des données incohérentes.
 De plus, il faut parvenir à le faire sans avoir à poser trop de verrous en base de données, car cela ralentirait la base de données, et donc les performances.
 
-La meilleure stratégie est de ne pas choisir la solution la plus rapide, car elle est souvent la plus compliquée, mais de privilégier une approche que vous maîtrisez bien et qui donne des résultats acceptables.
+La meilleure stratégie est de privilégier une approche que vous maîtrisez bien et qui donne des résultats acceptables plutôt qu'une solution plus efficace ou plus rapide mais plus complexe.
 
 Dans tous les cas, des tests sont absolument essentiels.
 
-Pour le cas d'exemple je suis allé au plus simple :
-
--  `/v1` renverra une adresse au hasard parmi celles qui sont enregistrées ;
-- des verrous sur la table `person` permet de protéger les données contre les incohérences.
+Pour servir les deux versions de l'API, vous pouvez utiliser une application unique ou choisir de séparer votre code en deux applications, une par version.
+Cette question n'étant pas structurante pour la question du ZDD, nous choisissons de ne pas la traiter ici.
+Dans notre exemple, nous avons choisi de n'avoir qu'une seule application.
 
 ### … et ZDD les rejoint à bord
 
@@ -103,6 +102,22 @@ Pour résumer, il y a quatre situations :
 |Répondre avec la nouvelle sémantique
 |===
 
+### Bien ouvrir `/v2`, et bien décomissionner `/v1`
+
+Lorsque vous ouvrez `/v2` pour la première fois, faites-attention à la manière dont la bascule vers la nouvelle version est faite.
+
+Avant de rendre les nouveaux endpoints accessibles, assurez-vous que tous les serveurs utilisent la dernière version de l'application. Dans le cas contraire, si vous appellez un `/v1` alors que la donnée correspondante a été migrée en `/v2` le code ne saura pas la lire correctement et risque de planter ou de renvoyer une information fausse.
+
+Un autre problème se pose suivant la manière dont vous avez implémentez les modification de donnée lorsque vous appellez une API `/v1`.
+
+Le premier cas consiste à sauvegarder la donnée au format `v2`, mais cela veut dire qu'à nouveau, les versions précédentes de l'applications ne pourront pas la lire.
+La solution la plus simple est alors d'utiliser le utiliser le link:http://blog.octo.com/feature-flipping/[feature flipping] pour faire basculer le code.
+
+Dans le cas contraire, votre code doit détecter sous quel format la donnée est stockée, et la resauvegarder sous ce même format : une donnée `v1` reste en `v1`, et une donnée `v2` reste en `v2`.
+On évite le feature flipping, mais en échange le code est plus complexe.
+
+Pour décomissionner `/v1` il suffit de rendre les endpoints inaccessible, la suppression du code peut se faire plus tard.
+
 ### Migration au fil de l'eau ou avec un batch ?
 
 En l'état, les données vont migrer petit à petit au fur et à mesure que les utilisateurs des services appelleront les APIs `/v2`.
@@ -121,10 +136,10 @@ Il est donc impossible de manipuler les données à l'échelle d'une table.
 Comme dans le cas de la gestion de la compatibilité, la migration doit se faire de manière transactionnelle.
 En cas de problème, le script doit également pouvoir être interrompu et relancé sans que cela ne perturbe l'exécution du programme.
 
-La manière la plus simple est de le faire ligne par ligne, en utilisant le même code de migration que celui utilisé par le programme.
-Malheureusement, la migration sera alors assez lente et peu efficace, à cause du grand nombre de requêtes.
-L'autre solution est d'opérer par groupe de lignes en s'appuyant sur le SQL, typiquement à l'aide de requêtes `INSERT INTO new_table SELECT …  FROM old_table WHERE …`.
-Par contre, cela nécessite du travail supplémentaire.
+La manière la plus simple est de le faire ligne par ligne, en utilisant le même code de migration que celui utilisé par le programme qu'il suffit d'appeller depuis une boucle.
+Malheureusement, la migration nécessite alors un très grand nombre de requêtes, ce qui augmente sa durée.
+L'autre solution est d'opérer par groupes de lignes en s'appuyant sur des requêtes ensemblistes du type `INSERT INTO new_table SELECT …  FROM old_table WHERE …`..
+Elle est plus rapide mais nécessite du travail supplémentaire.
 
 ### À propos des verrous et des modifications de schémas
 
@@ -137,8 +152,6 @@ Ne faites pas confiance à des souvenirs ou à des rumeurs : lisez en détail la
 
 Si vous n'avez jamais creusé ces sujets ou que vous êtes rouillé·e, la première migration vous demandera sûrement pas mal de travail, et vous donnera quelques sueurs froides lorsque vous l'exécuterez.
 Mais dites-vous que toutes les opérations suivantes manipuleront les mêmes concepts, et se passeront donc beaucoup mieux.
-
-Attention tout de même à l'excès de confiance : avec l'habitude la confiance s'installe, et il est facile de bâcler une analyse ou un test, et là gare à la casse !
 
 ## Retour à notre exemple
 
@@ -164,6 +177,7 @@ Dans notre exemple le problème de compatibilité est le suivant : une fois une 
 Que faire quand on récupère cette même personne en passant par l'API `/v1` ?
 
 Ici il n'y a pas de réponse évidente : il n'y a pas de notion d'adresse préférée, ou de dernière adresse utilisée qui fournirait une manière de discriminer les différentes possibilités.
+Comme la réponse influe sur le comportement de l'API, c'est le métier qui doit trancher.
 
 La solution choisie est de renvoyer une adresse parmi celle dans la liste.
 La solution n'est pas parfaite, mais elle peut être acceptable suivant l'usage qui en est fait : il s'agit aux personnes du métier d'en décider.
@@ -172,14 +186,66 @@ La solution n'est pas parfaite, mais elle peut être acceptable suivant l'usage 
 
 Pour résoudre la question de transactionnalité, nous avons choisi la solution la plus simple : poser un verrou sur les entrées correspondantes de la table `person`.
 
-Si toutes les opérations suivent le même principe, ce verrou joue le rôle d'une link:https://fr.wikipedia.org/wiki/Exclusion_mutuelle[mutex] en s'assurant que les appels s'exécutent bien l'un après l'autre.
+Si toutes les opérations suivent le même principe, ce verrou joue le rôle d'une link:https://fr.wikipedia.org/wiki/Exclusion_mutuelle[mutex] en s'assurant que les appels s'exécutent bien l'un après l'autre : lorsqu'une opération pose un risque, elle commence par demander l'accès à ce verrou, et pour cela il doit attendre son tour. Par exemple c'est le cas lorsqu'on appelle de `GET /v2/people/127/addresses` alors que la personne correspondante n'a pas été migrée : comme elle doit modifier la personne et les adresse, elle commence par vérouiller la personne.
+
+Exemple sans verrou :
+[cols=",", options="header"]
+|===
+|`GET /v2/people/127/addresses`
+|`GET /v2/people/127/addresses`
+|`SELECT address from person where id = 127` pour récupérer l'adresse, vérifie qu'il y a une adresse à insérer
+|
+|
+|`SELECT address from person where id = 127` pour récupérer l'adresse, vérifie qu'il y a une adresse à insérer
+|`INSERT INTO address …` pour insérer l'adresse
+|
+|
+|`INSERT INTO address …` pour insérer l'adresse
+|`UPDATE people SET address = NULL WHERE id = 127` pour vider l'adresse, vérouille la ligne
+|
+|`commit`
+|
+|
+|`UPDATE people SET address = NULL WHERE id = 127` pour vider l'adresse, attendait le verrou
+|
+|`commit`
+|===
+
+Résultat : la personne se retrouve avec deux adresses !
+
+Exemple avec verrou :
+[cols=",", options="header"]
+|===
+|`GET /v2/people/127/addresses`
+|`GET /v2/people/127/addresses`
+|`SELECT address from person where id = 127 FOR UPDATE` pour récupérer l'adresse, vérifie qu'il y a une adresse à insérer et vérouille la ligne
+|
+|`INSERT INTO address …` pour insérer l'adresse
+|
+|`UPDATE people SET address = NULL WHERE id = 127` pour vider l'adresse
+|
+|`commit`
+|
+|
+|`SELECT address from person where id = 127 FOR UPDATE` pour récupérer l'adresse, vérifie qu'il y a une adresse à insérer, attendait le verrou => il n'y a pas d'adresse, donc elle est peut-être dans l'autre table
+|
+|`SELECT id, address FROM address WHERE id_person = 127` récupère l'adresse
+|
+|`commit`
+|===
+
+Résultat : une seule adresse.
 
 ### Le script de migration SQL
 
-Le script de migration déplace les données pas blocs de `person` à `address`.
+Le script de migration déplace les données par blocs de `person` à `address`.
+
+Dans notre exemple, une fois le code basculé à la nouvelle version, toutes les données sont écrites au format `v2`, qu'il s'agisse des créations ou des modifications, pour les appels à `/v1` ou à `/v2`.
+
+La migration étant donc irreversible, nous savons qu'il suffit de migrer toutes les données une fois pour que le travail soit fait.
 
 * Il commence par récupérer l' `id` de `person` le plus élevé. Comme le script est lancé après le déploiement de la nouvelle version, toutes les personnes crées après ce moment le sont avec une adresse stockée dans `address`. Cela signifie que le script peut s'arrêter à cette valeur.
-* Le script itère par groupes de 100 de `person` de 0 à l' `id` qu'il vient de récupérer, la valeur de 100 est un peu arbitraire : elle limite la durée des opérations tout en permettant que la migration progresse tout de même assez vite.
+* Le script itère par groupes de `person` de 0 à l' `id` qu'il vient de récupérer. Le pas de l'itération est à déterminer expérimentalement : un pas plus grand permet de faire moins de requêtes donc de diminuer le temps total de la migration, au détriment du temps unitaire de chaque itération, et donc du temps où les verrous existent en base.
 ** Il démarre une transaction.
 ** Il sélectionne les `id` des personnes qui ont une adresse, et les vérouille.
 ** Il insère dans `address` les données correspondantes à l'aide d'un `INSERT … SELECT …``.
@@ -190,12 +256,14 @@ En cas d'arrêt du script, les données déjà migrées ne sont pas perdues, et 
 
 ### Les étapes à suivre
 
-- `v1` : Version initialie où l'adresse est stocké dans la colonne `address` de la table `person`.
-- `v2` : Ajout en base de la table `address`, non encore utilisée par le code.
-- `v3` : Fournit l'API `/v2` API en plus de la `/v1`, stocke l'adresse dans la table `address` et sait la lire aux deux endroits.
-- `v4` : Migration des adresses vers la table `address`.
-- `v5` : Supression de la colonne `address` de la table `person` du code, la colonne est alors toujours en base.
-- `v6` Supression en base de la colonne `address` de la table `person`.
+. Version initialie où l'adresse est stocké dans la colonne `address` de la table `person`.
+. Ajout en base de la table `address`, non encore utilisée par le code.
+. Fournit l'API `/v2` API en plus de la `/v1`, stocke l'adresse dans la table `address` et sait la lire aux deux endroits.
+. Migration des adresses vers la table `address`.
+. Supression de la colonne `address` de la table `person` du code, la colonne est alors toujours en base.
+. Supression en base de la colonne `address` de la table `person`.
+
+Pour garder notre exemple simple, nous n'avons pas traité la question du feature flipping lors de l'ouverture de `/v2`.
 
 ### L'implémentation
 
@@ -216,7 +284,8 @@ Quelques éléments saillants :
 ## Pour conclure
 
 Faire du ZDD n'est pas magique, mais cela demande du travail et de la rigueur.
-Si vous pouvez faire sans, tant mieux pour vous, mais si vous en avez besoin vous devriez maintenant avoir une idée plus précise de ce que ça représente.
+Si vous pouvez faire sans, tant mieux pour vous, mais si vous en avez besoin vous devriez maintenant avoir une idée un peu plus précise de ce que ça représente.
+Rappellez vous que l'exemple développé ici est un cas simple : servez-vous en pour avoir une idée de la démarche à suivre, et pas comme un guide pour mesurer l'effort à fournir.
 
 La première migration sera sûrement un peu un défi, mais les suivantes seront de plus en plus faciles.
 Dans tous les cas, n'oubliez pas de tester, tester, et encore tester !
