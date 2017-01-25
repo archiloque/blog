@@ -37,7 +37,7 @@ Commençons par nous concentrer sur le changement de version de l'API, et nous a
 
 ###  `/v1` et `/v2` sont dans un bateau …
 
-Les migrations d'APIs ouvertes posent deux problèmes métier et un problème technique.
+Les migrations d'APIs ouvertes posent deux problèmes métiers et un problème technique.
 
 Le premier, valable aussi pour les API fermées, est de savoir comment migrer les données de `/v1` à `/v2`.
 Je ne parle pas d'un point de vue technique mais bien d'un point de vue métier :
@@ -106,12 +106,12 @@ Pour résumer, il y a quatre situations :
 
 Lorsque vous ouvrez `/v2` pour la première fois, faites-attention à la manière dont la bascule vers la nouvelle version est faite.
 
-Avant de rendre les nouveaux endpoints accessibles, assurez-vous que tous les serveurs utilisent la dernière version de l'application. Dans le cas contraire, si vous appellez un `/v1` alors que la donnée correspondante a été migrée en `/v2` le code ne saura pas la lire correctement et risque de planter ou de renvoyer une information fausse.
+Avant de rendre les nouveaux endpoints accessibles, assurez-vous que tous les serveurs utilisent la dernière version de l'application. Dans le cas contraire, si vous appelez un `/v1` alors que la donnée correspondante a été migrée en `/v2` le code ne saura pas la lire correctement et risque de planter ou de renvoyer une information fausse.
 
-Un autre problème se pose suivant la manière dont vous avez implémentez les modification de donnée lorsque vous appellez une API `/v1`.
+Un autre problème se pose suivant la manière dont vous avez implémenté les modification de donnée lorsque vous appelez une API `/v1`.
 
 Le premier cas consiste à sauvegarder la donnée au format `v2`, mais cela veut dire qu'à nouveau, les versions précédentes de l'applications ne pourront pas la lire.
-La solution la plus simple est alors d'utiliser le utiliser le link:http://blog.octo.com/feature-flipping/[feature flipping] pour faire basculer le code.
+La solution la plus simple est alors d'utiliser le link:http://blog.octo.com/feature-flipping/[feature flipping] pour faire basculer le code.
 
 Dans le cas contraire, votre code doit détecter sous quel format la donnée est stockée, et la resauvegarder sous ce même format : une donnée `v1` reste en `v1`, et une donnée `v2` reste en `v2`.
 On évite le feature flipping, mais en échange le code est plus complexe.
@@ -143,7 +143,7 @@ Elle est plus rapide mais nécessite du travail supplémentaire.
 
 ### À propos des verrous et des modifications de schémas
 
-Comme on vient de le voir, le ZDD s'appuie beaucoup sur l'utilisation de la base de données, et nottament ses fonctionnalités d'accès concurrent.
+Comme on vient de le voir, le ZDD s'appuie beaucoup sur l'utilisation de la base de données, et notament ses fonctionnalités d'accès concurrent.
 Si vos comportements métiers sont simples, que vous utilisez un ORM, et que vous avez des tests de performances automatisés, il s'agit d'un domaine auquel vous n'avez pas souvent à vous intéresser.
 Si vous vous y prenez mal, il est facile de bloquer la base, renvoyer des erreurs (en cas de deadlock), ou des résultats incohérents.
 
@@ -153,21 +153,35 @@ Ne faites pas confiance à des souvenirs ou à des rumeurs : lisez en détail la
 Si vous n'avez jamais creusé ces sujets ou que vous êtes rouillé·e, la première migration vous demandera sûrement pas mal de travail, et vous donnera quelques sueurs froides lorsque vous l'exécuterez.
 Mais dites-vous que toutes les opérations suivantes manipuleront les mêmes concepts, et se passeront donc beaucoup mieux.
 
+### Il n'y a pas que le REST dans la vie
+
+REST possède deux caractéristiques qui en font un candidat idéal pour le ZDD :
+
+- mettre le numéro de version dans l'url permet de facilement séparer les choses :
+- les appels sont supposés être stateless.
+
+Si vos services sont exposés d'une autre manière, il faudra donc vous intéresser à ces sujets.
+Les sessions, comme tous les types de caches, peut demander une attention particulière si les données qu'ils contiennent font l'objet d'un changement de structure entre versions.
+
 ## Retour à notre exemple
 
 Nous prenons l'hypothèse où le modèle de données suit directement les ressources à exposer.
-Nous partons d'un modèle de données où l'adresse est un champ de la table `person`, et devons migrer vers un modèle où l'adresse est située dans une table `address` distincte.
+L'adresse est initialement un champ de la table `person`, et est migrée dans une table `address` distincte.
 
 image::schema.png[title="L'évolution du schéma"]
 
 Les étapes à suivre pour la migration seront alors les suivantes :
 
-. Version initiale : l'adresse est dans la colonne `addres` de la table `person`, le code ne sait fonctionner que de cette manière.
+. Version initiale : l'adresse est dans la colonne `address` de la table `person`, le code ne sait fonctionner que de cette manière.
 . Ajout de la nouvelle table `address` dans la base de données, à cette étape le code ne connaît pas encore cette table.
-. Déploiement du code qui fournit l'api `/v2` et qui compatible avec les deux manières de stocker l'adresse.
+. Déploiement du code qui fournit l'api `/v2` et qui est compatible avec les deux manières de stocker l'adresse.
 . Exécution du script de migration.
 . Suppression du code compatible avec l'ancienne persistance des adresses dans la table `person`, la colonne `address` de la table `person` n'est plus utilisée par le code.
 . Supression de la colonne `address` de la table `person`.
+
+Le ZDD a pour conséquence d'ajouter des versions de code et des migrations de schémas intermédiaires.
+Dans un environnement où les déploiement ne sont pas automatisés, cela signifie une augmentation de la charge de travail et du risque d'erreur.
+Mieux vaut donc s'outiller et disposer d'un pipeline de livraison fiable avant de se lancer.
 
 ### Analyse détaillée
 
@@ -186,7 +200,7 @@ La solution n'est pas parfaite, mais elle peut être acceptable suivant l'usage 
 
 Pour résoudre la question de transactionnalité, nous avons choisi la solution la plus simple : poser un verrou sur les entrées correspondantes de la table `person`.
 
-Si toutes les opérations suivent le même principe, ce verrou joue le rôle d'une link:https://fr.wikipedia.org/wiki/Exclusion_mutuelle[mutex] en s'assurant que les appels s'exécutent bien l'un après l'autre : lorsqu'une opération pose un risque, elle commence par demander l'accès à ce verrou, et pour cela il doit attendre son tour. Par exemple c'est le cas lorsqu'on appelle de `GET /v2/people/127/addresses` alors que la personne correspondante n'a pas été migrée : comme elle doit modifier la personne et les adresse, elle commence par vérouiller la personne.
+Si toutes les opérations suivent le même principe, ce verrou joue le rôle d'une link:https://fr.wikipedia.org/wiki/Exclusion_mutuelle[mutex] en s'assurant que les appels s'exécutent bien l'un après l'autre : lorsqu'une opération pose un risque, elle commence par demander l'accès à ce verrou, et pour cela il doit attendre son tour. Par exemple c'est le cas lorsqu'on appelle de `GET /v2/people/127/addresses` alors que la personne correspondante n'a pas été migrée : comme elle doit modifier la personne et les adresses, elle commence par verrouiller la personne.
 
 Exemple sans verrou :
 [cols=",", options="header"]
@@ -247,7 +261,7 @@ La migration étant donc irreversible, nous savons qu'il suffit de migrer toutes
 * Il commence par récupérer l' `id` de `person` le plus élevé. Comme le script est lancé après le déploiement de la nouvelle version, toutes les personnes crées après ce moment le sont avec une adresse stockée dans `address`. Cela signifie que le script peut s'arrêter à cette valeur.
 * Le script itère par groupes de `person` de 0 à l' `id` qu'il vient de récupérer. Le pas de l'itération est à déterminer expérimentalement : un pas plus grand permet de faire moins de requêtes donc de diminuer le temps total de la migration, au détriment du temps unitaire de chaque itération, et donc du temps où les verrous existent en base.
 ** Il démarre une transaction.
-** Il sélectionne les `id` des personnes qui ont une adresse, et les vérouille.
+** Il sélectionne les `id` des personnes qui ont une adresse, et les verrouille.
 ** Il insère dans `address` les données correspondantes à l'aide d'un `INSERT … SELECT …``.
 ** Il vide le champs `address` de ces entrées dans la table `person`.
 ** Il valide la transaction, relâchant ainsi les données.
@@ -256,12 +270,12 @@ En cas d'arrêt du script, les données déjà migrées ne sont pas perdues, et 
 
 ### Les étapes à suivre
 
-. Version initialie où l'adresse est stocké dans la colonne `address` de la table `person`.
-. Ajout en base de la table `address`, non encore utilisée par le code.
+. Version initiale où l'adresse est stockée dans la colonne `address` de la table `person`.
+. Ajout en base de la table `address`, non encore utilisée par le code. La création d'une table n'a en principe aucun impact mais il faut le vérifier.
 . Fournit l'API `/v2` API en plus de la `/v1`, stocke l'adresse dans la table `address` et sait la lire aux deux endroits.
 . Migration des adresses vers la table `address`.
 . Supression de la colonne `address` de la table `person` du code, la colonne est alors toujours en base.
-. Supression en base de la colonne `address` de la table `person`.
+. Supression en base de la colonne `address` de la table `person`. Dans certaines base de données, supprimer une colonne déclenche la réécriture de toute la table et ne peut donc se faire en ZDD. On se contente donc d'une supression logique, par exemple en ajoutant un underscore devant son nom, et en la "recyclant" lorsqu'on a besoin d'une nouvelle colonne..
 
 Pour garder notre exemple simple, nous n'avons pas traité la question du feature flipping lors de l'ouverture de `/v2`.
 
@@ -273,19 +287,20 @@ Le code est en open-source donc servez-vous !
 Chaque étape de la migration est dans un répertoire à part, cela permet de facilement examiner ce qui se passe sans avoir à manipuler git.
 
 Le code est en Java et utilise la bibliothèque link:http://www.dropwizard.io/[Dropwizard].
-Les accès à la base de données se font via Hibernate, et les migrations en utilisant link:http://www.liquibase.org[Luquibase].
+La base de donnée est un PostgreSQL, l'accès se fait via Hibernate, et les migrations utilisent link:http://www.liquibase.org[Luquibase].
 
 Quelques éléments saillants :
 
-- En v3 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[DAO de personne] avec les méthodes permettant de poser des verrous et permettant de faire la jointure avec adresse pour assurer la compatibilité avec les services `/v1`.
-- link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[Le même en v5] sans la compatibilité avec l'ancien mode de stockage.
-- En v4 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/java/com/octo/zdd_java_sql/migrations/AddressToDedicatedTableMigration.java[script de migration].
+- À l'étape 3 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[DAO de personne] avec les méthodes permettant de poser des verrous et permettant de faire la jointure avec adresse pour assurer la compatibilité avec les services `/v1`.
+- link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[Le même à l'étape 5] sans la compatibilité avec l'ancien mode de stockage.
+- À l'étape 4 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/java/com/octo/zdd_java_sql/migrations/AddressToDedicatedTableMigration.java[script de migration]. Comme il s'agit d'un script et pas d'une requête unique, il est sous forme d'une classe Java link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/resources/migrations.xml[appellée depuis Luquibase].
+- À l'épape 6 il est possible de link:https://github.com/archiloque/zdd_java_sql/blob/master/v6/src/main/resources/migrations.xml[supprimer la colonne `address`] car link:https://www.postgresql.org/docs/9.4/static/sql-altertable.html[PostgreSQL se contente de la rendre invisible, et récupère l'espace plus tard].
 
 ## Pour conclure
 
 Faire du ZDD n'est pas magique, mais cela demande du travail et de la rigueur.
 Si vous pouvez faire sans, tant mieux pour vous, mais si vous en avez besoin vous devriez maintenant avoir une idée un peu plus précise de ce que ça représente.
-Rappellez vous que l'exemple développé ici est un cas simple : servez-vous en pour avoir une idée de la démarche à suivre, et pas comme un guide pour mesurer l'effort à fournir.
+Rappelez vous que l'exemple développé ici est un cas simple : servez-vous en pour avoir une idée de la démarche à suivre, et pas comme un guide pour mesurer l'effort à fournir.
 
 La première migration sera sûrement un peu un défi, mais les suivantes seront de plus en plus faciles.
 Dans tous les cas, n'oubliez pas de tester, tester, et encore tester !
