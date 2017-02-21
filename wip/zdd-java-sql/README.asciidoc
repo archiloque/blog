@@ -287,7 +287,7 @@ Le code est en open-source donc servez-vous !
 Chaque étape de la migration est dans un répertoire à part, cela permet de facilement examiner ce qui se passe sans avoir à manipuler git.
 
 Le code est en Java et utilise la bibliothèque link:http://www.dropwizard.io/[Dropwizard].
-La base de donnée est un PostgreSQL, l'accès se fait via Hibernate, et les migrations utilisent link:http://www.liquibase.org[Luquibase].
+La base de donnée est un PostgreSQL, l'accès se fait via Hibernate, et les migrations utilisent link:http://www.liquibase.org[Liquibase].
 
 Quelques éléments saillants :
 
