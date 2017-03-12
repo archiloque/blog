@@ -5,11 +5,11 @@ Blurb : Pour démythifier le Zero Downtime Deployment
 
 Dans les patterns link:http://blog.octo.com/zero-downtime-deployment/[qu'on associe aux géants du web], le Zero Downtime Deployment (ZDD) partage une caractéristique avec l'auto-scaling : on en parle d'autant plus qu'ils sont peu mis en œuvre.
 
-Dans le cas du ZDD, j'ai l'impression qu'il est victime d'un cercle vicieux : il a l'air très complexe car il est peu pratiqué, et comme il est peu pratiqué on pense qu'il est très complexe.
+Le ZDD est victime d'un cercle vicieux : il a l'air très complexe car il est peu pratiqué, et comme il est peu pratiqué on pense qu'il est très complexe.
 
 Cet article vise à briser le mythe en décortiquant le sujet et en présentant un cas pratique, code à l'appui.
 
-L'objectif n'est pas que tout le monde fasse du ZDD, car on verra qu'il ajoute de la complexité à votre système, mais que vous vous en ayez une vision claire, et ainsi pouvoir décider à en faire ou pas en connaissance de cause.
+L'objectif n'est pas que tout le monde fasse du ZDD, car on verra qu'il ajoute de la complexité, mais que vous vous en ayez une vision claire, et ainsi pouvoir décider à en faire ou pas en connaissance de cause.
 
 ## Notre cas d'exemple
 
@@ -19,12 +19,12 @@ Soit une application exposée via une API REST.
 
 Au départ cette application gère des personnes, chaque personne ayant zéro ou une adresse. Cette version est exposée sur le préfixe `/v1` à l'aide d'un unique type de ressource.
 
-La version suivante de l'application permettra d'associer plusieurs adresses à une personne, et sera exposéee sur le préfixe `/v2` en utilisant deux types de ressources.
+La version suivante de l'application permettra d'associer plusieurs adresses à une personne, et sera exposéee sur le préfixe `/v2` en utilisant deux ressources :
 
-image::versions.png[title="Les deux modèles"]
+image::versions.png[title="Les deux ressources"]
 
 L'API étant publique, nous ne maîtrisons pas l'utilisation qui en est faite.
-Impossible de faire une bascule de `/v1` à `/v2` en une seule fois.
+Il est donc impossible de faire une bascule de `/v1` à `/v2` en une seule fois.
 Les deux versions devront donc fonctionner ensemble le temps de permettre la migration.
 
 Les clients consomment les API via des intermédiaires, il est donc possible que pendant cette période ils utilisent à la fois les versions `/v1` et `/v2`.
@@ -157,11 +157,11 @@ Mais dites-vous que toutes les opérations suivantes manipuleront les mêmes con
 
 REST possède deux caractéristiques qui en font un candidat idéal pour le ZDD :
 
-- mettre le numéro de version dans l'url permet de facilement séparer les choses :
+- exposer plusieurs versions de services est une pratique standard ;
 - les appels sont supposés être stateless.
 
 Si vos services sont exposés d'une autre manière, il faudra donc vous intéresser à ces sujets.
-Les sessions, comme tous les types de caches, peut demander une attention particulière si les données qu'ils contiennent font l'objet d'un changement de structure entre versions.
+Les sessions, comme tous les types de caches, peuvent demander une attention particulière si les données qu'elles contiennent font l'objet d'un changement de structure entre versions.
 
 ## Retour à notre exemple
 
@@ -205,6 +205,8 @@ Si toutes les opérations suivent le même principe, ce verrou joue le rôle d'u
 Exemple sans verrou :
 [cols=",", options="header"]
 |===
+|Fil d'execution 1
+|Fil d'execution 2
 |`GET /v2/people/127/addresses`
 |`GET /v2/people/127/addresses`
 |`SELECT address from person where id = 127` pour récupérer l'adresse, vérifie qu'il y a une adresse à insérer
@@ -230,6 +232,8 @@ Résultat : la personne se retrouve avec deux adresses !
 Exemple avec verrou :
 [cols=",", options="header"]
 |===
+|Fil d'execution 1
+|Fil d'execution 2
 |`GET /v2/people/127/addresses`
 |`GET /v2/people/127/addresses`
 |`SELECT address from person where id = 127 FOR UPDATE` pour récupérer l'adresse, vérifie qu'il y a une adresse à insérer et vérouille la ligne
@@ -293,12 +297,12 @@ Quelques éléments saillants :
 
 - À l'étape 3 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[DAO de personne] avec les méthodes permettant de poser des verrous et permettant de faire la jointure avec adresse pour assurer la compatibilité avec les services `/v1`.
 - link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[Le même à l'étape 5] sans la compatibilité avec l'ancien mode de stockage.
-- À l'étape 4 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/java/com/octo/zdd_java_sql/migrations/AddressToDedicatedTableMigration.java[script de migration]. Comme il s'agit d'un script et pas d'une requête unique, il est sous forme d'une classe Java link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/resources/migrations.xml[appellée depuis Luquibase].
+- À l'étape 4 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/java/com/octo/zdd_java_sql/migrations/AddressToDedicatedTableMigration.java[script de migration]. Comme il s'agit d'un script et pas d'une requête unique, il est sous forme d'une classe Java link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/resources/migrations.xml[appellée depuis Liquibase].
 - À l'épape 6 il est possible de link:https://github.com/archiloque/zdd_java_sql/blob/master/v6/src/main/resources/migrations.xml[supprimer la colonne `address`] car link:https://www.postgresql.org/docs/9.4/static/sql-altertable.html[PostgreSQL se contente de la rendre invisible, et récupère l'espace plus tard].
 
 ## Pour conclure
 
-Faire du ZDD n'est pas magique, mais cela demande du travail et de la rigueur.
+Faire du ZDD n'est pas magique : cela demande du travail et de la rigueur.
 Si vous pouvez faire sans, tant mieux pour vous, mais si vous en avez besoin vous devriez maintenant avoir une idée un peu plus précise de ce que ça représente.
 Rappelez vous que l'exemple développé ici est un cas simple : servez-vous en pour avoir une idée de la démarche à suivre, et pas comme un guide pour mesurer l'effort à fournir.
 
