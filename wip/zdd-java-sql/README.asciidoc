@@ -7,62 +7,132 @@ Dans les patterns link:http://blog.octo.com/zero-downtime-deployment/[qu'on asso
 
 Le ZDD est victime d'un cercle vicieux : il a l'air très complexe car il est peu pratiqué, et comme il est peu pratiqué on pense qu'il est très complexe.
 
-Cet article vise à briser le mythe en décortiquant le sujet et en présentant un cas pratique, code à l'appui.
+Pour sortir de cette impasse, cette article présenter un cas pratique, code à l'appui.
 
-L'objectif n'est pas que tout le monde fasse du ZDD, car on verra qu'il ajoute de la complexité, mais que vous vous en ayez une vision claire, et ainsi pouvoir décider à en faire ou pas en connaissance de cause.
+L'objectif n'est pas que tout le monde fasse du ZDD, car on verra qu'il ajoute du travail et de la complexité, mais que vous vous en ayez une vision claire.
+Cela vous permettra de pouvoir décider à en faire ou pas en connaissance de cause.
 
 ## Notre cas d'exemple
 
-Notre exemple s'approche de celui décrit dans le premier article.
+Notre exemple s'approche de celui décrit dans link:http://blog.octo.com/zero-downtime-deployment/[le premier article].
 
 Soit une application exposée via une API REST.
 
-Au départ cette application gère des personnes, chaque personne ayant zéro ou une adresse. Cette version est exposée sur le préfixe `/v1` à l'aide d'un unique type de ressource.
+Au départ cette application gère des personnes, chaque personne ayant zéro ou une adresse. Cette version est exposée sur le préfixe `/v1` à l'aide d'un unique type de ressource `/person`.
 
-La version suivante de l'application permettra d'associer plusieurs adresses à une personne, et sera exposéee sur le préfixe `/v2` en utilisant deux ressources :
+La version suivante de l'application permettra d'associer plusieurs adresses à une personne, et sera exposéee sur le préfixe `/v2` en utilisant deux ressources, `/person` et `/address`.
 
-image::versions.png[title="Les deux ressources"]
+image::versions.png[title="Les deux versions"]
 
-L'API étant publique, nous ne maîtrisons pas l'utilisation qui en est faite.
+Cette application met en avant sa haute disponibilité, il est donc primordial que toutes les opérations soient effectuées sans interruption de service.
+
+L'API est publique, nous ne maîtrisons donc pas l'utilisation qui en est faite.
 Il est donc impossible de faire une bascule de `/v1` à `/v2` en une seule fois.
 Les deux versions devront donc fonctionner ensemble le temps de permettre la migration.
 
 Les clients consomment les API via des intermédiaires, il est donc possible que pendant cette période ils utilisent à la fois les versions `/v1` et `/v2`.
 
-Cette application met en avant sa haute disponibilité, il est donc primordial que toutes les opérations soient effectuées sans interruption de service.
+Dans la suite de l'article, `/v1` et `/v2` correspondent aux versions des services, et `v1` et `v2` correspondent aux deux manières dont les données seront stockées en base.
 
 ## La stratégie
 
-Commençons par nous concentrer sur le changement de version de l'API, et nous ajouterons le ZDD ensuite.
+### Comment gérer la migration ?
+
+Il est possible de se passer complètement de script de migration au sens traditionnel :
+vous exposez les services en `/v2`, et, lorsqu'ils sont appelés pour une donnée encore au format  `/v1`, vous migrez la donnée à la volée.
+Cela permet de migrer les données petit à petit au fur et à mesure que les utilisateurs des services appelleront les APIs `/v2`.
+C'est l'approche qui est souvent prise avec les bases de données NoSQL.
+
+Malheureusement, en procédant ainsi, il est possible que la migration ne se termine jamais, ou alors seulement dans très longtemps (si vous purgez les données trop anciennes).
+Pendant ce temps, vous devez maintenir le code supplémentaire permettant de prendre en charge ce cas.
+
+L'autre approche est d'utiliser un script.
+Cela permet de faire en sorte que la migration se fasse rapidement.
+C'est le même type de script que vous utilisez pour vos migrations habituelles, sauf qu'il doit prendre en compte le fait qu'il s'exécute en même temps que le code.
+Ainsi toutes les opérations qui créent des verrous pendant plus de quelques millisecondes ne doivent pas être utilisées, et il faut s'assurer de ne pas créer d'interblocage.
+
+La migration doit se faire de manière transactionnelle, pour éviter d'introduire des incohérences dans les données.
+En cas de problème, le script doit également pouvoir être interrompu et relancé sans que cela ne perturbe l'exécution du programme.
+
+Dans l'article c'est cette approche que nous allons utiliser.
+
+### Quand migrer ?
+
+Sans ZDD, le process de migration est classiquement le suivant :
+
+. Fermer le service
+. Arrêter l'application
+. Faire un backup des données, pour pouvoir les restaurer en cas de problème
+. Migrer les données
+. Déployer la nouvelle version de l'application
+. Démarrer la nouvelle version de l'application
+. Vérifier que tout fonctionne bien
+. Ouvrir le service
+
+En ZDD plus question de fermer le service : la migration de donnée à lieu "à chaud".
+
+Il y a deux manières de s'y prendre, suivant que la migration a lieu avant ou après l'ouverture des services  `/v2`.
+
+[cols=",", options="header"]
+|===
+|Migration après l'ouverture de `/v2`
+|Migration avant l'ouverture de `/v2`
+2+|Modifier le schéma de BDD pour permettre de stocker les données nécessaires à `/v2`
+|Déployer une nouvelle version de l'application exposant `/v1` et `/v2` sur les modèles de donnée `v1` ou  `v2`
+|Déployer une nouvelle version de l'application exposant `/v1` sur les modèles de donnée `v1` ou  `v2`
+|Migrer les données au modèle  `v2` sans interruption de service, en tenant compte du code `/v1` et `/v2`
+|Migrer les données au modèle  `v2` sans interruption de service, en tenant compte du code qui sert `/v1`
+2+|Déployer une nouvelle version de l'application exposant `/v1` et `/v2` sur le modèle de donnée `v2`
+2+|Nettoyer le schéma de BDD des artefacts `v1`
+2+|Déployer une nouvelle version de l'application gérant `/v2` sur le modèle de donnée `v2`
+|===
+
+La première approche permet d'ouvrir les services `/v2` plus rapidement car il n'y a pas besoin d'attendre la migration des données.
+
+La seconde approche est plus simple :
+
+- la versions exposant de l'application fonctionnant avec les modèles de données `v1` et `v2` n'expose que les services `/v1`, vous faites ainsi l'économie du cas où un appel de service `/v2` accède à des données `v1` ;
+- pendant la migration de données, les services `/v2` ne sont pas encore exposés, cela veut dire moins de patterns d'accès aux données à prendre en compte pour designer une migration évitant les incohérences de données et les interblocages.
+
+Sauf si votre process de migration est extrêmement long, la seconde approche est à privilégier, et c'est celle qui sera utilisée dans la suite de l'article.
 
 ###  `/v1` et `/v2` sont dans un bateau …
 
 Les migrations d'APIs ouvertes posent deux problèmes métiers et un problème technique.
 
-Le premier, valable aussi pour les API fermées, est de savoir comment migrer les données de `/v1` à `/v2`.
+#### Comment migrer les données ?
+
+Le premier problème, valable aussi pour les API fermées, est de savoir comment migrer les données de `/v1` à `/v2`.
 Je ne parle pas d'un point de vue technique mais bien d'un point de vue métier :
 la sémantique change entre les deux versions, il faut donc déterminer comment transformer les données de `/v1` en `/v2` d'une manière qui soit logique et qui ne surprenne pas les utilisateur·rice·s de l'API.
+
 Dans notre cas la solution est immédiate : `/v1` a au plus une seule adresse, et `/v2` peut en avoir plusieurs, l'adresse de `/v1` devient donc une des adresses de `/v2`.
 
-L'autre est de savoir comment interpréter en `/v1` des données `/v2`. En effet si l'API est ouverte, vos utilisateur·rice·s peuvent réappeler vos services `/v1` alors qu'ils ont déjà utilisés des services `/v2`.
+#### Comment gérer la rétro-compatibilité ?
+
+L'autre problème est de savoir comment interpréter en `/v1` des données `/v2`. En effet si l'API est ouverte, vos utilisateur·rice·s peuvent appeler vos services `/v1` alors que les données sont déjà au modèle `/v2`.
+
 Il est souvent plus compliqué que le premier car au fur et à mesure des évolutions les API ont tendances à devenir plus riches.
 Accéder à des données plus riches de la `/v2` au travers du prisme plus étroit de l'API `/v1` peut être un vrai casse-tête.
 
-Il est même possible que cela nécessite d'adapter le design de l'API `/v2`, si c'est le seul moyen que la transition se passe bien.
+Si c'est le seul moyen que cette transition se passe bien, il est parfois nécessaire d'adapter le design de l'API `/v2`.
+
 C'est un équilibre à trouver entre la facilité de transition, des restrictions possibles à ajouter pour les appelants de l'API, et le temps à investir.
 
-Le problème technique est de parvenir à rendre les différents services, y compris la compatibilité, tout en s'assurant de toujours avoir des données cohérentes sans pénaliser les performances.
+#### Comment répondre vite et bien ?
+
+Le problème technique est de parvenir à rendre les différents services, y compris la compatibilité, tout en s'assurant de toujours avoir des données cohérentes et sans (trop) pénaliser les performances.
 Si entre les deux versions, les données ne sont plus structurées de la même manière, la gestion de la compatibilité peut demander de croiser les données de plusieurs tables.
 
-Ainsi dans notre exemple,  en  `/v1` les adresses sont stockées dans la table `person` alors qu'en `/v2` elles sont dans une table séparée.
-Pendant la période de compatibilité, il faut que les appels à  `/v1` qui mette à jour le nom de la personne et son adresse modifient les deux tables de manière transactionnelle pour éviter qu'une lecture qui se produit au même moment ne renvoie des données incohérentes.
-De plus, il faut parvenir à le faire sans avoir à poser trop de verrous en base de données, car cela ralentirait la base de données, et donc les performances.
+Ainsi dans notre exemple,  en  `v1` les adresses sont stockées dans la table `person` alors qu'en `v2` elles sont dans une table `address` séparée.
+Pendant la période de compatibilité, il faut que les appels à  `v1` qui mettent à jour le nom de la personne et son adresse modifient les deux tables de manière transactionnelle pour éviter qu'une lecture `v1` qui se produirait au même moment ne renvoie des données incohérentes.
+De plus, il faut parvenir à le faire sans avoir à poser trop de verrous en base de données, car cela la ralentirait.
 
 La meilleure stratégie est de privilégier une approche que vous maîtrisez bien et qui donne des résultats acceptables plutôt qu'une solution plus efficace ou plus rapide mais plus complexe.
 
 Dans tous les cas, des tests sont absolument essentiels.
 
-Pour servir les deux versions de l'API, vous pouvez utiliser une application unique ou choisir de séparer votre code en deux applications, une par version.
+Pour servir les deux versions de l'API, vous pouvez utiliser une application unique ou choisir de séparer votre code en deux applications, une par version de services.
 Cette question n'étant pas structurante pour la question du ZDD, nous choisissons de ne pas la traiter ici.
 Dans notre exemple, nous avons choisi de n'avoir qu'une seule application.
 
@@ -75,17 +145,14 @@ Avec ZDD la migration s'effectue à chaud pendant que les services sont disponib
 
 Pendant cette période, les données peuvent donc être encore stockées au format  `/v1` ou migrées au format  `/v2`.
 
-Cela ajoute deux nouveaux problèmes.
-
-Le premier est de parvenir à déterminer dans quel état sont les données : pour savoir quel code doit être appelé il faut savoir si la donnée a été migrée ou pas.
-De plus, le morceau de code en charge de cela va être exécuté très souvent il faut donc qu'il soit très efficace.
+Il faut alors parvenir à déterminer dans quel état sont les données : pour savoir quel code doit être appelé il faut savoir si la donnée a été migrée ou pas.
+De plus, le morceau de code en charge de cela va être exécuté très souvent, il doit donc être très efficace.
 
 En cas de difficulté, la solution qui devrait fonctionner dans tous les cas est d'ajouter dans les tables impliquées un numéro indiquant la "version de schéma" de la donnée correspondante, et qui sera incrémenté lors de la migration de la donnée.
 Dans ce cas l'opération de vérification est très simple et rapide.
 L'opération d'ajout de colonne est alors à faire en avance de phase, ce qui augmente le travail nécessaire à la migration.
 
-Le dernier problème est celui qui se pose quand on appelle une api `/v2` alors que la donnée est encore stockée au format `/v1`, c'est à dire le fait de migrer la donnée à chaud.
-Ici encore, il s'agit de le faire de manière transactionnelle en limitant les ralentissements induits.
+Si vous choisissez de faire la migration de données après l'ouverture de `/v2`, s'ajoute le cas où on appelle une api `/v2` alors que la donnée est encore stockée au format `v1`. Il faut alors migrer la donnée à chaud, de manière transactionnelle en limitant les ralentissements induits.
 
 Pour résumer, il y a quatre situations :
 
@@ -96,7 +163,7 @@ Pour résumer, il y a quatre situations :
 |Appel  `/v2`
 |Données stockées au format `v1`
 |Répondre comme auparavant
-|Migrer les données à chaud
+|(Seulement si migration après ouverture de `/v2`) Migrer les données à chaud
 |Données stockées au format `v2`
 |Compatibilité `v1`
 |Répondre avec la nouvelle sémantique
@@ -106,9 +173,9 @@ Pour résumer, il y a quatre situations :
 
 Lorsque vous ouvrez `/v2` pour la première fois, faites-attention à la manière dont la bascule vers la nouvelle version est faite.
 
-Avant de rendre les nouveaux endpoints accessibles, assurez-vous que tous les serveurs utilisent la dernière version de l'application. Dans le cas contraire, si vous appelez un `/v1` alors que la donnée correspondante a été migrée en `/v2` le code ne saura pas la lire correctement et risque de planter ou de renvoyer une information fausse.
+Avant de rendre les nouveaux endpoints accessibles, assurez-vous que tous les serveurs utilisent la dernière version de l'application. Dans le cas contraire, si vous appelez un `/v1` alors que la donnée correspondante a été migrée en `v2` le code ne saura pas la lire correctement et risque de planter ou de renvoyer une information fausse.
 
-Un autre problème se pose suivant la manière dont vous avez implémenté les modification de donnée lorsque vous appelez une API `/v1`.
+Un autre problème se pose suivant la manière dont vous avez implémenté les modifications de donnée lorsque vous appelez une API `/v1`.
 
 Le premier cas consiste à sauvegarder la donnée au format `v2`, mais cela veut dire qu'à nouveau, les versions précédentes de l'applications ne pourront pas la lire.
 La solution la plus simple est alors d'utiliser le link:http://blog.octo.com/feature-flipping/[feature flipping] pour faire basculer le code.
@@ -118,36 +185,13 @@ On évite le feature flipping, mais en échange le code est plus complexe.
 
 Pour décomissionner `/v1` il suffit de rendre les endpoints inaccessible, la suppression du code peut se faire plus tard.
 
-### Migration au fil de l'eau ou avec un batch ?
-
-En l'état, les données vont migrer petit à petit au fur et à mesure que les utilisateurs des services appelleront les APIs `/v2`.
-Il est tout à fait possible de simplement laisser les choses se passer ainsi.
-C'est l'approche qui est souvent prise avec les bases de données NoSQL.
-
-Malheureusement, en procédant ainsi, il est possible que la migration ne se termine jamais, ou alors seulement dans très longtemps (si vous purgez les données trop anciennes).
-Pendant ce temps, vous devez maintenir le code supplémentaire permettant de prendre en charge ce cas.
-
-L'autre approche est d'utiliser un script.
-Cela permet de faire en sorte que la migration se fasse rapidement.
-C'est le même type de script que vous utilisez pour vos migrations habituelles, sauf qu'il doit prendre en compte le fait qu'il s'exécute en même temps que le code.
-Ainsi toutes les opérations qui créent des verrous pendant plus de quelques millisecondes sont interdites.
-Il est donc impossible de manipuler les données à l'échelle d'une table.
-
-Comme dans le cas de la gestion de la compatibilité, la migration doit se faire de manière transactionnelle.
-En cas de problème, le script doit également pouvoir être interrompu et relancé sans que cela ne perturbe l'exécution du programme.
-
-La manière la plus simple est de le faire ligne par ligne, en utilisant le même code de migration que celui utilisé par le programme qu'il suffit d'appeller depuis une boucle.
-Malheureusement, la migration nécessite alors un très grand nombre de requêtes, ce qui augmente sa durée.
-L'autre solution est d'opérer par groupes de lignes en s'appuyant sur des requêtes ensemblistes du type `INSERT INTO new_table SELECT …  FROM old_table WHERE …`..
-Elle est plus rapide mais nécessite du travail supplémentaire.
-
 ### À propos des verrous et des modifications de schémas
 
-Comme on vient de le voir, le ZDD s'appuie beaucoup sur l'utilisation de la base de données, et notament ses fonctionnalités d'accès concurrent.
+Comme on vient de le voir, le ZDD s'appuie beaucoup sur l'utilisation de la base de données, et notamment ses fonctionnalités d'accès concurrent.
 Si vos comportements métiers sont simples, que vous utilisez un ORM, et que vous avez des tests de performances automatisés, il s'agit d'un domaine auquel vous n'avez pas souvent à vous intéresser.
 Si vous vous y prenez mal, il est facile de bloquer la base, renvoyer des erreurs (en cas de deadlock), ou des résultats incohérents.
 
-Notre conseil est de bien vous documenter en amont pour éviter d'avoir à refaire un design parce que votre base de données ne fonctionne pas comme vous le pensez.
+Notre conseil est de bien vous documenter en amont voire de faire des POC pour éviter d'avoir à refaire un design parce que votre base de données ne fonctionne pas comme vous l'imaginiez.
 Ne faites pas confiance à des souvenirs ou à des rumeurs : lisez en détail la documentation correspondant à la version de l'outil que vous utilisez, et surtout testez !
 
 Si vous n'avez jamais creusé ces sujets ou que vous êtes rouillé·e, la première migration vous demandera sûrement pas mal de travail, et vous donnera quelques sueurs froides lorsque vous l'exécuterez.
@@ -170,60 +214,53 @@ L'adresse est initialement un champ de la table `person`, et est migrée dans un
 
 image::schema.png[title="L'évolution du schéma"]
 
-Les étapes à suivre pour la migration seront alors les suivantes :
+Les étapes à suivre pour la migration :
 
 . Version initiale : l'adresse est dans la colonne `address` de la table `person`, le code ne sait fonctionner que de cette manière.
 . Ajout de la nouvelle table `address` dans la base de données, à cette étape le code ne connaît pas encore cette table.
-. Déploiement du code qui fournit l'api `/v2` et qui est compatible avec les deux manières de stocker l'adresse.
+. Déploiement du code qui fournit l'api `/v1` et qui est compatible avec les deux manières de stocker l'adresse.
 . Exécution du script de migration.
-. Suppression du code compatible avec l'ancienne persistance des adresses dans la table `person`, la colonne `address` de la table `person` n'est plus utilisée par le code.
-. Supression de la colonne `address` de la table `person`.
+. Déploiement du code qui fournit les api `/v1` et  `/v2` et qui est compatible avec la nouvelle manière de stocker l'adresse, la colonne `address` de la table `person` n'est plus utilisée par le code.
+. Suppression de la colonne `address` de la table `person`.
 
 Le ZDD a pour conséquence d'ajouter des versions de code et des migrations de schémas intermédiaires.
-Dans un environnement où les déploiement ne sont pas automatisés, cela signifie une augmentation de la charge de travail et du risque d'erreur.
+Dans un environnement où les déploiements ne sont pas automatisés, cela signifie une augmentation de la charge de travail et donc du risque d'erreur.
 Mieux vaut donc s'outiller et disposer d'un pipeline de livraison fiable avant de se lancer.
 
 ### Analyse détaillée
 
-### La compatibilité du services
+### La compatibilité des services
 
 Dans notre exemple le problème de compatibilité est le suivant : une fois une personne migrée, elle peut avoir plusieurs adresses.
 Que faire quand on récupère cette même personne en passant par l'API `/v1` ?
 
 Ici il n'y a pas de réponse évidente : il n'y a pas de notion d'adresse préférée, ou de dernière adresse utilisée qui fournirait une manière de discriminer les différentes possibilités.
-Comme la réponse influe sur le comportement de l'API, c'est le métier qui doit trancher.
+Comme la réponse influe sur le comportement de l'API, c'est une décision à prendre par les personnes du métier.
 
-La solution choisie est de renvoyer une adresse parmi celle dans la liste.
-La solution n'est pas parfaite, mais elle peut être acceptable suivant l'usage qui en est fait : il s'agit aux personnes du métier d'en décider.
+La solution choisie ici est de renvoyer une adresse parmi celle dans la liste.
+Elle n'est pas parfaite, mais elle peut être acceptable suivant l'usage qui en est fait : il s'agit aux personnes du métier d'en décider.
 
-### La transactionalité
+### La transactionnalité
 
 Pour résoudre la question de transactionnalité, nous avons choisi la solution la plus simple : poser un verrou sur les entrées correspondantes de la table `person`.
 
-Si toutes les opérations suivent le même principe, ce verrou joue le rôle d'une link:https://fr.wikipedia.org/wiki/Exclusion_mutuelle[mutex] en s'assurant que les appels s'exécutent bien l'un après l'autre : lorsqu'une opération pose un risque, elle commence par demander l'accès à ce verrou, et pour cela il doit attendre son tour. Par exemple c'est le cas lorsqu'on appelle de `GET /v2/people/127/addresses` alors que la personne correspondante n'a pas été migrée : comme elle doit modifier la personne et les adresses, elle commence par verrouiller la personne.
+Si toutes les opérations suivent le même principe, ce verrou joue le rôle d'une link:https://fr.wikipedia.org/wiki/Exclusion_mutuelle[mutex] en s'assurant que les appels s'exécutent bien l'un après l'autre : lorsqu'une opération pose un risque, elle commence par demander l'accès à ce verrou, et pour cela elle doit attendre son tour.
+Exemple avec un appel à `PUT /v1/people/127` alors que la personne correspondante est stockée au format `v2` mais n'a pas encore d'adresse.
 
 Exemple sans verrou :
 [cols=",", options="header"]
 |===
-|Fil d'execution 1
-|Fil d'execution 2
-|`GET /v2/people/127/addresses`
-|`GET /v2/people/127/addresses`
-|`SELECT address from person where id = 127` pour récupérer l'adresse, vérifie qu'il y a une adresse à insérer
-|
-|
-|`SELECT address from person where id = 127` pour récupérer l'adresse, vérifie qu'il y a une adresse à insérer
+|Fil d'exécution 1
+|Fil d'exécution 2
+|`PUT /v1/people/127/addresses`
+|`PUT /v1/people/127/addresses`
+|`SELECT * from person where id = 127` pour récupérer la personne, vérifie qu'il n'y a pas d'adresse et que les autres champs ne sont pas à modifier
+|`SELECT * from person where id = 127` pour récupérer la personne, vérifie qu'il n'y a pas d'adresse et que les autres champs ne sont pas à modifier
+|`SELECT * from address where id_person = 127` pour récupérer une adresse à mettre à jour, n'en trouve pas et déduit donc qu'il faut en insérer une
+|`SELECT * from address where id_person = 127` pour récupérer une adresse à mettre à jour, n'en trouve pas et déduit donc qu'il faut en insérer une
 |`INSERT INTO address …` pour insérer l'adresse
-|
-|
 |`INSERT INTO address …` pour insérer l'adresse
-|`UPDATE people SET address = NULL WHERE id = 127` pour vider l'adresse, vérouille la ligne
-|
 |`commit`
-|
-|
-|`UPDATE people SET address = NULL WHERE id = 127` pour vider l'adresse, attendait le verrou
-|
 |`commit`
 |===
 
@@ -232,24 +269,28 @@ Résultat : la personne se retrouve avec deux adresses !
 Exemple avec verrou :
 [cols=",", options="header"]
 |===
-|Fil d'execution 1
-|Fil d'execution 2
-|`GET /v2/people/127/addresses`
-|`GET /v2/people/127/addresses`
-|`SELECT address from person where id = 127 FOR UPDATE` pour récupérer l'adresse, vérifie qu'il y a une adresse à insérer et vérouille la ligne
+|Fil d'exécution 1
+|Fil d'exécution 2
+|`PUT /v1/people/127/addresses`
+|`PUT /v1/people/127/addresses`
+|`SELECT address from person where id = 127 FOR UPDATE` pour récupérer la personne, vérifie qu'il n'y a pas d'adresse et que les autres champs ne sont pas à modifier *et vérouille la ligne*
+|
+|`SELECT * from address where id_person = 127` pour récupérer une adresse à mettre à jour, n'en trouve pas et déduit donc qu'il faut en insérer une
 |
 |`INSERT INTO address …` pour insérer l'adresse
 |
-|`UPDATE people SET address = NULL WHERE id = 127` pour vider l'adresse
-|
-|`commit`
+|`commit` qui relache le vérou sur `person`
 |
 |
-|`SELECT address from person where id = 127 FOR UPDATE` pour récupérer l'adresse, vérifie qu'il y a une adresse à insérer, attendait le verrou => il n'y a pas d'adresse, donc elle est peut-être dans l'autre table
+|`SELECT address from person where id = 127 FOR UPDATE` pour récupérer la personne, vérifie qu'il n'y a pas d'adresse et que les autres champs ne sont pas à modifier *et vérouille la ligne, attendait que le verrou sur `person` soit disponible*
 |
 |`SELECT id, address FROM address WHERE id_person = 127` récupère l'adresse
 |
-|`commit`
+|`SELECT * from address where id_person = 127` pour récupérer une adresse à mettre à jour, trouve l'adresse insérée par l'autre fil d'execution
+|
+|`UPDATE address set address = … where id = 4758` met à jour l'adresse
+|
+|`commit` qui relache le vérou sur `person`
 |===
 
 Résultat : une seule adresse.
@@ -258,9 +299,9 @@ Résultat : une seule adresse.
 
 Le script de migration déplace les données par blocs de `person` à `address`.
 
-Dans notre exemple, une fois le code basculé à la nouvelle version, toutes les données sont écrites au format `v2`, qu'il s'agisse des créations ou des modifications, pour les appels à `/v1` ou à `/v2`.
+Dans notre exemple, une fois le code basculé à la nouvelle version, toutes les données sont écrites au format `v2`, qu'il s'agisse des créations ou des modifications.
 
-La migration étant donc irreversible, nous savons qu'il suffit de migrer toutes les données une fois pour que le travail soit fait.
+La migration est donc irréversible, nous savons qu'il suffit de migrer toutes les données une fois pour que le travail soit fait.
 
 * Il commence par récupérer l' `id` de `person` le plus élevé. Comme le script est lancé après le déploiement de la nouvelle version, toutes les personnes crées après ce moment le sont avec une adresse stockée dans `address`. Cela signifie que le script peut s'arrêter à cette valeur.
 * Le script itère par groupes de `person` de 0 à l' `id` qu'il vient de récupérer. Le pas de l'itération est à déterminer expérimentalement : un pas plus grand permet de faire moins de requêtes donc de diminuer le temps total de la migration, au détriment du temps unitaire de chaque itération, et donc du temps où les verrous existent en base.
@@ -274,16 +315,16 @@ En cas d'arrêt du script, les données déjà migrées ne sont pas perdues, et 
 
 ### Les étapes à suivre
 
-. Version initiale où l'adresse est stockée dans la colonne `address` de la table `person`.
-. Ajout en base de la table `address`, non encore utilisée par le code. La création d'une table n'a en principe aucun impact mais il faut le vérifier.
-. Fournit l'API `/v2` API en plus de la `/v1`, stocke l'adresse dans la table `address` et sait la lire aux deux endroits.
+. Version initiale fournissant l'API `/v1` et où l'adresse est stockée dans la colonne `address` de la table `person`.
+. Ajout en base de la table `address`, non encore utilisée par le code. La création d'une table n'a en principe aucun impact sur la base mais il faut le vérifier.
+. Fournit l'API `/v1`, stocke l'adresse dans la table `address` et sait la lire aux deux endroits.
 . Migration des adresses vers la table `address`.
-. Supression de la colonne `address` de la table `person` du code, la colonne est alors toujours en base.
-. Supression en base de la colonne `address` de la table `person`. Dans certaines base de données, supprimer une colonne déclenche la réécriture de toute la table et ne peut donc se faire en ZDD. On se contente donc d'une supression logique, par exemple en ajoutant un underscore devant son nom, et en la "recyclant" lorsqu'on a besoin d'une nouvelle colonne..
-
-Pour garder notre exemple simple, nous n'avons pas traité la question du feature flipping lors de l'ouverture de `/v2`.
+. Fournit les API `/v1` et `/v2`, et ne sait la lire qu'au format `v2`, suppression de la colonne `address` de la table `person` du code, la colonne est alors toujours en base.
+. Suppression en base de la colonne `address` de la table `person`. Dans certaines base de données, supprimer une colonne déclenche la réécriture de toute la table et ne peut donc se faire en ZDD. On se contente donc d'une suppression logique, par exemple en ajoutant un underscore devant son nom, et en la "recyclant" lorsqu'on a besoin d'une nouvelle colonne.
 
 ### L'implémentation
+
+*PAS ENCORE MAJ*
 
 L'implémentation se trouve link:https://github.com/archiloque/zdd_java_sql[sur GitHub].
 Le code est en open-source donc servez-vous !
@@ -297,14 +338,16 @@ Quelques éléments saillants :
 
 - À l'étape 3 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[DAO de personne] avec les méthodes permettant de poser des verrous et permettant de faire la jointure avec adresse pour assurer la compatibilité avec les services `/v1`.
 - link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[Le même à l'étape 5] sans la compatibilité avec l'ancien mode de stockage.
-- À l'étape 4 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/java/com/octo/zdd_java_sql/migrations/AddressToDedicatedTableMigration.java[script de migration]. Comme il s'agit d'un script et pas d'une requête unique, il est sous forme d'une classe Java link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/resources/migrations.xml[appellée depuis Liquibase].
-- À l'épape 6 il est possible de link:https://github.com/archiloque/zdd_java_sql/blob/master/v6/src/main/resources/migrations.xml[supprimer la colonne `address`] car link:https://www.postgresql.org/docs/9.4/static/sql-altertable.html[PostgreSQL se contente de la rendre invisible, et récupère l'espace plus tard].
+- À l'étape 4 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/java/com/octo/zdd_java_sql/migrations/AddressToDedicatedTableMigration.java[script de migration]. Comme il s'agit d'un script et pas d'une requête unique, il est sous forme d'une classe Java link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/resources/migrations.xml[appelée depuis Liquibase].
+- À l'étape 6 il est possible de link:https://github.com/archiloque/zdd_java_sql/blob/master/v6/src/main/resources/migrations.xml[supprimer la colonne `address`] car link:https://www.postgresql.org/docs/9.4/static/sql-altertable.html[PostgreSQL se contente de la rendre invisible, et récupère l'espace plus tard].
+
+*LA SUITE C'EST BON*
 
 ## Pour conclure
 
 Faire du ZDD n'est pas magique : cela demande du travail et de la rigueur.
 Si vous pouvez faire sans, tant mieux pour vous, mais si vous en avez besoin vous devriez maintenant avoir une idée un peu plus précise de ce que ça représente.
-Rappelez vous que l'exemple développé ici est un cas simple : servez-vous en pour avoir une idée de la démarche à suivre, et pas comme un guide pour mesurer l'effort à fournir.
+Rappelez-vous que l'exemple développé ici est un cas simple : servez-vous en pour avoir une idée de la démarche à suivre, et pas comme un guide pour mesurer l'effort à fournir.
 
 La première migration sera sûrement un peu un défi, mais les suivantes seront de plus en plus faciles.
 Dans tous les cas, n'oubliez pas de tester, tester, et encore tester !
