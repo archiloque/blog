@@ -1,0 +1,144 @@
+= Some ideas for a programming language
+Julien Kirch
+v0.1, 2017-23-01
+:article_lang: en
+:article_description: I hope I won't try to implement it
+
+As always when I'm coding, I'm unsatisfied by the currently available choices.
+But for a change I'm taking the time to write about it.
+
+== Principles
+
+Features for my dream languages :
+
+- Ruby-like syntax
+- Garbage collected
+- Static typing verified at compile time
+- Type inference
+- Low boilerplate
+
+== Rationale
+
+I mostly write code in an IDE : I don't like to look for things like signatures, precise names… but I want my tools to find them for me.
+
+My current tool of choice is Ruby, I like it because code is concise yet readable, and the OO design is very flexible.
+On the other hand I love the capabilities provided by static typing : impact analysis, refactoring, and helpful IDE support.
+
+In a nutshell, I'd like to have the benefits of Ruby with the level of tooling you can have in Java when you code with Intellij.
+
+== General syntax
+
+```
+pakage net.archiloque.thing
+  class MyClass < AnotherClass
+
+    # Method declaration includes types
+    Array<Thing> find_things(Dictionary<Thang, Thung> parameters)
+
+      parameters.collect do |key, value|
+        # value is known to be a thung
+        value.method_of_thung_object
+      end
+    end
+
+    # Last value is returned by default
+    # type checking is done by the compiler
+  end
+
+  # By default types are not nullable
+  Something? look_for_something()
+
+    # Type declaration is not mandatory, included for readability
+    SomethingElse? value = look_for_something_else
+    if value.nil?
+      value.get.tranform_into_something
+    else
+      nil
+    end
+
+  end
+
+end
+```
+
+- No semicolons
+- Type inference everywhere you can
+- Return last value by default
+- No parens for no-parameter method call
+- Ruby-like blocks syntax
+- Things are not nullable by default
+- Generics
+
+== Getters and setters
+
+```
+class MyClass
+
+  Integer @attribute getter setter
+
+  constructor()
+    @attribute = MyOtherClass.new()
+  end
+
+end
+
+class MyOtherOtherClass
+
+  nil a_method()
+    variable = MyClass.new()
+    # Call the setter
+    variable.attribute = 12
+  end
+
+end
+```
+
+- Attributes are prefixed by @
+- Attributes should be declared
+- Attributes are private
+- Getter and setter can be specified during declaration
+- Getter and setter have "direct attribute access" syntax
+
+== Arrays and Dictionnary
+
+QQQQ
+
+== Modules
+
+Multi-inheritrance is a mess, so let's have modules.
+Encapsulation is a nice principle, but the language should help you to do it and not force it.
+
+```
+module MyModule
+
+  Integer @attribute
+
+  nil module_method()
+  end
+
+end
+
+class MyClass
+
+  include MyModule
+
+  # Make the module attribute available
+  Integer MyModule.attribute
+
+  # Expose the module method as a MyClass method
+  expose MyModule.module_method
+
+  constructor()
+  end
+
+end
+```
+
+
+== Static duck-typing
+
+QQQQ
+
+== Enumerations
+
+QQQQ
