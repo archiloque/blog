@@ -33,7 +33,7 @@ pakage net.archiloque.thing
   class MyClass < AnotherClass
 
     # Method declaration includes types
-    Array<Thing> find_things(Dictionary<Thang, Thung> parameters)
+    def Array<Thing> find_things(Dictionary<Thang, Thung> parameters)
 
       parameters.collect do |key, value|
         # value is known to be a thung
@@ -46,7 +46,7 @@ pakage net.archiloque.thing
   end
 
   # By default types are not nullable
-  Something? look_for_something()
+  def Something? look_for_something()
 
     # Type declaration is not mandatory, included for readability
     SomethingElse? value = look_for_something_else
@@ -74,9 +74,11 @@ end
 ```
 class MyClass
 
-  Integer @attribute getter setter
+  attr Integer @attribute getter setter
 
-  constructor()
+  attr Integer @another_attribute
+
+  def constructor()
     @attribute = MyOtherClass.new()
   end
 
@@ -84,16 +86,20 @@ end
 
 class MyOtherOtherClass
 
-  nil a_method()
+  def nil a_method()
     variable = MyClass.new()
     # Call the setter
     variable.attribute = 12
+
+    # Don't compile : no setter
+    variable.another_attribute = 12
+
   end
 
 end
 ```
 
-- Attributes are prefixed by @
+- Attrdef ibutes are prefixed by @
 - Attributes should be declared
 - Attributes are private
 - Getter and setter can be specified during declaration
@@ -101,7 +107,12 @@ end
 
 == Arrays and Dictionnary
 
-QQQQ
+Arrays and dictionnary instanciation and manipulation is present everywhere, so it should use low boilerplate.
+
+```
+Array<Integer> integers = [1, 2, 3]
+Dictionary<Integer, String> = {1: "YOLO", 2: "YULU"}
+```
 
 == Modules
 
@@ -111,9 +122,9 @@ Encapsulation is a nice principle, but the language should help you to do it and
 ```
 module MyModule
 
-  Integer @attribute
+  attr Integer @attribute
 
-  nil module_method()
+  def nil module_method()
   end
 
 end
@@ -122,23 +133,73 @@ class MyClass
 
   include MyModule
 
-  # Make the module attribute available
-  Integer MyModule.attribute
+  # Make the module attribute available as a local attribute
+  attr Integer MyModule.attribute
 
   # Expose the module method as a MyClass method
   expose MyModule.module_method
 
-  constructor()
+  def constructor()
   end
 
 end
 ```
 
-
 == Static duck-typing
 
-QQQQ
+The duck typing idea is nice : sometimes you don't care that an object implements a specific class, but only that it implements a specific set of methods.
+In static typing languages like java, you can use interfaces, but interfaces must be predesigned, and can't be retrofited in the stdlib or in external code.
+
+But you could use another approach
+
+```
+class MyClass
+  def nil a_method()
+  end
+
+  def nil another_method()
+  end
+end
+
+interface MyInterface
+  interface nil a_method()
+end
+
+class MyOtherClass
+
+  def nil my_method(MyInterface my_interface)
+    # …
+  end
+
+  def nil my_other_method(MyClass my_class_object)
+    # should work, because even it MyClass doesn't explicitely implements MyInterface
+    # the declaration are matching
+    this.my_interface(my_class_object)
+  end
+
+end
+
+```
 
 == Enumerations
+
+Typed enumerations are a nice tools when you have a state machine.
+
+```
+enum MyEnum
+
+  attr String @attribute getter setter
+
+  def constructor(String value)
+    @attribute = value
+  end
+
+  STATE_1 = MyEnum.new("lalala")
+  STATE_2 = MyEnum.new("lalala")
+end
+
+```
+
+== Metaprogramming
 
 QQQQ
