@@ -74,7 +74,7 @@ end
 ```
 class MyClass
 
-  attr Integer @attribute getter setter
+  attr Integer @attribute get set
 
   attr Integer @another_attribute
 
@@ -87,23 +87,23 @@ end
 class MyOtherOtherClass
 
   def nil a_method()
-    variable = MyClass.new()
+    my_class_instance = MyClass.new()
     # Call the setter
-    variable.attribute = 12
+    my_class_instance.attribute = 12
 
-    # Don't compile : no setter
-    variable.another_attribute = 12
+    # Doesn't compile : no setter
+    my_class_instance.another_attribute = 12
 
   end
 
 end
 ```
 
-- Attrdef ibutes are prefixed by @
+- Attributes are prefixed by `@`
 - Attributes should be declared
 - Attributes are private
-- Getter and setter can be specified during declaration
-- Getter and setter have "direct attribute access" syntax
+- Getters and setters can be specified during declaration
+- Getters and setters have "direct attribute access" syntax
 
 == Arrays and Dictionnary
 
@@ -111,7 +111,7 @@ Arrays and dictionnary instanciation and manipulation is present everywhere, so 
 
 ```
 Array<Integer> integers = [1, 2, 3]
-Dictionary<Integer, String> = {1: "YOLO", 2: "YULU"}
+Dictionary<Integer, String> dictionnary = {1: "YOLO", 2: "YULU"}
 ```
 
 == Modules
@@ -154,11 +154,13 @@ But you could use another approach
 
 ```
 class MyClass
+
   def nil a_method()
   end
 
   def nil another_method()
   end
+
 end
 
 interface MyInterface
@@ -172,7 +174,8 @@ class MyOtherClass
   end
 
   def nil my_other_method(MyClass my_class_object)
-    # should work, because even it MyClass doesn't explicitely implements MyInterface
+    # work because even it MyClass doesn't
+    # explicitly implements MyInterface
     # the declaration are matching
     this.my_interface(my_class_object)
   end
@@ -188,7 +191,7 @@ Typed enumerations are a nice tools when you have a state machine.
 ```
 enum MyEnum
 
-  attr String @attribute getter setter
+  attr String @attribute get set
 
   def constructor(String value)
     @attribute = value
