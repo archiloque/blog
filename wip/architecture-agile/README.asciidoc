@@ -26,6 +26,7 @@ Pour garder les choses sous contrôle et limiter les coûts, ces process sont so
 
 L'agile va privilégier la capacité de répondre au changement.
 Sa stratégie de minimisation du risque est d'avoir des feedbacks rapides afin de détecter les problèmes au plus tôt et donc de baisser le coût de correction.
+Ses process seront donc plus souples et plus informels.
 Cela peut l'amener à des optimisations tournées vers le local et le court terme.
 
 Les deux visent à maîtriser le risque, mais avec des modes de fonctionnement différents et qui peuvent facilement s'opposer.
@@ -52,13 +53,14 @@ Il faudra alors lutter contre l'idée qu'"en fait l'agile ça ne fonctionne pas 
 
 Un premier projet agile connecté au SI sera plus difficile et sa réussite sera probablement moins éclatante.
 Cependant cette réussite sera incontestable, et devrait être représentative de la suite.
-Il permettra aussi de commencer plus tôt à faire bouger les lignes dans le reste du SI.
+Il permettra aussi de commencer plus tôt à faire bouger le reste du SI.
 
 À vous de décider en connaissance de cause en fonction du but que vous visez avec ce projet.
 
 == Le rôle de l'architecte sur ce projet
 
 Comme sur une projet classique, l'architecte a un rôle d'interface entre le projet et le SI : cellules d'architecture transverses, personnes de la production et de l'infrastructure, sécurité…
+Son objectif est que le projet s'intégre harmonieusement dans l'écosystème du SI.
 
 Pour le premier projet agile, l'architecte joue en plus un rôle d'agent agilifiant vis-à-vis du SI afin d'essayer d'aménager les process pour le bien du projet.
 
@@ -100,21 +102,21 @@ Vis-à-vis de l'équipe, son rôle principal va être de traiter les contraintes
 Son travail va avoir pour effet de mettre l'équipe sous tension :
 
 - le·a PO en influant négativement sur ses demandes ;
-- le·a coach en ajoutant des contraintes ou des lenteurs aux process ;
+- le·a coach en ajoutant des contraintes ou des lenteurs au process ;
 - le·a référent·e technique en limitant ses choix.
 
-L'ensemble de l'équipe doit malgré tout avoir confiance en l'architecte sur le fait qu'il·elle travaille pour le bien commun, et n'est pas du côté du SI.
+L'ensemble de l'équipe doit malgré tout avoir confiance en l'architecte sur le fait qu'il·elle travaille pour le bien commun, et n'est pas du côté du SI : il·elle fait bien partie de l'équipe.
 
-La relation qu'il·elle entretient avec l'équipe est donc très importante.
+La relation qu'il·elle entretient avec le reste de l'équipe est donc très importante.
 
 image::lego.jpeg[title="Coach, PO, référent·e technique et architecte SI sont sur le même bateau"]
 
 Son travail est de savoir en permanence faire la part des choses entre l'existant du SI et des process et les besoins du projet.
 
-S'il·elle penche trop du côté du SI, il·elle nuira à l'agilité du projet, s'il·elle prend parti pour le projet et ne sait pas choisir ses combats, il·elle deviendra inaudible.
+S'il·elle penche trop du côté du SI, il·elle nuira à l'agilité du projet, s'il·elle prend parti pour son projet et ne sait pas choisir ses combats, ses demandes auprès du SI deviendront inaudibles.
 
 En cas de problème, il·elle peut prendre parti, mais sans tenter d'imposer son point de vue.
-Ainsi si le·a référent·e technique n'est pas d'accord avec le SI, l'architecte peut proposer une solution, mais il·elle ne doit jamais tenter de l'imposer sous peine d'abîmer le lien avec le·a référent·e technique.
+Ainsi si le·a référent·e technique n'est pas d'accord avec l'architecte SI, l'architecte peut proposer une solution, mais il·elle ne doit jamais tenter de l'imposer sous peine d'abîmer le lien avec le·a référent·e technique.
 Dans ce cas de figure, il faut tenter de concilier les deux positions, et en cas d'échec trouver comment sortir de l'impasse.
 
 Une bonne expérience de l'agile est donc nécessaire, pour savoir quand une contrainte est acceptable pour le projet, et quand il faut la remettre en cause.
@@ -133,8 +135,7 @@ En début de projet, un travail de pédagogue est essentiel.
 
 En effet, beaucoup de ses interlocuteurs n'ont probablement jamais travaillé avec une approche agile.
 Pour certain·e·s agile pourra être synonyme de "à l'arrache".
-Pour des personnes qui accordent souvent une grande importance au respect des procédures, il s'agit d'une critique très dure.
-Il faudra donc prendre le temps de s'expliquer pour venir à bout des préjugés faux.
+Il faudra donc prendre le temps de s'expliquer pour venir à bout de ces préjugés.
 
 Il est poosible de commencer par les convaincre que
 leurs préoccupations sont partagées, puis de leur expliquer que l'objectif est de répondre à leurs attentes tout en transformant la manière d'y parvenir.
