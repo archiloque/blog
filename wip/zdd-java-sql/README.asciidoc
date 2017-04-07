@@ -71,7 +71,9 @@ Sans ZDD, le process de migration est classiquement le suivant :
 
 En ZDD plus question de fermer le service : la migration de donnée à lieu "à chaud".
 
-Il y a deux manières de s'y prendre, suivant que la migration a lieu avant ou après l'ouverture des services  `/v2`.
+Il y a deux manières possibles de s'y prendre, suivant que la migration a lieu avant ou après l'ouverture des services  `/v2` :
+
+image::manieres.png[title="Les deux manières de migrer"]
 
 [cols=",", options="header"]
 |===
