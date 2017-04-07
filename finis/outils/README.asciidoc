@@ -118,9 +118,9 @@ Il faut donc posez des questions précises et si possible fermées : cela permet
 Quelques exemples :
 
 - [line-through]#Quelles sont les fonctionnalités de scalabilité de l'application ?#
-- Quelles sont les fonctionnalités de scalabilité horizontales (mémoire, CPU) de l'application ?
-- Quelles sont les fonctionnalités de scalabilité verticales (clustering) de l'application ?
-- Le modèle de clustering nécessite-t-il une instance primaire ?
+- Quelles sont les fonctionnalités de scalabilité verticales (mémoire, CPU) de l'application ?
+- Quelles sont les fonctionnalités de scalabilité horizontales (clustering) de l'application ?
+- Le modèle de clustering nécessite-t-il une instance primaire et des instances secondaires, ou toutes les instances sont-elles égales ?
 - [line-through]#Est-il possible d'utiliser SNMP pour monitorer la plateforme ?#
 - Le monitoring SNMP est-il supporté nativement ?
 
@@ -131,9 +131,7 @@ Pour mettre en avant l'importance de certaines fonctionnalités, la méthode hab
 Une macro permet de facilement faire le calcul.
 
 Quand la pondération est faite en comité, afin de s'assurer que les besoins des différents intervenant·e·s sont couverts, la tendance est d'affiner la notation, jusqu'à parfois obtenir une gradation de 1 à 20, parfois avec des demi-points.
-
-Il s'agit du même travers qui aboutissait aux séances de chiffrages qui avaient lieu lors des cadrages de projets à l'ancienne : penser que plus on investit de temps pour préciser des chiffres, plus le résultat du process sera bon.
-
+Il est tentant de penser que plus on investit de temps pour préciser des chiffres, plus le résultat du process sera bon.
 L'expérience prouve que ce n'est pas le cas, et que le fait de se focaliser sur les chiffres a même tendance à se désintéresser du contenu des besoins.
 
 De fait,  les questions peuvent souvent être regroupées en trois catégories  :
