@@ -7,7 +7,7 @@ Dans les patterns link:http://blog.octo.com/zero-downtime-deployment/[qu'on asso
 
 Le ZDD est victime d'un cercle vicieux : il a l'air très complexe car il est peu pratiqué, et comme il est peu pratiqué on pense qu'il est très complexe.
 
-Pour sortir de cette impasse, cette article présenter un cas pratique, code à l'appui.
+Pour sortir de cette impasse, cet article présenter un cas pratique, code à l'appui.
 
 L'objectif n'est pas que tout le monde fasse du ZDD, car on verra qu'il ajoute du travail et de la complexité, mais que vous vous en ayez une vision claire.
 Cela vous permettra de pouvoir décider à en faire ou pas en connaissance de cause.
@@ -20,7 +20,7 @@ Soit une application exposée via une API REST.
 
 Au départ cette application gère des personnes, chaque personne ayant zéro ou une adresse. Cette version est exposée sur le préfixe `/v1` à l'aide d'un unique type de ressource `/person`.
 
-La version suivante de l'application permettra d'associer plusieurs adresses à une personne, et sera exposéee sur le préfixe `/v2` en utilisant deux ressources, `/person` et `/address`.
+La version suivante de l'application permettra d'associer plusieurs adresses à une personne, et sera exposée sur le préfixe `/v2` en utilisant deux ressources, `/person` et `/address`.
 
 image::versions.png[title="Les deux versions"]
 
@@ -94,7 +94,7 @@ La première approche permet d'ouvrir les services `/v2` plus rapidement car il 
 La seconde approche est plus simple :
 
 - la versions exposant de l'application fonctionnant avec les modèles de données `v1` et `v2` n'expose que les services `/v1`, vous faites ainsi l'économie du cas où un appel de service `/v2` accède à des données `v1` ;
-- pendant la migration de données, les services `/v2` ne sont pas encore exposés, cela veut dire moins de patterns d'accès aux données à prendre en compte pour designer une migration évitant les incohérences de données et les interblocages.
+- pendant la migration de données, les services `/v2` ne sont pas encore exposés, cela veut dire moins de patterns d'accès aux données à prendre en compte pour désigner une migration évitant les incohérences de données et les interblocages.
 
 Sauf si votre process de migration est extrêmement long, la seconde approche est à privilégier, et c'est celle qui sera utilisée dans la suite de l'article.
 
@@ -191,7 +191,7 @@ Pour décomissionner `/v1` il suffit de rendre les endpoints inaccessible, la su
 
 Comme on vient de le voir, le ZDD s'appuie beaucoup sur l'utilisation de la base de données, et notamment ses fonctionnalités d'accès concurrent.
 Si vos comportements métiers sont simples, que vous utilisez un ORM, et que vous avez des tests de performances automatisés, il s'agit d'un domaine auquel vous n'avez pas souvent à vous intéresser.
-Si vous vous y prenez mal, il est facile de bloquer la base, renvoyer des erreurs (en cas de deadlock), ou des résultats incohérents.
+Si vous vous y prenez mal, il est facile de bloquer la base, renvoyer des erreurs (en cas d'interblocage), ou des résultats incohérents.
 
 Notre conseil est de bien vous documenter en amont voire de faire des POC pour éviter d'avoir à refaire un design parce que votre base de données ne fonctionne pas comme vous l'imaginiez.
 Ne faites pas confiance à des souvenirs ou à des rumeurs : lisez en détail la documentation correspondant à la version de l'outil que vous utilisez, et surtout testez !
@@ -275,24 +275,24 @@ Exemple avec verrou :
 |Fil d'exécution 2
 |`PUT /v1/people/127/addresses`
 |`PUT /v1/people/127/addresses`
-|`SELECT address from person where id = 127 FOR UPDATE` pour récupérer la personne, vérifie qu'il n'y a pas d'adresse et que les autres champs ne sont pas à modifier *et vérouille la ligne*
+|`SELECT address from person where id = 127 FOR UPDATE` pour récupérer la personne, vérifie qu'il n'y a pas d'adresse et que les autres champs ne sont pas à modifier *et verrouille la ligne*
 |
 |`SELECT * from address where id_person = 127` pour récupérer une adresse à mettre à jour, n'en trouve pas et déduit donc qu'il faut en insérer une
 |
 |`INSERT INTO address …` pour insérer l'adresse
 |
-|`commit` qui relache le vérou sur `person`
+|`commit` qui relache le verrou sur `person`
 |
 |
-|`SELECT address from person where id = 127 FOR UPDATE` pour récupérer la personne, vérifie qu'il n'y a pas d'adresse et que les autres champs ne sont pas à modifier *et vérouille la ligne, attendait que le verrou sur `person` soit disponible*
+|`SELECT address from person where id = 127 FOR UPDATE` pour récupérer la personne, vérifie qu'il n'y a pas d'adresse et que les autres champs ne sont pas à modifier *et verrouille la ligne, attendait que le verrou sur `person` soit disponible*
 |
 |`SELECT id, address FROM address WHERE id_person = 127` récupère l'adresse
 |
-|`SELECT * from address where id_person = 127` pour récupérer une adresse à mettre à jour, trouve l'adresse insérée par l'autre fil d'execution
+|`SELECT * from address where id_person = 127` pour récupérer une adresse à mettre à jour, trouve l'adresse insérée par l'autre fil d'exécution
 |
 |`UPDATE address set address = … where id = 4758` met à jour l'adresse
 |
-|`commit` qui relache le vérou sur `person`
+|`commit` qui relâche le verrou sur `person`
 |===
 
 Résultat : une seule adresse.
@@ -322,26 +322,23 @@ En cas d'arrêt du script, les données déjà migrées ne sont pas perdues, et 
 . Fournit l'API `/v1`, stocke l'adresse dans la table `address` et sait la lire aux deux endroits.
 . Migration des adresses vers la table `address`.
 . Fournit les API `/v1` et `/v2`, et ne sait la lire qu'au format `v2`, suppression de la colonne `address` de la table `person` du code, la colonne est alors toujours en base.
-. Suppression en base de la colonne `address` de la table `person`. Dans certaines base de données, supprimer une colonne déclenche la réécriture de toute la table et ne peut donc se faire en ZDD. On se contente donc d'une suppression logique, par exemple en ajoutant un underscore devant son nom, et en la "recyclant" lorsqu'on a besoin d'une nouvelle colonne.
+. Suppression en base de la colonne `address` de la table `person`. Dans certaines bases de données, supprimer une colonne déclenche la réécriture de toute la table et ne peut donc se faire en ZDD. On se contente donc d'une suppression logique, par exemple en ajoutant un underscore devant son nom, et en la "recyclant" lorsqu'on a besoin d'une nouvelle colonne.
 
 ### L'implémentation
 
-*PAS ENCORE MAJ*
-
 L'implémentation se trouve link:https://github.com/archiloque/zdd_java_sql[sur GitHub].
-Le code est en open-source donc servez-vous !
+Le code est en open-source sous licence MIT, vous pouvez donc vous servir.
 
-Chaque étape de la migration est dans un répertoire à part, cela permet de facilement examiner ce qui se passe sans avoir à manipuler git.
+Chaque étape de la migration est dans un module à part, cela permet de facilement examiner ce qui se passe sans avoir à manipuler git.
 
 Le code est en Java et utilise la bibliothèque link:http://www.dropwizard.io/[Dropwizard].
-La base de donnée est un PostgreSQL, l'accès se fait via Hibernate, et les migrations utilisent link:http://www.liquibase.org[Liquibase].
+La base de donnée est PostgreSQL, l'accès se fait via Hibernate, et les migrations SQL utilisent link:http://www.liquibase.org[Liquibase].
 
 Quelques éléments saillants :
 
-- À l'étape 3 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[DAO de personne] avec les méthodes permettant de poser des verrous et permettant de faire la jointure avec adresse pour assurer la compatibilité avec les services `/v1`.
-- link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[Le même à l'étape 5] sans la compatibilité avec l'ancien mode de stockage.
+- À l'étape 3 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[DAO de personne] avec les méthodes permettant de poser des verrous pour éviter les incohérences.
 - À l'étape 4 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/java/com/octo/zdd_java_sql/migrations/AddressToDedicatedTableMigration.java[script de migration]. Comme il s'agit d'un script et pas d'une requête unique, il est sous forme d'une classe Java link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/resources/migrations.xml[appelée depuis Liquibase].
-- À l'étape 6 il est possible de link:https://github.com/archiloque/zdd_java_sql/blob/master/v6/src/main/resources/migrations.xml[supprimer la colonne `address`] car link:https://www.postgresql.org/docs/9.4/static/sql-altertable.html[PostgreSQL se contente de la rendre invisible, et récupère l'espace plus tard].
+- À l'étape 6 il est possible de link:https://github.com/archiloque/zdd_java_sql/blob/master/v6/src/main/resources/migrations.xml#L48[supprimer la colonne `address`] car link:https://www.postgresql.org/docs/9.4/static/sql-altertable.html[PostgreSQL se contente de la rendre invisible, et récupère l'espace plus tard].
 
 *LA SUITE C'EST BON*
 
