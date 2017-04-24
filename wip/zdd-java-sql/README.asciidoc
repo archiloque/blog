@@ -3,14 +3,14 @@
 
 Blurb : Pour démythifier le Zero Downtime Deployment
 
-Dans les patterns link:http://blog.octo.com/zero-downtime-deployment/[qu'on associe aux géants du web], le Zero Downtime Deployment (ZDD) partage une caractéristique avec l'auto-scaling : on en parle d'autant plus qu'ils sont peu mis en œuvre.
+Dans les patterns link:http://blog.octo.com/zero-downtime-deployment/[associés aux géants du web], le Zero Downtime Deployment (ZDD) partage une caractéristique avec l'auto-scaling : on en parle d'autant plus qu'ils sont peu mis en œuvre.
 
-Le ZDD est victime d'un cercle vicieux : il a l'air très complexe car il est peu pratiqué, et comme il est peu pratiqué on pense qu'il est très complexe.
+Le ZDD est victime d'un cercle vicieux : il a l'air très complexe car il est peu pratiqué, et comme il est peu pratiqué, on pense qu'il est très complexe.
 
-Pour sortir de cette impasse, cet article présenter un cas pratique, code à l'appui.
+Pour sortir de cette impasse, cet article présente un cas pratique, code à l'appui.
 
 L'objectif n'est pas que tout le monde fasse du ZDD, car on verra qu'il ajoute du travail et de la complexité, mais que vous vous en ayez une vision claire.
-Cela vous permettra de pouvoir décider à en faire ou pas en connaissance de cause.
+Cela vous permettra de pouvoir décider d'en faire ou pas en connaissance de cause.
 
 ## Notre cas d'exemple
 
@@ -69,7 +69,7 @@ Sans ZDD, le process de migration est classiquement le suivant :
 . Vérifier que tout fonctionne bien
 . Ouvrir le service
 
-En ZDD plus question de fermer le service : la migration de donnée à lieu "à chaud".
+En ZDD, plus question de fermer le service : la migration de données a lieu "à chaud".
 
 Il y a deux manières possibles de s'y prendre, suivant que la migration a lieu avant ou après l'ouverture des services  `/v2` :
 
@@ -93,14 +93,14 @@ La première approche permet d'ouvrir les services `/v2` plus rapidement car il 
 
 La seconde approche est plus simple :
 
-- la versions exposant de l'application fonctionnant avec les modèles de données `v1` et `v2` n'expose que les services `/v1`, vous faites ainsi l'économie du cas où un appel de service `/v2` accède à des données `v1` ;
+- la version exposant de l'application fonctionnant avec les modèles de données `v1` et `v2` n'expose que les services `/v1`, vous faites ainsi l'économie du cas où un appel de service `/v2` accède à des données `v1` ;
 - pendant la migration de données, les services `/v2` ne sont pas encore exposés, cela veut dire moins de patterns d'accès aux données à prendre en compte pour désigner une migration évitant les incohérences de données et les interblocages.
 
 Sauf si votre process de migration est extrêmement long, la seconde approche est à privilégier, et c'est celle qui sera utilisée dans la suite de l'article.
 
 ###  `/v1` et `/v2` sont dans un bateau …
 
-Les migrations d'APIs ouvertes posent deux problèmes métiers et un problème technique.
+Les migrations d'APIs ouvertes posent deux problèmes métier et un problème technique.
 
 #### Comment migrer les données ?
 
@@ -114,7 +114,7 @@ Dans notre cas la solution est immédiate : `/v1` a au plus une seule adresse, e
 
 L'autre problème est de savoir comment interpréter en `/v1` des données `/v2`. En effet si l'API est ouverte, vos utilisateur·rice·s peuvent appeler vos services `/v1` alors que les données sont déjà au modèle `/v2`.
 
-Il est souvent plus compliqué que le premier car au fur et à mesure des évolutions les API ont tendances à devenir plus riches.
+Il est souvent plus compliqué que le premier car au fur et à mesure des évolutions, les API ont tendance à devenir plus riches.
 Accéder à des données plus riches de la `/v2` au travers du prisme plus étroit de l'API `/v1` peut être un vrai casse-tête.
 
 Si c'est le seul moyen que cette transition se passe bien, il est parfois nécessaire d'adapter le design de l'API `/v2`.
@@ -124,11 +124,11 @@ C'est un équilibre à trouver entre la facilité de transition, des restriction
 #### Comment répondre vite et bien ?
 
 Le problème technique est de parvenir à rendre les différents services, y compris la compatibilité, tout en s'assurant de toujours avoir des données cohérentes et sans (trop) pénaliser les performances.
-Si entre les deux versions, les données ne sont plus structurées de la même manière, la gestion de la compatibilité peut demander de croiser les données de plusieurs tables.
+Si, entre les deux versions, les données ne sont plus structurées de la même manière, la gestion de la compatibilité peut demander de croiser les données de plusieurs tables.
 
 Ainsi dans notre exemple,  en  `v1` les adresses sont stockées dans la table `person` alors qu'en `v2` elles sont dans une table `address` séparée.
 Pendant la période de compatibilité, il faut que les appels à  `v1` qui mettent à jour le nom de la personne et son adresse modifient les deux tables de manière transactionnelle pour éviter qu'une lecture `v1` qui se produirait au même moment ne renvoie des données incohérentes.
-De plus, il faut parvenir à le faire sans avoir à poser trop de verrous en base de données, car cela la ralentirait.
+De plus, il faut parvenir à le faire sans avoir à poser trop de verrous en base de données, car cela raletit les accès.
 
 La meilleure stratégie est de privilégier une approche que vous maîtrisez bien et qui donne des résultats acceptables plutôt qu'une solution plus efficace ou plus rapide mais plus complexe.
 
@@ -179,13 +179,13 @@ Avant de rendre les nouveaux endpoints accessibles, assurez-vous que tous les se
 
 Un autre problème se pose suivant la manière dont vous avez implémenté les modifications de donnée lorsque vous appelez une API `/v1`.
 
-Le premier cas consiste à sauvegarder la donnée au format `v2`, mais cela veut dire qu'à nouveau, les versions précédentes de l'applications ne pourront pas la lire.
+Le premier cas consiste à sauvegarder la donnée au format `v2`, mais cela veut dire qu'à nouveau, les versions précédentes de l'application ne pourront pas la lire.
 La solution la plus simple est alors d'utiliser le link:http://blog.octo.com/feature-flipping/[feature flipping] pour faire basculer le code.
 
 Dans le cas contraire, votre code doit détecter sous quel format la donnée est stockée, et la resauvegarder sous ce même format : une donnée `v1` reste en `v1`, et une donnée `v2` reste en `v2`.
 On évite le feature flipping, mais en échange le code est plus complexe.
 
-Pour décomissionner `/v1` il suffit de rendre les endpoints inaccessible, la suppression du code peut se faire plus tard.
+Pour décomissionner `/v1` il suffit de rendre les endpoints inaccessibles, la suppression du code peut se faire plus tard.
 
 ### À propos des verrous et des modifications de schémas
 
@@ -207,7 +207,7 @@ REST possède deux caractéristiques qui en font un candidat idéal pour le ZDD 
 - les appels sont supposés être stateless.
 
 Si vos services sont exposés d'une autre manière, il faudra donc vous intéresser à ces sujets.
-Les sessions, comme tous les types de caches, peuvent demander une attention particulière si les données qu'elles contiennent font l'objet d'un changement de structure entre versions.
+Les sessions, comme tous les types de cache, peuvent demander une attention particulière si les données qu'elles contiennent font l'objet d'un changement de structure entre versions.
 
 ## Retour à notre exemple
 
@@ -240,7 +240,7 @@ Ici il n'y a pas de réponse évidente : il n'y a pas de notion d'adresse préf�
 Comme la réponse influe sur le comportement de l'API, c'est une décision à prendre par les personnes du métier.
 
 La solution choisie ici est de renvoyer une adresse parmi celle dans la liste.
-Elle n'est pas parfaite, mais elle peut être acceptable suivant l'usage qui en est fait : il s'agit aux personnes du métier d'en décider.
+Elle n'est pas parfaite, mais elle peut être acceptable suivant l'usage qui en est fait : il revient aux personnes du métier d'en décider.
 
 ### La transactionnalité
 
@@ -305,7 +305,7 @@ Dans notre exemple, une fois le code basculé à la nouvelle version, toutes les
 
 La migration est donc irréversible, nous savons qu'il suffit de migrer toutes les données une fois pour que le travail soit fait.
 
-* Il commence par récupérer l' `id` de `person` le plus élevé. Comme le script est lancé après le déploiement de la nouvelle version, toutes les personnes crées après ce moment le sont avec une adresse stockée dans `address`. Cela signifie que le script peut s'arrêter à cette valeur.
+* Il commence par récupérer l' `id` de `person` le plus élevé. Comme le script est lancé après le déploiement de la nouvelle version, toutes les personnes créées après ce moment le sont avec une adresse stockée dans `address`. Cela signifie que le script peut s'arrêter à cette valeur.
 * Le script itère par groupes de `person` de 0 à l' `id` qu'il vient de récupérer. Le pas de l'itération est à déterminer expérimentalement : un pas plus grand permet de faire moins de requêtes donc de diminuer le temps total de la migration, au détriment du temps unitaire de chaque itération, et donc du temps où les verrous existent en base.
 ** Il démarre une transaction.
 ** Il sélectionne les `id` des personnes qui ont une adresse, et les verrouille.
@@ -327,7 +327,7 @@ En cas d'arrêt du script, les données déjà migrées ne sont pas perdues, et 
 ### L'implémentation
 
 L'implémentation se trouve link:https://github.com/archiloque/zdd_java_sql[sur GitHub].
-Le code est en open-source sous licence MIT, vous pouvez donc vous servir.
+Le code est en open source sous licence MIT, vous pouvez donc vous en servir.
 
 Chaque étape de la migration est dans un module à part, cela permet de facilement examiner ce qui se passe sans avoir à manipuler git.
 
@@ -345,7 +345,7 @@ Quelques éléments saillants :
 ## Pour conclure
 
 Faire du ZDD n'est pas magique : cela demande du travail et de la rigueur.
-Si vous pouvez faire sans, tant mieux pour vous, mais si vous en avez besoin vous devriez maintenant avoir une idée un peu plus précise de ce que ça représente.
+Si vous pouvez faire sans, tant mieux pour vous, mais si vous en avez besoin, vous devriez maintenant avoir une idée un peu plus précise de ce que ça représente.
 Rappelez-vous que l'exemple développé ici est un cas simple : servez-vous en pour avoir une idée de la démarche à suivre, et pas comme un guide pour mesurer l'effort à fournir.
 
 La première migration sera sûrement un peu un défi, mais les suivantes seront de plus en plus faciles.
