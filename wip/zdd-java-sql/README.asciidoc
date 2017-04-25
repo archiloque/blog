@@ -75,17 +75,26 @@ Il y a deux manières possibles de s'y prendre, suivant que la migration a lieu 
 
 image::manieres.png[title="Les deux manières de migrer"]
 
-[cols=",", options="header"]
+[cols="1,3,3", options="header"]
 |===
+|Version de l'application
 |Migration après l'ouverture de `/v2`
 |Migration avant l'ouverture de `/v2`
+|1
+2+|Application servant `/v1` avec un modèle de de donnée `v1`
+|1
 2+|Modifier le schéma de BDD pour permettre de stocker les données nécessaires à `/v2`
+|2
 |Déployer une nouvelle version de l'application exposant `/v1` et `/v2` sur les modèles de donnée `v1` ou  `v2`
 |Déployer une nouvelle version de l'application exposant `/v1` sur les modèles de donnée `v1` ou  `v2`
+|2
 |Migrer les données au modèle  `v2` sans interruption de service, en tenant compte du code `/v1` et `/v2`
 |Migrer les données au modèle  `v2` sans interruption de service, en tenant compte du code qui sert `/v1`
+|3
 2+|Déployer une nouvelle version de l'application exposant `/v1` et `/v2` sur le modèle de donnée `v2`
+|3
 2+|Nettoyer le schéma de BDD des artefacts `v1`
+|4
 2+|Déployer une nouvelle version de l'application gérant `/v2` sur le modèle de donnée `v2`
 |===
 
@@ -204,7 +213,7 @@ Mais dites-vous que toutes les opérations suivantes manipuleront les mêmes con
 REST possède deux caractéristiques qui en font un candidat idéal pour le ZDD :
 
 - exposer plusieurs versions de services est une pratique standard ;
-- les appels sont supposés être stateless.
+- les appels sont supposés être sans état.
 
 Si vos services sont exposés d'une autre manière, il faudra donc vous intéresser à ces sujets.
 Les sessions, comme tous les types de cache, peuvent demander une attention particulière si les données qu'elles contiennent font l'objet d'un changement de structure entre versions.
@@ -215,6 +224,8 @@ Nous prenons l'hypothèse où le modèle de données suit directement les ressou
 L'adresse est initialement un champ de la table `person`, et est migrée dans une table `address` distincte.
 
 image::schema.png[title="L'évolution du schéma"]
+
+Nous n'utilisons pas de colonne spécifique pour stocker la "version de schéma" des objet. À la place nous allons vérifier en base la manière dont les données sont stockées : si la table `person` contient une adresse, c'est qu'elle est en version `v1`, sinon il faut vérifier l'existence d'une adresse dans la table dédiée. Cela évite d'alourdir le schéma SQL, mais augmente le nombre de requêtes exécutées.
 
 Les étapes à suivre pour la migration :
 
@@ -247,6 +258,7 @@ Elle n'est pas parfaite, mais elle peut être acceptable suivant l'usage qui en 
 Pour résoudre la question de transactionnalité, nous avons choisi la solution la plus simple : poser un verrou sur les entrées correspondantes de la table `person`.
 
 Si toutes les opérations suivent le même principe, ce verrou joue le rôle d'une link:https://fr.wikipedia.org/wiki/Exclusion_mutuelle[mutex] en s'assurant que les appels s'exécutent bien l'un après l'autre : lorsqu'une opération pose un risque, elle commence par demander l'accès à ce verrou, et pour cela elle doit attendre son tour.
+
 Exemple avec un appel à `PUT /v1/people/127` alors que la personne correspondante est stockée au format `v2` mais n'a pas encore d'adresse.
 
 Exemple sans verrou :
@@ -256,6 +268,8 @@ Exemple sans verrou :
 |Fil d'exécution 2
 |`PUT /v1/people/127/addresses`
 |`PUT /v1/people/127/addresses`
+|`BEGIN`
+|`BEGIN`
 |`SELECT * from person where id = 127` pour récupérer la personne, vérifie qu'il n'y a pas d'adresse et que les autres champs ne sont pas à modifier
 |`SELECT * from person where id = 127` pour récupérer la personne, vérifie qu'il n'y a pas d'adresse et que les autres champs ne sont pas à modifier
 |`SELECT * from address where id_person = 127` pour récupérer une adresse à mettre à jour, n'en trouve pas et déduit donc qu'il faut en insérer une
@@ -275,6 +289,8 @@ Exemple avec verrou :
 |Fil d'exécution 2
 |`PUT /v1/people/127/addresses`
 |`PUT /v1/people/127/addresses`
+|`BEGIN`
+|`BEGIN`
 |`SELECT address from person where id = 127 FOR UPDATE` pour récupérer la personne, vérifie qu'il n'y a pas d'adresse et que les autres champs ne sont pas à modifier *et verrouille la ligne*
 |
 |`SELECT * from address where id_person = 127` pour récupérer une adresse à mettre à jour, n'en trouve pas et déduit donc qu'il faut en insérer une
@@ -339,8 +355,6 @@ Quelques éléments saillants :
 - À l'étape 3 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v3/src/main/java/com/octo/zdd_java_sql/db/PersonDAO.java[DAO de personne] avec les méthodes permettant de poser des verrous pour éviter les incohérences.
 - À l'étape 4 le link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/java/com/octo/zdd_java_sql/migrations/AddressToDedicatedTableMigration.java[script de migration]. Comme il s'agit d'un script et pas d'une requête unique, il est sous forme d'une classe Java link:https://github.com/archiloque/zdd_java_sql/blob/master/v4/src/main/resources/migrations.xml[appelée depuis Liquibase].
 - À l'étape 6 il est possible de link:https://github.com/archiloque/zdd_java_sql/blob/master/v6/src/main/resources/migrations.xml#L48[supprimer la colonne `address`] car link:https://www.postgresql.org/docs/9.4/static/sql-altertable.html[PostgreSQL se contente de la rendre invisible, et récupère l'espace plus tard].
-
-*LA SUITE C'EST BON*
 
 ## Pour conclure
 
