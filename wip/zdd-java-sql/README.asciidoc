@@ -335,7 +335,7 @@ En cas d'arrêt du script, les données déjà migrées ne sont pas perdues, et 
 
 . Version initiale fournissant l'API `/v1` et où l'adresse est stockée dans la colonne `address` de la table `person`.
 . Ajout en base de la table `address`, non encore utilisée par le code. La création d'une table n'a en principe aucun impact sur la base mais il faut le vérifier.
-. Fournit l'API `/v1`, stocke l'adresse dans la table `address` et sait la lire aux deux endroits.
+. Fournit l'API `/v1`, stocke l'adresse dans la table `address` et sait la lire aux deux endroits. Lors d'une lecture en `/v1` sur une donnée `v1` la donnée n'est pas migrée en `v2` pour garder le code plus simple.
 . Migration des adresses vers la table `address`.
 . Fournit les API `/v1` et `/v2`, et ne sait la lire qu'au format `v2`, suppression de la colonne `address` de la table `person` du code, la colonne est alors toujours en base.
 . Suppression en base de la colonne `address` de la table `person`. Dans certaines bases de données, supprimer une colonne déclenche la réécriture de toute la table et ne peut donc se faire en ZDD. On se contente donc d'une suppression logique, par exemple en ajoutant un underscore devant son nom, et en la "recyclant" lorsqu'on a besoin d'une nouvelle colonne.
