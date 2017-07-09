@@ -1,0 +1,78 @@
+= Polyconf 2017
+Julien Kirch
+v1.0, 2017-07-09
+:article_description: My notes from the conference
+
+link:https://polyconf.com[Polyconf 2017] is a conference about programming languages and polyglot approach to software development.
+The link:https://17.polyconf.com[2017] instance just took place so here's a few subjective notes:
+
+== Overview
+
+I enjoyed the conference: I liked most of the talks, the organisation was solid, and I met a few interesting people.
+
+My pet peeve: several presenters doing the same "Erlang explained in 5 minutes" thing in their talk.
+
+After all these years, it's still strange for me to see people explaining "I'm so happy to be paid to work with my tool of choice" (yep: it's usually Haskell), I wonder if it happens in other industries.
+
+Nowadays, thanks to fast machines, using a slow language is not a problem for most use cases, productivity is much more critical.
+But it seems that all languages are working hard to use advanced techniques like JIT to become faster.
+
+== LLVM
+
+LLVM seem to have become the de facto standard for writing your own language.
+Seeing how a single project is making simpler to innovate in this field is really cool.
+
+== Rust
+
+As expected, Rust is all the rage.
+An interesting use case for it mentioned several times is FFI, when you speed up some critical parts of a program written in a dynamic language running in a VM by calling code written in another language like C.
+In this case, bugs or strange behaviors in the "fast" language can crash or badly impact the VM. When you're supposed to have a rock-solid VM like the Erlang one, it sucks!
+
+In this case, using Rust instead of C as the fast language decrease the risk of have a memory or threading bug, decreasing the risk of using FFI.
+
+== Protobuf
+
+In most of the big companies I work for at Octo, REST API is mostly the only game in town to expose services and Richardson is a holy name.
+
+At Polyconf on the other hand, people have a more pragmatic approach:
+
+- they are happy to mix REST with other tools like Protobuf, and Protobuf's tooling and performance seems interesting;
+- they are perfectly OK to expose business services and not only resources, and they have good arguments to do it.
+
+== There is no spoon
+
+In link:https://speakerdeck.com/jameybash/there-is-no-spoon-understanding-spoon-theory-and-preventing-burnout[this presentation], link:https://twitter.com/jameybash[Jameson Hampton] explained how to improve your understanding of other people, and preventing burnouts.
+
+== Pony
+
+link:https://speakerdeck.com/seantallen/why-pony[Pony] is an actor-based language that wants to make concurrent programing simple and fast. I liked that he clearly explained that Pony is designed for some use cases, and should probably not be used in other cases.
+
+I loved that, since Pony's syntax is pretty classic and not a selling point of the language, he skipped this topic in the talk so he could spend more time on the other parts.
+
+== ZetaVM
+
+"link:https://github.com/zetavm/zetavm[ZetaVM] is a Virtual machine and JIT compiler for dynamic programming languages. It implements a basic core runtime environment on top of which programming dynamic languages can be implemented with relatively little effort."
+
+It relies on LLVM and has interesting design choices, like a textual representation for the code packages, you should have a look at it.
+
+== Creating and maintaining your own programming languages
+
+Some good lessons from link:https://www.lokad.com[Lokad] who created its own programming language to write business rules.
+
+Being the sole user of the languages enabled them to use interesting approaches.
+
+== GraalVM
+
+From what I understood the GraalVM project is to two parts:
+
+- enable the Oracle JVM to compile code at runtime
+- write custom module for several languages (R, Node.js, Ruby) that leverage LLVM to parse the code in this language to generate bytecode that is injected into the JVM
+
+This way all the code in different languages is transformed in the same bytecode so the JVM can do trans-languages optimizations, like inlining.
+
+The idea is interesting and the announced results are promising.
+
+It's sad that it's an Oracle project, because their business practices make them untrusty as hell.
+
+Furthermore, if their Ruby or Node.js implementations take traction, they could be in position to influence these languages.
+When I see the way they manage Java and other projects they are or they were involved in like MySQL and Hudson, I think that could be a very bad thing for these languages.
