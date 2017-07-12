@@ -1,0 +1,47 @@
+= Découplage, Découplage, Découplage !
+
+En informatique on aime le découplage : quel bonheur d'avoir des morceaux de systèmes évoluant librement les uns des autres
+
+image::640px-4_Kittens.jpg[title="Un SI découplé c'est presque aussi bien qu'un SI composé de chatons, photo par Pieter Lanser en CC"]
+
+Il y malheuresement deux ombres à ce tableau idyllique :
+
+- le découplage présente des avantages mais aussi des inconvénients ;
+- il n'existe pas _un_ découplage mais _des_ découplages, qui ont chacun leurs caractéristiques propres, parler de _découplage_ sans préciser c'est donc prendre le risque de ne pas se comprendre et de faire de mauvais choix.
+
+== La base de découplage
+
+Pour le logiciel le modèle de base du découplage est la link:https://fr.wikipedia.org/wiki/Programmation_structurée[programmation structurée].
+Il s'agissait de l'idée révolutionnaire d'encapsuler des morceaux de code dans des fonctions, ces fonctions étant exposées sous forme d'APIs.
+
+Si cet exemple est très simple, il a toutes les caractérisques qu'on retrouvera dans les autre cas :
+
+- un _besoin_ : pouvoir facilement réutiliser du code tout en fournissant un contrat d'interface explicite ;
+- un _moyen_ : des nouvelles syntaxes spécifiques ;
+- un inconvénient : une baisse notable de performance, au point qu'utiliser des fonctions a longtemps été une pratique controversée.
+
+== Les trois types de découplage de SI
+
+À l'échelle d'un SI, il existe trois grands types de découplage :
+
+- le découplage de temporalité : quand l'execution d'une fonctionalité se fait plus tard de manière asynchrone
+- le découplage de localisation : quand l'execution d'une fonctionalité se fait ailleurs
+- le découplage de format : quand le contrat d'interface d'une fonctionalité se fait d'une manière qui ne soit pas lié à son implémentation, permettant de faire évoluer l'implémentation sans modifier le contrat
+
+Ils ont des zones de recouvrement mais sont différents.
+
+image::venn.png[title=Les 3 types de découplages qui nous intéressent]
+
+== Le découplage de format
+
+Le découplage de format est celui auquel on pense le plus souvent quand on parle de découplage dans le domaine du SI.
+Il est fondametal car il permet à différentes équipes de manière indépendante en limitant le besoin de synchronization.
+
+Le prérequis pour mettre en œuvre ce découpage est que les fonctonalités à exposer évoluent peu.
+En effetn, il ne 
+
+== Le découplage de temporalité
+
+== Le découplage de localisation
+
+== Pour conclure
