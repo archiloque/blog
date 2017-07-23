@@ -11,22 +11,22 @@ Il y malheureusement deux ombres à ce tableau idyllique :
 
 == La base de découplage
 
-Pour le logiciel le modèle de base du découplage est la link:https://fr.wikipedia.org/wiki/Programmation_structurée[programmation structurée].
-Il s'agissait de l'idée révolutionnaire d'encapsuler des morceaux de code dans des fonctions, ces fonctions étant exposées sous forme d'APIs.
+Dans le logiciel, un modèle très simple de découplage est la link:https://fr.wikipedia.org/wiki/Programmation_structurée[programmation structurée].
+Il s'agissait de l'idée révolutionnaire d'encapsuler des morceaux de code dans des fonctions link:http://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf[plutôt que d'utiliser des goto], ces fonctions étant exposées sous forme d'APIs.
 
-Si cet exemple est très simple, il a toutes les caractéristiques qu'on retrouvera dans les autres cas :
+Cet exemple a toutes les caractéristiques qu'on retrouvera dans les cas de découplage au niveau du SI :
 
 - un _besoin_ : pouvoir facilement réutiliser du code tout en fournissant un contrat d'interface explicite ;
 - un _moyen_ : des nouvelles syntaxes spécifiques ;
-- un inconvénient : une baisse notable de performance avec les ordinateurs et les compilateurs de cette époque, au point qu'utiliser des fonctions a longtemps été une pratique controversée.
+- un _inconvénient_ : une baisse notable de performance avec les ordinateurs et les compilateurs de cette époque, au point qu'utiliser des fonctions a longtemps été une pratique controversée.
 
 == Les trois types de découplage de SI
 
 À l'échelle d'un SI, il existe trois grands types de découplage :
 
-- le découplage de temporalité : quand l'exécution d'une fonctionnalité se fait plus tard de manière asynchrone
-- le découplage de localisation : quand l'exécution d'une fonctionnalité se fait ailleurs
-- le découplage de format : quand le contrat d'interface d'une fonctionnalité se fait d'une manière qui ne soit pas lié à son implémentation, permettant de faire évoluer l'implémentation sans modifier le contrat
+- le découplage de temporalité : quand l'exécution d'une fonctionnalité se fait plus tard de manière asynchrone ;
+- le découplage de localisation : quand l'exécution d'une fonctionnalité se fait ailleurs ;
+- le découplage de format : quand l'execution d'une fonctionnalité passe par l'utilisation d'un contrat d'interface stable.
 
 Ils ont des zones de recouvrement mais sont différents.
 
@@ -35,10 +35,14 @@ image::venn.png[title=Les 3 types de découplages qui nous intéressent]
 == Le découplage de format
 
 C'est celui auquel on pense le plus souvent quand on parle de découplage dans le domaine du SI.
-Il est fondamental dans une organisation d'une certaine taille car il permet à différentes équipes de manière indépendante en limitant le besoin de synchronisation.
+Il est fondamental dans une organisation d'une certaine taille car il répond au _besoin_ de permettre à différentes équipes de manière indépendante en limitant la synchronisation.
 
-Le prérequis pour réaliser ce découpage est que les fonctionnalités à exposer évoluent peu, ou évoluent d'une manière qui ne demandent pas de faire évoluer le format d'exposition.
-En effet si vous exposez un service d'un système pour qu'il puisse être appelé par d'autres systèmes développés par d'autre équipes, chaque changement entraine des coûts et/ou des délais : synchronisation, tests d'intégration, gestion de compatibilité …
+Le _moyen_ est de définir certains contrats d'exposition comme étant stables et utilisable à l'extérieur, à l'opposé de contrats "à usage internes" qui ne font pas l'objet de ces garanties.
+
+L'_inconvénient_ est le surcoût en terme de formalisation, et le risque si ce découplage est mal fait :
+en effet le  prérequis pour réaliser ce découpage est que les fonctionnalités à exposer soient matures et évoluent peu, ou évoluent d'une manière qui ne demandent pas de faire évoluer le format d'exposition.
+Si les fonctionnalités que vous voulez exposer ne sont pas encore bien maîtrisées, vous risquez d'exposer une link:https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/[mauvaise interface].
+Dans ce cas le surcoût de mise en place et de maintient du format pourra être plus important que le gain qu'il apporte, chaque changement entraine des coûts et/ou des délais : communication, tests d'intégration, gestion de compatibilité …
 
 L'utilisation de bonne pratiques et d'outils peut faciliter la définition d'interfaces, mais l'essentiel de la complexité pour exposer des API stables reste une question de connaissance métier et de maturité.
 
@@ -46,13 +50,15 @@ Les bénéfices d'un découplage de format se font sentir même entre sous-modul
 
 == Le découplage de localisation
 
-Il est à la base de l'informatique distribuée : l'idée qu'on puisse accéder à une fonctionnalité distante sans avoir à connaître précisément le ou les dispositifs en charge de cette fonctionnalité.
+Il est à la base de l'informatique distribuée : il répond au _besoin_ de pouvoir accéder à une fonctionnalité distante sans avoir à connaître précisément le ou les dispositifs en charge de cette fonctionnalité.
+
+Le _moyen_ est la mise en place d'une couche d'indirection, comme un DNS, entre les systèmes.
 
 Cela couvre les différents types de services distribués comme CORBA, SOAP ou REST, mais aussi les bases de données non locales et les systèmes de fichiers distants.
 
 Un découplage de localisation sans découplage de format peut être utile à l'intérieur d'un même système car il permet de déployer séparément différents composants et de pouvoir gérer la résilience.
 
-L'inconvénient du découplage de localisation est le surcoût en complexité, temps de calcul et en temps entrainé par la sérialisation et le cas échéant par le transfert réseau.
+L'_inconvénient_ du découplage de localisation est le surcoût en complexité pour suivre et débuguer les traitements, temps de calcul et en temps entrainé par la sérialisation et le cas échéant par le transfert réseau.
 
 Ainsi si votre besoin est un découplage de format et pas un découplage de localisation, travailler sur des modules d'un même applicatif est une stratégie tout à fait valide.
 
@@ -61,36 +67,36 @@ C'est lui qui permet à des équipes de travailler et de déployer leurs composa
 
 La méprise la plus courante sur le découplage consiste à penser qu'un découplage de localisation entraîne nécessairement un découplage de format.
 Il est vrai qu'exposer des fonctionnalités via des services force à définir un contrat de service, autrement dit une interface formelle, mais rien ne garantit que ce contrat de service permette par lui-même un réel découplage.
-C'est l'erreur classique des SI de services mis en œuvre sans stratégie d'urbanisation.
+C'est l'erreur classique des SI de services mis en œuvre sans gouvernance.
 
 == Le découplage de temporalité
 
-La réalisation du découplage de temporalité passe souvent par l'utilisation de files de message, d'échanges de fichiers, un d'une base de données.
+La réalisation du découplage de temporalité se fait souvent au _moyen_ de files de message, d'échanges de fichiers, un d'une base de données.
 
-Il permet deux choses :
+Il permet d'adresser deux _besoins_ :
 
 - rendre plus rapidement la main à l'appelant en remettant à plus tard une partie des traitements ;
 - permettre facilement de gérer les pics de charge, tant que l'outil en charge de gérer les demandes d'exécution en attente n'est pas submergé.
 
-Il a deux inconvénient majeurs :
+Il a deux _inconvénient_ majeurs :
 
 - il rend plus difficile la gestion des erreurs et de la transactionalité ;
 - il rend plus difficile le monitoring du système, nécessitant souvent la mise en place d'outils link:https://blog.octo.com/present-et-avenir-du-monitoring-de-flux/[de monitoring de flux].
 
 Un découplage de temporalité sans découplage de format rend plus complexes les montées de versions.
 En effet il faut alors gérer la compatibilité entre les versions, ou attendre que les demandes en cours soient traitées avant de migrer l'ensemble du système.
-Ceci-dit, lorsque l'asynchronisme est utilisé à l'intérieur d'une seule et même application, cet inconvénient est souvent acceptable.
-L'approche consistant à sérialiser les appels de fonctions à réaliser plus tard peut ainsi être tout à fait sensée.
+Ceci-dit, lorsque l'asynchronisme est utilisé à l'intérieur d'une seule et même application, cette approche peut être la bonne car elle évite d'avoir à se préoccuper de la gestion de compatibilité.
 
 La mise en place d'un découplage de temporalité passe la plupart des cas par l'utilisation d'un outil tiers externe à l'application (file de message, base de données …).
 Suivant son implémentation et sa configuration, cet outil peut fournir une forme "naturelle" de découplage de localisation.
+Si dans ce cas elle est facile à mettre en œuvre, cela ne veut pas dire qu'elle est gratuite car le surcoût en complexité est bien là.
 
 == Pour conclure
 
-Après avoir élucidé les différentes zones de la rosace, la voici remplie :
+À travers les trois types de découplages et leurs intersections, nous avons vu que découpler n'est pas une fin en soi mais bien un moyen de répondre à certains besoins, ce moyen ayant aussi des inconvénients.
+Nous avons aussi vu que d'accumuler les découplage c'était cummuler les avantages mais aussi les inconvénient.
 
-image::rosace.png[title=Les types de découplages et leurs intersections]
-
-Lorsque vous ferez le design de votre prochain système, cela devrait vous permettre de décider à bon escient de quel découplage vous avez besoin, c'est à dire en prenant en compte ses avantages et ses contraintes.
+La partie la plus difficile, et qui ne peut être résumée dans un article, c'est de déterminer comment découpler et à quel endroit en fonction des besoins à satisfaire : cela fait link:http://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf[plus de 30 ans] que la question est ouverte.
+Si ajouter une certaine quantité de découplage est nécessaire dans les grands systèmes, mal s'y prendre même parfois au désastre.
 
 P.S. : J'ai eu l'idée de cet article après avoir lu link:http://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[ce texte] qui est une très bonne analyse de l'utilisation de middleware de message pour gérer des tâches asynchrones.
