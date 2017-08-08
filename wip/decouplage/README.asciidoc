@@ -7,16 +7,18 @@ image::640px-4_Kittens.jpg[title="Un SI découplé c'est presque aussi bien qu'u
 Il y malheureusement deux ombres à ce tableau idyllique :
 
 - le découplage présente des avantages mais aussi des inconvénients ;
-- il n'existe pas _un_ découplage mais _des_ découplages, qui ont chacun leurs caractéristiques propres, parler de _découplage_ sans préciser c'est donc prendre le risque de ne pas se comprendre et de faire de mauvais choix.
+- il n'existe pas _un_ découplage mais _des_ découplages, qui ont chacun leurs caractéristiques propres, parler de _découplage_ sans préciser duquel il s'agit c'est donc prendre le risque de ne pas se comprendre et de faire de mauvais choix.
 
-== La base de découplage
+== Un exemple simple de découplage
 
-Dans le logiciel, un modèle très simple de découplage est la link:https://fr.wikipedia.org/wiki/Programmation_structurée[programmation structurée].
-Il s'agissait de l'idée révolutionnaire d'encapsuler des morceaux de code dans des fonctions link:http://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf[plutôt que d'utiliser des goto], ces fonctions étant exposées sous forme d'APIs.
+Dans l'architecture logicielle, un exemple très simple de découplage est la link:https://fr.wikipedia.org/wiki/Programmation_structurée[programmation structurée].
+Il s'agissait de l'idée révolutionnaire d'encapsuler son code dans des modules — fonctions ou procédures — link:http://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf[plutôt que d'utiliser des goto].
+
+Encapsuler du code dans des sous-routine exposée par des APIs formalisées plutôt qu'une masse de code informe, a permis d'améliorer la lisibilité des programmes et la qualité des développements.
 
 Cet exemple a toutes les caractéristiques qu'on retrouvera dans les cas de découplage au niveau du SI :
 
-- un _besoin_ : pouvoir facilement réutiliser du code tout en fournissant un contrat d'interface explicite ;
+- un _besoin_ : améliorer la lisibilité et la qualité du code ;
 - un _moyen_ : des nouvelles syntaxes spécifiques ;
 - un _inconvénient_ : une baisse notable de performance avec les ordinateurs et les compilateurs de cette époque, au point qu'utiliser des fonctions a longtemps été une pratique controversée.
 
@@ -24,35 +26,39 @@ Cet exemple a toutes les caractéristiques qu'on retrouvera dans les cas de déc
 
 À l'échelle d'un SI, il existe trois grands types de découplage :
 
+image::venn.png[title=Les 3 types de découplages qui nous intéressent]
+
 - le découplage de temporalité : quand l'exécution d'une fonctionnalité se fait plus tard de manière asynchrone ;
 - le découplage de localisation : quand l'exécution d'une fonctionnalité se fait ailleurs ;
-- le découplage de format : quand l'execution d'une fonctionnalité passe par l'utilisation d'un contrat d'interface stable.
+- le découplage de format : quand l'exécution d'une fonctionnalité passe par l'utilisation d'un contrat d'interface stable.
 
 Ils ont des zones de recouvrement mais sont différents.
-
-image::venn.png[title=Les 3 types de découplages qui nous intéressent]
 
 == Le découplage de format
 
 C'est celui auquel on pense le plus souvent quand on parle de découplage dans le domaine du SI.
-Il est fondamental dans une organisation d'une certaine taille car il répond au _besoin_ de permettre à différentes équipes de manière indépendante en limitant la synchronisation.
+Il est fondamental dans une organisation d'une certaine taille car il répond aux _besoins_ de :
+- maîtriser les conséquences d'une modification d'une partie du système :
+- permettre à différentes équipes de manière indépendante en limitant les efforts de coordination.
 
 Le _moyen_ est de définir certains contrats d'exposition comme étant stables et utilisable à l'extérieur, à l'opposé de contrats "à usage internes" qui ne font pas l'objet de ces garanties.
 
-L'_inconvénient_ est le surcoût en terme de formalisation, et le risque si ce découplage est mal fait :
+L'_inconvénient_ est le surcoût créé par l'effort de formalisation, et le risque si ce découplage est mal fait :
 en effet le  prérequis pour réaliser ce découpage est que les fonctionnalités à exposer soient matures et évoluent peu, ou évoluent d'une manière qui ne demandent pas de faire évoluer le format d'exposition.
 Si les fonctionnalités que vous voulez exposer ne sont pas encore bien maîtrisées, vous risquez d'exposer une link:https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/[mauvaise interface].
-Dans ce cas le surcoût de mise en place et de maintient du format pourra être plus important que le gain qu'il apporte, chaque changement entraine des coûts et/ou des délais : communication, tests d'intégration, gestion de compatibilité …
+Dans ce cas le surcoût de mise en place et de maintien du format pourra être plus important que le gain qu'il apporte, chaque changement entraine des coûts et/ou des délais : communication, tests d'intégration, gestion de compatibilité …
 
 L'utilisation de bonne pratiques et d'outils peut faciliter la définition d'interfaces, mais l'essentiel de la complexité pour exposer des API stables reste une question de connaissance métier et de maturité.
 
-Les bénéfices d'un découplage de format se font sentir même entre sous-modules d'une même application car il permet de limiter les besoins de refactoring lors des évolutions.
+Les bénéfices d'un découplage de format se font sentir même entre sous-modules d'une même application car il permet de rendre le code plus lisible et de limiter les besoins de refactoring lors des évolutions.
+
+Rappelez-vous cependant qu'un découplage de format n'est presque jamais total mais qu'au mieux il s'agit d'un couplage faible : avec le temps tous les services évoluent, et donc aussi leurs contrats.
 
 == Le découplage de localisation
 
-Il est à la base de l'informatique distribuée : il répond au _besoin_ de pouvoir accéder à une fonctionnalité distante sans avoir à connaître précisément le ou les dispositifs en charge de cette fonctionnalité.
+Il est à la base de l'informatique distribuée : il répond au _besoin_ de pouvoir accéder à une fonctionnalité distante sans avoir à connaître précisément le ou les dispositifs en charge de cette fonctionnalité. Cela permet de remplacer, de déplacer, d'ajouter ou de supprimer les machines qui rendent cette fonctionnalité  de manière transparente pour l'appelant.
 
-Le _moyen_ est la mise en place d'une couche d'indirection, comme un DNS, entre les systèmes.
+Le _moyen_ est la mise en place d'une couche d'indirection entre les systèmes comme un DNS : au lieu d'accéder à un système directement, on passe par un nom logique intermédiaire.
 
 Cela couvre les différents types de services distribués comme CORBA, SOAP ou REST, mais aussi les bases de données non locales et les systèmes de fichiers distants.
 
@@ -71,15 +77,17 @@ C'est l'erreur classique des SI de services mis en œuvre sans gouvernance.
 
 == Le découplage de temporalité
 
-La réalisation du découplage de temporalité se fait souvent au _moyen_ de files de message, d'échanges de fichiers, un d'une base de données.
+Il s'agit d'exécuter un traitement plus tard de manière asynchrone.
+Il se fait souvent au _moyen_ de files de message, d'échanges de fichiers, un d'une base de données.
 
 Il permet d'adresser deux _besoins_ :
 
-- rendre plus rapidement la main à l'appelant en remettant à plus tard une partie des traitements ;
+- rendre plus rapidement la main à l'appelant en remettant à plus tard une partie des traitements, ce qui améliore le temps de réponse pour le système appelant ;
 - permettre facilement de gérer les pics de charge, tant que l'outil en charge de gérer les demandes d'exécution en attente n'est pas submergé.
 
-Il a deux _inconvénient_ majeurs :
+Il a trois _inconvénients_ majeurs :
 
+- il faut être certain de ne pas perdre de demande de traitements, et de ne pas en traiter en double (ou s'arranger pour que ça n'entraîne pas de conséquences néfastes) ;
 - il rend plus difficile la gestion des erreurs et de la transactionalité ;
 - il rend plus difficile le monitoring du système, nécessitant souvent la mise en place d'outils link:https://blog.octo.com/present-et-avenir-du-monitoring-de-flux/[de monitoring de flux].
 
@@ -93,8 +101,8 @@ Si dans ce cas elle est facile à mettre en œuvre, cela ne veut pas dire qu'ell
 
 == Pour conclure
 
-À travers les trois types de découplages et leurs intersections, nous avons vu que découpler n'est pas une fin en soi mais bien un moyen de répondre à certains besoins, ce moyen ayant aussi des inconvénients.
-Nous avons aussi vu que d'accumuler les découplage c'était cummuler les avantages mais aussi les inconvénient.
+À travers les trois types de découplages et leurs intersections, nous avons vu que découpler n'est pas une fin en soi mais bien un moyen de répondre à certains besoins, ce moyen ayant aussi des inconvénients, notamment des effets de bords à l'endroit où le découplage prend place.
+Nous avons aussi vu que d'accumuler les découplages c'était cumuler les avantages mais aussi les inconvénients.
 
 La partie la plus difficile, et qui ne peut être résumée dans un article, c'est de déterminer comment découpler et à quel endroit en fonction des besoins à satisfaire : cela fait link:http://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf[plus de 30 ans] que la question est ouverte.
 Si ajouter une certaine quantité de découplage est nécessaire dans les grands systèmes, mal s'y prendre même parfois au désastre.
