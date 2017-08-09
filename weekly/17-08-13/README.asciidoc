@@ -1,0 +1,45 @@
+= 17/08/2017
+Julien Kirch
+v1.0, 2017-08-17
+:article_lang: en
+
+==== link:http://ronjeffries.com/articles/017-08ff/new-framework-increment/[Ron Jeffries: New Framework -- the Increment]
+
+[quote]
+____
+I’m not planning to produce a new brand-named framework, but I am interested in ways of deriving, expressing, describing, and developing the ideas that surround “Agile”1 software development. I’ve been running on at length about the “Increment”, and today I’m wondering whether the Increment could be a driver for successful software development in the “Agile” style. Walk with me – we’ll explore the idea.
+____
+
+=== link:https://twitter.com/coda/status/892378733176274944[CAP theorem & organizations]
+
+[quote]
+____
+The trick is to decentralize everything to allow for independent action, but then centralize everything to provide consistency
+
+Please don't hold yourself or others responsible for beating CAP with an org chart, I guess is what I'm saying
+____
+
+=== link:https://github.com/aaronduino/asciidots[AsciiDots - The result of combining ascii art, electrical engineering, and programming]
+
+[quote]
+____
+AsciiDots is an esoteric programming language based on ascii art! In this language, dots, represented by periods (.), travel down ascii art paths and undergo operations.
+____
+
+image::asciidots.gif[]
+
+=== link:http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html[Linux Load Averages: Solving the Mystery]
+
+[quote]
+____
+In 1993, a Linux engineer found a nonintuitive case with load averages, and with a three-line patch changed them forever from "CPU load averages" to what one might call "system load averages." His change included tasks in the uninterruptible state, so that load averages reflected demand for disk resources and not just CPUs. These system load averages count the number of threads working and waiting to work (waiting on CPUs, disks, and uninterruptible locks), and are summarized as a triplet of exponentially-damped moving sum averages that use 1, 5, and 15 minutes as constants in an equation. This triplet of numbers lets you see if load is increasing or decreasing, and their greatest value may be for relative comparisons with themselves.
+
+The use of the uninterruptible state has since grown in the Linux kernel, and nowadays includes uninterruptible lock primitives. If the load average is a measure of demand in terms of running and waiting threads (and not strictly threads wanting hardware resources), then they are already working the way we want them to.
+
+In this post, I dug up the Linux load average patch from 1993 – which was surprisingly difficult to find – containing the original explanation by the author. I also measured stack traces and time in the uninterruptible state using bcc/eBPF on a modern Linux system, and visualized this time as an off-CPU flame graph. This visualization provides many examples of uninterruptible sleeps, and can be generated whenever needed to explain unusually high load averages. I also proposed other metrics you can use to understand system load in more detail, instead of load averages.
+____
+
+=== Blog post idea
+
+Computers : a pile of things that are more or less similar, and lie more or less badly in the way they work internally.
+Examples : processors and programming languages, networks and processors, VMs and CPUs,
