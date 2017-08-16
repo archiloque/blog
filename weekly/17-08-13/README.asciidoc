@@ -56,7 +56,7 @@ ____
 ____
 This informational document is an attempt to make the case for implementing network protocols without performing I/O, and to provide concrete assistance and instructions for doing so in Python.
 
-What Is An I/O-Free Protocol Implementation?¶
+What Is An I/O-Free Protocol Implementation?
 An I/O-free protocol implementation (colloquially referred to as a “sans-IO” implementation) is an implementation of a network protocol that contains no code that does any form of network I/O or any form of asynchronous flow control. Put another way, a sans-IO protocol implementation is one that is defined entirely in terms of synchronous functions returning synchronous results, and that does not block or wait for any form of I/O. Examples of this kind of application can be found on the landing page.
 ____
 
