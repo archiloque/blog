@@ -3,14 +3,14 @@ Julien Kirch
 v1.0, 2017-08-13
 :article_lang: en
 
-==== link:http://ronjeffries.com/articles/017-08ff/new-framework-increment/[Ron Jeffries: New Framework -- the Increment]
+===== link:http://ronjeffries.com/articles/017-08ff/new-framework-increment/[Ron Jeffries: New Framework -- the Increment]
 
 [quote]
 ____
 I’m not planning to produce a new brand-named framework, but I am interested in ways of deriving, expressing, describing, and developing the ideas that surround “Agile”1 software development. I’ve been running on at length about the “Increment”, and today I’m wondering whether the Increment could be a driver for successful software development in the “Agile” style. Walk with me – we’ll explore the idea.
 ____
 
-=== link:https://twitter.com/coda/status/892378733176274944[CAP theorem & organizations]
+===== link:https://twitter.com/coda/status/892378733176274944[CAP theorem & organizations]
 
 [quote]
 ____
@@ -19,7 +19,7 @@ The trick is to decentralize everything to allow for independent action, but the
 Please don't hold yourself or others responsible for beating CAP with an org chart, I guess is what I'm saying
 ____
 
-=== link:https://github.com/aaronduino/asciidots[AsciiDots - The result of combining ascii art, electrical engineering, and programming]
+===== link:https://github.com/aaronduino/asciidots[AsciiDots - The result of combining ascii art, electrical engineering, and programming]
 
 [quote]
 ____
@@ -28,7 +28,7 @@ ____
 
 image::asciidots.gif[]
 
-=== link:http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html[Linux Load Averages: Solving the Mystery]
+===== link:http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html[Linux Load Averages: Solving the Mystery]
 
 [quote]
 ____
@@ -39,7 +39,7 @@ The use of the uninterruptible state has since grown in the Linux kernel, and no
 In this post, I dug up the Linux load average patch from 1993 – which was surprisingly difficult to find – containing the original explanation by the author. I also measured stack traces and time in the uninterruptible state using bcc/eBPF on a modern Linux system, and visualized this time as an off-CPU flame graph. This visualization provides many examples of uninterruptible sleeps, and can be generated whenever needed to explain unusually high load averages. I also proposed other metrics you can use to understand system load in more detail, instead of load averages.
 ____
 
-=== link:https://manishearth.github.io/blog/2017/08/10/font-size-an-unexpectedly-complex-css-property/[Font-size: An Unexpectedly Complex CSS Property]
+===== link:https://manishearth.github.io/blog/2017/08/10/font-size-an-unexpectedly-complex-css-property/[Font-size: An Unexpectedly Complex CSS Property]
 
 [quote]
 ____
@@ -50,7 +50,7 @@ And it’s super complicated.
 “But it’s just a number”, you say. “How can that be complicated?”
 ____
 
-=== link:https://sans-io.readthedocs.io/how-to-sans-io.html[Writing I/O-Free (Sans-I/O) Protocol Implementations]
+===== link:https://sans-io.readthedocs.io/how-to-sans-io.html[Writing I/O-Free (Sans-I/O) Protocol Implementations]
 
 [quote]
 ____
@@ -60,7 +60,7 @@ What Is An I/O-Free Protocol Implementation?
 An I/O-free protocol implementation (colloquially referred to as a “sans-IO” implementation) is an implementation of a network protocol that contains no code that does any form of network I/O or any form of asynchronous flow control. Put another way, a sans-IO protocol implementation is one that is defined entirely in terms of synchronous functions returning synchronous results, and that does not block or wait for any form of I/O. Examples of this kind of application can be found on the landing page.
 ____
 
-=== link:http://www.eurogamer.net/articles/2017-08-09-comparing-the-cityscapes-of-the-witcher-3-dark-souls-and-bloodborne-to-medieval-paintings[Comparing the cityscapes of The Witcher 3, Dark Souls and Bloodborne to medieval paintings]
+===== link:http://www.eurogamer.net/articles/2017-08-09-comparing-the-cityscapes-of-the-witcher-3-dark-souls-and-bloodborne-to-medieval-paintings[Comparing the cityscapes of The Witcher 3, Dark Souls and Bloodborne to medieval paintings]
 
 [quote]
 ____
@@ -69,7 +69,7 @@ Mention the city in the middle ages, and you likely either conjure images of str
 A handful of games, however, try to paint a more interesting picture. The Witcher 3 boasts a handful of cities that would be exemplary in any medium, but, being found in a video game, have the additional advantage of being able to invite players to intimately explore and study them from every angle. Cities like the central European Novigrad or Oxenfurt, or the Mediterranean Beauclair are vibrant places whose fundaments are firmly grounded in the middles ages despite their more fantastical aspects.
 ____
 
-=== Blog post idea
+===== Blog post idea
 
 Computers : a pile of things that are more or less similar, and lie more or less badly in the way they work internally.
 
