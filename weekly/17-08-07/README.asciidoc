@@ -1,11 +1,17 @@
 = 06/08/2017
 Julien Kirch
-v1.0, 2017-08-06
+v1.0, 2017-08-07
 :article_lang: en
 
 ===== link:http://queue.acm.org/detail.cfm?ref=rss&id=3131240[Hootsuite: In Pursuit of Reactive Systems]
 
-An interesting an honest discussion on Hootsuite's migration to a "microservice" architecture based on Akka
+[quote]
+____
+Internally, we're still trying to define what a microservice is and what the scale of that ought to be. Today, most of our services focus on accomplishing just one set of highly related tasks. Our goal is to have each of these services own some part of our domain model. Data services, for example, would each control their own data, and nothing else would have access to that. To get to that data, you would have to go through the data service itself.
+
+Then we would also have functional services, which are the services that essentially glue business logic onto the data part of the logic. But in terms of the size of these things, I'd say we're still trying to figure that out, and we haven't come up with any hard and fast rules so far.
+____
+
 
 ===== link:http://www.cybertec.at/joining-data-from-multiple-postgres-databases/[Joining data from multiple Postgres databases]
 
