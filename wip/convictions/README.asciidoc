@@ -1,8 +1,23 @@
 = Convictions archi Octo
 
 ## Complexité
-### Complexité =  nb techno ^ 2 * nb liens ^2
-### Coder ou paramétrer une application : la complexité est la même
+
+### Complexité =  nombre de technologies différentes ^ 2 * nombres de liens entre ces techologies ^2
+
+Quand on ajoute une technologie dans un SI on sous-estime souvent l'augmentation de la complexité que cela entraîne.
+La complexité n'augmente pas linéairement "c'est juste une technologie en plus" mais de manière quadratique.
+
+La complexité augmente avec le nombre de liens entre les technologies : chaque technologie a ses contraintes, et tisser des ponts entre différentes technologies c'est souvent combiner les contraintes.
+
+Pour garder la complexité sous contrôle il y a deux outils :
+
+- limiter le nombre de technologies utilisées dans le SI ;
+- utiliser
+
+### Coder ou "paramétrer" une application : la complexité est la même
+
+
+
 ### Apprenez à marcher avant de courir
 
 ## Outils
