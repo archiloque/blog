@@ -4,32 +4,61 @@
 
 ### Complexité =  nombre de technologies différentes ^ 2 * nombres de liens entre ces techologies ^2
 
-Quand on ajoute une technologie dans un SI on sous-estime souvent l'augmentation de la complexité que cela entraîne.
-La complexité n'augmente pas linéairement "c'est juste une technologie en plus" mais de manière quadratique.
+Quand on ajoute une technologie dans un SI on sous-estime souvent l'augmentation de la complexité que cela entraîne :
+elle n'augmente pas linéairement mais de manière beaucoup plus rapide (les poids de la formule ne sont pas à prendre au pieds de la lettre).
 
-La complexité augmente avec le nombre de liens entre les technologies : chaque technologie a ses contraintes, et tisser des ponts entre différentes technologies c'est souvent combiner les contraintes.
+La complexité augmente aussi avec le nombre de liens entre les technologies : chaque technologie a ses contraintes, et tisser des ponts entre des technologies différentes  c'est devoir comprendre comment ces contraintes se combinent.
 
-Pour garder la complexité sous contrôle il y a deux outils :
+Pour garder la complexité sous contrôle il y a deux grandes approches complémentaires :
 
-- limiter le nombre de technologies utilisées dans le SI ;
-- utiliser
+- limiter le nombre de technologies utilisées ;
+- faire en sorte que les technologies utilisées ne soient pas visibles au niveau du SI en utilisant des protocoles standard qui masquent leurs spécificités.
+
+### N'ajoutez pas un outil pour une seule fonctionalité
+
+Lorsqu'un besoin n'est pas
+
 
 ### Coder ou "paramétrer" une application : la complexité est la même
 
+Attentions aux promesses des vendeurs de progiciels.
 
+Paramétrer une application n'est pas par essence plus simple que d'écrire du code
+Cela peut même être l'inverse car le code peut être mieux outillé (facilité de faire des tests, débugging…) et plus puissant (facilite la structuration / factorisation…).
 
-### Apprenez à marcher avant de courir
+Un progiciel qui évite d'écrire une partie du code car il fournir des fonctionalités prêtes à l'emploi c'est bien, remplacer un baril de code par un quart de baril de paramétrage c'est appréciable.
+Un progiciel qui remplace l'écriture de code sous forme de code par l'écriture de code sous forme de paramétrage, c'est moins bien.
+
+### Gestion de la complexité : apprenez à marcher avant de courir
+
+Maîtriser la complexité c'est aussi quelque chose qui s'apprend.
+Cet apprentissage est différents de l'apprentissage des technologies elles-mêmes.
+Cet apprentissage se fait au niveau d'une organisation et pas une expertise qui peut s'acquérir facilement avec des consultants.
+Les erreurs causées car une mauvaises gestion de la complexité sont coûteuses et difficiles à réparer, cet apprentissage doit donc se faire au plus tôt.
 
 ## Outils
-### On aide à réfléchir, on n'apporte pas que des solutions
+
 ### Ne croyez pas les éditeurs
+
+Pour vous faire une idée commencez par demandez autour de vous ou à des spécialistes.
+Ensuite systématiquement testez par vous même : lorsqu'un outil est structurant pour un SI il ne faut pas faire l'économie de tester directement.
+
 ### Un outil n'est pas une réponse suffisante
+
+Choisir / installer un outil n'est en général qu'une partie d'une réponse à un problème ou à un besoin.
+En plus de cela il faut : choisir comment on va utiliser l'outil, regarder les conséquences sur l'organisation, apprendre à l'exploiter …
+
+Donc quand l'outil est choisi, ne vous dites pas que l'essentiel est fait.
+
+### Ne cédez pas à l'envie d'utiliser une techno à la mode alors que le besoin est déjà couvert
+
+## Big Data
+
 ### Big Data ne veut pas dire Hadoop
+
 #### Hadoop n'est pas pour tout le monde
 ### Hadoop n'est pas une archi économique
 ### Vous n'avez probablement pas de "Big" Data
-### N'ajoutez pas un outil pour une seule fonctionalité
-### Ne cédez pas à l'envie d'utiliser une techno à la mode alors que le besoin est déjà couvert
 
 ## Orga
 ### L'archi est biaisée par l'orga et les budgets
