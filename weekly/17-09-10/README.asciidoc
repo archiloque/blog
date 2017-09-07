@@ -1,0 +1,24 @@
+= 10/09/2017
+Julien Kirch
+v1.0, 2017-09-10
+:article_lang: en
+
+===== link:http://larahogan.me/blog/first-one-on-one-questions/[Questions for our first 1:1]
+
+[quote]
+____
+In the last few years, I’ve had the pleasure of kicking off lots of new reporting relationships with both engineers and engineering managers. Over time, I’ve learned that getting some particular data during an initial 1:1 can be really helpful, as I can refer back to the answers as I need to give a person feedback, recognize them, and find creative ways to support them. Most of these I’ve stolen from some really amazing Etsy coworkers.
+____
+
+===== link:https://www.confluent.io/blog/publishing-apache-kafka-new-york-times/[Publishing with Apache Kafka at The New York Times]
+
+[quote]
+____
+At The New York Times we have a number of different systems that are used for producing content. We have several Content Management Systems, and we use third-party data and wire stories. Furthermore, given 161 years of journalism and 21 years of publishing content online, we have huge archives of content that still need to be available online, that need to be searchable, and that generally need to be available to different services and applications.
+
+These are all sources of what we call published content. This is content that has been written, edited, and that is considered ready for public consumption.
+
+On the other side we have a wide range of services and applications that need access to this published content — there are search engines, personalization services, feed generators, as well as all the different front-end applications, like the website and the native apps. Whenever an asset is published, it should be made available to all these systems with very low latency — this is news, after all — and without data loss.
+
+This article describes a new approach we developed to solving this problem, based on a log-based architecture powered by Apache KafkaTM. We call it the Publishing Pipeline. The focus of the article will be on back-end systems. Specifically, we will cover how Kafka is used for storing all the articles ever published by The New York Times, and how Kafka and the Streams API is used to feed published content in real-time to the various applications and systems that make it available to our readers.  The new architecture is summarized in the diagram below, and we will deep-dive into the architecture in the remainder of this article.
+____

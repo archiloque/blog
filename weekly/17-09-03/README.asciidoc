@@ -1,0 +1,29 @@
+= 03/09/2017
+Julien Kirch
+v1.0, 2017-09-03
+:article_lang: en
+
+===== link:http://queue.acm.org/detail.cfm?ref=rss&id=3136953[Cache Me If You Can]
+
+[quote]
+____
+And so, dear reader, this is where I would like to begin. Unlike most articles in _acmqueue_, this one isn't about a new technique or an exposition on a practitioner's solution. Instead, this article looks at the problems inherent in building a more decentralized Internet. Audacious? Yes, but this has become a renewed focus in recent years, even by the father of the Web himself (see Tim Berners-Lee's Solid project4). Several companies and open-source projects are now focusing on different aspects of the "content-delivery" problem. Our company link:https://edgemesh.com[Edgemesh] is working on peer-enhanced client-side content acceleration, alongside other next-generation content-delivery networks such as link:https://peer5.com[Peer5] and link:https://streamroot.io[Streamroot], both of which are focused on video delivery. Others, such as the open-source link:https://ipfs.io[IPFS] project are looking at completely new ways of defining and distributing and defining "the web."
+____
+
+==== link:https://www.cs.utexas.edu/~ncrooks/2017-podc-seeing.pdf[Seeing is Believing: A Client-Centric Specification of Database Isolation]
+
+[quote]
+____
+This paper introduces the first _state-based_ formalization of isolation guarantees. Our approach is premised on a simple observation: applications view storage systems as black-boxes that transition through a series of states, a subset of which are observed by applications. Defining isolation guarantees in terms of these states frees definitions from implementation-specific assumptions. It makes immediately clear what anomalies, if any, applications can expect to observe, thus bridging the gap that exists today between how isolation guarantees are defined and how they are perceived. The clarity that results from de definitions based on client-observable states brings forth several benefits. First, it allows us to easily compare the guarantees of distinct, but semantically close, isolation guarantees. We found that several well-known guarantees, previously thought to be distinct, are in fact equivalent, and that many previously incomparable flavors of snapshot isolation can be organized in a clean hierarchy. Second, freeing definitions from implementation-specific artefacts can suggest more efficient implementations of the same isolation guarantee. We show how a client-centric implementation of parallel snapshot isolation can be more resilient to _slowdown cascades_, a common phenomenon in large-scale datacenters.
+____
+
+[quote]
+____
+This trend poses an additional burden on the application programmer, as these weaker isolation guarantees allow for counter- intuitive application behaviors: relaxing the ordering of operations yields better performance, but introduces schedules and anomalies that could not arise if transactions executed atomically and sequentially. These anomalies may affect application logic: consider a bank account with a $50 balance and no overdraft allowed. If the application runs under read-committed, the underlying database may allow two transactions to concurrently withdraw $45, incorrectly leaving the account with a negative balance.
+To mitigate this increased programming complexity, many commercial databases and distributed storage systems interact with applications through a front-end that gives applications the illusion of querying or writing to a logically centralized, failure-free node that will scale as much as one’s wallet will allow. In practice, however, this abstraction is leaky: a careful understanding of the system that implements a given isolation level is oftentimes necessary to determine which anomalies the system will admit and how these will a affect application correctness.
+____
+
+[quote]
+____
+We submit that the root of this complexity is a fundamental semantic gap between how application programmers experience isolation guarantees and how they are currently formally defined. From a programmer’s perspective, isolation guarantees are contracts between the storage systems and its clients, specifying the set of behaviors that clients can expect to observe—i.e., the set of admissible values that each read is allowed to return. When it comes to formally defining these guarantees, however, the current practice is to focus, rather than on the values that the clients can observe, on the mechanisms that can produce those values—i.e., histories capturing the relative ordering of low-level read and write operations.
+____
