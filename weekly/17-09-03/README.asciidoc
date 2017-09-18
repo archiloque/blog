@@ -27,3 +27,10 @@ ____
 ____
 We submit that the root of this complexity is a fundamental semantic gap between how application programmers experience isolation guarantees and how they are currently formally defined. From a programmer’s perspective, isolation guarantees are contracts between the storage systems and its clients, specifying the set of behaviors that clients can expect to observe—i.e., the set of admissible values that each read is allowed to return. When it comes to formally defining these guarantees, however, the current practice is to focus, rather than on the values that the clients can observe, on the mechanisms that can produce those values—i.e., histories capturing the relative ordering of low-level read and write operations.
 ____
+
+===== link:https://www.computer.org/cms/Computer.org/ComputingNow/homepage/2011/1111/W_SW_AllLateProjectsAretheSame.pdf[All Late Projects Are the Same]
+
+[quote]
+____
+This leaves us with projects that started late because they didn’t offer enough value to justify their true cost. This is garden variety failure, in my opinion: it happens all the time. If a project offered a value of 10 times its estimated cost, no one would care if the actual cost to get it done were double the estimate. On the other hand, if expected value were only 10 percent greater than expected cost, lateness would be a disaster. Yes it would be a disaster, but instead of obsessing over “What’s the matter with those software folks who didn’t deliver on the schedule we gave them?” we need to ask instead, “Why did we ever kick off a project with such marginal expected value?”
+____
