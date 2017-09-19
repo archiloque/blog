@@ -1,0 +1,11 @@
+= Bugs, logs and API
+Julien Kirch
+v1.0, 2017-09-19
+:article_description: Hell is other people_'s code_
+
+. Add logs to analyse complicated behaviors and fix bugs
+. Wait a little
+. People write scripts that rely on these logs
+. Logs format has become a _de facto_ public interface
+. Finaly identify the bugs you write the logs for
+. Can't fix the bug because that would alter the logs behaviors and that would break other people's code
