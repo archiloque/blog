@@ -1,0 +1,42 @@
+# Frontières entre systèmes & architecture de SI
+
+## Définir les frontières d'un système
+
+* Dans un système informatique, les frontières de chaque élément sont très importantes.
+* Suivant la manière dont on définit les frontières, il est possible d'avoir ou non certaines caractéristiques.
+** Exemple
+* Il y a un nombre très grands de caractéristiques possibles, mais un nombres limités d'entre elles forment un ensemble intéressant à utiliser. Ce sont en général elles qu'on retrouve dans des familles de produits.
+
+## Assembler deux systèmes
+
+* Il est parfois intéressant de combiner deux éléments pour en obtenir un troisième qui cumulerait leurs caractéristiques.
+* 
+
+image::Three-tiered_symbolic_diagram_of_the_art_of_alchemy;_top_lev_Wellcome_L0004315.jpg[title="L'art difficile de combiner les éléments"]
+
+* Lorsqu'on combine deux éléments, leurs caractéristiques se combinent de manière complexes : certains avantages ou inconvénients peuvent apparaître, disparaitre, ou se transformer. Les prévoir demande de connaître précisement les fonctionalités des chacun des éléments source.
+
+## Passer à l'échelle : les frontières dans un SI
+
+Dans un SI il y a de nombreuses briques, chacune avec des besoins propres, la plupart exposant des frontières à d'autres briques.
+
+Un SI 
+
+* 
+
+* Au niveau d'un SI, il est souhaitable de limiter le nombre de types de frontières possibles entre les éléments. Cela permet de simplifier grandement la construction de nouvelles briques lorsqu'elles doivent s'appuyer sur des fonctionalités existantes.
+
+
+link:https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction[The Wrong Abstraction] "prefer duplication over the wrong abstraction"
+
+link:http://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf[End to end arguments in system design]
+
+link:http://shop.oreilly.com/product/0636920032175.do[Designing Data-Intensive Applications]
+
+link:http://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[How do you cut a monolith in half?]
+
+link:https://www.cs.umd.edu/class/spring2003/cmsc838p/Design/criteria.pdf[On the Criteria To Be Used in Decomposing Systems into Modules]
+
+link:https://en.wikipedia.org/wiki/Leaky_abstraction[Leaky abstraction]
+
+link:http://thegamedesignforum.com/features/rd_hl_1.html[Reverse Design: Half-Life]

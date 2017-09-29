@@ -1,0 +1,122 @@
+= Retour sur les serveurs d'application Java
+
+Quand j'ai commencé à travailler, les serveurs d'applications Java étaient à la mode.
+
+image::511WWNNA41L.jpg[title="Souvenirs"]
+
+Aujourd'hui ils ont quasiment disparu du paysage, et quand on prononce le mot "J2EE", c'est surtout pour parler de promesses déçues et de projets terminés dans la douleur.
+
+En y repensant, je me suis rendu compte d'une chose :
+certes les spécifications et les produits avaient de nombreux problèmes,
+mais de nombreuses idées qu'on critiquait alors se sont révélées bonnes sur le long terme.
+(Je ne veux pas dire que _toutes_ les idées étaient bonnes : certaines étaient franchement mauvaises, et n'auraient jamais pu fonctionner même dans le meilleur de mondes.)
+
+Si vous êtes un·e jeune développeur·euse, pour qui J2EE évoque une époque lointaine et mystérieuse, comme le jurassique ou le septennat de Valéry Giscard d'Estaing, cet article vous permettra de comprendre pourquoi les personnes étaient aussi enthousiastes à l'époque, et pourquoi il·elle·s sont parfois un peu dubitatifs face aux promesses de nouvelles technologies.
+
+Si vous êtes une personnes expérimentée qui a vécu cette époque et qui utilise peut-être encore ces technologie : cela vous donnera des idées sur les nouvelles approches qu'on utilise aujourd'hui, notamment qu'elles ne sont pas par amour de la nouveauté mais pour répondre à des besoins réels que vous aviez peut-être vous-même mais que vous avez renoncé à satisfaire.
+
+== Note : J2EE et serveurs d'application d'entreprise
+
+Je me permets de mélanger fonctionnalités J2EE et fonctionnalités fournies par la plupart des serveurs d'application d'entreprise. Je me permets de le faire pour deux raisons :
+
+* Les différents serveurs Java d'entreprise ont rapidement fourni le même type de fonctionnalités de base, qu'elles soient ou pas dans la spécification ;
+* Personne n'a jamais vraiment compris le périmètre de J2EE : entre ce qui était dans la spécification et qui ne fonctionnait pas, ce qui était pas dans la spécification et qui fonctionnait et qui n'était pas vraiment portable … personne n'y retrouvait ses petits.
+
+== Redéploiement à chaud
+
+La JVM était lente à démarrer, les applications lentes à déployer, et J2EE rendait difficile d'écrire du code facile à tester hors du serveur.
+Donc pour accélérer le cycle, l'idée était de permettre un redéploiement à chaud de l'application sans avoir à tout recharger.
+
+Pourquoi ça ne fonctionnait pas ?
+
+* Ça ne fonctionnait pas, ou pas de manière fiables et seulement pour certains types de changements.
+
+Aujourd'hui : la JVM et les serveurs d'applications ont été optimisés et les processeurs vont beaucoup plus vite (sur un MacBook Pro dernière génération, démarrer un serveur IBM Websphere ne prend plus qu'une vingtaine de minutes), et JEE a pris en compte ces problèmes et permet aujourd'hui de tester hors serveur.
+
+D'un autre côté les alternatives à JEE tels que DropWizard sont encore plus rapides.
+
+== Gestion de cluster
+
+L'avenir était au web, et la réponse était la scalabilité.
+Mais pour limiter la complexité induite par la multiplication des machines, l'idée est de gérer un ensemble de serveurs vus comme une resource et plus des machines une par une.
+
+Pourquoi ça ne fonctionnait pas ?
+
+* Problèmes technique : beaucoup de fonctionalité  _cluster-aware_ fonctionnaient mal.
+
+Aujourd'hui : plus de clusters mais des groupes de serveurs, mais qu'on gère automatiquement via des outils : il s'agit de clusters logiques et pas logiciels
+
+== La mutualisation des serveurs
+
+Les machines coûtaient cher, particulièrement les serveurs Unix qui étaient la mode à l'époque.
+Pour mutualiser la consommation de mémoire il était possible de déployer plusieurs application dans un serveur.
+Cette approche était aussi beaucoup utilisée pour limiter les coûts de licenses.
+
+Pourquoi ça ne fonctionnait pas ?
+
+* L'isolation de composants n'était pas là la hauteur : une application qui consommait trop de resources mettait en danger les autres
+
+Aujourd'hui : après la phase "une VM pour chaque application", la contenerisation a la même approche, et les problèmes d'isolation sont de retour
+
+== Bascule à chaud
+
+On pouvait faire des bascules à chaud sur de nouvelles versions d'une application.
+La bascule se faisait proprement : le serveur routait les nouvelles requêtes sur la nouvelle version, en laissant les  requêtes en cours d'exécution se terminer, puis décommissionnait l'ancienne version quand plus aucune requêtes ne l'utilisait.
+
+Ce déploiement et cette bascule étaient même _cluster-aware_ : l'opération utilisait des APIs qui copiaient automatiquement les artefacts sur tous les nœuds du groupe de serveurs.
+
+Pourquoi ça ne fonctionnait pas ?
+
+* Ça ne correspondait pas aux pratiques ops de l'époque ;
+* Problèmes de fuites de mémoire, certaines dues à des problèmes d'implémentation, d'autres structurelles.
+
+Aujourd'hui : outils Ops + nouvelles pratiques permettent de le faire sans support de l'application
+
+== JNDI
+
+Spécification permettant de passer des paramètres d’environnement aux application, cela aurait du permettre de redéployer le même artefact de la recette à la production sans fichier de configuration.
+
+Pourquoi ça ne fonctionnait pas ?
+
+* La plupart des frameworks Java ne le supportaient pas et ne savaient que lire des fichiers de configuration
+
+Aujourd'hui : C'est la même approche qui est choisie par Docker
+
+== Gestion de session _cluster-aware_
+
+Les serveurs fournissaient une gestion de session au niveau du cluster lié à l'identifiant de l'utilisateur, l'équivalent d'un outil NoSQL.
+
+Pourquoi ça ne fonctionnait pas ?
+
+* Les implémentation fournies nativement pas les serveurs d'applications n'était pas à la hauteur, et les implémentations externes fiables ont mis du temps à arriver ;
+* Les patterns n'étaient pas encore matures et les développeur·euse·s avaient tendance à vouloir stocker beaucoup trop de choses en session car c'était "magigue", ce qui écroulait les performances.
+
+Aujourd'hui : on a appris à stocker le minimum viable dans une session, et des solutions NoSQL sont matures et permettent de répondre aux besoins
+
+== EJBs
+
+Un moyen de packager des groupes de fonctionnalités dans un artefact en exposant une façade normée.
+L'idée était de permettre de développer des applications complexes en composants des briques élémentaires bien séparées avec des appels transactionels entre elles.
+Les packager ensemble permettait d'économiser la latence réseau, tout en conservant l'isolation.
+
+Pourquoi ça ne fonctionnait pas ?
+
+* Mauvais découpage métier faisait que ça finissait souvent en plat de spaghetti
+
+Aujourd'hui : approche microservices promeut la même chose
+
+== JAAS
+
+Sécurité d'accès fournie par les serveurs et pilotée par des metadonnées (annotations ou XML), pour permettre de l'audit et éviter de polluer le code.
+
+Pourquoi ça ne fonctionnait pas ?
+
+* Incompréhensible
+* Pas portable
+
+Aujourd'hui : des frameworks plus léger comme Spring Security pour les infortunné·e·s qui utilisent Spring
+
+== Pour conclure
+
+J'espère que vous avez appris des trucs, et que bientôt les serveurs d'applications pourront profiter de leur retraite bien méritée.
+
