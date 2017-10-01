@@ -11,8 +11,8 @@ La complexité augmente aussi avec le nombre de liens entre les technologies : c
 
 Pour garder la complexité sous contrôle il y a deux grandes approches complémentaires :
 
-- limiter le nombre de technologies utilisées ;
-- faire en sorte que les technologies utilisées ne soient pas visibles au niveau du SI en utilisant des protocoles standard qui masquent leurs spécificités.
+* limiter le nombre de technologies utilisées ;
+* faire en sorte que les technologies utilisées ne soient pas visibles au niveau du SI en utilisant des protocoles standard qui masquent leurs spécificités.
 
 ### N'ajoutez pas un outil pour une seule fonctionalité
 
@@ -132,6 +132,43 @@ Donc quand l'outil est choisi, ne vous dites pas que l'essentiel est fait.
 ### Il faut un peu de budget IT en propre, mais il faut mesurer son ROI
 
 ## Changement
+
 ### Apprenez à faire du neuf avec du vieux
+
+Quand on s'intéresse aux nouvelles technologies et qu'un nouvel outil ou qu'une nouvelle approche buzze;
+Apprenez à faire de nouvelles choses avec vos outils existants !
+
 ### Plus ça change plus c'est la même chose
+
+L'informatique subit beaucoup d'effet de modes.
+Apprenez à :
+
+. disséquer les nouveauté pour déterminer ce qui est réellement différent de ce qui est un rebranding de quelque chose qui existe déjà ;
+. déterminer si cette différence peut faire une différence pour vos besoins.
+
+Vos meilleurs outils pour cela :
+
+* bien connaître et comprendre vos besoins ;
+* bien comprendre les principes des différents outils qui existent, et comprendre pourquoi ils ont été conçus comme cela.
+
 ### Il y aura des changements auxquels on ne sera jamais préparé
+
+Vous avez beau essayer de faire en sorte que votre SI soit relativement modulaire et facile à modifier, il y aura des changements que vous n'aurez pas anticipé et pour lequel le SI ne sera pas préparé.
+
+Ce n'est pas un problème en soi.
+
+Ajouter de la modularité a un coût : cela rend les développement un peu plus compliqué et un peu plus long.
+
+Quand on veut anticiper de la modularité, on choisit de payer le coût qu'elle ajoute en faisant le pari que cet investissement sera récupéré avec des intérêts quand il faudra modifier cet élément.
+Si la partie prévue pour être modifiable n'est finalement pas modifiée, cet investissement est perdu.
+Si la partie prévue pour être modifiable n'est pas modifiée d'une manière qui corresponde à la manière dont la modification a été imaginée, cet investissement est perdu.
+
+Faire un SI complètement modulaire et modifiable dans tous les sens est donc une mauvaise approche : vous ne rembourserez jamais votre investissement et le résultat sera un monstre de sur-ingénierie.
+
+La bonne approche est, pour chaque partie :
+
+- de mesure le surcoût probable engendré pour le rendre facilement modifiable d'une certaine manière
+- de mesurer la probabilité que ce besoin survienne
+- de décider
+
+Parfois la décision sera la bonne, et c'est cool, parfois vous vous tromperez dans un sens ou dans l'autre, et tant pis : l'objectif est de parvenir à faire mieux la prochaine fois, sans tomber dans le piège de vouloir tout rendre modulaire.
