@@ -1,0 +1,29 @@
+= 08/10/2017
+Julien Kirch
+v1.0, 2017-10-08
+:article_lang: en
+
+===== link:https://twitter.com/dorrismccomics/status/914899194284036096/photo/1[Alex Norris]
+
+image::DLJe3MjXcAEB31v.jpg[]
+
+==== link:https://www.dropbox.com/s/wqt51k73k0t6kzb/JVM-BPF.pptx?dl=0[Fast and Safe Production Monitoring of JVM Applications with BPF Magic]
+
+[quote]
+____
+This is a talk on hardcore Linux tracing tools and how they can be used with JVM applications
+
+You’ll learn:
+
+* Which production-ready tracing tools can be used with JVM apps 
+* How BPF changes the picture of Linux tracing 
+* To apply a performance checklist for JVM apps using BPF tools 
+* To conduct ad-hoc investigations with one-liners and custom tools
+____
+
+==== link:https://jepsen.io/analyses/hazelcast-3-8-3[Jepsen Hazelcast 3.8.3]
+
+[quote]
+____
+Hazelcast is a distributed in-memory data grid, providing shared data structures for distributed systems. We show that many of Hazelcast’s distributed data structures are unsafe in the presence of network partitions: updates to maps can be lost, unique IDs may not be unique, atomic objects are not atomic, locks aren’t exclusive, and queues can forget about enqueued elements. Stale and dirty reads are also possible in most types. We do identify a way to build CRDTs on top of Hazelcast, which prevents the loss of acknowledged updates so long as operations do not depend on order. Despite documentation alluding to these risks, Hazelcast users rely on Hazelcast in risky ways.
+____
