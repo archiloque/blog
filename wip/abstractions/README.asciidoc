@@ -1,42 +1,151 @@
-# Frontières entre systèmes & architecture de SI
+= Frontières entre systèmes & architecture de SI
 
-## Définir les frontières d'un système
+Les nouveaux·elles arrivant·e·s à Octo me demandent régulièrement comment se mettre à l'architecture de SI.
 
-* Dans un système informatique, les frontières de chaque élément sont très importantes.
-* Suivant la manière dont on définit les frontières, il est possible d'avoir ou non certaines caractéristiques.
-** Exemple
-* Il y a un nombre très grands de caractéristiques possibles, mais un nombres limités d'entre elles forment un ensemble intéressant à utiliser. Ce sont en général elles qu'on retrouve dans des familles de produits.
+Ma réponse habituelle est « il faut aimer travailler avec des personnes différentes, connaître les outils, et quelques approches ».
+En d'autres termes « je n'en ai aucune idée, va donc tester des ESBs ça me laissera le temps de trouver une vraie réponse ».
 
-## Assembler deux systèmes
+Ne trouvant au final pas de réponse simple, j'ai décidé d'appliquer l'approche de link:https://steve-yegge.blogspot.fr[Steve Yegge] qu'un très long article de blog vaut parfois mieux qu'un long discours.
 
-* Il est parfois intéressant de combiner deux éléments pour en obtenir un troisième qui cumulerait leurs caractéristiques.
-* 
+Ce billet décrit mon approche actuelle sur le problème de frontières entre systèmes.
 
-image::Three-tiered_symbolic_diagram_of_the_art_of_alchemy;_top_lev_Wellcome_L0004315.jpg[title="L'art difficile de combiner les éléments"]
+Du plus simple au plus complexes, je vais commencer par parler du problème à l'échelle d'un système, pour ensuite passer à deux pour finir à l'échelle du SI.
 
-* Lorsqu'on combine deux éléments, leurs caractéristiques se combinent de manière complexes : certains avantages ou inconvénients peuvent apparaître, disparaitre, ou se transformer. Les prévoir demande de connaître précisement les fonctionalités des chacun des éléments source.
+== Définir les frontières d'un système
 
-## Passer à l'échelle : les frontières dans un SI
+Dans un système distribué, une des choses les plus difficile est la manière de définir les frontière de chaque élément.
+Frontière est utilisé au sens de « quel(s) moyen(s) cette briques fournit-elle pour s'interconnecter à d'autres briques ? » ou « quels sont les point d'attaches entre cette brique et le reste de mon écosystème ? ».
 
-Dans un SI il y a de nombreuses briques, chacune avec des besoins propres, la plupart exposant des frontières à d'autres briques.
+Le cas idéal et de fournir une frontière :
 
-Un SI 
+* riche : c'est à dire exposant des fonctionnalité les plus avancées possibles ;
+* cohérente : c'est à dire que les différents éléments de cette frontières soient cohérentes, ce qui permet d'utiliser plus facilement le système.
+* minimale : toutes choses égales par ailleurs, une frontière plus réduite est plus facile à comprendre.
 
-* 
+À la lecture des critères, on se rend compte qu'ils ont naturellement tendance à s'exclure les uns des autres :
+une frontière minimale ayant tendance à fournir moins de fonctions, une frontière riche et minimal risque d'être incohérente pour ne pas trop s'étendre, etc.
 
-* Au niveau d'un SI, il est souhaitable de limiter le nombre de types de frontières possibles entre les éléments. Cela permet de simplifier grandement la construction de nouvelles briques lorsqu'elles doivent s'appuyer sur des fonctionalités existantes.
+image::venn.png[title="Pas d'article d'architecture dans diagramme de Venn"]
+
+Les bons outils ont généralement deux caractéristiques :  ils offres des fonctionnalités intéressantes et leurs frontières répondent aux trois critères.
+Cela s'observe notamment dans les famille de produits très proches : elles correspondent à des zones d'équilibre où les deux caractéristiques sont remplies.
+C'est par exemple le cas des bases de données SQL ou des outils de transfert de messages classiques.
+
+=== Attention : fuite d'abstraction
+
+La frontière fournit une abstraction d'un système : elle dit en gros "ne vous préoccupez pas de toute la fonctionnalité de mon fonctionnement interne, voila comment vous devez communiquer avec moi et c'est tout ce dont vous avez besoin de savoir".
+
+Par exemple pour utiliser une base de donnée SQL, vous n'avez pas besoin de savoir comment fonctionne son moteur de requêtage, comme elle stocke ses données sur disque ou la manière dont elle utilise la mémoire.
+Tout ce dont vous avez à vous préoccuper en théorie c'est d'écrire du SQL selon la norme, de structurer vos données comme il faut, et de mettre des index aux bons endroits.
+
+Seulement, link:http://french.joelonsoftware.com/Articles/LeakyAbstractions.html[les abstractions ont tendance à fuir], c'est à dire qu'il est souvent nécessaire de comprendre le fonctionnement interne d'un système pour bien l'utiliser.
+
+Quand les systèmes sont bien fait, la fuite est "naturelle", c'est à dire qu'elle se produit à des endroits où on s'attend à ce qu'elle se produise.
+
+Ainsi dans une base de donnée persistante, quand la volumétrie devient très importante, il est normal de devoir comprendre comment la base stocke ses informations, afin de pouvoir configurer votre système d'exploitation ou de choisir le système de stockage le mieux adapté comme le type de disque de dur.
+En fonction de votre usage d'un outil, la frontière peut donc s'étendre.
+
+Quand les systèmes sont moins bien conçus, la fuite peut arriver beaucoup plus tôt, et notamment alors qu'on ne l'attendait pas.
+C'est par exemple le cas de certains ORM qui vont tout faire pour masquer le SQL généré afin de fournir une API très "objet", et qui vous obligeront à des contorsions sans fin, par exemple en utilisant des fonctionnalité non documentées, quand on a besoin d'influer sur une requête en particulier.
+
+Un outil peut donc avoir plusieurs frontière en fonctions des usages qu'on en fait.
+Ce qui veut aussi dire qu'un outil d'apparence plus simple qu'un autre peut en réalité être plus compliqué à utiliser.
+
+=== Frontières connues et abstractions qui mentent
+
+Quand un certain type de frontière devient connue, exposer cette même abstraction se met à de la valeur car cela permet de réutiliser ce qu'on sait déjà.
+Par exemple exposer une base de donnée sous forme de SQL permet aux développeurs de pouvoir l'utiliser rapidement en s'appuyant sur leurs connaissances SQL plutôt que d'apprendre un nouveau langage.
+
+C'est une question fondamentale lorsque vous créez un nouveau système :
+est ce que mes besoins sont suffisamment différents des solutions existantes pour justifier de les exposer différemment, ou est-ce qu'il vaut mieux que j'utilise ou que j'étende une frontière déjà connue, au risque de me brider en rendant plus difficile à utiliser les fonctionnalités spécifiques de mon système.
+
+Une abstraction est sensée masquer un fonctionnement complexe en en donnant une vision simplifiée tout en restant fidèle à la réalité.
+Dans le cas idéal, lorsque vous avez un besoin qui ne correspond pas à la frontière la plus simple, l'outil vous fournit un autre niveau, plus avancée, mais qui ne remet pas en cause l'existant.
+C'est le cas par exemple des _hint_ qui existent pour link:https://fr.wikipedia.org/wiki/Hint_(SQL)[en SQL] ou link:https://lwn.net/Articles/717755/[les appels systèmes Linux].
+
+Le problème est quand une abstraction ment, c'est à dire que le modèle qu'elle expose ne correspond pas à la réalité sous-jacente.
+Quand ce type d'abstraction se met à fuir, vous ne retrouvez pas alors avec quelque chose de plus complexe, mais avec quelque chose de complètement différent.
+Vous vous retrouvez alors à jongler avec deux modèles mentaux différents.
+
+Un des cas de ce genre qui revient souvent est celui des bases NoSQL qui exposent une surcouche SQL.
+Souvent cette couche n'expose qu'une sous-partie limitée du SQL, et il faut donc apprendre ou découvrir quelles requêtes SQL fonctionnent et quelles requêtes ne fonctionnent pas.
+Ensuite cette surcouche ne permet souvent pas d'utiliser toute les fonctionnalités promises par l'outil.
+Suivant les cas, il faut donc utiliser du SQL, mais pas tout le SQL, ou le langage natif d'interrogation de la base.
+
+En anglais ce problème porte le nom d'link:https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch[impedance mismatch], c'est à dire d'inadaptation d'impédances.
+
+Réutiliser des frontières connues peut donc être intéressant, mais pose des risques.
+
+== Assembler deux systèmes
+
+Combiner deux système ou bâtir un système sur un autre d'un autre type est une opération au résultat complexe : 
+vais-je obtenir un système avec les avantages des deux sans aucun des inconvénients, ou au contraire les inconvénients de l'un vont-ils annuler les avantages de l'autres ?
+Et au final serais-je en mesure de réexposer le résultat sous forme d'une frontière riche, cohérente et minimale ?
+
+Par exemple : bâtir un système synchrone sur un système asynchrone.
+L'approche minimale est simple : je simule un appel synchrone en appelant régulièrement le système asynchrone jusqu'à avoir une réponse.
+Les choses se corsent si je veux pouvoir interrompre le traitement pour éviter de bloquer l'appelant jusqu'à la fin des temps.
+Faut-il dans ce cas demander une annulation ? Que se passe-t-il si le traitement s'est terminé pendant ce temps ?
+
+=== Améliorer ou hybrider ?
+
+Quand une combinaison de deux systèmes fonctionne bien, elle peut avoir deux résultats :
+
+. un sur-ensemble d'un des deux système, c'est à dire quelque chose qui répond grosso-modo aux même usages que le premier mais avec des fonctionnalités en plus ;
+. un système suffisamment différent pour qu'il ne soit pas compatible avec les systèmes originaux.
+
+Le premier cas peut arriver quand on transforme un service centralisé en service distribué : le nouveau système répond aux mêmes besoins, et pourra en plus être redondant ou capable d'absorber plus de charge … mais en ajoutant de la complexité et de la latence réseau.
+
+Le deuxième est celui de beaucoup de bases de données distribuées : en distribuant une base de donnée vous faites généralement une croix sur la transactionnalité. Elle n'a donc plus les même usage, mais pourra servir dans d'autres cas.
+
+Le risque est de choisir un système du deuxième type sans se rendre compte qu'au passage on a perdu quelque chose d'essentiel.
+Faites donc très attention quand un éditeur vous promet une solution miracle : parfois il s'agit d'une invention révolutionnaire, mais souvent pour obtenir ce résultat l'outil aura discrètement une fonctionnalité que vous tenez pour acquise.
+
+=== Agrandir la frontière
+
+Quand on combine deux système, le résultat est souvent d'avoir à déléguer certaines choses à l'extérieur, car le système résultant ne saura pas prendre seul certains décisions.
+Un peu comme des angles morts.
+
+Par exemple dans un système distribué, garantir l'unicité d'un message est très compliqué, car grosso-modo cela nécessite de la centralisation.
+Il est donc souvent plus simple de que le système appelant s'en occupe.
+
+Cela risque de créer des incohérences dans la frontière, et des fuites d'abstractions.
+Il s'agit d'un arbitrage à faire : vaut-il mieux quelque chose de plus riche mais de plus difficile à comprendre, voire de plus difficile à opérer ?
+
+Comment dit link:http://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[tef] : 
+« en pratique, un bus de message est un système qui transforme des erreurs réseau et de machines en problème de disques pleins ».
+x
+Au final, assembler des systèmes de types différents est donc assez hasardeux.
+
+image::Three-tiered_symbolic_diagram_of_the_art_of_alchemy;_top_lev_Wellcome_L0004315.jpg[title="L'art difficile de combiner les systèmes"]
 
 
-link:https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction[The Wrong Abstraction] "prefer duplication over the wrong abstraction"
+== Passer à l'échelle : les frontières dans un SI
 
-link:http://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf[End to end arguments in system design]
+Dans un SI il y a de nombreuses briques, chacune avec des besoins propres.
+De nombreuses fonctionnalités nécessitent de s'appuyer sur d'autres briques.
 
-link:http://shop.oreilly.com/product/0636920032175.do[Designing Data-Intensive Applications]
+Il s'agit donc du problème d'assemblage mais à grande échelle.
 
-link:http://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[How do you cut a monolith in half?]
+Si trop d'éléments exposent des frontière spécifiques, votre système va devenir un enfer.
 
-link:https://www.cs.umd.edu/class/spring2003/cmsc838p/Design/criteria.pdf[On the Criteria To Be Used in Decomposing Systems into Modules]
+Par exemple si vous avez cinq types bases de données qui ont des garanties différentes, vous aurez peut-être cinq types de services avec des SLAs différents : certains seront transactionnels, certains auront des risques d'incohérences…
 
-link:https://en.wikipedia.org/wiki/Leaky_abstraction[Leaky abstraction]
+Et les services qui auront besoin de composer ces services ne sauront pas faire : que ce passe-t-il quand j'ai une moitié de donnée pas cohérente mais synchrone et une autre moitié cohérente mais asynchrone ?
 
-link:http://thegamedesignforum.com/features/rd_hl_1.html[Reverse Design: Half-Life]
+À l'inverse, si tout le monde expose un même type de frontière, comme des service REST, combiner les services et les SLAs est très simple.
+
+Le problème est d'autant plus compliqué que ceux·celles qui paient le prix de la complexité ne sont pas ceux qui développent le système qui expose une frontière, mais ceux qui l'utilisent.
+
+Pour s'en sortir, la seule approche viable est de limiter les types de frontières, et donc les types d'outils.
+Comme vu plus haut, cela veut dire qu'en contrepartie certaines choses seront plus difficiles, voire impossible.
+
+Cela ne veut pas dire "un seul type d'outil", mais essayer d'en avoir le minimum viable.
+
+J'espère que la lecture ne vous aura pas découragé de faire de l'architecture, mais qu'elle vous aura au contraire donné envie d'en apprendre plus sur tous les outils qui existent.
+
+== Quelques lectures
+
+* link:http://shop.oreilly.com/product/0636920032175.do[Designing Data-Intensive Applications] : un livre de fond sur les différents types d'outils de base de données en s'intéressant tout particulièrement aux cas d'usages et aux limites de chacun
+* link:https://en.wikipedia.org/wiki/Systemantics[Systemantics] : un livre sur le design de système, très intéressant mais un peu déprimant
+* link:http://thegamedesignforum.com/features/rd_hl_1.html[Reverse Design: Half-Life] : c'est dans ce livre que j'ai trouvé l'approche sur l'hybridation de systèmes
