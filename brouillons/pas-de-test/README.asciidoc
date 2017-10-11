@@ -1,0 +1,39 @@
+= Les chef·fe·s de projets qui n'aimaient pas les tests automatisés
+Julien Kirch
+v0.1, 2017-10-10
+:article_lang: fr
+:article_description: Comme Millenium mais en plus sanglant
+
+Une question entendue cent fois dans les locaux d'Octo
+
+[quote]
+____
+Mais comment est possible de ne pas faire de tests automatisé en 2017 ?
+
+Dans mon template de restitution d'audit, sur le premier slide il y a écrit « faites plus de tests et mettez votre doc à jour », je n'ai pas eu à le modifier depuis 10 ans.
+____
+
+Quand j'ai commencé à travailler au début des années 2000, les tests unitaires automatisés étaient déjà dans les "bonnes pratiques".
+15 ans plus tard, ils sont encore loin d'être généralisés, et même sur les projets qui se lancent ils ne sont pas encore la norme.
+
+J'ai une hypothèse qui explique qu'on en soit encore là.
+
+Prenons un·e chef·fe·s de projet dans une organisation classique, la question qui lui est posée est "comment t'organiser pour sortir ce projet au plus tôt" ?
+Il y a deux manière de l'interpréter  :
+
+. Pour aller plus vite l'important est de s'organiser de la bonne manière, comment dois-je m'organiser au mieux pour sortir ce projet au plus tôt ?
+. Pour aller plus vite, l'important est de faire le moins de choses possibles, quel est le nombre minimal de choses que je suis obligé de faire pour sortir le projet au plus tôt ?
+
+Un·e responsable projet à la première manière ne sera pas forcément au courant ou convaincu par telle ou telle chose, comme les TU, le TDD, ou le link:http://purrprogramming.com[purr programming].
+Mais, il·elle ouvert à la discussion : avec les bon argument il·elle pourrait accepter de changer sa manière de faire si on arriver à le·a persuader que cette approche permet de sortir le projet au plus tôt.
+Il y a donc un espoir.
+
+Pour un·e responsable projet à la seconde manière, l'objectif du projet est de livrer du code, donc le projet doit être centré autour de l'écriture du code.
+Toute autre tâche, comme écrire des tests est jugée non-essentielle et est donc sacrifiable.
+
+Même quand elle a accepté qu'il fallait s'y prendre autrement parce qu'au final ça permet d'aller plus vite, cette personne reviendra vous voir à chaque moment de stress pour savoir si on ne pourrait pas "arrêter ces tests qui prennent tant de tant".
+
+Faire changer sa manière de faire est difficile, car cela demande de changer sa vision du monde, le critère qu'il·elle utilise pour juge les choses.
+Un moyen possible est d'essayer de le·a convaincre que les tests ou le TDD ou tout autre pratique fait partie de la catégorie "d'écrire du code", et qu'elle est donc légitime.
+Mais au moindre retard, un retour en arrière est toujours possible.
+
