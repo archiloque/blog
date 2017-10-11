@@ -33,7 +33,7 @@ C'est par exemple le cas des bases de données SQL ou des outils de transfert de
 
 === Attention : fuite d'abstraction
 
-La frontière fournit une abstraction d'un système : elle dit en gros "ne vous préoccupez pas de toute la fonctionnalité de mon fonctionnement interne, voila comment vous devez communiquer avec moi et c'est tout ce dont vous avez besoin de savoir".
+La frontière fournit une abstraction d'un système : elle dit en gros "ne vous préoccupez pas de toute la fonctionnalité de mon fonctionnement interne, voilà comment vous devez communiquer avec moi et c'est tout ce dont vous avez besoin de savoir".
 
 Par exemple pour utiliser une base de donnée SQL, vous n'avez pas besoin de savoir comment fonctionne son moteur de requêtage, comme elle stocke ses données sur disque ou la manière dont elle utilise la mémoire.
 Tout ce dont vous avez à vous préoccuper en théorie c'est d'écrire du SQL selon la norme, de structurer vos données comme il faut, et de mettre des index aux bons endroits.
@@ -59,7 +59,7 @@ Par exemple exposer une base de donnée sous forme de SQL permet aux développeu
 C'est une question fondamentale lorsque vous créez un nouveau système :
 est ce que mes besoins sont suffisamment différents des solutions existantes pour justifier de les exposer différemment, ou est-ce qu'il vaut mieux que j'utilise ou que j'étende une frontière déjà connue, au risque de me brider en rendant plus difficile à utiliser les fonctionnalités spécifiques de mon système.
 
-Une abstraction est sensée masquer un fonctionnement complexe en en donnant une vision simplifiée tout en restant fidèle à la réalité.
+Une abstraction est censée masquer un fonctionnement complexe en en donnant une vision simplifiée tout en restant fidèle à la réalité.
 Dans le cas idéal, lorsque vous avez un besoin qui ne correspond pas à la frontière la plus simple, l'outil vous fournit un autre niveau, plus avancée, mais qui ne remet pas en cause l'existant.
 C'est le cas par exemple des _hint_ qui existent pour link:https://fr.wikipedia.org/wiki/Hint_(SQL)[en SQL] ou link:https://lwn.net/Articles/717755/[les appels systèmes Linux].
 
@@ -99,7 +99,7 @@ Le premier cas peut arriver quand on transforme un service centralisé en servic
 Le deuxième est celui de beaucoup de bases de données distribuées : en distribuant une base de donnée vous faites généralement une croix sur la transactionnalité. Elle n'a donc plus les même usage, mais pourra servir dans d'autres cas.
 
 Le risque est de choisir un système du deuxième type sans se rendre compte qu'au passage on a perdu quelque chose d'essentiel.
-Faites donc très attention quand un éditeur vous promet une solution miracle : parfois il s'agit d'une invention révolutionnaire, mais souvent pour obtenir ce résultat l'outil aura discrètement une fonctionnalité que vous tenez pour acquise.
+Faites donc très attention quand un éditeur vous promet une solution miracle : parfois il s'agit d'une invention révolutionnaire, mais souvent pour obtenir ce résultat l'outil aura discrètement supprimé une fonctionnalité que vous tenez pour acquise.
 
 === Agrandir la frontière
 
