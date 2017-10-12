@@ -9,27 +9,27 @@ Ne trouvant au final pas de réponse simple, j'ai décidé d'appliquer l'approch
 
 Ce billet décrit mon approche actuelle sur le problème de frontières entre systèmes.
 
-Du plus simple au plus complexes, je vais commencer par parler du problème à l'échelle d'un système, pour ensuite passer à deux pour finir à l'échelle du SI.
+Du plus simple au plus complexe, je vais commencer par parler du problème à l'échelle d'un système, pour ensuite passer à deux pour finir à l'échelle du SI.
 
 == Définir les frontières d'un système
 
 Dans un système distribué, une des choses les plus difficile est la manière de définir les frontière de chaque élément.
-Frontière est utilisé au sens de « quel(s) moyen(s) cette briques fournit-elle pour s'interconnecter à d'autres briques ? » ou « quels sont les point d'attaches entre cette brique et le reste de mon écosystème ? ».
+Frontière est utilisé au sens de « quel(s) moyen(s) cette brique fournit-elle pour s'interconnecter à d'autres briques ? » ou « quels sont les point d'attaches entre cette brique et le reste de mon écosystème ? ».
 
-Le cas idéal et de fournir une frontière :
+Le cas idéal est de fournir une frontière :
 
-* riche : c'est à dire exposant des fonctionnalité les plus avancées possibles ;
-* cohérente : c'est à dire que les différents éléments de cette frontières soient cohérentes, ce qui permet d'utiliser plus facilement le système.
+* riche : c'est à dire exposant des fonctionnalités les plus avancées possibles ;
+* cohérente : c'est à dire que les différents éléments de cette frontière soient cohérents, ce qui permet d'utiliser plus facilement le système.
 * minimale : toutes choses égales par ailleurs, une frontière plus réduite est plus facile à comprendre.
 
 À la lecture des critères, on se rend compte qu'ils ont naturellement tendance à s'exclure les uns des autres :
-une frontière minimale ayant tendance à fournir moins de fonctions, une frontière riche et minimal risque d'être incohérente pour ne pas trop s'étendre, etc.
+une frontière minimale ayant tendance à fournir moins de fonctions, une frontière riche et minimale risque d'être incohérente pour ne pas trop s'étendre, etc.
 
 image::venn.png[title="Pas d'article d'architecture dans diagramme de Venn"]
 
 Les bons outils ont généralement deux caractéristiques :  ils offres des fonctionnalités intéressantes et leurs frontières répondent aux trois critères.
 Cela s'observe notamment dans les famille de produits très proches : elles correspondent à des zones d'équilibre où les deux caractéristiques sont remplies.
-C'est par exemple le cas des bases de données SQL ou des outils de transfert de messages classiques.
+C'est par exemple le cas des bases de données SQL ou des outils classiques de transfert de messages.
 
 === Attention : fuite d'abstraction
 
@@ -48,16 +48,16 @@ En fonction de votre usage d'un outil, la frontière peut donc s'étendre.
 Quand les systèmes sont moins bien conçus, la fuite peut arriver beaucoup plus tôt, et notamment alors qu'on ne l'attendait pas.
 C'est par exemple le cas de certains ORM qui vont tout faire pour masquer le SQL généré afin de fournir une API très "objet", et qui vous obligeront à des contorsions sans fin, par exemple en utilisant des fonctionnalité non documentées, quand on a besoin d'influer sur une requête en particulier.
 
-Un outil peut donc avoir plusieurs frontière en fonctions des usages qu'on en fait.
+Un outil peut donc avoir plusieurs frontières en fonction des usages qu'on en fait.
 Ce qui veut aussi dire qu'un outil d'apparence plus simple qu'un autre peut en réalité être plus compliqué à utiliser.
 
 === Frontières connues et abstractions qui mentent
 
-Quand un certain type de frontière devient connue, exposer cette même abstraction se met à de la valeur car cela permet de réutiliser ce qu'on sait déjà.
+Quand un certain type de frontière devient connue, exposer cette même abstraction a de la valeur car cela permet de réutiliser ce qu'on sait déjà.
 Par exemple exposer une base de donnée sous forme de SQL permet aux développeurs de pouvoir l'utiliser rapidement en s'appuyant sur leurs connaissances SQL plutôt que d'apprendre un nouveau langage.
 
 C'est une question fondamentale lorsque vous créez un nouveau système :
-est ce que mes besoins sont suffisamment différents des solutions existantes pour justifier de les exposer différemment, ou est-ce qu'il vaut mieux que j'utilise ou que j'étende une frontière déjà connue, au risque de me brider en rendant plus difficile à utiliser les fonctionnalités spécifiques de mon système.
+est-ce-que mes besoins sont suffisamment différents des solutions existantes pour justifier de les exposer différemment, ou est-ce qu'il vaut mieux que j'utilise ou que j'étende une frontière déjà connue, au risque de me brider en rendant plus difficile à utiliser les fonctionnalités spécifiques de mon système.
 
 Une abstraction est censée masquer un fonctionnement complexe en en donnant une vision simplifiée tout en restant fidèle à la réalité.
 Dans le cas idéal, lorsque vous avez un besoin qui ne correspond pas à la frontière la plus simple, l'outil vous fournit un autre niveau, plus avancée, mais qui ne remet pas en cause l'existant.
@@ -79,8 +79,8 @@ Réutiliser des frontières connues peut donc être intéressant, mais pose des 
 == Assembler deux systèmes
 
 Combiner deux système ou bâtir un système sur un autre d'un autre type est une opération au résultat complexe : 
-vais-je obtenir un système avec les avantages des deux sans aucun des inconvénients, ou au contraire les inconvénients de l'un vont-ils annuler les avantages de l'autres ?
-Et au final serais-je en mesure de réexposer le résultat sous forme d'une frontière riche, cohérente et minimale ?
+vais-je obtenir un système avec les avantages des deux sans aucun des inconvénients, ou au contraire les inconvénients de l'un vont-ils annuler les avantages de l'autre ?
+Et au final, serais-je en mesure de réexposer le résultat sous forme d'une frontière riche, cohérente et minimale ?
 
 Par exemple : bâtir un système synchrone sur un système asynchrone.
 L'approche minimale est simple : je simule un appel synchrone en appelant régulièrement le système asynchrone jusqu'à avoir une réponse.
@@ -96,14 +96,14 @@ Quand une combinaison de deux systèmes fonctionne bien, elle peut avoir deux r�
 
 Le premier cas peut arriver quand on transforme un service centralisé en service distribué : le nouveau système répond aux mêmes besoins, et pourra en plus être redondant ou capable d'absorber plus de charge … mais en ajoutant de la complexité et de la latence réseau.
 
-Le deuxième est celui de beaucoup de bases de données distribuées : en distribuant une base de donnée vous faites généralement une croix sur la transactionnalité. Elle n'a donc plus les même usage, mais pourra servir dans d'autres cas.
+Le deuxième est celui de beaucoup de bases de données distribuées : en distribuant une base de données vous faites généralement une croix sur la transactionnalité. Elle n'a donc plus les mêmes usages, mais pourra servir dans d'autres cas.
 
 Le risque est de choisir un système du deuxième type sans se rendre compte qu'au passage on a perdu quelque chose d'essentiel.
 Faites donc très attention quand un éditeur vous promet une solution miracle : parfois il s'agit d'une invention révolutionnaire, mais souvent pour obtenir ce résultat l'outil aura discrètement supprimé une fonctionnalité que vous tenez pour acquise.
 
 === Agrandir la frontière
 
-Quand on combine deux système, le résultat est souvent d'avoir à déléguer certaines choses à l'extérieur, car le système résultant ne saura pas prendre seul certains décisions.
+Quand on combine deux systèmes, le résultat est souvent d'avoir à déléguer certaines choses à l'extérieur, car le système résultant ne saura pas prendre seul certaines décisions.
 Un peu comme des angles morts.
 
 Par exemple dans un système distribué, garantir l'unicité d'un message est très compliqué, car grosso-modo cela nécessite de la centralisation.
@@ -122,23 +122,23 @@ image::Three-tiered_symbolic_diagram_of_the_art_of_alchemy;_top_lev_Wellcome_L00
 
 == Passer à l'échelle : les frontières dans un SI
 
-Dans un SI il y a de nombreuses briques, chacune avec des besoins propres.
+Dans un SI, il y a de nombreuses briques, chacune avec des besoins propres.
 De nombreuses fonctionnalités nécessitent de s'appuyer sur d'autres briques.
 
 Il s'agit donc du problème d'assemblage mais à grande échelle.
 
-Si trop d'éléments exposent des frontière spécifiques, votre système va devenir un enfer.
+Si trop d'éléments exposent des frontières spécifiques, votre système va devenir un enfer.
 
 Par exemple si vous avez cinq types bases de données qui ont des garanties différentes, vous aurez peut-être cinq types de services avec des SLAs différents : certains seront transactionnels, certains auront des risques d'incohérences…
 
 Et les services qui auront besoin de composer ces services ne sauront pas faire : que ce passe-t-il quand j'ai une moitié de donnée pas cohérente mais synchrone et une autre moitié cohérente mais asynchrone ?
 
-À l'inverse, si tout le monde expose un même type de frontière, comme des service REST, combiner les services et les SLAs est très simple.
+À l'inverse, si tout le monde expose un même type de frontière, comme des services REST, combiner les services et les SLAs est très simple.
 
 Le problème est d'autant plus compliqué que ceux·celles qui paient le prix de la complexité ne sont pas ceux qui développent le système qui expose une frontière, mais ceux qui l'utilisent.
 
 Pour s'en sortir, la seule approche viable est de limiter les types de frontières, et donc les types d'outils.
-Comme vu plus haut, cela veut dire qu'en contrepartie certaines choses seront plus difficiles, voire impossible.
+Comme vu plus haut, cela veut dire qu'en contrepartie certaines choses seront plus difficiles, voire impossibles.
 
 Cela ne veut pas dire "un seul type d'outil", mais essayer d'en avoir le minimum viable.
 
