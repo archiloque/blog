@@ -4,24 +4,25 @@ Quand j'ai commencé à travailler, les serveurs d'applications Java étaient à
 
 image::511WWNNA41L.jpg[title="Souvenirs, Souvenirs"]
 
-Aujourd'hui ils ont quasiment disparu du paysage, et quand on prononce le mot "J2EE", c'est surtout pour évoquer des promesses déçues et des projets terminés dans la douleurs.
+Aujourd'hui ils sont en voir de disparition, et quand on prononce le mot "J2EE" (ou Java EE comme on dit maintenant), c'est surtout pour évoquer des promesses déçues et des projets terminés dans la douleurs.
 
-En y repensant, je me suis rendu compte d'une chose :
+En repensant à cette époque, je me suis rendu compte d'une chose :
 certes les spécifications et les produits avaient de nombreux problèmes,
 mais de nombreuses approches qu'on critiquait alors se sont révélées les bonnes sur le long terme.
 
 Je ne veux pas dire que _toutes_ les idées étaient bonnes : certaines étaient franchement mauvaises, et n'auraient jamais pu fonctionner même dans le meilleur de mondes.
-La multiplication des nouveautés était en elle-même source de difficultés car les systèmes résultants sont très complexes, link:http://www.bbc.com/news/business-11944966[même les éditeurs le disent].
+La multiplication des nouveautés était en elle-même source de difficultés, link:http://www.bbc.com/news/business-11944966[même les éditeurs le disent].
 
-Si vous êtes un·e jeune développeur·euse, pour qui J2EE évoque une époque lointaine et mystérieuse, comme le jurassique ou le septennat de Valéry Giscard d'Estaing, cet article vous permettra de comprendre pourquoi les personnes étaient aussi enthousiastes à l'époque, et pourquoi il·elle·s sont parfois un peu dubitatifs face aux promesses de nouvelles technologies.
+Si vous êtes un·e jeune développeur·euse, pour qui J2EE évoque une époque lointaine et mystérieuse, comme le jurassique ou le septennat de Valéry Giscard d'Estaing, cet article vous permettra de comprendre pourquoi les personnes étaient aussi enthousiastes à l'époque, et pourquoi il·elle·s sont parfois un peu dubitatif·ve·s face aux promesses de nouvelles technologies.
 
 image::giscard.jpg[title="Quand l'architecte J2EE vient à l'afterwork, loltoshop par Anaïs Phinith"]
 
-Si vous êtes une personnes expérimentée qui a vécu cette époque et qui utilise peut-être encore ces technologie : cela vous donnera des idées sur les nouvelles approches utilisées aujourd'hui, notamment qu'elles ne sont pas par amour de la nouveauté mais pour répondre à des besoins réels que vous aviez peut-être vous-même mais que vous avez renoncé à satisfaire.
+Si vous êtes une personnes qui a vécu cette époque et qui utilise peut-être encore ces technologies, il devrait vous donner des idées sur les nouvelles approches utilisées aujourd'hui.
+Cela pourrait vous donner des idées sur la manières dont on peut désormais répondre à des besoins que vous avez renoncé à satisfaire.
 
 == Note : J2EE et serveurs d'application d'entreprise
 
-Dans l'article, je  mélange fonctionnalités J2EE et fonctionnalités fournies par la plupart des serveurs d'application d'entreprise et qui ne sont pas dans J2EE.
+Dans l'article, je  mélange fonctionnalités J2EE et fonctionnalités qui ne sont pas J2EE mais qui sont fournies par la plupart des serveurs d'application d'entreprise.
 Je me permets de le faire pour deux raisons :
 
 * Les différents serveurs Java d'entreprise ont rapidement fourni le même type de fonctionnalités, qu'elles soient ou pas dans la spécification ;
@@ -34,7 +35,7 @@ JNDI permettait de spécifier des paramètres à passer aux applications depuis 
 Pourquoi ça ne fonctionnait pas ?
 
 * La plupart des frameworks Java ne le supportaient pas et ne savaient que lire des fichiers de configurations.
-* L'outillage et les pratiques n'étaient pas adaptées de sorte qu'on se retrouvait souvent à modifier les variables manuellement sur les serveur, sans audit et gestion de version.
+* L'outillage et les pratiques n'étaient pas adaptées de sorte qu'on se retrouvait souvent à modifier les variables manuellement sur les serveur. Cette modification avait lieu manuellement et sans audit ni gestion de version, ce qui était donc peu pratique et risqué.
 
 Aujourd'hui : c'est la même approche choisie par Docker via les variables d’environnement ou le _service discovery_, et les outils sont en train de se moderniser pour s'y adapter.
 
@@ -44,11 +45,14 @@ Aujourd'hui : c'est la même approche choisie par Docker via les variables d’e
 L'approche en vogue de remplacer les mainframe par des fermes de serveurs Unix, moins puissants mais beaucoup moins cher.
 
 Pour limiter la complexité induite par la multiplication des machines, l'idée est de gérer un ensemble de serveurs vus comme une ressource unique et plus des machines une par une.
-Toutes les fonctions de clustering était implémentées par le serveur d'application.
+
+Il y avait trois manière de faire du clustering : matériel, fournis pas les systèmes d'exploitation, et par les serveur d'applications.
+
+Le clustering matériel et OS était plus lourd à mettre en œuvre et plus couteux, il était donc plutôt réservé aux fonctions de stockage, alors que pour les traitements on préfèreait essayer de s'appuyer sur les serveurs d'applications.
 
 Pourquoi ça ne fonctionnait pas ?
 
-* Beaucoup de fonctionnalités _cluster-aware_ fonctionnaient mal, on se contentait donc d'utiliser le minimum qui fonctionnait comme le monitoring.
+* Comme on le verra plus bas beaucoup de fonctionnalités _cluster-aware_ fonctionnaient mal, on se contentait donc d'utiliser le minimum qui fonctionnait comme le monitoring.
 * Les machines Unix de l'époque, même si elles valaient moins que les mainframe, restaient assez coûteuses en matériel et en licenses.
 * Ajouter de nouveaux serveurs physique n'était pas simple : il fallait trouver de la place dans des baies, tirer des câbles …
 * Configurer les machines prenaient du temps : les installations et configurations étaient en partie manuelles et demandaient des aller-retour entre équipes sous forme de formulaires et de tickers d'incidents.
@@ -146,7 +150,7 @@ Pourquoi ça ne fonctionnait pas ?
 
 Au final la meilleure approche était de s'en passer, quitte à ajouter des couches d'indirections pour isoler artificiellement le code.
 
-Aujourd'hui la JVM et les serveurs d'applications ont été optimisés et les processeurs vont beaucoup plus vite (sur un MacBook Pro dernière génération, démarrer un serveur IBM Websphere ne prend plus qu'une vingtaine de minutes…).
+Aujourd'hui la JVM et les serveurs d'applications ont été optimisés et les processeurs vont beaucoup plus vite.
 JEE de son côté a pris en compte ces problèmes et permet aujourd'hui de tester hors serveur.
 
 Les alternatives à JEE tels que DropWizard ou Spring sont d'ailleurs encore plus rapides.
@@ -166,6 +170,7 @@ Cela veut aussi dire que les serveurs d'applications à l'ancienne sont désorma
 
 Les principales raisons de les conserver aujourd'hui sont le coût de la migration, les questions de licenses et de support, et potentiellement l'intégration avec le reste de l'écosystème de l'éditeur.
 
-Avec le temps qui passe et le murissement des alternatives, la force de ces arguments diminue petit à petit.
+Avec le temps qui passe et le murissement des alternatives plus légère comme Spring ou DropWizard, la force de ces arguments diminue petit à petit.
+En attendant que le serverless ou une autre approche les rendent à leur tour obsolètes.
 
-Espérons que les serveurs d'application pourront bientôt profiter de leur retraite bien méritée, et qu'ils pourront y attendre sereinement que les mainframe les y rejoignent.
+Espérons que les serveurs d'application pourront bientôt profiter de leur retraite bien méritée.

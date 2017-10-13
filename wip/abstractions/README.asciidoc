@@ -49,7 +49,7 @@ Quand les systèmes sont moins bien conçus, la fuite peut arriver beaucoup plus
 C'est par exemple le cas de certains ORM qui vont tout faire pour masquer le SQL généré afin de fournir une API très "objet", et qui vous obligeront à des contorsions sans fin, par exemple en utilisant des fonctionnalité non documentées, quand on a besoin d'influer sur une requête en particulier.
 
 Un outil peut donc avoir plusieurs frontières en fonction des usages qu'on en fait.
-Ce qui veut aussi dire qu'un outil d'apparence plus simple qu'un autre peut en réalité être plus compliqué à utiliser.
+Ce qui veut aussi dire qu'un outil d'apparence plus simple qu'un autre peut en réalité être plus compliqué et difficile à utiliser.
 
 === Frontières connues et abstractions qui mentent
 
@@ -114,13 +114,15 @@ Il s'agit d'un arbitrage à faire : vaut-il mieux quelque chose de plus riche ma
 
 Comment dit link:http://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[tef] : 
 « en pratique, un bus de message est un système qui transforme des erreurs réseau et de machines en problème de disques pleins ».
-x
 Au final, assembler des systèmes de types différents est donc assez hasardeux.
+*difficile de prévoir ce qui arrive aux effets de bords*
+*composer : il vaut mieux choisir des systèmes qui ont des frontières cohérentes*
 
 image::Three-tiered_symbolic_diagram_of_the_art_of_alchemy;_top_lev_Wellcome_L0004315.jpg[title="L'art difficile de combiner les systèmes"]
 
-
 == Passer à l'échelle : les frontières dans un SI
+
+*minimiser à la fois les frontières et les types frontières différentes*
 
 Dans un SI, il y a de nombreuses briques, chacune avec des besoins propres.
 De nombreuses fonctionnalités nécessitent de s'appuyer sur d'autres briques.
