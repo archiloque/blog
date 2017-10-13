@@ -114,35 +114,32 @@ Il s'agit d'un arbitrage à faire : vaut-il mieux quelque chose de plus riche ma
 
 Comment dit link:http://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[tef] : 
 « en pratique, un bus de message est un système qui transforme des erreurs réseau et de machines en problème de disques pleins ».
-Au final, assembler des systèmes de types différents est donc assez hasardeux.
-*difficile de prévoir ce qui arrive aux effets de bords*
-*composer : il vaut mieux choisir des systèmes qui ont des frontières cohérentes*
 
-image::Three-tiered_symbolic_diagram_of_the_art_of_alchemy;_top_lev_Wellcome_L0004315.jpg[title="L'art difficile de combiner les systèmes"]
+Au final, assembler des systèmes de types différents peut donc être risqué.
+Pour maîtriser le résultat, le mieux est de choisir des systèmes avec des frontières cohérentes.
+
+image::Three-tiered_symbolic_diagram_of_the_art_of_alchemy;_top_lev_Wellcome_L0004315.jpg[title="L'art subtil de combiner les systèmes"]
 
 == Passer à l'échelle : les frontières dans un SI
-
-*minimiser à la fois les frontières et les types frontières différentes*
 
 Dans un SI, il y a de nombreuses briques, chacune avec des besoins propres.
 De nombreuses fonctionnalités nécessitent de s'appuyer sur d'autres briques.
 
 Il s'agit donc du problème d'assemblage mais à grande échelle.
+Plus il y a de frontières, et plus elles sont communes à de nombreuses applications, plus le problème est compliqué, c'est link:https://blog.octo.com/decouplage-decouplage-decouplage/[le couplage].
 
-Si trop d'éléments exposent des frontières spécifiques, votre système va devenir un enfer.
+Il faut donc maîtriser les frontières qui sont exposées.
+Cela ne veut pas dire interdire les échanges entre systèmes, mais de faire des choix en fonction de votre contexte.
+
+En plus du nombre de frontières, il faut aussi piloter le nombre de *types* de frontières.
 
 Par exemple si vous avez cinq types bases de données qui ont des garanties différentes, vous aurez peut-être cinq types de services avec des SLAs différents : certains seront transactionnels, certains auront des risques d'incohérences…
-
 Et les services qui auront besoin de composer ces services ne sauront pas faire : que ce passe-t-il quand j'ai une moitié de donnée pas cohérente mais synchrone et une autre moitié cohérente mais asynchrone ?
-
 À l'inverse, si tout le monde expose un même type de frontière, comme des services REST, combiner les services et les SLAs est très simple.
-
 Le problème est d'autant plus compliqué que ceux·celles qui paient le prix de la complexité ne sont pas ceux qui développent le système qui expose une frontière, mais ceux qui l'utilisent.
 
-Pour s'en sortir, la seule approche viable est de limiter les types de frontières, et donc les types d'outils.
-Comme vu plus haut, cela veut dire qu'en contrepartie certaines choses seront plus difficiles, voire impossibles.
-
-Cela ne veut pas dire "un seul type d'outil", mais essayer d'en avoir le minimum viable.
+Dans ce cas l'approche est plus directe : il faut limiter les types de frontières, et donc les types d'outils et/ou de technologies.
+Comme vu plus haut, cela veut dire qu'en contrepartie certaines choses seront plus difficiles, voire impossibles, mais c'est le prix à payer pour limiter la complexité de votre SI. Cela ne veut pas dire "un seul type d'outil", mais essayer d'en avoir le minimum viable pour vous permettre de répondre à vos besoins.
 
 J'espère que la lecture ne vous aura pas découragé de faire de l'architecture, mais qu'elle vous aura au contraire donné envie d'en apprendre plus sur tous les outils qui existent.
 
