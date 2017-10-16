@@ -60,10 +60,10 @@ C'est une question fondamentale lorsque vous créez un nouveau système :
 est-ce-que mes besoins sont suffisamment différents des solutions existantes pour justifier de les exposer différemment, ou est-ce qu'il vaut mieux que j'utilise ou que j'étende une frontière déjà connue, au risque de me brider en rendant plus difficile à utiliser les fonctionnalités spécifiques de mon système.
 
 Une abstraction est censée masquer un fonctionnement complexe en en donnant une vision simplifiée tout en restant fidèle à la réalité.
-Dans le cas idéal, lorsque vous avez un besoin qui ne correspond pas à la frontière la plus simple, l'outil vous fournit un autre niveau, plus avancée, mais qui ne remet pas en cause l'existant.
+Dans le cas idéal, lorsque vous avez un besoin qui ne correspond pas à la frontière la plus simple, l'outil vous fournit un autre niveau, plus avancé, mais qui ne remet pas en cause l'existant.
 C'est le cas par exemple des _hint_ qui existent pour link:https://fr.wikipedia.org/wiki/Hint_(SQL)[en SQL] ou link:https://lwn.net/Articles/717755/[les appels systèmes Linux].
 
-Le problème est quand une abstraction ment, c'est à dire que le modèle qu'elle expose ne correspond pas à la réalité sous-jacente.
+Le problème est quand une abstraction ment, c'est-à-dire que le modèle qu'elle expose ne correspond pas à la réalité sous-jacente.
 Quand ce type d'abstraction se met à fuir, vous ne retrouvez pas alors avec quelque chose de plus complexe, mais avec quelque chose de complètement différent.
 Vous vous retrouvez alors à jongler avec deux modèles mentaux différents.
 
@@ -72,7 +72,7 @@ Souvent cette couche n'expose qu'une sous-partie limitée du SQL, et il faut don
 Ensuite cette surcouche ne permet souvent pas d'utiliser toute les fonctionnalités promises par l'outil.
 Suivant les cas, il faut donc utiliser du SQL, mais pas tout le SQL, ou le langage natif d'interrogation de la base.
 
-En anglais ce problème porte le nom d'link:https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch[impedance mismatch], c'est à dire d'inadaptation d'impédances.
+En anglais ce problème porte le nom d'link:https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch[impedance mismatch], c'est-à-dire d'inadéquation d'impédance.
 
 Réutiliser des frontières connues peut donc être intéressant, mais pose des risques.
 
@@ -83,7 +83,7 @@ vais-je obtenir un système avec les avantages des deux sans aucun des inconvén
 Et au final, serais-je en mesure de réexposer le résultat sous forme d'une frontière riche, cohérente et minimale ?
 
 Par exemple : bâtir un système synchrone sur un système asynchrone.
-L'approche minimale est simple : je simule un appel synchrone en appelant régulièrement le système asynchrone jusqu'à avoir une réponse.
+L'approche naïve est simple : je simule un appel synchrone en appelant régulièrement le système asynchrone jusqu'à avoir une réponse.
 Les choses se corsent si je veux pouvoir interrompre le traitement pour éviter de bloquer l'appelant jusqu'à la fin des temps.
 Faut-il dans ce cas demander une annulation ? Que se passe-t-il si le traitement s'est terminé pendant ce temps ?
 
@@ -91,7 +91,7 @@ Faut-il dans ce cas demander une annulation ? Que se passe-t-il si le traitement
 
 Quand une combinaison de deux systèmes fonctionne bien, elle peut avoir deux résultats :
 
-. un sur-ensemble d'un des deux système, c'est à dire quelque chose qui répond grosso-modo aux même usages que le premier mais avec des fonctionnalités en plus ;
+. un sur-ensemble d'un des deux système, c'est-à-dire quelque chose qui répond grosso-modo aux même usages que le premier mais avec des fonctionnalités en plus ;
 . un système suffisamment différent pour qu'il ne soit pas compatible avec les systèmes originaux.
 
 Le premier cas peut arriver quand on transforme un service centralisé en service distribué : le nouveau système répond aux mêmes besoins, et pourra en plus être redondant ou capable d'absorber plus de charge … mais en ajoutant de la complexité et de la latence réseau.
@@ -107,7 +107,7 @@ Quand on combine deux systèmes, le résultat est souvent d'avoir à déléguer 
 Un peu comme des angles morts.
 
 Par exemple dans un système distribué, garantir l'unicité d'un message est très compliqué, car grosso-modo cela nécessite de la centralisation.
-Il est donc souvent plus simple de que le système appelant s'en occupe.
+Il est donc souvent plus simple que le système appelant s'en occupe.
 
 Cela risque de créer des incohérences dans la frontière, et des fuites d'abstractions.
 Il s'agit d'un arbitrage à faire : vaut-il mieux quelque chose de plus riche mais de plus difficile à comprendre, voire de plus difficile à opérer ?
@@ -133,7 +133,7 @@ Cela ne veut pas dire interdire les échanges entre systèmes, mais de faire des
 
 En plus du nombre de frontières, il faut aussi piloter le nombre de *types* de frontières.
 
-Par exemple si vous avez cinq types bases de données qui ont des garanties différentes, vous aurez peut-être cinq types de services avec des SLAs différents : certains seront transactionnels, certains auront des risques d'incohérences…
+Par exemple si vous avez cinq types de bases de données qui ont des garanties différentes, vous aurez peut-être cinq types de services avec des SLAs différents : certains seront transactionnels, certains auront des risques d'incohérences…
 Et les services qui auront besoin de composer ces services ne sauront pas faire : que ce passe-t-il quand j'ai une moitié de donnée pas cohérente mais synchrone et une autre moitié cohérente mais asynchrone ?
 À l'inverse, si tout le monde expose un même type de frontière, comme des services REST, combiner les services et les SLAs est très simple.
 Le problème est d'autant plus compliqué que ceux·celles qui paient le prix de la complexité ne sont pas ceux qui développent le système qui expose une frontière, mais ceux qui l'utilisent.
@@ -146,5 +146,6 @@ J'espère que la lecture ne vous aura pas découragé de faire de l'architecture
 == Quelques lectures
 
 * link:http://shop.oreilly.com/product/0636920032175.do[Designing Data-Intensive Applications] : un livre de fond sur les différents types d'outils de base de données en s'intéressant tout particulièrement aux cas d'usages et aux limites de chacun
+* link:http://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf[End to end arguments in system design] : un article fondateur sur la question de la frontière de systèmes informatiques.
 * link:https://en.wikipedia.org/wiki/Systemantics[Systemantics] : un livre sur le design de système, très intéressant mais un peu déprimant
 * link:http://thegamedesignforum.com/features/rd_hl_1.html[Reverse Design: Half-Life] : c'est dans ce livre que j'ai trouvé l'approche sur l'hybridation de systèmes
