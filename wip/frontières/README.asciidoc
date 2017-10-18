@@ -11,10 +11,18 @@ Ce billet décrit mon approche actuelle sur le problème de frontières entre sy
 
 Du plus simple au plus complexe, je vais commencer par parler du problème à l'échelle d'un système, pour ensuite passer à deux pour finir à l'échelle du SI.
 
+== Qu'est ce qu'une frontière ?
+
+Je définis la frontière d'un système par l'ensemble des éléments que je dois connaître et/ou utiliser pour pouvoir manipuler ce système.
+Cela couvre les interface quels que soit leurs types (programmatique, visuelles) et la documentation, voir même le fonctionnement interne, si la compréhension de celui-ci est nécessaire pour utiliser un outil.
+
+Tout ce qui est à l'intérieur de la frontière est une boite noire : le reste du monde n'a pas à s'en préoccuper.
+
+Si utiliser un logiciel passe par des interractions humaines (faire une demande d'accès, avoir besoin d'aide car la documentation n'est pas suffisante), elle feront partie de la frontière.
+
 == Définir les frontières d'un système
 
 Dans un système distribué, une des choses les plus difficile est la manière de définir les frontière de chaque élément.
-Frontière est utilisé au sens de « quel(s) moyen(s) cette brique fournit-elle pour s'interconnecter à d'autres briques ? » ou « quels sont les point d'attaches entre cette brique et le reste de mon écosystème ? ».
 
 Le cas idéal est de fournir une frontière :
 
@@ -45,7 +53,9 @@ Quand les systèmes sont bien fait, la fuite est "naturelle", c'est à dire qu'e
 Ainsi dans une base de donnée persistante, quand la volumétrie devient très importante, il est normal de devoir comprendre comment la base stocke ses informations, afin de pouvoir configurer votre système d'exploitation ou de choisir le système de stockage le mieux adapté comme le type de disque de dur.
 En fonction de votre usage d'un outil, la frontière peut donc s'étendre.
 
-Quand les systèmes sont moins bien conçus, la fuite peut arriver beaucoup plus tôt, et notamment alors qu'on ne l'attendait pas.
+image::systeme.png[title="Exemple de frontière d'un système"]
+
+Quand les systèmes sont moins bien conçus ou qu'on tente de détourner leur usage, la fuite peut arriver beaucoup plus tôt, et notamment alors qu'on ne l'attendait pas.
 C'est par exemple le cas de certains ORM qui vont tout faire pour masquer le SQL généré afin de fournir une API très "objet", et qui vous obligeront à des contorsions sans fin, par exemple en utilisant des fonctionnalité non documentées, quand on a besoin d'influer sur une requête en particulier.
 
 Un outil peut donc avoir plusieurs frontières en fonction des usages qu'on en fait.
@@ -58,6 +68,8 @@ Par exemple exposer une base de donnée sous forme de SQL permet aux développeu
 
 C'est une question fondamentale lorsque vous créez un nouveau système :
 est-ce-que mes besoins sont suffisamment différents des solutions existantes pour justifier de les exposer différemment, ou est-ce qu'il vaut mieux que j'utilise ou que j'étende une frontière déjà connue, au risque de me brider en rendant plus difficile à utiliser les fonctionnalités spécifiques de mon système.
+
+C'est le même type de discussion qui se produit lorsqu'on étudie le choix d'un progiciel, dans une optique build vs. buy : les fonctionalités du progiciel me permettront-elles de répondre à l'ensemble de mes besoins, ou devrais-je faire des développement spécifiques ?
 
 Une abstraction est censée masquer un fonctionnement complexe en en donnant une vision simplifiée tout en restant fidèle à la réalité.
 Dans le cas idéal, lorsque vous avez un besoin qui ne correspond pas à la frontière la plus simple, l'outil vous fournit un autre niveau, plus avancé, mais qui ne remet pas en cause l'existant.
