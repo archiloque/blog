@@ -2,42 +2,49 @@
 
 Les nouveaux·elles arrivant·e·s à Octo me demandent régulièrement comment se mettre à l'architecture de SI.
 
-Ma réponse habituelle est « il faut aimer travailler avec des personnes différentes, connaître les outils, et quelques approches ».
-En d'autres termes « je n'en ai aucune idée, va donc tester des ESBs ça me laissera le temps de trouver une vraie réponse ».
+Ma réponse habituelle était « il faut aimer travailler avec des personnes différentes, connaître les outils, et quelques approches ».
+En d'autres termes « je n'en ai aucune idée, va donc jouer avec des bus de messages ça me laissera le temps de trouver une vraie réponse ».
 
-Ne trouvant au final pas de réponse simple, j'ai décidé d'appliquer l'approche de link:https://steve-yegge.blogspot.fr[Steve Yegge] qu'un très long article de blog vaut parfois mieux qu'un long discours.
+Ces dernier mois, des articles m'ont donné le link:http://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf[vocabulaire] et link:http://thegamedesignforum.com/features/rd_hl_1.html[les métaphores] qui me manquaient pour expliquer ce que j'avais en tête.
+Plus d'excuse il ne restait donc plus qu'à écrire.
 
-Ce billet décrit mon approche actuelle sur le problème de frontières entre systèmes.
+Ce billet décrit mon approche actuelle sur le problème de frontières entre systèmes, question qui est à la base de la construction des systèmes d'information.
 
-Du plus simple au plus complexe, je vais commencer par parler du problème à l'échelle d'un système, pour ensuite passer à deux pour finir à l'échelle du SI.
+En allant du plus simple au plus complexe, je vais commencer par parler du problème pour un système, pour ensuite passer à deux pour terminer à l'échelle du SI.
 
 == Qu'est ce qu'une frontière ?
 
 Je définis la frontière d'un système par l'ensemble des éléments que je dois connaître et/ou utiliser pour pouvoir manipuler ce système.
-Cela couvre les interface quels que soit leurs types (programmatique, visuelles) et la documentation, voir même le fonctionnement interne, si la compréhension de celui-ci est nécessaire pour utiliser un outil.
+Cela couvre les interface quels que soit leurs types (programmatique, graphiques…) et la documentation, voir même le fonctionnement interne, si la compréhension de celui-ci est nécessaire pour utiliser l'outil.
 
 Tout ce qui est à l'intérieur de la frontière est une boite noire : le reste du monde n'a pas à s'en préoccuper.
 
 Si utiliser un logiciel passe par des interractions humaines (faire une demande d'accès, avoir besoin d'aide car la documentation n'est pas suffisante), elle feront partie de la frontière.
 
-== Définir les frontières d'un système
+Cette question de la frontière se pose dès qu'une interraction a lieu, par exemple :
 
-Dans un système distribué, une des choses les plus difficile est la manière de définir les frontière de chaque élément.
+- quand vous développez un système qui expose des frontières à d'autres ;
+- quand vous cherchez la bonne manière d'utilisez un système ;
+- quand vous avez à choisir un outil ;
+- quand vous avez à définir une stratégie d'exposition pour un logiciel ou un SI.
 
-Le cas idéal est de fournir une frontière :
+Si le problème se pose principalement lorsque vous définissez vos propres frontières, la majorité des exemples de l'articles portent sur des outils "sur l'étagère" pour être plus faciles à comprendre.
+
+== Qu'est ce qu'une bonne frontière ?
+
+Une bonne frontière répond à trois caractéristiques :
 
 * riche : c'est à dire exposant des fonctionnalités les plus avancées possibles ;
-* cohérente : c'est à dire que les différents éléments de cette frontière soient cohérents, ce qui permet d'utiliser plus facilement le système.
-* minimale : toutes choses égales par ailleurs, une frontière plus réduite est plus facile à comprendre.
+* cohérente : c'est à dire que les différents éléments de cette frontière aient une logique uniforme entre eux, en particulier son vocabulaire, ce qui rend le système facile à comprendre ;
+* minimale : c'est à dire exposant ces fonctionalités à travers un nombre minimum de points d'accroche, ce qui la rend plus facile à utiliser et à tester ou à simuler.
 
-À la lecture des critères, on se rend compte qu'ils ont naturellement tendance à s'exclure les uns des autres :
-une frontière minimale ayant tendance à fournir moins de fonctions, une frontière riche et minimale risque d'être incohérente pour ne pas trop s'étendre, etc.
+image::venn.png[title="Pas d'article d'architecture sans diagramme de Venn"]
 
-image::venn.png[title="Pas d'article d'architecture dans diagramme de Venn"]
+Ces critères ont tendance à s'exclure les uns des autres :
+par exemple une frontière minimale ayant tendance à fournir moins de fonctions, une frontière riche et minimale risque d'être incohérente pour ne pas trop s'étendre, etc.
+L'objectif est de parvenir à avoir les trois à la fois, ou du moins le bon équilibre entre les trois qui fait qu'une frontière est adaptée à un cas d'utilisation donné, et que ce cas d'utilisation soit le votre.
 
-Les bons outils ont généralement deux caractéristiques :  ils offres des fonctionnalités intéressantes et leurs frontières répondent aux trois critères.
-Cela s'observe notamment dans les famille de produits très proches : elles correspondent à des zones d'équilibre où les deux caractéristiques sont remplies.
-C'est par exemple le cas des bases de données SQL ou des outils classiques de transfert de messages.
+C'est par exemple le cas des languages ou des protocoles populaires comme SQL ou HTTP.
 
 === Attention : fuite d'abstraction
 
@@ -69,7 +76,7 @@ Par exemple exposer une base de donnée sous forme de SQL permet aux développeu
 C'est une question fondamentale lorsque vous créez un nouveau système :
 est-ce-que mes besoins sont suffisamment différents des solutions existantes pour justifier de les exposer différemment, ou est-ce qu'il vaut mieux que j'utilise ou que j'étende une frontière déjà connue, au risque de me brider en rendant plus difficile à utiliser les fonctionnalités spécifiques de mon système.
 
-C'est le même type de discussion qui se produit lorsqu'on étudie le choix d'un progiciel, dans une optique build vs. buy : les fonctionalités du progiciel me permettront-elles de répondre à l'ensemble de mes besoins, ou devrais-je faire des développement spécifiques ?
+C'est le même type de discussion qui se produit lorsqu'on étudie le choix d'un progiciel, dans une optique _build vs. buy_ : les fonctionalités du progiciel me permettront-elles de répondre à l'ensemble de mes besoins, ou devrais-je faire des développements spécifiques ?
 
 Une abstraction est censée masquer un fonctionnement complexe en en donnant une vision simplifiée tout en restant fidèle à la réalité.
 Dans le cas idéal, lorsque vous avez un besoin qui ne correspond pas à la frontière la plus simple, l'outil vous fournit un autre niveau, plus avancé, mais qui ne remet pas en cause l'existant.
@@ -84,7 +91,7 @@ Souvent cette couche n'expose qu'une sous-partie limitée du SQL, et il faut don
 Ensuite cette surcouche ne permet souvent pas d'utiliser toute les fonctionnalités promises par l'outil.
 Suivant les cas, il faut donc utiliser du SQL, mais pas tout le SQL, ou le langage natif d'interrogation de la base.
 
-En anglais ce problème porte le nom d'link:https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch[impedance mismatch], c'est-à-dire d'inadéquation d'impédance.
+En anglais ce problème porte le nom d'link:https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch[impedance mismatch], c'est-à-dire d'inadaptation d'impédance.
 
 Réutiliser des frontières connues peut donc être intéressant, mais pose des risques.
 
@@ -95,9 +102,11 @@ vais-je obtenir un système avec les avantages des deux sans aucun des inconvén
 Et au final, serais-je en mesure de réexposer le résultat sous forme d'une frontière riche, cohérente et minimale ?
 
 Par exemple : bâtir un système synchrone sur un système asynchrone.
-L'approche naïve est simple : je simule un appel synchrone en appelant régulièrement le système asynchrone jusqu'à avoir une réponse.
-Les choses se corsent si je veux pouvoir interrompre le traitement pour éviter de bloquer l'appelant jusqu'à la fin des temps.
-Faut-il dans ce cas demander une annulation ? Que se passe-t-il si le traitement s'est terminé pendant ce temps ?
+L'approche naïve est simple à mettre en œuvre: simuler un appel synchrone en appelant régulièrement le système asynchrone jusqu'à avoir une réponse.
+Mais comment faire pour pouvoir interrompre le traitement en cours de route, ce qu'on s'attend à pouvoir faire dans le cas d'un « vrai » système synchrone ?
+Faut-il dans ce cas demander une annulation ? Mais que se passe-t-il si le traitement s'est terminé pendant ce temps ? …
+
+On atteint alors la limite de la solution naïve.
 
 === Améliorer ou hybrider ?
 
@@ -106,12 +115,16 @@ Quand une combinaison de deux systèmes fonctionne bien, elle peut avoir deux r�
 . un sur-ensemble d'un des deux système, c'est-à-dire quelque chose qui répond grosso-modo aux même usages que le premier mais avec des fonctionnalités en plus ;
 . un système suffisamment différent pour qu'il ne soit pas compatible avec les systèmes originaux.
 
-Le premier cas peut arriver quand on transforme un service centralisé en service distribué : le nouveau système répond aux mêmes besoins, et pourra en plus être redondant ou capable d'absorber plus de charge … mais en ajoutant de la complexité et de la latence réseau.
+Prenons le cas d'un outil magique permettant de distribuer des traitements.
 
-Le deuxième est celui de beaucoup de bases de données distribuées : en distribuant une base de données vous faites généralement une croix sur la transactionnalité. Elle n'a donc plus les mêmes usages, mais pourra servir dans d'autres cas.
+Si on l'ajoute à un système de calcul sans stockage de données, il peut permettre d'augmenter la vitesse de traitement tout en augmentant la complexité interne mais sans rien sacrifier.
+Du point de vue de la frontière, le résultat est donc mieux que l'ancien sans effet secondaire.
 
-Le risque est de choisir un système du deuxième type sans se rendre compte qu'au passage on a perdu quelque chose d'essentiel.
-Faites donc très attention quand un éditeur vous promet une solution miracle : parfois il s'agit d'une invention révolutionnaire, mais souvent pour obtenir ce résultat l'outil aura discrètement supprimé une fonctionnalité que vous tenez pour acquise.
+Si on l'ajoute à un système de base de donnée, il peut permettre d'augmenter la vitesse de traitement en sacrifiant la transactionnalité et/ou la cohérence des données.
+Le nouvel outil n'a donc plus les mêmes usages que l'ancien, il s'agit d'un hybride.
+
+Ainsi quand un éditeur logiciel vous promet un produit miracle qui fait quelque chose que personne d'autre ne sait faire : s'agit-il d'un cas d'amélioration ou d'un cas d'hybridation ?
+Et s'il s'agit d'une hybridation, répond-il bien à votre besoin ou allez-vous aterrir dans un cas limite qui aura l'air de fonctionner mais pas tout à fait ?
 
 === Agrandir la frontière
 
@@ -123,9 +136,6 @@ Il est donc souvent plus simple que le système appelant s'en occupe.
 
 Cela risque de créer des incohérences dans la frontière, et des fuites d'abstractions.
 Il s'agit d'un arbitrage à faire : vaut-il mieux quelque chose de plus riche mais de plus difficile à comprendre, voire de plus difficile à opérer ?
-
-Comment dit link:http://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[tef] : 
-« en pratique, un bus de message est un système qui transforme des erreurs réseau et de machines en problème de disques pleins ».
 
 Au final, assembler des systèmes de types différents peut donc être risqué.
 Pour maîtriser le résultat, le mieux est de choisir des systèmes avec des frontières cohérentes.

@@ -2,66 +2,66 @@
 
 Quand j'ai commencé à travailler, les serveurs d'applications Java étaient à la mode.
 
-image::511WWNNA41L.jpg[title="Souvenirs, Souvenirs"]
+image::511WWNNA41L.jpg[title="Souvenirs"]
 
-Aujourd'hui ils sont en voir de disparition, et quand on prononce le mot "J2EE" (ou Java EE comme on dit maintenant), c'est surtout pour évoquer des promesses déçues et des projets terminés dans la douleurs.
+Aujourd'hui, ils sont en voie de disparition, et quand on prononce le mot "J2EE" (ou Java EE comme on dit maintenant), c'est surtout pour évoquer des promesses déçues et des projets terminés dans la douleur.
 
 En repensant à cette époque, je me suis rendu compte d'une chose :
-certes les spécifications et les produits avaient de nombreux problèmes,
+certes les spécifications et les produits présentaient beaucoup de problèmes,
 mais de nombreuses approches qu'on critiquait alors se sont révélées les bonnes sur le long terme.
 
 Je ne veux pas dire que _toutes_ les idées étaient bonnes : certaines étaient franchement mauvaises, et n'auraient jamais pu fonctionner même dans le meilleur de mondes.
 La multiplication des nouveautés était en elle-même source de difficultés, link:http://www.bbc.com/news/business-11944966[même les éditeurs le disent].
 
-Si vous êtes un·e jeune développeur·euse, pour qui J2EE évoque une époque lointaine et mystérieuse, comme le jurassique ou le septennat de Valéry Giscard d'Estaing, cet article vous permettra de comprendre pourquoi les personnes étaient aussi enthousiastes à l'époque, et pourquoi il·elle·s sont parfois un peu dubitatif·ve·s face aux promesses de nouvelles technologies.
+Si vous êtes un·e jeune développeur·euse, pour qui J2EE évoque une époque lointaine et mystérieuse, comme le Jurassique ou le septennat de Valéry Giscard d'Estaing, cet article vous permettra de comprendre pourquoi les personnes étaient aussi enthousiastes à l'époque, et pourquoi il·elle·s sont parfois un peu dubitatif·ve·s face aux promesses de nouvelles technologies.
 
 image::giscard.jpg[title="Quand l'architecte J2EE vient à l'afterwork, loltoshop par Anaïs Phinith"]
 
-Si vous êtes une personnes qui a vécu cette époque et qui utilise peut-être encore ces technologies, il devrait vous donner des idées sur les nouvelles approches utilisées aujourd'hui.
+Si vous êtes une personnes qui a vécu cette époque et qui utilise peut-être encore ces technologies, il vous éclairera sur les nouvelles approches utilisées aujourd'hui.
 Cela pourrait vous donner des idées sur la manières dont on peut désormais répondre à des besoins que vous avez renoncé à satisfaire.
 
-== Note : J2EE et serveurs d'application d'entreprise
+== Note : J2EE et serveurs d'applications d'entreprise
 
-Dans l'article, je  mélange fonctionnalités J2EE et fonctionnalités qui ne sont pas J2EE mais qui sont fournies par la plupart des serveurs d'application d'entreprise.
+Dans l'article, je  mélange fonctionnalités J2EE et fonctionnalités qui ne sont pas J2EE mais qui sont fournies par la plupart des serveurs d'applications d'entreprise.
 Je me permets de le faire pour deux raisons :
 
 * Les différents serveurs Java d'entreprise ont rapidement fourni le même type de fonctionnalités, qu'elles soient ou pas dans la spécification ;
-* Personne n'a jamais vraiment compris le périmètre de J2EE : entre ce qui était dans la spécification et qui ne fonctionnait pas, ce qui était pas dans la spécification et qui fonctionnait mais seulement de manière non portable … personne n'y retrouvait ses petits.
+* Personne n'a jamais vraiment compris le périmètre de J2EE : entre ce qui était dans la spécification et qui ne fonctionnait pas, ce qui n'était pas dans la spécification et qui fonctionnait mais seulement de manière non portable… personne n'y retrouvait ses petits.
 
 == Gestion de la configuration
 
-JNDI permettait de spécifier des paramètres à passer aux applications depuis le serveur. Cela aurait du permettre de redéployer le même artefact de la recette à la production sans avoir à lui adjoindre de fichiers de configurations propre à chaque étape.
+JNDI permettait de spécifier des paramètres à passer aux applications depuis le serveur. Cela aurait dû permettre de redéployer le même artefact de la recette à la production sans avoir à lui adjoindre de fichiers de configuration spécifiques à chaque étape.
 
 Pourquoi ça ne fonctionnait pas ?
 
-* La plupart des frameworks Java ne le supportaient pas et ne savaient que lire des fichiers de configurations.
-* L'outillage et les pratiques n'étaient pas adaptées de sorte qu'on se retrouvait souvent à modifier les variables manuellement sur les serveur. Cette modification avait lieu manuellement et sans audit ni gestion de version, ce qui était donc peu pratique et risqué.
+* La plupart des frameworks Java ne le supportaient pas et ne savaient que lire des fichiers de configuration.
+* L'outillage et les pratiques n'étaient pas adaptées de sorte qu'on se retrouvait souvent à modifier les variables manuellement sur les serveurs. Cette modification avait lieu manuellement et sans audit, ni gestion de version, ce qui était donc peu pratique et risqué.
 
 Aujourd'hui : c'est la même approche choisie par Docker via les variables d’environnement ou le _service discovery_, et les outils sont en train de se moderniser pour s'y adapter.
 
 == Gestion de cluster et scalabilité
 
-À l'arrivées des serveurs d'applications, le web était l'avenir, et la manière d'y aller était la scalabilité horizontale.
-L'approche en vogue de remplacer les mainframe par des fermes de serveurs Unix, moins puissants mais beaucoup moins cher.
+À l'arrivée des serveurs d'applications, le web était l'avenir, et la manière d'y aller était la scalabilité horizontale.
+L'approche en vogue consistant à remplacer les mainframes par des fermes de serveurs Unix, moins puissants mais beaucoup moins chers.
 
 Pour limiter la complexité induite par la multiplication des machines, l'idée est de gérer un ensemble de serveurs vus comme une ressource unique et plus des machines une par une.
 
 Il y avait trois manière de faire du clustering : matériel, fournis pas les systèmes d'exploitation, et par les serveur d'applications.
 
-Le clustering matériel et OS était plus lourd à mettre en œuvre et plus couteux, il était donc plutôt réservé aux fonctions de stockage, alors que pour les traitements on préfèreait essayer de s'appuyer sur les serveurs d'applications.
+Le clustering matériel et OS était plus lourd à mettre en œuvre et plus coûteux, il était donc plutôt réservé aux fonctions de stockage, alors que pour les traitements, on préfèrait essayer de s'appuyer sur les serveurs d'applications.
 
 Pourquoi ça ne fonctionnait pas ?
 
-* Comme on le verra plus bas beaucoup de fonctionnalités _cluster-aware_ fonctionnaient mal, on se contentait donc d'utiliser le minimum qui fonctionnait comme le monitoring.
-* Les machines Unix de l'époque, même si elles valaient moins que les mainframe, restaient assez coûteuses en matériel et en licenses.
-* Ajouter de nouveaux serveurs physique n'était pas simple : il fallait trouver de la place dans des baies, tirer des câbles …
-* Configurer les machines prenaient du temps : les installations et configurations étaient en partie manuelles et demandaient des aller-retour entre équipes sous forme de formulaires et de tickers d'incidents.
+* Comme on le verra plus bas, beaucoup de fonctionnalités _cluster-aware_ fonctionnaient mal, on se contentait donc d'utiliser le minimum qui fonctionnait comme le monitoring.
+* Les machines Unix de l'époque, même si elles valaient moins que les mainframes, restaient assez coûteuses en matériel et en licenses.
+* Ajouter de nouveaux serveurs physique n'était pas simple : il fallait trouver de la place dans des baies, tirer des câbles…
+* Configurer les machines prenait du temps : les installations et configurations étaient en partie manuelles et demandaient des allers-retours entre équipes sous forme de formulaires et de tickets d'incidents.
 
-En pratique il s'agissait surtout d'être conservateur en utilisant au mieux un nombre limité de machines.
+En pratique, il s'agissait surtout d'être conservateur en utilisant au mieux un nombre limité de machines.
 
-Aujourd'hui, si les mainframe sont toujours là, les serveurs Unix eux sont en train de faire leur sortie.
-Les serveurs x86 qui les ont remplacés sont beaucoup plus puissant pour le même prix, et l'automatisation et la virtualisation permettent plus facilement d'ajouter des serveurs.
-La scalabilité n'est pas gérée au niveau des serveurs d'applications mais par l'infrastructure et les outils : proxys, réseau …
+Aujourd'hui, si les mainframes sont toujours là, les serveurs Unix eux sont en train de faire leur sortie.
+Les serveurs x86 qui les ont remplacés sont beaucoup plus puissants pour le même prix, et l'automatisation et la virtualisation permettent plus facilement d'ajouter des serveurs.
+La scalabilité n'est pas gérée au niveau des serveurs d'applications mais par l'infrastructure et les outils : proxys, réseau…
 La simplification des architecture ajoutée à l'industrialisation ont permis d'atteindre la cible.
 
 == Gestion de session _cluster-aware_
@@ -70,33 +70,33 @@ Les serveurs fournissaient une gestion de session utilisation, l'équivalent d'u
 
 Pourquoi ça ne fonctionnait pas ?
 
-* Les implémentation fournies nativement pas les serveurs d'applications n'était pas à la hauteur en terme de performance et de fiabilité, et les implémentations externes fiables comme Hazelcast ont mis du temps à arriver.
+* Les implémentation fournies nativement par les serveurs d'applications n'était pas à la hauteur en terme de performance et de fiabilité, et les implémentations externes fiables comme Hazelcast ont mis du temps à arriver.
 * Les patterns n'étaient pas encore matures et les développeur·euse·s avaient tendance à vouloir stocker beaucoup trop de choses en session car c'était "magique", ce qui écroulait les performances.
 
-Au final on utilisait beaucoup l'affinité de session, c'est à dire la capacité à lier une session à un serveur en particulier.
+Au final, on utilisait beaucoup l'affinité de session, c'est-à-dire la capacité à lier une session à un serveur en particulier.
 
-Aujourd'hui : on a appris à stocker le minimum dans une session voire à s'en passer, et des solutions NoSQL sont matures et permettent de répondre aux besoins
+Aujourd'hui : on a appris à stocker le minimum dans une session voire à s'en passer, et des solutions NoSQL sont matures et permettent de répondre aux besoins.
 
-== La mutualisation des serveurs
+== Mutualisation des serveurs
 
 Comme on l'a déjà dit, les machines de l'époque coûtaient cher.
-Pour mutualiser la consommation de mémoire  il était possible de déployer plusieurs application dans un serveur d'application.
-Cette approche était aussi beaucoup utilisée pour limiter les coûts de licenses.
+Pour mutualiser la consommation de mémoire,  il était possible de déployer plusieurs applications dans un serveur d'applications.
+Cette approche était aussi beaucoup utilisée pour limiter les coûts de licences.
 
 Pourquoi ça ne fonctionnait pas ?
 
 L'isolation de composants n'était pas à la hauteur : 
 
-* une application qui consommait trop de resources mettait en danger les autres ;
-* certaines modifications nécessitaient des redémarrage du serveur, même si elles n'étaient utiles que pour seule application ;
-* des bibliothèques partagées rendaient les montées de versions plus complexes.
+* une application qui consommait trop de ressources mettait en danger les autres ;
+* certaines modifications nécessitaient des redémarrages du serveur, même si elles n'étaient utiles que pour *seule application* ;
+* des bibliothèques partagées rendaient les montées de version plus complexes.
 
-Aujourd'hui : on mutualise toujours mais l'augmentation de la mémoire des serveurs permet de le faire plus "bas" qu'au niveau du serveur : après la phase "une VM pour chaque application", les conteneurs ont la même approche, et les problèmes d'isolations sont de retour.
+Aujourd'hui : on mutualise toujours mais l'augmentation de la mémoire des serveurs permet de le faire plus "bas" qu'au niveau du serveur : après la phase "une VM pour chaque application", les conteneurs ont la même approche, et les problèmes d'isolation sont de retour.
 
 == Bascule à chaud en production
 
 Pour éviter les interruptions de services, les serveurs devraient pouvoir faire des bascules à chaud sur un nouvelle version d'une application.
-Sur le papier, l'idée était prometeuse : le serveur routait les nouvelles requêtes sur la nouvelle version, en laissant les  requêtes en cours d'exécution se terminer, puis décommissionnait l'ancienne version quand plus aucune requête ne l'utilisait.
+Sur le papier, l'idée était prometteuse : le serveur routait les nouvelles requêtes sur la nouvelle version, en laissant les  requêtes en cours d'exécution se terminer, puis décommissionnait l'ancienne version quand plus aucune requête ne l'utilisait.
 
 Ce déploiement et cette bascule étaient même _cluster-aware_ : les artefacts étaient déployés automatiquement sur tous les nœuds du groupe de serveurs.
 
@@ -104,10 +104,10 @@ Pourquoi c'était peu utilisé ?
 
 * Cela ne correspondait pas aux pratiques ops de l'époque.
 * Des problèmes de fuites mémoire, certaines dues à des problèmes d'implémentation, d'autres structurelles, rendaient l'utilisation de la fonctionnalité risquée. Mieux valait une interruption de service planifiée qu'un crash inattendu et non prévu.
-* Les montées de versions applicatives étaient liées à des mises à jour de données qui étaient rarement prévu pour se faire sans interruption de services. Comme il fallait de toutes façon couper les accès pour mettre à jour la base de donnée, avoir des serveurs d'applications indisponibles au même moment ne posait pas de problème.
+* Les montées de version applicatives étaient liées à des mises à jour de données qui étaient rarement prévues pour se faire sans interruption de services. Comme il fallait de toute façon couper les accès pour mettre à jour la base de donnée, avoir des serveurs d'applications indisponibles au même moment ne posait pas de problème.
 
 Aujourd'hui : les pratiques ops ont beaucoup évolué mais certains problèmes de fuite mémoire sont toujours là.
-Au final la bascule se fait plutôt par des proxys réseau qu'au niveau d'un serveur.
+Au final, la bascule se fait plutôt par des proxys réseau qu'au niveau d'un serveur.
 
 Reste parfois le soucis des modèles de données, même si link:https://blog.octo.com/versionning-dapi-zero-downtime-deployment-et-migration-sql-theorie-et-cas-pratique/[les pratiques se sont améliorées] et que le NoSQL apporte des réponses.
 
@@ -115,7 +115,7 @@ Reste parfois le soucis des modèles de données, même si link:https://blog.oct
 
 Les EJBs sont un moyen de packager des groupes de fonctionnalités dans un artefact en exposant une façade normée sous forme de services.
 L'idée était de permettre de développer des applications complexes en composants des briques élémentaires bien séparées avec des appels transactionnels entre elles tout en permettant de link:https://blog.octo.com/decouplage-decouplage-decouplage/[masquer la localisation].
-Lorsque les EJBs étaient déployés ensemble les appels se faisaient localement, ce qui permettait d'économiser la latence réseau en conservant l'isolation.
+Lorsque les EJBs étaient déployés ensemble, les appels se faisaient localement, ce qui permettait d'économiser la latence réseau en conservant l'isolation.
 
 Pourquoi ça ne fonctionnait pas ?
 
@@ -123,7 +123,7 @@ Pourquoi ça ne fonctionnait pas ?
 * Les découplages de service se faisaient sans découplage de persistance, ce qui limitait l'indépendance des différents composants.
 
 Aujourd'hui : les microservices vont dans la même direction en s'appuyant sur d'autres protocoles.
-Les avancées dans les pratiques de découpage métier comme DDD, ou l'approche REST d'exposer uniquement des resources peuvent faire en sorte que les résultats soient meilleurs.
+Les avancées dans les pratiques de découpage métier comme DDD, ou l'approche REST qui consiste à exposer uniquement des ressources, peuvent faire en sorte que les résultats soient meilleurs.
 
 == JAAS
 
@@ -145,32 +145,32 @@ Pour accélérer le cycle le développement, l'idée était de permettre un red�
 
 Pourquoi ça ne fonctionnait pas ?
 
-* Pendant longtemps la fonctionnalité n'a pas été stable, ce qui faisait perdre du temps : "est ce que c'est un bug dans mon code ou est ce que c'est le rechargement qui a cassé un truc ?".
+* Pendant longtemps, la fonctionnalité n'a pas été stable, ce qui faisait perdre du temps : "est-ce-que c'est un bug dans mon code ou est-ce-que c'est le rechargement qui a cassé un truc ?".
 * Seuls certains types de modifications étaient valides (typiquement celles qui étaient limitées à l'intérieur de classes), et celles qui ne l'étaient pas n'étaient pas documentées et ne généraient pas d'erreur.
 
-Au final la meilleure approche était de s'en passer, quitte à ajouter des couches d'indirections pour isoler artificiellement le code.
+Au final, la meilleure approche était de s'en passer, quitte à ajouter des couches d'indirections pour isoler artificiellement le code.
 
-Aujourd'hui la JVM et les serveurs d'applications ont été optimisés et les processeurs vont beaucoup plus vite.
+Aujourd'hui, la JVM et les serveurs d'applications ont été optimisés et les processeurs vont beaucoup plus vite.
 JEE de son côté a pris en compte ces problèmes et permet aujourd'hui de tester hors serveur.
 
 Les alternatives à JEE tels que DropWizard ou Spring sont d'ailleurs encore plus rapides.
 
-Les limites ayant causé la nécessité d'avoir cette fonctionnalité ayant disparu, elle est désormais inutile.
+Les limites qui ont causé la nécessité d'avoir cette fonctionnalité ayant disparu, elle est désormais inutile.
 
 == Pour conclure
 
 Cette revue permet de dégager deux choses :
 
-Beaucoup d'idées ont échoué pour cause de maturité autant voir plus que pour des raisons techniques.
+Beaucoup d'idées ont échoué pour cause de maturité autant, voire plus, que pour des raisons techniques.
 
-Ensuite Les serveurs d'applications essayaient de résoudre beaucoup de problèmes tous seuls.
-Aujourd'hui les solutions sont réparties à différents niveau de la _stack_ : de l'OS à la configuration réseau.
+Ensuite, les serveurs d'applications essayaient de résoudre beaucoup de problèmes tous seuls.
+Aujourd'hui, les solutions sont réparties à différents niveau de la _stack_ : de l'OS à la configuration réseau.
 Cela permet de diminuer la complexité de ce qui est demandé aux stack applicatives et donc de faciliter l'adoption de nouvelles technologies.
-Cela veut aussi dire que les serveurs d'applications à l'ancienne sont désormais un poids mort dans un SI,
+Cela veut aussi dire que les serveurs d'applications à l'ancienne sont désormais un poids mort dans un SI.
 
 Les principales raisons de les conserver aujourd'hui sont le coût de la migration, les questions de licenses et de support, et potentiellement l'intégration avec le reste de l'écosystème de l'éditeur.
 
 Avec le temps qui passe et le murissement des alternatives plus légère comme Spring ou DropWizard, la force de ces arguments diminue petit à petit.
 En attendant que le serverless ou une autre approche les rendent à leur tour obsolètes.
 
-Espérons que les serveurs d'application pourront bientôt profiter de leur retraite bien méritée.
+Espérons que les serveurs d'applications pourront bientôt profiter de leur retraite bien méritée.
