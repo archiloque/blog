@@ -5,17 +5,17 @@ Les nouveaux·elles arrivant·e·s à Octo me demandent régulièrement comment 
 Ma réponse habituelle était « il faut aimer travailler avec des personnes différentes, connaître les outils, et quelques approches ».
 En d'autres termes « je n'en ai aucune idée, va donc jouer avec des bus de messages ça me laissera le temps de trouver une vraie réponse ».
 
-Ces dernier mois, des articles m'ont donné le link:http://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf[vocabulaire] et link:http://thegamedesignforum.com/features/rd_hl_1.html[les métaphores] qui me manquaient pour expliquer ce que j'avais en tête.
-Plus d'excuse il ne restait donc plus qu'à écrire.
+Ces dernier mois, des articles m'ont donné le link:http://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf[vocabulaire] et link:http://thegamedesignforum.com/features/rd_hl_1.html[les métaphores] qui me manquaient pour commencer à expliquer ce que j'avais en tête.
+Plus d'excuse il ne restait plus qu'à écrire.
 
-Ce billet décrit mon approche actuelle sur le problème de frontières entre systèmes, question qui est à la base de la construction des systèmes d'information.
+Ce billet décrit mon approche actuelle sur le problème de frontières entre systèmes, une des questions fondamentales pour construire des systèmes d'informations gouvernables et pérennes.
 
-En allant du plus simple au plus complexe, je vais commencer par parler du problème pour un système, pour ensuite passer à deux pour terminer à l'échelle du SI.
+En allant du plus simple au plus complexe, je vais commencer par parler du problème pour un système, puis passer à deux pour terminer à l'échelle du SI.
 
 == Qu'est ce qu'une frontière ?
 
-Je définis la frontière d'un système par l'ensemble des éléments que je dois connaître et/ou utiliser pour pouvoir manipuler ce système.
-Cela couvre les interface quels que soit leurs types (programmatique, graphiques…) et la documentation, voir même le fonctionnement interne, si la compréhension de celui-ci est nécessaire pour utiliser l'outil.
+Pour cet article, la frontière d'un système est l'ensemble des éléments à dois connaître et/ou utiliser pour pouvoir le manipuler.
+Cela couvre les interface quels que soit leurs types (programmatique, graphiques…) et la documentation, voir même le fonctionnement interne, si la compréhension de celui-ci est nécessaire pour une bonne utilisation.
 
 Tout ce qui est à l'intérieur de la frontière est une boite noire : le reste du monde n'a pas à s'en préoccuper.
 
@@ -28,32 +28,34 @@ Cette question de la frontière se pose dès qu'une interraction a lieu, par exe
 - quand vous avez à choisir un outil ;
 - quand vous avez à définir une stratégie d'exposition pour un logiciel ou un SI.
 
-Si le problème se pose principalement lorsque vous définissez vos propres frontières, la majorité des exemples de l'articles portent sur des outils "sur l'étagère" pour être plus faciles à comprendre.
+Si le problème se pose principalement lorsque vous définissez vos propres frontières et donc créez vos propres logiciels, la majorité des exemples de l'articles portent sur des outils "sur l'étagère" pour être plus faciles à comprendre.
 
 == Qu'est ce qu'une bonne frontière ?
 
 Une bonne frontière répond à trois caractéristiques :
 
 * riche : c'est à dire exposant des fonctionnalités les plus avancées possibles ;
-* cohérente : c'est à dire que les différents éléments de cette frontière aient une logique uniforme entre eux, en particulier son vocabulaire, ce qui rend le système facile à comprendre ;
+* cohérente : c'est à dire que les différents éléments de cette frontière aient une logique uniforme entre eux, en particulier un vocabulaire commun, ce qui rend le système facile à comprendre ;
 * minimale : c'est à dire exposant ces fonctionalités à travers un nombre minimum de points d'accroche, ce qui la rend plus facile à utiliser et à tester ou à simuler.
 
 image::venn.png[title="Pas d'article d'architecture sans diagramme de Venn"]
 
-Ces critères ont tendance à s'exclure les uns des autres :
-par exemple une frontière minimale ayant tendance à fournir moins de fonctions, une frontière riche et minimale risque d'être incohérente pour ne pas trop s'étendre, etc.
+Ces critères ont tendance à s'exclure les uns des autres : par exemple une frontière riche et minimale risque de prendre des raccourcis et d'être incohérente.
+
 L'objectif est de parvenir à avoir les trois à la fois, ou du moins le bon équilibre entre les trois qui fait qu'une frontière est adaptée à un cas d'utilisation donné, et que ce cas d'utilisation soit le votre.
 
-C'est par exemple le cas des languages ou des protocoles populaires comme SQL ou HTTP.
+C'est par exemple le cas des languages ou des protocoles populaires comme SQL ou HTTP : ils correspondent à une zone idéale entre les trois.
 
 === Attention : fuite d'abstraction
 
 La frontière fournit une abstraction d'un système : elle dit en gros "ne vous préoccupez pas de toute la fonctionnalité de mon fonctionnement interne, voilà comment vous devez communiquer avec moi et c'est tout ce dont vous avez besoin de savoir".
 
-Par exemple pour utiliser une base de donnée SQL, vous n'avez pas besoin de savoir comment fonctionne son moteur de requêtage, comme elle stocke ses données sur disque ou la manière dont elle utilise la mémoire.
-Tout ce dont vous avez à vous préoccuper en théorie c'est d'écrire du SQL selon la norme, de structurer vos données comme il faut, et de mettre des index aux bons endroits.
+Par exemple pour utiliser une base de donnée SQL, vous n'avez pas besoin de savoir comment fonctionne son moteur de requêtage, sa manière de stocker les données ou sa manière d'utiliser la mémoire.
+Tout ce dont vous avez à vous préoccuper en théorie c'est d'écrire du SQL selon la norme, de bien structurer et de mettre des index aux bons endroits.
 
 Seulement, link:http://french.joelonsoftware.com/Articles/LeakyAbstractions.html[les abstractions ont tendance à fuir], c'est à dire qu'il est souvent nécessaire de comprendre le fonctionnement interne d'un système pour bien l'utiliser.
+
+La frontière n'est pas donc pas celle qu'on croit.
 
 Quand les systèmes sont bien fait, la fuite est "naturelle", c'est à dire qu'elle se produit à des endroits où on s'attend à ce qu'elle se produise.
 
@@ -70,21 +72,21 @@ Ce qui veut aussi dire qu'un outil d'apparence plus simple qu'un autre peut en r
 
 === Frontières connues et abstractions qui mentent
 
-Quand un certain type de frontière devient connue, exposer cette même abstraction a de la valeur car cela permet de réutiliser ce qu'on sait déjà.
-Par exemple exposer une base de donnée sous forme de SQL permet aux développeurs de pouvoir l'utiliser rapidement en s'appuyant sur leurs connaissances SQL plutôt que d'apprendre un nouveau langage.
+Quand un certain type de frontière devient connue par les développeur·euse·s, s'appuyer dessus a de la valeur car cela permet de capitaliser sur ce qu'il·elle·s savent déjà.
+Par exemple exposer une base de donnée sous forme de SQL permet de pouvoir l'utiliser rapidement en s'appuyant sur ses connaissances SQL plutôt que d'apprendre un nouveau langage.
 
 C'est une question fondamentale lorsque vous créez un nouveau système :
-est-ce-que mes besoins sont suffisamment différents des solutions existantes pour justifier de les exposer différemment, ou est-ce qu'il vaut mieux que j'utilise ou que j'étende une frontière déjà connue, au risque de me brider en rendant plus difficile à utiliser les fonctionnalités spécifiques de mon système.
+est-ce-que mes besoins sont suffisamment différents des solutions existantes pour justifier de les exposer différemment, ou est-ce qu'il vaut mieux utiliser ou étendre une frontière déjà connue, au risque de se brider en rendant plus difficile à utiliser les fonctionnalités spécifiques de ce nouveau système.
 
-C'est le même type de discussion qui se produit lorsqu'on étudie le choix d'un progiciel, dans une optique _build vs. buy_ : les fonctionalités du progiciel me permettront-elles de répondre à l'ensemble de mes besoins, ou devrais-je faire des développements spécifiques ?
+C'est le même type de discussion qui se produit lorsqu'on étudie le choix d'un progiciel, dans une optique _build vs. buy_ : les fonctionalités du progiciel me permettront-elles de répondre à l'ensemble de mes besoins, ou vaut-il mieux partir sur un développement spécifique ?
 
 Une abstraction est censée masquer un fonctionnement complexe en en donnant une vision simplifiée tout en restant fidèle à la réalité.
 Dans le cas idéal, lorsque vous avez un besoin qui ne correspond pas à la frontière la plus simple, l'outil vous fournit un autre niveau, plus avancé, mais qui ne remet pas en cause l'existant.
-C'est le cas par exemple des _hint_ qui existent pour link:https://fr.wikipedia.org/wiki/Hint_(SQL)[en SQL] ou link:https://lwn.net/Articles/717755/[les appels systèmes Linux].
+C'est le cas par exemple des _hint_ qui existent pour link:https://fr.wikipedia.org/wiki/Hint_(SQL)[en SQL] ou link:https://lwn.net/Articles/717755/[les appels systèmes Linux] : il s'agit d'une spécialisation des comportements par défaut.
 
 Le problème est quand une abstraction ment, c'est-à-dire que le modèle qu'elle expose ne correspond pas à la réalité sous-jacente.
 Quand ce type d'abstraction se met à fuir, vous ne retrouvez pas alors avec quelque chose de plus complexe, mais avec quelque chose de complètement différent.
-Vous vous retrouvez alors à jongler avec deux modèles mentaux différents.
+Vous vous retrouvez alors à jongler avec deux modèles mentaux : celui qui est mis en avant par l'abstration et le « vrai ».
 
 Un des cas de ce genre qui revient souvent est celui des bases NoSQL qui exposent une surcouche SQL.
 Souvent cette couche n'expose qu'une sous-partie limitée du SQL, et il faut donc apprendre ou découvrir quelles requêtes SQL fonctionnent et quelles requêtes ne fonctionnent pas.
@@ -117,22 +119,21 @@ Quand une combinaison de deux systèmes fonctionne bien, elle peut avoir deux r�
 
 Prenons le cas d'un outil magique permettant de distribuer des traitements.
 
-Si on l'ajoute à un système de calcul sans stockage de données, il peut permettre d'augmenter la vitesse de traitement tout en augmentant la complexité interne mais sans rien sacrifier.
-Du point de vue de la frontière, le résultat est donc mieux que l'ancien sans effet secondaire.
+Si on l'ajoute à un système de calcul sans stockage de données, il peut permettre d'executer un nombre plus important de traitements en parallèles sans supprimer de cas d'usage.
+Du point de vue de la frontière, le résultat est donc mieux que l'ancien sans effet secondaire : il s'agit d'une amélioration.
 
 Si on l'ajoute à un système de base de donnée, il peut permettre d'augmenter la vitesse de traitement en sacrifiant la transactionnalité et/ou la cohérence des données.
-Le nouvel outil n'a donc plus les mêmes usages que l'ancien, il s'agit d'un hybride.
+Le nouvel outil n'a donc plus les mêmes usages que l'ancien : il s'agit d'un hybride.
 
-Ainsi quand un éditeur logiciel vous promet un produit miracle qui fait quelque chose que personne d'autre ne sait faire : s'agit-il d'un cas d'amélioration ou d'un cas d'hybridation ?
+Ainsi quand un éditeur logiciel vous promet un produit miracle qui fait quelque chose que personne d'autre ne propose, la première chose à faire et de vérifier s'il s'agit d'un cas d'amélioration ou d'un cas d'hybridation.
 Et s'il s'agit d'une hybridation, répond-il bien à votre besoin ou allez-vous aterrir dans un cas limite qui aura l'air de fonctionner mais pas tout à fait ?
 
 === Agrandir la frontière
 
-Quand on combine deux systèmes, le résultat est souvent d'avoir à déléguer certaines choses à l'extérieur, car le système résultant ne saura pas prendre seul certaines décisions.
-Un peu comme des angles morts.
+Quand on combine deux systèmes, le résultat est souvent d'avoir à déléguer certaines choses à l'extérieur, car le système résultant ne saura plus prendre seul certaines décisions.
 
-Par exemple dans un système distribué, garantir l'unicité d'un message est très compliqué, car grosso-modo cela nécessite de la centralisation.
-Il est donc souvent plus simple que le système appelant s'en occupe.
+Par exemple dans un système distribué, garantir l'unicité d'un message est très compliqué, car grosso-modo cela nécessite une forme de centralisation.
+Il est donc souvent plus simple que le système appelant s'en occupe car il dispose d'informations supplémentaires qui lui permettent de le faire plus facilement.
 
 Cela risque de créer des incohérences dans la frontière, et des fuites d'abstractions.
 Il s'agit d'un arbitrage à faire : vaut-il mieux quelque chose de plus riche mais de plus difficile à comprendre, voire de plus difficile à opérer ?
