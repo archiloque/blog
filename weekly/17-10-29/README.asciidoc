@@ -1,0 +1,56 @@
+= 29/10/2017
+Julien Kirch
+v1.0, 2017-10-29
+:article_lang: en
+
+===== link:https://increment.com/development/center-stage-best-practices-for-staging-environments/[Best practices for staging environments]
+
+[quote]
+____
+Staging is where you validate the known-unknowns of your systems. These known-unknowns are the dependencies, interactions, and edge cases foreseeable by the humans in your company and the machines they tend. Staging is where you gain confidence in your systems by consensus.
+
+You can't replicate unknown-unknowns, such as user behavior and traffic loads, in staging. But you can replicate everything else. And that matters.
+____
+
+===== link:https://www.wired.com/story/the-way-the-world-ends-not-with-a-bang-but-a-paperclip/[A Viral Game About Paperclips Teaches You to Be a World-Killing AI]
+
+[quote]
+____
+So that’s good, right? A paperclip maximizer! Maximize a goal! That’s what an AI’s creators want, right? “As it improves, they lose control of what goal it is carrying out,” Yudkowsky says. “The utility function changes from whatever they originally had in mind. The weird, random thing that best fulfills this utility function is little molecular shapes that happen to look like paperclips.”
+
+So … bad, because as the AI dedicates more and more intelligence and resources to making paperclips against all other possible outcomes … well, maybe at first it does stuff that looks helpful to humanity, but in the end, it’s just going to turn us into paperclips. And then all the matter on Earth. And then everything else. Everything. Is. Paperclips.
+
+“It’s not that the AI is doing something you can’t understand,” Yudkowsky says. “You have a genuine disagreement on values.”
+____
+
+
+===== link:https://lwn.net/Articles/737093/[Patch flow into the mainline for 4.14]
+
+[quote]
+____
+The result is that the kernel has a web of trust that, one might fairly conclude, is not really protecting much. It's nice to have the verification on pull requests that do carry signatures but, since those signatures seem to be almost entirely optional at present, they offer little protection against a malicious pull request.
+
+If the intent of signed tags is limited to to enabling developers to host repositories on untrusted services, then perhaps signature checking as it is practiced now is sufficient. Perhaps the threat model need not include more sophisticated attackers trying to sneak vulnerabilities into the kernel via some developer's tree on a well-run site. After all, kernel.org itself seems relatively well protected these days, and kernel developers have demonstrated that, like developers of most other projects, they are entirely capable of introducing security bugs at a sufficient rate without external assistance.
+
+But if the intent is to make the kernel development process resilient against attacks on developers' machines or kernel.org, then there is some work yet to be done. It is worth remembering that the web of trust came about as a response to a compromise of kernel.org, after all. If we want to prepare for a recurrence of that sort of incident, the actual threat model needs to be defined, and the use of protective techniques like signed tags should probably not be optional. Partially implemented security mechanisms have a distressing tendency to fail when put to the test.
+____
+
+==== link:https://lwn.net/Articles/736534/[A block layer introduction part 1: the bio layer]
+
+[quote]
+____
+One of the key values provided by an operating system like Linux is that it provides abstract interfaces to concrete devices. Though the original "character device" and "block device" abstractions have been supplemented with various others including "network device" and "bitmap display", the original two have not lost their importance. The block device interface, in particular, is still central to managing persistent storage and, even with the growth of persistent memory, this central role is likely to remain for some time. Unpacking and explaining some of that role is the goal of this pair of articles.
+
+The term "block layer" is often used to talk about that part of the Linux kernel which implements the interface that applications and filesystems use to access various storage devices. Exactly which code constitutes this layer is a question that reasonable people could disagree on. The simplest answer is that it is all the code inside the `block` subdirectory of the Linux kernel source. This collection of code can be seen as providing two layers rather than just one; they are closely related but clearly distinct. I know of no generally agreed names for these sub-layers and so choose to call them the "bio layer" and the "request layer". The remainder of this article will take us down into the former while the latter will be left for a subsequent article.
+____
+
+==== link:http://thebuild.com/presentations/no-pk-pgconf-eu-2017.pdf[Humans do not have a primary key]
+
+[quote]
+____
+* Personal experience is worthless
+* Under-model
+* Under-collect
+* Over-communicate
+* Focus on the core need
+____
