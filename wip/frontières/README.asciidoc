@@ -5,7 +5,7 @@ Les nouveaux·elles arrivant·e·s à Octo me demandent régulièrement comment 
 Ma réponse habituelle était « il faut aimer travailler avec des personnes différentes, connaître les outils, et quelques approches ».
 En d'autres termes « je n'en ai aucune idée, va donc jouer avec des bus de messages ça me laissera le temps de trouver une vraie réponse ».
 
-Ces dernier mois, des articles m'ont donné le link:http://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf[vocabulaire] et link:http://thegamedesignforum.com/features/rd_hl_1.html[les métaphores] qui me manquaient pour commencer à expliquer ce que j'avais en tête.
+Ces dernier mois, des articles m'ont donné le link:http://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf[vocabulaire] et link:http://thegamedesignforum.com/features/rd_hl_1.html[les métaphores] qui me manquaient pour structurer ce que j'avais en tête.
 Plus d'excuse il ne restait plus qu'à écrire.
 
 Ce billet décrit mon approche actuelle sur le problème de frontières entre systèmes, une des questions fondamentales pour construire des systèmes d'informations gouvernables et pérennes.
@@ -19,13 +19,13 @@ Cela couvre les interface quels que soit leurs types (programmatique, graphiques
 
 Tout ce qui est à l'intérieur de la frontière est une boite noire : le reste du monde n'a pas à s'en préoccuper.
 
-Si utiliser un logiciel passe par des interractions humaines (faire une demande d'accès, avoir besoin d'aide car la documentation n'est pas suffisante), elle feront partie de la frontière.
+Si utiliser un logiciel passe par des interactions humaines (faire une demande d'accès, avoir besoin d'aide car la documentation n'est pas suffisante), elle feront partie de la frontière.
 
-Cette question de la frontière se pose dès qu'une interraction a lieu, par exemple :
+Cette question de la frontière se pose dès qu'un logiciel va communiquer avec un autre, par exemple :
 
 - quand vous développez un système qui expose des frontières à d'autres ;
 - quand vous cherchez la bonne manière d'utilisez un système ;
-- quand vous avez à choisir un outil ;
+- quand vous avez à choisir un outil;
 - quand vous avez à définir une stratégie d'exposition pour un logiciel ou un SI.
 
 Si le problème se pose principalement lorsque vous définissez vos propres frontières et donc créez vos propres logiciels, la majorité des exemples de l'articles portent sur des outils "sur l'étagère" pour être plus faciles à comprendre.
@@ -36,7 +36,7 @@ Une bonne frontière répond à trois caractéristiques :
 
 * riche : c'est à dire exposant des fonctionnalités les plus avancées possibles ;
 * cohérente : c'est à dire que les différents éléments de cette frontière aient une logique uniforme entre eux, en particulier un vocabulaire commun, ce qui rend le système facile à comprendre ;
-* minimale : c'est à dire exposant ces fonctionalités à travers un nombre minimum de points d'accroche, ce qui la rend plus facile à utiliser et à tester ou à simuler.
+* minimale : c'est à dire exposant ces fonctionnalités à travers un nombre minimum de points d'accroche, ce qui la rend plus facile à utiliser et à tester ou à simuler.
 
 image::venn.png[title="Pas d'article d'architecture sans diagramme de Venn"]
 
@@ -44,7 +44,7 @@ Ces critères ont tendance à s'exclure les uns des autres : par exemple une fro
 
 L'objectif est de parvenir à avoir les trois à la fois, ou du moins le bon équilibre entre les trois qui fait qu'une frontière est adaptée à un cas d'utilisation donné, et que ce cas d'utilisation soit le votre.
 
-C'est par exemple le cas des languages ou des protocoles populaires comme SQL ou HTTP : ils correspondent à une zone idéale entre les trois.
+C'est par exemple le cas des langages ou des protocoles populaires comme SQL ou HTTP : ils correspondent à une zone idéale entre les trois.
 
 === Attention : fuite d'abstraction
 
@@ -78,7 +78,7 @@ Par exemple exposer une base de donnée sous forme de SQL permet de pouvoir l'ut
 C'est une question fondamentale lorsque vous créez un nouveau système :
 est-ce-que mes besoins sont suffisamment différents des solutions existantes pour justifier de les exposer différemment, ou est-ce qu'il vaut mieux utiliser ou étendre une frontière déjà connue, au risque de se brider en rendant plus difficile à utiliser les fonctionnalités spécifiques de ce nouveau système.
 
-C'est le même type de discussion qui se produit lorsqu'on étudie le choix d'un progiciel, dans une optique _build vs. buy_ : les fonctionalités du progiciel me permettront-elles de répondre à l'ensemble de mes besoins, ou vaut-il mieux partir sur un développement spécifique ?
+C'est le même type de discussion qui se produit lorsqu'on étudie le choix d'un progiciel, dans une optique _build vs. buy_ : les fonctionnalités du progiciel me permettront-elles de répondre à l'ensemble de mes besoins, ou vaut-il mieux partir sur un développement spécifique ?
 
 Une abstraction est censée masquer un fonctionnement complexe en en donnant une vision simplifiée tout en restant fidèle à la réalité.
 Dans le cas idéal, lorsque vous avez un besoin qui ne correspond pas à la frontière la plus simple, l'outil vous fournit un autre niveau, plus avancé, mais qui ne remet pas en cause l'existant.
@@ -86,7 +86,7 @@ C'est le cas par exemple des _hint_ qui existent pour link:https://fr.wikipedia.
 
 Le problème est quand une abstraction ment, c'est-à-dire que le modèle qu'elle expose ne correspond pas à la réalité sous-jacente.
 Quand ce type d'abstraction se met à fuir, vous ne retrouvez pas alors avec quelque chose de plus complexe, mais avec quelque chose de complètement différent.
-Vous vous retrouvez alors à jongler avec deux modèles mentaux : celui qui est mis en avant par l'abstration et le « vrai ».
+Vous vous retrouvez alors à jongler avec deux modèles mentaux : celui qui est mis en avant par l'abstraction et le « vrai » qui correspond à l'implémentation.
 
 Un des cas de ce genre qui revient souvent est celui des bases NoSQL qui exposent une surcouche SQL.
 Souvent cette couche n'expose qu'une sous-partie limitée du SQL, et il faut donc apprendre ou découvrir quelles requêtes SQL fonctionnent et quelles requêtes ne fonctionnent pas.
@@ -119,14 +119,14 @@ Quand une combinaison de deux systèmes fonctionne bien, elle peut avoir deux r�
 
 Prenons le cas d'un outil magique permettant de distribuer des traitements.
 
-Si on l'ajoute à un système de calcul sans stockage de données, il peut permettre d'executer un nombre plus important de traitements en parallèles sans supprimer de cas d'usage.
+Si on l'ajoute à un système de calcul sans stockage de données, il peut permettre d'exécuter un nombre plus important de traitements en parallèles sans supprimer de cas d'usage.
 Du point de vue de la frontière, le résultat est donc mieux que l'ancien sans effet secondaire : il s'agit d'une amélioration.
 
 Si on l'ajoute à un système de base de donnée, il peut permettre d'augmenter la vitesse de traitement en sacrifiant la transactionnalité et/ou la cohérence des données.
 Le nouvel outil n'a donc plus les mêmes usages que l'ancien : il s'agit d'un hybride.
 
 Ainsi quand un éditeur logiciel vous promet un produit miracle qui fait quelque chose que personne d'autre ne propose, la première chose à faire et de vérifier s'il s'agit d'un cas d'amélioration ou d'un cas d'hybridation.
-Et s'il s'agit d'une hybridation, répond-il bien à votre besoin ou allez-vous aterrir dans un cas limite qui aura l'air de fonctionner mais pas tout à fait ?
+Et s'il s'agit d'une hybridation, répond-il bien à votre besoin ou allez-vous atterrir dans un cas limite qui aura l'air de fonctionner mais pas tout à fait ?
 
 === Agrandir la frontière
 
@@ -163,6 +163,8 @@ Le problème est d'autant plus compliqué que ceux·celles qui paient le prix de
 
 Dans ce cas l'approche est plus directe : il faut limiter les types de frontières, et donc les types d'outils et/ou de technologies.
 Comme vu plus haut, cela veut dire qu'en contrepartie certaines choses seront plus difficiles, voire impossibles, mais c'est le prix à payer pour limiter la complexité de votre SI. Cela ne veut pas dire "un seul type d'outil", mais essayer d'en avoir le minimum viable pour vous permettre de répondre à vos besoins.
+
+La bonne approche pour cela est de prendre les choses sous l'angle du·de la client·e : déterminez de quoi il·ell·s ont besoin, et essayer de déterminer la frontière qui y répond le mieux.
 
 J'espère que la lecture ne vous aura pas découragé de faire de l'architecture, mais qu'elle vous aura au contraire donné envie d'en apprendre plus sur tous les outils qui existent.
 
