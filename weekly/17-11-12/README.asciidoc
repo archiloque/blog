@@ -1,0 +1,91 @@
+= 12/11/2017
+Julien Kirch
+v1.0, 2017-11-12
+:article_lang: en
+
+===== link:https://www.rockpapershotgun.com/2016/11/02/rimworld-code-analysis/[How RimWorld’s Code Defines Strict Gender Roles]
+
+[quote]
+____
+Reed’s having a bad day: her spaceship crashed, she’s one of three survivors, and the other two won’t stop hitting on her. Unfortunately for her, she’s beautiful, which means that they’re immediately enamoured with her; unfortunately for them, she’s gay, which means the feeling is definitely not mutual. Her life is a constant hellish stream of corny pick-up lines and work for the colony.
+
+RimWorld is a scifi colony management sim that seems to effortlessly weave dynamic stories around the player’s attempts to survive on an often harsh alien world, but when it comes to sexuality, romance and gender, it tells variations on this one story far too often. We dug into the code to find out why that is.
+
+Returning to Reed, we can see that the pick-up lines don’t get her down. She receives no penalty to her mood for being barraged by come-ons. But the two men, Rob and Boots, feel differently. They have a near-permanent mood and relationship penalty for Reed, because they keep asking her out, and keep getting rebuffed. But it’s not really their fault – Rob and Boots can’t stop hitting on her because they’re men, and because she’s just so gosh-darned pretty. More precisely, that’s how they’ve been programmed.
+____
+
+===== link:http://www.win.tue.nl/~mholende/interesting/tinyos-retrospective-osdi2012.pdf[Experiences from a Decade of TinyOS Development]
+
+[quote]
+____
+Making it harder to write buggy code had the unfortunate result of making it just plain harder to write code.
+____
+
+[quote]
+____
+While the decision to use nesC was a good one, how TinyOS used it should have evolved differently. On one hand, eating your own proverbial dog food is important: TinyOS developers built applications and systems, giv- ing them experience with the strengths and weaknesses of the system. On the other hand, doing so led to a dis- torted perception of what was hard or important. Chas- ing hard, unsolved problems makes sense from a re- search standpoint. But from a practical standpoint, mak- ing it easier to solve hard problems can simultaneously make it harder to solve the easy ones, and this happened with TinyOS.
+
+In retrospect, it would have been better to split the sys- tem design and evolution efforts into two halves. The first half would be to make it easier to build larger and more complex systems. The second half would make it easier to build trivial systems. Motivating systems and networking graduate students to take this second approach would most likely fail. But, for example, sup-
+pose TinyOS developers had engaged with work at Stan- ford [21] or Carnegie Mellon [10] on rapid sensor de- vice prototyping. It could have possibly enabled whole new application domains and use for low-power wire- less sensing devices. Arduinos, which have moved to fill this capacity, have very limited network capabilities: who knows what interesting new scientific experiments, art pieces, or toys could have appeared if TinyOS were used instead?
+
+On the other hand, nesC’s evolution discovered new and better ways to write efficient, bug-free embedded code. Going forward, the right thing to do is to com- pletely redesign the language, or design a new one, to make these concepts basic language structures rather than complex uses of more general features. For example, one could have a way to define a static virtualization that automatically sets up parameterization, unique, and state management: a single file could define the service, rather than the typical case today of at least 4 files.
+____
+
+===== link:http://www.deletionscifi.org/episodes/episode-13/science-fiction-memory-trauma/[Science Fiction, Memory and Trauma]
+
+[quote]
+____
+Psychologists developed an extensive range of terms for the illnesses of memory from the 1870s onwards – amnesia, fugue, dissociation, repression, traumatic forgetting. This was a radical idea, that people could be made ill by their own memories. Sigmund Freud, famously defined a hysteric as someone ‘who suffered mainly from reminiscences’ in 1893 and proposed that the most powerful memories were often those that, paradoxically, we could not voluntarily remember. A fascination with multiple personalities – people who might have different identities with entirely separate memory chains – began around the same time. Popular culture, meanwhile, has since been awash with evil foreign medics and Mesmerists who might steal our memories away, hypnotise us or control us, particularly in lurid Gothic figures from Count Dracula via Fu Manchu to those evil Chinese Communists who trigger ‘the Manchurian candidate’.
+
+Modern technological manipulation of memory, and thus the potential to rewrite our essential selves, has intensified in the digital revolution of the last thirty years. Now the language of random access memory, programming and re-programming, downloading and uploading, and viral corruption or memory hacking, has modelled our fantasies and anxieties about this new terrain of what it means to remember and forget in the contemporary era.
+____
+
+===== link:http://blog.thinkst.com/2017/11/on-anti-patterns-for-ict-security-and.html[On anti-patterns for ICT security and international law]
+
+[quote]
+____
+It is difficult enough to arrive at consensus in international law when there is such divergence in the law of individual states. But when it comes to military operations (as distinct from espionage or lawful interception) in the digital domain, we don’t even have divergence in the customary law of states as a starting point. Until states begin to acknowledge their activities and articulate their own legal reasoning, their own understandings of proportionate response, necessity, damage, denial, &c. for military electromagnetic and information operations, the odds of achieving binding international consensus in this area are nil. And there is not a lot compelling states to codify that reasoning at present. As an industry, information security tends to care about nation-state operations to the extent that such attribution can help pimp whatever product is linked below the analysis, and no further. With the odd exception, there is little that can be called rigorous, robust, or scientific about the way we do this. So long as that remains true – so long as information security persists in its methodological laziness on the excuse that perfect confidence is out of reach – I see no externalities which might hasten states active in this domain to admit as much, let alone volunteer a legal framework for their operations.
+
+At present, we should be much more concerned with encouraging greater specificity and transparency in the legal logics of individual states than with international norms creation on a foundation of sand. The ‘X for Y’ anti-pattern deserves its eyerolls in the case of a Geneva Convention for software, but for different reasons than advocates of this approach generally appreciate.
+____
+
+
+===== link:https://www.usenix.org/legacy/publications/library/proceedings/als00/2000papers/papers/full_papers/browndavid/browndavid_html/[Library Interface Versioning in Solaris and Linux]
+
+[quote]
+____
+Shared libraries in Solaris and Linux use a versioning technique which allows the link editor to record an application's dependency on a particular release level of the library. The versioning mechanism operates at the level of the library's _GLOBAL_ symbol names--a finer granularity than simply associating a version number with the library itself.
+
+In Solaris, this mechanism has also been used to provide a means for the system-supplied shared libraries to define their application interface: to declare specifically which of their symbols are intended for application use (and are stable from one release to the next), and which are internal to the system's implementation (and hence subject to incompatible change).
+
+This paper describes the library symbol-versioning technology in Linux and Solaris, the ways in which it is used to support upward compatibility for existing compiled applications from one release of Solaris to the next, and the potential for similar mechanisms to be applied in Linux versioned shared libraries.
+____
+
+=== link:http://cs.brown.edu/~jcmace/papers/mace2017survey.pdf[End-to-End Tracing: Adoption and Use Cases]
+
+[quote]
+____
+This document summarizes information about end-to-end tracing for 26 companies.  e information was gathered from documents shared to the Distributed Tracing Workgroup and through in-person conversations at tracing workshops.
+____
+
+=== link:http://noidea.dog/lisa17[Conference Report: LISA 2017]
+
+
+[quote]
+____
+I went to LISA 2017! It was excellent! I vowed to write a shorter trip report this year, but there was so much good stuff so whatchagonnado /o\ Here’s the notes I took about what I saw and what I liked. They might not necessarily represent the most important parts of the talks; they’re just what made an impact with me. If I have any errors in here, please let me know and I’ll fix it. Here’s what I saw:
+
+* Never Events, Matt Provost, Yelp
+* ChatOps at Shopify: Inviting Bots in Our Day-to-Day Operations. Daniella Niyonkuru, Shopify
+* Distributed tracing: from theory to practice. Stella Cotton, Heroku
+* Stories from the Trenches of Government Technology Raquel Romano, Engineering Lead, Digital Service at Veterans Affairs, and Matt Cutts, Acting Administrator, US Digital Service
+* Resiliency Testing with Toxiproxy. Jake Pittis, Shopify
+* Now You See Me Too: Visual Tooling for Advanced System Analysis. Suchakrapani Sharma, ShiftLeft Inc.
+* Vax to K8s: Ticketmaster’s Transformation to Cloud Native Devops. Heather Osborn, Ticketmaster
+* “Don’t You Know Who I Am?!” The Danger of Celebrity in Tech. Corey Quinn, Last Week in AWS
+* Plenary Panel: Scaling Talent: Attracting and Retaining a Diverse Workforce
+* Managing SSH Access without Managing SSH Keys. Niall Sheridan, Intercom
+* Where’s the Kaboom? There Was Supposed to Be an Earth-Shattering Kaboom! David Blank Edelman.
+* Debugging at Scale Using Elastic and Machine Learning. Mohit Suley, Microsoft
+* Closing Plenary: System Crash, Plane Crash: Lessons from Commercial Aviation and Other Engineering Fields. Jon Kuroda, University of California, Berkeley
+____
