@@ -23,12 +23,11 @@ ____
 
 [quote]
 ____
-While the decision to use nesC was a good one, how TinyOS used it should have evolved differently. On one hand, eating your own proverbial dog food is important: TinyOS developers built applications and systems, giv- ing them experience with the strengths and weaknesses of the system. On the other hand, doing so led to a dis- torted perception of what was hard or important. Chas- ing hard, unsolved problems makes sense from a re- search standpoint. But from a practical standpoint, mak- ing it easier to solve hard problems can simultaneously make it harder to solve the easy ones, and this happened with TinyOS.
+While the decision to use nesC was a good one, how TinyOS used it should have evolved differently. On one hand, eating your own proverbial dog food is important: TinyOS developers built applications and systems, giving them experience with the strengths and weaknesses of the system. On the other hand, doing so led to a distorted perception of what was hard or important. Chasing hard, unsolved problems makes sense from a research standpoint. But from a practical standpoint, making it easier to solve hard problems can simultaneously make it harder to solve the easy ones, and this happened with TinyOS.
 
-In retrospect, it would have been better to split the sys- tem design and evolution efforts into two halves. The first half would be to make it easier to build larger and more complex systems. The second half would make it easier to build trivial systems. Motivating systems and networking graduate students to take this second approach would most likely fail. But, for example, sup-
-pose TinyOS developers had engaged with work at Stan- ford [21] or Carnegie Mellon [10] on rapid sensor de- vice prototyping. It could have possibly enabled whole new application domains and use for low-power wire- less sensing devices. Arduinos, which have moved to fill this capacity, have very limited network capabilities: who knows what interesting new scientific experiments, art pieces, or toys could have appeared if TinyOS were used instead?
+In retrospect, it would have been better to split the system design and evolution efforts into two halves. The first half would be to make it easier to build larger and more complex systems. The second half would make it easier to build trivial systems. Motivating systems and networking graduate students to take this second approach would most likely fail. But, for example, suppose TinyOS developers had engaged with work at Stanford or Carnegie Mellon on rapid sensor device prototyping. It could have possibly enabled whole new application domains and use for low-power wireless sensing devices. Arduinos, which have moved to fill this capacity, have very limited network capabilities: who knows what interesting new scientific experiments, art pieces, or toys could have appeared if TinyOS were used instead?
 
-On the other hand, nesC’s evolution discovered new and better ways to write efficient, bug-free embedded code. Going forward, the right thing to do is to com- pletely redesign the language, or design a new one, to make these concepts basic language structures rather than complex uses of more general features. For example, one could have a way to define a static virtualization that automatically sets up parameterization, unique, and state management: a single file could define the service, rather than the typical case today of at least 4 files.
+On the other hand, nesC’s evolution discovered new and better ways to write efficient, bug-free embedded code. Going forward, the right thing to do is to completely redesign the language, or design a new one, to make these concepts basic language structures rather than complex uses of more general features. For example, one could have a way to define a static virtualization that automatically sets up parameterization, unique, and state management: a single file could define the service, rather than the typical case today of at least 4 files.
 ____
 
 ===== link:http://www.deletionscifi.org/episodes/episode-13/science-fiction-memory-trauma/[Science Fiction, Memory and Trauma]
@@ -61,15 +60,14 @@ In Solaris, this mechanism has also been used to provide a means for the system-
 This paper describes the library symbol-versioning technology in Linux and Solaris, the ways in which it is used to support upward compatibility for existing compiled applications from one release of Solaris to the next, and the potential for similar mechanisms to be applied in Linux versioned shared libraries.
 ____
 
-=== link:http://cs.brown.edu/~jcmace/papers/mace2017survey.pdf[End-to-End Tracing: Adoption and Use Cases]
+===== link:http://cs.brown.edu/~jcmace/papers/mace2017survey.pdf[End-to-End Tracing: Adoption and Use Cases]
 
 [quote]
 ____
-This document summarizes information about end-to-end tracing for 26 companies.  e information was gathered from documents shared to the Distributed Tracing Workgroup and through in-person conversations at tracing workshops.
+This document summarizes information about end-to-end tracing for 26 companies. The information was gathered from documents shared to the Distributed Tracing Workgroup and through in-person conversations at tracing workshops.
 ____
 
-=== link:http://noidea.dog/lisa17[Conference Report: LISA 2017]
-
+===== link:http://noidea.dog/lisa17[Conference Report: LISA 2017]
 
 [quote]
 ____
@@ -88,4 +86,29 @@ I went to LISA 2017! It was excellent! I vowed to write a shorter trip report th
 * Where’s the Kaboom? There Was Supposed to Be an Earth-Shattering Kaboom! David Blank Edelman.
 * Debugging at Scale Using Elastic and Machine Learning. Mohit Suley, Microsoft
 * Closing Plenary: System Crash, Plane Crash: Lessons from Commercial Aviation and Other Engineering Fields. Jon Kuroda, University of California, Berkeley
+____
+
+===== link:https://brandur.org/idempotency-keys[Implementing Stripe-like Idempotency Keys in Postgres]
+
+[quote]
+____
+To shore up our backend, it’s key to identify where we’re making _foreign state mutations_; that is, calling out and manipulating data on another system. This might be creating a charge on Stripe, adding a DNS record, or sending an email.
+
+Some foreign state mutations are idempotent by nature (e.g. adding a DNS record), some are not idempotent but can be made idempotent with the help of an idempotency key (e.g. charge on Stripe, sending an email), and some operations are not idempotent, most often because a foreign service hasn’t designed them that way and doesn’t provide a mechanism like an idempotency key.
+
+The reason that the local vs. foreign distinction matters is that unlike a local set of operations where we can leverage an ACID store to roll back a result that we didn’t like, once we make our first foreign state mutation, we’re committed one way or another. _We’ve pushed data into a system beyond our own boundaries and we shouldn’t lose track of it_.
+____
+
+[quote]
+____
+An atomic phase is a set of local state mutations that occur in transactions between foreign state mutations. We say that they’re atomic because we can use an ACID-compliant database like Postgres to guarantee that either all of them will occur, or none will.
+
+Atomic phases should be safely committed before initiating any foreign state mutation. If the call fails, our local state will still have a record of it happening that we can use to retry the operation.
+
+A recovery point is a name of a check point that we get to after having successfully executed any atomic phase or foreign state mutation. Its purpose is to allow a request that’s being retried to jump back to the point in the lifecycle just before the last attempt failed.
+____
+
+[quote]
+____
+API backends should aim to be _passively safe_ – no matter what kind of failures are thrown at them they’ll end up in a stable state, and users are never left broken even in the most extreme cases. From there, active mechanisms can drive the system towards perfect cohesion. Ideally, human operators never have to intervene to fix things (or at least as infrequently as possible).
 ____
