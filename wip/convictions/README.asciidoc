@@ -1,8 +1,8 @@
 = Convictions archi Octo
 
-## Complexité
+== Complexité
 
-### Complexité =  nombre de technologies différentes ^ 2 * nombres de liens entre ces techologies ^2
+=== Complexité =  nombre de technologies différentes ^ 2 * nombres de liens entre ces techologies ^2
 
 Quand on ajoute une technologie dans un SI on sous-estime souvent l'augmentation de la complexité que cela entraîne :
 elle n'augmente pas linéairement mais de manière beaucoup plus rapide (les poids de la formule ne sont pas à prendre au pieds de la lettre).
@@ -14,12 +14,12 @@ Pour garder la complexité sous contrôle il y a deux grandes approches complém
 * limiter le nombre de technologies utilisées ;
 * faire en sorte que les technologies utilisées ne soient pas visibles au niveau du SI en utilisant des protocoles standard qui masquent leurs spécificités.
 
-### N'ajoutez pas un outil pour une seule fonctionalité
+=== N'ajoutez pas un outil pour une seule fonctionalité
 
 Lorsqu'un besoin n'est pas
 
 
-### Coder ou "paramétrer" une application : la complexité est la même
+=== Coder ou "paramétrer" une application : la complexité est la même
 
 Attentions aux promesses des vendeurs de progiciels.
 
@@ -29,116 +29,116 @@ Cela peut même être l'inverse car le code peut être mieux outillé (facilité
 Un progiciel qui évite d'écrire une partie du code car il fournir des fonctionalités prêtes à l'emploi c'est bien, remplacer un baril de code par un quart de baril de paramétrage c'est appréciable.
 Un progiciel qui remplace l'écriture de code sous forme de code par l'écriture de code sous forme de paramétrage, c'est moins bien.
 
-### Gestion de la complexité : apprenez à marcher avant de courir
+=== Gestion de la complexité : apprenez à marcher avant de courir
 
 Maîtriser la complexité c'est aussi quelque chose qui s'apprend.
 Cet apprentissage est différents de l'apprentissage des technologies elles-mêmes.
 Cet apprentissage se fait au niveau d'une organisation et pas une expertise qui peut s'acquérir facilement avec des consultants.
 Les erreurs causées car une mauvaises gestion de la complexité sont coûteuses et difficiles à réparer, cet apprentissage doit donc se faire au plus tôt.
 
-## Outils
+== Outils
 
-### Ne croyez pas les éditeurs
+=== Ne croyez pas les éditeurs
 
 Pour vous faire une idée commencez par demandez autour de vous ou à des spécialistes.
 Ensuite systématiquement testez par vous même : lorsqu'un outil est structurant pour un SI il ne faut pas faire l'économie de tester directement.
 
-### Un outil n'est pas une réponse suffisante
+=== Un outil n'est pas une réponse suffisante
 
 Choisir / installer un outil n'est en général qu'une partie d'une réponse à un problème ou à un besoin.
 En plus de cela il faut : choisir comment on va utiliser l'outil, regarder les conséquences sur l'organisation, apprendre à l'exploiter …
 
 Donc quand l'outil est choisi, ne vous dites pas que l'essentiel est fait.
 
-### Ne cédez pas à l'envie d'utiliser une techno à la mode alors que le besoin est déjà couvert
+=== Ne cédez pas à l'envie d'utiliser une techno à la mode alors que le besoin est déjà couvert
 
-## Big Data
+== Big Data
 
-### Big Data ne veut pas dire Hadoop
+=== Big Data ne veut pas dire Hadoop
 
-#### Hadoop n'est pas pour tout le monde
-### Hadoop n'est pas une archi économique
-### Vous n'avez probablement pas de "Big" Data
+==== Hadoop n'est pas pour tout le monde
+=== Hadoop n'est pas une archi économique
+=== Vous n'avez probablement pas de "Big" Data
 
-## Orga
-### L'archi est biaisée par l'orga et les budgets
-### Ne jamais essayer de mettre en place une archi non alignée avec l'orga
-### Il faut créer un climat où l'architecture peut être discutée
+== Orga
+=== L'archi est biaisée par l'orga et les budgets
+=== Ne jamais essayer de mettre en place une archi non alignée avec l'orga
+=== Il faut créer un climat où l'architecture peut être discutée
 
-## Intégration
-### L'intégration c'est vital
-### Tous les projets sont des projets d'intégration
+== Intégration
+=== L'intégration c'est vital
+=== Tous les projets sont des projets d'intégration
 
-## Évolutions
-### Utilisez la méthode empirique : test, fail & learn
-### La dette vient toute seule : nos décisions étant faites dans un contexte précis, avec un degré de connaissance précis, certaines d'entre elles deviendront des freins à l'avenir
-### Ajouter c'est facile, c'est décomissionner qui est difficile
-### Un SI ça s'entretient
-### Une archi fournit des réponses raisonnées à un problème donné à un moment donné
-### Enfreindre les principes de son archi se paie toujours
-### Il faut toujours prévoir de rembourser ses dettes
+== Évolutions
+=== Utilisez la méthode empirique : test, fail & learn
+=== La dette vient toute seule : nos décisions étant faites dans un contexte précis, avec un degré de connaissance précis, certaines d'entre elles deviendront des freins à l'avenir
+=== Ajouter c'est facile, c'est décomissionner qui est difficile
+=== Un SI ça s'entretient
+=== Une archi fournit des réponses raisonnées à un problème donné à un moment donné
+=== Enfreindre les principes de son archi se paie toujours
+=== Il faut toujours prévoir de rembourser ses dettes
 
-## Architecte
-### Un architecte doit démystifier
-### Un archi doit avoir un vernis big data
-### Un archi doit avoir un bon carnet d'adresse
-### Un architecte doit s'intéresser au métier
-### Un archi doit pouvoir s'adresser à tout le monde
-### Un architecte fait des erreurs
-### Un archi doit savoir justifier ses choix
-### Votre architecture ne doit pas reposer sur des consultants
-#### Il faut des compétences d'architecture en interne
-#### Notamment pour avoir une cohérence globale
-### Ne pas faire confiance aux archi qui ne seront pas là le jour J
+== Architecte
+=== Un architecte doit démystifier
+=== Un archi doit avoir un vernis big data
+=== Un archi doit avoir un bon carnet d'adresse
+=== Un architecte doit s'intéresser au métier
+=== Un archi doit pouvoir s'adresser à tout le monde
+=== Un architecte fait des erreurs
+=== Un archi doit savoir justifier ses choix
+=== Votre architecture ne doit pas reposer sur des consultants
+==== Il faut des compétences d'architecture en interne
+==== Notamment pour avoir une cohérence globale
+=== Ne pas faire confiance aux archi qui ne seront pas là le jour J
 
-## Métier
-### Un Data Lake est n'est pas un projet IT
-### Le SI c'est le business
+== Métier
+=== Un Data Lake est n'est pas un projet IT
+=== Le SI c'est le business
 
-## Généralités
-### L'architecture concerne tout le monde
-### Une API est un point de couplage
-### Un élément d'architecture # un case d'usage + des features + des contraintes
-### A # B / R / O
-#### Budget
-#### business Rules
-#### Organisation
-### Ayez un guide / checklist
-### L'architecture est imparfaite
-### Le SI peut être versionné
-### On ne peut pas compenser du mauvais delivery par de l'archi de SI
-### Pour acheter un logiciel, il faut connaître son besoin
-### L'archi doit tenir dans tes budgets
-### L'architecture peur permettre de résoudre des problèmes techniques
+== Généralités
+=== L'architecture concerne tout le monde
+=== Une API est un point de couplage
+=== Un élément d'architecture = un case d'usage + des features + des contraintes
+=== A = B / R / O
+==== Budget
+==== business Rules
+==== Organisation
+=== Ayez un guide / checklist
+=== L'architecture est imparfaite
+=== Le SI peut être versionné
+=== On ne peut pas compenser du mauvais delivery par de l'archi de SI
+=== Pour acheter un logiciel, il faut connaître son besoin
+=== L'archi doit tenir dans tes budgets
+=== L'architecture peur permettre de résoudre des problèmes techniques
 
-## Approche
-### Tout n'est pas critique
-### KISS : n'allez pas au delà du besoin
-### One size never fits all
-### La réutilisation ne se prévoit pas
-#### Mutualiser est un 1er mauvais réflexe
-#### Use before reuse
-#### Il faut se poser la question
-### Vous n'êtes probablement pas un GDW
-### Monitorer ou mourir
-### Moins de couches d'architectures et d'architectes permet d'avoir une meilleure boucle de feedback
-### L'archi se fait avec la prod
-### Faites des POC
-### Séparer les objectifs et les solutions / patterns
-### Il n'y a pas d'orthodoxie
-### Il faut un catalogue de patterns / solutions avec plus d'un choix possible pour chaque besoin
-### Il n'y a pas de "meilleure" archi
-### Mettez à jour vos process d'archi
-### Il faut un peu de budget IT en propre, mais il faut mesurer son ROI
+== Approche
+=== Tout n'est pas critique
+=== KISS : n'allez pas au delà du besoin
+=== One size never fits all
+=== La réutilisation ne se prévoit pas
+==== Mutualiser est un 1er mauvais réflexe
+==== Use before reuse
+==== Il faut se poser la question
+=== Vous n'êtes probablement pas un GDW
+=== Monitorer ou mourir
+=== Moins de couches d'architectures et d'architectes permet d'avoir une meilleure boucle de feedback
+=== L'archi se fait avec la prod
+=== Faites des POC
+=== Séparer les objectifs et les solutions / patterns
+=== Il n'y a pas d'orthodoxie
+=== Il faut un catalogue de patterns / solutions avec plus d'un choix possible pour chaque besoin
+=== Il n'y a pas de "meilleure" archi
+=== Mettez à jour vos process d'archi
+=== Il faut un peu de budget IT en propre, mais il faut mesurer son ROI
 
-## Changement
+== Changement
 
-### Apprenez à faire du neuf avec du vieux
+=== Apprenez à faire du neuf avec du vieux
 
 Quand on s'intéresse aux nouvelles technologies et qu'un nouvel outil ou qu'une nouvelle approche buzze;
 Apprenez à faire de nouvelles choses avec vos outils existants !
 
-### Plus ça change plus c'est la même chose
+=== Plus ça change plus c'est la même chose
 
 L'informatique subit beaucoup d'effet de modes.
 Apprenez à :
@@ -151,7 +151,7 @@ Vos meilleurs outils pour cela :
 * bien connaître et comprendre vos besoins ;
 * bien comprendre les principes des différents outils qui existent, et comprendre pourquoi ils ont été conçus comme cela.
 
-### Il y aura des changements auxquels on ne sera jamais préparé
+=== Il y aura des changements auxquels on ne sera jamais préparé
 
 Vous avez beau essayer de faire en sorte que votre SI soit relativement modulaire et facile à modifier, il y aura des changements que vous n'aurez pas anticipé et pour lequel le SI ne sera pas préparé.
 
