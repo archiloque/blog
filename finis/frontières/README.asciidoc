@@ -1,4 +1,4 @@
-= Frontières entre systèmes & architecture de SI
+= C’est quoi l’architecture de SI ? L’enjeu des frontières entre systèmes
 
 Les nouveaux·elles arrivant·e·s à OCTO me demandent régulièrement comment se mettre à l'architecture de SI.
 
@@ -154,7 +154,7 @@ Plus il y a de frontières et plus elles sont communes à de nombreuses applicat
 Il faut donc maîtriser les frontières qui sont exposées.
 Cela ne signifie pas interdire les échanges entre systèmes, mais faire des choix en fonction de votre contexte.
 
-En plus du nombre de frontières, il faut aussi piloter le nombre de *types* de frontières.
+En plus du nombre de frontières, il faut aussi piloter le nombre de type de frontières.
 
 Par exemple, si vous avez cinq types de bases de données qui ont des garanties différentes, vous aurez peut-être cinq types de services avec des SLAs différents : certains seront transactionnels, certains auront des risques d'incohérences…
 Et les services qui auront besoin de composer ces services ne sauront pas faire : que se passe-t-il quand j'ai une moitié de donnée pas cohérente mais synchrone et une autre moitié cohérente mais asynchrone ?
