@@ -1,0 +1,38 @@
+= Building Evolutionary Architectures: Support Constant Change
+Julien Kirch
+v0.1, 2017-11-28
+:article_lang: fr
+:article_image: cover.jpeg
+
+Le dernier livre d'architecture de Thoughtworks parle des architectre évolutionnaires.
+
+Le paradigme précédent, "les architectures émergentes" structurait l'apport de l'agile en affimrant que les décisions d'architecture devait prises le plus tard possible.
+En effet, plus on prend une décision tard, meilleures sont les informations dont on dispose quand on la prend.
+L'architecture doit donc se construire petit à petit plutôt que de tout décider lors du lancement d'un projet.
+
+"Les architectures évolutionnaires" correspond à la bascule du mode projet au mode produit. 
+
+En mode projet, les développements logiciels avait pour but de répondre à un besoin cadré et figé.
+La phase de développement avaient un début et une fin, suivi d'une phase de maintenance pendant laquelle l'outil évoluait mais pas d'une manière significative.
+
+Dans beaucoup de cas, les besoins évoluent désormais de manière continue et la phase de développement ne s'arrête donc jamais, c'est ce qu'on appelle "le mode produit".
+Cela nécessite d'avoir des architecture qu'on peut faire évoluer pour s'adapter aux nouveaux besoin.
+
+Les auteurs ont choisi d'appeller ces architectures _évolutionnaires_ pour signifier le fait que les adaptations qu'on va leur demander ne sont pas prévues.
+
+La métaphore me semble suffisament intéressante pour s'en servir.
+
+Pour obtenir une de ces architectures, Thoughtworks n'a pas de recette magique : il faut une architecture qui soit découplée aux bons endroits, et qui soit adaptée à vos besoins.
+
+Le centre du livre est une comparaison de différents types d'architectures : SOA à l'ancienne, bus de services, microservices …
+Pour chacun sont détaillés leurs avantages, leurs inconvénients, et les cas où ils sont les mieux adaptés.
+Loin d'un _microservices rules the waves_, les comparaisons sont très pragmatiques et remettent en perspectives les modèles historiques en face des nouveaux besoins et des nouvelles approches comme le DDD.
+Un long passage est ainsi consacré à déconseiller les microservices pour les entreprises où le domaine métier n'est pas adapté.
+
+Le ton est pédagogique et ce panorama devrait intéresser les architectes en apprentissage.
+
+La loi de Conway est bien sûr mentionnée ainsi que la link:https://www.thoughtworks.com/radar/techniques/inverse-conway-maneuver[manœuvre de Conway inversée]. Mais rien sur la manière d'avoir une organisation évolutive qui s'adapte en même temps que l'architecture.
+
+Petit bémol : je pense le livre aurait mérité une relecture plus poussée pour rendre le ton plus incisif et éviter les nombreux renvoi en avant
+
+En résumé : un livre court bien adapté aux débuttant·e·s et un vocabulaire à réutiliser
