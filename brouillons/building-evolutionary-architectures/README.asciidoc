@@ -1,8 +1,11 @@
 = Building Evolutionary Architectures: Support Constant Change
 Julien Kirch
-v0.1, 2017-11-28
+v0.1, 2017-12-04
 :article_lang: fr
 :article_image: cover.jpeg
+:article_description: Un livre court bien adapté aux débuttant·e·s et un vocabulaire à réutiliser.
+
+== Des architectures émergentes aux architectures évolutionnaires
 
 Le dernier livre d'architecture de Thoughtworks parle des architectures évolutionnaires.
 
@@ -24,7 +27,18 @@ La métaphore me semble suffisamment intéressante pour s'en servir.
 
 Pour obtenir une de ces architectures, Thoughtworks n'a pas de recette magique : il faut une architecture qui soit découplée aux bons endroits, et qui soit adaptée à vos besoins.
 
-Le centre du livre est une comparaison de différents types d'architectures : SOA à l'ancienne, bus de services, microservices …
+== _Fitness functions_ architecturaux
+
+Quand une architecture évolue, le risque est qu'elle dérive jusqu'à ne plus répondre à ses objectifs fondamentaux.
+Pour cela le livre propose une solution en trois étapes :
+
+. Lors de la définition initiale de l'architecture, bien choisir quels sont ses objectifs fondamentaux : sécurité, scalabilité, performance, vitesse de développement … Dans l'idéal une architecture devrait repondre à tous, mais pour être capabble de choisir une architecture, il faut choisir les quelques uns sont ceux qui sont les plus importants.
+. Pour chacun de ces objectifs, définir des critères, appelés _fitness functions_ architecturaux, qui permettent de valider que cet objectif est atteint. Idéalement ces _fitness functions_ devraient pouvoir être vérifiés de manière automatique et être inclus dans l'usine de déploiement via des tests unitaires ou d'intégration, mais il est possible que d'autres doivent l'être de manière manuelle, par exemple via des audit.
+. À intervalle régulier, réévaluer les objectifs de l'architectures, et les _fitness functions_ architecturaux qui en découlent : sont-ils toujours adaptés, faut-il en supprimer ou en ajouter d'autres ?
+
+== Comparaison d'architectures
+
+La deuxième partie du texte est une comparaison de différents types d'architectures : SOA à l'ancienne, bus de services, microservices …
 Pour chacun sont détaillés leurs avantages, leurs inconvénients, et les cas où ils sont les mieux adaptés.
 Loin d'un _microservices rules the waves_, les comparaisons sont très pragmatiques et remettent en perspectives les modèles historiques en face des nouveaux besoins et des nouvelles approches comme le DDD.
 Un long passage est ainsi consacré à déconseiller les microservices pour les entreprises où le domaine métier n'est pas adapté.
@@ -38,4 +52,6 @@ Je m'attendais à des indications sur la manière d'avoir une organisation évol
 
 Petit bémol : je pense le livre aurait mérité une relecture plus poussée pour rendre le ton plus incisif et éviter les nombreux renvois en avant.
 
-En résumé : un livre court bien adapté aux débuttant·e·s et un vocabulaire à réutiliser.
+== En résumé
+
+Un livre court bien adapté aux débuttant·e·s et un vocabulaire à réutiliser.
