@@ -1,0 +1,37 @@
+= 31/12/2017
+Julien Kirch
+v1.0, 2017-12-31
+:article_lang: en
+
+===== link:https://blog.infinitenegativeutility.com/2017/12/some-notes-about-how-i-write-haskell[Some Notes About How I Write Haskell]
+
+[quote]
+____
+In many of the above cases, what I am doing is deliberately opting out of abstractions in favor of concrete knowledge of what _my program is actually doing_. Abstractions can enable powerful behavior, but abstractions can also obscure the simple features of what a program is doing, and all else being equal, I'd rather communicate to a reader, "I am appending two lists," instead of the more generic, "I am combining two values of a type that implements `Monoid`."
+____
+
+[quote]
+____
+External dependencies in general have a cost: it's not a huge one, but a cost nonetheless, and I think it's worth weighing that cost against the benefit pretty actively.
+
+A minor cost—one that matters, but not all that much—is total source size. Haskell programs tend to pull in a lot of dependencies, which means compiling all of them can take a very long time and produce a lot of intermediate stuff, even if a comparatively small amount makes it in to the final program. This isn't a dealbreaker—if I need something, I need it!—but it's something to be cognizant of. If my from-scratch build time triples because I imported a single helper function, then maybe that dependency isn't pulling its weight.
+
+A bigger cost—in my mind, anyway—is breakage and control. It's possible (even likely) my code has a bug, and then I can fix it, run my tests, push it. It's also possible that an external dependency has a bug: fixing _this_ is much more difficult. I would have to find the project and either avail myself of its maintainer (who might be busy or overworked or distracted) or figure it out myself, learn the ins and outs of that project, its abstractions, its style, its contribution structure, put in a PR or discuss it on an email list, and so forth. And I can freeze dependency versions, sure, but the world goes on without me: APIs break, bugs get introduced, functionality changes, all of which is a minor but present liability.
+
+It's not a dealbreaker, but it's a _cost_, one that I weigh against the value I'm getting from the library. Should I depend on a web server library for my dynamic site? Well, I'm not gonna write a whole web server from scratch, and if I did, it'd take forever and be worse than an existing one, so the benefits far outweigh the costs. But on the other hand, if I'm pulling in a few shallow helper functions, I might consider replicating their functionality inline instead. There's always a cost: is it worth the weight of the dependency?
+____
+
+===== link:https://www.cloudatomiclab.com/antisyscall/[Eleven syscalls that suck]
+
+===== link:https://www.cloudatomiclab.com/prosyscall/[Eleven syscalls that rock the world]
+
+===== link:http://cognitive-edge.com/blog/a-sheep-in-wolves-clothing/[A sheep in wolves clothing]
+
+[quote]
+____
+Now the specific context of that quote related to the way in which the Agile movement in software development has become corrupted by an over constrained, over constructuted approach which gives IT directors the comfort of saying they have changed without really having to do so. It also plays to the desire of said executives to announce major, costly initiatives that will only exepcted to deliver after that executive has moved on leaving some other poor sod to pick up the pieces. That has been a depressingly common characteristics of most adoptions of new methods so its not suprise that the SAFe founders played to that weakness in purchasing executives.
+____
+
+===== link:https://github.com/MichelleEmbleton/appSecRadar[appSecRadar: A colour-coded radar chart to keep track of technologies in use, whether they are being evaluated, adopted or phased out.]
+
+image::32985377-60ff6faa-ccb1-11e7-89f6-9ccaac5140fe.png[]
