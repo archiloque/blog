@@ -74,7 +74,7 @@ I don't say that all enterprise frameworks that have bad error handling do it be
 
 == What is a good error handling?
 
-= Don't need to know internals to understand the error
+=== Don't need to know internals to understand the error
 
 When you write an error message, the first reflex is to think that the user that will face the error will know the internals of your frameworks as well as you.
 The results are terse error messages that contain information requiring an intimate knowledge of your tool to be used.
@@ -87,14 +87,14 @@ The easiest way to do it is to check the error cases as soon as possible in the 
 If internal knowledge is required to understand your error message but not to call the API, it's generally a sign that your API is probably trying to do too much magic to hide complexity to your user, but the complexity leaks in the error case.
 In this case the best course of action is to rework your API to solve this problem.
 
-= Message should be helpful
+=== Message should be helpful
 
 Having an error message stating the problems is a requirement, but if you can it's even better if it can help solving the problem.
 For example instead of `invalid status XXX` you should write `status XXX only reachable when YYY, see workflow.txt for details`.
 
 It's not doable in all cases, and sometimes you must resist the idea of being helpful when you're not 100% sure of the reason of the error. For example an error `invalid status XXX, may be caused be YYY` may help but may also lead the user in a wrong direction.
 
-= Error checking must be extensive and ruthless
+=== Error checking must be extensive and ruthless
 
 When validating parameters, you must be extensive and ruthless.
 A motto often heard is "Be conservative in what you do, be liberal in what you accept from others".
