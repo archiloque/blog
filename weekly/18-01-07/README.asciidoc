@@ -9,3 +9,30 @@ v1.0, 2018-01-07
 ____
 I’ve barely scratched the surface of Prolog and logic programming here, but hopefully this gives you a flavour of how different it is, and how to solve simple problems with it. It’s a lot like pure functional programming as found in languages like Haskell, but without any distinction between function inputs and outputs. It’s a really good discipline to learn as it forces you to formalise your understanding of a problem and prove things about it. And, it goes to show how trying to study one topic can lead you to learn all sorts of other things by accident, just by seeing them in an unexpected context.
 ____
+
+===== link:http://cr.openjdk.java.net/~briangoetz/amber/datum.html[Data Classes for Java]
+
+[quote]
+____
+Just like the story of the blind men and the elephant, different developers are likely to bring very different assumptions about the "obvious" semantics of a data class. To bring these implicit assumptions into the open, let's name the various positions.
+____
+
+[quote]
+____
+If we could say that a class was a _plain data carrier_ for a given state vector, then we could provide sensible and correct defaults for state-related members like constructors, accessors, and `Object` methods. Since there's currently no way to say what we really mean, our only alternative is to get out our imperative hammer and start bashing. But "plain" domain classes are so common that it would be nice to capture this design decision directly in the code – where readers and compilers alike could take advantage of it – rather than simulating it imperatively (and thereby obfuscating our design intent). So while boilerplate may be the symptom, the disease is that our code cannot directly capture our design intent, and if we cure the disease, the boilerplate goes away.
+____
+
+
+===== link:https://steveperkins.com/using-java-9-modularization-to-ship-zero-dependency-native-apps/[Using Java 9 Modularization to Ship Zero-Dependency Native Apps]
+
+[quote]
+____
+The most publicized new feature in Java 9 is the new modularization system, known as Project Jigsaw. The full scope of this warrants many blog articles, if not complete books. However, in a nutshell, the new module system is about isolating chunks of code and their dependencies.
+
+This applies not only for external libraries, but even the Java standard library itself. Meaning that your application can declare which parts of the standard library it really needs, and potentially exclude all the other parts.
+
+[…]
+
+However, jlink establishes “link time” as a new optional phase, in between compile-time and run-time, for performing optimizations such as removing unreachable code. Meaning that unlike javapackager, which bundles the entire standard library, jlink bundles a stripped-down JRE with only those modules that your application needs.
+____
+
