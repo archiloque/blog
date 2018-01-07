@@ -36,3 +36,21 @@ This applies not only for external libraries, but even the Java standard library
 However, jlink establishes “link time” as a new optional phase, in between compile-time and run-time, for performing optimizations such as removing unreachable code. Meaning that unlike javapackager, which bundles the entire standard library, jlink bundles a stripped-down JRE with only those modules that your application needs.
 ____
 
+
+===== https://groups.google.com/forum/#!topic/mechanical-sympathy/L9mHTbeQLNU[PCID is now a critical performance/security feature on x86]
+
+[quote]
+____
+The PCID (Processor-Context ID) feature on x86-64 works much like the more generic ASID (Address Space IDs) available on many hardware platforms for decades. Simplistically, it allows TLB-cached page table contents to be tagged with a context identifier, and limits the lookups in the TLB to only match within the currently allowed context. TLB cached entires with a different PCID will be ignored. Without this feature, a context switch that would involve switching to a different page table (e.g. a process-to-process context switch) would require a flush of the entire TLB. With the feature, it only requires a change to the context id designated as "currently allowed". The benefit of this comes up when a back-and-forth set of context switches (e.g. from process 1 to process 2 and back to process 1) occurs "quickly enough" that TLB entries of the newly-switched-into context still reside in the TLB cache. With modern x86 CPUs holding >1K entries in their L2 TLB caches (sometimes referred to as STLB), and each entry mapping 2MB or 4KB virtual regions to physical pages, the possibility of such reuse becomes interesting on heavily loaded systems that do a lot of process-to-process context switching. It's important to note that in virtually all modern operating systems, thread-to-thread context switches do not require TLB flushing, and remain within the same PCID because they do not require switching the page table. In addition, UNTIL NOW, most modern operating systems implemented user-to-kernel and kernel-to-user context switching without switching page tables, so no TLB flushing or switching or ASID/PCID was required in system calls or interrupts.
+
+[…]
+
+So, why would youI not have PCID?
+
+It turns out that because PCID was so boring and non-exciting, and Linux didn't even use it until a couple of months ago, it's been withheld from many guest-OS instances when running on modern hardware and modern hypervisors. In my quick and informal polling I so far found that:
+
+- Most of the KVM guests I personally ooked in did NOT have pcid
+- All the VMWare guests I personally looked in had pcid
+- About half the AWS instances I l personally looked in did NOT have pcid, and the other half did.
+____
+
