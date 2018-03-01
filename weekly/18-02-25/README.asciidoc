@@ -1,0 +1,32 @@
+= 25/02/2018
+Julien Kirch
+v1.0, 2018-02-25
+:article_lang: en
+
+===== link:https://heap.engineering/analyzing-performance-millions-sql-queries-one-special-snowflake/[Analyzing Millions of Postgres Query Plans]
+
+[quote]
+____
+Postgres provides an extension called auto_explain. When enabled, `auto_explain` automatically logs the query plan and execution information for every query as it’s run. It’s exactly like `EXPLAIN ANALYZE`, but automatically records the information for every query as it happens. Depending on how auto_explain is configured, you can obtain some or all of the following information:
+
+* How the query was executed.
+* How long it took to execute each part of the query.
+* How many rows were returned by each part of the query.
+* How many pages were read from disk or from cache from each part of the query.
+* How much time was spent performing I/O in each part of the query.
+
+_This is an absolute gold mine of information for analyzing why queries are slow_. Importantly, all of this information is gathered as the query is run, so we do not run into issues where a slow query is not reproducible, since we no longer need to reproduce the slowness in order to determine why the query was slow. Even better, `auto_explain has the option to obtain the output in JSON. This makes it easy to programmatically analyze the query plans.
+____
+
+
+===== link:https://heapanalytics.com/blog/engineering/testing-database-changes-right-way[Testing Database Changes the Right Way]
+
+[quote]
+____
+Along with these performance tools, shadow prod allows us to perform a direct comparison between experimental conditions for every query we run. Using this data, we have built an extremely helpful workflow for validating the results of an experiment. We can specify in code the exact differences we expect to see between queries we run on the control machine and queries we run on the experimental machine. Specifying the expected differences in code allows us to programmatically run sanity checks of the performance data, such as the following:
+
+* *Are the query plans that occur on the control machine the same as the ones we get in production?* If not, that means the control machine is different from production in an important way, which we need to resolve before continuing.
+* *Do the query plans we collect on the experimental machine have the changes we expected when compared to the control machine?* If not, that means our optimization is not working as intended.
+* *Did the query plans we collect on the experimental machine have any unexpected changes?* If there are changes in the query plans beyond what we expect, that means either the change does things we didn’t expect or there is some flaw in the design of our experiment.
+* *Did the queries we expected to improve actually improve? Did the queries we expected not to improve stay the same?* Like the checks above, this helps us to make sure changes in performance are attributable to the change we made, and not to an external factor.
+____

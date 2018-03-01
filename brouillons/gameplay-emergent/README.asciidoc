@@ -1,0 +1,62 @@
+= Gameplay émergent et développement
+Julien Kirch
+v0.1, 2018-02-06
+:article_lang: fr
+:article_description: Un concept de jeu vidéo intéressant à reprendre
+
+Le gameplay émergent est un concept issu du monde du jeu vidéo où les interactions non-prévues entre plusieurs systèmes simples rend un jeu plus intéressant ou plus prenant.
+En l'appliquant au développement logiciel, il peut fournir une aide pour mieux comprendre pourquoi certains environnements sont plus satisfaisants que d'autres.
+
+== Gameplay émergent
+
+Pour être prenants, certains jeux vidéo font le pari d'avoir un nombre important de fonctionnalités différentes. Cela permet :
+
+* d'offrir des choix en permettant plusieurs styles de jeu ;
+* de rendre le jeu plus fun car pour les personnes qui jouent, maîtriser ensemble un ensemble de règles plus complexes provoque un sentiment de puissance.
+
+Par exemple les jeux de rôle permettant d'utiliser différents types d'armes ou de magie et d'avoir un groupe de personnages différents qui se complètent.
+
+Un des exemples canoniques est le link:http://thegamedesignforum.com/features/rd_ff7_6.html[système de progression de Final Fantasy VII].
+
+Construire un tel système est difficile, car il doit être suffisamment riche pour être intéressant, sans devenir incompréhensible car trop complexe.
+Pour éviter cela, l'approche souvent employée est d'avoir un ensemble de sous-systèmes, chacun avec une complexité limitée, mais avec des liens entre eux.
+
+Le link:https://www.gamasutra.com/blogs/JoshBycer/20150916/253682/Examining_Emergent_Gameplay.php[gameplay émergent] est quand ce type de fonctionne tellement bien qu'il permet aux joueur·euse·s de s'approprier le système au point d'inventer des manières de jouer qui n'avaient pas été prévues lors de la création du jeu.
+
+C'est le cas de Minecraft ou d'Infinifactory.
+
+Dans le monde du jeu-vidéo, c'est une sorte de Saint Graal car cela va rendre le jeu beaucoup plus intéressant et donc augmenter sa durée de vie et ses ventes.
+
+Un Saint Graal aussi car y arriver demande un bon dosage entre les différents ingrédients, et un zeste de chance pour que la mayonnaise prenne.
+
+== Gameplay émergent et développement logiciel
+
+Dans le développement logiciel, l'environnement dans lequel on développe – c'est-à-dire le ou les langages de programmation et les différents outils et frameworks sur lesquels on s'appuie pour écrire notre code, constitue un système qui ressemble à celui d'un jeu.
+
+Par exemple si vous utilisez Java, Spring, Intellij et quelques frameworks maison, le tout forme le système dans lequel vous développez.
+Comme dans un jeu, ce cadre délimite votre espace des possibles et définit ce qu'il est facile et moins facile à faire.
+
+Dans la pire situation, les différents sous-systèmes luttent activement les uns avec les autres au point qu'il est presque impossible de faire quoi que ce soit.
+Vous devez alors en permanence garder en tête une carte mentale de la manière dont les éléments interagissent entre eux.
+
+Une situation acceptable est celle où les sous-systèmes sont "orthogonaux", c'est à dire qu'ils n'interférent pas les uns avec les autres.
+Cela permet de ne penser qu'aux éléments dont on a activement besoin, et donc d'avoir une certaine efficacité, même si l'environnement n'est pas très plaisant à utiliser.
+
+On attend la limite de cette approche quand des parties du code nécessitent d'utiliser l'ensemble ou une grande partie des sous-systèmes.
+Vous devez alors manipuler toutes les différentes abstractions.
+Si elles sont faites pour être indépendantes mais ne forment pas un ensemble cohérent, il devient difficile d'obtenir un résultat lisible et donc maintenable.
+
+C'est là qu'intervient le gameplay émergent : il fournit un modèle et des idées pour construire des systèmes complexes et intéressants à manipuler.
+
+Et effectivement, certains cadres de développement partagent ces caractéristiques : on s'y sent maître de ses outils, et on a la capacité de construire facilement des systèmes complexes en combinant les différentes briques à sa disposition.
+
+Je ne pense pas que cela soit totalement lié au langage de programmation, mais plutôt à la manière dont les outils sont choisis et le système conçu.
+
+À l'heure actuelle, les jeux vidéo sont parmi les logiciels les plus complexes actuellement développés.
+L'efficacité des personnes qui les conçoivent est donc primordiale.
+
+Sans surprise ils appliquent ce modèle, par exemple pour link:http://www.blog.radiator.debacle.us/2017/10/open-world-level-design-spatial.html[The Legend of Zelda: Breath of the Wild] un effort important a été fourni pour concevoir des outils très spécifiques.
+À l'inverse du développement logiciel classique, où l'importance donné à la réutilisation est beaucoup plus grande.
+
+Sans vouloir pousser trop loin la métaphore, je pense qu'il faudrait que le reste du monde du logiciel s'intéresse à cette approche.
+Il n'y pas de recette à appliquer clé en main, mais même des efforts limités dans cette direction devraient permettre de travailler plus efficacement et de manière plus agréable.
