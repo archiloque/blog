@@ -27,7 +27,7 @@ C'est le cas de Minecraft ou d'Infinifactory.
 
 Dans le monde du jeu-vidéo, c'est une sorte de Saint Graal car cela va rendre le jeu beaucoup plus intéressant et donc augmenter sa durée de vie et ses ventes.
 
-Un Saint Graal aussi car y arriver demande un bon dosage entre les différents ingrédients, et un zeste de chance pour que la mayonnaise prenne.
+Un Saint Graal aussi car y arriver demande un bon dosage entre les différents ingrédients, et un peu de chance pour que la mayonnaise prenne.
 
 == Gameplay émergent et développement logiciel
 
@@ -46,11 +46,14 @@ On attend la limite de cette approche quand des parties du code nécessitent d'u
 Vous devez alors manipuler toutes les différentes abstractions.
 Si elles sont faites pour être indépendantes mais ne forment pas un ensemble cohérent, il devient difficile d'obtenir un résultat lisible et donc maintenable.
 
-C'est là qu'intervient le gameplay émergent : il fournit un modèle et des idées pour construire des systèmes complexes et intéressants à manipuler.
+L'idée des frameworks tout intégrés comme link:https://spring.io[Spring] est qu'en concevant toutes les briques ensemble sur une même base, le résultat devrait être cohérent.
+Le risque de cette approche est que si le modèle de base n'est pas bien conçu, l'effet de ces défauts est démultiplié par l'échelle.
+
+C'est là qu'intervient le gameplay émergent : il fournit un modèle et des idées pour construire des systèmes complexes et intéressants à manipuler pour les personnes qui l'utilisent.
 
 Et effectivement, certains cadres de développement partagent ces caractéristiques : on s'y sent maître de ses outils, et on a la capacité de construire facilement des systèmes complexes en combinant les différentes briques à sa disposition.
 
-Je ne pense pas que cela soit totalement lié au langage de programmation, mais plutôt à la manière dont les outils sont choisis et le système conçu.
+Je ne pense pas que cela soit totalement lié au langage de programmation ou aux outils en eux-mêmes, mais plutôt à la manière dont les outils sont choisis et le système conçu.
 
 À l'heure actuelle, les jeux vidéo sont parmi les logiciels les plus complexes actuellement développés.
 L'efficacité des personnes qui les conçoivent est donc primordiale.

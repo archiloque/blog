@@ -15,3 +15,14 @@ Starting from main(), you’ll build a language that features rich syntax, dynam
 
 You can read the whole book, for free, online
 ____
+
+===== link:https://eng.uber.com/queryparser/[Queryparser, an Open Source Tool for Parsing and Analyzing SQL]
+
+[quote]
+____
+In early 2015, Uber Engineering migrated its business entities from integer identifiers to UUID identifiers as part of an initiative towards using multiple active data centers. To achieve this, our Data Warehouse team was tasked with identifying every foreign-key relationship between every table in the data warehouse to backfill all the ID columns with corresponding UUIDs.
+
+Given the decentralized ownership of our tables, this was not a simple endeavor. The most promising solution was to crowdsource the information by scraping all the SQL queries submitted to the warehouse and observing which columns were joined together. To serve this need, we built and open sourced Queryparser, our tool for parsing and analyzing SQL queries.
+
+In this article, we discuss our implementation of Queryparser, the variety of applications it unlocked, and some problems and limitations encountered along the way.
+____
