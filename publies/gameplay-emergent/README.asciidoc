@@ -1,8 +1,9 @@
-= Gameplay émergent et développement
+= Gameplay émergent et développement logiciel
 Julien Kirch
-v0.1, 2018-02-06
+v0.1, 2018-03-06
 :article_lang: fr
 :article_description: Un concept de jeu vidéo intéressant à reprendre
+:article_image: 1r8et6.jpg
 
 Le gameplay émergent est un concept issu du monde du jeu vidéo où les interactions non-prévues entre plusieurs systèmes simples rend un jeu plus intéressant ou plus prenant.
 En l'appliquant au développement logiciel, il peut fournir une aide pour mieux comprendre pourquoi certains environnements sont plus satisfaisants que d'autres.
@@ -39,10 +40,12 @@ Comme dans un jeu, ce cadre délimite votre espace des possibles et définit ce 
 Dans la pire situation, les différents sous-systèmes luttent activement les uns avec les autres au point qu'il est presque impossible de faire quoi que ce soit.
 Vous devez alors en permanence garder en tête une carte mentale de la manière dont les éléments interagissent entre eux.
 
+C'est le syndrome link:https://www.kotaku.com.au/2017/04/the-true-story-behind-dwarf-fortress-mysterious-vomit-covered-dead-cat-problem/[des chats qui vomissent car ils font leur toilettes et lèchent l'alcool qui a été renversé par terre et s'est collé à leur pattes], parce que l'algorithme qui calcule le niveau d'ébriété des chat est buggé.
+
 Une situation acceptable est celle où les sous-systèmes sont "orthogonaux", c'est à dire qu'ils n'interférent pas les uns avec les autres.
 Cela permet de ne penser qu'aux éléments dont on a activement besoin, et donc d'avoir une certaine efficacité, même si l'environnement n'est pas très plaisant à utiliser.
 
-On attend la limite de cette approche quand des parties du code nécessitent d'utiliser l'ensemble ou une grande partie des sous-systèmes.
+On atteint la limite de cette approche quand des parties du code nécessitent d'utiliser l'ensemble ou une grande partie des sous-systèmes.
 Vous devez alors manipuler toutes les différentes abstractions.
 Si elles sont faites pour être indépendantes mais ne forment pas un ensemble cohérent, il devient difficile d'obtenir un résultat lisible et donc maintenable.
 
