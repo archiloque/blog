@@ -1,0 +1,118 @@
+= Une balade le long de l'omnicanal
+
+== Omnical c'est quoi ?
+
+Commence une demande sur mobile puis on continue en agance, blablabla
+
+On en parle depuis des années, mais beaucoup n'y sont pas encore.
+
+== Pourquoi c'est compliqué ?
+
+Pour comprendre pourquoi c'est compliqué à mettre en œuvre, il faut comprendre l'historique.
+
+Voici l'archétype de l'évolution des SI chez nos clients. Chaque cas est particulier mais grosso-modo ça ressemble :
+
+=== Historique
+
+image::1.png[]
+
+* Un cœur métier, souvent en mainframe
+* Des écrans backoffice pour les employés
+* Des interconnections avec le reste du DI
+
+Le workflow du cœur métier est directement inspiré par le déroulé des écrans backoffice.
+
+=== Situation actuelle
+
+image::2.png[]
+
+* Ajout de sites web et appli mobile pour les clients, comme le workflow n'est pas le même que ceux du backoffice ils stockent les données intermédiaires et basculent les données dans le cœur métier lorsque le traitement est terminé, ou au mieux après un délai. Des services spécifiques ont été ajoutés pour cela dans le coeur métier
+* Des services spécifiques pour les partenaires
+
+Problèmes :
+
+- pas d'omnicanal
+- transmissions non satisfaisantes au reste du SI (exemple : souscriptions incomplètes pas transmises au marketing)
+
+=== Cible
+
+image::3.png[]
+
+Avoir des services utilisables par tous et sans stockage intermédiaire pour faire de l'omnicanal.
+
+== Que faut-il pour avoir un bon omnicanal ?
+
+- Un système de stockage
+- Un ensemble de règles métier de validation
+- Un workflow permettant de définir les macro-étapes des process et les responsabilités (aussi appelé machine à état)
+- Des services facilement utilisables
+
+=> Chacun est capable d'avoir son workflow tant qu'il s'inscrit dans les macro-étapes, l'objectif est de pouvoir s'arrêter à n'importe quel point tout en ayant le minimum de rigidité possible
+
+image::4.png[]
+image::5.png[]
+
+[TIP]
+====
+Les mêmes caractéristique sont intéressantes pour faire du reuse entre pays du cœur métier, à condition qu'il soit configurable.
+====
+
+== Quel est le problème ?
+
+Les difficultés 
+- Identifier le "macro-processus" qui sert de squelettes demande une bonne connaissance métier
+- Définir les bons services
+- Être capable de le faire vivre en harmonie avec les consommateurs
+- Faire évoluer le cœur métier
+
+== Peut-on se passer d'un BPM pour implémenter de l'omnicanal ?
+
+Je n'ai pas mis la partie implémentation du workflow dans les choses difficiles.
+
+Un BPM est plutôt un antipattern ici: faut lui exposer des services qu'il comprend, et lui même expose des services qui ne seront pas forcément ceux qui seront pas forcément adaptés aux consommateurs.
+
+[NOTE]
+====
+TODO : Schéma avec exemple d'un BPM
+====
+
+Si vous le voulez vous pouvez utiliser un moteur de workflow léger, mais autant que possible c'est bien de garder la main sur le code "métier".
+
+== Comment faire ?
+
+Le cœur métier contient trois éléments qui ont de la valeur :
+- les règles de validation
+- les règles de traitements
+- l'interconnection avec le reste du SI, mais si pas toujours satisfaisant
+
+Deux choses non satisfaisantes :
+- règles d'intégrité des données alignées avec le process historique
+- process hardcodé
+
+Stratégies possibles :
+
+=== Tout recoder
+
+Si tu peux ça peut etre cool, par contre projet stratégique très risqué.
+
+=== Rendre le cœur métier historique omnicanal
+
+Projet dont le risque dépend de la maîtrise que vous avez du bousin
+
+=== Ajouter une couche omnicanal
+
+C'est la solution la plus légère, on construit une surcouche, soit from scratch soit en partant d'un des backend existant.
+
+Ça va demander de la duplication d'une partie du cœur métier plus importante que ce que vous avez maintenant.
+
+Ça va demander de modifier les services exposés par le cœur métier.
+
+Ensuite on migre les consommateurs vers cette couche.
+
+Puis on peut commencer à remonter du métier et à dégonfler le cœur métier.
+
+== Conclusion
+
+Omnicanal c'est quelque chose de structurant pour le SI, chantier de longue haleine.
+
+La difficulté est côté métier et côté existant.
