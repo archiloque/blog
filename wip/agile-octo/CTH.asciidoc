@@ -1,0 +1,108 @@
+= Quand les agilistes sont entrés à OCTO 1/5 : Christophe Thibault
+
+Je suis à OCTO depuis octobre 2005.
+Depuis 4 ans maintenant je suis dans la tribu Craft dont la vocation est d'aider nos clients dans leurs pratiques de développement, principalement autour de la qualité du delivery.
+Je m'intéresse plus particulièrement aux différents aspects de link:https://blog.octo.com/author/christophe-thibaut-cth/[la prévention et au management de la qualité].
+
+*Est-ce que tu te souviens de la manière dont tu voyais les architectes et l'architecture de SI avant d'arriver à OCTO ?*
+
+Quand j'ai commencé ma carrière, en 1988-1989 il n'y avait pas spécifiquement d'architectes : il y avait des chefs de projets, des développeurs qui connaissaient plus ou moins bien la technologie, mais pas d'architectes.
+Ce métier spécifique je l'ai vu apparaître chez mes clients.
+
+J'ai vu des architectes commencer à pointer le bout de leur nez quand j'étai en mission dans une grande banque comme chef de projet pendant quatre ans et demie et où je les entendais parler de technologies nouvelles, à l'époque c'était l'objet et CORBA.
+C'étaient des interlocuteurs qui parlaient technique mais qui n'étaient pas impliqués dans des développements, ils s'intéressaient plus aux choix technologiques.
+
+Leur travail m'apparaissait plutôt constituant des _side-projects_.
+
+Ensuite dans d'autres missions j'ai d'abord vu des DBAs puis des architectes qui ne parlaient plus seulement de base de données et modélisation mais aussi de l'ensemble de l'application.
+
+C'était nouveau pour moi car venant de la micro-informatique, j'avais l'habitude d'une certaine autonomie des équipes dans le design des applications.
+
+Avant d'entrer chez OCTO les architectes étaient des espèces de spécialistes-généralistes avec une approche relativement haut niveau donc assez abstraite, certains étaient très crédibles mais d'autres racontaient n'importe quoi.
+
+*Qu'est ce qui t'as fait venir à OCTO qui se revendiquaient comme un cabinet de conseil en architecture de SI ?*
+
+J'avais déjà des copains dans la place qui faisaient un travail de coaching autour de l'agilité qui m'ont parlé d'OCTO en me disant que c'était différent de ce qu'on pouvait voir ailleurs et qu'on pouvait y faire des choses intéressantes.
+
+À l'époque je cherchais à développer mes compétences en facilitation et coaching autour de l'agilité et notament link:https://fr.wikipedia.org/wiki/Extreme_programming[l'extreme programming (XP)].
+
+*Quelles ont été les premières réactions lorsque tu es arrivé à OCTO et que tu as commencé à côtoyer des architectes ?*
+
+Au début ça a été un choc car très peu d'architectes partageaient ma conviction qu'on pouvait couvrir une application de test unitaires et que ça donnerait à cette application une certaine solidité pour le refactoring et le redesign.
+Il y a eu beaucoup de discussions à propos de TDD et de la couverture de tests unitaires.
+
+Je sortais d'une expérience avec une application de quarante mille lignes de code avec un millier de tests unitaires et un design relativement flexible.
+Les enjeux de cette discussion étaient avec les architectes important car cette flexibilité du design obtenue grâce aux tests supprimait la nécessité de tout penser à l'avance.
+
+Un moment à OCTO il y a eu ce qu'on a appelé les bleus et les gris.
+Les bleus c'étaient les architectes et les gris les coachs, je crois que les couleurs avaient été choisies par link:https://twitter.com/ppezziardi[Pierre Pezziardi].
+Cet étiquetage n'a pas été bien vécu par tout le monde.
+
+Notre premier combat sur l'agile c'était le _big design upfront_.
+Il faut se rappeler de quoi on sortait : des années passées à faire des diagrammes UML dans link:http://alice.pnzgu.ru:8080/~dvn/fb61499/festo/uml_specification/st3_class_diagram.htm[Rational Rose] pour l'ensemble des classes avant de toucher une ligne de code.
+L'enjeu c'était de dire en faisant du XP et du TDD vous avez un design évolutif et il est émergent.
+Cette idée même de design émergent choquait pas mal les architectes, qui disaient que des personnes qui ont un savoir doivent prescrire les choses et prendre les décisions structurantes.
+Ça a mis 4 à 5 ans et ça a été un peu difficile.
+
+D'un autre côté, quand on parlait outils et tests les architectes étaient plutôt des alliés grâce à leur connaissance de l'écosystème Java.
+
+*Qu'est ce qui était le plus difficile au début ?*
+
+C'était difficile d'entrer à OCTO car la culture était très homogène, quand on arrive on est forcément très différent et il faut se faire sa place.
+J'avais 40 ans en arrivant et mon expérience m'a été utile pour m'intégrer.
+
+J'avais une rhétorique assez bien affutée sur TDD, les tests et le design émergent, et j'exerçais ma rhétorique sur les mailing-lists et on se disputait avec les architectes.
+
+Le plus compliqué c'était "qu'est-ce qu'on va faire pour aider nos clients ?".
+Ce n'était pas une question d'architecture mais une question commerciale : "est-ce-qu'il y a une opportunité sur l'agile ?"
+
+Quand je suis arrivé chez OCTO, on finissait de se poser cette question "est ce qu'on va sur l'agile ou pas ?". Et on y est allé finalement.
+
+L'équilibre est arrivé quand on a réussi à trouver du business pour tout le monde.
+Un moment les architectes se demandaient quel allait être leur avenir chez OCTO.
+Ils ne se le sont pas demandé longtemps car on a continué le conseil en architecture mais c'est arrivé.
+
+J'ai longtemps cru que le poste d'architecte allait se dissoudre dans le travail autour du développement et de l'organisation, de la même manière que je crois que le poste de coach va se dissoudre dans le travail autour du dialogue de l'équipe.
+
+Autour de 2010 l'agilité n'a plus fait question : quand on préconisait une démarche de développement chez nos clients c'était de l'agile, plus personne ne conseillait un cycle en V.
+
+*Avec le client comment se passait le mélange architectes / agilistes ?*
+
+Je me souviens d'un incident précis où j'ai cru que je n'allais pas rester à OCTO, pendant une réunion client avec un architecte OCTO où on parlait de la documentation du projet.
+
+J'ai posé quelques questions et j'ai mis en évidence qu'un logiciel qui fonctionne vaut mieux qu'une documentation exhaustive, et que la documentation n'était pas une vraie priorité même si tout le monde disait le contraire.
+
+En sortant l'architecte m'a dit que je ne devais pas remettre en question ce qui avait été défini avec le client et je me suis dit que ça n'allait peut-être pas fonctionner pour moi chez OCTO.
+Au final ça a très bien fonctionné.
+
+Au contraire en général les clients apprécient d'avoir des points de vue st  différents entre un agiliste et un architecte.
+
+*Qu'est-ce que les architectes t'ont appris ?*
+
+Les architectes à OCTO m'ont donné une conscience aigüe de la politique dans une entreprise, surtout dans une grande entreprise.
+Dans une grande entreprise il y a du monde, donc certains des choix qui sont pris, qu'il faut prendre, dont les conséquences sont très floues.
+
+Dans un tel contexte il y a toujours de la politique : comment communiquer, avec qui, qui est avec moi dans l'entreprise pour faire évoluer une techno ou une méthode, et qui sera contre moi et qu'est-ce que je peux y faire ?
+
+Ce n'est pas du tout la même approche que de coacher une équipe agile : quand on coache une équipe agile on essaie de s'écouter pour essayer d'aider l'équipe à s'améliorer.
+
+*Rétrospectivement, qu'auriez-vous pu faire pour que ça se passe mieux l'arrivée de l'agile à OCTO ?*
+
+Je n'ai pas d'idée de ce qui aurait pu rendre ça plus fluide.
+
+Je pense qu'il y une phase nécessaire d'appropriation des idées, et qui dit appropriation des idées dit nécessairement conflit d'idées.
+On ne peut pas être passionné par ce qu'on fait sans être parfois en conflit sur ce qu'on veut faire ou sur la manière dont on pense que cela doit être fait.
+
+Je crois au consensus et pas au compromis.
+
+*Après tout ce temps, qu'est-ce que tu n'as toujours pas compris chez les architectes de SI ?*
+
+Ce que je n'ai toujours pas compris, c'est la question que je leur ai posée à la DuckConf link:https://www.youtube.com/watch?v=7qCLIPjjk0k[comment est-ce qu'ils influencent leurs entreprises ?]
+C'est ce qui me tétaniserait si par absurde je devenais architecte de SI dans une grande entreprise.
+
+Si je prétendais avoir des solutions viables et pérennes à des problèmes structurantes et énormes comme la sécurité ou performance, comme s'y prendre pour convaincre un board de prendre la décision de mettre de l'argent ici plutôt que là ?
+
+Comment avoir de l'influence dans l'incertitude alors que mon expérience est que les managers des grandes entreprises détestent l'incertitude ?
+Je ne sais pas comment font les architectes.
+
+_Le 23 mars 2018_
