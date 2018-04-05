@@ -1,0 +1,89 @@
+== Quand les agilistes sont entrés à OCTO : Philippe Kernévez
+
+Je suis arrivé à OCTO début 2000. À l'époque on faisait principalement une activié d'architecture technique, les premières architectures J2EE ce genre de choses.
+Depuis 2008 j'ai démarré la filiale en Suisse et je suis directeur technique de la filiale depuis 8 ans.
+
+*Te souviens-tu de la manière dont tu voyais l'agile et les agilistes avant qu'ils n'arrivent à OCTO ?*
+
+On ne parlais pas d'agile en tant que tel avant qu'ils n'arrivent.
+On avait certaines pratiques au niveau du développement, ça dépendait des gens.
+On avait déjà entendu parler d'XP, pour certains on était impliqué dans des frameworks de test.
+Je me souviens en 2000 avoir travaillé avec Vincent Massol à la SG et on avait besoin de tester des servlets et il y avait déjà deux approches il y avait les gens qui faisaient des tests avec des mocks et Vincent souhaitait avoir des tests _in container_, le besoin sur le projet et son implémentation a un projet Apache qui s'appelle Cactus.
+Il y avait des gens quoi avaient déjà des pratiques autour des tests automatisés mais on ne parlait pas d'agile en tant que tel.
+C'était juste un peu de pratiques de test et de quelques pratiques un peu craftman sans que le terme existe à cette époque là, on va dire très orienté par la tech.
+Après les premiers agilistes qui sont intervenus, je pense que chez OCTO c'était Emmanuel Gaillot, il a du arriver en 2203-2004 donc c'est kui qui est un peu arrivé en tête de pont, a présenté quelques choses, puis rapidement il a atiré quelques copains à lui.
+Donc BEN, CTH et puis en baignant dans la sphère mais qui n'est jamais venu chez OCTO mais qu'on connait souvent chez OCTO c'est Laurent Bossavit.
+Tous ces gens là présentaient une autre façon d'essayer d'envisager les projets et c'était quand même un choc culturel vraiment à l'époque.
+Ça a été cristalisé un moment, PPE qui aimait bien tout ce chamboulement et le challenge que ça pouvait véhiculer il a même été lui-même assez partisant de cette technique et donc il a été bien moteur pour donner quelques coups de pieds dans le sac pour qu'il y ait les choses qui bougent et il y a un moment où ça c'est manifesté sous la forme des bleus contre les gris.
+Les bleus étant représentatifs des soutiers techniques architectes et développeurs et puis les gris qui étaient plus les agilistes tel qu'on pouvait l'envisager donc focalisés d'avantage sur le process même si pour la plupart, même si dépend un petit peu de leur profil c'est aussi des gens qui font de la tech par ailleurs c'est plus la partie architecture tel qu'on l'envisageait qui les chagrinnait un peu plus.
+Après on n'était pas forcément alignés sur les technos pour faire de la tech.
+Après on a eu chez OCTO des gens qui ne faisaient que coachs, qui ne s'intéressaient pas à la technique mais les gens qui sont arrivés à cette époque là, CTH en tête, CTH par exemple est très curieux sur les nouveaux langages, les nouvelles façons de programmmer.
+Ça s'est cristalisé sous ces deux appellations : les bleus et les gris et ça a bien pris 2-3 ans pour commencer à se dépasionner.
+
+*Qu'est ce qui a été le plus compliqué au début ?*
+
+Dans les choses qui étaient difficile en appréhension il y a une partie de ce que voulaient modifier les coachs, c'est à dire la façon de faire des projets, la faàn d'aborder certains problématiques qui semblaient a priori inintéressant, c'était de la gestion de projet et donc pour un certain nombre de personnes c'était pas dans notre scope et c'était pas quelque chose qui nous intéressait
+et inversement le métier historique d'OCTO qui était l'architecture qui consiste aussi à avoir une vision long terme semblait complètement orthogonale avec une vision "court terme" des agilistes qui était plutôt de dire nonon on s'en fiche on fait ce dont on a besoin pour cette semaine.
+Aujourd'hui je pense qu'on a à peu près tous réussi à trouver comment on pouvait mixer une certaine vision long terme et un mode de fonctionnement agile avec ça, architecture ne veut pas forcément dire cascade, même loin de là.
+Mais à ce moment là c'est ça que ça critalisait en fait, il y avait vraiment une opposition, c'était perçu comme "nous on est les agilistes et l'architecture c'est vraiment un truc de merde" et ils débarquaient dans une boite dont toute l'activité depuis 5 ans et son développement était fait sur l'architecture.
+Et puis de l'autre côté il y avait une incompréhension du fait que les gens voulaient travailler sur la façon de faire les projets.
+Et même si sur un certain nombre de fondamentaux, en gros on se retrouvait sur les tests et sur un certain nombre de pratiques de dev mais ça laissait des gros gaps à côté de ça.
+
+*Et avec les clients, comment passait le mélange architecte / agiliste ?*
+
+Déjà quand on parlait d'agile à l'époque on parlait uniquement de ce qui tournait autour des activités de dev, on n'en était très très peu à réussir à impliquer des maîtrise d'ouvrage, il y a peut-être un ou deux projets avec Christophe où en 2003-2004 où on avait réussi à avoir un peu le métier embarqué par les tests, d'essayer de leur faire-faire du Fitnesse avec les équipes en amont parès ça restait quand même très trsè anecdotique donc ce qu'on appelait surtout agile à l'époque ça constait à avoir simplement un backlog, faire du SCRUM en gros.
+Alors qu'aujourd'hui quand on parle de gestion agile de projet on est plutôt sur une approche DevOps où on parle quasiment de lean startup sur l'émergence du produit à la totalité du wokflow depuis les idées côté métier jusqu'au déploiement en production.
+Donc à l'époque on était sur un scope beaucoup plus restreint.
+
+*Pendant que les débats étaient en cours, ça ne posait pas trop de problèmes ou d'effets de bord chez les clients ?*
+
+Chez les clients je n'ai pas trop l'impression, j'avais plutôt l'impression de débat enflammés en interne, pas mal de tension dans la direction technique à l'époque qui était une équipe qui dépendait de PPE.
+Peut-être sur quelques positions agiles sur quelques projets mais en tous cas pas ceux sur lesquels moi j'étais directement impliqué.
+Je ne pense pas que ça soit trop ressenti.
+Ce qui a participé pas mal à appaiser les débats après ça a été entre autres une politiques pour le SI, qui a permi d'avoir une partie d'auteurs des deux mondes impliqués sur le même projet et d'accoucher d'une vision qui alignait pas mal les gens sur le sujet.
+
+*Comment as-tu vécu cette période ?*
+
+Il y a eu des débats personnels qui ont été assez compliqués, ponctuellement.
+C'était assez lié à des personnes.
+Ça secouait pas mal, c'était assez turbulent.
+Ça dépendait assez des gens avec qui on pouvait discuter.
+Il y avait des gens qui étaient beaucoup plus capables d'avoir les deux aspects.
+Dans ce sens là il y a CTH donc qui se veut pas du tout être un architecte mais par contre qui a beaucoup de valence technique et qui aime bien jouer sur ces deux tableaux, il ne se présente pas trop comme architecte ça ne veut pas dire qu'il ne fait pas d'architecture il aime juste pas s'affubler du terme et de ne pas faire que ça sur ses missions
+le fait de faire plusieurs choises est assez commun chez OCTO
+il y a aussi des gens qui ont "passé la barrière" donc des gens qui étaient reconnus comme de très bons tech leads, experts techniques, et qui se sont mis à avoir envie de développer d'avantage des valences de coachs donc qui ont participé à briser cette barrière, en particulier je pense à March Cherfi et à Guillaume Duquesnay
+
+*PPE explaquait qu'un des moyens que vous avez eu pour faire accepter l'agile était que d'avoir les deux valences était intéressant et qu'il n'y avait pas opposition*
+
+En fait c'était vraiment une opposition au début entre un point de vue qui était juste de dire, en gros vu des agilistes ça donnait un peu l'impression que l'architecture se limitait à la caricature qu'on n'aime pas chez OCTO de l'architecte dans sa tour d'ivoire et de plans très long terme nottamment pas implémentables et inversement à côté des gens qui défendaient une approche plus cabinet d'architecture classique où on se retrouvait à avoir l'impression que les agilistes s'étaient juste des doux rêveurs qui oubliaient qu'on avait une architecture, des contextes chez nos clients dans lesquels il faut s'intégrer et qu'on ne repartait pas juste d'une feuille bla,nche pour faire un petit truc dans son coin et voila il a fallu réussir à mixer à mélanger un peu tout ça pour qu'on arrivé à digérer pour certains l'agilité dans l'architecture et pour d'autres l'architecture dans l'agilité.
+
+*Rétrospectivement, qu'auriez-vous pu faire pour que ça se passe mieux ?*
+
+Ça commence à dater tout ça, donc je ne me souviens pas speciallement.
+Il y a peut-être quelques personnalités qui ont un peu exacerbé certains débats et que ça aurait été juste été mieux d'avoir quelques autres personnes ou d'éviter d'avoir eu ces conflits là ou ces incompréhensions là.
+Mais aujourd'hui c'est un peu loin pour essayer de savoir vraiment ce qu'il aurait fallu améliorer à l'époque.
+Une politique pour le SI c'est quelque chose qui a bien permi de faire aterrir une vision, de bien aligner tout le monde.
+Est ce que ça aurait été possible de le faire plus tôt, je n'en suis pas certain, il aurait fallu avoir une certaine maturité plus tôt pour réussir à l'écrire et puis je ne sais pas si en même temps il ne fallait juste pas attendre aussi le bon moment pour que cet ouvrage là puisse avoir ces vertus chez OCTO.
+
+*Qu'est-ce qu'ils t'ont appris, et qu'est-ce que ça a changé à ta manière de travailler ?*
+
+Pour moi c'est une évidence il y a un certain nombre de choses sur lesquelles on avait des intuitions à l'époque : on savait qu'on voulait faire du test automatisé, on savait qu'on avait envie de bosser le plus possible avec les gens du métier, qu'on avait envie de déborder sur des aspects de production, ce qu'on se retrouvait d'ailleurs régulièrement à faire sans avoir vraiment le mandat parce qu'à un moment il fallait bien que ça finisse par se déployer, donc en tant qu'expert tu te retrouvais à aller dans les centre de prod déployer ton EAR alors que tu n'étais pas sensé y être mais en pratique c'est comme ça que ça se passait.
+Donc il y a pas mal de chose qu'on faisait ponctuellement et aujourd'hui derriere tout ce qu'on a mis sur Agile et DevOps ben en fait on a mis de la cohérence derriere tout ça.
+Donc ça ça a pas mal changé.
+C'est plus quelques pratiques sporadiques qui sont faites comme ça mais on a un discours qui permet de justifier tout ces différentes points, de les mettre en ordre de marche et de les faire résonner les uns avec les autres et d'avoir un discours sur la totalité du process.
+
+*Aujourd'hui penses-tu qu'on puisse être architecte SI sans faire d'agile ?*
+
+Alors, on peut encore faire une belle carrière comme ça, on en crois encore quane même régulièrement.
+Est ce qu'on peut encore être utile au niveau des SIs en faisant de l'architecture sans intégrer la dimensions agile par contre ça je n'y crois pas, mais pour moi déjà les architectes ne devraient pas être isolés en dehors des process de développement, les process de développement devraient être massivement basés sur de l'agile, peut-être des exceptions sur certains refontes mais ça reste quand même quelque chose qui pour moi est très limité et à partir du moment où on dit que les process devraient être globalement agiles et les architectes dans les process, un architectes qui ne fait pas d'agile ça n'a pas de sens.
+
+*Après tout ce temps, qu'est-ce que tu n'as toujours pas compris chez les agilistes ?*
+
+Peut-être le rejet de certains technos, pour certains d'entre eux, alors il y a plein de technos dont on est nous-même d'accord, on peut parler de Java en particulier, ça a plein de défauts, il y a plein d'autres langages qui ont plein de qualités, mais pour un certain nombre d'entre eux une partie du discours est très liée on va dire un petit peu à des applications start-ups, et j'en ai pas trouvé beaucoup qui étaient à l'aise pour s'attaquer à des sujets complexes qui correspondent aux SIs d'une partie denos clients et une grosse partie de l'activié d'OCTO est d'intervenir dans ces SI complexes et du coup le discours simpliste qui consiste à dire "on va faire de l'agile en Rails parce que c'est cool et avec ça on est plus agile"
+ça ne suffit pas dans notre activité, et on peut dire que Rails c'est une super techno pour un certain nombre de choses, malgrès tout le SI de nos clients ils ont besoin d'un peu de cohérence et il y a des règles avec lesquelles il faut qu'on accepte de jouer, d'autres qu'on doit changer mais on ne peut pas juste tout pêter quand on débarque quand il y a un existant qui a quelques dizaines d'années.
+Et déjà quand on vient changer la méthode c'est déjà beaucoup, on n'est pas obligé de s'attaquer en même temps à l'ensemble des technos, surtout qu'on sait bien que sur un ensemble historique pareil de toutes façon changer les technos avant qu'on les ait toutes changer, celles qu'on est en train de mettre en place sont déjà obsolètes.
+
+Il y a eu une bonne année une bonne année et demie où ça a été vraiment un sujet de friction important.
+J'ai pas le sentiment que c'était trop visibles chez nos clients, après je pense, je parle de mon point de vue, il y a peut-être des gens qui se sont retrouvés d'avantage à aller … La seule mission où j'ai fais dans cette période en rapport avec de l'agile c'était avec CTH chez SogéCap et le client lui-même était demandeur de changer les choses par rapport à ça, du coup ça correspondait à une demande du client, l'équipe qui était sur place, malgrès certaines divergences d'aspect, était soudée du point de vue humain et donc il n'y avait pas de tension par rapport à ça sur l'équipe qui était en place.
+Donc je ne l'ai pas trop vu.
+Par contre je pense, c'est même certain mais je n'ai pas été directement impliqué dedans, il y a eu des tensions sur la façon d'appréhender les missions, sur des façons de cadrer une réunion de lancement qui n'étaient pas du tout alignée selon les différentes personnes qui étaient dans le meeting, il y a eu des clash à l'époque, mais je pense que le plus enflammés c'était sur les mailing-list.
