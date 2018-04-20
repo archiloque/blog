@@ -1,0 +1,12 @@
+= 15/04/2018
+Julien Kirch
+v1.0, 2018-04-15
+:article_lang: en
+
+===== link:https://cloudplatform.googleblog.com/2018/04/what-we-learned-doing-serverless-the-Smart-Parking-story.html[What we learned doing serverless — the Smart Parking story]
+
+[quote]
+____
+In fact, storage is so cheap, we'd be naive to not abuse it. This means that we shouldn't be afraid to store our data as many times as we want to simply improve overall access. Bigtable works efficiently with billions of rows. So go ahead and have billions of rows. Don't worry about capacity or maintaining a monsterous data cluster, Google does that for you. This is the power of serverless. I can do things that weren't possible before. I can take a single record and store it ten (or even a hundred) times just to make data sets optimized for specific usages (i.e., for specific queries).
+____
+

@@ -1,0 +1,48 @@
+= 25/03/2018
+Julien Kirch
+v1.0, 2018-03-25
+:article_lang: en
+
+===== link:https://blog.jessfraz.com/post/building-container-images-securely-on-kubernetes/[Building Container Images Securely on Kubernetes]
+
+[quote]
+____
+A lot of people seem to want to be able to build container images in Kubernetes without mounting in the docker socket or doing anything to compromise the security of their cluster.
+____
+
+
+===== link:https://blog.acolyer.org/2018/03/21/on-purpose-and-by-necessity-compliance-under-the-gdpr/[On purpose and by necessity: compliance under the GDPR]
+
+[quote]
+____
+«In practice a company may collect data about customers in one process and use that data in another… This disconnect mirrors a challenge faced by many companies: whereas the individual processes within a company are usually well-understood by the staff undertaking them, including the interfaces to other processes, the global picture of all processes in the company is rarely well understood. But the GDPR requires such a global understanding: data collected in one process may migrate to other processes, and end-user consent is required for all involved processes.»
+
+I take a somewhat different viewpoint here: for many organisations, I contend that an approach requiring a complete, accurate, up-to-date, global understanding of all processes and data flows is probably doomed to failure, as this is an impossible task! And yet we can’t escape the challenges the authors (and the regulations) place before us. My personal sense is that we need to track the provenance of data as it flows through an organisation, including proof of consent and the purposes for which consent was given, and then match the purpose of a process against that consent record. (Having the provenance flow with the data allows for local decisions, rather than requiring a centralised master plan).
+
+Regardless of how you do it, you are at some point going to end up with a collection of business processes and a set of data classes. You’ll need to know which data is collected by which processes, and which data is used by which processes (i.e., for which purposes). The data production (collection) and usage relations can be used to derive the user consents that are needed.
+____
+
+===== link:http://www.johno.se/book/imgui.html[IMGUI (GUIs in Immediate Mode)]
+
+[quote]
+____
+IMGUI does away with this type of state synchronization by requiring the application to explicitly pass all state required for visualization and interaction with any given "widget" in real-time. The user interface only retains the minimal amount of state required to facilitate the functionality required by each type of widget supported by the system.
+
+With IMGUI, a conceptual shift occurs. Widgets are no longer objects at all, and can't really be said to "exist". They take instead the form of procedural method calls, and the user interface itself goes from being as stateful collection of objects to being a real time sequence of method calls.
+
+Fundamental to this approach is the concept of a real-time application loop, where the application processes logic and draws its display at real-time rates (30 frames per second or more). In the context of games, this is already common practice.
+
+At first glance it might seem extremely cumbersome to constantly be passing the required state to the user interface, but this is in practice not at all true. Also, it might seem wasteful (from a computing resources standpoint) to be constantly resubmitting state and redrawing the user interface at real-time rates. However with modern CPU speeds and GPU fillrates this is not a problem at all.
+
+The gains are in both simplicity and flexibility. The removal of the implicit state cache in the user interface system results in less potential for cache-related bugs, and also completely removes the need for the toolkit to expose widgets to the client application as objects at all. Widgets, logically, change from being objects to being method invocations. As we shall see, this fundamentally changes how a client application approaches the implementation of user interfaces.
+____
+
+
+===== link:https://twitter.com/steveklabnik/status/977894298418077696[Databases are global mutable state]
+
+[quote]
+____
+Realization: databases are global mutable state. Therefore, migrations are fundamentally data races, of a sort. Strategies to mitigate this feel very similar to immutable data structures.
+
+Feels obvious in hindsight…
+____

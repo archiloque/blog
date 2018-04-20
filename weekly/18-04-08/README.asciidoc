@@ -1,0 +1,20 @@
+= 08/04/2018
+Julien Kirch
+v1.0, 2018-04-08
+:article_lang: en
+
+===== link:https://allarsblog.com/2018/03/16/confessions-of-an-unreal-engine-4-engineering-firefighter/[Confessions of an Unreal Engine 4 Engineering Firefighter]
+
+[quote]
+____
+Incredibly often, I have seen teams hire one or multiple entry/mid-level engineers, and then immediately try to extract senior/higher-level work out of them, without offering them the room to grow or fail. This is due to teams generally agreeing to deliver a product before having the means to build said product.
+
+[…]
+
+Overtaxing your engineering effort is a surefire way to end up with hard-to-maintain work. Unless you are developing a throwaway prototype, hard-to-maintain work is one of the fastest ways to cause engineering fatigue, short from cultural or environmental problems. 
+
+[…]
+
+If you are forced to hire engineers at a lower skill level than required, there are still ways to prevent this problem. Instead of forcing these engineers to attempt to create something above their skill-level, break the required project down into smaller systems, possibly cutting some features in the process. Bring on an extra engineer or two to split the work more evenly across your engineering team. Have your engineering team set up isolated testing of their systems, and isolated testing of specific combined systems. Not only will this help the QA team, but doing so allows every engineer to identify where a problem is, even if it belongs in a system they did not create. Creating isolated tests of specific combined systems will help your engineers grow their system design skills, their trust in their fellow engineers, and their ability to work on codebases as a team rather than as an individual. Breaking things into smaller systems, and having engineers work with each other. Creating these combo tests also allows multiple engineers to be exposed to a system, reducing the reliance on a single engineer to maintain a specific system. This frees up engineers from being locked down to certain responsibilities, allowing them to grow and produce more engineering effort. If an engineer is lost, your means of engineering should not be lost either.
+____
+

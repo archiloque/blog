@@ -1,0 +1,57 @@
+= Fiche de lecture : Escape Velocity
+Julien Kirch
+v0.1, 2018-04-20
+:article_lang: fr
+:article_image: cover.jpeg
+:article_description: Échapper à la vélocité comme mesure d'une équipe de développement
+
+_Cette fiche correspond à la version du livre publiée le 29 mars 2018 alors que le livre est terminé à 80%._
+
+link:https://leanpub.com/escapevelocity[Le dernier livre] de link:https://twitter.com/DocOnDev[Doc Norton] parle du besoin de dépasser la link:https://en.wikipedia.org/wiki/Velocity_(software_development)[vélocité] comme mesure ultime du travail d'une  équipe de développement.
+
+La première partie du livre explique pourquoi la vélocité n'est pas un bon outil en explorant ce qu'elle permet d'obtenir et les effets qu'elle induit sur l'équipe vue comme un système, suivant par exemple la link:https://fr.wikipedia.org/wiki/Loi_de_Goodhart[loi de Goodhart].
+
+On sent que l'auteur parle d'expérience, et que le livre adresse les problèmes concrets qu'il rencontre dans son travail de coaching.
+
+Par exemple sur le fait que le management accuse les personnes qui développent de tricher en augmentant les estimations pour améliorer leur score de vélocité :
+
+[quote, traduction personnelle]
+____
+S'agit-il d'une tricherie ? Non.
+Comme nous l'avons vu, on triche quand on change le système, les comportements qui résultent de ce changement en sont des conséquences naturelles.
+Nous ne pouvons pas être certain qu'il y a eu, à un moment donné, une augmentation délibérée des tailles des stories, mais nous pouvons dire que dans les conditions données, l'équipe pensait sincèrement que les estimations plus importantes étaient plus justes.
+____
+
+L'auteur propose d'abandonner la mesure de vélocité : les effets qu'elle induit ne valent pas ce qu'elle apporte.
+Ça correspond à mon ressenti personnel, et celle position semble assez partagée autout de moi, même si souvent elle n'est pas appliquée par peur de brusquer le management.
+
+[quote, traduction personnelle]
+____
+Je dirais qu'à ce stade je suis anti-vélocité. C'est une métrique pauvre dont la valeur est bien plus faible que la colère créée par son mauvais usage perpétuel.
+
+[…]
+
+Si les répercussions de ne pas atteindre les estimations sont suffisantes, les personnes peuvent déterminer qu'il vaut mieux traîner lorsqu'elles terminent "en avance" et prendre des raccourcis lorsqu'elles terminent "en retard".
+Soyons clair, ces conséquences n'ont pas besoin d'être drastiques.
+
+Perdre son temps à explorer pourquoi une estimation était fausse peut suffire à encourager les personnes à faire en sorte que les estimations aient l'air "meilleures".
+____
+
+L'auteur explore ensuite d'autres mesures qui permettent de suivre ou d'améliorer le travail de l'équipe et qui n'ont pas les inconvénients de la vélocité comme le lead time.
+
+Les mesures proposées ont l'avantage de ne pas se concentrer sur le temps passé à développer.
+Pour chacune mesure il détaille les cas d'applicabilité et les limites.
+
+Pour terminer, l'auteur donne sa recette de base pour commencer à mesurer :
+
+[quote]
+____
+On me demande souvent quelles métriques une équipe (ou des équipes) devrait utiliser.
+Cette question vient souvent sans aucun détail sur l'équipe : comment est-elle composée, depuis combien de temps ses membres sont-ils ensembles, quelles sont les problèmes qu'elle rencontre, ou les objectifs qu'elles veut atteindre avec ces mesures.
+
+Dans ces situations, je conseille généralement de commencer par cinq métriques simples : l'utilisation des fonctionnalités, le lead time, le link:https://en.wikipedia.org/wiki/Cumulative_flow_diagram[flot cumulatif], la qualité du code et l'humeur de l'équipe.
+
+Ces cinq métriques permettent à l'équipe de déterminer si le logiciel est utilisé, de voir si leur temps de livraison s'améliore, d'identifier les goulots d'étranglements, de savoir si la qualité est stable ou s'améliore et comment l'équipe se sent vis à vis de son travail.
+
+Avec ces informations l'équipe peut ajuster ses efforts et trouver les conditions permettant d'aller aussi vite que possible sans sacrifier la qualité ni user les personnes, tout en ajoutant de la valeur pour les personnes qui utilisent leur produit.
+____
