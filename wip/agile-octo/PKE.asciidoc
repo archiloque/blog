@@ -1,13 +1,11 @@
-== Quand les agilistes sont entrés à OCTO : Philippe Kernévez
+== Philippe Kernévez
 
 Philippe Kernévez est arrivé à OCTO début 2000 pour travailler sur l'architecture technique et J2EE.
-Depuis 2008 il est directeur technique de la filiale Suisse d'OCTO.
+Depuis 2008 il est directeur technique de la filiale suisse d'OCTO.
 
 *Te souviens-tu de la manière dont tu voyais l'agile et les agilistes avant qu'ils n'arrivent à OCTO ?*
 
 On avait entendu parler de link:https://fr.wikipedia.org/wiki/Extreme_programming[l'extreme programming (XP)], certaines personnes avaient des pratiques de développement autour du test automatisé ou de la qualité, mais on ne parlait pas d'agile en tant que tel. 
-
-Ça s'est cristallisé sous ces deux appellations : les bleus et les gris et ça a bien pris 2-3 ans pour commencer à se dépassionner.
 
 *Qu'est ce qui a été le plus compliqué au début ?*
 
@@ -15,32 +13,34 @@ Certains architectes voyaient l'agile comme de la gestion de projet et donc quel
 
 À l'inverse, l'architecture qui consiste à avoir une vision long terme semblait à l'opposé de l'approche des agilistes qui était plutôt de dire que la seule chose qui compte est de faire ce dont on a besoin pour cette semaine.
 
-À ce moment-là il y avait une vraie opposition, ce qu'on percevait c'était qu'ils arrivaient dans une entreprise dont toute l'activité et le développement reposaient sur l'architecture en disant "nous on est les agilistes et l'architecture c'est vraiment un truc de merde", cela donnait un peu l'impression que pour eux l'architecture se limitait à la caricature de l'architecte dans sa tour d'ivoire qui fait des plans à très long termes qui ne sont absolument pas implémentables.
+À ce moment-là il y avait une vraie opposition.
+Notre point de vu était que les agilistes arrivaient dans une entreprise dont toute l'activité et le développement reposaient sur l'architecture en disant "nous on est les agilistes et l'architecture c'est vraiment un truc de merde".
+Cela donnait un peu l'impression que, pour eux, l'architecture se limitait à la caricature de l'architecte dans sa tour d'ivoire qui fait des plans à très long terme qui ne sont absolument pas implémentables.
 
-De notre côté on avait l'impression que les agilistes étaient juste des doux rêveurs qui oubliaient qu'on avait une architecture, des contextes chez nos clients dans lesquels il faut s'intégrer et qu'on ne repartait pas juste d'une feuille blanche pour faire un petit truc dans son coin.
+De notre côté on avait l'impression que les agilistes étaient juste des doux rêveurs qui oubliaient qu'on avait une architecture, des contextes chez nos clients dans lesquels il faut s'intégrer, et qu'on ne repartait pas juste d'une feuille blanche pour faire un petit truc dans son coin.
 
-Ça secouait pas mal, certains débats personnels ont été assez compliqués.
-Nous avons eu des débats enflammés en interne, avec pas mal de tension dans l'équipe de direction technique qui dépendait de Pierre Pezziardi.
+L'opposition s'est cristallisé sous ces deux appellations : les bleus et les gris et ça a bien pris deux ou trois ans pour commencer à se dépassionner.
+Nous avons eu des échanges enflammés en interne, avec pas mal de tension dans l'équipe de direction technique qui dépendait de Pierre Pezziardi, certains débats personnels ont été assez compliqués.
 
-Il a fallu réussir à mélanger un peu tout ça pour qu'on arrive à digérer pour certains l'agilité dans l'architecture et pour d'autres l'architecture dans l'agilité.
-
-Des personnes comme March Cherfi ou link:https://twitter.com/duquesnay[Guillaume Duquesnay] qui étaient reconnus comme de très bons experts techniques se sont mis à avoir envie de développer d'avantage des valences de coachs ont participé à briser cette barrière
+Des personnes comme Marc Cherfi ou link:https://twitter.com/duquesnay[Guillaume Duquesnay] qui étaient reconnus comme de très bons experts techniques se sont mis à avoir envie de développer d'avantage des valences de coachs.
+Cela a contribuer à briser cette barrière en établissant des ponts entre les deux groupes.
 
 *Comment s'est passée l'arrivée de l'agile chez les clients ?*
 
-Aujourd'hui quand on parle d'agile on est sur l'intégralité du worklow du métier à la production, à l'époque le périmètre était beaucoup plus restreint.
+Aujourd'hui l'agile s'applique à l'intégralité de la chaîne depuis métier jusqu'à la production, alors qu'à l'époque le périmètre était beaucoup plus restreint.
 
-À l'époque on réussissait très peu à réussir à impliquer les maîtrise d'ouvrage, donc quand on parlait d'agile il s'agissait essentiellement d'activité autour du développement comme d'avoir un backlog, en gros ça consistait à faire du SCRUM.
+On réussissait très peu à impliquer les maîtrise d'ouvrage, quand on parlait d'agile il s'agissait essentiellement d'activité autour du développement comme d'avoir un backlog, en gros ça consistait à faire du scrum.
 
 En 2003-2004 avec Christophe Thibault on avait réussi sur un ou deux projets à embarquer le métier par les tests et à essayer de leur faire-faire du link:http://docs.fitnesse.org/FrontPage[Fitnesse], mais ça restait très anecdotique.
 
-Les conflits internes se passaient sur les mailing-list et n'était pas très visibles chez nos clients : malgré les divergences les équipes étaient soudées du point de vue humain.
+Les conflits internes se passaient sur les mailing-list et n'était pas très visibles chez nos clients : malgré les divergences, les équipes étaient soudées du point de vue humain.
 
 *Auriez-vous pu faire quelque chose pour que ça se passe mieux ?*
 
 Peut-être qu'on aurait pu éviter certains conflits ou incompréhensions.
 
 Au final c'est la publication d'link:https://www.octo.com/fr/publications/4-une-politique-pour-le-systeme-d-information[une politique pour le SI] a permis de faire atterrir une vision partagée et de calmer les choses.
+
 Je ne suis pas certain qu'on aurait pu le faire plus tôt car pour l'écrire il fallait avoir une certaine maturité, et même si on l'avait sorti plus tôt il n'aurait peut-être pas eu les mêmes effets.
 
 *Qu'est-ce que l'agile a changé à ta manière de travailler ?*
@@ -60,7 +60,11 @@ Pour moi les architectes devraient être partie prenante des process de dévelop
 
 Le rejet de certaines technologies pour une partie des agilistes.
 On est d'accord avec eux que certaines technologies, comme Java, ont plein de défauts.
-Mais ça ne veut pas dire que pour faire de l'agile il soit nécessaire d'utiliser Ruby on Rails.
+Mais ça ne veut pas dire que pour faire de l'agile, il soit nécessaire d'utiliser Ruby on Rails.
 
 Les systèmes de nos clients sont complexes et ont besoin de cohérence, ce qui signifie qu'il y a des règles qu'on peut changer mais d'autres qu'il faut respecter.
 Changer la méthode de travail sur un système qui a quelques dizaines d'années est déjà une tâche difficile, on ne peut pas changer en même temps l'ensemble des technologies.
+
+Les agilistes qui sont venus à OCTO ont dû apprendre à choisir les messages à passer aux clients : ils sous-estimaient le bruit engendré quand on dit trop de choses.
+
+_Le 28 mars 2018_
