@@ -1,0 +1,52 @@
+---
+page:
+  layout: "portrait"
+  margin: [1.25in, 1in, 0.75in, 1in]
+base:
+  font_family: "Century Gothic"
+  align: justify
+  line_height: 1.3
+link:
+  font_color: "#132253"
+  text_decoration: underline
+font:
+  catalog:
+    Century Gothic:
+      normal: "Century_Gothic.ttf"
+      italic: "Century_Gothic_Italic.ttf"
+      bold: "Century_Gothic_Bold.ttf"
+      bold_italic: "Century_Gothic_Bold_Italic.ttf"
+title_page:
+  font_style: "bold"
+  font-color: "#132253"
+title_page_title:
+  font_size: 36
+title_page_authors:
+  font_size: 24
+heading:
+  font-color: "#132253"
+  margin_top: "$base_line_height_length * 1"
+  margin_bottom: "$base_line_height_length * 0.8"
+  align: left
+heading_h3:
+  font_size: 12
+header:
+  height: "1in"
+  font_color: "#4BA7B8"
+  recto:
+    center:
+      content: "L'arrivée de l'agile à OCTO"
+  verso:
+    center:
+     content: "L'arrivée de l'agile à OCTO"
+footer:
+  height: "0.75in"
+  font_color: "#4BA7B8"
+  recto:
+    center:
+      content: "34 avenue de l'Opéra 75002 Paris | www.octo.com | **{page-number}**/{page-count}"
+  verso:
+    center:
+      content: "34 avenue de l'Opéra 75002 Paris | www.octo.com | **{page-number}**/{page-count}"
+blockquote:
+  font_size: 14
