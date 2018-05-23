@@ -9,7 +9,7 @@ Quand on copie une donnée entre deux systèmes, on a souvent trois grilles d'an
 . si on voit cette copie comme autre chose qu'une copie entre base de données ;
 . si on ne se rend pas compte qu'il s'agit d'une copie.
 
-La différence dans la manière de traiter les trois situations est remarquable.
+La différence dans la manière de traiter les trois situations est frappante.
 
 Dans le premier cas, on sait que le chemin est semé d'embuches et qu'il faut donc l'emprunter précautionneusement :
  quel est le délai de retard acceptable ? quels problème de cohérence ou de consistance ? accepte-t-on de perdre des informations ? que faire en cas de changement de format ?…
@@ -18,13 +18,13 @@ Dans le deuxième cas, l'approche est souvent moins formalisée : on va faire s'
 
 C'est par exemple le cas pour les caches de données : on sait bien qu'on va avoir des problèmes à un moment ou à un autre, mais tant qu'on peut les garder sous le tapis on en profite…
 
-Dans le troisième cas, on fait de la copie de donnée sans s'en rendre compte.
+Dans le troisième cas,  on fait tout pour ne pas voir qu'il s'agit de la copie de donnée.
 Pour simplifier, dès qu'une donnée est transmise à un autre système qui la stocke, il s'agit d'une copie de base : un système de queues, une application web, voire des logs.
 
 Et comme pour le cas deux : un jour le cas limite qu'on ne voulait pas voir vous saute au visage.
 
 Ce que j'essaie de faire pour ne plus avoir le problème est d'essayer de traiter tous les cas de copie avec la même approche.
 
-Suivant les situations, il n'est pas forcément nécessaire de tout regarder avec le même niveau de détail, mais si on ne regarde pas on est certain de se planter.
+Suivant les situations, il n'est pas forcément nécessaire de tout regarder avec le même niveau de détail, mais si on ne regarde pas du tout on est certain de se planter.
 
 
