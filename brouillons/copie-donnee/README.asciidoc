@@ -11,7 +11,7 @@ Quand on copie une donnée entre deux systèmes, on a souvent trois grilles d'an
 
 La différence dans la manière de traiter les trois situations est frappante.
 
-Dans le premier cas, on sait que le chemin est semé d'embuches et qu'il faut donc l'emprunter précautionneusement :
+Dans le premier cas, on sait que le chemin vers les systèmes distribués est semé d'embuches et qu'il faut donc l'emprunter précautionneusement :
  quel est le délai de retard acceptable ? quels problème de cohérence ou de consistance ? accepte-t-on de perdre des informations ? que faire en cas de changement de format ?…
 
 Dans le deuxième cas, l'approche est souvent moins formalisée : on va faire s'intéresser essentiellement aux cas nominaux et laisser de côté les cas limites.
@@ -19,7 +19,7 @@ Dans le deuxième cas, l'approche est souvent moins formalisée : on va faire s'
 C'est par exemple le cas pour les caches de données : on sait bien qu'on va avoir des problèmes à un moment ou à un autre, mais tant qu'on peut les garder sous le tapis on en profite…
 
 Dans le troisième cas,  on fait tout pour ne pas voir qu'il s'agit de la copie de donnée.
-Pour simplifier, dès qu'une donnée est transmise à un autre système qui la stocke, il s'agit d'une copie de base : un système de queues, une application web, voire des logs.
+Pour simplifier, dès qu'une donnée est transmise à un autre système qui la stocke, il s'agit d'une copie de base : un système de queues, une application web, des logs, ou dès qu'une donnée est transmise entre une base de donnée "officielle" et une application qui la requête.
 
 Et comme pour le cas deux : un jour le cas limite qu'on ne voulait pas voir vous saute au visage.
 
