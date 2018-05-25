@@ -1,0 +1,23 @@
+= 27/05/2018
+Julien Kirch
+v1.0, 2018-05-27
+:article_lang: en
+
+===== link:http://cidrdb.org/cidr2005/papers/P12.pdf[Data on the Outside versus Data on the Inside]
+
+[quote]
+____
+In these systems, there are multiple services each with its own code and data, and ability to operate independently of its partners.
+In particular, atomic transactions with two-phase commit do not occur across multiple services because this necessitates holding locks while another service decides the outcome of the transaction.
+This paper proposes there are a number of seminal differences between data inside a service and data sent into the space outside of the service boundary.
+____
+
+[quote]
+____
+Going to SOA is like going from Newton’s physics to Einstein’s physics.
+
+* Newton’s time marched forward uniformly with instant knowledge at a distance.
+* Before SOA, distributed computing strove to make many systems look like one with RPC, 2PC, etc.
+* In Einstein’s universe, everything is relative to one’s perspective.
+* SOA has “now” inside and the “past” arriving in messages.
+____
