@@ -1,0 +1,29 @@
+= En cas de copie de données
+Julien Kirch
+v0.1, 2017-05-28
+:article_lang: fr
+
+Checklist de questions à se poser quand on copie une donnée entre deux systèmes ?
+
+* La source peut-elle modifier les données ?
+** Si oui que se passe-t-il quand le renvoi au système source échoue ?
+** Si oui comment le tester de manière automatique ?
+* Quel est le délai de retard acceptable dans la copie ? 
+** Que se passe-t-il quand ce délai est dépassé ? 
+** Comment le tester de manière automatique ?
+* Est-il possible de perdre des informations lors de la copie ? 
+** Si oui quels sont les conséquences ?
+** Si oui comment le tester de manière automatique ?
+** Si non je vous propose de revérifier au cas où pour être bien scertain.
+* Est-il possible que le mécanisme de transfert de donnée provoque des duplications de message ?
+** Si oui quels sont les conséquences ?
+** Si oui comment le tester de manière automatique ?
+* Quel moyens et conditions (durée, conséquences sur les performances…) pour refaire une copie "from scratch" de la source (vous en aurez besoin un moment où à un autre) ? 
+** Comment le tester de manière automatique ?
+* Que se passe-t-il quand le format de donnée change ?
+* Que se passe-t-il quand des données sont supprimées ?
+* Le nombre de copies peut-il augmenter ?
+** Si oui quel en est l'impact ?
+* Que se passe-t-il en cas d'indisponibilité de la source ?
+* Le mécanisme de copie est-il compatible avec le système de gestion de disponibilité de la source (bascule actif-passif ou autre) ?
+* Si des copies proviennent de plusieurs sources comment gérer que les informations n'arriveront pas dans le bon ordre ?
