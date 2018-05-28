@@ -1,9 +1,14 @@
 = En cas de copie de données
 Julien Kirch
-v0.1, 2017-05-28
+v0.1, 2018-05-28
 :article_lang: fr
+:article_description: Une checklist de questions à se poser quand on copie des données entre deux systèmes.
 
-Checklist de questions à se poser quand on copie des données entre deux systèmes :
+Une checklist de questions à se poser quand on copie des données entre deux systèmes.
+
+Répondre à ces questions ne vous garantit pas tout se passera bien, mais ne pas y répondre c'est la quasi-certitude que vous aurez des mauvaises surprises.
+
+Voir link:http://archiloque.net/blog/copies-donnee/[ici] pour savoir repérer tous les cas de copies.
 
 * Comment allez-vous monitorer l'ensemble du système ?
 * Qui sera chargé de faire que ça fonctionne ?
@@ -16,7 +21,7 @@ Checklist de questions à se poser quand on copie des données entre deux systè
 * Est-il possible de perdre des informations lors de la copie ? 
 ** Si oui quels sont les conséquences ?
 ** Si oui comment le tester de manière automatique ?
-** Si non je vous propose de revérifier au cas où pour être bien scertain.
+** Si non je vous propose de revérifier au cas où pour être bien certain.
 * Est-il possible que le mécanisme de transfert de donnée provoque des duplications de message ?
 ** Si oui quels sont les conséquences ?
 ** Si oui comment le tester de manière automatique ?
