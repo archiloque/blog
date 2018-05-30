@@ -1,0 +1,83 @@
+= Combien d'architecte de SI faut-il pour faire un cadrage 360°
+
+Les missions de link:https://blog.octo.com/le-cadrage-360-preparez-vos-projets-de-delivery-agile/[cadrage 360°] comprennent presque toujours des éléments d'architecture de SI.
+
+Pour traiter ces sujets, il faut répondre à deux questions pendant la phase de pré-cadrage (ou d'avant-vente dans le cas d'OCTO) :
+
+- de quels types d'expertises va-t-on avoir besoin ?
+- quel niveau d'effort faudra-t-il fournir ?
+
+Plutôt que des réponses très précises, qui elles-mêmes nécessiteraient du temps et de l'expertise (tout en restant des estimations), l'objectif est d'avoir des réponses avec un niveau d'information suffisant pour limiter les risques.
+
+Pour cela je vous propose une liste de douze questions simples.
+Ces questions sont prévues pour pouvoir être posées par une personne non technique.
+
+Les réponses devraient permettre d'identifier les expertises nécessaires.
+Une fois trouvé la bonne personne, donnez-lui les réponses et elle devrait être en mesure d'estimer l'effort à fournir.
+
+L'idéal serait de pouvoir calculer une estimation des charges avec une formule, mais les interactions entre les différents sujets rendent la tâche impossible.
+Ainsi l'existence de contraintes de sécurité va augmenter la complexité de l'intégration avec d'autres systèmes, qui elle-même dépend du nombre de systèmes à intégrer.
+
+Cette liste est adaptée aux types de cadrage que j'ai rencontré, elle ne correspond donc pas forcément aux vôtres.
+Si elle vous parle et qu'elle vous semble utile, modifiez là jusqu'à ce qu'elle vous convienne.
+
+. Avec combien d’autre applications faudra-t-il se connecter ?
+* [ ] 0
+* [ ] 1
+* [ ] 2
+* [ ] Plus que 2
+* [ ] Plus que 2 et en utilisant des technologies différentes (ex : REST, SOAP, fichiers, messages)
+
+. Cette intégration se fera-t-elle avec des outils et/ou des formats legacys et/ou exotiques (ex : CORBA, LDAP) ?
+* [ ] Non
+* [ ] Oui
+
+. Le projet nécessitera-t-il des modifications dans d’autres projets (changement de code ou de configuration) ?
+* [ ] Non
+* [ ] Oui
+
+. Avec combien d’équipes à coloration "techniques" avec lesquelles faudra-t-il interagir (ex : équipes d’architectes, de production, de sécurité) ?
+* [ ] 1 ou 2
+* [ ] 3 ou 4
+* [ ] Plus que 4
+* [ ] Les équipes ne sont pas co-localisées
+
+. Faudra-t-il rédiger un document formalisé type "dossier d’architecture" ?
+* [ ] Non
+* [ ] Oui
+* [ ] Oui et il fait l’objet d’une soutenance formelle devant un comité d’architecture
+
+. Le projet nécessitera-t-il une technologie qui n’est pas encore présente dans le SI du client ?
+* [ ] Non
+* [ ] Oui
+* [ ] Oui, et il faudra la faire valider par les personnes en charge de l’architecture et/ou de la production et/ou de la sécurité
+* [ ] Oui, dont un nouveau langage de programmation
+* [ ] Oui, pour plusieurs technologies
+
+. Le projet s’appuiera-t-il sur un outil legacy et/ou exotiques (ex : base de données non connue) ?
+* [ ] Non
+* [ ] Oui
+
+. Le projet nécessitera-il de faire évoluer les process et/ou l’organisation de développement, d’intégration ou de déploiement du client (ex : itérations courtes) ?
+* [ ] Non
+* [ ] Oui
+* [ ] Oui et il faut faire valider ce processus par les personnes en charge de la production
+* [ ] Oui et cela a des impacts sur d’autres projets (ex : pour pouvoir faire des tests d’intégration à chaque itération)
+
+. Le projet nécessitera-il de faire évoluer les technologies de développement, d’intégration ou de déploiement du client (ex : intégration continue, industrialisation, conteneurs) ?
+* [ ] Non
+* [ ] Oui
+* [ ] Oui et il faut faire valider ce processus par les personnes en charge de la production
+* [ ] Oui et cela a des impacts sur d’autres projets
+
+. Le projet a-t-il des contraintes de disponibilité (ex : ouverture 24/7) ou de volumétrie/performance (ex : nombre de requêtes ou de messages par seconde) différentes de celles dont le client a l’habitude ?
+* [ ] Non
+* [ ] Oui
+
+. Le projet présente-t-il des contraintes de sécurité spécifiques (ex : PCI-DSS, RGS, ruptures de protocoles, gestion de certificats) ?
+* [ ] Non
+* [ ] Oui
+
+. Le projet devra-t-il répondre à des besoins de plusieurs pays et/ou entités ?
+* [ ] Non
+* [ ] Oui
