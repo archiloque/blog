@@ -1,6 +1,6 @@
 = Fiche de lecture : Site Reliability Engineering: How Google Runs Production Systems
 Julien Kirch
-v0.1, 2018-05-31
+v0.1, 2018-06-01
 :article_lang: fr
 :article_image: book-2x.png
 :article_description: Les opérations racontés par Google
@@ -73,7 +73,7 @@ Lorsque les projets ont des objectifs de SLO il s'agit d'objectifs trimestriels 
 
 Pour cela les SRE ont le pouvoir d'imposer à un projet qui surconsomme son "budget disponibilité" de limiter le développement de nouvelles fonctionnalités pour se concentrer sur la fiabilisation jusqu'à être revenu à un niveau satisfaisant.
 
-Par ailleurs lorsqu'un projet est particulièrement incidentogène, il est possible pour les SRE de se délester d'une partie de leur travail de support sur le projet.
+Par ailleurs lorsqu'un projet est particulièrement incidentogène, il est possible pour les SRE de se délester d'une partie de leur travail de support sur le projet afin de dégager le temps permettant d'automatiser ce qui peut l'être pour diminuer la charge sur le moyen-terme.
 
 == Process & documentation
 
