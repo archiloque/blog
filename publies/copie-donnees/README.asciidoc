@@ -1,8 +1,8 @@
-= En cas de copie de données
+= Memo en cas de copie de données
 Julien Kirch
 v0.1, 2018-05-28
 :article_lang: fr
-:article_description: Une checklist de questions à se poser quand on copie des données entre deux systèmes.
+:article_description: Une checklist de questions à se poser quand on copie des données entre deux systèmes
 
 Une checklist de questions à se poser quand on copie des données entre deux systèmes.
 
@@ -34,3 +34,4 @@ Voir link:http://archiloque.net/blog/copies-donnee/[ici] pour savoir repérer to
 * Que se passe-t-il en cas d'indisponibilité de la source ?
 * Le mécanisme de copie est-il compatible avec le système de gestion de disponibilité de la source (bascule actif-passif ou autre) ?
 * Si des copies proviennent de plusieurs sources comment gérer que les informations n'arriveront pas dans le bon ordre ?
+* La sécurité des données est-elle du même niveau dans les systèmes copies que dans la source ?
