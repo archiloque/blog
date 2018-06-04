@@ -2,8 +2,10 @@
 
 _Le 23 mars 2018_
 
+image::CTH.png[width=245,height=300]
+
 Christophe Thibaut est à OCTO depuis octobre 2005 et s'intéresse plus particulièrement aux différents aspects de link:https://blog.octo.com/author/christophe-thibaut-cth/[la prévention et du management de la qualité].
-Depuis quatre ans il est dans la tribu Craft dont la vocation est d'aider les clients dans leurs pratiques de développement, principalement autour de la qualité.
+Depuis quatre ans, il est dans la tribu Craft dont la vocation est d'aider les clients dans leurs pratiques de développement, principalement autour de la qualité.
 
 === Comment voyais-tu les architectes et l'architecture de SI avant d'arriver à OCTO ?
 
@@ -23,7 +25,7 @@ Certains étaient très crédibles mais d'autres racontaient n'importe quoi.
 
 === Qu'est ce qui t'as fait venir à OCTO qui se revendiquait comme un cabinet de conseil en architecture de SI ?
 
-J'avais déjà des copains dans la place qui faisaient un travail de coaching autour de l'agilité qui m'ont parlé d'OCTO en me disant que c'était différent de ce qu'on pouvait voir ailleurs et qu'on pouvait y faire des choses intéressantes.
+J'avais déjà des copains dans la place qui faisaient un travail de coaching autour de l'agilité, qui m'ont parlé d'OCTO en me disant que c'était différent de ce qu'on pouvait voir ailleurs et qu'on pouvait y faire des choses intéressantes.
 
 À l'époque je cherchais à développer mes compétences en facilitation et coaching autour de l'agilité et notamment l'link:https://fr.wikipedia.org/wiki/Extreme_programming[_eXtreme Programming_ (XP)].
 
@@ -32,25 +34,25 @@ J'avais déjà des copains dans la place qui faisaient un travail de coaching au
 Au début, ça a été un choc car très peu d'architectes partageaient ma conviction qu'on pouvait couvrir une application de test unitaires et que ça donnerait à cette application une certaine solidité pour le refactoring et le redesign.
 Il y a eu beaucoup de discussions sur ces sujets.
 
-Un moment à OCTO il y a eu ce qu'on a appelé les bleus et les gris.
-Les bleus c'étaient les architectes et les gris les coachs, je crois que les couleurs avaient été choisies par Pierre Pezziardi.
+Un moment à OCTO, il y a eu ce qu'on a appelé les bleus et les gris.
+Les bleus, c'étaient les architectes et les gris les coachs, je crois que les couleurs avaient été choisies par Pierre Pezziardi.
 Cet étiquetage n'a pas été bien vécu par tout le monde.
 
 Notre premier combat sur l'agile c'était le _big design upfront_.
 Il faut se rappeler de quoi on sortait : des années passées à faire des diagrammes UML dans link:http://alice.pnzgu.ru:8080/~dvn/fb61499/festo/uml_specification/st3_class_diagram.htm[Rational Rose] pour l'ensemble des classes avant de toucher une ligne de code.
-L'enjeu c'était de dire en faisant du XP et du TDD vous avez un design évolutif et il est émergent.
+L'enjeu c'était de dire : en faisant du XP et du TDD, vous avez un design évolutif et ce design est émergent.
 
 [quote]
 ____
 Cette idée même de design émergent choquait pas mal les architectes, qui disaient que des personnes qui ont un savoir doivent prescrire les choses et prendre les décisions structurantes.
-Ça a mis quatre à cinq ans et ça a été un peu difficile.
+Sur ce point le changement a pris quatre à cinq ans et ça a été un peu difficile.
 ____
 
-D'un autre côté, quand on parlait outils et tests les architectes étaient plutôt des alliés grâce à leur connaissance de l'écosystème Java.
+D'un autre côté, quand on parlait outils et tests, les architectes étaient plutôt des alliés grâce à leur connaissance de l'écosystème Java.
 
-=== Qu'est ce qui était le plus difficile au début ?
+=== Qu'est-ce qui était le plus difficile au début ?
 
-La culture était OCTO était très homogène, quand on arrive on est forcément très différent et il faut se faire sa place.
+La culture OCTO était très homogène. Quand on arrive, on est forcément très différent et il faut se faire sa place.
 J'avais quarante ans en arrivant et mon expérience m'a été utile pour m'intégrer.
 
 J'avais une rhétorique assez bien affutée sur TDD, les tests et le design émergent, et j'exerçais ma rhétorique sur les mailing-lists et on se disputait avec les architectes.
@@ -58,8 +60,8 @@ J'avais une rhétorique assez bien affutée sur TDD, les tests et le design éme
 Le plus compliqué c'était "qu'est-ce qu'on va faire pour aider nos clients ?".
 Ce n'était pas une question d'architecture mais une question commerciale : "est-ce qu'il y a une opportunité sur l'agile ?"
 
-Quand je suis arrivé chez OCTO, on finissait de se poser cette question "est ce qu'on va sur l'agile ou pas ?".
-Et on y est allé finalement.
+Quand je suis arrivé chez OCTO, on finissait de se poser cette question "est-ce qu'on va sur l'agile ou pas ?".
+Et finalement, on y est allé.
 
 === À quel moment l'équilibre entre architectes et agilistes est-il arrivé ?
 
@@ -68,21 +70,21 @@ ____
 L'équilibre est arrivé quand on a réussi à trouver du business pour tout le monde.
 ____
 
-Un moment les architectes se demandaient quel allait être leur avenir chez OCTO.
-Ils ne se le sont pas demandé longtemps car on a continué le conseil en architecture mais c'est arrivé.
+À un moment, les architectes se sont demandés quel allait être leur avenir chez OCTO.
+Ca n’a pas duré longtemps car on a continué le conseil en architecture, mais c'est arrivé.
 
 J'ai longtemps cru que le poste d'architecte allait se dissoudre dans le travail autour du développement et de l'organisation, de la même manière que je crois que le poste de coach va se dissoudre dans le travail autour du dialogue de l'équipe.
 
-L'agilité n'a plus fait question autour de 2010 : quand on préconisait une démarche de développement chez nos clients c'était de l'agile, plus personne ne conseillait un cycle en V.
+L'agilité n'a plus fait question autour de 2010 : quand on préconisait une démarche de développement chez nos clients, c'était de l'agile, plus personne ne conseillait un cycle en V.
 
-=== Avec le client comment se passait le mélange architectes / agilistes ?
+=== Avec les clients, comment se passait le mélange architectes / agilistes ?
 
 Je me souviens d'un incident précis où j'ai cru que je n'allais pas rester à OCTO, pendant une réunion client avec un architecte OCTO où on parlait de la documentation du projet.
 
 J'ai posé quelques questions et j'ai mis en évidence qu'un logiciel qui fonctionne vaut mieux qu'une documentation exhaustive, et que la documentation n'était pas une vraie priorité même si tout le monde disait le contraire.
 
 En sortant l'architecte m'a dit que je ne devais pas remettre en question ce qui avait été défini avec le client et je me suis dit que ça n'allait peut-être pas fonctionner pour moi chez OCTO.
-Au final ça a très bien fonctionné.
+Au final, ça a très bien fonctionné.
 
 Au contraire en général les clients apprécient d'avoir des points de vue différents entre un agiliste et un architecte.
 
@@ -91,7 +93,7 @@ Au contraire en général les clients apprécient d'avoir des points de vue diff
 [quote]
 ____
 Les architectes à OCTO m'ont donné une conscience aigüe de la politique dans une entreprise, surtout dans une grande entreprise.
-Dans une grande entreprise il y a du monde, donc certains des choix qui sont pris, qu'il faut prendre, ont des conséquences sont très floues.
+Dans une grande entreprise, il y a du monde, donc certains des choix qui sont pris, et qu'il faut prendre, ont des conséquences très floues.
 
 Dans un tel contexte il y a toujours de la politique : comment communiquer, avec qui, qui est avec moi dans l'entreprise pour faire évoluer une techno ou une méthode, et qui sera contre moi et qu'est-ce que je peux y faire ?
 ____
