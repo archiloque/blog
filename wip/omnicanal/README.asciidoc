@@ -8,27 +8,34 @@ Il est aussi l'occasion de faire un peu d'histoire des SI pour comprendre commen
 
 == C'est quoi l'omnicanal ?
 
-Un SI omnicanal est un SI qui permet aux personnes qui l'utilisent de passer de manière fluide d'un canal de distribution à un autre.
+Un SI omnicanal est un SI qui permet aux différentes personnes qui l'utilisent de passer de manière fluide d'un canal de distribution à un autre.
 
-L'exemple type est de pouvoir commencer à faire une demande de prêt immobilier sur son smartphone, de pouvoir la continuer sur son ordinateur portable une fois chez soi, puis éventuellement de boucler le dossier en se rendant en agence pour bénéficier du conseil de professionnels.
+L'exemple type est de pouvoir commencer à faire une demande de prêt immobilier sur son smartphone, de pouvoir la continuer sur son ordinateur portable une fois chez soi, puis éventuellement de boucler le dossier en se rendant en agence.
 
 == Pourquoi c'est compliqué ?
 
+Le chantier de transformation omnicanal se comporte de plusieurs évolutions différentes.
 
+Pour comprendre la situation d'ensemble le mieux est de revenir en arrière et dérouler l'historique du SI car c'est lui qui explique la situation actuelle.
 
-Pour comprendre pourquoi c'est compliqué à mettre en œuvre, il faut comprendre l'historique.
+L'exemple donné ici représente un cas typique tel qu'on le retrouve chez de nombreux clients.
 
-Voici l'archétype de l'évolution des SI chez nos clients. Chaque cas est particulier mais grosso-modo ça ressemble :
-
-=== Historique
+=== Les années 80 : au commencement était le mainframe
 
 image::1.png[]
 
-* Un cœur métier, souvent en mainframe
-* Des écrans backoffice pour les employés
-* Des interconnections avec le reste du DI
+Les premières brique du SI se sont construits sur Mainframe, développées en COBOL ou équivalent.
+Ces systèmes historiques sont généralement des développements maison, mais parfois des progiciels.
 
-Le workflow du cœur métier est directement inspiré par le déroulé des écrans backoffice.
+Les écrans permettant d'y accéder sont conçus pour les émployé·e·s et leurs sont réservés.
+Les workflow de traitements et les fonctionalités qui sont exposées sont directement calqués sur les écrans.
+
+Les traitements les plus coûteux en temps de calcul sont executés pendant la nuit ou le week-end, lorsque les employé·e·s ne travaillent pas et que la puissance de calcul de la machine est donc disponible.
+
+=== Les années 2000 : l'arrivée du web, le bicanal
+
+=== Les années 2010 : le mobile, 
+
 
 === Situation actuelle
 
