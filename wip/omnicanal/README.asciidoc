@@ -1,5 +1,7 @@
 = Balade sur l'omnicanal
 
+*Tout l'état doit être stocké côté serveur*
+
 Si votre système d'information n'est pas tombé dedans quand il était petit, faire de l'omnicanal est souvent un chantier semé d'embuches et de promesses d'éditeurs.
 
 Cet article se propose de prendre du recul sur les outils pour revenir aux questions de fond qui se cachent derrière.
@@ -18,36 +20,104 @@ Le chantier de transformation omnicanal se comporte de plusieurs évolutions dif
 
 Pour comprendre la situation d'ensemble le mieux est de revenir en arrière et dérouler l'historique du SI car c'est lui qui explique la situation actuelle.
 
-L'exemple donné ici représente un cas typique tel qu'on le retrouve chez de nombreux clients.
+Nous allons prendre ici un exemple typique tel qu'on le retrouve chez de nombreux clients, toujours dans le domaine bancaire.
 
-=== Les années 80 : au commencement était le mainframe
+=== Les années 80 : au commencement étaient le mainframe et le backoffice
 
-image::1.png[]
+image::si-mainframe.png[]
 
-Les premières brique du SI se sont construits sur Mainframe, développées en COBOL ou équivalent.
-Ces systèmes historiques sont généralement des développements maison, mais parfois des progiciels.
+Les premières brique du SI se sont construits dans les années 80 sur Mainframe, développées en COBOL ou équivalent.
+Ces systèmes historiques peuvent être des développements maison, des progiciels, ou un mélange des deux.
 
 Les écrans permettant d'y accéder sont conçus pour les émployé·e·s et leurs sont réservés.
-Les workflow de traitements et les fonctionalités qui sont exposées sont directement calqués sur les écrans.
 
-Les traitements les plus coûteux en temps de calcul sont executés pendant la nuit ou le week-end, lorsque les employé·e·s ne travaillent pas et que la puissance de calcul de la machine est donc disponible.
+Les workflow de traitements et les fonctionalités qui sont exposés sont directement calqués sur les écrans et chaque étape du process est persistée dans la base de donnée d'une manière structurée.
+Il ne s'agit pas d'un modèle MVC : les définitions des écrans sont en fait imbriquées dans le code de services.
+
+Les bureaux étant fermés la nuit et le week-end, les appels interractifs sont désactivés pendant ces périodes ce qui permet d'executer des traitements de masse ou _batch_.
+Ces traitements bénéficient ainsi de l'intégralité de la puissance de calcul du serveur, et le fait d'être les seuls à s'executer leur permet de simplifier leur design, ils peuvent ainsi monopoliser des ressources comme de tables de bases de données sans se soucier du reste du monde.
 
 === Les années 2000 : l'arrivée du web, le bicanal
 
-=== Les années 2010 : le mobile, 
+Avec l'arrivée du web, il est temps d'ouvrir un site de banque en ligne.
 
+Cela signifie donner accès à des fonctionnalités du Mainframe, mais d'une manière différente de celle qui est utilisée pour le backoffice :
 
-=== Situation actuelle
+* les écrans doivent être adaptés pour être utilisables par des non-employé·e et sont donc parfois allégés, certains workflow comportent donc plus d'étapes· ;
+* certaines options nécessitant la validation d'un·e employé·e empêcheront d'aller jusqu'au bout du traitement à partir du site, cela nécessitera des opérations de backoffice spécifiques.
 
-image::2.png[]
+Le système Mainframe historique est vital pour l'entreprise, et la maîtrise qu'on en a n'est pas toujours satisfaisante : ce patrimoine commence à dater, sans test automatisé (ce qui est normal vu l'époque) avec une documentation souvent lacunaire.
 
-* Ajout de sites web et appli mobile pour les clients, comme le workflow n'est pas le même que ceux du backoffice ils stockent les données intermédiaires et basculent les données dans le cœur métier lorsque le traitement est terminé, ou au mieux après un délai. Des services spécifiques ont été ajoutés pour cela dans le coeur métier
-* Des services spécifiques pour les partenaires
+La stratégie choisie est donc souvent de limiter au maximum l'ampleur des modifications sur cette partie du système pour limiter les risques.
 
-Problèmes :
+L'approche choisie alors consiste à autant que possible exposer les workflows existant - c'est-à-dire ceux du backoffice -  sous formes d'API synchrones, et à développer le site web au dessus de ces API, alors même que les workflows ne sont pas les mêmes.
+Les contrats de ces APIs sont donc assez proches des écrans Mainframe pour limiter l'effort à fournir dans cette couche du système.
+On parle parfois de "servicer" le Mainframe.
+Il ne s'agit bien entendu pas d'API REST, mais généralement de messages MQ, voire de wrapping des écrans Mainframe grâce à des outils comme Chrysalis, ou de technologies encore plus exotiques.
 
-- pas d'omnicanal
-- transmissions non satisfaisantes au reste du SI (exemple : souscriptions incomplètes pas transmises au marketing)
+Lorsque les deux workflows ne correspondent pas, on aboutit à ce type de situation  :
+
+image::workflow-web.png[]
+
+Il est donc impossible de stocker les résultats des étapes 1A ou 2A dans le Mainframe.
+Ils seront donc stockés dans le backend du site web dans une base de donnée séparée.
+Cela signifie aussi qu'il faudra dupliquer les contrôles de saisie de ces étapes dans la partie web, pour éviter d'avoir à revenir en arrière dans les écrans du site web.
+
+Suivant les étapes, les données sont donc stockées soit dans le système coeur, soit de manière intermédiaire dans le sous système du site web.
+
+image::workflow-web-base.png[]
+
+En fonction des situations, les points de "rencontre" des workflow sont plus ou moins nombreux.
+Le cas extrème est celui ou il existe un seul point de synchronization : la dernière étape du workflow.
+Dans cette situation, le site web doit stocker toutes les données intermédiaires, et recoder tous les contrôles de saisie.
+
+image::workflow-web-base-pire.png[]
+
+Dans ce cas les données dans la base du site web qui n'ont pas été déversées dans la base du Mainframe ne sont pas visibles depuis le backoffice, le système est donc bicanal.
+
+Par exemple si vous commencez à souscrire un prêt immobilier sur le site web sans terminer la procédure et que vous vous rendez dans votre agence bancaire, il faudra refaire tout ou partie des opérations.
+
+Par ailleurs les opérations de backoffice spécifiques au site web ainsi que les besoin de support clients nécessitent de développer des écrans spécifiques branchés sur le même backend.
+
+image::si-web.png[]
+
+L'inaccessibilité du cœur système historique pendant la nuit pose aussi problème : il est inconcevable de faire de même pour un site web destiné au grand public.
+Il existe de nombreuses manières d'améliorer cette situation, l'approche souvent rencontré consiste à :
+
+. effectuer une copie de certaines données avant de couper le système Mainframe, et s'en servir comme d'un cache en lecture seule accessible pendant la nuit, le cache sera désactivé lorsque les traitements de masses sont terminés ;
+. ne pas executer les opérations qui nécessitent des écritures mais les enregistrer sous forme de demandes d'executions dans le backend du site web, et réaliser réellement les traitements le jour suivant à l'ouverture du Mainframe.
+
+Cela rend le système dans son ensemble plus difficile à observer car les données sont distribuées entre les deux sous-systèmes.
+
+Bien entendu, même si la réutilisation de fonctionalités existantes est privilégiée, certains besoins du site web nécessitent de développer des APIs spécifiques dans le cœur métier.
+Ce cas ne posant pas de problème particuliers, il ne sera pas traité dans la suite.
+
+=== Aujourd'hui : le mobile et les partenaires
+
+L'arrivée du mobile pourrait signifier la mise en place d'une tricanalité.
+Mais les besoins mobiles sont souvent suffisament proches des besoins web pour qu'ils s'appuient sur les mêmes systèmes.
+Dans quelques situations il peut être nécessaire de stocker des données intermédiaires sur les terminaux, mais il ne s'agit pas d'un vrai troisième canal.
+
+Les écrans de backoffice ont souvent été remplacés par des technologies web, mais en conservant les mêmes workflows, le backend du nouveau backoffice ne stockant donc pas de données.
+
+En revanche la banque a noué des partenariats, par exemple en marque blanche.
+Ces partenaires peuvent par exemple vendre des assurances ou des prêts de la banque dans un package lorsque vous achetez un de leur produits.
+
+Les process nécessaire aux partenaires sont aussi différent du process historique que du process web, le système devient donc souvent tricanal.
+
+image::si-partenaires.png[]
+
+Pour rester lisible, le schéma ne contient pas les backoffice dédiés aux canaux web et partenaires mais ils existent bel et bien, une personne du support peut donc avoir à jongler avec trois backoffices différents.
+
+Le canal partenaire ne pose pas le même problème que le canal web.
+En effet un client qui commence à souscrire une assurance en marque blanche en achetant un bien voudra rarement conclure la transaction dans votre agence.
+En revanche la multiplication des canaux rend la maintenance du système plus complexequand on veut modifier un des workflows centraux qui sont exposés aux autres cannaux ou changer une des règles de gestion dupliquée à plusieurs endroits.
+
+Certains des besoins partenaires se rapprochent des besoins du site web client, il arrive donc qu'une partie du code soit partagée entre les deux. Cela évite des redéveloppements mais rend encore le système plus difficile à observer .
+
+image::si-partenaires2.png[]
+
+*ARRETER DE LIRE ICI !!*
 
 === Cible
 
