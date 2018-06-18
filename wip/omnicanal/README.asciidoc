@@ -10,9 +10,10 @@ Il est aussi l'occasion de faire un peu d'histoire des SI pour comprendre commen
 
 Un SI omnicanal est un SI qui permet aux différentes personnes qui l'utilisent de passer de manière fluide d'un canal de distribution à un autre.
 
-L'exemple type est de pouvoir commencer à faire une demande de prêt immobilier sur son smartphone, de pouvoir la continuer sur son ordinateur portable une fois chez soi, puis éventuellement de boucler le dossier en se rendant en agence.
+L'exemple type est de pouvoir commencer à faire une demande de prêt immobilier sur son smartphone, de pouvoir la continuer sur son ordinateur portable une fois chez soi, puis éventuellement de terminer le dossier en se rendant en agence.
+Cela ne signifie pas utiliser le même outil dans les trois cas, mais bien d'avoir des outils spécifiques dont lergonomie est adaptée à chaque utilisation, et de pouvoir passer de l'un à l'autre "sans couture", c'est à dire sans avoir à refaire une opération déjà faite comme une saisie de donnée.
 
-
+En plus des avantages pour les utilisateur·rice·s, nous allons voir que l'omnicanalité a également des avantages IT.
 
 == Pourquoi c'est compliqué ?
 
@@ -51,8 +52,7 @@ Le système Mainframe historique est vital pour l'entreprise, et la maîtrise qu
 La stratégie choisie est donc souvent de limiter au maximum l'ampleur des modifications sur cette partie du système pour limiter les risques.
 
 L'approche choisie alors consiste à autant que possible exposer les workflows existant - c'est-à-dire ceux du backoffice -  sous formes d'API synchrones, et à développer le site web au dessus de ces API, alors même que les workflows ne sont pas les mêmes.
-Les contrats de ces APIs sont donc assez proches des écrans Mainframe pour limiter l'effort à fournir dans cette couche du système.
-On parle parfois de "servicer" le Mainframe.
+Les contrats de ces APIs sont donc assez proches des écrans Mainframe pour limiter l'effort à fournir.
 Il ne s'agit bien entendu pas d'API REST, mais généralement de messages MQ, voire de wrapping des écrans Mainframe grâce à des outils comme Chrysalis, ou de technologies encore plus exotiques.
 
 Lorsque les deux workflows ne correspondent pas, on aboutit à ce type de situation  :
@@ -90,7 +90,8 @@ Il existe de nombreuses manières d'améliorer cette situation, l'approche souve
 Cela rend le système dans son ensemble plus difficile à observer car les données sont distribuées entre les deux sous-systèmes.
 
 Bien entendu, même si la réutilisation de fonctionalités existantes est privilégiée, certains besoins du site web nécessitent de développer des APIs spécifiques dans le cœur métier.
-Ce cas ne posant pas de problème particuliers, il ne sera pas traité dans la suite.
+
+Ces points d'entrée sont là pour suppléer aux limites de l'existant et pas pour le remplacer, ils sont donc pas pensé pour servir de base à la création d'une API complète alternative.
 
 === Aujourd'hui : le mobile et les partenaires
 
@@ -113,55 +114,93 @@ Le canal partenaire ne pose pas le même problème que le canal web.
 En effet un client qui commence à souscrire une assurance en marque blanche en achetant un bien voudra rarement conclure la transaction dans votre agence.
 En revanche la multiplication des canaux rend la maintenance du système plus complexequand on veut modifier un des workflows centraux qui sont exposés aux autres cannaux ou changer une des règles de gestion dupliquée à plusieurs endroits.
 
-Certains des besoins partenaires se rapprochent des besoins du site web client, il arrive donc qu'une partie du code soit partagée entre les deux. Cela évite des redéveloppements mais rend encore le système plus difficile à observer .
+Certains des besoins partenaires se rapprochent des besoins du site web client, il arrive donc qu'une partie du code soit partagée entre les deux. Cela évite des redéveloppements mais rend encore le système plus difficile à observer.
 
 image::si-partenaires2.png[]
 
-=== Cible
+== Que faut-il pour avoir un SI omnicanal ?
 
-image::3.png[]
+Les problèmes causés par l'omnicanal et les limites des SI correspondants nous donnent les informations nécessaire pour dresser le plan d'un SI omnicanal.
 
-Avoir des services utilisables par tous et sans stockage intermédiaire pour faire de l'omnicanal.
+Avant de rentrer dans le détail, il faut préciser qu'un système omnicanal ne signifie pas un système unique du haut en bas pour tous les canaux mais un système cœur permettant de répondre aux besoins de l'omnicanal sur lequel viendront se brancher les différents canaux.
 
-== Que faut-il pour avoir un bon omnicanal ?
+La différence avec un système multicanal est bien la capacité de passer d'un canal à l'autre, pas le fait d'avoir un système unique.
 
-- Un système de stockage
-- Un ensemble de règles métier de validation
-- Un workflow permettant de définir les macro-étapes des process et les responsabilités (aussi appelé machine à état)
-- Des services facilement utilisables
+Ainsi vous n'exposerez pas forcément les mêmes services ou les mêmes technologies pour votre application mobiles et pour vos partenaires.
+Vous aurez donc un système coeur sur lequel viendront se greffer votre canal mobile, votre canal partenaire…
 
-=> Chacun est capable d'avoir son workflow tant qu'il s'inscrit dans les macro-étapes, l'objectif est de pouvoir s'arrêter à n'importe quel point tout en ayant le minimum de rigidité possible
+=== Des processus métier indépendants des canaux
 
-image::4.png[]
-image::5.png[]
+Les workflows étant différent d'un canal à l'autre, l'omnicanalité nécessite de concevoir des processus métier qui soient adaptables aux différents canaux.
 
-[TIP]
-====
-Les mêmes caractéristique sont intéressantes pour faire du reuse entre pays du cœur métier, à condition qu'il soit configurable.
-====
+Cela signifie qu'il ne faut pas penser son processus en terme d'étapes qui ont la granularité d'un écran mais en terme de macro-étapes avec une taille plus importantes, ce qui donnera à chaque canal les marges de manœuvres dont il a besoin.
 
-== Quel est le problème ?
+Par exemple souscrire un crédit peut se décomposer en 3 macro-étapes :
 
-Les difficultés 
-- Identifier le "macro-processus" qui sert de squelettes demande une bonne connaissance métier
-- Définir les bons services
-- Être capable de le faire vivre en harmonie avec les consommateurs
-- Faire évoluer le cœur métier
+- renseigner des informations personnelles et faire des simulations de crédit jusqu'à obtenir une offre satisfaisante ;
+- valider une demande de crédit en saisissant des informations supplémentaires ;
+- traiter la demande dans le backoffice pour la valider ou la rejeter.
 
-== Peut-on se passer d'un BPM pour implémenter de l'omnicanal ?
+=== Un système de stockage
 
-Je n'ai pas mis la partie implémentation du workflow dans les choses difficiles.
+Les données doivent être stockés dans un système indépendant des canaux.
 
-Un BPM est plutôt un antipattern ici: faut lui exposer des services qu'il comprend, et lui même expose des services qui ne seront pas forcément ceux qui seront pas forcément adaptés aux consommateurs.
+Comme les saisies d'informations peuvent se faire dans des ordres différents d'un canal à l'autre, on peut souvent moins s'appuyer sur des contraintes d'intégrités que dans un système monocanal.
 
-[NOTE]
-====
-TODO : Schéma avec exemple d'un BPM
-====
+Par exemple un·e client·e pourra peut-être créer un compte sans fournir immediatement son nom ou son adresse.
 
-Si vous le voulez vous pouvez utiliser un moteur de workflow léger, mais autant que possible c'est bien de garder la main sur le code "métier".
+=== Des règles métier de validation
 
-== Comment faire ?
+Dans un système historique, les services métier étant adossés aux écrans, chacun comportait les règles métiers correspondant permettant de valider les informations saisies dans le formulaire.
+
+Dans un système omnicanal ce n'est plus possible car chaque canal peut concevoir son parcours.
+
+Cela signifie que les règles de validation seront sous deux formes :
+
+. dans le système central, des règles de validations seront placées au niveau de chaque macro-étape ;
+. les canaux doivent implémenter ces mêmes règles au niveau de chaque écran ou de chaque service exposé pour êytre en mesure de remonter des erreurs au plus près.
+
+Cela nécessite de bien documenter les règles.
+
+=== Des services facilement utilisables et composables
+
+Ce sont les services sur lesquels seront construits les canaux.
+
+C'est souvent l'étape la plus difficile.
+
+En effet, composer des services pour de l'omnicanal signifie de bien maîtriser les dépendances entre les différents services pour donner des libertés aux différents canaux.
+
+=== Les canaux
+
+C'est la partie spécifique à chaque canal.
+
+L'objectif est que cette partie du SI ne stocke pas d'information.
+En effet comme nous l'avons vue plus haut, toute information stockée au niveau d'un canal va créer un silotage.
+
+L'omnicanalité rend la conception des canaux plus difficiles car ils doivent prendre en compte le fait qu'un processus peut avoir été démarrer dans un autre canal ayant un workflow différent.
+
+Par exemple certains des champs de saisies auront peut-être déjà être remplis et pas d'autres.
+
+Il faut qu'il puisse déterminer comment effectuer la reprise du traitement dans de bonnes conditions.
+
+Cela demande une conception rigoureuse ainsi qu'une bonne couverture de tests.
+
+=== Faire vivre le système
+
+La dernière pierre de l'omnicanal est la capacité à le faire vivre.
+
+En effet les canaux sont fortements couplés au système cœur, ils devront donc être modifiés de manière coordonnée.
+
+Ce couplage est un effet direct de l'omnicanalité : c'est elle qui permet de passer d'un canal à l'autre.
+Le modèle de canaux découplés est celui du multicanal.
+
+Votre organisation doit donc être adapté à cette contrainte.
+
+== Comment y aller ?
+
+Maintenant que nous savons en quoi devrait consister un système omnicanal, reste à étudier les trajectoires pour l'atteindre.
+
+=== Situation de départ
 
 Le cœur métier contient trois éléments qui ont de la valeur :
 - les règles de validation
@@ -173,6 +212,19 @@ Deux choses non satisfaisantes :
 - process hardcodé
 
 Stratégies possibles :
+
+=== Peut-on se passer d'un BPM pour implémenter de l'omnicanal ?
+
+Je n'ai pas mis la partie implémentation du workflow dans les choses difficiles.
+
+Un BPM est plutôt un antipattern ici: faut lui exposer des services qu'il comprend, et lui même expose des services qui ne seront pas forcément ceux qui seront pas forcément adaptés aux consommateurs.
+
+[NOTE]
+====
+TODO : Schéma avec exemple d'un BPM
+====
+
+Si vous le voulez vous pouvez utiliser un moteur de workflow léger, mais autant que possible c'est bien de garder la main sur le code "métier".
 
 === Tout recoder
 
