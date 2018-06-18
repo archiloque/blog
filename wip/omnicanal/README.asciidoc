@@ -1,7 +1,5 @@
 = Balade sur l'omnicanal
 
-*Tout l'état doit être stocké côté serveur*
-
 Si votre système d'information n'est pas tombé dedans quand il était petit, faire de l'omnicanal est souvent un chantier semé d'embuches et de promesses d'éditeurs.
 
 Cet article se propose de prendre du recul sur les outils pour revenir aux questions de fond qui se cachent derrière.
@@ -13,6 +11,8 @@ Il est aussi l'occasion de faire un peu d'histoire des SI pour comprendre commen
 Un SI omnicanal est un SI qui permet aux différentes personnes qui l'utilisent de passer de manière fluide d'un canal de distribution à un autre.
 
 L'exemple type est de pouvoir commencer à faire une demande de prêt immobilier sur son smartphone, de pouvoir la continuer sur son ordinateur portable une fois chez soi, puis éventuellement de boucler le dossier en se rendant en agence.
+
+
 
 == Pourquoi c'est compliqué ?
 
@@ -116,8 +116,6 @@ En revanche la multiplication des canaux rend la maintenance du système plus co
 Certains des besoins partenaires se rapprochent des besoins du site web client, il arrive donc qu'une partie du code soit partagée entre les deux. Cela évite des redéveloppements mais rend encore le système plus difficile à observer .
 
 image::si-partenaires2.png[]
-
-*ARRETER DE LIRE ICI !!*
 
 === Cible
 
