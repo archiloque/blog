@@ -1,6 +1,6 @@
 = Balade sur l'omnicanal
 
-Si votre système d'information n'est pas tombé dedans quand il était petit, faire de l'omnicanal est souvent un chantier semé d'embuches et de promesses d'éditeurs.
+Si votre système d'information n'est pas tombé dedans quand il était petit, faire de l'omnicanal est souvent un chantier semé d'embûches et de promesses d'éditeurs.
 
 Cet article se propose de prendre du recul sur les outils pour revenir aux questions de fond qui se cachent derrière.
 
@@ -11,7 +11,7 @@ Il est aussi l'occasion de faire un peu d'histoire des SI pour comprendre commen
 Un SI omnicanal est un SI qui permet aux différentes personnes qui l'utilisent de passer de manière fluide d'un canal de distribution à un autre.
 
 L'exemple type est de pouvoir commencer à faire une demande de prêt immobilier sur son smartphone, de pouvoir la continuer sur son ordinateur portable une fois chez soi, puis éventuellement de terminer le dossier en se rendant en agence.
-Cela ne signifie pas utiliser le même outil dans les trois cas, mais bien d'avoir des outils spécifiques dont lergonomie est adaptée à chaque utilisation, et de pouvoir passer de l'un à l'autre "sans couture", c'est à dire sans avoir à refaire une opération déjà faite comme une saisie de donnée.
+Cela ne signifie pas utiliser le même outil dans les trois cas, mais bien d'avoir des outils spécifiques dont l'ergonomie est adaptée à chaque utilisation, et de pouvoir passer de l'un à l'autre "sans couture", c'est à dire sans avoir à refaire une opération déjà faite comme une saisie de donnée.
 
 En plus des avantages pour les utilisateur·rice·s, nous allons voir que l'omnicanalité a également des avantages IT.
 
@@ -30,7 +30,7 @@ image::si-mainframe.png[]
 Les premières briques du SI se sont construits dans les années 80 sur Mainframe, développées en COBOL ou équivalent.
 Ces systèmes historiques peuvent être des développements maison, des progiciels, ou un mélange des deux.
 
-Les écrans permettant d'y accéder sont conçus pour les émployé·e·s et leurs sont réservés.
+Les écrans permettant d'y accéder sont conçus pour les employé·e·s et leurs sont réservés.
 
 Les workflows de traitements et les fonctionnalités qui sont exposés sont directement calqués sur les écrans et chaque étape du process est persistée dans la base de donnée d'une manière structurée.
 Il ne s'agit pas d'un modèle MVC : les définitions des écrans sont en fait imbriquées dans le code de services.
@@ -68,7 +68,7 @@ Suivant les étapes, les données sont donc stockées soit dans le système cœu
 image::workflow-web-base.png[]
 
 En fonction des situations, les points de "rencontre" des workflows sont plus ou moins nombreux.
-Le cas extrême est celui ou il existe un seul point de synchronisation : la dernière étape du workflow.
+Le cas extrême est celui où il existe un seul point de synchronisation : la dernière étape du workflow.
 Dans cette situation, le site web doit stocker toutes les données intermédiaires, et recoder tous les contrôles de saisie.
 
 image::workflow-web-base-pire.png[]
