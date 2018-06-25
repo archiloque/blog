@@ -1,0 +1,57 @@
+= WAF 2.0
+
+Il y a très longtemps les entreprises utilisaient des link:https://en.wikipedia.org/wiki/Web_application_firewall[WAFs].
+
+[quote, 'link:https://fr.wikipedia.org/wiki/Web_application_firewall[Wikipedia]']
+____
+Un Web Application Firewall (WAF) est un type de pare-feu qui protège le serveur d'applications Web dans le backend contre diverses attaques.
+Le WAF garantit que la sécurité du serveur Web n'est pas compromise en examinant les paquets de requête HTTP / HTTPS et les modèles de trafic Web.
+____
+
+L'idée est de valider les appels avant qu'ils atteignent les serveurs d'application dans une stratégie de link:https://fr.wikipedia.org/wiki/Défense_en_profondeur[défense en profondeur].
+
+Il ne s'agit pas de firewall "techniques" qui gèrent la protection anti DDOS mais bien de sécurité applicative.
+
+À l'époque ces outils étaient généralement des appliances physiques ou logiques qui avaient mauvaise réputation :
+
+* Ils étaient chers ;
+* Ils étaient lourds à reconfigurer, on leur donnait un minimum de règles pour éviter d'avoir à les mettre à jour ;
+* Ils n'étaient disponibles qu'en production ou pas loin, donc des mauvaises surprises ;
+* Les validations avancées étaient coûteuses en temps CPU, typiquement les validations qui nécessitaient d'examiner le corps des requêtes étaient désactivées pour avoir des performances acceptables.
+
+Aujourd'hui :
+
+* Avec Swagger on a un outil à peu près standard de description de services REST et qui permet de définir assez finement les contrats : types de paramètres, format et intervalles de validité de valeurs, paramètres obligatoires et optionnels… ;
+* Des briques sur l'étagères permettraient de construire une solution sans que ça soit un projet pharaonique ;
+* Le CPU pour parser/valider du REST n'est plus un bottleneck ;
+* Les déploiements sont désormais automatisés et outillés.
+
+⇒ *Serait-on capable d'avoir un WAF 2.0 qui fournirait les fonctionnalités qui nous plairaient sans avoir les limitations dont on avait l'habitude ?*
+
+Approche possible :
+
+* Injecter automatiquement les règles de validations dans le WAF lors du déploiement pour qu'elles soient à jour ;
+* Déployer le WAF dès les tests d'intégration ;
+* Gérer la montée de version du code et donc des services en déployant le WAF dans une unité cohérente avec le code et la bascule de version serait gérée au-dessus du WAF.
+
+image::schema.png[]
+
+Explications
+
+* APP : le code applicatif
+* GWAF : un WAF commun à toutes les applications et à toutes les versions pour les règles globales, par exemple pour que `/metrics` ne soit pas exposé à l'extérieur
+* LWAF : le WAF local dédié à l'application et qui contient les règles qui lui sont spécifiques
+
+La présence du lien croisé entre les LWAF et les APP va dépendre de la technologie, s'en passer peut permettre d'avoir des appels LWAF → APP locaux pour éviter un saut réseau supplémentaire.
+
+Il est possible que le WAF AWS permette de faire des choses de ce genre.
+
+link:https://github.com/openresty/lua-nginx-module#readme[NGINX avec Lua] pourrait être un candidate pour POCer, par exemple avec link:https://kubernetes.io/docs/concepts/services-networking/ingress/[Kubernetes Ingress] qui est un NGINX.
+Voir par exemple link:https://github.com/archiloque/nginx_request_logger[ce projet] qui parse les requêtes REST pour loguer des paramètres qui peut être réutilisé.
+
+Sujet annexe : la possibilité de récupérer les logs d'appels en recette pour vérifier si certains endpoints ou certains paramètres ne seraient jamais utilisés.
+
+Suite possible :
+
+* [ ] Regarder le WAF AWS pour voir ce qu'il est capable de faire
+* [ ] POCer l'idée avec Lua + Kubernetes, et en faire des articles
