@@ -4,9 +4,9 @@ Julien Kirch
 :lang: fr
 :figure-caption!:
 
-Si votre système d'information n'est pas tombé dedans quand il était petit, faire de l'omnicanal est souvent un chantier semé d'embûches et de promesses d'éditeurs.
+Si votre système d'information n'est pas tombé dedans quand il était petit, faire de l'omnicanal est souvent un chantier semé d'embûches, et de promesses d'éditeurs.
 
-Cet article se propose de prendre du recul sur les outils pour revenir aux questions de fond qui se cachent derrière.
+Cet article se propose de parler des sujets de fond que tirent ce type de transformation.
 
 Il est aussi l'occasion de faire un peu d'histoire des SI pour comprendre comment on est arrivé à la situation actuelle.
 
@@ -15,17 +15,17 @@ Il est aussi l'occasion de faire un peu d'histoire des SI pour comprendre commen
 Un SI omnicanal est un SI qui permet aux différentes personnes qui l'utilisent de passer de manière fluide d'un canal de distribution à un autre.
 
 L'exemple type est de pouvoir commencer à faire une demande de prêt immobilier sur son smartphone, de pouvoir la continuer sur son ordinateur portable une fois chez soi, puis éventuellement de terminer le dossier en se rendant en agence.
-Cela ne signifie pas utiliser le même outil dans les trois cas, mais bien d'avoir des outils spécifiques dont l'ergonomie est adaptée à chaque utilisation, et de pouvoir passer de l'un à l'autre "sans couture", c'est à dire sans avoir à refaire une opération déjà faite comme une saisie de donnée.
+Cela ne signifie pas utiliser le même outil dans les trois cas, mais bien d'avoir des outils spécifiques dont l'ergonomie est adaptée à chaque utilisation, et de pouvoir passer de l'un à l'autre "sans couture", c'est à dire sans avoir à refaire une opération déjà faite comme une saisie de données.
 
-En plus des avantages pour les utilisateur·rice·s, nous allons voir que l'omnicanalité a également des avantages IT.
+En plus des avantages pour les utilisateur·rice·s, nous verrons voir que l'omnicanalité a également des avantages pour l'IT.
 
 == Pourquoi c'est compliqué ?
 
-Le chantier de transformation omnicanal se comporte de plusieurs évolutions différentes.
+Le chantier de transformation omnicanal comporte plusieurs axes différents, liés aux différentes contraintes des systèmes actuels.
 
-Pour comprendre la situation d'ensemble le mieux est de revenir en arrière et dérouler l'historique du SI car c'est lui qui explique la situation actuelle.
+Pour comprendre la situation le mieux est de revenir en arrière et dérouler l'historique du SI car c'est lui qui explique la situation actuelle.
 
-Nous allons prendre ici un exemple typique tel qu'on le retrouve chez de nombreux clients, toujours dans le domaine bancaire.
+Nous allons prendre ici un exemple typique du domaine bancaire tel qu'on le retrouve chez de nombreux clients.
 
 === Les années 80 : au commencement étaient le mainframe et le backoffice
 
@@ -34,38 +34,39 @@ image::si-mainframe.png[pdfwidth="66%"]
 Les premières briques du SI se sont construits dans les années 80 sur Mainframe, développées en COBOL ou équivalent.
 Ces systèmes historiques peuvent être des développements maison, des progiciels, ou un mélange des deux.
 
-Les écrans permettant d'y accéder sont conçus pour les employé·e·s et leurs sont réservés.
+Les écrans de backoffice permettant d'y accéder sont conçus pour les employé·e·s de l'entreprise et leurs sont réservés.
 
-Les workflows de traitements et les fonctionnalités qui sont exposés sont directement calqués sur les écrans et chaque étape du process est persistée dans la base de donnée d'une manière structurée.
-Il ne s'agit pas d'un modèle link:https://fr.wikipedia.org/wiki/Modèle-vue-contrôleur[MVC] : les définitions des écrans sont en fait imbriquées avec le code des programmes contenant les traitements métiers.
+Les workflows de traitements et les fonctionnalités qui sont exposés sont directement calqués sur les écrans et chaque étape du process est persistée dans la base de données d'une manière structurée.
+Il ne s'agit pas d'un modèle link:https://fr.wikipedia.org/wiki/Modèle-vue-contrôleur[MVC] : les définitions des écrans sont imbriquées avec les traitements métiers.
 
 Les bureaux étant fermés la nuit et le week-end, les appels interactifs sont désactivés pendant ces périodes ce qui permet d'exécuter des traitements de masse ou _batch_.
-Ces traitements bénéficient ainsi de l'intégralité de la puissance de calcul du serveur, et le fait d'être les seuls à s'exécuter leur permet de simplifier leur design car ils peuvent ainsi monopoliser des ressources comme de tables de bases de données sans se soucier du reste du monde.
+Ces traitements bénéficient ainsi de l'intégralité de la puissance de calcul, et le fait d'être les seuls à s'exécuter leur permet de simplifier leur design car ils peuvent ainsi monopoliser des ressources comme de tables de bases de données sans se soucier du reste du monde.
 
-Cela permet aussi de simplifier les règles métier, par exemple les calculs comptabilité demandent d'avoir un vue figée et sont donc beaucoup plus simples lorsqu'aucune opération n'est effectuée en même temps.
+Cela permet aussi de simplifier les règles métier, par exemple les calculs comptabilité sont beaucoup plus simples lorsqu'aucune autre opération n'est effectuée pendant qu'ils s'exécutent.
 
 === Les années 2000 : l'arrivée du web, le bicanal
 
 Avec l'arrivée du web, il est temps d'ouvrir un site de banque en ligne.
 
-Cela signifie donner accès à des fonctionnalités du Mainframe, mais d'une manière différente de celle qui est utilisée pour le backoffice :
+Cela signifie donner accès à des fonctionnalités du Mainframe, mais d'une manière différente de celle du backoffice :
 
-* les écrans doivent être adaptés pour être utilisables par des non-employé·e et sont donc parfois allégés, certains workflows comportent donc plus d'étapes ;
+* les écrans doivent être adaptés pour être utilisables par des non-employé·e·s et sont donc parfois allégés, certains workflows comportent donc plus d'étapes ;
 * certaines options nécessitant la validation d'un·e employé·e empêcheront d'aller jusqu'au bout du traitement à partir du site, cela nécessitera des opérations de backoffice spécifiques.
 
-Le système Mainframe historique est vital pour l'entreprise, et la maîtrise qu'on en a n'est pas toujours satisfaisante : ce patrimoine commence à dater, sans test automatisé (ce qui est normal vu l'époque) avec une documentation souvent lacunaire.
+Le système Mainframe historique est vital pour l'entreprise, et la maîtrise qu'on en a n'est pas toujours satisfaisante : ce patrimoine commence à dater, sans test automatisé (ce qui est normal vu l'époque) et avec une documentation souvent lacunaire.
 
 La stratégie choisie est donc souvent de limiter au maximum l'ampleur des modifications sur cette partie du système pour limiter les risques.
 
-L'approche choisie alors consiste à autant que possible exposer les workflows existant - c'est-à-dire ceux du backoffice - sous formes d'API principalement synchrones, et à développer le site web au-dessus de ces API, alors même que les workflows ne sont pas les mêmes.
+L'approche choisie alors consiste à autant que possible exposer les workflows existant - c'est-à-dire ceux du backoffice - principalement sous formes d'API synchrones, et à développer le site web au-dessus de ces API, alors même que les workflows ne sont pas les mêmes.
+
 Les contrats de ces APIs sont donc assez proches des écrans Mainframe pour limiter l'effort à fournir.
-Il ne s'agit bien entendu pas d'API REST, mais généralement de messages MQ permettant d'exposer les programmes Cobol ou directement les écrans Mainframe.
+Il ne s'agit bien entendu pas d'API REST, mais généralement de messages link:https://fr.wikipedia.org/wiki/IBM_MQ[MQ] permettant d'exposer les programmes Cobol.
 
 Lorsque les deux workflows ne correspondent pas, on aboutit à ce type de situation :
 
 image::workflow-web.png[pdfwidth="66%"]
 
-Il est donc impossible de stocker les résultats des étapes 1A ou 2A dans le Mainframe.
+Il est dans ce cas impossible de stocker les résultats des étapes 1A ou 2A dans le Mainframe.
 Ils seront donc stockés dans le backend du site web dans une base de données séparée.
 Cela signifie aussi qu'il faudra dupliquer les contrôles de saisie de ces étapes dans la partie web, pour éviter d'avoir à revenir en arrière dans les écrans du site web.
 
@@ -79,21 +80,22 @@ Dans cette situation, le site web doit stocker toutes les données intermédiair
 
 image::workflow-web-base-pire.png[pdfwidth="66%"]
 
-Dans ce cas les données dans la base du site web qui n'ont pas été déversées dans la base du Mainframe ne sont pas visibles depuis le backoffice.
+Dans ce cas les données dans la base du site web qui n'ont pas été déversées dans la base du Mainframe ne sont pas visibles depuis le backoffice, et dans les autres systèmes qui exploitent cette base.
 
 Par exemple si vous commencez à souscrire un prêt immobilier sur le site web sans terminer la procédure et que vous vous rendez dans votre agence bancaire, il faudra refaire tout ou partie des opérations.
 
-Par ailleurs les opérations de backoffice spécifiques au site web ainsi que les besoin de support clients nécessitent de développer des écrans spécifiques branchés sur le même backend.
+Par ailleurs les opérations de backoffice spécifiques au site web ainsi que les besoins de support client nécessitent de développer des écrans spécifiques branchés sur le même backend.
 
 image::si-web.png[pdfwidth="66%"]
 
 L'inaccessibilité du cœur système historique pendant la nuit pose aussi problème : il est inconcevable de faire de même pour un site web destiné au grand public.
+
 Il existe de nombreuses manières d'améliorer cette situation, l'approche souvent rencontré consiste à :
 
 . effectuer une copie de certaines données avant de couper le système Mainframe, et s'en servir comme d'un cache en lecture seule accessible pendant la nuit, le cache sera désactivé lorsque les traitements de masses sont terminés ;
 . ne pas exécuter les opérations qui nécessitent des écritures mais les enregistrer sous forme de demandes d'exécutions dans le backend du site web, et réaliser réellement les traitements le jour suivant à l'ouverture du Mainframe.
 
-Cela rend le système dans son ensemble plus difficile à observer car les données sont distribuées entre les deux sous-systèmes.
+Cela rend le SI plus difficile à observer car les données sont distribuées entre les deux sous-systèmes.
 
 Bien entendu, même si la réutilisation de fonctionnalités existantes est privilégiée, certains besoins du site web nécessitent de développer des APIs spécifiques dans le cœur métier.
 
@@ -103,12 +105,13 @@ L'arrivée du mobile pourrait signifier la mise en place d'une tricanalité.
 Mais les besoins mobiles sont souvent suffisamment proches des besoins web pour qu'ils s'appuient sur les mêmes systèmes.
 Dans quelques situations il peut être nécessaire de stocker des données intermédiaires sur les terminaux, mais il ne s'agit pas d'un vrai troisième canal.
 
-Les écrans de backoffice ont souvent été remplacés par des technologies web, mais en conservant les mêmes workflows, le backend du nouveau backoffice ne stockant donc pas de données.
+Les écrans de backoffice ont souvent été remplacés par des technologies web.
+Mais pour limiter les impacts sur le Mainframe on conservera souvent les mêmes workflows, le backend du nouveau backoffice n'aura donc pas à stocker de données.
 
-De même le site web a pu être refondu, mais avec toujours en subissant les contraintes de l'existant.
+De même le site web public a pu être refondu, mais avec toujours en subissant les contraintes de l'existant.
 
 En revanche la banque a noué des partenariats, par exemple en marque blanche.
-Ces partenaires peuvent par exemple vendre des assurances ou des prêts de la banque dans un package lorsque vous achetez un de leur produits.
+Ces partenaires peuvent par exemple vendre des prêts de la lorsque vous achetez un de leur produits.
 
 Les process nécessaire aux partenaires sont aussi différent du process historique que du process web, le système devient donc souvent tricanal.
 C'est le cas de multi-canalité qu'on retrouve le plus souvent.
@@ -118,7 +121,7 @@ image::si-partenaires.png[pdfwidth="66%"]
 Pour rester lisible, le schéma ne contient pas les backoffice dédiés aux canaux web et partenaires mais ils existent bel et bien, une personne du support peut donc avoir à jongler avec trois backoffices différents.
 
 Le canal partenaire ne pose pas le même problème que le canal web.
-En effet un client qui commence à souscrire une assurance en marque blanche en achetant un bien voudra rarement conclure la transaction dans votre agence.
+En effet un client qui commence à souscrire un prêt en marque blanche en achetant un bien voudra rarement conclure la transaction dans votre agence.
 En revanche la multiplication des canaux rend la maintenance du système plus complexe quand on veut modifier un des workflows centraux qui sont exposés aux autres canaux ou changer une des règles de gestion dupliquée à plusieurs endroits.
 
 Certains des besoins partenaires se rapprochent des besoins du site web client, il arrive donc qu'une partie du code soit partagée entre les deux. Cela évite des redéveloppements mais rend encore le système plus difficile à observer.
@@ -129,7 +132,7 @@ image::si-partenaires2.png[pdfwidth="66%"]
 
 Le multicanal pose donc les problèmes suivants :
 
-* mauvaise expérience utilisateur·rice·s lors du passage d'un canal à l'autre;
+* mauvaise expérience utilisateur·rice·s lors du passage d'un canal à l'autre ;
 * duplication de code entre les canaux ;
 * données partiellement dupliquées entre les canaux ;
 * limites dans la capacité à créer des parcours très différents du parcours historique ;
@@ -142,16 +145,16 @@ Les problèmes causés par l'omnicanal et les limites des SI correspondants nous
 
 Avant de rentrer dans le détail, il faut préciser qu'un système omnicanal ne signifie pas un système unique du haut en bas pour tous les canaux mais un système cœur permettant de répondre aux besoins de l'omnicanal sur lequel viendront se brancher les différents canaux.
 
-La différence avec un système multicanal est bien la capacité de passer d'un canal à l'autre, pas le fait d'avoir un système unique.
+La différence avec un système multicanal est la capacité de passer d'un canal à l'autre, pas le fait d'avoir un système unique.
 
 Ainsi vous n'exposerez pas forcément les mêmes services ou les mêmes technologies pour votre application mobiles et pour vos partenaires.
-Vous aurez donc un système cœur sur lequel viendront se greffer votre canal mobile, votre canal partenaire…
+Vous aurez un système cœur sur lequel viendront se greffer votre canal backoffice, votre canal public, votre canal partenaire…
 
 === Des processus métier indépendants des canaux
 
 Les workflows étant différent d'un canal à l'autre, l'omnicanalité nécessite de concevoir des processus métier qui soient adaptables aux différents canaux.
 
-Cela signifie qu'il ne faut pas penser son processus en termes d'étapes qui ont la granularité d'un écran mais en terme de macro-étapes avec une taille plus importantes, ce qui donnera à chaque canal les marges de manœuvres dont il a besoin.
+Cela signifie qu'il ne faut pas penser son processus en termes d'étapes qui ont la granularité d'un écran mais en termes de macro-étapes avec une taille plus importantes, ce qui donnera à chaque canal les marges de manœuvres dont il a besoin.
 
 Par exemple souscrire un crédit peut se décomposer en 3 macro-étapes :
 
@@ -179,7 +182,7 @@ Dans un système omnicanal ce n'est plus possible car chaque canal peut concevoi
 Cela signifie que les règles de validation seront sous deux formes :
 
 . dans le système central, des règles de validations seront placées au niveau de chaque macro-étape à gros grain ;
-. les canaux doivent implémenter ces mêmes règles au niveau de chaque écran ou de chaque service exposé avec la granularité la plus finle possible pour être en mesure de remonter des erreurs au plus près.
+. les canaux doivent implémenter ces mêmes règles au niveau de chaque écran ou de chaque service exposé avec la granularité la plus fine possible pour être en mesure de remonter des erreurs au plus près de la saisie des données.
 
 Cela nécessite de bien documenter les règles.
 
@@ -190,7 +193,7 @@ Ce sont les services synchrones et asynchrones sur lesquels seront construits le
 En effet, composer des services pour de l'omnicanal signifie de bien maîtriser les dépendances entre les différents services pour donner des libertés aux différents canaux.
 
 Ces services doivent aussi, autant que possible, être accessibles 24 heures sur 24.
-Cela va nécessiter, du point de vue de l'extérieur, que les traitements ensemblistes "de nuit" ne rendent le système inaccessibles.
+Cela va nécessiter, du point de vue de l'extérieur, que les traitements ensemblistes "de nuit" ne rendent le système inaccessible.
 Cela peut demander de réutiliser le même type de comportements que ceux qui étaient utilisés par les canaux, comme le fait d'enregistrer des demandes d'exécutions à traiter plus tard, mais la différence est que le comportement sera cohérent entre les différents canaux car réalisé dans la partie commune.
 
 === Les canaux
@@ -225,7 +228,7 @@ Votre organisation doit donc être adapté à cette contrainte.
 Maintenant que nous savons en quoi devrait consister un système omnicanal, reste à étudier les trajectoires pour l'atteindre.
 
 Nous allons commencer par un point sur la situation de départ puis donner quatre exemples de stratégie possibles.
-Il existe de multiples approches, celles qui sont mentionnées ici ont été choises car elles mettent en lumières les contraintes qui s'appliquent.
+Il existe de multiples approches, celles qui sont mentionnées ici ont été choisies car elles mettent en lumières les contraintes qui s'appliquent.
 
 === Situation de départ
 
@@ -245,12 +248,12 @@ Les deux représentent de la valeur même si elles sont adhérentes au workflow 
 
 C'est la solution que préconisent certains éditeurs.
 
-Les BPM sont des outils permettant de définir des worklow métiers sous forme _low-code_, c'est à dire via de la configuration et/ou des designers graphiques.
+Les BPM sont des outils permettant de définir des workflow métiers sous forme _low-code_, c'est à dire via de la configuration et/ou des designers graphiques.
 Ils permettent également de stocker l'état courant des différents workflows.
 
 C'est une solution tentante car elle fournit un socle prêt à l'emploi pour une partie des besoins.
 
-Deux point d'attention pour cette approche :
+Deux points d'attention pour cette approche :
 
 * comme avec tout progiciels, attention à ne pas oublier les bonnes pratiques de développements comme les tests automatisés : votre BPM embarquera du code, et qui dit code dit tests ;
 * ne pensez pas qu'avoir choisi un BPM signifie que vous avez gagné, en effet nous avons vu que la plus partie la plus difficile du chantier est la conception des services sur lesquels va s'appuyer le BPM.
@@ -270,7 +273,7 @@ Cela peut être à l'occasion de l'ajout d'un nouveau canal, en profitant d'avoi
 
 Il va s'agir de transformer le cœur, puis de faire maigrir les canaux existants en redescendant ce qui ne devrait pas s'y trouver, comme le stockage de données.
 
-image::strat3-1.png[title="Départ", pdfwidth="66%"]
+image::strat3-1.png[title="La situation de départ", pdfwidth="66%"]
 
 image::strat3-2.png[title="En cours de migration : les canaux diminuent", pdfwidth="66%"]
 
@@ -302,9 +305,9 @@ Cependant elles ne demanderont pas de transformations profondes, au contraire de
 
 En cible on pourra décomissionner totalement le système historique, ou conserver certains éléments comme les parties réglementaires pour lesquels la migration ne se justifie pas et qui n'imposent pas de contraintes sur le nouveau système.
 
-Une des difficultés de cette stratégie est de bien choisir l'ordre dans lequel remonter les fonctionalités pour bénéficer au plus vite des premiers avantages tout en limitant les risques.
+Une des difficultés de cette stratégie est de bien choisir l'ordre dans lequel remonter les fonctionnalités pour bénéficier au plus vite des premiers avantages tout en limitant les risques.
 
-image::strat4-1.png[title="Départ", pdfwidth="66%"]
+image::strat4-1.png[title="La situation de départ", pdfwidth="66%"]
 
 image::strat4-2.png[title="En cours de migration, la zone du milieu prend de l'importance", pdfwidth="66%"]
 
