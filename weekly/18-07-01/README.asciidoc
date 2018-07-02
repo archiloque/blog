@@ -1,0 +1,13 @@
+= 01/07/2018
+Julien Kirch
+v1.0, 2018-07-01
+:article_lang: en
+
+===== link:https://jepsen.io/consistency[Consistency Models]
+
+image::jepsen.png[]
+
+[quote]
+____
+This map (adapted from Bailis, Davidson, Fekete et al and Viotti & Vukolic) shows the relationships between common consistency models for concurrent systems. Arrows show the relationship between consistency models. For instance, strict serializable implies both serializability and linearizability, linearizability implies sequential consistency, and so on. Colors show how available each model is, for a distributed system on an asynchronous network.
+____
