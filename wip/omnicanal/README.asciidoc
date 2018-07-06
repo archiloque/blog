@@ -19,6 +19,8 @@ Cela ne signifie pas utiliser le même outil dans les trois cas, mais bien d'avo
 
 En plus des avantages pour les utilisateur·rice·s, nous verrons voir que l'omnicanalité a également des avantages pour l'IT.
 
+À l'inverse, un SI multicanal fournit les même fonctionalités sur plusieurs canaux mais de manière silotée et où donc la bascule d'un canal à l'autre est visible de la part des personnes ou des systèmes qui l'utilisent.
+
 == Pourquoi c'est compliqué ?
 
 Le chantier de transformation omnicanal comporte plusieurs axes différents, liés aux différentes contraintes des systèmes actuels.
@@ -53,14 +55,14 @@ Cela signifie donner accès à des fonctionnalités du Mainframe, mais d'une man
 * les écrans doivent être adaptés pour être utilisables par des non-employé·e·s et sont donc parfois allégés, certains workflows comportent donc plus d'étapes ;
 * certaines options nécessitant la validation d'un·e employé·e empêcheront d'aller jusqu'au bout du traitement à partir du site, cela nécessitera des opérations de backoffice spécifiques.
 
-Le système Mainframe historique est vital pour l'entreprise, et la maîtrise qu'on en a n'est pas toujours satisfaisante : ce patrimoine commence à dater, sans test automatisé (ce qui est normal vu l'époque) et avec une documentation souvent lacunaire.
+Le système Mainframe historique est vital pour l'entreprise, et la maîtrise qu'on en a n'est pas toujours satisfaisante : ce patrimoine commence à dater, il comporte rarement des test automatisés et avec une documentation souvent lacunaire.
 
 La stratégie choisie est donc souvent de limiter au maximum l'ampleur des modifications sur cette partie du système pour limiter les risques.
 
 L'approche choisie alors consiste à autant que possible exposer les workflows existant - c'est-à-dire ceux du backoffice - principalement sous formes d'API synchrones, et à développer le site web au-dessus de ces API, alors même que les workflows ne sont pas les mêmes.
 
 Les contrats de ces APIs sont donc assez proches des écrans Mainframe pour limiter l'effort à fournir.
-Il ne s'agit bien entendu pas d'API REST, mais généralement de messages link:https://fr.wikipedia.org/wiki/IBM_MQ[MQ] permettant d'exposer les programmes Cobol.
+Il ne s'agit bien entendu pas d'API REST, mais généralement de messages link:https://fr.wikipedia.org/wiki/IBM_MQ[MQ] ou d'appels link:https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.1.0/com.ibm.cics.ts.java.doc/topics/dfhpj_isc_tcpip_conn.html[CTG].
 
 Lorsque les deux workflows ne correspondent pas, on aboutit à ce type de situation :
 
@@ -110,11 +112,11 @@ Mais pour limiter les impacts sur le Mainframe on conservera souvent les mêmes 
 
 De même le site web public a pu être refondu, mais avec toujours en subissant les contraintes de l'existant.
 
-En revanche la banque a noué des partenariats, par exemple en marque blanche.
-Ces partenaires peuvent par exemple vendre des prêts de la lorsque vous achetez un de leur produits.
+En revanche la banque a noué des partenariats.
+Ces partenaires peuvent par exemple vendre des prêts de la lorsque en marque blanche vous achetez un de leur produits.
 
 Les process nécessaire aux partenaires sont aussi différent du process historique que du process web, le système devient donc souvent tricanal.
-C'est le cas de multi-canalité qu'on retrouve le plus souvent.
+Nous allons prendre le cas où l'intégration se fait via un backend spécifique.
 
 image::si-partenaires.png[pdfwidth="66%"]
 
@@ -156,7 +158,7 @@ Les workflows étant différent d'un canal à l'autre, l'omnicanalité nécessit
 
 Cela signifie qu'il ne faut pas penser son processus en termes d'étapes qui ont la granularité d'un écran mais en termes de macro-étapes avec une taille plus importantes, ce qui donnera à chaque canal les marges de manœuvres dont il a besoin.
 
-Par exemple souscrire un crédit peut se décomposer en 3 macro-étapes :
+Par exemple souscrire un crédit peut, en le simplifiant à l'extrême, se décomposer en 3 macro-étapes :
 
 - renseigner des informations personnelles et faire des simulations de crédit jusqu'à obtenir une offre satisfaisante ;
 - valider une demande de crédit en saisissant des informations supplémentaires ;
@@ -257,6 +259,8 @@ Deux points d'attention pour cette approche :
 
 * comme avec tout progiciels, attention à ne pas oublier les bonnes pratiques de développements comme les tests automatisés : votre BPM embarquera du code, et qui dit code dit tests ;
 * ne pensez pas qu'avoir choisi un BPM signifie que vous avez gagné, en effet nous avons vu que la plus partie la plus difficile du chantier est la conception des services sur lesquels va s'appuyer le BPM.
+
+Il s'agit d'une utilisation très spécifique des outils de BPM, loin du link:https://fr.wikipedia.org/wiki/Business_Process_Management[Business Process Management] qui est normallement leur cœur de métier.
 
 === Stratégie 2 : repartir sur un nouveau système
 
