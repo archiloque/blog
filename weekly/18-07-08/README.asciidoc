@@ -23,3 +23,16 @@ ____
 ____
 Before database transactions, there were complexities in updating data, especially if failures happened. This held true even though the systems were centralized and avoided the complexities presented by distribution. Database transactions dramatically simplified the life of application developers. It was great while it lasted…
 ____
+
+[quote]
+____
+State means different things. Session state captures stuff across requests but not across failures. Durable state remembers stuff across failures.
+
+Increasingly, most scalable computing consists of microservices with _stateless interfaces_. Microservices need partitioning, failures, and rolling upgrades, and this implies that stateful sessions are problematic. Microservices may call other microservices to read data or get stuff done.
+
+Transactions across stateless calls are usually not supported in microservice solutions. Microservices and their load-balanced service pools make server-side session state difficult, which, in turn, makes it hard to have transactions across calls and objects. Without transactions, coordinated changes across objects in durable state need to use the careful replacement technique in which updates are ordered, confirmed, and idempotent. This is challenging to program but is a natural consequence of microservices, which have emerged as the leading technique to support scalable applications.
+
+Finally, different applications demand different behaviors from durable state. Do you want it _right_ or do you want it _right now_? Human beings usually want an answer _right now_ rather than _right_. Many application solutions based on object identity may be tolerant of stale versions. Immutable objects can provide the best of both worlds by being both right and right now.
+
+Consider your application's requirements carefully. If you aren't careful, you will have problems with your state that you will definitely mind.
+____
