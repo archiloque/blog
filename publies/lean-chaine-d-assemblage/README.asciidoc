@@ -1,8 +1,9 @@
 = Lean, chaîne d'assemblage et développement logiciel
 Julien Kirch
-v0.1, 2018-07-18
+v0.1, 2018-07-20
 :article_lang: fr
 :article_image: image-w1280.jpg
+:article_description: Ne pas pousser trop loin l'analogie
 
 Le langage du link:https://fr.wikipedia.org/wiki/Lean_(production)[lean] reste à la mode dans le développement de logiciel, par exemple dans l'utilisation du link:https://fr.wikipedia.org/wiki/Kanban[Kanban].
 
@@ -32,11 +33,14 @@ Un développement logiciel qui fonctionne comme une chaîne d'assemblage est don
 
 Cela rend le développement moins prévisible, et donc moins facile à piloter, mais en principe les gains de productivité qu'il permet en valent très largement la peine.
 
+On peut pousser l'analogie plus loin en disant qu'il s'agit d'une chaîne d'assemblage de chaînes d'assemblage.
+Cela permet de faire passer l'idée que la productivité doit se faire de manière différente, mais on reste dans l'idée de tâches répétitives.
+
 L'autre aspect attirant de la métaphore de la chaîne d'assemblage est la question du statut des personnes qui développent :
 une usine ce sont des opérateurs et des opératrices qui ont des ordres précis sur la manière de travailler, et dont on peut facilement mesurer la productivité.
 Le développement logiciel vu comme du lean est donc le rêve des responsables de projets se voyant comme des contremaîtres et des contremaîtresses.
 
-== Le développement de jeux vidéo : le pipeline
+== Le développement de jeux vidéo : la chaîne d'assemblage comme modèle explicite
 
 Le développement des plus gros jeux vidéo (dits link:https://fr.wikipedia.org/wiki/AAA_(jeu_vidéo)[AAA]) est très instructive sur ce sujet.
 
@@ -45,18 +49,16 @@ Ce type de jeu se caractérise notamment par une longue durée de jeu grâce à 
 Il y a donc un enjeu de production et d'intégration d'une quantité importante d'éléments de même types : produire des centaines d'animations, des dizaines d'heures de musiques, des milliers de lignes de dialogues.
 On est donc proche de la chaîne d'assemblage.
 
-Le monde du jeu vidéo appelle ça "le pipeline" : avoir un pipeline efficace consiste à pouvoir rapidement produire en série et intégrer tous les éléments qui formeront le corps du jeu.
-Un pipeline inefficace est ainsi un gros risque de faire échouer un projet
+Le monde du jeu vidéo appelle ça "le pipeline" : avoir un pipeline efficace consiste à pouvoir rapidement produire en série et intégrer tous les éléments qui formeront le corps du jeu. Le modèle de la chaîne d'assemblage est donc explicite.
 
-L'une des étapes initiales de la création d'un jeu est de concevoir la première version de ce pipeline pour ensuite pouvoir "lancer la machine", en s'appuyant sur des personnes extérieurs et des sous-traitants pour traiter toutes les demandes.
+L'une des étapes initiales de la création d'un jeu est de concevoir la première version de ce pipeline pour ensuite pouvoir "lancer la machine", en s'appuyant sur des personnes extérieures et des sous-traitants pour traiter toutes les demandes.
 Cela signifie une chaîne d'outil, mais aussi des règles claires qui permettent aux personnes exécutantes de pouvoir être autonomes dans leur travail.
+Un pipeline inefficace est ainsi un gros risque de faire échouer un projet.
 
 L'expérience prouve que même dans ce cas, la chaîne fonctionne rarement comme elle devrait et qu'on est loin du monde merveilleux de Toyota : les outils sont rarement aussi fiables que prévus, les besoins changent en cours de route ce qui nécessite de retoucher à ce qui était considéré comme terminé et la précision insuffisante des règles d'acceptation créé des incompréhensions et des aller-retours.
 
-Tout cela créé des pertubations dans les plannings et rend les durées d'execution de tâches et les dates de fin de projets difficiles à prévoir, même alors que le modèle est pensé dans cet objectif.
+Tout cela créé des perturbations dans les plannings et rend les durées d'exécution de tâches et les dates de fin de projets difficiles à prévoir, même alors que le modèle est pensé dans cet objectif.
 
-Même dans les cas favorables, créer un logiciel n'est donc pas une chaîne d'assemblage, méfiez-vous donc des enthousiastes du lean.
+Même dans les cas favorables, créer un logiciel n'est donc pas une chaîne d'assemblage, méfiez-vous donc des enthousiastes du lean et des personnes qui aiment pousser trop loin les analogies.
 
 Si le sujet vous intéresse, je vous suggère de lire link:https://mitpress.mit.edu/books/developers-dilemma[Developer's Dilemma] de Casey O'Donnell qui est une étude ethnographique sur la création de jeux vidéo.
-
-image::cover.jpeg[]
