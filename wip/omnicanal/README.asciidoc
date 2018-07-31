@@ -6,18 +6,19 @@ Julien Kirch
 
 Si votre système d'information n'est pas tombé dedans quand il était petit, faire de l'omnicanal est souvent un parcours semé d'embûches, et de promesses d'éditeurs.
 
-Cet article se propose de parler des sujets de fond liés ce type de transformation.
+Cet article se propose de parler des sujets de fond liés à ce type de transformations.
 
 Il est aussi l'occasion d'aborder l'histoire des SI pour comprendre comment on est arrivé à la situation actuelle.
 
 == C'est quoi l'omnicanal{nbsp}?
 
-Un _canal_ est un point d'accès spécifiques à un système, un SI peut avoir par exemple un canal web client, un canal application mobile client, un backoffice de gestion, des accès pour les partenaires…
+Un _canal_ est un point d'accès spécifique à un système.
+Un SI peut par exemple avoir un canal web client, un canal application mobile client, un backoffice de gestion, des accès pour les partenaires…
 
 Un SI _omnicanal_ est un SI qui permet aux différentes personnes qui l'utilisent de passer de manière fluide d'un canal de distribution à un autre.
 
 L'exemple type est de commencer à faire une demande de prêt immobilier sur son smartphone, de la continuer sur son ordinateur portable une fois chez soi, puis éventuellement de terminer le dossier en se rendant en agence.
-Cela ne signifie pas utiliser le même outil dans les trois cas, mais bien d'avoir des outils spécifiques dont l'ergonomie est adaptée à chaque utilisation, et de pouvoir passer de l'un à l'autre "sans couture", c'est-à-dire sans avoir à refaire une opération déjà faite comme une saisie de données.
+Cela ne signifie pas utiliser le même outil dans les trois cas, mais bien d'avoir des outils spécifiques dont l'ergonomie est adaptée à chaque utilisation, et de pouvoir passer de l'un à l'autre "sans couture" (_seamless_), c'est-à-dire sans avoir à refaire une opération déjà faite comme une saisie de données.
 
 En plus des avantages pour les utilisateur·rice·s, nous allons voir que l'omnicanalité a également des avantages pour l'IT.
 
@@ -38,9 +39,9 @@ Nous allons prendre ici un exemple typique du domaine bancaire tel qu'on le retr
 image::si-mainframe.png[pdfwidth="66%"]
 
 Les premières briques du SI se sont construites dans les années 80 sur mainframe, développées en COBOL ou équivalent.
-Ces systèmes historiques peuvent être des développements maison, des progiciels, ou un mélange des deux.
+Ces systèmes historiques peuvent être des développements "maison", des progiciels, ou un mélange des deux.
 
-Les écrans de backoffice permettant d'y accéder sont conçus pour les employé·e·s de l'entreprise et leurs sont réservé.
+Les écrans de backoffice permettant d'y accéder sont conçus pour les employé·e·s de l'entreprise et leurs sont réservés.
 
 Les workflows de traitement et les fonctionnalités exposées sont directement calqués sur les écrans et chaque étape du process est stockée dans la base de données d'une manière structurée.
 Il ne s'agit pas d'un modèle link:https://fr.wikipedia.org/wiki/Modèle-vue-contrôleur[MVC] : les définitions des écrans sont imbriquées avec les traitements métiers.
@@ -48,7 +49,7 @@ Il ne s'agit pas d'un modèle link:https://fr.wikipedia.org/wiki/Modèle-vue-con
 Les bureaux étant fermés la nuit et le week-end, les appels interactifs sont désactivés pendant ces périodes, ce qui permet d'exécuter des traitements de masse ou _batch_.
 Ces traitements bénéficient ainsi de l'intégralité de la puissance de calcul, et le fait d'être les seuls à s'exécuter leur permet de simplifier leur design car ils peuvent ainsi monopoliser des ressources comme des tables de bases de données sans se soucier du reste du monde.
 
-Cela permet aussi de simplifier les règles métier, par exemple les calculs comptabilité sont beaucoup plus simples lorsqu'aucune autre opération n'est effectuée pendant qu'ils s'exécutent.
+Cela permet aussi de simplifier les règles métier, par exemple les calculs comptables sont beaucoup plus simples lorsqu'aucune autre opération n'est effectuée pendant qu'ils s'exécutent.
 
 === Les années 2000 : l'arrivée du web, le bicanal
 
@@ -59,7 +60,7 @@ Cela signifie donner accès à des fonctionnalités du mainframe, mais d'une man
 * les écrans doivent être adaptés pour être utilisables par des non-employé·e·s, certains workflows comportent donc plus d'étapes ;
 * certaines options nécessitant la validation d'un·e employé·e empêcheront d'aller jusqu'au bout du traitement à partir du site, cela nécessitera des opérations de backoffice spécifiques.
 
-Le système mainframe historique est vital pour l'entreprise et la maîtrise qu'on en a n'est pas toujours satisfaisante : ce patrimoine commence à dater et la connaissances s'est donc perdue, il comporte rarement des test automatisés et avec une documentation souvent lacunaires.
+Le système mainframe historique est vital pour l'entreprise et la maîtrise qu'ell en a n'est pas toujours satisfaisante : ce patrimoine commence à dater et la connaissance s'est donc perdue, il comporte rarement des test automatisés et avec une documentation souvent lacunaire.
 
 La stratégie choisie est donc souvent de limiter au maximum l'ampleur des modifications sur cette partie du système pour limiter les risques.
 
@@ -86,7 +87,7 @@ Dans cette situation, le site web doit stocker toutes les données intermédiair
 
 image::workflow-web-base-pire.png[pdfwidth="66%"]
 
-Dans ce cas, les données dans la base du site web qui n'ont pas été déversées dans la base du mainframe ne sont pas visibles depuis le backoffice, et dans les autres systèmes qui exploitent cette base.
+Dans ce cas, les données dans la base du site web qui n'ont pas été déversées dans la base du mainframe ne sont ni visibles depuis le backoffice ni des autres systèmes qui exploitent cette base.
 
 Par exemple, si vous commencez à souscrire un prêt immobilier sur le site web sans terminer la procédure et que vous vous rendez dans votre agence bancaire, il faudra refaire tout ou partie des opérations.
 
@@ -130,7 +131,8 @@ Le canal partenaire ne pose pas le même problème que le canal web.
 En effet, un client qui commence à souscrire un prêt en marque blanche en achetant un bien voudra rarement conclure la transaction dans votre agence.
 En revanche, la multiplication des canaux rend la maintenance du système plus complexe quand on veut modifier un des workflows centraux qui sont exposés aux autres canaux ou changer une des règles de gestion dupliquée à plusieurs endroits.
 
-Certains besoins des partenaires se rapprochent de ceux du site web client, il arrive donc qu'une partie du code soit partagée entre les deux. Cela évite des redéveloppements mais rend encore le système plus difficile à observer.
+Certains besoins des partenaires se rapprochent de ceux du site web client, il arrive donc qu'une partie du code soit partagée entre les deux.
+Cela évite de développer plusieurs fois les mêmes choses mais rend le système encore plus difficile à observer.
 
 image::si-partenaires2.png[pdfwidth="66%"]
 
@@ -175,7 +177,7 @@ C'est souvent la partie la plus difficile du chantier car il s'agit d'un exercic
 
 Les données doivent être stockées dans un système indépendant des canaux.
 
-Comme les saisies d'informations peuvent se faire dans des ordres différents d'un canal à l'autre, on peut souvent moins s'appuyer sur des contraintes d'intégrité que dans un système monocanal.
+Comme les saisies d'informations peuvent se faire dans des ordres différents d'un canal à l'autre, on peut moins souvent s'appuyer sur des contraintes d'intégrité que dans un système monocanal.
 
 Par exemple un·e client·e pourra peut-être créer un compte sans fournir immédiatement son nom ou son adresse.
 
@@ -330,7 +332,7 @@ L'omnicanalisation d'un SI est un chantier risqué et de longue haleine.
 Mal conçu ou mal piloté, il peut être un enfer de plusieurs années qui aboutira à ajouter de nouvelles briques à votre système, sans atteindre aucun des buts fixés.
 
 Il est autant lié à la DSI qu'au métier : il demande du travail à tous les deux, mais apportera aussi des avantages à chacun.
-Si l'un des deux acteurs veut se lancer sans la pleine coopération de l'autre, c'est le ratage presque assuré.
+Si l'un des deux acteurs veut se lancer sans la pleine coopération de l'autre, c'est l'échec presque assuré.
 
 Même si ce changement peut permettre de réduire la dépendance aux systèmes historiques, y arriver va demander de comprendre comment ces systèmes fonctionnent, et de les modifier.
 Moins bien vous maîtrisez votre mainframe, plus il sera difficile de vous en passer.
