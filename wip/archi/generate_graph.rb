@@ -16,8 +16,7 @@ skills_names_to_skill = {}
 LEVELS_NAMES = [
   'Beginner',
   'Experienced',
-  'Advanced',
-  'Expert'
+  'Advanced'
 ]
 
 def levels_block(separator)
@@ -26,8 +25,8 @@ def levels_block(separator)
   LEVELS_NAMES.each_with_index do |level, index|
     w "\t\tlevel#{separator}#{index + 1}[label=\"#{level}\",shape=\"plaintext\"];"
   end
-  0.upto(LEVELS_NAMES.length - 2) do |i|
-    w "\t\tlevel#{separator}#{i + 1} -> level#{separator}#{i + 2};"
+  1.upto(LEVELS_NAMES.length - 1) do |i|
+    w "\t\tlevel#{separator}#{i} -> level#{separator}#{i + 1};"
   end
   w "\t}"
   w ''
@@ -86,7 +85,7 @@ end
 
 w ''
 
-1.upto(4) do |level|
+1.upto(LEVELS_NAMES.length) do |level|
   skills_for_level = skills.select do |skill|
     skill['level'] == level
   end.collect do |skill|
@@ -129,3 +128,4 @@ w ''
 RESULT.close
 
 `dot -Tsvg  skills.gv -o skills.svg`
+`dot -Tpng  skills.gv -o skills.png`

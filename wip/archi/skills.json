@@ -15,11 +15,11 @@
     "name": "Infra as code basics",
     "theme": "Ops",
     "level": 1,
-    "require": ["DevOps Awareness"],
+    "require": ["DevOps Basics"],
     "description": "Theory + having used one infra as code tool"
   },
   {
-    "name": "DevOps Awareness",
+    "name": "DevOps Basics",
     "theme": "Ops",
     "level": 1
   },
@@ -107,7 +107,7 @@
     "name": "IS Security theory",
     "theme": "Security",
     "level": 1,
-    "description": "PKI…"
+    "description": "Access management, PKI, Identity propagation…"
   },
   {
     "name": "Software Development Workflow",
@@ -218,31 +218,16 @@
     "level": 2
   },
   {
-    "name": "Identity propagation",
-    "theme": "Security",
-    "level": 2
-  },
-  {
-    "name": "Identity Access Management Basics",
-    "theme": "Security",
-    "level": 2
-  },
-  {
     "name": "BigData Architecture Basics",
     "theme": "Distributed Architecture",
     "level": 3,
-    "description": "Hadoop, Cassandra, HDFS, HBase"
+    "description": "Hadoop, Cassandra, HDFS, HBase",
+    "require": ["Distributed Orchestration Basics", "Scalability Patterns"]
   },
   {
     "name": "Scalability Patterns",
     "theme": "Distributed Architecture",
     "level": 2
-  },
-  {
-    "name": "Service Mesh",
-    "theme": "IS Architecture",
-    "level": 3,
-    "require": ["Web Architecture Basics", "Service Architecture Basics"]
   },
   {
     "name": "Fast Data Patterns",
@@ -253,13 +238,14 @@
   {
     "name": "Distributed Data Architecture",
     "theme": "Distributed Architecture",
-    "level": 3
+    "level": 3,
+    "require": ["Scalability Patterns", "Distributed Orchestration Basics"]
   },
   {
     "name": "Infra as code advanced",
     "theme": "Ops",
     "level": 3,
-    "require": ["Infra as code basics"]
+    "require": ["Infra as code basics", "System basics"]
   },
   {
     "name": "Advanced Resiliency",
@@ -281,22 +267,16 @@
     "require": ["Other Cloud Platforms", "Resiliency Basics"]
   },
   {
-    "name": "Continuous Deploymen Advanced",
+    "name": "Continuous Deployment Advanced",
     "theme": "Deployment",
     "level": 3,
     "require": ["Continuous Deployment Basics", "Performance testing", "Testable Architecture"],
     "description": "ZDD…"
   },
   {
-    "name": "Data Resiliency Patterns",
-    "theme": "Data Architecture",
-    "level": 3,
-    "require": ["Resiliency Basics"]
-  },
-  {
     "name": "Software Defined Network (SDN)",
     "theme": "Ops",
-    "level": 4,
+    "level": 3,
     "require": ["Network Basics", "Infra as code basics"]
   }
 ]
