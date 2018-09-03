@@ -1,0 +1,238 @@
+digraph skills {
+	rankdir=LR
+	newrank=true
+
+	subgraph cluster_skill_details {
+		label="Skills Descriptions";
+		description_39[label="BigData Architecture Basics: Hadoop, Cassandra, HDFS, HBase",shape=plaintext];
+		description_1[label="Cloud Native Applications Patterns: 12 factors apps",shape=plaintext];
+		description_31[label="Cloud-Native Application Advanced: Details of a cloud-oriented application stack: Netflix OSS, SpringBoot…",shape=plaintext];
+		description_48[label="Continuous Deploymen Advanced: ZDD…",shape=plaintext];
+		description_0[label="Continuous Deployment Basics: ZDD, blue green etc.",shape=plaintext];
+		description_20[label="Data Integration Principles: Main integration patterns : messages, files, APIs …",shape=plaintext];
+		description_24[label="Event-Driven Architecture Basics: DDD, CQRS…",shape=plaintext];
+		description_27[label="Fast Data Streaming Basics: Kafka",shape=plaintext];
+		description_18[label="IS Security theory: PKI…",shape=plaintext];
+		description_2[label="Infra as code basics: Theory + having used one infra as code tool",shape=plaintext];
+		description_17[label="Integration testing: Tooling, processes, organisation",shape=plaintext];
+		description_21[label="Log Management: Theory and standard tooling : Elasticsearch, Logstash, Kibana",shape=plaintext];
+		description_12[label="Message Oriented Middleware: Theory + having used one MOM (Kafka, RabbitMQ …)",shape=plaintext];
+		description_47[label="Multiple Information Systems Management: Legacy + Cloud / Multiclouds",shape=plaintext];
+		description_23[label="Network Basics: DNS, DHCP",shape=plaintext];
+		description_8[label="NoSQL Basics: Theory, using one document-oriented database",shape=plaintext];
+		description_32[label="Other Cloud Platforms: Using another cloud platform",shape=plaintext];
+		description_7[label="Relational Database Basics: SQL, indexes…",shape=plaintext];
+		description_4[label="Resiliency Basics: Design for failure, chaos monkey…",shape=plaintext];
+		description_14[label="Security Basics: Principles, vocabulary…",shape=plaintext];
+		description_9[label="Service Architecture Basics: SOA, microservices, REST, API Design …",shape=plaintext];
+		description_22[label="System basics: ssh, admin system linux, package management, file system, process, services",shape=plaintext];
+		description_25[label="Web Architecture Basics: SSL, TLS, LoadBalancer, Cache, WAF / WAM, Reverse proxy",shape=plaintext];
+	}
+
+	{
+		level_1[label="Beginner",shape="plaintext"];
+		level_2[label="Experienced",shape="plaintext"];
+		level_3[label="Advanced",shape="plaintext"];
+		level_4[label="Expert",shape="plaintext"];
+		level_1 -> level_2;
+		level_2 -> level_3;
+		level_3 -> level_4;
+	}
+
+	skill_0[label="Continuous Deployment Basics*",id="skill_0"];
+	skill_1[label="Cloud Native Applications Patterns*",id="skill_1"];
+	skill_2[label="Infra as code basics*",id="skill_2"];
+	skill_3[label="DevOps Awareness",id="skill_3"];
+	skill_4[label="Resiliency Basics*",id="skill_4"];
+	skill_5[label="Cloud Basics",id="skill_5"];
+	skill_6[label="Basics of one cloud platform",id="skill_6"];
+	skill_7[label="Relational Database Basics*",id="skill_7"];
+	skill_8[label="NoSQL Basics*",id="skill_8"];
+	skill_9[label="Service Architecture Basics*",id="skill_9"];
+	skill_10[label="Malfunction root cause analysis",id="skill_10"];
+	skill_11[label="Agile principles",id="skill_11"];
+	skill_12[label="Message Oriented Middleware*",id="skill_12"];
+	skill_13[label="Code & Programming Awareness",id="skill_13"];
+	skill_14[label="Security Basics*",id="skill_14"];
+	skill_15[label="Unit testing & Test Driven Development",id="skill_15"];
+	skill_16[label="IS monitoring",id="skill_16"];
+	skill_17[label="Integration testing*",id="skill_17"];
+	skill_18[label="IS Security theory*",id="skill_18"];
+	skill_19[label="Software Development Workflow",id="skill_19"];
+	skill_20[label="Data Integration Principles*",id="skill_20"];
+	skill_21[label="Log Management*",id="skill_21"];
+	skill_22[label="System basics*",id="skill_22"];
+	skill_23[label="Network Basics*",id="skill_23"];
+	skill_24[label="Event-Driven Architecture Basics*",id="skill_24"];
+	skill_25[label="Web Architecture Basics*",id="skill_25"];
+	skill_26[label="Clean Code",id="skill_26"];
+	skill_27[label="Fast Data Streaming Basics*",id="skill_27"];
+	skill_28[label="Emerging architecture",id="skill_28"];
+	skill_29[label="Data Governance Patterns",id="skill_29"];
+	skill_30[label="Distributed Orchestration Basics",id="skill_30"];
+	skill_31[label="Cloud-Native Application Advanced*",id="skill_31"];
+	skill_32[label="Other Cloud Platforms*",id="skill_32"];
+	skill_33[label="Advanced usage of one cloud platform",id="skill_33"];
+	skill_34[label="Performance testing",id="skill_34"];
+	skill_35[label="Testable Architecture",id="skill_35"];
+	skill_36[label="Blameless Post Mortem",id="skill_36"];
+	skill_37[label="Identity propagation",id="skill_37"];
+	skill_38[label="Identity Access Management Basics",id="skill_38"];
+	skill_39[label="BigData Architecture Basics*",id="skill_39"];
+	skill_40[label="Scalability Patterns",id="skill_40"];
+	skill_41[label="Service Mesh",id="skill_41"];
+	skill_42[label="Fast Data Patterns",id="skill_42"];
+	skill_43[label="Distributed Data Architecture",id="skill_43"];
+	skill_44[label="Infra as code advanced",id="skill_44"];
+	skill_45[label="Advanced Resiliency",id="skill_45"];
+	skill_46[label="Supervision Advanced",id="skill_46"];
+	skill_47[label="Multiple Information Systems Management*",id="skill_47"];
+	skill_48[label="Continuous Deploymen Advanced*",id="skill_48"];
+	skill_49[label="Data Resiliency Patterns",id="skill_49"];
+	skill_50[label="Software Defined Network (SDN)",id="skill_50"];
+
+{ rank=same; level_1; level__1; skill_0; skill_1; skill_2; skill_3; skill_4; skill_5; skill_6; skill_7; skill_8; skill_9; skill_10; skill_11; skill_12; skill_13; skill_14; skill_15; skill_16; skill_17; skill_18; skill_19; skill_20; skill_21; skill_28 }
+{ rank=same; level_2; level__2; skill_22; skill_23; skill_24; skill_25; skill_26; skill_27; skill_29; skill_30; skill_31; skill_32; skill_33; skill_34; skill_35; skill_36; skill_37; skill_38; skill_40 }
+{ rank=same; level_3; level__3; skill_39; skill_41; skill_42; skill_43; skill_44; skill_45; skill_46; skill_47; skill_48; skill_49 }
+{ rank=same; level_4; level__4; skill_50 }
+	subgraph cluster_0 {
+		label="Deployment";
+		skill_0;
+		skill_48;
+	}
+	subgraph cluster_1 {
+		label="Cloud Native Applications";
+		skill_1;
+		skill_31;
+	}
+	subgraph cluster_2 {
+		label="Ops";
+		skill_2;
+		skill_3;
+		skill_22;
+		skill_23;
+		skill_44;
+		skill_50;
+	}
+	subgraph cluster_3 {
+		label="Distributed Architecture";
+		skill_4;
+		skill_30;
+		skill_39;
+		skill_40;
+		skill_43;
+		skill_45;
+	}
+	subgraph cluster_4 {
+		label="Cloud Architecture";
+		skill_5;
+		skill_6;
+		skill_32;
+		skill_33;
+		skill_47;
+	}
+	subgraph cluster_5 {
+		label="Data Architecture";
+		skill_7;
+		skill_8;
+		skill_27;
+		skill_29;
+		skill_42;
+		skill_49;
+	}
+	subgraph cluster_6 {
+		label="IS Architecture";
+		skill_9;
+		skill_12;
+		skill_20;
+		skill_24;
+		skill_25;
+		skill_41;
+	}
+	subgraph cluster_7 {
+		label="Investigation";
+		skill_10;
+		skill_36;
+	}
+	subgraph cluster_8 {
+		label="Agile";
+		skill_11;
+		skill_28;
+	}
+	subgraph cluster_9 {
+		label="Software Design & Development practice";
+		skill_13;
+		skill_15;
+		skill_19;
+		skill_26;
+	}
+	subgraph cluster_10 {
+		label="Security";
+		skill_14;
+		skill_18;
+		skill_37;
+		skill_38;
+	}
+	subgraph cluster_11 {
+		label="Supervision";
+		skill_16;
+		skill_21;
+		skill_46;
+	}
+	subgraph cluster_12 {
+		label="Testing";
+		skill_17;
+		skill_34;
+		skill_35;
+	}
+
+	skill_3 -> skill_2;
+	skill_5 -> skill_6;
+	skill_20 -> skill_9;
+	skill_20 -> skill_12;
+	skill_13 -> skill_26;
+	skill_11 -> skill_28;
+	skill_28 -> skill_29;
+	skill_20 -> skill_29;
+	skill_4 -> skill_30;
+	skill_1 -> skill_31;
+	skill_0 -> skill_31;
+	skill_6 -> skill_32;
+	skill_6 -> skill_33;
+	skill_40 -> skill_34;
+	skill_17 -> skill_34;
+	skill_17 -> skill_35;
+	skill_28 -> skill_35;
+	skill_25 -> skill_41;
+	skill_9 -> skill_41;
+	skill_27 -> skill_42;
+	skill_24 -> skill_42;
+	skill_2 -> skill_44;
+	skill_4 -> skill_45;
+	skill_40 -> skill_45;
+	skill_16 -> skill_46;
+	skill_21 -> skill_46;
+	skill_30 -> skill_46;
+	skill_32 -> skill_47;
+	skill_4 -> skill_47;
+	skill_0 -> skill_48;
+	skill_34 -> skill_48;
+	skill_35 -> skill_48;
+	skill_4 -> skill_49;
+	skill_23 -> skill_50;
+	skill_2 -> skill_50;
+	{
+		level__1[label="Beginner",shape="plaintext"];
+		level__2[label="Experienced",shape="plaintext"];
+		level__3[label="Advanced",shape="plaintext"];
+		level__4[label="Expert",shape="plaintext"];
+		level__1 -> level__2;
+		level__2 -> level__3;
+		level__3 -> level__4;
+	}
+
+	labelloc="t";
+	fontsize=48;
+	label="What should an IS architect know?";
+}
+

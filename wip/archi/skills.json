@@ -1,0 +1,302 @@
+[
+  {
+    "name": "Continuous Deployment Basics",
+    "description": "ZDD, blue green etc.",
+    "theme": "Deployment",
+    "level": 1
+  },
+  {
+    "name": "Cloud Native Applications Patterns",
+    "theme": "Cloud Native Applications",
+    "level": 1,
+    "description": "12 factors apps"
+  },
+  {
+    "name": "Infra as code basics",
+    "theme": "Ops",
+    "level": 1,
+    "require": ["DevOps Awareness"],
+    "description": "Theory + having used one infra as code tool"
+  },
+  {
+    "name": "DevOps Awareness",
+    "theme": "Ops",
+    "level": 1
+  },
+  {
+    "name": "Resiliency Basics",
+    "theme": "Distributed Architecture",
+    "level": 1,
+    "description": "Design for failure, chaos monkey…"
+  },
+  {
+    "name": "Cloud Basics",
+    "theme": "Cloud Architecture",
+    "level": 1
+  },
+  {
+    "name": "Basics of one cloud platform",
+    "theme": "Cloud Architecture",
+    "level": 1,
+    "require": ["Cloud Basics"]
+  },
+  {
+    "name": "Relational Database Basics",
+    "theme": "Data Architecture",
+    "level": 1,
+    "description": "SQL, indexes…"
+  },
+  {
+    "name": "NoSQL Basics",
+    "theme": "Data Architecture",
+    "level": 1,
+    "description": "Theory, using one document-oriented database"
+  },
+  {
+    "name": "Service Architecture Basics",
+    "theme": "IS Architecture",
+    "level": 1,
+    "description": "SOA, microservices, REST, API Design …",
+    "require": ["Data Integration Principles"]
+  },
+  {
+    "name": "Malfunction root cause analysis",
+    "theme": "Investigation",
+    "level": 1
+  },
+  {
+    "name": "Agile principles",
+    "theme": "Agile",
+    "level": 1
+  },
+  {
+    "name": "Message Oriented Middleware",
+    "theme": "IS Architecture",
+    "level": 1,
+    "description": "Theory + having used one MOM (Kafka, RabbitMQ …)",
+    "require": ["Data Integration Principles"]
+  },
+  {
+    "name": "Code & Programming Awareness",
+    "theme": "Software Design & Development practice",
+    "level": 1
+  },
+  {
+    "name": "Security Basics",
+    "theme": "Security",
+    "level": 1,
+    "description": "Principles, vocabulary…"
+  },
+  {
+    "name": "Unit testing & Test Driven Development",
+    "theme": "Software Design & Development practice",
+    "level": 1
+  },
+  {
+    "name": "IS monitoring",
+    "theme": "Supervision",
+    "level": 1
+  },
+  {
+    "name": "Integration testing",
+    "theme": "Testing",
+    "level": 1,
+    "description": "Tooling, processes, organisation"
+  },
+  {
+    "name": "IS Security theory",
+    "theme": "Security",
+    "level": 1,
+    "description": "PKI…"
+  },
+  {
+    "name": "Software Development Workflow",
+    "theme": "Software Design & Development practice",
+    "level": 1
+  },
+  {
+    "name": "Data Integration Principles",
+    "theme": "IS Architecture",
+    "level": 1,
+    "description": "Main integration patterns : messages, files, APIs …"
+  },
+  {
+    "name": "Log Management",
+    "theme": "Supervision",
+    "level": 1,
+    "description": "Theory and standard tooling : Elasticsearch, Logstash, Kibana"
+  },
+  {
+    "name": "System basics",
+    "theme": "Ops",
+    "level": 2,
+    "description": "ssh, admin system linux, package management, file system, process, services"
+  },
+  {
+    "name": "Network Basics",
+    "theme": "Ops",
+    "level": 2,
+    "description": "DNS, DHCP"
+  },
+  {
+    "name": "Event-Driven Architecture Basics",
+    "theme": "IS Architecture",
+    "level": 2,
+    "description": "DDD, CQRS…"
+  },
+  {
+    "name": "Web Architecture Basics",
+    "theme": "IS Architecture",
+    "level": 2,
+    "description": "SSL, TLS, LoadBalancer, Cache, WAF / WAM, Reverse proxy"
+  },
+  {
+    "name": "Clean Code",
+    "theme": "Software Design & Development practice",
+    "level": 2,
+    "require": ["Code & Programming Awareness"]
+  },
+  {
+    "name": "Fast Data Streaming Basics",
+    "theme": "Data Architecture",
+    "level": 2,
+    "description": "Kafka"
+  },
+  {
+    "name": "Emerging architecture",
+    "theme": "Agile",
+    "level": 1,
+    "require": ["Agile principles"]
+  },
+  {
+    "name": "Data Governance Patterns",
+    "theme": "Data Architecture",
+    "level": 2,
+    "require": ["Emerging architecture", "Data Integration Principles"]
+  },
+  {
+    "name": "Distributed Orchestration Basics",
+    "theme": "Distributed Architecture",
+    "level": 2,
+    "require": ["Resiliency Basics"]
+  },
+  {
+    "name": "Cloud-Native Application Advanced",
+    "theme": "Cloud Native Applications",
+    "level": 2,
+    "description": "Details of a cloud-oriented application stack: Netflix OSS, SpringBoot…",
+    "require": ["Cloud Native Applications Patterns", "Continuous Deployment Basics"]
+  },
+  {
+    "name": "Other Cloud Platforms",
+    "theme": "Cloud Architecture",
+    "level": 2,
+    "description": "Using another cloud platform",
+    "require": ["Basics of one cloud platform"]
+  },
+  {
+    "name": "Advanced usage of one cloud platform",
+    "theme": "Cloud Architecture",
+    "level": 2,
+    "require": ["Basics of one cloud platform"]
+  },
+  {
+    "name": "Performance testing",
+    "theme": "Testing",
+    "level": 2,
+    "require": ["Scalability Patterns", "Integration testing"]
+  },
+  {
+    "name": "Testable Architecture",
+    "theme": "Testing",
+    "level": 2,
+    "require": ["Integration testing", "Emerging architecture"]
+  },
+  {
+    "name": "Blameless Post Mortem",
+    "theme": "Investigation",
+    "level": 2
+  },
+  {
+    "name": "Identity propagation",
+    "theme": "Security",
+    "level": 2
+  },
+  {
+    "name": "Identity Access Management Basics",
+    "theme": "Security",
+    "level": 2
+  },
+  {
+    "name": "BigData Architecture Basics",
+    "theme": "Distributed Architecture",
+    "level": 3,
+    "description": "Hadoop, Cassandra, HDFS, HBase"
+  },
+  {
+    "name": "Scalability Patterns",
+    "theme": "Distributed Architecture",
+    "level": 2
+  },
+  {
+    "name": "Service Mesh",
+    "theme": "IS Architecture",
+    "level": 3,
+    "require": ["Web Architecture Basics", "Service Architecture Basics"]
+  },
+  {
+    "name": "Fast Data Patterns",
+    "theme": "Data Architecture",
+    "level": 3,
+    "require": ["Fast Data Streaming Basics", "Event-Driven Architecture Basics"]
+  },
+  {
+    "name": "Distributed Data Architecture",
+    "theme": "Distributed Architecture",
+    "level": 3
+  },
+  {
+    "name": "Infra as code advanced",
+    "theme": "Ops",
+    "level": 3,
+    "require": ["Infra as code basics"]
+  },
+  {
+    "name": "Advanced Resiliency",
+    "theme": "Distributed Architecture",
+    "level": 3,
+    "require": ["Resiliency Basics", "Scalability Patterns"]
+  },
+  {
+    "name": "Supervision Advanced",
+    "theme": "Supervision",
+    "level": 3,
+    "require": ["IS monitoring", "Log Management", "Distributed Orchestration Basics"]
+  },
+  {
+    "name": "Multiple Information Systems Management",
+    "theme": "Cloud Architecture",
+    "level": 3,
+    "description": "Legacy + Cloud / Multiclouds",
+    "require": ["Other Cloud Platforms", "Resiliency Basics"]
+  },
+  {
+    "name": "Continuous Deploymen Advanced",
+    "theme": "Deployment",
+    "level": 3,
+    "require": ["Continuous Deployment Basics", "Performance testing", "Testable Architecture"],
+    "description": "ZDD…"
+  },
+  {
+    "name": "Data Resiliency Patterns",
+    "theme": "Data Architecture",
+    "level": 3,
+    "require": ["Resiliency Basics"]
+  },
+  {
+    "name": "Software Defined Network (SDN)",
+    "theme": "Ops",
+    "level": 4,
+    "require": ["Network Basics", "Infra as code basics"]
+  }
+]
