@@ -21,6 +21,7 @@ LEVELS_NAMES = [
 ]
 
 def levels_block(separator)
+  w ''
   w "\t{"
   LEVELS_NAMES.each_with_index do |level, index|
     w "\t\tlevel#{separator}#{index + 1}[label=\"#{level}\",shape=\"plaintext\"];"
@@ -75,7 +76,6 @@ end
 w "\t\tfontsize=24;"
 w "\t\tlabel=\"Skills Descriptions\";"
 w "\t}"
-w ''
 
 levels_block('_')
 
@@ -92,8 +92,10 @@ w ''
   end.collect do |skill|
     "skill_#{skill['index']}"
   end
-  w "{ rank=same; level_#{level}; level__#{level}; #{skills_for_level.join('; ')} }"
+  w "\t{ rank=same; level_#{level}; level__#{level}; #{skills_for_level.join('; ')} }"
 end
+
+w ''
 
 themes_to_index.each_pair do |theme_name, theme_index|
   w "\tsubgraph cluster_#{theme_index} {"
