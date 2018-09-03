@@ -2,7 +2,6 @@
 
 require 'json'
 
-
 skills = JSON.parse(File.read('skills.json'))
 RESULT = File.open('skills.gv', 'w')
 

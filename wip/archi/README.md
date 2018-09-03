@@ -4,5 +4,5 @@ How to contribute:
 
 - Install graphviz
 - Edit the `skills.json` file
-- Run `./generate_dot.rb`
+- Run `./generate_graph.rb`
 - Open `skills.svg`
