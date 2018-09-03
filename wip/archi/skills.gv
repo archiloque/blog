@@ -3,7 +3,7 @@ digraph skills {
 	newrank=true
 
 	subgraph cluster_skill_details {
-		label="Skills Descriptions";
+		graph[style=bold];
 		description_39[label="BigData Architecture Basics: Hadoop, Cassandra, HDFS, HBase",shape=plaintext];
 		description_1[label="Cloud Native Applications Patterns: 12 factors apps",shape=plaintext];
 		description_31[label="Cloud-Native Application Advanced: Details of a cloud-oriented application stack: Netflix OSS, SpringBoot…",shape=plaintext];
@@ -27,6 +27,8 @@ digraph skills {
 		description_9[label="Service Architecture Basics: SOA, microservices, REST, API Design …",shape=plaintext];
 		description_22[label="System basics: ssh, admin system linux, package management, file system, process, services",shape=plaintext];
 		description_25[label="Web Architecture Basics: SSL, TLS, LoadBalancer, Cache, WAF / WAM, Reverse proxy",shape=plaintext];
+		fontsize=24;
+		label="Skills Descriptions";
 	}
 
 	{
@@ -101,9 +103,14 @@ digraph skills {
 		skill_48;
 	}
 	subgraph cluster_1 {
-		label="Cloud Native Applications";
+		label="Cloud";
 		skill_1;
+		skill_5;
+		skill_6;
 		skill_31;
+		skill_32;
+		skill_33;
+		skill_47;
 	}
 	subgraph cluster_2 {
 		label="Ops";
@@ -124,14 +131,6 @@ digraph skills {
 		skill_45;
 	}
 	subgraph cluster_4 {
-		label="Cloud Architecture";
-		skill_5;
-		skill_6;
-		skill_32;
-		skill_33;
-		skill_47;
-	}
-	subgraph cluster_5 {
 		label="Data Architecture";
 		skill_7;
 		skill_8;
@@ -140,7 +139,7 @@ digraph skills {
 		skill_42;
 		skill_49;
 	}
-	subgraph cluster_6 {
+	subgraph cluster_5 {
 		label="IS Architecture";
 		skill_9;
 		skill_12;
@@ -149,37 +148,37 @@ digraph skills {
 		skill_25;
 		skill_41;
 	}
-	subgraph cluster_7 {
+	subgraph cluster_6 {
 		label="Investigation";
 		skill_10;
 		skill_36;
 	}
-	subgraph cluster_8 {
+	subgraph cluster_7 {
 		label="Agile";
 		skill_11;
 		skill_28;
 	}
-	subgraph cluster_9 {
+	subgraph cluster_8 {
 		label="Software Design & Development practice";
 		skill_13;
 		skill_15;
 		skill_19;
 		skill_26;
 	}
-	subgraph cluster_10 {
+	subgraph cluster_9 {
 		label="Security";
 		skill_14;
 		skill_18;
 		skill_37;
 		skill_38;
 	}
-	subgraph cluster_11 {
+	subgraph cluster_10 {
 		label="Supervision";
 		skill_16;
 		skill_21;
 		skill_46;
 	}
-	subgraph cluster_12 {
+	subgraph cluster_11 {
 		label="Testing";
 		skill_17;
 		skill_34;

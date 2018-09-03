@@ -67,12 +67,14 @@ w "\tnewrank=true"
 w ''
 
 w "\tsubgraph cluster_skill_details {"
-w "\t\tlabel=\"Skills Descriptions\";"
+w "\t\tgraph[style=bold];"
 skills.select do |skill|
   skill.key?('description')
 end.sort{|a, b| a['name'] <=> b['name']}.each do |skill|
   w "\t\tdescription_#{skill['index']}[label=\"#{skill['name']}: #{skill['description']}\",shape=plaintext];"
 end
+w "\t\tfontsize=24;"
+w "\t\tlabel=\"Skills Descriptions\";"
 w "\t}"
 w ''
 

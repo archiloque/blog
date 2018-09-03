@@ -7,7 +7,7 @@
   },
   {
     "name": "Cloud Native Applications Patterns",
-    "theme": "Cloud Native Applications",
+    "theme": "Cloud",
     "level": 1,
     "description": "12 factors apps"
   },
@@ -31,12 +31,12 @@
   },
   {
     "name": "Cloud Basics",
-    "theme": "Cloud Architecture",
+    "theme": "Cloud",
     "level": 1
   },
   {
     "name": "Basics of one cloud platform",
-    "theme": "Cloud Architecture",
+    "theme": "Cloud",
     "level": 1,
     "require": ["Cloud Basics"]
   },
@@ -182,21 +182,21 @@
   },
   {
     "name": "Cloud-Native Application Advanced",
-    "theme": "Cloud Native Applications",
+    "theme": "Cloud",
     "level": 2,
     "description": "Details of a cloud-oriented application stack: Netflix OSS, SpringBoot…",
     "require": ["Cloud Native Applications Patterns", "Continuous Deployment Basics"]
   },
   {
     "name": "Other Cloud Platforms",
-    "theme": "Cloud Architecture",
+    "theme": "Cloud",
     "level": 2,
     "description": "Using another cloud platform",
     "require": ["Basics of one cloud platform"]
   },
   {
     "name": "Advanced usage of one cloud platform",
-    "theme": "Cloud Architecture",
+    "theme": "Cloud",
     "level": 2,
     "require": ["Basics of one cloud platform"]
   },
@@ -275,7 +275,7 @@
   },
   {
     "name": "Multiple Information Systems Management",
-    "theme": "Cloud Architecture",
+    "theme": "Cloud",
     "level": 3,
     "description": "Legacy + Cloud / Multiclouds",
     "require": ["Other Cloud Platforms", "Resiliency Basics"]
