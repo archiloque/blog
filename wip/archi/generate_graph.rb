@@ -14,9 +14,9 @@ themes_to_skills = {}
 skills_names_to_skill = {}
 
 LEVELS_NAMES = [
-  'Beginner',
-  'Experienced',
-  'Advanced'
+  'Junior Architect',
+  'Experienced Architect',
+  'Senior Architect'
 ]
 
 def levels_block(separator)

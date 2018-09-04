@@ -32,9 +32,9 @@ digraph skills {
 	}
 
 	{
-		level_1[label="Beginner",shape="plaintext"];
-		level_2[label="Experienced",shape="plaintext"];
-		level_3[label="Advanced",shape="plaintext"];
+		level_1[label="Junior Architect",shape="plaintext"];
+		level_2[label="Experienced Architect",shape="plaintext"];
+		level_3[label="Senior Architect",shape="plaintext"];
 		level_1 -> level_2;
 		level_2 -> level_3;
 	}
@@ -214,9 +214,9 @@ digraph skills {
 	skill_2 -> skill_46;
 
 	{
-		level__1[label="Beginner",shape="plaintext"];
-		level__2[label="Experienced",shape="plaintext"];
-		level__3[label="Advanced",shape="plaintext"];
+		level__1[label="Junior Architect",shape="plaintext"];
+		level__2[label="Experienced Architect",shape="plaintext"];
+		level__3[label="Senior Architect",shape="plaintext"];
 		level__1 -> level__2;
 		level__2 -> level__3;
 	}
