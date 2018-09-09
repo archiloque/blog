@@ -1,0 +1,72 @@
+= Le 80/20 et le milieu du gué
+Julien Kirch
+v0.1, 2018-09-09
+:article_lang: fr
+:article_image: capybara.jpeg
+:article_description: Avoir les inconvénients mais pas les avantages
+
+== Le 80/20
+
+Définissons ainsi une fonctionnalité 80/20.
+
+[quote]
+____
+Une partie des options suffit à répondre aux besoins de 80% des personnes, l'autre partie répond aux besoins des autres 20%.
+____
+
+La valeur de 80 est bien entendu arbitraire, elle est choisie pour être parlante et signifie plutôt "significative".
+
+Savoir qu'une fonctionnalité a cette caractéristique est très pratique car on peut alors développer d'abord la première partie des options et ainsi satisfaire une partie des gens et d'avoir la liberté de s'occuper de la suite plus tard quand, cela devient pertinent.
+
+On peut aussi choisir de ne jamais développer la suite, si on se rend compte que cela n'en vaut pas la peine.
+
+== L'interruption sans risque
+
+Cela veut aussi dire qu'il est possible de décider de commencer à développer la fonctionnalité en entier, et de s'arrêter en cours de chemin en ayant tout de même quelque chose d'utile.
+
+C'est particulièrement pratique dans l'autre situation de 80-20.
+
+== L'autre 80/20
+
+[quote]
+____
+Il faut 80% du temps de développement prévu pour développer les 80 premiers pourcents de la fonctionnalité, et 80% du temps pour les autres 20%.
+____
+
+Si on se rend compte qu'une partie de la fonctionnalité est plus compliquée ou longue à réaliser que les autres, pouvoir s'arrêter là est super pratique.
+
+Cela demande bien entendu que la partie qui est utile sans le reste corresponde à la partie facile.
+
+Pour augmenter les chances d'être dans cette situation, il peut être pertinent d'examiner si une fonctionnalité est du premier type 80-20 et de commencer par développer la partie "80".
+Cela permet de pouvoir se donner la possibilité d'interrompre le développement en course de route si on se retrouve dans le cas du deuxième type de 80-20.
+
+Deux limites à l'exercice :
+
+* que le fait d'examiner si on est dans un cas 80-20 ne prenne pas trop de temps par rapport au temps probable de développement ;
+* que le fait de réorganiser le développement pour le faire dans le "bon ordre" (celui qui permet d'être interrompu) ne rend pas les choses trop compliquées ou n'augmente pas trop la durée de développement.
+
+== Le milieu du guet
+
+Ce pattern du 80-20 me semble très importante car dans mes missions je rencontre souvent la situation inverse, qui est celle du "milieu du gué :
+
+- on développe 80% d'une fonctionnalité et on s'arrête là ;
+- la fonctionnalité non terminée n'apporte aucun bénéfice ;
+- au contraire elle ajoute de la complexité.
+
+Dans ce cas on a dépensé du temps et de l'argent pour quelque chose et au final on en a les inconvénients mais pas les avantages.
+
+Un exemple : un chantier de mise en haute disponibilité d'un système non abouti peut ajouter de la complexité (composants plus nombreux, indirection …) sans rendre le système plus fiable.
+
+Cela peut arriver pour de nombreuses raisons, par exemple une baisse de budget ou quand on commence le développement par les 80% les plus faciles, et qu'on s'arrête face à un obstacle.
+
+La bonne solution dans ce cas-là serait de de revenir en arrière, mais comme cela signifierai d'admettre qu'on s'est trompé et/ou de réinvestir pour défaire ce qui a été commencé, cela n'est souvent pas le cas.
+
+Pas de recette miracle pour éviter ce type situations car elles sont souvent lié à l'organisation du système.
+
+Une solution partielle possible est de commencer les développements par les parties difficiles ou à risques, pour pouvoir ainsi échouer plus rapidement en cas de problème, mais cela peut quand même laisser des traces.
+
+Une autre approche est d'accepter de ne pas à mettre en œuvre certains types de fonctionnalités.
+Par exemple dans certaines grandes organisations, les projets transverses qui demande de coordonner plusieurs équipes ont une forte tendance à se finir au milieu du gué :
+après beaucoup d'énergie investie, on se retrouve au final dans une situation pire que celle du départ.
+
+Il faut alors en tenir compte lors des prises de décision et essayer de limiter ce type de projets - même s'ils seraient les plus utiles - et plutôt préférer les solutions locales, même si elles donnent des résultats moindres.
