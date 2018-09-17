@@ -3,7 +3,7 @@ Julien Kirch
 v0.1, 2018-05-14
 :article_lang: fr
 
-Quand je me présente en tant qu'architecte de SI aux nouveaux arrivants à OCTO j'obtiens souvent deux réponses :
+Quand je me présente en tant qu'architecte de SI aux nouveaux arrivants à OCTO j'obtiens régulièrement deux types réponses :
 
 - avec les outils et les technologies modernes comme le cloud, il n'y a plus besoin d'architecture de SI ;
 - les architectes de SI c'est utile dans des contextes pas agiles comme les grosses entreprises à l'ancienne, mais si on fait de l'agile il·elle·s ne servent plus à rien.
@@ -17,7 +17,12 @@ Cet article est donc un peu une défense de mon boulot, prenez le avec un grain 
 
 == L'architecture de SI existe-t-elle encore ?
 
-Depuis que j'ai commencé à travailler au début des années 2000, 
+Depuis que j'ai commencé à travailler au début des années 2000, l'architecture de SI a profondément changé, grâce aux progrès des outils et des protocoles.
+
+À l'époque les outils d'entreprises comme les bus de messages ou des EAI étaient souvent difficiles à utiliser et leur emploi demandait donc une vraie compétence.
+De ce fait les architecte SI qui préconisaient des solutions devaient bien connaître les outils pour être capable de les mettre en œuvre.
+De plus les limites des différents outils contaignaient ce qu'il était possible de faire dès lors qu'on s'éloignait des besoins standard, par exemple dès que la volumétrie était conséquente : les architectures étaient donc dépendantes des outils et du niveau d'expertise disponible.
+QQQQ
 
 * Les outils sont plus simples à utiliser et les protocoles se standardisent mais l'architecture de SI est encore un sujet
 * Ça demande de connaître les outils, mais ça ne suffit pas, si tu te laisses guider par les outils tu ne fais pas de la bonne archi
@@ -35,4 +40,7 @@ Depuis que j'ai commencé à travailler au début des années 2000,
 
 == L'architecte et les projets
 
-* L'archi 
+* C'est mieux quand les architectes font partie d'un projet car il comprend mieux les enjeux et ça évite l'effet tour d'ivoire, mais deux soucis
+** Souvent il n'y a pas d'architecture à faire à plein temps => il faut que l'architecte sache faire autre chose
+** Le temps à passer à faire de l'archi n'est pas régulier et parfois pas prédictible => le temps disponible pour faire autre chose que de l'archi n'est pas pratique, par exemple limiter le temps sur les sujet qui sont bloquants pour les autres
+* Pour les petits projet
