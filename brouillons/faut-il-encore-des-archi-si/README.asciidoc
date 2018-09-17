@@ -17,16 +17,27 @@ Cet article est donc un peu une défense de mon boulot, prenez le avec un grain 
 
 == L'architecture de SI existe-t-elle encore ?
 
-Depuis que j'ai commencé à travailler au début des années 2000, l'architecture de SI a profondément changé, grâce aux progrès des outils et des protocoles.
+* Depuis le début des années 2000, l'architecture de SI a profondément changé, grâce aux progrès des outils et les questions d'intégration entre système
+* Avant l'archi de SI était très contraintes par ce que les outils étaient capables de faire, donc il fallait une vraie expértise dans les outils pour faire les bons choix et guider la mise en œuvre
+* De même la capacité d'intégration dépendant des technologies disponibles et des solutions exotiques pouvaient être nécessaires pour des besoins pointus
+* Maintenant les outils et les protocoles sont beaucoup plus matures => il y a besoin de moins de compétences sur ces sujets pour faire de l'archi de SI
+* Mais ça ne veut pas dire que l'archi de SI a disparu, c'est seulement des compétence qui sont nécessaire pour faire de l'archi de SI
+* L'archi de SI c'est définir des stratégie globales à une organisation, gérer des transformations de système, ou piloter des systèmes complexes
+* Se reposer sur les patterns proposés par les vendeurs peut répondre à des comment, les outils packagés simplifient la mise en œuvre, mais ne définit pas une cible d'architecture
+* L'archi de SI ce n'est pas que de la tech c'est aussi parvenir à mettre les personnes d'accord, accompagner les équipes et rédiger les documents
 
-À l'époque les outils d'entreprises comme les bus de messages ou des EAI étaient souvent difficiles à utiliser et leur emploi demandait donc une vraie compétence.
-De ce fait les architecte SI qui préconisaient des solutions devaient bien connaître les outils pour être capable de les mettre en œuvre.
-De plus les limites des différents outils contaignaient ce qu'il était possible de faire dès lors qu'on s'éloignait des besoins standard, par exemple dès que la volumétrie était conséquente : les architectures étaient donc dépendantes des outils et du niveau d'expertise disponible.
-QQQQ
+=> Oui l'archi de SI existe encore, même si les compétences nécessaires ont changé
 
-* Les outils sont plus simples à utiliser et les protocoles se standardisent mais l'architecture de SI est encore un sujet
-* Ça demande de connaître les outils, mais ça ne suffit pas, si tu te laisses guider par les outils tu ne fais pas de la bonne archi
-* Par exemple pour avoir une stratégie ou gérer une transformation à grande échelle, ce sont des compétences d'architecture spécifiques mais aussi des compétence d'organisation et de rédaction
+== L'architecture de SI et l'agile
+
+* En cycle en V on définit l'archi de manière beaucoup plus complète dès le début, en agile on essaie de le faire "au dernier moment", c'est à dire au fur et à mesure quand il y en a besoin
+* Cela ne veut pas dire qu'il n'y a plus d'archi, seulement qu'il n'y a plus forcément de phase consacrée uniquement à définir l'archi
+* Si vous voulez qu'un développement s'intègre dans un SI il faut faire de l'archi
+** exposer des services REST ne suffit pas, parfois d'autre modes d'échanges sont plus adaptés
+** il y a les questions de gouvernance de données ou de gestion de cycle de vie qui sont des questions transverses qui ne se résolvent pas au niveau de l'appli
+* L'architecture de SI est là même si on peut choisir de ne pas s'en occuper
+
+=> L'agile n'a pas supprimé l'architecture en agile
 
 == Les développeur·euse·s et l'architecture de SI
 
@@ -34,13 +45,13 @@ QQQQ
 * La plupart des personnes qui développent ont un vernis sur l'archi de SI, notament parce que ce sont des extensions des questions d'architecture logicielles
 * Le vernis est d'ailleurs très utile pour comprendre les enjeux, et faire en sorte que ce qui est fait dans le projet soit cohérent avec les décisions d'architecture au niveau du SI
 * Mais le vernis n'est pas suffisant pour décider de tout : certaines décisions demandent de l'expertise en archi de SI, et cet expertise demande de l'expérience
-* De la même manière que tout le monde dans une équipe n'est pas spécialiste de tous les outils, tout le monde n'est pas pointu en archi de SI
-* En plus tout le monde n'a pas envie de travailler sur l'archi de SI : le sujet et un peu mou, beaucoup d'échanges pour mettre les personnes d'accord
-* Du coup il faut reconnaître la compétence
+* On peut se passer d'expertise et apprendre quand il y en a besoin, mais ça signifie prendre le temps d'apprendre et prendre le risque de se tromper, potentiellement sur chaque projet
+
+=> La compétence a toujours une utilité
 
 == L'architecte et les projets
 
-* C'est mieux quand les architectes font partie d'un projet car il comprend mieux les enjeux et ça évite l'effet tour d'ivoire, mais deux soucis
-** Souvent il n'y a pas d'architecture à faire à plein temps => il faut que l'architecte sache faire autre chose
-** Le temps à passer à faire de l'archi n'est pas régulier et parfois pas prédictible => le temps disponible pour faire autre chose que de l'archi n'est pas pratique, par exemple limiter le temps sur les sujet qui sont bloquants pour les autres
-* Pour les petits projet
+* C'est mieux quand les architectes font partie d'un projet car il comprend mieux les enjeux et ça évite l'effet tour d'ivoire
+* Souvent il n'y a pas d'architecture à faire à plein temps => il faut que l'architecte sache faire autre chose qui soit utile au projet
+* L'idéal c'est d'avoir un architecte "à demeure" mais difficile d'avoir des archis expérimentés sur tous les projets surtout que les besoins en architecture varient dans la vie des projets avec des phases sans besoin en architecture
+* Solution médianne : avoir des architectes en résidence sur les projets qui ont besoin de beaucoup de temps à passer sur l'archi, et des architectes en mode "consulting" pour les autres projets, que ça soit des architectes projets qui font ça une partie du temps, ou des architectes qui ne font que du consulting
