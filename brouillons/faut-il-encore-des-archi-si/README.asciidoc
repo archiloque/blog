@@ -5,7 +5,7 @@ v0.1, 2018-05-14
 
 Quand je me présente en tant qu'architecte de SI aux nouveaux arrivants à OCTO j'obtiens régulièrement deux types réponses :
 
-- avec les outils et les technologies modernes comme le cloud, il n'y a plus besoin d'architecture de SI ;
+- avec les outils et les technologies modernes comme le cloud, il n'y a plus besoin d'architecture de SI : ils suffit d'utiliser les bonnes briques ;
 - les architectes de SI c'est utile dans des contextes pas agiles comme les grosses entreprises à l'ancienne, mais si on fait de l'agile il·elle·s ne servent plus à rien.
 
 Je vais tenter d'expliquer pourquoi ça n'est pas le cas, ou au moins pas le cas dans toutes les situations.
@@ -41,18 +41,18 @@ Cet article est donc un peu une défense de mon boulot, prenez-le avec un grain 
 * Les architectes de SI utilisent beaucoup de pratique qui sont issues ou qui sont arrivée par l'agile, par exemple les ateliers, même pour faire de l'architecture de SI en mode cycle en V
 
 => L'agile n'a pas supprimé l'architecture en agile
+=> Même en agile l'architecture peut être un frein pour les projets pour des besoins d'harmonisation ou d'efficacité globale
 
 == Les développeur·euse·s et l'architecture de SI
 
-* L'architecture de SI n'est pas limitée aux personnes qui ont le titre d'architecte
 * La plupart des personnes qui développent ont un vernis sur l'archi de SI, notament parce que ce sont des extensions des questions d'architecture logicielles
 * Le vernis est d'ailleurs très utile pour comprendre les enjeux, et faire en sorte que ce qui est fait dans le projet soit cohérent avec les décisions d'architecture au niveau du SI
 * Mais le vernis n'est pas suffisant pour décider de tout : 
-** Certaines décisions demandent de l'expertise en archi de SI, et cet expertise demande de l'expérience
+** Certaines décisions demandent de l'expertise en archi de SI et cette expertise demande de l'expérience
 ** Dans une organisation plus grande avec des groupes séparer pour l'infra ou la sécu, l'architecte de SI a aussi souvent le rôle d'aider à faire le lien avec ces équipes car c'est la personne qui a le recul pour cela
-* On peut se passer d'expertise et apprendre quand il y en a besoin, mais ça signifie prendre le temps d'apprendre et prendre le risque de se tromper, potentiellement sur chaque projet
+* On peut se passer d'avoir de l'expertise à l'avance et apprendre quand il y en a besoin, mais ça signifie prendre le temps d'apprendre et prendre le risque de se tromper, potentiellement sur chaque projet
 
-=> La compétence a toujours une utilité
+=> La compétence a toujours une utilité, même si vous avez eu de mauvaises expériences avec des architectes ça a toujours son utilité
 
 == L'architecte et les projets
 
@@ -61,6 +61,7 @@ Cet article est donc un peu une défense de mon boulot, prenez-le avec un grain 
 * Souvent il n'y a pas d'architecture à faire à plein temps => pour être sur un projet il faut que l'architecte sache faire autre chose qui soit utile au projet
 * L'idéal c'est d'avoir un architecte "à demeure" mais difficile d'avoir des archis expérimentés sur tous les projets surtout que les besoins en architecture varient dans la vie des projets avec des phases sans besoin en architecture
 * Solution médianne : avoir des architectes en résidence sur les projets qui ont besoin de beaucoup de temps à passer sur l'archi, et des architectes en mode "consulting" pour les autres projets, que ça soit des architectes projets qui font ça une partie du temps, ou des architectes qui ne font que du consulting
+* Même quand il n'y a pas de besoins fort, il est utile pour les projets d'avoir des personnes qui ont un vernis sur l'archi de SI pour faire le relai avec le reste du SI, même si ces personnes n'ont pas le titre d'architecte
 
 => Les tours d'ivoires sont à terre, mais des archis sur tous les projets c'est compliqué
 
