@@ -7,5 +7,19 @@ v1.0, 2018-09-23
 
 [quote]
 ____
-Being cloud-agnostic should not be an important enough goal that it drives key decisions. If that’s your starting point, you’re severely limiting your ability to fully reap the benefits of cloud. You’re just renting compute. Platforms like Pivotal Cloud Foundry and Red Hat OpenShift tout the ability to run on every major private and public cloud, but doing so—by definition—necessitates an abstraction layer that abstracts away all the differentiating features of each cloud platform. When you abstract away the differentiating features to avoid lock-in, you also abstract away the value. You end up with vendor “lock-out,” which basically means you aren’t leveraging the full value of services. Either the abstraction reduces things to a common interface or it doesn’t. If it does, it’s unclear how it can leverage differentiated provider features and remain cloud-agnostic. If it doesn’t, it’s unclear what the value of it is or how it can be truly multi-cloud.
+Being cloud-agnostic should not be an important enough goal that it drives key decisions. If that's your starting point, you're severely limiting your ability to fully reap the benefits of cloud. You're just renting compute. Platforms like Pivotal Cloud Foundry and Red Hat OpenShift tout the ability to run on every major private and public cloud, but doing so—by definition—necessitates an abstraction layer that abstracts away all the differentiating features of each cloud platform. When you abstract away the differentiating features to avoid lock-in, you also abstract away the value. You end up with vendor "lock-out", which basically means you aren't leveraging the full value of services. Either the abstraction reduces things to a common interface or it doesn't. If it does, it's unclear how it can leverage differentiated provider features and remain cloud-agnostic. If it doesn't, it's unclear what the value of it is or how it can be truly multi-cloud.
+____
+
+===== link:http://willcrichton.net/notes/specificity-programming-languages/["Do What I Mean": Name Resolution in Programming Languages]
+
+[quote]
+____
+Resolving names is a hard problem that permeates many aspects of programming like variable scoping, structured control flow, and method resolution. I show how a few core ideas underlie seemingly disparate parts of programming language design.
+____
+
+[quote]
+____
+Name resolution is a hard problem that shows up in many aspects of programming languages: variables, jumps, methods, and so on. A core idea is that most naming conflicts can be reduced to a stack of scopes (where "scope" could be a code block, a class definition, a CSS rule, etc.), and name resolution is walking up the scope stack. The hard part is instead what defines your stack: static vs. dynamic scopes for variables, linearization methods for classes, specificity heuristics for CSS rules.
+
+A major tradeoff for name resolution systems is the level of complexity. More complex resolution systems like Rust's traits or CSS's rule specificity approach the "do what I mean" ideal where the user has to minimally disambiguate names/scopes. However, debugging naming issues with complex resolution can be difficult—every CSS programmer knows the shame of decorating rules with `!important`.
 ____
