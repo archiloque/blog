@@ -37,18 +37,21 @@ L'architecture de SI a donc changé, mais elle n'a pas disparu.
 
 == L'architecture de SI et l'agile
 
-* En cycle en V on définit l'archi de manière beaucoup plus complète dès le début, en agile on essaie de le faire "au dernier moment", c'est à dire au fur et à mesure quand il y en a besoin
-* Cela ne veut pas dire qu'il n'y a plus d'archi, seulement qu'il n'y a plus forcément de phase consacrée uniquement à définir l'archi
-* Si vous voulez qu'un développement s'intègre dans un SI il faut faire de l'archi
-** exposer des services REST ne suffit pas, parfois d'autre modes d'échanges sont plus adaptés
-** il y a les questions de gouvernance de données ou de gestion de cycle de vie qui sont des questions transverses qui ne se résolvent pas au niveau de l'appli
-* L'architecte est aussi là pour aider à donner de la cohérence, et permettre des optimisation globale au niveau du SI alors que l'équipe projet peut avoir tendance à préférer les optimisations locales à l'application
-* L'architecture de SI est là même si on peut choisir de ne pas s'en occuper et de la choisir plutôt que de la subir
+Lorsqu'on travaille en cycle en V l'architecture cible est souvent définie de manière très complète dès le lancement,
+en agile l'objectif est de le faire "au dernier moment", c'est à dire de prendre les décisions seulement au moment où cela est nécessaire.
 
-* Les architectes de SI utilisent beaucoup de pratique qui sont issues ou qui sont arrivée par l'agile, par exemple les ateliers, même pour faire de l'architecture de SI en mode cycle en V
+Il n'y donc plus forcément de phase en début de projet qui soit uniquement consacrée à la définition de l'architecture.
+Mais cela ne signifie pas que les questions d'architecture ont disparu : seulement qu'on les traite au fur et à mesure.
 
-=> L'agile n'a pas supprimé l'architecture en agile
-=> Même en agile l'architecture peut être un frein pour les projets pour des besoins d'harmonisation ou d'efficacité globale
+Pour qu'un développement s'intègre dans un SI, il faut répondre à des questions d'architecture de SI : quels sont les échanges à faire, sous quels formats, comment seront gérées les évolutions …
+
+Ces sujets sont transverses au SI et donner de la cohérence à cette échelle permet de garder la complexité sous contrôle et donc d'augmenter vos chances de construire un système pérenne.
+
+Ici encore on peut s'en passer et tout décider en point à point de manière opportuniste, mais c'est risquer d'avoir un système trop hétérogène qui soit très difficile de faire évoluer, et de dépenser beaucoup d'énergie à refaire plusieurs fois les mêmes choses.
+
+Piloter un SI peut avoir pour conséquence de freiner les projets.
+L'objectif est de continuer à progresser pour que cette gène soit de moins en moins forte.
+Mais choisir de ne pas piloter votre SI, c'est accepter de le subir.
 
 == Les développeur·euse·s et l'architecture de SI
 
@@ -82,7 +85,7 @@ De même les nouvelles manière de travailler diminuent le temps et l'énergie d
 
 Cela signifie que les architectes - entre autres - ont bien fait leur boulot, et ont su faire progresser leur discipline.
 
-Peut-être qu'un jours on pourra se passer de ces compétences et donc de ces personnes.
+Peut-être qu'un jours l'architecture aura suffisament progressée qu'on pourra se passer de ces compétences et donc de ces personnes.
 
 Mais pour le moment il y a toujours besoins d'eux et d'elles.
 Vous pouvez faire de l'architecture sans que personne n'ait de titre d'architecte, mais ne pas avoir de compétence d'architecture ou choisir de ne pas faire d'architecture c'est prendre des risques.
