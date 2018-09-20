@@ -1,4 +1,4 @@
-= L'architecture de SI existe-t-elle encore ?
+= "Avec le cloud il n'y a plus besoin de faire d'architecture"
 Julien Kirch
 v0.1, 2018-05-14
 :article_lang: fr
@@ -20,7 +20,7 @@ Depuis le début des années 2000, l'architecture de SI a profondément changé.
 Il y a 15 ans, l'architecture de SI était très contraintes par ce que les outils étaient capables de faire, une vraie expertise de ces briques était donc nécessaire pour faire les bons choix et guider leur mise en œuvre.
 De même la capacité d'intégrer des systèmes dépendait des technologies disponibles, et pour des besoins pointus des solutions exotiques pouvaient être nécessaires, ce qui à nouveau demandait des connaissances spécifiques.
 
-De nos jours les outils et les protocoles sont beaucoup plus matures, avec le cloud beaucoup de ces logiciels sont disponible avec quelques clicks.
+De nos jours les outils et les protocoles sont beaucoup plus matures, avec le cloud beaucoup de ces logiciels sont disponible avec quelques clics.
 Cela signifie que, dans beaucoup de cas, certaines compétences ne sont plus nécessaires.
 
 Mais cela ne veut pas dire que l'architecture de SI a disparu, c'est seulement que _ces compétences ne sont plus nécessaires pour faire de l'architecture de SI_.
@@ -33,7 +33,7 @@ Ils peuvent répondre à des "comment" et simplifient la mise en œuvre, mais ne
 
 Oui il est possible de construire des systèmes qui fonctionnent en se passant de ce type de questions, mais procéder ainsi c'est augmenter vos chances de ne pas y parvenir, ou de construire un système fragile et difficile à faire vivre.
 
-L'architecture de SI a donc changé, mais elle n'a pas disparu.
+L'architecture de SI a donc changé et certains types de questions ne sont plus d'actualité, mais elle n'a pas disparu.
 
 == L'architecture de SI et l'agile
 
@@ -55,37 +55,50 @@ Mais choisir de ne pas piloter votre SI, c'est accepter de le subir.
 
 == Les développeur·euse·s et l'architecture de SI
 
-* La plupart des personnes qui développent ont un vernis sur l'archi de SI, notamment parce que ce sont des extensions des questions d'architecture logicielles
-* Le vernis est d'ailleurs très utile pour comprendre les enjeux, et faire en sorte que ce qui est fait dans le projet soit cohérent avec les décisions d'architecture au niveau du SI
-* Mais le vernis n'est pas suffisant pour décider de tout : 
-** Certaines décisions demandent de l'expertise en archi de SI et cette expertise demande de l'expérience
-** Dans une organisation plus grande avec des groupes séparés pour l'infra ou la sécu, l'architecte de SI a aussi souvent le rôle d'aider à faire le lien avec ces équipes car c'est la personne qui a le recul pour cela
-* Certaines personnes qui développent ont une vraie compétence d'architecture de SI, pas besoin d'avoir le titre ou de faire de l'architecture à plein temps pour être légitime sur le sujet
-* On peut choisir de se passer d'avoir de l'expertise à l'avance et apprendre quand il y en a besoin, mais ça signifie prendre le temps d'apprendre et prendre le risque de se tromper, potentiellement sur chaque projet
+La plupart des personnes qui développent ont un vernis sur l'architecture de SI, d'abord parce que ce sont des extensions des questions d'architecture logicielles, et ensuite parce ces questions concernent tout le monde sur les projets.
 
-=> Même si vous avez eu de mauvaises expériences avec des architectes, la compétence a toujours une utilité
+Ce vernis est très utile pour pouvoir comprendre les enjeux, et faire en sorte que ce qui est fait dans le projet soit cohérent avec les décisions d'architecture au niveau du SI, même si on n'est pas directement partie prenante des décisions. Il peut même être suffisant pour traiter certains sujets.
 
-== L'architecte et les projets
+Mais ce vernis n'est pas suffisant dans tous les cas.
+Prendre certaines décisions nécessite de connaître les conséquences à long termes des différentes options, ou les prérequis par forcément évidents d'une idée qui semble évidente.
+Cela demande de l'expertise, et cette expertise repose sur de l'expérience.
 
-* C'est mieux quand les architectes font partie d'un projet car c'est mieux pour comprendre les enjeux et ça évite l'effet tour d'ivoire
-** Dans des contextes agiles et avec des technos qui évoluent rapidement, garder un pieds sur les projets ça permet aux architectes de rester pertinents dans leurs propositions
-* On a arrété de croire que les architectes pouvaient être garrant·e·s de l'architecture : les personnes qui développent ont beaucoup d'importance pour avoir une architecture qui fonctionne
-* Souvent il n'y a pas d'architecture à faire à plein temps => pour être sur un projet il faut que l'architecte sache faire autre chose qui soit utile au projet
-* L'idéal c'est d'avoir un architecte "à demeure" mais difficile d'avoir des archis expérimentés sur tous les projets surtout que les besoins en architecture varient dans la vie des projets avec des phases sans besoin en architecture
-* Solution médianne : avoir des architectes en résidence sur les projets qui ont besoin de beaucoup de temps à passer sur l'archi, et des architectes en mode "consulting" pour les autres projets, que ça soit des architectes projets qui font ça une partie du temps, ou des architectes qui ne font que du consulting
-* Même quand il n'y a pas de besoins fort, il est utile pour les projets d'avoir des personnes qui ont un vernis sur l'archi de SI pour faire le relai avec le reste du SI, même si ces personnes n'ont pas le titre d'architecte
-* Des personnes qui veulent progresser en architecture de SI doivent pouvoir le pratiquer, et donc ne pas rester trop longtemps sur les projets sans besoin d'architecture
+Dans des organisations de grande taille, faire le lien entre toutes les personnes impliquées de l'architecture de SI, comme les équipes en charge de l'infrastructure ou de la sécurité, va demander un autre type de compétence.
 
-=> Les tours d'ivoires sont à terre, mais des archis sur tous les projets c'est compliqué
+Traiter de ces sujets ne nécessite pas de porter le titre d'architecte : la question n'est pas d'être architecte, ops ou développeuse, ou de ne faire de l'architecture que de manière très occasionnelle, mais d'avoir le niveau de compétence nécessaire quand il y en a besoin.
+
+Se passer d'avoir de l'expertise prête à l'emploi n'est pas forcément bloquant : il est possible d'apprendre quand il y en a besoin, mais cela signifie être prêt à prendre le temps nécessaire pour acquérir ces compétences, peut-être à un moment qui ne vous arrange pas.
+
+== Les architectes et les projets
+
+Les équipes d'architectes "tours d'ivoire" des années 2000 nous ont montrés les risques de faire de l'architecture de SI loin des projets et de penser que l'architecture devait tout aux architectes.
+
+L'architecte n'est plus sur un piédestal : on a cessé de croire que les architectes pouvaient être garant·e·s de l'architecture.
+Pas d'architecture qui fonctionne sans participation du reste de l'IT, voire des métiers.
+
+Notre préconisation est que la ou les personnes en charge de l'architecture d'un projet en fasse partie quand c'est possible : cela permet de mieux comprendre les enjeux et ce qui s'y passe, et donc de prendre de meilleures décisions et à l'inverse de mieux impliquer les autres dans ses décisions.
+
+Avoir un·e architecte "à demeure" sur un projet est un bon choix, mais souvent un projet n'a pas de quoi occuper un poste d'architecte à plein temps.
+Le plus gros risque est que l'architecte cherche alors à se rendre utile et à aider le projet malgré lui.
+
+Pour éviter cela une des solutions est que l'architecte ait d'autres cordes à son arc et puisse faire du développement, de l'ops ou d'autre tâches le reste du temps.
+Cela renforce la cohésion des projets mais nécessite d'avoir des moutons à 5 pattes.
+
+L'autre solution est de faire du "consulting" sur d'autres projets dans lesquels le besoin en architecture est plus ponctuel.
+Cela est bien pratique pour les projets, même si cela rend la gestion du temps plus compliquée.
+
+Ceci dit, même un projet avec de faible besoins en architecture aura de besoin de personnes avec un vernis sur le domaine afin de pouvoir faire le relai avec le reste du SI, et savoir quand il faut faire appel à une expertise extérieure.
+
+Ce modèle donne de meilleurs résultats que celui où des équipes d'architectes intervenaient pour les cadrages des projets puis disparaissaient, mais il demande une organisation plus fluide.
 
 == Conclusion
 
 L'architecture et les outils posent de moins en moins de contraintes et grâce à cela on a de moins en moins besoins d'architectes.
-De même les nouvelles manière de travailler diminuent le temps et l'énergie dépensée pour se mettre d'accord et formaliser ces questions.
+De même les nouvelles manières de travailler diminuent le temps et l'énergie dépensée pour se mettre d'accord et formaliser ces questions.
 
 Cela signifie que les architectes - entre autres - ont bien fait leur boulot, et ont su faire progresser leur discipline.
 
-Peut-être qu'un jours l'architecture aura suffisament progressée qu'on pourra se passer de ces compétences et donc de ces personnes.
+Peut-être qu'un jours l'architecture aura suffisamment progressé qu'on pourra se passer de ces compétences et donc de ces personnes.
 
 Mais pour le moment il y a toujours besoins d'eux et d'elles.
 Vous pouvez faire de l'architecture sans que personne n'ait de titre d'architecte, mais ne pas avoir de compétence d'architecture ou choisir de ne pas faire d'architecture c'est prendre des risques.
