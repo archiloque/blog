@@ -33,7 +33,8 @@
   {
     "name": "Cloud Basics",
     "theme": "Cloud",
-    "level": 1
+    "level": 1,
+    "description": "Principles & impacts of cloud computing: on-demand servers…"
   },
   {
     "name": "Basics of one cloud platform",
@@ -59,7 +60,7 @@
     "theme": "IS Architecture",
     "level": 1,
     "description": "SOA, microservices, REST, API Design …",
-    "require": ["Data Integration Principles"]
+    "require": ["Integration Principles"]
   },
   {
     "name": "Malfunction root cause analysis",
@@ -76,7 +77,7 @@
     "theme": "IS Architecture",
     "level": 1,
     "description": "Theory + having used one MOM (Kafka, RabbitMQ …)",
-    "require": ["Data Integration Principles"]
+    "require": ["Integration Principles"]
   },
   {
     "name": "Code & Programming Awareness",
@@ -98,7 +99,8 @@
   {
     "name": "IS monitoring",
     "theme": "Supervision",
-    "level": 1
+    "level": 1,
+    "description": "Patterns & requirements : correlation id…"
   },
   {
     "name": "Integration testing",
@@ -119,7 +121,7 @@
     "description": "Typical workflows of a software project from development to production"
   },
   {
-    "name": "Data Integration Principles",
+    "name": "Integration Principles",
     "theme": "IS Architecture",
     "level": 1,
     "description": "Main integration patterns : messages, files, APIs …"
@@ -176,7 +178,7 @@
     "name": "Data Governance Patterns",
     "theme": "Data Architecture",
     "level": 2,
-    "require": ["Emerging architecture", "Data Integration Principles"]
+    "require": ["Emerging architecture", "Integration Principles"]
   },
   {
     "name": "Distributed Orchestration Basics",
