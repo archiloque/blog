@@ -91,7 +91,7 @@ skills.each do |skill|
   unless skill.key?('description')
     STDERR << "[#{skill['name']}] has no description\n"
   end
-  shape = (skill.key?('mandatory') && (skill['mandatory'] == false)) ? 'octagon' : 'ellipse'
+  shape = (skill.key?('mandatory') && (skill['mandatory'] == false)) ? 'rectangle' : 'ellipse'
   w "\tskill_#{skill['index']}[label=\"#{skill['name']}\",shape=#{shape},id=\"skill_#{skill['index']}\"];"
 end
 
