@@ -216,12 +216,14 @@
     "name": "Testable Architecture",
     "theme": "Testing",
     "level": 2,
-    "require": ["Integration testing", "Emerging architecture"]
+    "require": ["Integration testing", "Emerging architecture"],
+    "description": "Pattern to try to make an architecture easier to change"
   },
   {
     "name": "Blameless Post Mortem",
     "theme": "Investigation",
-    "level": 2
+    "level": 2,
+    "description": "Principles of post-mortems, what they require, and how to organize one"
   },
   {
     "name": "BigData Architecture Basics",
@@ -233,7 +235,8 @@
   {
     "name": "Scalability Patterns",
     "theme": "Distributed Architecture",
-    "level": 2
+    "level": 2,
+    "description": "How to scale differents parts of an architecture and the involved drawbacks"
   },
   {
     "name": "Fast Data Patterns",
