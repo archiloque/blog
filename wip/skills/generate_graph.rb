@@ -88,9 +88,11 @@ w "\t}"
 levels_block('_')
 
 skills.each do |skill|
-  description = skill.key?('description') ? '*' : ''
+  unless skill.key?('description')
+    STDERR << "[#{skill['name']}] has no description\n"
+  end
   shape = (skill.key?('mandatory') && (skill['mandatory'] == false)) ? 'octagon' : 'ellipse'
-  w "\tskill_#{skill['index']}[label=\"#{skill['name']}#{description}\",shape=#{shape},id=\"skill_#{skill['index']}\"];"
+  w "\tskill_#{skill['index']}[label=\"#{skill['name']}\",shape=#{shape},id=\"skill_#{skill['index']}\"];"
 end
 
 w ''

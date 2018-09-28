@@ -22,7 +22,7 @@
     "name": "DevOps Basics",
     "theme": "Ops",
     "level": 1,
-    "description": "Organizational patterns"
+    "description": "Organizational and project lifecycle patterns"
   },
   {
     "name": "Resiliency Basics",
@@ -39,7 +39,8 @@
     "name": "Basics of one cloud platform",
     "theme": "Cloud",
     "level": 1,
-    "require": ["Cloud Basics"]
+    "require": ["Cloud Basics"],
+    "description": "Experience with one cloud platform for a simple app setup"
   },
   {
     "name": "Relational Database Basics",
@@ -89,9 +90,10 @@
     "description": "Principles, vocabulary…"
   },
   {
-    "name": "Unit testing & Test Driven Development",
+    "name": "Software testing",
     "theme": "Software Design & Development practice",
-    "level": 1
+    "level": 1,
+    "description": "Unit testing & Test Driven Development"
   },
   {
     "name": "IS monitoring",
@@ -111,9 +113,10 @@
     "description": "Access management, PKI, Identity propagation…"
   },
   {
-    "name": "Software Development Workflow",
+    "name": "Development Workflow",
     "theme": "Software Design & Development practice",
-    "level": 1
+    "level": 1,
+    "description": "Typical workflows of a software project from development to production"
   },
   {
     "name": "Data Integration Principles",
