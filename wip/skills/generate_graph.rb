@@ -19,6 +19,12 @@ LEVELS_NAMES = [
   'Senior Architect'
 ]
 
+POSSIBLE_LEVELS = []
+LEVELS_NAMES.each_with_index do |level, index|
+  POSSIBLE_LEVELS << index + 1
+end
+
+
 def levels_block(separator)
   w ''
   w "\t{"
@@ -35,6 +41,9 @@ end
 skill_index = 0
 
 skills.each do |skill|
+  unless POSSIBLE_LEVELS.include? skill['level']
+    raise "Level is bad for [#{skill['name']}]"
+  end
   skill['index'] = skill_index
   theme_name = skill['theme']
   skills_names_to_skill[skill['name']] = skill
@@ -80,7 +89,8 @@ levels_block('_')
 
 skills.each do |skill|
   description = skill.key?('description') ? '*' : ''
-  w "\tskill_#{skill['index']}[label=\"#{skill['name']}#{description}\",id=\"skill_#{skill['index']}\"];"
+  shape = (skill.key?('mandatory') && (skill['mandatory'] == false)) ? 'octagon' : 'ellipse'
+  w "\tskill_#{skill['index']}[label=\"#{skill['name']}#{description}\",shape=#{shape},id=\"skill_#{skill['index']}\"];"
 end
 
 w ''
