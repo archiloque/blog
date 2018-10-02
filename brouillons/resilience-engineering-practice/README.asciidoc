@@ -1,0 +1,39 @@
+= Astractions et dette d'abrentissage
+Julien Kirch
+v0.1, 2018-10-01
+:article_lang: fr
+
+[quote]
+____
+The goal of Resilience Engineering is to increase the number of things that go right rather than to reduce the number of things that go wrong, noting that the latter will be a consequence of the former.
+____
+
+[quote]
+_____
+The four factors, or four essential abilities are:
+
+* Knowing what to do, that is, how to respond to regular and irregular disruptions and disturbances either by implementing a prepared set of responses or by adjusting normal functioning. This is the ability to address the actual.
+* Knowing what to look for, that is, how to monitor that which is or can become a threat in the near term. The monitoring must cover both that which happens in the environment and that which happens in the system itself, that is, its own performance. This is the ability to address the critical.
+* Knowing what to expect, that is, how to anticipate developments, threats, and opportunities further into the future, such as potential changes, disruptions, pressures, and their consequences. This is the ability to address the potential.
+* Knowing what has happened, that is, how to learn from experience, in particular how to learn the right lessons from the right experience—successes as well as failures. This is the ability to address the factual.
+_____
+
+[quote]
+_____
+This highlights that anticipation is not something that is uniformly distributed throughout a large system. The global system may anticipate occurrences that are too rare to be even thought of at local scales, while local operators will anticipate situations that are much too detailed to be tackled at a larger scale. This raises the issue of the coupling between the different levels of organisation within a system, what Woods calls _cross-scale interactions_.
+_____
+
+[quote]
+_____
+This idea of constantly monitoring the future marges de manoeuvre and adapting the current state of affairs to protect these margins.
+_____
+
+[quote]
+_____
+Hence, resilience implies a combination of readiness and creativity, and of anticipation and serendipity. Or, to put it differently, a resilient system must be both prepared, and be prepared to be unprepared.
+_____
+
+[quote]
+_____
+One way to help overcome this apparent double-bind is to adapt the level of functional abstraction of the prepared responses to match the level of uncertainty associated with the anticipated situation.
+_____
