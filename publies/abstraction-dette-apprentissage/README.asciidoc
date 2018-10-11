@@ -1,11 +1,12 @@
 = Abstractions, dette d'apprentissage et gestion du risque
 Julien Kirch
-v0.1, 2018-10-10
+v0.1, 2018-10-11
+:article_image: risk.jpeg
 :article_lang: fr
 
 == Les abstractions permettent d'avoir moins à savoir
 
-Lorsqu'on utilise un cadre de programmation maintream, par exemple un langage de programmation grand public et une base de donnée SQL, de nombreuses abstractions nous facilitent la vie : systèmes d'objets, SQL ou ORM, sockets réseaux …
+Lorsqu'on utilise un cadre de programmation maintream, par exemple un langage de programmation grand public et une base de données SQL, de nombreuses abstractions nous facilitent la vie : systèmes d'objets, SQL ou ORM, sockets réseaux …
 
 Ces abstractions permettent de simplifier le modèle mental nécessaire à développer, mais peuvent aussi permettre de ne pas avoir à connaître le fonctionnement des couches qui ont été abstraites.
 
@@ -18,7 +19,7 @@ Alors que les différentes couches "masquées" sont de plus en plus complexes, c
 Le problème est quand ce modèle coince et qu'on se retrouver en face d'une "dette d'apprentissage".
 Quand on a pu - jusque là - faire l'économie de comprendre le fonctionnement de certains éléments, mais que ça n'est plus le cas.
 
-Soit parce qu'on a besoin d'implémenter quelque chose alors que vos connaissances ne le permet pas, ou pire, qu'un bug dans une des abstractions a fait planter vos serveur de productions.
+Soit parce qu'on a besoin d'implémenter quelque chose alors que vos connaissances ne le permettent pas, ou pire, qu'un bug dans une des abstractions a fait planter vos serveur de productions.
 
 == Peut-on espérer le salut ?
 
@@ -28,9 +29,9 @@ Mais je ne pense pas que les choses vont changer dans ce domaine d'une manière 
 
 Par contre ce qui s'améliore avec le temps c'est la qualité des abstractions, c'est à dire que l'empilement des couches sera plus harmonieux, et donc générera moins de cas limites générateurs de situations imprévisibles.
 
-== Que faire alors ?
+== Que faire ?
 
-La meilleure solution est bien entendu de disposer de la connaissance dont on peut avoir besoin suffisament à l'avance pour ne pas être bloqué.
+La meilleure solution est bien entendu de disposer de la connaissance dont on peut avoir besoin suffisamment à l'avance pour ne pas être bloqué.
 
 Ce qui suppose de savoir à l'avance de quoi on va avoir besoin, et de quand cela va se produire.
 
@@ -38,13 +39,13 @@ Avec de l'expérience on peut arriver à déterminer les zones "chaudes" qu'il y
 Il s'agit alors de s'assurer d'avoir les bonnes compétences sous la main, même si elles ne servent pas tous les jours.
 C'est une des raisons d'avoir dans ses équipes des link:../ovin-a-5-pattes[ovins à 5 pattes].
 
-Plus votre organisation est grande, plus il est facile d'entrenir un "pool" large de connaissances sur les différentes briques, et donc d'avoir un risque plus faible.
+Plus votre organisation est grande, plus il est facile d'entretenir un "pool" large de connaissances sur les différentes briques, et donc d'avoir un risque plus faible.
 C'est d'autant plus vrai qu'une organisation plus grande signifie souvent besoins plus complexes, et ces connaissances sont dans ce cas utilisées et pas seulement nécessaires "au cas où".
 
 Pour réduire le risque on peut aussi limiter le nombre de technologies pour réduire les compétences à maîtriser.
 Cela peut faire grincer des dents, mais c'est à mettre en rapport avec les conséquences en cas de problèmes.
 
 L'autre approche est de transférer le risque, c'est à dire de faire en sorte de se reposer sur la connaissance de quelqu'un d'autre.
-La manière historique de le faire est d'acheter du support pour les logiciels, c'est à dire de payer pour avoir la capacité d'appeller quelqu'un quand il y a un problème : l'empilement est toujours là mais vous n'êtes pas seul·e face à lui.
+La manière historique de le faire est d'acheter du support pour les logiciels, c'est à dire de payer pour avoir la capacité d’appeler quelqu'un quand il y a un problème : l'empilement est toujours là mais vous n'êtes pas seul·e face à lui.
 
 Une autre manière correspond aux offres cloud comme le _serverless_, qui consistent à payer pour un service qui masque les couches dans une boite noire.
