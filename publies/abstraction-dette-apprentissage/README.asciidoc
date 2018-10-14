@@ -19,15 +19,15 @@ Alors que les différentes couches "masquées" sont de plus en plus complexes, c
 Le problème est quand ce modèle coince et qu'on se retrouver en face d'une "dette d'apprentissage".
 Quand on a pu — jusque là — faire l'économie de comprendre le fonctionnement de certains éléments, mais que ça n'est plus le cas.
 
-Soit parce qu'on a besoin d'implémenter quelque chose alors que vos connaissances ne le permettent pas, ou pire, qu'un bug dans une des abstractions a fait planter vos serveur de productions.
+Soit parce qu'on a besoin d'implémenter quelque chose alors que vos connaissances ne le permettent pas, ou pire, qu'un bug dans une des abstractions a fait planter vos serveurs de production.
 
 == Peut-on espérer le salut ?
 
 Ce problème est parfois mentionné dans les article sur le _bloat_ de l'informatique moderne, c'est à dire qu'à force d'empiler des couches, chacune introduisant de l'inefficacité, l'augmentation de puissance des machines ne se traduit pas par une augmentation de rapidité mais au contraire par une augmentation du gaspillage.
 
-Mais je ne pense pas que les choses vont changer dans ce domaine d'une manière significative même si de nouveaux OS comme Android peuvent permette de supprimer quelques couches.
+Mais je ne pense pas que les choses vont changer dans ce domaine d'une manière significative même si de nouveaux OS comme Android peuvent permettre de supprimer quelques couches.
 
-Par contre ce qui s'améliore avec le temps c'est la qualité des abstractions, c'est à dire que l'empilement des couches sera plus harmonieux, et donc générera moins de cas limites générateurs de situations imprévisibles.
+Par contre ce qui s'améliore avec le temps c'est la qualité des abstractions, c'est à dire que l'empilement des couches sera plus harmonieux, et produira moins de cas limites générateurs d'imprévus.
 
 == Que faire ?
 
