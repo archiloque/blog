@@ -1,0 +1,48 @@
+= Pourquoi l'architecture de SI ?
+Julien Kirch
+v0.1, 2018-10-15
+:article_lang: fr
+
+Une question qu'on me pose souvent : pour les systèmes d'informations des grandes organisations sont aussi complexes ?
+
+Pourquoi des dizaines ou des centaines d'applications alors qu'un SI ne fait que traiter des données ?
+Ensuite pourquoi la communication entre les briques est-elle aussi compliquée ?
+
+Comme disait un de mes professeur : un SI ce sont des données et des traitements :
+des données entrent dans le système par différents canaux, des données en sortes de différentes manières, au milieu on les traite, et c'est tout.
+
+Ça devrait être très simple !
+
+== Un gros système : des gros problèmes
+
+On pourrait avoir un très gros système qui gère tout, ce qui supprimerait un gros pan de la complexité.
+
+Malheureusement il y a deux soucis à cette approche :
+- au dessus d'une certaine taille, un système uniquement devient compliqué à manager d'un seul bloc car cela demande de se synchronizer entre équipes, on va donc essayer de découper ce système en composants ayant des liens plus faibles entre eux, ce qu'on appelle le découplage ;
+- suivant la manière dont les données sont organisées (structure, manière dont elles sont accédées) certains types de traitements vont etre plus ou moins simple, dans certains cas il vaut mieux avoir plusieurs représentations différentes pour simplifier les traitements
+
+Même si cette approche est la plus simple sur le papier, en pratique elle ne fonctionne pas
+
+Donc on se retrouve avec plusieurs briques, chacune avec une partie du système.
+
+== Des systèmes : des problème plus petits mais quand même des problèmes
+
+Cela va créer d'autres types de problèmes causés par ce découpage
+
+=== Les données
+
+Avec plusieurs systèmes, les données seront réparties entre plusieurs briques : certaines d'un côté, d'autre de l'autre, et une partie des deux cotés à la fois
+
+Cela va poser des questions sur la manière de faire transiter les données, et des problèmes d'incohérenc
+
+=== Les traitements
+
+Traitement distribués
+
+
+== En conclusion
+
+Ces problèmes sont compliqués et on préférerait ne pas les avoir.
+Mais ils sont gérables : on a des solutions pour y répondre même si elles ne sont pas parfaites, alors qu'une application unique pose des problèmes auxquelles on ne sait pas répondre.
+Donc c'est la solution la moins pire.
+
