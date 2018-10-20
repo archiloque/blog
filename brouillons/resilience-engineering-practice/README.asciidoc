@@ -1,47 +1,73 @@
-= Resilience Engineering in Practice
+= Fiche de lecture : "Resilience Engineering in Practice: A Guidebook"
 Julien Kirch
-v0.1, 2018-10-01
+v0.1, 2018-10-20
 :article_lang: fr
+:article_image: cover.jpeg
+:article_description: Quelques idées pour fiabiliser votre système
 
-link:https://www.crcpress.com/Resilience-Engineering-in-Practice-A-Guidebook/Paries-Wreathall-Hollnagel/p/book/9781472420749[Resilience Engineering in Practice: A Guidebook]
+Ce 
+link:https://www.crcpress.com/Resilience-Engineering-in-Practice-A-Guidebook/Paries-Wreathall-Hollnagel/p/book/9781472420749[livre] est un ensemble d'articles traitant de l'ingénierie de la résilience.
+Cette discipline s'intéresse à la manière de rendre des systèmes fiables.
 
-[quote]
-____
-The goal of Resilience Engineering is to increase the number of things that go right rather than to reduce the number of things that go wrong, noting that the latter will be a consequence of the former.
-____
+Si elle contient une dose de théorie, elle ne propose pas d'approche sur l'étagère qu'il suffirait d'appliquer à la lettre.
+Au contraire, plusieurs chapitres s'intéressent à la manière de décliner ses idées pour pouvoir les appliquer dans différents domaines comme l'aviation ou la médecine.
 
-[quote]
-_____
-The four factors, or four essential abilities are:
+Si ce texte ne parle pas d'informatique, l'approche et les exemples données s'adaptent très bien à cet univers et fournissent des idées intéressantes à reprendre.
 
-* Knowing what to do, that is, how to respond to regular and irregular disruptions and disturbances either by implementing a prepared set of responses or by adjusting normal functioning. This is the ability to address the actual.
-* Knowing what to look for, that is, how to monitor that which is or can become a threat in the near term. The monitoring must cover both that which happens in the environment and that which happens in the system itself, that is, its own performance. This is the ability to address the critical.
-* Knowing what to expect, that is, how to anticipate developments, threats, and opportunities further into the future, such as potential changes, disruptions, pressures, and their consequences. This is the ability to address the potential.
-* Knowing what has happened, that is, how to learn from experience, in particular how to learn the right lessons from the right experience—successes as well as failures. This is the ability to address the factual.
-_____
+== Les trois fonctionnements
 
-[quote]
-_____
-This highlights that anticipation is not something that is uniformly distributed throughout a large system. The global system may anticipate occurrences that are too rare to be even thought of at local scales, while local operators will anticipate situations that are much too detailed to be tackled at a larger scale. This raises the issue of the coupling between the different levels of organisation within a system, what Woods calls _cross-scale interactions_.
-_____
+Selon l'une des approches du livre, l'ingénierie de la résilience définit trois types de fonctionnement d'un système :
 
-[quote]
-_____
-This idea of constantly monitoring the future marges de manoeuvre and adapting the current state of affairs to protect these margins.
-_____
+* Le fonctionnement normal, où les paramètres se trouvent dans les intervalles prédéfinis et où les procédures de régulations standards suffisent ;
+* Le fonctionnement anormal, où les paramètres se trouvent en dehors des limites établies et où des procédures spécifiques doivent être mises en œuvre pour maintenir le système opérationnel ;
+* Le mode d'urgence, où il n'est plus possible de compenser les conséquences des problèmes et où il faut faire preuve de capacité d'adaptation et d'inventivité.
 
-[quote]
-_____
-Hence, resilience implies a combination of readiness and creativity, and of anticipation and serendipity. Or, to put it differently, a resilient system must be both prepared, and be prepared to be unprepared.
-_____
+Une des bases de la résilience consiste à être capable d'identifier dans quelle situation un système se trouve et donc d'être en mesure de changer de mode de fonctionnement au bon moment.
+Par exemple l'incapacité déterminer qu'on vient de basculer du mode anormal au mode extrême empêche de questionner la pertinence de continuer à appliquer des procédures alors que le système n'est plus dans la zone où elles sont efficaces.
 
-[quote]
-_____
-One way to help overcome this apparent double-bind is to adapt the level of functional abstraction of the prepared responses to match the level of uncertainty associated with the anticipated situation.
-_____
+Il faut donc à la fois opérer le système et surveiller où on en est et quelles sont les marges de manœuvre à disposition pour éviter d'être coincé·e dans une situation qu'on ne maîtrise plus.
 
-* Mode adaptatif et le mode YOLO
-* 3 niveaux : classique dégradé et extrème
-* Importance de savoir dans quel niveau tu es, pour savoir quand changer de système de correction
-* Améliorer la capacité de traiter le mode nominal peut diminuer la capacité d'adaptation au mode extrème
-* Capacité à traiter les cas extrème : mieux vaut améliorer l'enveloppe des cas nominaux plutôt que de faire des sous-cas
+== Anticiper & être créatif
+
+Pour qu'un système soit résilient, il doit réunir deux éléments :
+
+* Être prêt à réagir aux problèmes connus, par exemples en ayant des procédures éprouvées à disposition ;
+* Avoir une capacité de créativité face aux problèmes nouveaux.
+
+Le premier item permet de gérer au mieux le cas du fonctionnement anormal, pour éviter de basculer immédiatement du mode normal au mode urgence, le second permet d'éviter la catastrophe quand la zone d'urgence est atteinte.
+
+Malheureusement en pratique les deux s'opposent : les compétences nécessaires à affronter les situations de crises ont tendance à se perdre dans l'effort continu pour anticiper toutes les situations et à préparer des réponses toutes faites.
+C'est ce que le livre appelle "l'ironie de la résilience".
+
+Dans l'informatique, cela se traduit par la volonté de fournir des procédures prêtes à l'emploi aux personnes s'occupant du support des systèmes, ce qui permet de diminuer les compétences nécessaires pour occuper ces postes, et donc les salaires.
+
+Par ailleurs, plus un système est fiable, moins il fournit d'éléments permettant sur lesquels s'appuyer pour l'améliorer.
+Il faut alors apprendre à utiliser la matière fournis par les problèmes moins graves ou par les situations où un problème aurait pu se poser, pour continuer à progresser.
+
+=== Les quatre facteurs
+
+Pour être résilient, un système doit avoir quatre caractéristiques :
+
+* Savoir quoi faire, c'est-à-dire savoir comment répondre aux évènements habituels et inhabituels ;
+* Savoir quoi chercher, c'est-à-dire monitorer les éléments qui permettent d'identifier ce qui est ou qui pourrait être une menace pour le fonctionnement du système, autant dans le système que dans son environnement ;
+* Savoir à quoi s'attendre, c'est à dire être en mesure d'anticiper les développements et les menaces futurs ;
+* Savoir ce qui est arrivé, c'est à dire tirer les bonnes leçons du passé, aussi bien des échecs que des réussites.
+
+Rendre un système plus fiable supposer de travailler sur les quatre axes à la fois.
+
+== Le local et le global
+
+Dans un système d'une certaine taille, les choses se compliquent de plusieurs manières.
+
+Tout d'abord la capacité à anticiper les conséquences des problèmes diminuent : une erreur dans un sous-sytème peut avoir des conséquences inattendues sur un autre à cause de comportements émergents.
+Cela peut aussi être le cas lors d'une intervention visant à restaurer le fonctionnement : vouloir améliorer la situation dans une partie peut avoir des résultats catastrophiques ailleurs si on ne maîtrise pas suffisamment bien les dépendances entre les différents éléments, et la manières dont elles influent.
+
+Cela rend beaucoup plus difficile d'établir des procédures prêtes à l'emploi fiables, car il faut en permanence vérifier qu'elles restent pertinentes.
+
+== Pour conclure
+
+J'ai trouvé la lecture du livre très enrichissante : il se lit bien, en alternant théorie et questions pratiques.
+
+Les questions sur les difficultés à combiner procédures et créativités sont très intéressantes car dans l'informatique le réflexe  naturel est de s'appuyer sur des outils au risque de négliger les personnes.
+
+Les idées sur la manière de former les personnes sur ces sujets m'a donné des idées à tenter.
