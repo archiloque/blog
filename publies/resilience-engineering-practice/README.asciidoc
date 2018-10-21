@@ -1,6 +1,6 @@
 = Fiche de lecture : "Resilience Engineering in Practice: A Guidebook"
 Julien Kirch
-v0.1, 2018-10-20
+v0.1, 2018-10-22
 :article_lang: fr
 :article_image: cover.jpeg
 :article_description: Quelques idées pour fiabiliser votre système
@@ -23,7 +23,8 @@ Selon l'une des approches du livre, l'ingénierie de la résilience définit tro
 * Le mode d'urgence, où il n'est plus possible de compenser les conséquences des problèmes et où il faut faire preuve de capacité d'adaptation et d'inventivité.
 
 Une des bases de la résilience consiste à être capable d'identifier dans quelle situation un système se trouve et donc d'être en mesure de changer de mode de fonctionnement au bon moment.
-Par exemple l'incapacité déterminer qu'on vient de basculer du mode anormal au mode extrême empêche de questionner la pertinence de continuer à appliquer des procédures alors que le système n'est plus dans la zone où elles sont efficaces.
+Au contraire, ne pas être en mesure de percevoir qu'on a basculé dans un autre mode signifie continuer à appliquer des procédures
+qui sont potentiellement inadaptées à la situation courante.
 
 Il faut donc à la fois opérer le système et surveiller où on en est et quelles sont les marges de manœuvre à disposition pour éviter d'être coincé·e dans une situation qu'on ne maîtrise plus.
 
@@ -34,7 +35,7 @@ Pour qu'un système soit résilient, il doit réunir deux éléments :
 * Être prêt à réagir aux problèmes connus, par exemples en ayant des procédures éprouvées à disposition ;
 * Avoir une capacité de créativité face aux problèmes nouveaux.
 
-Le premier item permet de gérer au mieux le cas du fonctionnement anormal, pour éviter de basculer immédiatement du mode normal au mode urgence, le second permet d'éviter la catastrophe quand la zone d'urgence est atteinte.
+Le premier permet de gérer au mieux le cas du fonctionnement anormal, pour éviter de basculer immédiatement du mode normal au mode urgence, le second d'éviter la catastrophe quand la zone d'urgence est atteinte.
 
 Malheureusement en pratique les deux s'opposent : les compétences nécessaires à affronter les situations de crises ont tendance à se perdre dans l'effort continu pour anticiper toutes les situations et à préparer des réponses toutes faites.
 C'est ce que le livre appelle "l'ironie de la résilience".
@@ -53,7 +54,7 @@ Pour être résilient, un système doit avoir quatre caractéristiques :
 * Savoir à quoi s'attendre, c'est à dire être en mesure d'anticiper les développements et les menaces futurs ;
 * Savoir ce qui est arrivé, c'est à dire tirer les bonnes leçons du passé, aussi bien des échecs que des réussites.
 
-Rendre un système plus fiable supposer de travailler sur les quatre axes à la fois.
+Rendre un système plus fiable supposer de travailler à améliorer les quatre axes à la fois.
 
 == Le local et le global
 
@@ -62,7 +63,7 @@ Dans un système d'une certaine taille, les choses se compliquent de plusieurs m
 Tout d'abord la capacité à anticiper les conséquences des problèmes diminuent : une erreur dans un sous-sytème peut avoir des conséquences inattendues sur un autre à cause de comportements émergents.
 Cela peut aussi être le cas lors d'une intervention visant à restaurer le fonctionnement : vouloir améliorer la situation dans une partie peut avoir des résultats catastrophiques ailleurs si on ne maîtrise pas suffisamment bien les dépendances entre les différents éléments, et la manières dont elles influent.
 
-Cela rend beaucoup plus difficile d'établir des procédures prêtes à l'emploi fiables, car il faut en permanence vérifier qu'elles restent pertinentes.
+Cela rend beaucoup plus difficile d'établir des procédures prêtes à l'emploi fiables, car il faut en permanence vérifier qu'elles restent pertinentes, ce qui passe par le fait de connaître les modifications de dépendances entre systèmes et leurs impacts.
 
 == Pour conclure
 
