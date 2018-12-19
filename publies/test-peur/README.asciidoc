@@ -1,6 +1,6 @@
-= Les tests automatisés et le peur
+= Les tests automatisés et la peur
 Julien Kirch
-v0.1, 2018-12-18
+v0.1, 2018-12-19
 :article_lang: fr
 :article_image: it.jpg
 :article_description: Une approche contre-productive et indigne
@@ -15,7 +15,7 @@ Il peut s'agit de logiciels de gestion, de sites web, de la majorité du noyau l
 
 Les approches sont variables d'un cas à l'autre, mais reposent essentiellement sur des tests manuels, effectués par les personnes qui développent ou des personnes dont c'est le travail.
 
-Ces logiciels comportent des bugs, mais dans l'ensemble ils fonctionnent bien, ou en tout cas suffisament bien pour être utilisés, parfois massivement.
+Ces logiciels comportent des bugs, mais dans l'ensemble ils fonctionnent bien, ou en tout cas suffisamment bien pour être utilisés, parfois massivement.
 
 Les dev ont bien intégré ce fonctionnement et l'utilisent sans problème particulier.
 
@@ -49,7 +49,7 @@ L'une est celle de faire tourner les tests en continu pendant le développement 
 
 L'autre est de développer en TDD en se donnant un temps limité pour rédiger le code, avec la raison qu'un code long à écrire serait signe d'un mauvais design qu'il faudrait alors recommencer.
 
-Le développement se fait alors littéralement contre la montre : faites passer les testes ou jetez vortre travail.
+Le développement se fait alors littéralement contre la montre : faites passer les testes ou jetez votre travail.
 
 Ces pratiques sont parfois volontaires, ou parfois imposées dans des équipes.
 
@@ -59,10 +59,8 @@ Je pense qu'utiliser la peur n'est pas une solution acceptable pour pousser les 
 Ce genre d'approche est indigne : de quel droit est ce qu'on inflige ça à des personnes ?
 
 Elle va de plus à l'encontre de tout ce qu'enseigne l'agile
-(Cet argument devrait être inutile après le précédent, mais je réalise que dans certains cas c'est bien celui-ci qui a le plus de poids).
+(cet argument devrait être inutile après le précédent, mais je réalise que dans certains cas c'est bien celui-ci qui a le plus de poids).
 
-Cela est aussi valable pour les approches qu'on s'impose à soi-même.
+Cela est aussi valable pour les pratiques qu'on s'impose à soi-même.
 
 Il faut être capable d'avoir un discours sur l'apport des tests automatisés qui ne tombe pas dans la caricature, quitte à ce que cela prenne du temps et demande de se répéter.
-
-Il faut inventer des manière de convaincre qui n'utilisent pas ces ressorts, où l'agile ne vaudra pas mieux que les pire caricatures qu'on fait de lui.
