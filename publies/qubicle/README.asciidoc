@@ -1,0 +1,39 @@
+= Generate Qubicle files in Ruby
+Julien Kirch
+v0.1, 2018-12-27
+:article_lang: en
+:article_image: qubicle.png
+:article_description: Simple script to bootstrap a project
+
+For a personal project I want to generate some 3D voxel stuff.
+
+After looking around for a good file format candidate, I discovered link:https://getqubicle.com/learn/article.php?id=22[Qubicle] format which is easy to understand and accepted by many tools.
+
+I wrote a simple Ruby script for it, I hope it may help someone in need for this kind of stuff.
+
+Code is available under MIT license.
+
+[source,ruby]
+.bloc.rb
+----
+include::bloc.rb[]
+----
+
+[source,ruby]
+.qubicle.rb
+----
+include::qubicle.rb[]
+----
+
+Then to use it :
+
+[source,ruby]
+.main.rb
+----
+File.open('output.qb', 'wb') do |file|
+    # create your content
+    blocs = …
+    qubicle = Qubicle.new
+    qubicle.write(blocs, file)
+end
+----

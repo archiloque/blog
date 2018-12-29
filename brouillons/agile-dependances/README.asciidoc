@@ -1,0 +1,96 @@
+= Agile et dépendances
+Julien Kirch
+v0.1, 2018-12-29
+:article_lang: fr
+
+Agile : on peut itérer rapidement si on est autonome sur les choses qui fait qu'on n'a pas de dépendances.
+
+Fonctionne sur un projet isolé, ou dans un environnement parfaitement stabilisé (mature et qui n'évolue pas).
+
+Dans un SI ce n'est pas le cas de toutes les applications : dans beaucoup de cas ces dépendances existent et ont des conséquences significatives.
+
+== Un exemple concret ?
+
+Pour une nouvelle fonctionalité du projet A, il a besoin d'une fonctionalité d'un projet B qui n'existe pas encore : un service manquant, une donnée incomplète …
+
+Pour cela il faut faire une demande à B, que B accepte la demande, que B la réalise et mette la fonctionalité à ma disposition.
+
+Pour B, cela signifie du temps à passer en échange, mais cela signifie aussi que B doit déprioriser certaines de ses besoins pour faire de la place au besoin de A.
+
+== Qu'est ce qui se passe quand ça se passe mal ?
+
+Comme souvent, en l'absence de gouvernance satisfaisante, c'est l'informalité qui prend la main.
+
+img::maxresdefault.jpg[]
+
+Selon les mots immortels du docteur Ian Malcolm "_life finds a way_".
+Cela ne veut pas dire que des vélociraptors vont attaquer votre SI, mais la situation ne sera quand même pas enviable.
+
+Tout d'abord les décisions seront arbitrées par des jeux ce pouvoir et des rapports de forces officieux, qui font que certains projets auront ce dont ils ont besoin, et pas les autres.
+
+Ensuite les projets essaieront de faire au mieux, ce qui signifie faire avec les moyens dont ils disposent.
+
+Exemple : demander les données aux projets qui est en mesure de les fournir, même si ça n'est pas une source valide ou faire des copies de données locales
+
+Cela signifie des risques de qualité de données, de la dette technique, et des dépendances cachées qui se créent.
+
+== Quel rapport avec l'agile
+
+Le problème se produit également en cascade, mais les pratiques agiles ajoutent des spécificités.
+
+Avec les dépendances la capacité d'avoir un TTM bas en itérant rapidement et en maîtrisant ce qu'on fait n'est plus là : le risque c'est de décridibiliser l'agile.
+
+Mettre en place de l'agile sans prendre en compte ce type de problème peut rapidement vous rendre inaudible.
+
+Ensuite, en donnant plus de place aux POs dans le pilotage des projets à la place des structure de gouvernances plus formelles, j'ai l'impression que l'agile a supprimé une boucle de feedback qui permettait aux différents projets de pouvoir être entendus.
+
+Les systèmes de gouvernance agile comme SAFE, en plus d'alourdir les choses, ne sont qu'une réponses partielle car ils couvrent les ensembles de de projets pré-identifés comme ayant des dépendances fortes. Il ne couvrent pas les cas de dépendances entre projets plus éloignés dans l'organisation.
+
+L'objectif n'est pas de revenir à une gouvernance plus lourde, par exemple de type SAFE, mais de trouver comment faire au mieux.
+
+Finalement la mode de réduire au maximum la taille des équipes projets, par exemple dans les microservice, augmente le nombre d'élements du systèmes à coordonner entre eux.
+Le pire étant les demandes en cascades du type "moi A j'ai besoin d'un truc de B, mais pour ça B a besoin d'un truc de C".
+
+== Que faire ?
+
+Il suffit de faire en sorte que tous les projets soient indépendants les uns des autres.
+
+Non je blague.
+
+Il suffit de passer tous les projets en agile, et de faire en sorte que tous les PO soient capable de prendre en point à point des décisions maximisant l'optimum global.
+
+Non je blague encore.
+
+Je pense qu'il n'y a pas de recettes magiques, mais des pratiques peuvent aider.
+
+== Côté demandeur
+
+Si vous est du côté des projets demandeurs, ce que vous pouvez faire
+
+* Connaître suffisament le système pour prédire suffisament bien les besoins qui vont solliciter une dépendance : cela évite les mauvaises suprises
+* Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire. Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant. Le chiffre sera probablement dépendant de la taille du besoin et de à qui vous demandez.
+Cela vous permet de faire des arbitrage (est ce qu'on laisse tomber si c'est trop long ?) et de mieux planifier.
+
+== Côté fournisseur
+
+Rien à mettre là : si le problème c'est eux je ne vois pas comment leur demander des choses.
+
+== Côté SI
+
+Du plus simple au plus difficile
+
+* Faire en sorte que des services existants déjà exposés soient facilement utilisables par les autres applications avec un minimum de dépendances
+* Faire en sorte que les projets puissent obtenir rapidement des arbitrages : il est difficile de faire en sorte d'améliorer le TTM car ça suppose de réorganiser des projets, par contre obtenir un arbitrage oui/non et le délai ça peut déjà aider
+* Faire en sorte de facilité le développement de ces nouvelles demandes, par exemple par la capacité à founir des environnement de tests pendant les phases de mise au point
+* Appuyant les projets quand ils ont besoin d'escalader l'échelle hiérarchique : quand le projet A a besoin du projet B, la meilleure personne à convaincre est souvent celle qui est au croisement des deux branches de l'organigramme
+* Tracer ce type de démandes pour avoir de la visibilité sur le problème : est ce qu'il arrive souvent, à quels endroits ?
+* Essayer de piloter la décentralisation des données pour limiter le nombre de guichets, un peu de centralisation sur les données "maîtres" permet de faciliter les choses
+
+== Conclusion : et le métier
+
+Jusqu'ici je n'ai rien proposer sur le processus d'arbitrage en lui-même.
+Ma conviction est qu'il doit reposer sur le métier : il doit comprendre que c'est un problème, et s'approprier ce sujet.
+
+Ce n'est pas à l'IT de mettre de l'arbitrage ou de la gouvernance pour prioriser les demandes entre projets : l'IT peut expliquer, montrer qu'il y a un soucis, mais ne peut pas s'impliquer dans les décisions, par exemple en se subsituant au métier.
+
+Si le métier veut un meilleur TTM pour mieux réagir, il faut qu'il s'occupe de ça.
