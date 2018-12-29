@@ -11,9 +11,9 @@ Dans un SI ce n'est pas le cas de toutes les applications : dans beaucoup de cas
 
 == Un exemple concret ?
 
-Pour une nouvelle fonctionalité du projet A, il a besoin d'une fonctionalité d'un projet B qui n'existe pas encore : un service manquant, une donnée incomplète …
+Pour une nouvelle fonctionnalité du projet A, il a besoin d'une fonctionnalité d'un projet B qui n'existe pas encore : un service manquant, une donnée incomplète …
 
-Pour cela il faut faire une demande à B, que B accepte la demande, que B la réalise et mette la fonctionalité à ma disposition.
+Pour cela il faut faire une demande à B, que B accepte la demande, que B la réalise et mette la fonctionnalité à ma disposition.
 
 Pour B, cela signifie du temps à passer en échange, mais cela signifie aussi que B doit déprioriser certaines de ses besoins pour faire de la place au besoin de A.
 
@@ -21,7 +21,7 @@ Pour B, cela signifie du temps à passer en échange, mais cela signifie aussi q
 
 Comme souvent, en l'absence de gouvernance satisfaisante, c'est l'informalité qui prend la main.
 
-img::maxresdefault.jpg[]
+image::maxresdefault.jpg[]
 
 Selon les mots immortels du docteur Ian Malcolm "_life finds a way_".
 Cela ne veut pas dire que des vélociraptors vont attaquer votre SI, mais la situation ne sera quand même pas enviable.
@@ -34,7 +34,7 @@ Exemple : demander les données aux projets qui est en mesure de les fournir, m�
 
 Cela signifie des risques de qualité de données, de la dette technique, et des dépendances cachées qui se créent.
 
-== Quel rapport avec l'agile
+== Quel rapport avec l'agile ?
 
 Le problème se produit également en cascade, mais les pratiques agiles ajoutent des spécificités.
 
@@ -61,13 +61,13 @@ Il suffit de passer tous les projets en agile, et de faire en sorte que tous les
 
 Non je blague encore.
 
-Je pense qu'il n'y a pas de recettes magiques, mais des pratiques peuvent aider.
+Je pense qu'il n'y a pas de recettes magiques : c'est un problème inévitable quand on a un SI d'une certaine taille, mais des pratiques peuvent aider.
 
 == Côté demandeur
 
 Si vous est du côté des projets demandeurs, ce que vous pouvez faire
 
-* Connaître suffisament le système pour prédire suffisament bien les besoins qui vont solliciter une dépendance : cela évite les mauvaises suprises
+* Connaître assez le système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précisions acceptable : cela évite les mauvaises suprises
 * Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire. Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant. Le chiffre sera probablement dépendant de la taille du besoin et de à qui vous demandez.
 Cela vous permet de faire des arbitrage (est ce qu'on laisse tomber si c'est trop long ?) et de mieux planifier.
 
@@ -81,9 +81,9 @@ Du plus simple au plus difficile
 
 * Faire en sorte que des services existants déjà exposés soient facilement utilisables par les autres applications avec un minimum de dépendances
 * Faire en sorte que les projets puissent obtenir rapidement des arbitrages : il est difficile de faire en sorte d'améliorer le TTM car ça suppose de réorganiser des projets, par contre obtenir un arbitrage oui/non et le délai ça peut déjà aider
-* Faire en sorte de facilité le développement de ces nouvelles demandes, par exemple par la capacité à founir des environnement de tests pendant les phases de mise au point
+* Faire en sorte de faciliter le développement de ces nouvelles demandes, par exemple par la capacité à fournir des environnement de tests pendant les phases de mise au point
 * Appuyant les projets quand ils ont besoin d'escalader l'échelle hiérarchique : quand le projet A a besoin du projet B, la meilleure personne à convaincre est souvent celle qui est au croisement des deux branches de l'organigramme
-* Tracer ce type de démandes pour avoir de la visibilité sur le problème : est ce qu'il arrive souvent, à quels endroits ?
+* Tracer ce type de demandes pour avoir de la visibilité sur le problème : est ce qu'il arrive souvent, à quels endroits ?
 * Essayer de piloter la décentralisation des données pour limiter le nombre de guichets, un peu de centralisation sur les données "maîtres" permet de faciliter les choses
 
 == Conclusion : et le métier
