@@ -1,0 +1,34 @@
+graph TD
+
+A[ ] --> B[ ]
+A[ ] --> C[ ]
+B[ ] --> D[ ]
+D[ ] --> F[ ]
+D[ ] --> G[ ]
+B[ ] --> E[ ]
+E[ ] --> H[ ]
+E[ ] --> I[ ]
+C[ ] --> J[ ]
+C[ ] --> K[ ]
+J[ ] --> L[ ]
+J[ ] --> M[ ]
+K[ ] --> N[ ]
+K[ ] --> O[ ]
+
+classDef white fill:#ffffff,stroke:#000000;
+class E,G,H,I,K,M,N,O white;
+
+classDef red fill:#ff0000,stroke:#000000;
+class B,D,F red;
+linkStyle 3 stroke:#ff0000
+linkStyle 2 stroke:#ff0000
+linkStyle 0 stroke:#ff0000
+
+classDef green fill:#00ff00,stroke:#000000;
+class C,J,L green;
+linkStyle 1 stroke:#0ff000
+linkStyle 8 stroke:#0ff000
+linkStyle 10 stroke:#0ff000
+
+classDef orange fill:#FFA500,stroke:#000000;
+class A orange;
