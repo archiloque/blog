@@ -82,9 +82,9 @@ Du plus simple au plus difficile
 * Faire en sorte que des services existants déjà exposés soient facilement utilisables par les autres applications avec un minimum de dépendances
 * Faire en sorte que les projets puissent obtenir rapidement des arbitrages : il est difficile de faire en sorte d'améliorer le TTM car ça suppose de réorganiser des projets, par contre obtenir un arbitrage oui/non et le délai ça peut déjà aider
 * Faire en sorte de faciliter le développement de ces nouvelles demandes, par exemple par la capacité à fournir des environnement de tests pendant les phases de mise au point
-* Appuyant les projets quand ils ont besoin d'escalader l'échelle hiérarchique : quand le projet A a besoin du projet B, la meilleure personne à convaincre est souvent celle qui est au croisement des deux branches de l'organigramme
+* Travailler sur le décomissionnement, car fournir une nouvelle version N+1 d'un service cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1 … décident de se mettre à jour
 * Tracer ce type de demandes pour avoir de la visibilité sur le problème : est ce qu'il arrive souvent, à quels endroits ?
-* Essayer de piloter la décentralisation des données pour limiter le nombre de guichets, un peu de centralisation sur les données "maîtres" permet de faciliter les choses
+* Essayer de piloter la décentralisation des données / services pour limiter le nombre de guichets, un peu de centralisation sur les données "maîtres" en le structurant dans des référentiels permet par exemple de faciliter les choses
 
 == Conclusion : et le métier
 
