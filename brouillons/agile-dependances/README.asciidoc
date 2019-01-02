@@ -40,11 +40,13 @@ Le problème se produit également dans les projet en cascade, mais les pratique
 
 Avec les dépendances il n'est pas possible d'être en capacité d'avoir un TTM bas en s'appuyant sur des cycles courts et en ayant la maîtrise de ce que l'on fait, les promesses de l'agile ne sont donc pas remplies.
 
+Le vrai TTM d'un projet est celui qui s'observe dans des conditions réalistes, et pas le meilleur TTM possible dans les conditions idéales.
+
 Une «transformation agile» qui ne prend pas en compte ce type de problème prend le risque de décridibiliser l'agile et s'enliser.
 
 Ensuite, en donnant plus de place aux POs dans le pilotage des projets à la place des structure de gouvernances plus formelles, j'ai l'impression que l'agile a supprimé une boucle de feedback qui permettait aux différents projets de pouvoir être entendus.
 
-Les systèmes de gouvernance agile comme SAFE, en plus d'alourdir les choses, ne sont qu'une réponses partielle car ils couvrent les ensembles de de projets pré-identifés comme ayant des dépendances fortes. Il ne couvrent pas les cas de dépendances entre projets plus éloignés dans l'organisation.
+Les systèmes de gouvernance agile comme SAFE, en plus d'alourdir les choses, ne sont qu'une réponses partielle car ils couvrent les ensembles de de projets pré-identifés comme ayant des dépendances fortes. Il ne couvrent pas les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaîssent dans la vie des projets et qui n'étaient pas anticipés.
 
 L'objectif n'est pas de revenir à une gouvernance plus lourde, par exemple de type SAFE, mais de trouver comment faire au mieux.
 
@@ -84,7 +86,9 @@ Du plus simple au plus difficile
 * Faire en sorte de faciliter le développement de ces nouvelles demandes, par exemple par la capacité à fournir des environnement de tests pendant les phases de mise au point
 * Travailler sur le décomissionnement, car fournir une nouvelle version N+1 d'un service cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1 … décident de se mettre à jour
 * Tracer ce type de demandes pour avoir de la visibilité sur le problème : est ce qu'il arrive souvent, à quels endroits ?
-* Essayer de piloter la décentralisation des données / services pour limiter le nombre de guichets, un peu de centralisation sur les données "maîtres" en le structurant dans des référentiels permet par exemple de faciliter les choses
+* Essayer de piloter la décentralisation des projects / données / services pour limiter le nombre de guichets, un peu de centralisation sur les données "maîtres" en le structurant dans des référentiels permet par exemple de faciliter les choses
+
+Le dernier point est primordial : il faut que vos projets soient adaptés à votre capacité à faire des choix et à les mettre en œuvre.
 
 == Conclusion : et le métier
 
@@ -92,6 +96,8 @@ Jusqu'ici je n'ai rien proposer sur le processus d'arbitrage en lui-même.
 
 Ma conviction est qu'il doit reposer sur le métier : il doit comprendre que c'est un problème, et s'approprier ce sujet.
 
-Ce n'est pas à l'IT de mettre de l'arbitrage ou de la gouvernance pour prioriser les demandes entre projets : l'IT peut expliquer, montrer qu'il y a un soucis, mais ne doit pas s'impliquer dans les décisions : même s'il est tendant de vouloir aider, il y a beaucoup à perdre en énergie et bonne volonté.
+Ce n'est pas à l'IT de mettre de l'arbitrage ou de la gouvernance pour prioriser les demandes entre projets : l'IT peut expliquer, montrer qu'il y a un soucis, mais ne doit pas s'impliquer dans les décisions : même s'il est tendant de vouloir aider, il y a beaucoup à perdre en énergie et en bonne volonté.
 
-Il s'agit probablement d'un des sujets les plus compliqués à apprendre dans les entreprises qui ne sont pas _digital-native_.
+Il s'agit probablement d'un des sujets les plus compliqués à apprendre pour une organisation.
+
+En attendant que les choses progressent la solution est de continuer à adapter votre IT à la maturité de l'organisation, car l'inverse ne fonctionne pas.
