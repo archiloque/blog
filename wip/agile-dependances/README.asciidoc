@@ -3,7 +3,7 @@ Julien Kirch
 v0.1, 2018-12-29
 :article_lang: fr
 
-WARNING: Il s'agit d'un mélange entre un plan détaillé et un brouillon => seul le fond est important
+WARNING: ⚠️Il s'agit d'un mélange entre un plan détaillé et un brouillon => seul le fond est important !⚠️️️️
 
 Dans un projet appliquant des pratiques agiles, il est possible de livrer de nouvelles fonctionnalités rapidement en s'appuyant sur des cycles courts.
 
@@ -32,13 +32,15 @@ Comme souvent, en l'absence de gouvernance satisfaisante, c'est l'informalité q
 Comme le disait Ian Malcolm dans Jurassic Park "_life finds a way_".
 Cela ne veut pas dire que des vélociraptors vont attaquer votre SI, mais la situation ne sera quand même pas enviable.
 
-Tout d'abord les décisions seront arbitrées par des jeux ce pouvoir et des rapports de forces officieux, qui font que certains projets auront ce dont ils ont besoin, et pas les autres.
+Tout d'abord les décisions de priorités seront arbitrées par des jeux de pouvoir et des rapports de force, qui font que certains projets obtiendront ce qu'ils demandent, et pas les autres.
 
-Ensuite les projets essaieront de faire au mieux, ce qui signifie faire avec les moyens dont ils disposent.
+Ensuite les projets qui ne parviennent pas à leurs fins de manière directe essaieront de faire au mieux avec les moyens disponibles.
 
-Exemple : demander les données aux projets qui est en mesure de les fournir rapidement, même si ça n'est pas une source officielle ou la source la mieux adaptée au projet
+Par exemple : demander les données aux projets qui sont en mesure de les fournir rapidement, même s'il ne s'agit pas de sources officielles ou des sources les mieux adaptées au projet.
 
-Cela signifie des dépendances cachées qui se créent dans le système, et peut-être des risques sur la qualité des données
+On peut par exemple tenter de récupérer des données opérationnelles depuis un DataLake.
+
+Cela aura souvent des effets secondaires sur le SI comme des dépendances cachées ou des risques sur la qualité des données.
 
 == Quel rapport avec l'agile ?
 
@@ -106,9 +108,7 @@ Dans des grandes organisations, cela signifie souvent que différentes branches 
 
 Il peut s'agir d'un changement difficile à opérer dans une organisation.
 
-Pour les demandes d'une taille plus réduite, les décisions peuvent être déléguées aux projets, sous conditions que le résultat soient satisfaisants. Cela permet de limiter le coût organisationnel en limitant les risques d'erreur.
-
-Cela
+Pour les demandes d'une taille plus réduite, les décisions peuvent être déléguées aux projets, sous conditions que le résultat soient satisfaisants. Cela permet de limiter le coût organisationnel en limitant les risques d'erreur, à condition de donner des marges de manœuvre suffisante aux projets.
 
 == Conclusion
 
