@@ -5,26 +5,21 @@ v0.1, 2018-12-29
 
 Dans un projet appliquant des pratiques agiles, il est possible de livrer de nouvelles fonctionnalités rapidement en s'appuyant sur des cycles courts.
 
-Une des manières d'y parvenir est d'augmenter l'autonomie de l'équipe, car les dépendances extérieures créent des risques de ralentissements.
+Une des manières d'y parvenir est d'avoir une équipe avec un fort niveau d'autonomie, car les dépendances extérieures créent des risques de ralentissements.
 
-Une équipe parfaitement isolée, cela peut exister sur un projet isolé ou dans un environnement parfaitement stabilisé (c'est-à-dire mature et qui n'évolue pas).
+Une équipe parfaitement indépendante, cela peut exister sur un projet isolé d'un SI ou dans un environnement parfaitement stabilisé (c'est-à-dire mature et qui n'évolue pas).
 
-
-Agile : on peut itérer rapidement si on est autonome sur les choses qui fait qu'on n'a pas de dépendances.
-
-Fonctionne sur un projet isolé, ou dans un environnement parfaitement stabilisé (mature et qui n'évolue pas).
-
-Dans un SI ce n'est pas le cas de toutes les applications : dans beaucoup de cas ces dépendances existent et ont des conséquences significatives.
+Dans un SI ce n'est pas le cas de toutes les applications : dans beaucoup de cas ces dépendances existent et ont souvent des conséquences significatives sur le fonctionnement des projets.
 
 == Un exemple concret
 
-Pour une nouvelle fonctionnalité du projet A, il a besoin d'une fonctionnalité F d'un projet B qui n'existe pas encore : un service manquant, une donnée incomplète …
+Une nouvelle fonctionnalité F1 du projet P1 nécessite une fonctionnalité F2 d'un projet P2 qui n'existe pas encore : un service manquant, une donnée incomplète …
 
-Pour cela il faut faire une demande à B, que B accepte la demande, que B la réalise et mette la fonctionnalité à ma disposition.
+Pour cela il faut faire une demande à P2, que P2 accepte la demande, que P2 la réalise et mette F2 à disposition de P1.
 
-Pour B, cela signifie du temps à passer en échange, mais cela signifie aussi que B doit déprioriser certaines de ses besoins pour faire de la place à F.
+Pour P2, réaliser F2 signifie aussi retarder le développer de fonctionnalités qui lui sont directement nécessaires.
 
-Pour B il peut être difficile de mesurer de la priorité "réelle" de F -- si tant est qu'une telle chose existe -- et donc de prendre la bonne décision.
+Pour P2 il peut être difficile de mesurer de la priorité "réelle" de F1 -- si tant est qu'une telle chose existe -- et donc de prendre la bonne décision.
 
 Cela mène typiquement à des phénomènes link:https://fr.wikipedia.org/wiki/Inversion_de_priorité[d'inversion de priorité] où les optimisations globales et locales s'opposent.
 
@@ -86,7 +81,7 @@ Cela vous permet de faire des arbitrage (est ce qu'on laisse tomber si c'est tro
 
 Rien à mettre là : si le problème c'est eux je ne vois pas comment leur demander des choses.
 
-== Côté SI
+== Côté DSI
 
 Du plus simple au plus difficile
 
@@ -99,14 +94,27 @@ Du plus simple au plus difficile
 
 Le dernier point est primordial : il faut que vos projets soient adaptés à votre capacité à faire des choix et à les mettre en œuvre.
 
-== Conclusion : et le métier
+== Côté métier
 
-Jusqu'ici je n'ai rien proposer sur le processus d'arbitrage en lui-même.
+Pour les développement inter-projets d'une certaine taille, le processus d'arbitrage devrait idéalement reposer sur le métier car c'est lui qui a la connaissance et la légitimité pour le faire.
 
-Ma conviction est qu'il doit reposer sur le métier : il doit comprendre que c'est un problème, et s'approprier ce sujet.
+Cela signifie que le métier doit s'approprier le sujet, et trouver une manière de le traiter.
 
-Ce n'est pas à l'IT de mettre de l'arbitrage ou de la gouvernance pour prioriser les demandes entre projets : l'IT peut expliquer, montrer qu'il y a un soucis, mais ne doit pas s'impliquer dans les décisions : même s'il est tendant de vouloir aider, il y a beaucoup à perdre en énergie et en bonne volonté.
+Dans des grandes organisations, cela signifie souvent que différentes branches du métier doivent apprendre à travailler ensemble pour des raisons d'IT, alors qu'elles n'ont que rarement à le faire par ailleurs.
 
-Il s'agit probablement d'un des sujets les plus compliqués à apprendre pour une organisation.
+Il peut s'agir d'un changement difficile à opérer dans une organisation.
+
+Pour les demandes d'une taille plus réduite, les décisions peuvent être déléguées aux projets, sous conditions que le résultat soient satisfaisants. Cela permet de limiter le coût organisationnel.
+
+Il s'agit probablement d'un des changements les plus compliqués à opérer dans une organisation.
+La DSI peut avoir un rôle à jouer pour convaincre et accompagner.
+
+== Conclusion
+
+Attention aux TTM
+
+Surveillez le sujet lorsque vous travailler sur la mise en place de pratiques agiles, surtout quand vous faites des promesses.
+
+Essayer d'optimiser les choses au mieux pour chaque projet, sans attendre une solution globale qui résoudrait tout.
 
 En attendant que les choses progressent la solution est de continuer à adapter votre IT à la maturité de l'organisation, car l'inverse ne fonctionne pas.
