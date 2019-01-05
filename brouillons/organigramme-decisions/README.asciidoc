@@ -1,56 +1,93 @@
 = Organisations hiérarchiques et décisions
 Julien Kirch
-v0.1, 2018-12-29
+v0.1, 2019-01-05
 :article_lang: fr
-:ignore_files: orga.mmd
+:ignore_files: orga1.mmd, orga2.mmd
+:article_image: orga1.png
 :article_description: Un article pour formaliser quelques observations
 
-Cet article a pour but de formaliser quelques observations sur les organisations hiérarchies.
+Cet article a pour but de formaliser quelques observations sur les organisations hiérarchiques.
 
 == Hiérarchies
 
-La plupart des organisation d'une 
+.La plupart des organisation ont une organisation hiérarchique.
+image::orga1.svg[]
 
-contraintes : 
+Les différentes sous-branches sont organisées de différentes manières, par exemple :
 
-* efficacité de la concentration : compétences regroupées
-* efficacité de l'autonomie : compétences différents dans une même équipes
+* en regroupant des personnes avec les mêmes compétences, pour augmenter le niveau d'expertise et faciliter la gestion des compétences et de la disponibilité ;
+* en regroupant des personnes avec des compétences différentes pour augmenter l'indépendance.
 
-== PPMC (plus petit manager commun)
+Une organisation peut appliquer différents systèmes de regroupement suivant les sous-branches, en fonction de ce que font les personnes, de la taille …
 
-Problème du PPMC : quand une décision implique deux équipes et qui ne peut pas être prise au niveau des équipes, par exemple par ce qu'elles ont des objectifs différents, 
+=== PPMC (plus petit manager ou manageuse commun)
+
+Un des problèmes majeurs des organisations d'une certaine taille et la capacité de prendre des décision impliquant deux équipes différentes lorsque les équipes ne sont pas d'accord.
+
+Dans ce cas, une des solution est de remonter au ou à la PPMC, c'est à dire la première personne dans l'organisation qui chapeaute les deux équipes.
 
 .Le PPMC des équipes vertes et rouge est la personne en orange
-image::orga.svg[]
+image::orga2.svg[]
 
-Il est normal que ça arrive, mais il faut que ça n'arrive pas suffisament souvent pour que ça soit une gène.
+Il est normal que cette situation arrive de temps en temps.
+Mais l'enjeux est que cela n'arrive pas _trop souvent_, par rapport au niveau d'importance des question et par rapport à la hauteur hiérarchique du ou de la PPMC.
 
-et il faut que la décision soit compativle avec le niveau hiérarchique du PPMC : le DG ne va pas trancher sur les points de détail
+Dans certaines organisations, il peut s'agir d'un frein structurant au changement.
 
-D'autant plus que le PPCM est élevé.
+Une situation très pénibles à constater et à subir est celle où la question n'est pas assez importante pour être décidée par le ou la PPM ("on ne va pas le ou la déranger pour ça"), mais suffisante pour créer de la gène ou de la frustration dans les équipes.
+Dans certains cas, ce type de problème est impossible à résoudre : le système n'est pas en mesure de trancher ce genre de cas, et la situation peut se prolonger presque indéfiniment.
 
-Deux manière de le faire :
+Dans ce cas la solution est d'améliorer la capacité à prendre des décisions, par exemple en définissant des principes qui simplifient les décisions, en changeant les contraintes qui la rendent difficile à prendre, on en réorganisant les équipes, par exemple en les rapprochant de manière à ce que le ou la PPMC soit à un niveau hiérarchique plus bas.
 
-- s'organiser pour que ça n'arrive pas ;
-- s'organiser pour que le PPMC soit le plus bas possible
+J'ai parlé ici du cas de deux équipes, mais la situation est généralisable à des nombres plus grands.
 
 == La dette organisationnelle
 
-Quand le système ou l'environement a évolué mais pas l'organisation
+Lorsque les rôles des équipes se modifient, il n'est pas rare que l'organisation hiérarchique ne suivent pas, et que certaines décisions deviennent de ce fait compliquées à prendre.
 
-- modèle concentration vs. autonomie 
-- le PPMC n'est pas le bon car le découpage pose problème
+Cette situation est parfois appelée "dette organisationnelle" en rapprochant le cas de celui de la dette technique dans du code.
 
-== Décisions régaliennes & externalités
+Comme pour de la dette technique, l'idée est qu'il est nécessaire de prendre régulièrement du recul est d'investir pour améliorer l'efficacité du système.
 
-Certaines décisions ne doivent pas être prises par une équipe : parfois un PPMC est utile quand il s'agit de décisions avec des externalités
+== Optimum locaux et globaux
 
-Ça peut reposer sur une responsabilisation de l'équipe, ou par du gatekeeping.
+Améliorer l'autonomie des équipes est souvent désirable pour leur permettre d'avancer plus vite, car dépendre d'une autre équipe peut ralentir le travail.
 
-== Les équipes hybrides
+Mais l'autonomie peut aussi être dangereuse, car une équipe a souvent tendance à prendre des décisions correspondant à ses besoins propres, et à moins prendre en compte les besoins des autres acteurs de l'organisation.
 
-Quand on mélange dans une équipe des personnes avec des raccrochement managériale différents.
+Quand le choix qui serait l'optimum local de l'équipe n'est pas celui qui serait l'optimum global de l'organisation, les choses sont parfois difficiles et mènent à des cas link:https://fr.wikipedia.org/wiki/Externalité[d'externalités négatives].
 
-== Les modèles matriciels
+De nombreuses de manière de faire sont mises en œuvre pour limiter les conséquences de ces situations.
 
-Raccrocher des personnes ou des équipes à plusieurs manager qui ont des objectifs différents, pour faire en sorte que les besoins opposés soient traités.
+== Travailler sur les contraintes
+
+L'approche la plus élegante est d'essayer de faire en sorte que les deux optimum se correspondent au mieux, et donc que la situation se produise le moins possible.
+
+L'avantage considérable de cette approche et que cela aura tendance à augmenter l'efficacité du système : si les choix locaux sont alignés avec les choix globaux, cela signifie probablement que ce sont les bons.
+
+L'inconvénient tout aussi considérable est que cela demande du travail, et surtout un travail régulier pour être à l'écoute et s'adapter.
+
+=== Décisions régalienne et contrôle
+
+Lorsque les domaines qui sont en risques sont identifiées, une solution radicale consiste à empêcher l'équipe de prendre une décisions seule dans ce domaine.
+
+Cela peut se faire par des mesure techniques (pour limiter les choix possibles), ou organisationnelles (en nécessitant une validation par une personne extérieure à l'équipe).
+
+== Le multi-rattachement hiérarchique
+
+Une équipe va tendance à faire des choix alignés avec sa hiérarchie.
+
+Si ceux-ci vont à l'encontre des besoins d'une autre partie de l'organisation, il est possible de rattacher une équipe à plusieurs responsables.
+
+L'idée est que l'équipe va alors essayer de faire au mieux pour les satisfaire.
+
+On peut rattacher le ou la responsable, ou mixer dans une équipes des personnes ayant des rattachement différents.
+
+L'efficacité de cette solution est limitée par deux choses :
+
+- le poids des structure de rattachement : si un des rattachement est en fait fictif, c'est à dire que la branche en question n'a pas de pouvoir réel, elle sera bien vite oubliée ;
+- la taille "l'écart" entre les branches de rattachement : s'il est trop important l'équipe aura des difficulté à travailler correctement.
+
+'''
+
+_Les graphiques ont été généré avec link:http://mermaidjs.github.io[mermaid]._
