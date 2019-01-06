@@ -2,8 +2,8 @@
 Julien Kirch
 v0.1, 2019-01-06
 :article_lang: fr
-:ignore_files: orga1.mmd, orga2.mmd
-:article_image: orga1.png
+:ignore_files: orga1.mmd, orga2.mmd, orga3.mmd
+:article_image: orga2.png
 :article_description: Formaliser quelques observations
 
 Cet article a pour but de formaliser quelques observations sur les organisations hiérarchiques pour m'aider à fixer mes idées.
@@ -11,7 +11,7 @@ Cet article a pour but de formaliser quelques observations sur les organisations
 == Hiérarchies
 
 .La plupart des organisation ont une organisation hiérarchique.
-image::orga1.svg[]
+image::orga1.svg[width=500,height=148]
 
 Les différentes sous-branches sont organisées de différentes manières, par exemple :
 
@@ -27,7 +27,7 @@ Un des problèmes majeurs des organisations d'une certaine taille et la capacit�
 Dans ce cas, une des solution est de remonter au ou à la PPMC, c'est à dire la première personne dans l'organisation qui chapeaute les deux équipes.
 
 .Le PPMC des équipes vertes et rouge est la personne en orange
-image::orga2.svg[]
+image::orga2.svg[width=500,height=234]
 
 Il est normal que cette situation arrive de temps en temps.
 Mais l'enjeux est que cela n'arrive pas _trop souvent_, par rapport au niveau d'importance des question et par rapport à la hauteur hiérarchique du ou de la PPMC.
@@ -63,7 +63,7 @@ De nombreuses de manière de faire sont mises en œuvre pour limiter les conséq
 
 == Travailler sur les forces qui s'appliquent pour limiter les écart locaux / globaux
 
-L'approche la plus élegante est d'essayer de faire en sorte que les deux optimum se correspondent au mieux, et donc que la situation se produise le moins possible.
+L'approche la plus élégante est d'essayer de faire en sorte que les deux optimum se correspondent au mieux, et donc que la situation se produise le moins possible.
 
 L'avantage considérable de cette approche et que cela aura tendance à augmenter l'efficacité du système : si les choix locaux sont alignés avec les choix globaux, cela signifie probablement que ce sont les bons.
 
@@ -84,6 +84,9 @@ Le process de validation des exceptions peut permettre de détecter un écart tr
 Une équipe va tendance à faire des choix alignés avec sa hiérarchie.
 
 Si ceux-ci vont à l'encontre des besoins d'une autre partie de l'organisation, il est possible de rattacher une équipe à plusieurs responsables.
+
+.L'équipe orange est rattachée à deux branches
+image::orga3.svg[width=500,height=148]
 
 Par exemple rattacher une équipe projet à deux "métiers" différents.
 
