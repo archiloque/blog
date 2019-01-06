@@ -1,12 +1,12 @@
 = Organisations hiérarchiques et décisions
 Julien Kirch
-v0.1, 2019-01-05
+v0.1, 2019-01-06
 :article_lang: fr
 :ignore_files: orga1.mmd, orga2.mmd
 :article_image: orga1.png
-:article_description: Un article pour formaliser quelques observations
+:article_description: Formaliser quelques observations
 
-Cet article a pour but de formaliser quelques observations sur les organisations hiérarchiques.
+Cet article a pour but de formaliser quelques observations sur les organisations hiérarchiques pour m'aider à fixer mes idées.
 
 == Hiérarchies
 
@@ -55,23 +55,29 @@ Améliorer l'autonomie des équipes est souvent désirable pour leur permettre d
 
 Mais l'autonomie peut aussi être dangereuse, car une équipe a souvent tendance à prendre des décisions correspondant à ses besoins propres, et à moins prendre en compte les besoins des autres acteurs de l'organisation.
 
+Par exemple dans le choix d'un outil qui serait très adapté à l'équipe mais qui serait différent de celui du reste de l'organisation.
+
 Quand le choix qui serait l'optimum local de l'équipe n'est pas celui qui serait l'optimum global de l'organisation, les choses sont parfois difficiles et mènent à des cas link:https://fr.wikipedia.org/wiki/Externalité[d'externalités négatives].
 
 De nombreuses de manière de faire sont mises en œuvre pour limiter les conséquences de ces situations.
 
-== Travailler sur les contraintes
+== Travailler sur les forces qui s'appliquent pour limiter les écart locaux / globaux
 
 L'approche la plus élegante est d'essayer de faire en sorte que les deux optimum se correspondent au mieux, et donc que la situation se produise le moins possible.
 
 L'avantage considérable de cette approche et que cela aura tendance à augmenter l'efficacité du système : si les choix locaux sont alignés avec les choix globaux, cela signifie probablement que ce sont les bons.
 
-L'inconvénient tout aussi considérable est que cela demande du travail, et surtout un travail régulier pour être à l'écoute et s'adapter.
+L'inconvénient tout aussi considérable est que cela demande du travail régulier pour être à l'écoute et adapter le système.
 
 === Décisions régalienne et contrôle
 
-Lorsque les domaines qui sont en risques sont identifiées, une solution radicale consiste à empêcher l'équipe de prendre une décisions seule dans ce domaine.
+Lorsque les domaines qui sont en risques sont identifiés, une solution radicale consiste à empêcher l'équipe de prendre une décisions seule.
+
+Par exemple une équipe projet seule ne doit pas pouvoir décider de choisir un système d'exploitation qui n'est pas au catalogue.
 
 Cela peut se faire par des mesure techniques (pour limiter les choix possibles), ou organisationnelles (en nécessitant une validation par une personne extérieure à l'équipe).
+
+Le process de validation des exceptions peut permettre de détecter un écart trop importants entre les optimum globaux et locaux et peuvent permettre de les rapprocher comme indiqué dans le point précédent.
 
 == Le multi-rattachement hiérarchique
 
@@ -79,15 +85,15 @@ Une équipe va tendance à faire des choix alignés avec sa hiérarchie.
 
 Si ceux-ci vont à l'encontre des besoins d'une autre partie de l'organisation, il est possible de rattacher une équipe à plusieurs responsables.
 
+Par exemple rattacher une équipe projet à deux "métiers" différents.
+
 L'idée est que l'équipe va alors essayer de faire au mieux pour les satisfaire.
 
-On peut rattacher le ou la responsable, ou mixer dans une équipes des personnes ayant des rattachement différents.
+On peut rattacher le ou la responsable, ou mixer dans une équipes des personnes ayant des rattachement différents, par exemple avoir un ou une architecte rattaché à la direction de l'architecture.
 
 L'efficacité de cette solution est limitée par deux choses :
 
 - le poids des structure de rattachement : si un des rattachement est en fait fictif, c'est à dire que la branche en question n'a pas de pouvoir réel, elle sera bien vite oubliée ;
-- la taille "l'écart" entre les branches de rattachement : s'il est trop important l'équipe aura des difficulté à travailler correctement.
+- la taille de l'écart entre les branches de rattachement : s'il est trop important l'équipe pourrait avoir des difficultés à travailler correctement, cela pourrait la forcer à passer par des PPMC, ou créer des tensions.
 
-'''
-
-_Les graphiques ont été généré avec link:http://mermaidjs.github.io[mermaid]._
+_Les graphiques de l'article ont été généré avec link:http://mermaidjs.github.io[mermaid]._
