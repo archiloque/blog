@@ -10,7 +10,7 @@ Cet article a pour but de formaliser quelques observations sur les organisations
 
 == Hiérarchies
 
-.La plupart des organisation ont une organisation hiérarchique.
+.La plupart des organisations ont une organisation hiérarchique.
 image::orga1.svg[width=500,height=148]
 
 Les différentes sous-branches sont organisées de différentes manières, par exemple :
@@ -24,17 +24,17 @@ Une organisation peut appliquer différents systèmes de regroupement suivant le
 
 Un des problèmes majeurs des organisations d'une certaine taille et la capacité de prendre des décision impliquant deux équipes différentes lorsque les équipes ne sont pas d'accord.
 
-Dans ce cas, une des solution est de remonter au ou à la PPMC, c'est à dire la première personne dans l'organisation qui chapeaute les deux équipes.
+Dans ce cas, une des solutions est de remonter au ou à la PPMC, c'est à dire la première personne dans l'organisation qui chapeaute les deux équipes.
 
-.Le PPMC des équipes vertes et rouge est la personne en orange
+.Le PPMC des équipes verte et rouge est la personne en orange
 image::orga2.svg[width=500,height=234]
 
 Il est normal que cette situation arrive de temps en temps.
-Mais l'enjeux est que cela n'arrive pas _trop souvent_, par rapport au niveau d'importance des question et par rapport à la hauteur hiérarchique du ou de la PPMC.
+Mais l'enjeu est que cela n'arrive pas _trop souvent_, par rapport au niveau d'importance des questions et par rapport à la hauteur hiérarchique du ou de la PPMC.
 
 Dans certaines organisations, il peut s'agir d'un frein structurant au changement.
 
-Une situation très pénibles à constater et à subir est celle où la question n'est pas assez importante pour être décidée par le ou la PPM ("on ne va pas le ou la déranger pour ça"), mais suffisante pour créer de la gène ou de la frustration dans les équipes.
+Une situation très pénible à constater et à subir est celle où la question n'est pas assez importante pour être décidée par le ou la PPMC ("on ne va pas le ou la déranger pour ça"), mais suffisante pour créer de la gêne ou de la frustration dans les équipes.
 Dans certains cas, ce type de problème est impossible à résoudre : le système n'est pas en mesure de trancher ce genre de cas, et la situation peut se prolonger presque indéfiniment.
 
 Dans ce cas la solution est d'améliorer la capacité à prendre des décisions, par exemple en définissant des principes qui simplifient les décisions, en changeant les contraintes qui la rendent difficile à prendre, on en réorganisant les équipes, par exemple en les rapprochant de manière à ce que le ou la PPMC soit à un niveau hiérarchique plus bas.
@@ -43,7 +43,7 @@ J'ai parlé ici du cas de deux équipes, mais la situation est généralisable �
 
 == La dette organisationnelle
 
-Lorsque les rôles des équipes se modifient, il n'est pas rare que l'organisation hiérarchique ne suivent pas, et que certaines décisions deviennent de ce fait compliquées à prendre.
+Lorsque les rôles des équipes se modifient, il n'est pas rare que l'organisation hiérarchique ne suive pas, et que certaines décisions deviennent de ce fait compliquées à prendre.
 
 Cette situation est parfois appelée "dette organisationnelle" en rapprochant le cas de celui de la dette technique dans du code.
 
@@ -63,25 +63,25 @@ De nombreuses de manière de faire sont mises en œuvre pour limiter les conséq
 
 == Travailler sur les forces qui s'appliquent pour limiter les écart locaux / globaux
 
-L'approche la plus élégante est d'essayer de faire en sorte que les deux optimum se correspondent au mieux, et donc que la situation se produise le moins possible.
+L'approche la plus élégante est d'essayer de faire en sorte que les deux optimums se correspondent au mieux, et donc que la situation se produise le moins possible.
 
 L'avantage considérable de cette approche et que cela aura tendance à augmenter l'efficacité du système : si les choix locaux sont alignés avec les choix globaux, cela signifie probablement que ce sont les bons.
 
 L'inconvénient tout aussi considérable est que cela demande du travail régulier pour être à l'écoute et adapter le système.
 
-=== Décisions régalienne et contrôle
+=== Décisions régaliennes et contrôle
 
-Lorsque les domaines qui sont en risques sont identifiés, une solution radicale consiste à empêcher l'équipe de prendre une décisions seule.
+Lorsque les domaines qui sont en risques sont identifiés, une solution radicale consiste à empêcher l'équipe de prendre une décision seule.
 
 Par exemple une équipe projet seule ne doit pas pouvoir décider de choisir un système d'exploitation qui n'est pas au catalogue.
 
-Cela peut se faire par des mesure techniques (pour limiter les choix possibles), ou organisationnelles (en nécessitant une validation par une personne extérieure à l'équipe).
+Cela peut se faire par des mesures techniques (pour limiter les choix possibles), ou organisationnelles (en nécessitant une validation par une personne extérieure à l'équipe).
 
-Le process de validation des exceptions peut permettre de détecter un écart trop importants entre les optimum globaux et locaux et peuvent permettre de les rapprocher comme indiqué dans le point précédent.
+Le process de validation des exceptions peut permettre de détecter un écart trop important entre les optimums globaux et locaux et peuvent permettre de les rapprocher comme indiqué dans le point précédent.
 
 == Le multi-rattachement hiérarchique
 
-Une équipe va tendance à faire des choix alignés avec sa hiérarchie.
+Une équipe va avoir tendance à faire des choix alignés avec sa hiérarchie.
 
 Si ceux-ci vont à l'encontre des besoins d'une autre partie de l'organisation, il est possible de rattacher une équipe à plusieurs responsables.
 
@@ -92,11 +92,11 @@ Par exemple rattacher une équipe projet à deux "métiers" différents.
 
 L'idée est que l'équipe va alors essayer de faire au mieux pour les satisfaire.
 
-On peut rattacher le ou la responsable, ou mixer dans une équipes des personnes ayant des rattachement différents, par exemple avoir un ou une architecte rattaché à la direction de l'architecture.
+On peut rattacher le ou la responsable, ou mélanger dans une équipe des personnes ayant des rattachement différents, par exemple avoir un ou une architecte rattaché à la direction de l'architecture.
 
 L'efficacité de cette solution est limitée par deux choses :
 
-- le poids des structure de rattachement : si un des rattachement est en fait fictif, c'est à dire que la branche en question n'a pas de pouvoir réel, elle sera bien vite oubliée ;
+- le poids des structures de rattachement : si un des rattachement est en fait fictif, c'est à dire que la branche en question n'a pas de pouvoir réel, elle sera bien vite oubliée ;
 - la taille de l'écart entre les branches de rattachement : s'il est trop important l'équipe pourrait avoir des difficultés à travailler correctement, cela pourrait la forcer à passer par des PPMC, ou créer des tensions.
 
 _Les graphiques de l'article ont été généré avec link:http://mermaidjs.github.io[mermaid]._
