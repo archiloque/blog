@@ -1,22 +1,49 @@
-= Ce que j'ai appris des jeux vidéos
+= Ce que j'ai appris des jeux vidéo
 Julien Kirch
 v0.1, 2017-02-17
 :article_lang: fr
+:article_description: D'autres manières de développer
 
-Beaucoup de choses sont plus relatives que ce qu'on pense
-Je ne dis pas qu'on devrait faire pareil
-Je ne dis pas qu'ils ne devraient pas changer
+À ne faire que de link:https://fr.wikipedia.org/wiki/Informatique_de_gestion[l'informatique de gestion], c'est à dire essentiellement des sites webs et des programmes de traitements pour des entreprises ou équivalent, et à ne travailler qu'avec des personnes qui travaillent dans cette branche de l'informatique, on peut en oublier qu'il en existe d'autres :
+informatique industrielles, informatique scientifique …
 
-Les pratiques de développement logicielles sont plus inégales qu'on pourrait le penser
+D'autres informatiques cela signifie aussi d'autres manières de faire de l'informatique.
+
+S'intéresser à ces manière de faire permet de prendre du recul sur nos pratiques : découvrir que d'autres font différement permet de briser l'illusions que nos pratiques sont les seules possibles.
+Cela peut permettre ensuite de recontextualiser nos habitudes : ne plus faire quelque chose parce que tout le monde fait comme ça, mais le faire pour certaines raisons.
+
+J'ai choisi ici l'exemple du développement du jeu vidéo car c'est un domaine que je connais par des articles, et qu'il s'agit d'un milieu suffisament grand pour ne pas pouvoir être qualifié d'être "de niche", et donc sans valeur.
+
+== Précautions :
+
+* Les pratiques du développement de jeux vidéo sont multiples, j'ai choisis ici des pratiques qui me semblent assez largement répandues mais bien entendu il en existe d'autres ;
+* Je ne dis pas que les pratiques de développement de jeux vidéo pourraient être bénéfique si elles étaient appliquées à l'informatique de gestion ;
+* Je ne dis pas que certaines des pratiques de l'informatique de gestion ne pourraient pas être bénéfiques au développement de jeux vidéo ;
 
 == L'importance d'avoir un feedback rapide pendant le développement
 
-== L'importance des outils
+Gros investissement dans les outils pour la productivité de l'équipe.
 
 == L'OO n'est pas la solution à tout, surtout dans un système dynamique
 
-== La limite des abstractions
+Les jeux vidéo sont en général des systèmes à états, et ont souvent des groupes d'items partageant des caractéristiques communes et se spécialisant.
 
-== On peut faire sans tests automatisés, ou même manuels
+== Recoder parce que les abstractions côutent trop cher
 
-== Le brute-force fonctionne
+Les abstractions peuvent avoir un coût qu'on oublie quand on est dans les situations où il est négligable.
+
+Dans les jeux vidéo ça peut ne pas être le cas, par exemple sur les console.
+
+Dans ce cas on peut devoir recoder une link:https://github.com/electronicarts/EASTL[bibliothèque standard], ou link:http://gameprogrammingpatterns.com/object-pool.html[gérer la mémoire manuellement].
+
+== Le low code fonctionne
+
+On se moque beaucoup des plateformes de low-code sensées être utilisées par les gens du métier et qui au final sont utilisées par le dév tout en étant moins bien que des outils standard.
+
+Dans le jeux vidéo cela fonctionne : par exemple la gestion des quètes, qui sont des comportements assimilés à du code, sont écrit par des personnes dont c'est le métier.
+
+Le secret c'est que les plateformes de low code sont souvent développées en fonction du jeu.
+
+== Le développement comme une usine
+
+== Faire de gros horaires peut fonctionner
