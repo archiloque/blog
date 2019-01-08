@@ -28,6 +28,7 @@ So how to solve such ad-hoc tasks? One could of course solve it also on applicat
 ____
 
 ===== link:https://lwn.net/Articles/728682/[IncludeOS: a unikernel for C++ applications]
+
 [quote]
 ____
 IncludeOS is a project to create a C++ API for the development of unikernel-based applications. When an application is built using IncludeOS, the development toolchain will link in the parts of the IncludeOS library required to run it and create a disk image with a bootloader attached. An IncludeOS image can be hundreds of times smaller than the Ubuntu system image for running an equivalent program. Start times for the images run in the hundreds of milliseconds, making it possible to spin up many such virtual machine images quickly.
