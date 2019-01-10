@@ -22,17 +22,17 @@ J'ai choisi ici l'exemple du développement du jeu vidéo car c'est un domaine q
 * Je ne dis pas que les pratiques de développement de jeux vidéo pourraient être bénéfique si elles étaient appliquées à l'informatique de gestion ;
 * Je ne dis pas que les pratiques actuelles du développement de jeux vidéo sont les meilleures possibles ni que certaines des pratiques de l'informatique de gestion ne pourraient pas être bénéfiques au développement de jeux vidéo ;
 
-== L'importance d'avoir un feedback rapide pendant le développement
+== L'importance d'obtenir un feedback rapide pendant le développement
 
 Dans le jeu vidéo une part importante du développement se fait de manière exploratoire par essai et erreur pour obtenir un comportement qui convienne.
 
-Dans cette situation la capacité à avoir un feedback rapide est très importante car c'est elle qui limite la vitesse de travail.
+Dans cette situation la capacité à obtenir un feedback rapide est très importante car c'est elle qui limite la vitesse de travail.
 
 Pour cela un investissement important se fait sur les process de build, en mesurant les temps passé et en cherchant à l'optimiser, y compris link:http://aras-p.info/blog/2018/12/28/Modern-C-Lamentations/[en adaptant le style de développement].
 
 Cela permet de construire des projets de tailles importantes en un temps très court.
 
-Dans l'informatique de gestion j'ai l'impression qu'on a beaucoup travaillé sur les tests automatisés comme manière avoir des feedbacks rapide en se passant d'avoir à construire l'intégralité du code, mais qu'on néglige parfois le build lui-même.
+Dans l'informatique de gestion j'ai l'impression qu'on a beaucoup travaillé sur les tests automatisés comme manière obtenir des feedbacks rapide en se passant d'avoir à construire l'intégralité du code, mais qu'on néglige parfois le build lui-même.
 
 == L'objet n'est pas la solution à tout, surtout dans un système dynamique
 
