@@ -9,49 +9,51 @@ v0.1, 2019-01-09
 
 === Il y a 25 ans : la préhistoire
 
-Il y a 25 ans, si vous étiez une entreprise grande ou petite et que vous vouliez créer un système informatique, il fallait acheter des outils : une base de données, un bus de message, un système d'exploitation, des outils de monitoring.
+Il y a 25 ans, si vous étiez une entreprise grande ou petite et que vous vouliez créer un système informatique, il fallait acheter des outils, des tas d'outils : une base de données, un bus de message, un système d'exploitation, un compilateur C, des outils de monitoring …
 
 À cette époque la très grande majorité des outils étaient propriétaires et payants.
 
-Les développements internes étant souvent lents et hasardeux, il était souvent préférable d'acheter un logiciel, même si son utilité était faible, plutôt qu'essayer de le redévelopper soi-même.
+Les développements internes étaient souvent lents et hasardeux, il était donc souvent préférable d'acheter un logiciel, même si son utilité était faible, plutôt qu'essayer de le redévelopper soi-même.
 
 === Il y a 15 ans : l'open source
 
 L'open-source s'est fait une place dans le paysage.
 
-Les grosses entreprises, habituées aux fonctionalités très spécifiques de produits propriétaires, continue souvent à en utiliser.
+Les grosses entreprises, habituées aux fonctionalités très spécifiques de produits propriétaires, continuent souvent à en utiliser.
 
 Cependant pour certains besoins, l'open source a commencé à les remplacer ou à les compléter :
-Hudson (désormais Jenkins) s'installe et à la place d'Oracle il devient possible d'utiliser PostgreSQL ou MySQL pour les projets non critiques.
+Hudson (désormais Jenkins) s'installe et à la place d'Oracle il devient possible d'utiliser PostgreSQL ou MySQL (même si c'est plutôt pour pour les projets non critiques).
 Les outil open-source critiques sont généralement couvert par un support payant, fourni par l'éditeur ou une entreprise tierce.
 
-Dans les entreprises plus petite, l'open source est la norme : Linux, Apache, Java …
-Quand les besoins se complexifient, on pourra préférer aménager sa manière de travailler ou faire des développement maison plutôt que de migrer vers des outil d'entreprise à mauvaise réputation.
-Quand la criticité augmente, on pourra acheter du support.
+Dans les entreprises plus petites, l'open source est la norme : Linux, Apache, php …
+Quand les besoins se complexifient, on pourra préférer aménager sa manière de travailler ou faire des développements maison plutôt que de migrer vers des outil propriétaires à mauvaise réputation.
+Quand la criticité des systèmes augmente, on pourra acheter du support à des entreprises spécialisées mais sans changer de technologie.
 
 Les besoins plus spécifiques à valeur ajoutée sont toujours achetés, mais leur pré carré diminue.
 
 === Aujourd'hui : le cloud
 
-Une startup qui démarre le fera probablement sur le cloud, avec des outils fournis par son fournisseur de cloud ou gratuits.
+Une startup qui démarre aujourd'hui le fera probablement sur le cloud, tous ses outils seront soit fournis par son hébergeur de cloud soit gratuits.
 
-Bâtis sur des solutions open-sources ou développés en interne, ils sont souvent peu chers et d'une couverture fonctionnelle équivalente voire supérieures aux solutions d'éditeurs classiques.
+Les outils des hébergeurs sont souvent peu chers et d'une couverture fonctionnelle équivalente voire supérieures aux solutions d'éditeurs classiques.
+
+Ils sont souvent assez bien intégrés avec le reste de leur écosystème, par exemple pour la gestion des droits.
+
+S'appuyant sur des capacités techniques et financières importantes, ils sont capables d'évoluer rapidement quand un nouveau besoin émerge.
 
 Les services sont de plus managés, limitant les besoins d'expertise.
 
-S'appuyant sur une capacité à faire importante, ils sont capables d'évoluer rapidement.
+En résumé :  ces entreprises n'achètent que très peu de logiciels directement, et ne le feront probablement pas à l'avenir.
 
-Dis autrement : ces entreprises n'achètent que très peu de logiciels directement, et ne le feront probablement pas à l'avenir.
+Les entreprises existantes qui migrent sur le cloud sont attirées par ce modèle, la capacité à avoir une excuse pour échaper à certains éditeurs est parfois un argument puissant pour sauter le pas.
 
-Les entreprises existantes qui migrent sur le cloud sont attirées par ce modèle.
+== Et les éditeurs ?
 
-== Et les éditeurs
+Pour un éditeur d'outil, comme une base de donnée ou un link:https://fr.wikipedia.org/wiki/Middleware[middleware] la situation est préoccupante : les clients historiques ont envie de partir, et les entreprises pas encore clientes ne le deviendront probablement pas.
 
-Pour un éditeur d'outil, comme une base de donnée ou un link:https://fr.wikipedia.org/wiki/Middleware[middleware] la situation est préoccupante : les clients historiques ont envie de partir, et les entreprises pas encore clientes ne le deviendront pas.
+Pour les éditeurs de solutions plus ou moins open-source, la mode est de link:https://www.zdnet.com/article/its-mongodbs-turn-to-change-its-open-source-license/[changer de license] pour éviter que les vendeurs de solutions ne se mettent à vous concurrencer directement en vendant une version hébergée de votre solution, mais cela ne fera que les ralentir.
 
-Pour les éditeurs de solutions open-source, la mode est de link:https://www.zdnet.com/article/its-mongodbs-turn-to-change-its-open-source-license/[changer de license] pour éviter que les vendeurs de solutions ne se mettent à vous concurrencer directement, mais cela ne fera que les ralentir.
-
-La situation est grave, est-elle désespérée ?
+Bref la situation est grave, mais est-elle désespérée ?
 
 == Que faire ?
 
@@ -59,26 +61,28 @@ Il reste quelques approches possibles.
 
 === Les niches
 
-Il est possible de trouver une niche à valeur ajoutée.
+Il est possible de trouver une niche à valeur ajoutée pour laquelle l'éditeur sera tranquile.
 
 Le problème : il s'agit d'une niche, et donc d'un marché structurellement limité.
 
-Et si, coup de chance, la niche s'élargit trop, le risque est de se faire concurrencer par un fournisseur de cloud, profitant de sa capacité de développement supérieure.
+Et si, coup de chance, la niche s'élargit trop, le risque est d'atirer la concurence d'un fournisseur de cloud, profitant de sa capacité de développement supérieure et de son positionnement comme "guichet unique" pour les clients.
 
-Le plan de sortie est alors de se faire racheter par un autre vendeur qui veut se positionner sur ce créneau et qui est prêt à payer pour cela.
+Le plan de sortie est alors de se faire racheter par un autre vendeur qui ne veut pas rester à la traîne et qui est prêt à payer pour cela.
 
-Cela veut souvent dire que l'entreprise en question manque de capacité à faire (car sinon elle préférerait faire elle-même), et donc un rachat par une boite comme Dell, Oracle ou IBM.
+Pour éviter ça, le mieux est de trouver un domaine éloigné de la pur technologie, comme par exemple se positionner sur un métier.
+Le marché est alors possiblement plus étroit, mais le risque est plus faible.
 
 === L'accompagnement
 
-C'est l'approche de beaucoup "d'éditeur" de solutions open-source : distribuer sa solution gratuitement et gagner de l'argent sur l'accompagnement.
+C'est l'approche de beaucoup d'éditeurs de solutions open-source : distribuer sa solution gratuitement et gagner de l'argent sur l'accompagnement.
 
-Le pseudo-éditeur était souvent alors une société de service qui se servait du produit comme point d'accroche.
+L'entreprise était souvent alors une société de service qui se servait du produit comme point d'accroche.
 
-C'est un marché qui n'intéresse pas directement les vendeurs de clouds car il n'offre pas d'effet de levier.
+C'est un marché qui n'intéresse pas directement les vendeurs de clouds car il n'offre pas d'effet de levier : pour augmenter le chiffre d'affaire il faut embaucher plus de personnes.
+
 Par contre ils peuvent copiner avec des entreprises sur ce modèle : eux fournissent la technologie, l'entreprise la force de travail.
 
-L'autre danger, c'est le niveau de développement moyen des clients qui monte, et qui vont préférer faire eux-même pour limiter leur dépendance.
+L'autre danger, c'est le niveau de développement moyen des clients qui monte, et qui vont préférer faire eux-même pour limiter leur dépendance, plutôt que de payer une entreprise tierce.
 
 === Le multi-cloud
 
@@ -86,8 +90,13 @@ C'est le nouveau hype des éditeurs depuis quelques temps :
 jouer sur la peur du lock-in avec un éditeur de cloud pour vendre des solutions multi-cloud.
 
 Ce qu'en autre temps on appelait le link:https://fr.wikipedia.org/wiki/Fear,_uncertainty_and_doubt[FUD].
+Cela donne ce genre de discours.
 
-"Vous ne pouvez pas avoir confiance en Amazon, et si demain Azure étaient mieux, nous vous vendons une solution qui vous isole du vendeur et vous permet de passer de l'un à l'autre ou même les deux en même temps."
+[quote]
+____
+Vous ne pouvez pas avoir confiance en Amazon, si demain ils devenaient méchants ? Ou si après-demain Azure devenait plus adapté à vos besoin ?
+Nous vous vendons une solution qui vous isole du vendeur et vous permet de passer de l'un à l'autre ou même les deux en même temps.
+____
 
 Bien entendu, cela passe souvent par un lock-in avec la solution en question.
 
@@ -95,18 +104,22 @@ Il y a quelques années, des vendeurs de solutions proposaient la même chose po
 
 L'expérience a montré que c'était en règle générale une très mauvaise idées :
 
-- les solutions ne permettaient d'utiliser que les fonctionnalités communes aux différents vendeurs, cela limitait l'adhérence mais pouvait être gênant  ;
-- les solutions ajoutaient de la complexité ;
+- les solutions ne permettaient d'utiliser que les fonctionnalités communes aux différents vendeurs, cela limitait l'adhérence mais pouvait être gênant, parfois cela signifiant devoir refaire des développement spécifique pour combler le manque, ou alors renoncer à l'isolation ;
+- les solutions ajoutaient de la complexité, par exemple en cas d'erreur ;
 - on préférait ne pas changer de solution de BDD en cours de route pour limiter les risques ;
 - en général l'entreprise qui laissait à désirer était celle qui vendait la solution intermédiaire, et pas celui de la base de donnée (quand on connaît les réputations d'Oracle ou d'IBM je vous laisse imaginer …).
 
-Je ne sais pas si l'histoire se répétera, mais quand je vois le peu d'alternatives possible aux éditeurs je me dis qu'ils vont pousser cette solution autant qu'ils peuvent.
+Je ne sais pas si l'histoire se répétera, mais quand je vois le peu d'alternatives possible aux éditeurs je me dis que beaucoup vont pousser cette solution autant qu'ils le peuvent.
 
-Le fait que certains affichent le multi-cloud comme quelque chose qui devrait être "par défaut" et pas un besoin avancé seulement pertinent pour une poignée d'entreprise me fait craindre le pire.
+Le fait que certains affichent le multi-cloud comme quelque chose qui devrait être "par défaut" et pas un besoin avancé seulement pertinents pour une poignée d'entreprise me fait craindre le pire.
 
 == En conclusion
 
-Pour les éditeurs d'outils généralistes l'avenir est sombre, et les solutions pour s'en sortir pas forcément honorable.
+Pour les éditeurs d'outils généralistes l'avenir me parâit sombre, et les solutions pour s'en sortir pas toutes honorables.
+
+Pour toutes les entreprises qui vont se retrouver dos au mur face à des VC exigant d'en avoir pour leur argent, cela va devenir difficiles.
+
+Je crains le pire pour leurs clients.
 
 Une surprise est toujours possible, mais j'ai l'impression que leur marché va structurellement diminuer, et qu'ils n'auront plus jamais l'influence qu'ils ont eu un jour : leur temps est probablement passé.
 
