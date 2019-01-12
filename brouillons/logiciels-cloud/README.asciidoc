@@ -9,7 +9,7 @@ v0.1, 2019-01-09
 
 === Il y a 25 ans : la préhistoire
 
-Il y a 25 ans, si vous étiez une entreprise grande ou petite et que vous vouliez créer un système informatique, il fallait acheter des outils, des tas d'outils : une base de données, un bus de message, un système d'exploitation, un compilateur C, des outils de monitoring …
+Il y a 25 ans, si vous étiez une organisation grande ou petite et que vous vouliez créer un système informatique, il fallait acheter des outils, des tas d'outils : une base de données, un bus de message, un système d'exploitation, un compilateur C, des outils de monitoring …
 
 À cette époque la très grande majorité des outils étaient propriétaires et payants.
 
@@ -19,13 +19,13 @@ Les développements internes étaient souvent lents et hasardeux, il était donc
 
 L'open-source s'est fait une place dans le paysage.
 
-Les grosses entreprises, habituées aux fonctionalités très spécifiques de produits propriétaires, continuent souvent à en utiliser.
+Les grosses organisations, habituées aux fonctionalités très spécifiques de produits propriétaires, continuent souvent à en utiliser.
 
 Cependant pour certains besoins, l'open source a commencé à les remplacer ou à les compléter :
 Hudson (désormais Jenkins) s'installe et à la place d'Oracle il devient possible d'utiliser PostgreSQL ou MySQL (même si c'est plutôt pour pour les projets non critiques).
 Les outil open-source critiques sont généralement couvert par un support payant, fourni par l'éditeur ou une entreprise tierce.
 
-Dans les entreprises plus petites, l'open source est la norme : Linux, Apache, php …
+Dans les organisations plus petites, l'open source est la norme : Linux, Apache, php …
 Quand les besoins se complexifient, on pourra préférer aménager sa manière de travailler ou faire des développements maison plutôt que de migrer vers des outil propriétaires à mauvaise réputation.
 Quand la criticité des systèmes augmente, on pourra acheter du support à des entreprises spécialisées mais sans changer de technologie.
 
@@ -43,13 +43,13 @@ S'appuyant sur des capacités techniques et financières importantes, ils sont c
 
 Les services sont de plus managés, limitant les besoins d'expertise.
 
-En résumé :  ces entreprises n'achètent que très peu de logiciels directement, et ne le feront probablement pas à l'avenir.
+En résumé :  ces organisations n'achètent que très peu de logiciels directement, et ne le feront probablement pas à l'avenir.
 
-Les entreprises existantes qui migrent sur le cloud sont attirées par ce modèle, la capacité à avoir une excuse pour échaper à certains éditeurs est parfois un argument puissant pour sauter le pas.
+Les organisations existantes qui migrent sur le cloud sont attirées par ce modèle, la capacité à avoir une excuse pour échaper à certains éditeurs est parfois un argument puissant pour sauter le pas.
 
 == Et les éditeurs ?
 
-Pour un éditeur d'outil, comme une base de donnée ou un link:https://fr.wikipedia.org/wiki/Middleware[middleware] la situation est préoccupante : les clients historiques ont envie de partir, et les entreprises pas encore clientes ne le deviendront probablement pas.
+Pour un éditeur d'outil, comme une base de donnée ou un link:https://fr.wikipedia.org/wiki/Middleware[middleware] la situation est préoccupante : les clients historiques ont envie de partir, et les organisations pas encore clientes ne le deviendront probablement pas.
 
 Pour les éditeurs de solutions plus ou moins open-source, la mode est de link:https://www.zdnet.com/article/its-mongodbs-turn-to-change-its-open-source-license/[changer de license] pour éviter que les vendeurs de solutions ne se mettent à vous concurrencer directement en vendant une version hébergée de votre solution, mais cela ne fera que les ralentir.
 
@@ -61,13 +61,24 @@ Il reste quelques approches possibles.
 
 === Les niches
 
-Il est possible de trouver une niche à valeur ajoutée pour laquelle l'éditeur sera tranquile.
+Il est possible de trouver une niche à valeur ajoutée pour laquelle l'éditeur sera tranquille.
 
 Le problème : il s'agit d'une niche, et donc d'un marché structurellement limité.
 
-Et si, coup de chance, la niche s'élargit trop, le risque est d'atirer la concurence d'un fournisseur de cloud, profitant de sa capacité de développement supérieure et de son positionnement comme "guichet unique" pour les clients.
+Et si, coup de chance, la niche s'élargit trop, le risque est d'attirer la concurrence d'un fournisseur de cloud, profitant de sa capacité de développement supérieure et de son positionnement comme "guichet unique" pour les clients.
 
 Le plan de sortie est alors de se faire racheter par un autre vendeur qui ne veut pas rester à la traîne et qui est prêt à payer pour cela.
+
+==== Bye le legacy
+
+Le marché du legacy, c'est à dire de vendre des produits spécialement adaptés aux clients qui ont des anciens systèmes et lui aussi en risque.
+Historiquement il était très rentable, car un client bloqué sur de vieilles applications irremplaçables est souvent prêt à payer cher pour pouvoir continuer à les utiliser.
+
+Malheureusement, comme ces systèmes legacy sont un frein pour migrer sur le cloud, les fournisseurs ont commencer à adresser ce marché pour attirer ces clients potentiels.
+
+Par exemple link:https://aws.amazon.com/fr/blogs/aws/new-aws-transfer-for-sftp-fully-managed-sftp-service-for-amazon-s3/[l'accès SFTP pour Amazon S3] ou link:https://www.theregister.co.uk/2018/07/18/aws_launches_on_premises_ec2_instances/[les serveurs __on premise__].
+
+==== L'avenir c'est le métier
 
 Pour éviter ça, le mieux est de trouver un domaine éloigné de la pur technologie, comme par exemple se positionner sur un métier.
 Le marché est alors possiblement plus étroit, mais le risque est plus faible.
@@ -115,9 +126,9 @@ Le fait que certains affichent le multi-cloud comme quelque chose qui devrait ê
 
 == En conclusion
 
-Pour les éditeurs d'outils généralistes l'avenir me parâit sombre, et les solutions pour s'en sortir pas toutes honorables.
+Pour les éditeurs d'outils généralistes l'avenir me parait sombre, et les solutions pour s'en sortir pas toutes honorables.
 
-Pour toutes les entreprises qui vont se retrouver dos au mur face à des VC exigant d'en avoir pour leur argent, cela va devenir difficiles.
+Pour toutes les éditeurs qui vont se retrouver dos au mur face à des VC exigeant d'en avoir pour leur argent après avoir beaucoup investi, cela va devenir difficile.
 
 Je crains le pire pour leurs clients.
 
