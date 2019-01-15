@@ -9,9 +9,9 @@ v0.1, 2019-01-15
 
 === Il y a 25 ans : la préhistoire
 
-Il y a 25 ans, si vous étiez une organisation grande ou petite et que vous vouliez créer un système informatique, il fallait acheter des outils, des tas d'outils : système de gestion de base de données, un bus de message, un système d'exploitation, un compilateur C, des outils de monitoring …
+Il y a 25 ans, si vous étiez une organisation grande ou petite et que vous vouliez créer un système informatique, il fallait acheter des outils, des tas d'outils : une base de données, un bus de messages, un système d'exploitation, un compilateur C, des outils de monitoring…
 
-À cette époque la très grande majorité des outils étaient propriétaires et payants.
+À cette époque, la très grande majorité des outils étaient propriétaires et payants.
 
 Les développements internes étaient souvent lents et hasardeux, il était donc souvent préférable d'acheter un logiciel, même si son utilité était faible, plutôt qu'essayer de le redévelopper soi-même.
 
@@ -23,7 +23,7 @@ Les grosses organisations, habituées aux fonctionalités très spécifiques de 
 
 Cependant pour certains besoins, l'open source a commencé à les remplacer ou à les compléter :
 Hudson (désormais Jenkins) s'installe et à la place d'Oracle il devient possible d'utiliser PostgreSQL ou MySQL (même si c'est plutôt pour pour les projets non critiques).
-Les outil open-source critiques sont généralement couvert par un support payant, fourni par l'éditeur ou une entreprise tierce.
+Les outils open-source critiques sont généralement couvert par un support payant, fourni par l'éditeur ou une entreprise tierce.
 
 Dans les organisations plus petites, l'open source est la norme : Linux, Apache, php …
 Quand les besoins se complexifient, on pourra préférer aménager sa manière de travailler ou faire des développements maison plutôt que de migrer vers des outil propriétaires à mauvaise réputation.
@@ -49,9 +49,9 @@ Les organisations existantes qui migrent sur le cloud sont attirées par ce mod�
 
 == Et les éditeurs ?
 
-Pour un éditeur d'outil, comme une base de donnée ou un link:https://fr.wikipedia.org/wiki/Middleware[middleware] la situation est préoccupante : les clients historiques ont envie de partir, et les organisations pas encore clientes ne le deviendront probablement pas.
+Pour un éditeur d'outils, comme une base de données ou un link:https://fr.wikipedia.org/wiki/Middleware[middleware] la situation est préoccupante : les clients historiques ont envie de partir, et les organisations pas encore clientes ne le deviendront probablement pas.
 
-Pour les éditeurs de solutions plus ou moins open-source, la mode est de link:https://www.zdnet.com/article/its-mongodbs-turn-to-change-its-open-source-license/[changer de license] pour éviter que les vendeurs de solutions ne se mettent à vous concurrencer directement en vendant une version hébergée de votre solution, mais cela ne fera que les ralentir : leur importante capacité à faire leur permet de ne pas êter bloqués par ce genre d'obstacles.
+Pour les éditeurs de solutions plus ou moins open-source, la mode est de link:https://www.zdnet.com/article/its-mongodbs-turn-to-change-its-open-source-license/[changer de licence] pour éviter que les vendeurs de solutions ne se mettent à vous concurrencer directement en vendant une version hébergée de votre solution, mais cela ne fera que les ralentir.
 
 Bref la situation est grave, mais est-elle désespérée ?
 
@@ -71,7 +71,7 @@ Le plan de sortie est alors de se faire racheter par un autre vendeur qui ne veu
 
 ==== Bye le legacy
 
-Le marché du legacy, c'est à dire de vendre des produits spécialement adaptés aux clients qui ont des anciens systèmes et lui aussi en risque.
+Le marché du legacy, c'est à dire de vendre des produits spécialement adaptés aux clients qui ont des anciens systèmes est lui aussi en risque.
 Historiquement il était très rentable, car un client bloqué sur de vieilles applications irremplaçables est souvent prêt à payer cher pour pouvoir continuer à les utiliser.
 
 Malheureusement, comme ces systèmes legacy sont un frein pour migrer sur le cloud, les fournisseurs ont commencer à adresser ce marché pour attirer ces clients potentiels.
@@ -80,16 +80,16 @@ Par exemple link:https://aws.amazon.com/fr/blogs/aws/new-aws-transfer-for-sftp-f
 
 ==== L'avenir c'est le métier
 
-Pour éviter ça, le mieux est de trouver un domaine éloigné de la pur technologie, comme par exemple se positionner sur un métier.
+Pour éviter ça, le mieux est de trouver un domaine éloigné de la pure technologie, comme par exemple se positionner sur un métier.
 Le marché est alors possiblement plus étroit, mais le risque est plus faible.
 
 === L'accompagnement
 
-C'est l'approche de beaucoup d'éditeurs de solutions open-source : distribuer sa solution gratuitement et gagner de l'argent sur l'accompagnement.
+C'est l'approche de beaucoup d'éditeurs de solutions open-source : distribuer sa solution gratuitement et gagner de l'argent sur l'accompagnement. Cela porte souvent le nom de Professionnal Services.
 
-L'entreprise était souvent alors une société de service qui se servait du produit comme point d'accroche.
+L'entreprise était souvent alors une société de services qui se servait du produit comme point d'accroche.
 
-C'est un marché qui n'intéresse pas directement les vendeurs de clouds car il n'offre pas d'effet de levier : pour augmenter le chiffre d'affaire il faut embaucher plus de personnes.
+C'est un marché qui n'intéresse pas directement les vendeurs de cloud car il n'offre pas d'effet de levier : pour augmenter le chiffre d'affaire il faut embaucher plus de personnes.
 
 Par contre ils peuvent copiner avec des entreprises sur ce modèle : eux fournissent la technologie, l'entreprise la force de travail.
 Cette situation peut être intéressante car le fournisseur de cloud peut agir comme un apporteur d'affaire.
@@ -107,7 +107,7 @@ Cela donne ce genre de discours :
 
 [quote]
 ____
-Vous ne pouvez pas avoir confiance en Amazon, si demain ils devenaient méchants ? Ou si après-demain Azure devenait plus adapté à vos besoin ?
+Vous ne pouvez pas avoir confiance en Amazon, si demain ils devenaient méchants ? Ou si après-demain Azure devenait mieux adapté à vos besoin ?
 Nous vous vendons une solution qui vous isole du vendeur et vous permet de passer de l'un à l'autre ou même les deux en même temps.
 ____
 
@@ -115,14 +115,14 @@ Bien entendu, cela passe souvent par un lock-in avec la solution en question.
 
 Il y a quelques années, des vendeurs de solutions proposaient la même chose pour s'isoler des bases de données : et si demain vous vouliez passer d'Oracle à PostgreSQL ?
 
-L'expérience a montré que c'était en règle générale une très mauvaise idées :
+L'expérience a montré que c'était en règle générale une très mauvaise idée :
 
-- les solutions ne permettaient d'utiliser que les fonctionnalités communes aux différents vendeurs, cela limitait l'adhérence mais pouvait être gênant, parfois cela signifiant devoir refaire des développement spécifique pour combler le manque, ou alors renoncer à l'isolation ;
+- les solutions ne permettaient d'utiliser que les fonctionnalités communes aux différents vendeurs, cela limitait l'adhérence mais pouvait être gênant, parfois cela signifiait devoir refaire des développements spécifiques pour combler le manque, ou alors renoncer à l'isolation ;
 - les solutions ajoutaient de la complexité, par exemple en cas d'erreur ;
 - on préférait ne pas changer de solution de BDD en cours de route pour limiter les risques ;
-- en général l'entreprise qui laissait à désirer était celle qui vendait la solution intermédiaire, et pas celui de la base de donnée (quand on connaît les réputations d'Oracle ou d'IBM je vous laisse imaginer …).
+- en général l'entreprise qui laissait à désirer était celle qui vendait la solution intermédiaire, et pas celui de la base de données (quand on connaît les réputations d'Oracle ou d'IBM je vous laisse imaginer…).
 
-Je ne sais pas si l'histoire se répétera, mais quand je vois le peu d'alternatives possible aux éditeurs je me dis que beaucoup vont pousser cette solution autant qu'ils le peuvent.
+Je ne sais pas si l'histoire se répétera, mais quand je vois le peu d'alternatives possibles aux éditeurs, je me dis que beaucoup vont pousser cette solution autant qu'ils le peuvent.
 
 == En conclusion
 
