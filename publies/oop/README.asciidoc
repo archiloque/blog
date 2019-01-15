@@ -7,7 +7,7 @@ v0.1, 2016-12-26
 
 Deux bons articles pour commencer{nbsp}:
 
-- link:https://lwn.net/Articles/336262/[celui-ci milite pour l’utilisation de bibliothèques plutôt que de faire des couches];
+- link:https://lwn.net/Articles/336262/[celui-ci milite pour l’utilisation de bibliothèques plutôt que de faire des couches]{nbsp};
 - link:http://lambda-the-ultimate.org/node/5377[celui-là sur le sous-typage].
 
 Constatation{nbsp}: l’héritage en OOP est très survendu
@@ -31,7 +31,7 @@ Ma sous-classe de A doit alors porter mon contexte d’exécution, et donc je la
 
 Est ce que c’est grave{nbsp}? Oui je pense{nbsp}:
 
-- cela nécessite de faire du downcast, la validation de typage est donc perdue ;
+- cela nécessite de faire du downcast, la validation de typage est donc perdue{nbsp};
 - il s'agit de frankenOO{nbsp}: ajouter des attributs dans B alors que le code qui les utilises est dans le callback n'a aucun sens du point de vue objet.
 
 J’ai le sentiment qu’avec des types paramétriques plus puissants tu devrais appeler un m avec le A qu’elle attend, plus un B et un C qu’elle n’attend pas, et retrouver tes B et C dans les callbacks, tout en ayant du typage statique.
