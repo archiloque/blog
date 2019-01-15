@@ -1,4 +1,4 @@
-= Idée de jeu : simulateur de responsable d'architecture SI
+= Idée de jeu{nbsp}: simulateur de responsable d'architecture SI
 Julien Kirch
 v0.1, 2017-09-25
 :article_lang: fr
@@ -27,9 +27,9 @@ Après les 16 tours le jeu s'arrête, on affiche les résultats, et le·a joueur
 
 Le jeu repose beaucoup sur l'aléatoire.
 
-Les données sont floues : donnés sous formes d 'intervalles et/ou plus ou moins faux. Cela représente la perciption du·de la DSI.
+Les données sont floues{nbsp}: donnés sous formes d 'intervalles et/ou plus ou moins faux. Cela représente la perciption du·de la DSI.
 
-À chaque tour le·a joueur·se choisit comment pendant le trimestre :
+À chaque tour le·a joueur·se choisit comment pendant le trimestre{nbsp}:
 
 * il oriente le SI
 * il investit son temps perso
@@ -37,7 +37,7 @@ Les données sont floues : donnés sous formes d 'intervalles et/ou plus ou moin
 
 Pour chaque cas il s'agit de répartir X points entre plusieurs axes.
 
-Comme tableau de bord le·a joueur·se a quelques indicateurs, par exemple :
+Comme tableau de bord le·a joueur·se a quelques indicateurs, par exemple{nbsp}:
 
 * niveau technique de la personne
 * le niveau de fiabilité du SI
@@ -50,7 +50,7 @@ Comme dit plus haut, ces données ne sont que partiellement fiables.
 
 Il y a beaucoup de variables cachées qui font que les indicateurs présentés sont très partiels.
 
-Exemples :
+Exemples{nbsp}:
 
 * niveau connaissance du SI
 * niveau technique des projets
@@ -58,30 +58,30 @@ Exemples :
 * le niveau de confiance de ses chefs
 * le niveau de confiance des gens en dessous de lui
 
-À chaque tour des évènements qui demandent des décisions  surviennent :
+À chaque tour des évènements qui demandent des décisions  surviennent{nbsp}:
 
-* un tech lead veut choisir un nouveau langage qui promet de faire ça, est ce qu'on accepte ?
+* un tech lead veut choisir un nouveau langage qui promet de faire ça, est ce qu'on accepte{nbsp}?
 * un éditeur promet un outil
 * un projet démarre, voila les options possibles
-* un outil arrive en fin de vie, que faire des projets ?
-* un projet se révolte et décide de ne pas suivre les guidelines, que faites vous ?
-* un responsable se barre, qui choisissez vous pour le remplacer ?
-* un projet va mal, que faire ?
-* un nouveau domaine métier à couvrir rapidement, que faire ?
+* un outil arrive en fin de vie, que faire des projets{nbsp}?
+* un projet se révolte et décide de ne pas suivre les guidelines, que faites vous{nbsp}?
+* un responsable se barre, qui choisissez vous pour le remplacer{nbsp}?
+* un projet va mal, que faire{nbsp}?
+* un nouveau domaine métier à couvrir rapidement, que faire{nbsp}?
 …
 
 Pour chaque réponse possible on affiche les avantages et les inconvénients, avec des info partielles et / ou plus ou moins fausses en fonction de votre perception des choses.
 
-Exemple :
+Exemple{nbsp}:
 
-L'éditeur Pythie promet un outil pour harmoniser la création des loutres :
+L'éditeur Pythie promet un outil pour harmoniser la création des loutres{nbsp}:
 Il devrait baisser le prix de X% tout en limitant l’adaptabilité de Y%, les développeur·euse·s n'aiment pas ce type d'outil
-Oui / Non ?
+Oui / Non{nbsp}?
 
 Les évènement sont aléatoires, mais le pool des possibles dépend des variables.
 De même pour les réponses possibles, ainsi que la véracité et la précisions des réponses possibles.
 
-Exemples :
+Exemples{nbsp}:
 
 * "une techno est en fin de vie sans prévenir" arrive plus souvent si le niveau technique est bas
 * en cas de soucis, le niveau de fourberie permet d'avoir l'option de dénoncer un bouc-émissaire, au risque de baisser le niveau de confiance (sans que le·a joueur·euse le sache)
@@ -89,7 +89,7 @@ Exemples :
 
 En fonction des variables et du hasard, les décisions vont fonctionner ou pas, et le·a joueur·se en est informé·e de manière macro: "l'outil machin fonctionne mieux que prévu".
 
-À chaque tour il est également possible de lancer des actions :
+À chaque tour il est également possible de lancer des actions{nbsp}:
 
 * une refonte du SI pour diminuer la dette
 …
@@ -98,13 +98,13 @@ Comme pour les décisions, les actions dépendent du profil du DSI et de la situ
 
 Les actions choisies peuvent avoir des effets sur plusieurs trimestres.
 
-Au début du jeu, le·a joueur·euse choisit son profil de personnage :
+Au début du jeu, le·a joueur·euse choisit son profil de personnage{nbsp}:
 
 * techos
 * leader
 * manipulateur
 
-Et en fonction du profil, la manière dont le DSI a été nommé :
+Et en fonction du profil, la manière dont le DSI a été nommé{nbsp}:
 
 * ancien·ne tech lead qui a monté
 * ancien·ne tech lead qui a fait virer son boss

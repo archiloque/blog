@@ -14,7 +14,7 @@ The nice thing with Ruby is that it's so dynamic that when you use a framework e
 
 As other may find this trick useful, this is a code sample to access your Sinatra app instance variables from your tests.
 
-The application serving JSON and html :
+The application serving JSON and html:
 
 [source,ruby]
 .app.rb
@@ -22,7 +22,7 @@ The application serving JSON and html :
 include::app.rb[]
 ----
 
-A very simple template :
+A very simple template:
 
 [source,erb]
 .index.html.erb
@@ -30,7 +30,7 @@ A very simple template :
 include::index.html.erb[]
 ----
 
-And the test  :
+And the test :
 
 [source,ruby]
 .test_app.rb

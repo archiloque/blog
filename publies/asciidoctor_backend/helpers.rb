@@ -12,7 +12,7 @@ module Asciidoctor
   # Patch the converter
   class Converter::TemplateConverter
 
-    # Handle anything, just ask !
+    # Handle anything, just ask!
     def handles?(name)
       unless @templates.key? name
         @templates[name] = DebuggerTemplate.new

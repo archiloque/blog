@@ -1,4 +1,4 @@
-= Fiche de lecture : "The Design and Implementation of the FreeBSD Operating System 2nd Edition"
+= Fiche de lecture{nbsp}: "The Design and Implementation of the FreeBSD Operating System 2nd Edition"
 Julien Kirch
 v0.1, 2018-10-07
 :article_lang: fr
@@ -7,13 +7,13 @@ v0.1, 2018-10-07
 
 link:http://www.informit.com/store/design-and-implementation-of-the-freebsd-operating-9780321968975[Ce livre de 900 pages] détaille le désign et l'implémentation de l'ensemble des composants de FreeBSD.
 
-Les trois auteurs, Marshall Kirk McKusick, George V. Neville-Neil & Robert N.M. Watson sont des vétérans du système et des rédacteurs chevronnés et cela se remarque :
+Les trois auteurs, Marshall Kirk McKusick, George V. Neville-Neil & Robert N.M. Watson sont des vétérans du système et des rédacteurs chevronnés et cela se remarque{nbsp}:
 le livre est à la fois une référence pour les personnes voulant utiliser cet OS ou contribuer à son développement, mais aussi un texte plus général sur la manière dont fonctionne un tel système, ainsi qu'un condensé d'histoire.
 
 Ainsi pour chaque composant, les auteurs couvrent son fonctionnement et ses limites, mais aussi les besoins auxquels il répond ainsi que ses évolutions depuis les premières versions.
 
 Le livre est construit en spirale, c'est à dire que chaque éléments est d'abord vu rapidement chacun à son tour, puis revu avec de plus en plus de détail.
-En fonction de ce que vous recherchez, il n'y a donc pas besoin de parcourir l'ensemble du livre pour en retirer quelque chose : il est tout à fait possible de suivre les premièrs chapitres et de s'arrêter là, ou de poursuivre par certaines des parties suivantes tout en ignorant les autres.
+En fonction de ce que vous recherchez, il n'y a donc pas besoin de parcourir l'ensemble du livre pour en retirer quelque chose{nbsp}: il est tout à fait possible de suivre les premièrs chapitres et de s'arrêter là, ou de poursuivre par certaines des parties suivantes tout en ignorant les autres.
 
 En plus du contenu intéressant par lui-même, trois éléments sortent du lot.
 
@@ -21,7 +21,7 @@ En plus du contenu intéressant par lui-même, trois éléments sortent du lot.
 
 L'objectif de FreeBSD est d'être utilisé facilement, de satisfaire les personnes qui l'utilisent tout en étant maintenable avec un effectif limité.
 
-Dit autrement : il faut que les choses soient le plus simples possibles tout en satisfaisant les différents usages.
+Dit autrement{nbsp}: il faut que les choses soient le plus simples possibles tout en satisfaisant les différents usages.
 
 Un des risques, si l'OS n'est pas à la hauteur, est que les personnes qui développent mettent en place des contournements, rendant le système moins satisfaisant pour les autres.
 
@@ -37,24 +37,24 @@ Une bonne structure de donnée se doit d'être rapide, et économe en mémoire, 
 
 Au long du livre on comprend qu'il n'existe pas _une_ bonne structure de données, mais qu'il existe des tas de structures différents adaptées à différents usages.
 
-En fonction de la priorité données aux différents critères (vaut-il mieux être rapide ou léger, le plus rapide possible on en temps garanti ?) les auteurs décrivent les choix qui sont faits et les compromis choisis.
+En fonction de la priorité données aux différents critères (vaut-il mieux être rapide ou léger, le plus rapide possible on en temps garanti{nbsp}?) les auteurs décrivent les choix qui sont faits et les compromis choisis.
 Dans de nombreux cas les structures sont mêmes adaptatives en fonction des cas d'usages du système.
 
 Ces explications donnent un très bon aperçu du fonctionnement d'un ordinateur récent vu de l'OS, et de la complexité que demande parfois le fait de l'exploiter à son plein potentiel.
 
 == Les abstractions ont des cycles de vie
 
-Dans un OS, de nombreux composants existent sous plusieurs formes : les types de périphériques, les systèmes de fichiers, les protocoles réseaux …
+Dans un OS, de nombreux composants existent sous plusieurs formes{nbsp}: les types de périphériques, les systèmes de fichiers, les protocoles réseaux{nbsp}…
 
-Pour être maintenable, un OS repose donc sur un tas d'abstraction : la plupart des classes d'éléments sont représentés par des modèles simplifiés, pour rendre le code maintenable et compréhensible.
+Pour être maintenable, un OS repose donc sur un tas d'abstraction{nbsp}: la plupart des classes d'éléments sont représentés par des modèles simplifiés, pour rendre le code maintenable et compréhensible.
 
 L'opposé serait par exemple que chaque implémentation d'un système de fichier soit dépendant du modèle de disque dur sur lequel il devrait pouvoir fonctionner.
 
 Mais ces abstractions évoluent. Ainsi l'abstraction d'un processeur pouvait ne gérer qu'un seul cœur, puis il a fallu prendre en compte le multi-cœur, l'hyper-threading, puis la capacité de changer dynamiquement sa vitesse.
 
-Parfois plusieurs abstractions d'un même composant sont nécessaires, et parfois on fait fausse route : les besoins qu'on prévoyaient en implémentant un système ne se manifestent jamais.
+Parfois plusieurs abstractions d'un même composant sont nécessaires, et parfois on fait fausse route{nbsp}: les besoins qu'on prévoyaient en implémentant un système ne se manifestent jamais.
 
-Le livre est de ce point de vue un très bon guide sur la manière de construire des abstractions et de les faire vivre : comment décider, comment passer de l'une à l'autre, et comment revenir en arrière quand on s'est trompé.
+Le livre est de ce point de vue un très bon guide sur la manière de construire des abstractions et de les faire vivre{nbsp}: comment décider, comment passer de l'une à l'autre, et comment revenir en arrière quand on s'est trompé.
 
 Les leçons en sont généralisables dès qu'on conçoit ce type de systèmes, au niveau de l'application jusqu'à l'échelle d'un SI.
 

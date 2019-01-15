@@ -5,17 +5,17 @@ v1.0, 2016-08-12
 :article_description: When you use an ORM and you still want to know what is happening when something goes wrong
 :ignore_files: app.rb, .ruby-version, config.ru, Gemfile, Gemfile.lock
 
-Good ORMs are handy : they avoid boilerplate without dictating what is possible and what is not.
+Good ORMs are handy: they avoid boilerplate without dictating what is possible and what is not.
 In most case you don't even need to have a look at the SQL they generate (as long as you test your code).
 
-But sometimes things goes wrong : during a stress test — or even in production —
+But sometimes things goes wrong: during a stress test — or even in production —
 a bad query happen that takes a long time to execute.
 
-You get the culprit in your slow query log, but here's the catch :
+You get the culprit in your slow query log, but here's the catch:
 sometimes you can't figure what part of the code is generating the query,
 or there's several candidates and you don't want to loose to much time figuring how's the troublemaker.
 
-To make things easier, you need to realize two things :
+To make things easier, you need to realize two things:
 
 . you can add comments in your SQL
 . you can automate it
@@ -24,13 +24,13 @@ To make things easier, you need to realize two things :
 
 The basic idea is to instrument your code so the query contains an indication of the query origin.
 
-Example : in a web application, you can prefix queries with the current URL,
+Example: in a web application, you can prefix queries with the current URL,
 in most cases it should be good enough.
 
 Depending of your language and ORM, it may be as easy as finding the right hook
 or it could require some dirty tricks.
 
-An example in Ruby / Sinatra / Sequel, where you need to be tricky :
+An example in Ruby / Sinatra / Sequel, where you need to be tricky:
 
 [source,ruby]
 .app.rb
@@ -38,14 +38,14 @@ An example in Ruby / Sinatra / Sequel, where you need to be tricky :
 include::app.rb[]
 ----
 
-In the query log :
+In the query log:
 
 ....
  /* This query comes from [/date] */ SELECT date('now') as d
 ....
 
-If your code is really complicated or messy, you can increase the level of detail :
-if you want you can even add the complete stacktrace !
+If your code is really complicated or messy, you can increase the level of detail:
+if you want you can even add the complete stacktrace!
 It would turns your logs into an horrible thing,
 but sometimes desperate times call for desperate measures,
 and you can make it togglable at runtime.

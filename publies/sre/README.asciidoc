@@ -1,4 +1,4 @@
-= Fiche de lecture : "Site Reliability Engineering: How Google Runs Production Systems"
+= Fiche de lecture{nbsp}: "Site Reliability Engineering: How Google Runs Production Systems"
 Julien Kirch
 v0.1, 2018-06-01
 :article_lang: fr
@@ -26,23 +26,23 @@ La première chose qui marque est la vision de Google qui est projetée dans le 
 
 Publier un livre sur sa culture interne est une opération de soft power, le portrait de Google par Google est donc intéressant à étudier, dans ce qu'il dit et ce qu'il ne dit pas.
 
-D'après les textes Google est la terre des héro·ïne·s : on n'embauche que les meilleur·e·s et on passe son temps sur des questions qui ne se posent à personne d'autres, au point que l'autosatisfaction est parfois pesante.
+D'après les textes Google est la terre des héro·ïne·s{nbsp}: on n'embauche que les meilleur·e·s et on passe son temps sur des questions qui ne se posent à personne d'autres, au point que l'autosatisfaction est parfois pesante.
 
 Par contre les problèmes et les dysfonctionnements sont poliment éludés où font l'objet de courtes allusions.
 
-Cela montre les limites de la véracité du portrait, mais aussi parce que cela empêche de parler de certains sujets sur lesquels l'expérience de Google serait précieuse :
+Cela montre les limites de la véracité du portrait, mais aussi parce que cela empêche de parler de certains sujets sur lesquels l'expérience de Google serait précieuse{nbsp}:
 le burn-out, la question des objectifs et des salaires, ou la gestion du rapport de force entre les équipes SRE et les équipes de développement.
 
-== Ops chez Google : quand même des personnes qui n'ont pas le niveau
+== Ops chez Google{nbsp}: quand même des personnes qui n'ont pas le niveau
 
 Le livre s'ouvre sur une description des profils des SRE très parlante de la vision de Google.
 
-Les équipes de SRE sont constituées de deux types de profils :
+Les équipes de SRE sont constituées de deux types de profils{nbsp}:
 
 * 50% à 60% d'ingénieur·e·s logiciels de plein droit ;
-* 40% à 50% de personnes qui ont échoués aux tests d'entrées pour être embauché·e·s comme ingénieur·e·s logiciels (mais de peu : Google ne prend quand même pas n'importe qui), mais qui savent faire de l'administration système ou du réseau, car leurs compétences sont nécessaires.
+* 40% à 50% de personnes qui ont échoués aux tests d'entrées pour être embauché·e·s comme ingénieur·e·s logiciels (mais de peu{nbsp}: Google ne prend quand même pas n'importe qui), mais qui savent faire de l'administration système ou du réseau, car leurs compétences sont nécessaires.
 
-La manière dont la chose est présentée est éloquente : il y a les ingénieur·e·s de développement, et les presque ingénieur·e·s de développement qu'on est forcé d'embaucher quand même car on ne peut pas complètement se passer d'expertise.
+La manière dont la chose est présentée est éloquente{nbsp}: il y a les ingénieur·e·s de développement, et les presque ingénieur·e·s de développement qu'on est forcé d'embaucher quand même car on ne peut pas complètement se passer d'expertise.
 
 Il me paraît évident que cette vision affecte le fonctionnement des équipes, mais le livre n'en parle pas.
 
@@ -55,13 +55,13 @@ Leur vision est que leur niveau de "packaging" des différents composants d'infr
 Cela est complété par un effort important sur la documentation pour limiter le besoin pour les SRE de faire du support aux équipes.
 
 La dernière étape est que la validation des SRE est nécessaire pour qu'un projet significatif soit déployé en production.
-Pour cela le projet doit valider une checklist pour prouver qu'il suit les obligations et les bonnes pratiques Google : gestion de la disponibilité, redondance, procédure en cas de défaillance d'un composant.
+Pour cela le projet doit valider une checklist pour prouver qu'il suit les obligations et les bonnes pratiques Google{nbsp}: gestion de la disponibilité, redondance, procédure en cas de défaillance d'un composant.
 
 On retrouve donc une organisation dev/ops classique, mais qui d'après Google n'a pas les défauts qu'on retrouve ailleurs grâce au niveau de qualité des différents composants et à l'excellence des personnes et des pratiques.
 
 L'approche Google m'a fait réfléchir au modèle "ops dans les équipe de dev".
 Il est vrai que dans beaucoup de contextes ce fonctionnement est souhaitable car des compétences en ops sont nécessaires pour le projet d'une manière régulière.
-Et dans un certain nombre de cas, quand le projet a une complexité raisonnable et s'appuie sur des outils du marché, ces compétences sont nécessaires parce que la plateforme de production n'est pas au niveau où elle devrait être : on contourne un problème systémique par des solutions locales.
+Et dans un certain nombre de cas, quand le projet a une complexité raisonnable et s'appuie sur des outils du marché, ces compétences sont nécessaires parce que la plateforme de production n'est pas au niveau où elle devrait être{nbsp}: on contourne un problème systémique par des solutions locales.
 
 Les progrès des plateformes de cloud et des solutions de cloud privés verront peut-être la fin de cette mode.
 
@@ -88,9 +88,9 @@ Dans les discussions sur la redondance ou les temps de réponses, j'ai été fra
 
 En effet, par rapport à une entreprise classique dont la bibliothèque de logiciels est limitée à quelques composants standards ce qui limite les possibles, la taille et la stratégie de Google leur permet de créer un écosystème très riche.
 
-Par exemple un projet qui a besoin d'un système de stockage distribué pourra choisir parmi de nombreuses solutions suivant ses besoins de performance, de disponibilité …
+Par exemple un projet qui a besoin d'un système de stockage distribué pourra choisir parmi de nombreuses solutions suivant ses besoins de performance, de disponibilité{nbsp}…
 
-En creux on reconnaît le syndrome du link:https://fr.wikipedia.org/wiki/Not_invented_here[not invented here] : les auteur·e·s martèlent en permanence le fait que les spécificités de Google les empêchent absolument d'utiliser des solutions créees par d'autres, mais leurs justifications sont parfois un peu douteuses.
+En creux on reconnaît le syndrome du link:https://fr.wikipedia.org/wiki/Not_invented_here[not invented here]{nbsp}: les auteur·e·s martèlent en permanence le fait que les spécificités de Google les empêchent absolument d'utiliser des solutions créees par d'autres, mais leurs justifications sont parfois un peu douteuses.
 
 == Pour conclure
 

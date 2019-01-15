@@ -15,9 +15,9 @@ Certaines de ces analogies sont pertinentes, par exemple dans le fait de lutter 
 == La chaîne d'assemblage
 
 À l'inverse, l'analogie de la création de logicielle vue comme une chaîne d'assemblage est contre-productive, voire dangereuse.
-Dans une chaîne d'assemblage, l'importance est donnée à la reproductibilité : on reproduit les mêmes gestes en prenant le même temps pour obtenir le même résultat.
+Dans une chaîne d'assemblage, l'importance est donnée à la reproductibilité{nbsp}: on reproduit les mêmes gestes en prenant le même temps pour obtenir le même résultat.
 
-Si le process est amélioré régulièrement, il s'agit toujours de conserver ces caractéristiques :
+Si le process est amélioré régulièrement, il s'agit toujours de conserver ces caractéristiques{nbsp}:
 par exemple obtenir un meilleur résultat en reproduisant à l'identique d'autres gestes.
 
 Le développement logiciel classique ne fonctionne pas de la même manière.
@@ -25,7 +25,7 @@ Si les outils s'améliorent et qu'on suit des process, créer un logiciel ne con
 
 Par exemple le développement d'un site web ne consiste pas à créer une longue suite d'écrans identiques en tapant les mêmes lignes de code.
 
-Au contraire, la particularité du logiciel est la capacité à s'outiller pour créer des effets de levier : après avoir développé quelque chose (un écran) il est possible de le réutiliser plutôt que de le refaire, puis éventuellement de le généraliser à d'autres besoins proches (par exemple en construisant un outil de génération d'écran).
+Au contraire, la particularité du logiciel est la capacité à s'outiller pour créer des effets de levier{nbsp}: après avoir développé quelque chose (un écran) il est possible de le réutiliser plutôt que de le refaire, puis éventuellement de le généraliser à d'autres besoins proches (par exemple en construisant un outil de génération d'écran).
 
 Il faut donc de moins en moins de temps pour faire la même chose (créer des écrans), mais pour cela on fait à chaque fois des choses différentes (en adaptant petit à petit l'outil de génération d'écran).
 
@@ -36,26 +36,26 @@ Cela rend le développement moins prévisible, et donc moins facile à piloter, 
 On peut pousser l'analogie plus loin en disant qu'il s'agit d'une chaîne d'assemblage de chaînes d'assemblage.
 Cela permet de faire passer l'idée que la productivité doit se faire de manière différente, mais on reste dans l'idée de tâches répétitives.
 
-L'autre aspect attirant de la métaphore de la chaîne d'assemblage est la question du statut des personnes qui développent :
+L'autre aspect attirant de la métaphore de la chaîne d'assemblage est la question du statut des personnes qui développent{nbsp}:
 une usine ce sont des opérateurs et des opératrices qui ont des ordres précis sur la manière de travailler, et dont on peut facilement mesurer la productivité.
 Le développement logiciel vu comme du lean est donc le rêve des responsables de projets se voyant comme des contremaîtres et des contremaîtresses.
 
-== Le développement de jeux vidéo : la chaîne d'assemblage comme modèle explicite
+== Le développement de jeux vidéo{nbsp}: la chaîne d'assemblage comme modèle explicite
 
 Le développement des plus gros jeux vidéo (dits link:https://fr.wikipedia.org/wiki/AAA_(jeu_vidéo)[AAA]) est très instructive sur ce sujet.
 
-Ce type de jeu se caractérise notamment par une longue durée de jeu grâce à grande quantité de contenu : de nombreux niveaux, effets visuels, personnages avec leur dialogues, quêtes à compléter …
+Ce type de jeu se caractérise notamment par une longue durée de jeu grâce à grande quantité de contenu{nbsp}: de nombreux niveaux, effets visuels, personnages avec leur dialogues, quêtes à compléter{nbsp}…
 
-Il y a donc un enjeu de production et d'intégration d'une quantité importante d'éléments de même types : produire des centaines d'animations, des dizaines d'heures de musiques, des milliers de lignes de dialogues.
+Il y a donc un enjeu de production et d'intégration d'une quantité importante d'éléments de même types{nbsp}: produire des centaines d'animations, des dizaines d'heures de musiques, des milliers de lignes de dialogues.
 On est donc proche de la chaîne d'assemblage.
 
-Le monde du jeu vidéo appelle ça "le pipeline" : avoir un pipeline efficace consiste à pouvoir rapidement produire en série et intégrer tous les éléments qui formeront le corps du jeu. Le modèle de la chaîne d'assemblage est donc explicite.
+Le monde du jeu vidéo appelle ça "le pipeline"{nbsp}: avoir un pipeline efficace consiste à pouvoir rapidement produire en série et intégrer tous les éléments qui formeront le corps du jeu. Le modèle de la chaîne d'assemblage est donc explicite.
 
 L'une des étapes initiales de la création d'un jeu est de concevoir la première version de ce pipeline pour ensuite pouvoir "lancer la machine", en s'appuyant sur des personnes extérieures et des sous-traitants pour traiter toutes les demandes.
 Cela signifie une chaîne d'outil, mais aussi des règles claires qui permettent aux personnes exécutantes de pouvoir être autonomes dans leur travail.
 Un pipeline inefficace est ainsi un gros risque de faire échouer un projet.
 
-L'expérience prouve que même dans ce cas, la chaîne fonctionne rarement comme elle devrait et qu'on est loin du monde merveilleux de Toyota : les outils sont rarement aussi fiables que prévus, les besoins changent en cours de route ce qui nécessite de retoucher à ce qui était considéré comme terminé et la précision insuffisante des règles d'acceptation créé des incompréhensions et des aller-retours.
+L'expérience prouve que même dans ce cas, la chaîne fonctionne rarement comme elle devrait et qu'on est loin du monde merveilleux de Toyota{nbsp}: les outils sont rarement aussi fiables que prévus, les besoins changent en cours de route ce qui nécessite de retoucher à ce qui était considéré comme terminé et la précision insuffisante des règles d'acceptation créé des incompréhensions et des aller-retours.
 
 Tout cela créé des perturbations dans les plannings et rend les durées d'exécution de tâches et les dates de fin de projets difficiles à prévoir, même alors que le modèle est pensé dans cet objectif.
 

@@ -82,15 +82,15 @@ This way you'll be sure that you won't break your API.
 
 == The best thing about a specification is when you can leverage it in your runtime code
 
-After adding the test validation I just described, you decide to add another endpoint :
+After adding the test validation I just described, you decide to add another endpoint:
 
 - You first add the description to the swagger, specifying that a person's name should be `maxlength: 400` characters (because the CRAM can't process longer names).
 - You write the service code, the first line being `ensureLength(person.name, 400);`
 - You just wrote the same exact thing two times: something is wrong.
 
-You probably guessed what I'm going to say : you should also rely on the swagger information at runtime to act like a link:https://en.wikipedia.org/wiki/Application_firewall[application firewall] : each query should be matched by a technical layer with the swagger content before reaching your application code.
+You probably guessed what I'm going to say: you should also rely on the swagger information at runtime to act like a link:https://en.wikipedia.org/wiki/Application_firewall[application firewall]: each query should be matched by a technical layer with the swagger content before reaching your application code.
 
-Example :
+Example:
 
 [source,ruby]
 .petstore.rb

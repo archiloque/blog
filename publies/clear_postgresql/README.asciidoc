@@ -7,7 +7,7 @@ v1.0, 2016-03-20
 
 For testing it's often handy to wipe all your database and to recreate everything, but some hosting providers don't give you the access rights to drop and recreate a database so you need to clear everything the hard way.
 
-Here's a Ruby script that does exactly that : it removes triggers, functions, tables and sequences from a database.
+Here's a Ruby script that does exactly that: it removes triggers, functions, tables and sequences from a database.
 
 It's only dependency is the link:https://bitbucket.org/ged/ruby-pg/wiki/Home[pg] gem, so it should work whatever ORM you use, and even if you don't use one.
 

@@ -6,7 +6,7 @@ v0.1, 2018-10-11
 
 == Les abstractions permettent d'avoir moins à savoir
 
-Lorsqu'on utilise un cadre de programmation maintream, par exemple un langage de programmation grand public et une base de données SQL, de nombreuses abstractions nous facilitent la vie : systèmes d'objets, SQL ou ORM, sockets réseaux …
+Lorsqu'on utilise un cadre de programmation maintream, par exemple un langage de programmation grand public et une base de données SQL, de nombreuses abstractions nous facilitent la vie{nbsp}: systèmes d'objets, SQL ou ORM, sockets réseaux{nbsp}…
 
 Ces abstractions permettent de simplifier le modèle mental nécessaire à développer, mais peuvent aussi permettre de ne pas avoir à connaître le fonctionnement des couches qui ont été abstraites.
 
@@ -21,7 +21,7 @@ Quand on a pu — jusque là — faire l'économie de comprendre le fonctionneme
 
 Soit parce qu'on a besoin d'implémenter quelque chose alors que vos connaissances ne le permettent pas, ou pire, qu'un bug dans une des abstractions a fait planter vos serveurs de production.
 
-== Peut-on espérer le salut ?
+== Peut-on espérer le salut{nbsp}?
 
 Ce problème est parfois mentionné dans les article sur le _bloat_ de l'informatique moderne, c'est à dire qu'à force d'empiler des couches, chacune introduisant de l'inefficacité, l'augmentation de puissance des machines ne se traduit pas par une augmentation de rapidité mais au contraire par une augmentation du gaspillage.
 
@@ -29,7 +29,7 @@ Mais je ne pense pas que les choses vont changer dans ce domaine d'une manière 
 
 Par contre ce qui s'améliore avec le temps c'est la qualité des abstractions, c'est à dire que l'empilement des couches sera plus harmonieux, et produira moins de cas limites générateurs d'imprévus.
 
-== Que faire ?
+== Que faire{nbsp}?
 
 La meilleure solution est bien entendu de disposer de la connaissance dont on peut avoir besoin suffisamment à l'avance pour ne pas être bloqué.
 
@@ -46,6 +46,6 @@ Pour réduire le risque on peut aussi limiter le nombre de technologies pour ré
 Cela peut faire grincer des dents, mais c'est à mettre en rapport avec les conséquences en cas de problèmes.
 
 L'autre approche est de transférer le risque, c'est à dire de faire en sorte de se reposer sur la connaissance de quelqu'un d'autre.
-La manière historique de le faire est d'acheter du support pour les logiciels, c'est à dire de payer pour avoir la capacité d’appeler quelqu'un quand il y a un problème : l'empilement est toujours là mais vous n'êtes pas seul·e face à lui.
+La manière historique de le faire est d'acheter du support pour les logiciels, c'est à dire de payer pour avoir la capacité d’appeler quelqu'un quand il y a un problème{nbsp}: l'empilement est toujours là mais vous n'êtes pas seul·e face à lui.
 
 Une autre manière correspond aux offres cloud comme le _serverless_, qui consistent à payer pour un service qui masque les couches dans une boite noire.

@@ -5,20 +5,20 @@ v0.1, 2019-01-09
 :article_description: D'autres manières de faire
 :article_image: romero.jpeg
 
-À ne faire que de link:https://fr.wikipedia.org/wiki/Informatique_de_gestion[l'informatique de gestion], c'est à dire essentiellement des sites webs et des programmes de traitements pour des entreprises ou équivalent, et à ne travailler qu'avec des personnes qui travaillent dans cette branche de l'informatique, on peut en oublier qu'il en existe d'autres :
-informatique industrielles, informatique scientifique …
+À ne faire que de link:https://fr.wikipedia.org/wiki/Informatique_de_gestion[l'informatique de gestion], c'est à dire essentiellement des sites webs et des programmes de traitements pour des entreprises ou équivalent, et à ne travailler qu'avec des personnes qui travaillent dans cette branche de l'informatique, on peut en oublier qu'il en existe d'autres{nbsp}:
+informatique industrielles, informatique scientifique{nbsp}…
 
 D'autres informatiques cela signifie aussi d'autres manières de faire de l'informatique.
 
-S'intéresser à ces manière de faire permet de prendre du recul sur nos pratiques : découvrir que d'autres font différemment permet de briser l'illusions que nos pratiques sont les seules possibles.
-Cela peut permettre ensuite de recontextualiser nos habitudes : ne plus faire quelque chose parce que tout le monde fait comme ça, mais le faire pour certaines raisons.
+S'intéresser à ces manière de faire permet de prendre du recul sur nos pratiques{nbsp}: découvrir que d'autres font différemment permet de briser l'illusions que nos pratiques sont les seules possibles.
+Cela peut permettre ensuite de recontextualiser nos habitudes{nbsp}: ne plus faire quelque chose parce que tout le monde fait comme ça, mais le faire pour certaines raisons.
 
 J'ai choisi ici l'exemple du développement du jeu vidéo car c'est un domaine que je connais par des articles, et qu'il s'agit d'un milieu suffisamment grand pour ne pas pouvoir être qualifié d'être "de niche", et donc sans valeur.
 
-== Précautions :
+== Précautions{nbsp}:
 
 * Les pratiques du développement de jeux vidéo sont multiples, j'ai choisis ici des pratiques qui me semblent assez largement répandues mais bien entendu il en existe d'autres ;
-* Les jeux vidéos sont particuliers : les logiciels sont en général conçus pour une maintenance courte ;
+* Les jeux vidéos sont particuliers{nbsp}: les logiciels sont en général conçus pour une maintenance courte ;
 * Je ne dis pas que les pratiques de développement de jeux vidéo pourraient être bénéfique si elles étaient appliquées à l'informatique de gestion ;
 * Je ne dis pas que les pratiques actuelles du développement de jeux vidéo sont les meilleures possibles ni que certaines des pratiques de l'informatique de gestion ne pourraient pas être bénéfiques au développement de jeux vidéo ;
 
@@ -46,7 +46,7 @@ En fait c'est le système link:https://en.wikipedia.org/wiki/Entity–component�
 
 Les abstractions ou les fonctionnalités "sur l'étagères" peuvent avoir un coût ou des limitations qu'on oublie quand on est dans les situations où ça n'est pas un problème.
 
-Dans les jeux vidéo ces cas limites sont souvent la normes : par exemple pour avoir 50 images par secondes sans trop d'à-coups, ou pour s'exécuter sur des consoles aux limites mémoires intransigeantes.
+Dans les jeux vidéo ces cas limites sont souvent la normes{nbsp}: par exemple pour avoir 50 images par secondes sans trop d'à-coups, ou pour s'exécuter sur des consoles aux limites mémoires intransigeantes.
 
 Dans ce cas recoder une link:https://github.com/electronicarts/EASTL[bibliothèque standard], ou link:http://gameprogrammingpatterns.com/object-pool.html[gérer la mémoire de manière très précise] peut être la meilleure solution.
 
@@ -59,7 +59,7 @@ Comme link:../lean-chaine-d-assemblage[déjà expliqué ailleurs] le développem
 En informatique de gestion on se moque beaucoup des plateformes de _low-code_
  sensées être utilisées par les gens "du métier" et qui au final sont utilisées par les dévs tout en étant moins bien que des outils de développement standard.
 
-Dans le jeux vidéo cela fonctionne : par exemple la gestion des quêtes, qui sont des comportements assimilés à du code, sont écrit par des personnes dont c'est le métier.
+Dans le jeux vidéo cela fonctionne{nbsp}: par exemple la gestion des quêtes, qui sont des comportements assimilés à du code, sont écrit par des personnes dont c'est le métier.
 
 Le secret c'est que les plateformes de low code sont souvent développées en fonction du jeu, et sont raffinées au fur et à mesure, comme un produit à part entière.
 

@@ -27,13 +27,13 @@ Ma première expérience professionnelle a eu lieu sur un très gros projet util
 
 Lors de gros refactoring, il n'était pas rare que la personne en charge de la modification ne puisse pas compiler son code sur son poste pendant plusieurs heures voire deux ou trois jours le temps de pouvoir tout modifier.
 
-L'objectif était d'avoir des tests valides avant de pousser son code, mais pendant des phases de réécriture, le code en travaux ne fonctionnait pas, et on ne pouvait pas s'appuyer sur les tests automatisés : on se guidait du compilateur et de notes.
+L'objectif était d'avoir des tests valides avant de pousser son code, mais pendant des phases de réécriture, le code en travaux ne fonctionnait pas, et on ne pouvait pas s'appuyer sur les tests automatisés{nbsp}: on se guidait du compilateur et de notes.
 
 Les tests permettaient de valider un résultat et on écrivait des tests automatisés à tous les endroits possibles, mais on pouvait intervenir longuement sur du code sans utiliser les tests.
 
 == « Je ne peux pas coder s'il n'y a pas de test automatisés »
 
-À l'inverse de cette approche, plusieurs personnes m'ont rapportés des anecdotes similaires : des jeunes devs n'ayant connus que des expériences dans des environnements avec des tests automatisés et qui ont peur de s'en passer.
+À l'inverse de cette approche, plusieurs personnes m'ont rapportés des anecdotes similaires{nbsp}: des jeunes devs n'ayant connus que des expériences dans des environnements avec des tests automatisés et qui ont peur de s'en passer.
 
 Ces devs ont été formés aux tests automatisés en expliquant en boucle que les tests étaient un _harnais_ ou une _sécurité_ pour le code pour éviter les risques d'erreur à chaque _pas de chaton_, et qu'ils étaient absolument indispensable au développement si on veut aboutir à un résultat qui fonctionne.
 
@@ -45,18 +45,18 @@ Ils et elles sont persuadés qu'on ne peut pas développer sans tests automatis�
 
 En réfléchissant à cela, j'ai réalisé que d'autres pratiques vont dans le même sens qui est celui de créer de volontairement un sentiment d'insécurité pour les bien des tests et du code.
 
-L'une est celle de faire tourner les tests en continu pendant le développement : dès qu'on modifie du code on entre dans une zone rouge anxiogène, dont on va vouloir sortir le plus vite possible.
+L'une est celle de faire tourner les tests en continu pendant le développement{nbsp}: dès qu'on modifie du code on entre dans une zone rouge anxiogène, dont on va vouloir sortir le plus vite possible.
 
 L'autre est de développer en TDD en se donnant un temps limité pour rédiger le code, avec la raison qu'un code long à écrire serait signe d'un mauvais design qu'il faudrait alors recommencer.
 
-Le développement se fait alors littéralement contre la montre : faites passer les testes ou jetez votre travail.
+Le développement se fait alors littéralement contre la montre{nbsp}: faites passer les testes ou jetez votre travail.
 
 Ces pratiques sont parfois volontaires, ou parfois imposées dans des équipes.
 
 == Conclusion
 
 Je pense qu'utiliser la peur n'est pas une solution acceptable pour pousser les gens à faire des tests.
-Ce genre d'approche est indigne : de quel droit est ce qu'on inflige ça à des personnes ?
+Ce genre d'approche est indigne{nbsp}: de quel droit est ce qu'on inflige ça à des personnes{nbsp}?
 
 Elle va de plus à l'encontre de tout ce qu'enseigne l'agile
 (cet argument devrait être inutile après le précédent, mais je réalise que dans certains cas c'est bien celui-ci qui a le plus de poids).

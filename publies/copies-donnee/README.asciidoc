@@ -4,7 +4,7 @@ v0.1, 2018-05-23
 :article_lang: fr
 :article_description: Il faut sortir la tête du sable
 
-Quand on copie des données entre deux systèmes, on a souvent trois grilles d'analyses en fonction de la manière dont cette copie est perçue :
+Quand on copie des données entre deux systèmes, on a souvent trois grilles d'analyses en fonction de la manière dont cette copie est perçue{nbsp}:
 
 . si on voit cette copie comme une copie entre bases de de données ;
 . si on voit cette copie comme autre chose qu'une copie entre base de données ;
@@ -12,17 +12,17 @@ Quand on copie des données entre deux systèmes, on a souvent trois grilles d'a
 
 La différence dans la manière de traiter les trois situations est frappante.
 
-Dans le premier cas, on sait que le chemin vers les systèmes distribués est semé d'embuches et qu'il faut donc l'emprunter précautionneusement :
-quel est le délai de retard acceptable ? quels problème de cohérence ou de consistance ? accepte-t-on de perdre des informations ? que faire en cas de changement de format ? …
+Dans le premier cas, on sait que le chemin vers les systèmes distribués est semé d'embuches et qu'il faut donc l'emprunter précautionneusement{nbsp}:
+quel est le délai de retard acceptable{nbsp}? quels problème de cohérence ou de consistance{nbsp}? accepte-t-on de perdre des informations{nbsp}? que faire en cas de changement de format{nbsp}?{nbsp}…
 
-Dans le deuxième cas, l'approche est souvent moins formalisée : on va faire s'intéresser essentiellement aux cas nominaux et laisser de côté les cas limites.
+Dans le deuxième cas, l'approche est souvent moins formalisée{nbsp}: on va faire s'intéresser essentiellement aux cas nominaux et laisser de côté les cas limites.
 
-C'est par exemple le cas pour les caches de données : on sait bien qu'on va avoir des problèmes à un moment ou à un autre, mais tant qu'on peut les garder sous le tapis on en profite …
+C'est par exemple le cas pour les caches de données{nbsp}: on sait bien qu'on va avoir des problèmes à un moment ou à un autre, mais tant qu'on peut les garder sous le tapis on en profite{nbsp}…
 
 Dans le troisième cas,  on fait tout pour ne pas voir qu'il s'agit de la copie de donnée.
-Pour simplifier, dès qu'une donnée est transmise à un autre système qui la stocke, il s'agit d'une copie de base : un système de queues, une application web, des logs, ou dès qu'une donnée est transmise entre une base de donnée "officielle" et une application qui la requête.
+Pour simplifier, dès qu'une donnée est transmise à un autre système qui la stocke, il s'agit d'une copie de base{nbsp}: un système de queues, une application web, des logs, ou dès qu'une donnée est transmise entre une base de donnée "officielle" et une application qui la requête.
 
-Et comme pour le cas deux : un jour le cas limite qu'on ne voulait pas voir vous saute au visage.
+Et comme pour le cas deux{nbsp}: un jour le cas limite qu'on ne voulait pas voir vous saute au visage.
 
 Ce que j'essaie de faire pour ne plus avoir le problème est d'essayer de traiter tous les cas de copie avec la même approche.
 

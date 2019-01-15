@@ -10,28 +10,28 @@ Répondre à ces questions ne vous garantit pas tout se passera bien, mais ne pa
 
 Voir link:http://archiloque.net/blog/copies-donnee/[ici] pour savoir repérer tous les cas de copies.
 
-* Comment allez-vous monitorer l'ensemble du système ?
-* Qui sera chargé de faire que ça fonctionne ?
-* La source peut-elle modifier les données ?
-** Si oui que se passe-t-il quand le renvoi au système source échoue ?
-** Si oui comment le tester de manière automatique ?
-* Quel est le délai de retard acceptable dans la copie ? 
-** Que se passe-t-il quand ce délai est dépassé ? 
-** Comment le tester de manière automatique ?
-* Est-il possible de perdre des informations lors de la copie ? 
-** Si oui quels sont les conséquences ?
-** Si oui comment le tester de manière automatique ?
+* Comment allez-vous monitorer l'ensemble du système{nbsp}?
+* Qui sera chargé de faire que ça fonctionne{nbsp}?
+* La source peut-elle modifier les données{nbsp}?
+** Si oui que se passe-t-il quand le renvoi au système source échoue{nbsp}?
+** Si oui comment le tester de manière automatique{nbsp}?
+* Quel est le délai de retard acceptable dans la copie{nbsp}? 
+** Que se passe-t-il quand ce délai est dépassé{nbsp}? 
+** Comment le tester de manière automatique{nbsp}?
+* Est-il possible de perdre des informations lors de la copie{nbsp}? 
+** Si oui quels sont les conséquences{nbsp}?
+** Si oui comment le tester de manière automatique{nbsp}?
 ** Si non je vous propose de revérifier au cas où pour être bien certain.
-* Est-il possible que le mécanisme de transfert de donnée provoque des duplications de message ?
-** Si oui quels sont les conséquences ?
-** Si oui comment le tester de manière automatique ?
-* Quel moyens et conditions (durée, conséquences sur les performances …) pour refaire une copie "from scratch" de la source (vous en aurez besoin un moment où à un autre) ? 
-** Comment le tester de manière automatique ?
-* Que se passe-t-il quand le format de donnée change ?
-* Que se passe-t-il quand des données sont supprimées ?
-* Le nombre de copies peut-il augmenter ?
-** Si oui quel en est l'impact ?
-* Que se passe-t-il en cas d'indisponibilité de la source ?
-* Le mécanisme de copie est-il compatible avec le système de gestion de disponibilité de la source (bascule actif-passif ou autre) ?
-* Si des copies proviennent de plusieurs sources comment gérer que les informations n'arriveront pas dans le bon ordre ?
-* La sécurité des données est-elle du même niveau dans les systèmes copies que dans la source ?
+* Est-il possible que le mécanisme de transfert de donnée provoque des duplications de message{nbsp}?
+** Si oui quels sont les conséquences{nbsp}?
+** Si oui comment le tester de manière automatique{nbsp}?
+* Quel moyens et conditions (durée, conséquences sur les performances{nbsp}…) pour refaire une copie "from scratch" de la source (vous en aurez besoin un moment où à un autre){nbsp}? 
+** Comment le tester de manière automatique{nbsp}?
+* Que se passe-t-il quand le format de donnée change{nbsp}?
+* Que se passe-t-il quand des données sont supprimées{nbsp}?
+* Le nombre de copies peut-il augmenter{nbsp}?
+** Si oui quel en est l'impact{nbsp}?
+* Que se passe-t-il en cas d'indisponibilité de la source{nbsp}?
+* Le mécanisme de copie est-il compatible avec le système de gestion de disponibilité de la source (bascule actif-passif ou autre){nbsp}?
+* Si des copies proviennent de plusieurs sources comment gérer que les informations n'arriveront pas dans le bon ordre{nbsp}?
+* La sécurité des données est-elle du même niveau dans les systèmes copies que dans la source{nbsp}?

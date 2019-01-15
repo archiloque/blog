@@ -9,7 +9,7 @@ But for a change I'm taking the time to write about it.
 
 == Principles
 
-Features for my dream languages :
+Features for my dream languages:
 
 - Ruby-like syntax
 - Garbage collected
@@ -19,10 +19,10 @@ Features for my dream languages :
 
 == Rationale
 
-I mostly write code in an IDE : I don't like to look for things like signatures, precise names… but I want my tools to find them for me.
+I mostly write code in an IDE: I don't like to look for things like signatures, precise names… but I want my tools to find them for me.
 
 My current tool of choice is Ruby, I like it because code is concise yet readable, and the OO design is very flexible.
-On the other hand I love the capabilities provided by static typing : impact analysis, refactoring, and helpful IDE support.
+On the other hand I love the capabilities provided by static typing: impact analysis, refactoring, and helpful IDE support.
 
 In a nutshell, I'd like to have the benefits of Ruby with the level of tooling you can have in Java when you code with Intellij.
 
@@ -91,7 +91,7 @@ class MyOtherOtherClass
     # Call the setter
     my_class_instance.attribute = 12
 
-    # Doesn't compile : no setter
+    # Doesn't compile: no setter
     my_class_instance.another_attribute = 12
 
   end
@@ -147,7 +147,7 @@ end
 
 == Static duck-typing
 
-The duck typing idea is nice : sometimes you don't care that an object implements a specific class, but only that it implements a specific set of methods.
+The duck typing idea is nice: sometimes you don't care that an object implements a specific class, but only that it implements a specific set of methods.
 In static typing languages like java, you can use interfaces, but interfaces must be predesigned, and can't be retrofited in the stdlib or in external code.
 
 But you could use another approach
