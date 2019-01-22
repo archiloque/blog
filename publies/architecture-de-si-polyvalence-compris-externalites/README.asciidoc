@@ -13,9 +13,9 @@ Mais, pour changer de link:../quoi-architecte/[l'article précédent], je vais e
 
 Travailler sur l'architecture d'un système d'information, c'est prendre des décisions sur un système informatique d'une certaine taille.
 
-Il peut s'agit de choisir des outils, de définir leur utilisation, de définir des stratégies d'entreprise côté IT, ou d'accompagner des projets …
+Il peut s'agit de choisir des outils, de définir leur utilisation, de définir des stratégies d'entreprise côté IT, ou d'accompagner des projets{nbsp}…
 
-Ces décisions mélangent du développement, de la gestion projet, de l'organisation, de la technique, et d'autres choses …
+Ces décisions mélangent du développement, de la gestion projet, de l'organisation, de la technique, et d'autres choses{nbsp}…
 
 Il s'agit d'un réseau de sujets liés entre eux, et qui définissent un domaine.
 Certains sont plutôt centraux, d'autres plus en périphéries.
@@ -24,7 +24,7 @@ Certains sont plutôt centraux, d'autres plus en périphéries.
 
 En simplifiant, un bon critère pour savoir si une question fait partie de l'archi du SI, c'est de savoir s'il existe une solution simple qui répond parfaitement à tous les besoins.
 
-En effet, une caractéristique, pour moi, de ce sujet, est que les réponses posées en archi de SI sont presque toujours des compromis :
+En effet, une caractéristique, pour moi, de ce sujet, est que les réponses posées en archi de SI sont presque toujours des compromis{nbsp}:
 elle répondront bien à certains cas, et moins bien à d'autre.
 
 Car un système informatique complexe obéit à tout un cas de contraintes souvent incohérentes, et les questions posées doivent souvent répondre à des besoins qui le sont tout autant.
@@ -38,9 +38,9 @@ Si vous demandez pourquoi les architectes ont la réputation de beaucoup se plai
 
 == Expertise & polyvalence
 
-Si les problèmes posés brassent autant de sujet, l'architecte doit-il ou elle tout savoir sur tout pour pouvoir travailler ?
+Si les problèmes posés brassent autant de sujet, l'architecte doit-il ou elle tout savoir sur tout pour pouvoir travailler{nbsp}?
 
-Idéalement oui, mais dans la réalité ça n'est pas le cas :
+Idéalement oui, mais dans la réalité ça n'est pas le cas{nbsp}:
 un système informatique d'une certaine taille, c'est à dire son code, ses outils, et les pratiques qui les accompagnent, sont trop complexes pour qu'une personne seule puisse les maîtriser.
 
 Comment faire alors ?
@@ -49,15 +49,15 @@ C'est simple : ne pas faire seul, mais savoir faire à plusieurs, avec les bonne
 
 Face à une question trop compliquée pour lui, la compétence de l'architecte consiste à 
 
-. savoir identifier quels sont les pans du système qui seront touchés ;
-. pour chacun des pans, parvenir à savoir si il ou elle en sait assez ou si de l'aide est nécessaire
+. savoir identifier quels sont les pans du système qui seront touchés{nbsp};
+. pour chacun des pans, parvenir à savoir si il ou elle en sait assez ou si de l'aide est nécessaire{nbsp};
 . si de l'aide est nécessaire, savoir travailler avec les autres.
 
-Par exemple : identifier qu'un nouvel outil n'est peut-être pas compatible avec des règles de sécurité, et qu'il faudra aller parler avec le ou la RSSI, ou qu'un POC qu'on voudrait déployer remet en cause le fonctionnement d'un autre projet.
+Par exemple{nbsp}: identifier qu'un nouvel outil n'est peut-être pas compatible avec des règles de sécurité, et qu'il faudra aller parler avec le ou la RSSI, ou qu'un POC qu'on voudrait déployer remet en cause le fonctionnement d'un autre projet.
 
-L'apprentissage d'un ou d'une architecte est donc un mélange de deux types de connaissance :
+L'apprentissage d'un ou d'une architecte est donc un mélange de deux types de connaissance{nbsp}:
 
-. construire une expertise forte sur certains domaines au cœur de son métier, comme les questions d'intégrations de données, permettant d'être autonome ;
+. construire une expertise forte sur certains domaines au cœur de son métier, comme les questions d'intégrations de données, permettant d'être autonome{nbsp};
 . obtenir un niveau de compétence faible sur plein d'autres sujets, permettant à la fois de détecter qu'un sujet est à prendre en compte, et de travailler avec les personnes expertes de ce sujet.
 
 L'architecte est ainsi quelqu'un qui veille qu'il n'y ait pas d'link:https://fr.wikipedia.org/wiki/Externalité[externalités] dans les décisions prises. C'est à dire d'agents sur lequel une décision influe et qu'on n'aurait pas pris en compte.
@@ -71,12 +71,13 @@ Le deuxième axe d'apprentissage est celui de la légitimité.
 
 En effet, un ou une architecte doit parvenir à répondre à des enjeux complexes, tout en ne possèdent parfois qu'une faible partie des expertises nécessaires.
 
-Comme faire, surtout quand en plus il faudra dire non à des personnes qui en savent plus que vous dans leur domaine, car encore une fois on ne peut pas dire oui à tout le monde ?
+Comme faire, surtout quand en plus il faudra dire non à des personnes qui en savent plus que vous dans leur domaine, car encore une fois on ne peut pas dire oui à tout le monde{nbsp}?
 
 Il faut pour cela se sentir légitime : avoir une certitude suffisante qu'on a bien entendu toutes les bonnes personnes, et que la décision prise est celle qui répond aux mieux à l'ensemble du système.
 Qu'une décision qui ne satisfait pas tout le monde n'est pas le résultat de l'incompétence, mais une conséquence de la complexité.
 
-La tentation d'y répondre par une forme d'arrogance, qui serait une manière de se protéger, et souvent là, mais si on fait ça on fait du mauvais boulot : en se plaçant au dessus on perdra la capacité d'écoute qui fait les bonnes décisions.
+La tentation d'y répondre par une forme d'arrogance, qui serait une manière de se protéger, et souvent là, mais si on fait ça on fait du mauvais boulot{nbsp}:
+en se plaçant au dessus on perdra la capacité d'écoute qui fait les bonnes décisions.
 
 Autant que l'apprentissage des contenus, maîtriser cette posture est un travail de longue haleine.
 Si l'organisation dans laquelle on s'inscrit peut faire beaucoup, par exemple par un appui hiérarchique fort, elle demande dans tous les cas un travail sur soi.
@@ -88,9 +89,9 @@ En dehors des aspects techniques, la multiplicité des domaines touchés par l'a
 En effet cela signifie qu'il y a un tas de domaines à explorer, et que dans beaucoup d'entre eux même une connaissance faible peut déjà être utile.
 
 Par exemple lire un livre sur le réseau pourra améliorer votre capacité à travailler avec des spécialistes de ce domaine de manière déterminante.
-De même sur le sécurité, le mobile, l'organisation …
+De même sur le sécurité, le mobile, l'organisation{nbsp}…
 
-Bref : un ou une architecte de SI a toujours une bonne raison de s'intéresser à un nouveau sujet.
+Bref{nbsp}: un ou une architecte de SI a toujours une bonne raison de s'intéresser à un nouveau sujet.
 
 Tant qu'il ou elle garde en tête qu'un vernis ne remplace pas l'expertise, et qu'en savoir un peu sur tout fait de vous un spécialiste en tout.
 
@@ -98,7 +99,7 @@ Tant qu'il ou elle garde en tête qu'un vernis ne remplace pas l'expertise, et q
 
 La partie la plus désagréable en tant qu'architecte est de voir arriver de nouvelles modes en IT.
 
-Par exemple le DevOps, le REST, les microservices …
+Par exemple le DevOps, le REST, les microservices{nbsp}…
 
 Dans son travail, les architectes ont pour mission d'identifier là où ça va coincer, de piloter par le risques, de peser le pour et le contre.
 
