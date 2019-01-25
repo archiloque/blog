@@ -44,11 +44,9 @@ Cela aura souvent des effets secondaires sur le SI comme des dépendances caché
 
 == Quel rapport avec l'agile ?
 
-Cela se produit sur tous les projets, en agile comme en cascade, mais l'agile est particulièrement concerné :
-avec les dépendances il n'est pas possible d'être en capacité d'avoir un TTM bas en s'appuyant sur des cycles courts et en ayant la maîtrise de ce que l'on fait.
-Dans cette situation, les promesses de l'agile ne sont pas remplies.
+Cela se produit sur tous les projets, en agile comme en cascade, mais l'agile est particulièrement concerné.
 
-Le vrai TTM d'un projet est celui qui s'observe dans des conditions réalistes, et pas le meilleur TTM possible dans les conditions idéales.
+Tout d'abord, avec les dépendances il devient difficile d'avoir des cycles de développement courts et à durée prévisible alors qu'ils sont primordiaux pour tirer bénéfice des pratiques agiles.
 
 Une «transformation agile» qui ne prend pas en compte ce type de problème prend le risque de décridibiliser l'agile et s'enliser.
 
@@ -75,7 +73,7 @@ Je pense qu'il n'y a pas de recettes magiques : c'est un problème inévitable q
 
 == Côté demandeur
 
-Si vous est du côté des projets demandeurs, ce que vous pouvez faire
+Si vous est du côté des projets demandeurs, ce que vous pouvez faire :
 
 * Connaître assez le système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précisions acceptable : cela évite les mauvaises suprises
 * Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire. Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant. Le chiffre sera probablement dépendant de la taille du besoin et de à qui vous demandez.
@@ -87,7 +85,7 @@ Rien à mettre là : si le problème c'est eux je ne vois pas comment leur deman
 
 == Côté DSI
 
-Du plus simple au plus difficile
+La DSI peut faire de nombreuses choses dans ce domaine, du plus simple au plus difficile :
 
 * Faire en sorte que des services existants déjà exposés soient facilement utilisables par les autres applications avec un minimum de dépendances
 * Faire en sorte que les projets puissent obtenir rapidement des arbitrages : il est difficile de faire en sorte d'améliorer le TTM car ça suppose de réorganiser des projets, par contre obtenir un arbitrage oui/non et le délai ça peut déjà aider
@@ -104,18 +102,18 @@ Pour les développement inter-projets d'une certaine taille, le processus d'arbi
 
 Cela signifie que le métier doit s'approprier le sujet, et trouver une manière de le traiter.
 
-Dans des grandes organisations, cela signifie souvent que différentes branches du métier doivent apprendre à travailler ensemble pour des raisons d'IT, alors qu'elles n'ont que rarement à le faire par ailleurs.
+Dans des grandes organisations, cela signifie souvent que différentes branches du métier doivent apprendre à travailler ensemble pour des raisons d'IT, car elles sont impliquées dans les mêmes projets, alors qu'elles n'ont que rarement à le faire par ailleurs.
 
-Il peut s'agir d'un changement difficile à opérer dans une organisation.
+Il peut s'agir d'un changement difficile à opérer.
 
 Pour les demandes d'une taille plus réduite, les décisions peuvent être déléguées aux projets, sous conditions que le résultat soient satisfaisants. Cela permet de limiter le coût organisationnel en limitant les risques d'erreur, à condition de donner des marges de manœuvre suffisante aux projets.
 
-== Conclusion
+== En conclusion
 
-Attention aux "TTM" : ne vous bercez pas de fausses promesses sur vos capacité.
+Ayez le courage de mesurer vos TTM réels, c'est à dire ceux qui prennent en compte toute la chaîne de dépendance, et pas seulement les développements propres à chaque projets.
 
-Surveillez le sujet lorsque vous travailler sur la mise en place de pratiques agiles, surtout quand vous faites des promesses.
+Si les dépendances sont mal gouvernées dans votre SI, votre capacité à travailler mieux pourrait être très limitée.
 
 Essayer d'optimiser les choses au mieux pour chaque projet, sans attendre une solution globale qui résoudrait tout.
 
-En attendant que les choses progressent la solution est de continuer à adapter votre IT à la maturité de l'organisation, car l'inverse ne fonctionne pas.
+Le mieux à court et moyen terme et d'adapter votre IT à votre organisation, quitte à renoncer à certains projets ou à certaines approches, car l'inverse ne fonctionne pas.
