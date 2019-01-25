@@ -48,15 +48,15 @@ Cela se produit sur tous les projets, en agile comme en cascade, mais l'agile es
 
 Tout d'abord, avec les dépendances il devient difficile d'avoir des cycles de développement courts et à durée prévisible alors qu'ils sont primordiaux pour tirer bénéfice des pratiques agiles.
 
-Une «transformation agile» qui ne prend pas en compte ce type de problème prend le risque de décridibiliser l'agile et s'enliser.
+Une «transformation agile » qui ne prend pas en compte ce type de problème prend le risque de décrédibiliser l'agile et s'enliser.
 
-Ensuite, en donnant plus de place aux POs dans le pilotage des projets à la place des structure de gouvernances plus formelles, j'ai l'impression que l'agile a supprimé une boucle de feedback qui permettait aux différents projets de pouvoir être entendus.
+Ensuite, en donnant plus de place aux POs dans le pilotage des projets à la place des structures de gouvernance plus formelles, j'ai l'impression que l'agile a supprimé une boucle de feedback qui permettait aux différents projets de pouvoir être entendus.
 
-Les systèmes de gouvernance agile comme SAFE, en plus d'alourdir les choses, ne sont qu'une réponses partielle car ils couvrent les ensembles de de projets pré-identifés comme ayant des dépendances fortes. Il ne couvrent pas les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaîssent dans la vie des projets et qui n'étaient pas anticipés.
+Les systèmes de gouvernance agile comme SAFE, en plus d'alourdir les choses, ne sont qu'une réponse partielle car ils couvrent les ensembles de de projets pré-identifiés comme ayant des dépendances fortes. Ils ne couvrent pas les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaissent dans la vie des projets et qui n'étaient pas anticipés.
 
 L'objectif n'est pas de revenir à une gouvernance plus lourde, par exemple de type SAFE, mais de trouver comment faire au mieux.
 
-Finalement la mode de réduire au maximum la taille des équipes projets, par exemple dans les microservice, augmente le nombre d'élements du systèmes à coordonner entre eux.
+Finalement la mode de réduire au maximum la taille des équipes projets, par exemple dans les microservices, augmente le nombre d'éléments du système à coordonner entre eux.
 Le pire étant les demandes en cascades du type "moi A j'ai besoin d'un truc de B, mais pour ça B a besoin d'un truc de C".
 
 == Que faire ?
@@ -65,7 +65,7 @@ Il suffit de faire en sorte que tous les projets soient indépendants les uns de
 
 Non je blague.
 
-Il suffit de passer tous les projets en agile, et de faire en sorte que tous les PO soient capable de prendre en point à point des décisions maximisant l'optimum global.
+Il suffit de passer tous les projets en agile, et de faire en sorte que tous les PO soient capables de prendre en point à point des décisions maximisant l'optimum global.
 
 Non je blague encore.
 
@@ -75,7 +75,7 @@ Je pense qu'il n'y a pas de recettes magiques : c'est un problème inévitable q
 
 Si vous est du côté des projets demandeurs, ce que vous pouvez faire :
 
-* Connaître assez le système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précisions acceptable : cela évite les mauvaises suprises
+* Connaître assez le système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précisions acceptable : cela évite les mauvaises surprises ;
 * Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire. Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant. Le chiffre sera probablement dépendant de la taille du besoin et de à qui vous demandez.
 Cela vous permet de faire des arbitrage (est ce qu'on laisse tomber si c'est trop long ?) et de mieux planifier.
 
@@ -89,16 +89,16 @@ La DSI peut faire de nombreuses choses dans ce domaine, du plus simple au plus d
 
 * Faire en sorte que des services existants déjà exposés soient facilement utilisables par les autres applications avec un minimum de dépendances
 * Faire en sorte que les projets puissent obtenir rapidement des arbitrages : il est difficile de faire en sorte d'améliorer le TTM car ça suppose de réorganiser des projets, par contre obtenir un arbitrage oui/non et le délai ça peut déjà aider
-* Faire en sorte de faciliter le développement de ces nouvelles demandes, par exemple par la capacité à fournir des environnement de tests pendant les phases de mise au point
+* Faire en sorte de faciliter le développement de ces nouvelles demandes, par exemple par la capacité à fournir des environnements de test pendant les phases de mise au point
 * Travailler sur le décomissionnement, car fournir une nouvelle version N+1 d'un service cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1 … décident de se mettre à jour
 * Tracer ce type de demandes pour avoir de la visibilité sur le problème : est ce qu'il arrive souvent, à quels endroits ?
-* Essayer de piloter la décentralisation des projects / données / services pour limiter le nombre de guichets, un peu de centralisation sur les données "maîtres" en le structurant dans des référentiels permet par exemple de faciliter les choses
+* Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre de guichets, un peu de centralisation sur les données "maîtres" en le structurant dans des référentiels permet par exemple de faciliter les choses
 
 Le dernier point est primordial : il faut que vos projets soient adaptés à votre capacité à faire des choix et à les mettre en œuvre.
 
 == Côté métier
 
-Pour les développement inter-projets d'une certaine taille, le processus d'arbitrage devrait idéalement reposer sur le métier car c'est lui qui a la connaissance et la légitimité pour le faire.
+Pour les développements inter-projets d'une certaine taille, le processus d'arbitrage devrait idéalement reposer sur le métier car c'est lui qui a la connaissance et la légitimité pour le faire.
 
 Cela signifie que le métier doit s'approprier le sujet, et trouver une manière de le traiter.
 
@@ -110,7 +110,7 @@ Pour les demandes d'une taille plus réduite, les décisions peuvent être dél�
 
 == En conclusion
 
-Ayez le courage de mesurer vos TTM réels, c'est à dire ceux qui prennent en compte toute la chaîne de dépendance, et pas seulement les développements propres à chaque projets.
+Ayez le courage de mesurer vos TTM réels, c'est à dire ceux qui prennent en compte toute la chaîne de dépendance, et pas seulement les développements propres à chaque projet.
 
 Si les dépendances sont mal gouvernées dans votre SI, votre capacité à travailler mieux pourrait être très limitée.
 
