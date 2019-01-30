@@ -3,7 +3,7 @@ Julien Kirch
 v0.1, 2018-12-29
 :article_lang: fr
 
-WARNING: ⚠️Il s'agit d'un mélange entre un plan détaillé et un brouillon => seul le fond est important !⚠️️️️
+WARNING: ⚠️Il s'agit d'un brouillon => seul le fond est important !⚠️️️️
 
 Dans un projet appliquant des pratiques agiles, il est possible de livrer de nouvelles fonctionnalités rapidement en s'appuyant sur des cycles courts.
 
@@ -52,9 +52,9 @@ Une «transformation agile » qui ne prend pas en compte ce type de problème pr
 
 Ensuite, en donnant plus de place aux POs dans le pilotage des projets à la place des structures de gouvernance plus formelles, j'ai l'impression que l'agile a supprimé une boucle de feedback qui permettait aux différents projets de pouvoir être entendus.
 
-Les systèmes de gouvernance agile comme SAFE, en plus d'alourdir les choses, ne sont qu'une réponse partielle car ils couvrent les ensembles de de projets pré-identifiés comme ayant des dépendances fortes. Ils ne couvrent pas les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaissent dans la vie des projets et qui n'étaient pas anticipés.
+Les systèmes de gouvernance agile comme SAFE, ne sont qu'une réponse partielle car ils couvrent les ensembles de de projets pré-identifiés comme ayant des dépendances fortes. Ils ne couvrent pas les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaissent dans la vie des projets et qui n'étaient pas anticipés.
 
-L'objectif n'est pas de revenir à une gouvernance plus lourde, par exemple de type SAFE, mais de trouver comment faire au mieux.
+L'objectif n'est pas d'aller vers une gouvernance plus structurée, mais de trouver comment faire au mieux en gardant une organisation légère.
 
 Finalement la mode de réduire au maximum la taille des équipes projets, par exemple dans les microservices, augmente le nombre d'éléments du système à coordonner entre eux.
 Le pire étant les demandes en cascades du type "moi A j'ai besoin d'un truc de B, mais pour ça B a besoin d'un truc de C".
@@ -73,7 +73,7 @@ Je pense qu'il n'y a pas de recettes magiques : c'est un problème inévitable q
 
 == Côté demandeur
 
-Si vous est du côté des projets demandeurs, ce que vous pouvez faire :
+Si vous êtes du côté des projets demandeurs, ce que vous pouvez faire :
 
 * Connaître assez le système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précisions acceptable : cela évite les mauvaises surprises ;
 * Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire. Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant. Le chiffre sera probablement dépendant de la taille du besoin et de à qui vous demandez.
@@ -81,7 +81,10 @@ Cela vous permet de faire des arbitrage (est ce qu'on laisse tomber si c'est tro
 
 == Côté fournisseur
 
-Rien à mettre là : si le problème c'est eux je ne vois pas comment leur demander des choses.
+Si le problème de départ est d'avoir de la disponibilité de la part des projets fournisseurs, il est difficile de leur demander des choses.
+
+Ce qui me paraît essentiel, est de pouvoir avoir des réponses aux questions de priorisation dans un délai raisonnable.
+S'il n'est pas possible d'avoir des leviers directs sur la priorisation des autres projets, il faut au moins être capable d'avoir les informations nécessaires pour organiser sa propre roadmap.
 
 == Côté DSI
 
@@ -102,9 +105,16 @@ Pour les développements inter-projets d'une certaine taille, le processus d'arb
 
 Cela signifie que le métier doit s'approprier le sujet, et trouver une manière de le traiter.
 
-Dans des grandes organisations, cela signifie souvent que différentes branches du métier doivent apprendre à travailler ensemble pour des raisons d'IT, car elles sont impliquées dans les mêmes projets, alors qu'elles n'ont que rarement à le faire par ailleurs.
+Dans le cas idéal, les différents métier impliqués ont l'haitude de travailler ensemble, et sauront prioriser les demandes d'une manière qui soit acceptable aux différentes parties prenantes.
 
-Il peut s'agir d'un changement difficile à opérer.
+Dans d'autre cas, cela peut signifier que différentes branches du métier doivent apprendre à travailler ensemble pour des raisons d'IT, alors qu'elles n'ont que rarement à le faire par ailleurs.
+
+Par expérience cet apprentissage est souvent difficile, en particulier lorsqu'un des métier à plus d'intérêt que les autres à cette collaboration.
+
+QQQQ a priori on ne devrait pas avoir de liens côté projets entre deux métiers qui ne soient pas drivée par des liens métiers, mais ça peut arriver
+identifier quand des liens se tissent et n'ont pas été identifés avant et que les métiers ne s'entendent pas, voir si c'est une bonne idée ou s'il faut renoncer.
+
+
 
 Pour les demandes d'une taille plus réduite, les décisions peuvent être déléguées aux projets, sous conditions que le résultat soient satisfaisants. Cela permet de limiter le coût organisationnel en limitant les risques d'erreur, à condition de donner des marges de manœuvre suffisante aux projets.
 
