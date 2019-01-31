@@ -1,0 +1,32 @@
+= Le DataLab et le SI : quelques sujets qui fachent
+Julien Kirch
+v0.1, 2019-01-31
+:article_lang: fr
+
+== De quoi parle-t-on ?
+
+[quote]
+____
+Pour le DataLab on s'est branché aux bases de données des différents projets, du coup chaque fois que leurs schémas changent pendant une MEP le week-end ça casse notre code d'import et on doit se dépêcher de réparer le lundi matin.
+____
+
+[quote]
+____
+Le métier est très content des premiers résultats sur le _churn_, mais pour améliorer les modèles il faudrait corriger des problèmes de qualité de données dans les projets amont, mais on n'arrive pas à se faire entendre.
+____
+
+[quote]
+____
+Pour aller plus vite on a branché le Lab sur la BI.
+Ça a été super cool pour démarrer, mais on a vendu du temps réel et la BI est en J+1 et maintenant on ne sait pas comment faire.
+____
+
+== Conclusion
+
+Pour POCer un DataLab tous les moyens sont bons, mais attention à ne pas se mentir sur le RAF ensuite pour en faire un asset mature du SI.
+
+Un DataLab qui veut manipuler toutes les données du SI va demander un effort d'intégration conséquent.
+
+Étendre son périmètre va demander un effort sur la qualité de la donnée dans le SI, ce qui a des impacts projets et souvent métier.
+
+Péréniser son fonctionnement va demander un effort d'industrialisation sur la manière dont les données sont mises à disposition, et de gouvernance projet pour éviter les mauvaises surprises.
