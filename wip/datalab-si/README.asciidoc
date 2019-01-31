@@ -3,6 +3,8 @@ Julien Kirch
 v0.1, 2019-01-31
 :article_lang: fr
 
+WARNING: ⚠️Il s'agit d'un plan en cours => seul le fond est important !⚠️️️️
+
 == De quoi parle-t-on ?
 
 [quote]
@@ -21,9 +23,55 @@ Pour aller plus vite on a branché le Lab sur la BI.
 Ça a été super cool pour démarrer, mais on a vendu du temps réel et la BI est en J+1 et maintenant on ne sait pas comment faire.
 ____
 
+== Pour POCer tout est permis
+
+Pour un POC on peut se brancher n'importe comment et ne pas se poser la question de la pérénité.
+
+Par contre attention à ne pas se bercer d'illusion : un moment il faudra s'en occuper, à moins de construire qui sera de plus en plus fragile au fur et à mesure qu'il grandira.
+
+== Les problèmes
+
+=== Pérénité de l'intégration
+
+Branchement aux applis qui fournissent de la donnée = couplage = ça peut casser
+
+=== Vitesse de captation des données
+
+CVS par batch de nuit ou branchemet à la BI ça peut répondre à certains besoins, mais ça peut limiter les uses cases adressés
+
+=== Qualité des données
+
+Données pourries car ce n'est pas un problème en amont, ça peut être des problèmes tech ou métier (mauvaises saisies)
+
+== Les solutions
+
+Malheuresement les solutions vont passer par des demandes aux projets, après le POC un DataLab ne peut pas se faire en mode shadow IT.
+
+=== Intégration
+
+* Mode d'intégration le plus pérenne possible (genre pas par la base)
+* Faire des tests automatisés d'import sur les environnements de recette voire avant, et que ça soit le problème du projet amont
+* Avoir quelqu'un qui s'intéresse au sujet dans les projets
+
+=== Vitesse de captation
+
+Enjeu majeur car ça dimensionne la complexité des projets
+
+On peut avoir des solutions pour le lab avec plein de données "en retard" qui permet de tester, et une autre pour la prod, avec des données moins riches mais rapide
+
+Solution la meilleure : reposer sur des envois de message en fil de l'eau, mais c'est très impactant pour les projets amonts
+
+=== Qualité des données
+
+Trouver des relais dans les projets, et un relai compatible avec la capacité d'innovation ciblée par le lab, au moins sur la capacité à avoir des réponses sur le temps de correction.
+
+La gouvernance de donnée, qu'on pouvait éviter de mettre en œuvre tant que les données restaient silotées, revient au goût du jour.
+
+Après il faut une volonté métier, voire une volonté de la direction : si le lab a pour vocation des données de toutes l'orga, elle va toucher des projets de tous les métiers, et va donc demander un bon sponsoring pour ne pas s'épuiser
+
 == Conclusion
 
-Pour POCer un DataLab tous les moyens sont bons, mais attention à ne pas se mentir sur le RAF ensuite pour en faire un asset mature du SI.
+Pour POCer un DataLab tous les moyens sont bons, mais attention à ne pas se mentir sur le RAF ensuite pour en faire un asset mature du SI : il faut sortir su shadow IT.
 
 Un DataLab qui veut manipuler toutes les données du SI va demander un effort d'intégration conséquent.
 
