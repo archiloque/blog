@@ -55,3 +55,14 @@ This is what most people focused on, despite being the most superficial bit. Pro
 
 This places additional responsibilities on the open source maintainer. One law we see time and time again is “you cannot fix things with discipline.” First of all, they simply don’t work: see all the data breaches at professional, “responsible” companies. Also, discipline approaches do not scale. This problem happened because a single contributor for a single package made an error. At the time of the attack, Copay had thousands of package dependencies. That means that thousands of maintainers cannot make any mistakes or else the system is in trouble. And even if they all have perfect discipline, this still doesn’t prevent dependency attacks. A malicious actor could seed a package and use it later, or steal someone else’s account.
 ____
+
+==== link:https://dzone.com/articles/abstraction-tiers-of-notations[Abstraction Tiers of Notations (Part 1)]
+
+[quote]
+____
+Abstractions from different tiers have different learning and usage cost. The higher tier abstractions are more taxing to use and more difficult to learn than those of lower tiers. However, these higher-tier abstractions allow decomposing more complex task in manageable pieces. The lower tier abstractions have lower learning and usage cost, but they support lesser complexity. Depending on the situation, these factors could have different weight.
+
+Thus, targeting the highest tier possible is not a sure-win strategy. 
+
+One of the good solutions to this trade-off is designing languages that support abstractions from different tiers. For example, Java forces to use class abstraction (tier 4) even for simplest programs. On the other hand, Groovy allows writing programs using a sequence of actions as the script (the tier 2-3 on top level). So, it is possible to choose a high-level abstraction tier suitable of the specific task and not to pay the cost of higher-tier abstractions.
+____
