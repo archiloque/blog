@@ -13,3 +13,15 @@ Within programming languages, the tar pit arises in a hidden form: it manifests 
 
 Recently I’ve started to see a new variant of the Turing tar pit, something I call the *monadic morass*. Since monads were originally popularized in language research as a tool for specifying the semantics of programming languages, it is no surprise that they can form the basis for universal computation. So, when someone says that “this can already be done with monads,” listen closely and you might hear the sound of good research being sucked into the Turing tar pit.
 ____
+
+
+==== link:https://segment.com/blog/when-aws-autoscale-doesn-t/[When AWS Autoscale Doesn’t]
+
+[quote]
+____
+We’ve found that target tracking autoscaling works best in situations where your ECS service and CloudWatch metrics meet the following criteria:
+
+- Your service should have at least one metric that is directly affected by the running task count. For example, a web service likely uses twice the amount of CPU time when handling twice the volume of requests, so CPU utilization is a good target metric for target tracking scaling.
+- The metrics that you target should be bounded, or your service should have a maximum task count that is high enough to allow for headroom in scaling out but is low enough to prevent you from spending all your money. Target tracking autoscaling scales out proportionally so if the actual metric value exceeds the target by orders of magnitude, AWS scales your application (and your bill) out by corresponding orders of magnitude. In other words, if you are target tracking scaling on queue depth and your target depth is 100 but your actual queue depth is 100,000, AWS scales out to 1,000x more tasks for your service. You can protect yourself against this by setting a maximum task count for your queue worker service.
+- Your target metrics should be relatively stable and predictable given a stable amount of load. If your target metric oscillates wildly given a stable traffic volume or load, your service may not be a good fit for target tracking scaling because AWS is not able to correctly scale your task count to nudge the target metrics in the right direction. 
+____
