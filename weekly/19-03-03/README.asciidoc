@@ -2,3 +2,47 @@
 Julien Kirch
 v1.0, 2019-03-03
 :article_lang: en
+
+===== link:https://queue.acm.org/detail.cfm?ref=rss&id=3314115[Identity by Any Other Name]
+
+[quote]
+____
+The fascinating thing about identifiers is that while they identify the same "thing" over time, that referenced thing may slide around in its meaning. Product descriptions, reviews, and inventory balance all change, while the product ID does not. Reservations, orders, and bookings all have identifiers that don't change, while the stuff they identify may subtly change over time.
+
+Identity and identifiers provide the immutable linkage. Both sides of this linkage may change, but they provide a semantic consistency needed by the business operation. No matter what you call it, identity is the glue that makes things stick and lubricates cooperative work.
+____
+
+[quote]
+____
+For a long time, we worked behind the façade of a single centralized database. If you wanted to talk to other computers, that was an "application problem" and not in the purview of the system. Data lived as values in cells in the relational database. Everything could be explained in simple abstractions, and life was good!
+
+Then, we started splitting up centralized systems for scale and manageability. We also tried to get different systems that had been independently developed to work together. That created many challenges in understanding each other4 and ensuring predictable outcomes, especially for atomic transactions.
+
+As time moved on, a number of usage patterns emerged that address the challenges of work across both homogeneous and heterogeneous boundaries. All of those patterns depend on connecting things with notions of identity. The identities involved frequently remain firm and intact over long periods of time.
+____
+
+[quote]
+____
+When your partner business uses identifiers in a non-immutable way, you need to be on your toes.
+____
+
+[quote]
+____
+When your partner business uses identifiers in a non-immutable way, you need to be on your toes.
+____
+
+[quote]
+____
+The identity captured in the URL is a large part of why REST is so powerful. The underlying resource has an identity in the URL namespace. Each representation (assigned to a single user) has an identity in the URL namespace. Specific operations are captured, leveraging identity within the URL namespace—a powerful mechanism using the identity of the URL!
+____
+
+[quote]
+____
+Identities must be scoped in space and time so that they don't cause ambiguities. This is, on the one hand, an obvious and silly thing to say. On the other hand, it is a liberating concept.
+
+Identifiers may have permanent unique IDs like those offered by UUIDs. These are powerful and useful. Identifiers may have a centralized or hierarchical authority that assigns their IDs, and that, by itself, offers challenges: Does this authority scale? Is it broad enough in its role to encompass the many different pieces of the solution?
+
+The reality for most systems is that identities span the participants that see the use of that specific identifier. When merchants interact with a big ecommerce site, they will have shared identifiers for their cooperative work. Still, the merchants may not share the identifiers they use to deal with private suppliers. Those private suppliers may have different identifiers used to interact with the manufacturers of their products.
+
+The scope of the identifiers is typically subject to the portion of the workflow that hosts the identifier. There are global IDs like UPC or SSN (Social Security number), but there are also local IDs like SKUs that are defined only for a single merchant.
+____
