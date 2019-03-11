@@ -1,6 +1,6 @@
-= 3rd March 2019
+= 10th March 2019
 Julien Kirch
-v1.0, 2019-03-03
+v1.0, 2019-03-10
 :article_lang: en
 
 ===== link:https://queue.acm.org/detail.cfm?ref=rss&id=3314115[Identity by Any Other Name]
@@ -77,4 +77,18 @@ Disorderly programming -- a theme that we explore in this thesis through languag
 Instead of overspecifying order and then exploring ways to relax it (e.g., by using threads and synchronization primitives), a disorderly programming language encourages programmers to underspecify order, to make it easy (and natural) to express safe and scalable computations.
 As we will show, disorderly programming also enables powerful analysis techniques that recognize when additional ordering constraints are required to produce correct results.
 Mechanisms ensuring these constraintscan then be expressed and inserted at an appropriately coarse grain to achieve the needs of coretasks like mutable state and distributed coordination.
+____
+
+===== link:https://www.cerias.purdue.edu/site/blog/post/the_rsa_2019_conference/[The RSA 2019 Conference]
+
+[quote]
+____
+Sadly, the lack of foundations for the people at most of the booths mirrored the lack of a solid foundation for the products. There are some good, useful products and services present on the market. But the vast majority are intended to apply bandaids (or another layer of virtualization) on top of broken software and hardware that was never adequately designed for security. Each time one of those bandaids fails, another company springs up to slap another on over the top. That then leads to acquisition and integration into security suites. No one is really attacking the poor underlying assumptions and broken architectures. This is related to why I don’t submit proposals to talk at the conference — I tried a few years ago and the message conveyed to me was that it was out of step with what the sponsors wanted presented. The industry is primarily based on selling the illusion that vendors' products can — in the right combination and with enough money spent — completely protect target systems. Someone pointing out that this is fundamentally flawed is not a welcome addition. I get that a lot — it is probably why I don’t get asked to be a company advisor, either.
+____
+
+===== link:https://news.ycombinator.com/item?id=19351639[Single-file cross-platform C/C++ headers implementing self-contained libraries]
+
+[quote]
+____
+Besides, descriptive variable names violate the principle of "don't repeat yourself". It is better to describe the variable only once, in a comment next to its declaration, instead of several times
 ____
