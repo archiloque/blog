@@ -3,6 +3,48 @@ Julien Kirch
 v0.1, 2019-03-12
 :article_lang: fr
 
+https://nixos.org/~eelco/pubs/phd-thesis.pdf
+
+Thèse sur les problèmes de build et de dépendances entre projet.
+
+Porte sur des composants d'un OS, 
+mais Illustre de manière cohérentes de nombreux problèmes qui se posent dans le build l'installation et le run de systèmes de composants
+qui évoluent dans le temps comme des services.
+
+À l'inverse des solutions de type conteneurs qui visent à des installations isolées, l'idée de Nix est de permettre de faire des installation parallèles mais sans interférences, ce qui permet le partage efficace de ressource.
+
+Quelques éléments mise en lumière :
+
+## L'adhérence masquée
+
+La difficulté de faire en sorte qu'un artefact ne soit pas adhérent à l'environement où il a été construit, que ça soit par dépendances mal maîtrisées ou par des informations embeddées cf https://reproducible-builds.org
+
+L'approche de NIX est d'isoler les composants pour éviter toute polution accidentelle lors du build.
+
+## La compatibilité
+
+La difficulté sous-estimée à tester les compatibilité entre version de composants, qui est au coeur des problèmes de https://en.wikipedia.org/wiki/DLL_Hell
+
+Quand on veut faire une MAJ d'une bibliothèque partagée, mais qu'on ne maîtrise pas les impact, surtout quand il y a des chaînes de dépendances longues.
+
+Le cas dans les systèmes Linux standard où les bibliothèque sont souvent disponibles en une seule version.
+
+## Mise à jour
+
+Problèmes des mises à jour qui échouent ou qui ne donnent pas satisfaction : revenir à un état stable ou rollbacker.
+
+## Conclusion
+
+Remarquable travail très convainquant, qui donne envie que le projet soit un succès même si je n'en ai pas l'usage.
+
+Un must read pour qui s'intéresse à ces sujets
+
+
+## Quelques citations
+
+
+
+
 [quote]
 ____
 This thesis is about getting computer programs from one machine to another -- and having them still work when they get there. This is the problem of _software deployment_. Though it is a part of the field of Software Configuration Management (SCM), it has not been a subject of academic study until quite recently. The development of principles and tools to support the deployment process has largely been relegated to industry, system administrators, and Unix hackers. This has resulted in a large number of often _ad hoc_ tools that typically automate manual practices but do not address fundamental issues in a systematic and disciplined way.
@@ -53,4 +95,14 @@ ____
 [quote]
 ____
 As we shall see, conventional deployment tools treat the file system as a chaotic, unstructured component store, similar to how an assembler programmer would treat memory. In contrast, modern programming languages impose a certain _discipline_ on memory, such as rigidly defined object layouts and prohibitions against arbitrary pointer formation, to enable features such as garbage collection and pointer safety. The idea is that by establishing a mapping between notions in the two fields, solutions from one field carry over to the other. In particular, the techniques used in conservative garbage collection serve as a sort of _apologia_ for the hash scanning approach used to find runtime dependencies.
+____
+
+[quote]
+____
+
+The main objective of the research described in this thesis was to develop a system for _correct_ software deployment that ensures that the deployment is _complete_ and does not cause _interference_. This objective was successfully met in the Nix deployment system, as the experience with Nixpkgs described in Section 7.1.5 has shown.
+
+The objective of improving deployment correctness is reached through the two main ideas described in this thesis. The first is the use of cryptographic hashes in Nix store paths. It gives us isolation, automatic support for variability, and the ability to determine runtime dependencies. This however can be considered an (important) implementation detail -- maybe even a "trick". However, it addresses the deployment problem at the most fundamental level: the storage of components in the file system.
+
+The second and more fundamental idea is the purely functional deployment model, which means that components never change after they have been built and that their build processes only depend on their declared inputs. In conjunction with the hashing scheme, the purely functional model prevents interference between deployment actions, provides easy component and composition identification, and enables reproducibility of configurations both in source and binary form -- in other words, it gives predictable, deterministic semantics to deployment actions.
 ____
