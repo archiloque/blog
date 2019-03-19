@@ -1,49 +1,56 @@
-= NIX
+= NIX : un modèle de déploiement de logiciel purement fonctionnel
 Julien Kirch
-v0.1, 2019-03-12
+v0.1, 2019-03-19
 :article_lang: fr
+:article_image: nix.png
+:article_description: Une thèse qui vaut d'être lue
 
-https://nixos.org/~eelco/pubs/phd-thesis.pdf
+link:https://nixos.org/nix/[Nix] est un gestionnaire de composant pour Linux permettant d'obtenir des déploiements fiables et reproductibles, il est à la base d'une distribution de Linux appelée link:https://nixos.org[NixOS].
 
-Thèse sur les problèmes de build et de dépendances entre projet.
+Le document de référence sur Nix est link:https://nixos.org/~eelco/pubs/phd-thesis.pdf[la thèse de doctorat] de son créateur auteur : link:https://twitter.com/n1ksnut?lang=en[Eelco Dolstra].
 
-Porte sur des composants d'un OS, 
-mais Illustre de manière cohérentes de nombreux problèmes qui se posent dans le build l'installation et le run de systèmes de composants
-qui évoluent dans le temps comme des services.
+La thèse n'est pas uniquement centrée sur l'outil mais surtout une présentation des différents problèmes qui se posent lorsqu'on veut construire et déployer des composants qui dépendent les uns des autres.
 
-À l'inverse des solutions de type conteneurs qui visent à des installations isolées, l'idée de Nix est de permettre de faire des installation parallèles mais sans interférences, ce qui permet le partage efficace de ressource.
+Si le cas étudié est principalement celui de bibliothèques ou d'application Linux, il est tout aussi adapté à d'autres types de composants, comme des services dans un SI.
 
-Quelques éléments mise en lumière :
+À l'inverse des solutions de type conteneurs qui visent à des installations isolées, l'idée de Nix est de permettre de faire des installation et des mises à jours sur un système partagé mais sans interférence, ce qui permet le partage efficace de ressource.
+
+L'ambition de Nix est de pouvoir fonctionner avec des briques applicatives existantes, l'écosystème Linux, en ayant un minimum d'impact sur ces briques.
+Elle prend donc en compte les questions de gestion du _legacy_.
+
+Deux éléments mis en lumière par le texte et qui m'ont particulièrement parlé :
 
 ## L'adhérence masquée
 
-La difficulté de faire en sorte qu'un artefact ne soit pas adhérent à l'environement où il a été construit, que ça soit par dépendances mal maîtrisées ou par des informations embeddées cf https://reproducible-builds.org
+Il est très difficile de maîtriser toutes les adhérences entre un composant qui n'a pas été conçu pour ça -- comme c'est le cas de l'essentiel des briques logicielles Linux -- et l'environnement où il a été construit.
 
-L'approche de NIX est d'isoler les composants pour éviter toute polution accidentelle lors du build.
+Cela peut porter par exemple par des informations intégrées dans le composant (des chemins de fichiers, variables d'environnements …) ou des dépendances mal identifiées à des bibliothèques installées sur les systèmes servant à la construction mais pas celles qui serviront au déploiement.
+
+Toutes ces inconnues augmentent le risques ou la complexité du déploiement, en plus de link:https://reproducible-builds.org[rendre certains audits de sécurité plus difficiles].
 
 ## La compatibilité
 
-La difficulté sous-estimée à tester les compatibilité entre version de composants, qui est au coeur des problèmes de https://en.wikipedia.org/wiki/DLL_Hell
+Tester la compatibilité entre versions de composants est souvent plus difficile qu'on ne le croit, surtout lorsqu'on ne dispose pas des tests automatisés adéquats.
 
-Quand on veut faire une MAJ d'une bibliothèque partagée, mais qu'on ne maîtrise pas les impact, surtout quand il y a des chaînes de dépendances longues.
+Les personnes qui ont goûté au link:https://en.wikipedia.org/wiki/DLL_Hell[DLL Hell] en ont probablement gardé de mauvais souvenirs.
 
-Le cas dans les systèmes Linux standard où les bibliothèque sont souvent disponibles en une seule version.
+Mettre à jour des bibliothèque partagées lorsque les chaînes de dépendances sont longues est un exercice risqué.
 
-## Mise à jour
-
-Problèmes des mises à jour qui échouent ou qui ne donnent pas satisfaction : revenir à un état stable ou rollbacker.
+Nix propose une approche de mise à jour transactionnelle, avec gestion du retour en arrière, qui s'approche beaucoup de ce qu'on peut faire dans certains SI.
 
 ## Conclusion
 
-Remarquable travail très convainquant, qui donne envie que le projet soit un succès même si je n'en ai pas l'usage.
+La thèse se lit très bien et les solutions proposées, dans leurs forces et leurs faiblesses, sont convaincantes.
 
-Un must read pour qui s'intéresse à ces sujets
+Cela m'a donné envie que Nix soit un succès, même si je n'en ai pas l'usage personnellement.
+
+La thèse est une très bon tour d'horizon aux questions de build et de déploiement.
+Je la conseillerai aux personnes, qu'elles soient du côté architecture, développement ou administration système, qui s'intéressent à ces sujets.
+
+Enfin l'utilisation d'un langage de description purement fonctionnel pour les composants donne un cas d'usage où ce type d'outil semble très bien adapté, assez éloigné de ce que j'ai l'impression de voir d'habitude.
 
 
 ## Quelques citations
-
-
-
 
 [quote]
 ____
