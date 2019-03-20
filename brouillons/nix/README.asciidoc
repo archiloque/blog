@@ -15,6 +15,8 @@ Si le cas étudié est principalement celui de bibliothèques ou d'application L
 
 À l'inverse des solutions de type conteneurs qui visent à des installations isolées, l'idée de Nix est de permettre de faire des installation et des mises à jours sur un système partagé mais sans interférence, ce qui permet le partage efficace de ressource.
 
+L'idée principale est de faire des installations parallèles des différentes versions des composants dans des répertoires séparés, et d'utiliser différents mécanismes -- comme la gestion du `PATH` -- pour faire en sorte que chaque élements ne puisse accèder qu'aux bonnes versions des dépendances.
+
 L'ambition de Nix est de pouvoir fonctionner avec des briques applicatives existantes, l'écosystème Linux, en ayant un minimum d'impact sur ces briques.
 Elle prend donc en compte les questions de gestion du _legacy_.
 
