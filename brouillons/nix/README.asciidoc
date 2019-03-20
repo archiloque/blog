@@ -13,9 +13,9 @@ La thèse n'est pas uniquement centrée sur l'outil mais surtout une présentati
 
 Si le cas étudié est principalement celui de bibliothèques ou d'application Linux, il est tout aussi adapté à d'autres types de composants, comme des services dans un SI.
 
-À l'inverse des solutions de type conteneurs qui visent à des installations isolées, l'idée de Nix est de permettre de faire des installation et des mises à jours sur un système partagé mais sans interférence, ce qui permet le partage efficace de ressource.
+À l'inverse des solutions de type conteneurs qui visent à des installations isolées, l'idée de Nix est de permettre de faire des installations et des mises à jour sur un système partagé mais sans interférence, ce qui permet le partage efficace de ressource.
 
-L'idée principale est de faire des installations parallèles des différentes versions des composants dans des répertoires séparés, et d'utiliser différents mécanismes -- comme la gestion du `PATH` -- pour faire en sorte que chaque élements ne puisse accèder qu'aux bonnes versions des dépendances.
+L'idée principale est de faire des installations parallèles des différentes versions des composants dans des répertoires séparés, et d'utiliser différents mécanismes -- comme la gestion du `PATH` -- pour faire en sorte que chaque éléments ne puisse accéder qu'aux bonnes versions de ses dépendances.
 
 L'ambition de Nix est de pouvoir fonctionner avec des briques applicatives existantes, l'écosystème Linux, en ayant un minimum d'impact sur ces briques.
 Elle prend donc en compte les questions de gestion du _legacy_.
@@ -44,10 +44,11 @@ Nix propose une approche de mise à jour transactionnelle, avec gestion du retou
 
 La thèse se lit très bien et les solutions proposées, dans leurs forces et leurs faiblesses, sont convaincantes.
 
-Cela m'a donné envie que Nix soit un succès, même si je n'en ai pas l'usage personnellement.
+C'est un très bon tour d'horizon aux questions de build et de déploiement.
 
-La thèse est une très bon tour d'horizon aux questions de build et de déploiement.
 Je la conseillerai aux personnes, qu'elles soient du côté architecture, développement ou administration système, qui s'intéressent à ces sujets.
+
+Cela m'a donné envie que Nix soit un succès, même si je n'en ai pas l'usage personnellement.
 
 Enfin l'utilisation d'un langage de description purement fonctionnel pour les descriptifs des composants donne un cas d'usage où ce type d'outil semble très bien adapté, assez éloigné de ce que j'ai l'impression de voir d'habitude.
 
