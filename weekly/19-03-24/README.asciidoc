@@ -3,3 +3,35 @@ Julien Kirch
 v1.0, 2019-03-24
 :article_lang: en
 
+===== link:https://nixos.org/~eelco/pubs/phd-thesis.pdf[The Purely Functional Software Deployment Model]
+
+A bunch of quotes on link:https://archiloque.net/blog/nix/#_quelques_citations[my blog].
+
+===== link:https://lwn.net/Articles/783496/[Layers and abstractions]
+
+[quote]
+____
+If you did so, that would look a lot like link:https://en.wikipedia.org/wiki/ZFS[ZFS], which is a non-traditional filesystem that has squashed those layers into the filesystem itself. ZFS handles RAID, encryption, pools for volume management, and so on. There clearly is no separation of concerns for ZFS. Is that a good thing? It does lead to better error detection and recovery because ZFS is concerned with the block layer all the way up to the files themselves; it has checksums at each level. ZFS can also do deduplication more easily and take faster snapshots.
+
+[…]
+
+To explain what is going on with ZFS, Anderson introduced the idea of a "sympathetic abstraction". It can be thought of as an "intentional leakiness" where layers are sympathetic to those above and below. For example, ZFS is sympathetic to whether the block device it runs on is spinning rust or an SSD. ZFS is also sympathetic to errors that can occur on the raw block device, while ext4 and other traditional filesystems are not: they leave that kind of error handling to some other layer below.
+
+These kinds of sympathetic abstractions happen all the time, he said. For example, SSH sets the `TCP_NODELAY` option (to disable link:https://en.wikipedia.org/wiki/Nagle%27s_algorithm[Nagle's algorithm]) for interactive sessions. But SSH should not care what transport it is running on; it should be able to run on top of UDP tunneled inside DNS packets. The link:http://cassandra.apache.org/[Apache Cassandra database] wants to know if it is running on spinning rust or SSD; shouldn't that be the concern of layers below it?
+
+He introduced "Kyle's Abstraction Law", which he has come up with, though it is "not canon", he cautioned. It says that over time, layers tend toward becoming more sympathetic (or merged) in the pursuit of performance. We start off with "beautiful layers", each with a single purpose; over time, we realize the picture is not quite so clear cut, so we squash the layers some.
+____
+
+==== link:https://increment.com/on-call/on-call-at-any-size/[On-call at any size]
+
+[quote]
+____
+However, being scrappy is not without its disadvantages. Hardening alert configurations and expanding them to detect a wide array of potential outages is labor intensive work, and it’s an ongoing challenge to prioritize better monitoring over feature development. The consequences of a small team expand beyond prioritization, and providing 24/7 coverage with only two or three engineers can be a punishing experience.
+____
+
+[quote]
+____
+Large companies (1,000-10,000 employees)
+
+At this scale a company has become truly massive, moving from a handful of on-call rotations to dozens of them. Outages are immensely expensive, and when one does occur, prioritize recovery over understanding, as it’s too expensive to debug in production.
+____
