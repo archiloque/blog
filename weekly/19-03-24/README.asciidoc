@@ -35,3 +35,23 @@ Large companies (1,000-10,000 employees)
 
 At this scale a company has become truly massive, moving from a handful of on-call rotations to dozens of them. Outages are immensely expensive, and when one does occur, prioritize recovery over understanding, as it’s too expensive to debug in production.
 ____
+
+==== link:https://gist.github.com/mkremins/cb0707180dd8653e3fc6560f6dda63d3[Stop Building Static Worls]
+
+[quote]
+____
+Facebook and twitter are trying to be third places but they are the shopping malls of social media you are not allowed to take action to customize or improve them at a structural level they're owned by mega corporations that decide what you need FOR YOU, without ASKING YOU and games have the potential to be an alternative to that!
+
+so games -- social games like minecraft and fortnite -- are becoming our NEW DIGITAL THIRD PLACES they are the community gathering spaces for a whole generation of kids who are growing up online and critically, these games work as third places in part because they enable players to change their environment!
+____
+
+==== link:https://developers.soundcloud.com/blog/how-to-reindex-1-billion-documents-in-1-hour-at-soundcloud.html[How to Reindex One Billion Documents in One Hour at SoundCloud]
+
+[quote]
+____
+At SoundCloud, we use what is canonically known as link:http://milinda.pathirage.org/kappa-architecture.com/[Kappa Architecture] for our search indexing pipeline. The main idea here is: have an immutable data store and stream data to auxiliary stores.
+
+So, how does this work? Once a user, for example, uploads a track or a playlist on SoundCloud, we receive a live update.footnote:[Our average live update rate is 50 documents per second.] in the `eventfeeder`. Then the `indexer` fetches the uploaded data.footnote:[The data that we actually index in Elasticsearch is a small subset of what is available in MySQL, and it consists of basic fields such as title, description, and user.] from our primary data source —- MySQL -— and creates a JSON document, which is published to Kafka. The Kafka topics have link:https://kafka.apache.org/0100/documentation.html#compaction[log compaction] enabled, which means we will only retain the latest version of the documents. Finally, the `shipper` reads the JSON documents from Kafka and sends them to Elasticsearch via the link:https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html[bulk API].
+
+Since we use Kafka to back the document storage, we can reindex a new cluster from scratch by simply resetting the Kafka consumer offset of the `shipper` component, i.e. replaying all stored messages in Kafka.
+____
