@@ -3,3 +3,25 @@ Julien Kirch
 v1.0, 2019-03-31
 :article_lang: en
 
+==== link:http://www.wilfred.me.uk/blog/2019/03/24/the-siren-song-of-little-languages/[The Siren Song of Little Languages]
+
+[quote]
+____
+Some programming languages languish due to obscurity. They lack breathless blog posts exclaiming how much nicer they are to use.
+
+Other languages are too ambitious. They aspire to support so many features that the original implementers struggle to get a first version working. For example, the type system in Fortress link:https://youtu.be/EZD3Scuv02g?t=50m10s[required constraint solving which took exponential time].
+
+Sometimes a usable language struggles simply because _it’s too much fun to write your own_. Developers end up building their own implementation rather than actually using the language.
+
+The most obvious implementation-focused language is link:https://en.wikipedia.org/wiki/Brainfuck[BF]. Despite having link:https://esolangs.org/wiki/Brainfuck_implementations[many implementations], BF programmers have to link:http://www.hevanet.com/cristofd/brainfuck/epistle.html[encourage the implementers to actually try using the language]!
+____
+
+==== link:https://arxiv.org/abs/1903.09305[How Design, Architecture, and Operation of Modern Systems Conflict with GDPR]
+
+[quote]
+____
+In this paper, we review GDPR from a system design perspective, and identify how its regulations conflict with the design, architecture, and operation of modern systems.
+We illustrate these conflicts via the _seven privacy sins_: storing data forever; reusing data indiscriminately; walled gardens and black markets; risk-agnostic data processing; hiding data breaches; making unexplainable decisions; treating security as a secondary goal.
+Our findings reveal a deep-rooted tussle between GDPR requirements and how modern systems have evolved.
+We believe that achieving compliance requires comprehensive, grounds up solutions, and anything short would amount to _fixing a leaky faucet in a burning building_.
+____
