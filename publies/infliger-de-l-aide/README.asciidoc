@@ -7,34 +7,34 @@ v0.1, 2018-12-15
 
 [quote]
 ____
-|> Je cherche une regex pour parser du HTML, est ce que quelqu'un peut m'en suggérer une{nbsp}? +
+|> Je cherche une regex pour parser du HTML, est-ce-que quelqu'un peut m'en suggérer une{nbsp}? +
  +
-Tu ferai mieux d'utiliser une bibliothèque qui fait ça pour toi.
+Tu ferais mieux d'utiliser une bibliothèque qui fait ça pour toi.
 ____
 
 [quote]
 ____
-|> Est ce que quelqu'un peut me dire comment en Node.js on fait pour transformer un texte pour le mettre en majuscule{nbsp}? +
+|> Est-ce-que quelqu'un peut me dire comment on fait en Node.js pour mettre un texte en majuscule{nbsp}? +
  +
-Node.js c'est nul, à ta place je l'aurais fait en Haskell.
+Node.js c'est nul, à ta place, je l'aurais fait en Haskell.
 ____
 
-_Infliger de l'aide_ signifie que, pour répondre à une demande d'aide, on va fournir une réponse d'une autre type que celle initialement attendue.
+_Infliger de l'aide_ signifie que, pour répondre à une demande d'aide, on va fournir une réponse d'un autre type que celle initialement attendue.
 
-Souvent cela signifie remettre en cause l'approche que sous-tend la demande d'aide.
+Souvent, cela signifie remettre en cause l'approche que sous-tend la demande d'aide.
 
 _Infliger_ illustre bien le fait que la personne qui a posé la question peut être surprise, ou même se sentir vexée ou attaquée par cette réponse qu'elle n'attendait pas.
 
 Chaque fois qu'on est en situation d'_infliger de l'aide_, penser à cette expression peut permettre de faire deux choses.
 
-La première c'est se rappeler que pour aider la personne à entendre ma réponse, le mieux est d'expliquer pourquoi on propose une réponse qu'elle n'attendait pas.
+D'abord, se rappeler que, pour aider la personne à entendre ma réponse, il faut lui expliquer pourquoi on propose une réponse qu'elle n'attendait pas.
 
 [quote]
 ____
 |> Je cherche une regex pour parser du HTML, est ce que quelqu'un peut m'en suggérer une{nbsp}? +
  +
-[.line-through]#Tu ferai mieux d'utiliser une bibliothèque qui fait ça pour toi.# +
-Utiliser une regex pour ce genre de situation n'est pas très fiable à cause des différents cas d'échappements possibles en HTML, utiliser une bibliothèque qui gère le parsing pour toi est souvent plus simple au final.
+[.line-through]#Tu ferais mieux d'utiliser une bibliothèque qui fait ça pour toi.# +
+Utiliser une regex pour ce genre de situation n'est pas très fiable à cause des différents cas d'échappements possibles en HTML, utiliser une bibliothèque qui gère le parsing pour toi est souvent plus simple.
 ____
 
 Dans un environnement comme link:https://www.octo.com/fr[Octo] où l'expression est connue, l'utiliser permet de diminuer le risque.
@@ -49,14 +49,14 @@ Utiliser une bibliothèque qui gère le parsing pour toi est souvent plus simple
 </J'inflige de l'aide>
 ____
 
-Ensuite, en réalisant ce qu'on est en train de faire on peut prendre du recul pour mesurer l'écart entre la demande et l'aide que l'on voudrait proposer{nbsp}: parfois il est trop grand pour pouvoir être utile, d'autre fois il est juste inadapté.
+Ensuite, en réalisant ce qu'on est en train de faire, on peut prendre du recul pour mesurer l'écart entre la demande et l'aide que l'on voudrait proposer{nbsp}: parfois, il est trop grand pour pouvoir être utile, d'autre fois il est juste inadapté.
 
 [quote]
 ____
-|> Est ce que quelqu'un peut me dire comment en Node.js on fait pour transformer un texte pour le mettre en majuscule{nbsp}? +
+|> Est-ce-que quelqu'un peut me dire comment on fait en Node.js pour mettre un texte en majuscule{nbsp}? +
  +
 [.line-through]#Node.js c'est nul, à ta place je l'aurais fait en Haskell.# +
 Je voudrais bien t'aider mais je sais pas coder en Node.js.
 ____
 
-Pensez-y la prochaine fois que vous trouvez en situation d'aider{nbsp}: est ce que vous aidez ou est-ce que _infligez de l'aide_{nbsp}?
+Pensez-y la prochaine fois que vous trouvez en situation d'aider{nbsp}: est-ce-que vous aidez ou est-ce que _infligez de l'aide_{nbsp}?
