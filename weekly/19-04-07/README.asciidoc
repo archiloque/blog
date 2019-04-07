@@ -1,9 +1,9 @@
-= 31st March 2019
+= 7th April 2019
 Julien Kirch
-v1.0, 2019-03-31
+v1.0, 2019-04-07
 :article_lang: en
 
-==== link:http://www.wilfred.me.uk/blog/2019/03/24/the-siren-song-of-little-languages/[The Siren Song of Little Languages]
+== link:http://www.wilfred.me.uk/blog/2019/03/24/the-siren-song-of-little-languages/[The Siren Song of Little Languages]
 
 [quote]
 ____
@@ -16,7 +16,7 @@ Sometimes a usable language struggles simply because _it’s too much fun to wri
 The most obvious implementation-focused language is link:https://en.wikipedia.org/wiki/Brainfuck[BF]. Despite having link:https://esolangs.org/wiki/Brainfuck_implementations[many implementations], BF programmers have to link:http://www.hevanet.com/cristofd/brainfuck/epistle.html[encourage the implementers to actually try using the language]!
 ____
 
-==== link:https://arxiv.org/abs/1903.09305[How Design, Architecture, and Operation of Modern Systems Conflict with GDPR]
+== link:https://arxiv.org/abs/1903.09305[How Design, Architecture, and Operation of Modern Systems Conflict with GDPR]
 
 [quote]
 ____
@@ -26,7 +26,7 @@ Our findings reveal a deep-rooted tussle between GDPR requirements and how moder
 We believe that achieving compliance requires comprehensive, grounds up solutions, and anything short would amount to _fixing a leaky faucet in a burning building_.
 ____
 
-==== link:https://arxiv.org/abs/1903.11397[Lost in translation: Exposing hidden compiler optimization opportunities]
+== link:https://arxiv.org/abs/1903.11397[Lost in translation: Exposing hidden compiler optimization opportunities]
 
 [quote]
 ____
@@ -47,4 +47,15 @@ Retargetable compiler frameworks achieve their generality by abstracting target 
 The standard approach to tuning a compiler’s common optimizer remains the repetitive testing of the compiler on a variety of benchmarks and mainstream architectures. This approach is typically called nightly regression testing, and it mainly aims at validating benchmark results in terms of correctness and improving performance (or, in some application domains, code size). The output of a nightly regression session is typically a report with information about the compilation time, execution time and the correctness of the output for each test. These results are then compared to a reference point, usually the result of a previous nightly-regression run that passed all the validation tests and exhibits the best achievable execution and compilation times so far. The purpose of nightly regression is to constantly monitor the quality of the modifications in a compiler towards the release of a new version.
 
 All observed regressions (either correctness failures or significant degradations in the execution time of a benchmark relative to its reference point) have to be investigated by a compiler engineer. However, the detection of a regression does not offer any insights into what actually caused it and requires the engineer to manually examine and track the source of the problem. Depending on the engineer’s experience and the complexity of the issue, the identification of the root cause of a regression can be an extremely time-consuming task. Furthermore, a standard nightly regression system will only report regressions or improvements for individual tests, but will not directly pinpoint behaviors common across multiple benchmarks and architectures that can indicate hidden optimization opportunities.
+____
+
+== link:https://queue.acm.org/detail.cfm?id=640150[A Conversation with Adam Bosworth]
+
+[quote]
+____
+Now, in the world we used to live in, client code generally lived on employees’ desks, so when it broke it was bad — but it wasn’t really all that terrible. You just took your new code, redeployed it on all your employees’ desks and life went on. But if we’re talking about applications that flow across the Internet, there’s no way you can go and redeploy every other application just because you change your mind about how your app is supposed to work. So applications can’t be designed in such a way that they depend on the implementation of other applications. There has to be absolute confidence that you can change the implementation of your app without breaking others. The funny thing is that when we did object-oriented computing, we assumed we were solving this problem by adding properties and encapsulations. So you didn’t actually know how data were being stored because they were encapsulated and hidden through methods. And we assumed that protected us from implementation changes. We also assumed we could deal with change because we had interfaces that we thought would support both a new interface and an old interface whenever you evolved an object. So, rather smugly, we thought: Yes, we’ve cracked the code. We now have an evolvable object model.
+
+But we found out otherwise, didn’t we?
+
+Yes, it turns out that there actually are two problems. An object is stateful and you have very fine-grained access precisely because you also have encapsulation. And what we learned through hard experience is that you can’t just call any method or set any property any time you want to. There are all sorts of rules that dictate how you talk to an object—providing choreography of sorts that you really have to observe. If you should ever change the order, you’ll often find that things don’t work at all. And no one really knows what the rules are because of the complexity of the interfaces, which are so fine-grained in the state machine that they’d be much too hard to describe and far too hard for anyone to understand. But given that you don’t know what the rules are, it’s as though you rented a house with a big fat lease full of fine print you couldn’t possibly read or understand.
 ____

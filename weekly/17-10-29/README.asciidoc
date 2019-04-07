@@ -3,7 +3,7 @@ Julien Kirch
 v1.0, 2017-10-29
 :article_lang: en
 
-===== link:https://increment.com/development/center-stage-best-practices-for-staging-environments/[Best practices for staging environments]
+== link:https://increment.com/development/center-stage-best-practices-for-staging-environments/[Best practices for staging environments]
 
 [quote]
 ____
@@ -12,7 +12,7 @@ Staging is where you validate the known-unknowns of your systems. These known-un
 You can't replicate unknown-unknowns, such as user behavior and traffic loads, in staging. But you can replicate everything else. And that matters.
 ____
 
-===== link:https://www.wired.com/story/the-way-the-world-ends-not-with-a-bang-but-a-paperclip/[A Viral Game About Paperclips Teaches You to Be a World-Killing AI]
+== link:https://www.wired.com/story/the-way-the-world-ends-not-with-a-bang-but-a-paperclip/[A Viral Game About Paperclips Teaches You to Be a World-Killing AI]
 
 [quote]
 ____
@@ -24,7 +24,7 @@ So … bad, because as the AI dedicates more and more intelligence and resources
 ____
 
 
-===== link:https://lwn.net/Articles/737093/[Patch flow into the mainline for 4.14]
+== link:https://lwn.net/Articles/737093/[Patch flow into the mainline for 4.14]
 
 [quote]
 ____
@@ -35,7 +35,7 @@ If the intent of signed tags is limited to to enabling developers to host reposi
 But if the intent is to make the kernel development process resilient against attacks on developers' machines or kernel.org, then there is some work yet to be done. It is worth remembering that the web of trust came about as a response to a compromise of kernel.org, after all. If we want to prepare for a recurrence of that sort of incident, the actual threat model needs to be defined, and the use of protective techniques like signed tags should probably not be optional. Partially implemented security mechanisms have a distressing tendency to fail when put to the test.
 ____
 
-===== link:https://lwn.net/Articles/736534/[A block layer introduction part 1: the bio layer]
+== link:https://lwn.net/Articles/736534/[A block layer introduction part 1: the bio layer]
 
 [quote]
 ____
@@ -44,7 +44,7 @@ One of the key values provided by an operating system like Linux is that it prov
 The term "block layer" is often used to talk about that part of the Linux kernel which implements the interface that applications and filesystems use to access various storage devices. Exactly which code constitutes this layer is a question that reasonable people could disagree on. The simplest answer is that it is all the code inside the `block` subdirectory of the Linux kernel source. This collection of code can be seen as providing two layers rather than just one; they are closely related but clearly distinct. I know of no generally agreed names for these sub-layers and so choose to call them the "bio layer" and the "request layer". The remainder of this article will take us down into the former while the latter will be left for a subsequent article.
 ____
 
-===== link:http://thebuild.com/presentations/no-pk-pgconf-eu-2017.pdf[Humans do not have a primary key]
+== link:http://thebuild.com/presentations/no-pk-pgconf-eu-2017.pdf[Humans do not have a primary key]
 
 [quote]
 ____

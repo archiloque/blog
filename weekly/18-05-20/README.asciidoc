@@ -3,7 +3,7 @@ Julien Kirch
 v1.0, 2018-05-20
 :article_lang: en
 
-===== link:https://queue.acm.org/detail.cfm?id=3220266[Algorithms Behind Modern Storage Systems]
+== link:https://queue.acm.org/detail.cfm?id=3220266[Algorithms Behind Modern Storage Systems]
 
 [quote]
 ____
@@ -14,7 +14,7 @@ Researchers from Harvard's DASlab (Data System Laboratory) summarized the three 
 The RUM Conjecture states that setting an upper bound for two of the mentioned overheads also sets a lower bound for the third one. For example, B-trees are read-optimized at the cost of write overhead as well as having to reserve empty space for the (thereby resulting in memory overhead). LSM-trees have less space overhead at a cost of read overhead brought on by having to access multiple disk-resident tables during the read. These three parameters form a competing triangle, and improvement on one side may imply compromise on the other.
 ____
 
-===== link:https://www.thoughtworks.com/insights/blog/microservices-adopt[Microservices in Adopt?]
+== link:https://www.thoughtworks.com/insights/blog/microservices-adopt[Microservices in Adopt?]
 
 [quote]
 ____

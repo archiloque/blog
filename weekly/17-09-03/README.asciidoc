@@ -3,14 +3,14 @@ Julien Kirch
 v1.0, 2017-09-03
 :article_lang: en
 
-===== link:http://queue.acm.org/detail.cfm?ref=rss&id=3136953[Cache Me If You Can]
+== link:http://queue.acm.org/detail.cfm?ref=rss&id=3136953[Cache Me If You Can]
 
 [quote]
 ____
 And so, dear reader, this is where I would like to begin. Unlike most articles in _acmqueue_, this one isn't about a new technique or an exposition on a practitioner's solution. Instead, this article looks at the problems inherent in building a more decentralized Internet. Audacious? Yes, but this has become a renewed focus in recent years, even by the father of the Web himself (see Tim Berners-Lee's Solid project4). Several companies and open-source projects are now focusing on different aspects of the "content-delivery" problem. Our company link:https://edgemesh.com[Edgemesh] is working on peer-enhanced client-side content acceleration, alongside other next-generation content-delivery networks such as link:https://peer5.com[Peer5] and link:https://streamroot.io[Streamroot], both of which are focused on video delivery. Others, such as the open-source link:https://ipfs.io[IPFS] project are looking at completely new ways of defining and distributing and defining "the web."
 ____
 
-===== link:https://www.cs.utexas.edu/~ncrooks/2017-podc-seeing.pdf[Seeing is Believing: A Client-Centric Specification of Database Isolation]
+== link:https://www.cs.utexas.edu/~ncrooks/2017-podc-seeing.pdf[Seeing is Believing: A Client-Centric Specification of Database Isolation]
 
 [quote]
 ____
@@ -28,7 +28,7 @@ ____
 We submit that the root of this complexity is a fundamental semantic gap between how application programmers experience isolation guarantees and how they are currently formally defined. From a programmer’s perspective, isolation guarantees are contracts between the storage systems and its clients, specifying the set of behaviors that clients can expect to observe—i.e., the set of admissible values that each read is allowed to return. When it comes to formally defining these guarantees, however, the current practice is to focus, rather than on the values that the clients can observe, on the mechanisms that can produce those values—i.e., histories capturing the relative ordering of low-level read and write operations.
 ____
 
-===== link:https://www.computer.org/cms/Computer.org/ComputingNow/homepage/2011/1111/W_SW_AllLateProjectsAretheSame.pdf[All Late Projects Are the Same]
+== link:https://www.computer.org/cms/Computer.org/ComputingNow/homepage/2011/1111/W_SW_AllLateProjectsAretheSame.pdf[All Late Projects Are the Same]
 
 [quote]
 ____

@@ -3,7 +3,7 @@ Julien Kirch
 v1.0, 2018-09-02
 :article_lang: en
 
-===== link:https://severalnines.com/blog/guide-partitioning-data-postgresql[A Guide to Partitioning Data In PostgreSQL]
+== link:https://severalnines.com/blog/guide-partitioning-data-postgresql[A Guide to Partitioning Data In PostgreSQL]
 
 [quote]
 ____
@@ -16,7 +16,7 @@ When introducing a partitioned table to the query planner, there are a few thing
 This is done by adding constraints to the split up tables that define what data is allowed in each table, and with a good design, we can have the query planner scan a small subset of data rather than the whole thing.
 ____
 
-===== link:https://increment.com/development/center-stage-best-practices-for-staging-environments/[Best practices for staging environments]
+== link:https://increment.com/development/center-stage-best-practices-for-staging-environments/[Best practices for staging environments]
 
 [quote]
 ____
