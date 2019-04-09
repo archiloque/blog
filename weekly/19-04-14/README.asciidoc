@@ -13,3 +13,18 @@ This article attempts to dive beneath the hype, examining how XML web services d
 
 * _Is not CORBA._ Making the messages and the service contracts the design center of web services is the fundamental difference between the web services architecture and CORBA. There are strong analogies between elements of the two architectures, such as the respective roles of WSDL and IDL, but CORBA is fundamentally object-oriented. The messages CORBA passes are manipulated by instantiating an object. The document-style messages used in web services offer more flexibility for manipulation; for example, an interception service (more on this pattern later) might operate on one document header element, without having the logic to understand the rest of the document. As the technologies of web service rapidly evolve in the years ahead, standards bodies, including the W3C and IETF, will be instrumental in smoothing the rougher edges of the web service specifications. But these technologies are mature enough -- and widely adopted enough -- to be actionable today.
 ____
+
+== link:https://blog.lawrencejones.dev/building-a-postgresql-load-tester/[Building a PostgreSQL load tester]
+
+[quote]
+____
+When faced with a technical problem it’s often better to use an existing tool than jump into writing one yourself. Having benchmarked Postgres clusters before, I was already familiar with a tool called link:https://github.com/laurenz/pgreplay[pgreplay] that I thought could do the job.
+
+My benchmarking strategy with pgreplay is pretty simple: first capture logs from your production cluster that contain all executed queries then feed this to pgreplay which will replay those queries against the new cluster. Post-processing logs from the new cluster will show how the machines performed under production load, helping determine if changes are going to degrade performance.
+
+This process had worked well before but broke as soon as I applied it to this migration. Watching Postgres during a replay, there were spikes of activity followed by periods of quiet.
+
+The new cluster was sufficiently different that several queries were now much slower than they had been in the original log capture. pgreplay will ensure queries execute in their original order- any queries that take longer to execute in the replay will block subsequent queries. The graph shows how several badly degraded queries caused pgreplay to stall, leading to the periods of inactivity.
+
+Benchmarks can take several hours to execute and having the replay stall for problematic queries adds more time to an already slow process. The inactivity also impacts the realism of your tests- users don’t respond to a system under load by forming a queue and politely waiting for their first query to finish!
+____
