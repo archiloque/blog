@@ -1,2 +1,125 @@
 = UPSI 2 : compte rendu de l'atelier
 
+== Intro
+
+L'objectif de cette après-midi est de lister les sujets dont on voudrait parler dans une publication sur l'architecture de SI.
+
+J'ai réuni des personnes dont je pense qu'elles connaissent bien le domaine, qui en couvrent les différents aspects, et qui sauront aboutir facilement à un premier liste de sujets qui pourra servir de base de travail pour la suite.
+
+image::persons_1.jpg[align="center"]
+
+Le format de la publication (livre, whitepaper …) sera à définir en fonction du contenu et des personnes.
+
+La publication est destinée à des architectes, et plus largement à des personnes qui travaillent sur l'architecture.
+
+image::persons_2.jpg[align="center"]
+
+L'objectif est de parler d'architecture de SI au sens large (l'architecture de SI étant de toutes façons un sujet aux contours assez flous).
+
+image::persons_3.jpg[align="center"]
+
+Ma préférence va aux sujets dont on pense qu'on a quelque chose de différent à dire des autres, quitte à être clivant (être clivant n'est pas un but en soit, seulement une conséquence possible).
+
+Ma conviction est qu'actuellement on a déjà des choses à dire sur pleins de sujets mais que cela demandera un effort de formalisation (et d'alignement à l'intérieur d'OCTO), sur d'autres en revanche il faudra probablement d'abord creuser les sujets.
+
+image::persons_4.jpg[align="center"]
+
+J'ai demandé à Marc de faciliter l'atelier pour pouvoir me consacrer au contenu, et parce qu'une bande d'architecte n'est pas toujours facile à canaliser.
+
+== Démarrage : qu'évoque pour vous l'architecture ?
+
+image::architecture.jpg[align="center"]
+
+* Répondre à des besoins
+* Avoir une vision globale
+* Diagnostiquer (et autres métaphores autour de la médecine)
+* Trouver des compromis
+* Travailler avec l'humain dans un écosystème
+* Faire du sur-mesure
+* Travailler avec une matière organique en évolution
+* Faire des hypothèqes
+* Avoir des réflexes et utiliser des patterns
+* Travailler sur la communication et l'alignement
+* Utiliser le bon sens (plutôt que s'appuyer sur des grandes vérités)
+* Avoir une démarche (vs. un cadre)
+* Gérer des paradoxes
+
+== Qu'est ce qui est important dans l'architecture / le rôle de l'architecte ?
+
+image::important.jpg[align="center"]
+
+* Prise de conscience de la loi de Conway dans l'architecture
+* Aider à la prise de décision
+* Vulgariser la tech
+* Bonnes pratiques vs. solutions contextualisées
+* Aller chercher les besoins
+* Riche humainement
+* Confiance du client
+* Gens motivés et prêts à se remettre en cause
+* Beaucoup d'ateliers
+* Créer de l'interaction
+* Expliquer les limites du SI
+* Faire progresser en forçant le client à s'approprier le sujet
+* Frontières
+* Pas de legacy au premier jour
+* Démarche opportuniste avec solustion commune
+* Pas de problèmes tech mais de la rigueur
+* Cartésien
+* Mesurer l'impact global d'un problème local
+* Honnêteté sur la situation
+* Changement de trajectoire de la DSI
+* Gérer l'effet d'échelle
+* Pour le futur (durabilité)
+* Détecter les problèmes de qualité
+* Gestion de l'obsolescence
+* Simplifier
+* Challenger le besoin
+* L'archi ne vaut que si elle est partagée par tout
+* Business heureux
+* S'appuyer sur des compétences internes
+* Aller plus vite et éviter de perdre de l'agent
+* Innovation technologiques (cloud …)
+
+== Sujets
+
+* Data
+** Cycle de vie combiné pour le code, les données & les modèles IA
+** Data Centric : how ?
+** Méthodes d'analyses
+** Clés de lecture des SO
+** C'est quoi une bonne architecture ?
+* Organisation / Gouvernance
+** C'est quoi un ou une architecte
+** Pouvoir central vs. local
+** Rôle / organisation gouvernance archi
+* Forme de la publication
+** Dans les baskets d'un ou d'une architecte
+** Raconter une histoire (comme l'UPSI)
+** Beaucoup d'images
+** Une chouette couverture
+** Des REX de nos échecs
+* Mythes & buzz
+** La mutualisation
+** Le culte du cargo
+** L'impact des modes
+** Jira
+** Le low-code
+** Le sur-design
+** L'architecture digitale
+** Industrialiser & innover
+* Patterns d'archi
+** L'IA partout
+** Les micro-services
+** Le monolithe : bon ou mauvais
+** Microservices, microfrontend, silos ?
+** L'architecture continue
+** La clean architecture de SI
+** Mon SI ne m'appartient plus
+** Le legacy
+** Api Gatewatay / Service Mesh
+** IOT
+** Systèmes distribués
+** Cloud du X
+** Tirer partie du SaaS (do it / buy it)
+** Stream
+** Data hub / self-service
