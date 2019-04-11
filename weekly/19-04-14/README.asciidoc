@@ -28,3 +28,16 @@ The new cluster was sufficiently different that several queries were now much sl
 
 Benchmarks can take several hours to execute and having the replay stall for problematic queries adds more time to an already slow process. The inactivity also impacts the realism of your tests- users don’t respond to a system under load by forming a queue and politely waiting for their first query to finish!
 ____
+
+== link:https://queue.acm.org/detail.cfm?id=864078[A Conversation with Jim Gray]
+
+[quote]
+____
+There is this really elegant theory about transactions, having to do with concurrency and recovery. A lot of people had implemented these ideas implicitly. I wrote a mathematical theory around it and explained it and did a fairly crisp implementation of the ideas. The Turing Award committee likes crisp results. The embarrassing thing is that I did it with a whole bunch of other people. But I wrote the papers, and my name was often first on the list of authors. So, I got the credit.
+
+But to return to your question, the fundamental premise of transactions is that we needed exception handling in distributed computations. Transactions are the computer equivalent of contract law. If anything goes wrong, we’ll just blow away the whole computation. Absent some better model, that’s a real simple model that everybody can understand. There’s actually a mathematical theory lying underneath it.
+
+In addition, there is a great deal of logic about keeping a log of changes so that you can undo things, and keeping a list of updates, called locks, so that others do not see your uncommitted changes.The theory says: “If that’s what you want to do, this is what you have to do to get it.”
+
+The algorithms are simple enough so most implementers can understand them, and they are complicated enough so most people who can’t understand them will want somebody else to figure it out for them.
+____
