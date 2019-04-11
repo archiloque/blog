@@ -41,3 +41,15 @@ In addition, there is a great deal of logic about keeping a log of changes so th
 
 The algorithms are simple enough so most implementers can understand them, and they are complicated enough so most people who can’t understand them will want somebody else to figure it out for them.
 ____
+
+== link:https://summitroute.com/downloads/aws_security_maturity_roadmap-Summit_Route_2019.pdf[AWS Security Maturity Roadmap]
+
+[quote]
+____
+Planning for Disaster Recovery involves a trade-off between how quickly you need to recover and how much money you’re willing to spend
+____
+
+[quote]
+____
+Not all of the public AMIs (Amazon Machine Images) used to create EC2s are vetted by AWS, and there is not an easy way to identify the trust-worthiness of the source account ID that an AMI comes from. There have been issues27 in the past of public AMIs with malware in them. You should identify what AMIs you want to be allowed to run in your environment. You should also document guidelines around the instance types to be used and the OS’s, so you don’t end up with a a dozen flavors of Linux running in your accounts without good reason.
+____
