@@ -3,31 +3,41 @@ Julien Kirch
 v0.1, 2018-12-29
 :article_lang: fr
 
+* [ ] Côté demandeur : comment développer une telle connaissance ? Je vois d'ici les métiers revenir avec leur MOA/MOE intermédiaires, non ? A moins que ton message soit "en 2019 quand on travaille sur un produit tech, il faut un minimum connaître la tech correspondante" ; Rapprocher Demandeur et Métier ?
+* [ ] Côte fournisseur : pas très clair pour moi, que puis-je faire exactement ?
+* [ ] Côté DSI : le paragraphe qui gagnerait à être développé : plutôt 2-3 lignes par item qu'une seule pour rentrer dans le détail
+* [ ] Côté Métier : ok, serait intéressant de préciser les modalités de collaboration...
+* [ ] Conclusion : par quoi préconiserais-tu de commencer ? Concrètement, qu'entends-tu ici par adapter les projets à l'orga ?
+
 WARNING: ⚠️Il s'agit d'un brouillon => seul le fond est important !⚠️️️️
 
-Dans un projet appliquant des pratiques agiles, il est possible de livrer de nouvelles fonctionnalités rapidement en s'appuyant sur des cycles courts.
+Un des objectifs principaux des différentes approches agiles est de pouvoir livrer de nouvelles fonctionnalités rapidement en s'appuyant sur des itérations courtes.
 
-Une des manières d'y parvenir est d'avoir une équipe avec un fort niveau d'autonomie, car les dépendances extérieures créent des risques de ralentissements.
+Une des manières d'y parvenir est d'avoir une équipe avec un fort niveau d'autonomie, car les dépendances extérieures créent des risques de ralentissements, par exemple quand il faut attendre qu'un autre groupe fasse quelque chose dont on a besoin.
 
-Une équipe parfaitement indépendante, cela peut exister sur un projet isolé d'un SI ou dans un environnement parfaitement stabilisé (c'est-à-dire mature et qui n'évolue pas).
+Une équipe parfaitement indépendante, cela peut exister sur un projet isolé d'un SI ou dans un environnement parfaitement stabilisé, c'est-à-dire mature et qui n'évolue pas.
 
 Dans un SI ce n'est pas le cas de toutes les applications : dans beaucoup de cas ces dépendances existent et ont souvent des conséquences significatives sur le fonctionnement des projets.
 
-== Un exemple concret
+Que peut-on faire pour, dans ces situations, pouvoir travailler au mieux ou au moins ne pas avoir de mauvaises surprises ?
 
-Une nouvelle fonctionnalité F1 du projet P1 nécessite une fonctionnalité F2 d'un projet P2 qui n'existe pas encore : un service manquant, une donnée incomplète …
+== Un exemple
 
-Pour cela il faut faire une demande à P2, que P2 accepte la demande, que P2 la réalise et mette F2 à disposition de P1.
+Une nouvelle fonctionnalité `F1` du projet `P1` nécessite une fonctionnalité `F2` d'un projet `P2` qui n'existe pas encore : un service manquant, une donnée incomplète …
 
-Pour P2, réaliser F2 signifie aussi retarder le développer de fonctionnalités qui lui sont directement nécessaires.
+Pour cela il faut faire une demande à `P2`, que `P2` accepte la demande, que `P2` la réalise et mette `F2` à disposition de `P1`.
 
-Pour P2 il peut être difficile de mesurer de la priorité "réelle" de F1 -- si tant est qu'une telle chose existe -- et donc de prendre la bonne décision.
+Pour `P2`, réaliser `F2` signifie aussi retarder le développer de fonctionnalités qui lui sont directement nécessaires.
 
-Cela mène typiquement à des phénomènes link:https://fr.wikipedia.org/wiki/Inversion_de_priorité[d'inversion de priorité] où les optimisations globales et locales s'opposent.
+Pour `P2` il peut être difficile de mesurer de la priorité "réelle" de `F1` -- si tant est qu'une telle chose existe -- et donc de prendre la bonne décision.
+
+image::exemple.png[align="center"]
+
+Cela mène typiquement à des phénomènes link:https://fr.wikipedia.org/wiki/Inversion_de_priorité[d'inversion de priorité] où les optimisations globales (au niveau de l'entreprise) et locales (au niveau de chaque équipe) s'opposent.
 
 == Qu'est ce qui se passe quand ça se passe mal ?
 
-Comme souvent, en l'absence de gouvernance satisfaisante, c'est l'informalité qui prend la main.
+Comme souvent, quand la gouvernance officielle n'est pas satisfaisante, c'est l'informalité qui prend la main.
 
 Comme le disait Ian Malcolm dans Jurassic Park "_life finds a way_".
 Cela ne veut pas dire que des vélociraptors vont attaquer votre SI, mais la situation ne sera quand même pas enviable.
@@ -44,15 +54,18 @@ Cela aura souvent des effets secondaires sur le SI comme des dépendances caché
 
 == Quel rapport avec l'agile ?
 
-Cela se produit sur tous les projets, en agile comme en cascade, mais l'agile est particulièrement concerné.
+Cela se produit sur tous les projets, en agile comme en cascade, mais l'agile est particulièrement concerné pour deux raisons.
 
-Tout d'abord, avec les dépendances il devient difficile d'avoir des cycles de développement courts et à durée prévisible alors qu'ils sont primordiaux pour tirer bénéfice des pratiques agiles.
+Tout d'abord comme vu plus haut, avec les dépendances il devient difficile d'avoir des cycles de développement courts et à durée prévisible alors qu'ils sont primordiaux pour tirer bénéfice des pratiques agiles : les dépendances font plus mal en agile car on a moins le temps d'atte,dre.
 
-Une « transformation agile » qui ne prend pas en compte ce type de problème prend le risque de décrédibiliser l'agile et s'enliser.
+Une « transformation agile » qui ne prend pas en compte ce type de problème prend le risque de s'enliser voire de décrédibiliser l'agile.
 
-Ensuite, en donnant plus de place aux POs dans le pilotage des projets à la place des structures de gouvernance plus formelles, j'ai l'impression que l'agile a supprimé une boucle de feedback qui permettait aux différents projets de pouvoir être entendus.
+Ensuite, en donnant plus de place aux POs dans la prise de décision par rapport à des structures de gouvernance plus formelles j'ai l'impression que l'agile a supprimé une boucle de feedback qui permettait aux différents projets de pouvoir être entendus.
 
-Les systèmes de gouvernance agile comme SAFE, ne sont qu'une réponse partielle car ils couvrent les ensembles de de projets pré-identifiés comme ayant des dépendances fortes. Ils ne couvrent pas les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaissent dans la vie des projets et qui n'étaient pas anticipés.
+Par exemples les comités de suivis tous les mois fournissaient un cadre permettant à des parties prenantes hors projet de s'exprimer pour remonter leurs besoins, et des responsables hiérarchiques pouvaient procéder aux arbitrages nécessaires.
+La nouvelle organisation permet des décisions plus rapides et est donc avantageuse la majorité du temps, mais peut rendre plus difficiles aux voix extérieures de se faire entendre.
+
+Les systèmes de gouvernance agile comme SAFE, qui savent organiser la gestion des dépendances entre projets, ne sont qu'une réponse partielle car ils couvrent les ensembles de de projets pré-identifiés comme ayant des dépendances fortes. Ils ne couvrent pas les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaissent dans la vie des projets et qui n'étaient pas anticipés.
 
 L'objectif n'est pas d'aller vers une gouvernance plus structurée, mais de trouver comment faire au mieux en gardant une organisation légère.
 
