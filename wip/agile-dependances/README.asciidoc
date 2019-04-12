@@ -3,11 +3,11 @@ Julien Kirch
 v0.1, 2018-12-29
 :article_lang: fr
 
-* [ ] Côté demandeur : comment développer une telle connaissance ? Je vois d'ici les métiers revenir avec leur MOA/MOE intermédiaires, non ? A moins que ton message soit "en 2019 quand on travaille sur un produit tech, il faut un minimum connaître la tech correspondante" ; Rapprocher Demandeur et Métier ?
-* [ ] Côte fournisseur : pas très clair pour moi, que puis-je faire exactement ?
 * [ ] Côté DSI : le paragraphe qui gagnerait à être développé : plutôt 2-3 lignes par item qu'une seule pour rentrer dans le détail
 * [ ] Côté Métier : ok, serait intéressant de préciser les modalités de collaboration...
 * [ ] Conclusion : par quoi préconiserais-tu de commencer ? Concrètement, qu'entends-tu ici par adapter les projets à l'orga ?
+
+''''
 
 WARNING: ⚠️Il s'agit d'un brouillon => seul le fond est important !⚠️️️️
 
@@ -69,8 +69,8 @@ Les systèmes de gouvernance agile comme SAFE, qui savent organiser la gestion d
 
 L'objectif n'est pas d'aller vers une gouvernance plus structurée, mais de trouver comment faire au mieux en gardant une organisation légère.
 
-Finalement la mode de réduire au maximum la taille des équipes projets, par exemple dans les microservices, augmente le nombre d'éléments du système à coordonner entre eux.
-Le pire étant les demandes en cascades du type "moi A j'ai besoin d'un truc de B, mais pour ça B a besoin d'un truc de C".
+Finalement la mode de réduire au maximum la taille des équipes projets, par exemple dans les approches microservices, augmente le nombre d'équipes à coordonner.
+Le pire étant les demandes en cascades du type "moi `A` j'ai besoin d'un truc de `B`, mais pour ça `B` a besoin d'un truc de `C`, donc je dois aller négocier avec `C` accompagné de `B` et ensuite assurer la coordination du chantier de manière régulière".
 
 == Que faire ?
 
@@ -86,29 +86,36 @@ Je pense qu'il n'y a pas de recettes magiques : c'est un problème inévitable q
 
 == Côté demandeur
 
-Si vous êtes du côté des projets demandeurs, ce que vous pouvez faire :
+Voici ce que vous pouvez faire si vous êtes du côté des projets demandeurs :
 
-* Connaître assez le système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précisions acceptable : cela évite les mauvaises surprises ;
-* Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire. Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant. Le chiffre sera probablement dépendant de la taille du besoin et de à qui vous demandez.
+. Connaître votre système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précisions acceptable : cela évite les mauvaises surprises ;
+. Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire pour une évolution extérieure. Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant. Le chiffre sera probablement dépendant de la taille du besoin et de à qui vous demandez.
 Cela vous permet de faire des arbitrage (est ce qu'on laisse tomber si c'est trop long ?) et de mieux planifier.
+
+Le premier point nécessite que les POs aient une certaine connaissance du périmètre du système sur lequels ils ou elles travaillent, par exemple grosso-modo quelles sont les données dont le système dispose et/ou de défricher les sujets en amont avec les personnes qui développent.
+
+Sans aller jusqu'à parler de cartographie fonctionnelle, disposer d'une réprésentation lisible permettant de savoir quelles sont les données du système peut être ici bien utile.
 
 == Côté fournisseur
 
-Si le problème de départ est d'avoir de la disponibilité de la part des projets fournisseurs, il est difficile de leur demander des choses.
+Le mieux côté fournisseur est d'avoir de la disponibilité pour les demandes des projets, sous forme de temps disponible et de souplesse dans les planning.
 
-Ce qui me paraît essentiel, est de pouvoir avoir des réponses aux questions de priorisation dans un délai raisonnable.
-S'il n'est pas possible d'avoir des leviers directs sur la priorisation des autres projets, il faut au moins être capable d'avoir les informations nécessaires pour organiser sa propre roadmap.
+Cela peut même être une partie essentielle de votre activité, par exemple si votre périmètre correspond à une activité de référentiel.
+
+Si les priorités ne permettent pas de réaliser les demandes extérieures dans des délais courts, essayer au moins de répondre rapidement aux questions de planning pour donner de la visibilité pour permettre aux projet demandeurs de s'organiser.
+
+Si l'organisation ne vous permet pas d'arbitrer les priorités vous-même, tout ce que vous pouvez faire est d'essayer de faciliter les choses en fournissant des estimations permettant de faciiliter la prise de décisions.
 
 == Côté DSI
 
 La DSI peut faire de nombreuses choses dans ce domaine, du plus simple au plus difficile :
 
-* Faire en sorte que des services existants déjà exposés soient facilement utilisables par les autres applications avec un minimum de dépendances
-* Faire en sorte que les projets puissent obtenir rapidement des arbitrages : il est difficile de faire en sorte d'améliorer le TTM car ça suppose de réorganiser des projets, par contre obtenir un arbitrage oui/non et le délai ça peut déjà aider
-* Faire en sorte de faciliter le développement de ces nouvelles demandes, par exemple par la capacité à fournir des environnements de test pendant les phases de mise au point
-* Travailler sur le décomissionnement, car fournir une nouvelle version N+1 d'un service cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1 … décident de se mettre à jour
-* Tracer ce type de demandes pour avoir de la visibilité sur le problème : est ce qu'il arrive souvent, à quels endroits ?
-* Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre de guichets, un peu de centralisation sur les données "maîtres" en le structurant dans des référentiels permet par exemple de faciliter les choses
+. Faire en sorte que des services existants déjà exposés soient facilement utilisables par les autres applications avec un minimum de dépendances
+. Faire en sorte que les projets puissent obtenir rapidement des arbitrages : il est difficile de faire en sorte d'améliorer le TTM car ça suppose de réorganiser des projets, par contre obtenir un arbitrage oui/non et le délai ça peut déjà aider
+. Faire en sorte de faciliter le développement de ces nouvelles demandes, par exemple par la capacité à fournir des environnements de test pendant les phases de mise au point
+. Travailler sur le décomissionnement, car fournir une nouvelle version N+1 d'un service cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1 … décident de se mettre à jour
+. Tracer ce type de demandes pour avoir de la visibilité sur le problème : est ce qu'il arrive souvent, à quels endroits ?
+. Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre de guichets, un peu de centralisation sur les données "maîtres" en le structurant dans des référentiels permet par exemple de faciliter les choses
 
 Le dernier point est primordial : il faut que vos projets soient adaptés à votre capacité à faire des choix et à les mettre en œuvre.
 
