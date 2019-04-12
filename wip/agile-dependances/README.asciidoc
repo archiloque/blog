@@ -3,11 +3,6 @@ Julien Kirch
 v0.1, 2018-12-29
 :article_lang: fr
 
-* [ ] Côté Métier : ok, serait intéressant de préciser les modalités de collaboration...
-* [ ] Conclusion : par quoi préconiserais-tu de commencer ? Concrètement, qu'entends-tu ici par adapter les projets à l'orga ?
-
-''''
-
 WARNING: ⚠️Il s'agit d'un brouillon => seul le fond est important !⚠️️️️
 
 Un des objectifs principaux des différentes approches agiles est de pouvoir livrer de nouvelles fonctionnalités rapidement en s'appuyant sur des itérations courtes.
@@ -122,23 +117,30 @@ Bien entendu il n'est pas possible de mener de front tous ces chantiers mais ceu
 
 == Côté métier
 
-Pour les développements inter-projets d'une certaine taille, le processus d'arbitrage devrait idéalement reposer sur le métier car c'est lui qui a la connaissance et la légitimité pour le faire.
+Pour les développements inter-projets d'une certaine taille, le processus d'arbitrage doit reposer sur le métier car c'est lui qui a la connaissance et la légitimité pour le faire.
 
-Cela signifie que le métier doit s'approprier le sujet, et trouver une manière de le traiter.
+Cela signifie que le métier doit s'approprier ce sujet, et trouver une manière de le traiter.
 
-Pour les demandes de petite taille réduite, les décisions peuvent être déléguées aux projets, sous conditions que le résultat soient satisfaisants. Cela permet de limiter le coût organisationnel en limitant les risques d'erreur, à condition de donner des marges de manœuvre suffisante aux projets.
+Pour les demandes de petite taille réduite qui ne portent pas à conséquence sur les plannings, les décisions peuvent être déléguées aux projets.
+Cela permet de limiter le coût des décisions tout en limitant l'impact des erreurs.
+
 Mais pour les adhérence de plus grande taille cela ne fonctionne pas.
 
-Dans le cas idéal, les différents métiers impliqués ont l'habitude de travailler ensemble, et sauront prioriser les demandes d'une manière qui soit acceptable aux différentes parties prenantes.
-En principe, si deux projets dépendant de deux métiers différents ont à travailler ensemble, c'est parce que les métiers correspondants ont des liens.
+Dans le cas idéal, les différents domaines métiers impliqués ont l'habitude de travailler ensemble, et sauront prioriser les demandes d'une manière qui soit acceptable aux différentes parties prenantes.
+En principe, si deux projets dépendant de deux domaines métiers différents ont à travailler ensemble, c'est parce que les métiers correspondants ont des liens.
 
 Dans le cas contraire, cela peut signifier que différentes branches du métier doivent apprendre à travailler ensemble pour des raisons d'IT, alors qu'elles n'ont que rarement à le faire par ailleurs.
 
 Par expérience cet apprentissage est souvent difficile, en particulier lorsqu'un des métiers à plus d'intérêt que les autres à cette "collaboration".
 
-Ce type de dépendance doit être identifié lors du cadrage d'un projet et la question doit être traitée avant de lancer les développements en trouvant une manière de travailler ensemble, surtout si le niveau de dépendance est important.
+C'est par exemple le cas lorsque le marketing a besoin de données de l'ensemble du SI pour alimenter son CRM ou sa BI, alors que les autres branches n'en tirent qu'un bénéfice indirect.
 
-Si on juge que la réponse n'est pas compatible avec les contraintes existantes comme les plannings, il peut être nécessaire de recadrer les projets.
+Ce type de dépendance doit être identifié lors du cadrage d'un projet et la question doit être traitée avant de lancer les développements, surtout si le niveau de dépendance est important.
+
+Il ne s'agit pas seulement de prioriser les tâches déjà identifiées dans les calendriers des différents projets, mais aussi de définir des modalités d'arbitrage efficace (qui peut décider de quoi dans quelles instances ?) pour les situations non encore prévues.
+L'objectif étant d'éviter de soliciter l'avis de la direction générale chaque fois qu'il faut ajouter un champ d'une donnée dans un service.
+
+Si on juge que les réponses ne sont pas compatibles avec les contraintes existantes comme le planning prévisionnel du projet, il peut être nécessaire de recadrer les projets.
 
 == En conclusion
 
@@ -149,3 +151,8 @@ Si les dépendances sont mal gouvernées dans votre SI, votre capacité à trava
 Essayer d'optimiser les choses au mieux pour chaque projet, sans attendre une solution globale qui résoudrait tout.
 
 Le mieux à court et moyen terme et d'adapter vos projets à votre organisation, quitte à renoncer à certains projets ou à certaines approches, car l'inverse ne fonctionnera pas.
+
+[TIP]
+____
+Conclusion : par quoi préconiserais-tu de commencer ? Concrètement, qu'entends-tu ici par adapter les projets à l'orga ?
+____
