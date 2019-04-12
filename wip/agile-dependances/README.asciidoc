@@ -3,7 +3,6 @@ Julien Kirch
 v0.1, 2018-12-29
 :article_lang: fr
 
-* [ ] Côté DSI : le paragraphe qui gagnerait à être développé : plutôt 2-3 lignes par item qu'une seule pour rentrer dans le détail
 * [ ] Côté Métier : ok, serait intéressant de préciser les modalités de collaboration...
 * [ ] Conclusion : par quoi préconiserais-tu de commencer ? Concrètement, qu'entends-tu ici par adapter les projets à l'orga ?
 
@@ -104,18 +103,18 @@ Cela peut même être une partie essentielle de votre activité, par exemple si 
 
 Si les priorités ne permettent pas de réaliser les demandes extérieures dans des délais courts, essayer au moins de répondre rapidement aux questions de planning pour donner de la visibilité pour permettre aux projet demandeurs de s'organiser.
 
-Si l'organisation ne vous permet pas d'arbitrer les priorités vous-même, tout ce que vous pouvez faire est d'essayer de faciliter les choses en fournissant des estimations permettant de faciiliter la prise de décisions.
+Si l'organisation ne vous permet pas d'arbitrer les priorités vous-même, tout ce que vous pouvez faire est d'essayer de faciliter la prise de décision, par exemple en fournissant des estimations.
 
 == Côté DSI
 
 La DSI peut faire de nombreuses choses dans ce domaine, du plus simple au plus difficile :
 
-. Faire en sorte que des services existants déjà exposés soient facilement utilisables par les autres applications avec un minimum de dépendances
-. Faire en sorte que les projets puissent obtenir rapidement des arbitrages : il est difficile de faire en sorte d'améliorer le TTM car ça suppose de réorganiser des projets, par contre obtenir un arbitrage oui/non et le délai ça peut déjà aider
-. Faire en sorte de faciliter le développement de ces nouvelles demandes, par exemple par la capacité à fournir des environnements de test pendant les phases de mise au point
-. Travailler sur le décomissionnement, car fournir une nouvelle version N+1 d'un service cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1 … décident de se mettre à jour
-. Tracer ce type de demandes pour avoir de la visibilité sur le problème : est ce qu'il arrive souvent, à quels endroits ?
-. Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre de guichets, un peu de centralisation sur les données "maîtres" en le structurant dans des référentiels permet par exemple de faciliter les choses
+. Suivre les demandes d'évolutions transverses pour être capable d'évaluer l'importance du sujet : est ce qu'il arrive souvent, à quels endroits dans le SI … ?
+. Faire en sorte que des services existants déjà exposés soient désignés et exposés de manière à être facilement utilisables par les autres applications (mais sans tomber dans le surdesign : la réutilisabilité est toujours difficile à anticiper)
+. Influer sur la gouvernance pour faire en sorte que les projets puissent obtenir rapidement des arbitrages en  : la priorisation des sujets n'est pas forcément dans le périmètre de la DSI, mais elle peut aider à ce que les décisions soient prises
+. Faciliter le développement des nouvelles demandes sur les parties qui ne sont pas dans le périmètre des projets, par exemple la capacité à fournir des environnements de test pendant les phases de mise au point
+. Mettre en avant les besoins de migration et de décomissionnement pour qu'ils soient pris en compte, car fournir une nouvelle version N+1 d'un service cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1 … décident de se mettre à jour
+. Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre d'interlocuteurs à contacter (et éviter les demandes en cascades comme vu plus haut), un peu de centralisation sur les données "maîtres" en le structurant dans des référentiels permet par exemple de faciliter les choses
 
 Le dernier point est primordial : il faut que vos projets soient adaptés à votre capacité à faire des choix et à les mettre en œuvre.
 
