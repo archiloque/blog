@@ -50,7 +50,7 @@ Cela aura souvent des effets secondaires sur le SI comme des dépendances caché
 
 Cela se produit sur tous les projets, en agile comme en cascade, mais l'agile est particulièrement concerné pour deux raisons.
 
-Tout d'abord comme vu plus haut, avec les dépendances il devient difficile d'avoir des cycles de développement courts et à durée prévisible alors qu'ils sont primordiaux pour tirer bénéfice des pratiques agiles : les dépendances font plus mal en agile car on a moins le temps d'atte,dre.
+Tout d'abord comme vu plus haut, avec les dépendances il devient difficile d'avoir des cycles de développement courts et à durée prévisible alors qu'ils sont primordiaux pour tirer bénéfice des pratiques agiles : les dépendances font plus mal en agile car on a moins le temps d'attendre.
 
 Une « transformation agile » qui ne prend pas en compte ce type de problème prend le risque de s'enliser voire de décrédibiliser l'agile.
 
@@ -86,13 +86,13 @@ Voici ce que vous pouvez faire si vous êtes du côté des projets demandeurs :
 . Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire pour une évolution extérieure. Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant. Le chiffre sera probablement dépendant de la taille du besoin et de à qui vous demandez.
 Cela vous permet de faire des arbitrage (est ce qu'on laisse tomber si c'est trop long ?) et de mieux planifier.
 
-Le premier point nécessite que les POs aient une certaine connaissance du périmètre du système sur lequels ils ou elles travaillent, par exemple grosso-modo quelles sont les données dont le système dispose et/ou de défricher les sujets en amont avec les personnes qui développent.
+Le premier point nécessite que les POs aient une certaine connaissance du périmètre du système sur lequel ils ou elles travaillent, par exemple grosso-modo quelles sont les données dont le système dispose et/ou de défricher les sujets en amont avec les personnes qui développent.
 
-Sans aller jusqu'à parler de cartographie fonctionnelle, disposer d'une réprésentation lisible permettant de savoir quelles sont les données du système peut être ici bien utile.
+Sans aller jusqu'à parler de cartographie fonctionnelle, disposer d'une représentation lisible permettant de savoir quelles sont les données du système peut être ici bien utile.
 
 == Côté fournisseur
 
-Le mieux côté fournisseur est d'avoir de la disponibilité pour les demandes des projets, sous forme de temps disponible et de souplesse dans les planning.
+Le mieux côté fournisseur est d'avoir de la disponibilité pour les demandes des projets, sous forme de temps disponible et de souplesse dans le planning.
 
 Cela peut même être une partie essentielle de votre activité, par exemple si votre périmètre correspond à une activité de référentiel.
 
@@ -124,7 +124,7 @@ Cela signifie que le métier doit s'approprier ce sujet, et trouver une manière
 Pour les demandes de petite taille réduite qui ne portent pas à conséquence sur les plannings, les décisions peuvent être déléguées aux projets.
 Cela permet de limiter le coût des décisions tout en limitant l'impact des erreurs.
 
-Mais pour les adhérence de plus grande taille cela ne fonctionne pas.
+Mais pour les adhérences de plus grande taille cela ne fonctionne pas.
 
 Dans le cas idéal, les différents domaines métiers impliqués ont l'habitude de travailler ensemble, et sauront prioriser les demandes d'une manière qui soit acceptable aux différentes parties prenantes.
 En principe, si deux projets dépendant de deux domaines métiers différents ont à travailler ensemble, c'est parce que les métiers correspondants ont des liens.
@@ -138,19 +138,17 @@ C'est par exemple le cas lorsque le marketing a besoin de données de l'ensemble
 Ce type de dépendance doit être identifié lors du cadrage d'un projet et la question doit être traitée avant de lancer les développements, surtout si le niveau de dépendance est important.
 
 Il ne s'agit pas seulement de prioriser les tâches déjà identifiées dans les calendriers des différents projets, mais aussi de définir des modalités d'arbitrage efficace (qui peut décider de quoi dans quelles instances ?) pour les situations non encore prévues.
-L'objectif étant d'éviter de soliciter l'avis de la direction générale chaque fois qu'il faut ajouter un champ d'une donnée dans un service.
+L'objectif étant d'éviter de solliciter l'avis de la direction générale chaque fois qu'il faut ajouter un champ d'une donnée dans un service.
 
 Si on juge que les réponses ne sont pas compatibles avec les contraintes existantes comme le planning prévisionnel du projet, il peut être nécessaire de recadrer les projets.
 
 == En conclusion
 
-Ayez le courage de mesurer vos TTM réels, c'est à dire ceux qui prennent en compte toute la chaîne de dépendance et pas seulement les développements propres à chaque projet.
-
-Rappellez vous que la vitesse d'évolution d'un système est limitée par le composant qui bouge le moins vite.
+Rappelez-vous que la vitesse d'évolution d'un système est limitée par le composant qui bouge le moins vite.
 Dans mon expérience, c'est souvent la gestion des dépendances qui est en cause.
 
-Essayez d'optimiser les choses au mieux pour chaque projet, sans attendre une solution globale qui résoudrait tout.
+Ayez le courage de mesurer vos TTM réels, c'est à dire ceux qui prennent en compte toute la chaîne de dépendance et pas seulement les développements propres à chaque projet.
+
+Ensuite vous pourrez commencer à traiter le problème de dépendance qui est le plus douloureux pour vous, en vous inspirant des idées de l'article.
 
 Le mieux à court et moyen terme et d'adapter vos projets à votre organisation, quitte à renoncer à certains projets ou à certaines approches, car l'inverse ne fonctionnera pas.
-
-L'article contient des propositions d'action en fonction de votre rôle dans votre structure, vous n'avez plus qu'à vous lancer.
