@@ -1,25 +1,24 @@
 = Agile et dépendances
 Julien Kirch
-v0.1, 2018-12-29
+v0.1, 2019-04-14
 :article_lang: fr
 
-WARNING: ⚠️Il s'agit d'un brouillon => seul le fond est important !⚠️️️️
+Un des objectifs principaux des différentes approches agiles est de livrer de nouvelles fonctionnalités rapidement grâce à des itérations courtes.
 
-Un des objectifs principaux des différentes approches agiles est de pouvoir livrer de nouvelles fonctionnalités rapidement en s'appuyant sur des itérations courtes.
+Une des manières d'y parvenir est d'avoir une équipe avec un fort niveau d'autonomie, car les dépendances extérieures créent des risques de ralentissement, par exemple quand il faut attendre qu'un autre groupe fasse quelque chose dont on a besoin.
 
-Une des manières d'y parvenir est d'avoir une équipe avec un fort niveau d'autonomie, car les dépendances extérieures créent des risques de ralentissements, par exemple quand il faut attendre qu'un autre groupe fasse quelque chose dont on a besoin.
+Il est possible d'avoir une équipe parfaitement indépendante, sur un projet isolé d'un système d'information (SI) ou dans un environnement parfaitement stabilisé, c'est-à-dire mature et qui n'évolue pas.
 
-Une équipe parfaitement indépendante, cela peut exister sur un projet isolé d'un SI ou dans un environnement parfaitement stabilisé, c'est-à-dire mature et qui n'évolue pas.
+Dans un SI, ce n'est pas le cas de toutes les applications :
+souvent, ces dépendances existent avec des conséquences significatives sur le fonctionnement des projets.
 
-Dans un SI ce n'est pas le cas de toutes les applications : dans beaucoup de cas ces dépendances existent et ont souvent des conséquences significatives sur le fonctionnement des projets.
-
-Que peut-on faire pour, dans ces situations, pouvoir travailler au mieux ou au moins ne pas avoir de mauvaises surprises ?
+Que peut-on faire, dans ces situations, pour travailler au mieux ou au moins ne pas avoir de mauvaises surprises ?
 
 == Un exemple
 
-Une nouvelle fonctionnalité `F1` du projet `P1` nécessite une fonctionnalité `F2` d'un projet `P2` qui n'existe pas encore : un service manquant, une donnée incomplète …
+Une nouvelle fonctionnalité `F1` du projet `P1` nécessite une fonctionnalité `F2` d'un projet `P2` qui n'existe pas encore : un service manquant, une donnée incomplète…
 
-Pour cela il faut faire une demande à `P2`, que `P2` accepte la demande, que `P2` la réalise et mette `F2` à disposition de `P1`.
+Pour cela il faut faire une demande à `P2`, qui doit l'accepter, la réaliser et la mettre à disposition de `P1`.
 
 Pour `P2`, réaliser `F2` signifie aussi retarder le développer de fonctionnalités qui lui sont directement nécessaires.
 
@@ -33,16 +32,16 @@ Cela mène typiquement à des phénomènes link:https://fr.wikipedia.org/wiki/In
 
 Comme souvent, quand la gouvernance officielle n'est pas satisfaisante, c'est l'informalité qui prend la main.
 
-Comme le disait Ian Malcolm dans Jurassic Park "_life finds a way_".
+Comme disait Ian Malcolm dans Jurassic Park, "_life finds a way_".
 Cela ne veut pas dire que des vélociraptors vont attaquer votre SI, mais la situation ne sera quand même pas enviable.
 
-Tout d'abord les décisions de priorités seront arbitrées par des jeux de pouvoir et des rapports de force, qui font que certains projets obtiendront ce qu'ils demandent, et pas les autres.
+Tout d'abord, la priorisation sera arbitrée par des jeux de pouvoir et des rapports de force, qui font que certains projets obtiendront ce qu'ils demandent, et pas les autres.
 
-Ensuite les projets qui ne parviennent pas à leurs fins de manière directe essaieront de faire au mieux avec les moyens disponibles.
+Ensuite, les projets qui ne parviennent pas à leurs fins de manière directe essaieront de faire au mieux avec les moyens disponibles.
 
 Par exemple : demander les données aux projets qui sont en mesure de les fournir rapidement, même s'il ne s'agit pas de sources officielles ou des sources les mieux adaptées au projet.
 
-On peut par exemple tenter de récupérer des données opérationnelles depuis un DataLake.
+On peut par exemple tenter de récupérer des données opérationnelles depuis un data lake.
 
 Cela aura souvent des effets secondaires sur le SI comme des dépendances cachées ou des risques sur la qualité des données.
 
@@ -50,31 +49,31 @@ Cela aura souvent des effets secondaires sur le SI comme des dépendances caché
 
 Cela se produit sur tous les projets, en agile comme en cascade, mais l'agile est particulièrement concerné pour deux raisons.
 
-Tout d'abord comme vu plus haut, avec les dépendances il devient difficile d'avoir des cycles de développement courts et à durée prévisible alors qu'ils sont primordiaux pour tirer bénéfice des pratiques agiles : les dépendances font plus mal en agile car on a moins le temps d'attendre.
+D'une part, avec les dépendances, il devient difficile d'avoir des cycles de développement courts et à durée prévisible alors qu'ils sont primordiaux pour tirer bénéfice des pratiques agiles : les dépendances font plus mal en agile car on a moins le temps d'attendre.
 
 Une « transformation agile » qui ne prend pas en compte ce type de problème prend le risque de s'enliser voire de décrédibiliser l'agile.
 
-Ensuite, en donnant plus de place aux POs dans la prise de décision par rapport à des structures de gouvernance plus formelles j'ai l'impression que l'agile a supprimé une boucle de feedback qui permettait aux différents projets de pouvoir être entendus.
+Ensuite, en donnant plus de place aux POs dans la prise de décision par rapport à des structures de gouvernance plus formelles, j'ai l'impression que l'agile a supprimé une boucle de feedback qui permettait aux différents projets de pouvoir être entendus.
 
-Par exemples les comités de suivis tous les mois fournissaient un cadre permettant à des parties prenantes hors projet de s'exprimer pour remonter leurs besoins, et des responsables hiérarchiques pouvaient procéder aux arbitrages nécessaires.
-La nouvelle organisation permet des décisions plus rapides et est donc avantageuse la majorité du temps, mais peut rendre plus difficiles aux voix extérieures de se faire entendre.
+Par exemple, les comités de suivis mensuels fournissent un cadre permettant à des parties prenantes hors projet de s'exprimer pour remonter leurs besoins, et des responsables hiérarchiques peuvent procéder aux arbitrages nécessaires.
+En permettant des décisions plus rapides, la nouvelle organisation est avantageuse la plupart du temps, mais elle peut rendre plus difficile aux voix extérieures de se faire entendre.
 
-Les systèmes de gouvernance agile comme SAFE, qui savent organiser la gestion des dépendances entre projets, ne sont qu'une réponse partielle car ils couvrent les ensembles de de projets pré-identifiés comme ayant des dépendances fortes. Ils ne couvrent pas les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaissent dans la vie des projets et qui n'étaient pas anticipés.
+Les systèmes de gouvernance agile comme SAFE, qui savent organiser la gestion des dépendances entre projets, ne sont qu'une réponse partielle. En effet, ils couvrent les ensembles de projets pré-identifiés comme ayant des dépendances fortes mais pas les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaissent dans la vie des projets et qui n'étaient pas anticipés.
 
 L'objectif n'est pas d'aller vers une gouvernance plus structurée, mais de trouver comment faire au mieux en gardant une organisation légère.
 
-Finalement la mode de réduire au maximum la taille des équipes projets, par exemple dans les approches microservices, augmente le nombre d'équipes à coordonner.
-Le pire étant les demandes en cascades du type "moi `A` j'ai besoin d'un truc de `B`, mais pour ça `B` a besoin d'un truc de `C`, donc je dois aller négocier avec `C` accompagné de `B` et ensuite assurer la coordination du chantier de manière régulière".
+Finalement, la mode de réduire au maximum la taille des équipes projets, par exemple dans les approches microservices, augmente le nombre d'équipes à coordonner.
+Le pire étant les demandes en cascade du type "moi `A` j'ai besoin d'un truc de `B`, mais pour ça `B` a besoin d'un truc de `C`, donc je dois aller négocier avec `C` accompagné de `B` et ensuite assurer la coordination du chantier de manière régulière".
 
 == Que faire ?
 
 Il suffit de faire en sorte que tous les projets soient indépendants les uns des autres.
 
-Non je blague.
+Non, je blague.
 
 Il suffit de passer tous les projets en agile, et de faire en sorte que tous les PO soient capables de prendre en point à point des décisions maximisant l'optimum global.
 
-Non je blague encore.
+Non, je blague encore.
 
 Je pense qu'il n'y a pas de recettes magiques : c'est un problème inévitable quand on a un SI d'une certaine taille, mais des pratiques peuvent aider.
 
@@ -83,20 +82,25 @@ Je pense qu'il n'y a pas de recettes magiques : c'est un problème inévitable q
 Voici ce que vous pouvez faire si vous êtes du côté des projets demandeurs :
 
 . Connaître votre système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précisions acceptable : cela évite les mauvaises surprises ;
-. Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire pour une évolution extérieure. Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant. Le chiffre sera probablement dépendant de la taille du besoin et de à qui vous demandez.
-Cela vous permet de faire des arbitrage (est ce qu'on laisse tomber si c'est trop long ?) et de mieux planifier.
+. Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire pour une évolution extérieure.
+Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant.
+Le chiffre sera probablement dépendant de la taille du besoin et de la personnne à qui vous adressez la demande.
+Cela vous permet de faire des arbitrages (est-ce-qu'on laisse tomber si c'est trop long ?) et de mieux planifier.
 
-Le premier point nécessite que les POs aient une certaine connaissance du périmètre du système sur lequel ils ou elles travaillent, par exemple grosso-modo quelles sont les données dont le système dispose et/ou de défricher les sujets en amont avec les personnes qui développent.
+Le premier point nécessite que les POs aient une certaine connaissance du périmètre du système sur lequel ils ou elles travaillent,
+par exemple grosso-modo quelles sont les données dont le système dispose et/ou de défricher les sujets en amont avec les personnes qui développent.
 
-Sans aller jusqu'à parler de cartographie fonctionnelle, disposer d'une représentation lisible permettant de savoir quelles sont les données du système peut être ici bien utile.
+Sans aller jusqu'à parler de cartographie fonctionnelle, disposer d'une représentation lisible des données du système peut être ici bien utile.
 
 == Côté fournisseur
 
-Le mieux côté fournisseur est d'avoir de la disponibilité pour les demandes des projets, sous forme de temps disponible et de souplesse dans le planning.
+Le mieux côté fournisseur est d'avoir de la disponibilité pour les demandes des projets,
+sous forme de temps disponible et de souplesse dans le planning.
 
 Cela peut même être une partie essentielle de votre activité, par exemple si votre périmètre correspond à une activité de référentiel.
 
-Si les priorités ne permettent pas de réaliser les demandes extérieures dans des délais courts, essayer au moins de répondre rapidement aux questions de planning pour donner de la visibilité pour permettre aux projet demandeurs de s'organiser.
+Si les priorités ne permettent pas de réaliser les demandes extérieures dans des délais courts,
+essayer au moins de répondre rapidement aux questions de planning pour donner de la visibilité pour permettre aux projet demandeurs de s'organiser.
 
 Si l'organisation ne vous permet pas d'arbitrer les priorités vous-même, tout ce que vous pouvez faire est d'essayer de faciliter la prise de décision, par exemple en fournissant des estimations.
 
@@ -104,16 +108,16 @@ Si l'organisation ne vous permet pas d'arbitrer les priorités vous-même, tout 
 
 La DSI peut faire de nombreuses choses dans ce domaine, du plus simple au plus difficile :
 
-. Suivre les demandes d'évolutions transverses pour être capable d'évaluer l'importance du sujet : est ce qu'il arrive souvent, à quels endroits dans le SI … ?
-. Faire en sorte que des services existants déjà exposés soient désignés et exposés de manière à être facilement utilisables par les autres applications (mais sans tomber dans le surdesign : la réutilisabilité est toujours difficile à anticiper)
-. Influer sur la gouvernance pour faire en sorte que les projets puissent obtenir rapidement des arbitrages en  : la priorisation des sujets n'est pas forcément dans le périmètre de la DSI, mais elle peut aider à ce que les décisions soient prises
-. Faciliter le développement des nouvelles demandes sur les parties qui ne sont pas dans le périmètre des projets, par exemple la capacité à fournir des environnements de test pendant les phases de mise au point
-. Mettre en avant les besoins de migration et de décomissionnement pour qu'ils soient pris en compte, car fournir une nouvelle version N+1 d'un service cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1 … décident de se mettre à jour
-. Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre d'interlocuteurs à contacter (et éviter les demandes en cascades comme vu plus haut), un peu de centralisation sur les données "maîtres" en le structurant dans des référentiels permet par exemple de faciliter les choses
+. Suivre les demandes d'évolutions transverses pour être capable d'évaluer l'importance du sujet : est-ce-qu'il arrive souvent, à quels endroits dans le SI … ?
+. Faire en sorte que des services existants déjà exposés soient désignés et exposés de manière à être facilement utilisables par les autres applications (mais sans tomber dans le surdesign : la réutilisabilité est toujours difficile à anticiper) ;
+. Influer sur la gouvernance pour faire en sorte que les projets puissent obtenir rapidement des arbitrages : la priorisation des sujets n'est pas forcément dans le périmètre de la DSI, mais elle peut aider à ce que les décisions soient prises ;
+. Faciliter le développement des nouvelles demandes sur les parties qui ne sont pas dans le périmètre des projets, par exemple la capacité à fournir des environnements de test pendant les phases de mise au point ;
+. Mettre en avant les besoins de migration et de décomissionnement pour qu'ils soient pris en compte, car fournir une nouvelle version N+1 d'un service, cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1… décident de se mettre à jour ;
+. Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre d'interlocuteurs à contacter (et éviter les demandes en cascades comme vu plus haut). Un peu de centralisation sur les données "maîtres" en les structurant dans des référentiels permet par exemple de faciliter les choses.
 
 Le dernier point est primordial : il faut que vos projets soient adaptés à votre capacité à faire des choix et à les mettre en œuvre.
 
-Bien entendu il n'est pas possible de mener de front tous ces chantiers mais ceux qui sont les mieux adaptés à votre contexte et aux moyens disponibles.
+Bien entendu, il n'est pas possible de mener de front tous ces chantiers mais il faut prioriser ceux qui sont les mieux adaptés à votre contexte et aux moyens disponibles.
 
 == Côté métier
 
@@ -121,17 +125,17 @@ Pour les développements inter-projets d'une certaine taille, le processus d'arb
 
 Cela signifie que le métier doit s'approprier ce sujet, et trouver une manière de le traiter.
 
-Pour les demandes de petite taille réduite qui ne portent pas à conséquence sur les plannings, les décisions peuvent être déléguées aux projets.
-Cela permet de limiter le coût des décisions tout en limitant l'impact des erreurs.
+Pour les demandes de taille réduite qui ne portent pas à conséquence sur les plannings, les décisions peuvent être déléguées aux projets.
+Cela permet de cantonner le coût des décisions tout en limitant l'impact des erreurs.
 
-Mais pour les adhérences de plus grande taille cela ne fonctionne pas.
+Mais pour les adhérences de plus grande taille, cela ne fonctionne pas.
 
 Dans le cas idéal, les différents domaines métiers impliqués ont l'habitude de travailler ensemble, et sauront prioriser les demandes d'une manière qui soit acceptable aux différentes parties prenantes.
-En principe, si deux projets dépendant de deux domaines métiers différents ont à travailler ensemble, c'est parce que les métiers correspondants ont des liens.
+En principe, si deux projets dépendants de deux domaines métiers différents ont à travailler ensemble, c'est parce que les métiers correspondants ont des liens.
 
 Dans le cas contraire, cela peut signifier que différentes branches du métier doivent apprendre à travailler ensemble pour des raisons d'IT, alors qu'elles n'ont que rarement à le faire par ailleurs.
 
-Par expérience cet apprentissage est souvent difficile, en particulier lorsqu'un des métiers à plus d'intérêt que les autres à cette "collaboration".
+Par expérience, cet apprentissage est souvent difficile, en particulier lorsqu'un des métiers à plus d'intérêt que les autres à cette "collaboration".
 
 C'est par exemple le cas lorsque le marketing a besoin de données de l'ensemble du SI pour alimenter son CRM ou sa BI, alors que les autres branches n'en tirent qu'un bénéfice indirect.
 
@@ -151,4 +155,4 @@ Ayez le courage de mesurer vos TTM réels, c'est à dire ceux qui prennent en co
 
 Ensuite vous pourrez commencer à traiter le problème de dépendance qui est le plus douloureux pour vous, en vous inspirant des idées de l'article.
 
-Le mieux à court et moyen terme et d'adapter vos projets à votre organisation, quitte à renoncer à certains projets ou à certaines approches, car l'inverse ne fonctionnera pas.
+Le mieux, à court et moyen terme, et d'adapter vos projets à votre organisation, quitte à renoncer à certains projets ou à certaines approches, car l'inverse ne fonctionnera pas.
