@@ -12,7 +12,7 @@ Il est possible d'avoir une équipe parfaitement indépendante, sur un projet is
 Dans un SI, ce n'est pas le cas de toutes les applications :
 souvent, ces dépendances existent avec des conséquences significatives sur le fonctionnement des projets.
 
-Que peut-on faire, dans ces situations, pour travailler au mieux ou au moins ne pas avoir de mauvaises surprises ?
+Que peut-on faire, dans ces situations, pour travailler au mieux ou au moins ne pas avoir de mauvaises surprises{nbsp}?
 
 == Un exemple
 
@@ -28,7 +28,7 @@ image::exemple.png[align="center"]
 
 Cela mène typiquement à des phénomènes link:https://fr.wikipedia.org/wiki/Inversion_de_priorité[d'inversion de priorité] où les optimisations globales (au niveau de l'entreprise) et locales (au niveau de chaque équipe) s'opposent.
 
-== Qu'est ce qui se passe quand ça se passe mal ?
+== Qu'est ce qui se passe quand ça se passe mal{nbsp}?
 
 Comme souvent, quand la gouvernance officielle n'est pas satisfaisante, c'est l'informalité qui prend la main.
 
@@ -45,7 +45,7 @@ On peut par exemple tenter de récupérer des données opérationnelles depuis u
 
 Cela aura souvent des effets secondaires sur le SI comme des dépendances cachées ou des risques sur la qualité des données.
 
-== Quel rapport avec l'agile ?
+== Quel rapport avec l'agile{nbsp}?
 
 Cela se produit sur tous les projets, en agile comme en cascade, mais l'agile est particulièrement concerné pour deux raisons.
 
@@ -65,7 +65,7 @@ L'objectif n'est pas d'aller vers une gouvernance plus structurée, mais de trou
 Finalement, la mode de réduire au maximum la taille des équipes projets, par exemple dans les approches microservices, augmente le nombre d'équipes à coordonner.
 Le pire étant les demandes en cascade du type "moi `A` j'ai besoin d'un truc de `B`, mais pour ça `B` a besoin d'un truc de `C`, donc je dois aller négocier avec `C` accompagné de `B` et ensuite assurer la coordination du chantier de manière régulière".
 
-== Que faire ?
+== Que faire{nbsp}?
 
 Il suffit de faire en sorte que tous les projets soient indépendants les uns des autres.
 
@@ -81,11 +81,11 @@ Je pense qu'il n'y a pas de recettes magiques : c'est un problème inévitable q
 
 Voici ce que vous pouvez faire si vous êtes du côté des projets demandeurs :
 
-. Connaître votre système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précisions acceptable : cela évite les mauvaises surprises ;
+. Connaître votre système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précisions acceptable : cela évite les mauvaises surprises.
 . Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire pour une évolution extérieure.
 Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant.
 Le chiffre sera probablement dépendant de la taille du besoin et de la personne à qui vous adressez la demande.
-Cela vous permet de faire des arbitrages (est-ce-qu'on laisse tomber si c'est trop long ?) et de mieux planifier.
+Cela vous permet de faire des arbitrages (est-ce-qu'on laisse tomber si c'est trop long{nbsp}?) et de mieux planifier.
 
 Le premier point nécessite que les POs aient une certaine connaissance du périmètre du système sur lequel ils ou elles travaillent,
 par exemple grosso-modo quelles sont les données dont le système dispose et/ou de défricher les sujets en amont avec les personnes qui développent.
@@ -108,11 +108,11 @@ Si l'organisation ne vous permet pas d'arbitrer les priorités vous-même, tout 
 
 La DSI peut faire de nombreuses choses dans ce domaine, du plus simple au plus difficile :
 
-. Suivre les demandes d'évolutions transverses pour être capable d'évaluer l'importance du sujet : est-ce-qu'il arrive souvent, à quels endroits dans le SI … ?
-. Faire en sorte que des services existants déjà exposés soient désignés et exposés de manière à être facilement utilisables par les autres applications (mais sans tomber dans le surdesign : la réutilisabilité est toujours difficile à anticiper) ;
-. Influer sur la gouvernance pour faire en sorte que les projets puissent obtenir rapidement des arbitrages : la priorisation des sujets n'est pas forcément dans le périmètre de la DSI, mais elle peut aider à ce que les décisions soient prises ;
-. Faciliter le développement des nouvelles demandes sur les parties qui ne sont pas dans le périmètre des projets, par exemple la capacité à fournir des environnements de test pendant les phases de mise au point ;
-. Mettre en avant les besoins de migration et de décomissionnement pour qu'ils soient pris en compte, car fournir une nouvelle version N+1 d'un service, cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1… décident de se mettre à jour ;
+. Suivre les demandes d'évolutions transverses pour être capable d'évaluer l'importance du sujet : est-ce-qu'il arrive souvent, à quels endroits dans le SI{nbsp}…{nbsp}?
+. Faire en sorte que des services existants déjà exposés soient désignés et exposés de manière à être facilement utilisables par les autres applications (mais sans tomber dans le surdesign : la réutilisabilité est toujours difficile à anticiper){nbsp};
+. Influer sur la gouvernance pour faire en sorte que les projets puissent obtenir rapidement des arbitrages : la priorisation des sujets n'est pas forcément dans le périmètre de la DSI, mais elle peut aider à ce que les décisions soient prises{nbsp};
+. Faciliter le développement des nouvelles demandes sur les parties qui ne sont pas dans le périmètre des projets, par exemple la capacité à fournir des environnements de test pendant les phases de mise au point{nbsp};
+. Mettre en avant les besoins de migration et de décomissionnement pour qu'ils soient pris en compte, car fournir une nouvelle version N+1 d'un service, cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1{nbsp}… décident de se mettre à jour{nbsp};
 . Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre d'interlocuteurs à contacter (et éviter les demandes en cascades comme vu plus haut). Un peu de centralisation sur les données "maîtres" en les structurant dans des référentiels permet par exemple de faciliter les choses.
 
 Le dernier point est primordial : il faut que vos projets soient adaptés à votre capacité à faire des choix et à les mettre en œuvre.
@@ -141,7 +141,7 @@ C'est par exemple le cas lorsque le marketing a besoin de données de l'ensemble
 
 Ce type de dépendance doit être identifié lors du cadrage d'un projet et la question doit être traitée avant de lancer les développements, surtout si le niveau de dépendance est important.
 
-Il ne s'agit pas seulement de prioriser les tâches déjà identifiées dans les calendriers des différents projets, mais aussi de définir des modalités d'arbitrage efficace (qui peut décider de quoi dans quelles instances ?) pour les situations non encore prévues.
+Il ne s'agit pas seulement de prioriser les tâches déjà identifiées dans les calendriers des différents projets, mais aussi de définir des modalités d'arbitrage efficace (qui peut décider de quoi dans quelles instances{nbsp}?) pour les situations non encore prévues.
 L'objectif étant d'éviter de solliciter l'avis de la direction générale chaque fois qu'il faut ajouter un champ d'une donnée dans un service.
 
 Si on juge que les réponses ne sont pas compatibles avec les contraintes existantes comme le planning prévisionnel du projet, il peut être nécessaire de recadrer les projets.
