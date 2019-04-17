@@ -78,7 +78,7 @@ While there is no problem in subtyping without subclassing, in most nominal OO l
 [source,java]
 ----
 class A{ int ma(){ return Utils.m(this); } }
-class Utils{ static int m(A a){…} }
+class Utils{ static int m(A a){/*…*/} }
 ----
 
 Now, lets add a class B:
@@ -89,7 +89,7 @@ class B extends A{ int mb(){return this.ma();} }
 ----
 
 We can see an invocation of `A.ma` inside `B.mb`, where the self-reference `this` is of type `B`.
-The execution will eventually call `Utils.m` with an instance of `B`. However, _this can be correct only if `B` is a subtype of ``A``.
+The execution will eventually call `Utils.m` with an instance of `B`. However, _this_ can be correct only if `B` is a subtype of ``A``.
 
 Suppose Java code-reuse (the `extends` keyword) did not introduce subtyping: then an invocation of `B.mb` would result in a run-time type error.
 The problem is that the self-reference `this` in class `B` has type `B`.
