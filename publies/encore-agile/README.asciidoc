@@ -1,159 +1,94 @@
-= Agile et dépendances
+= Suite de l'agile : une liste de course pour de nouvelles méthodes
 Julien Kirch
-v0.1, 2019-04-14
+v0.1, 2019-04-15
 :article_lang: fr
+:article_image: logo.png
+:article_description: Avril c'est le moment parfait pour préparer sa liste au père Noël
 
-Un des objectifs principaux des différentes approches agiles est de livrer de nouvelles fonctionnalités rapidement grâce à des itérations courtes.
+Cet article est la suite de link:../agile-questionnement-institution/[celui-là].
 
-Une des manières d'y parvenir est d'avoir une équipe avec un fort niveau d'autonomie, car les dépendances extérieures créent des risques de ralentissement, par exemple quand il faut attendre qu'un autre groupe fasse quelque chose dont on a besoin.
+Suite à mes expériences, voici une liste de choses dont je pense qu'elles devraient être prises en compte pour l'élaboration d'une nouvelle méthode d'organisation.
 
-Il est possible d'avoir une équipe parfaitement indépendante, sur un projet isolé d'un système d'information (SI) ou dans un environnement parfaitement stabilisé, c'est-à-dire mature et qui n'évolue pas.
+Ce texte est un travail en cours et une sorte d'aide-mémoire de mes réflexions, je vais continuer à l'enrichir, et à extraire certains éléments dans des articles séparés pour les détailler.
 
-Dans un SI, ce n'est pas le cas de toutes les applications :
-souvent, ces dépendances existent avec des conséquences significatives sur le fonctionnement des projets.
+== D'où parlez-vous{nbsp}?
 
-Que peut-on faire, dans ces situations, pour travailler au mieux ou au moins ne pas avoir de mauvaises surprises{nbsp}?
+La position qu'occupe une personne a une influence sur le contenu des méthodes qu'elle peut proposer.
 
-== Un exemple
+Par exemple beaucoup de méthodes d'organisations sont proposées par des personnes qui vendent du conseil en organisation.
 
-Une nouvelle fonctionnalité `F1` du projet `P1` nécessite une fonctionnalité `F2` d'un projet `P2` qui n'existe pas encore : un service manquant, une donnée incomplète{nbsp}…
+C'est logique car c'est leur métier, et que ça leur permet de se faire identifier donc d'avoir du travail.
 
-Pour cela il faut faire une demande à `P2`, qui doit l'accepter, la réaliser et la mettre à disposition de `P1`.
+Je ne veux pas dire qu'une personne qui vend du conseil en organisation ne peut pas proposer de nouveaux modes d'organisations, mais que le fait d'être consultant ou consultante influe nécessairement sur le contenu de ce qui est proposé.
 
-Pour `P2`, réaliser `F2` signifie aussi retarder le développement de fonctionnalités qui lui sont directement nécessaires.
+Un homme ayant un travail de coach en free-lance pour des banques aux États-Unis n'aura pas le même point de vue qu'une femme développeuse en interne pour une association africaine à but non lucratif.
 
-Pour `P2` il peut être difficile de mesurer de la priorité "réelle" de `F1` -- si tant est qu'une telle chose existe -- et donc de prendre la bonne décision.
+Je ne dis pas que cette influence est forcément négative, mais qu'elle peut l'être -- dans le contenu de ce qui est proposé, ou dans ce qui est oublié -- et qu'il faut donc se poser la question.
 
-image::exemple.png[align="center"]
+== Inclusivité
 
-Cela mène typiquement à des phénomènes link:https://fr.wikipedia.org/wiki/Inversion_de_priorité[d'inversion de priorité] où les optimisations globales (au niveau de l'entreprise) et locales (au niveau de chaque équipe) s'opposent.
+Une méthode d'organisation doit à mon sens être inclusive au plus grand nombre de personnes possibles.
 
-== Qu'est ce qui se passe quand ça se passe mal{nbsp}?
+Cela veut dire qu'il faut prendre soin d'y penser dans le choix des activités et du vocabulaire.
 
-Comme souvent, quand la gouvernance officielle n'est pas satisfaisante, c'est l'informalité qui prend la main.
+L'exemple qui revient le plus souvent est celui du _stand-up_ qui ignore les personnes qui ont des difficultés à se tenir debout.
 
-Comme disait Ian Malcolm dans Jurassic Park, "_life finds a way_".
-Cela ne veut pas dire que des vélociraptors vont attaquer votre SI, mais la situation ne sera quand même pas enviable.
+== "Encore une transformation agile{nbsp}?"
 
-Tout d'abord, la priorisation sera arbitrée par des jeux de pouvoir et des rapports de force, qui font que certains projets obtiendront ce qu'ils demandent, et pas les autres.
+La plupart des grandes organisations ont déjà subies de nombreuses transformations agiles, digitales, _lean_, _kaisen_ et autres joyeusetés.
 
-Ensuite, les projets qui ne parviennent pas à leurs fins de manière directe essaieront de faire au mieux avec les moyens disponibles.
+Les personnes n'attendent plus grand chose de la transformation suivante, elles espèrent juste qu'au mieux ça n'empire pas trop.
 
-Par exemple : demander les données aux projets qui sont en mesure de les fournir rapidement, même s'il ne s'agit pas de sources officielles ou des sources les mieux adaptées au projet.
+Donc n'espérez pas de l'enthousiasme, et ne jugez pas négativement des personnes qui ne sont pas intéressées par votre grand plan en pensant qu'elles sont simplement réfractaire au changement.
 
-On peut par exemple tenter de récupérer des données opérationnelles depuis un data lake.
+Au contraire il va falloir expliquer pourquoi vous pensez réussir là où tant d'autres idées ont échoué (pour de bonnes ou de mauvaises raisons), et prendre du temps pour écouter.
 
-Cela aura souvent des effets secondaires sur le SI comme des dépendances cachées ou des risques sur la qualité des données.
+De même il faut éviter de promettre la lune, même si c'est pour donner envie, mais au contraire rester modeste dans vos objectifs pour être crédible.
 
-== Quel rapport avec l'agile{nbsp}?
+== Les conditions de travail
 
-Cela se produit sur tous les projets, en agile comme en cascade, mais l'agile est particulièrement concerné pour deux raisons.
+Une méthode qui prétend donner des réponses pour améliorer la qualité et la productivité devrait traiter des conditions de travail des personnes.
 
-D'une part, avec les dépendances, il devient difficile d'avoir des cycles de développement courts et à durée prévisible alors qu'ils sont primordiaux pour tirer bénéfice des pratiques agiles : les dépendances font plus mal en agile car on a moins le temps d'attendre.
+Je ne parle pas d'écrire des tests, mais par exemple du niveau sonore, de l'équipement fourni, ou de l'organisation spatiale (disposition des bureaux …).
 
-Une « transformation agile » qui ne prend pas en compte ce type de problème prend le risque de s'enliser voire de décrédibiliser l'agile.
+Cela rejoint aussi le point précédent{nbsp}:
+proposer changer la couleur des post-it sans parler de de la question du bruit et du travail en open-space vous rendra difficile à entendre.
 
-Ensuite, en donnant plus de place aux POs dans la prise de décision par rapport à des structures de gouvernance plus formelles, j'ai l'impression que l'agile a supprimé une boucle de feedback qui permettait aux différents projets de pouvoir être entendus.
+== Ambitions et les rapports de force
 
-Par exemple, les comités de suivis mensuels fournissent un cadre permettant à des parties prenantes hors projet de s'exprimer pour remonter leurs besoins, et des responsables hiérarchiques peuvent procéder aux arbitrages nécessaires.
-En permettant des décisions plus rapides, la nouvelle organisation est avantageuse la plupart du temps, mais elle peut rendre plus difficile aux voix extérieures de se faire entendre.
+Toute proposition d'organisation pour des structures classiques (par exemple des entreprises) doit prendre en compte la réalité du fonctionnement de ces organisations, et notamment celle des ambitions des personnes et des rapports de force.
 
-Les systèmes de gouvernance agile comme SAFE, qui savent organiser la gestion des dépendances entre projets, ne sont qu'une réponse partielle. En effet, ils couvrent les ensembles de projets pré-identifiés comme ayant des dépendances fortes mais pas les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaissent dans la vie des projets et qui n'étaient pas anticipés.
+Par exemple une équipe auto-organisée ne peut fonctionner, en général, que si toutes les personnes y trouvent un intérêt personnel.
 
-L'objectif n'est pas d'aller vers une gouvernance plus structurée, mais de trouver comment faire au mieux en gardant une organisation légère.
+Ou alors on ne peut pas supposer la bonne fois permanente de toutes les parties-prenantes d'un projet, qu'il s'agisse de manipulation volontaire ou de biais inconscient.
 
-Finalement, la mode de réduire au maximum la taille des équipes projets, par exemple dans les approches microservices, augmente le nombre d'équipes à coordonner.
-Le pire étant les demandes en cascade du type "moi `A` j'ai besoin d'un truc de `B`, mais pour ça `B` a besoin d'un truc de `C`, donc je dois aller négocier avec `C` accompagné de `B` et ensuite assurer la coordination du chantier de manière régulière".
+== La passion ça suffit
 
-== Que faire{nbsp}?
+On ne peut pas demander à toutes les personnes d'une organisation d'être à chaque instant rempli d'enthousiasme.
 
-Il suffit de faire en sorte que tous les projets soient indépendants les uns des autres.
+On peut seulement exiger qu'elles fassent semblant, pour donner satisfaction au management et aux personnes qui les coachent.
 
-Non, je blague.
+link:../professionnalisme/[Je me répète] mais pour moi une méthode efficace doit être adaptées à des personnes qui sont là pour faire leur travail.
 
-Il suffit de passer tous les projets en agile, et de faire en sorte que tous les PO soient capables de prendre en point à point des décisions maximisant l'optimum global.
+== Plus d'exotisme
 
-Non, je blague encore.
+Depuis link:https://fr.wikipedia.org/wiki/Études_postcoloniales[les années 80], on a forgé des outils permettant de déconstruire la vision exotique de l'orient véhiculée en occident et les clichés qui l'accompagne.
 
-Je pense qu'il n'y a pas de recette magique : c'est un problème inévitable quand on a un SI d'une certaine taille, mais des pratiques peuvent aider.
+[quote]
+____
+On va faire du _Kaizen_ avec un _Kanban_ et des _Kata_ pour s'améliorer, comme chez _Toyota Jidōsha_.
+____
 
-== Côté demandeur
+S'intéresser à ce qui se fait ailleurs peut être riche d'enseignements, mais on peut le faire sans fascination pour l'étranger, et en prenant en compte la réalité derrière la propagande, par exemple la réalité des conditions de travail dans l'industrie Japonaise.
 
-Voici ce que vous pouvez faire si vous êtes du côté des projets demandeurs :
+== Accepter le désordre
 
-. Connaître votre système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précision acceptable : cela évite les mauvaises surprises.
-. Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire pour une évolution extérieure.
-Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant.
-Le chiffre sera probablement dépendant de la taille du besoin et de la personne à qui vous adressez la demande.
-Cela vous permet de faire des arbitrages (est-ce-qu'on laisse tomber si c'est trop long{nbsp}?) et de mieux planifier.
+La réalité est complexe et désordonnée.
 
-Le premier point nécessite que les POs aient une certaine connaissance du périmètre du système sur lequel ils ou elles travaillent,
-par exemple grosso-modo quelles sont les données dont le système dispose et/ou de défricher les sujets en amont avec les personnes qui développent.
+Il est normal qu'une méthode puisse vouloir organiser les choses, par exemple pour simplifier les prises de décisions.
 
-Sans aller jusqu'à parler de cartographie fonctionnelle, disposer d'une représentation lisible des données du système peut être ici bien utile.
+Par contre il y a différence entre vouloir ajouter de l'ordre et faire comme si la complexité n'existait pas en proposant des approches monolithiques et des solutions miracles.
 
-== Côté fournisseur
+== C'est tout pour le moment
 
-Le mieux côté fournisseur est d'avoir de la disponibilité pour les demandes des projets,
-sous forme de temps disponible et de souplesse dans le planning.
-
-Cela peut même être une partie essentielle de votre activité, par exemple si votre périmètre correspond à une activité de référentiel.
-
-Si les priorités ne permettent pas de réaliser les demandes extérieures dans des délais courts,
-essayer au moins de répondre rapidement aux questions de planning pour donner de la visibilité pour permettre aux projet demandeurs de s'organiser.
-
-Si l'organisation ne vous permet pas d'arbitrer les priorités vous-même, tout ce que vous pouvez faire est d'essayer de faciliter la prise de décision, par exemple en fournissant des estimations.
-
-== Côté DSI
-
-La DSI peut faire de nombreuses choses dans ce domaine, du plus simple au plus difficile :
-
-. Suivre les demandes d'évolutions transverses pour être capable d'évaluer l'importance du sujet : est-ce-qu'il arrive souvent, à quels endroits dans le SI{nbsp}…{nbsp}?
-. Faire en sorte que des services existants déjà exposés soient désignés et exposés de manière à être facilement utilisables par les autres applications (mais sans tomber dans le surdesign : la réutilisabilité est toujours difficile à anticiper){nbsp};
-. Influer sur la gouvernance pour faire en sorte que les projets puissent obtenir rapidement des arbitrages : la priorisation des sujets n'est pas forcément dans le périmètre de la DSI, mais elle peut aider à ce que les décisions soient prises{nbsp};
-. Faciliter le développement des nouvelles demandes sur les parties qui ne sont pas dans le périmètre des projets, par exemple la capacité à fournir des environnements de test pendant les phases de mise au point{nbsp};
-. Mettre en avant les besoins de migration et de décommissionnement pour qu'ils soient pris en compte, car fournir une nouvelle version N+1 d'un service, cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1{nbsp}… décident de se mettre à jour{nbsp};
-. Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre d'interlocuteurs à contacter (et éviter les demandes en cascades comme vu plus haut). Un peu de centralisation sur les données "maîtres" en les structurant dans des référentiels permet par exemple de faciliter les choses.
-
-Le dernier point est primordial : il faut que vos projets soient adaptés à votre capacité à faire des choix et à les mettre en œuvre.
-
-Bien entendu, il n'est pas possible de mener de front tous ces chantiers mais il faut prioriser ceux qui sont les mieux adaptés à votre contexte et aux moyens disponibles.
-
-== Côté métier
-
-Pour les développements inter-projets d'une certaine taille, le processus d'arbitrage doit reposer sur le métier car c'est lui qui a la connaissance et la légitimité pour le faire.
-
-Cela signifie que le métier doit s'approprier ce sujet, et trouver une manière de le traiter.
-
-Pour les demandes de taille réduite qui ne portent pas à conséquence sur les plannings, les décisions peuvent être déléguées aux projets.
-Cela permet de cantonner le coût des décisions tout en limitant l'impact des erreurs.
-
-Mais pour les adhérences de plus grande taille, cela ne fonctionne pas.
-
-Dans le cas idéal, les différents domaines métiers impliqués ont l'habitude de travailler ensemble, et sauront prioriser les demandes d'une manière qui soit acceptable aux différentes parties prenantes.
-En principe, si deux projets dépendants de deux domaines métiers différents ont à travailler ensemble, c'est parce que les métiers correspondants ont des liens.
-
-Dans le cas contraire, cela peut signifier que différentes branches du métier doivent apprendre à travailler ensemble pour des raisons d'IT, alors qu'elles n'ont que rarement à le faire par ailleurs.
-
-Par expérience, cet apprentissage est souvent difficile, en particulier lorsqu'un des métiers à plus d'intérêt que les autres à cette "collaboration".
-
-C'est par exemple le cas lorsque le marketing a besoin de données de l'ensemble du SI pour alimenter son CRM ou sa BI, alors que les autres branches n'en tirent qu'un bénéfice indirect.
-
-Ce type de dépendance doit être identifié lors du cadrage d'un projet et la question doit être traitée avant de lancer les développements, surtout si le niveau de dépendance est important.
-Un outil comme la link:https://fr.wikipedia.org/wiki/Value_stream_mapping[cartographie des chaînes de valeur] peut vous y aider.
-
-Il ne s'agit pas seulement de prioriser les tâches déjà identifiées dans les calendriers des différents projets, mais aussi de définir des modalités d'arbitrage efficace (qui peut décider de quoi dans quelles instances{nbsp}?) pour les situations non encore prévues.
-L'objectif étant d'éviter de solliciter l'avis de la direction générale chaque fois qu'il faut ajouter un champ d'une donnée dans un service.
-
-Si on juge que les réponses ne sont pas compatibles avec les contraintes existantes comme le planning prévisionnel du projet, il peut être nécessaire de recadrer les projets.
-
-== En conclusion
-
-Rappelez-vous que la vitesse d'évolution d'un système est limitée par le composant qui bouge le moins vite.
-Dans mon expérience, c'est souvent la gestion des dépendances qui est en cause.
-
-Ayez le courage de mesurer vos TTM réels, c'est à dire ceux qui prennent en compte toute la chaîne de dépendance et pas seulement les développements propres à chaque projet.
-
-Ensuite vous pourrez commencer à traiter le problème de dépendance qui est le plus douloureux pour vous, en vous inspirant des idées de l'article.
-
-Le mieux, à court et moyen terme, et d'adapter vos projets à votre organisation, quitte à renoncer à certains projets ou à certaines approches, car l'inverse ne fonctionnera pas.
+Je suis preneur de vos suggestions sur les éléments existant ou sur l'ajout de nouvelles entrées.
