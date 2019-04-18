@@ -20,7 +20,7 @@ Une nouvelle fonctionnalité `F1` du projet `P1` nécessite une fonctionnalité 
 
 Pour cela il faut faire une demande à `P2`, qui doit l'accepter, la réaliser et la mettre à disposition de `P1`.
 
-Pour `P2`, réaliser `F2` signifie aussi retarder le développer de fonctionnalités qui lui sont directement nécessaires.
+Pour `P2`, réaliser `F2` signifie aussi retarder le développement de fonctionnalités qui lui sont directement nécessaires.
 
 Pour `P2` il peut être difficile de mesurer de la priorité "réelle" de `F1` -- si tant est qu'une telle chose existe -- et donc de prendre la bonne décision.
 
@@ -75,13 +75,13 @@ Il suffit de passer tous les projets en agile, et de faire en sorte que tous les
 
 Non, je blague encore.
 
-Je pense qu'il n'y a pas de recettes magiques : c'est un problème inévitable quand on a un SI d'une certaine taille, mais des pratiques peuvent aider.
+Je pense qu'il n'y a pas de recette magique : c'est un problème inévitable quand on a un SI d'une certaine taille, mais des pratiques peuvent aider.
 
 == Côté demandeur
 
 Voici ce que vous pouvez faire si vous êtes du côté des projets demandeurs :
 
-. Connaître votre système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précisions acceptable : cela évite les mauvaises surprises.
+. Connaître votre système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précision acceptable : cela évite les mauvaises surprises.
 . Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire pour une évolution extérieure.
 Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant.
 Le chiffre sera probablement dépendant de la taille du besoin et de la personne à qui vous adressez la demande.
@@ -112,7 +112,7 @@ La DSI peut faire de nombreuses choses dans ce domaine, du plus simple au plus d
 . Faire en sorte que des services existants déjà exposés soient désignés et exposés de manière à être facilement utilisables par les autres applications (mais sans tomber dans le surdesign : la réutilisabilité est toujours difficile à anticiper){nbsp};
 . Influer sur la gouvernance pour faire en sorte que les projets puissent obtenir rapidement des arbitrages : la priorisation des sujets n'est pas forcément dans le périmètre de la DSI, mais elle peut aider à ce que les décisions soient prises{nbsp};
 . Faciliter le développement des nouvelles demandes sur les parties qui ne sont pas dans le périmètre des projets, par exemple la capacité à fournir des environnements de test pendant les phases de mise au point{nbsp};
-. Mettre en avant les besoins de migration et de décomissionnement pour qu'ils soient pris en compte, car fournir une nouvelle version N+1 d'un service, cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1{nbsp}… décident de se mettre à jour{nbsp};
+. Mettre en avant les besoins de migration et de décommissionnement pour qu'ils soient pris en compte, car fournir une nouvelle version N+1 d'un service, cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1{nbsp}… décident de se mettre à jour{nbsp};
 . Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre d'interlocuteurs à contacter (et éviter les demandes en cascades comme vu plus haut). Un peu de centralisation sur les données "maîtres" en les structurant dans des référentiels permet par exemple de faciliter les choses.
 
 Le dernier point est primordial : il faut que vos projets soient adaptés à votre capacité à faire des choix et à les mettre en œuvre.
@@ -140,6 +140,7 @@ Par expérience, cet apprentissage est souvent difficile, en particulier lorsqu'
 C'est par exemple le cas lorsque le marketing a besoin de données de l'ensemble du SI pour alimenter son CRM ou sa BI, alors que les autres branches n'en tirent qu'un bénéfice indirect.
 
 Ce type de dépendance doit être identifié lors du cadrage d'un projet et la question doit être traitée avant de lancer les développements, surtout si le niveau de dépendance est important.
+Un outil comme la link:https://fr.wikipedia.org/wiki/Value_stream_mapping[cartographie des chaînes de valeur] peut vous y aider.
 
 Il ne s'agit pas seulement de prioriser les tâches déjà identifiées dans les calendriers des différents projets, mais aussi de définir des modalités d'arbitrage efficace (qui peut décider de quoi dans quelles instances{nbsp}?) pour les situations non encore prévues.
 L'objectif étant d'éviter de solliciter l'avis de la direction générale chaque fois qu'il faut ajouter un champ d'une donnée dans un service.
