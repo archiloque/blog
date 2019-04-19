@@ -1,4 +1,4 @@
-= Fiche de lecture{nbsp}: "Site Reliability Engineering: How Google Runs Production Systems"
+= Fiche de lecture{nbsp}: "`Site Reliability Engineering: How Google Runs Production Systems`"
 Julien Kirch
 v0.1, 2018-06-01
 :article_lang: fr
@@ -50,7 +50,7 @@ Il me paraît évident que cette vision affecte le fonctionnement des équipes, 
 
 Google ne suit pas la mode d'intégrer les ops dans les équipes de développement pour augmenter la capacité d'adaptation.
 
-Leur vision est que leur niveau de "packaging" des différents composants d'infrastructure et le découplage qu'elle permet vis-à-vis du système sous-jacent limite le besoin en compétence ops des projets.
+Leur vision est que leur niveau de "`packaging`" des différents composants d'infrastructure et le découplage qu'elle permet vis-à-vis du système sous-jacent limite le besoin en compétence ops des projets.
 
 Cela est complété par un effort important sur la documentation pour limiter le besoin pour les SRE de faire du support aux équipes.
 
@@ -59,7 +59,7 @@ Pour cela le projet doit valider une checklist pour prouver qu'il suit les oblig
 
 On retrouve donc une organisation dev/ops classique, mais qui d'après Google n'a pas les défauts qu'on retrouve ailleurs grâce au niveau de qualité des différents composants et à l'excellence des personnes et des pratiques.
 
-L'approche Google m'a fait réfléchir au modèle "ops dans les équipe de dev".
+L'approche Google m'a fait réfléchir au modèle "`ops dans les équipe de dev`".
 Il est vrai que dans beaucoup de contextes ce fonctionnement est souhaitable car des compétences en ops sont nécessaires pour le projet d'une manière régulière.
 Et dans un certain nombre de cas, quand le projet a une complexité raisonnable et s'appuie sur des outils du marché, ces compétences sont nécessaires parce que la plateforme de production n'est pas au niveau où elle devrait être{nbsp}: on contourne un problème systémique par des solutions locales.
 
@@ -72,7 +72,7 @@ Les SRE sont en charge de la disponibilité, la link:https://fr.wikipedia.org/wi
 
 Lorsque les projets ont des objectifs de SLO il s'agit d'objectifs trimestriels sur lesquels ils doivent s'engager.
 
-Pour cela les SRE ont le pouvoir d'imposer à un projet qui surconsomme son "budget disponibilité" de limiter le développement de nouvelles fonctionnalités pour se concentrer sur la fiabilisation jusqu'à être revenu à un niveau satisfaisant.
+Pour cela les SRE ont le pouvoir d'imposer à un projet qui surconsomme son "`budget disponibilité`" de limiter le développement de nouvelles fonctionnalités pour se concentrer sur la fiabilisation jusqu'à être revenu à un niveau satisfaisant.
 
 Par ailleurs lorsqu'un projet est particulièrement incidentogène, il est possible pour les SRE de se délester d'une partie de leur travail de support sur le projet afin de dégager le temps permettant d'automatiser ce qui peut l'être pour diminuer la charge sur le moyen-terme.
 
