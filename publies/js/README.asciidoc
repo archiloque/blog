@@ -7,11 +7,11 @@ v1.0, 2017-09-07
 
 . Recent JavaScript has link:https://babeljs.io/learn-es2015/[many new features] that improves developers experience and makes easier to write clean code.
 . Unfortunately, link:https://kangax.github.io/compat-table/es6/[all browsers don't support all new features], specially old versions.
-. To still be able to use the new features, developers use link:https://babeljs.io["transpilers"] than transform modern JavaScript into old JavaScript so old browsers can understand it.
+. To still be able to use the new features, developers use link:https://babeljs.io["`transpilers`"] than transform modern JavaScript into old JavaScript so old browsers can understand it.
 . As a consequence, most of newly written JavaScript is deployed as old JavaScript.
 . Developers working on browsers want to make them fast.
 . Making a browser fast means making it faster for the most common intensive uses.
-. Most common current intensive use of browser is massive JavaScript web applications "transpiled" into old JavaScript.
+. Most common current intensive use of browser is massive JavaScript web applications "`transpiled`" into old JavaScript.
 . Developers working on next generation browsers are spending their time to make them fast when executing next generation JavaScript that has been dumbed down to old JavaScript.
 
 (╯°□°）╯︵ ┻━┻

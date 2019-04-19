@@ -11,9 +11,9 @@ The link:https://17.polyconf.com[2017] instance just took place so here's a few 
 
 I enjoyed the conference: I liked most of the talks, the organisation was solid, and I met a few interesting people.
 
-My pet peeve: several presenters doing the same "Erlang explained in 5 minutes" thing in their talk.
+My pet peeve: several presenters doing the same "`Erlang explained in 5 minutes`" thing in their talk.
 
-After all these years, it's still strange for me to see people explaining "I'm so happy to be paid to work with my tool of choice" (yep: it's usually Haskell), I wonder if it happens in other industries.
+After all these years, it's still strange for me to see people explaining "`I'm so happy to be paid to work with my tool of choice`" (yep: it's usually Haskell), I wonder if it happens in other industries.
 
 Nowadays, thanks to fast machines, using a slow language is not a problem for most use cases, productivity is much more critical.
 But it seems that all languages are working hard to use advanced techniques like JIT to become faster.
@@ -27,7 +27,7 @@ Seeing how a single project is making simpler to innovate in this field is reall
 
 As expected, Rust is all the rage.
 An interesting use case for it mentioned several times is FFI, when you speed up some critical parts of a program written in a dynamic language running in a VM by calling code written in another language like C.
-In this case, bugs or strange behaviors in the "fast" language can crash or badly impact the VM. When you're supposed to have a rock-solid VM like the Erlang one, it sucks!
+In this case, bugs or strange behaviors in the "`fast`" language can crash or badly impact the VM. When you're supposed to have a rock-solid VM like the Erlang one, it sucks!
 
 In this case, using Rust instead of C as the fast language decrease the risk of have a memory or threading bug, decreasing the risk of using FFI.
 
@@ -52,7 +52,7 @@ I loved that, since Pony's syntax is pretty classic and not a selling point of t
 
 == ZetaVM
 
-"link:https://github.com/zetavm/zetavm[ZetaVM] is a Virtual machine and JIT compiler for dynamic programming languages. It implements a basic core runtime environment on top of which programming dynamic languages can be implemented with relatively little effort."
+link:https://github.com/zetavm/zetavm[ZetaVM] is a Virtual machine and JIT compiler for dynamic programming languages. It implements a basic core runtime environment on top of which programming dynamic languages can be implemented with relatively little effort.
 
 It relies on LLVM and has interesting design choices, like a textual representation for the code packages, you should have a look at it.
 

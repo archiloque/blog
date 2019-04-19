@@ -25,12 +25,12 @@ But if you're a framework developer, good error handling should be a priority.
 === Angry developers
 
 When I look for a framework, the best way to find the right one is often to ask a trusted peer.
-And the best way to convince me to not use a framework is to tell me "this one is powerful and made a great first impression but then the error handling was so bad I nearly ragequited".
+And the best way to convince me to not use a framework is to tell me "`this one is powerful and made a great first impression but then the error handling was so bad I nearly ragequited`".
 
 Developers are craftmen: they remember when they used a tool they enjoyed, but their most vivid memories are when they used something they didn't like, and those are the memories they like to share the most.
 
 So if you want people to use your framework and you rely on mouth to ear for people to learn about it, you're best shot it so to make it pleasant to use.
-The alternative is people talking about it, but to warn other to not use it. "There's no such thing as bad publicity" definitely doesn't apply to frameworks.
+The alternative is people talking about it, but to warn other to not use it. "`There's no such thing as bad publicity`" definitely doesn't apply to frameworks.
 
 === Your time vs time of your users
 
@@ -97,10 +97,10 @@ It's not doable in all cases, and sometimes you must resist the idea of being he
 === Error checking must be extensive and ruthless
 
 When validating parameters, you must be extensive and ruthless.
-A motto often heard is "Be conservative in what you do, be liberal in what you accept from others".
+A motto often heard is "`Be conservative in what you do, be liberal in what you accept from others`".
 It's a nice idea if being liberal doesn't lead to unclear problems and more time lost for your users because the rules are too lax.
 
 The worst case is when you have automagic configuration that tries to interpret the user's intend: if things goes well it's a really smooth experience for the user, but if things goes wrong it may be terrible.
 
-My approach is "be conservative but be totally explicit": if your requirements are very precise but well documented, errors are easy to fix and you're sure to not introduce any ambiguity or leaky magic.
+My approach is "`be conservative but be totally explicit`": if your requirements are very precise but well documented, errors are easy to fix and you're sure to not introduce any ambiguity or leaky magic.
 Use magic only in controlled conditions when you're sure to not do more harm than good.

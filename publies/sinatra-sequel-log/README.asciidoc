@@ -14,7 +14,7 @@ For structured data I love SQL: it's link:http://www.dbdebunk.com/2012/07/null-c
 My criteria to choose an ORM are:
 
 - It should provide a good API to code simple queries with a readable syntax.
-- It shouldn't prevent me from writing my own SQL when I need it, because sometimes it's the best solution (2 lines of SQL vs. 5 lines of "SQL-masqueraded as chained method invocations" horrors). Bonus point if it provides some help to read the query result.
+- It shouldn't prevent me from writing my own SQL when I need it, because sometimes it's the best solution (2 lines of SQL vs. 5 lines of "`SQL-masqueraded as chained method invocations`" horrors). Bonus point if it provides some help to read the query result.
 
 In Ruby link:http://sequel.jeremyevans.net[Sequel] is my tool of choice:
 

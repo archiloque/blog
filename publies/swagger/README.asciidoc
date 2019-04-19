@@ -67,7 +67,7 @@ All the metadata information is not checked, for example if you specify the mini
 
 When you publish an API the last thing you want is to break it unknowingly: you should version your API and carefully manage the incompatible changes.
 
-When the swagger is manually written, validating your services against it ensure that you don't introduce any change in your API. But if you generate the swagger, a bad "rename attribute" in your code can break your API.
+When the swagger is manually written, validating your services against it ensure that you don't introduce any change in your API. But if you generate the swagger, a bad "`rename attribute`" in your code can break your API.
 
 Even if code reviews should prevent this kind of things, it's better to rely on an automatic validation:
 
