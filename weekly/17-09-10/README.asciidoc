@@ -62,11 +62,11 @@ ____
 
 The software is hard to write in that you spend years patiently writing code, experimenting with complicated ideas, and exploring the problem space. You wrestle with intricate problems, many of them dead-ends, and pull heroic all-night debugging sessions. Gradually though you discover the essense of the problem you are solving and you eliminate the accidental complexity.
 
-The software then is really simple and easy to understand. The complex ideas are conspicuous in their absence. People can read the code, understand it, and write it again themselves. "Is that all there is to it?"
+The software then is really simple and easy to understand. The complex ideas are conspicuous in their absence. People can read the code, understand it, and write it again themselves. "`Is that all there is to it?`"
 
-The classic example is perhaps John McCarthy's link:http://ep.yimg.com/ty/cdn/paulgraham/jmc.lisp[Lisp interpreter written in Lisp]. Jonathan Rees and Richard Kelsey also wrote Scheme48 with this link:http://mumble.net/%7Ejar/s48-user-guide.txt[explicit goal]: "the name derives from our desire to have an implementation that is simple and lucid enough that it looks as if it were written in just 48 hours."
+The classic example is perhaps John McCarthy's link:http://ep.yimg.com/ty/cdn/paulgraham/jmc.lisp[Lisp interpreter written in Lisp]. Jonathan Rees and Richard Kelsey also wrote Scheme48 with this link:http://mumble.net/%7Ejar/s48-user-guide.txt[explicit goal]: "`the name derives from our desire to have an implementation that is simple and lucid enough that it looks as if it were written in just 48 hours`".
 
 link:https://github.com/SnabbCo/snabbswitch[Snabb Switch] aspires to be rewritable software too. We are wrestling with all kinds of complexity: writing device drivers, bypassing operating systems, mapping memories of virtual machines, exploring obscure features of the latest CPUs, and interoperating with many and varied pieces of black-box network equipment.
 
-If we do our job well then after years of intensive development people will be able to read the code and think, "Is that all? I could rewrite that in a weekend."
+If we do our job well then after years of intensive development people will be able to read the code and think, "`Is that all? I could rewrite that in a weekend.`"
 ____

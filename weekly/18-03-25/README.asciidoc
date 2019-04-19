@@ -26,9 +26,9 @@ ____
 
 [quote]
 ____
-IMGUI does away with this type of state synchronization by requiring the application to explicitly pass all state required for visualization and interaction with any given "widget" in real-time. The user interface only retains the minimal amount of state required to facilitate the functionality required by each type of widget supported by the system.
+IMGUI does away with this type of state synchronization by requiring the application to explicitly pass all state required for visualization and interaction with any given "`widget`" in real-time. The user interface only retains the minimal amount of state required to facilitate the functionality required by each type of widget supported by the system.
 
-With IMGUI, a conceptual shift occurs. Widgets are no longer objects at all, and can't really be said to "exist". They take instead the form of procedural method calls, and the user interface itself goes from being as stateful collection of objects to being a real time sequence of method calls.
+With IMGUI, a conceptual shift occurs. Widgets are no longer objects at all, and can't really be said to "`exist`". They take instead the form of procedural method calls, and the user interface itself goes from being as stateful collection of objects to being a real time sequence of method calls.
 
 Fundamental to this approach is the concept of a real-time application loop, where the application processes logic and draws its display at real-time rates (30 frames per second or more). In the context of games, this is already common practice.
 

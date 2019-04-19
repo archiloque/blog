@@ -7,7 +7,7 @@ v1.0, 2017-12-31
 
 [quote]
 ____
-In many of the above cases, what I am doing is deliberately opting out of abstractions in favor of concrete knowledge of what _my program is actually doing_. Abstractions can enable powerful behavior, but abstractions can also obscure the simple features of what a program is doing, and all else being equal, I'd rather communicate to a reader, "I am appending two lists," instead of the more generic, "I am combining two values of a type that implements `Monoid`."
+In many of the above cases, what I am doing is deliberately opting out of abstractions in favor of concrete knowledge of what _my program is actually doing_. Abstractions can enable powerful behavior, but abstractions can also obscure the simple features of what a program is doing, and all else being equal, I'd rather communicate to a reader, "`I am appending two lists`", instead of the more generic, "`I am combining two values of a type that implements `Monoid``".
 ____
 
 [quote]
@@ -36,7 +36,7 @@ ____
 
 image::32985377-60ff6faa-ccb1-11e7-89f6-9ccaac5140fe.png[]
 
-== link:https://github.com/lukego/blog/issues/21[The curse of "high-impact medium-generality" optimizations]
+== link:https://github.com/lukego/blog/issues/21[The curse of "`high-impact medium-generality`" optimizations]
 
 [quote]
 ____

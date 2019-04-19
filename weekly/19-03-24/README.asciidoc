@@ -15,11 +15,11 @@ If you did so, that would look a lot like link:https://en.wikipedia.org/wiki/ZFS
 
 […]
 
-To explain what is going on with ZFS, Anderson introduced the idea of a "sympathetic abstraction". It can be thought of as an "intentional leakiness" where layers are sympathetic to those above and below. For example, ZFS is sympathetic to whether the block device it runs on is spinning rust or an SSD. ZFS is also sympathetic to errors that can occur on the raw block device, while ext4 and other traditional filesystems are not: they leave that kind of error handling to some other layer below.
+To explain what is going on with ZFS, Anderson introduced the idea of a "`sympathetic abstraction`". It can be thought of as an "`intentional leakiness`" where layers are sympathetic to those above and below. For example, ZFS is sympathetic to whether the block device it runs on is spinning rust or an SSD. ZFS is also sympathetic to errors that can occur on the raw block device, while ext4 and other traditional filesystems are not: they leave that kind of error handling to some other layer below.
 
 These kinds of sympathetic abstractions happen all the time, he said. For example, SSH sets the `TCP_NODELAY` option (to disable link:https://en.wikipedia.org/wiki/Nagle%27s_algorithm[Nagle's algorithm]) for interactive sessions. But SSH should not care what transport it is running on; it should be able to run on top of UDP tunneled inside DNS packets. The link:http://cassandra.apache.org/[Apache Cassandra database] wants to know if it is running on spinning rust or SSD; shouldn't that be the concern of layers below it?
 
-He introduced "Kyle's Abstraction Law", which he has come up with, though it is "not canon", he cautioned. It says that over time, layers tend toward becoming more sympathetic (or merged) in the pursuit of performance. We start off with "beautiful layers", each with a single purpose; over time, we realize the picture is not quite so clear cut, so we squash the layers some.
+He introduced "`Kyle's Abstraction Law`", which he has come up with, though it is "`not canon`", he cautioned. It says that over time, layers tend toward becoming more sympathetic (or merged) in the pursuit of performance. We start off with "`beautiful layers`", each with a single purpose; over time, we realize the picture is not quite so clear cut, so we squash the layers some.
 ____
 
 == link:https://increment.com/on-call/on-call-at-any-size/[On-call at any size]

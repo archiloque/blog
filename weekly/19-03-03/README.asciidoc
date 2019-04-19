@@ -7,7 +7,7 @@ v1.0, 2019-03-10
 
 [quote]
 ____
-The fascinating thing about identifiers is that while they identify the same "thing" over time, that referenced thing may slide around in its meaning. Product descriptions, reviews, and inventory balance all change, while the product ID does not. Reservations, orders, and bookings all have identifiers that don't change, while the stuff they identify may subtly change over time.
+The fascinating thing about identifiers is that while they identify the same "`thing`" over time, that referenced thing may slide around in its meaning. Product descriptions, reviews, and inventory balance all change, while the product ID does not. Reservations, orders, and bookings all have identifiers that don't change, while the stuff they identify may subtly change over time.
 
 Identity and identifiers provide the immutable linkage. Both sides of this linkage may change, but they provide a semantic consistency needed by the business operation. No matter what you call it, identity is the glue that makes things stick and lubricates cooperative work.
 ____
@@ -51,14 +51,14 @@ ____
 
 [quote]
 ____
-Modern data-intensive systems are increasingly distributed across large collections of machines, both to store and process the rapidly-increasing data volumes now produced by even modest-sized enterprises and to satisfy the growing hunger of analysts for "big data".
+Modern data-intensive systems are increasingly distributed across large collections of machines, both to store and process the rapidly-increasing data volumes now produced by even modest-sized enterprises and to satisfy the growing hunger of analysts for "`big data`".
 Distributed systems are difficult to program and reason about because of two fundamental sources of uncertainty in their executions and outcomes. 
-First, due to asynchronous communication, nondeterminism in the ordering and timing of messages delivery can "leak" into program outcomes, leading to data inconsistencies.
+First, due to asynchronous communication, nondeterminism in the ordering and timing of messages delivery can "`leak`" into program outcomes, leading to data inconsistencies.
 Second, due to partial failure of components and communication attempts, programs may compute incomplete outcomes or corrupt persistent state.
 Traditional solutions (e.g., distributed transactions) that hide these complexities from the programmer are considered by many to be untenable at scale, and are increasingly replaced with ad-hoc solutions that trade correctness guarantees for acceptable and predictable performance.
 
 The challenges of programming distributed systems are exacerbated by the fact that they are no longer the sole domain of experts.
-The relatively recent accessibility of large-scale computingresources (e.g., the public cloud), and proliferation of reusable data management components (e.g., "NoSQL" stores, data processing frameworks, caches and message queues) have created a crisis: all programmers must learn to be distributed programmers.
+The relatively recent accessibility of large-scale computingresources (e.g., the public cloud), and proliferation of reusable data management components (e.g., "`NoSQL`" stores, data processing frameworks, caches and message queues) have created a crisis: all programmers must learn to be distributed programmers.
 Few tools exist to assist application programmers, data analysts and mobile developers to struggle with these tradeoffs
 ____
 
@@ -70,7 +70,7 @@ to produce nondeterministic results, which complicates testing and debugging.
 For programs that replicate state, this nondeterminism can lead to replica divergence and other consistency anomalies.
 Exerting control over delivery order to ensure that sequential programs are executed in lock-step can incur unacceptable performance penalties in a distributed execution.
 
-At the other end of the spectrum, purely "declarative" languages like SQL -- which shift the programmer's focus from _computation_ to _data_ -- are set-based and lack the ability to even express ordered operations.
+At the other end of the spectrum, purely "`declarative`" languages like SQL -- which shift the programmer's focus from _computation_ to _data_ -- are set-based and lack the ability to even express ordered operations.
 In exchange for this limited expressivity, statements in such languages can besafely evaluated in a data-parallel, coordination-free manner.
 
 Disorderly programming -- a theme that we explore in this thesis through language design -- extends the declarative programming paradigm with a minimal set of ordering constructs.
@@ -90,5 +90,5 @@ ____
 
 [quote]
 ____
-Besides, descriptive variable names violate the principle of "don't repeat yourself". It is better to describe the variable only once, in a comment next to its declaration, instead of several times
+Besides, descriptive variable names violate the principle of "`don't repeat yourself`". It is better to describe the variable only once, in a comment next to its declaration, instead of several times
 ____
