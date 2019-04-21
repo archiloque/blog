@@ -1,0 +1,66 @@
+= Links - 21^st^ April 2019
+Julien Kirch
+v1.0, 2019-04-21
+:article_lang: en
+
+== link:https://queue.acm.org/detail.cfm?id=945134[Debugging in an Asynchronous World]
+
+[quote]
+____
+Before focusing on testing and debugging asynchronous applications, we must mention a few design principles. And while it has always been true that spending time up front creating a good design results in software that’s easier to test, debug, and maintain, it is even more important in our asynchronous world.
+
+Most people find it challenging to model emergent behavior. It is important to create points of reference by making those aspects of the design more explicit.
+
+One useful technique is the creation of sequence diagrams for various canonical tasks or activities in the system. Sequence diagrams explicitly represent multiple execution streams, so they provide an ideal medium for asking questions like, "`What happens if event B occurs before event A?`" -- even though the diagram may show them occurring in the opposite order. It’s very easy to design a system based on one’s narrow vision of how things should happen. Sequence diagrams make it easier to start understanding what can happen. We have seen a number of situations in which relatively serious potential flaws in a system have been detected and dealt with during design time through this approach.
+
+Another very useful technique is to identify and explicitly code state machines where possible. No matter how they are written, components move from state to state depending on the communications they receive. When code evolves unguided, these state decisions often are distributed throughout the code as collections of apparently unrelated if statements. Without a guiding structure, the state machine that corresponds to the code becomes overly complex and error prone, and eventually the code will not be maintainable.
+
+Viewing components as state machines from the beginning structures their evolution along a path that is easier to understand. It provides a central location that encapsulates behavioral decisions. And, like sequence diagrams, state machines are ideal for considering what-if scenarios such as "`What if event A arrives when the machine is in state S1?`"
+____
+
+[quote]
+____
+However, systems displaying emergent behavior tend to have idiosyncratic communications mechanisms, and one of the most interesting aspects of creating a framework for your system will be figuring out which interactions to capture and how to automate the capture process.
+____
+
+== link:https://medium.freecodecamp.org/optimizing-inefficiency-human-folly-and-the-quest-for-the-worst-sorting-algorithm-c0ba7b32ffd[Optimizing Inefficiency: Human folly and the quest for the worst sorting algorithm]
+
+[quote]
+____
+The quest to find optimally _inefficient_ algorithms reflects something profound and even beautiful about the nature of computer science itself: inefficiency is apparently literally infinite. When we come up with effective heuristics for a particular problem we are clawing back some hint of a signal from an infinite soup of noise.
+____
+
+[quote]
+____
+What can we learn from optimally inefficient algorithms? I think what we learn is that computer programming is not just a skill. It literally touches problems that have perplexed human beings for generations, not only in the sciences but also in art and music. When, as students, we learn about the time complexity and how to choose the best heuristic for a particular problem, we are quite literally grasping at problems that have perplexed people since long before the first digital computers were invented. And in amongst the soup of noise and inefficiency, there are no doubt further optimizations that will make accessible what was once only accessible via inspiration and genius.
+____
+
+== link:https://queue.acm.org/detail.cfm?id=957782[Reading, Writing, and Code]
+
+[quote]
+____
+But, you might ask, because it is so easy for them to become inconsistent with one another, can’t comments become more of a hindrance than a help?
+
+The "`comments and code will drift away, so let’s not write comments`" argument is an often-repeated yet typically unfounded and lame excuse. I’ve read thousands of lines of code, and found that the two biggest hindrances in understanding a system are badly written code and a paucity of comments. In only a very few rare cases have misleading comments been a real obstacle to me.
+
+It is true that a misleading comment can actually send you on a wild goose chase because we tend to trust the wording of the original programmer over our own judgment, but this is also often true of code. When we see an if statement, we tend to assume that there are conditions that will cause the execution of the code in its body. In sloppily maintained legacy systems, however, I tend to find more instances of dead code than inconsistent comments. Nobody is seriously suggesting to stop writing code because over time it becomes inconsistent with its own structure. And yet, many are attacking the writing of comments merely because they offer an easy target.
+____
+
+== link:https://queue.acm.org/detail.cfm?id=957730[Stand and Deliver: Why I Hate Stand-Up Meetings]
+
+[quote]
+____
+I think there is something wrong with a meeting held standing up. Standing is inherently onerous. It is used for punishment in schools and in the military: "`Stand in the corner,`" "`Stand at attention`", etc. Standing has an implicit element of authoritarianism and theory X control (which asserts that people will respond only to threats).
+____
+
+== link:https://www.theatlantic.com/technology/archive/2014/05/should-hackers-fix-cybersecurity-holes-or-exploit-them/371197/[Should U.S. Hackers Fix Cybersecurity Holes or Exploit Them?]
+
+[quote]
+____
+It seems like an link:http://www.lawfareblog.com/2014/04/the-policy-tension-on-zero-days-will-not-go-away/[impossible puzzle], but the answer hinges on how vulnerabilities are distributed in software.
+
+If vulnerabilities are sparse, then it's obvious that every vulnerability we find and fix improves security. We render a vulnerability unusable, even if the Chinese government already knows about it. We make it impossible for criminals to find and use it. We improve the general security of our software, because we can find and fix most of the vulnerabilities.
+
+
+If vulnerabilities are plentiful -- and this seems link:http://www.rtfm.com/bugrate.pdf[to] link:http://dl.acm.org/citation.cfm?id=1920299[be] link:https://research.microsoft.com/pubs/79177/milkorwine.pdf[true] -- the ones the U.S. finds and the ones the Chinese find will largely be different. This means that patching the vulnerabilities we find won’t make it appreciably harder for criminals to find the next one. We don’t really improve general software security by disclosing and patching unknown vulnerabilities, because the percentage we find and fix is small compared to the total number that are out there.
+____
