@@ -55,12 +55,13 @@ D'une part, avec les dépendances, il devient difficile d'avoir des cycles de d�
 
 Une « transformation agile » qui ne prend pas en compte ce type de problème prend le risque de s'enliser voire de décrédibiliser l'agile.
 
-Ensuite, en donnant plus de place aux POs dans la prise de décision par rapport à des structures de gouvernance plus formelles, j'ai l'impression que l'agile a supprimé une boucle de feedback qui permettait aux différents projets de pouvoir être entendus.
+Ensuite, en donnant plus de place aux POs dans la prise de décision par rapport à des structures de gouvernance plus formelles, j'ai l'impression que l'agile a supprimé une boucle de rétroaction qui permettait aux différents projets de pouvoir être entendus et donc de pouvoir se synchroniser.
 
-Par exemple, les comités de suivis mensuels fournissent un cadre permettant à des parties prenantes hors projet de s'exprimer pour remonter leurs besoins, et des responsables hiérarchiques peuvent procéder aux arbitrages nécessaires.
-En permettant des décisions plus rapides, la nouvelle organisation est avantageuse la plupart du temps, mais elle peut rendre plus difficile aux voix extérieures de se faire entendre.
+Par exemple, les comités de suivis mensuels fournissent un cadre permettant à des parties prenantes en dehors du projet{nbsp}-- par exemple les équipes aval en attente d'évolutions{nbsp}-- de s'exprimer pour remonter leurs besoins, et des responsables hiérarchiques peuvent procéder aux arbitrages nécessaires.
+En permettant des décisions locales plus rapides, la nouvelle organisation est avantageuse la plupart du temps, mais elle peut rendre plus difficile aux voix extérieures de se faire entendre.
 
-Les systèmes de gouvernance agile comme SAFE, qui savent organiser la gestion des dépendances entre projets, ne sont qu'une réponse partielle. En effet, ils couvrent les ensembles de projets pré-identifiés comme ayant des dépendances fortes mais pas les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaissent dans la vie des projets et qui n'étaient pas anticipés.
+Les systèmes de gouvernance agile comme SAFe, qui savent organiser la gestion des dépendances entre projets, ne sont qu'une réponse partielle.
+En effet, ils couvrent efficacement les ensembles de projets pré-identifiés comme ayant des dépendances fortes mais moins bien les cas de dépendances entre projets plus éloignés dans l'organisation, ou de besoins qui apparaissent dans la vie des projets et qui n'étaient pas anticipés : dans ce cas il faudrait en théorie attendre le prochain link:https://www.scaledagileframework.com/program-increment/[PI Planning], possiblement dans 2 ou 3 mois.
 
 L'objectif n'est pas d'aller vers une gouvernance plus structurée, mais de trouver comment faire au mieux en gardant une organisation légère.
 
@@ -77,15 +78,21 @@ Il suffit de passer tous les projets en agile, et de faire en sorte que tous les
 
 Non, je blague encore.
 
-Je pense qu'il n'y a pas de recette magique : c'est un problème inévitable quand on a un SI d'une certaine taille, mais des pratiques peuvent aider.
+Je pense qu'il n'y a pas de recette magique : c'est un problème inévitable quand on a un SI d'une certaine complexité, mais des pratiques peuvent aider.
+
+Ces pratique dépendent de votre position vis à vis des demandes d'évolutions{nbsp}:
+
+* du côté du groupe qui demande une évolution
+* du côté du groupe qui est en charge de fournir cette évolution
+* du côté de la DSI qui veut faciliter les choses et piloter le système
 
 == Côté demandeur
 
 Voici ce que vous pouvez faire si vous êtes du côté des projets demandeurs :
 
 . Connaître votre système pour pouvoir prédire les besoins qui vont solliciter une dépendance avec une précision acceptable : cela évite les mauvaises surprises.
-. Être capable d'avoir rapidement un ordre de grandeur du temps nécessaire pour une évolution extérieure.
-Cela nécessite de connaître les interlocuteurs, et d'avoir de l'expérience sur l'existant.
+. Être capable d'avoir rapidement un ordre de grandeur du temps qui serait nécessaire pour une évolution extérieure.
+Cela nécessite de connaître les interlocuteurs et/ou d'avoir de l'expérience sur l'existant : pouvez-vous obtenir un chiffrage, s'agit-il d'un type de demande récurrent sur lequel vous avez de l'expérience{nbsp}…
 Le chiffre sera probablement dépendant de la taille du besoin et de la personne à qui vous adressez la demande.
 Cela vous permet de faire des arbitrages (est-ce-qu'on laisse tomber si c'est trop long{nbsp}?) et de mieux planifier.
 
@@ -102,7 +109,7 @@ sous forme de temps disponible et de souplesse dans le planning.
 Cela peut même être une partie essentielle de votre activité, par exemple si votre périmètre correspond à une activité de référentiel.
 
 Si les priorités ne permettent pas de réaliser les demandes extérieures dans des délais courts,
-essayer au moins de répondre rapidement aux questions de planning pour donner de la visibilité pour permettre aux projet demandeurs de s'organiser.
+essayer au moins de répondre rapidement aux questions de planning pour donner de la visibilité pour permettre aux projet demandeurs de s'organiser, et d'expliquer vos choix.
 
 Si l'organisation ne vous permet pas d'arbitrer les priorités vous-même, tout ce que vous pouvez faire est d'essayer de faciliter la prise de décision, par exemple en fournissant des estimations.
 
@@ -123,9 +130,9 @@ Bien entendu, il n'est pas possible de mener de front tous ces chantiers mais il
 
 == Côté demandeur
 
-Pour les développements inter-projets d'une certaine taille, le processus d'arbitrage doit reposer sur le demandeur car c'est lui qui a la connaissance et la légitimité pour le faire.
+Pour les développements inter-projets d'une certaine taille, le processus d'arbitrage doit reposer sur l'entité qui dirige le projet -- celle qu'on appelle souvent "`le métier`" -- car c'est elle qui a la connaissance et la légitimité pour le faire.
 
-Cela signifie que le demandeur doit s'approprier ce sujet, et trouver une manière de le traiter.
+Cela signifie qu'elle doit s'approprier ce sujet, et trouver une manière de le traiter.
 
 Pour les demandes de taille réduite qui ne portent pas à conséquence sur les plannings, les décisions peuvent être déléguées aux projets.
 Cela permet de cantonner le coût des décisions tout en limitant l'impact des erreurs.
