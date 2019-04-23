@@ -22,7 +22,7 @@ Pour cela il faut faire une demande à `P2`, qui doit l'accepter, la réaliser e
 
 Pour `P2`, réaliser `F2` signifie aussi retarder le développement de fonctionnalités qui lui sont directement nécessaires.
 
-Pour `P2` il peut être difficile de mesurer de la priorité "réelle" de `F1` -- si tant est qu'une telle chose existe -- et donc de prendre la bonne décision.
+Pour `P2` il peut être difficile de mesurer de la priorité "`réelle`" de `F1` -- si tant est qu'une telle chose existe -- et donc de prendre la bonne décision.
 
 image::exemple.png[align="center"]
 
@@ -41,13 +41,15 @@ Ensuite, les projets qui ne parviennent pas à leurs fins de manière directe es
 
 Par exemple : demander les données aux projets qui sont en mesure de les fournir rapidement, même s'il ne s'agit pas de sources officielles ou des sources les mieux adaptées au projet.
 
-On peut par exemple tenter de récupérer des données opérationnelles depuis un data lake.
+On peut par exemple tenter de récupérer des données opérationnelles depuis un data lake, alors qu'il n'est pas prévu pour cela.
 
-Cela aura souvent des effets secondaires sur le SI comme des dépendances cachées ou des risques sur la qualité des données.
+Le problème n'est pas une question de principe ("`il ne faut pas le faire car c'est interdit`"), mais que si un certain cas d'usage n'a pas été pris en compte dans la mise en place d'un outil, mettre en place ce cas d'usage sans analyse d'impact présente toujours des risques.
+
+Cela aura souvent des effets secondaires qui dégraderont la qualité de votre SI comme des dépendances cachées qui ne se verront que lorsque les modèles évolueront, ou des risques sur la qualité des données.
 
 == Quel rapport avec l'agile{nbsp}?
 
-Cela se produit sur tous les projets, en agile comme en cascade, mais l'agile est particulièrement concerné pour deux raisons.
+Ce phénomène se produit sur tous les projets, en agile comme en cascade, mais l'agile est particulièrement concerné pour deux raisons.
 
 D'une part, avec les dépendances, il devient difficile d'avoir des cycles de développement courts et à durée prévisible alors qu'ils sont primordiaux pour tirer bénéfice des pratiques agiles : les dépendances font plus mal en agile car on a moins le temps d'attendre.
 
@@ -63,7 +65,7 @@ Les systèmes de gouvernance agile comme SAFE, qui savent organiser la gestion d
 L'objectif n'est pas d'aller vers une gouvernance plus structurée, mais de trouver comment faire au mieux en gardant une organisation légère.
 
 Finalement, la mode de réduire au maximum la taille des équipes projets, par exemple dans les approches microservices, augmente le nombre d'équipes à coordonner.
-Le pire étant les demandes en cascade du type "moi `A` j'ai besoin d'un truc de `B`, mais pour ça `B` a besoin d'un truc de `C`, donc je dois aller négocier avec `C` accompagné de `B` et ensuite assurer la coordination du chantier de manière régulière".
+Le pire étant les demandes en cascade du type "`moi `A` j'ai besoin d'un truc de `B`, mais pour ça `B` a besoin d'un truc de `C`, donc je dois aller négocier avec `C` accompagné de `B` et ensuite assurer la coordination du chantier de manière régulière`".
 
 == Que faire{nbsp}?
 
@@ -113,29 +115,29 @@ La DSI peut faire de nombreuses choses dans ce domaine, du plus simple au plus d
 . Influer sur la gouvernance pour faire en sorte que les projets puissent obtenir rapidement des arbitrages : la priorisation des sujets n'est pas forcément dans le périmètre de la DSI, mais elle peut aider à ce que les décisions soient prises{nbsp};
 . Faciliter le développement des nouvelles demandes sur les parties qui ne sont pas dans le périmètre des projets, par exemple la capacité à fournir des environnements de test pendant les phases de mise au point{nbsp};
 . Mettre en avant les besoins de migration et de décommissionnement pour qu'ils soient pris en compte, car fournir une nouvelle version N+1 d'un service, cela veut dire une version supplémentaire à maintenir jusqu'à ce que les consommateurs des versions précédentes N, N-1{nbsp}… décident de se mettre à jour{nbsp};
-. Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre d'interlocuteurs à contacter (et éviter les demandes en cascades comme vu plus haut). Un peu de centralisation sur les données "maîtres" en les structurant dans des référentiels permet par exemple de faciliter les choses.
+. Essayer de piloter la décentralisation des projets / données / services pour limiter le nombre d'interlocuteurs à contacter (et éviter les demandes en cascades comme vu plus haut). Un peu de centralisation sur les données de référence en les structurant dans des référentiels permet par exemple de faciliter les choses.
 
 Le dernier point est primordial : il faut que vos projets soient adaptés à votre capacité à faire des choix et à les mettre en œuvre.
 
 Bien entendu, il n'est pas possible de mener de front tous ces chantiers mais il faut prioriser ceux qui sont les mieux adaptés à votre contexte et aux moyens disponibles.
 
-== Côté métier
+== Côté demandeur
 
-Pour les développements inter-projets d'une certaine taille, le processus d'arbitrage doit reposer sur le métier car c'est lui qui a la connaissance et la légitimité pour le faire.
+Pour les développements inter-projets d'une certaine taille, le processus d'arbitrage doit reposer sur le demandeur car c'est lui qui a la connaissance et la légitimité pour le faire.
 
-Cela signifie que le métier doit s'approprier ce sujet, et trouver une manière de le traiter.
+Cela signifie que le demandeur doit s'approprier ce sujet, et trouver une manière de le traiter.
 
 Pour les demandes de taille réduite qui ne portent pas à conséquence sur les plannings, les décisions peuvent être déléguées aux projets.
 Cela permet de cantonner le coût des décisions tout en limitant l'impact des erreurs.
 
 Mais pour les adhérences de plus grande taille, cela ne fonctionne pas.
 
-Dans le cas idéal, les différents domaines métiers impliqués ont l'habitude de travailler ensemble, et sauront prioriser les demandes d'une manière qui soit acceptable aux différentes parties prenantes.
-En principe, si deux projets dépendants de deux domaines métiers différents ont à travailler ensemble, c'est parce que les métiers correspondants ont des liens.
+Dans le cas idéal, les différents domaines impliqués ont l'habitude de travailler ensemble, et sauront prioriser les demandes d'une manière qui soit acceptable aux différentes parties prenantes.
+En principe, si deux projets dépendants de deux domaines différents ont à travailler ensemble, c'est parce que les domaines correspondants ont des liens.
 
-Dans le cas contraire, cela peut signifier que différentes branches du métier doivent apprendre à travailler ensemble pour des raisons d'IT, alors qu'elles n'ont que rarement à le faire par ailleurs.
+Dans le cas contraire, cela peut signifier que différentes branches doivent apprendre à travailler ensemble pour des raisons d'IT, alors qu'elles n'ont que rarement à le faire par ailleurs.
 
-Par expérience, cet apprentissage est souvent difficile, en particulier lorsqu'un des métiers à plus d'intérêt que les autres à cette "collaboration".
+Par expérience, cet apprentissage est souvent difficile, en particulier lorsqu'une des branches a plus d'intérêt que les autres à cette "`collaboration`".
 
 C'est par exemple le cas lorsque le marketing a besoin de données de l'ensemble du SI pour alimenter son CRM ou sa BI, alors que les autres branches n'en tirent qu'un bénéfice indirect.
 
