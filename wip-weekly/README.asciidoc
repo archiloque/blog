@@ -2,3 +2,12 @@
 Julien Kirch
 v1.0, 2019-01-01
 :article_lang: en
+
+== link:http://okmij.org/ftp/kakuritu/logic-programming.html[HANSEI as a Declarative Logic Programming Language]
+
+[quote]
+____
+Classical Prolog is an elegant language that concisely represents the fundamental concepts of term algebra, non-determinism, unification, counter-example driven search, and the separation of logic and control. The ability to run a program forwards and backwards is uncanny. However, real Prolog programs are replete with cuts, FFI calls, committed choice and unexpected divergence -- defiling the Classical purity.
+
+Classical Prolog is an enchanting misconception. It ought to be studied, for its ideas and lessons. One lesson is that guessing -- non-determinism -- is fundamental, but should not be the default mode of execution. One should guess, but guess lazily.
+____
