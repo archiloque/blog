@@ -33,7 +33,29 @@ Vous l'avez compris : si vous pensez que déployer le code en production est le 
 Rasurez vous : il existe des solutions pour éviter d'aboutir aux situations que je viens de décrire.
 Ces solutions ne sont pas forcément faciles à mettre en œuvre, mais -- en attendant de trouver mieux -- elles peuvent fonctionner..
 
-== Pour POCer tout est permis
+== Pour POCer tout peut-être est permis, sauf se mentir
+
+Tout d'abord un rappel à propos des POCs : quand il s'agit de tester des hypothèses, par exemple la perinence de croiser plusieurs sources de données pour améliorer une offre commerciale, travailler avec des contraintes allégées est souhaitable par rapport à un projet de "`run`".
+
+Le sujet de l'article n'est pas d'ajouter des contraintes -- et donc de freiner -- les expérimentations.
+
+Ainsi travailler sur un laptop à partir d'export manuel de données peut être le meilleur choix dans certaines situations.
+
+Mais par contre attention à ne pas se bercer d'illusions : si ces contraintes existent, c'est généralement pour de bonnes raisons.
+
+Ce qui signifie qu'il faut garder en tête qu'un jour où l'autre il faudra s'y confronter, que ça soit pour les appliquer ou pour ne pas les appliquer mais d'une manière satisfaisante, par exemple en ayant convaincu ou du moins obtenu l'accord des bonnes personnes.
+
+C'est pour cela que je parle de contraintes _allégées_ et pas de contraintes _minimales_ : si l'objectif d'un POC est de prouver la faisabilité d'une certaine approche, prendre en compte certaines des contraintes de production peut être pertinent si vous savez à l'avance que les ignorer pourrait rendre impossible, ou trop compliqué, le déploiement en production.
+
+Cela peut-être le cas si votre POC nécessite un certain type de matériel ou d'un logiciel qui est incompatible avec votre environnement, ou que son approche est incompatible avec le RGPD.
+
+Réfléchissez donc bien aux concepts qu'un POC doit prouver, et quels sont les critères permettant de juger qu'il y soit parvenu.
+
+== Quand vient le moment de penser à la production
+
+Une fois qu'un POC a fait ses preuves, ou lorsqu'un POC n'est pas pertinent, il est temps de s'intéresser aux critères de passage en production.
+
+Il est toujours désagréable de devoir passer dans un fonctionnement "`projet`" plus habituel, n'est pas agréable, 
 
 Pour un POC on peut se brancher n'importe comment et ne pas se poser la question de la pérénité.
 
