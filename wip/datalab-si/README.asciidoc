@@ -1,13 +1,13 @@
-= Le DataLab et le SI : quelques sujets qui fâchent
+= Le DataLab et le SI : quelques sujets d'architecture de SI qui fâchent
 Julien Kirch
 v0.1, 2019-01-31
 :article_lang: fr
 
-WARNING: ⚠️Il s'agit d'un plan en cours => seul le fond est important !⚠️️️️
+WARNING: ⚠️WIP⚠️️️️
 
 == De quoi parle-t-on ?
 
-La mise en place un DataLab / DataLake / puits de donnée (version ancienne école) en production peut déjà link:https://www.octo.com/fr/evenements/183-levez-la-malediction-du-passage-de-l-ia-en-production[être un défi].
+La mise en place un DataLab en production peut déjà link:https://www.octo.com/fr/evenements/183-levez-la-malediction-du-passage-de-l-ia-en-production[être un défi].
 
 Ensuite vient le moment de faire vivre sur le moyen et long terme ce qui vient d'être déployé.
 Voici quelques exemples de ce que j'ai pu entendre en mission sur ce sujet.
@@ -35,7 +35,7 @@ Ces solutions ne sont pas forcément faciles à mettre en œuvre, mais -- en att
 
 == Pour POCer tout peut-être est permis, sauf se mentir
 
-Tout d'abord un rappel à propos des POCs : quand il s'agit de tester des hypothèses, par exemple la perinence de croiser plusieurs sources de données pour améliorer une offre commerciale, travailler avec des contraintes allégées est souhaitable par rapport à un projet de "`run`".
+Tout d'abord les POCs : quand il s'agit de tester des hypothèses pour les valider, par exemple la perinence de croiser plusieurs sources de données pour améliorer une offre commerciale, travailler avec des contraintes allégées est souhaitable par rapport à un projet de "`run`".
 
 Le sujet de l'article n'est pas d'ajouter des contraintes -- et donc de freiner -- les expérimentations.
 
@@ -45,23 +45,34 @@ Mais par contre attention à ne pas se bercer d'illusions : si ces contraintes e
 
 Ce qui signifie qu'il faut garder en tête qu'un jour où l'autre il faudra s'y confronter, que ça soit pour les appliquer ou pour ne pas les appliquer mais d'une manière satisfaisante, par exemple en ayant convaincu ou du moins obtenu l'accord des bonnes personnes.
 
-C'est pour cela que je parle de contraintes _allégées_ et pas de contraintes _minimales_ : si l'objectif d'un POC est de prouver la faisabilité d'une certaine approche, prendre en compte certaines des contraintes de production peut être pertinent si vous savez à l'avance que les ignorer pourrait rendre impossible, ou trop compliqué, le déploiement en production.
+C'est pour cela que je parle de contraintes _allégées_ et pas de ne pas avoir de contraintes du tout :
+si l'objectif d'un POC est de prouver la faisabilité d'une certaine approche, prendre en compte certaines des contraintes de production peut être pertinent si vous savez à l'avance que les ignorer pourrait rendre impossible, ou trop compliqué, le déploiement en production.
+C'est l'un des éléments à prendre en compte pendant la phase de cadrage.
 
 Cela peut-être le cas si votre POC nécessite un certain type de matériel ou d'un logiciel qui est incompatible avec votre environnement, ou que son approche est incompatible avec le RGPD.
 
 Réfléchissez donc bien aux concepts qu'un POC doit prouver, et quels sont les critères permettant de juger qu'il y soit parvenu.
 
-== Quand vient le moment de penser à la production
+== Quand vient le moment de s'intéresser à la production
 
-Une fois qu'un POC a fait ses preuves, ou lorsqu'un POC n'est pas pertinent, il est temps de s'intéresser aux critères de passage en production.
+Une fois qu'un POC a fait ses preuves, il est temps de s'intéresser aux critères de passage en production.
 
-Il est toujours désagréable de devoir passer dans un fonctionnement "`projet`" plus habituel, n'est pas agréable, 
+L'article traitant d'architecture de SI, je ne parlerai pas des sujets liés à la qualité du code commes les tests automatisés ou les revues de code.
+Cela ne veut pas dire qu'elles sont moins importantes mais qu'elle ne sont pas notre sujet ici.
 
-Pour un POC on peut se brancher n'importe comment et ne pas se poser la question de la pérénité.
+En dehors des questions d'architecture en elles-mêmes, le premier problème est celui de faire passer le projet d'un mode POC à un mode _production-ready_.
 
-Par contre attention à ne pas se bercer d'illusion : un moment il faudra s'en occuper, à moins de construire qui sera de plus en plus fragile au fur et à mesure qu'il grandira.
+Quand on a un POC qui fonctionne, on a envie d'aller vite en production pour pouvoir exploiter ce qui a été réalisé, surtout que du point de vue des résultats visibles, la production peut ne rien apporter.
 
-== Les problèmes
+WARNING: ⚠️En dessous c'est juste le plan⚠️️️️
+
+problème d'avoir du budget et du temps aloué, et la volonté de le faire, surtout si le projet a été hébergé dans un lab et/ou est porté par un sponsor plutôt rétif
+
+Les projet de datascience ne sont pas des projets d'informatique de gestion classique, il peut etre pertinent d'essayer de bouger certaines règles, mais ça demande de négocier, tenter de passer sous le radar est tentant mais sérieux
+
+rappellez-vous que les sujets d'intégration concernent les données, c'est à dire la matière première de votre système : avoir de mauvaises données ou se retrouver sans données et votre projet devient inutile
+
+== Les axes
 
 === Pérénité de l'intégration
 
