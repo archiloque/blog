@@ -60,8 +60,8 @@ Exemples{nbsp}:
 
 * Messages synchrones vers 1 consommateur{nbsp}: JMS, IBM MQ
 * Messages asynchrones vers X consommateurs{nbsp}: multicast la plupart des files de messages le supportent
-* Messages synchrones vers 1 consommateur{nbsp}: la plupart des files de messages le supportent, s'agit d'un cas simplifié du cas précédent
-* Les messages avec réponses synchrones peuvent s'implémenter avec deux systèmes de messages sans réponse, et un message sans réponse avec un système à réponse asynchrone sans s'intéresser aux réponses
+* Messages asynchrones vers 1 consommateur{nbsp}: la plupart des files de messages le supportent, s'agit d'un cas simplifié du cas précédent
+* Les messages avec réponses synchrones peuvent s'implémenter avec deux systèmes de messages sans réponse (par exemple certains jeux vidéos s'appuient sur UDP pour des communications avec réponses), et un message sans réponse avec un système à réponse asynchrone sans s'intéresser aux réponses
 
 D'ailleurs il est tout à fait possible d'utiliser une file de message pour faire de l'appel de service{nbsp}: IBM MQ peut exposer du SOAP et est utilisé de cette manière dans de nombreuses organisations, c'est d'ailleurs une des manières historiques d'exposer des services.
 
