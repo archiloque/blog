@@ -11,3 +11,10 @@ Classical Prolog is an elegant language that concisely represents the fundamenta
 
 Classical Prolog is an enchanting misconception. It ought to be studied, for its ideas and lessons. One lesson is that guessing -- non-determinism -- is fundamental, but should not be the default mode of execution. One should guess, but guess lazily.
 ____
+
+== link:https://www.reddit.com/r/programming/comments/bgw2a3/your_cs_degree_wont_prepare_you_for_angry_users/elo94fm/[Your CS Degree Won’t Prepare You For Angry Users, Legacy Code, or the Whims of Other]
+
+[quote]
+____
+The tendency to want to "fix" things is sometimes part of the problem. It's called lava flow pattern, and it's when your codebase is programmed in waves of different guiding design and architecture. One of the best things you can do in an old codebase is just follow existing patterns and design, even if you don't agree with them. If you're going to refactor anyway, make it very obvious where the line is between old and new, so that others know which design to follow where. Preferably putting the new stuff into a separate namespace or even library.
+____
