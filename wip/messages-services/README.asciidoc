@@ -61,7 +61,9 @@ D'ailleurs il est tout à fait possible d'utiliser une file de message pour fair
 
 Mon hypothèse : les services viennent des web services, c'est à dire SOAP, qui était une manière d'exposer des appels synchrones entre un service exposant et un service consommateur. SOAP et les pratiques qui l'accompagnaient promettait de nombreux avantages et du coup le mot "`service`" s'est implanté comme dénomination comme s'il était différent du mode messages.
 
-Un caractéristique des services qui ne sont pas partagées par tous les systèmes de messages est le fait que  l'intermédiaire entre l'exposant et le consommateur ne stocke pas de messages d'une manière structurée : certaines technologies de message peuvent faire de la persistance si le consommateur n'est pas disponible, mais pas toutes, par exemple link:http://zeromq.org[ZeroMQ].
+Un caractéristique des services qui ne sont pas partagées par tous les systèmes de messages est le fait que l'intermédiaire entre l'exposant et le consommateur ne stocke pas de messages d'une manière structurée : certaines technologies de message peuvent faire de la persistance si le consommateur n'est pas disponible, mais pas toutes, par exemple link:http://zeromq.org[ZeroMQ].
+
+Une partie des appels de services peut se faire sans intermédiaire, par exemple par appels HTTP directs entre serveurs, mais souvent c'est sans compter sans les intermédiaires cachés que sont les proxy qui peuvent s'occuper de la gestion des droits ou du moniroting.
 
 Une autre différence est le mode de communication, soit en mode procédure "`fait moi ça`" soit en mode notification "`ceci est arrivé`", cela structure le format et le contenu qui est transmit, il y a des habitudes et certaines approches fonctionnent mieux avec un ou l'autre mode, mais il n'y a pas de séparation "`dure`".
 
