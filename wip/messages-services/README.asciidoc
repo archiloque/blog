@@ -3,16 +3,15 @@ Julien Kirch
 v0.1, 2019-04-29
 :article_lang: fr
 
-D'abord deux définitions, pas précises mais qui donnent une idée :
+D'abord deux définitions, pas précises mais qui donnent une idée{nbsp}:
 
 [quote]
 ____
-_Synchrone_ : j’attends une réponse +
-_Asynchrone_ : le contenu de la réponse ne m'intéresse pas, aussi appelé "`fire and forget`"
+_Synchrone_{nbsp}: j’attends une réponse +
+_Asynchrone_{nbsp}: le contenu de la réponse ne m'intéresse pas, aussi appelé "`fire and forget`"
 ____
 
-
-Thèse : ce qu'on appelle "`services`" (SOAP, REST, CORBA,{nbsp}…) est un certain type de messages, et pas une catégorie à part.
+Ma thèse{nbsp}: ce qu'on appelle "`services`" (SOAP, REST, CORBA,{nbsp}…) est un certain type de messages, et pas une catégorie à part.
 
 Voilà ce que j'entends parfois autour de moi{nbsp}:
 
@@ -51,29 +50,32 @@ Messages
 
 |===
 
-Exemples :
+Exemples{nbsp}:
 
-* Messages synchrones vers 1 consommateur : JMS, IBM MQ
-* Messages synchrones vers X consommateurs : multicast la plupart des files de messages le supportent
-* Messages synchrones vers 1 consommateur : la plupart des files de messages le supportent, s'agit d'un cas simplifié du cas précédent
+* Messages synchrones vers 1 consommateur{nbsp}: JMS, IBM MQ
+* Messages synchrones vers X consommateurs{nbsp}: multicast la plupart des files de messages le supportent
+* Messages synchrones vers 1 consommateur{nbsp}: la plupart des files de messages le supportent, s'agit d'un cas simplifié du cas précédent
 
-D'ailleurs il est tout à fait possible d'utiliser une file de message pour faire de l'appel de service : IBM MQ peut exposer du SOAP et est utilisé de cette manière dans de nombreuses organisations, c'est d'ailleurs une des manières historiques d'exposer des services.
+D'ailleurs il est tout à fait possible d'utiliser une file de message pour faire de l'appel de service{nbsp}: IBM MQ peut exposer du SOAP et est utilisé de cette manière dans de nombreuses organisations, c'est d'ailleurs une des manières historiques d'exposer des services.
 
-Mon hypothèse : les services viennent des web services, c'est à dire SOAP, qui était une manière d'exposer des appels synchrones entre un service exposant et un service consommateur. SOAP et les pratiques qui l'accompagnaient promettait de nombreux avantages et du coup le mot "`service`" s'est implanté comme dénomination comme s'il était différent du mode messages.
+Mon hypothèse{nbsp}: l'utilisation du mot "`services`" tire son origine des web services, c'est à dire des services SOAP.
+SOAP est une manière d'exposer des appels synchrones entre un service exposant et un service consommateur.
+SOAP et les pratiques qui l'accompagnaient promettait de nombreux avantages et du coup le mot "`service`" s'est implanté comme dénomination comme s'il était différent du mode messages.
 
-Une caractéristique des services qui ne sont pas partagées par tous les systèmes de messages est le fait que l'intermédiaire entre l'exposant et le consommateur ne stocke pas de messages d'une manière structurée : certaines technologies de message peuvent faire de la persistance pour pallier à des redémarrages, mais pas toutes, par exemple link:http://zeromq.org[ZeroMQ].
+Une caractéristique des services qui n'est pas pas partagée par tous les systèmes de messages est le fait que l'intermédiaire entre l'exposant et le consommateur ne stocke pas de messages d'une manière résiliente{nbsp}:
+certaines technologies de message peuvent faire de la persistance pour pallier à des redémarrages, mais pas toutes, par exemple link:http://zeromq.org[ZeroMQ].
 
-Une partie des appels de services peut se faire sans intermédiaire, par exemple par appels HTTP directs entre serveurs, mais souvent c'est sans compter sans les intermédiaires cachés que sont les proxys qui peuvent s'occuper de la gestion des droits ou du monitoring.
+Une partie des appels de service peut se faire sans intermédiaire, par exemple par appels HTTP directs entre serveurs, mais souvent c'est sans compter sans les intermédiaires cachés que sont les proxys qui peuvent s'occuper de la gestion des droits ou du monitoring.
 
 Une autre différence est le mode de communication, soit en mode procédure "`fait moi ça`" soit en mode notification "`ceci est arrivé`", cela structure le format et le contenu qui est transmis, il y a des habitudes et certaines approches fonctionnent mieux avec un ou l'autre mode, mais il n'y a pas de séparation "`dure`".
 
-Un mot sur l'implémentation : il faut faire une différence entre le service rendu par un outil et son implémentation.
+Un mot sur l'implémentation{nbsp}: il faut faire une différence entre le service rendu par un outil et son implémentation.
 Même si l'un peut avoir une influence sur l'autre, il ne faut pas les confondre.
 
-Par exemple le fait qu'un système de communication _rendant un service synchrone_ soit une surcouche d'un système asynchrone ne le rend pas faussement synchrone, ou ne diminue en rien ses qualités : par exemple TCP/IP est un système de message asynchrones, sur lequel fonctionne REST qui est un système synchrone.
+Par exemple le fait qu'un système de communication _rendant un service synchrone_ soit une surcouche d'un système asynchrone ne le rend pas faussement synchrone, ou ne diminue en rien ses qualités{nbsp}: par exemple TCP/IP est un système de message asynchrones, sur lequel fonctionne REST qui est un système synchrone.
 
 Du point de vue strict, très peu de systèmes sont réellement synchrones "`du haut en bas`" dans un système informatique classique comprenant plusieurs machines.
 
 De même un protocole ou un outil peut vérifier que les données soient bien arrivées à destination d'un point de vue technique sans attendre de réponse métier et donc être toujours comme TCP/IP.
 
-Conclusion : le mot "`service`" a son utilité car il désigne un cas particulier (communication synchrone en point à point), mais attention à ne pas penser que les différences entre "`service`" et "`messages`" ne sont pas celles qu'on croit.
+Conclusion{nbsp}: le mot "`service`" peut avoir son utilité car il désigne un cas particulier c'est à dire certains protocoles et outils permettant une communication synchrone en point à point, mais attention à ne pas lui faire dire ce qu'il ne dit pas.

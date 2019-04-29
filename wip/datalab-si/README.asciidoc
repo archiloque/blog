@@ -7,7 +7,7 @@ WARNING: ⚠️WIP⚠️️️️
 
 == De quoi parle-t-on ?
 
-La mise en place un DataLab en production peut déjà link:https://www.octo.com/fr/evenements/183-levez-la-malediction-du-passage-de-l-ia-en-production[être un défi].
+La mise en place un projet de datascience en production peut déjà link:https://www.octo.com/fr/evenements/183-levez-la-malediction-du-passage-de-l-ia-en-production[être un défi].
 
 Ensuite vient le moment de faire vivre sur le moyen et long terme ce qui vient d'être déployé.
 Voici quelques exemples de ce que j'ai pu entendre en mission sur ce sujet.
@@ -62,7 +62,15 @@ Cela ne veut pas dire qu'elles sont moins importantes mais qu'elle ne sont pas n
 
 En dehors des questions d'architecture en elles-mêmes, le premier problème est celui de faire passer le projet d'un mode POC à un mode _production-ready_.
 
-Quand on a un POC qui fonctionne, on a envie d'aller vite en production pour pouvoir exploiter ce qui a été réalisé, surtout que du point de vue des résultats visibles, la production peut ne rien apporter.
+Cela signifie fiabiliser et automatiser _ce qui doit l'être_
+
+Quand on a un POC qui fonctionne, on a envie d'exploiter au plus ce qui a été réalisé, surtout que du point de vue des résultats visibles, la production peut sembler ne rien apporter.
+
+Les sujets d'intégration de systèmes concernent les données, c'est à dire la matière première de votre système : rappellez-vous le début de l'article, une intégration mal maîtrisée c'est le risque d'avoir de mauvaises données ou se retrouver sans données.
+
+
+
+
 
 WARNING: ⚠️En dessous c'est juste le plan⚠️️️️
 
