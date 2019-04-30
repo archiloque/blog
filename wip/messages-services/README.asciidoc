@@ -69,16 +69,17 @@ Mon hypothèse{nbsp}: l'utilisation du mot "`services`" tire son origine des web
 SOAP est une manière d'exposer des appels synchrones entre un service exposant et un service consommateur.
 SOAP et les pratiques qui l'accompagnaient promettait de nombreux avantages et du coup le mot "`service`" s'est implanté comme dénomination comme s'il était différent du mode messages.
 
-Une caractéristique des services qui n'est pas pas partagée par tous les systèmes de messages est le fait que l'intermédiaire entre l'exposant et le consommateur ne stocke pas de messages d'une manière résiliente{nbsp}:
-certaines technologies de message peuvent faire de la persistance pour pallier à des redémarrages, mais pas toutes, par exemple link:http://zeromq.org[ZeroMQ].
+Une caractéristique des services qui n'est pas pas partagée par tous les systèmes de messages est le fait que l'intermédiaire entre l'exposant et le consommateur ne stocke pas de messages de manière résiliente{nbsp}:
+si certaines technologies de message peuvent faire de la persistance pour pallier à des redémarrages, toutes ne le font pas comme par exemple link:http://zeromq.org[ZeroMQ].
 
-Une partie des appels de service peut se faire sans intermédiaire, par exemple par appels HTTP directs entre serveurs, mais souvent c'est sans compter sans les intermédiaires cachés que sont les proxys qui peuvent s'occuper de la gestion des droits ou du monitoring.
+Dans les systèmes de messages, l'intermédiaire est souvent visible, par exemple sous la forme d'un composant supplémentaire à déployer, alors que les appels de service peuvent se faire sans intermédiaire, par exemple par appels HTTP directs entre serveurs.
+On peut penser qu'il s'agit là d'un critère séparant les deux groupes.
+Mais dans les systèmes en production, les services utilisent souvent des proxys qui peuvent s'occuper de la gestion des droits ou du monitoring .
 
 Une autre différence est le mode de communication, soit en mode procédure "`fait moi ça`" soit en mode notification "`ceci est arrivé`", cela structure le format et le contenu qui est transmis, il y a des habitudes et certaines approches fonctionnent mieux avec un ou l'autre mode, mais il n'y a pas de séparation "`dure`".
 
-Un mot sur l'implémentation{nbsp}: il faut faire une différence entre le service rendu par un outil et son implémentation.
+Il faut faire une différence entre le service rendu par un outil et son implémentation.
 Même si l'un peut avoir une influence sur l'autre, il ne faut pas les confondre.
-
 Par exemple le fait qu'un système de communication _rendant un service synchrone_ soit une surcouche d'un système asynchrone ne le rend pas faussement synchrone, ou ne diminue en rien ses qualités{nbsp}: par exemple TCP/IP est un système de message asynchrones, sur lequel fonctionne REST qui est un système synchrone.
 
 Du point de vue strict, très peu de systèmes sont réellement synchrones "`du haut en bas`" dans un système informatique classique comprenant plusieurs machines.
