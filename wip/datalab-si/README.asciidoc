@@ -57,12 +57,16 @@ Réfléchissez donc bien aux concepts qu'un POC doit prouver, et quels sont les 
 
 Une fois qu'un POC a fait ses preuves, il est temps de s'intéresser aux critères de passage en production.
 
-L'article traitant d'architecture de SI, je ne parlerai pas des sujets liés à la qualité du code commes les tests automatisés ou les revues de code.
-Cela ne veut pas dire qu'elles sont moins importantes mais qu'elle ne sont pas notre sujet ici.
+Passer à la production, cela signifie que des personnes ou d'autres services vont dépendre de l'application, et donc qu'elle va devoir atteindre un certain niveau de qualité de service -- même s'il n'est pas formalisé dans un SLA -- et donc généralement fiabiliser et automatiser.
+
+L'article traitant d'architecture de SI, je ne parlerai pas des sujets liés à la qualité du code ou à l'exploitation comme les tests automatisés ou le déploiement.
+Cela ne veut pas dire qu'elles sont moins importantes mais qu'elles ne sont pas notre sujet ici.
+
+
 
 En dehors des questions d'architecture en elles-mêmes, le premier problème est celui de faire passer le projet d'un mode POC à un mode _production-ready_.
 
-Cela signifie fiabiliser et automatiser _ce qui doit l'être_
+Cela signifie fiabiliser et automatiser _ce qui doit l'être_.
 
 Quand on a un POC qui fonctionne, on a envie d'exploiter au plus ce qui a été réalisé, surtout que du point de vue des résultats visibles, la production peut sembler ne rien apporter.
 
