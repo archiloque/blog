@@ -1,0 +1,19 @@
+graph TD
+
+Start[Démarrage]
+Ajouter1[Ajouter les état de départ à la liste]
+subgraph Boucle de traitement
+Récupérer[Récupérer le premier état de la liste]
+Tester[Tester si l'état est gagnant]
+Calculer[Calculer les descendants éventuels de l'état et les ajouter à la liste]
+end
+Fail[Pas de solution trouvée]
+Solution[\o/ Solution trouvée !]
+
+Start --> Ajouter1
+Ajouter1 --> Récupérer
+Récupérer --> Tester
+Récupérer-->|Liste vide|Fail
+Tester -->|Oui| Solution
+Tester -->|Non|Calculer
+Calculer -->Récupérer

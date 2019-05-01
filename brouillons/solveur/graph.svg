@@ -1,0 +1,360 @@
+<svg id="mermaid-1556699810059" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width: 731.046875px;" viewBox="0 0 731.046875 513"><style>
+
+
+#mermaid-1556699810059 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1556699810059 .node rect,
+#mermaid-1556699810059 .node circle,
+#mermaid-1556699810059 .node ellipse,
+#mermaid-1556699810059 .node polygon {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1px; }
+
+#mermaid-1556699810059 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1556699810059 .arrowheadPath {
+  fill: #333333; }
+
+#mermaid-1556699810059 .edgePath .path {
+  stroke: #333333;
+  stroke-width: 1.5px; }
+
+#mermaid-1556699810059 .edgeLabel {
+  background-color: #e8e8e8; }
+
+#mermaid-1556699810059 .cluster rect {
+  fill: #ffffde !important;
+  stroke: #aaaa33 !important;
+  stroke-width: 1px !important; }
+
+#mermaid-1556699810059 .cluster text {
+  fill: #333; }
+
+#mermaid-1556699810059 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #ffffde;
+  border: 1px solid #aaaa33;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1556699810059 .actor {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1556699810059 text.actor {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1556699810059 .actor-line {
+  stroke: grey; }
+
+#mermaid-1556699810059 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1556699810059 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1556699810059 #arrowhead {
+  fill: #333; }
+
+#mermaid-1556699810059 #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important; }
+
+#mermaid-1556699810059 .messageText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1556699810059 .labelBox {
+  stroke: #CCCCFF;
+  fill: #ECECFF; }
+
+#mermaid-1556699810059 .labelText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1556699810059 .loopText {
+  fill: black;
+  stroke: none; }
+
+#mermaid-1556699810059 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  stroke: #CCCCFF; }
+
+#mermaid-1556699810059 .note {
+  stroke: #aaaa33;
+  fill: #fff5ad; }
+
+#mermaid-1556699810059 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+#mermaid-1556699810059 .activation0 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+#mermaid-1556699810059 .activation1 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+#mermaid-1556699810059 .activation2 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+
+#mermaid-1556699810059 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1556699810059 .section0 {
+  fill: rgba(102, 102, 255, 0.49); }
+
+#mermaid-1556699810059 .section2 {
+  fill: #fff400; }
+
+#mermaid-1556699810059 .section1,
+#mermaid-1556699810059 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1556699810059 .sectionTitle0 {
+  fill: #333; }
+
+#mermaid-1556699810059 .sectionTitle1 {
+  fill: #333; }
+
+#mermaid-1556699810059 .sectionTitle2 {
+  fill: #333; }
+
+#mermaid-1556699810059 .sectionTitle3 {
+  fill: #333; }
+
+#mermaid-1556699810059 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1556699810059 .grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1556699810059 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1556699810059 .today {
+  fill: none;
+  stroke: red;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1556699810059 .task {
+  stroke-width: 2; }
+
+#mermaid-1556699810059 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1556699810059 .taskTextOutsideRight {
+  fill: black;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1556699810059 .taskTextOutsideLeft {
+  fill: black;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1556699810059 .taskText0,
+#mermaid-1556699810059 .taskText1,
+#mermaid-1556699810059 .taskText2,
+#mermaid-1556699810059 .taskText3 {
+  fill: white; }
+
+#mermaid-1556699810059 .task0,
+#mermaid-1556699810059 .task1,
+#mermaid-1556699810059 .task2,
+#mermaid-1556699810059 .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc; }
+
+#mermaid-1556699810059 .taskTextOutside0,
+#mermaid-1556699810059 .taskTextOutside2 {
+  fill: black; }
+
+#mermaid-1556699810059 .taskTextOutside1,
+#mermaid-1556699810059 .taskTextOutside3 {
+  fill: black; }
+
+
+#mermaid-1556699810059 .active0,
+#mermaid-1556699810059 .active1,
+#mermaid-1556699810059 .active2,
+#mermaid-1556699810059 .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc; }
+
+#mermaid-1556699810059 .activeText0,
+#mermaid-1556699810059 .activeText1,
+#mermaid-1556699810059 .activeText2,
+#mermaid-1556699810059 .activeText3 {
+  fill: black !important; }
+
+
+#mermaid-1556699810059 .done0,
+#mermaid-1556699810059 .done1,
+#mermaid-1556699810059 .done2,
+#mermaid-1556699810059 .done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2; }
+
+#mermaid-1556699810059 .doneText0,
+#mermaid-1556699810059 .doneText1,
+#mermaid-1556699810059 .doneText2,
+#mermaid-1556699810059 .doneText3 {
+  fill: black !important; }
+
+
+#mermaid-1556699810059 .crit0,
+#mermaid-1556699810059 .crit1,
+#mermaid-1556699810059 .crit2,
+#mermaid-1556699810059 .crit3 {
+  stroke: #ff8888;
+  fill: red;
+  stroke-width: 2; }
+
+#mermaid-1556699810059 .activeCrit0,
+#mermaid-1556699810059 .activeCrit1,
+#mermaid-1556699810059 .activeCrit2,
+#mermaid-1556699810059 .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2; }
+
+#mermaid-1556699810059 .doneCrit0,
+#mermaid-1556699810059 .doneCrit1,
+#mermaid-1556699810059 .doneCrit2,
+#mermaid-1556699810059 .doneCrit3 {
+  stroke: #ff8888;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1556699810059 .doneCritText0,
+#mermaid-1556699810059 .doneCritText1,
+#mermaid-1556699810059 .doneCritText2,
+#mermaid-1556699810059 .doneCritText3 {
+  fill: black !important; }
+
+#mermaid-1556699810059 .activeCritText0,
+#mermaid-1556699810059 .activeCritText1,
+#mermaid-1556699810059 .activeCritText2,
+#mermaid-1556699810059 .activeCritText3 {
+  fill: black !important; }
+
+#mermaid-1556699810059 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: black; }
+
+#mermaid-1556699810059 g.classGroup text {
+  fill: #9370DB;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1556699810059 g.classGroup rect {
+  fill: #ECECFF;
+  stroke: #9370DB; }
+
+#mermaid-1556699810059 g.classGroup line {
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1556699810059 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #ECECFF;
+  opacity: 0.5; }
+
+#mermaid-1556699810059 .classLabel .label {
+  fill: #9370DB;
+  font-size: 10px; }
+
+#mermaid-1556699810059 .relation {
+  stroke: #9370DB;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1556699810059 #compositionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1556699810059 #compositionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1556699810059 #aggregationStart {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1556699810059 #aggregationEnd {
+  fill: #ECECFF;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1556699810059 #dependencyStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1556699810059 #dependencyEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1556699810059 #extensionStart {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1556699810059 #extensionEnd {
+  fill: #9370DB;
+  stroke: #9370DB;
+  stroke-width: 1; }
+
+#mermaid-1556699810059 .commit-id,
+#mermaid-1556699810059 .commit-msg,
+#mermaid-1556699810059 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+</style><style>#mermaid-1556699810059 {
+    color: rgba(0, 0, 0, 0.65098);
+    font: normal normal normal normal 14px/21px "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }</style><g transform="translate(-12, -12)"><g class="output"><g class="clusters"><g class="cluster" id="subGraph0" transform="translate(276.9140625,359.5)" style="opacity: 1;"><rect width="513.828125" height="315" x="-256.9140625" y="-157.5"></rect><g class="label"><g transform="translate(0,0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"></div></foreignObject></g></g><text x="0" y="-143.5" fill="black" stroke="none" id="mermaid-1556699810059Text" style="text-anchor: middle;">Boucle de traitement</text></g></g><g class="edgePaths"><g class="edgePath" style="opacity: 1;"><path class="path" d="M346.53125,61L346.53125,86L346.53125,111" marker-end="url(#arrowhead79)" style="fill:none"></path><defs><marker id="arrowhead79" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M346.53125,152L346.53125,177L346.53125,202L346.53125,227" marker-end="url(#arrowhead80)" style="fill:none"></path><defs><marker id="arrowhead80" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M352.54282924107144,268L362.953125,303.5L362.953125,339" marker-end="url(#arrowhead81)" style="fill:none"></path><defs><marker id="arrowhead81" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M376.15872628348217,268L427.46484375,303.5L569.7644740513393,339" marker-end="url(#arrowhead82)" style="fill:none"></path><defs><marker id="arrowhead82" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M380.89634486607144,380L411.96875,415.5L568.828125,452.85069594392587" marker-end="url(#arrowhead83)" style="fill:none"></path><defs><marker id="arrowhead83" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M354.865234375,380L340.859375,415.5L300.32261439732144,451" marker-end="url(#arrowhead84)" style="fill:none"></path><defs><marker id="arrowhead84" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g><g class="edgePath" style="opacity: 1;"><path class="path" d="M233.55032784598214,451L158.45703125,415.5L158.45703125,359.5L158.45703125,303.5L277.6826520647321,268" marker-end="url(#arrowhead85)" style="fill:none"></path><defs><marker id="arrowhead85" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1px; stroke-dasharray: 1px, 0px;"></path></marker></defs></g></g><g class="edgeLabels"><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(427.46484375,303.5)" style="opacity: 1;"><g transform="translate(-30.859375,-10.5)" class="label"><foreignObject width="61.71875" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">Liste vide</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(411.96875,415.5)" style="opacity: 1;"><g transform="translate(-10.9921875,-10.5)" class="label"><foreignObject width="21.984375" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">Oui</span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(340.859375,415.5)" style="opacity: 1;"><g transform="translate(-13.1953125,-10.5)" class="label"><foreignObject width="26.390625" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">Non</span></div></foreignObject></g></g><g class="edgeLabel" transform="" style="opacity: 1;"><g transform="translate(0,0)" class="label"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="node" id="Récupérer" transform="translate(346.53125,247.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-125.4765625" y="-20.5" width="250.953125" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-115.4765625,-10.5)"><foreignObject width="230.953125" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Récupérer le premier état de la liste</div></foreignObject></g></g></g><g class="node" id="Tester" transform="translate(362.953125,359.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-92.890625" y="-20.5" width="185.78125" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-82.890625,-10.5)"><foreignObject width="165.78125" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Tester si l'état est gagnant</div></foreignObject></g></g></g><g class="node" id="Calculer" transform="translate(276.9140625,471.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-221.9140625" y="-20.5" width="443.828125" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-211.9140625,-10.5)"><foreignObject width="423.828125" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Calculer les descendants éventuels de l'état et les ajouter à la liste</div></foreignObject></g></g></g><g class="node" id="Start" transform="translate(346.53125,40.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-44.0546875" y="-20.5" width="88.109375" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-34.0546875,-10.5)"><foreignObject width="68.109375" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Démarrage</div></foreignObject></g></g></g><g class="node" id="Ajouter1" transform="translate(346.53125,131.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-121.5390625" y="-20.5" width="243.078125" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-111.5390625,-10.5)"><foreignObject width="223.078125" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Ajouter les état de départ à la liste</div></foreignObject></g></g></g><g class="node" id="Fail" transform="translate(651.9375,359.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-83.109375" y="-20.5" width="166.21875" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-73.109375,-10.5)"><foreignObject width="146.21875" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Pas de solution trouvée</div></foreignObject></g></g></g><g class="node" id="Solution" transform="translate(647.1484375,471.5)" style="opacity: 1;"><rect rx="0" ry="0" x="-78.3203125" y="-20.5" width="156.640625" height="41"></rect><g class="label" transform="translate(0,0)"><g transform="translate(-68.3203125,-10.5)"><foreignObject width="136.640625" height="21"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">\o/ Solution trouvée !</div></foreignObject></g></g></g></g></g></g></svg>
