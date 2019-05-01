@@ -69,7 +69,7 @@ D'ailleurs il est tout à fait possible d'utiliser une file de message pour fair
 
 Mon hypothèse{nbsp}: l'utilisation du mot "`services`" tire son origine des web services, c'est à dire des services SOAP.
 SOAP est une manière d'exposer des appels synchrones entre un service exposant et un service consommateur.
-SOAP et les pratiques qui l'accompagnaient promettait de nombreux avantages et du coup le mot "`service`" s'est implanté comme dénomination comme s'il était différent du mode messages.
+SOAP et les pratiques qui l'accompagnaient promettait de nombreux avantages et du coup "`service`" s'est implanté comme dénomination comme s'il était différent du mode messages.
 
 Une caractéristique des services qui n'est pas pas partagée par tous les systèmes de messages est le fait que l'intermédiaire entre l'exposant et le consommateur ne stocke pas de messages de manière résiliente{nbsp}:
 si certaines technologies de message peuvent faire de la persistance pour pallier à des redémarrages, toutes ne le font pas comme par exemple link:http://zeromq.org[ZeroMQ].
