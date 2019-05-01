@@ -18,3 +18,10 @@ ____
 ____
 The tendency to want to "fix" things is sometimes part of the problem. It's called lava flow pattern, and it's when your codebase is programmed in waves of different guiding design and architecture. One of the best things you can do in an old codebase is just follow existing patterns and design, even if you don't agree with them. If you're going to refactor anyway, make it very obvious where the line is between old and new, so that others know which design to follow where. Preferably putting the new stuff into a separate namespace or even library.
 ____
+
+== link:https://shop.jcoglan.com/building-git/[Building Git]
+
+[quote]
+____
+Every time multiple pieces of your program have an implicit agreement that’s not enforced, that’s an opportunity for a maintainer to change one piece of code without changing others that depend on it. This, rather than eliminating literal duplication of lines of code, is the essence of the DRY principle 
+____

@@ -14,7 +14,8 @@ _Réponse asynchrone_{nbsp}: je veux une réponse mais quand ça t'arrange, mêm
 _Pas de réponse_{nbsp}: la réponse ne m'intéresse pas
 ____
 
-Ma thèse{nbsp}: ce qu'on appelle "`services`" (SOAP, REST, CORBA,{nbsp}…) est un certain type de messages, et pas une catégorie à part.
+Ma thèse{nbsp}: ce qu'on appelle "`services`" (SOAP, REST, CORBA,{nbsp}…) est un certain type de messages.
+Messages et services ne sont donc pas deux groupes qu'on pourrait opposer.
 
 Voilà ce que j'entends parfois autour de moi{nbsp}:
 
@@ -82,7 +83,7 @@ Une autre différence est le mode de communication, soit en mode procédure "`fa
 
 Il faut faire une différence entre le service rendu par un outil et son implémentation.
 Même si l'un peut avoir une influence sur l'autre, il ne faut pas les confondre.
-Par exemple le fait qu'un système de communication _rendant un service synchrone_ soit une surcouche d'un système asynchrone ne le rend pas faussement synchrone, ou ne diminue en rien ses qualités{nbsp}: par exemple TCP/IP est un système de message asynchrones, sur lequel fonctionne REST qui est un système synchrone.
+Par exemple le fait qu'un système de communication rendant un service synchrone soit une surcouche d'un système asynchrone ne le rend pas faussement synchrone, ou ne diminue en rien ses qualités{nbsp}: par exemple TCP/IP est un système de message asynchrones, sur lequel fonctionne REST qui est un système synchrone.
 
 Du point de vue strict, très peu de systèmes sont réellement synchrones "`du haut en bas`" dans un système informatique classique comprenant plusieurs machines.
 
