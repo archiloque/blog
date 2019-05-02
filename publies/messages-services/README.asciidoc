@@ -72,6 +72,8 @@ Mon hypothèse{nbsp}: l'utilisation du mot "`services`" tire son origine des web
 SOAP est une manière d'exposer des appels synchrones entre un service exposant et un service consommateur.
 SOAP et les pratiques qui l'accompagnaient promettait de nombreux avantages et du coup "`service`" s'est implanté comme dénomination comme s'il était différent du mode messages.
 
+(Pour être tout à fait précis{nbsp}: même si dans les fait SOAP est surtout utilisé en mode synchrone, la spécification lui permet d'être synchrone ou asynchrone, link:https://www.w3.org/TR/soap12-email/[une spécification] définit même comment faire du SOAP via SMTP.)
+
 Une caractéristique des services qui n'est pas pas partagée par tous les systèmes de messages est le fait que l'intermédiaire entre l'exposant et le consommateur ne stocke pas de messages de manière résiliente{nbsp}:
 si certaines technologies de message peuvent faire de la persistance pour pallier à des redémarrages, toutes ne le font pas comme par exemple link:http://zeromq.org[ZeroMQ].
 
