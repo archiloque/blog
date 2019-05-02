@@ -21,9 +21,11 @@ Le modèle de données de Git étant assez riche, avec de nombreux objets et ét
 
 Pour fonctionner, Git a besoin de lire et d'écrire de la configuration, d'utiliser du réseau, d'accéder à des fichiers de manière concurrente, de comprendre des paramètres complexes utilisant un mini link:https://en.wikipedia.org/wiki/Domain-specific_language[DSL], d'exécuter des processus externes{nbsp}…
 
+Le code est souvent accompagné d'un minimum de théorie permettant d'expliquer et de donner du contexte aux choix qui sont fait.
+
 On ressort donc du livre avec une boite à outils assez complète, il pourrait quasiment servir de base à un cours d'introduction à l'informatique, y compris dans sa manière d'introduire les tests automatisés.
 
-Le texte est très lisible et très pédagogique, et l'auteur prend soin de ne jamais étaler sa science, même quand il introduit des mécanisme complexes.
+Le texte est très lisible et très pédagogique, et l'auteur prend soin de ne jamais étaler sa science, même quand il introduit des mécanismes complexes.
 
 Pour chaque étape James Coglan examine le comportement de Git ou la documentation, puis explique le cheminement pour aboutir à une implémentation.
 
@@ -36,4 +38,4 @@ Au moment de l'acheter j'avais quelques doutes ("`Tu penses _vraiment_ qu'achete
 
 Si la taille du livre vous effraie, je précise que l'approche incrémentale permet de sauter ou de survoler les parties qui pourraient vous sembler moins intéressantes sans perdre le fil.
 
-Pour finir un avertissement{nbsp}: il semblerait qu'une partie non négligeable des personnes lisant le livre se soient lancé dans le projet de réimplémenter à leur tour Git dans le language de leur choix.
+Pour finir un avertissement{nbsp}: une partie des personnes lisant le livre se soient lancé dans le projet de réimplémenter à leur tour Git dans le language de leur choix, à vous de voir si vous êtes prêt ou prête à prendre ce risque en ouvrant le livre.
