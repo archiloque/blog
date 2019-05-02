@@ -13,11 +13,11 @@ Plusieurs mois plus tard, link:https://shop.jcoglan.com/building-git/[le livre e
 L'objet du livre est de réécrire les fonctions centrales de Git de manière incrémentale.
 L'implémentation ne couvre pas toutes les options, mais tous les concepts sont là et la version finale est une version alternative de Git suffisante pour les cas d'usages simples.
 
-L'auteur montre comment on peut s'y prendre pour créer un logiciel complexe par petits morceaux à taille humaine{nbsp}: à chaque fois quelques lignes de code permettent d'ajouter un nouveau comportement presuqe immédiatement utilisable.
+L'auteur montre comment on peut s'y prendre pour créer un logiciel complexe par petits morceaux à taille humaine{nbsp}: à chaque fois quelques lignes de code permettent d'ajouter un nouveau comportement presque immédiatement utilisable.
 
 Cela mène à de nombreux exemples de refactoring, qui sont l'occasion d'introduire de manière naturelle des link:https://en.wikipedia.org/wiki/Software_design_pattern[design patterns].
 
-Le modèle de données de Git étant assez riche, avec de nombreux objets et états, le livre est également un bonne leçon de modélisation et d'utilisation de structures de données.
+Le modèle de données de Git étant assez riche, avec de nombreux objets et états, le livre est également une bonne leçon de modélisation et d'utilisation de structures de données.
 
 Pour fonctionner, Git a besoin de lire et d'écrire de la configuration, d'utiliser du réseau, d'accéder à des fichiers de manière concurrente, de comprendre des paramètres complexes utilisant un mini link:https://en.wikipedia.org/wiki/Domain-specific_language[DSL], d'exécuter des processus externes{nbsp}…
 
@@ -32,10 +32,10 @@ Pour chaque étape James Coglan examine le comportement de Git ou la documentati
 En tant qu'utilisateur ça m'a permis de démystifier et de mieux comprendre comment Git a été pensé et fonctionne.
 Cela m'aidera probablement à mieux l'utiliser dans les cas compliqués.
 
-Le code est en Ruby, en se limitant à des usages simples du langage, ne pas le connaître ou ne pas l'apprécier particulièrement ne devrait donc pas être un obstacle.
+Le code est en Ruby, en se limitant à des usages simples, ne pas connaître Ruby ou ne pas l'apprécier particulièrement ne devrait donc pas être un obstacle.
 
 Au moment de le commander j'avais quelques doutes ("`Tu penses _vraiment_ qu'acheter un livre de 700 pages sur Git pour 40€ est une bonne idée{nbsp}?`") mais j'en ressors conquis.
 
 Si la taille du livre vous effraie, je précise que l'approche incrémentale permet de sauter ou de survoler les parties qui pourraient vous sembler moins intéressantes sans perdre le fil.
 
-Pour finir un avertissement{nbsp}: une partie des personnes lisant le livre se soient lancé dans le projet de réimplémenter à leur tour Git dans le language de leur choix, à vous de voir si vous êtes prêt ou prête à prendre ce risque en ouvrant le livre.
+Pour finir un avertissement{nbsp}: une partie des personnes lisant le livre se soient lancé dans le projet de réimplémenter à leur tour Git dans le langage de leur choix, à vous de voir si vous êtes prêt ou prête à prendre ce risque en ouvrant le livre.
