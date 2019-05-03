@@ -31,7 +31,7 @@ Dans les cas où les règles sont un peu plus difficiles, le fait de tester une 
 Modéliser le cas le plus simple, par exemple le premier niveau du jeu, peut se faire rapidement.
 En quelques minutes quelque chose on a quelque chose qui fonctionne de bout en bout et sur lequel s'appuyer.
 
-image::niveau.jpeg[]
+image::niveau.png[]
 
 === Modélisation
 
@@ -107,7 +107,7 @@ S'ils sont complexes et/ou nombreux, des mécanismes de saisies mal adaptés peu
 
 Je vous conseille donc de passer un peu de temps sur ce sujet en réfléchissant bien votre format d'entrée et votre manière de saisir les données.
 
-Un exemple de niveau{nbsp}:
+Un exemple de niveau utilisant link:https://en.wikipedia.org/wiki/Box-drawing_character[les symboles permettant de dessiner des tableaux]{nbsp}:
 ```
 ┌────┬────┐
 │    │    │
