@@ -28,7 +28,10 @@ Dans les cas où les règles sont un peu plus difficiles, le fait de tester une 
 
 === Démarrage rapide
 
-Modéliser le cas le plus simple, par exemple le premier niveau du jeu, peut se faire rapidement, et donc on atteint en quelques minute quelque chose qui fonctionne de bout en bout et sur lequel s'appuyer.
+Modéliser le cas le plus simple, par exemple le premier niveau du jeu, peut se faire rapidement.
+En quelques minutes quelque chose on a quelque chose qui fonctionne de bout en bout et sur lequel s'appuyer.
+
+image::niveau.jpeg[]
 
 === Modélisation
 
@@ -49,9 +52,41 @@ Dans ces situations, les solveurs "`naïfs`" arrivent rapidement à leur limites
 
 Cela permet de s'intéresser aux performance du langage et d'explorer comment accélérer les choses, voir d'aller fouiller dans des algorithmes un peu théoriques et d'élargir ainsi sa culture générale.
 
+Si vous cherchiez une raison pour utiliser de la manipulation de bits{nbsp}:
+[source,java]
+----
+private static final int BYTE_MASK = 0xff;
+private static final int HALF_BYTE_MASK = 0xf;
+
+private static final int RED_BYTE_MASK = BYTE_MASK;
+private static final int GREEN_BYTE_MASK = BYTE_MASK << 8;
+private static final int BLUE_BYTE_MASK = BYTE_MASK << 16;
+private static final int YELLOW_BYTE_MASK = HALF_BYTE_MASK << 24;
+
+final boolean enoughTrucksForPackages(int trucks, int packages) {
+    if (((packages & RED_BYTE_MASK) > 0)
+            && ((trucks & RED_BYTE_MASK) == 0)) {
+        return false;
+    }
+    if (((packages & GREEN_BYTE_MASK) > 0)
+            && ((trucks & GREEN_BYTE_MASK) == 0)) {
+        return false;
+    }
+    if (((packages & BLUE_BYTE_MASK) > 0)
+            && ((trucks & BLUE_BYTE_MASK) == 0)) {
+        return false;
+    }
+    if (((packages & YELLOW_BYTE_MASK) > 0)
+            && ((trucks & YELLOW_BYTE_MASK) == 0)) {
+        return false;
+    }
+    return true;
+}
+----
+
 == Quelques conseils
 
-Ayant tenté l'expérience avec plusieurs jeu, quelques conseils avant de vous lancer
+Ayant tenté l'expérience avec plusieurs jeux, j'ai quelques conseils pour vous.
 
 === Commencez simple
 
@@ -71,6 +106,21 @@ Pour résoudre les niveaux il faut d'abord les saisir.
 S'ils sont complexes et/ou nombreux, des mécanismes de saisies mal adaptés peuvent rendre la tâche pénible et donc démotivante.
 
 Je vous conseille donc de passer un peu de temps sur ce sujet en réfléchissant bien votre format d'entrée et votre manière de saisir les données.
+
+Un exemple de niveau{nbsp}:
+```
+     ╷     
+     │     
+   ┌─┼─┐   
+   │ │ │   
+  ┌┼─┼─┼┐  
+╶─┤│ │ │├─╴
+  └┼─┼─┼┘  
+   │ │ │   
+   └─┼─┘   
+     │     
+     ╵     
+```
 
 === Sachez vous arrêter
 
