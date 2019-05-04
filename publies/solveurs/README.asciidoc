@@ -56,29 +56,31 @@ Cela permet de s'intéresser aux performance du langage et d'explorer comment ac
 Si vous cherchiez une raison pour utiliser de la manipulation de bits{nbsp}:
 [source,java]
 ----
-private static final int BYTE_MASK = 0xff;
-private static final int HALF_BYTE_MASK = 0xf;
+private static final int B_MSK = 0xff;
+private static final int HALF_B_MSK = 0xf;
 
-private static final int RED_BYTE_MASK = BYTE_MASK;
-private static final int GREEN_BYTE_MASK = BYTE_MASK << 8;
-private static final int BLUE_BYTE_MASK = BYTE_MASK << 16;
-private static final int YELLOW_BYTE_MASK = HALF_BYTE_MASK << 24;
+private static final int RED_B_MSK = B_MSK;
+private static final int GREEN_B_MSK = B_MSK << 8;
+private static final int BLUE_B_MSK = B_MSK << 16;
+private static final int YELLOW_B_MSK = HALF_B_MSK << 24;
 
-final boolean enoughTrucksForPackages(int trucks, int packages) {
-    if (((packages & RED_BYTE_MASK) > 0)
-            && ((trucks & RED_BYTE_MASK) == 0)) {
+final boolean enoughTrucksForPackages(
+    int trucks,
+    int packages) {
+    if (((packages & RED_B_MSK) > 0)
+            && ((trucks & RED_B_MSK) == 0)) {
         return false;
     }
-    if (((packages & GREEN_BYTE_MASK) > 0)
-            && ((trucks & GREEN_BYTE_MASK) == 0)) {
+    if (((packages & GREEN_B_MSK) > 0)
+            && ((trucks & GREEN_B_MSK) == 0)) {
         return false;
     }
-    if (((packages & BLUE_BYTE_MASK) > 0)
-            && ((trucks & BLUE_BYTE_MASK) == 0)) {
+    if (((packages & BLUE_B_MSK) > 0)
+            && ((trucks & BLUE_B_MSK) == 0)) {
         return false;
     }
-    if (((packages & YELLOW_BYTE_MASK) > 0)
-            && ((trucks & YELLOW_BYTE_MASK) == 0)) {
+    if (((packages & YELLOW_B_MSK) > 0)
+            && ((trucks & YELLOW_B_MSK) == 0)) {
         return false;
     }
     return true;
