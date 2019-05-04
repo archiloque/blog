@@ -1,6 +1,6 @@
 = Pourquoi les solveurs de jeu sont des bons exercices
 Julien Kirch
-v0.1, 2019-05-03
+v0.1, 2019-05-04
 :article_lang: fr
 :article_image: logo.png
 :ignore_files: graph.mmd
@@ -12,7 +12,7 @@ Amateur de link:http://rgbexpress.com[jeux] de link:https://cosmicexpressgame.c
 
 Le principe permettant résoudre un jeu de puzzle est très simple, et repose sur l'utilisation d'une liste sur laquelle on itère, jusqu'à résoudre le puzzle, ou jusqu'à échouer (en cas d'erreur){nbsp}:
 
-image::graph.svg[]
+image::graph.svg[width=500,height=351]
 
 La mise en œuvre d'un cas simple ne prend ainsi que quelques ligne.
 
