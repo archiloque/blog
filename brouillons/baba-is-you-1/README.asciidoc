@@ -18,9 +18,17 @@ But, first we need to be able to feed the data to the loop, which means reading 
 
 First thing is to bootstrap the project.
 
-A solver has often complex data types so a language with static types is great, and a fast language is nice to have to make things faster, my tool of choici for this situation is Java.
+A solver has often complex data types and you need to do much refactoring so a language with static types is great, and a fast language is nice to have to make things faster, so my tool of choice for this case is Java.
 
+So first we intialize the repo:
 [source,bash]
 ----
-mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4
+mvn archetype:generate \
+-DgroupId=net.archiloque.babaisyousolver \
+-DartifactId=babaisyousolver \
+-DarchetypeArtifactId=maven-archetype-quickstart \
+-DarchetypeVersion=1.4 \
+-DinteractiveMode=false
 ----
+
+Then we add the required files (`LICENSE.txt` …) and push it to link:https://github.com/archiloque/babaisyousolver[GitHub].
