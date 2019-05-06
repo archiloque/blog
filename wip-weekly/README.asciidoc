@@ -2,3 +2,17 @@
 Julien Kirch
 v1.0, 2019-01-01
 :article_lang: en
+
+== link:https://queue.acm.org/detail.cfm?id=971590[Game Development: Harder Than You Think]
+
+[quote]
+____
+When you put many algorithms together into a tightly coupled system, constraints imposed by the various algorithms will clash. It takes a certain experience and wisdom to choose or discover algorithms that can be combined into a harmonious whole. When game engines fail, it’s often because they don’t achieve that harmony.
+____
+
+[quote]
+____
+We then need to worry about tunneling, which happens when we integrate across a timestep that’s too long, causing us to miss a significant world event. The term "`tunneling`" comes from collision detection, where we move entities essentially by teleporting them small distances through space; if we move an entity too quickly, it may pass through a solid object like a wall, unless we take extra steps to detect that situation. These extra steps comprise an approximation to "`what really should have happened`", which may result in consistency problems.
+
+Interesting simulations inherently involve subtle interactions between many different entities, an n2 problem that doesn’t really want to be solved in real time. To work around this issue, we need to be good at culling negligible interactions to pare down the size of the problem. But such culling tends to involve black-art heuristics and can go wrong in strange and subtle ways.
+____
