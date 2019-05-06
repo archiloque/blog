@@ -37,9 +37,10 @@ Ces solutions ne sont pas forcément faciles à mettre en œuvre, mais -- en att
 
 Tout d'abord les POCs : quand il s'agit de tester des hypothèses pour les valider, par exemple la perinence de croiser plusieurs sources de données pour améliorer une offre commerciale, travailler avec des contraintes allégées est souhaitable par rapport à un projet de "`run`".
 
-Le sujet de l'article n'est pas d'ajouter des contraintes -- et donc de freiner -- les expérimentations.
+Le sujet de l'article n'est pas d'ajouter des contraintes -- et donc de freiner -- les expérimentations, quand elles ne sont pas nécessaires.
 
 Ainsi travailler sur un laptop à partir d'export manuel de données peut être le meilleur choix dans certaines situations.
+Tant que cela est compatible avec les exigences de sécurité comme le RGPD, cela va sans dire.
 
 Mais par contre attention à ne pas se bercer d'illusions : si ces contraintes existent, c'est généralement pour de bonnes raisons.
 
@@ -53,40 +54,28 @@ Cela peut-être le cas si votre POC nécessite un certain type de matériel ou d
 
 Réfléchissez donc bien aux concepts qu'un POC doit prouver, et quels sont les critères permettant de juger qu'il y soit parvenu.
 
-== Quand vient le moment de s'intéresser à la production
+== "`La prod' c'est la prod'{nbsp}!`", même pour la datascience
 
 Une fois qu'un POC a fait ses preuves, il est temps de s'intéresser aux critères de passage en production.
 
 Passer à la production, cela signifie que des personnes ou d'autres services vont dépendre de l'application, et donc qu'elle va devoir atteindre un certain niveau de qualité de service -- même s'il n'est pas formalisé dans un SLA -- et donc généralement fiabiliser et automatiser.
 
-L'article traitant d'architecture de SI, je ne parlerai pas des sujets liés à la qualité du code ou à l'exploitation comme les tests automatisés ou le déploiement.
-Cela ne veut pas dire qu'elles sont moins importantes mais qu'elles ne sont pas notre sujet ici.
+Cela couvre de nombreux sujets comme la qualité du code, les tests automatisés, le déploiment ou la sécurité, mais nous allons ici nous concentrer sur celles qui sont liées aux question d'intégrations entre systèmes.
 
+Quand je parle de fiabiliser et d'automatiser, il s'agit bien entendu de le faire à _hauteur de ce qui est nécessaire_.
 
+Ainsi une mise en production d'un premier projet de datascience utilisé en interne, il ne s'agit donc pas forcément d'appliquer les mêmes règles que celles qui s'appliquent pour des sites web clients.
 
-En dehors des questions d'architecture en elles-mêmes, le premier problème est celui de faire passer le projet d'un mode POC à un mode _production-ready_.
+Mais d'un autre côté, il faut tout de même faire ce qu'il faut pour s'éviter de mauvaises surprises.
+Les sujets d'intégration de systèmes concernent les données, c'est à dire la matière première de votre système : rappellez-vous le début de l'article, une intégration mal maîtrisée c'est le risque d'avoir de mauvaises données ou se retrouver sans données, et donc d'avoir un système inopérant.
 
-Cela signifie fiabiliser et automatiser _ce qui doit l'être_.
-
-Quand on a un POC qui fonctionne, on a envie d'exploiter au plus ce qui a été réalisé, surtout que du point de vue des résultats visibles, la production peut sembler ne rien apporter.
-
-Les sujets d'intégration de systèmes concernent les données, c'est à dire la matière première de votre système : rappellez-vous le début de l'article, une intégration mal maîtrisée c'est le risque d'avoir de mauvaises données ou se retrouver sans données.
-
-
-
-
-
-WARNING: ⚠️En dessous c'est juste le plan⚠️️️️
-
-problème d'avoir du budget et du temps aloué, et la volonté de le faire, surtout si le projet a été hébergé dans un lab et/ou est porté par un sponsor plutôt rétif
-
-Les projet de datascience ne sont pas des projets d'informatique de gestion classique, il peut etre pertinent d'essayer de bouger certaines règles, mais ça demande de négocier, tenter de passer sous le radar est tentant mais sérieux
-
-rappellez-vous que les sujets d'intégration concernent les données, c'est à dire la matière première de votre système : avoir de mauvaises données ou se retrouver sans données et votre projet devient inutile
+Pensez aussi que, s'il est tentant de vouloir passer "`sous le radar`" en coutournant les mécanismes officiels et les personnes dont s'est le travail, cela peut se payer en cas de coup dur, lorsqu'il faut faire appel à des bonnes volontés pour vous aider.
 
 == Les axes
 
 === Pérénité de l'intégration
+
+
 
 Branchement aux applis qui fournissent de la donnée = couplage = ça peut casser
 
