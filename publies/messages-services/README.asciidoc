@@ -94,4 +94,4 @@ De même un protocole ou un outil peut vérifier que les données soient bien ar
 Le mot "`service`" n'est pas à jeter à la poubelle, car il définit un cas d'usage -- la communication synchrone en point à point -- très utile dans un SI.
 De même je ne vous conseille pas d'utiliser des bus de message classiques pour ce besoin{nbsp}: ce n'est pas parce qu'il s'agit d'une possibilité valide que c'est celle-là qu'il faut choisir.
 
-Mon avis est qu'il ne faut pas confondre cas d'usage, protocoles et technologies d'implémentation, même si les trois sont liés{nbsp}: plutôt que de se dire "`pour l'archi de mon SI j'ai une boite qui s'appelle service et une boite message, et tous mes échanges entre systèmes doit rentrer dans une des deux boites`", réfléchissez à vos besoins et essayer de les adresser.
+Mon avis est qu'il ne faut pas confondre cas d'usage, protocoles et technologies d'implémentation, même si les trois sont liés{nbsp}: plutôt que de se dire "`pour l'archi de mon SI j'ai une boite qui s'appelle service et une boite message, et tous mes échanges entre systèmes doit rentrer dans une des deux boites`", réfléchissez à vos besoins et essayez de les adresser.
