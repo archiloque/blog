@@ -164,7 +164,8 @@ final class LevelReader {
    */
   static @NotNull LevelReaderResult readContent(
       @NotNull Path levelDirectory,
-      @NotNull Map<Character, Integer> tiles) throws IOException {
+      @NotNull Map<Character,
+          Integer> tiles) throws IOException {
     return null;
   }
 
@@ -178,7 +179,10 @@ final class LevelReader {
     @NotNull
     private final int[] content;
 
-    LevelReaderResult(int width, int height, int[] content) {
+    LevelReaderResult(
+        int width,
+        int height,
+        int[] content) {
       this.width = width;
       this.height = height;
       this.content = content;
