@@ -53,6 +53,12 @@ I declare all the tiles we use yet, as a `String` to be referenced by the level,
 ----
 package net.archiloque.babaisyousolver;
 
+/**
+ * All the tiles.
+ * Should be declared in sorted order so the index 
+ * of the items in {@link Tiles#ALL_STRINGS}
+ * matches the values of the int items.
+ */
 final class Tiles {
 
   private Tiles() {
@@ -121,37 +127,62 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 final class LevelReader {
 
-    private LevelReader() {
-    }
+  private LevelReader() {
+  }
 
-    private final String TILES_FILES = "tiles.txt";
-    private final String CONTENT_FILES = "content.txt";
+  private final String TILES_FILES = "tiles.txt";
+  private final String CONTENT_FILES = "content.txt";
+
+  /**
+   * Read a level from a directory.
+   */
+  @NotNull
+  static LevelReaderResult readLevel(
+      @NotNull Path levelDirectory)
+      throws IOException {
+    return readContent(levelDirectory, readTiles(levelDirectory));
+  }
+
+  /**
+   * Read the tiles declaration
+   * from the {@link LevelReader#TILES_FILES} file
+   */
+  static @NotNull Map<Character, Integer> readTiles(
+      @NotNull Path levelDirectory) throws IOException {
+    return new HashMap<>();
+  }
+
+  /**
+   * Read the file content
+   * from the {@link LevelReader#CONTENT_FILES} file
+   * relying the declared tiles
+   */
+  static @NotNull LevelReaderResult readContent(
+      @NotNull Path levelDirectory,
+      @NotNull Map<Character, Integer> tiles) throws IOException {
+    return null;
+  }
+
+
+  static final class LevelReaderResult {
+
+    private final int width;
+
+    private final int height;
 
     @NotNull
-    static LevelReaderResult readLevel(
-            @NotNull Path levelDirectory)
-            throws IOException {
-        return null;
+    private final int[] content;
+
+    LevelReaderResult(int width, int height, int[] content) {
+      this.width = width;
+      this.height = height;
+      this.content = content;
     }
-
-
-    static final class LevelReaderResult {
-
-        private final int width;
-
-        private final int height;
-
-        @NotNull
-        private final int[] content;
-
-        LevelReaderResult(int width, int height, int[] content) {
-            this.width = width;
-            this.height = height;
-            this.content = content;
-        }
-    }
+  }
 }
 ----
