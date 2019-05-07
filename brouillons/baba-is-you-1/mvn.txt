@@ -1,0 +1,6 @@
+mvn archetype:generate \
+-DgroupId=net.archiloque.babaisyousolver \
+-DartifactId=babaisyousolver \
+-DarchetypeArtifactId=maven-archetype-quickstart \
+-DarchetypeVersion=1.4 \
+-DinteractiveMode=false

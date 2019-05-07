@@ -2,7 +2,7 @@
 Julien Kirch
 v0.1, 2019-05-05
 :article_lang: en
-:ignore_files: graph.mmd
+:ignore_files: graph.mmd, tiles.txt, mvn.txt, content.txt, tiles.java, levelreader.java, levelreadertest.java, levelreader2.java
 
 link:https://hempuli.com/baba/[Baba Is You] is a great puzzle game with a more-than-usual complex gameplay since manipulating the game rules is part of the game.
 
@@ -23,12 +23,7 @@ A solver has often complex data types and you need to do much refactoring so a l
 So first we intialize the repo:
 [source,bash]
 ----
-mvn archetype:generate \
--DgroupId=net.archiloque.babaisyousolver \
--DartifactId=babaisyousolver \
--DarchetypeArtifactId=maven-archetype-quickstart \
--DarchetypeVersion=1.4 \
--DinteractiveMode=false
+include::mvn.txt[]
 ----
 
 Then we add the required files (`LICENSE.txt` …) and push it to link:https://github.com/archiloque/babaisyousolver[GitHub].
@@ -51,34 +46,13 @@ What I'd like the files to be:
 .tiles.txt
 [source]
 ----
-b Baba
-B Baba text
-  empty
-f flag
-F flag text
-I is text
-P push text
-r rock
-R rock text
-S stop text
-w wall
-W wall text
-! win text
-Y you text
+include::tiles.txt[]
 ----
 
 .content.txt
 [source]
 ----
-BIY     FIW
-           
-wwwwwwwwwww
-     r     
- b   r   ! 
-     r     
-wwwwwwwwwww
-           
-WIS     RIP
+include::content.txt[]
 ----
 
 I declare all the tiles we use yet, as a `String` to be referenced by the level, and as an `int` to be referenced by the game:
@@ -86,66 +60,7 @@ I declare all the tiles we use yet, as a `String` to be referenced by the level,
 .Tiles.java
 [source,Java]
 ----
-package net.archiloque.babaisyousolver;
-
-/**
- * All the tiles.
- * Should be declared in sorted order so the index
- * of the items in {@link Tiles#ALL_STRINGS}
- * matches the values of the int items.
- */
-final class Tiles {
-
-  private Tiles() {
-  }
-
-  static final String BABA_STRING = "Baba";
-  static final String BABA_TEXT_STRING = "Baba text";
-  static final String EMPTY_STRING = "empty";
-  static final String FLAG_STRING = "flag";
-  static final String FLAG_TEXT_STRING = "flag text";
-  static final String IS_TEXT_STRING = "is text";
-  static final String PUSH_TEXT_STRING = "push text";
-  static final String ROCK_STRING = "rock";
-  static final String ROCK_TEXT_STRING = "rock text";
-  static final String STOP_TEXT_STRING = "stop text";
-  static final String WALL_STRING = "wall";
-  static final String WALL_TEXT_STRING = "wall text";
-  static final String WIN_TEXT_STRING = "win text";
-  static final String YOU_TEXT_STRING = "you text";
-
-  static final String[] ALL_STRINGS = new String[]{
-      BABA_STRING,
-      BABA_TEXT_STRING,
-      EMPTY_STRING,
-      FLAG_STRING,
-      FLAG_TEXT_STRING,
-      IS_TEXT_STRING,
-      PUSH_TEXT_STRING,
-      ROCK_STRING,
-      ROCK_TEXT_STRING,
-      STOP_TEXT_STRING,
-      WALL_STRING,
-      WALL_TEXT_STRING,
-      WIN_TEXT_STRING,
-      YOU_TEXT_STRING,
-  };
-
-  static final int BABA = 1;
-  static final int BABA_TEXT = BABA + 1;
-  static final int EMPTY = BABA_TEXT + 1;
-  static final int FLAG = EMPTY + 1;
-  static final int FLAG_TEXT = FLAG + 1;
-  static final int IS_TEXT = FLAG_TEXT + 1;
-  static final int PUSH_TEXT = IS_TEXT + 1;
-  static final int ROCK = PUSH_TEXT + 1;
-  static final int ROCK_TEXT = ROCK + 1;
-  static final int STOP_TEXT = ROCK_TEXT + 1;
-  static final int WALL = STOP_TEXT + 1;
-  static final int WALL_TEXT = WALL + 1;
-  static final int WIN_TEXT = WALL_TEXT + 1;
-  static final int YOU_TEXT = WIN_TEXT + 1;
-}
+include::tiles.txt[]
 ----
 
 Perhaps later this file will become a pain to maintain so I'll end up putting the content in a config file and generate the Java code from it, but I'll see.
@@ -155,76 +70,7 @@ Drafting the API of how we'll read the level files:
 .LevelReader.java
 [source,Java]
 ----
-package net.archiloque.babaisyousolver;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
-
-final class LevelReader {
-
-  private LevelReader() {
-  }
-
-  private static final String TILES_FILES = "tiles.txt";
-  private static final String CONTENT_FILES = "content.txt";
-
-  /**
-   * Read a level from a directory.
-   */
-  @NotNull
-  static LevelReaderResult readLevel(
-      @NotNull Path levelDirectory)
-      throws IOException {
-    return readContent(levelDirectory, readTiles(levelDirectory));
-  }
-
-  private static final Pattern TILES_REGEX = Pattern.compile("^(.{1}) (.+)$");
-
-  /**
-   * Read the tiles declaration
-   * from the {@link LevelReader#TILES_FILES} file
-   */
-  static @NotNull Map<Character, Integer> readTiles(
-      @NotNull Path levelDirectory) throws IOException {
-    return new HashMap<>();
-  }
-
-  /**
-   * Read the file content
-   * from the {@link LevelReader#CONTENT_FILES} file
-   * relying the declared tiles
-   */
-  static @NotNull LevelReaderResult readContent(
-      @NotNull Path levelDirectory,
-      @NotNull Map<Character,
-          Integer> tiles) throws IOException {
-    return null;
-  }
-
-
-  static final class LevelReaderResult {
-
-    final int width;
-
-    final int height;
-
-    @NotNull
-    final int[] content;
-
-    LevelReaderResult(
-        int width,
-        int height,
-        @NotNull int[] content) {
-      this.width = width;
-      this.height = height;
-      this.content = content;
-    }
-  }
-}
+include::levelreader.java[]
 ----
 
 All the content use arrays instead of arrays of arrays: it simplify the copying, and makes everything faster.
@@ -234,146 +80,17 @@ Then we define the tests (just showing the names):
 .LevelReaderTest.java
 [source,Java]
 ----
-package net.archiloque.babaisyousolver;
-
-import org.junit.Test;
-
-public class LevelReaderTest {
-
-  @Test
-  public void readTilesOK(){}
-
-  @Test
-  public void readTilesFileNotFound(){}
-
-  @Test
-  public void readTilesTilesNotFound(){}
-
-  @Test
-  public void readTilesInvalidSyntax(){}
-
-  @Test
-  public void readContentOK(){}
-
-  @Test
-  public void readContentFileNotFound(){}
-
-  @Test
-  public void readContentInvalidLineLength(){}
-
-  @Test
-  public void readContentUnknownTile(){}
-}
+include::levelreadertest.java[]
 ----
 
 There's a bunch of test for error cases because I hate to debug the code when there's an error with the level files so the error are as explicit as possible.
 
 Then we just have to fill the content of the reader:
 
-.LevelReaderTest.java
+.LevelReader.java
 [source,Java]
 ----
-  private static final String TILES_FILES = "tiles.txt";
-  private static final String CONTENT_FILES = "content.txt";
-
-  /**
-   * Read a level from a directory.
-   */
-  @NotNull
-  static LevelReaderResult readLevel(
-      @NotNull Path levelDirectory)
-      throws IOException {
-    return readContent(
-        levelDirectory,
-        readTiles(levelDirectory));
-  }
-
-  private final static Pattern TILES_REGEX =
-      Pattern.compile("^(.{1}) (.+)$");
-
-  /**
-   * Read the tiles declaration
-   * from the {@link LevelReader#TILES_FILES} file
-   */
-  static @NotNull Map<Character, Integer> readTiles(
-      @NotNull Path levelDirectory
-  ) throws IOException {
-    Path elementsFile = getFile(levelDirectory, TILES_FILES);
-    List<String> tilesContent = Files.readAllLines(elementsFile);
-
-    Map<Character, Integer> result = new HashMap<>();
-    for (String tileLine : tilesContent) {
-      Matcher m = TILES_REGEX.matcher(tileLine);
-      if (!m.find()) {
-        throw new IllegalArgumentException(
-            "Bad tile declaration [" + tileLine + "]");
-
-      }
-      Character character = m.group(1).charAt(0);
-      String tile = m.group(2);
-      int index = Arrays.binarySearch(Tiles.ALL_STRINGS, tile);
-      if (index < 0) {
-        throw new IllegalArgumentException(
-            "Unknown tile [" + tile + "]");
-      }
-      result.put(character, index);
-    }
-    return result;
-  }
-
-  /**
-   * Read the file content
-   * from the {@link LevelReader#CONTENT_FILES} file
-   * relying the declared tiles
-   */
-  static @NotNull LevelReaderResult readContent(
-      @NotNull Path levelDirectory,
-      @NotNull Map<Character, Integer> tiles
-  ) throws IOException {
-    Path elementsFile = getFile(levelDirectory, CONTENT_FILES);
-    List<String> contentContent = Files.readAllLines(elementsFile);
-
-    int height = contentContent.size();
-    int width = contentContent.get(0).length();
-    int[] content = new int[height * width];
-
-    for (int lineIndex = 0; lineIndex < height; lineIndex++) {
-      String contentLine = contentContent.get(lineIndex);
-      if (contentLine.length() != width) {
-        throw new IllegalArgumentException(
-            "[" + contentLine + "] is not " + width +
-                " characters long at line " + lineIndex + " of " +
-                elementsFile.toAbsolutePath());
-      }
-
-      for (int columnIndex = 0; columnIndex < width; columnIndex++) {
-        char c = contentLine.charAt(columnIndex);
-
-        if (tiles.containsKey(c)) {
-          int position = (lineIndex * width) + columnIndex;
-          content[position] = tiles.get(c);
-        } else {
-          throw new IllegalArgumentException(
-              "Unknown tile [" + c
-                  + "] at line " + lineIndex + " of " +
-                  elementsFile.toAbsolutePath());
-        }
-      }
-    }
-    return new LevelReaderResult(width, height, content);
-  }
-
-  private static @NotNull Path getFile(
-      @NotNull Path directory,
-      @NotNull String fileName
-  ) throws FileNotFoundException {
-    Path file = directory.resolve(fileName);
-    if (!Files.exists(file)) {
-      throw new FileNotFoundException(
-          file.toAbsolutePath().toString());
-    }
-    return file;
-  }
+include::levelreader2.java[]
 ----
 
-That's it, we now can read some content!
+That's it, we now can read some content and will be able to deal with the main loop.
