@@ -69,13 +69,22 @@ Ainsi une mise en production d'un premier projet de datascience utilisé en inte
 Mais d'un autre côté, il faut tout de même faire ce qu'il faut pour s'éviter de mauvaises surprises.
 Les sujets d'intégration de systèmes concernent les données, c'est à dire la matière première de votre système : rappellez-vous le début de l'article, une intégration mal maîtrisée c'est le risque d'avoir de mauvaises données ou se retrouver sans données, et donc d'avoir un système inopérant.
 
-Pensez aussi que, s'il est tentant de vouloir passer "`sous le radar`" en coutournant les mécanismes officiels et les personnes dont s'est le travail, cela peut se payer en cas de coup dur, lorsqu'il faut faire appel à des bonnes volontés pour vous aider.
+Pensez aussi que, s'il est tentant de vouloir passer "`sous le radar`" en coutournant les mécanismes officiels et les personnes dont c'est le travail, vous risquez de le regretter lorsqu'il faut faire appel à des bonnes volontés pour vous aider lors qu'un coup dur.
 
-== Les axes
+== Les axes à étudier
 
-=== Pérénité de l'intégration
+=== Mode d'intégration
 
+Le premier axe est celui du mode d'intégration, c'est-à-dire la manière dont votre application est branchée à la source pour s'alimenter en données.
 
+Il s'agit d'un domaine où on est en général très tenté de prendre des raccourcis, car le processus de mise en place de nouveaux de flux de données est souvent complexe avec plusieurs équipes à impliquer, des formulaires à remplir{nbsp}…
+
+Lors des phases de prototypage/conception, j'ai déjà vu plusieurs cas où les personnes travaillaient avec des export de données au format SQL réalisés manuellements, et importés en rejouant les script.
+Cela demande un faible investissement de la part du projet qui fournit les données et les informations sont potentiellement très riches (il suffit d'exporter l'ensemble des tables) et rapidement utilisables (sous réserve que le modèle soit suffisament lisible).
+
+Pour le passage en production, il peut être tentant d'automatiser ce même flot, à l'ancienne via un serveur FTP (voire link:https://fr.wikipedia.org/wiki/Cross_File_Transfer[CFT]), ou version moderne par un bucket S3 ou équivalent.
+
+Malheuresement 
 
 Branchement aux applis qui fournissent de la donnée = couplage = ça peut casser
 
