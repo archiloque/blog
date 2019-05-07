@@ -3,6 +3,8 @@ Julien Kirch
 v0.1, 2019-05-05
 :article_lang: en
 :ignore_files: graph.mmd, tiles.txt, mvn.txt, content.txt, tiles.java, levelreader.java, levelreadertest.java, levelreader2.java
+:source-highlighter: pygments
+:pygments-style: friendly
 
 link:https://hempuli.com/baba/[Baba Is You] is a great puzzle game with a more-than-usual complex gameplay since manipulating the game rules is part of the game.
 
@@ -58,7 +60,7 @@ include::content.txt[]
 I declare all the tiles we use yet, as a `String` to be referenced by the level, and as an `int` to be referenced by the game:
 
 .Tiles.java
-[source,Java]
+[source,java]
 ----
 include::tiles.txt[]
 ----
@@ -68,7 +70,7 @@ Perhaps later this file will become a pain to maintain so I'll end up putting th
 Drafting the API of how we'll read the level files:
 
 .LevelReader.java
-[source,Java]
+[source,java]
 ----
 include::levelreader.java[]
 ----
@@ -78,7 +80,7 @@ All the content use arrays instead of arrays of arrays: it simplify the copying,
 Then we define the tests (just showing the names):
 
 .LevelReaderTest.java
-[source,Java]
+[source,java]
 ----
 include::levelreadertest.java[]
 ----
@@ -88,7 +90,7 @@ There's a bunch of test for error cases because I hate to debug the code when th
 Then we just have to fill the content of the reader:
 
 .LevelReader.java
-[source,Java]
+[source,java]
 ----
 include::levelreader2.java[]
 ----
