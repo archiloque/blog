@@ -75,7 +75,7 @@ SOAP et les pratiques qui l'accompagnaient promettait de nombreux avantages et d
 (Pour être tout à fait précis{nbsp}: même si dans les fait SOAP est surtout utilisé en mode synchrone, la spécification lui permet d'être synchrone ou asynchrone, link:https://www.w3.org/TR/soap12-email/[une spécification] définit même comment faire du SOAP via SMTP.)
 
 Une caractéristique des services qui n'est pas pas partagée par tous les systèmes de messages est le fait que l'intermédiaire entre l'exposant et le consommateur ne stocke pas de messages de manière résiliente{nbsp}:
-si certaines technologies de message peuvent faire de la persistance pour pallier à des redémarrages, toutes ne le font pas comme par exemple link:http://zeromq.org[ZeroMQ].
+si certaines technologies de message peuvent faire de la persistance pour pallier à des redémarrages, toutes ne le font pas comme par exemple link:http://zeromq.org[ZeroMQ] ou link:https://redis.io/topics/pubsub[Redis].
 
 Dans les systèmes de messages, l'intermédiaire est souvent visible, par exemple sous la forme d'un composant supplémentaire à déployer, alors que les appels de service peuvent se faire sans intermédiaire, par exemple par appels HTTP directs entre serveurs.
 On peut penser qu'il s'agit là d'un critère séparant les deux groupes.
