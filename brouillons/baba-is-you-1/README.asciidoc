@@ -62,7 +62,7 @@ I declare all the tiles we use yet, as a `String` to be referenced by the level,
 .Tiles.java
 [source,java]
 ----
-include::tiles.txt[]
+include::tiles.java[]
 ----
 
 Perhaps later this file will become a pain to maintain so I'll end up putting the content in a config file and generate the Java code from it, but I'll see.
