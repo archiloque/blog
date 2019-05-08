@@ -16,7 +16,7 @@ the rules can't be changed.
 
 This means that fixed rules can be enough to solve this level, and that the changing rules thingie can be dealt with later.
 
-image::graph.svg[width=731,height=513]
+image::graph1.svg[width=731,height=513]
 
 == First the plumbing
 
@@ -65,7 +65,7 @@ include::level2.java[]
 
 Calling `State#processState` will add some new possible ``State``s to the list, so the minimal version of the solver loop is now complete.
 
-The last plumbing part is the entry point of the game.
+The last part is the entry point of the game.
 
 .App.java
 [source,java]
@@ -79,3 +79,24 @@ The workflow is now completed, and we can now try to (kinda) solve the level:
 ----
 include::log0.txt[]
 ----
+
+== And now some logic
+
+It's time to add some logic in the code to make good use of all this plumbing.
+
+=== First: how to solve a level
+
+Each turn we consider a game state, from it there is _at most_ four possible moves: going up, down, right or left.
+
+At most because some direction can be blocked, things can kill you (not in the first level), or you can alter a rule and stop to control anything (not in the first level either).
+
+If you can go in a direction, you may reach a winning state, in this case we stop the solving.
+
+If you don't solve the level, you can add this new state to the list, and go on with the main loop.
+
+There's a catch: Baba is not a "`burning bridge`" game where you can't move back.
+Before checking if a new state is interesting, it must be vetted against the previously met cases to avoid doing the same thing again and again.
+
+image::graph2.svg[width=681,height=505,title="The inner algo"]
+
+== Second: how to represent a level
