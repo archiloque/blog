@@ -63,7 +63,9 @@ We can them add the code related to the state lists in the `Level`.
 include::level2.java[]
 ----
 
-And the last plumbing part is the entry point of the game.
+Calling `State#processState` will add some new possible ``State``s to the list, so the minimal version of the solver loop is now complete.
+
+The last plumbing part is the entry point of the game.
 
 .App.java
 [source,java]
@@ -71,7 +73,7 @@ And the last plumbing part is the entry point of the game.
 include::app.java[]
 ----
 
-The workflow is not complete, and we can now try to (kinda) solve the level:
+The workflow is now completed, and we can now try to (kinda) solve the level:
 
 [source]
 ----
