@@ -1,4 +1,4 @@
-= Writing a "`Baba Is You`" solver, part 1
+= Writing a "`Baba Is You`" solver, part 1: reading levels
 Julien Kirch
 v0.1, 2019-05-05
 :article_lang: en
@@ -10,11 +10,11 @@ link:https://hempuli.com/baba/[Baba Is You] is a great puzzle game with a more-t
 
 I think it's a good candidate to write a solver for, and to write some articles documenting how I'm doing it.
 
-As I've explained link:../solveurs/[in a previous article] (in French), the main engine of a puzzle solver is a loop used to iterate until we find a solution.
+As I've explained link:../solveurs/[in a previous article] (in French), the main engine of a puzzle solver is a loop used to iterate until a solution is found.
 
 image::graph.svg[width=731,height=513]
 
-But, first we need to be able to feed the data to the loop, which means reading the levels from disk.
+But, first I need to be able to initializee the loop, which means reading the levels from disk.
 
 == Create the project
 
@@ -22,13 +22,13 @@ First thing is to bootstrap the project.
 
 A solver has often complex data types and you need to do much refactoring so a language with static types is great, and a fast language is nice to have to make things faster, so my tool of choice for this case is Java.
 
-So first we intialize the repo:
+So first intialize the repo:
 [source,bash]
 ----
 include::mvn.txt[]
 ----
 
-Then we add the required files (`LICENSE.txt` …) and push it to link:https://github.com/archiloque/babaisyousolver[GitHub].
+Then add the required files (`LICENSE.txt` …) and push it to link:https://github.com/archiloque/babaisyousolver[GitHub].
 
 == Designing how to read levels
 
@@ -57,7 +57,7 @@ include::tiles.txt[]
 include::content.txt[]
 ----
 
-I declare all the tiles we use yet, as a `String` to be referenced by the level, and as an `int` to be referenced by the game:
+I declare all the tiles use by the first level, as a `String` to be referenced by the level, and as an `int` to be referenced by the game:
 
 .Tiles.java
 [source,java]
@@ -67,7 +67,7 @@ include::tiles.java[]
 
 Perhaps later this file will become a pain to maintain so I'll end up putting the content in a config file and generate the Java code from it, but I'll see.
 
-Drafting the API of how we'll read the level files:
+Drafting the API of how to read the level files:
 
 .LevelReader.java
 [source,java]
@@ -77,7 +77,7 @@ include::levelreader.java[]
 
 All the content use arrays instead of arrays of arrays: it simplify the copying, and makes everything faster.
 
-Then we define the tests (just showing the names):
+Then define the tests (just showing the names):
 
 .LevelReaderTest.java
 [source,java]
@@ -87,7 +87,7 @@ include::levelreadertest.java[]
 
 There's a bunch of test for error cases because I hate to debug the code when there's an error with the level files so the error are as explicit as possible.
 
-Then we just have to fill the content of the reader:
+Then fill the content of the reader:
 
 .LevelReader.java
 [source,java]
@@ -95,4 +95,4 @@ Then we just have to fill the content of the reader:
 include::levelreader2.java[]
 ----
 
-Now can we read a level from disk and will be able to start implementing the solving logic.
+Now the code read a level from disk and will be able to start implementing the solving logic.
