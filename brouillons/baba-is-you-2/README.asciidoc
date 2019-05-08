@@ -1,4 +1,4 @@
-= Writing a "`Baba Is You`" solver, part 2: the first level
+= Writing a "`Baba Is You`" solver, part 2: plumbing
 Julien Kirch
 v0.1, 2019-05-05
 :article_lang: en
@@ -6,19 +6,19 @@ v0.1, 2019-05-05
 :article_image: first-level.png
 :source-highlighter: pygments
 :pygments-style: friendly
+:article_description: Technical code and no business logic, at least I avoided creating a framework…
 
 Following link:../babis-you-1/[the first part], we'll work on solving the first level.
 
 image::first-level.png[title="Here it is"]
 
-The first level has a feature that will simplify things:
+The first level has a feature that will things much simpler:
 the rules can't be changed.
 
-This means that fixed rules can be enough to solve this level, and that the changing rules thingie can be dealt with later.
+This means that fixed rules can be enough to solve this level,
+and that the changing rules thingie can be dealt with later.
 
 image::graph1.svg[width=731,height=513]
-
-== First the plumbing
 
 Before dealing with the solving logic, some plumbing is required to establish the game loop.
 
@@ -80,23 +80,4 @@ The workflow is now completed, and we can now try to (kinda) solve the level:
 include::log0.txt[]
 ----
 
-== And now some logic
-
-It's time to add some logic in the code to make good use of all this plumbing.
-
-=== First: how to solve a level
-
-Each turn we consider a game state, from it there is _at most_ four possible moves: going up, down, right or left.
-
-At most because some direction can be blocked, things can kill you (not in the first level), or you can alter a rule and stop to control anything (not in the first level either).
-
-If you can go in a direction, you may reach a winning state, in this case we stop the solving.
-
-If you don't solve the level, you can add this new state to the list, and go on with the main loop.
-
-There's a catch: Baba is not a "`burning bridge`" game where you can't move back.
-Before checking if a new state is interesting, it must be vetted against the previously met cases to avoid doing the same thing again and again.
-
-image::graph2.svg[width=681,height=505,title="The inner algo"]
-
-== Second: how to represent a level
+That's it for the moment, in the next part we'll start adding some logic in the code to make good use of all this plumbing.

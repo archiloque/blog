@@ -1,0 +1,28 @@
+= Writing a "`Baba Is You`" solver, part 3: some logic
+Julien Kirch
+v0.1, 2019-05-09
+:article_lang: en
+:ignore_files: 
+:article_image: first-level.png
+:source-highlighter: pygments
+:pygments-style: friendly
+:article_description: First much theory … then lots of code
+
+Following link:../babis-you-2/[the second part], we'll deal with the solving logic.
+
+== First: how to solve a level
+
+Each turn we consider a game state, from it there is _at most_ four possible moves: going up, down, right or left.
+
+At most because some direction can be blocked, things can kill you (not in the first level), or you can alter a rule and stop to control anything (not in the first level either).
+
+If you can go in a direction, you may reach a winning state, in this case we stop the solving.
+
+If you don't solve the level, you can add this new state to the list, and go on with the main loop.
+
+There's a catch: Baba is not a "`burning bridge`" game where you can't move back.
+Before checking if a new state is interesting, it must be vetted against the previously met cases to avoid doing the same thing again and again.
+
+image::graph2.svg[width=681,height=505,title="The inner algo"]
+
+== Second: how to represent a level
