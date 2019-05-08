@@ -79,7 +79,9 @@ All the content use arrays instead of arrays of arrays: it simplify the copying,
 
 I use link:https://www.jetbrains.com/help/idea/annotating-source-code.html[JetBrains's annotations] extensively to handle nullability in my code, when I code with link:https://www.jetbrains.com/idea/[Idea] it's an acceptable substitute of have it build into the language.
 
-Then define the tests (just showing the names):
+== Add some code
+
+First the tests (just showing the names):
 
 .LevelReaderTest.java
 [source,java]
