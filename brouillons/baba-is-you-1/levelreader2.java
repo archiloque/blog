@@ -1,7 +1,3 @@
-
-  private final static Pattern TILES_REGEX =
-      Pattern.compile("^(.{1}) (.+)$");
-
   /**
    * Read the tiles declaration
    * from the {@link LevelReader#TILES_FILES} file
@@ -52,23 +48,30 @@
       String contentLine = contentContent.get(lineIndex);
       if (contentLine.length() != width) {
         throw new IllegalArgumentException(
-            "[" + contentLine + "] is not " + width +
-                " characters long at line " + lineIndex + " of " +
+            "[" +
+                contentLine +
+                "] is not " +
+                width +
+                " characters long at line " +
+                lineIndex +
+                " of " +
                 elementsFile.toAbsolutePath());
       }
 
       for (int columnIndex = 0; columnIndex < width; columnIndex++) {
         char c = contentLine.charAt(columnIndex);
 
-        if (tiles.containsKey(c)) {
-          int position = (lineIndex * width) + columnIndex;
-          content[position] = tiles.get(c);
-        } else {
+        if (!tiles.containsKey(c)) {
           throw new IllegalArgumentException(
-              "Unknown tile [" + c
-                  + "] at line " + lineIndex + " of " +
+              "Unknown tile [" +
+                  c +
+                  "] at line " +
+                  lineIndex +
+                  " of " +
                   elementsFile.toAbsolutePath());
         }
+        int position = (lineIndex * width) + columnIndex;
+        content[position] = tiles.get(c);
       }
     }
     return new LevelReaderResult(width, height, content);
@@ -84,23 +87,4 @@
           file.toAbsolutePath().toString());
     }
     return file;
-  }
-
-  static final class LevelReaderResult {
-
-    final int width;
-
-    final int height;
-
-    @NotNull
-    final int[] content;
-
-    LevelReaderResult(
-        int width,
-        int height,
-        @NotNull int[] content) {
-      this.width = width;
-      this.height = height;
-      this.content = content;
-    }
   }

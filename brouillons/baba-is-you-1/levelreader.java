@@ -24,7 +24,8 @@ final class LevelReader {
     return readContent(levelDirectory, readTiles(levelDirectory));
   }
 
-  private static final Pattern TILES_REGEX = Pattern.compile("^(.{1}) (.+)$");
+  private final static Pattern TILES_REGEX =
+      Pattern.compile("^(.{1}) (.+)$");
 
   /**
    * Read the tiles declaration
