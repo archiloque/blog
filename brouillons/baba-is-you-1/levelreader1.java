@@ -1,12 +1,3 @@
-package net.archiloque.babaisyousolver;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
-
 final class LevelReader {
 
   private LevelReader() {
@@ -57,8 +48,7 @@ final class LevelReader {
 
     final int height;
 
-    @NotNull
-    final int[] content;
+    final @NotNull int[] content;
 
     LevelReaderResult(
         int width,

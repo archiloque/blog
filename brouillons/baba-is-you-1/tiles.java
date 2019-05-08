@@ -1,5 +1,3 @@
-package net.archiloque.babaisyousolver;
-
 /**
  * All the tiles.
  * Should be declared in sorted order so the index

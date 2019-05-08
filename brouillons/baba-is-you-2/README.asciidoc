@@ -24,10 +24,56 @@ Before dealing with the solving logic, some plumbing is required to establish th
 
 Most of the code shown here is ported from my previous link:https://github.com/archiloque/rgbexpress[efforts].
 
-First the `Level` class will contain data related to a game level, at first only the information we found in the level, then -- by experience -- we'll add other data that will make the calculations simpler / faster.
+First the `Level` class will contain data related to a game level, at first only the information we found in the level, then -- by experience -- we'll add other data that will make the calculations simpler and/or faster.
 
 .Level.java
 [source,java]
 ----
-include::tiles.txt[]
+include::level1.java[]
+----
+
+Then the `State` will represent a state of the game being solved.
+It will follow the same path as the `Level`: it starts as a small class with few attributes (the current status of the game and a pointer to the `Level`) and becomes larger as we add features.
+
+.State.java
+[source,java]
+----
+include::state1.java[]
+----
+
+To manage the list of states several possibilities are available, like using a link:https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)[FIFO queue] for link:https://en.wikipedia.org/wiki/Depth-first_search[depth-first search] or a link:https://en.wikipedia.org/wiki/Stack_(abstract_data_type)[stack] for link:https://en.wikipedia.org/wiki/Breadth-first_search[breadth-first search].
+
+The choice depends of the type of problem and I don't have a criteria to choose: it something I tweak along.
+
+My last projetc used a FIFO queue so let's use one.
+
+.FiFoQueue.java
+[source,java]
+----
+include::fifoqueue.java[]
+----
+
+I use a custom implementation since the code is short and it's only doing what I need.
+
+We can them add the code related to the state lists in the `Level`.
+
+.Level.java
+[source,java]
+----
+include::level2.java[]
+----
+
+And the last plumbing part is the entry point of the game.
+
+.App.java
+[source,java]
+----
+include::app.java[]
+----
+
+The workflow is not complete, and we can now try to (kinda) solve the level:
+
+[source]
+----
+include::log0.txt[]
 ----

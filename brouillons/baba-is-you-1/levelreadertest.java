@@ -1,7 +1,3 @@
-package net.archiloque.babaisyousolver;
-
-import org.junit.Test;
-
 public class LevelReaderTest {
 
   @Test

@@ -1,16 +1,10 @@
-package net.archiloque.babaisyousolver;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 class Level {
 
   final int width;
 
   final int height;
 
-  @NotNull
-  final int[] content;
+  final @NotNull int[] content;
 
   Level(
       int width,
