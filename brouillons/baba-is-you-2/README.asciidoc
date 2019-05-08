@@ -3,7 +3,31 @@ Julien Kirch
 v0.1, 2019-05-05
 :article_lang: en
 :ignore_files: 
+:article_image: first-level.png
 :source-highlighter: pygments
 :pygments-style: friendly
 
 Following link:../babis-you-1/[the first part], we'll work on solving the first level.
+
+image::first-level.png[title="Here it is"]
+
+The first level has a feature that will simplify things:
+the rules can't be changed.
+
+This means that fixed rules can be enough to solve this level, and that the changing rules thingie can be dealt with later.
+
+image::graph.svg[width=731,height=513]
+
+== First the plumbing
+
+Before dealing with the solving logic, some plumbing is required to establish the game loop.
+
+Most of the code shown here is ported from my previous link:https://github.com/archiloque/rgbexpress[efforts].
+
+First the `Level` class will contain data related to a game level, at first only the information we found in the level, then -- by experience -- we'll add other data that will make the calculations simpler / faster.
+
+.Level.java
+[source,java]
+----
+include::tiles.txt[]
+----

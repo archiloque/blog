@@ -3,6 +3,7 @@ Julien Kirch
 v0.1, 2019-05-05
 :article_lang: en
 :ignore_files: graph.mmd, tiles.txt, mvn.txt, content.txt, tiles.java, levelreader.java, levelreadertest.java, levelreader2.java
+:article_image: first-level.png
 :source-highlighter: pygments
 :pygments-style: friendly
 
@@ -45,19 +46,19 @@ image::first-level.png[title="The first level"]
 
 What I'd like the files to be:
 
-.tiles.txt
+.levels/1/tiles.txt
 [source]
 ----
 include::tiles.txt[]
 ----
 
-.content.txt
+.levels/1/content.txt
 [source]
 ----
 include::content.txt[]
 ----
 
-I declare all the tiles use by the first level, as a `String` to be referenced by the level, and as an `int` to be referenced by the game:
+I declare all the tiles used by the first level, as a `String` to be referenced by the level, and as an `int` to be referenced by the game:
 
 .Tiles.java
 [source,java]
@@ -65,17 +66,19 @@ I declare all the tiles use by the first level, as a `String` to be referenced b
 include::tiles.java[]
 ----
 
-Perhaps later this file will become a pain to maintain so I'll end up putting the content in a config file and generate the Java code from it, but I'll see.
+Perhaps later this file will become a pain to maintain so I'll end up putting the content in a config file and generate the Java code from it but for now I prefer to use a simpler way.
 
 Drafting the API of how to read the level files:
 
-.LevelReader.java
+.LevelReader1.java
 [source,java]
 ----
 include::levelreader.java[]
 ----
 
-All the content use arrays instead of arrays of arrays: it simplify the copying, and makes everything faster.
+Calling `LevelReader#readLevel` will return a `LevelReader.LevelReaderResult` containing the data in a ready to use format.
+
+All the data will use arrays instead of arrays of arrays: it simplifies the copying, and makes everything faster.
 
 I use link:https://www.jetbrains.com/help/idea/annotating-source-code.html[JetBrains's annotations] extensively to handle nullability in my code, when I code with link:https://www.jetbrains.com/idea/[Idea] it's an acceptable substitute of have it build into the language.
 
