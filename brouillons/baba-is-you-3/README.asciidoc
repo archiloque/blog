@@ -33,5 +33,12 @@ Before checking if a new state is interesting, it must be vetted against the pre
 
 image::graph2.svg[width=681,height=505,title="The inner algo"]
 
-== Second: how to represent a level
+== Then some code
 
+First thing is to detect if a move is possible.
+
+In the further levels of the game, "`you`" can be several items, but in the first level you only control Baba, so first let's find Baba.
+
+So being possible to go in a direction means only testing if Baba can go in this direction.
+
+First I check if Baba can physically go in this direction from the level size point of view.

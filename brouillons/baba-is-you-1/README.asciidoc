@@ -84,6 +84,17 @@ Calling `LevelReader#readLevel` will return a `LevelReader.LevelReaderResult` co
 
 All the data will use arrays instead of arrays of arrays: it simplifies the copying, and makes everything faster.
 
+To convert a line/column coordinate to a position and back you need to use this code:
+
+[source,java]
+----
+int line = position / levelWidth;
+int column = position % levelWidth;
+
+int position = (line * levelWidth) + column;
+----
+
+
 I use link:https://www.jetbrains.com/help/idea/annotating-source-code.html[JetBrains's annotations] extensively to handle nullability in my code, when I code with link:https://www.jetbrains.com/idea/[Idea] it's an acceptable substitute of have it build into the language.
 
 == Add some code
