@@ -80,11 +80,18 @@ Le premier axe est celui du mode d'intégration, c'est-à-dire la manière dont 
 Il s'agit d'un domaine où on est en général très tenté de prendre des raccourcis, car le processus de mise en place de nouveaux de flux de données est souvent complexe avec plusieurs équipes à impliquer, des formulaires à remplir{nbsp}…
 
 Lors des phases de prototypage/conception, j'ai déjà vu plusieurs cas où les personnes travaillaient avec des export de données au format SQL réalisés manuellements, et importés en rejouant les script.
-Cela demande un faible investissement de la part du projet qui fournit les données et les informations sont potentiellement très riches (il suffit d'exporter l'ensemble des tables) et rapidement utilisables (sous réserve que le modèle soit suffisament lisible).
+Cela demande un faible investissement de la part du projet qui fournit les données et les informations sont potentiellement très riches (il suffit d'exporter l'ensemble des tables avec toutes les colonnes) et rapidement utilisables (sous réserve que le modèle soit suffisament lisible).
 
 Pour le passage en production, il peut être tentant d'automatiser ce même flot, à l'ancienne via un serveur FTP (voire link:https://fr.wikipedia.org/wiki/Cross_File_Transfer[CFT]), ou version moderne par un bucket S3 ou équivalent.
 
-Malheuresement 
+L'inconvénient est que cela signifie un couplage avec le modèle de stockage de données de l'application source, c'est-à-dire une des pire choses qui puisse arriver.
+
+Cela signifie que le schéma de base de données -- votre structure SQL ou équivalent -- devient une API pour une autre application, et donc qu'une modification du schéma entrainera les mêmes questions de compatibilité qu'une mise à jour d'un contrat de service.
+
+Il y a des solutions techniques utilisables, pour gérer de la compatibilité de modèle, par exemple avec des vues, mais je ne les conseille à personne.
+
+En principe, un modèle de stockage de donnée n'est visible que 
+
 
 Branchement aux applis qui fournissent de la donnée = couplage = ça peut casser
 
