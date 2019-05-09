@@ -8,9 +8,17 @@ v0.1, 2019-05-09
 :pygments-style: friendly
 :article_description: First much theory … then lots of code
 
-Following link:../babis-you-2/[the second part], we'll deal with the solving logic.
+Following link:../babis-you-2/[the second part], we'll deal with the logic to solve the first level.
 
-== First: how to solve a level
+image::first-level.png[title="Here it is"]
+
+The first level has a feature that will things much simpler:
+the rules can't be changed.
+
+This means that fixed rules can be enough to solve this level,
+and that the changing rules features can be dealt with later.
+
+== First the algo
 
 Each turn we consider a game state, from it there is _at most_ four possible moves: going up, down, right or left.
 
@@ -26,3 +34,4 @@ Before checking if a new state is interesting, it must be vetted against the pre
 image::graph2.svg[width=681,height=505,title="The inner algo"]
 
 == Second: how to represent a level
+

@@ -8,23 +8,15 @@ v0.1, 2019-05-05
 :pygments-style: friendly
 :article_description: Technical code and no business logic, at least I avoided creating a framework…
 
-Following link:../babis-you-1/[the first part], we'll work on solving the first level.
-
-image::first-level.png[title="Here it is"]
-
-The first level has a feature that will things much simpler:
-the rules can't be changed.
-
-This means that fixed rules can be enough to solve this level,
-and that the changing rules thingie can be dealt with later.
-
-image::graph1.svg[width=731,height=513]
+Following link:../babis-you-1/[the first part] about reading the levels, it's time to do some plumbing.
 
 Before dealing with the solving logic, some plumbing is required to establish the game loop.
 
+image::graph1.svg[width=731,height=513]
+
 Most of the code shown here is ported from my previous link:https://github.com/archiloque/rgbexpress[efforts].
 
-First the `Level` class will contain data related to a game level, at first only the information we found in the level, then -- by experience -- we'll add other data that will make the calculations simpler and/or faster.
+First the `Level` class will contain data related to a game level, at first only the information found in the level we read in the first part, then -- by experience -- we'll add other data that will make the calculations simpler and/or faster.
 
 .Level.java
 [source,java]
@@ -33,7 +25,7 @@ include::level1.java[]
 ----
 
 Then the `State` will represent a state of the game being solved.
-It will follow the same path as the `Level`: it starts as a small class with few attributes (the current status of the game and a pointer to the `Level`) and becomes larger as we add features.
+It will follow the same path as the `Level`: it starts as a small class with few attributes (the current status of the game and a pointer to the `Level`) and becomes larger as features are added, for example to store the dynamic rules.
 
 .State.java
 [source,java]
@@ -73,11 +65,11 @@ The last part is the entry point of the game.
 include::app.java[]
 ----
 
-The workflow is now completed, and we can now try to (kinda) solve the level:
+The workflow is now completed, and the program can be run to (kinda) solve the level:
 
 [source]
 ----
 include::log0.txt[]
 ----
 
-That's it for the moment, in the next part we'll start adding some logic in the code to make good use of all this plumbing.
+That's it for the moment, in the next part I'll start adding some logic in the code to make good use of all this plumbing.
