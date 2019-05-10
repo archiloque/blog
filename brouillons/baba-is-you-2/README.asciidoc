@@ -42,7 +42,7 @@ My last projetc used a FIFO queue so let's use one.
 .FiFoQueue.java
 [source,java]
 ----
-include::fifoqueue.java[]
+include::fifoqueue1.java[]
 ----
 
 I use a custom implementation since the code is short and it's only doing what I need.
@@ -62,14 +62,14 @@ The last part is the entry point of the game.
 .App.java
 [source,java]
 ----
-include::app.java[]
+include::app1.java[]
 ----
 
 The workflow is now completed, and the program can be run to (kinda) solve the level:
 
 [source]
 ----
-include::log0.txt[]
+include::log1.txt[]
 ----
 
 That's it for the moment, in the next part I'll start adding some logic in the code to make good use of all this plumbing.

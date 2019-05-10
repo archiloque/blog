@@ -41,4 +41,18 @@ In the further levels of the game, "`you`" can be several items, but in the firs
 
 So being possible to go in a direction means only testing if Baba can go in this direction.
 
-First I check if Baba can physically go in this direction from the level size point of view.
+First I check if Baba can physically go in this direction from the level size point of view:
+
+.State.java
+[source,java]
+----
+include::state2.java[]
+----
+
+And testing it:
+
+.StateTest.java
+[source,java]
+----
+include::statetest1.java[]
+----

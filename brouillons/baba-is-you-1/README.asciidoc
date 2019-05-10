@@ -77,23 +77,24 @@ Drafting the API of how to read the level files:
 .LevelReader1.java
 [source,java]
 ----
-include::levelreader.java[]
+include::levelreader1.java[]
 ----
 
 Calling `LevelReader#readLevel` will return a `LevelReader.LevelReaderResult` containing the data in a ready to use format.
 
 All the data will use arrays instead of arrays of arrays: it simplifies the copying, and makes everything faster.
 
-To convert a line/column coordinate to a position and back you need to use this code:
+Representing a position as a single integer can also make things simpler when you need to pass or return info since it use a single value instead of an object that need to be created each time.
+
+To convert a line/column coordinate to a position used in a flat array and back you need to use this code:
 
 [source,java]
 ----
-int line = position / levelWidth;
-int column = position % levelWidth;
+int position = (indexLine * levelWidth) + indexColumn;
 
-int position = (line * levelWidth) + column;
+int indexLine = position / levelWidth;
+int indexColumn = position % levelWidth;
 ----
-
 
 I use link:https://www.jetbrains.com/help/idea/annotating-source-code.html[JetBrains's annotations] extensively to handle nullability in my code, when I code with link:https://www.jetbrains.com/idea/[Idea] it's an acceptable substitute of have it build into the language.
 
@@ -117,4 +118,4 @@ Then fill the content of the reader:
 include::levelreader2.java[]
 ----
 
-Now the code read a level from disk and I'll start implementing the solving logic in the next article.
+Now the code read a level from disk and the next article will start implementating the solving logic.
