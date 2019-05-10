@@ -13,26 +13,26 @@ class StateTest {
     private final List<int[]> movements = new ArrayList<>();
 
     StateToTestAvailableMovements(
-        @NotNull Level level, 
+        @NotNull Level level,
         @NotNull int[] content) {
       super(level, content);
     }
 
     @Override
-    boolean tryToGo(int deltaLine, int deltaColumn) {
+    boolean tryToGo(int babaPosition, int deltaLine, int deltaColumn) {
       movements.add(new int[]{deltaLine, deltaColumn});
       return false;
     }
   }
 
   private void checkAvailableMovements(
-      int babaIndex, 
+      int babaIndex,
       @NotNull int[][] movements) {
     int[] levelContent = new int[9];
     Arrays.fill(levelContent, Tiles.EMPTY);
     levelContent[babaIndex] = Tiles.BABA;
     Level level = new Level(3, 3, levelContent);
-    StateToTestAvailableMovements state = 
+    StateToTestAvailableMovements state =
         new StateToTestAvailableMovements(level, levelContent);
     state.processState();
     assertArrayEquals(movements, state.movements.toArray());

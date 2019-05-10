@@ -10,28 +10,28 @@
 
     // Up
     if (babaLine > 0) {
-      if (tryToGo(-1, 0)) {
+      if (tryToGo(babaPosition, -1, 0)) {
         return true;
       }
     }
 
     // Down
     if (babaLine < (level.height - 1)) {
-      if (tryToGo(1, 0)) {
+      if (tryToGo(babaPosition, 1, 0)) {
         return true;
       }
     }
 
     // Left
     if (babaColumn > 0) {
-      if (tryToGo(0, -1)) {
+      if (tryToGo(babaPosition, 0, -1)) {
         return true;
       }
     }
 
     // Right
     if (babaColumn < (level.width - 1)) {
-      if (tryToGo(0, +1)) {
+      if (tryToGo(babaPosition, 0, +1)) {
         return true;
       }
     }
@@ -39,7 +39,7 @@
     return false;
   }
 
-  boolean tryToGo(int deltaLine, int deltaColumn) {
+  boolean tryToGo(int babaPosition, int deltaLine, int deltaColumn) {
     // @TODO probably add some code here
     return false;
   }
