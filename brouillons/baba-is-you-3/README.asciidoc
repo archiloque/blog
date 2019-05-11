@@ -24,7 +24,7 @@ Following link:../babis-you-2/[the second part],
 endif::[]
 I'll deal with the logic to find a solution to the first level.
 
-image::../baba-is-you-3/first-level3.png[title="Here it is",align="center"]
+image::../baba-is-you-3/first-level3.png[title="Here it is",align="center",width=293,height=342]
 
 The first level has a feature that will things much simpler:
 the rules can't be changed.
@@ -112,7 +112,7 @@ include::statetrytogotest1.java[]
 
 == _A_ solution
 
-The title of this article is "`finding _a_ solution`", because I'll first write the code to find a valid solution, with a simplified algo that don't cover all possible cases, then I'll update it to make it compliant with the game rules.
+The title of this part is "`finding _a_ solution`", because I'll first write the code to find a valid solution, with a simplified algo that don't cover all possible cases, then I'll update it to make it compliant with the game rules.
 
 I'll do it this way because the update will add complexity to the behaviors, and I prefer to first reach a state where I solved something.
 

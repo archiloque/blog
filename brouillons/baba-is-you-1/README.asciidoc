@@ -18,8 +18,9 @@ endif::[]
 
 link:https://hempuli.com/baba/[Baba Is You] is a great puzzle game with a more-than-usual complex gameplay since manipulating the game rules is part of the game.
 
-I think it's a good candidate to write a solver for, and to write some articles documenting how I'm doing it.
-I'm writing the articles while coding the solver and not as a post-mortem, so expect some bad design and implementation decisions along the way.
+I think it's a good candidate to write a solver for, and to document how I'm doing it.
+
+I'm writing while coding the solver and not as a post-mortem, so expect some bad design and implementation decisions along the way.
 
 As I've explained link:../solveurs/[in a previous article] (in French), a puzzle solver rely on a loop used to iterate until a solution is found.
 
@@ -57,7 +58,7 @@ For Baba, the number of possible tiles seems large from the levels I've played s
 
 Levels use a square grid, and there is at most one item per tile in the starting position.
 
-image::../baba-is-you-1/first-level1.png[title="The first level",align="center"]
+image::../baba-is-you-1/first-level1.png[title="The first level",align="center",width=293,height=342]
 
 What I'd like the files to be:
 
@@ -140,4 +141,4 @@ Then fill the content of the reader:
 include::levelreader2.java[]
 ----
 
-Now the code reads a level from disk and the next article will start implementing the solving logic.
+Now the code reads a level from disk and the next part will start implementing the solving logic.
