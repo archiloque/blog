@@ -1,4 +1,4 @@
-class StateTest {
+class StateAvailableMovementsTest {
 
   private static final int[] UP = new int[]{-1, 0};
   private static final int[] DOWN = new int[]{1, 0};

@@ -1,4 +1,4 @@
-= Writing a "`Baba Is You`" solver, part 3: some logic
+= Writing a "`Baba Is You`" solver, part 3: finding a solution to the first level
 Julien Kirch
 v0.1, 2019-05-09
 :article_lang: en
@@ -8,7 +8,7 @@ v0.1, 2019-05-09
 :pygments-style: friendly
 :article_description: First much theory … then lots of code
 
-Following link:../babis-you-2/[the second part], we'll deal with the logic to solve the first level.
+Following link:../babis-you-2/[the second part], we'll deal with the logic to find a solution to the first level.
 
 image::first-level.png[title="Here it is"]
 
@@ -41,7 +41,7 @@ In the further levels of the game, "`you`" can be several items, but in the firs
 
 So being possible to go in a direction means only testing if Baba can go in this direction.
 
-First I check if Baba can physically go in this direction from the level size point of view:
+First I check if Baba can physically go in this direction from the level point of view:
 
 .State.java
 [source,java]
@@ -51,8 +51,38 @@ include::state2.java[]
 
 And testing it:
 
-.StateTest.java
+.StateAvailableMovementsTest.java
 [source,java]
 ----
-include::statetest1.java[]
+include::stateavailablemovementstest1.java[]
 ----
+
+Then we must deal with the content.
+The behavior depends of the content of the position we want to move to.
+The code must do three things: test if the movement is valid, test if the new position is a winning one, and calculate the new board position.
+
+It would be possible to write each step in separate pass but I find it easier to do it in one time because all three steps depends mostly of the kind of elements on the target tile.
+
+Calculating a new board position is done by cloning the existing one and updating the values that need to be updated.
+
+Pushing a rock is more complex case than the others, so I'll ignore it first:
+
+.State.java
+[source,java]
+----
+include::state3.java[]
+----
+
+And testing it:
+
+.StateTryToGoTest.java
+[source,java]
+----
+include::statetrytogotest1.java[]
+----
+
+== _A_ solution
+
+The title of this article is "`finding _a_ solution`", because we'll first write the code to find a valid solution, with a simplified algo that don't cover all possible cases, then we'll update it to make it compliant with the game rules.
+
+I'll do it this way because the update will add complexity to the behaviors, and I prefer to first reach a state where we solved something.
