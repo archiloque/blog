@@ -18,7 +18,8 @@ class StateTryToGoTest {
   }
 
   /**
-   * Simple case are tested with a level of 2x1
+   * Simple cases are tested with a level of 2x1
+   * Baba is in the first position and tries to go left
    */
   void checkMoveSimple(
       int[] content,

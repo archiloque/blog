@@ -1,3 +1,7 @@
+/**
+ * Try every positions on a 3*level
+ * and check where we can go
+ */
 class StateAvailableMovementsTest {
 
   private static final int[] UP = new int[]{-1, 0};
