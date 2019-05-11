@@ -1,5 +1,5 @@
-boolean tryToGo(int position, char direction) {
-  int targetPosition = calculatePosition(position, direction);
+boolean tryToGo(int currentPosition, char direction) {
+  int targetPosition = calculatePosition(currentPosition, direction);
   int targetPositionContent = content[targetPosition];
 
   int[] newContent;
@@ -9,7 +9,7 @@ boolean tryToGo(int position, char direction) {
     case Tiles.EMPTY:
       newContent = content.clone();
       newContent[targetPosition] = Tiles.BABA;
-      newContent[position] = Tiles.EMPTY;
+      newContent[currentPosition] = Tiles.EMPTY;
       level.addState(newContent);
       return false;
     case Tiles.ROCK:

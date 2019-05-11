@@ -13,7 +13,7 @@ case Tiles.ROCK:
   // nice, we build the new content
   newContent = content.clone();
   newContent[targetPosition] = Tiles.BABA;
-  newContent[position] = Tiles.EMPTY;
+  newContent[currentPosition] = Tiles.EMPTY;
   newContent[behindTheRockPosition] = Tiles.ROCK;
   level.addState(newContent);
   return false;

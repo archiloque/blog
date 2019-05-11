@@ -1,8 +1,7 @@
   final @NotNull FiFoQueue<State> states = new FiFoQueue<>();
 
   void createInitStates() {
-    State state = new State(this, content);
-    states.add(state);
+    addState(content);
   }
 
   void addState(@NotNull int[] content) {

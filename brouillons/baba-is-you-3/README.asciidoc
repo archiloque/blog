@@ -9,7 +9,7 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: direction1.java, graph3.mmd, graph3.png, state2.java, state3.java, state4.java, stateavailablemovementstest1.java, statetrytogotest1.java, statetrytogotest2.java
+:ignore_files: direction1.java, graph3.mmd, graph3.png, level3.java, state2.java, state3.java, state4.java, stateavailablemovementstest1.java, statetrytogotest1.java, statetrytogotest2.java
 :article_image: first-level.png
 :source-highlighter: pygments
 :pygments-style: friendly
@@ -134,3 +134,26 @@ include::state4.java[]
 ----
 include::statetrytogotest2.java[]
 ----
+
+If the program now, it will run indefinitely.
+Not because of a bug but because of a missing feature:
+it lacks the ability to remember that a state has already been visited, thus doing the same thing again and again.
+
+Java makes it a bit more complicated than it should do:
+
+.Level.java
+[source,java]
+----
+include::level3.java[]
+----
+
+And … it works, the program can solve the level:
+
+[source]
+----
+include::log2.txt[]
+----
+
+\o/
+
+In the next part I'll add a display for the solution, then I'll refactor the code to handle the missing cases.
