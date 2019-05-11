@@ -17,11 +17,12 @@ endif::[]
 :figure-caption!:
 
 ifeval::["{doctype}" == "book"]
-Following the first part about reading the levels, it's time to do some plumbing.
+Following the first part about reading the levels,
 endif::[]
 ifeval::["{doctype}" != "book"]
-Following link:../babis-you-1/[the first part] about reading the levels, it's time to do some plumbing.
+Following link:../babis-you-1/[the first part] about reading the levels,
 endif::[]
+it's time to do some plumbing.
 
 Before dealing with the solving logic, some plumbing is required to establish the game loop.
 
@@ -36,7 +37,7 @@ Most of the code shown here is ported from my previous link:https://github.com/a
 
 == The level
 
-First the `Level` class will contain data related to a game level, at first only the information found in the level we read in the first part, then -- by experience -- we'll add other data that will make the calculations simpler and/or faster.
+First the `Level` class will contain data related to a game level, at first only the information found in the level read in the first part, then -- by experience -- I'll add other data that will make the calculations simpler and/or faster.
 
 .Level.java
 [source,java]

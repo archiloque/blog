@@ -1,3 +1,19 @@
+class State {
+
+  private final @NotNull Level level;
+
+  /**
+   * Probably not the right format, just drafting
+   */
+  private final @NotNull int[] content;
+
+  State(
+      @NotNull Level level,
+      @NotNull int[] content) {
+    this.level = level;
+    this.content = content;
+  }
+
   /**
    * Process the current state
    *
@@ -10,28 +26,28 @@
 
     // Up
     if (babaLine > 0) {
-      if (tryToGo(babaPosition, -1, 0)) {
+      if (tryToGo(babaPosition, Direction.UP)) {
         return true;
       }
     }
 
     // Down
     if (babaLine < (level.height - 1)) {
-      if (tryToGo(babaPosition, 1, 0)) {
+      if (tryToGo(babaPosition, Direction.DOWN)) {
         return true;
       }
     }
 
     // Left
     if (babaColumn > 0) {
-      if (tryToGo(babaPosition, 0, -1)) {
+      if (tryToGo(babaPosition, Direction.LEFT)) {
         return true;
       }
     }
 
     // Right
     if (babaColumn < (level.width - 1)) {
-      if (tryToGo(babaPosition, 0, +1)) {
+      if (tryToGo(babaPosition, Direction.RIGHT)) {
         return true;
       }
     }
@@ -39,7 +55,7 @@
     return false;
   }
 
-  boolean tryToGo(int babaPosition, int deltaLine, int deltaColumn) {
+  boolean tryToGo(int position, char direction) {
     // @TODO probably add some code here
     return false;
   }

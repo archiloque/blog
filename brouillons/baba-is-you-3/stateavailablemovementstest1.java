@@ -1,67 +1,70 @@
-/**
- * Try every positions on a 3*3 level
- * and check where we can go
- */
-class StateAvailableMovementsTest {
+class StateTryToGoTest {
 
-  private static final int[] UP = new int[]{-1, 0};
-  private static final int[] DOWN = new int[]{1, 0};
-  private static final int[] LEFT = new int[]{0, -1};
-  private static final int[] RIGHT = new int[]{0, 1};
+  private static final class LevelToTestTryToGo extends Level {
 
-  /**
-   * {@link State} that records the possible moves
-   */
-  private static final class StateToTestAvailableMovements extends State {
+    private final List<int[]> states = new ArrayList<>();
 
-    private final List<int[]> movements = new ArrayList<>();
-
-    StateToTestAvailableMovements(
-        @NotNull Level level,
+    LevelToTestTryToGo(
+        int width,
+        int height,
         @NotNull int[] content) {
-      super(level, content);
+      super(width, height, content);
     }
 
     @Override
-    boolean tryToGo(int babaPosition, int deltaLine, int deltaColumn) {
-      movements.add(new int[]{deltaLine, deltaColumn});
-      return false;
+    void addState(@NotNull int[] content) {
+      states.add(content);
     }
   }
 
-  private void checkAvailableMovements(
-      int babaIndex,
-      @NotNull int[][] movements) {
-    int[] levelContent = new int[9];
-    Arrays.fill(levelContent, Tiles.EMPTY);
-    levelContent[babaIndex] = Tiles.BABA;
-    Level level = new Level(3, 3, levelContent);
-    StateToTestAvailableMovements state =
-        new StateToTestAvailableMovements(level, levelContent);
-    state.processState();
-    assertArrayEquals(movements, state.movements.toArray());
+  /**
+   * Simple cases are tested with a level of 2x1
+   * Baba is in the first position and tries to go left
+   */
+  void checkMoveSimple(
+      int[] content,
+      boolean result,
+      int[][] possibleNextMoves) {
+    LevelToTestTryToGo level = new LevelToTestTryToGo(
+        2,
+        1,
+        content);
+    State state = new State(level, content);
+    assertEquals(
+        result,
+        state.tryToGo(0, Direction.RIGHT));
+    assertEquals(possibleNextMoves.length, level.states.size());
+    for (int i = 0; i < possibleNextMoves.length; i++) {
+      assertArrayEquals(
+          possibleNextMoves[i],
+          level.states.get(i));
+    }
   }
 
   @Test
-  void testAvailableMovement() {
-    checkAvailableMovements(0,
-        new int[][]{DOWN, RIGHT});
-    checkAvailableMovements(1,
-        new int[][]{DOWN, LEFT, RIGHT});
-    checkAvailableMovements(2,
-        new int[][]{DOWN, LEFT});
-    checkAvailableMovements(3,
-        new int[][]{UP, DOWN, RIGHT});
-    checkAvailableMovements(4,
-        new int[][]{UP, DOWN, LEFT, RIGHT});
-    checkAvailableMovements(5,
-        new int[][]{UP, DOWN, LEFT});
-    checkAvailableMovements(6,
-        new int[][]{UP, RIGHT});
-    checkAvailableMovements(7,
-        new int[][]{UP, LEFT, RIGHT});
-    checkAvailableMovements(8,
-        new int[][]{UP, LEFT});
+  void testMoveEmpty() {
+    checkMoveSimple(
+        new int[]{Tiles.BABA, Tiles.EMPTY},
+        false,
+        new int[][]{new int[]{Tiles.EMPTY, Tiles.BABA}}
+    );
   }
 
+  @Test
+  void testMoveWall() {
+    checkMoveSimple(
+        new int[]{Tiles.BABA, Tiles.WALL},
+        false,
+        new int[0][]
+    );
+  }
+
+  @Test
+  void testMoveFlag() {
+    checkMoveSimple(
+        new int[]{Tiles.BABA, Tiles.FLAG},
+        true,
+        new int[0][]
+    );
+  }
 }

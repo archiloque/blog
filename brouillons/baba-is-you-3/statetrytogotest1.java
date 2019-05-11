@@ -32,7 +32,7 @@ class StateTryToGoTest {
     State state = new State(level, content);
     assertEquals(
         result,
-        state.tryToGo(0, 0, 1));
+        state.tryToGo(0, Direction.RIGHT));
     assertEquals(possibleNextMoves.length, level.states.size());
     for (int i = 0; i < possibleNextMoves.length; i++) {
       assertArrayEquals(

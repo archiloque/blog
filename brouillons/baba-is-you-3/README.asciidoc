@@ -9,7 +9,7 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: graph3.mmd, graph3.png, state2.java, state3.java, stateavailablemovementstest1.java, statetrytogotest1.java
+:ignore_files: direction1.java, graph3.mmd, graph3.png, state2.java, state3.java, stateavailablemovementstest1.java, statetrytogotest1.java
 :article_image: first-level.png
 :source-highlighter: pygments
 :pygments-style: friendly
@@ -17,11 +17,12 @@ endif::[]
 :figure-caption!:
 
 ifeval::["{doctype}" == "book"]
-Following the second part, we'll deal with the logic to find a solution to the first level.
+I'll deal with the logic to find a solution to the first level.
 endif::[]
 ifeval::["{doctype}" != "book"]
-Following link:../babis-you-2/[the second part], we'll deal with the logic to find a solution to the first level.
+Following link:../babis-you-2/[the second part],
 endif::[]
+I'll deal with the logic to find a solution to the first level.
 
 image::../baba-is-you-3/first-level.png[title="Here it is",align="center"]
 
@@ -33,11 +34,11 @@ and that the changing rules features can be dealt with later.
 
 == First the algo
 
-Each turn we consider a game state, from it there is _at most_ four possible moves: going up, down, right or left.
+Each turn the solver considers a game state, from it there is _at most_ four possible moves: going up, down, right or left.
 
 At most because some direction can be blocked, things can kill you (not in the first level), or you can alter a rule and stop to control anything (not in the first level either).
 
-If you can go in a direction, you may reach a winning state, in this case we stop the solving.
+If you can go in a direction, you may reach a winning state, in this case the the solver stops.
 
 If you don't solve the level, you can add this new state to the list, and go on with the main loop.
 
@@ -59,7 +60,17 @@ In the further levels of the game, "`you`" can be several items, but in the firs
 
 So being possible to go in a direction means only testing if Baba can go in this direction.
 
-First I check if Baba can physically go in this direction from the level point of view:
+First I check if Baba can physically go in this direction from the level point of view.
+
+It requires to be able to specidy a direction.
+
+.Direction.java
+[source,java]
+----
+include::direction1.java[]
+----
+
+Then the code:
 
 .State.java
 [source,java]
@@ -75,8 +86,8 @@ And testing it:
 include::stateavailablemovementstest1.java[]
 ----
 
-Then we must deal with the content.
-The behavior depends of the content of the position we want to move to.
+Then it's time to deal with the content.
+The behavior depends of the content of the position Baba wants to move to.
 The code must do three things: test if the movement is valid, test if the new position is a winning one, and calculate the new board position.
 
 It would be possible to write each step in separate pass but I find it easier to do it in one time because all three steps depends mostly of the kind of elements on the target tile.
@@ -101,6 +112,13 @@ include::statetrytogotest1.java[]
 
 == _A_ solution
 
-The title of this article is "`finding _a_ solution`", because we'll first write the code to find a valid solution, with a simplified algo that don't cover all possible cases, then we'll update it to make it compliant with the game rules.
+The title of this article is "`finding _a_ solution`", because I'll first write the code to find a valid solution, with a simplified algo that don't cover all possible cases, then I'll update it to make it compliant with the game rules.
 
-I'll do it this way because the update will add complexity to the behaviors, and I prefer to first reach a state where we solved something.
+I'll do it this way because the update will add complexity to the behaviors, and I prefer to first reach a state where I solved something.
+
+When moving a rock, the simplest case is to check if 
+
+* the rock is not against a border of the level
+* there is nothing behind it
+
+In this case we can move it.
