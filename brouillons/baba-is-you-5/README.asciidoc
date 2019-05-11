@@ -1,0 +1,25 @@
+[#baba-is-you-5]
+ifeval::["{doctype}" == "book"]
+= Part 5: adding missing behaviors
+endif::[]
+ifeval::["{doctype}" != "book"]
+= Writing a "`Baba Is You`" solver, part 5: adding missing behaviors
+endif::[]
+:author: Julien Kirch
+:revnumber: v0.1
+:docdate: 2019-05-09
+:article_lang: en
+:ignore_files:
+:article_image: first-level5.png
+:source-highlighter: pygments
+:pygments-style: friendly
+:article_description: Binary manipulations
+:figure-caption!:
+
+ifeval::["{doctype}" == "book"]
+Following the fourth part,
+endif::[]
+ifeval::["{doctype}" != "book"]
+Following link:../babis-you-4/[the fourth part],
+endif::[]
+where I coded what was missing to display a solution, I'll now improve the behavior of the game.

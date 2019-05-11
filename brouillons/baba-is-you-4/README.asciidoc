@@ -1,15 +1,15 @@
 [#baba-is-you-4]
 ifeval::["{doctype}" == "book"]
-= Part 4: a more realistic behavior
+= Part 4: printing a solution
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Writing a "`Baba Is You`" solver, part 4: a more realistic behavior
+= Writing a "`Baba Is You`" solver, part 4: printing a solution
 endif::[]
 :author: Julien Kirch
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: log3.txt
+:ignore_files: app2.java, app3.java, level4.java, log3.txt, log4.txt, log5.txt, state5.java, state6.java
 :article_image: first-level4.png
 :source-highlighter: pygments
 :pygments-style: friendly
@@ -22,9 +22,9 @@ endif::[]
 ifeval::["{doctype}" != "book"]
 Following link:../babis-you-3/[the third part],
 endif::[]
-where I solved the first level, I'll improve the code to make it more realistic.
+where I solved the first level, we'll make the solution readable.
 
-== Wait, what?
+== If the computer say it, it must be true!
 
 I said I solved the first level, at least it's what the computer told me:
 
@@ -33,7 +33,70 @@ I said I solved the first level, at least it's what the computer told me:
 include::log3.txt[]
 ----
 
-But it would be nice if the code told me _how_ it solved it, it would allow me to check if the solution is solved, and it would allow me to use the solution to solve the level.
+But it would be nice if the code told me _how_ it solved it, it would allow me to check if the solution looks reasonable, and it would allow me to use the solution to solve the level.
 
 Which is the goal of the whole thing.
 
+== States gonna be stateful
+
+To implement this, a `State` must store the movements that lead to it, which means each `State` must concatenate the movement it adds to a list of previous movements.
+
+.State.java
+[source,java]
+----
+include::state5.java[]
+----
+
+Then when the solution is found, we can pretty print the path.
+
+If we don't pretty print it, the path would be something like `→→→→→→←←←` which is not easy to read.
+
+.App.java
+[source,java]
+----
+include::app2.java[]
+----
+
+The result:
+
+[source]
+----
+include::log4.txt[]
+----
+
+== Wait, what?
+
+Huh ? The last step is missing ?!
+
+Which is normal, since the data used is the path to the last `State`, which lacks the last movement done inside the `State`.
+
+The solution is to add the last movement to the past movements, and to return this value as the result, it requires a bunch of modifications but the migration is easy.
+
+.State.java
+[source,java]
+----
+include::state6.java[]
+----
+
+In `Level` the value is propagated.
+
+.Level.java
+[source,java]
+----
+include::level4.java[]
+----
+
+And in `App`, this value is printed.
+
+.App.java
+[source,java]
+----
+include::app3.java[]
+----
+
+Which prints the right solution
+
+[source]
+----
+include::log5.txt[]
+----
