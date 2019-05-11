@@ -16,7 +16,12 @@ endif::[]
 :article_description: First much theory … then lots of code
 :figure-caption!:
 
+ifeval::["{doctype}" == "book"]
+Following the second part, we'll deal with the logic to find a solution to the first level.
+endif::[]
+ifeval::["{doctype}" != "book"]
 Following link:../babis-you-2/[the second part], we'll deal with the logic to find a solution to the first level.
+endif::[]
 
 image::../baba-is-you-3/first-level.png[title="Here it is"]
 

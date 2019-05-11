@@ -16,7 +16,12 @@ endif::[]
 :article_description: Technical code and no business logic, at least I avoided creating a framework…
 :figure-caption!:
 
+ifeval::["{doctype}" == "book"]
+Following the first part about reading the levels, it's time to do some plumbing.
+endif::[]
+ifeval::["{doctype}" != "book"]
 Following link:../babis-you-1/[the first part] about reading the levels, it's time to do some plumbing.
+endif::[]
 
 Before dealing with the solving logic, some plumbing is required to establish the game loop.
 
