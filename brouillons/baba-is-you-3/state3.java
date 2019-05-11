@@ -1,22 +1,5 @@
 boolean tryToGo(int position, char direction) {
-  int targetPosition;
-  switch (direction) {
-    case Direction.UP:
-      targetPosition = position - level.width;
-      break;
-    case Direction.DOWN:
-      targetPosition = position + level.width;
-      break;
-    case Direction.LEFT:
-      targetPosition = position - 1;
-      break;
-    case Direction.RIGHT:
-      targetPosition = position + 1;
-      break;
-    default:
-      throw new IllegalArgumentException("" + direction);
-  }
-
+  int targetPosition = calculatePosition(position, direction);
   int targetPositionContent = content[targetPosition];
 
   int[] newContent;
@@ -36,5 +19,20 @@ boolean tryToGo(int position, char direction) {
       return true;
     default:
       throw new IllegalArgumentException("" + targetPositionContent);
+  }
+}
+
+private int calculatePosition(int position, char direction) {
+  switch (direction) {
+    case Direction.UP:
+      return position - level.width;
+    case Direction.DOWN:
+      return position + level.width;
+    case Direction.LEFT:
+      return position - 1;
+    case Direction.RIGHT:
+      return position + 1;
+    default:
+      throw new IllegalArgumentException("" + direction);
   }
 }

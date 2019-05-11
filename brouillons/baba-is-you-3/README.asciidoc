@@ -9,7 +9,7 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: direction1.java, graph3.mmd, graph3.png, state2.java, state3.java, stateavailablemovementstest1.java, statetrytogotest1.java
+:ignore_files: direction1.java, graph3.mmd, graph3.png, state2.java, state3.java, state4.java, stateavailablemovementstest1.java, statetrytogotest1.java, statetrytogotest2.java
 :article_image: first-level.png
 :source-highlighter: pygments
 :pygments-style: friendly
@@ -121,4 +121,16 @@ When moving a rock, the simplest case is to check if
 * the rock is not against a border of the level
 * there is nothing behind it
 
-In this case we can move it.
+In this case Baba can go in this direction and push the rock.
+
+.State.java
+[source,java]
+----
+include::state4.java[]
+----
+
+.StateTryToGoTest.java
+[source,java]
+----
+include::statetrytogotest2.java[]
+----
