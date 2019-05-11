@@ -50,7 +50,7 @@ Then add the required files (`LICENSE.txt` …) and push it to link:https://gith
 
 For my other solvers, reading the levels link:https://github.com/archiloque/rgbexpress/blob/master/src/main/java/net/archiloque/rgbexpress/MapElement.java#L12[relied on a fixed list of elements with an associated character].
 
-For Baba, the number of possible tiles seem large from the levels I've played so I'm thinking of using another strategy:
+For Baba, the number of possible tiles seems large from the levels I've played so I'm thinking of using another strategy:
 
 . Define all the possible tiles
 . For each level, declare which tiles match with each character, for the tiles to be used in the level
@@ -130,7 +130,7 @@ First the tests (just showing the names):
 include::levelreadertest.java[]
 ----
 
-There's a bunch of test for error cases because I hate to debug the code when there's an error with the level files so the error are as explicit as possible.
+There's a bunch of tests for error cases because I hate to debug the code when there's an error with the level files so the error are as explicit as possible.
 
 Then fill the content of the reader:
 
@@ -140,4 +140,4 @@ Then fill the content of the reader:
 include::levelreader2.java[]
 ----
 
-Now the code read a level from disk and the next article will start implementating the solving logic.
+Now the code reads a level from disk and the next article will start implementing the solving logic.
