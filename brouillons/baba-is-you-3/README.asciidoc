@@ -1,16 +1,20 @@
+[#baba-is-you-3]
 = Writing a "`Baba Is You`" solver, part 3: finding a solution to the first level
-Julien Kirch
-v0.1, 2019-05-09
+:author: Julien Kirch
+:revnumber: v0.1
+:docdate: 2019-05-09
 :article_lang: en
 :ignore_files: 
 :article_image: first-level.png
 :source-highlighter: pygments
 :pygments-style: friendly
 :article_description: First much theory … then lots of code
+// define images directory if not defined in master.   
+ifndef::imagesdir[:imagesdir: ../]
 
 Following link:../babis-you-2/[the second part], we'll deal with the logic to find a solution to the first level.
 
-image::first-level.png[title="Here it is"]
+image::baba-is-you-3/first-level.png[title="Here it is"]
 
 The first level has a feature that will things much simpler:
 the rules can't be changed.
@@ -31,7 +35,7 @@ If you don't solve the level, you can add this new state to the list, and go on 
 There's a catch: Baba is not a "`burning bridge`" game where you can't move back.
 Before checking if a new state is interesting, it must be vetted against the previously met cases to avoid doing the same thing again and again.
 
-image::graph2.svg[width=681,height=505,title="The inner algo"]
+image::baba-is-you-3/graph2.svg[width=681,height=505,title="The inner algo"]
 
 == Then some code
 

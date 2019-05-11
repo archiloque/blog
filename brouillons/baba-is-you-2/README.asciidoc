@@ -1,20 +1,26 @@
+[#baba-is-you-2]
 = Writing a "`Baba Is You`" solver, part 2: plumbing
-Julien Kirch
-v0.1, 2019-05-05
+:author: Julien Kirch
+:revnumber: v0.1
+:docdate: 2019-05-09
 :article_lang: en
 :ignore_files: 
 :article_image: first-level.png
 :source-highlighter: pygments
 :pygments-style: friendly
 :article_description: Technical code and no business logic, at least I avoided creating a framework…
+// define images directory if not defined in master.   
+ifndef::imagesdir[:imagesdir: ../]
 
 Following link:../babis-you-1/[the first part] about reading the levels, it's time to do some plumbing.
 
 Before dealing with the solving logic, some plumbing is required to establish the game loop.
 
-image::graph1.svg[width=731,height=513]
+image::baba-is-you-2/graph1.svg[width=731,height=513]
 
 Most of the code shown here is ported from my previous link:https://github.com/archiloque/rgbexpress[efforts].
+
+== The level
 
 First the `Level` class will contain data related to a game level, at first only the information found in the level we read in the first part, then -- by experience -- we'll add other data that will make the calculations simpler and/or faster.
 
@@ -32,6 +38,8 @@ It will follow the same path as the `Level`: it starts as a small class with few
 ----
 include::state1.java[]
 ----
+
+== The list of states
 
 To manage the list of states several possibilities are available, like using a link:https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)[FIFO queue] for link:https://en.wikipedia.org/wiki/Depth-first_search[depth-first search] or a link:https://en.wikipedia.org/wiki/Stack_(abstract_data_type)[stack] for link:https://en.wikipedia.org/wiki/Breadth-first_search[breadth-first search].
 
@@ -56,6 +64,8 @@ include::level2.java[]
 ----
 
 Calling `State#processState` will add some new possible ``State``s to the list, so the minimal version of the solver loop is now complete.
+
+== The entry point
 
 The last part is the entry point of the game.
 
