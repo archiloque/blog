@@ -24,10 +24,10 @@ I'm writing the articles while coding the solver and not as a post-mortem, so ex
 As I've explained link:../solveurs/[in a previous article] (in French), a puzzle solver rely on a loop used to iterate until a solution is found.
 
 ifdef::backend-pdf[]
-image::../baba-is-you-1/graph1.png[width=784,height=468]
+image::../baba-is-you-1/graph1.png[width=784,height=468,align="center"]
 endif::[]
 ifndef::backend-pdf[]
-image::../baba-is-you-1/graph1.svg[width=784,height=468]
+image::../baba-is-you-1/graph1.svg[width=784,height=468,align="center"]
 endif::[]
 
 The first step is to be able to initialize the loop, which means reading the levels from disk.
@@ -57,7 +57,7 @@ For Baba, the number of possible tiles seems large from the levels I've played s
 
 Levels use a square grid, and there is at most one item per tile in the starting position.
 
-image::../baba-is-you-1/first-level1.png[title="The first level"]
+image::../baba-is-you-1/first-level1.png[title="The first level",align="center"]
 
 What I'd like the files to be:
 

@@ -59,7 +59,6 @@ class StateTryToGoTest {
     );
   }
 
-
   @Test
   void testMoveFlag() {
     checkMoveSimple(

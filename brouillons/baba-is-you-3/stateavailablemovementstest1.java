@@ -1,5 +1,5 @@
 /**
- * Try every positions on a 3*level
+ * Try every positions on a 3*3 level
  * and check where we can go
  */
 class StateAvailableMovementsTest {

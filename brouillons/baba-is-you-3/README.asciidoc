@@ -23,7 +23,7 @@ ifeval::["{doctype}" != "book"]
 Following link:../babis-you-2/[the second part], we'll deal with the logic to find a solution to the first level.
 endif::[]
 
-image::../baba-is-you-3/first-level.png[title="Here it is"]
+image::../baba-is-you-3/first-level.png[title="Here it is",align="center"]
 
 The first level has a feature that will things much simpler:
 the rules can't be changed.
@@ -45,10 +45,10 @@ There's a catch: Baba is not a "`burning bridge`" game where you can't move back
 Before checking if a new state is interesting, it must be vetted against the previously met cases to avoid doing the same thing again and again.
 
 ifdef::backend-pdf[]
-image::../baba-is-you-3/graph3.png[width=750,height=483,title="The inner algo"]
+image::../baba-is-you-3/graph3.png[width=750,height=483,title="The inner algo",align="center"]
 endif::[]
 ifndef::backend-pdf[]
-image::../baba-is-you-3/graph3.svg[width=750,height=483,title="The inner algo"]
+image::../baba-is-you-3/graph3.svg[width=750,height=483,title="The inner algo",align="center"]
 endif::[]
 
 == Then some code

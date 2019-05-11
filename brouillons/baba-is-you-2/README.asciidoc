@@ -26,10 +26,10 @@ endif::[]
 Before dealing with the solving logic, some plumbing is required to establish the game loop.
 
 ifdef::backend-pdf[]
-image::../baba-is-you-2/graph2.png[width=784,height=468]
+image::../baba-is-you-2/graph2.png[width=784,height=468,align="center"]
 endif::[]
 ifndef::backend-pdf[]
-image::../baba-is-you-2/graph2.svg[width=784,height=468]
+image::../baba-is-you-2/graph2.svg[width=784,height=468,align="center"]
 endif::[]
 
 Most of the code shown here is ported from my previous link:https://github.com/archiloque/rgbexpress[efforts].
