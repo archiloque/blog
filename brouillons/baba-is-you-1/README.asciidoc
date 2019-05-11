@@ -83,6 +83,15 @@ I declare all the tiles used by the first level, as a `String` to be referenced 
 include::tiles.java[]
 ----
 
+I use ``int``s instead of enum types for this kind of data for two reasons :
+
+* they took less memory, and it makes a big difference when you have to store many levels;
+* you can use the `int` as array index to retrieve data instead of using a `Hash`, which makes it much faster.
+
+I have experienced both in my previous solvers.
+
+You loose some type checking this way and makes code a bit less readable but it's an acceptable downside for me.
+
 Perhaps later this file will become a pain to maintain so I'll end up putting the content in a config file and generate the Java code from it but for now I prefer to use a simpler way.
 
 Drafting the API of how to read the level files:
