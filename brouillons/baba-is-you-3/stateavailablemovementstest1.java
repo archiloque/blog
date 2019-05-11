@@ -24,7 +24,7 @@ class StateTryToGoTest {
   void checkMoveSimple(
       int[] content,
       boolean result,
-      int[][] possibleNextMoves) {
+      @NotNull int[][] possibleNextMoves) {
     LevelToTestTryToGo level = new LevelToTestTryToGo(
         content.length,
         1,

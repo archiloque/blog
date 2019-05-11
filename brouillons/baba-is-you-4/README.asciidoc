@@ -1,0 +1,39 @@
+[#baba-is-you-4]
+ifeval::["{doctype}" == "book"]
+= Part 4: a more realistic behavior
+endif::[]
+ifeval::["{doctype}" != "book"]
+= Writing a "`Baba Is You`" solver, part 4: a more realistic behavior
+endif::[]
+:author: Julien Kirch
+:revnumber: v0.1
+:docdate: 2019-05-09
+:article_lang: en
+:ignore_files: log3.txt
+:article_image: first-level4.png
+:source-highlighter: pygments
+:pygments-style: friendly
+:article_description: Binary manipulations
+:figure-caption!:
+
+ifeval::["{doctype}" == "book"]
+Following the third part,
+endif::[]
+ifeval::["{doctype}" != "book"]
+Following link:../babis-you-3/[the third part],
+endif::[]
+where I solved the first level, I'll improve the code to make it more realistic.
+
+== Wait, what?
+
+I said I solved the first level, at least it's what the computer told me:
+
+[source]
+----
+include::log3.txt[]
+----
+
+But it would be nice if the code told me _how_ it solved it, it would allow me to check if the solution is solved, and it would allow me to use the solution to solve the level.
+
+Which is the goal of the whole thing.
+
