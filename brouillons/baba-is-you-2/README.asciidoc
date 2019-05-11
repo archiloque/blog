@@ -1,22 +1,31 @@
 [#baba-is-you-2]
+ifeval::["{doctype}" == "book"]
+= Part 2: plumbing
+endif::[]
+ifeval::["{doctype}" != "book"]
 = Writing a "`Baba Is You`" solver, part 2: plumbing
+endif::[]
 :author: Julien Kirch
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: 
-:article_image: first-level.png
+:ignore_files: app1.java, fifoqueue1.java, graph2.mmd, graph2.png, level1.java, level2.java, log1.txt, state1.java
+:article_image: first-level2.png
 :source-highlighter: pygments
 :pygments-style: friendly
 :article_description: Technical code and no business logic, at least I avoided creating a framework…
-// define images directory if not defined in master.   
-ifndef::imagesdir[:imagesdir: ../]
+:figure-caption!:
 
 Following link:../babis-you-1/[the first part] about reading the levels, it's time to do some plumbing.
 
 Before dealing with the solving logic, some plumbing is required to establish the game loop.
 
-image::baba-is-you-2/graph1.svg[width=731,height=513]
+ifdef::backend-pdf[]
+image::../baba-is-you-2/graph2.png[width=784,height=468]
+endif::[]
+ifndef::backend-pdf[]
+image::../baba-is-you-2/graph2.svg[width=784,height=468]
+endif::[]
 
 Most of the code shown here is ported from my previous link:https://github.com/archiloque/rgbexpress[efforts].
 

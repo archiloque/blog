@@ -1,16 +1,20 @@
 [#baba-is-you-1]
+ifeval::["{doctype}" == "book"]
+= Part 1: reading levels
+endif::[]
+ifeval::["{doctype}" != "book"]
 = Writing a "`Baba Is You`" solver, part 1: reading levels
+endif::[]
 :author: Julien Kirch
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: content.txt, first-level.png, graph.mmd, levelreader1.java, levelreader2.java, levelreadertest.java, mvn.txt, tiles.java, tiles.txt
-:article_image: first-level.png
+:ignore_files: content.txt, graph1.mmd, graph1.png, levelreader1.java, levelreader2.java, levelreadertest.java, mvn.txt, tiles.java, tiles.txt
+:article_image: first-level1.png
 :source-highlighter: pygments
 :pygments-style: friendly
 :article_description: It was a while since the last time I took a questionable decision
-// define images directory if not defined in master.   
-ifndef::imagesdir[:imagesdir: ../]
+:figure-caption!:
 
 link:https://hempuli.com/baba/[Baba Is You] is a great puzzle game with a more-than-usual complex gameplay since manipulating the game rules is part of the game.
 
@@ -19,7 +23,12 @@ I'm writing the articles while coding the solver and not as a post-mortem, so ex
 
 As I've explained link:../solveurs/[in a previous article] (in French), a puzzle solver rely on a loop used to iterate until a solution is found.
 
-image::baba-is-you-1/graph.svg[width=731,height=513]
+ifdef::backend-pdf[]
+image::../baba-is-you-1/graph1.png[width=784,height=468]
+endif::[]
+ifndef::backend-pdf[]
+image::../baba-is-you-1/graph1.svg[width=784,height=468]
+endif::[]
 
 The first step is to be able to initialize the loop, which means reading the levels from disk.
 
@@ -48,7 +57,7 @@ For Baba, the number of possible tiles seem large from the levels I've played so
 
 Levels use a square grid, and there is at most one item per tile in the starting position.
 
-image::baba-is-you-1/first-level.png[title="The first level"]
+image::../baba-is-you-1/first-level1.png[title="The first level"]
 
 What I'd like the files to be:
 

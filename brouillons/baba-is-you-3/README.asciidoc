@@ -1,20 +1,24 @@
 [#baba-is-you-3]
+ifeval::["{doctype}" == "book"]
+= Part 3: finding a solution to the first level
+endif::[]
+ifeval::["{doctype}" != "book"]
 = Writing a "`Baba Is You`" solver, part 3: finding a solution to the first level
+endif::[]
 :author: Julien Kirch
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: 
+:ignore_files: graph3.mmd, graph3.png, state2.java, state3.java, stateavailablemovementstest1.java, statetrytogotest1.java
 :article_image: first-level.png
 :source-highlighter: pygments
 :pygments-style: friendly
 :article_description: First much theory … then lots of code
-// define images directory if not defined in master.   
-ifndef::imagesdir[:imagesdir: ../]
+:figure-caption!:
 
 Following link:../babis-you-2/[the second part], we'll deal with the logic to find a solution to the first level.
 
-image::baba-is-you-3/first-level.png[title="Here it is"]
+image::../baba-is-you-3/first-level.png[title="Here it is"]
 
 The first level has a feature that will things much simpler:
 the rules can't be changed.
@@ -35,7 +39,12 @@ If you don't solve the level, you can add this new state to the list, and go on 
 There's a catch: Baba is not a "`burning bridge`" game where you can't move back.
 Before checking if a new state is interesting, it must be vetted against the previously met cases to avoid doing the same thing again and again.
 
-image::baba-is-you-3/graph2.svg[width=681,height=505,title="The inner algo"]
+ifdef::backend-pdf[]
+image::../baba-is-you-3/graph3.png[width=750,height=483,title="The inner algo"]
+endif::[]
+ifndef::backend-pdf[]
+image::../baba-is-you-3/graph3.svg[width=750,height=483,title="The inner algo"]
+endif::[]
 
 == Then some code
 
