@@ -16,30 +16,8 @@
         return result;
       }
     }
-  
-    // Down
-    if (babaLine < (level.height - 1)) {
-      result = tryToGo(babaPosition, Direction.DOWN);
-      if (result != null) {
-        return result;
-      }
-    }
-  
-    // Left
-    if (babaColumn > 0) {
-      result = tryToGo(babaPosition, Direction.LEFT);
-      if (result != null) {
-        return result;
-      }
-    }
-  
-    // Right
-    if (babaColumn < (level.width - 1)) {
-      result = tryToGo(babaPosition, Direction.RIGHT);
-      if (result != null) {
-        return result;
-      }
-    }
+
+    // same for other directions
 
     return null;
   }
