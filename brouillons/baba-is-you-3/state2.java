@@ -55,7 +55,7 @@ class State {
     return false;
   }
 
-  boolean tryToGo(int currentPosition, char direction) {
+  boolean tryToGo(int currentPosition, byte direction) {
     // @TODO probably add some code here
     return false;
   }

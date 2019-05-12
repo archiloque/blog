@@ -6,7 +6,8 @@ public class App {
   private static final SimpleDateFormat DATE_FORMAT =
       new SimpleDateFormat("yyyy-MM-dd kk:mm:ss.SSS");
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) 
+      throws IOException {
     if (args.length == 0) {
       throw new IllegalArgumentException(
           "A level path should be specified");
@@ -19,7 +20,8 @@ public class App {
       @NotNull Path path
   ) throws IOException {
     print(path, "Reading level");
-    LevelReader.LevelReaderResult levelReaderResult = LevelReader.readLevel(path);
+    LevelReader.LevelReaderResult levelReaderResult = 
+        LevelReader.readLevel(path);
     Level level = new Level(
         levelReaderResult.width,
         levelReaderResult.height,
@@ -29,16 +31,17 @@ public class App {
     long startTime = System.nanoTime();
     State solution = level.solve();
     long stopTime = System.nanoTime();
+    String endTime =
+        LocalTime.MIN.plusNanos((stopTime - startTime)).
+            toString();
     if (solution != null) {
       print(
           path,
-          "Solved in " +
-              LocalTime.MIN.plusNanos((stopTime - startTime)).toString());
+          "Solved in " + endTime);
     } else {
       print(
           path,
-          "Failed in " +
-              LocalTime.MIN.plusNanos((stopTime - startTime)).toString());
+          "Failed in " + endTime);
     }
   }
 

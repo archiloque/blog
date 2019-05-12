@@ -2,27 +2,30 @@
     print(
         path,
         "Solved in " +
-            LocalTime.MIN.plusNanos(
-                (stopTime - startTime)).toString() +
+            endTime +
             " " +
             prettyPrintSolution(solution.previousMovements));
   } else {
     print(
         path,
         "Failed in " +
-            LocalTime.MIN.plusNanos((stopTime - startTime)).toString());
+            endTime);
   }
 }
 
-private static @NotNull String prettyPrintSolution(char[] solution) {
+private static @NotNull String prettyPrintSolution(
+  @NotNull byte[] solution) {
   List<String> solutionString = new ArrayList<>();
-  char currentMovement = '0';
+  byte currentMovement = -1;
   int numberOfMovesThisWay = 1;
-  for (char c : solution) {
+  for (byte c : solution) {
     if (c != currentMovement) {
-      if (currentMovement != '0') {
+      if (currentMovement != -1) {
         solutionString.
-            add("" + numberOfMovesThisWay + currentMovement);
+            add(
+              "" +
+               numberOfMovesThisWay + 
+               Direction.VISUAL[currentMovement]);
       }
       currentMovement = c;
       numberOfMovesThisWay = 1;
@@ -32,7 +35,9 @@ private static @NotNull String prettyPrintSolution(char[] solution) {
   }
   // complete with last move
   solutionString.
-      add("" + numberOfMovesThisWay + currentMovement);
+      add("" +
+       numberOfMovesThisWay + 
+       Direction.VISUAL[currentMovement]);
 
   return String.join(" ", solutionString);
 }

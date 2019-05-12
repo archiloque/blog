@@ -3,12 +3,12 @@
  *
  * @return the path to the solution if found, null if not.
  */
-@Nullable char[] processState() {
+@Nullable byte[] processState() {
     int babaPosition = findBaba();
     int babaLine = babaPosition / level.width;
     int babaColumn = babaPosition % level.width;
   
-    char[] result;
+    byte[] result;
     // Up
     if (babaLine > 0) {
       result = tryToGo(babaPosition, Direction.UP);
@@ -22,9 +22,9 @@
     return null;
   }
   
-  @Nullable char[] tryToGo(
+  @Nullable byte[] tryToGo(
       int currentPosition,
-      char direction) {
+      byte direction) {
     int targetPosition = calculatePosition(currentPosition, direction);
     int targetPositionContent = content[targetPosition];
   

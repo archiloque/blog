@@ -1,4 +1,4 @@
-boolean tryToGo(int currentPosition, char direction) {
+boolean tryToGo(int currentPosition, byte direction) {
   int targetPosition = calculatePosition(currentPosition, direction);
   int targetPositionContent = content[targetPosition];
 
@@ -22,7 +22,7 @@ boolean tryToGo(int currentPosition, char direction) {
   }
 }
 
-private int calculatePosition(int position, char direction) {
+private int calculatePosition(int position, byte direction) {
   switch (direction) {
     case Direction.UP:
       return position - level.width;

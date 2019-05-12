@@ -1,9 +1,9 @@
-final @NotNull char[] previousMovements;
+final @NotNull byte[] previousMovements;
 
 State(
     @NotNull Level level,
     @NotNull int[] content,
-    @NotNull char[] movements) {
+    @NotNull byte[] movements) {
   this.level = level;
   this.content = content;
   this.previousMovements = movements;
@@ -11,7 +11,7 @@ State(
 
 boolean tryToGo(
     int currentPosition,
-    char direction) {
+    byte direction) {
   int targetPosition = calculatePosition(currentPosition, direction);
   int targetPositionContent = content[targetPosition];
 
@@ -54,9 +54,9 @@ boolean tryToGo(
 /**
  * Add a new movement at the end of the array
  */
-private @NotNull char[] addMovement(char movement) {
+private @NotNull byte[] addMovement(byte movement) {
   int previousLength = previousMovements.length;
-  char[] result = new char[previousLength + 1];
+  byte[] result = new byte[previousLength + 1];
   System.arraycopy(previousMovements, 0, result, 0, previousLength);
   result[previousLength] = movement;
   return result;
