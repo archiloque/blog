@@ -16,3 +16,11 @@ We then need to worry about tunneling, which happens when we integrate across a 
 
 Interesting simulations inherently involve subtle interactions between many different entities, an n2 problem that doesn’t really want to be solved in real time. To work around this issue, we need to be good at culling negligible interactions to pare down the size of the problem. But such culling tends to involve black-art heuristics and can go wrong in strange and subtle ways.
 ____
+
+
+== link:https://github.com/jeanqasaur/dsl-syllabus-fall-2016/blob/master/README.md[Domain-Specific Languages Syllabus]
+
+[quote]
+____
+Something I spend a lot of time thinking about is how to use the right tool for the task, in programming and otherwise. It was this, rather than a love for logic or formal semantics, that made me fall in love with the study of programming languages. (Although I did go to logic summer camp as a kid...) For this reason, I strongly believe that every programming language is a domain-specific language and we should regard and evaluate languages through the lenses of their domains.
+____
