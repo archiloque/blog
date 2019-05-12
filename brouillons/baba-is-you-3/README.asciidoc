@@ -45,10 +45,10 @@ If you don't solve the level, you can add this new state to the list, and go on 
 There's a catch: Baba is not a "`burning bridge`" game where you can't move back.
 Before checking if a new state is interesting, it must be vetted against the previously met cases to avoid doing the same thing again and again.
 
-ifdef::backend-pdf[]
+ifeval::["{doctype}" == "book"]
 image::../baba-is-you-3/graph3.png[width=750,height=483,title="The inner algo",align="center"]
 endif::[]
-ifndef::backend-pdf[]
+ifeval::["{doctype}" != "book"]
 image::../baba-is-you-3/graph3.svg[width=750,height=483,title="The inner algo",align="center"]
 endif::[]
 
