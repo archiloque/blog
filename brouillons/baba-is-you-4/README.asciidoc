@@ -9,7 +9,7 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: app2.java, app3.java, level4.java, log3.txt, log4.txt, log5.txt, state5.java, state6.java
+:ignore_files: app2.java, app3.java, level4.java, log3.txt, state5.java, state6.java
 :article_image: first-level4.png
 :source-highlighter: pygments
 :pygments-style: friendly
@@ -47,7 +47,8 @@ To implement this, a `State` must store the movements that lead to it, which mea
 include::state5.java[]
 ----
 
-Then when the solution is found, we can pretty print the path.
+Then when the solution is found, I write it in the same directory as the level, so any change can be identified with a source control system.
+The file is deleted before trying to solve the level so a solvinf failure is easy to detect.
 
 If we don't pretty print it, the path would be something like `→→→→→→←←←` which is not easy to read.
 
@@ -59,9 +60,10 @@ include::app2.java[]
 
 The result:
 
+.solution.txt
 [source]
 ----
-include::log4.txt[]
+6→ 3← 1↓ 5→
 ----
 
 == Wait, what?
@@ -96,7 +98,8 @@ include::app3.java[]
 
 Which prints the right solution
 
+.solution.txt
 [source]
 ----
-include::log5.txt[]
+6→ 3← 1↓ 5→ 1↑
 ----

@@ -1,7 +1,10 @@
 byte[] solution = level.solve();
-print(
+long stopTime = System.nanoTime();
+String endTime =
+  LocalTime.MIN.plusNanos((stopTime - startTime)).
+      toString();
+if (solution != null) {
+  print(
     path,
-    "Solved in " +
-        endTime +
-        " " +
-        prettyPrintSolution(solution));
+    "Solved in " + endTime);
+  writeSolution(solution, solutionFile);
