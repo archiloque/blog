@@ -11,8 +11,10 @@ endif::[]
 :article_lang: en
 :ignore_files: content.txt, graph1.mmd, graph1.png, levelreader1.java, levelreader2.java, levelreadertest.java, mvn.txt, tiles.java, tiles.txt
 :article_image: first-level1.png
+ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
+endif::[]
 :article_description: It was a while since the last time I took a questionable decision
 :figure-caption!:
 

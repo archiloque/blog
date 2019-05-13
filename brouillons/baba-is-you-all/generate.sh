@@ -1,0 +1,1 @@
+asciidoctor-pdf -a pdf-fontsdir=. -a pdf-style=theme.yml README.asciidoc

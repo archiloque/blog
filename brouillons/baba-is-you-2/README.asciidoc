@@ -11,8 +11,10 @@ endif::[]
 :article_lang: en
 :ignore_files: app1.java, fifoqueue1.java, graph2.mmd, graph2.png, level1.java, level2.java, log1.txt, state1.java
 :article_image: first-level2.png
+ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
+endif::[]
 :article_description: Technical code and no business logic, at least I avoided creating a framework…
 :figure-caption!:
 
