@@ -16,9 +16,7 @@
         return result;
       }
     }
-
     // same for other directions
-
     return null;
   }
   

@@ -56,7 +56,7 @@ base:
   #line_height_length: 18
   #font_size: 11.2
   #line_height_length: 16
-  font_size: 10.5
+  font_size: 11
   #line_height_length: 15
   # correct line height for Noto Serif metrics
   line_height_length: 12
@@ -173,14 +173,14 @@ blockquote:
 code:
   font_color: $base_font_color
   font_family: $literal_font_family
-  font_size: ceil($base_font_size)
-  padding: $code_font_size
-  line_height: 1.25
+  font_size: 10
+  padding: 10
+  line_height: 1.2
   # line_gap is an experimental property to control how a background color is applied to an inline block element
   line_gap: 3.8
   background_color: fdfdfd
-  border_color: cccccc
-  border_radius: $base_border_radius
+  border_color: bbbbbb
+  border_radius: 0
   border_width: 0.75
 conum:
   font_family: M+ 1mn
