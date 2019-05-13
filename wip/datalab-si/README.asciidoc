@@ -73,7 +73,11 @@ Pensez aussi que, s'il est tentant de vouloir passer "`sous le radar`" en coutou
 
 == Les axes à étudier
 
+Malheuresement les solutions vont passer par des demandes aux projets, après le POC un DataLab ne peut pas se faire en mode shadow IT.
+
 === Mode d'intégration
+
+==== Le problème
 
 Le premier axe est celui du mode d'intégration, c'est-à-dire la manière dont votre application est branchée à la source pour s'alimenter en données.
 
@@ -85,37 +89,39 @@ Cela demande un faible investissement de la part du projet qui fournit les donn�
 Pour le passage en production, il peut être tentant d'automatiser ce même flot, à l'ancienne via un serveur FTP (voire link:https://fr.wikipedia.org/wiki/Cross_File_Transfer[CFT]), ou version moderne par un bucket S3 ou équivalent.
 
 L'inconvénient est que cela signifie un couplage avec le modèle de stockage de données de l'application source, c'est-à-dire une des pire choses qui puisse arriver.
+Cela signifie que le schéma de base de données -- la structure SQL ou équivalent -- devient une API pour une autre application, un contrat qui vaut engagement et donc qu'une modification du schéma entrainera les mêmes questions de gestion compatibilité qu'une mise à jour d'un contrat de service.
 
-Cela signifie que le schéma de base de données -- votre structure SQL ou équivalent -- devient une API pour une autre application, et donc qu'une modification du schéma entrainera les mêmes questions de compatibilité qu'une mise à jour d'un contrat de service.
+Il existe des solutions pour gérer de la compatibilité de schéma, par exemple avec des vues, mais sauf situation très spécifique je vous conseille de ne pas aller dans cette direction.
 
-Il y a des solutions techniques utilisables, pour gérer de la compatibilité de modèle, par exemple avec des vues, mais je ne les conseille à personne.
+En dehors de l'aspect technique, il y a le fait qu'en général les organisations ne sont pas habituées à ce type d'intégration entre projets,
+par exemple les équipes ont l'habitude de pouvoir modifier leur base de données quand elles ont en envie, sans avoir à le communiquer aux autres, et risquent donc d'oublier de le faire.
 
-En principe, un modèle de stockage de donnée n'est visible que 
-
-
-Branchement aux applis qui fournissent de la donnée = couplage = ça peut casser
-
-=== Vitesse de captation des données
-
-CVS par batch de nuit ou branchemet à la BI ça peut répondre à certains besoins, mais ça peut limiter les uses cases adressés
-
-=== Qualité des données
-
-Données pourries car ce n'est pas un problème en amont, ça peut être des problèmes tech ou métier (mauvaises saisies)
-
-Ça peut etre des problèmes locaux aux applications, ou des problèmes de cohérences entre applications
-
-== Les solutions
-
-Malheuresement les solutions vont passer par des demandes aux projets, après le POC un DataLab ne peut pas se faire en mode shadow IT.
-
-=== Intégration
+==== Que faire ?
 
 * Mode d'intégration le plus pérenne possible (genre pas par la base)
 * Faire des tests automatisés d'import sur les environnements de recette voire avant, et que ça soit le problème du projet amont
 * Avoir quelqu'un qui s'intéresse au sujet dans les projets
 
-=== Vitesse de captation
+=== Vitesse de récupération des données
+
+==== Le problème
+
+Après la manière de récupérer les données vient la vitesse de récupération.
+
+Par vitesse de récupération, j'entends vitesse _totale_ de récupération, c'est-à-dire la durée entre le moment où une donnée devient disponible dans le système et le moment où elle devient disponible pour des traitements dans la partie datascience.
+
+Lors du cadrage de votre besoins, vous avez dû vous poser la question du niveau de frâicheur acceptable pour les données, c'est ce qui correspond à votre vitesse de récupération.
+
+Pour prototyper, il est par exemple possible de se connecter à un système de BI ou à un DataLake qui permet d'avoir accès à de nombreux types de données depuis un seul point.
+L'inconvénient est que le temps pour que ces données soient rendues disponibles par ces systèmes -- souvent alimentés par batch -- peut être assez long, par exemple du J+1.
+
+Lorsque vous envisagez la mise en production, il faut vérifier que le niveau de fraicheur attendu correspond à celui qui est proposé par le système auquel vous êtes branché.
+
+Il faut prendre en compte le temps d'arrivée dans le système source, le temps d'ingestion, plus le temps pour transmettre la donnée depuis le système source vers le vôtre.
+
+Dans le cas contraire, cela signifie qu'il va faloir se connecter à un autre système ou à des autres systèmes, par exemple aux systèmes opérationnels qui gèrent ces données.
+
+==== Que faire ?
 
 Enjeu majeur car ça dimensionne la complexité des projets
 
@@ -125,13 +131,21 @@ Solution la meilleure : reposer sur des envois de message en fil de l'eau, mais 
 
 === Qualité des données
 
+==== Le problème
+
+Données pourries car ce n'est pas un problème en amont, ça peut être des problèmes tech ou métier (mauvaises saisies)
+
+Ça peut etre des problèmes locaux aux applications, ou des problèmes de cohérences entre applications
+
+==== Que faire ?
+
 Trouver des relais dans les projets, et un relai compatible avec la capacité d'innovation ciblée par le lab, au moins sur la capacité à avoir des réponses sur le temps de correction.
 
 La gouvernance de donnée, qu'on pouvait éviter de mettre en œuvre tant que les données restaient silotées, revient au goût du jour.
 
 Après il faut une volonté métier, voire une volonté de la direction : si le lab a pour vocation des données de toutes l'orga, elle va toucher des projets de tous les métiers, et va donc demander un bon sponsoring pour ne pas s'épuiser
 
-== Conclusion
+== Pour conclure
 
 Pour POCer un DataLab tous les moyens sont bons, mais attention à ne pas se mentir sur le RAF ensuite pour en faire un asset mature du SI : il faut sortir su shadow IT.
 
