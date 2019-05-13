@@ -1,11 +1,8 @@
 class Level {
 
   final int width;
-
   final int height;
-
   final int size;
-
   final @NotNull int[] content;
 
   Level(
@@ -17,5 +14,4 @@ class Level {
     this.size = width * height;
     this.content = content;
   }
-
 }

@@ -8,5 +8,4 @@ interface Direction {
   char[] VISUAL = new char[]{
       '↑', '↓', '←', '→'
   };
-
 }

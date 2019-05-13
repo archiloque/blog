@@ -1,26 +1,26 @@
-public class LevelReaderTest {
+class LevelReaderTest {
 
   @Test
-  public void readTilesOK(){}
+  void readTilesOK(){}
 
   @Test
-  public void readTilesFileNotFound(){}
+  void readTilesFileNotFound(){}
 
   @Test
-  public void readTilesTilesNotFound(){}
+  void readTilesTilesNotFound(){}
 
   @Test
-  public void readTilesInvalidSyntax(){}
+  void readTilesInvalidSyntax(){}
 
   @Test
-  public void readContentOK(){}
+  void readContentOK(){}
 
   @Test
-  public void readContentFileNotFound(){}
+  void readContentFileNotFound(){}
 
   @Test
-  public void readContentInvalidLineLength(){}
+  void readContentInvalidLineLength(){}
 
   @Test
-  public void readContentUnknownTile(){}
+  void readContentUnknownTile(){}
 }

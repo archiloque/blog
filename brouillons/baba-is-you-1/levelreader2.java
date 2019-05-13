@@ -1,6 +1,7 @@
   /**
    * Read the tiles declaration
    * from the {@link LevelReader#TILES_FILES} file
+   * @return a map linking each char to the {@link Tiles} id
    */
   static @NotNull Map<Character, Integer> readTiles(
       @NotNull Path levelDirectory
@@ -9,6 +10,7 @@
     List<String> tilesContent = Files.readAllLines(elementsFile);
 
     Map<Character, Integer> result = new HashMap<>();
+    
     for (String tileLine : tilesContent) {
       Matcher m = TILES_REGEX.matcher(tileLine);
       if (!m.find()) {

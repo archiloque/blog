@@ -37,5 +37,4 @@ final class FiFoQueue<E> {
       this.next = next;
     }
   }
-
 }

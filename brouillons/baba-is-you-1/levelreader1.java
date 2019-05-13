@@ -45,9 +45,7 @@ final class LevelReader {
   static final class LevelReaderResult {
 
     final int width;
-
     final int height;
-
     final @NotNull int[] content;
 
     LevelReaderResult(
