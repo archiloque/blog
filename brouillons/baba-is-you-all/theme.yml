@@ -68,7 +68,7 @@ base:
   font_size_min: $base_font_size * 0.75
   font_style: normal
   border_color: eeeeee
-  border_radius: 4
+  border_radius: 0
   border_width: 0.5
 # FIXME vertical_rhythm is weird; we should think in terms of ems
 #vertical_rhythm: $base_line_height_length * 2 / 3
@@ -181,7 +181,7 @@ code:
   background_color: fdfdfd
   border_color: bbbbbb
   border_radius: 0
-  border_width: 0.75
+  border_width: 0.5
 conum:
   font_family: M+ 1mn
   font_color: $literal_font_color
