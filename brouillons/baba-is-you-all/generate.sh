@@ -1,1 +1,1 @@
-asciidoctor-pdf -a pdf-fontsdir=. -a pdf-style=theme.yml README.asciidoc
+asciidoctor-pdf -r ./custom.rb -a pdf-fontsdir=. -a pdf-style=theme.yml README.asciidoc
