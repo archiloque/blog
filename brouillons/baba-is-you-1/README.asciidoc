@@ -76,7 +76,7 @@ include::tiles.txt[]
 include::content.txt[]
 ----
 
-Note: I'd like to rely on emojis, like using 🐇 to represents baba or 🏁 for the flag, but the way macOS deal with emoji don't make them monospace friendly, so it breaks the visual aspect of the level files and editing them becomes a pain.
+Note: I'd like to rely on emojis to use visual representations of the objects, but the way macOS deal with emoji don't make them monospace friendly, so it breaks the visual aspect of the level files and editing them becomes a pain.
 
 I declare all the tiles used by the first level, as a `String` to be referenced by the level, and as an `int` to be referenced by the game:
 
