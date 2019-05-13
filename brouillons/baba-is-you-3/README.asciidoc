@@ -48,7 +48,7 @@ There's a catch: Baba is not a "`burning bridge`" game where you can't move back
 Before checking if a new state is interesting, it must be vetted against the previously met cases to avoid doing the same thing again and again.
 
 ifeval::["{doctype}" == "book"]
-image::../baba-is-you-3/graph3.png[width=750,height=483,title="The inner algo",align="center"]
+image::../baba-is-you-3/graph3.png[width=667,height=490,title="The inner algo",align="center"]
 endif::[]
 ifeval::["{doctype}" != "book"]
 image::../baba-is-you-3/graph3.svg[width=750,height=483,title="The inner algo",align="center"]
