@@ -53,3 +53,15 @@ ____
 == link:https://twitter.com/presentcorrect/status/1127981591748280321[A "`Thomasson`" is an architectural relic which is useless yet still maintained.]
 
 image::thomasson.jpg[align="center"]
+
+== link:https://blog.mecheye.net/2019/04/6-years-of-noclip-website/[Six Years of noclip.website]
+
+[quote]
+____
+Keeping a side-project going for this long requires momentum. When I started the project, I decided that I would try as hard as possible to prevent refactors. Refactoring code kills momentum. You do not want to write more code that will be changed by the refactor, so you stop all your progress while you get it done, and of course, as you change the code for this new idea you have, you encounter resistance and difficulty. You also have to change this. Or maybe you found your new idea doesn’t fit as well in all cases, so the resulting code is still as ugly as when you started. And you get discouraged and it’s not fun any more, so you decide not to work on it for a bit. And then "`a bit`" slowly becomes a year, and you get less guilty about not touching it ever again. It’s a story that’s happened to me before.
+____
+
+[quote]
+____
+Third, I decided that refactors were off-limits. To help with this, I wanted as little "`abstractions`" and "`frameworks`" as possible. I should share code when it makes sense, but never be forced to share code when I do not want it. For this, I took an approach inspired by the Linux kernel and built what they call “helpers” — reusable bits and bobs here and there to help cut down on boilerplate and common tasks, but are used on an as-needed basis. If you need custom code, you outgrow the training wheels, from the helpers to your own thing, perhaps by copy/pasting it, and then customizing it. Both link:https://programmingisterrible.com/post/173883533613/code-to-debug[tef] and link:https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction[Sandi Metz] have explored this idea before: code is easier to write than it is to change. When I need to change an idea that did not work out well, I should be able to do it incrementally -- port small pieces of the codebase over to the new idea, and keep the old one around. Or just delete ideas that did not work out without large change to the rest of the code.
+____
