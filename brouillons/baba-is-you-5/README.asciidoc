@@ -26,15 +26,128 @@ Following link:../babis-you-4/[the fourth part],
 endif::[]
 where I coded what was missing to display a solution, I'll now improve the behavior of the solver to make it closer to the game.
 
-== Two elements on one place
+== Two elements on one cell
 
-image::../baba-is-you-5/first-level1.png[title="This is it",align="center",width=318,height=146]
+image::../baba-is-you-5/first-level1.png[title="2 elements 1 cell",align="center",width=318,height=146]
+
+The first behavior to change is the ability to have two elements on the same cell.
+
+It conflicts with the way data are organized in `State` where one `int` is used for each cell, representing the id of the corresponding element.
+
+Instead of an `int` I could use an array of `int` for cell, `State#content` would then become an `int[][]` but by experience I try to avoid this situation since it would require adding array iterations in many places and lots of allocations which increase computation time.
+
+Several elements can be on one cell, but at most one element of each type.
+In this case using link:https://en.wikipedia.org/wiki/Bit_field[bit fields] is a common pattern.
+It's a bit like an array of boolean of a fixed size packed as a primitive value.
+
+Each kind of element will be represented by an index, and the presence of a bit with an index indicates that the corresponding element is on the cell.
+
+Exemple, if 8 bit are used to store the data, rock at index 3 and flag on index 5:
+
+[subs=+quotes]
+----
+76**5**4**3**210 bit index
+00000000 empty cell
+0000**1**000 cell with a rock
+00**1**00000 cell with a flag
+00**1**0**1**000 cell with a rock and a flag 
+----
+
+In Java `int` use link:https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html[32 bits], so it's enough to store 32 types of elements.
+It's enough for now, and I'll be able to come back to it later if it's required.
+
+This means `State#content` will still be an `int[]`, so signatures won't change but the code will have to be updated.
+
+The bit manipulation syntax link:https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op3.html[is described here].
+
+Represening an empty tile with the `0` (aka `00000000 00000000 00000000 00000000`) value would be nice because it makes testing for an empty cell easier, so the first step is to modify the declaration order in `Tiles` to match this idea.
+
+.Tiles.java
+[source,java]
+----
+include::tiles1.java[]
+----
+
+Then I add bit masks for the elements that will be used to detect and modify content of the associated type.
+
+.Tiles.java
+[source,java]
+----
+include::tiles2.java[]
+----
+
+A bit mask are used this way:
+
+[source,java]
+----
+if((value & BABA_MASK) != 0) // check if the cell contains Baba
+value = (value | BABA_MASK); // add Baba to the cell
+value = (value ^ BABA_MASK); // remove Baba from the cell
+----
+
+As the empty element is empty, there is no associated bit mask.
+
+Since the meaning of `State#content` is changed, the first step is `Level#createInitStates` where the first `State` is created. Instead of using the value of the element we set a bit at the right position.
+
+.Level.java
+[source,java]
+----
+include::level1.java[]
+----
+
+Next finding Baba use the bit mask:
+
+.State.java
+[source,java]
+----
+include::state1.java[]
+----
+
+Then the _pièce de résistance_: `State#tryToGo`.
+Here it's not only about migrating the data representation but also the behavior.
 
 ifeval::["{doctype}" == "book"]
-image::../baba-is-you-5/graph1.png[width=569,height=693,title="The algo",align="center"]
+image::../baba-is-you-5/graph1.png[width=659,height=266,title="The existing algo",align="center"]
 endif::[]
 ifeval::["{doctype}" != "book"]
-image::../baba-is-you-5/graph1.svg[width=584,height=708,title="The algo",align="center"]
+image::../baba-is-you-5/graph1.svg[width=674,height=281,title="The existing algo",align="center"]
 endif::[]
+
+The existing code was a `switch`, since all cases were independent from each others.
+
+Dealing with the new case add a depencency between the rock case and the flag case:
+
+ifeval::["{doctype}" == "book"]
+image::../baba-is-you-5/graph2.png[width=569,height=693,title="The new algo",align="center"]
+endif::[]
+ifeval::["{doctype}" != "book"]
+image::../baba-is-you-5/graph2.svg[width=584,height=708,title="The new  algo",align="center"]
+endif::[]
+
+This ensure a flag can't be reached if it's on the same cell that a rock that can't be moved.
+
+So the code musy be rewritten as a serie of `if`.
+
+.State.java
+[source,java]
+----
+include::state2.java[]
+----
+
+New tests ensure I didn't miss any case:
+
+.StateTryToGoTest.java
+[source,java]
+----
+include::statetrytogotest1.java[]
+----
+
+Running the program show the new capability being used, making the solution shorter:
+
+.levels/00/solution.txt
+[source]
+----
+8→
+----
 
 == Pushing several rocks

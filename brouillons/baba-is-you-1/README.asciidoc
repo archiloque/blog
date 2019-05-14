@@ -24,6 +24,8 @@ I think it's a good candidate to write a solver for, and to document how I'm doi
 
 I'm writing while coding the solver and not as a post-mortem, so expect some bad design and implementation decisions along the way.
 
+A general knowledge of the game (if you don't want to play it you can try watching a "`let's play`" video) and of Java is required.
+
 As I've explained link:../solveurs/[in a previous article] (in French), a puzzle solver rely on a loop used to iterate until a solution is found.
 
 ifeval::["{doctype}" == "book"]
@@ -86,7 +88,7 @@ I declare all the tiles used by the first level, as a `String` to be referenced 
 include::tiles.java[]
 ----
 
-I use ``int``s instead of enum types for this kind of data for two reasons :
+I use ``int``s instead of enum types for this kind of data for two reasons:
 
 * they took less memory, and it makes a big difference when you have to store many levels;
 * you can use the `int` as array index to retrieve data instead of using a `Hash`, which makes it much faster.

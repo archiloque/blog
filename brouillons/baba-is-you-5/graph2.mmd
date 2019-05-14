@@ -1,0 +1,34 @@
+graph TD
+
+Start[Start]
+
+Wall[Target tile contains a wall?]
+YesWall[Can't go there]
+
+Empty[Target tile is empty?]
+YesEmpty[Can go there]
+
+Rock[Target tile contains a rock?]
+
+MoveRock[Can the rock move?]
+NoMoveRock[Can't go there]
+
+Flag[Target tile contains a flag?]
+YesFlag[\o/ Found a solution !]
+NoFlag[Can go there]
+
+Start --> Wall
+Wall --> |Yes|YesWall
+Wall --> |No|Empty
+
+Empty --> |Yes|YesEmpty
+Empty --> |No|Rock
+
+Rock --> |Yes|MoveRock
+Rock --> |No|Flag
+
+MoveRock --> |Yes|Flag
+MoveRock --> |No|NoMoveRock
+
+Flag --> |Yes|YesFlag
+Flag --> |No|NoFlag
