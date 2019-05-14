@@ -30,4 +30,11 @@ where I coded what was missing to display a solution, I'll now improve the behav
 
 image::../baba-is-you-5/first-level1.png[title="This is it",align="center",width=318,height=146]
 
+ifeval::["{doctype}" == "book"]
+image::../baba-is-you-5/graph1.png[width=596,height=693,title="The algo",align="center"]
+endif::[]
+ifeval::["{doctype}" != "book"]
+image::../baba-is-you-5/graph1.svg[width=611,height=708,title="The algo",align="center"]
+endif::[]
+
 == Pushing several rocks
