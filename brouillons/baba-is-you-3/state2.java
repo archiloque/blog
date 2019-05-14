@@ -1,75 +1,50 @@
-class State {
+/**
+ * Try to go on a direction from a position
+ * @return true if a solution has been found
+ */
+boolean tryToGo(int currentPosition, byte direction) {
+  int targetPosition = calculatePosition(currentPosition, direction);
+  int targetPositionContent = content[targetPosition];
 
-  private final @NotNull Level level;
-
-  /**
-   * Probably not the right format, just drafting
-   */
-  private final @NotNull int[] content;
-
-  State(
-      @NotNull Level level,
-      @NotNull int[] content) {
-    this.level = level;
-    this.content = content;
+  int[] newContent;
+  switch (targetPositionContent) {
+    case Tiles.WALL:
+      return false;
+    case Tiles.EMPTY:
+      newContent = content.clone();
+      newContent[targetPosition] = Tiles.BABA;
+      newContent[currentPosition] = Tiles.EMPTY;
+      level.addState(newContent);
+      return false;
+    case Tiles.ROCK:
+      // @TODO implements this
+      return false;
+    case Tiles.FLAG:
+      return true;
+    default:
+      throw new IllegalArgumentException("" + targetPositionContent);
   }
+}
 
-  /**
-   * Process the current state
-   *
-   * @return true if we found a solution
-   */
-  boolean processState() {
-    int babaPosition = findBaba();
-    int babaLine = babaPosition / level.width;
-    int babaColumn = babaPosition % level.width;
-
-    // Up
-    if (babaLine > 0) {
-      if (tryToGo(babaPosition, Direction.UP)) {
-        return true;
-      }
-    }
-
-    // Down
-    if (babaLine < (level.height - 1)) {
-      if (tryToGo(babaPosition, Direction.DOWN)) {
-        return true;
-      }
-    }
-
-    // Left
-    if (babaColumn > 0) {
-      if (tryToGo(babaPosition, Direction.LEFT)) {
-        return true;
-      }
-    }
-
-    // Right
-    if (babaColumn < (level.width - 1)) {
-      if (tryToGo(babaPosition, Direction.RIGHT)) {
-        return true;
-      }
-    }
-
-    return false;
+/**
+ * Calculate the index of a position after a move
+ */
+private int calculatePosition(int position, byte direction) {
+  // Content is stored as a single array one line after another
+  switch (direction) {
+    case Direction.UP:
+      // up: go back one row
+      return position - level.width;
+    case Direction.DOWN:
+      // down: go further one row
+      return position + level.width;
+    case Direction.LEFT:
+      // left : go back one item
+      return position - 1;
+    case Direction.RIGHT:
+      // left : go further one item
+      return position + 1;
+    default:
+      throw new IllegalArgumentException("" + direction);
   }
-
-  boolean tryToGo(int currentPosition, byte direction) {
-    // @TODO probably add some code here
-    return false;
-  }
-
-  /**
-   * Find the index of the baba position.
-   *
-   * @return the position or -1 if not found
-   */
-  int findBaba() {
-    for (int i = 0; i < content.length; i++) {
-      if (content[i] == Tiles.BABA) {
-        return i;
-      }
-    }
-    return -1;
-  }
+}

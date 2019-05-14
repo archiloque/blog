@@ -1,8 +1,5 @@
 /**
  * All the tiles.
- * Should be declared in sorted order so the index
- * of the items in {@link Tiles#ALL_STRINGS}
- * matches the values of the int items.
  */
 interface Tiles {
 

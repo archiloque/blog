@@ -93,7 +93,7 @@ I use ``int``s instead of enum types for this kind of data for two reasons :
 
 I have experienced both in my previous solvers.
 
-You loose some type checking this way and makes code a bit less readable but it's an acceptable downside for me.
+You lose some type checking this way and makes code a bit less readable but it's an acceptable downside for me.
 
 Perhaps later this file will become a pain to maintain so I'll end up putting the content in a config file and generate the Java code from it but for now I prefer to use a simpler way.
 

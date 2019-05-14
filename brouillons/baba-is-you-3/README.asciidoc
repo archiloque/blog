@@ -9,8 +9,8 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: direction1.java, graph3.mmd, graph3.png, level3.java, state2.java, state3.java, state4.java, stateavailablemovementstest1.java, statetrytogotest1.java, statetrytogotest2.java
-:article_image: first-level3.png
+:ignore_files: direction1.java, graph1.mmd, graph1.png, level1.java, state1.java, state2.java, state3.java, stateavailablemovementstest1.java, statetrytogotest1.java, statetrytogotest2.java
+:article_image: first-level1.png
 ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
@@ -26,7 +26,7 @@ Following link:../babis-you-2/[the second part],
 endif::[]
 I'll deal with the logic to find a solution to the first level.
 
-image::../baba-is-you-3/first-level3.png[title="Here it is",align="center",width=293,height=342]
+image::../baba-is-you-3/first-level1.png[title="Here it is",align="center",width=293,height=342]
 
 The first level has a feature that will things much simpler:
 the rules can't be changed.
@@ -48,10 +48,10 @@ There's a catch: Baba is not a "`burning bridge`" game where you can't move back
 Before checking if a new state is interesting, it must be vetted against the previously met cases to avoid doing the same thing again and again.
 
 ifeval::["{doctype}" == "book"]
-image::../baba-is-you-3/graph3.png[width=667,height=490,title="The inner algo",align="center"]
+image::../baba-is-you-3/graph1.png[width=667,height=490,title="The inner algo",align="center"]
 endif::[]
 ifeval::["{doctype}" != "book"]
-image::../baba-is-you-3/graph3.svg[width=750,height=483,title="The inner algo",align="center"]
+image::../baba-is-you-3/graph1.svg[width=750,height=483,title="The inner algo",align="center"]
 endif::[]
 
 == Then some code
@@ -77,7 +77,7 @@ Then the code:
 .State.java
 [source,java]
 ----
-include::state2.java[]
+include::state1.java[]
 ----
 
 And testing it:
@@ -101,7 +101,7 @@ Pushing a rock is more complex case than the others, so I'll ignore it first:
 .State.java
 [source,java]
 ----
-include::state3.java[]
+include::state2.java[]
 ----
 
 And testing it:
@@ -128,7 +128,7 @@ In this case Baba can go in this direction and push the rock.
 .State.java
 [source,java]
 ----
-include::state4.java[]
+include::state3.java[]
 ----
 
 .StateTryToGoTest.java
@@ -146,14 +146,14 @@ Java makes it a bit more complicated than it should do:
 .Level.java
 [source,java]
 ----
-include::level3.java[]
+include::level1.java[]
 ----
 
 And … it works, the program can solve the level:
 
 [source]
 ----
-include::log2.txt[]
+include::log1.txt[]
 ----
 
 \o/

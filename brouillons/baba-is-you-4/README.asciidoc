@@ -9,8 +9,8 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: app2.java, app3.java, level4.java, log3.txt, state5.java, state6.java
-:article_image: first-level4.png
+:ignore_files: app1.java, app2.java, level1.java, log1.txt, state1.java, state2.java
+:article_image: first-level1.png
 ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
@@ -32,7 +32,7 @@ I said I solved the first level, at least it's what the computer told me:
 
 [source]
 ----
-include::log3.txt[]
+include::log1.txt[]
 ----
 
 But it would be nice if the code told me _how_ it solved it, it would allow me to check if the solution looks reasonable, and it would allow me to use the solution to solve the level.
@@ -46,7 +46,7 @@ To implement this, a `State` must store the movements that lead to it, which mea
 .State.java
 [source,java]
 ----
-include::state5.java[]
+include::state1.java[]
 ----
 
 Then when the solution is found, I write it in the same directory as the level, so any change can be identified with a source control system.
@@ -57,7 +57,7 @@ If we don't pretty print it, the path would be something like `→→→→→�
 .App.java
 [source,java]
 ----
-include::app2.java[]
+include::app1.java[]
 ----
 
 The result:
@@ -79,7 +79,7 @@ The solution is to add the last movement to the past movements, and to return th
 .State.java
 [source,java]
 ----
-include::state6.java[]
+include::state2.java[]
 ----
 
 In `Level` the value is propagated.
@@ -87,7 +87,7 @@ In `Level` the value is propagated.
 .Level.java
 [source,java]
 ----
-include::level4.java[]
+include::level1.java[]
 ----
 
 And in `App`, this value is printed.
@@ -95,7 +95,7 @@ And in `App`, this value is printed.
 .App.java
 [source,java]
 ----
-include::app3.java[]
+include::app2.java[]
 ----
 
 Which prints the right solution
