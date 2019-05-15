@@ -72,3 +72,10 @@ ____
 ____
 Existing code exerts a powerful influence. Its very presence argues that it is both correct and necessary. We know that code represents effort expended, and we are very motivated to preserve the value of this effort. And, unfortunately, the sad truth is that the more complicated and incomprehensible the code, i.e. the deeper the investment in creating it, the more we feel pressure to retain it (the "`link:https://en.wikipedia.org/wiki/Sunk_costs#Loss_aversion_and_the_sunk_cost_fallacy[sunk cost fallacy]`"). It's as if our unconscious tell us "`Goodness, that's so confusing, it must have taken ages to get right. Surely it's really, really important. It would be a sin to let all that effort go to waste.`"
 ____
+
+== link:https://anvilventures.com/blog/looking-inside-the-box.html[Looking inside the box]
+
+[quote]
+____
+TL;DR This blog post talks about reverse engineering the Dropbox client, breaking its obfuscation mechanisms, de-compiling it to Python code as well as modifying the client in order to use debug features which are normally hidden from view.
+____
