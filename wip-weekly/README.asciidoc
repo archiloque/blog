@@ -79,3 +79,14 @@ ____
 ____
 TL;DR This blog post talks about reverse engineering the Dropbox client, breaking its obfuscation mechanisms, de-compiling it to Python code as well as modifying the client in order to use debug features which are normally hidden from view.
 ____
+
+== https://shafik.github.io/c++/undefined%20behavior/2019/05/11/explporing_undefined_behavior_using_constexpr.html[Exploring Undefined Behavior Using Constexpr]
+
+[quote]
+____
+So if we have an operation that would have _undefined behavior_ in a context that requires a _constant expression_ it would not be valid therefore it is _ill-formed_. This is fancy way of saying that the compiler is required to tell you about it if you violate this rule. In standard talk we would say it must provide a diagnostic, which could be a warning or an error. Currently compilers produce a hard error on ill-formed constant expressions as opposed to a warning.
+
+We have another great tool at our service and that is link:https://godbolt.org/[godbolt also known as Compiler Explorer]. Compiler Explorer is an interactive compiler, we can use it to obtain diagnostics for small code quickly. If you make a modifications it updates immediately allowing one to iterate quickly over small changes.
+
+Compiler Explorer, combined with the fact that undefined behavior is ill-formed in a constant expressions, allows us to explore what is and what is not undefined behavior in an interactive and quick manner. Now I know what you are thinking, "`Shafik, this sounds too much like having your cake and eating it too`", ok so there are some caveats here. I mentioned before that not everything is allowed in a constant expression. For example heap allocation, reinterpret_cast etc. so there are classes of undefined behavior we cannot explore e.g. use after free and strict aliasing violations. Will also learned about a couple of exceptions, (_this wouldn’t be C++ if there weren’t exceptions_). There are still plenty of interesting cases to explore and learn from.
+____
