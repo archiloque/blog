@@ -1,5 +1,28 @@
 @Test
+void testMoveWall() {
+  checkMoveSimple(
+      new int[]{
+          Tiles.BABA_MASK,
+          Tiles.WALL_MASK},
+      null,
+      new int[0][]
+  );
+}
+
+@Test
+void testMoveFlag() {
+  checkMoveSimple(
+      new int[]{
+          Tiles.BABA_MASK,
+          Tiles.FLAG_MASK},
+      new byte[]{Direction.RIGHT},
+      new int[0][]
+  );
+}
+
+@Test
 void testMoveRock() {
+  // rock against a wall
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
@@ -8,6 +31,7 @@ void testMoveRock() {
       new int[0][]
   );
 
+  // rock and flag against a wall
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
@@ -16,6 +40,7 @@ void testMoveRock() {
       new int[0][]
   );
 
+  // rock against a rock against a wall
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
@@ -25,6 +50,7 @@ void testMoveRock() {
       new int[0][]
   );
 
+  // rock against an empty cell
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
@@ -37,7 +63,7 @@ void testMoveRock() {
           Tiles.ROCK_MASK}}
   );
 
-
+  // rock and flag against an empty cell
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
@@ -47,6 +73,7 @@ void testMoveRock() {
       new int[0][]
   );
 
+  // rock and flag against an flag
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,

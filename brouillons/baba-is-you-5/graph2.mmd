@@ -2,18 +2,18 @@ graph TD
 
 Start[Start]
 
-Wall[Target tile contains a wall?]
+Wall[Target cell contains a wall?]
 YesWall[Can't go there]
 
-Empty[Target tile is empty?]
+Empty[Target cell is empty?]
 YesEmpty[Can go there]
 
-Rock[Target tile contains a rock?]
+Rock[Target cell contains a rock?]
 
 MoveRock[Can the rock move?]
 NoMoveRock[Can't go there]
 
-Flag[Target tile contains a flag?]
+Flag[Target cell contains a flag?]
 YesFlag[\o/ Found a solution !]
 NoFlag[Can go there]
 

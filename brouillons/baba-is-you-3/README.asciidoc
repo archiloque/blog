@@ -92,7 +92,7 @@ Then it's time to deal with the content.
 The behavior depends of the content of the position Baba wants to move to.
 The code must do three things: test if the movement is valid, test if the new position is a winning one, and calculate the new board position.
 
-It would be possible to write each step in separate pass but I find it easier to do it in one time because all three steps depends mostly of the kind of elements on the target tile.
+It would be possible to write each step in separate pass but I find it easier to do it in one time because all three steps depends mostly of the kind of elements on the target cell.
 
 Calculating a new board position is done by cloning the existing one and updating the values that need to be updated.
 
