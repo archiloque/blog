@@ -85,7 +85,7 @@ value = (value | BABA_MASK); // add Baba to the cell
 value = (value ^ BABA_MASK); // remove Baba from the cell
 ----
 
-As the empty element is empty, there is no associated bit mask.
+As the empty element is equal to `0` there is no associated bit mask, an empty cell has a content equals to `0`.
 
 Since the meaning of `State#content` is changed, the first step is `Level#createInitStates` where the first `State` is created. Instead of using the value of the element we set a bit at the right position.
 
@@ -134,13 +134,15 @@ So the code musy be rewritten as a serie of `if`.
 include::state2.java[]
 ----
 
-New tests ensure I didn't miss any case:
+Now it's time to migrate existing tests and to add new ones to ensure I didn't miss any case:
 
 .StateTryToGoTest.java
 [source,java]
 ----
 include::statetrytogotest1.java[]
 ----
+
+The code used to check if a position has already been reached don't need to be updated since it relies on the values of the content: the inner values changed but comparing them is still the right thing to do.
 
 Running the program show the new capability being used, making the solution shorter:
 
@@ -152,4 +154,14 @@ Running the program show the new capability being used, making the solution shor
 
 == Pushing several rocks
 
+The second behavior to change is the ability to push several rock at once.
+
 image::../baba-is-you-5/first-level2.png[title="Here comes the rockipede",align="center",width=318,height=146]
+
+This time there is no signature change, only some code to add, which means it's easier to start with the tests:
+
+.StateTryToGoTest.java
+[source,java]
+----
+include::statetrytogotest2.java[]
+----

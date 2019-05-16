@@ -1,56 +1,75 @@
 @Test
+void testMoveEmpty() {
+  // empty
+  checkMoveSimple(
+      new int[]{
+          Tiles.BABA_MASK,
+          Tiles.EMPTY},
+      null,
+      new int[][]{new int[]{
+          Tiles.EMPTY,
+          Tiles.BABA_MASK}});
+}
+
+@Test
 void testMoveWall() {
+  // wall
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
           Tiles.WALL_MASK},
       null,
-      new int[0][]
-  );
+      new int[0][]);
 }
 
 @Test
 void testMoveFlag() {
+  // flag
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
           Tiles.FLAG_MASK},
       new byte[]{Direction.RIGHT},
-      new int[0][]
-  );
+      new int[0][]);
 }
 
 @Test
 void testMoveRock() {
-  // rock against a wall
+  // rock
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
           Tiles.ROCK_MASK},
       null,
-      new int[0][]
-  );
+      new int[0][]);
 
-  // rock and flag against a wall
+  // rock + flag
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
           Tiles.ROCK_MASK | Tiles.FLAG_MASK},
       null,
-      new int[0][]
-  );
+      new int[0][]);
 
-  // rock against a rock against a wall
+  // rock | rock
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
           Tiles.ROCK_MASK,
           Tiles.ROCK_MASK},
       null,
-      new int[0][]
-  );
+      new int[0][]);
 
-  // rock against an empty cell
+  // rock | wall
+  checkMoveSimple(
+      new int[]{
+          Tiles.BABA_MASK,
+          Tiles.ROCK_MASK,
+          Tiles.WALL_MASK},
+      null,
+      new int[0][]);
+
+  // rock | empty
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
@@ -60,20 +79,18 @@ void testMoveRock() {
       new int[][]{new int[]{
           Tiles.EMPTY,
           Tiles.BABA_MASK,
-          Tiles.ROCK_MASK}}
-  );
+          Tiles.ROCK_MASK}});
 
-  // rock and flag against an empty cell
+  // rock + flag | empty
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
           Tiles.ROCK_MASK | Tiles.FLAG_MASK,
           Tiles.EMPTY},
       new byte[]{Direction.RIGHT},
-      new int[0][]
-  );
+      new int[0][]);
 
-  // rock and flag against an flag
+  // rock | flag
   checkMoveSimple(
       new int[]{
           Tiles.BABA_MASK,
@@ -83,6 +100,40 @@ void testMoveRock() {
       new int[][]{new int[]{
           Tiles.EMPTY,
           Tiles.BABA_MASK,
-          Tiles.ROCK_MASK | Tiles.FLAG_MASK}}
-  );
+          Tiles.ROCK_MASK | Tiles.FLAG_MASK}});
+
+  // rock | rock | empty
+  checkMoveSimple(
+      new int[]{
+          Tiles.BABA_MASK,
+          Tiles.ROCK_MASK,
+          Tiles.ROCK_MASK,
+          Tiles.EMPTY},
+      null,
+      new int[][]{new int[]{
+          Tiles.EMPTY,
+          Tiles.BABA_MASK,
+          Tiles.ROCK_MASK,
+          Tiles.ROCK_MASK}});
+
+  // rock | rock | wall | empty
+  checkMoveSimple(
+      new int[]{
+          Tiles.BABA_MASK,
+          Tiles.ROCK_MASK,
+          Tiles.ROCK_MASK,
+          Tiles.WALL_MASK,
+          Tiles.EMPTY},
+      null,
+      new int[0][]);
+
+  // rock + flag | rock | empty
+  checkMoveSimple(
+      new int[]{
+          Tiles.BABA_MASK,
+          Tiles.ROCK_MASK | Tiles.FLAG_MASK,
+          Tiles.ROCK_MASK,
+          Tiles.EMPTY},
+      new byte[]{Direction.RIGHT},
+      new int[0][]);
 }

@@ -18,15 +18,15 @@ class StateTryToGoTest {
   }
 
   /**
-   * Simple cases are tested with a level of 2x1
+   * Cases are tested with a level of ?x1
    * Baba is in the first position and tries to go left
    */
   void checkMoveSimple(
-      int[] content,
+      @NotNull int[] content,
       boolean result,
       @NotNull int[][] possibleNextMoves) {
     LevelToTestTryToGo level = new LevelToTestTryToGo(
-        2,
+        content.length,
         1,
         content);
     State state = new State(level, content);
@@ -43,28 +43,36 @@ class StateTryToGoTest {
 
   @Test
   void testMoveEmpty() {
+    // empty
     checkMoveSimple(
-        new int[]{Tiles.BABA, Tiles.EMPTY},
+        new int[]{
+            Tiles.BABA,
+            Tiles.EMPTY},
         false,
-        new int[][]{new int[]{Tiles.EMPTY, Tiles.BABA}}
-    );
+        new int[][]{new int[]{
+            Tiles.EMPTY,
+            Tiles.BABA}});
   }
 
   @Test
   void testMoveWall() {
+    // wall
     checkMoveSimple(
-        new int[]{Tiles.BABA, Tiles.WALL},
+        new int[]{
+            Tiles.BABA,
+            Tiles.WALL},
         false,
-        new int[0][]
-    );
+        new int[0][]);
   }
 
   @Test
   void testMoveFlag() {
+    // flag
     checkMoveSimple(
-        new int[]{Tiles.BABA, Tiles.FLAG},
+        new int[]{
+            Tiles.BABA,
+            Tiles.FLAG},
         true,
-        new int[0][]
-    );
+        new int[0][]);
   }
 }
