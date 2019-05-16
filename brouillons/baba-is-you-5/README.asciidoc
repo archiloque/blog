@@ -118,10 +118,10 @@ The existing code was a `switch`, since all cases were independent from each oth
 Dealing with the new case add a depencency between the rock case and the flag case:
 
 ifeval::["{doctype}" == "book"]
-image::../baba-is-you-5/graph2.png[width=536,height=651,title="The new algo",align="center"]
+image::../baba-is-you-5/graph2.png[width=570,height=588,title="The new algo",align="center"]
 endif::[]
 ifeval::["{doctype}" != "book"]
-image::../baba-is-you-5/graph2.svg[width=585,height=708,title="The new  algo",align="center"]
+image::../baba-is-you-5/graph2.svg[width=585,height=693,title="The new  algo",align="center"]
 endif::[]
 
 This ensure a flag can't be reached if it's on the same cell that a rock that can't be moved.
@@ -158,6 +158,8 @@ The second behavior to change is the ability to push several rock at once.
 
 image::../baba-is-you-5/first-level2.png[title="Here comes the rockipede",align="center",width=318,height=146]
 
+When baba tries to move a rock, the code need to iterate until it finds something that is not a rock, or until the end of the level is reached.
+
 This time there is no signature change, only some code to add, which means it's easier to start with the tests:
 
 .StateTryToGoTest.java
@@ -166,7 +168,13 @@ This time there is no signature change, only some code to add, which means it's 
 include::statetrytogotest2.java[]
 ----
 
-#TODO: TO BE FINISHED#
+Then the code:
 
-Now all behaviors visible for the first level are implemented.
+.State.java
+[source,java]
+----
+include::state3.java[]
+----
+
+Now all visible behaviors of the first level are implemented.
 In the next part I'll start working on the second level, where it will be possible to change the rules.

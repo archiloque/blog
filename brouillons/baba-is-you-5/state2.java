@@ -26,7 +26,7 @@
   }
   
   if((targetPositionContent & Tiles.ROCK_MASK) != 0) {
-    // did we reach the border of the level ?
+    // did we reach the border of the level?
     if (!canGoThere(targetPosition, direction)) {
       return null;
     }
@@ -36,9 +36,9 @@
     int behindTheRockPositionContent =
         content[behindTheRockPosition];
 
-    // it it a rock ?
-    int rockOrWallMask = Tiles.ROCK_MASK | Tiles.WALL_MASK;
-    if ((behindTheRockPositionContent & rockOrWallMask) != 0) {
+    // does it block the move?
+    int blockingMask = Tiles.ROCK_MASK | Tiles.WALL_MASK;
+    if ((behindTheRockPositionContent & blockingMask) != 0) {
       return null;
     }
 
@@ -48,7 +48,7 @@
     newContent[targetPosition] = targetPositionContent;
     // add a rock at the end
     newContent[behindTheRockPosition] =
-        newContent[behindTheRockPosition] | Tiles.ROCK_MASK;
+        behindTheRockPositionContent | Tiles.ROCK_MASK;
   }
 
   if((targetPositionContent & Tiles.FLAG_MASK) != 0) {

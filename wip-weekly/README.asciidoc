@@ -90,3 +90,26 @@ We have another great tool at our service and that is link:https://godbolt.org/[
 
 Compiler Explorer, combined with the fact that undefined behavior is ill-formed in a constant expressions, allows us to explore what is and what is not undefined behavior in an interactive and quick manner. Now I know what you are thinking, "`Shafik, this sounds too much like having your cake and eating it too`", ok so there are some caveats here. I mentioned before that not everything is allowed in a constant expression. For example heap allocation, reinterpret_cast etc. so there are classes of undefined behavior we cannot explore e.g. use after free and strict aliasing violations. Will also learned about a couple of exceptions, (_this wouldn’t be C++ if there weren’t exceptions_). There are still plenty of interesting cases to explore and learn from.
 ____
+
+== link:http://tasvideos.org/6347S.html[Submission #6347: Chef Stef's NES Arkanoid "warpless" in 11:11.18]
+
+[quote]
+____
+The concept behind this TAS
+I've always been intrigued by brute forcing as an optimization strategy and tried to find a game where it might be possible without spending multiple lifetimes finishing it. After some research, I decided that NES Arkanoid was a good candidate.
+At first glance, brute-forcing an 11-minute TAS might seem to be completely impossible, having 2^8^(60 * 60 * 11) possibilities to evaluate. But that assumes we actually want to try every combination of inputs; if we encode the rules of the game into the bot and don't bother looking for things like glitches or ACE exploits, we can actually get this into the realm of possibility. The input surface of the game is actually quite small: you only have to press left, right, and A, and never any of those at the same time. There also aren't all that many ways to bounce the ball around.
+
+I started with about 1500 lines of Lua scripting on top of Bizhawk. This was useful and proved out a lot of my ideas, but the execution time wasn't where it needed to be. Evaluations were maxing out at thousands of paths per hour, when I needed it to be billions per hour to make any kind of headway.
+
+The bottleneck was emulation speed. Could I improve performance within the emulator? I found a few settings (like disabling the display) that gave marginal improvements. But I was still a long way from the goal.
+
+And then I realized something - what if I could simulate the game state instead of emulating it? There's a lot of overhead in running BizHawk, running the Lua engine, and emulating the NES internals that isn't necessary if we're just trying to make a ball bounce around. Could I instead write an optimized, bare-bones program that mimicked Arkanoid's mechanics and then run my brute force bot on that?
+
+So I went back to the drawing board. I disassembled the game, analyzed its logic, pulled out the routines that mattered for gameplay, and rewrote them all in C++. Logic for graphics, sound, and such could be omitted since they don't affect the physics or any outcomes in the game.
+
+With the replicated game engine in hand, the next step was proving it was equivalent to the original. I constructed a test harness that fed Baxter's TAS inputs into the engine and compared memory values against what BizHawk showed for any divergence. This uncovered many small issues and inconsistencies that I painstakingly fixed. Eventually I'd resolved everything and could "play back" Baxter's TAS perfectly.
+
+Now I could finally move on to brute-forcing the game. I wrote an evaluation engine with a bunch of rules (discussed later) to go through levels and output BizHawk movies with their solutions. After about a year of execution time on six CPU cores, I'd finally evaluated everything to a satisfactory point to assemble and produce this TAS.
+
+There's a lot of potential in this type of brute-forcing and I'd love to see this happen for more games. The principles discussed below are game-agnostic; the key is the complexity of the game.
+____

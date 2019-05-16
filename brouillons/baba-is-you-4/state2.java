@@ -42,7 +42,7 @@
       level.addState(newContent, addMovement(direction));
       return null;
     case Tiles.ROCK:
-      // did we reach the border of the level ?
+      // did we reach the border of the level?
       if (!canGoThere(targetPosition, direction)) {
         return null;
       }
