@@ -34,7 +34,7 @@ The first behavior to change is the ability to have two elements on the same cel
 
 It conflicts with the way data are organized in `State` where one `int` is used for each cell, representing the id of the corresponding element.
 
-Instead of an `int` I could use an array of `int` for cell, `State#content` would then become an `int[][]` but by experience I try to avoid this situation since it would require adding array iterations in many places and lots of allocations which increase computation time.
+Instead of an `int` I could use an array of `int` for cell, `State#content` would then become an `int[][]` but by experience I try to avoid this situation since it would require adding array iterations in many places and lots of allocations which increase computation time, for example when checking if a position has already been reached.
 
 Several elements can be on one cell, but at most one element of each type.
 In this case using link:https://en.wikipedia.org/wiki/Bit_field[bit fields] is a common pattern.
