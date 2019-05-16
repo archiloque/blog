@@ -30,7 +30,7 @@ boolean tryToGo(
       if (!canGoThere(targetPosition, direction)) {
         return false;
       }
-      // the position behind  the rock
+      // the position behind the rock
       int behindTheRockPosition = calculatePosition(targetPosition, direction);
       int behindTheRockPositionContent = content[behindTheRockPosition];
       // it it empty?

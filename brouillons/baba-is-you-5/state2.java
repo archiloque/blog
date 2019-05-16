@@ -30,7 +30,7 @@
     if (!canGoThere(targetPosition, direction)) {
       return null;
     }
-    // the position behind  the rock
+    // the position behind the rock
     int behindTheRockPosition =
         calculatePosition(targetPosition, direction);
     int behindTheRockPositionContent =
