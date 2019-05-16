@@ -1,0 +1,29 @@
+[#baba-is-you-6]
+ifeval::["{doctype}" == "book"]
+= Part 6: changing the rules
+endif::[]
+ifeval::["{doctype}" != "book"]
+= Writing a "`Baba Is You`" solver, part 6: changing the rules
+endif::[]
+:author: Julien Kirch
+:revnumber: v0.1
+:docdate: 2019-05-09
+:article_lang: en
+:ignore_files:
+:article_image: second-level1
+ifndef::source-highlighter[]
+:source-highlighter: pygments
+:pygments-style: friendly
+endif::[]
+:article_description: Going meta
+:figure-caption!:
+
+ifeval::["{doctype}" == "book"]
+Following the fifth part,
+endif::[]
+ifeval::["{doctype}" != "book"]
+Following link:../babis-you-5/[the fifth part],
+endif::[]
+where I coded missing bahaviors, I'll work on the second level on being able to modify the rules.
+
+image::../baba-is-you-6/second-level1.png[align="center",width=704,height=804]
