@@ -107,10 +107,10 @@ Then the _pièce de résistance_: `State#tryToGo`.
 Here it's not only about migrating the data representation but also the behavior.
 
 ifeval::["{doctype}" == "book"]
-image::../baba-is-you-5/graph1.png[width=649,height=315,title="The existing algo",align="center"]
+image::../baba-is-you-5/graph1.png[width=705,height=307,title="The existing algo",align="center"]
 endif::[]
 ifeval::["{doctype}" != "book"]
-image::../baba-is-you-5/graph1.svg[width=664,height=330,title="The existing algo",align="center"]
+image::../baba-is-you-5/graph1.svg[width=720,height=322,title="The existing algo",align="center"]
 endif::[]
 
 The existing code was a `switch`, since all cases were independent from each others.
@@ -118,10 +118,10 @@ The existing code was a `switch`, since all cases were independent from each oth
 Dealing with the new case add a depencency between the rock case and the flag case:
 
 ifeval::["{doctype}" == "book"]
-image::../baba-is-you-5/graph2.png[width=570,height=588,title="The new algo",align="center"]
+image::../baba-is-you-5/graph2.png[width=624,height=664,title="The new algo",align="center"]
 endif::[]
 ifeval::["{doctype}" != "book"]
-image::../baba-is-you-5/graph2.svg[width=585,height=693,title="The new  algo",align="center"]
+image::../baba-is-you-5/graph2.svg[width=639,height=679,title="The new  algo",align="center"]
 endif::[]
 
 This ensure a flag can't be reached if it's on the same cell that a rock that can't be moved.

@@ -29,10 +29,10 @@ A general knowledge of the game (if you don't want to play it you can try watchi
 As I've explained link:../solveurs/[in a previous article] (in French), a puzzle solver rely on a loop used to iterate until a solution is found.
 
 ifeval::["{doctype}" == "book"]
-image::../baba-is-you-1/graph1.png[width=730,height=498,align="center"]
+image::../baba-is-you-1/graph1.png[width=786,height=470,align="center"]
 endif::[]
 ifeval::["{doctype}" != "book"]
-image::../baba-is-you-1/graph1.svg[width=784,height=468,align="center"]
+image::../baba-is-you-1/graph1.svg[width=821,height=497,align="center"]
 endif::[]
 
 The first step is to be able to initialize the loop, which means reading the levels from disk.
