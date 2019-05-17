@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 # Generate the ignore files list
-full_list = Dir.glob('*.*')
-full_list.select! do |file_name|
+file_list = Dir.glob('*.*')
+file_list.select! do |file_name|
     extension = File.extname(file_name)
     case extension
     when '.asciidoc'
@@ -20,10 +20,9 @@ full_list.select! do |file_name|
     when '.svg'
         false
     when '.png'
-        mmd_exist = File.exist?("#{File.basename(file_name,'.png')}.mmd")
-        mmd_exist
+        File.exist?("#{File.basename(file_name,'.png')}.mmd")
     else
         raise "Unknown extension [#{extension}]"
     end
 end
-STDOUT << ":ignore_files: #{full_list.sort.join(', ')}\n"
+STDOUT << ":ignore_files: #{file_list.sort.join(', ')}\n"
