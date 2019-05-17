@@ -9,7 +9,7 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: app1.java, fifoqueue1.java, graph1.mmd, graph1.png, level1.java, level2.java, log1.txt, state1.java
+:ignore_files: app1.java, fifoqueue1.java, graph1.asciidoc, graph1.mmd, graph1.png, level1.java, level2.java, log1.txt, state1.java
 :article_image: first-level1.png
 ifndef::source-highlighter[]
 :source-highlighter: pygments
@@ -28,12 +28,7 @@ it's time to do some plumbing.
 
 Before dealing with the solving logic, some plumbing is required to establish the game loop.
 
-ifeval::["{doctype}" == "book"]
-image::../baba-is-you-2/graph1.png[width=730,height=498,align="center"]
-endif::[]
-ifeval::["{doctype}" != "book"]
-image::../baba-is-you-2/graph1.svg[width=784,height=468,align="center"]
-endif::[]
+include::graph1.asciidoc[]
 
 Most of the code shown here is ported from my previous link:https://github.com/archiloque/rgbexpress[efforts].
 

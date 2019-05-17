@@ -9,7 +9,7 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: graph1.mmd, graph1.png, graph2.mmd, graph2.png, level1.java, state1.java, state2.java, state3.java, statetrytogotest1.java, statetrytogotest2.java, tiles1.java, tiles2.java
+:ignore_files: graph1.asciidoc, graph1.mmd, graph1.png, graph2.asciidoc, graph2.mmd, graph2.png, level1.java, state1.java, state2.java, state3.java, statetrytogotest1.java, statetrytogotest2.java, tiles1.java, tiles2.java
 :article_image: first-level1.png
 ifndef::source-highlighter[]
 :source-highlighter: pygments
@@ -106,23 +106,13 @@ include::state1.java[]
 Then the _pièce de résistance_: `State#tryToGo`.
 Here it's not only about migrating the data representation but also the behavior.
 
-ifeval::["{doctype}" == "book"]
-image::../baba-is-you-5/graph1.png[width=705,height=307,title="The existing algo",align="center"]
-endif::[]
-ifeval::["{doctype}" != "book"]
-image::../baba-is-you-5/graph1.svg[width=720,height=322,title="The existing algo",align="center"]
-endif::[]
+include::graph1.asciidoc[]
 
 The existing code was a `switch`, since all cases were independent from each others.
 
 Dealing with the new case add a depencency between the rock case and the flag case:
 
-ifeval::["{doctype}" == "book"]
-image::../baba-is-you-5/graph2.png[width=624,height=664,title="The new algo",align="center"]
-endif::[]
-ifeval::["{doctype}" != "book"]
-image::../baba-is-you-5/graph2.svg[width=639,height=679,title="The new  algo",align="center"]
-endif::[]
+include::graph2.asciidoc[]
 
 This ensure a flag can't be reached if it's on the same cell that a rock that can't be moved.
 

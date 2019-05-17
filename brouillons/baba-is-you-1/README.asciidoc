@@ -9,7 +9,7 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: content.txt, graph1.mmd, graph1.png, levelreader1.java, levelreader2.java, levelreadertest.java, mvn.txt, tiles.java, tiles.txt
+:ignore_files: content.txt, graph1.asciidoc, graph1.mmd, graph1.png, levelreader1.java, levelreader2.java, levelreadertest.java, mvn.txt, tiles.java, tiles.txt
 :article_image: first-level1.png
 ifndef::source-highlighter[]
 :source-highlighter: pygments
@@ -28,12 +28,7 @@ A general knowledge of the game (if you don't want to play it you can try watchi
 
 As I've explained link:../solveurs/[in a previous article] (in French), a puzzle solver rely on a loop used to iterate until a solution is found.
 
-ifeval::["{doctype}" == "book"]
-image::../baba-is-you-1/graph1.png[width=786,height=470,align="center"]
-endif::[]
-ifeval::["{doctype}" != "book"]
-image::../baba-is-you-1/graph1.svg[width=821,height=497,align="center"]
-endif::[]
+include::graph1.asciidoc[]
 
 The first step is to be able to initialize the loop, which means reading the levels from disk.
 

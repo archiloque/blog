@@ -9,7 +9,7 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: direction1.java, graph1.mmd, graph1.png, level1.java, log1.txt, state1.java, state2.java, state3.java, stateavailablemovementstest1.java, statetrytogotest1.java, statetrytogotest2.java
+:ignore_files: direction1.java, graph1.asciidoc, graph1.mmd, graph1.png, level1.java, log1.txt, state1.java, state2.java, state3.java, stateavailablemovementstest1.java, statetrytogotest1.java, statetrytogotest2.java
 :article_image: first-level1.png
 ifndef::source-highlighter[]
 :source-highlighter: pygments
@@ -47,12 +47,7 @@ If you don't solve the level, you can add this new state to the list, and go on 
 There's a catch: Baba is not a "`burning bridge`" game where you can't move back.
 Before checking if a new state is interesting, it must be vetted against the previously met cases to avoid doing the same thing again and again.
 
-ifeval::["{doctype}" == "book"]
-image::../baba-is-you-3/graph1.png[width=749,height=483,title="The inner algo",align="center"]
-endif::[]
-ifeval::["{doctype}" != "book"]
-image::../baba-is-you-3/graph1.svg[width=734,height=468,title="The inner algo",align="center"]
-endif::[]
+include::graph1.asciidoc[]
 
 == Then some code
 
@@ -149,7 +144,7 @@ Java makes it a bit more complicated than it should do:
 include::level1.java[]
 ----
 
-And … it works, the program can solve the level:
+And… it works, the program can solve the level:
 
 [source]
 ----
