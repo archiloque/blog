@@ -23,8 +23,8 @@ svg_doc  = Nokogiri::XML(IO.read(svg_full_path))
 svg_view_box = svg_doc.at('svg')['viewBox']
 svg_regex = /\A0 0 (?<width>[\d.]+) (?<height>[\d.]+)\z/
 svg_size = svg_regex.match(svg_view_box)
-svg_height = svg_size['height'].to_f.ceil / 2
-svg_width = svg_size['width'].to_f.ceil / 2
+svg_height = svg_size['height'].to_f.ceil
+svg_width = svg_size['width'].to_f.ceil
 
 # to png
 `URL=file:///#{svg_full_path} node screenshot.js`
