@@ -148,9 +148,13 @@ The second behavior to change is the ability to push several rock at once.
 
 image::../baba-is-you-5/first-level2.png[title="Here comes the rockipede",align="center",width=318,height=146]
 
-When baba tries to move a rock, the code need to iterate until it finds something that is not a rock, or until the end of the level is reached.
+When baba tries to move a rock, the code need to iterate until it finds either:
 
-This time there is no signature change, only some code to add, which means it's easier to start with the tests:
+* something it can push the rocks on (an empty cell or a cell with a flag)
+* a wall
+* the border of the level
+
+This time there is no signature change but only some code to add, which means it's easier to start with the tests:
 
 .StateTryToGoTest.java
 [source,java]
