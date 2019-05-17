@@ -9,7 +9,7 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: content.txt, graph1.asciidoc, graph1.mmd, graph1.png, levelreader1.java, levelreader2.java, levelreadertest.java, mvn.txt, tiles.java, tiles.txt
+:ignore_files: content1.txt, graph1.asciidoc, graph1.mmd, graph1.png, levelreader1.java, levelreader2.java, levelreadertest1.java, mvn1.txt, tiles1.java, tiles1.txt
 :article_image: first-level1.png
 ifndef::source-highlighter[]
 :source-highlighter: pygments
@@ -41,7 +41,7 @@ A solver has often complex data types and you need to do much refactoring so a l
 So first create the project:
 [source,bash]
 ----
-include::mvn.txt[]
+include::mvn1.txt[]
 ----
 
 Then add the required files (`LICENSE.txt` …) and push it to link:https://github.com/archiloque/babaisyousolver[GitHub].
@@ -61,13 +61,13 @@ image::../baba-is-you-1/first-level1.png[title="The first level",align="center",
 
 What I'd like the files to be:
 
-.levels/00/tiles.txt
+.levels/00/tiles1.txt
 [source]
 ----
 include::tiles.txt[]
 ----
 
-.levels/00/content.txt
+.levels/00/content1.txt
 [source]
 ----
 include::content.txt[]
@@ -80,7 +80,7 @@ I declare all the tiles used by the first level, as a `String` to be referenced 
 .Tiles.java
 [source,java]
 ----
-include::tiles.java[]
+include::tiles1.java[]
 ----
 
 I use ``int``s instead of enum types for this kind of data for two reasons:
@@ -127,7 +127,7 @@ First the tests (just showing the names):
 .LevelReaderTest.java
 [source,java]
 ----
-include::levelreadertest.java[]
+include::levelreadertest1.java[]
 ----
 
 There's a bunch of tests for error cases because I hate to debug the code when there's an error with the level files so the error are as explicit as possible.

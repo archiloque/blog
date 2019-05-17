@@ -3,6 +3,7 @@
 require 'fileutils'
 require 'nokogiri'
 
+# Generate the mermaid graph from the mmd file
 mmd_path = ARGV[0]
 title = (ARGV.length > 1) ? ARGV[1] : nil
 full_mmd_path = File.expand_path(mmd_path)
