@@ -44,16 +44,6 @@ public class TilesGenerator {
   }
 
   private @NotNull JavaFile generate() {
-    // create a list with all values
-    // being sure empty is first
-    for (String fieldName : jsonObject.keySet()) {
-      if (!fieldName.equals("empty")) {
-        fields.add(fieldName);
-      }
-    }
-    fields.sort(String::compareToIgnoreCase);
-    fields.add(0, "empty");
-
     // annotation to indicates the class is generated
     AnnotationSpec generatedAnnotation =
         AnnotationSpec.builder(
@@ -70,6 +60,17 @@ public class TilesGenerator {
         addAnnotation(
             generatedAnnotation);
 
+    // create a list with all values
+    // being sure empty is first
+    for (String fieldName : jsonObject.keySet()) {
+      if (!fieldName.equals("empty")) {
+        fields.add(fieldName);
+      }
+    }
+    fields.sort(String::compareToIgnoreCase);
+    fields.add(0, "empty");
+
+
     List<String> fieldsNames = new ArrayList<>();
 
     // declare the XXX_STRING String constants
@@ -80,12 +81,11 @@ public class TilesGenerator {
               toUpperCase().
               replace(' ', '_');
       fieldsNames.add(fieldConstantName);
-      tileInterface.addField(
-          createField(
-              String.class,
-              fieldConstantName + "_STRING",
-              "$S", field
-          ));
+      addField(
+          String.class,
+          fieldConstantName + "_STRING",
+          "$S", field
+      );
     }
 
     // declare the ALL_STRINGS containing the XXX_STRING constants
@@ -98,32 +98,40 @@ public class TilesGenerator {
     allStringCode.
         add("}");
 
-    tileInterface.addField
-        (createField(
-            ArrayTypeName.of(String.class),
-            "ALL_STRINGS",
-            allStringCode.build()
-        ));
+    addField(
+        ArrayTypeName.of(String.class),
+        "ALL_STRINGS",
+        allStringCode.build()
+    );
 
     // the int values
     for (int i = 0; i < fieldsNames.size(); i++) {
-      String fieldName = fieldsNames.get(i);
-      tileInterface.addField(
-          createField(
-              TypeName.INT,
-              fieldName,
-              "" + i));
+      addField(
+          TypeName.INT,
+          fieldsNames.get(i),
+          "" + i);
     }
 
     // the masks  (no masks for empty)
     for (int i = 1; i < fieldsNames.size(); i++) {
-      String fieldName = fieldsNames.get(i);
-      tileInterface.addField(
-          createField(
-              TypeName.INT,
-              fieldName + "_MASK",
-              "1 << " + (i - 1)));
+      addField(
+          TypeName.INT,
+          fieldsNames.get(i) + "_MASK",
+          "1 << " + (i - 1));
     }
+
+    createMask(
+        "text",
+        "TEXT_MASKS"
+    );
+    createMask(
+        "subject",
+        "SUBJECT_MASKS"
+    );
+    createMask(
+        "definition",
+        "DEFINITION_MASKS"
+    );
 
     // create the file
     return JavaFile.builder(
@@ -135,56 +143,80 @@ public class TilesGenerator {
   /**
    * Create a field from parameters
    */
-  private @NotNull FieldSpec createField(
+  private void addField(
       @NotNull TypeName typeName,
       @NotNull String fieldName,
       @NotNull String content) {
-    return FieldSpec.
-        builder(
-            typeName,
-            fieldName,
-            Modifier.PUBLIC,
-            Modifier.STATIC,
-            Modifier.FINAL).
-        initializer(content).
-        build();
+    tileInterface.addField(
+        FieldSpec.
+            builder(
+                typeName,
+                fieldName,
+                Modifier.PUBLIC,
+                Modifier.STATIC,
+                Modifier.FINAL).
+            initializer(content).
+            build());
   }
 
   /**
    * Create a field from parameters
    */
-  private @NotNull FieldSpec createField(
+  private void addField(
       @NotNull TypeName typeName,
       @NotNull String fieldName,
       @NotNull CodeBlock codeBlock) {
-    return FieldSpec.
-        builder(
-            typeName,
-            fieldName,
-            Modifier.PUBLIC,
-            Modifier.STATIC,
-            Modifier.FINAL).
-        initializer(codeBlock).
-        build();
+    tileInterface.addField(
+        FieldSpec.
+            builder(
+                typeName,
+                fieldName,
+                Modifier.PUBLIC,
+                Modifier.STATIC,
+                Modifier.FINAL).
+            initializer(codeBlock).
+            build());
   }
 
   /**
    * Create a field from parameters
    */
-  private @NotNull FieldSpec createField(
+  private void addField(
       @NotNull Class type,
       @NotNull String fieldName,
       @NotNull String format,
       Object... args) {
-    return FieldSpec.
-        builder(
-            type,
-            fieldName,
-            Modifier.PUBLIC,
-            Modifier.STATIC,
-            Modifier.FINAL).
-        initializer(format, args).
-        build();
+    tileInterface.addField(
+        FieldSpec.
+            builder(
+                type,
+                fieldName,
+                Modifier.PUBLIC,
+                Modifier.STATIC,
+                Modifier.FINAL).
+            initializer(format, args).
+            build());
   }
 
+  /**
+   * Create a mask from the attribute
+   */
+  private void createMask(
+      @NotNull String attributeName,
+      @NotNull String fieldName) {
+    int mask = 0;
+    for (int i = 1; i < fields.size(); i++) {
+      JSONObject fieldDeclaration = jsonObject.
+          getJSONObject(fields.get(i));
+      if (fieldDeclaration.has(attributeName) &&
+          fieldDeclaration.getBoolean(attributeName)) {
+        mask += 1 << (i - 1);
+      }
+    }
+    addField(
+        TypeName.INT,
+        fieldName,
+        "" + mask
+    );
+  }
 }
