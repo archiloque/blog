@@ -109,7 +109,7 @@ public class TilesGenerator {
       addField(
           TypeName.INT,
           fieldsNames.get(i),
-          "" + i);
+          Integer.toString(i));
     }
 
     // the masks  (no masks for empty)
@@ -216,7 +216,6 @@ public class TilesGenerator {
     addField(
         TypeName.INT,
         fieldName,
-        "" + mask
-    );
+        Integer.toString(mask));
   }
 }

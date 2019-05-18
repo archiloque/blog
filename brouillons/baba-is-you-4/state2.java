@@ -63,6 +63,7 @@
     case Tiles.FLAG:
       return addMovement(direction);
     default:
-      throw new IllegalArgumentException("" + targetPositionContent);
+      throw new IllegalArgumentException(
+        Integer.toString(targetPositionContent));
   }
 }

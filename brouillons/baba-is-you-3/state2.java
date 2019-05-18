@@ -22,7 +22,8 @@ boolean tryToGo(int currentPosition, byte direction) {
     case Tiles.FLAG:
       return true;
     default:
-      throw new IllegalArgumentException("" + targetPositionContent);
+      throw new IllegalArgumentException(
+        Integer.toString(targetPositionContent));
   }
 }
 
@@ -45,6 +46,7 @@ private int calculatePosition(int position, byte direction) {
       // left : go further one item
       return position + 1;
     default:
-      throw new IllegalArgumentException("" + direction);
+      throw new IllegalArgumentException(
+        Integer.toString(direction));
   }
 }

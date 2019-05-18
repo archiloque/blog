@@ -47,7 +47,8 @@ boolean tryToGo(
     case Tiles.FLAG:
       return true;
     default:
-      throw new IllegalArgumentException("" + targetPositionContent);
+      throw new IllegalArgumentException(
+        Integer.toString(targetPositionContent));
   }
 }
 
