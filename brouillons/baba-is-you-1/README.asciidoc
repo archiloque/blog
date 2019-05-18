@@ -61,16 +61,16 @@ image::../baba-is-you-1/first-level1.png[title="The first level",align="center",
 
 What I'd like the files to be:
 
-.levels/00/tiles1.txt
+.levels/00/tiles.txt
 [source]
 ----
-include::tiles.txt[]
+include::tiles1.txt[]
 ----
 
-.levels/00/content1.txt
+.levels/00/content.txt
 [source]
 ----
-include::content.txt[]
+include::content1.txt[]
 ----
 
 Note: I'd like to rely on emojis to use visual representations of the objects, but the way macOS deal with emoji don't make them monospace friendly, so it breaks the visual aspect of the level files and editing them becomes a pain.
