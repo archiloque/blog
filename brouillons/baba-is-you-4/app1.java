@@ -43,8 +43,8 @@ private static void writeSolution(
     if (c != currentMovement) {
       if (currentMovement != -1) {
         steps.
-            add("" +
-                numberOfMovesThisWay +
+            add(
+                Integer.toString(numberOfMovesThisWay) +
                 Direction.VISUAL[currentMovement]);
       }
       currentMovement = c;
@@ -55,8 +55,8 @@ private static void writeSolution(
   }
   // complete with last move
     steps.
-        add("" +
-            numberOfMovesThisWay +
+        add(
+            Integer.toString(numberOfMovesThisWay) +
             Direction.VISUAL[currentMovement]);
 
   String content = String.join(" ", steps);

@@ -15,8 +15,7 @@ public class TilesGenerator {
     System.out.println("Will generate in [" + targetDir + "]");
 
     // get the JSON content
-    URI jsonResourceUri = TilesGenerator.
-        class.
+    URI jsonResourceUri = TilesGenerator.class.
         getClassLoader().
         getResource(TILES_JSON_FILES).
         toURI();
@@ -117,7 +116,7 @@ public class TilesGenerator {
       addField(
           TypeName.INT,
           fieldsNames.get(i) + "_MASK",
-          "1 << " + (i - 1));
+          Integer.toString(1 << +(i - 1)));
     }
 
     createMask(
