@@ -24,9 +24,28 @@ public class TilesGenerator {
         readString(Path.of(jsonResourceUri));
     JSONObject jsonObject = new JSONObject(tilesFileContent);
     System.out.println(jsonObject.length() + " tiles found");
+    new TilesGenerator(jsonObject).
+        generate().
+        writeTo(new File(targetDir));
+  }
 
-    // create a list with all values, being sure empty is first
-    List<String> fields = new ArrayList<>();
+  private final @NotNull JSONObject jsonObject;
+
+  private final @NotNull TypeSpec.Builder tileInterface =
+      TypeSpec.
+          interfaceBuilder("Tiles");
+
+  private final @NotNull List<String> fields =
+      new ArrayList<>();
+
+  private TilesGenerator(
+      @NotNull JSONObject jsonObject) {
+    this.jsonObject = jsonObject;
+  }
+
+  private @NotNull JavaFile generate() {
+    // create a list with all values
+    // being sure empty is first
     for (String fieldName : jsonObject.keySet()) {
       if (!fieldName.equals("empty")) {
         fields.add(fieldName);
@@ -46,8 +65,7 @@ public class TilesGenerator {
             build();
 
     // initialize the interface
-    TypeSpec.Builder tileInterface = TypeSpec.
-        interfaceBuilder("Tiles").
+    tileInterface.
         addModifiers(Modifier.PUBLIC).
         addAnnotation(
             generatedAnnotation);
@@ -62,15 +80,12 @@ public class TilesGenerator {
               toUpperCase().
               replace(' ', '_');
       fieldsNames.add(fieldConstantName);
-      FieldSpec tileField = FieldSpec.
-          builder(
+      tileInterface.addField(
+          createField(
               String.class,
               fieldConstantName + "_STRING",
-              Modifier.PUBLIC,
-              Modifier.STATIC,
-              Modifier.FINAL).
-          initializer("$S", field).build();
-      tileInterface.addField(tileField);
+              "$S", field
+          ));
     }
 
     // declare the ALL_STRINGS containing the XXX_STRING constants
@@ -83,51 +98,93 @@ public class TilesGenerator {
     allStringCode.
         add("}");
 
-    FieldSpec allStringsField = FieldSpec.
-        builder(
+    tileInterface.addField
+        (createField(
             ArrayTypeName.of(String.class),
             "ALL_STRINGS",
-            Modifier.PUBLIC,
-            Modifier.STATIC,
-            Modifier.FINAL).
-        initializer(allStringCode.build()).
-        build();
-    tileInterface.addField(allStringsField);
+            allStringCode.build()
+        ));
 
     // the int values
     for (int i = 0; i < fieldsNames.size(); i++) {
       String fieldName = fieldsNames.get(i);
-      FieldSpec valueField = FieldSpec.
-          builder(
+      tileInterface.addField(
+          createField(
               TypeName.INT,
               fieldName,
-              Modifier.PUBLIC,
-              Modifier.STATIC,
-              Modifier.FINAL).
-          initializer("" + i).build();
-      tileInterface.addField(valueField);
+              "" + i));
     }
 
-    // the masks (no masks for empty)
+    // the masks  (no masks for empty)
     for (int i = 1; i < fieldsNames.size(); i++) {
       String fieldName = fieldsNames.get(i);
-      FieldSpec maskField = FieldSpec.
-          builder(
+      tileInterface.addField(
+          createField(
               TypeName.INT,
               fieldName + "_MASK",
-              Modifier.PUBLIC,
-              Modifier.STATIC,
-              Modifier.FINAL).
-          initializer("1 << " + (i - 1)).build();
-      tileInterface.addField(maskField);
+              "1 << " + (i - 1)));
     }
 
     // create the file
-    JavaFile javaFile =
-        JavaFile.builder(
-            "net.archiloque.babaisyousolver",
-            tileInterface.build()).
-            build();
-    javaFile.writeTo(new File(targetDir));
+    return JavaFile.builder(
+        "net.archiloque.babaisyousolver",
+        tileInterface.build()).
+        build();
   }
+
+  /**
+   * Create a field from parameters
+   */
+  private @NotNull FieldSpec createField(
+      @NotNull TypeName typeName,
+      @NotNull String fieldName,
+      @NotNull String content) {
+    return FieldSpec.
+        builder(
+            typeName,
+            fieldName,
+            Modifier.PUBLIC,
+            Modifier.STATIC,
+            Modifier.FINAL).
+        initializer(content).
+        build();
+  }
+
+  /**
+   * Create a field from parameters
+   */
+  private @NotNull FieldSpec createField(
+      @NotNull TypeName typeName,
+      @NotNull String fieldName,
+      @NotNull CodeBlock codeBlock) {
+    return FieldSpec.
+        builder(
+            typeName,
+            fieldName,
+            Modifier.PUBLIC,
+            Modifier.STATIC,
+            Modifier.FINAL).
+        initializer(codeBlock).
+        build();
+  }
+
+  /**
+   * Create a field from parameters
+   */
+  private @NotNull FieldSpec createField(
+      @NotNull Class type,
+      @NotNull String fieldName,
+      @NotNull String format,
+      Object... args) {
+    return FieldSpec.
+        builder(
+            type,
+            fieldName,
+            Modifier.PUBLIC,
+            Modifier.STATIC,
+            Modifier.FINAL).
+        initializer(format, args).
+        build();
+  }
+
 }
