@@ -66,7 +66,7 @@ class State {
    * @return the position or -1 if not found
    */
   int findBaba() {
-    for (int i = 0; i < content.length; i++) {
+    for (int i = 0; i < level.size; i++) {
       if (content[i] == Tiles.BABA) {
         return i;
       }

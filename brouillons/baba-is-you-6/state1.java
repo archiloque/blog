@@ -1,10 +1,10 @@
-private int pushTiles = Tiles.TEXT_MASKS;
+int pushTiles = Tiles.TEXT_MASKS;
 
-private int stopTiles = 0;
+int stopTiles = 0;
 
-private int youTiles = 0;
+int youTiles = 0;
 
-private int winTiles = 0;
+int winTiles = 0;
 
 void processRules() {
   // locate the "IS"
