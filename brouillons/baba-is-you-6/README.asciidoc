@@ -24,7 +24,7 @@ endif::[]
 ifeval::["{doctype}" != "book"]
 Following link:../babis-you-5/[the fifth part],
 endif::[]
-where I coded missing bahaviors, I'll work on the second level on being able to modify the rules.
+where I coded missing behaviors, I'll work on the second level on being able to modify the rules.
 
 image::../baba-is-you-6/second-level1.png[title="Hello level two my old friend",align="center",width=352,height=402]
 
@@ -72,17 +72,17 @@ To scan for the rules I need to be able to identify the corresponding tiles, fro
 * the subject tiles, like `Baba` or `flag`
 * the tiles that define a capability, like `stop` or `push`
 
-A rule -- as a first approximation -- use the `subject IS definition` form, with the three tiles placed horizontaly or verticaly.
+A rule -- as a first approximation -- use the `subject IS definition` form, with the three tiles placed horizontally or vertically.
 
 == Second: generating
 
 So I need to add some info to the `Tile` class to define which tiles are subjects, which tiles are definitions and so on.
 
-I don't want to write this code manualy since it would be tedious and error-prone but would prefer to declare it and let the machine deal with it.
+I don't want to write this code manually since it would be tedious and error-prone but would prefer to declare it and let the machine deal with it.
 
 So times to do some code generation, which is less scary that it sounds.
 
-Except that the first step is to deal with Maven to transform our single-module project into a multi-modules project, which is definitly scary (and tedious and error-prone).
+Except that the first step is to deal with Maven to transform our single-module project into a multi-modules project, which is definitely scary (and tedious and error-prone).
 
 I skip the boring part, you can find the result in link:https://github.com/archiloque/babaisyousolver[the source], but the target structure is:
 

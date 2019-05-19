@@ -57,7 +57,9 @@ To manage the list of states several possibilities are available, like using a l
 
 The choice depends of the type of problem and I don't have a criteria to choose: it something I tweak along.
 
-My last projetc used a FIFO queue so let's use one.
+A FIFO may find a solution faster but the solution may be inefficient, a stack finds the solution that requires the lowest number of move, but requires more time and memory.
+
+My last project used a FIFO queue so let's use one.
 
 .FiFoQueue.java
 [source,java]

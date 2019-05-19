@@ -42,7 +42,7 @@ It's a bit like an array of boolean of a fixed size packed as a primitive value.
 
 Each kind of element will be represented by an index, and the presence of a bit with an index indicates that the corresponding element is on the cell.
 
-Exemple, if 8 bit are used to store the data, rock at index 3 and flag on index 5:
+Example, if 8 bit are used to store the data, rock at index 3 and flag on index 5:
 
 [subs=+quotes]
 ----
@@ -116,7 +116,7 @@ include::graph2.asciidoc[]
 
 This ensure a flag can't be reached if it's on the same cell that a rock that can't be moved.
 
-So the code musy be rewritten as a serie of `if`.
+So the code must be rewritten as several `if`.
 
 .State.java
 [source,java]
