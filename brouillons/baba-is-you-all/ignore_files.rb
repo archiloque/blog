@@ -11,6 +11,8 @@ file_list.select! do |file_name|
         true
     when '.txt'
         true
+    when '.json'
+        true
     when '.pdf'
         file_name != 'README.pdf'
     when '.html'

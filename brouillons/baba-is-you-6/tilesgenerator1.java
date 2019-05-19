@@ -119,19 +119,6 @@ public class TilesGenerator {
           Integer.toString(1 << +(i - 1)));
     }
 
-    createMask(
-        "text",
-        "TEXT_MASKS"
-    );
-    createMask(
-        "subject",
-        "SUBJECT_MASKS"
-    );
-    createMask(
-        "definition",
-        "DEFINITION_MASKS"
-    );
-
     // create the file
     return JavaFile.builder(
         "net.archiloque.babaisyousolver",
@@ -197,24 +184,4 @@ public class TilesGenerator {
             build());
   }
 
-  /**
-   * Create a mask from the attribute
-   */
-  private void createMask(
-      @NotNull String attributeName,
-      @NotNull String fieldName) {
-    int mask = 0;
-    for (int i = 1; i < fields.size(); i++) {
-      JSONObject fieldDeclaration = jsonObject.
-          getJSONObject(fields.get(i));
-      if (fieldDeclaration.has(attributeName) &&
-          fieldDeclaration.getBoolean(attributeName)) {
-        mask += 1 << (i - 1);
-      }
-    }
-    addField(
-        TypeName.INT,
-        fieldName,
-        Integer.toString(mask));
-  }
 }

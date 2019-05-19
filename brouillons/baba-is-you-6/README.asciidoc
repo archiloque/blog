@@ -9,8 +9,8 @@ endif::[]
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files:
-:article_image: second-level1
+:ignore_files: content1.txt, graph1.asciidoc, graph1.mmd, graph1.png, graph2.asciidoc, graph2.mmd, graph2.png, state1.java, state2.java, state3.java, tiles.txt, tiles1.java, tiles1.json, tiles2.json, tilesgenerator1.java
+:article_image: second-level1.png
 ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
@@ -50,7 +50,7 @@ include::graph1.asciidoc[]
 include::graph2.asciidoc[]
 
 To store the capabilities I'll use bit fields again.
-For each capability I'll use a bit field to store which kind of elements the capability should be applied to, using the same mask used to define which elements are on each tile.
+For each capability I'll use a bit field to store which kind of elements the capability should be applied to, using the same mask value used to define which elements are on each tile.
 
 For example
 
@@ -125,20 +125,9 @@ pom.xml <6>
 
 I use JSON for declaring the data because they are not complex enough to delve in XML, and because I hate YAML with the burning passion of a thousand suns.
 
+I'll implement the generation in two steps: first I'll generate an equivalent of the existing file, then I'll add the new features.
 
-
-
-
-CAUTION: WIP
-
-
-== Tiles generation
-
-.levels/01/content.txt
-[source]
-----
-include::content1.txt[]
-----
+The first version of the JSON file:
 
 .tiles.json
 [source,json]
@@ -146,11 +135,19 @@ include::content1.txt[]
 include::tiles1.json[]
 ----
 
+I use link:https://github.com/square/javapoet[JavaPoet] to generate the code instead of doing it manually.
+
+The resulting code is a bit verbose because of the builder pattern used everywhere, but it's easy to write and read.
+
 .TilesGenerator.java
 [source,java]
 ----
 include::tilesgenerator1.java[]
 ----
+
+Then I can run the tests and the app and checks nothing is broken.
+
+I then add the information related to the tiles.
 
 .tiles.json
 [source,json]
@@ -158,11 +155,27 @@ include::tilesgenerator1.java[]
 include::tiles2.json[]
 ----
 
+Each subject contains a link to the entity it deals with so the code can find it.
+Since the naming is consistent (the text is named from the entity with " text" appended) I could deduce the entity automatically, but it would be a bit too magical for my taste.
+
+The resulting data in the `Tiles`:
+
 .Tiles.java
 [source,java]
 ----
 include::tiles1.java[]
 ----
+
+The link between the text and the entities is done through a switch method instead of an array because the lookup key is not the text id but the text mask.
+For example `ROCK_TEXT_MASK` is equal to 128, which means an array of 128 elements with only four useful values.
+
+I could change the tiles' order to put these ones first and keep the array short, but I like the alphabetical order that is dislike the switch.
+
+== Third: coding
+
+Now the data are available I can work on the new behaviors.
+
+First I add new members to `State` to contain the capabilities.
 
 .State.java
 [source,java]
@@ -170,8 +183,69 @@ include::tiles1.java[]
 include::state1.java[]
 ----
 
+The text files are pushable by default, the other capabilities are empty at the beginning.
+
+Then the code, which is a direct translation of the algorithm I described before.
+I first look for `IS` tiles, then look if the statement if well formed, then add the capability.
+
+.State.java
+[source,java]
+----
+include::state2.java[]
+----
+
+The 'YOU' behavior is more complex to implement because it requires to add new business logic, whereas the other only need small code changes.
+
+So I'll implement the other rules first so I'll be able to find a solution for the second level and I'll deal with it later.
+
+I won't change all the behaviors at once and I'll skip the `YOU` part first.
+
+Nearly all the changes are one-liners, were the hardcoded tiles like `Tiles#ROCK_MASK` are replaced by the "`behavior-masks`" like `stopTilesMask`.
+
+The only exception is the pushing part.
+
+When Baba was only pushing rocks, we only needed to teleport the first rock at the end.
+
+From
+
+[subs=+quotes]
+----
+b**r**rr
+----
+
+To
+
+[subs=+quotes]
+----
+ brr**r**
+----
+
+But now all the elements must be moved one by one as the algo looks for a suitable cell.
+
+.State.java
+[source,java]
+----
+include::state3.java[]
+----
+
+== Fourth: solving
+
+After checking that the first level still works, it's time to have a look at the second one :
+
+.levels/01/content.txt
+[source]
+----
+include::content1.txt[]
+----
+
+And … it works, in a kind of way at least:
+
 .levels/01/solution.txt
 [source]
 ----
 1→ 2↓ 5← 1↑ 5→ 9← 9→ 1↓ 1→ 1↑ 10← 1↓ 1← 1↑ 11→ 1↑ 5← 5→ 2↓ 11← 2↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 8→ 8← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 10→ 1↑ 1← 1→ 2↓ 1→ 2↓ 11← 2↑ 8→ 2↑ 2→ 2↓ 1→ 2↓ 11← 2↑ 6→ 2↑ 5← 1↑ 1← 1↓ 10→ 2↑ 4← 4→ 2↓ 10← 1↓ 10→ 1↓ 1→ 2↓ 11← 3↑ 10→ 2↑ 2← 2→ 2↓ 10← 1↑ 10→ 2↑ 5← 5→ 2↓ 10← 1↑ 9→ 9← 2↓ 10→ 2↑ 10← 1↑ 8→ 8← 2↓ 10→ 2↑ 1← 1→ 2↓ 10← 2↑ 9→ 9← 1↑ 9→ 1↑ 1→ 4↓ 10← 2↓ 10→ 10← 2↑ 10→ 2↓ 10← 2↓ 11→ 1↑ 1← 1→ 2↓ 11← 2↑ 8→ 1↑ 1→ 1↓ 2→ 2↓ 3← 1↑ 2→ 10← 2↓ 11→ 2↑ 11← 2↑ 6→
 ----
+
+The code found a solution even if it's probably not the shortest, which means I reached my goal.
+
+In the next part I'll add the missing behaviors, before trying to improve the solution.
