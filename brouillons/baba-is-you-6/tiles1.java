@@ -4,5 +4,17 @@ int SUBJECT_MASKS = 1162;
 
 int DEFINITION_MASKS = 6432;
 
-int[] TARGET_MASKS = 
-new int[]{-1, -1, 1, -1, 4, -1, -1, -1, 64, -1, -1, 512, -1, -1};
+static int getTarget(int sourceMask) {
+  switch (sourceMask) {
+  case Tiles.WALL_TEXT_MASK:
+    return WALL_MASK;
+  case Tiles.BABA_TEXT_MASK:
+    return BABA_MASK;
+  case Tiles.FLAG_TEXT_MASK:
+    return FLAG_MASK;
+  case Tiles.ROCK_TEXT_MASK:
+    return ROCK_MASK;
+  default:
+    throw new IllegalArgumentException(Integer.toString(sourceMask));
+  }
+}

@@ -80,7 +80,7 @@ A bit mask are used this way:
 
 [source,java]
 ----
-if((value & BABA_MASK) != 0) // check if the cell contains Baba
+if ((value & BABA_MASK) != Tiles.EMPTY) // check if the cell contains Baba
 value = (value | BABA_MASK); // add Baba to the cell
 value = (value ^ BABA_MASK); // remove Baba from the cell
 ----

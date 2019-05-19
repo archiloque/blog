@@ -37,7 +37,7 @@ static @NotNull Map<Character, Integer> readTiles(
 private static int findIndexOfTile(
     @NotNull String tileName) {
   for (int index = 0; index < Tiles.ALL_STRINGS.length; index++) {
-    if(tileName.equals(Tiles.ALL_STRINGS[index])) {
+    if (tileName.equals(Tiles.ALL_STRINGS[index])) {
       return index;
     }
   }

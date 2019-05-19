@@ -1,9 +1,9 @@
-if((targetPositionContent & Tiles.ROCK_MASK) != 0) {
+if ((targetPositionContent & Tiles.ROCK_MASK) != Tiles.EMPTY) {
   boolean foundCellAfterRocks = false;
   int candidatePosition = targetPosition;
   // explore the next cells until we find the right stop
   // or until we find a wall or the end of the level
-  while(!foundCellAfterRocks) {
+  while (!foundCellAfterRocks) {
     // did we reach the border of the level?
     if (!canGoThere(candidatePosition, direction)) {
       return null;
@@ -15,12 +15,12 @@ if((targetPositionContent & Tiles.ROCK_MASK) != 0) {
         content[behindCandidatePosition];
 
     // is it a wall?
-    if ((behindCandidatePositionContent & Tiles.WALL_MASK) != 0) {
+    if ((behindCandidatePositionContent & Tiles.WALL_MASK) != Tiles.EMPTY) {
       return null;
     }
 
     // is it another rock?
-    if ((behindCandidatePositionContent & Tiles.ROCK_MASK) != 0) {
+    if ((behindCandidatePositionContent & Tiles.ROCK_MASK) != Tiles.EMPTY) {
       // yes another rock, next step of the loop
       candidatePosition = behindCandidatePosition;
     } else {

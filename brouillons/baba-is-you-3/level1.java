@@ -18,8 +18,8 @@ private final Set<int[]> pastStates =
   });
 
 void addState(@NotNull int[] content) {
-  if (!pastStates.contains(content)) {
-    pastStates.add(content);
+  // only add if not already visited
+  if (pastStates.add(content)) {
     states.add(new State(this, content));
   }
 }

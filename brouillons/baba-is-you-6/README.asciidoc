@@ -26,11 +26,111 @@ Following link:../babis-you-5/[the fifth part],
 endif::[]
 where I coded missing bahaviors, I'll work on the second level on being able to modify the rules.
 
+image::../baba-is-you-6/second-level1.png[title="Hello level two my old friend",align="center",width=352,height=402]
+
+I'll follow the same steps than for the first level: 
+
+. implement the features required to find a solution
+. add the other features
+
+== First: thinking
+
+Before starting the implementation I'll need to plan ahead how to deal with the changing rules.
+
+Looking at the level, the rules are establishing capabilities about game elements: this thing can do this thing, that other thing can do that thing.
+
+By default you can walk through most elements except the tiles that represents rules components.
+
+So I'll try scanning for the rules, adding capabilities as I find them, then process the movements.
+
+Updating the movement code will rely on generalizing the existing behaviors.
+For example instead of checking if Baba is stopped by walking against a wall, I'll check if Baba is walking against something that has the stop capability.
+
+include::graph1.asciidoc[]
+include::graph2.asciidoc[]
+
+To store the capabilities I'll use bit fields again.
+For each capability I'll use a bit field to store which kind of elements the capability should be applied to, using the same mask used to define which elements are on each tile.
+
+For example
+
+[source,java]
+----
+if ((targetPositionContent & Tiles.ROCK_MASK) != Tiles.EMPTY) {
+----
+
+Will become
+
+[source,java]
+----
+if ((targetPositionContent & stopTilesMask) != Tiles.EMPTY) {
+----
+
+To scan for the rules I need to be able to identify the corresponding tiles, from what I've seen from the game so far, there are three kind of rule tiles:
+
+* the `IS` tile
+* the subject tiles, like `Baba` or `flag`
+* the tiles that define a capability, like `stop` or `push`
+
+A rule -- as a first approximation --, use the `subject IS definition` form, with the three tiles placed horizontaly or verticaly.
+
+== Second: generating
+
+So I need to add some info to the `Tile` class to define which tiles are subjects, which tiles are definitions and so on.
+
+I don't want to write this code manualy since it would be tedious and error-prone but would prefer to declare it and let the machine deal with it.
+
+So times to do some code generation, which is less scary that it sounds.
+
+Except that the first step is to deal with Maven to transform our single-module project into a multi-modules project, which is definitly scary (and tedious and error-prone).
+
+I skip the boring part, you can find the result inlink:https://github.com/archiloque/babaisyousolver[the source], but the target structure is:
+
+[source]
+----
+pom.xml <6>
+|__engine <5>
+|  |__pom.xml
+|  |__…
+|__levels <7>
+|  |__00
+|  |  |__content.txt
+|  |  |__solution.txt
+|  |  |__tiles.txt
+|  |__…
+|__tiles <3>
+|  |__pom.xml
+|  |__src
+|     |__main
+|       |__resources
+|         |__tiles.json <4>
+|__tiles-generator <1>
+   |__pom.xml
+   |__src
+      |__main
+        |__java
+          |__net
+            |__archiloque
+              |__babaisyousolver
+                |__tilesgenerator
+                  |__TilesGenerator.java <2>
+----
+<1> Module containing the code generation routine
+<2> Class doing the code generation
+<3> Module containing the tiles declaration, during build it will use `TilesGenerator` to transform it into a Java file
+<4> JSON file where the data are declared
+<5> Module containing the solver engine, that will use the generated `Tile` class so depends of the `tiles` module
+<6> Parent project that declare all the submodules
+<7> Game levels
+
+I use JSON for declaring the data because they are not complex enough to delve in XML, and because I hate YAML with the burning passion of a thousand suns.
+
+
+
+
+
 CAUTION: WIP
 
-image::../baba-is-you-6/second-level1.png[align="center",width=352,height=402]
-
-== First thought
 
 == Tiles generation
 
@@ -70,4 +170,8 @@ include::tiles1.java[]
 include::state1.java[]
 ----
 
-== More information in the tiles
+.levels/01/solution.txt
+[source]
+----
+1→ 2↓ 5← 1↑ 5→ 9← 9→ 1↓ 1→ 1↑ 10← 1↓ 1← 1↑ 11→ 1↑ 5← 5→ 2↓ 11← 2↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 8→ 8← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 10→ 1↑ 1← 1→ 2↓ 1→ 2↓ 11← 2↑ 8→ 2↑ 2→ 2↓ 1→ 2↓ 11← 2↑ 6→ 2↑ 5← 1↑ 1← 1↓ 10→ 2↑ 4← 4→ 2↓ 10← 1↓ 10→ 1↓ 1→ 2↓ 11← 3↑ 10→ 2↑ 2← 2→ 2↓ 10← 1↑ 10→ 2↑ 5← 5→ 2↓ 10← 1↑ 9→ 9← 2↓ 10→ 2↑ 10← 1↑ 8→ 8← 2↓ 10→ 2↑ 1← 1→ 2↓ 10← 2↑ 9→ 9← 1↑ 9→ 1↑ 1→ 4↓ 10← 2↓ 10→ 10← 2↑ 10→ 2↓ 10← 2↓ 11→ 1↑ 1← 1→ 2↓ 11← 2↑ 8→ 1↑ 1→ 1↓ 2→ 2↓ 3← 1↑ 2→ 10← 2↓ 11→ 2↑ 11← 2↑ 6→
+----

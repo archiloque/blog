@@ -1,0 +1,34 @@
+graph TD
+
+Start[Start]
+
+Wall[Target cell contains something that stop?]
+YesWall[Can't go there]
+
+Empty[Target cell is empty?]
+YesEmpty[Can go there]
+
+Rock[Target cell contains something that should be pushed?]
+
+MoveRock[Can the thing move?]
+NoMoveRock[Can't go there]
+
+Flag[Target cell contains something that makes me win?]
+YesFlag[\o/ Found a solution!]
+NoFlag[Can go there]
+
+Start --> Wall
+Wall --> |Yes|YesWall
+Wall --> |No|Empty
+
+Empty --> |Yes|YesEmpty
+Empty --> |No|Rock
+
+Rock --> |Yes|MoveRock
+Rock --> |No|Flag
+
+MoveRock --> |Yes|Flag
+MoveRock --> |No|NoMoveRock
+
+Flag --> |Yes|YesFlag
+Flag --> |No|NoFlag
