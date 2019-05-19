@@ -194,7 +194,7 @@ I first look for `IS` tiles, then look if the statement if well formed, then add
 include::state2.java[]
 ----
 
-The "`YOU'" behavior is more complex to implement because it requires to add new business logic, whereas the other only need small code changes.
+The "`YOU`" behavior is more complex to implement because it requires to add new business logic, whereas the other only need small code changes.
 
 So I'll implement the other rules first so I'll be able to find a solution for the second level and I'll deal with it later.
 
