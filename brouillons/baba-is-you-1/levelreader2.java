@@ -42,12 +42,14 @@ private static int findIndexOfTile(
     }
   }
   return -1;
+  // Personnellement j’aime bien avoir un peu plus de distance entre mes valeurs normales
+  // et mes valeurs d’erreur, j’utiliserais peut-être une exception ici (ou un type Either)
 }
   
 /**
   * Read the file content
   * from the {@link LevelReader#CONTENT_FILES} file
-  * relying the declared tiles
+  * relying on the declared tiles
   */
 static @NotNull LevelReaderResult readContent(
     @NotNull Path levelDirectory,
@@ -67,6 +69,9 @@ static @NotNull LevelReaderResult readContent(
           "[" +
               contentLine +
               "] is not " +
+          // Je préfère formuler l’erreur comme
+          // « x should be y but is z » plutôt que « x is not y ».
+          // Au moment au lire le message, ça me fait une chose de moins à interpréter
               width +
               " characters long at line " +
               lineIndex +

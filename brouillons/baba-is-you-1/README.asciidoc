@@ -18,27 +18,43 @@ endif::[]
 :article_description: It was a while since the last time I took a questionable decision
 :figure-caption!:
 
-link:https://hempuli.com/baba/[Baba Is You] is a great puzzle game with a more-than-usual complex gameplay since manipulating the game rules is part of the game.
+link:https://hempuli.com/baba/[Baba Is You] is a great puzzle game with a gameplay that's more complex than usual since manipulating the game's rules is part of the game.
 
 I think it's a good candidate to write a solver for, and to document how I'm doing it.
 
 I'm writing while coding the solver and not as a post-mortem, so expect some bad design and implementation decisions along the way.
 
 A general knowledge of the game (if you don't want to play it you can try watching a "`let's play`" video) and of Java is required.
+////
+Peut-être ajouter un lien vers une vidéo de let’s play. Idéalement, cette vidéo irait droit au but plutôt
+que de commencer par 3 minutes de « Yooooo wazzaaaap les aminches cliquez sur subscribe pour participer au
+tirage au sort et peut-être gagner une PS4 ».
+////
 
-As I've explained link:../solveurs/[in a previous article] (in French), a puzzle solver rely on a loop used to iterate until a solution is found.
+As I've explained link:../solveurs/[in a previous article] (in French), a puzzle solver iterates through a loop until it finds a solution.
 
 include::graph1.asciidoc[]
 
-The first step is to be able to initialize the loop, which means reading the levels from disk.
+The first step is to initialize the loop, which means reading the levels from disk.
+
+////
+La phrase précédente créait en moi l’attente de voir du code de lecture de niveaux,
+et j’ai été déstabilisé de voir à la place la mise en place d’un projet.
+J’ai rajouté une phrase de transition pour adoucir le passage.
+////
+But before we even get there, we need a project for our code.
 
 == Create the project
 
-First thing is to bootstrap the project.
+////
+Et avec un titre qui parlait de créer un projet, j’ai été déstabilisé qu’on me parle
+d’abord de choix de langage. Alors j’ai encore rajouté une phrase de transition.
+////
+In order to bootstrap the project, we need to choose our programming language first.
 
-A solver has often complex data types and you need to do much refactoring so a language with static types is great, and a fast language is nice to have to make things faster, so my tool of choice for this case is Java.
+A solver often has complex data types, and you end up refactoring the code a lot. When refactoring, I've found it very helpful to have a language with static types. My tool of choice for this kind of situation is Java. As a nice bonus, the language is fast.
 
-So first create the project:
+Now, to create the project:
 [source,bash]
 ----
 include::mvn1.txt[]
@@ -48,18 +64,18 @@ Then add the required files (`LICENSE.txt` …) and push it to link:https://gith
 
 == Read levels
 
-For my other solvers, reading the levels link:https://github.com/archiloque/rgbexpress/blob/master/src/main/java/net/archiloque/rgbexpress/MapElement.java#L12[relied on a fixed list of elements with an associated character].
+In my previous solvers, I represent levels using link:https://github.com/archiloque/rgbexpress/blob/master/src/main/java/net/archiloque/rgbexpress/MapElement.java#L12[a fixed list of elements, each represented by a fixed character].
 
-For Baba, the number of possible tiles seems large from the levels I've played so I'm thinking of using another strategy:
+Judging from the levels I've played in Baba so far, there seems to be an uncommonly large number of possible tiles. For that reason, I'm considering an alternate strategy:
 
-. Define all the possible tiles
-. For each level, declare which tiles match with each character, for the tiles to be used in the level
+. Define a list of all the possible tiles, but don't tie them to a specific character yet
+. For each level, declare a mapping that assigns a character to each tile used in this specific level
 
-Levels use a square grid, and there is at most one item per cell in the starting position.
+The levels are laid out in a square grid. In the starting position, each cell contains at most one item.
 
 image::../baba-is-you-1/first-level1.png[title="The first level",align="center",width=293,height=342]
 
-What I'd like the files to be:
+Let's reprent this level as the following two files:
 
 .levels/00/tiles.txt
 [source]
@@ -73,9 +89,9 @@ include::tiles1.txt[]
 include::content1.txt[]
 ----
 
-Note: I'd like to rely on emojis to use visual representations of the objects, but the way macOS deal with emoji don't make them monospace friendly, so it breaks the visual aspect of the level files and editing them becomes a pain.
+Note: I'd love to represent the objects as emojis rather than plain letters, to make the level files more visually appealing. Unfortunately, the way macOS handles emojis is not monospace friendly. It breaks the vertical alignment between elements in a level file, making them a pain to edit. That's why I'm sticking with latin characters for now.
 
-I declare all the tiles used by the first level, as a `String` to be referenced by the level, and as an `int` to be referenced by the game:
+Let's declare the tiles we need for the first level. We'll have two representations, one as a `String` to be referenced by the level, the other one as an `int` to be referenced by the game:
 
 .Tiles.java
 [source,java]
@@ -83,18 +99,25 @@ I declare all the tiles used by the first level, as a `String` to be referenced 
 include::tiles1.java[]
 ----
 
-I use ``int``s instead of enum types for this kind of data for two reasons:
+////
+J’ai remonté cette idée d’un peu plus bas, dans l’idée de tout de suite évacuer
+la question pour passer à des sujets plus pointus.
+Ça me semblait mieux préserver le flow de l’article.
+////
+I could see this file becoming a pain to maintain later on. If it does, I will put its content into a configuration file and generate the Java code from that. For now I prefer to keep it simple.
 
-* they took less memory, and it makes a big difference when you have to store many levels;
-* you can use the `int` as array index to retrieve data instead of using a `Hash`, which makes it much faster.
+////
+Il me semble qu’on gagne en fluidité en évoquant tout de suite le fait que
+tu as expérimenté les deux options.
+////
+You might be surprised at my use of ``int``s rather than enum types for this kind of data. I have experimented with both in previous solvers. I now prefer ``int``s for the following reasons:
 
-I have experienced both in my previous solvers.
+* They use less memory. When you have to store many levels, this makes a big difference.
+* You can use the `int` as an index into an array to retrieve data. This is much faster than using a `Hash`.
 
-You lose some type checking this way and makes code a bit less readable but it's an acceptable downside for me.
+Using ``int``s also has its downsides. You lose some type checking, and the code becomes a little harder to read. For me, it's an acceptable tradeoff.
 
-Perhaps later this file will become a pain to maintain so I'll end up putting the content in a config file and generate the Java code from it but for now I prefer to use a simpler way.
-
-Drafting the API of how to read the level files:
+Let's now draft the interface for reading level files:
 
 .LevelReader1.java
 [source,java]
@@ -102,13 +125,22 @@ Drafting the API of how to read the level files:
 include::levelreader1.java[]
 ----
 
-Calling `LevelReader#readLevel` will return a `LevelReader.LevelReaderResult` containing the data in a ready to use format.
+`LevelReader#readLevel` returns the level data in a `LevelReader.LevelReaderResult` object. I designed its representation to be convenient to work with.
+// Est-ce que le `LevelReaderResult` ne devrait pas simpliment s'appeler `Level`?
 
-All the data will use arrays instead of arrays of arrays: it simplifies the copying, and makes everything faster.
+Two dimensional data is represented as flat arrays rather than arrays of arrays. We will do this throughout the code: they are simpler to copy and faster to access.
 
-Representing a position as a single integer can also make things simpler when you need to pass or return info since it use a single value instead of an object that need to be created each time.
+It's natural to represent a position in such an array as a single integer. Compared to a more traditional representation as a pair of coordinates, this saves having to create an object each time we want to return a position from a function or pass one as an argument.
+////
+Note: ce n’est pas tout à fait clair pour moi si on parle d’un overhead syntaxique,
+ou d’un overhead en termes d’allocation mémoire sur le tas vs en pile.
+Dans le second cas, il s’agirait plutôt d’une limitation de Java avec sa distinction un
+peu brutale entre les types primitifs comme types valeurs, et tout le reste comme types identités.
+En C#, C++ ou Rust, pour ne nommer que quelques exemples, je pourrais manipuler un objet avec
+une structure complexe sans passer par l'allocation d'un objet sur le tas.
+////
 
-To convert a line/column coordinate to a position used in a flat array and back you need to use this code:
+The code to convert between a line/column representation and a position in a flat array is straightforward:
 
 [source,java]
 ----
@@ -118,11 +150,18 @@ int indexLine = position / levelWidth;
 int indexColumn = position % levelWidth;
 ----
 
-I use link:https://www.jetbrains.com/help/idea/annotating-source-code.html[JetBrains's annotations] extensively to handle nullability in my code, when I code with link:https://www.jetbrains.com/idea/[Idea] it's an acceptable substitute of have it build into the language.
+One final note of interest: to make up for Java's lacking native handling of nullability, I make extensive use of link:https://www.jetbrains.com/help/idea/annotating-source-code.html[JetBrains's annotations]. I find them to be an acceptable substitute as long as I use link:https://www.jetbrains.com/idea/[Idea].
 
-== Add some code
+// Je remarque aussi que tout ce code est `static`, je me demande si ça mériterait un commentaire.
 
-First the tests (just showing the names):
+== Just add code
+////
+J'avais l’impression que ton titre impliquait l’idée que la partie difficile du post était
+derrière nous, du coup j’ai fait un jeu de mots sur « Just add water ».
+////
+
+Let's write a few test cases (function bodies elided for brevity):
+// Je me demande si ce code pourrait être intéressant (et peut-être que non)
 
 .LevelReaderTest.java
 [source,java]
@@ -130,9 +169,17 @@ First the tests (just showing the names):
 include::levelreadertest1.java[]
 ----
 
-There's a bunch of tests for error cases because I hate to debug the code when there's an error with the level files so the error are as explicit as possible.
+You might have noticed that there are a lot tests covering error cases. That's because I hate having to wade through my code with a debugger to find out what's wrong with a level file. I'd rather take the time to generate  error messages that are as explicit as possible.
 
-Then fill the content of the reader:
+We are now ready to fill in the missing code in the level reader:
+////
+Et pour me faire l’avocat du diable...
+Tout comme on a fait le choix de ne pas montrer le code de test,
+parce-qu’il n’y avait pas grand chose d’intéressant à raconter dessus,
+on pourrait égaler se dire que, puisqu’on n’a pas grand chose à dire sur
+l’implémentation du code de lecture de niveaux, peut-êtres qu’on peut
+l’omettre du corps du post ?
+////
 
 .LevelReader.java
 [source,java]
@@ -140,4 +187,4 @@ Then fill the content of the reader:
 include::levelreader2.java[]
 ----
 
-Now the code reads a level from disk and the next part will start implementing the solving logic.
+We now have all the code we need to read a level from disk. In the next part we will start implementing the solving logic.

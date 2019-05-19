@@ -1,18 +1,18 @@
 graph TD
 
-Start[Starting]
-Ajouter1[Adding beginning states]
+Start
+Ajouter1[Add initial states]
 subgraph 
-Récupérer[Fetch the first state of the list]
-Tester[Test if the state is a winning one]
-Calculer[Calculate the possible children of the state and add them to the list]
+Récupérer[Fetch first state from the list]
+Tester[Is it a winning state?]
+Calculer[Compute possible children of the state and add them to the list]
 end
 Fail[No solution found]
 Solution[\o/ Found a solution!]
 
 Start --> Ajouter1
 Ajouter1 --> Récupérer
-Récupérer --> Tester
+Récupérer --> |Got one|Tester
 Récupérer-->|List is empty|Fail
 Tester -->|Yes| Solution
 Tester -->|No|Calculer

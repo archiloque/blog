@@ -17,6 +17,9 @@ final class LevelReader {
 
   private final static Pattern TILES_REGEX =
       Pattern.compile("^(.{1}) (.+)$");
+    // Je me demande à quoi sert ce {1}.
+    // Je le lis comme « 1 répétition du caractère précédent ».
+    // Mais ça me semble redondant.
 
   /**
    * Read the tiles declaration
