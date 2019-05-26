@@ -1,0 +1,28 @@
+[#baba-is-you-8]
+ifeval::["{doctype}" == "book"]
+= Part 8: learning to play
+endif::[]
+ifeval::["{doctype}" != "book"]
+= Writing a "`Baba Is You`" solver, part 8: learning to play
+endif::[]
+:author: Julien Kirch
+:revnumber: v0.1
+:docdate: 2019-05-09
+:article_lang: en
+:ignore_files: 
+:article_image: first-level1.png
+ifndef::source-highlighter[]
+:source-highlighter: pygments
+:pygments-style: friendly
+endif::[]
+:article_description: Restarting
+:figure-caption!:
+
+ifeval::["{doctype}" == "book"]
+Following the seventh part,
+endif::[]
+ifeval::["{doctype}" != "book"]
+Following link:../baba-is-you-7/[the seventh part],
+endif::[]
+where I hit the wall of complexity, it's time to restart afresh.
+

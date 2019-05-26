@@ -1,19 +1,75 @@
 [#baba-is-you-7]
 ifeval::["{doctype}" == "book"]
-= Part 7: adding more changing rules
+= Part 7: hitting the brute-force wall
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Writing a "`Baba Is You`" solver, part 7: adding more changing rules
+= Writing a "`Baba Is You`" solver, part 7: hitting the brute-force wall
 endif::[]
 :author: Julien Kirch
 :revnumber: v0.1
 :docdate: 2019-05-09
 :article_lang: en
-:ignore_files: 
+:ignore_files: content1.txt, fail1.txt, state1.java
 :article_image: second-level1.png
 ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
 endif::[]
-:article_description: Things get worse before they get better
+:article_description: Scaling is bad when the scale is against you
 :figure-caption!:
+
+ifeval::["{doctype}" == "book"]
+Following the sixth part,
+endif::[]
+ifeval::["{doctype}" != "book"]
+Following link:../baba-is-you-6/[the sixth part],
+endif::[]
+where I started dealing with rule changing, I'll add some elements about the "`YOU`" rule.
+
+== "`Baba is you`" and nothing else
+
+The second level start with the "`Baba is you`" rule, and doesn't require this rule to be changed.
+This means that preventing that the rule is changed is a way to implement the "`YOU`" that is sufficient to ensure the solution is correct.
+
+.State.java
+[source,java]
+----
+include::state1.java[]
+----
+
+Unfortunately, this is what happens:
+
+[source,bash]
+----
+include::fail1.txt[]
+----
+
+== Brute-force doesn't scale enough
+
+The problem is that the constraint added by this simple rule is enough to show the limit of the current implementation: storing all the past states fills the memory.
+
+Adding more memory to the problem isn't enough (at least a reasonable amount), of even storing the states into an external database: using the brute-force way by trying to explore all the possible combinations doesn't scale to the size of the level.
+
+A smaller version of the level can be solved, showing that it's not a bug in the code but a problem caused by the size of the board.
+
+.levels/01/content.txt
+[source]
+----
+include::content1.txt[]
+----
+
+.levels/01/solution.txt
+[source]
+----
+1← 1→ 1↓ 1← 1→ 3↑ 3← 1↑ 1→ 1↓ 2→ 2↓ 1← 1↑ 1→ 1↑ 1← 1→ 1↑ 1← 1→ 2↓ 2← 1↑ 1← 1↑ 2→ 1← 2↓ 2→ 2↑ 1← 2↑ 1→ 2↓ 1← 2↑ 1← 1↓ 2→ 2↓ 3← 1↑ 1→ 1↓ 2→ 1↓ 2← 3↑ 2→ 1↓ 1← 1→ 2↑ 2← 2↓ 2→ 2↓ 2← 1↑ 1↓ 1→ 2↓ 1→ 2↑ 2← 1↑ 1← 1↑ 1→ 1↓ 1→ 1↓ 1→ 1↑ 2← 2↑ 2→ 1↓ 1↑ 1← 1↓ 1→ 1↓ 1← 1→ 2↑ 2← 1↓ 1← 1↓ 1→ 1↓ 1→ 1↓ 1→ 2↑ 1← 1→ 1↑ 3← 1↓ 1→ 1↓ 1→ 1↑ 1← 2↑ 1→ 2↓ 1→ 2↑ 2← 2↓ 2→ 2↓ 1← 1↑ 1→ 1↑ 1← 1↓ 1← 1↑ 1→ 1↑ 1← 2→ 1↑
+----
+
+
+I started by the simpler brute-force approach because:
+
+. some games with a low number of possibilities can be solved with it, for example link:http://github.com/archiloque/rgbexpress[RGB Express]
+. when it doesn't work, it provides a way to focus on modeling the game first
+
+The modeling part worked: bitfields provide a simple way to manage the game states, and I found a way to deal with the changing rules.
+
+It's time now to reboot the problem with another approach.

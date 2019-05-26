@@ -1,0 +1,11 @@
+2019-05-26 16:02:20.446 babaisyousolver/levels/01 Reading level
+2019-05-26 16:02:20.556 babaisyousolver/levels/01 Solving level
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at net.archiloque.babaisyousolver.State.addMovement(State.java:178)
+	at net.archiloque.babaisyousolver.State.tryToGo(State.java:107)
+	at net.archiloque.babaisyousolver.State.processState(State.java:77)
+	at net.archiloque.babaisyousolver.Level.solve(Level.java:80)
+	at net.archiloque.babaisyousolver.App.processLevel(App.java:50)
+	at net.archiloque.babaisyousolver.App.main(App.java:29)
+
+Process finished with exit code 1

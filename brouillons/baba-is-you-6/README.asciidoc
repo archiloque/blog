@@ -22,16 +22,13 @@ ifeval::["{doctype}" == "book"]
 Following the fifth part,
 endif::[]
 ifeval::["{doctype}" != "book"]
-Following link:../babis-you-5/[the fifth part],
+Following link:../baba-is-you-5/[the fifth part],
 endif::[]
 where I coded missing behaviors, I'll work on the second level on being able to modify the rules.
 
 image::../baba-is-you-6/second-level1.png[title="Hello level two my old friend",align="center",width=352,height=402]
 
-I'll follow the same steps than for the first level: 
-
-. implement the features required to find a solution
-. add the other features
+I'll follow the same steps than for the first level which means I'll first implement the minimal subset of features required to find a solution.
 
 == First: thinking
 
@@ -246,6 +243,4 @@ And … it works, in a kind of way at least:
 1→ 2↓ 5← 1↑ 5→ 9← 9→ 1↓ 1→ 1↑ 10← 1↓ 1← 1↑ 11→ 1↑ 5← 5→ 2↓ 11← 2↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 8→ 8← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 10→ 1↑ 1← 1→ 2↓ 1→ 2↓ 11← 2↑ 8→ 2↑ 2→ 2↓ 1→ 2↓ 11← 2↑ 6→ 2↑ 5← 1↑ 1← 1↓ 10→ 2↑ 4← 4→ 2↓ 10← 1↓ 10→ 1↓ 1→ 2↓ 11← 3↑ 10→ 2↑ 2← 2→ 2↓ 10← 1↑ 10→ 2↑ 5← 5→ 2↓ 10← 1↑ 9→ 9← 2↓ 10→ 2↑ 10← 1↑ 8→ 8← 2↓ 10→ 2↑ 1← 1→ 2↓ 10← 2↑ 9→ 9← 1↑ 9→ 1↑ 1→ 4↓ 10← 2↓ 10→ 10← 2↑ 10→ 2↓ 10← 2↓ 11→ 1↑ 1← 1→ 2↓ 11← 2↑ 8→ 1↑ 1→ 1↓ 2→ 2↓ 3← 1↑ 2→ 10← 2↓ 11→ 2↑ 11← 2↑ 6→
 ----
 
-The code found a solution even if it's probably not the shortest, which means I reached my goal.
-
-In the next part I'll add the missing behaviors, before trying to improve the solution.
+The code found a solution -- even if it's probably not the shortest --  which means I reached my goal.
