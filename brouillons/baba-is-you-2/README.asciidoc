@@ -61,6 +61,8 @@ Which works best depends on the game I'm solving. Rather than choose by a fixed 
 
 I used a FIFO queue for my last project, let's use that again.
 
+I use a custom implementation since the code is short and it's only doing what I need.
+
 ////
 Je ne suis pas vraiment convaincu de l'intérêt de voir le code de la FIFO, mais ce n'est que mon avis.
 ////
@@ -70,8 +72,6 @@ Je ne suis pas vraiment convaincu de l'intérêt de voir le code de la FIFO, mai
 ----
 include::fifoqueue1.java[]
 ----
-
-I use a custom implementation since the code is short and it's only doing what I need.
 
 Then, I can add the code related to the states list in the `Level`.
 
