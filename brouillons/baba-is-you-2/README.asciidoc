@@ -34,7 +34,7 @@ I ported most of the code shown here from my previous link:https://github.com/ar
 == The level
 
 I'll use a `Level` class to hold all the data related to a game level.
-At first it will only contain the information found while reading the level from disk. I know from experience that I'll add other data to simplify and speed up the calculations.
+For now it will only contain the information found while reading the level from disk. I know from experience that I'll add other data to simplify and speed up the calculations.
 
 .Level.java
 [source,java]
