@@ -26,3 +26,24 @@ Following link:../baba-is-you-7/[the seventh part],
 endif::[]
 where I hit the wall of complexity, it's time to restart afresh.
 
+The system I worked until now didn't really know how to play:
+it knew some of the rules of the game, and tried to play all possible moves one after another until it found a solution.
+
+This approach is easy to code, but doesn't work when the game has many possible moves.
+
+In some games, a naive approach like this can be optimized by trying to eliminate some possibilities without exploring all the possible moves.
+For example if it's possible to detect that a move makes the level's exit unreachable.
+
+Unfortunately it's not the case for Baba is you, so the solution is learn the program how to play.
+
+== Teach a machine to play
+
+Learning the program to play means to implement a goal-oriented solver.
+
+When a human play the game, they check the resources available on the board, try to find a solution involving them, and try to find a way to reach a solution.
+
+For example if solving the level requires to touch the flag, is it possible to reach it?
+
+Sometimes solving the level requires sub-goals: if reaching the flag is not possible as is because a wall is blocking the path, is it possible to change the rule so Baba can move across the wall?
+
+The goal is to create a system that can compose goals and means to reach them, without implementing all possible cases.

@@ -44,13 +44,13 @@ Unfortunately, this is what happens:
 include::fail1.txt[]
 ----
 
-== Brute-force doesn't scale enough
+== Baba is stronger than the brute-force
 
 The problem is that the constraint added by this simple rule is enough to show the limit of the current implementation: storing all the past states fills the memory.
 
-Adding more memory to the problem isn't enough (at least a reasonable amount), of even storing the states into an external database: using the brute-force way by trying to explore all the possible combinations doesn't scale to the size of the level.
+Adding more memory to the problem wouldn't be enough, of even storing the states into an external database: trying to explore all the possible combinations -- link:https://en.wikipedia.org/wiki/Brute-force_search[brute-forcing] the game -- doesn't work here because there's too many possible moves to explore.
 
-A smaller version of the level can be solved, showing that it's not a bug in the code but a problem caused by the size of the board:
+To be sure it's not a bug, the code can solve a smaller version of the same level:
 
 .levels/01/content.txt
 [source]
@@ -64,11 +64,14 @@ include::content1.txt[]
 1← 1→ 1↓ 1← 1→ 3↑ 3← 1↑ 1→ 1↓ 2→ 2↓ 1← 1↑ 1→ 1↑ 1← 1→ 1↑ 1← 1→ 2↓ 2← 1↑ 1← 1↑ 2→ 1← 2↓ 2→ 2↑ 1← 2↑ 1→ 2↓ 1← 2↑ 1← 1↓ 2→ 2↓ 3← 1↑ 1→ 1↓ 2→ 1↓ 2← 3↑ 2→ 1↓ 1← 1→ 2↑ 2← 2↓ 2→ 2↓ 2← 1↑ 1↓ 1→ 2↓ 1→ 2↑ 2← 1↑ 1← 1↑ 1→ 1↓ 1→ 1↓ 1→ 1↑ 2← 2↑ 2→ 1↓ 1↑ 1← 1↓ 1→ 1↓ 1← 1→ 2↑ 2← 1↓ 1← 1↓ 1→ 1↓ 1→ 1↓ 1→ 2↑ 1← 1→ 1↑ 3← 1↓ 1→ 1↓ 1→ 1↑ 1← 2↑ 1→ 2↓ 1→ 2↑ 2← 2↓ 2→ 2↓ 1← 1↑ 1→ 1↑ 1← 1↓ 1← 1↑ 1→ 1↑ 1← 2→ 1↑
 ----
 
-There's two reasons to start with the brute-force approach:
+Adding the missing elements, like a complete implementation of the "`YOU`" rule, would add event more possibilities.
+
+== Baba says: it's time to start over
+
+I started with the brute-force approach for two reasons:
 
 . some games with a low number of possibilities can be solved with it, for example link:http://github.com/archiloque/rgbexpress[RGB Express]
-. even if it doesn't work at the end, it provides a way to start by focusing on modeling the game
+. even if it doesn't work at the end, starting with this approach provides a way to start by focusing on modeling the game
 
 The modeling part worked: I've found a way to use bit fields to manage the game states and the changing rules.
-
-Now it's time now to reboot the solution with another approach.
+I'll be able to rely on this knowledge and parts of the code for the next step so I don't restart from scratch.
