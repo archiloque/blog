@@ -61,8 +61,7 @@ Which works best depends on the game I'm solving. Rather than choose by a fixed 
 
 I used a FIFO queue for my last project, let's use that again.
 
-I use a custom implementation since the code is short and it's only doing what I need.
-
+Rather than depend on an external library for the FIFO, I'll just roll my own. It's short and it does exactly what I need and nothing more.
 ////
 Je ne suis pas vraiment convaincu de l'intérêt de voir le code de la FIFO, mais ce n'est que mon avis.
 ////
