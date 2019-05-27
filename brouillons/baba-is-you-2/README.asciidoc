@@ -34,7 +34,8 @@ Most of the code shown here is ported from my previous link:https://github.com/a
 
 == The level
 
-First the `Level` class will contain data related to a game level, at first only the information found in the level read in the first part, then -- by experience -- I'll add other data that will make the calculations simpler and/or faster.
+The `Level` class contains data related to a game level.
+At first if will only contain the information found while reading the level from disk, then -- by experience -- I'll add other data to make the calculations simpler and/or faster.
 
 .Level.java
 [source,java]
@@ -42,7 +43,7 @@ First the `Level` class will contain data related to a game level, at first only
 include::level1.java[]
 ----
 
-Then the `State` will represent a state of the game being solved.
+Then the `State` represents a state of the game being solved.
 It will follow the same path as the `Level`: it starts as a small class with few attributes (the current status of the game and a pointer to the `Level`) and becomes larger as features are added, for example to store the dynamic rules.
 
 .State.java
@@ -55,7 +56,7 @@ include::state1.java[]
 
 To manage the list of states several possibilities are available, like using a link:https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)[FIFO queue] for link:https://en.wikipedia.org/wiki/Depth-first_search[depth-first search] or a link:https://en.wikipedia.org/wiki/Stack_(abstract_data_type)[stack] for link:https://en.wikipedia.org/wiki/Breadth-first_search[breadth-first search].
 
-The choice depends of the type of problem and I don't have a criteria to choose: it something I tweak along.
+The choice depends of the type of problem and I don't have a criteria to choose: it is something I tweak along.
 
 A FIFO may find a solution faster but the solution may be inefficient, a stack finds the solution that requires the lowest number of move, but requires more time and memory.
 
@@ -69,7 +70,7 @@ include::fifoqueue1.java[]
 
 I use a custom implementation since the code is short and it's only doing what I need.
 
-We can them add the code related to the state lists in the `Level`.
+Then, I can add the code related to the states list in the `Level`.
 
 .Level.java
 [source,java]

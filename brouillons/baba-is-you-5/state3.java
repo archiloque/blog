@@ -1,10 +1,10 @@
 if ((targetPositionContent & Tiles.ROCK_MASK) != Tiles.EMPTY) {
   boolean foundCellAfterRocks = false;
   int candidatePosition = targetPosition;
-  // explore the next cells until we find the right stop
-  // or until we find a wall or the end of the level
+  // explore the next cells until the right stop,
+  // a wall or the end of the level
   while (!foundCellAfterRocks) {
-    // did we reach the border of the level?
+    // reached the border of the level?
     if (!canGoThere(candidatePosition, direction)) {
       return null;
     }
@@ -24,9 +24,9 @@ if ((targetPositionContent & Tiles.ROCK_MASK) != Tiles.EMPTY) {
       // yes another rock, next step of the loop
       candidatePosition = behindCandidatePosition;
     } else {
-      // no rock, we found a solution!
+      // no rock, found a solution!
       foundCellAfterRocks = true;
-      // we build the new content
+      // build the new content
       // remove the rock near Baba
       targetPositionContent =
           newContent[targetPosition] ^ Tiles.ROCK_MASK;

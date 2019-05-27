@@ -17,7 +17,7 @@ class State {
   /**
    * Process the current state
    *
-   * @return true if we found a solution
+   * @return true if a solution is found
    */
   boolean processState() {
     // @TODO probably add some code here

@@ -26,7 +26,7 @@ boolean tryToGo(
       level.addState(newContent, addMovement(direction));
       return false;
     case Tiles.ROCK:
-      // did we reach the border of the level?
+      // reached the border of the level?
       if (!canGoThere(targetPosition, direction)) {
         return false;
       }
@@ -37,7 +37,7 @@ boolean tryToGo(
       if (behindTheRockPositionContent != Tiles.EMPTY) {
         return false;
       }
-      // nice, we build the new content
+      // nice, build the new content
       newContent = content.clone();
       newContent[targetPosition] = Tiles.BABA;
       newContent[currentPosition] = Tiles.EMPTY;

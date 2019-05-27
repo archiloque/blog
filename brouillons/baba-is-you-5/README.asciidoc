@@ -87,7 +87,8 @@ value = (value ^ BABA_MASK); // remove Baba from the cell
 
 As the empty element is equal to `0` there is no associated bit mask, an empty cell has a content equals to `0`.
 
-Since the meaning of `State#content` is changed, the first step is `Level#createInitStates` where the first `State` is created. Instead of using the value of the element we set a bit at the right position.
+Since the meaning of `State#content` is changed, the first step is `Level#createInitStates` where the first `State` is created.
+Instead of using the value of the element the bit at the right position is set.
 
 .Level.java
 [source,java]

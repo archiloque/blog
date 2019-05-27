@@ -1,6 +1,6 @@
 /**
  * Try to go on a direction from a position
- * @return a list of {@link Direction} if we found a solution,
+ * @return a list of {@link Direction} if a solution is found,
  * else null
  */
 @Nullable byte[] tryToGo(
@@ -24,7 +24,7 @@
   }
   
   if ((targetPositionContent & Tiles.ROCK_MASK) != Tiles.EMPTY) {
-    // did we reach the border of the level?
+    // reached the border of the level?
     if (!canGoThere(targetPosition, direction)) {
       return null;
     }
@@ -40,7 +40,7 @@
       return null;
     }
 
-    // nice, we build the new content
+    // nice, build the new content
     // remove the rock
     targetPositionContent = newContent[targetPosition] ^ Tiles.ROCK_MASK;
     newContent[targetPosition] = targetPositionContent;

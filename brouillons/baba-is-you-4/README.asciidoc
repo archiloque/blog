@@ -52,7 +52,7 @@ include::state1.java[]
 Then when the solution is found, I write it in the same directory as the level, so any change can be identified with a source control system.
 The file is deleted before trying to solve the level so I can detect when the solver fails.
 
-If we don't pretty print it, the path would be something like `→→→→→→←←←` which is not easy to read.
+Without pretty printing, the path would be something like `→→→→→→←←←` which is not easy to read.
 
 .App.java
 [source,java]

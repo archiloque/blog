@@ -109,7 +109,8 @@ Calling `LevelReader#readLevel` will return a struct-like `LevelReader.LevelRead
 
 I represent two dimensional data as flat arrays rather than arrays of arrays: they are simpler to copy and faster to access.
 
-It's natural to represent a position in such an array as a single integer. Compared to a more traditional representation as a pair of coordinates, this saves having to create an object each time we want to return a position from a function or pass one as an argument, specially in Java were there are no struct and only full-fledged classes.
+It's natural to represent a position in such an array as a single integer.
+Compared to a more traditional representation as a pair of coordinates, this saves having to create an object each time I want to return a position from a function or pass one as an argument, specially in Java were there are no struct and only full-fledged classes.
 
 The code to convert between a line/column representation and a position in a flat array is straightforward:
 

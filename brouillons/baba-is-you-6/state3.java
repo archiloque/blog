@@ -1,7 +1,7 @@
 /**
  * Try to go on a direction from a position
  *
- * @return a list of {@link Direction} if we found a solution,
+ * @return a list of {@link Direction} if a solution is found,
  * else null
  */
 @Nullable byte[] tryToGo(
@@ -30,10 +30,10 @@
     targetPositionContent &= (~pushTilesMask);
 
     int candidatePosition = targetPosition;
-    // explore the next cells until we find the right stop
-    // or until we are blocked or the end of the level
+    // explore the next cells until the right stop,
+    // a wall or the end of the level
     while (currentPushingMask != Tiles.EMPTY) {
-      // did we reach the border of the level?
+      // reached the border of the level?
       if (!canGoThere(candidatePosition, direction)) {
         return null;
       }
@@ -63,10 +63,10 @@
         currentPushingMask = behindCandidatePushingMask;
         candidatePosition = behindCandidatePosition;
       } else {
-        // we found a cell that suits us!
+        // found a cell that suits us!
         // add the thing that was being pushed
 
-        // we build the new content
+        // build the new content
         newContent[targetPosition] = targetPositionContent;
         // add a rock at the end
         newContent[behindCandidatePosition] |= currentPushingMask;

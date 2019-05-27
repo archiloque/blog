@@ -1,6 +1,6 @@
 /**
  * Try every positions on a 3*3 level
- * and check where we can go
+ * and check where baba can go
  */
 class StateAvailableMovementsTest {
 

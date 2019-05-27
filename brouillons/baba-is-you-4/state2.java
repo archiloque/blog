@@ -1,6 +1,6 @@
 /**
  * Process the current state
- * @return a list of {@link Direction} if we found a solution,
+ * @return a list of {@link Direction} if a solution is found,
  * else null
  */
 @Nullable byte[] processState() {
@@ -22,7 +22,7 @@
   
 /**
  * Try to go on a direction from a position
- * @return a list of {@link Direction} if we found a solution,
+ * @return a list of {@link Direction} if a solution is found,
  * else null
  */
 @Nullable byte[] tryToGo(
@@ -42,7 +42,7 @@
       level.addState(newContent, addMovement(direction));
       return null;
     case Tiles.ROCK:
-      // did we reach the border of the level?
+      // reached the border of the level?
       if (!canGoThere(targetPosition, direction)) {
         return null;
       }
@@ -53,7 +53,7 @@
       if (behindTheRockPositionContent != Tiles.EMPTY) {
         return null;
       }
-      // nice, we build the new content
+      // nice, build the new content
       newContent = content.clone();
       newContent[targetPosition] = Tiles.BABA;
       newContent[currentPosition] = Tiles.EMPTY;
