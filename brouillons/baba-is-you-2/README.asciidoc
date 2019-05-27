@@ -19,17 +19,17 @@ endif::[]
 :figure-caption!:
 
 ifeval::["{doctype}" == "book"]
-In the first part
+In the previous part
 endif::[]
 ifeval::["{doctype}" != "book"]
-In link:../baba-is-you-1/[the first part]
+In link:../baba-is-you-1/[the previous part]
 endif::[]
-of this series I wrote the code to read the levels.
-Before I can deal with the solving logic, I need to establish the game loop. It's plumbing time!
+I wrote the code to read the levels.
+While I'd love to jump straight to the solving logic, I need to establish the game loop first. It's plumbing time!
+
+This is fairly generic code, and I was able to port most of it from my previous link:https://github.com/archiloque/rgbexpress[efforts].
 
 include::graph1.asciidoc[]
-
-I ported most of the code shown here from my previous link:https://github.com/archiloque/rgbexpress[efforts].
 
 == The level
 
