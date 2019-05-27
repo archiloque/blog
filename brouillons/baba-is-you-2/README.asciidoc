@@ -34,7 +34,7 @@ I ported most of the code shown here from my previous link:https://github.com/ar
 == The level
 
 The `Level` class contains data related to a game level.
-At first if will only contain the information found while reading the level from disk. I know from experience that I'll add other data to make the calculations simpler and/or faster.
+At first it will only contain the information found while reading the level from disk. I know from experience that I'll add other data to make the calculations simpler and/or faster.
 
 .Level.java
 [source,java]
