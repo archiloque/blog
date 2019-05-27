@@ -26,11 +26,11 @@ Following link:../baba-is-you-1/[the first part] about reading the levels,
 endif::[]
 it's time to do some plumbing.
 
-Before dealing with the solving logic, some plumbing is required to establish the game loop.
+Before dealing with the solving logic, I need to do some plumbing to establish the game loop.
 
 include::graph1.asciidoc[]
 
-Most of the code shown here is ported from my previous link:https://github.com/archiloque/rgbexpress[efforts].
+I ported most of the code shown here from my previous link:https://github.com/archiloque/rgbexpress[efforts].
 
 == The level
 
@@ -44,7 +44,7 @@ include::level1.java[]
 ----
 
 Then the `State` represents a state of the game being solved.
-It will follow the same path as the `Level`: it starts as a small class with few attributes (the current status of the game and a pointer to the `Level`) and becomes larger as features are added, for example to store the dynamic rules.
+It will follow the same path as the `Level`: it starts as a small class with few attributes (the current status of the game and a pointer to the `Level`) and becomes larger as I add features, for example to store the dynamic rules.
 
 .State.java
 [source,java]
