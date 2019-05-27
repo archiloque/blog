@@ -19,14 +19,13 @@ endif::[]
 :figure-caption!:
 
 ifeval::["{doctype}" == "book"]
-Following the first part about reading the levels,
+In the first part
 endif::[]
 ifeval::["{doctype}" != "book"]
-Following link:../baba-is-you-1/[the first part] about reading the levels,
+In link:../baba-is-you-1/[the first part]
 endif::[]
-it's time to do some plumbing.
-
-Before dealing with the solving logic, I need to do some plumbing to establish the game loop.
+of this series I wrote the code to read the levels.
+Before I can deal with the solving logic, I need to establish the game loop. It's plumbing time!
 
 include::graph1.asciidoc[]
 
