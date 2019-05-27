@@ -28,11 +28,11 @@ I'll deal with the logic to find a solution to the first level.
 
 image::../baba-is-you-3/first-level1.png[title="Here it is",align="center",width=293,height=342]
 
-The first level has a feature that will things much simpler:
+The first level has a feature that will make things much simpler:
 the rules can't be changed.
 
 This means that fixed rules can be enough to solve this level,
-and that the changing rules features can be dealt with later.
+and that the "`changing rules`" feature can be dealt with later.
 
 == First the algo
 
@@ -55,7 +55,7 @@ First thing is to detect if a move is possible.
 
 In the further levels of the game, "`you`" can be several items, but in the first level you only control Baba, so first let's find Baba.
 
-So being possible to go in a direction means only testing if Baba can go in this direction.
+To be able to go in a direction only requires to test if Baba can go in this direction.
 
 First I check if Baba can physically go in this direction from the level point of view.
 
