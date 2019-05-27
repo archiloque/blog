@@ -53,12 +53,14 @@ Before checking if a new state is interesting, it must be vetted against the pre
 
 image::../baba-is-you-3/move1.png[title="From here",align="center",width=280,height=135]
 
-image::../baba-is-you-3/move2.png[title="Baba can go here",align="center",width=280,height=135]
+image::../baba-is-you-3/move2.png[title="Baba can go there",align="center",width=280,height=135]
 
 image::../baba-is-you-3/move3.png[title="And then go back",align="center",width=280,height=135]
 
 Without this vetting, Baba could go left, then right, then left, then right…
-and calculation time would be wasted to deal with states that have already been processed.
+and time would be wasted to deal with states that have already been processed.
+
+So this is the algo to be implemented for each state
 
 include::graph1.asciidoc[]
 
