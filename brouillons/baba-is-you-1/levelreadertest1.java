@@ -1,26 +1,18 @@
 class LevelReaderTest {
 
-  @Test
-  void readTilesOK(){}
+  @Test void readTilesOK(){}
 
-  @Test
-  void readTilesFileNotFound(){}
+  @Test void readTilesFileNotFound(){}
 
-  @Test
-  void readTilesTilesNotFound(){}
+  @Test void readTilesTilesNotFound(){}
 
-  @Test
-  void readTilesInvalidSyntax(){}
+  @Test void readTilesInvalidSyntax(){}
 
-  @Test
-  void readContentOK(){}
+  @Test void readContentOK(){}
 
-  @Test
-  void readContentFileNotFound(){}
+  @Test void readContentFileNotFound(){}
+  
+  @Test void readContentInvalidLineLength(){}
 
-  @Test
-  void readContentInvalidLineLength(){}
-
-  @Test
-  void readContentUnknownTile(){}
+  @Test void readContentUnknownTile(){}
 }

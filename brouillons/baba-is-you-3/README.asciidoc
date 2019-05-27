@@ -36,9 +36,13 @@ and that the "`changing rules`" feature can be dealt with later.
 
 == First the algo
 
+I'll first try to find a valid solution with a simplified algo that don't cover all possible cases, then I'll update it to make it compliant with the game rules.
+
+I'll do it this way because the update will add complexity to the behaviors, and I prefer to first reach a state where I solved something.
+
 Each turn the solver considers a game state, from it there is _at most_ four possible moves: going up, down, right or left.
 
-At most because some direction can be blocked, things can kill you (not in the first level), or you can alter a rule and stop to control anything (not in the first level either).
+At most because some of the directions can be blocked by an object or by the border of the level's board.
 
 If you can go in a direction, you may reach a winning state, in this case the the solver stops.
 
@@ -46,6 +50,15 @@ If you don't solve the level, you can add this new state to the list, and go on 
 
 There's a catch: Baba is not a "`burning bridge`" game where you can't move back.
 Before checking if a new state is interesting, it must be vetted against the previously met cases to avoid doing the same thing again and again.
+
+image::../baba-is-you-3/move1.png[title="Starting",align="center",width=554,height=260]
+
+image::../baba-is-you-3/move2.png[title="Moving",align="center",width=552,height=264]
+
+image::../baba-is-you-3/move3.png[title="And going back",align="center",width=556,height=266]
+
+If it's not done Baba could go left, then right, then left, then left…
+and a significant portion of the solving time would be waster to deal with cases that has already been dealt with.
 
 include::graph1.asciidoc[]
 
@@ -107,11 +120,7 @@ And testing it:
 include::statetrytogotest1.java[]
 ----
 
-== _A_ solution
-
-The title of this part is "`finding _a_ solution`", because I'll first write the code to find a valid solution, with a simplified algo that don't cover all possible cases, then I'll update it to make it compliant with the game rules.
-
-I'll do it this way because the update will add complexity to the behaviors, and I prefer to first reach a state where I solved something.
+== A solution
 
 When moving a rock, the simplest case is to check if 
 
@@ -119,6 +128,11 @@ When moving a rock, the simplest case is to check if
 * there is nothing behind it
 
 In this case Baba can go in this direction and push the rock.
+
+image::../baba-is-you-3/rock1.png[align="center",width=556,height=274]
+
+image::../baba-is-you-3/rock2.png[align="center",width=566,height=268]
+
 
 .State.java
 [source,java]
