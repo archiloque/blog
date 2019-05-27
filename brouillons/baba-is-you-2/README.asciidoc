@@ -43,7 +43,7 @@ include::level1.java[]
 ----
 
 Then the `State` represents a state of the game being solved.
-It will follow the same path as the `Level`: it starts as a small class with few attributes (the current status of the game and a pointer to the `Level`) and becomes larger as I add features , for example to store the dynamic rules.
+Just as the `Level`, it starts out as a small class with few attributes (the current status of the game and a reference to the `Level`) and it will become larger as I add features, for example to store the dynamic rules.
 
 .State.java
 [source,java]
