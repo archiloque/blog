@@ -19,22 +19,23 @@ endif::[]
 :figure-caption!:
 
 ifeval::["{doctype}" == "book"]
-In the first part
+In the previous part
 endif::[]
 ifeval::["{doctype}" != "book"]
-In link:../baba-is-you-1/[the first part]
+In link:../baba-is-you-1/[the previous part]
 endif::[]
-of this series I wrote the code to read the levels.
-Before I can deal with the solving logic, I need to establish the game loop. It's plumbing time!
+I wrote the code to read the levels.
+While I'd love to jump straight to the solving logic, I need to establish the game loop first. It's plumbing time!
+
+This is fairly generic code, and I was able to port most of it from my previous link:https://github.com/archiloque/rgbexpress[efforts].
 
 include::graph1.asciidoc[]
 
-I ported most of the code shown here from my previous link:https://github.com/archiloque/rgbexpress[efforts].
-
 == The level
 
-The `Level` class contains data related to a game level.
-At first if will only contain the information found while reading the level from disk, then -- by experience -- I'll add other data to make the calculations simpler and/or faster.
+I'll use a `Level` class to hold all the data related to a game level.
+For now it will just contain the level data we read from disk.
+I know from experience that I'll add other data to simplify and speed up the calculations.
 
 .Level.java
 [source,java]
@@ -42,8 +43,9 @@ At first if will only contain the information found while reading the level from
 include::level1.java[]
 ----
 
-Then the `State` represents a state of the game being solved.
-It will follow the same path as the `Level`: it starts as a small class with few attributes (the current status of the game and a pointer to the `Level`) and becomes larger as I add features, for example to store the dynamic rules.
+My next class, the `State`, represents a state of the game being solved.
+Just as the `Level`, it starts out as a small class with few attributes (the current status of the game and a reference to the `Level`) and it will become larger as I add features.
+For instance, this is where I'll handle Baba's dynamically changing rules.
 
 .State.java
 [source,java]
@@ -53,13 +55,18 @@ include::state1.java[]
 
 == The list of states
 
-To manage the list of states several possibilities are available, like using a link:https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)[FIFO queue] for link:https://en.wikipedia.org/wiki/Depth-first_search[depth-first search] or a link:https://en.wikipedia.org/wiki/Stack_(abstract_data_type)[stack] for link:https://en.wikipedia.org/wiki/Breadth-first_search[breadth-first search].
+I could represent my list of game states as a link:https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)[FIFO queue] to implement a link:https://en.wikipedia.org/wiki/Depth-first_search[depth-first search] or as a link:https://en.wikipedia.org/wiki/Stack_(abstract_data_type)[stack] for link:https://en.wikipedia.org/wiki/Breadth-first_search[breadth-first search].
 
-The choice depends of the type of problem and I don't have a criteria to choose: it is something I tweak along.
+A FIFO may find a solution faster but the solution may be not be the shortest, a stack finds the solution that requires the lowest number of move, but requires more time and memory.
 
-A FIFO may find a solution faster but the solution may be inefficient, a stack finds the solution that requires the lowest number of move, but requires more time and memory.
+Which works best depends on the game I'm solving.
+Rather than choose by a fixed criterion, I just start from something that makes sense and tweak it as I go. 
 
-My last project used a FIFO queue so let's use one.
+I used a FIFO queue for my last project, let's use that again.
+
+Rather than depend on an existing FIFO implementation, I just roll my own.
+The code is short and it does exactly what I need and nothing more.
+It's another thing to tweak when a solver hit a speed limit, in my last games this code was the faster.
 
 .FiFoQueue.java
 [source,java]
@@ -67,9 +74,7 @@ My last project used a FIFO queue so let's use one.
 include::fifoqueue1.java[]
 ----
 
-I use a custom implementation since the code is short and it's only doing what I need.
-
-Then, I can add the code related to the states list in the `Level`.
+I now have all the elements I need to add state list management code to the `Level` class.
 
 .Level.java
 [source,java]
@@ -81,7 +86,7 @@ Calling `State#processState` will add some new possible ``State``s to the list, 
 
 == The entry point
 
-The last part is the entry point of the game.
+Finally, my solver needs an entry point.
 
 .App.java
 [source,java]
@@ -89,11 +94,11 @@ The last part is the entry point of the game.
 include::app1.java[]
 ----
 
-The workflow is now completed, and the program can be run to (kinda) solve the level:
+With the workflow completed, I can now run the program run and watch it solve its first level... well, kind of:
 
 [source]
 ----
 include::log1.txt[]
 ----
 
-In the next part I'll start adding some logic in the code to make good use of all this plumbing.
+In the next part I'll put all the plumbing to good use and add some logic to the code.
