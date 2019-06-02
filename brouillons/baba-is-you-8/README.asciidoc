@@ -27,7 +27,7 @@ endif::[]
 where I hit the wall of complexity, it's time to restart afresh.
 
 The system I worked until now didn't really know how to play:
-it knew some of the rules of the game, and tried to play all possible moves one after another until it found a solution.
+it knew the rules of the game, and tried to play all possible moves one after another until it found a solution.
 
 This approach is easy to code, but doesn't work when the game has many possible moves.
 
@@ -40,10 +40,17 @@ Unfortunately it's not the case for Baba is you, so the solution is learn the pr
 
 Learning the program to play means to implement a goal-oriented solver.
 
-When a human play the game, they check the resources available on the board, try to find a solution involving them, and try to find a way to reach a solution.
+When a human play the game, they check the resources available on the board, then try to find an idea for a solution ("`Maybe I move this rock here so I can reach the flag there?`"), then try to find the mean to implement this idea.
 
-For example if solving the level requires to touch the flag, is it possible to reach it?
+If the idea can't be implemented, they look for another idea.
 
-Sometimes solving the level requires sub-goals: if reaching the flag is not possible as is because a wall is blocking the path, is it possible to change the rule so Baba can move across the wall?
+Sometimes solving the a requires sub-goals: if reaching the flag is not possible as is because a wall is blocking the path, is it possible to change the rule first so Baba can move across the wall?
 
-The goal is to create a system that can compose goals and means to reach them, without implementing all possible cases.
+The target is to create a system which rely on the same process.
+
+Compared to the naive approach, cutting the solving into sub-goals should decrease the number of states to explore because the possible movements for each sub-goals is low enough to be manageable.
+For example trying to reach a specific cell without changing any rule.
+
+This means this approach should have a better scalability for complex levels.
+
+Its drawback is that managing all the cases requires much more code.

@@ -57,7 +57,7 @@ include::state1.java[]
 
 I could represent my list of game states as a link:https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)[FIFO queue] to implement a link:https://en.wikipedia.org/wiki/Depth-first_search[depth-first search] or as a link:https://en.wikipedia.org/wiki/Stack_(abstract_data_type)[stack] for link:https://en.wikipedia.org/wiki/Breadth-first_search[breadth-first search].
 
-A FIFO may find a solution faster but the solution may be not be the shortest, a stack finds the solution that requires the lowest number of move, but requires more time and memory.
+A FIFO may find a solution faster but the solution may be not be the shortest, a stack will find the solution that requires the lowest number of move, but requires more time and memory since it tends explore more possibilities before finding a solution.
 
 Which works best depends on the game I'm solving.
 Rather than choose by a fixed criterion, I just start from something that makes sense and tweak it as I go. 
