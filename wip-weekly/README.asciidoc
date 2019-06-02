@@ -2,3 +2,34 @@
 Julien Kirch
 v1.0, 2019-01-01
 :article_lang: en
+
+== link:https://increment.com/open-source/the-city-guide-to-open-source/[The city guide to open source]
+
+[quote
+____
+These questions echo the choices that OSS projects must make:
+
+. Which features are used the most?
+. Which desired features are missing?
+. What kinds of users does this project currently not serve?
+. Does this planned feature benefit one group at a cost to another?
+. Will this planned feature affect a user who already depends on this project?
+
+This is part of what makes an OSS maintainer’s job so demanding: They’re charged with making decisions on behalf of a community as a whole. They also set the tone for governance. In other words, they decide how decisions get made, which is the most momentous decision of them all.
+
+____
+
+[quote
+____
+Physical infrastructure calls for large initial investment but has low marginal costs. For example, the construction and overall maintenance of a new road is expensive, but each additional car that uses that road doesn’t much increase the cost. However, the more cars use the road, the faster it wears out and the more traffic slows.
+
+It would seem that OSS need not worry about gridlock. After all, software’s duplication and distribution costs are effectively zero. But OSS has real marginal costs; they’re just less conspicuous. Every time someone pulls down a new dependency, the maintainer of that package has an additional person who might ask questions, demand a new feature, or open a pull request. As a project scales, the workload of supporting its users grows with it. This manifests as unresolved issues piling up, unmerged pull requests, and shrill commentary that stresses out the maintainer but offers little in the way of help.
+
+There’s an asymmetry between the low cost of community participation and the high cost that others’ participation places on the leaders of the community. Over time, this becomes a problem for users of the project, too. If the maintainer of a package you depend on is already inundated with requests, they may not have time to help out when you run into a problem or request a new feature.
+
+This problem has a lot in common with automobile traffic. Each car on the road increases congestion for everybody else, but individual drivers don’t pay for the congestion they create. Freed from that expense, drivers are incentivized to get in their cars despite the possibility of traffic. However, the more drivers there are on the road, the more likely they’ll end up in gridlock.
+
+[…]
+
+In the realm of OSS, the duplication cost of software is zero, but the cost of maintenance and support is not. This burden is borne especially by maintainers. Meanwhile, it’s all too easy for users to add to a maintainer’s workload -- a kind of cognitive congestion -- in ways they, the users, don’t actually value that highly: by opening an issue without checking if anyone has asked the same question before, submitting a pull request with zero test coverage for an unsolicited feature (maintainers sometimes call these "`drive-by PRs`"), or just adding another thumbs-up emoji to a rude comment. In one sense, it’s a measure of a project’s success that so many users want to engage. But it puts an increasingly heavy burden on the maintainer to wade through it all. Ultimately, this outcome is harmful to everyone involved because it distracts the maintainer from higher priorities that would be of more benefit to the project community as a whole.
+____
