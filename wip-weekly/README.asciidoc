@@ -33,3 +33,15 @@ This problem has a lot in common with automobile traffic. Each car on the road i
 
 In the realm of OSS, the duplication cost of software is zero, but the cost of maintenance and support is not. This burden is borne especially by maintainers. Meanwhile, it’s all too easy for users to add to a maintainer’s workload -- a kind of cognitive congestion -- in ways they, the users, don’t actually value that highly: by opening an issue without checking if anyone has asked the same question before, submitting a pull request with zero test coverage for an unsolicited feature (maintainers sometimes call these "`drive-by PRs`"), or just adding another thumbs-up emoji to a rude comment. In one sense, it’s a measure of a project’s success that so many users want to engage. But it puts an increasingly heavy burden on the maintainer to wade through it all. Ultimately, this outcome is harmful to everyone involved because it distracts the maintainer from higher priorities that would be of more benefit to the project community as a whole.
 ____
+
+== link:https://dehora.net/journal/leverage-in-engineering-organisations[Reasoning about Leverage in Engineering Organisations]
+
+[quote]
+____
+Using a technology or service should provide some benefit in kind to its users. We’ll call that benefit lift. Why introduce a second concept and not just talk about leverage in itself? It’s because we want a way to frame and identify the benefit not just the activity. For example, if we write a tool that 50 engineers use, instead of having each engineer write their own tool, that tool is being leveraged via re-use, but we haven’t identified the benefit. What if the tool slowed those 50 engineers down, or slowed down 20 of them? It’s very easy to get trapped here and assume simply the act of leveraging something is sufficient. 
+____
+
+[quote]
+____
+When it comes to introducing technology, two things need to happen. First we want to establish there will be some kind of lift, and do so in the context of our organisation. What works elsewhere may not work here. At the most simplistic level -- is there expertise in-house or, will we have train up or hire in? Second, we want to look at classes of technology and not assess something in isolation. This is particularly important for programming language and database technologies as they tend to be foundational engineering choices that exhibit diminishing returns. The 5th programming language an organisation uses is not going to provide the same level of differentiated impact as the 2nd did. The 10th language is going to be a net-negative. For databases the diminishing return tends to be operational—to paraphrase Tolstoy, every unhappy database is unhappy in its own way. As expertise gets spread across ever smaller silos, it’s easy to get to a point where the engineering organisation itself starts to struggle under the burden of variation. 
+____
