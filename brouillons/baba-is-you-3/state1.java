@@ -19,7 +19,7 @@ class State {
    *
    * @return true if a solution is found
    */
-  boolean processState() {
+  boolean process() {
     int babaPosition = findBaba();
     int babaLine = babaPosition / level.width;
     int babaColumn = babaPosition % level.width;

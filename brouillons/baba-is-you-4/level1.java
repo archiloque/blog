@@ -1,11 +1,12 @@
-@Nullable char[] solve() {
-    char[] result;
-    while (!states.isEmpty()) {
+@Nullable byte[] solve() {
+    while (true) {
       State state = states.pop();
-      result = state.processState();
+      if (state == null) {
+        return null;
+      }
+      byte[] result = state.process();
       if (result != null) {
         return result;
       }
     }
-    return null;
   }

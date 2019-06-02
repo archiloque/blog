@@ -33,7 +33,7 @@ class StateAvailableMovementsTest {
     Level level = new Level(3, 3, levelContent);
     StateToTestAvailableMovements state =
         new StateToTestAvailableMovements(level, levelContent);
-    state.processState();
+    state.process();
     assertArrayEquals(movements, state.movements.toArray());
   }
 

@@ -82,7 +82,7 @@ I now have all the elements I need to add state list management code to the `Lev
 include::level2.java[]
 ----
 
-Calling `State#processState` will add some new possible ``State``s to the list, so the minimal version of the solver loop is now complete.
+Calling `State#process` will add some new possible ``State``s to the list, so the minimal version of the solver loop is now complete.
 
 == The entry point
 

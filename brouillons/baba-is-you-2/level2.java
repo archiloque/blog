@@ -10,11 +10,13 @@ void addState(@NotNull int[] content) {
 }
 
 @Nullable State solve() {
-  while (!states.isEmpty()) {
+  while (true) {
     State state = states.pop();
-    if (state.processState()) {
+    if(state == null) {
+      return null;
+    }
+    if (state.process()) {
       return state;
     }
   }
-  return null;
 }

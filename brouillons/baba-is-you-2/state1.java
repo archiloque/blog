@@ -19,7 +19,7 @@ class State {
    *
    * @return true if a solution is found
    */
-  boolean processState() {
+  boolean process() {
     // @TODO probably add some code here
     return false;
   }

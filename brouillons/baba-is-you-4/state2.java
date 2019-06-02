@@ -3,7 +3,7 @@
  * @return a list of {@link Direction} if a solution is found,
  * else null
  */
-@Nullable byte[] processState() {
+@Nullable byte[] process() {
   int babaPosition = findBaba();
   int babaLine = babaPosition / level.width;
   int babaColumn = babaPosition % level.width;
