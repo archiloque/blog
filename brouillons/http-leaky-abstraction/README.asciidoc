@@ -1,7 +1,25 @@
-= HTTP, mechanical
+= HTTP, mechanical sympathy and leaky abstraction
 Julien Kirch & Fabien Lamarque
 v0.1, 2019-06-03
 :article_lang: fr
 
-Lorsqu'un développeur java décide d'encapsuler un appel HTTP ou à la base de données, il passe souvent par un service,
+Lorsqu'un développeur java décide d'encapsuler un appel HTTP, il passe souvent par un service,
 une classe qui encapsule cet appel, cette dépendance.
+
+```
+private Entity getContent (String code, String referentielUrl) {
+   HttpHeaders headers = new HttpHeaders();
+   headers.setContentType(MediaType.APPLICATION_JSON);
+   HttpEntity<Entity> httpEntity = new HttpEntity<>(headers);
+   ResponseEntity<Entity> responseEntity = restTemplate.exchange(
+           referentielUrl,
+           HttpMethod.GET, httpEntity, Entity.class, code);
+
+   return responseEntity.getBody();
+}
+
+
+Cette méthode est correcte, fait un appel http à une API rest, et retourne un objet Entity récupéré. L'avantage
+de cette méthode est qu'elle crée donc une abstraction de l'appel HTTP. C'est à dire qu'elle cache toutes ces logiques
+d'URL, de verbe HTTP, de protocole et de désérialization derrière une méthode plus facilement utilisable, avec une interface plus simple.
+
