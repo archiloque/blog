@@ -22,7 +22,7 @@ Elle prend donc en compte les questions de gestion du _legacy_.
 
 Deux éléments mis en lumière par le texte et qui m'ont particulièrement parlé :
 
-## L'adhérence masquée
+== L'adhérence masquée
 
 Il est très difficile de maîtriser toutes les adhérences entre un composant qui n'a pas été conçu pour ça&#8201;—{nbsp}comme c'est le cas de l'essentiel des briques logicielles Linux{nbsp}—&#8201;et l'environnement où il a été construit.
 
@@ -32,7 +32,7 @@ Toutes ces inconnues augmentent le risques ou la complexité du déploiement, en
 
 Nix a participé à donner de la visibilité à ce sujet, qui a depuis été pris en compte par différentes distributions Linux comme link:https://lwn.net/Articles/757118/[Debian].
 
-## La compatibilité
+== La compatibilité
 
 Tester la compatibilité entre versions de composants est souvent plus difficile qu'on ne le croit, surtout lorsqu'on ne dispose pas des tests automatisés adéquats.
 
@@ -42,7 +42,7 @@ Mettre à jour des bibliothèque partagées lorsque les chaînes de dépendances
 
 Nix propose une approche de mise à jour transactionnelle, avec gestion du retour en arrière, qui s'approche beaucoup de ce qu'on peut faire dans certains SI.
 
-## Conclusion
+== Conclusion
 
 La thèse se lit très bien et les solutions proposées, dans leurs forces et leurs faiblesses, sont convaincantes.
 
@@ -54,7 +54,7 @@ Cela m'a donné envie que Nix soit un succès, même si je n'en ai pas l'usage p
 
 Enfin l'utilisation d'un langage de description purement fonctionnel pour les descriptifs des composants donne un cas d'usage où ce type d'outil semble très bien adapté, assez éloigné de ce que j'ai l'impression de voir d'habitude.
 
-## Quelques citations
+== Quelques citations
 
 [quote]
 ____
