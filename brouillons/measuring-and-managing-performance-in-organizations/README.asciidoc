@@ -2,22 +2,22 @@
 Julien Kirch
 v0.1, 2019-06-06
 :article_lang: fr
-:article_image: cover.jpg
+:article_image: supervision.png
 :article_description: Le développement logiciel n’est pas une chaîne de fabrication telle qu'on peut se l'imaginer
 
-Comme sont titre l'idique, il s'agit d'un livre sur la mesure et la gestion de la performance dans les organisations, et tout particulièrement de l'activité de développement logiciel.
+Comme sont titre l'indique, il s'agit d'un livre sur la mesure et la gestion de la performance dans les organisations, et tout particulièrement de l'activité de développement logiciel.
 
-Il a été publié en 1996 mais il reste parfaitement d'actualité et le restera sans doute longtemps car &#8201;—{nbsp}comme l'écrit Robert D. Austin{nbsp}—&#8201; ce qu'expose le texte va à l'encontre du discours ambiant et demanderait aux organisations de revoir leur méthode de management, ce qui a peu de chance d'arriver.
+Il a été publié en 1996 mais il reste parfaitement d'actualité et le restera sans doute longtemps car&#8201;—{nbsp}comme l'écrit Robert D. Austin{nbsp}—&#8201;ce qu'expose le texte va à l'encontre du discours ambiant et demanderait aux organisations de revoir leur méthode de management, ce qui a peu de chance d'arriver.
 
 Les discussions actuelle sur l'agile en général et le link:../escape_velocity/[no estimate] en particulier sont ainsi très proches de ce qu'on trouve dans ce texte d'il y a vingt ans.
 
 Le livre propose un modèle qui permet de répondre aux cas limites des approches généralement appliquées.
 
-Pour appuyer son argumentation, l'auteur s'appuie sur des références abondantes, nottament du côté des économistes.
+Pour appuyer son argumentation, l'auteur s'appuie sur des références abondantes, principalement du côté des économistes.
 Dans une logique économiste, les situations qu'il décrit ne sont pas des aberrations mais correspondent à des comportement rationnels.
 
 À l'aide d'un formulaire de questions soumis à des experts du sujet, on voit que les personnes qui partagent les enjeux de l'auteur sont plutôt d'accord avec lui.
-À l'inverse, les personnes qui pronnent d'autres approches semblent le faire car elles se basent sur une vision du monde simplifiée, où par exemple les mesures ne sont jamais biaisées.
+À l'inverse, les personnes qui prônent d'autres approches semblent le faire car elles se basent sur une vision du monde simplifiée, où par exemple les mesures ne sont jamais biaisées.
 
 == Mesurer les activité
 
@@ -44,73 +44,84 @@ En cas de supervision partielle, les objectifs ne couvrent donc qu'une partie de
 
 Selon les ressources citées par l'auteur, les personnes sont en général motivées par faire un travail de qualité, qui est une source de satisfaction.
 
-Dans une situation de supervision partielle, faire un travail de qualité signifie effectuer des efforts qui ne sont pas mesurés, et qui ne sont donc pas couverts par les objectifs.
+Dans une situation de supervision partielle, faire un travail de qualité signifie effectuer des efforts qui ne sont pas mesurés, et donc pas couverts par les objectifs.
 
 Ainsi, à niveau d'effort équivalent, la personne se retrouve à choisir entre 
 
 . faire un travail de qualité pour atteindre un certain niveau d'objectif{nbsp};
 . se focaliser sur les aspects mesurés pour atteindre un niveau d'objectif plus élevé, ce qui diminue le résultat de son travail mais sans que cela soit mesurable.
 
-Au delà d'un certain niveau d'effort ou d'une certaine pression sur les résultat, il est rationnel pour la personne de choisir la deuxième posture{nbsp}: à un moment mieux vaut des revenus supplémentaire que faire du bon travail.
+Au delà d'un certain niveau d'effort ou d'une certaine pression sur les résultat, il est rationnel pour la personne de basculer vers la deuxième posture{nbsp}: à un moment mieux vaut des revenus supplémentaire que faire du bon travail.
+
+image::supervision.png[title="Les lignes de niveau représentant le résultat du travail, les objectifs commencent par améliorer les choses de B à D, puis à partir de là le dégradent d'abord jusqu'à retomber sur une situation équivalente en E, puis continuent jusqu'à F"]
 
 L'auteur met ainsi en lumière l'opposition entre le discours sur l'autonomie des personnes et la volonté de surveiller leur activité{nbsp}:
-demander aux personnes de s'impliquent dans leur travail et fassent les meilleurs choix pour leur organisation n'est pas compatible avec une supervision partielle, car cela créé une situation où l'intérêt de la personne est oppposée avec celle de l'organisation.
+demander aux personnes de s'impliquent dans leur travail et fassent les meilleurs choix pour leur organisation n'est pas compatible avec une supervision partielle, car cela créé une situation où l'intérêt de la personne est opposée avec celle de l'organisation.
 
-== En cas 
+En cas de supervision partielle, l'auteur conseille donc de ne pas utiliser le management par objectif mais plutôt d'utiliser le management délégatif ("`delegatory management`") qui repose sur la confiance et la motivation interne.
 
 == La supervision totale
 
 Dans une situation de supervision totale, le système est entièrement connu et le pilotage par d'objectifs chiffrés est très adapté.
 
-C'est le modèle prépondérant dans les théories du management actuel, celui où les personnes peuvent être controlées comme des machines.
+C'est le modèle prépondérant dans les théories du management actuel, celui où les personnes peuvent être controlées comme des machines et qui correspond à une certaine vision du fonctionnement d'une usinee.
 
-L'auteur fait l'observation qu'une partie de sa position au fait qu'il correspond à l'idéal-type du fonctionnement d'une usine, c'est-à-dire l'objet d'étude qui a donné naissance au management moderne.
+La facilité de manager ce modèle le rend très attractif, à tel point qu'en cas de difficulté dans une organisation, la tentation de réorganiser un système pour aller vers ce type de fonctionnement est parfois très forte.
 
-La facilité de manager ce modèle le rend très attractif, à tel point qu'en cas de difficulté, la tentation de réorganiser un système pour aller vers ce type de fonctionnement est parfois très forte.
+Par exemple c'est le cas quand un·e responsable d'équipe stressé·e veut "`reprendre la main`" en pilotant directement l'activité des personnes.
 
-Par exemple c'est le cas quand un·e responsable d'équipe stressé·e veut piloter directement l'activité des personnes pour essayer de suivre ce qui se passe pour "`reprendre la main`".
-
-Ainsi si les actions des organisation vers la standardisation sont souvent expliquées par une volonté d'avoir une meilleure efficacité, dans certains cas elle relèveraient plutôt de la volonté de pouvoir rendre mesurables l'activité des personnes.
-Par exemple quand on sépare une activité en plusieurs tâches, pour mieux savoir ce qui se passe, quitte à rendre l'activité moins efficace dans son ensemble.
+Selon l'auteur, une partie de l'attrait de la standardisation relève moins de la volonté d'augmenter l'efficacité que de celle de pouvoir rendre mesurables l'activité des personnes.
 
 == Totale ou partielle ?
 
+Choisir la bonne méthode de management nécessite donc de savoir quel type de supervision s'applique, et donc de savoir si toutes les dimensions critiques sont mesurées.
 
+Cela demande trois choses{nbsp}:
 
-Quand on croit qu'on est en supervision totale mais en fait non
+. que les dimensions critiques soient toutes identifiées{nbsp};
+. qu'elles soient toutes mesurables{nbsp};
+. qu'elles soient toutes mesurées.
+
+Si un seul de ces critères n'est pas remplis et il ne s'agit pas d'une supervision totale.
+
+Selon l'auteur, beaucoup de situation considérées comme de la supervision totale ne le sont pas, causant des problèmes d'efficacité.
+
+Cela peut avoir de nombreuses causes, comme la difficulté à identifier toutes les dimensions critiques ou la difficulté de mesurer certaines d'entre elles.
+
+Face à l'envie de tout de même appliquer le management par objectif, il peut être tentant de faire semblant de ne pas savoir que tout n'est pas mesuré, ou de prendre une mesure indirecte pour une mesure directe, comme par exemple le nombre de lignes de code comme indicateur de productivité pour des personnes qui développent.
+
+Le problème est qu'alors le système devient très compliqué à piloter, car l'outil de commande utilisé n'est pas le bon.
+Cela correspond au cas classique d'une organisation qui modifie en permanence la manière dont les objectifs sont évalués pour pour essayer de trouver le bon équilibre entre plusieurs critères alors qu'elle se trouve dans une situation de supervision partielle.
 
 == Le développement logiciel
 
-Activitié qui n'est pas répétable
+On l'aura compris, le développement logiciel ne peut pas faire l'objet d'une supervision complète.
 
-Coût de la supervision
-Transformer le travail pour le rendre observable
+L'argument principal est que link:../lean-chaine-d-assemblage/[l'activité de développement n'est pas une suite d'actions répétables].
+
+Ou plutôt que si un projet de développement est une suite d'actions répétables, cela signifie que les personnes ne tirent pas parti de la capacité de l'informatique à créer des outils pour gagner au fur et à mesure en efficacité.
+
+Cela signifie que le pilotage par objectif est, sauf cas particulier, inadapté pour manager des équipes de développement.
 
 == La confiance & la mesure (sont sur un bateau)
 
-Problème des mesures mal utilisées : on commence par faire une mesure puis on l'utilise contre les personnes
+Dans le management délégatif, la productivité dépend de l'autonomie laissé aux personnes, et de leur confiance dans le management.
 
-== Que faire ?
+En effet, si les personnes n'ont pas confiance dans l'encadrement, elles dépenseront une partie de leur énergie à se protéger, par exemple en optimisant les métriques, plutôt qu'en faisant ce qui est le mieux pour l'organisation.
 
-Déléguer et traiter les personnes en adultes
-Pas de management par objectif
-Luter contre l'envie de faire des optimisations et du pilotage local
-Faire des mesures, fournir le détail aux personnes et la version moyennée au management
+Selon l'auteur, chaque métrique sur le travail effectué remontée au management a un coût, même s'il peut être faible, en terme de confiance.
+Il recommande donc&#8201;—{nbsp}à l'inverse de certaines pratiques{nbsp}—&#8201;de faire attention aux mesures qui sont remontées.
+
+Il souligne notamment que, même si un manager ou une manageuse est de bonne volonté et n'essaie pas de se servir de chiffres à mauvais escient, cela n'est pas forcément le cas de la personne qui va le ou la remplacer.
+Les managé·e·s ont donc raison de se méfier de toute remontée d'information qui pourrait se retourner contre eux et elles, même a posteriori.
+
+Si des mesures sont disponible, il conseille de ne les fournir qu'aux personnes dont l'activité est mesurée, et de ne remonter au management que des résultats agrégés qui permettent de limiter les manipulations.
 
 == En conclusion
 
-Le livre a mis des mots et des explication sur des choses que je ressentais.
+Le livre m'a fourni un cadre synthétique m'expliquant des choses que je ressentais ou dont je n'avais qu'une compréhension partielle.
 
-Modèle simple et utile mais difficile à appliquer
-
-Cela rejoint mes réflexions sur link:../lean-chaine-d-assemblage/[les problèmes de l'application du lean]
-
-Le gros inconvénient est qu'il montre bien à quel point tout une partie du discours sur le management des projets informatiques est de la pisse de chat.
-
-* [ ] Le côut de la mesure
-
-
-
+Le modèle qu'il propose est simple et convainquant, mais sa lecture est un peu déprimante, car il montre bien à quel point tout une partie du discours sur le management des projets informatiques correspond à des personnes qui préfèrent vivre dans l'illusion du contrôle plutôt que de changer leurs pratiques.
 
 == Quelques citations
 
