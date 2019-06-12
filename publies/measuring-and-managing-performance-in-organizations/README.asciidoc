@@ -1,11 +1,11 @@
 = Fiche de lecture{nbsp}: "`Measuring and Managing Performance in Organizations`"
 Julien Kirch
-v0.1, 2019-06-06
+v0.1, 2019-06-12
 :article_lang: fr
 :article_image: supervision.png
 :article_description: Le développement logiciel n’est pas une chaîne de fabrication telle qu'on peut se l'imaginer
 
-Comme sont titre l'indique, il s'agit d'un livre sur la mesure et la gestion de la performance dans les organisations en s'intéressant particulièrement à l'activité de développement logiciel.
+Comme son titre l'indique, il s'agit d'un livre sur la mesure et la gestion de la performance dans les organisations en s'intéressant particulièrement à l'activité de développement logiciel.
 
 Il a été publié en 1996 mais reste parfaitement d'actualité et le restera sans doute longtemps car ce qu'expose le texte va à l'encontre du discours ambiant et demanderait aux organisations de revoir leur méthode de management, ce qui a peu de chance d'arriver.
 
@@ -13,10 +13,10 @@ Les discussions actuelle sur l'agile en général et le link:../escape_velocity/
 
 Dans ce livre, Robert D. Austin propose un modèle qui permet de répondre aux cas limites des approches généralement appliquées.
 
-L'auteur s'appuie son argumentation sur des références abondantes, principalement du côté des économistes car dans une logique économiste, les situations qu'il décrit ne sont pas des aberrations mais correspondent à des comportement rationnels.
+L'auteur appuie son argumentation sur des références abondantes, principalement du côté des économistes car dans une logique économiste, les situations qu'il décrit ne sont pas des aberrations mais correspondent à des comportement rationnels.
 
 Pour tester la validité de son modèle il a soumis un formulaire de questions à des experts du sujet.
-La conclusion exposée est que les personnes qui sont partagent son avis sur les différentes difficultés de mesurer les activités partagent son approche.
+La conclusion exposée est que les personnes qui partagent son avis sur les différentes difficultés rencontrées quand il s'agit de mesurer les activités partagent son approche.
 À l'inverse, les personnes qui prônent d'autres solutions semblent le faire car pour elles les mesures ne sont pas un problèmes, car par exemple elles ne sont jamais biaisées.
 
 == Mesurer les activité
@@ -44,9 +44,9 @@ La pensée managériale classique met l'accès sur l'importance de donner des ob
 
 En cas de supervision partielle, les objectifs quantifiés ne couvrent donc qu'une partie des critères qui déterminent le résultat de l'activité, certains des critères n'étant pas mesurés.
 
-Selon les ressources citées par l'auteur, les personnes sont en général motivées par faire un travail de qualité car c'est pour elles une source de satisfaction.
+Selon les ressources citées par l'auteur, les personnes sont en général motivées pour faire un travail de qualité car c'est pour elles une source de satisfaction.
 
-Dans une situation de supervision partielle, faire un travail de qualité signifie effectuer des efforts qui ne sont pas mesurés, et donc pas couverts par les objectifs.
+Dans une situation de supervision partielle, faire un travail de qualité signifie effectuer des efforts qui ne sont pas mesurés, et donc ne sont pas couverts par les objectifs.
 
 Ainsi, à niveau d'effort équivalent, la personne doit choisir entre{nbsp}:
 
@@ -55,10 +55,10 @@ Ainsi, à niveau d'effort équivalent, la personne doit choisir entre{nbsp}:
 
 Au delà d'un certain niveau d'effort ou d'une certaine pression sur les résultat, il est rationnel pour la personne de basculer vers la deuxième posture{nbsp}: à un moment mieux vaut des revenus supplémentaire que faire du bon travail.
 
-image::supervision.png[title="Les lignes de niveau représentant le résultat du travail, les objectifs commencent par améliorer le résultat de l'activité de B à D, puis à partir de là le dégrade d'abord jusqu'à retomber sur une situation équivalente en E, puis continuent jusqu'à F"]
+image::supervision.png[caption="", title="Les lignes de niveau représentent le résultat du travail. Les objectifs commencent par améliorer le résultat de l'activité de B à D, puis à partir de là le dégradent d'abord jusqu'à retomber sur une situation équivalente en E, puis continuent jusqu'à F."]
 
 L'auteur met ainsi en lumière l'opposition entre le discours sur l'autonomie des personnes et le fait de surveiller leur activité{nbsp}:
-demander aux personnes de s'impliquent dans leur travail et fassent les meilleurs choix pour leur organisation n'est pas compatible avec une supervision partielle, car cela créé une situation où l'intérêt de la personne est opposée avec celle de l'organisation.
+demander aux personnes de s'impliquer dans leur travail et de faire les meilleurs choix pour leur organisation n'est pas compatible avec une supervision partielle, car cela créé une situation où l'intérêt de la personne est opposée avec celle de l'organisation.
 
 En cas de supervision partielle, l'auteur conseille donc de ne pas utiliser le management par objectif mais plutôt d'utiliser le management délégatif ("`delegatory management`") qui repose sur la confiance et la motivation interne.
 
@@ -86,7 +86,7 @@ Cela demande trois choses{nbsp}:
 
 Si un seul de ces critères n'est pas rempli il ne s'agit pas d'une supervision totale.
 
-Selon l'auteur, beaucoup de situation considérées comme de la supervision totale ne le sont pas.
+Selon l'auteur, beaucoup de situations considérées comme de la supervision totale ne le sont pas.
 
 Cela peut avoir de nombreuses causes, comme la difficulté à identifier toutes les dimensions critiques ou la difficulté de mesurer certaines d'entre elles.
 
@@ -103,7 +103,7 @@ On l'aura compris, le développement logiciel ne peut pas faire l'objet d'une su
 
 L'argument principal est que link:../lean-chaine-d-assemblage/[l'activité de développement n'est pas une suite d'actions répétables].
 
-Ou plutôt que si un projet de développement est une suite d'actions répétables, cela signifie que les personnes ne tirent pas parti de la capacité de l'informatique à créer des outils pour gagner au fur et à mesure en efficacité.
+Ou plutôt que si un projet de développement est une suite d'actions répétables, cela signifie que les personnes ne tirent pas parti de la capacité de l'informatique à créer des outils pour gagner, au fur et à mesure, en efficacité.
 
 Cela signifie que le pilotage par objectif est, sauf cas particulier, inadapté pour manager des équipes de développement.
 
@@ -121,11 +121,11 @@ Il recommande donc&#8201;—{nbsp}à l'inverse de certaines pratiques{nbsp}—&#
 Il souligne notamment que, même si un manager ou une manageuse est de bonne volonté et n'essaie pas de se servir de chiffres à mauvais escient, cela n'est pas forcément le cas de la personne qui va le ou la remplacer.
 Les managé·e·s ont donc raison de se méfier de toute remontée d'information qui pourrait se retourner contre eux et elles, même a posteriori.
 
-Si des mesures sont disponible, il conseille de ne les fournir qu'aux personnes dont l'activité est mesurée pour qu'elles puissent améliorer leur propre travail, et de ne remonter au management que des résultats agrégés qui permettent de limiter les manipulations.
+Si des mesures sont disponibles, il conseille de ne les fournir qu'aux personnes dont l'activité est mesurée pour qu'elles puissent améliorer leur propre travail, et de ne remonter au management que des résultats agrégés qui permettent de limiter les manipulations.
 
 == En conclusion
 
-Le livre m'a fourni un cadre m'expliquant des choses que je ressentais ou dont je n'avais qu'une compréhension partielle.
+Le livre m'a fourni un cadre permettant d'expliquer des situations dont je n'avais qu'une compréhension partielle.
 
 Le modèle qu'il propose est simple et convainquant, mais sa lecture est un peu déprimante, car il montre bien à quel point tout une partie du discours sur le management des projets informatiques correspond à des personnes qui préfèrent vivre dans l'illusion du contrôle plutôt que de changer leurs pratiques.
 
