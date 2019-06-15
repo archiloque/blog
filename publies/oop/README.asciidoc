@@ -7,50 +7,50 @@ v0.1, 2016-12-26
 
 Deux bons articles pour commencer{nbsp}:
 
-- link:https://lwn.net/Articles/336262/[celui-ci milite pour l’utilisation de bibliothèques plutôt que de faire des couches]{nbsp};
+- link:https://lwn.net/Articles/336262/[celui-ci milite pour l'utilisation de bibliothèques plutôt que de faire des couches]{nbsp};
 - link:http://lambda-the-ultimate.org/node/5377[celui-là sur le sous-typage].
 
-Constatation{nbsp}: l’héritage en OOP est très survendu
+Constatation{nbsp}: l'héritage en OOP est très survendu
 
-Les exemples de modélisation où l’héritage sont très rares, et les exemples données quand tu apprends l’objets sont faux{nbsp}:
+Les exemples de modélisation où l'héritage sont très rares, et les exemples données quand tu apprends l'objets sont faux{nbsp}:
 
--	Un Point3D n’est pas un Point2D avec des propriétés en plus, un Point2D est un Point3D qu’on a projeté, ce n’est pas parce que tu as deux attributs commun que tu devrais étendre.
--	Un carré n’est pas un rectangle spécialisé{nbsp}: si vous faites ça vous vous retrouvez avec des effets de bords très étranges.
+-	Un Point3D n'est pas un Point2D avec des propriétés en plus, un Point2D est un Point3D qu'on a projeté, ce n'est pas parce que tu as deux attributs commun que tu devrais étendre.
+-	Un carré n'est pas un rectangle spécialisé{nbsp}: si vous faites ça vous vous retrouvez avec des effets de bords très étranges.
 
-La seule bonne raison d’hériter ça devrait être link:https://fr.wikipedia.org/wiki/Principe_de_substitution_de_Liskov[le principe de Liskov].
+La seule bonne raison d'hériter ça devrait être link:https://fr.wikipedia.org/wiki/Principe_de_substitution_de_Liskov[le principe de Liskov].
 
-(Je vais donner des exemples en Java car c’est le plus facile à caricaturer, et que c’est le langage OO avec du typage statique et de la validation à la compilation que je connais le mieux, et que j’aimerais avoir un langage avec ces priorités mais mieux que Javas.)
+(Je vais donner des exemples en Java car c'est le plus facile à caricaturer, et que c'est le langage OO avec du typage statique et de la validation à la compilation que je connais le mieux, et que j'aimerais avoir un langage avec ces priorités mais mieux que Javas.)
 
-Quand je code en Java et que je fais de l'héritage, c’est 95% du temps pour deux mauvaises raisons.
+Quand je code en Java et que je fais de l'héritage, c'est 95% du temps pour deux mauvaises raisons.
 
-1) À cause d’un workflow de code qui zig-zague entre plusieurs responsable, typiquement du middleware.
+1) À cause d'un workflow de code qui zig-zague entre plusieurs responsable, typiquement du middleware.
 
-Par exemple j’appelle une méthode m qui prend un A en paramètre, et ensuite je récupère la main en récupérant mon objet.
-C’est visible quand je me retrouve à appeler m avec un B qui hérite de A, et caster mon A en B ensuite quand je récupère la main.
-Ma sous-classe de A doit alors porter mon contexte d’exécution, et donc je la sous-classe « artificiellement » pour pouvoir y caser les attributs dont j’ai besoin ensuite.
+Par exemple j'appelle une méthode m qui prend un A en paramètre, et ensuite je récupère la main en récupérant mon objet.
+C'est visible quand je me retrouve à appeler m avec un B qui hérite de A, et caster mon A en B ensuite quand je récupère la main.
+Ma sous-classe de A doit alors porter mon contexte d'exécution, et donc je la sous-classe « artificiellement » pour pouvoir y caser les attributs dont j'ai besoin ensuite.
 
-Est ce que c’est grave{nbsp}? Oui je pense{nbsp}:
+Est ce que c'est grave{nbsp}? Oui je pense{nbsp}:
 
 - cela nécessite de faire du downcast, la validation de typage est donc perdue{nbsp};
 - il s'agit de frankenOO{nbsp}: ajouter des attributs dans B alors que le code qui les utilises est dans le callback n'a aucun sens du point de vue objet.
 
-J’ai le sentiment qu’avec des types paramétriques plus puissants tu devrais appeler un m avec le A qu’elle attend, plus un B et un C qu’elle n’attend pas, et retrouver tes B et C dans les callbacks, tout en ayant du typage statique.
+J'ai le sentiment qu'avec des types paramétriques plus puissants tu devrais appeler un m avec le A qu'elle attend, plus un B et un C qu'elle n'attend pas, et retrouver tes B et C dans les callbacks, tout en ayant du typage statique.
 
 L'autre solution est d'utiliser des closures{nbsp}: le code reste dans le contexte de l'appelant, et il n'y a pas besoin de créer de classe ad-hock, par contre cela rend plus difficile la réutilisation.
 
-2) Pour faire du reuse d’attributs / de code
+2) Pour faire du reuse d'attributs / de code
 
-a) En Java il n’y a pas de facilité pour faire de la délégation, donc tu te retrouves beaucoup à sous-classer plutôt qu’à déléguer pour éviter d’avoir à code manuellement des méthodes qui font la délégation.
+a) En Java il n'y a pas de facilité pour faire de la délégation, donc tu te retrouves beaucoup à sous-classer plutôt qu'à déléguer pour éviter d'avoir à code manuellement des méthodes qui font la délégation.
 
-Pour sortir du problème{nbsp}: la délégation build-in pour éviter d’avoir du code à faible valeur ajoutée.
+Pour sortir du problème{nbsp}: la délégation build-in pour éviter d'avoir du code à faible valeur ajoutée.
 
-L’autre problème de la délégation, c’est quand tu as besoin de beaucoup manipuler les attributs de l’objet à qui tu veux déléguer{nbsp}: dans ce cas l’héritage demande moins de code, même si cet héritage n’as pas de sens du point de vue OO.
-En principe une _bonne_ conception OO permettrait d’avoir des responsabilités bien isolées, en pratique le problème se pose quand même.
+L'autre problème de la délégation, c'est quand tu as besoin de beaucoup manipuler les attributs de l'objet à qui tu veux déléguer{nbsp}: dans ce cas l'héritage demande moins de code, même si cet héritage n'as pas de sens du point de vue OO.
+En principe une _bonne_ conception OO permettrait d'avoir des responsabilités bien isolées, en pratique le problème se pose quand même.
 
-b) Pour du reuse de code, le problème c’est qu’en OO avoir des helpers « extérieurs » est mal vu, donc tu hérites pour récupérer du code.
-Et tu te retrouves avec des classes parents avec à boire et à manger, car certaines méthodes servent à certains héritiers et d’autres à d’autres.
+b) Pour du reuse de code, le problème c'est qu'en OO avoir des helpers « extérieurs » est mal vu, donc tu hérites pour récupérer du code.
+Et tu te retrouves avec des classes parents avec à boire et à manger, car certaines méthodes servent à certains héritiers et d'autres à d'autres.
 
-Avoir des helper purs (au sens de la programmation fonctionnelle) pourrait être la bonne solution car c’est assez propre et testable.
-Reste le problème d’avoir plein de méthodes « à faible valeur ajoutées » qui ne font qu’appeler un helper, de la même manière que pour la délégation mon intuition c’est que le langage pourrait t’aider en s’outillant et en changeant le goût des gens.
+Avoir des helper purs (au sens de la programmation fonctionnelle) pourrait être la bonne solution car c'est assez propre et testable.
+Reste le problème d'avoir plein de méthodes « à faible valeur ajoutées » qui ne font qu'appeler un helper, de la même manière que pour la délégation mon intuition c'est que le langage pourrait t'aider en s'outillant et en changeant le goût des gens.
 
-Qu’en pensez-vous{nbsp}?
+Qu'en pensez-vous{nbsp}?

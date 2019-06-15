@@ -15,22 +15,22 @@ ____
 
 [quote]
 ____
-While we’re still at the stage of early adoption, with the failure modes of these new paradigms still being very nebulous and not widely advertised, these tools are only going to get increasingly better with time. Soon enough, if not already, we’ll be at that point where the network and underlying hardware failures have been robustly abstracted away from us, leaving us with the sole responsibility to ensure our _application_ is good enough to piggy bank on top of the latest and greatest in networking and scheduling abstractions.
+While we're still at the stage of early adoption, with the failure modes of these new paradigms still being very nebulous and not widely advertised, these tools are only going to get increasingly better with time. Soon enough, if not already, we'll be at that point where the network and underlying hardware failures have been robustly abstracted away from us, leaving us with the sole responsibility to ensure our _application_ is good enough to piggy bank on top of the latest and greatest in networking and scheduling abstractions.
 
-No amount of GIFEE (Google Infrastructure for Everyone Else) or industrial-grade service mesh is going to fix the software we write. Better resilience and failure-tolerant paradigms from off-the-shelf components now means that — assuming said off-the-shelf components have been configured correctly — most failures will arise from the _application layer_ or from the complex interactions between different applications. Trusting Kubernetes and friends to do their job makes it more important than ever for us to focus on the vagaries of the performance characteristics of _our_ application and business logic. Application developers now have _one job_. We’re at a time when it has never been easier for application developers to focus on just making their service more robust and trust that if they do so, then the open source software they are building on top of will pay the concomitant dividends.
-____
-
-[quote]
-____
-It’s tempting, especially when enamored by a new piece of technology that promises the moon, to retrofit our problem space with the solution space of said technology, however minimal the intersection. Before buying or building a tool, it becomes important to evaluate the maximum utility it can provide for the unique set of engineering challenges specific teams face.
+No amount of GIFEE (Google Infrastructure for Everyone Else) or industrial-grade service mesh is going to fix the software we write. Better resilience and failure-tolerant paradigms from off-the-shelf components now means that — assuming said off-the-shelf components have been configured correctly — most failures will arise from the _application layer_ or from the complex interactions between different applications. Trusting Kubernetes and friends to do their job makes it more important than ever for us to focus on the vagaries of the performance characteristics of _our_ application and business logic. Application developers now have _one job_. We're at a time when it has never been easier for application developers to focus on just making their service more robust and trust that if they do so, then the open source software they are building on top of will pay the concomitant dividends.
 ____
 
 [quote]
 ____
-Most importantly, it becomes important to make sure that we are solving the problems we have, not using the solutions these new crop of tools provide. Starting over from scratch isn’t a luxury most of us enjoy and the most challenging part about modernizing one’s monitoring stack is iteratively evolving it. Iterative evolution — of refactoring, if you will — of one’s monitoring stack in turn presents a large number of challenges from both a technical as well as an organizational standpoint.
+It's tempting, especially when enamored by a new piece of technology that promises the moon, to retrofit our problem space with the solution space of said technology, however minimal the intersection. Before buying or building a tool, it becomes important to evaluate the maximum utility it can provide for the unique set of engineering challenges specific teams face.
 ____
 
 [quote]
 ____
-Having data at our disposal alone doesn’t solve problems. Problem solving also involves the right amount of engineering intuition and domain experience to ask the right questions of the data to be able to get to the bottom of it. In fact, good Observability isn’t possible without having good engineering intuition and domain knowledge, even if one had all the tools at one’s disposal.
+Most importantly, it becomes important to make sure that we are solving the problems we have, not using the solutions these new crop of tools provide. Starting over from scratch isn't a luxury most of us enjoy and the most challenging part about modernizing one's monitoring stack is iteratively evolving it. Iterative evolution — of refactoring, if you will — of one's monitoring stack in turn presents a large number of challenges from both a technical as well as an organizational standpoint.
+____
+
+[quote]
+____
+Having data at our disposal alone doesn't solve problems. Problem solving also involves the right amount of engineering intuition and domain experience to ask the right questions of the data to be able to get to the bottom of it. In fact, good Observability isn't possible without having good engineering intuition and domain knowledge, even if one had all the tools at one's disposal.
 ____

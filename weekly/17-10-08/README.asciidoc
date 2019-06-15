@@ -13,7 +13,7 @@ image::DLJe3MjXcAEB31v.jpg[]
 ____
 This is a talk on hardcore Linux tracing tools and how they can be used with JVM applications
 
-You’ll learn:
+You'll learn:
 
 * Which production-ready tracing tools can be used with JVM apps 
 * How BPF changes the picture of Linux tracing 
@@ -25,7 +25,7 @@ ____
 
 [quote]
 ____
-Hazelcast is a distributed in-memory data grid, providing shared data structures for distributed systems. We show that many of Hazelcast’s distributed data structures are unsafe in the presence of network partitions: updates to maps can be lost, unique IDs may not be unique, atomic objects are not atomic, locks aren’t exclusive, and queues can forget about enqueued elements. Stale and dirty reads are also possible in most types. We do identify a way to build CRDTs on top of Hazelcast, which prevents the loss of acknowledged updates so long as operations do not depend on order. Despite documentation alluding to these risks, Hazelcast users rely on Hazelcast in risky ways.
+Hazelcast is a distributed in-memory data grid, providing shared data structures for distributed systems. We show that many of Hazelcast's distributed data structures are unsafe in the presence of network partitions: updates to maps can be lost, unique IDs may not be unique, atomic objects are not atomic, locks aren't exclusive, and queues can forget about enqueued elements. Stale and dirty reads are also possible in most types. We do identify a way to build CRDTs on top of Hazelcast, which prevents the loss of acknowledged updates so long as operations do not depend on order. Despite documentation alluding to these risks, Hazelcast users rely on Hazelcast in risky ways.
 ____
 
 

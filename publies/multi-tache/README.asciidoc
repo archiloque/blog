@@ -2,9 +2,9 @@
 Julien Kirch
 v1.0, 2015-01-15
 :article_image: graphe0.png
-:article_description: Si vous avez déjà assisté à une présentation sur l’organisation de projet, on vous a certainement présenté un slide sur les méfaits du multi-tâche pour les développeurs. Malheureusement cette démonstration ne repose sur rien.
+:article_description: Si vous avez déjà assisté à une présentation sur l'organisation de projet, on vous a certainement présenté un slide sur les méfaits du multi-tâche pour les développeurs. Malheureusement cette démonstration ne repose sur rien.
 :ignore_files: multi-tache.xlsx
-Si vous avez déjà assisté à une présentation sur l’organisation de projet, on vous a certainement présenté un slide sur les méfaits du multi-tâche pour les développeurs. Malheureusement cette démonstration ne repose sur rien.
+Si vous avez déjà assisté à une présentation sur l'organisation de projet, on vous a certainement présenté un slide sur les méfaits du multi-tâche pour les développeurs. Malheureusement cette démonstration ne repose sur rien.
 
 Ce slide le voici{nbsp}:
 
@@ -26,7 +26,7 @@ Cela laisse présager qu'on se trouve devant un anti-pattern classique{nbsp}: un
 
 Bref il est temps d'enquêter. Le livre étant ancien link:http://www.amazon.com/exec/obidos/ASIN/0932633226[un peu de patience et quelques euros] permettent de se le procurer.
 
-Dans le livre, pas de trace du graphique. Au chapitre 17, l'auteur explique les dangers d’une gestion primaire des tâches{nbsp}: un développeur qui s’occupe de plusieurs tâches en même temps va voir une partie de son effort gaspillé par le changement de tâche. Lorsqu’on fait un planning, il ne faut donc pas se dire "`un développeur sur 2 tâches équivaut à 50% d’un développeur sur chacune des tâches`".
+Dans le livre, pas de trace du graphique. Au chapitre 17, l'auteur explique les dangers d'une gestion primaire des tâches{nbsp}: un développeur qui s'occupe de plusieurs tâches en même temps va voir une partie de son effort gaspillé par le changement de tâche. Lorsqu'on fait un planning, il ne faut donc pas se dire "`un développeur sur 2 tâches équivaut à 50% d'un développeur sur chacune des tâches`".
 
 En fin de chapitre, on trouve enfin ce qu'on est venu chercher{nbsp}:
 
@@ -34,7 +34,7 @@ image::source.png[]
 
 Dans une liste de tips, il donne des chiffres comme aide à la planification. Ils permettent de savoir à peu près de combien il est possible de budgéter d'avancement sur les projets en fonction de leur nombre.
 
-Ces chiffres sont sortis du chapeau, mais ils conviennent car ici seul l'ordre de grandeur est important. Par exemple, si on passe la valeur de perte de 20% à 15% le tableau change peu, cette valeur conviendrait tout aussi bien pour le calcul d’avancement{nbsp}:
+Ces chiffres sont sortis du chapeau, mais ils conviennent car ici seul l'ordre de grandeur est important. Par exemple, si on passe la valeur de perte de 20% à 15% le tableau change peu, cette valeur conviendrait tout aussi bien pour le calcul d'avancement{nbsp}:
 
 [cols="2*", options="header"]
 |===
@@ -72,8 +72,8 @@ image::graphe2.png[]
 
 Ici travailler sur trois projets à la fois devient presque envisageable{nbsp}: la conclusion du graphique a changé alors que pour le besoin initial les deux séries de chiffres sont équivalentes.
 
-La conclusion s'impose{nbsp}: en les sortant de leur contexte d’origine, on veut faire dire à des chiffres quelque chose qu'il ne disent pas, en leur donnant une apparence pseudo-scientifique.
+La conclusion s'impose{nbsp}: en les sortant de leur contexte d'origine, on veut faire dire à des chiffres quelque chose qu'il ne disent pas, en leur donnant une apparence pseudo-scientifique.
 
-Si je suis convaincu qu’il faut éviter d'avoir plusieurs tâches en parallèle, s'appuyer sur cette slide pour le justifier est une manipulation. Vous êtes prévenus{nbsp}!
+Si je suis convaincu qu'il faut éviter d'avoir plusieurs tâches en parallèle, s'appuyer sur cette slide pour le justifier est une manipulation. Vous êtes prévenus{nbsp}!
 
 Pour finir{nbsp}: s'il est un peu daté sur certains aspects, le livre de Weinberg a bien plus de valeur que l'usage détourné qui en est fait ici, je vous conseille de le parcourir.

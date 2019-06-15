@@ -29,15 +29,15 @@ ____
 ____
 The single requirement of all data pipelines is that *they cannot* _lose_ *data*. Data can usually be delayed or re-ordered–but never dropped. 
 
-To satisfy this requirement, most distributed systems guarantee link:http://www.cloudcomputingpatterns.org/at_least_once_delivery/[at-least-once delivery]. The techniques to achieve at-least-once delivery typically amount to: “_retry, retry, retry_”. You never consider a message ‘delivered’ until you receive a firm acknowledgement from the consumer.
+To satisfy this requirement, most distributed systems guarantee link:http://www.cloudcomputingpatterns.org/at_least_once_delivery/[at-least-once delivery]. The techniques to achieve at-least-once delivery typically amount to: “_retry, retry, retry_”. You never consider a message ‘delivered' until you receive a firm acknowledgement from the consumer.
 
-But as a user, _at-least-once delivery_ isn’t really what I want. I want messages to be delivered *once*. And _only_ once.
+But as a user, _at-least-once delivery_ isn't really what I want. I want messages to be delivered *once*. And _only_ once.
 
-Unfortunately, link:http://bravenewgeek.com/you-cannot-have-exactly-once-delivery/[achieving anything close to exactly-once delivery requires a bullet-proof design]. Each failure case has to be carefully considered as part of the architecture–it can’t be “bolted on” to an existing implementation after the fact. And even then, it’s pretty much impossible to have messages only ever be delivered once. 
+Unfortunately, link:http://bravenewgeek.com/you-cannot-have-exactly-once-delivery/[achieving anything close to exactly-once delivery requires a bullet-proof design]. Each failure case has to be carefully considered as part of the architecture–it can't be “bolted on” to an existing implementation after the fact. And even then, it's pretty much impossible to have messages only ever be delivered once. 
 
-In the past three months we’ve built an entirely new de-duplication system to get as close as possible to exactly-once delivery, in the face of a wide variety of failure modes. 
+In the past three months we've built an entirely new de-duplication system to get as close as possible to exactly-once delivery, in the face of a wide variety of failure modes. 
 
-The new system is able to track 100x the number of messages of the old system, with increased reliability, at a fraction of the cost. Here’s how.
+The new system is able to track 100x the number of messages of the old system, with increased reliability, at a fraction of the cost. Here's how.
 ____
 
 == link:https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction[duplication is far cheaper than the wrong abstraction]
@@ -68,7 +68,7 @@ ____
 
 [quote]
 ____
-Really, It is more important to build a system that admits microservices, than it is to built out of them entirely. Once you admit something is running across the network, it isn’t much of a stretch to admit it running on a different service entirely. Without a common framework or ecosystem for microservices, the maintenance burden will outweigh many potential benefits.
+Really, It is more important to build a system that admits microservices, than it is to built out of them entirely. Once you admit something is running across the network, it isn't much of a stretch to admit it running on a different service entirely. Without a common framework or ecosystem for microservices, the maintenance burden will outweigh many potential benefits.
 
 A well engineered distributed system will likely have some elements of loose coupling, uniformity, and modularity, all essential for making microservices successful. The real question is not “should I write my system as microservices”, but “What sort of modules should I break my system into” and “what benefit is there from running it as a distinct service”.
 ____
