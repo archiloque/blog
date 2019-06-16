@@ -5,22 +5,19 @@ v0.1, 2019-06-12
 :article_image: supervision.png
 :article_description: Le développement logiciel n'est pas une chaîne de fabrication
 
-Comme son titre l'indique, il s'agit d'un livre sur la mesure et la gestion de la performance dans les organisations en s'intéressant particulièrement à l'activité de développement logiciel.
+Publié en 1996, _Measuring and Managing Performance in Organizations_ s'intéresse particulièrement à l'activité de développement logiciel.
 
-Il a été publié en 1996 mais reste parfaitement d'actualité et le restera sans doute longtemps car ce qu'expose le texte va à l'encontre du discours ambiant et demanderait aux organisations de revoir leur méthode de management, ce qui a peu de chance d'arriver.
-
-Les discussions actuelle sur l'agile en général et le link:../escape_velocity/[no estimate] en particulier sont ainsi très proches de ce qu'on trouve dans ce texte publié il y a vingt ans.
+Même s'il a plus de vingt ans, cet ouvrage reste parfaitement d'actualité.
+Il le restera sans doute longtemps car sa démonstration va à l'encontre du discours ambiant et demanderait aux organisations de revoir leur méthode de management.
+Une telle évolution a peu de chances d'arriver, comme en témoignent les discussions actuelles sur l'agile en général et le link:../escape_velocity/[no estimate].
 
 Dans ce livre, Robert D. Austin propose un modèle qui permet de répondre aux cas limites des approches généralement appliquées.
 
 L'auteur appuie son argumentation sur des références abondantes, principalement du côté des économistes car dans une logique économiste, les situations qu'il décrit ne sont pas des aberrations mais correspondent à des comportement rationnels.
 
-Pour tester la validité de son modèle il a soumis un formulaire de questions à des experts du sujet.
-La conclusion exposée est que les personnes qui partagent son avis sur les  difficultés rencontrées quand il s'agit de mesurer les activités partagent son approche.
+== Mesurer les activités
 
-== Mesurer les activité
-
-Robert D. Austin définit une "`dimension critique`" comme une caractéristique déterminante pour le résultat d'une l'activité.
+Robert D. Austin définit une "`dimension critique`" comme une caractéristique déterminante pour le résultat d'une activité.
 Par exemple le nombre d'objets d'un certain type produit par une personne.
 
 Il propose de classer les activités en trois catégories en fonction du niveau de mesure de ces dimensions critiques{nbsp}:
@@ -31,28 +28,28 @@ Il propose de classer les activités en trois catégories en fonction du niveau 
 
 La première catégorie correspond à un travail où tout ce qui est important est mesuré, par exemple un processus de fabrication où toutes les caractéristiques de l'objet fabriqué sont mesurées.
 
-La deuxième peut correspondre au cas d'un·e expert·e donc il est très difficile de mesurer le travail.
+La deuxième peut correspondre au cas d'un expert ou d'une experte dont le travail en très difficile à mesurer.
 
 La troisième catégorie correspond à la majorité du développement en informatique de gestion.
 
 == Supervision partielle et objectifs
 
-La question centrale du livre est celle du management de la productivité dans une situation de supervision partielle.
+La question centrale du livre est celle de la compatibilité du management de la productivité avec une situation de supervision partielle. 
 
-La pensée managériale classique met l'accès sur l'importance de donner des objectifs quantifiés pour motiver les personnes dans leur travail.
+La pensée managériale classique met l'accent sur l'importance de donner des objectifs quantifiés pour motiver les personnes dans leur travail.
 
 En cas de supervision partielle, les objectifs quantifiés ne couvrent donc qu'une partie des critères qui déterminent le résultat de l'activité, certains des critères n'étant pas mesurés.
 
-Selon les ressources citées par l'auteur, les personnes sont en général motivées pour faire un travail de qualité car c'est pour elles une source de satisfaction.
+Selon les ressources citées par l'auteur, les personnes sont en général motivées par l'idée un travail de qualité car elles en tirent de la satisfaction.
 
 Dans une situation de supervision partielle, faire un travail de qualité signifie effectuer des efforts qui ne sont pas mesurés, et donc ne sont pas couverts par les objectifs.
 
 Ainsi, à niveau d'effort équivalent, la personne doit choisir entre{nbsp}:
 
-. faire un travail de qualité pour atteindre un certain niveau d'objectif{nbsp};
-. se focaliser sur les aspects mesurés pour atteindre un niveau d'objectif plus élevé, cela diminue le résultat du travail mais d'une manière qui n'est pas mesurée par le système.
+. se concentrer sur la qualité du travail, sans que l'atteinte des objectifs soit une fin en soi{nbsp};
+. se concentrer sur les aspects mesurés pour atteindre un niveau d'objectif plus élevé. Cela diminue le résultat du travail mais d'une manière qui n'est pas mesurée par le système.
 
-Au delà d'un certain niveau d'effort ou d'une certaine pression sur les résultat, il est rationnel pour la personne de basculer vers la deuxième posture{nbsp}: à un moment mieux vaut des revenus supplémentaire que faire du bon travail.
+Au-delà d'un certain niveau d'effort ou d'une certaine pression sur les résultat, il est rationnel pour la personne de basculer vers la deuxième posture{nbsp}: à un moment, mieux vaut des revenus supplémentaire que faire du bon travail.
 
 image::supervision.png[caption="", title="Les lignes de niveau représentent le résultat du travail. Les objectifs commencent par améliorer le résultat de l'activité de B à D, puis à partir de là le dégradent d'abord jusqu'à retomber sur une situation équivalente en E, puis continuent jusqu'à F."]
 
@@ -63,13 +60,13 @@ En cas de supervision partielle, l'auteur conseille donc de ne pas utiliser le m
 
 == La supervision totale
 
-Dans une situation de supervision totale, le système est entièrement connu et le pilotage par d'objectifs chiffrés est adapté.
+Dans une situation de supervision totale, le système est entièrement connu et le pilotage par objectifs chiffrés est adapté.
 
 C'est le modèle prépondérant dans les théories du management actuel, celui où les personnes peuvent être controlées comme des machines et qui correspond à une certaine vision du fonctionnement d'une usine.
 
 La facilité de manager ce modèle le rend très attractif, à tel point qu'en cas de difficulté dans une organisation, la tentation est parfois très forte de réorganiser le travail pour aller vers ce type de fonctionnement.
 
-Par exemple c'est le cas quand un·e responsable d'équipe stressé·e veut "`reprendre la main`" en pilotant directement l'activité des personnes, ou de découper chaque activité en micro-tâche pour avoir une meilleur vision de l'avancée du travail.
+Par exemple, c'est le cas quand dans une situation de crise un ou une responsable d'équipe veut "`reprendre la main`" en pilotant directement l'activité des personnes, ou en découpant chaque activité en micro-tâche pour avoir une meilleure vision de l'avancée du travail.
 
 Selon l'auteur, une partie de l'attrait de la standardisation des processus internes aux organisation relève moins de la volonté d'augmenter l'efficacité que de celle de pouvoir rendre mesurables l'activité des personnes, et donc d'augmenter la capacité de supervision.
 
@@ -77,22 +74,22 @@ Selon l'auteur, une partie de l'attrait de la standardisation des processus inte
 
 Choisir la bonne méthode de management nécessite donc de savoir quel type de supervision s'applique, et donc de savoir si toutes les dimensions critiques sont bien mesurées.
 
-Cela demande trois choses{nbsp}:
+Trois exigences doivent êtes respectées{nbsp}:
 
 . que les dimensions critiques soient toutes identifiées{nbsp};
 . qu'elles soient toutes mesurables{nbsp};
 . qu'elles soient toutes mesurées.
 
-Si un seul de ces critères n'est pas rempli il ne s'agit pas d'une supervision totale.
+Si un seul de ces critères n'est pas rempli, il ne s'agit pas d'une supervision totale.
 
 Selon l'auteur, beaucoup de situations considérées comme de la supervision totale ne le sont pas.
 
 Cela peut avoir de nombreuses causes, comme la difficulté à identifier toutes les dimensions critiques ou la difficulté de mesurer certaines d'entre elles.
 
-Face à l'envie de tout de même appliquer le management par objectif, il peut être tentant de faire semblant de ne pas savoir que tout n'est pas mesuré, ou de prendre une mesure indirecte pour une mesure directe.
-L'exemple classique est d'utiliser le nombre de lignes de code comme indicateur de productivité pour des personnes qui développent.
+Face à l'envie d'appliquer tout de même le management par objectif, il peut être tentant de faire semblant de ne pas savoir que tout n'est pas mesuré, ou de prendre une mesure indirecte pour une mesure directe.
+L'exemple classique est d'utiliser le nombre de lignes de code comme indicateur de productivité.
 
-Le problème est qu'alors le système devient très compliqué à piloter, car l'outil de commande utilisé ne couvre pas l'ensemble des variables existantes.
+Le système devient alors très compliqué à piloter, car l'outil de commande utilisé ne couvre pas l'ensemble des variables existantes.
 
 On peut l'observer quand une organisation modifie en permanence la manière dont les objectifs sont évalués pour pour essayer de trouver le bon équilibre entre plusieurs critères alors qu'elle se trouve dans une situation de supervision partielle et qu'une partie des critères échappent au calcul.
 
@@ -110,7 +107,7 @@ Un projet informatique piloté par objectif et où le résultat est satisfaisant
 
 == La confiance & la mesure (sont sur un bateau)
 
-Dans le management délégatif, la productivité dépend de l'autonomie laissé aux personnes pour qu'elles soient en capacité de faire les bons choix, et de leur confiance dans le management.
+Dans le management délégatif, la productivité dépend de l'autonomie laissée aux personnes pour qu'elles soient en capacité de faire les bons choix, et de leur confiance dans le management.
 
 En effet, si les personnes n'ont pas confiance dans l'encadrement, elles dépenseront une partie de leur énergie à se protéger, par exemple en optimisant les métriques, plutôt qu'en faisant ce qui est le mieux pour l'organisation.
 
@@ -118,7 +115,7 @@ Selon l'auteur, chaque métrique sur le travail effectué remontée au managemen
 Il recommande donc&#8201;—{nbsp}à l'inverse de certaines pratiques{nbsp}—&#8201;de faire attention aux mesures qui sont remontées.
 
 Il souligne notamment que, même si un manager ou une manageuse est de bonne volonté et n'essaie pas de se servir de chiffres à mauvais escient, cela n'est pas forcément le cas de la personne qui va le ou la remplacer.
-Les managé·e·s ont donc raison de se méfier de toute remontée d'information qui pourrait se retourner contre eux et elles, même a posteriori.
+Les personnes ont donc raison de se méfier de toute remontée d'information qui pourrait se retourner contre elles, même a posteriori.
 
 Si des mesures sont disponibles, il conseille de ne les fournir qu'aux personnes dont l'activité est mesurée pour qu'elles puissent améliorer leur propre travail, et de ne remonter au management que des résultats agrégés qui permettent de limiter les manipulations.
 
@@ -126,7 +123,7 @@ Si des mesures sont disponibles, il conseille de ne les fournir qu'aux personnes
 
 Le livre m'a fourni un cadre permettant d'expliquer des situations dont je n'avais qu'une compréhension partielle.
 
-Le modèle qu'il propose est simple et convainquant, mais sa lecture est un peu déprimante, car il montre bien à quel point tout une partie du discours sur le management des projets informatiques correspond à des personnes qui préfèrent vivre dans l'illusion du contrôle plutôt que de changer leurs pratiques.
+Le modèle qu'il propose est simple et convaincant, mais sa lecture est un peu déprimante, car il montre bien à quel point tout une partie du discours sur le management des projets informatiques correspond à des personnes qui préfèrent vivre dans l'illusion du contrôle plutôt que de changer leurs pratiques.
 
 == Quelques citations
 
