@@ -6,7 +6,8 @@ v0.1, 2019-06-03
 Lorsqu'un développeur java décide d'encapsuler un appel HTTP, il passe souvent par un service,
 une classe qui encapsule cet appel, cette dépendance.
 
-```
+[source,java]
+----
 private Entity getContent (String code, String referentielUrl) {
    HttpHeaders headers = new HttpHeaders();
    headers.setContentType(MediaType.APPLICATION_JSON);
@@ -17,9 +18,10 @@ private Entity getContent (String code, String referentielUrl) {
 
    return responseEntity.getBody();
 }
+----
 
 
-Cette méthode est correcte, fait un appel http à une API rest, et retourne un objet Entity récupéré. L'avantage
-de cette méthode est qu'elle crée donc une abstraction de l'appel HTTP. C'est à dire qu'elle cache toutes ces logiques
+Cette méthode est correcte, fait un appel http à une API REST, et retourne un objet 
+`Entity` récupéré.
+L'avantage de cette méthode est qu'elle crée donc une abstraction de l'appel HTTP. C'est à dire qu'elle cache toutes ces logiques
 d'URL, de verbe HTTP, de protocole et de désérialization derrière une méthode plus facilement utilisable, avec une interface plus simple.
-
