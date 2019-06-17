@@ -1,9 +1,11 @@
 = HTTP, mechanical sympathy and leaky abstraction
-Julien Kirch & Fabien Lamarque
+Julien Kirch; Fabien Lamarque
 v0.1, 2019-06-03
 :article_lang: fr
+:source-highlighter: pygments
+:pygments-style: friendly
 
-Lorsqu'un développeur java décide d'encapsuler un appel HTTP, il passe souvent par un service,
+Lorsqu'un développeur Java décide d'encapsuler un appel HTTP, il passe souvent par un service,
 une classe qui encapsule cet appel, cette dépendance.
 
 [source,java]
