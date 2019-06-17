@@ -2,4 +2,28 @@
 Julien Kirch
 v1.0, 2019-06-17
 
+Je parle ici de découplage entre application d'un SI
 
+== Découplage
+
+La manière la plus simple dont deux applications sont découplées c'est lorsqu'elles n'ont pas de lien entre elles.
+C'est le cas idéal mais malheureusement pour nous ce n'est pas toujours souhaitable.
+
+Lorsqu'il y a un lien entre deux applications, découplage, ça peut vouloir dire deux choses :
+
+* en tant que client d'une application (que j'utilise un service qu'elle expose ou que je consomme une donnée qu'elle fournit), je ne veux pas subir de conséquence lorsque cette application est modifiée ;
+* en tant que fournisseur d'une application (que j'expose un service qu'elle utilise ou que je fournit une donnée qu'elle consomme), je veut pouvoir faire des mises à jour dans subir de conséquence.
+
+== Pourquoi est ce qu'on n'aime pas le couplage ?
+
+Demande de se synchronizer, et notamment de s'intéresser aux autres, augmente les efforts à fournir
+
+== Découplage et couplage faible
+
+S'il y a un lien entre deux applications A et B, et que A évolue, deux possibilités{nbsp}:
+- le lien entre A et B doit évoluer aussi pour pouvoir faire profiter à B des évolutions, ou pour supprimer quelque chose qui n'a plus lieu d'être
+- le lien ne doit pas évoluer, et il faut s'en assurer, c'est à dire valider la compatibilité 
+
+=> Dès qu'il y a un lien entre deux application, il y a un couplage, même faible
+
+== Couplage avec le SI plutôt que par application
