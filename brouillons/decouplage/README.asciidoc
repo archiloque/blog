@@ -16,7 +16,24 @@ Lorsqu'il y a un lien entre deux applications, découplage, ça peut vouloir dir
 
 == Pourquoi est ce qu'on n'aime pas le couplage ?
 
-Demande de se synchronizer, et notamment de s'intéresser aux autres, augmente les efforts à fournir
+Du point de vue des équipes qui maintiennent les applications, un couplage demande de se synchronizer, et notamment de s'intéresser aux autres et donc augmente les efforts à fournir
+
+== 💕le couplage
+
+Le couplage est une conséquence du lien qu'il existe entre deux applications, par exemple donner accès à une donnée ou à un service, or ce lien apporte de la valeur.
+
+Avoir des applications couplées n'est donc pas en soi une mauvaise chose.
+
+Des applications trop découplées, où les informations et les services sont insuffisamment partagées, cela s'appelle des silos.
+
+Un système "`complètement découplé`" comme je l'ai entendu plusieurs fois, cela voudrait dire un système complètement siloté, où aucun lien n'existe entre les différentes briques
+
+Les bénéfices du couplage en terme de fonctionnalités ajoutées sont donc contrebalancés par les désavantage en terme de maintenance.
+
+L'objectif n'est donc pas de ne pas coupler, mais de
+
+* coupler là où c'est pertinent, c'est-à-dire là où le lien apporte une valeur supérieure au coût de la maintenance
+* coupler de la bonne manière, c'est-à-dire d'une manière qui a le moins de désavantage possible
 
 == Découplage et couplage faible
 
@@ -27,3 +44,13 @@ S'il y a un lien entre deux applications A et B, et que A évolue, deux possibil
 => Dès qu'il y a un lien entre deux application, il y a un couplage, même faible
 
 == Couplage avec le SI plutôt que par application
+
+En général, un couplage entre deux applications n'est pas un problème en soi.
+
+Je dis en général, car si dans votre système deux applications partagent une même base de donnée dont le modèle de donnée évolue régulièrement, vous pourrait être un problème en soi.
+
+Mais en général, le problème et donc les questions à se poser se situent quand on considère le niveau de couplage globale entre une application A et le reste du système, c'est à dire la conséquence de l'ensemble des couplages dans lesquels intervient A.
+
+WIP
+
+== Conclusion
