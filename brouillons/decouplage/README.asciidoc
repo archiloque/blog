@@ -2,7 +2,9 @@
 Julien Kirch
 v1.0, 2019-06-17
 
-Je parle ici de découplage entre application d'un SI
+On parle beaucoup de découplage en ce moment, mon idée ici c'est de creuser ce sujet pour faire comprendre l'importance de quelques concepts classiques d'architecture qui ne sont pas très populaires mais qui mériteraient de l'être
+
+(Je parle ici uniquement de découplage entre application d'un SI)
 
 == Découplage
 
@@ -30,6 +32,9 @@ Un système "`complètement découplé`" comme je l'ai entendu plusieurs fois, c
 
 Les bénéfices du couplage en terme de fonctionnalités ajoutées sont donc contrebalancés par les désavantage en terme de maintenance.
 
+C'est pénible d'avoir à faire attention aux autres, mais c'est pour la bonne cause.
+Si vous trouvez insupportable d'avoir à prendre en compte les demandes d'autres applications, changez de métier !
+
 L'objectif n'est donc pas de ne pas coupler, mais de
 
 * coupler là où c'est pertinent, c'est-à-dire là où le lien apporte une valeur supérieure au coût de la maintenance
@@ -53,4 +58,10 @@ Mais en général, le problème et donc les questions à se poser se situent qua
 
 WIP
 
+* Modèles en N-N => modèles pivot
+* Gestion de la compatibilité
+* on se concentre sur la technique pour des problèmes d'orga
+
 == Conclusion
+
+* Le couplage c'est la vie
