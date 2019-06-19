@@ -5,15 +5,30 @@ v0.1, 2019-06-03
 :source-highlighter: pygments
 :pygments-style: friendly
 
-Plan que j'ai en tête pour un talk rapide :
+== Qu'est-ce qu'une abstraction
 
-. Qu'est-ce qu'une leaky abstraction, leaky encapsulation ?
-. Qu'est-ce que la mechanical sympathy, des exemples
-. Pourquoi l'encapsulation d'un appel HTTP dans un service comme dans l'exemple en
+== Qu'est-ce qu'une leaky abstraction, leaky encapsulation ?
+
+Briser l'encapsulation à bon escient
+
+== Qu'est-ce que la mechanical sympathy, des exemples
+
+Parfois briser l'encapsulation est une bonne chose
+
+== Leaky ou sympathy
+
+Discussion sur le fait que la différence c'est de subir ou pas la désencapsulation
+
+Quand on designe une API, on peut faire le choix de permettre de supprimer une couche (et ça a des conséquences), mais leaky c'est un problème
+
+== Pourquoi l'encapsulation d'un appel HTTP dans un service comme dans l'exemple en
 dessous pose problème
-. Une idée/proposition de modélisation qui est enrichi de "mechanical sympathy"
 
-Lorsqu'un développeur Java décide d'encapsuler un appel HTTP, il passe souvent par un service
+== Une idée/proposition de modélisation qui est enrichi de "mechanical sympathy"
+
+''''
+
+Lorsqu'une personne qui développe en Java décide d'encapsuler un appel HTTP, il passe souvent par un service
 
 [source,java]
 ----
