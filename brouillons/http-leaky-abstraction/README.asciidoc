@@ -1,12 +1,19 @@
-= HTTP, mechanical sympathy and leaky abstraction
+= HTTP, _mechanical sympathy_ et _leaky abstraction_
 Julien Kirch; Fabien Lamarque
 v0.1, 2019-06-03
 :article_lang: fr
 :source-highlighter: pygments
 :pygments-style: friendly
 
-Lorsqu'un développeur Java décide d'encapsuler un appel HTTP, il passe souvent par un service,
-une classe qui encapsule cet appel, cette dépendance.
+Plan que j'ai en tête pour un talk rapide :
+
+. Qu'est-ce qu'une leaky abstraction, leaky encapsulation ?
+. Qu'est-ce que la mechanical sympathy, des exemples
+. Pourquoi l'encapsulation d'un appel HTTP dans un service comme dans l'exemple en
+dessous pose problème
+. Une idée/proposition de modélisation qui est enrichi de "mechanical sympathy"
+
+Lorsqu'un développeur Java décide d'encapsuler un appel HTTP, il passe souvent par un service
 
 [source,java]
 ----
