@@ -1,0 +1,148 @@
+= Ces idées qui auraient du transformer l'informatique d'entreprise mais qui ont fait pschit
+:idee: Idée :
+:pourquoi: Pourquoi ça n'a pas fonctionné ?
+:maintenant: Et maintenant ?
+
+// Idées à prendre :
+// - Cartographie détaillée de SI
+// - CORBA
+// - Central architecture team
+// - Cheap outsourcing
+// - Design patterns
+// - EAI
+// - Enterprise wiki
+// - MDA
+// - ODS
+// - GED
+// - Moteurs de workflow
+
+= Introduction
+
+L'informatique d'entreprise a vécue de nombreuses promesses de révolutions … qui ont presque toutes échouées.
+Chacune portait une promesse merveilleuse, mais chacune avait aussi un défaut fatal, qui l'a empêché d'aboutir.
+
+Toutes ces idées n'ont pas été des fiascos total — certaines des approches sont encore utilisées aujourd'hui — mais elles n'ont pas apportées les transformations promises, ou alors seulement à la marge.
+
+Pour les plus jeunes qui ne les ont pas connues directement, rappeler pourquoi elles furent si attirantes permet de comprendre les problèmes qui se posent dans les projets, et les raisons de leurs échecs permet de voir les contraintes de la réalité qu'on a trop vite fait d'oublier.
+
+Les paris sont ouverts sur les entrées à ajouter d'ici quelques années, même si on a déjà quelques solides candidats.
+
+---
+
+= Les outils de BPM (Business Process Management)
+
+*{idee}*
+Une application consiste à appliquer des traitements métier à des données.
+Quand le métier change, il est long et coûteux de modifier le code de l'application.
+En modélisant correctement ces processus métier, ils se décomposent en un certains nombres de process unitaires.
+En fonction du domaine métier de l'entreprise, il doit être possible de définir un modèle commun à tous ses process unitaires.
+En écrivant le code de manière à exposer une interface correspondant à ce modèle et en rendant cette interface paramétrable,
+il devrait être possible d'adapter les applications aux changement métier uniquement en reconfigurant et en modifiant l'enchainements de ces process unitaires.
+Pour ce faire plus besoin de passer par des développeurs car il suffit d'utiliser des outils graphiques qui permettent de modifier les comportements métiers en quelques clicks.
+
+*{pourquoi}*
+Lorsque le métier d'une entreprise est suffisament complexe pour qu'on envisage d'utiliser un outil de ce type, il est souvent très difficile de le modéliser d'une manière exploitable :
+
+- soit le modèle est sur-adapté au métier actuel, et lorque le métier change la modélisation change avec lui ;
+- soit le modèle est très générique, et il est inutilisable car trop compliqué.
+
+D'autre part, le fait de vouloir faire correspondre les implémentation de comportements métier à un modèle leur ajoute de la complexité.
+Pour pouvoir éconmiser du temps ensuite avec l'outil de BPM, le développement initial sera donc plus long et plus risqué.
+
+Au final ce type d'outil n'a presque jamais remplis ses promesses, et les projets qui l'ont adaptés ont généralement aboutis à des usines à gaz.
+Les quelques cas favorables sont ceux où le métier de l'entreprise consiste fondamentalement à composer des produits à l'aide d'élements unitaires et à les modifier en permancence. Les produits financiers et les assurances en sont en bon exemple.
+
+*{maintenant}*
+Ce type d'outil existe toujours dans les gammes des différents vendeurs de logiciels d'entreprises mais ne sont quasiment plus utilisés.
+
+= Les outils de portail
+
+*{idee}*
+Les pages d'accueil des sites intranet des grandes entreprises sont composés de plusieurs éléments disparates : calendrier, fils de news, annuaire, liens vers application.
+La théorie du portail est que ces éléments disparates seraient autant de composants appelés _portlets_ qui seraient conçues dans un même socle.
+L'outil permettant ensuite de les rendre disponibles et de permettre aux utilisateurs des les réarranger et de les paramétrer.
+On pourrait ainsi facilement multiplier les composants et avoir des portails intranet très riches.
+
+*{pourquoi}*
+Tout d'abord les outils de portails étaient catastrophiques: ils étaient bourrés de bugs, écrire des _portlets_ était une souffrance, et les fonctionnalités promises par l'outil se sont révélées assez faible.
+Ensuite la vérité est que les gens "n'utilisent" pas les portails intranet :
+ils y accèdent car c'est la page par défaut de leur navigateur, et s'en servent presque uniquement comme d'une liste de liens pour aller sur leurs applications métier.
+
+*{maintenant}*
+Mêmes si ces outils existent toujours, les portails continuent à être développés avec des CMS :
+ils fournissent les quelques composants qui sont réellement nécessaires sur une page d'accueil, et permettant de publier le contenu qui constitue l'essentiel des pages.
+
+= UML
+
+*{idee}*
+Représenter des élements d'un système par des schémas est compliqué.
+Par ailleurs, comme on dessine toujours un peu les mêmes choses, à chaque fois on passe  du temps à réinventer un peu la roue pour savoir comment on représente telle ou telle choses.
+À cela s'ajoute le risque d'être mal compris
+
+UML se veut un ensembe normé de représentations permettant de schématiser les différents types de diagrammes nécessaires à décrire un système.
+Ainsi plus besoin de réfléchir à la manière de représenter les choses, et plus de risque d'être mal compris : si tout le monde parle UML, tout le monde se comprend.
+
+En poussant l'idée jusqu'au bout, le développement d'un projet démarrerait par la création d'une modélisation du système dans un éditeur d'UML, puis cette modélisation permettrait de générer la structure du code dans laquelle il ne resterait plus qu'à remplir les trous.
+Cela répond à une envie profonde chez certains analystes et concepteurs de pouvoir régenter ce que font les développeurs.
+
+*{pourquoi}*
+Faire des schéma normés est parfait pour faire de documentation normalisées.
+Malheureusement on a rarement besoin de ce type de documentation : pour ces informations mieux vaut regarder dans le code.
+
+Quand on a besoin de faire un schéma, on le fait le plus souvent pour expliquer un point précis, et on va chercher la meilleure représentation pour expliquer ce point.
+Utiliser un représentation normée nous prive de cette possibilité.
+
+Multiplier les types de schémas comme l'ont fait les versions successives d'UML est une tentative de répondre à ce problème car dans le lot on pourrait trouver le type de schéma dont on a besoin.
+Mais il s'agit d'une fuite en avant qui permet de ne pas remettre en cause l'idée de base.
+
+Quand à utiliser UML pour créer le squelette de code des projets, si elle a permi à des link:https://en.wikipedia.org/wiki/Rational_Software[éditeurs de faire fortune], elle n'a mené qu'à du temps perdu et des impasses : forcer le design du code à correspondre à un design "logique" c'est se priver de toute liberté et aboutit à des usines à gaz où à des systèmes non fonctionnels.
+
+*{maintenant}*
+UML _stricto sensu_ est totalement tombé en désuétude.
+Le seul type de diagramme encore utilisé tel quel est le link:https://fr.wikipedia.org/wiki/Diagramme_de_séquence[diagramme de séquence] : il est simple à mémoriser et a une vraie utilité, et à l'occasion certains s'inspirent des diagrammes de classes pour des schéma sur des tableaux.
+
+= Les serveurs d'application Java d'entreprise (et J2EE)
+
+*{idee}*
+Depuis les débuts de JEE, c'est à dire les années 2000, les serveurs d'applications Java se sont séparées en deux familles :
+
+- les serveurs de servlets, comme Tomcat
+- les serveurs "full JEE" comme IBM WebSphere
+
+Les serveurs de servlets fournissent le minimum de fonctionalités essentielles. Pour les besoins supplémentaires il faut utiliser des bibliothèques supplémentaires, ce qui demande du temps et peut poser des risques de maintenance.
+
+L'idée des serveur "full JEE" est de fournir l'intégralité des fonctionnalités dont une application "d'entreprise" a généralement besoin.
+
+L'objectif est double :
+
+- que les développeur n'aient à se préoccuper que de développer leur application, toutes les briques techniques étant déjà définies pour eux par J2EE ;
+- fournir un socle commun à tous les serveurs, ce qui permettrait aux utilisateurs de facilement passer d'un serveur à un autre.
+
+*{pourquoi}*
+Tout d'abord, si Sun a eu un coup de génie avec Java, il n'en a pas été de même avec les API JEE.
+Dans la majorité des cas, ces API — au moins dans les premières versions — sont mal conçues, même quand elles s'inspirent fortement de bibliothèques existantes.
+
+Elles sont souvent beaucoup trop complexes à utiliser, car voulant pouvoir traiter tous les cas possibles, sans fournir de raccourcis pour les besoins simples.
+
+Ensuite les implémentations fournies par les vendeurs ne sont souvent pas la hauteur.
+Souvent truffées de bugs, elles sont également parfois incomplètes car certains éditeurs choisissent de n'implémenter que les parties de J2EE dont ils pensent que leurs clients vont se servir.
+
+Après s'être fait piéger un certain nombre de fois, les utilisateurs ont alors compris la leçon.
+Pour avoir une solution simple et fiable il faut exiger le minimum du serveur d'application, et pour le reste s'appuyer sur des briques alternatives, souvent open-source.
+
+*{maintenant}*
+Seules certaines grandes structures continuent à utiliser des serveurs JEE, mais n'utilisent que très rarement les fonctionalités avancées qui sont sensés être leur différenciant et qui justifient leur prix.
+Tous les autres ont migrés sur des serveurs légers, la tendance étant maintenant d'utiliser le serveur comme une bibliothèque servant à démarrer le code plutôt que comme un conteneur.
+
+---
+
+= Titre
+
+*{idee}*
+Excepteur est voluptate qui ad esse eu est magna duis ea velit labore ipsum.
+
+*{pourquoi}*
+Amet Lorem ullamco consectetur cillum irure qui incididunt dolore eu voluptate voluptate sint.
+
+*{maintenant}*
+Esse nostrud elit sit qui esse sit laborum magna dolore aute exercitation.

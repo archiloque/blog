@@ -1,0 +1,300 @@
+[
+  {
+    "name": "Continuous Deployment Basics",
+    "description": "ZDD, blue green etc.",
+    "theme": "Deployment",
+    "level": 1
+  },
+  {
+    "name": "Cloud Native Applications Patterns",
+    "theme": "Cloud",
+    "level": 1,
+    "description": "12 factors apps"
+  },
+  {
+    "name": "Infra as code basics",
+    "theme": "Ops",
+    "level": 1,
+    "require": ["DevOps Basics"],
+    "description": "Theory + having used one infra as code tool"
+  },
+  {
+    "name": "DevOps Basics",
+    "theme": "Ops",
+    "level": 1,
+    "description": "Organizational and project lifecycle patterns"
+  },
+  {
+    "name": "Resiliency Basics",
+    "theme": "Distributed Architecture",
+    "level": 1,
+    "description": "Design for failure, dependencies patterns…"
+  },
+  {
+    "name": "Cloud Basics",
+    "theme": "Cloud",
+    "level": 1,
+    "description": "Principles & impacts of cloud computing: on-demand servers…"
+  },
+  {
+    "name": "Basics of one cloud platform",
+    "theme": "Cloud",
+    "level": 1,
+    "require": ["Cloud Basics"],
+    "description": "Experience with one cloud platform for a simple app setup"
+  },
+  {
+    "name": "Relational Database Basics",
+    "theme": "Data Architecture",
+    "level": 1,
+    "description": "SQL, indexes…"
+  },
+  {
+    "name": "NoSQL Basics",
+    "theme": "Data Architecture",
+    "level": 1,
+    "description": "Theory, using one document-oriented database"
+  },
+  {
+    "name": "Service Architecture Basics",
+    "theme": "IS Architecture",
+    "level": 1,
+    "description": "SOA, microservices, REST, API Design …",
+    "require": ["Integration Principles"]
+  },
+  {
+    "name": "Malfunction root cause analysis",
+    "theme": "Investigation",
+    "level": 1
+  },
+  {
+    "name": "Agile principles",
+    "theme": "Agile",
+    "level": 1
+  },
+  {
+    "name": "Message Oriented Middleware",
+    "theme": "IS Architecture",
+    "level": 1,
+    "description": "Theory + having used one MOM (Kafka, RabbitMQ …)",
+    "require": ["Integration Principles"]
+  },
+  {
+    "name": "Code & Programming Awareness",
+    "theme": "Software Design & Development practice",
+    "level": 1
+  },
+  {
+    "name": "Security Basics",
+    "theme": "Security",
+    "level": 1,
+    "description": "Principles, vocabulary…"
+  },
+  {
+    "name": "Software testing",
+    "theme": "Software Design & Development practice",
+    "level": 1,
+    "description": "Unit testing & Test Driven Development"
+  },
+  {
+    "name": "IS monitoring",
+    "theme": "Supervision",
+    "level": 1,
+    "description": "Patterns & requirements : correlation id…"
+  },
+  {
+    "name": "Integration testing",
+    "theme": "Testing",
+    "level": 1,
+    "description": "Tooling, processes, organisation"
+  },
+  {
+    "name": "IS Security theory",
+    "theme": "Security",
+    "level": 1,
+    "description": "Access management, PKI, Identity propagation…"
+  },
+  {
+    "name": "Development Workflow",
+    "theme": "Software Design & Development practice",
+    "level": 1,
+    "description": "Typical workflows of a software project from development to production"
+  },
+  {
+    "name": "Integration Principles",
+    "theme": "IS Architecture",
+    "level": 1,
+    "description": "Main integration patterns : messages, files, APIs …"
+  },
+  {
+    "name": "Log Management",
+    "theme": "Supervision",
+    "level": 1,
+    "description": "Theory and standard tooling : Elasticsearch, Logstash, Kibana"
+  },
+  {
+    "name": "System basics",
+    "theme": "Ops",
+    "level": 2,
+    "description": "ssh, admin system linux, package management, file system, process, services"
+  },
+  {
+    "name": "Network Basics",
+    "theme": "Ops",
+    "level": 2,
+    "description": "DNS, DHCP"
+  },
+  {
+    "name": "Event-Driven Architecture Basics",
+    "theme": "IS Architecture",
+    "level": 2,
+    "description": "DDD, CQRS…"
+  },
+  {
+    "name": "Web Architecture Basics",
+    "theme": "IS Architecture",
+    "level": 2,
+    "description": "SSL, TLS, LoadBalancer, Cache, WAF / WAM, Reverse proxy"
+  },
+  {
+    "name": "Legacy Architecture",
+    "theme": "IS Architecture",
+    "level": 2,
+    "description": "Legacy pattern and tools",
+    "mandatory": false,
+    "require": ["Integration Principles"]
+  },
+  {
+    "name": "Clean Code",
+    "theme": "Software Design & Development practice",
+    "level": 2,
+    "require": ["Code & Programming Awareness"]
+  },
+  {
+    "name": "Fast Data Streaming Basics",
+    "theme": "Data Architecture",
+    "level": 2,
+    "description": "Kafka"
+  },
+  {
+    "name": "Emerging architecture",
+    "theme": "Agile",
+    "level": 1,
+    "require": ["Agile principles"]
+  },
+  {
+    "name": "Data Governance Patterns",
+    "theme": "Data Architecture",
+    "level": 2,
+    "require": ["Emerging architecture", "Integration Principles"]
+  },
+  {
+    "name": "Distributed Orchestration Basics",
+    "theme": "Distributed Architecture",
+    "level": 2,
+    "require": ["Resiliency Basics"]
+  },
+  {
+    "name": "Cloud-Native Application Advanced",
+    "theme": "Cloud",
+    "level": 2,
+    "description": "Details of a cloud-oriented application stack: Netflix OSS, SpringBoot…",
+    "require": ["Cloud Native Applications Patterns", "Continuous Deployment Basics"]
+  },
+  {
+    "name": "Other Cloud Platforms",
+    "theme": "Cloud",
+    "level": 2,
+    "description": "Using another cloud platform",
+    "require": ["Basics of one cloud platform"]
+  },
+  {
+    "name": "Advanced usage of one cloud platform",
+    "theme": "Cloud",
+    "level": 2,
+    "require": ["Basics of one cloud platform"]
+  },
+  {
+    "name": "Performance testing",
+    "theme": "Testing",
+    "level": 2,
+    "require": ["Scalability Patterns", "Integration testing"]
+  },
+  {
+    "name": "Testable Architecture",
+    "theme": "Testing",
+    "level": 2,
+    "require": ["Integration testing", "Emerging architecture"],
+    "description": "Pattern to try to make an architecture easier to change"
+  },
+  {
+    "name": "Blameless Post Mortem",
+    "theme": "Investigation",
+    "level": 2,
+    "description": "Principles of post-mortems, what they require, and how to organize one"
+  },
+  {
+    "name": "BigData Architecture Basics",
+    "theme": "Distributed Architecture",
+    "level": 3,
+    "description": "Hadoop, Cassandra, HDFS, HBase",
+    "require": ["Distributed Orchestration Basics", "Scalability Patterns"]
+  },
+  {
+    "name": "Scalability Patterns",
+    "theme": "Distributed Architecture",
+    "level": 2,
+    "description": "How to scale differents parts of an architecture and the involved drawbacks"
+  },
+  {
+    "name": "Fast Data Patterns",
+    "theme": "Data Architecture",
+    "level": 3,
+    "require": ["Fast Data Streaming Basics", "Event-Driven Architecture Basics"]
+  },
+  {
+    "name": "Distributed Data Architecture",
+    "theme": "Distributed Architecture",
+    "level": 3,
+    "require": ["Scalability Patterns", "Distributed Orchestration Basics"]
+  },
+  {
+    "name": "Infra as code advanced",
+    "theme": "Ops",
+    "level": 3,
+    "require": ["Infra as code basics", "System basics"]
+  },
+  {
+    "name": "Advanced Resiliency",
+    "theme": "Distributed Architecture",
+    "level": 3,
+    "require": ["Resiliency Basics", "Scalability Patterns"]
+  },
+  {
+    "name": "Supervision Advanced",
+    "theme": "Supervision",
+    "level": 3,
+    "require": ["IS monitoring", "Log Management", "Distributed Orchestration Basics"]
+  },
+  {
+    "name": "Multiple Information Systems Management",
+    "theme": "Cloud",
+    "level": 3,
+    "description": "Legacy + Cloud / Multiclouds",
+    "require": ["Other Cloud Platforms", "Resiliency Basics"]
+  },
+  {
+    "name": "Continuous Deployment Advanced",
+    "theme": "Deployment",
+    "level": 3,
+    "require": ["Continuous Deployment Basics", "Performance testing", "Testable Architecture"],
+    "description": "ZDD…"
+  },
+  {
+    "name": "Software Defined Network (SDN)",
+    "theme": "Ops",
+    "level": 3,
+    "require": ["Network Basics", "Infra as code basics"],
+    "mandatory": false
+  }
+]

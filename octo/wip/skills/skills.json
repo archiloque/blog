@@ -1,0 +1,281 @@
+[
+  {
+    "name": "Continuous deployment basics",
+    "description": "ZDD, blue green etc.",
+    "theme": "Deployment",
+    "level": 1
+  },
+  {
+    "name": "Cloud native applications patterns",
+    "theme": "Cloud",
+    "level": 1,
+    "description": "How to make application cloud-ready: 12 factors apps…"
+  },
+  {
+    "name": "Infra as code basics",
+    "theme": "Ops",
+    "level": 1,
+    "require": ["DevOps basics"],
+    "description": "Theory + having used one infra as code tool for basic server management"
+  },
+  {
+    "name": "DevOps basics",
+    "theme": "Ops",
+    "level": 1,
+    "description": "Organizational and project lifecycle patterns"
+  },
+  {
+    "name": "Resiliency basics",
+    "theme": "Distributed architecture",
+    "level": 1,
+    "description": "Design for failure, dependencies patterns…"
+  },
+  {
+    "name": "Cloud basics",
+    "theme": "Cloud",
+    "level": 1,
+    "description": "Principles & impacts of cloud computing: on-demand servers…"
+  },
+  {
+    "name": "Basics of one cloud platform",
+    "theme": "Cloud",
+    "level": 1,
+    "require": ["Cloud basics"],
+    "description": "Experience with one cloud platform for a simple app setup"
+  },
+  {
+    "name": "Relational databases",
+    "theme": "Data architecture",
+    "level": 1,
+    "description": "SQL, indexes…"
+  },
+  {
+    "name": "NoSQL",
+    "theme": "Data architecture",
+    "level": 1,
+    "description": "Theory, using one document-oriented database"
+  },
+  {
+    "name": "Service architecture basics",
+    "theme": "IS architecture",
+    "level": 1,
+    "description": "SOA, microservices, REST, API Design …",
+    "require": ["Integration principles"]
+  },
+  {
+    "name": "Malfunction root cause analysis",
+    "theme": "Agile",
+    "level": 1,
+    "description": "«7 whys» and blameless post mortems"
+  },
+  {
+    "name": "Agile principles",
+    "theme": "Agile",
+    "level": 1,
+    "description": "Principle of agile manifesto + examples of agile workflows"
+  },
+  {
+    "name": "Message Oriented Middleware",
+    "theme": "IS architecture",
+    "level": 1,
+    "description": "Theory + having used one MOM (Kafka, RabbitMQ …)",
+    "require": ["Integration principles"]
+  },
+  {
+    "name": "Code & Programming Awareness",
+    "theme": "Software Design & Development practice",
+    "level": 1,
+    "description": "Introduction to code and programming"
+  },
+  {
+    "name": "Security basics",
+    "theme": "Security",
+    "level": 1,
+    "description": "Principles, vocabulary…"
+  },
+  {
+    "name": "Software testing",
+    "theme": "Software Design & Development practice",
+    "level": 1,
+    "description": "Unit testing & Test Driven Development"
+  },
+  {
+    "name": "IS monitoring",
+    "theme": "Supervision",
+    "level": 1,
+    "description": "Patterns & requirements : correlation id…"
+  },
+  {
+    "name": "Integration testing",
+    "theme": "Testing",
+    "level": 1,
+    "description": "Tooling, processes, organisation"
+  },
+  {
+    "name": "IS Security theory",
+    "theme": "Security",
+    "level": 1,
+    "description": "Access management, PKI, Identity propagation…"
+  },
+  {
+    "name": "Development Workflow",
+    "theme": "Software Design & Development practice",
+    "level": 1,
+    "description": "Typical workflows of a software project from development to production"
+  },
+  {
+    "name": "Integration principles",
+    "theme": "IS architecture",
+    "level": 1,
+    "description": "Main integration patterns : messages, files, APIs …"
+  },
+  {
+    "name": "Log management",
+    "theme": "Supervision",
+    "level": 1,
+    "description": "Theory and standard tooling : Elasticsearch, Logstash, Kibana"
+  },
+  {
+    "name": "Operating systems",
+    "theme": "Ops",
+    "level": 2,
+    "description": "ssh, admin system linux, package management, file system, process, services"
+  },
+  {
+    "name": "Network basics",
+    "theme": "Ops",
+    "level": 2,
+    "description": "DNS, DHCP"
+  },
+  {
+    "name": "Event-Driven architecture",
+    "theme": "IS architecture",
+    "level": 2,
+    "description": "DDD, CQRS…"
+  },
+  {
+    "name": "Web architecture basics",
+    "theme": "IS architecture",
+    "level": 2,
+    "description": "SSL, TLS, LoadBalancer, Cache, WAF / WAM, Reverse proxy"
+  },
+  {
+    "name": "Legacy architecture",
+    "theme": "IS architecture",
+    "level": 2,
+    "description": "Legacy pattern and tools",
+    "mandatory": false,
+    "require": ["Integration principles"]
+  },
+  {
+    "name": "Clean code",
+    "theme": "Software design & development practices",
+    "level": 2,
+    "require": ["Code & Programming Awareness"],
+    "description": "Clean code principles ans impact on sofwate architecture"
+  },
+  {
+    "name": "Data streaming",
+    "theme": "Data architecture",
+    "level": 2,
+    "description": "Impact of fast streaming on architecture & an example with a tool like Kafka"
+  },
+  {
+    "name": "Emerging architecture",
+    "theme": "Agile",
+    "level": 1,
+    "require": ["Agile principles"],
+    "description": "Requirements and patterns to create and keep an architecture"
+  },
+  {
+    "name": "Data governance",
+    "theme": "Data architecture",
+    "level": 2,
+    "require": ["Emerging architecture", "Integration principles"],
+    "description": "How to manage data and data quality"
+  },
+  {
+    "name": "Distributed orchestration",
+    "theme": "Distributed architecture",
+    "level": 2,
+    "require": ["Resiliency basics"],
+    "description": "Patterns and frameworks to distrobute tasks in a systems"
+  },
+  {
+    "name": "Cloud-native applications advanced",
+    "theme": "Cloud",
+    "level": 2,
+    "description": "Details of a cloud-oriented application stack: Netflix OSS, SpringBoot…",
+    "require": ["Cloud native applications patterns", "Continuous deployment basics"]
+  },
+  {
+    "name": "Other cloud platforms",
+    "theme": "Cloud",
+    "level": 2,
+    "description": "Using another cloud platform",
+    "require": ["Basics of one cloud platform"]
+  },
+  {
+    "name": "Advanced usage of one cloud platform",
+    "theme": "Cloud",
+    "level": 2,
+    "require": ["Basics of one cloud platform"],
+    "description": "Security managemet, API gateway, DNS…"
+  },
+  {
+    "name": "Performance testing",
+    "theme": "Testing",
+    "level": 2,
+    "require": ["Scalability patterns", "Integration testing"],
+    "description": "Patterns, impacts on application designs"
+  },
+  {
+    "name": "Testable architecture",
+    "theme": "Testing",
+    "level": 2,
+    "require": ["Integration testing", "Emerging architecture"],
+    "description": "Pattern to try to make an architecture easier to change"
+  },
+  {
+    "name": "BigData architecture basics",
+    "theme": "Distributed architecture",
+    "level": 3,
+    "description": "Hadoop, Cassandra, HDFS, HBase",
+    "require": ["Distributed orchestration", "Scalability patterns"]
+  },
+  {
+    "name": "Scalability patterns",
+    "theme": "Distributed architecture",
+    "level": 2,
+    "description": "How to scale differents parts of an architecture and the involved drawbacks"
+  },
+  {
+    "name": "Infra as code advanced",
+    "theme": "Ops",
+    "level": 3,
+    "require": ["Infra as code basics", "Operating systems"],
+    "description": "How to manage an complex system with several sub-systems & environments"
+  },
+  {
+    "name": "Multiple information systems management",
+    "theme": "Cloud",
+    "level": 3,
+    "description": "Legacy + Cloud / Multiclouds",
+    "require": ["Other cloud platforms", "Resiliency basics"]
+  },
+  {
+    "name": "Continuous deployment advanced",
+    "theme": "Deployment",
+    "level": 3,
+    "require": ["Continuous deployment basics", "Performance testing", "Testable architecture"],
+    "description": "ZDD…"
+  },
+  {
+    "name": "Software defined network (SDN)",
+    "theme": "Ops",
+    "level": 3,
+    "require": ["Network basics", "Infra as code basics"],
+    "mandatory": false,
+    "description": "Theory and simple example"
+  }
+]

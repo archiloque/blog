@@ -1,0 +1,255 @@
+= Middlewares et autres outils : ce qu'il faut vérifier avant d'acheter
+Julien Kirch
+v1.0, 2015-09-23
+
+Sous-titre "Si vous voulez faire évoluer vos pratiques et en tirer des bénéfices, vos outils doivent être à la hauteur"
+
+== De quoi s'agit-il ?
+
+Quand j'ai commencé à travailler dans les années 2000, [line-through]#les dinosaures dominaient le monde et# les projets étaient en train de changer.
+Grâce aux tests automatisés, à l'_extreme programming_ et aux nouveaux outils qui arrivaient comme les serveurs d'applications et Subversion, on allait apprendre à développer mieux et plus vite.
+
+Les middlewares d'entreprise faisaient partie des points qui posaient problème : ils étaient lourds et inadaptés à nos nouvelles manières de travailler, et ont commencé à devenir des goulets d’étranglement.
+
+Presque 15 ans plus tard, avec les pratiques agiles et le devops, le monde du développement a bien changé.
+Malheureusement, ce n'est pas le cas pour un certain nombre d'outils : ils ont enrichi leurs fonctionnalités, mais ne se sont pas transformés.
+
+Parfois non industrialisables, non testables ou difficiles à intégrer dans votre SI : ces outils peuvent désormais constituer un vrai frein pour votre capacité à faire.
+Un environnement technique est toujours nivelé par le bas : le plus mauvais outil dicte ses contraintes à toute la chaîne, du développement à l'exploitation.
+L'utilisation d'une seule mauvaise brique peut donc avoir des conséquences très lourdes.
+
+S'il est parfois possible de contourner ces restrictions, cela nécessite souvent des rustines fragiles.
+Rappelez-vous que les outils sont sensés vous aider et non se mettre sur votre route pour vous empêcher de travailler.
+Avec ces logiciels souvent très complexes, on pense surtout aux fonctionnalités qu'ils promettent et on oublie souvent leurs inconvénients alors que ceux-ci sont pourtant très importants.
+
+Prendre conscience des différents types de limitations peut vous aider dans deux situations :
+
+- Si vous devez choisir un nouvel outil, ils vous permettent de compléter votre grille de critères pour ne pas vous tromper.
+Chez OCTO, lors de ce type de missions, cela fait longtemps qu'ils font partie des prérequis.
+- Si vous avez déjà ces outils, cela vous rappellera les limites qu'ils vous imposent, et vous fera peut-être réaliser qu'il est temps d'en changer.
+
+En revanche, cet article ne vous aidera pas à savoir si ce genre d'outil est encore nécessaire, il s'agit d'un autre sujet qui mérite d'être traité à part.
+
+=== De quels outils parle-t-on ?
+
+image::easter.jpg[title="Des middlewares d'entreprise dans leur habitat naturel, photo par Arian Zwegers en CC"]
+
+C'est un groupe aux limites assez floues mais qu'on peut délimiter par un certain nombre de caractéristiques :
+
+- ils sont transverses ;
+- ils peuvent être structurants pour le SI suivant l'usage qui en est fait ;
+- ils n'apportent pas de valeur métier à proprement parler mais des fonctionnalités techniques ;
+- ils ne sont pas choisis par les projets mais de manière transverse, généralement par une cellule d'architecture et/ou l'équipe en charge de l'exploitation ;
+- ils sont choisis pour durer, et sont donc souvent évalués pour leur capacité à répondre à des besoins futurs.
+
+Les exemples les plus caractéristiques sont les middlewares d'entreprise : appliances de sécurité, brique de transfert de fichiers, link:https://fr.wikipedia.org/wiki/Message-oriented_middleware[bus de messages], link:https://en.wikipedia.org/wiki/Enterprise_service_bus[bus d'entreprises], link:https://fr.wikipedia.org/wiki/Extract-transform-load[ETL], outils d'API management et appliances de sécurité.
+De nombreuses autres briques logicielles suivent tout ou partie des mêmes règles, par exemples les link:https://fr.wikipedia.org/wiki/Java_EE[serveurs d'applications] ou les base de données.
+
+== Logiciels propriétaires
+
+Les logiciels d'entreprises sont un des domaines où les logiciels propriétaires sont encore très représentés.
+Selon les pratiques des éditeurs, cela peut avoir des conséquences sur leur utilisation.
+
+=== La gestion des licences
+
+Nous comprenons que l'éditeur veuille s'assurer que ses logiciels soient dûment utilisés, mais il faut que cela soit fait proprement.
+
+L'idéal est un fichier de licence fixe à copier sur les serveurs, que cela soit un fichier unique ou un fichier par environnement : avec des outils de déploiement, il n'y a pas de dégradation par rapport à un outil ouvert.
+
+La capacité des outils de middleware à être élastique est maintenant souvent mise en avant (et on en reparlera plus bas).
+Si ce sujet est important pour vous, vérifiez que l'ajout de nœuds dans un cluster ne nécessitera pas de changer en même temps le fichier de licence dans chacun des serveurs, y compris les serveurs existants.
+
+Depuis que les link:https://fr.wikipedia.org/wiki/Dongle[dongle matériels] ont quasiment disparu, la pire situation est un "serveur de licences" que link:https://en.wikipedia.org/wiki/Phoning_home[l'outil appelle pour valider sa licence].
+
+Deux cas se posent.
+
+==== Serveur de licence hébergé localement
+
+- Cela ajoute de la complexité dans le SI sans bénéfice pour vous.
+- Ils sont souvent moins bien outillés et documentés que les serveurs opérationnels, les installer et les opérer est la plupart du temps plus difficile.
+- Ils sont rarement prévus pour fonctionner en haute disponibilité ce qui en fait des link:https://fr.wikipedia.org/wiki/Point_individuel_de_défaillance[SPOFs].
+Quand les serveurs opérationnels doivent appeler le serveur de licences régulièrement ou lors de chaque démarrage pour pouvoir fonctionner, un serveur de licences non accessible, c'est un morceau ou tout votre SI qui s'arrête.
+
+==== Serveur hébergé par l'éditeur
+
+- Le même risque opérationnel se pose en cas de serveur indisponible : êtes-vous prêt à vous passer de votre ESB à usage strictement interne si votre connexion Internet tombe ?
+- Un risque de sécurité  : sans tomber dans la paranoïa, un serveur qui fait un appel sortant que vous ne maitrisez pas est toujours dangereux. À vous d'en évaluer les conséquences.
+
+=== Les conséquences du coût des licences
+
+Le prix est d'abord un critère de choix pour sélectionner la solution, mais il peut aussi avoir des conséquences sur son utilisation.
+
+==== Mutualiser les instances
+
+Si le prix est payé par serveur ou par processeur, vous aurez intérêt à diminuer le nombre d'instances pour économiser.
+Il en résulte souvent une tentation de mutualiser les serveurs au-delà du raisonnable.
+Le cas qu'on rencontre couramment est celui des serveurs d'applications Java. Les limitations du modèle J2E font que — malgré ce qu'en disent certains éditeurs — utiliser un seul serveur pour plusieurs applications pose beaucoup de difficultés : ressources non isolées, fuites mémoires…
+Les utilisateurs qui ont le choix utilisent systématiquement un serveur par application, les seuls qui mutualisent leurs serveurs sont ceux qui le font pour limiter leurs coûts de licence, et leur système est moins fiable en contrepartie.
+
+==== Mutualiser les environnements
+
+On peut aussi être amené à mutualiser les environnements : en fonction de la pression sur les prix, on mutualisera les serveurs de plusieurs environnements au lieu de les isoler.
+
+Les problèmes que cela pose dépendent de la manière dont la mutualisation est mise en œuvre :
+
+- Les environnements de pré-production et de production sont souvent les seuls à fonctionner en cluster, augmentant d'autant les prix. Quand ils s'exécutent sur les mêmes serveurs, les tests de performance effectués en pré-production risquent de perturber la production.
+- Si les environnements de tests sont mutualisés et celui de production dédié, le risque est d'avoir des configurations différentes et donc des régressions.
+
+image::fail.gif[title="Quand un test de performance fait tomber les serveurs de pré-production, et qu'ils sont mutualisés avec les serveurs de production"]
+
+==== Être forcé d'utiliser deux outils
+
+Pour des raisons de coûts, il est parfois nécessaire d'utiliser deux outils différents.
+Cela peut arriver dans deux cas.
+
+==== Deux outils en fonction des projets
+
+Cette approche repose sur l'idée que, pour les besoins les plus importants, seule peut convenir une solution vendue par un grand éditeur.
+Il s'agit d'une survivance des années 2000 où les solutions open source ou vendues par des petits éditeurs étaient souvent moins avancées, et leur support réputé moins fiable.
+Étant donné le prix de la solution critique, il n'est malheureusement pas possible de l'utiliser partout.
+Il est donc nécessaire de choisir une deuxième solution pour les autres besoins, ce qui complexifie votre système et augmente son coût.
+
+=== Un outil réservé à la production
+
+Si, pour certains éditeurs, les licences ne sont nécessaires que pour la production, pour d'autres, il en faut une pour tous les serveurs.
+Même si les prix sont alors souvent dégressifs en fonction de l'usage, par exemple les instances de recette à moitié prix, cela peut vite faire monter l'addition quand les environnements se multiplient.
+
+La solution alors choisie est d'utiliser l'outil propriétaire pour la production et la pré-production, et un outil open source pour les autres usages, du développement à la recette.
+Cela se voit beaucoup pour les serveurs d'application Java, et parfois pour des bases de données SQL.
+
+Cela ajoute des bugs supplémentaires qui sont à corriger par l'équipe, bugs détectés très tard dans le cycle du projet et qui ne peuvent pas être testés avant la pré-production.
+
+== Architecture
+
+La qualité de service attendu des systèmes a beaucoup monté ces dernières années, et par conséquent les prérequis en termes d'architecture.
+
+=== Haute disponibilité
+
+La haute disponibilité fait désormais partie des fonctionnalités standard exigées des produits, mais une subtilité est tout de même à vérifier :
+dans le cas où, en plus des serveurs d'exécution, existe un serveur d'administration, celui-ci peut ne pas être en haute disponibilité.
+Même si la criticité est moindre (quand le serveur d'administration est indisponible, le système devrait continuer à fonctionner le temps qu'il soit réparé), il s'agit tout de même d'un point de fragilité.
+
+=== Scalabilité
+
+L'autre élément à examiner est la scalabilité.
+Même si on parle beaucoup d'élasticité, on a rarement besoin d'ajouter ou de supprimer des instances à tout bout de champs.
+Par contre une augmentation de trafic peut nécessiter d'ajouter une instance d'ici quelques mois et il est important d'en connaître les impacts.
+
+Si beaucoup de produits revendiquent désormais cette propriété, certains prennent des libertés avec sa définition courante :
+selon les outils, changer le nombre d'instances peut se faire à chaud et être totalement transparent, diminuer les performance pendant le rééquilibrage de données, voire nécessiter un arrêt complet.
+
+=== Physique ou virtuel ?
+
+Pour l'hébergement, la virtualisation est désormais la règle.
+Un logiciel qui nécessite d'être hébergé sur du _bare metal_ aura donc besoin d'une bonne raison pour cela.
+Encourager l'utilisation du _bare metal_ pour gagner des performances est un chose, la forcer en est une autre.
+
+En dehors de quelques systèmes de niche (sécurité, très haute performance), les appliances physiques sont désormais une espèce disparue et avec elles, le besoin de déplacer et de recabler des serveurs quand une configuration changeait.
+Le remplacement par des appliances virtuelles supprime la contrainte physique, mais pas les autres :
+
+- vous ne pourrez pas monitorer cette brique de la même manière que les autres ;
+- il faut faire confiance à l'éditeur pour maintenir le système à jour et sécurisé, ce qui devient de moins en moins acceptable avec la multiplication des failles de sécurité publiées.
+
+image::waiting.gif[title="Quand tu attends que l'éditeur publie un correctif de son image disque après une mise à jour critique d'OpenSSL"]
+
+Il s'agit donc toujours d'un pis-aller.
+
+En cas d'appliance logique :
+
+- La solution doit être compatible avec les différents systèmes de virtualisation du marché. Si l'outil ne fonctionne qu'avec VMware, et même si vous utilisez VMware actuellement, il est important de se laisser la possibilité de migrer vers une autre solution.
+- L'image doit utiliser link:https://help.ubuntu.com/community/CloudInit[cloud-init], pour une intégration facile dans vos outils de provisioning, sinon un coût et un délai supplémentaires sont à prévoir.
+
+L'avenir dans ce domaine est probablement d'aller vers du Docker : l'éditeur gardera la main sur l'installation et les projets.
+
+== Déploiement et configuration
+
+Pour l'installation, l'outil doit être fourni sous forme d'un package adapté à votre distribution (deb, rpm…).
+Pour être facilement exploitable, le mieux est de respecter la norme link:https://en.wikipedia.org/wiki/Linux_Standard_Base[LSB] : par exemple, vous trouverez facilement les différents fichiers.
+
+Pour la configuration du socle du logiciel, des recettes de déploiement type Chef / Puppet / Ansible sont désormais la norme.
+S'ils sont fournis pour un outil qui n'est pas celui que vous utilisez, le portage ne devrait pas être compliqué à condition que l'éditeur ait bien fait son travail.
+
+Pour être facilement utilisables, les fichiers de configurations doivent respecter certains critères :
+
+- ils doivent être lisibles et éditables facilement par des humains, pas question par exemple d'avoir des fichiers contenant des objets Java séralisés en XML, ou du XML avec des champs CDATA ;
+- chaque variable doit être présente à un seul endroit, gare par exemple aux outils sous forme de composants où chacun a son fichier de configuration propre qui duplique les mêmes éléments sans possibilité de partager les parties identiques.
+
+== Développement en équipe et gestion de version
+
+Sur le papier, une des fonctionnalités les plus mises en avant des middlewares d'entreprise était un outil graphique permettant d'utiliser le logiciel sans recourir au terminal ou éditer de fichiers.
+
+Si ce but est louable, la manière dont il est souvent mis en pratique pose problème.
+
+D'abord, sous prétexte de ne pas avoir besoin d'éditer de fichiers, les fichiers générés par ces outils sont souvent des fichiers binaires.
+Il est donc impossible d'éditer les fichiers directement et tout doit passer par l'éditeur fourni.
+Tous les workflows automatiques reposant sur la capacité à modifier des fichiers textuels sont inapplicables, comme le report de modifications entre branches via un outil de gestion de version ou entre environnements via un outil de déploiement.
+Remplacer ces opérations qui s'automatisent facilement par des opérations manuelles coûte du temps et présente des risques : vous pouvez dire adieu à votre pipeline de déploiement automatisé et bonjour aux régressions.
+
+image::git.gif[title="Après un merge sur un fichier de configuration binaire"]
+
+Il reste possible de s'en sortir en utilisant un outil comme link:http://www.seleniumhq.org[Selenium] ou  link:http://www.sikuli.org[Sikuli] pour piloter la saisie de la configuration dans l'outil graphique, mais il s'agit d'une approche coûteuse et fragile à n'utiliser qu'en dernier ressort.
+
+Ensuite les outils utilisant cette approche sont conçus pour être utilisés par une seule personne à la fois.
+Dans les organisations où un groupe de personne bien identifié est en charge de chaque outil, cette limite est acceptable.
+On fait une demande à l'équipe en question, qui s'en charge dès qu'elle le peut, en jonglant entre les priorités et ses ressources souvent limitées.
+Avec le raccourcissement des cycles de développement, ce type de fonctionnement devient invivable : tout est fait pour limiter les dépendances entre équipes et favoriser l'autonomie des équipes.
+Ce type d'outil devient donc inadapté : pas question de devoir réserver son tour pour avoir le droit de configurer un outil.
+Les middlewares étant souvent transverses, impossible non plus d'avoir une instance par équipe.
+
+== Tests unitaires
+
+Pour les outils ne fournissant que de l'infrastructure, des tests d'intégrations sont suffisant.
+En revanche, les outils embarquant du code ou du pseudo-code comme les ESB doivent fournir des fonctionnalités permettant d'écrire des tests unitaires automatisés.
+Ces tests doivent pouvoir se greffer dans votre usine de build, c'est-à-dire :
+
+- exécution depuis une ligne de commande et non par un client graphique ;
+- résultat être facilement exploitable: messages d'erreurs clairs et utilisation de code de retour pour indiquer le résultat des tests.
+
+== Exploitabilité
+
+Derniers prérequis : l'exploitabilité de la solution.
+Sur les outils d'entreprise, l'outil graphique de configuration dont on a parlé plus haut s'accompagnait souvent d'une console d'administration intégrée.
+Celle-ci fournissait du monitoring et des logs centralisés à une époque où ils étaient encore l'exception.
+Ce n'est plus le cas désormais, et malheureusement — comme pour la configuration — quand on choisit de ne pas utiliser l'outil fourni pour regarder sous le capot, les choses ne sont pas si rose.
+
+=== Monitoring
+
+L'application doit pouvoir se monitorer aussi facilement que les autres briques de votre SI :
+
+- utilisation de formats et de protocoles standards : JMX, SNMP, HTTP, REST, JSON, XML ;
+- le polling ne doit pas être nécessaire : tous les changements d'état doivent être poussés ;
+- les informations doivent être accessibles via une API.
+
+=== Log
+
+Pour être utile, un log doit être accessible et lisible et s'intégrer dans votre chaîne de traitement existante, ce qui nécessite :
+
+- des connecteurs standard pour l'écriture, link:https://fr.wikipedia.org/wiki/Syslog[Syslog] est un minimum ;
+- des formats faciles à parser et univoques : des entrées monolignes car c'est ce que savent traiter la majorité des outils, et un format unique par type de log.
+
+image::log.gif[title="Votre parseur de log quand il rencontre une stacktrace Java au milieu d'un fichier de log d'accès"]
+
+== Gardez espoir
+
+En lisant cet article vous risquez un coup de blues, surtout s'il vous rappelle des souvenirs.
+Rassurez vous, la situation n'est pas si terrible et elle a même tendance à s'améliorer :
+
+- Peu d'outils cumulent tous les travers évoqués ici : la plupart en ont seulement quelques uns. Malheureusement en empilant plusieurs briques avec chacune ses problèmes, les effets se cumulent.
+- Les outils récents sont pensés pour répondre aux nouvelles manières de travailler et n'ont donc pas tous les défauts de leurs prédécesseurs. C'est par exemple le cas de beaucoup des solutions d'abord développés pour des besoins internes avant d'être open-sourcées.
+
+Pour les logiciels plus anciens, la situation est plus sombre.
+Au cœur des SI, ils sont difficiles à remplacer, et les éditeurs le savent.
+Ils font donc peu d'efforts pour faire évoluer leurs produits sur ces sujets.
+Pour améliorer les choses, la meilleure manière sera d'introduire un nouvel outil, souvent par le biais d'un besoin incompatible avec le système existant, puis de travailler à réduire l'emprise de l'outil historique.
+
+
+== À retenir
+
+Des outils de middleware peuvent être un vrai frein pour votre capacité à livrer mieux et plus vite.
+Lorsque vous choisissez un tel outil, il faut absolument vérifier ces prérequis :
+
+- est-ce-qu'il impose des contraintes spécifiques qui gênent son utilisation ?
+- est-ce-qu'il est testable ?
+- est-ce-qu'il s'intègre dans vos process de développement ?
+- est-ce-qu'il s'intègre dans vos process de déploiement ?
+- est-ce-qu'il est facile à opérer ?

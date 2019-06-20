@@ -1,0 +1,223 @@
+= Services REST : ne jetez pas la SOA avec l'eau du bain
+:icons: font
+
+Avec l'arrivée de REST, on est tenté d'oublier tout ce qu'on faisait avant car c'était forcément moins bien.
+Mais, si les technologies ont changé, les bonnes pratiques SOA sont toujours aussi pertinentes,
+et permettent de mettre en œuvre des services qui répondent aux besoins tout en gardant la maîtrise de son système d'information.
+
+'''
+
+Avec la mise en œuvre des services RESTful, comme avec toute nouvelle technologie, l'envie est forte de faire table rase du passé et de tout réinventer.
+
+Cependant, nous n'avons pas attendu l'arrivée des architectures REST pour implémenter des services.
+Même si parfois les outils n'ont pas été à la hauteur des promesses, certaines bonnes pratiques ont fait leurs preuves.
+Pour ceux qui ne s'en souviennent pas, on appelait cela "SOA" pour _Service Oriented Architecture_.
+
+Ces pratiques ont permis de créer des architectures de services qui fonctionnent,
+et évitent de retomber dans certaines des ornières qui ont valu à la SOA sa mauvaise réputation.
+
+== Quèsaco SOA ?
+
+On mélange souvent SOA et SOAP car la première vague de SOA a beaucoup utilisé cette technologie.
+Mais il faut bien distinguer les deux car l'approche SOA n'est pas liée à un type de service particulier.
+Et si SOAP commence à avoir fait son temps, SOA est toujours aussi pertinente.
+
+Pour comprendre pourquoi, le mieux est de la voir un peu comme la méthode agile :
+
+SOA n'est pas une solution clé en main mais une grille de lecture et des patterns apportant des réponses à un certain nombre de besoins.
+Ensuite à chacun de choisir son approche, et d'adapter les pratiques à son environnement.
+
+=== SOA : essentielle pour réussir ses services
+
+Aujourd'hui, les parties techniques des services ne sont plus un problème :
+les outils pour les développer sont matures et ils permettent de les exploiter facilement (frameworks d'exposition, outils de monitoring, briques d'API management…).
+
+La généralisation de l'usage des services au niveau d'un système d'information implique des enjeux de deux ordres :
+
+- avoir des services qui répondent le mieux aux besoins ;
+- garder la maîtrise de son SI dans la durée.
+
+Même si les outils ont changé, les besoins des entreprises en matière d'architectures de services sont restés identiques,
+et les patterns d'organisation restent adaptés.
+Dans le jargon des "architectes" de systèmes d'information, l'application de ces pratiques fait partie de ce qu'on appelle "l'urbanisation".
+
+Les urbanistes planificateurs des années 2000 qui décidaient de tout sans s'impliquer dans la réalisation ont laissé la place à une approche décentralisée :
+une stratégie et des grands principes globaux puis une autonomie des projets.
+Cela donne une meilleure flexibilité tout en conservant une cohérence globale.
+
+=== SOA c'est pour qui ?
+
+La SOA vous concerne dès que vous commencez à mettre en place des services.
+Même si vous avez déjà de nombreux services, une gouvernance peut être mise en place de façon incrémentale sans avoir à révolutionner votre manière de travailler.
+
+Les deux situations où ces pratiques sont les plus utiles :
+
+- de nombreuses applications exposant des services, car cela augmente les risques de couplage et les conséquences de services mal conçus ;
+- un métier riche utilisant des données très structurées et des services complexes, parce qu'il est plus difficile dans ce cas de savoir qui fait quoi avec les données.
+
+=== Une alternative à l'approche SOA : le modèle unilatéral
+
+Certains géants du web utilisent une approche alternative à l'approche "gouvernance" portée par la SOA.
+Il s'agit d'un modèle plus unilatéral, où chaque application est responsable de ses données et définit seule les services qu'elle expose.
+L'accent est mis sur la formalisation et la contractualisation et les consommateurs ont beaucoup moins leur mot à dire.
+
+Dans un environnement rigoureux où la collaboration entre équipes est difficile, ce modèle peut fonctionner et permet de tout de même de créer des services.
+
+Cependant, notre conviction est qu'il est risqué (services mal adaptés, conflits entre applications),
+et qu'il s'applique mal quand le métier de l'entreprise est complexe.
+Il est donc à réserver à des cas bien spécifiques.
+
+À noter que dans le modèle SOA la formalisation est tout aussi essentielle mais elle se fait pour matérialiser des décisions et des engagements qui sont définis ensemble.
+
+== Trois patterns SOA
+
+Pour atteindre ces objectifs, voici 3 patterns ciblant les besoins principaux d'une architecture de service :
+
+- développer des services qui répondent le mieux aux besoins de tous ;
+- bien partager les données entre application ;
+- limiter le couplage des services.
+
+=== Communauté des consommateurs
+
+Quand une application expose des services, il est important qu'ils soient utilisables par le plus grand nombre de consommateurs différents.
+L'objectif est d'éviter de développer des services à la demande pour chaque nouveau client, même si chacun d'eux a ses besoins et ses contraintes propres.
+
+Pour ce faire, il faut réunir les consommateurs de chaque ensemble de services
+pour qu'ils définissent collectivement les contrats de services de l'application qui les fournit.
+Cela s'applique en amont lorsqu'il s'agit de créer un nouveau service,
+puis tout au long de sa vie pour définir de manière collégiale les évolutions avec leur calendrier.
+
+Concrètement, il s'agit d'identifier les différents projets et des porteurs dans chacun d'eux,
+puis d'instaurer des échanges entre ces personnes avec des points de rencontre réguliers.
+
+Le but n'est pas de seulement de s'accorder sur les besoins, mais de définir ensemble la totalité des contrats de service :
+
+- signatures des appels, y compris les cas d'erreurs ;
+- SLA, dont performance et volumétrie.
+
+Même si les besoins spécifiques d'un consommateur nécessitent la création de services à son seul usage,
+il faut que cela reste l'exception,
+et qu'aucune demande ne se fasse en direct sans passer par la communauté.
+Prioriser les demandes qui bénéficient au maximum de personnes permet d'inciter les récalcitrants à coopérer.
+
+image::communaute.png[]
+
+Dans ce type de fonctionnement, les questions les plus délicates sont celles qui concernent le budget,
+lorsqu'il faut par exemple décider quelle(s) clé(s) de répartition utiliser pour partager le coût d'un nouveau service qui profitera à plusieurs projets.
+Le mieux est de définir une règle de répartition simple, en considérant que sur le long terme les choses s'équilibreront.
+
+=== Réutilisation des modèles de données
+
+Ensuite, pour améliorer les partages de données entre applications, il faut essayer de factoriser et de réutiliser les modèles de données.
+
+L'objectif est d'éviter que chaque projet ne réinterprète les différents modèles à sa manière,
+ou les effets "téléphone arabe" quand les données évoluent subrepticement au fur et à mesure qu'elles transitent.
+
+Pour ce faire, chaque type de donnée transverse doit être sous la responsabilité d'une équipe
+qui en définira le modèle canonique et qui aura à charge de travailler avec les différents projets.
+Il s'agit en général du projet producteur ou référentiel de cette donnée.
+
+image::modele.png[]
+
+_Ici il a été décidé que le cœur métier est le mieux placé pour définit le modèle canonique des produit et des clients, car c'est lui qui embarque le plus de logique, le CRM et la BI utilisent ce modèle pour leurs échanges et peuvent l'enrichir pour leurs propres services._
+
+Ce modèle étant autant métier que technique, les deux compétences doivent être représentées dans l'instance de décision.
+
+Si nécessaire, on pourra s'appuyer sur un dictionnaire de données pour le vocabulaire global à l'entreprise,
+à condition de l'utiliser à bon escient et d'éviter de vouloir tout normer.
+
+Les API REST axées sur les ressources rendent cette idée beaucoup plus naturelle qu'en SOAP
+où on avait parfois tendance à définir des types de donnée ad-hoc pour chaque service.
+
+À ce sujet il faut bien préciser que le modèle de donnée dont on parle ici est bien le modèle _d'échange_,
+il ne s'agit pas du modèle interne ou même de persistance de chaque application :
+utiliser une moulinette pour générer le modèle SQL à partir du modèle d'échange a rarement produit les résultats escomptés en terme d'efficacité !
+
+Du point de vue technique, peu importe que ce modèle soit défini dans un outil de modélisation (_design-first_) ou dans des métadonnées (_code-first_),
+l'important est que le résultat soit utilisable facilement par les autres projets.
+
+Sur ce point les outils de modélisation JSON manquent de maturité à ce sujet :
+si JSON Schema fournit des syntaxes permettant de partager et d'étendre des modèles,
+la spécification manque de clarté et les outils les implémentent rarement et de manière incomplète.
+Pour le moment il faut donc étendre les outils existants, ou utiliser les outils JSON s'appuyant sur des XSD.
+
+=== Pattern royaume-émissaire
+
+Fournir un service, c'est se coupler avec les applications qui l'utilisent.
+Même si on sait techniquement gérer des versions de services,
+multiplier les consommateurs, c'est multiplier les coûts de maintenance ou de migrations et limiter sa capacité d'évolution.
+
+Il est donc nécessaire de cadrer les expositions de services en normant les échanges.
+
+Dans cette optique, le pattern royaume-émissaire propose de séparer le SI en différentes zones,
+qui correspondent aux grappes d'applications partageant les mêmes données,
+et qui en général recoupent l'organisation de l'entreprise.
+
+Dans un même groupe d'applications (_un royaume_), l'utilisation de services entre applications est libre.
+Par contre entre les royaumes, les services _émissaires_ devront être prédéfinis.
+Cela permet de conserver une souplesse locale, tout en limitant les couplages globaux.
+
+Les services et les données transitant entre royaumes doivent faire l'objet d'une attention spécifique,
+l'objectif étant qu'ils soient plus pérennes que les services standard, car leurs migrations sont plus compliquées.
+En pratique, on définit généralement des services spécifiques, distincts des services à usage local.
+
+Pour que ces services répondent au mieux aux besoins, ces services doivent être définis en appliquant le modèle "communauté des consommateurs"
+en réunissant toutes les parties prenantes.
+
+Ce pattern peut très bien s'accompagner de mesures techniques comme des firewalls ou des proxys ainsi que du monitoring,
+pour s'assurer que les règles sont bien respectées.
+
+image::royaume.png[]
+
+Bien que la division du SI en zones y fasse penser, résistez à la tentation d'administrer ces services à l'aide d'un outil d'architecture d'entreprise,
+mieux vaut s'appuyer sur les outils de publication d'API en y ajoutant les métadonnées nécessaires.
+
+==== Organiser les expositions de services : un outil pour votre SI et pas une fin en soi
+
+Ce modèle suppose un fonctionnement hiérarchique pour arbitrer et organiser les échanges entre les différentes entités.
+Il y a une opposition naturelle entre les demandes locales des projets et les choix globaux pour le bien du système.
+La tendance logique est alors que l'instance perde de vue que sa mission est d'aider les projets à mieux travailler ensemble,
+et bascule dans un mode défensif contre les projets et donc contre le métier.
+Pour éviter cet écueil, la recette est toujours la même :
+ne pas avoir d'équipe dédiée à cela, mais avoir des décideurs juges et parties en choisissant parmi les projets des personnes d'expérience ayant une vision globale, quitte à les former.
+
+=== SOA et Open API
+
+Les 3 patterns présentés ici sont décrits dans la perspective de services internes d'une entreprise.
+
+Open API où les services sont exposés sur Internet de manière ouverte à tous nécessite d'adapter les pattens.
+Mais comme Open API est une généralisation de l'approche service, cette adaptation se fait très naturellement :
+
+- Royaume-émissaire va correspondre à la coupure entre services internes et externes.
+- La réutilisation des modèles va permettre d'offrir une API cohérente à vos différents services, même si en interne ils sont issus d'applications totalement différentes.
+- La communauté des consommateurs ne regroupera plus tous les consommateurs mais des partenaires identifiés avec qui vous avez tissés des liens. Ces partenaires doivent être représentatifs de votre cible d'utilisateurs en terme d'usage et de taille, afin d'augmenter les chances que vos services répondent aux besoin de l'ensemble de vos clients. Vous pouvez ensuite valider ces services en les déployant d'abord pour ces partenaires, et les ouvrir au public dans un second temps après d'éventuels ajustements.
+
+== SOA : tout dépend des personnes
+
+Les technologies de services sont maîtrisées, la difficulté de la mise en place d'une architecture de service est donc avant tout organisationnelle.
+L'enjeu est de parvenir à faire travailler pour le bien commun des personnes de groupes différents et dont les intérêts peuvent diverger.
+
+Quand il y a des difficultés, la tentation est toujours là de vouloir reprendre la main en pilotant tout par le haut.
+Malheureusement cette solution de facilité mène à un SI mal adapté aux besoins,
+voire à l'anarchie quand les applications vont se mettre à contourner les règles.
+Il faut donc rester dans la négociation, avec des instances robustes en mesure de trancher les conflits.
+
+'''
+
+[TIP]
+.À retenir
+====
+SOA est une grille de lecture et des bonnes pratiques.
+
+Il vise à développer les services les plus adaptés possibles tout en gardant la maîtrise de son SI.
+
+L'enjeu de ces pratiques n'est pas technique mais organisationnelle,
+elles nécessitent de faire travailler ensemble les différents projets.
+
+Trois patterns à mettre en œuvre :
+
+- communauté des consommateurs pour développer des services qui répondent le mieux aux besoins de tous ;
+- réutilisation des modèles de données pour bien partager les données entre application ;
+- royaume-émissaire pour limiter le couplage des services.
+
+====

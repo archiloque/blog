@@ -1,0 +1,156 @@
+= Le DataLab et le SI : quelques sujets d'architecture de SI qui fâchent
+Julien Kirch
+v0.1, 2019-01-31
+:article_lang: fr
+
+WARNING: ⚠️WIP⚠️️️️
+
+== De quoi parle-t-on ?
+
+La mise en place un projet de datascience en production peut déjà link:https://www.octo.com/fr/evenements/183-levez-la-malediction-du-passage-de-l-ia-en-production[être un défi].
+
+Ensuite vient le moment de faire vivre sur le moyen et long terme ce qui vient d'être déployé.
+Voici quelques exemples de ce que j'ai pu entendre en mission sur ce sujet.
+
+[quote]
+____
+Pour le DataLab on s'est branché aux bases de données des différents projets, du coup chaque fois que leurs schémas changent pendant une MEP le week-end ça casse notre code d'import et on doit se dépêcher de réparer le lundi matin.
+____
+
+[quote]
+____
+Le métier est très content des premiers résultats sur le _churn_, mais pour améliorer les modèles il faudrait corriger des problèmes de qualité de données dans les projets amont, mais on n'arrive pas à se faire entendre.
+____
+
+[quote]
+____
+Pour aller plus vite on a branché le Lab sur la BI.
+Ça a été super cool pour démarrer, mais on a vendu du temps réel et la BI est en J+1 et maintenant on ne sait pas comment faire.
+____
+
+Vous l'avez compris : si vous pensez que déployer le code en production est le plus difficile, j'ai une mauvaise nouvelle pour vous.
+
+Rasurez vous : il existe des solutions pour éviter d'aboutir aux situations que je viens de décrire.
+Ces solutions ne sont pas forcément faciles à mettre en œuvre, mais -- en attendant de trouver mieux -- elles peuvent fonctionner..
+
+== Pour POCer tout peut-être est permis, sauf se mentir
+
+Tout d'abord les POCs : quand il s'agit de tester des hypothèses pour les valider, par exemple la perinence de croiser plusieurs sources de données pour améliorer une offre commerciale, travailler avec des contraintes allégées est souhaitable par rapport à un projet de "`run`".
+
+Le sujet de l'article n'est pas d'ajouter des contraintes -- et donc de freiner -- les expérimentations, quand elles ne sont pas nécessaires.
+
+Ainsi travailler sur un laptop à partir d'export manuel de données peut être le meilleur choix dans certaines situations.
+Tant que cela est compatible avec les exigences de sécurité comme le RGPD, cela va sans dire.
+
+Mais par contre attention à ne pas se bercer d'illusions : si ces contraintes existent, c'est généralement pour de bonnes raisons.
+
+Ce qui signifie qu'il faut garder en tête qu'un jour où l'autre il faudra s'y confronter, que ça soit pour les appliquer ou pour ne pas les appliquer mais d'une manière satisfaisante, par exemple en ayant convaincu ou du moins obtenu l'accord des bonnes personnes.
+
+C'est pour cela que je parle de contraintes _allégées_ et pas de ne pas avoir de contraintes du tout :
+si l'objectif d'un POC est de prouver la faisabilité d'une certaine approche, prendre en compte certaines des contraintes de production peut être pertinent si vous savez à l'avance que les ignorer pourrait rendre impossible, ou trop compliqué, le déploiement en production.
+C'est l'un des éléments à prendre en compte pendant la phase de cadrage.
+
+Cela peut-être le cas si votre POC nécessite un certain type de matériel ou d'un logiciel qui est incompatible avec votre environnement, ou que son approche est incompatible avec le RGPD.
+
+Réfléchissez donc bien aux concepts qu'un POC doit prouver, et quels sont les critères permettant de juger qu'il y soit parvenu.
+
+== "`La prod' c'est la prod'{nbsp}!`", même pour la datascience
+
+Une fois qu'un POC a fait ses preuves, il est temps de s'intéresser aux critères de passage en production.
+
+Passer à la production, cela signifie que des personnes ou d'autres services vont dépendre de l'application, et donc qu'elle va devoir atteindre un certain niveau de qualité de service -- même s'il n'est pas formalisé dans un SLA -- et donc généralement fiabiliser et automatiser.
+
+Cela couvre de nombreux sujets comme la qualité du code, les tests automatisés, le déploiment ou la sécurité, mais nous allons ici nous concentrer sur celles qui sont liées aux question d'intégrations entre systèmes.
+
+Quand je parle de fiabiliser et d'automatiser, il s'agit bien entendu de le faire à _hauteur de ce qui est nécessaire_.
+
+Ainsi une mise en production d'un premier projet de datascience utilisé en interne, il ne s'agit donc pas forcément d'appliquer les mêmes règles que celles qui s'appliquent pour des sites web clients.
+
+Mais d'un autre côté, il faut tout de même faire ce qu'il faut pour s'éviter de mauvaises surprises.
+Les sujets d'intégration de systèmes concernent les données, c'est à dire la matière première de votre système : rappellez-vous le début de l'article, une intégration mal maîtrisée c'est le risque d'avoir de mauvaises données ou se retrouver sans données, et donc d'avoir un système inopérant.
+
+Pensez aussi que, s'il est tentant de vouloir passer "`sous le radar`" en coutournant les mécanismes officiels et les personnes dont c'est le travail, vous risquez de le regretter lorsqu'il faut faire appel à des bonnes volontés pour vous aider lors qu'un coup dur.
+
+== Les axes à étudier
+
+Malheuresement les solutions vont passer par des demandes aux projets, après le POC un DataLab ne peut pas se faire en mode shadow IT.
+
+=== Mode d'intégration
+
+==== Le problème
+
+Le premier axe est celui du mode d'intégration, c'est-à-dire la manière dont votre application est branchée à la source pour s'alimenter en données.
+
+Il s'agit d'un domaine où on est en général très tenté de prendre des raccourcis, car le processus de mise en place de nouveaux de flux de données est souvent complexe avec plusieurs équipes à impliquer, des formulaires à remplir{nbsp}…
+
+Lors des phases de prototypage/conception, j'ai déjà vu plusieurs cas où les personnes travaillaient avec des export de données au format SQL réalisés manuellements, et importés en rejouant les script.
+Cela demande un faible investissement de la part du projet qui fournit les données et les informations sont potentiellement très riches (il suffit d'exporter l'ensemble des tables avec toutes les colonnes) et rapidement utilisables (sous réserve que le modèle soit suffisament lisible).
+
+Pour le passage en production, il peut être tentant d'automatiser ce même flot, à l'ancienne via un serveur FTP (voire link:https://fr.wikipedia.org/wiki/Cross_File_Transfer[CFT]), ou version moderne par un bucket S3 ou équivalent.
+
+L'inconvénient est que cela signifie un couplage avec le modèle de stockage de données de l'application source, c'est-à-dire une des pire choses qui puisse arriver.
+Cela signifie que le schéma de base de données -- la structure SQL ou équivalent -- devient une API pour une autre application, un contrat qui vaut engagement et donc qu'une modification du schéma entrainera les mêmes questions de gestion compatibilité qu'une mise à jour d'un contrat de service.
+
+Il existe des solutions pour gérer de la compatibilité de schéma, par exemple avec des vues, mais sauf situation très spécifique je vous conseille de ne pas aller dans cette direction.
+
+En dehors de l'aspect technique, il y a le fait qu'en général les organisations ne sont pas habituées à ce type d'intégration entre projets,
+par exemple les équipes ont l'habitude de pouvoir modifier leur base de données quand elles ont en envie, sans avoir à le communiquer aux autres, et risquent donc d'oublier de le faire.
+
+==== Que faire ?
+
+* Mode d'intégration le plus pérenne possible (genre pas par la base)
+* Faire des tests automatisés d'import sur les environnements de recette voire avant, et que ça soit le problème du projet amont
+* Avoir quelqu'un qui s'intéresse au sujet dans les projets
+
+=== Vitesse de récupération des données
+
+==== Le problème
+
+Après la manière de récupérer les données vient la vitesse de récupération.
+
+Par vitesse de récupération, j'entends vitesse _totale_ de récupération, c'est-à-dire la durée entre le moment où une donnée devient disponible dans le système et le moment où elle devient disponible pour des traitements dans la partie datascience.
+
+Lors du cadrage de votre besoins, vous avez dû vous poser la question du niveau de frâicheur acceptable pour les données, c'est ce qui correspond à votre vitesse de récupération.
+
+Pour prototyper, il est par exemple possible de se connecter à un système de BI ou à un DataLake qui permet d'avoir accès à de nombreux types de données depuis un seul point.
+L'inconvénient est que le temps pour que ces données soient rendues disponibles par ces systèmes -- souvent alimentés par batch -- peut être assez long, par exemple du J+1.
+
+Lorsque vous envisagez la mise en production, il faut vérifier que le niveau de fraicheur attendu correspond à celui qui est proposé par le système auquel vous êtes branché.
+
+Il faut prendre en compte le temps d'arrivée dans le système source, le temps d'ingestion, plus le temps pour transmettre la donnée depuis le système source vers le vôtre.
+
+Dans le cas contraire, cela signifie qu'il va faloir se connecter à un autre système ou à des autres systèmes, par exemple aux systèmes opérationnels qui gèrent ces données.
+
+==== Que faire ?
+
+Enjeu majeur car ça dimensionne la complexité des projets
+
+On peut avoir des solutions pour le lab avec plein de données "en retard" qui permet de tester, et une autre pour la prod, avec des données moins riches mais rapide
+
+Solution la meilleure : reposer sur des envois de message en fil de l'eau, mais c'est très impactant pour les projets amonts
+
+=== Qualité des données
+
+==== Le problème
+
+Données pourries car ce n'est pas un problème en amont, ça peut être des problèmes tech ou métier (mauvaises saisies)
+
+Ça peut etre des problèmes locaux aux applications, ou des problèmes de cohérences entre applications
+
+==== Que faire ?
+
+Trouver des relais dans les projets, et un relai compatible avec la capacité d'innovation ciblée par le lab, au moins sur la capacité à avoir des réponses sur le temps de correction.
+
+La gouvernance de donnée, qu'on pouvait éviter de mettre en œuvre tant que les données restaient silotées, revient au goût du jour.
+
+Après il faut une volonté métier, voire une volonté de la direction : si le lab a pour vocation des données de toutes l'orga, elle va toucher des projets de tous les métiers, et va donc demander un bon sponsoring pour ne pas s'épuiser
+
+== Pour conclure
+
+Pour POCer un DataLab tous les moyens sont bons, mais attention à ne pas se mentir sur le RAF ensuite pour en faire un asset mature du SI : il faut sortir su shadow IT.
+
+Un DataLab qui veut manipuler toutes les données du SI va demander un effort d'intégration conséquent.
+
+Étendre son périmètre va demander un effort sur la qualité de la donnée dans le SI, ce qui a des impacts projets et souvent métier.
+
+Péréniser son fonctionnement va demander un effort d'industrialisation sur la manière dont les données sont mises à disposition, et de gouvernance projet pour éviter les mauvaises surprises.
