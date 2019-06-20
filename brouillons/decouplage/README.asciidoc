@@ -2,7 +2,14 @@
 Julien Kirch
 v1.0, 2019-06-17
 
-On parle beaucoup de découplage en ce moment, mon idée ici c'est de creuser ce sujet pour faire comprendre l'importance de quelques concepts classiques d'architecture qui ne sont pas très populaires mais qui mériteraient de l'être
+Ces derniers temps on parle beaucoup de découplage, notamment dans les discussions autour des microservices.
+
+Malheureusement une partie de ce qui est dit donne une vision de ces questions tellement simplifiée qu'elle en devient caricaturale.
+
+Cela peut poser problème quand elle empêche de comprendre certains enjeux, et que le refus de comprendre mène à faire des choix à courte vue.
+
+
+Mon idée ici c'est de creuser ce sujet pour faire comprendre l'importance de quelques concepts classiques d'architecture qui ne sont pas très populaires mais qui mériteraient de l'être
 
 (Je parle ici uniquement de découplage entre application d'un SI)
 
@@ -63,6 +70,9 @@ Mais en général, le problème et donc les questions à se poser se situent qua
 * on se concentre sur la technique pour des problèmes d'orga
 
 == Conclusion
+
+Le fait que quelque chose ajoute de la complexité ne doit pas être une excuse pour le rejeter en bloc : il faut comprendre les avantages et les inconvénient et essayer de faire les meilleurs choix au niveau du SI et pas seulement application par application.
+
 
 * Le couplage c'est la vie
 * *WIP*
