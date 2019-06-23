@@ -11,3 +11,12 @@ The execution time of an SQL in most of the relational databases depends on the 
 
 But often developers wish to see if an index can be really helpful. The only option available is to create the index and check to see if the queries are able to use it with a reduced cost. Creating the index may be fine if it is in a test environment, or a table that is not huge in size, but if for some reason you wish to see if an index can be helpful for an SQL without actually creating it, then you may test and try this extension to create hypothetical indexes.
 ____
+
+== link:http://themaintainers.org/info-mc-work[Information Maintenance as a Practice of Care: An Invitation to Reflect and Share]
+
+[quote]
+____
+Acts of maintenance sustain and repair people and things, and include the many actions, large and small, that keep our sociotechnical world going, as well as the interfaces we design to function between and among information systems. Maintenance is not the opposite of change, however, and its primary aim and value is not to uphold stasis. We view acts of repurposing and revision or reuse as part of maintenance, and observe that, traditionally, organizations overseeing complex technologies have used moments of maintenance and repair not just to sustain, but to upgrade and re-imagine their systems. Similarly, moments of upgrade and re-imagining can also resource and provide justification for maintenance processes.
+
+Where maintenance-minded approaches do promote continuity, they should not be uncritically conservative of systems of historical or contemporary oppression; nor do we wish to valorize the maintenance of systems that exacerbate other harms, such as those resulting from or contributing to anthropogenically-driven climate change, surveillance and exploitation of people through monetized data capture, or discrimination based on race, class, gender, or other perceived differences. Generally, however, we argue that the value and vitality of practices of maintenance are not adequately recognized in cultures of the new, which prize, reward, and orient themselves toward "`disruptive`" innovation. The devaluation of maintenance in such contexts holds true across fields and can encompass a lack of recognition of traditional or Indigenous knowledge-keeping as well as of the everyday ingenuity of people’s adaptations to altered circumstances and infrastructure.
+____
