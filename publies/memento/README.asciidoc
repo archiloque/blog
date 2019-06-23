@@ -22,18 +22,18 @@ image::memento.png[]
 
 This simple script work on a git repository: each time you open the page it will fetch a randomly deleted line and will display it.
 
-To run it the syntax is
+It requires Ruby and link:https://rack.github.io[Rack].
+
+To run it:
 
 [source,bash]
 ----
 PATH_TO_GIT_REPO='path/to/your/git/dir' memento.ru
 ----
 
-It requires ruby and link:https://rack.github.io[Rack].
-
 Then open your browser at `http://localhost:9292`
 
-Code is a single file, under MIT license, so have fun with it.
+Code is a single file, under MIT license, so have fun and ping me if you do something interesting with it.
 
 [source,ruby]
 .memento.ru
