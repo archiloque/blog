@@ -18,7 +18,7 @@ At The New York Times we have a number of different systems that are used for pr
 
 These are all sources of what we call published content. This is content that has been written, edited, and that is considered ready for public consumption.
 
-On the other side we have a wide range of services and applications that need access to this published content — there are search engines, personalization services, feed generators, as well as all the different front-end applications, like the website and the native apps. Whenever an asset is published, it should be made available to all these systems with very low latency — this is news, after all — and without data loss.
+On the other side we have a wide range of services and applications that need access to this published content -- there are search engines, personalization services, feed generators, as well as all the different front-end applications, like the website and the native apps. Whenever an asset is published, it should be made available to all these systems with very low latency -- this is news, after all -- and without data loss.
 
 This article describes a new approach we developed to solving this problem, based on a log-based architecture powered by Apache KafkaTM. We call it the Publishing Pipeline. The focus of the article will be on back-end systems. Specifically, we will cover how Kafka is used for storing all the articles ever published by The New York Times, and how Kafka and the Streams API is used to feed published content in real-time to the various applications and systems that make it available to our readers.  The new architecture is summarized in the diagram below, and we will deep-dive into the architecture in the remainder of this article.
 ____
@@ -32,7 +32,7 @@ we face a recurring question: how much ought we to
 idealise the rocks and waves inhabited by practitioners?
 We can idealise not only _how_ gadgets work (machines,
 software), but also _why_ particular trade-offs win out in
-particular cases—including why people use C. There
+particular cases -- including why people use C. There
 is much valuable work to be done in idealised terms,
 on designs, or in clean-slate fashion, or atop theoretical
 rather than practical substrates. But the balloonist's view
@@ -44,7 +44,7 @@ remainder of the essay, I'll argue the following points
 (each in its own section), sharing the theme that we need
 to think less about languages as discrete abstractions,
 less hierarchically in general, and more about the systems
-which embody languages—seeing language implementations
+which embody languages -- seeing language implementations
 as parts of those systems, and not shying away
 from contextual details associated with implementation
 concerns and non-portability. Despite this prevailing

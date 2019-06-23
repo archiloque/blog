@@ -25,7 +25,7 @@ ____
 
 [quote]
 ____
-We submit that the root of this complexity is a fundamental semantic gap between how application programmers experience isolation guarantees and how they are currently formally defined. From a programmer's perspective, isolation guarantees are contracts between the storage systems and its clients, specifying the set of behaviors that clients can expect to observe—i.e., the set of admissible values that each read is allowed to return. When it comes to formally defining these guarantees, however, the current practice is to focus, rather than on the values that the clients can observe, on the mechanisms that can produce those values—i.e., histories capturing the relative ordering of low-level read and write operations.
+We submit that the root of this complexity is a fundamental semantic gap between how application programmers experience isolation guarantees and how they are currently formally defined. From a programmer's perspective, isolation guarantees are contracts between the storage systems and its clients, specifying the set of behaviors that clients can expect to observe -- i.e., the set of admissible values that each read is allowed to return. When it comes to formally defining these guarantees, however, the current practice is to focus, rather than on the values that the clients can observe, on the mechanisms that can produce those values -- i.e., histories capturing the relative ordering of low-level read and write operations.
 ____
 
 == link:https://www.computer.org/cms/Computer.org/ComputingNow/homepage/2011/1111/W_SW_AllLateProjectsAretheSame.pdf[All Late Projects Are the Same]

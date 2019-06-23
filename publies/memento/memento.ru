@@ -39,7 +39,9 @@ class Memento
     # Remove the '-' at the beginning of the line
     content = interesting_lines[line_index][1..-1]
     # Fetch the commit date
-    date_string = `git log --pretty=format:"%aI" --skip=#{commit_rank} --max-count=1`.split("\n")[0]
+    date_string = 
+      `git log --pretty=format:"%aI" --skip=#{commit_rank} --max-count=1`.
+      split("\n")[0]
     date = Time.iso8601(date_string)
     {content: content, date: date}
   end
