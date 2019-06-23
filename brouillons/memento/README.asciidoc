@@ -1,0 +1,42 @@
+= A tribute to deleted code
+Julien Kirch
+v0.1, 2019-23-06
+:article_lang: en
+:article_image: memento.png
+:article_description: Memento deleti
+:ignore_files: memento.ru
+:source-highlighter: pygments
+:pygments-style: friendly
+
+Each time I'm deleting some code I'm thinking about the time and effort that was spent writing it.
+
+Even if with modern tools and techniques, code is easier and faster to write, each line removed represent some effort.
+
+And this effort is now no more.
+
+I wanted a kind of link:https://en.wikipedia.org/wiki/Memento_mori[memento mori], a shrine to remember the code that is now removed.
+
+Here it is:
+
+image::memento.png[]
+
+This simple script work on a git repository: it will fetch a randomly deleted line and will display it as a sober page.
+
+To run is the syntax is
+
+[source,bash]
+----
+PATH_TO_GIT_REPO='path/to/your/git/dir' memento.ru
+----
+
+It requires ruby and link:https://rack.github.io[Rack].
+
+Then open your browser at `http://localhost:9292`
+
+Code is a single file, under MIT license, so have fun with it.
+
+[source,ruby]
+.memento.ru
+----
+include::memento.ru[]
+----
