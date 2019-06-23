@@ -13,7 +13,6 @@ end
 check_git_repo = `git rev-parse --is-inside-work-tree --git-dir=\"#{PATH_TO_GIT_REPO}\"`
 unless check_git_repo.split("\n")[0] == 'true'
     raise "Path [#{PATH_TO_GIT_REPO}] does not seem to be a git repo"
-    STDERR << check_git_repo
 end
 STDOUT << "Dir is a git directory \\o/\n"
 
