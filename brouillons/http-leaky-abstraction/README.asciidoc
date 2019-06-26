@@ -5,11 +5,37 @@ v0.1, 2019-06-03
 :source-highlighter: pygments
 :pygments-style: friendly
 
-== Qu'est-ce qu'une abstraction
+== Qu'est-ce qu'une abstraction{nbsp}?
 
-== Qu'est-ce qu'une leaky abstraction, leaky encapsulation ?
+Dans cet article, une abstraction correspond au fait d'exposer une API au dessus d'une fonctionnalité d'une manière qui n'expose pas toute la complexité interne de la fonctionnalité, mais au contraire qui met à disposition une version simplifiée.
 
-Briser l'encapsulation à bon escient
+Par exemple certaines API proposées pour écrire des fichiers masquent les questions de cache, de gestion des erreurs, de spécificité de chaque système de fichier{nbso}…
+
+En fonctions des situations, il y a plusieurs raisons d'utiliser des abstractions, raisons qui se combinent souvent, par exemple{nbsp}:
+
+* Rendre plus simple l'utilisation de la fonctionnalité{nbsp};
+* Permettre de modifier l'implémentation de la fonctionnalité sans que cela n'ait de conséquences sur les outils qui utilisent l'API{nbsp};
+* Pouvoir avoir plusieurs implémentations différentes et permettre de passer de l'une à l'autre sans conséquences sur les outils qui utilisent l'API{nbsp};
+* …
+
+Les abstractions sont immensément utiles.
+
+Imaginez si les applications web avaient besoin d'avoir connaissance du fait que la machine sur laquelle elles fonctionnent utilise des disques magnétique ou des SSD.
+Cela signifierait d'avoir à coder (et à tester) les deux situations, que pour ajouter un disque SSD il faudrait valider la compatibilité des applications{nbsp}…
+
+== Qu'est-ce qu'une leaky abstraction{nbsp}?
+
+Parfois les abstractions ont des défauts.
+C'est par exemple le cas des "`leaky abstraction`", ou link:https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/[abstractions qui fuient].
+
+Une abstractions qui fuit est une abstraction dont certaines parties du fonctionnement interne qui sont supposés être masquées aux outils sont quand même visible d'une manière ou d'une autre.
+
+Par exemple une abstraction permettant de manière transparente d'appeler un service local ou distant n'aura peut-être pas les mêmes performances ou les mêmes erreurs suivant les cas.
+
+Si une personne développe avec une implémentation locale, elle pourra avoir des mauvaises surprise si le déploiement en production se fait sur une implémentation distante.
+
+La fuite peut se faire au niveau de l'API (par exemple des paramètres subtilement différents), ou du fonctionnement, car la performance ou la fiabilité ne font pas partie de l'API.
+
 
 == Qu'est-ce que la mechanical sympathy, des exemples
 
