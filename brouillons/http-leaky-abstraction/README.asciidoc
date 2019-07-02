@@ -5,37 +5,65 @@ v0.1, 2019-06-03
 :source-highlighter: pygments
 :pygments-style: friendly
 
-== Qu'est-ce qu'une abstraction{nbsp}?
+== Qu'est-ce qu'une abstraction ?
 
 Dans cet article, une abstraction correspond au fait d'exposer une API au dessus d'une fonctionnalité d'une manière qui n'expose pas toute la complexité interne de la fonctionnalité, mais au contraire qui met à disposition une version simplifiée.
 
 Par exemple certaines API proposées pour écrire des fichiers masquent les questions de cache, de gestion des erreurs, de spécificité de chaque système de fichier{nbso}…
 
-En fonctions des situations, il y a plusieurs raisons d'utiliser des abstractions, raisons qui se combinent souvent, par exemple{nbsp}:
+En fonctions des situations, il y a plusieurs raisons d'utiliser des abstractions, raisons qui se combinent souvent, par exemple :
 
-* Rendre plus simple l'utilisation de la fonctionnalité{nbsp};
-* Permettre de modifier l'implémentation de la fonctionnalité sans que cela n'ait de conséquences sur les outils qui utilisent l'API{nbsp};
-* Pouvoir avoir plusieurs implémentations différentes et permettre de passer de l'une à l'autre sans conséquences sur les outils qui utilisent l'API{nbsp};
+* Rendre plus simple l'utilisation de la fonctionnalité ;
+* Permettre de modifier l'implémentation de la fonctionnalité sans que cela n'ait de conséquences sur les outils qui utilisent l'API ;
+* Pouvoir avoir plusieurs implémentations différentes et permettre de passer de l'une à l'autre sans conséquences sur les outils qui utilisent l'API ;
 * …
 
 Les abstractions sont immensément utiles.
 
 Imaginez si les applications web avaient besoin d'avoir connaissance du fait que la machine sur laquelle elles fonctionnent utilise des disques magnétique ou des SSD.
-Cela signifierait d'avoir à coder (et à tester) les deux situations, que pour ajouter un disque SSD il faudrait valider la compatibilité des applications{nbsp}…
+Cela signifierait d'avoir à coder (et à tester) les deux situations, que pour ajouter un disque SSD il faudrait valider la compatibilité des applications …
 
-== Qu'est-ce qu'une leaky abstraction{nbsp}?
+== Quand les abstractions ont des fuites
 
 Parfois les abstractions ont des défauts.
-C'est par exemple le cas des "`leaky abstraction`", ou link:https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/[abstractions qui fuient].
+
+C'est par exemple le cas des "`leaky abstraction`", ou link:https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/[abstractions qui ont des fuites].
 
 Une abstractions qui fuit est une abstraction dont certaines parties du fonctionnement interne qui sont supposés être masquées aux outils sont quand même visible d'une manière ou d'une autre.
+Dans ce cas le fonctionnement interne fuit à travers l'abstraction qui est sensé le garder à l'intérieur, comme l'eau à travers le trou d'un tuyau.
 
-Par exemple une abstraction permettant de manière transparente d'appeler un service local ou distant n'aura peut-être pas les mêmes performances ou les mêmes erreurs suivant les cas.
+Par exemple une abstraction permettant de manière transparente d'appeler un service local ou distant n'aura peut-être pas les mêmes performances ou les mêmes cas d'erreur dans les cas.
 
 Si une personne développe avec une implémentation locale, elle pourra avoir des mauvaises surprise si le déploiement en production se fait sur une implémentation distante.
+Il lui faudra alors peut-être adapter son code pour prendre en compte les deux possibilité (gérer les différents cas d'erreur, ou implémenter des comportements différents si la différence de performance est suffisamment importante).
 
-La fuite peut se faire au niveau de l'API (par exemple des paramètres subtilement différents), ou du fonctionnement, car la performance ou la fiabilité ne font pas partie de l'API.
+== Fuite ou pas fuite ?
 
+Déterminer si quelque chose est une fuite dans une abstraction n'est pas toujours facile.
+
+Par exemple dans le cas d'une bibliothèque permettant des appels locaux ou distants, la différence de performance est prévisible.
+
+Fournir une même syntaxe d'appel dans les deux cas ne signifie pas qu'ils vont avoir les mêmes performances.
+C'est la personne qui développe qui fait peut-être l'hypothèse "`si la syntaxe est identique cela veut probablement dire que la performance l'est aussi`".
+
+Cela signifie qu'il n'y a pas de tromperie de la part de l'outil, mais seulement une mauvaise interprétation de la part de la personne.
+Le problème n'est pas forcément l'abstraction fournie par l'outil, mais le modèle mental de l'abstraction faite par la personne.
+
+Dans le cas d'un outil dont la fonction principale est de masquer le fait que des appels soient locaux ou distants, il pourrait être pertinent que l'outil précise explicitement que les performances ne sont pas les mêmes dans les deux cas, car la mauvaise interprétation repose sur une hypothèse naturelle (*trouver un meilleur mot*).
+
+== Une abstraction ça va …
+
+Mais quand plusieurs abstractions sont empilées, cela devient plus compliqué.
+Par exemple si vous utilisez un outil d'édition de texte avec un système de fichier distants, comme un partage de fichier windows, les performances seront peut-être dégradées, et vous aurez peut-être des erreurs -- comme des erreurs de déconnexions réseau -- auxquelles vous ne vous attendiez pas de la part d'un éditeur de texte, car votre modèle mental d'un éditeur de texte est celui d'une éditions de fichier locale.
+
+L'outil d'édition ne texte ne sait rien de l'endroit d'où viennent les fichiers : il s'agit d'une abstraction fournie par le système d'exploitation.
+Il est même possible que les personnes qui développent l'outil ne l'aient jamais utilisé ou testé dans cette situation.
+
+Par rapport à l'outil précédent, il paraîtrait plus étrange de demander à la documentation de l'éditeur de texte de préciser ce comportement spécifique, car l'abstraction est hors de son domaine.
+
+=> ne pas comprendre les présupposés des systèmes qu'on utilise, c'est le risque d'être surpris au mauvais moment
+=> les abstractions masquent le fonctionnement interne, mais en fait il faut quand même en savoir assez
+=> plus les systèmes sont complexes, plus on augmente le risque
 
 == Qu'est-ce que la mechanical sympathy, des exemples
 
