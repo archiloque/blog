@@ -42,6 +42,37 @@ We added notifications to our event store so services could subscribe to updates
 The literature describes event-sourced and event-driven architectures as orthogonal, and that tripped us up. We came to realise that clearly distinguishing between commands that trigger activity and events that represent what happened in the past is even more important than Command/Query Responsibility Segregation, especially at the modest scale and strict consistency requirements of our system. The word “event” is such an overused term we had many discussions about how to name different kinds of event to distinguish between those that are part of the event-sourcing history, those that are emitted by our active application monitoring, those that are notifications that should trigger activity, and so on. In our new applications we use the term Business Process Event for events recorded in our event-sourcing history.
 ____
 
+== link:https://lists.llvm.org/pipermail/cfe-dev/2019-July/062799.html[ConstExprPreter — clang constexpr interpreter]
+
+[quote]
+____
+TL;DR: Fast interpreter for C++ constexpr to replace the existing tree evaluator
+
+I am a PhD student at the University of Cambridge currently interning at Apple, 
+working with JF Bastien and Michael Spencer on improving constexpr performance. 
+Constexpr evaluation is presently slow and difficult since it relies on a 
+monolithic AST walker. We propose replacing the tree evaluator with a bytecode 
+interpreter to improve compilation times. The tree evaluator also poses 
+significant maintenance and scalability problems, which we intend to ameliorate 
+using the interpreter. While being generally faster, the interpreter does 
+present two critical issues: a slightly increased memory footprint and added 
+complexity to the compiler. This tradeoff is justified, as efficient constexpr 
+evaluation could prove to be valuable as the language evolves.
+
+We would like to integrate this interpreter into clang. This RFC details the 
+benefits of an interpreter and describes an initial implementation, along with 
+a roadmap for replacing almost all of the tree evaluator with the interpreter. 
+Even without optimizations, the performance of the interpreter matches that of 
+the tree evaluator, thus the short-term focus is on feature completeness, not 
+evaluation speed, as reflected by known inefficiencies in the current 
+implementation. We would highly appreciate comments related to integration into 
+clang and our roadmap towards replacing the evaluator, as well as feedback on 
+the initial patch. This project serves mostly as a prototype in order to 
+determine what kind of bytecode and compiler is required to efficiently evaluate 
+code and emit useful diagnostic messages, paving the way for a future fast, 
+potentially JIT-ed, interpreter.
+____
+
 == link:https://medium.com/@copyconstruct/distributed-tracing-weve-been-doing-it-wrong-39fc92a857df[Distributed Tracing — we’ve been doing it wrong]
 
 [quote]
