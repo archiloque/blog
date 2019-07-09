@@ -5,7 +5,9 @@ v0.1, 2019-06-03
 :source-highlighter: pygments
 :pygments-style: friendly
 
-== Qu'est-ce qu'une abstraction ?
+== Les abstractions
+
+=== Qu'est-ce qu'une abstraction ?
 
 Dans cet article, une abstraction correspond au fait d'exposer une API au dessus d'une fonctionnalité d'une manière qui n'expose pas toute la complexité interne de la fonctionnalité, mais au contraire qui met à disposition une version simplifiée.
 
@@ -23,7 +25,7 @@ Les abstractions sont immensément utiles.
 Imaginez si les applications web avaient besoin d'avoir connaissance du fait que la machine sur laquelle elles fonctionnent utilise des disques magnétique ou des SSD.
 Cela signifierait d'avoir à coder (et à tester) les deux situations, que pour ajouter un disque SSD il faudrait valider la compatibilité des applications …
 
-== Quand les abstractions ont des fuites
+=== Quand les abstractions ont des fuites
 
 Parfois les abstractions ont des défauts.
 
@@ -37,7 +39,7 @@ Par exemple une abstraction permettant de manière transparente d'appeler un ser
 Si une personne développe avec une implémentation locale, elle pourra avoir des mauvaises surprise si le déploiement en production se fait sur une implémentation distante.
 Il lui faudra alors peut-être adapter son code pour prendre en compte les deux possibilité (gérer les différents cas d'erreur, ou implémenter des comportements différents si la différence de performance est suffisamment importante).
 
-== Fuite ou pas fuite ?
+=== Fuite ou pas fuite ?
 
 Déterminer si quelque chose est une fuite dans une abstraction n'est pas toujours facile.
 
@@ -49,9 +51,9 @@ C'est la personne qui développe qui fait peut-être l'hypothèse "`si la syntax
 Cela signifie qu'il n'y a pas de tromperie de la part de l'outil, mais seulement une mauvaise interprétation de la part de la personne.
 Le problème n'est pas forcément l'abstraction fournie par l'outil, mais le modèle mental de l'abstraction faite par la personne.
 
-Dans le cas d'un outil dont la fonction principale est de masquer le fait que des appels soient locaux ou distants, il pourrait être pertinent que l'outil précise explicitement que les performances ne sont pas les mêmes dans les deux cas, car la mauvaise interprétation repose sur une hypothèse naturelle (*trouver un meilleur mot*).
+Dans le cas d'un outil dont la fonction principale est de masquer le fait que des appels soient locaux ou distants, il pourrait être pertinent que l'outil précise explicitement que les performances ne sont pas les mêmes dans les deux cas, car la mauvaise interprétation est prévisible.
 
-== Une abstraction ça va …
+=== Une abstraction ça va …
 
 Mais quand plusieurs abstractions sont empilées, cela devient plus compliqué.
 Par exemple si vous utilisez un outil d'édition de texte avec un système de fichier distants, comme un partage de fichier windows, les performances seront peut-être dégradées, et vous aurez peut-être des erreurs -- comme des erreurs de déconnexions réseau -- auxquelles vous ne vous attendiez pas de la part d'un éditeur de texte, car votre modèle mental d'un éditeur de texte est celui d'une éditions de fichier locale.
@@ -59,27 +61,44 @@ Par exemple si vous utilisez un outil d'édition de texte avec un système de fi
 L'outil d'édition ne texte ne sait rien de l'endroit d'où viennent les fichiers : il s'agit d'une abstraction fournie par le système d'exploitation.
 Il est même possible que les personnes qui développent l'outil ne l'aient jamais utilisé ou testé dans cette situation.
 
-Par rapport à l'outil précédent, il paraîtrait plus étrange de demander à la documentation de l'éditeur de texte de préciser ce comportement spécifique, car l'abstraction est hors de son domaine.
+L'outil est peut-être même sorti avant que ce système de partage de fichier n'existe. C'est par exemple le cas lorsque [.line-through]#Google Doc# [.line-through]#Google Drive# Google One change son implémentation de synchronization : du jour au lendemain vos outils utiliseront le nouveau système sans avoir pu être testé auparavant.
 
-* => ne pas comprendre les présupposés des systèmes qu'on utilise, c'est le risque d'être surpris au mauvais moment
-* => les abstractions masquent le fonctionnement interne, mais en fait il faut quand même en savoir assez
-* => plus une abstraction fonctionne bien (elle masque mieux), plus on risque une mauvaise surprise au mauvais moment
-* => plus les systèmes sont complexes, plus on augmente le risque
+Par rapport à l'outil précédent, il paraîtrait plus étrange de demander à la documentation de l'éditeur de texte de préciser ces comportements spécifiques.
 
-== Qu'est-ce que la mechanical sympathy, des exemples
+=== Que faire ?
+
+Les abstractions sont immensément utiles : ce sont elles qui permettent de faire en sorte qu'un système composé de multiples composants au reste raisonnablement utilisable.
+
+Le revers de la médaille c'est que lorsqu'une abstraction fuite et que cela cause un problème, résoudre le problème peut nécessiter d'avoir à comprendre le fonctionnement interne de l'abstraction, alors que jusque là on n'avait pas à s'en préoccuper.
+
+Un peu paradoxalement, plus une abstraction est efficace et mieux elle masque les choses, plus le risque que cette situation apparaisse.
+
+Plus un système est complexe, plus il y a le risque qu'une interaction entre deux briques aboutisse à cette situation, avec en plus le fait qu'avant de pouvoir corriger le problème il faut commencer par identifier où il se trouve.
+
+C'est un risque important dans les systèmes modulaires donc les composants peuvent varier (comme le noyau Linux), face aux systèmes conçus d'un seul tenant (comme les systèmes d'exploitation embarqués).
+
+On a passé le point où on peut exiger d'une équipe de développement -- voire même d'une organisation -- qu'elle maîtrise du haut en bas les systèmes qu'elle utilise.
+
+Beaucoup de grandes organisation gèrent ce risque en payant du support auprès d'entreprises : il s'agit de sous-traiter le fait d'avoir à maintenir un certain niveau d'expertise.
+
+QQQQ
+
+== La mechanical sympathy
+
+=== Qu'est-ce que la mechanical sympathy, des exemples
 
 Parfois briser l'encapsulation est une bonne chose
 
-== Leaky ou sympathy
+=== Leaky ou sympathy
 
 Discussion sur le fait que la différence c'est de subir ou pas la désencapsulation
 
 Quand on designe une API, on peut faire le choix de permettre de supprimer une couche (et ça a des conséquences), mais leaky c'est un problème
 
-== Pourquoi l'encapsulation d'un appel HTTP dans un service comme dans l'exemple en
+=== Pourquoi l'encapsulation d'un appel HTTP dans un service comme dans l'exemple en
 dessous pose problème
 
-== Une idée/proposition de modélisation qui est enrichi de "mechanical sympathy"
+=== Une idée/proposition de modélisation qui est enrichi de "mechanical sympathy"
 
 ''''
 
