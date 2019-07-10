@@ -65,7 +65,7 @@ L'outil est peut-être même sorti avant que ce système de partage de fichier n
 
 Par rapport à l'outil précédent, il paraîtrait plus étrange de demander à la documentation de l'éditeur de texte de préciser ces comportements spécifiques.
 
-=== Que faire ?
+=== Multiplier les couches et les risques
 
 Les abstractions sont immensément utiles : ce sont elles qui permettent de faire en sorte qu'un système composé de multiples composants au reste raisonnablement utilisable.
 
@@ -75,26 +75,41 @@ Un peu paradoxalement, plus une abstraction est efficace et mieux elle masque le
 
 Plus un système est complexe, plus il y a le risque qu'une interaction entre deux briques aboutisse à cette situation, avec en plus le fait qu'avant de pouvoir corriger le problème il faut commencer par identifier où il se trouve.
 
-C'est un risque important dans les systèmes modulaires donc les composants peuvent varier (comme le noyau Linux), face aux systèmes conçus d'un seul tenant (comme les systèmes d'exploitation embarqués).
-
-On a passé le point où on peut exiger d'une équipe de développement -- voire même d'une organisation -- qu'elle maîtrise du haut en bas les systèmes qu'elle utilise.
-
-Beaucoup de grandes organisation gèrent ce risque en payant du support auprès d'entreprises : il s'agit de sous-traiter le fait d'avoir à maintenir un certain niveau d'expertise.
-
-QQQQ
+C'est un risque important dans les systèmes modulaires donc les composants peuvent varier (comme un système Linux), face aux systèmes conçus d'un seul tenant (comme les systèmes d'exploitation embarqués).
 
 == La mechanical sympathy
 
-=== Qu'est-ce que la mechanical sympathy, des exemples
+=== Qu'est-ce que la mechanical sympathy ?
 
-Parfois briser l'encapsulation est une bonne chose
+L'un des objectif d'un système basé sur des abstractions est souvent d'éviter aux personnes qui l'utilisent d'avoir à comprendre son fonctionnement interne pour pouvoir l'utiliser.
+
+Il arrive qu'un problème de conception ou de mise en œuvre du modèle fasse fuiter l'abstraction, et on est alors obligé de comprendre les rouages internes pour s'en servir.
+
+Mais il peut aussi arriver qu'on ait envie de comprendre un système, même si l'abstraction qu'il propose fonctionne de manière satisfaisante, et c'est ce qu'on appelle _mechanical sympathy_ ou sympathie pour la mécanique.
+
+[quote, Jackie Stewart, pilote de course]
+____
+Vous n'avez pas besoin d'être ingénieur·e pour être pilote de course, mais vous avez besoin d'avoir de la sympathie pour la mécanique.
+____
+
+L'idée de la sympathie pour la mécanique est que pour utiliser _efficacement_ un système, il peut être préférable de comprendre ce qui se passe sous le capot.
+
+Efficacement peut signifier atteindre un certain niveau de performance, mais peut aussi vouloir dire pouvoir rapidement diagnostiquer des problèmes ou expliquer certains comportements.
+
+=== Mechanical sympathy et respect du modèle
+
+Ce n'est pas parce qu'on comprend le fonctionnement qu'on va briser l'encapsulation et se mettre à triturer partout.
+
+Parce briser les encapsulation rend les systèmes plus compliqués à comprendre et à maintenir.
+Au contraire, avec la mechanical sympathy, mieux tu comprends la complexité sous-jacente du système mieux tu comprends la valeur à avoir des modules bien isolé.
+
+Mieux comprendre ça peut aussi permettre de mieux utiliser l'abstraction pour ne pas avoir à la contourner. Exemple avec un ORM
+
+QQQ
 
 === Leaky ou sympathy
 
-Discussion sur le fait que la différence c'est de subir ou pas la désencapsulation
-
-Quand on designe une API, on peut faire le choix de permettre de supprimer une couche (et ça a des conséquences), mais leaky c'est un problème
-
+Discussion sur le fait que la différence c'est de subir ou pas la 
 === Pourquoi l'encapsulation d'un appel HTTP dans un service comme dans l'exemple en
 dessous pose problème
 
