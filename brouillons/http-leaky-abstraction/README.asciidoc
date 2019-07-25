@@ -11,7 +11,7 @@ v0.1, 2019-06-03
 
 Dans cet article, une abstraction correspond au fait d'exposer une API au dessus d'une fonctionnalité d'une manière qui n'expose pas toute la complexité interne de la fonctionnalité, mais au contraire qui met à disposition une version simplifiée.
 
-Par exemple certaines API proposées pour écrire des fichiers masquent les questions de cache, de gestion des erreurs, de spécificité de chaque système de fichier{nbso}…
+Par exemple certaines API proposées pour écrire des fichiers masquent les questions de cache, de gestion des erreurs, de spécificité de chaque système de fichier …
 
 En fonctions des situations, il y a plusieurs raisons d'utiliser des abstractions, raisons qui se combinent souvent, par exemple :
 
@@ -27,7 +27,7 @@ Cela signifierait d'avoir à coder (et à tester) les deux situations, que pour 
 
 === Quand les abstractions ont des fuites
 
-Parfois les abstractions ont des défauts.
+Les abstractions sont souvent imparfaites.
 
 C'est par exemple le cas des "`leaky abstraction`", ou link:https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/[abstractions qui ont des fuites].
 
@@ -77,15 +77,32 @@ Plus un système est complexe, plus il y a le risque qu'une interaction entre de
 
 C'est un risque important dans les systèmes modulaires donc les composants peuvent varier (comme un système Linux), face aux systèmes conçus d'un seul tenant (comme les systèmes d'exploitation embarqués).
 
+Un exemple parlant est link:https://danluu.com/deconstruct-files/[la gestion de fichiers sous Linux] : à l'heure actuel le fonctionnement créé par l'empilement de couches successives est si compliqué que seul un nombre infimes d'applications utilisent les APIs d'une manière fiable.
+
+=== Gérer l'écart de connaissance
+
+Avec un link:https://fr.wikipedia.org/wiki/Mapping_objet-relationnel[ORM] : un ORM et une base de donnée standard peuvent permettre de faire pas mal de chose sans savoir comment les requêtes sont construites ni comment la base fonctionne.
+
+Avec le progrès de la technologie et des modèles de conceptions, on peut aller de plus en plus loin de cette manière, c'est une bonne chose car cela veut dire que les personnes qui développent ce genre d'applications ont besoin de savoir moins de choses, et donc peuvent être formées plus rapidement.
+
+Mais plus le modèle de donnée devient compliqué et plus les volumes augmentent, plus il devient difficile ou risqué de se passer d'une connaissance intime des différents éléments.
+Cela signifie qu'à un moment donnée il faudra d'une certaine manière rembourser l'économie de connaissance qu'on a fait jusque là.
+
+Dans l'idéal, la connaissance d'un outil devrait croître avec son utilisation, et l'écart entre ce qu'on sait d'un système et son fonctionnement devrait rester sous contrôle.
+
+Malheureusement, tant que tout va bien il est difficile de mesurer cet écart si on n'en sait pas déjà suffisamment sur le fonctionnement du système. Dans ce cas là on n'en sait pas assez pour savoir ce qu'on ne sait. 
+
 == La mechanical sympathy
 
 === Qu'est-ce que la mechanical sympathy ?
 
-L'un des objectif d'un système basé sur des abstractions est souvent d'éviter aux personnes qui l'utilisent d'avoir à comprendre son fonctionnement interne pour pouvoir l'utiliser.
+La mise en place d'abstractions peut permettre d'éviter aux personnes qui l'utilisent d'avoir à comprendre son fonctionnement interne pour pouvoir l'utiliser.
 
-Il arrive qu'un problème de conception ou de mise en œuvre du modèle fasse fuiter l'abstraction, et on est alors obligé de comprendre les rouages internes pour s'en servir.
+Comme on l'a vu plus haut, il arrive qu'un problème de conception ou de mise en œuvre du modèle fasse fuiter l'abstraction, et on est alors obligé de comprendre les rouages internes pour s'en servir.
 
-Mais il peut aussi arriver qu'on ait envie de comprendre un système, même si l'abstraction qu'il propose fonctionne de manière satisfaisante, et c'est ce qu'on appelle _mechanical sympathy_ ou sympathie pour la mécanique.
+Dans d'autres case, connaître l'abstraction suffit pour faire fonctionner le système dans les situations standards.
+
+Mais il reste les cas standards, et c'est là qu'arrive la _mechanical sympathy_ ou sympathie pour la mécanique.
 
 [quote, Jackie Stewart, pilote de course]
 ____
@@ -94,24 +111,31 @@ ____
 
 L'idée de la sympathie pour la mécanique est que pour utiliser _efficacement_ un système, il peut être préférable de comprendre ce qui se passe sous le capot.
 
-Efficacement peut signifier atteindre un certain niveau de performance, mais peut aussi vouloir dire pouvoir rapidement diagnostiquer des problèmes ou expliquer certains comportements.
+Efficacement peut signifier atteindre un certain niveau de performance ou d'efficacité, mais peut aussi vouloir dire pouvoir rapidement diagnostiquer des problèmes ou expliquer certains comportements.
+
+Dans mon expérience il s'agit souvent d'un trait de caractère : certaines personnes préfèrent en savoir juste assez pour travailler et ainsi avancer rapidement, alors que d'autres préfèrent investir plus de temps pour comprendre leur outils, quitte à parfois y consacrer plus de temps que ce qui est utile.
+
+Les deux postures ayant des avantages et des inconvénients, le mieux est d'essayer de construire un équilibre dans les deux au niveau des équipes et des organisations.
 
 === Mechanical sympathy et respect du modèle
 
-Ce n'est pas parce qu'on comprend le fonctionnement qu'on va briser l'encapsulation et se mettre à triturer partout.
+Plus on comprend le fonctionnement interne d'une abstraction, et plus on a conscience de ses limites ou simplement de ses imperfections.
 
-Parce briser les encapsulation rend les systèmes plus compliqués à comprendre et à maintenir.
-Au contraire, avec la mechanical sympathy, mieux tu comprends la complexité sous-jacente du système mieux tu comprends la valeur à avoir des modules bien isolé.
+Dans une situation où l'abstraction nous gène, on a les dents qui grincent.
+Parfois cette gène est légitime car elle a des conséquences mesurables, mais parfois il s'agit simplement d'une frustration causée par l'écart entre le fonctionnement observé et la situation idéale, même s'il ne change rien.
 
-Mieux comprendre ça peut aussi permettre de mieux utiliser l'abstraction pour ne pas avoir à la contourner. Exemple avec un ORM
+C'est le cliché de la personne obsédée par l'inefficacité des ORMs comparé au fait d'écrire des requêtes SQL optimisées à chaque cas, et qui en fait une affaire personnelle.
 
-QQQ
+Mais il ne s'agit pas de la seule attitude possible :
+si mieux comprendre le fonctionnement interne des systèmes fait mieux comprendre leurs imperfections, il peut aussi permettre de mieux percevoir les avantages conférés par leurs abstractions, par exemple la capacité à garder la complexité sous contrôle.
 
-=== Leaky ou sympathy
+D'une certaine manière, diminuer la complexité d'un système et donc avoir recourt à des abstractions a souvent un coût sous forme d'inefficacité.
 
-Discussion sur le fait que la différence c'est de subir ou pas la 
+Connaître de fond en comble un ORM peut permettre de percevoir que l'inefficacité des requêtes qu'il produit peut être acceptable, et de savoir comment s'en sortir dans les cas limites sans remettre en cause tout le modèle.
+
+On a toujours les dents qui grincent, mais on sait qu'il s'agit de la moins mauvaise solution.
+
 === Pourquoi l'encapsulation d'un appel HTTP dans un service comme dans l'exemple en
-dessous pose problème
 
 === Une idée/proposition de modélisation qui est enrichi de "mechanical sympathy"
 
