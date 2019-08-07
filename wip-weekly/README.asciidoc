@@ -54,3 +54,17 @@ But I'm going to make an argument which I think mostly works regardless of the s
 * Monorepo is great if you're really good, but absolutely terrible if you're not that good.
 * Multiple repos, on the other hand, are passable for everyone – they're never great, but they're never truly terrible, either.
 ____
+
+== link:https://chadaustin.me/2015/07/sum-types/[Sum Types Are Coming: What You Should Know
+]
+
+[quote]
+____
+Just as all mainstream languages now have lambda functions, I predict sum types are the next construct to spread outward from the typed functional programming community to the mainstream. Sum types are very useful, and after living with them in Haskell for a while, I miss them deeply when using languages without them.
+
+Fortunately, sum types seem to be catching on: both link:https://doc.rust-lang.org/book/enums.html[Rust] and link:https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID146[Swift] have them, and it sounds like TypeScript's developers are at least link:https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID146[open to the idea].
+
+I am writing this article because, while sum types are conceptually simple, most programmers I know don't have hands-on experience with them don't have a good sense of their usefulness.
+
+In this article, I'll explain what sum types are, how they're typically represented, and why they're useful. I will also dispel some common misconceptions that cause people to argue sum types aren't necessary.
+____
