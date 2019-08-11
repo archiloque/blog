@@ -27,11 +27,11 @@ So how to solve such ad-hoc tasks? One could of course solve it also on applicat
 - UnityJDBC virtual driver + SQuirrelL SQL client
 ____
 
-== link:https://lwn.net/Articles/728682/[IncludeOS: a unikernel for C++ applications]
+== link:https://lwn.net/Articles/728682/[IncludeOS: a unikernel for {cpp} applications]
 
 [quote]
 ____
-IncludeOS is a project to create a C++ API for the development of unikernel-based applications. When an application is built using IncludeOS, the development toolchain will link in the parts of the IncludeOS library required to run it and create a disk image with a bootloader attached. An IncludeOS image can be hundreds of times smaller than the Ubuntu system image for running an equivalent program. Start times for the images run in the hundreds of milliseconds, making it possible to spin up many such virtual machine images quickly.
+IncludeOS is a project to create a {cpp} API for the development of unikernel-based applications. When an application is built using IncludeOS, the development toolchain will link in the parts of the IncludeOS library required to run it and create a disk image with a bootloader attached. An IncludeOS image can be hundreds of times smaller than the Ubuntu system image for running an equivalent program. Start times for the images run in the hundreds of milliseconds, making it possible to spin up many such virtual machine images quickly.
 
 When an IncludeOS image boots, it initializes the operating system by setting up memory, running global constructors, and registering drivers and interrupt handlers. In an IncludeOS unikernel, virtual memory is not enabled, and a single address space is used by both the application and the unikernel library. Therefore there is no concept of system calls or user space; all operating system services are called with a simple function call to the library and all run in privileged mode.
 

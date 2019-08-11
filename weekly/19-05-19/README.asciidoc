@@ -88,7 +88,7 @@ So if we have an operation that would have _undefined behavior_ in a context tha
 
 We have another great tool at our service and that is link:https://godbolt.org/[godbolt also known as Compiler Explorer]. Compiler Explorer is an interactive compiler, we can use it to obtain diagnostics for small code quickly. If you make a modifications it updates immediately allowing one to iterate quickly over small changes.
 
-Compiler Explorer, combined with the fact that undefined behavior is ill-formed in a constant expressions, allows us to explore what is and what is not undefined behavior in an interactive and quick manner. Now I know what you are thinking, "`Shafik, this sounds too much like having your cake and eating it too`", ok so there are some caveats here. I mentioned before that not everything is allowed in a constant expression. For example heap allocation, reinterpret_cast etc. so there are classes of undefined behavior we cannot explore e.g. use after free and strict aliasing violations. Will also learned about a couple of exceptions, (_this wouldn't be C++ if there weren't exceptions_). There are still plenty of interesting cases to explore and learn from.
+Compiler Explorer, combined with the fact that undefined behavior is ill-formed in a constant expressions, allows us to explore what is and what is not undefined behavior in an interactive and quick manner. Now I know what you are thinking, "`Shafik, this sounds too much like having your cake and eating it too`", ok so there are some caveats here. I mentioned before that not everything is allowed in a constant expression. For example heap allocation, reinterpret_cast etc. so there are classes of undefined behavior we cannot explore e.g. use after free and strict aliasing violations. Will also learned about a couple of exceptions, (_this wouldn't be {cpp} if there weren't exceptions_). There are still plenty of interesting cases to explore and learn from.
 ____
 
 == link:http://tasvideos.org/6347S.html[Submission #6347: Chef Stef's NES Arkanoid "warpless" in 11:11.18]
@@ -105,7 +105,7 @@ The bottleneck was emulation speed. Could I improve performance within the emula
 
 And then I realized something - what if I could simulate the game state instead of emulating it? There's a lot of overhead in running BizHawk, running the Lua engine, and emulating the NES internals that isn't necessary if we're just trying to make a ball bounce around. Could I instead write an optimized, bare-bones program that mimicked Arkanoid's mechanics and then run my brute force bot on that?
 
-So I went back to the drawing board. I disassembled the game, analyzed its logic, pulled out the routines that mattered for gameplay, and rewrote them all in C++. Logic for graphics, sound, and such could be omitted since they don't affect the physics or any outcomes in the game.
+So I went back to the drawing board. I disassembled the game, analyzed its logic, pulled out the routines that mattered for gameplay, and rewrote them all in {cpp}. Logic for graphics, sound, and such could be omitted since they don't affect the physics or any outcomes in the game.
 
 With the replicated game engine in hand, the next step was proving it was equivalent to the original. I constructed a test harness that fed Baxter's TAS inputs into the engine and compared memory values against what BizHawk showed for any divergence. This uncovered many small issues and inconsistencies that I painstakingly fixed. Eventually I'd resolved everything and could "play back" Baxter's TAS perfectly.
 

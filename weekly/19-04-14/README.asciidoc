@@ -58,7 +58,7 @@ ____
 
 [quote]
 ____
-In Java, C++, Scala and C#, subclassing implies subtyping. A Java subclass declaration, such as `class A extends B {}` does two things at the same time: it inherits code from B; and it creates a subtype of B.
+In Java, {cpp}, Scala and C#, subclassing implies subtyping. A Java subclass declaration, such as `class A extends B {}` does two things at the same time: it inherits code from B; and it creates a subtype of B.
 Therefore a subclass must always be a subtype of the extended class. Such design choice where subclassing implies subtyping is not universally accepted.
 Historically, there has been a lot of focus on separating subtyping from subclassing. This separation is claimed to be good for code-reuse, design and reasoning. There are at least two distinct situations where the separation of subtyping and subclassing is helpful.
 
