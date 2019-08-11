@@ -22,7 +22,7 @@ Dans les outils "`historiques`", on peut utiliser link:https://httpd.apache.org/
 
 Ensuite sont venus les patterns de link:https://fr.wikipedia.org/wiki/Enterprise_service_bus[bus d'entreprise] permettant de le faire dans des proxys de services ou de messages.
 
-Dans les outils actuels, on peut embarquer du code link:https://openresty.org[Nginx], et de nombreux outils NoSQL permettent d'écrire du code excecuté dans la base, que ça doit du code natif dans un style "`map-reduce`" dans des bases comme Cassandra, ou des choses plus classiques comme dans link:https://redis.io/commands/eval[Redis] ou link:https://docs.mongodb.com/manual/tutorial/store-javascript-function-on-server/[MongoDB]).
+Dans les outils actuels, on peut embarquer du code link:https://openresty.org[Nginx], et de nombreux outils NoSQL permettent d'écrire du code exécuté dans la base, que ça doit du code natif dans un style "`map-reduce`" dans des bases comme Cassandra, ou des choses plus classiques comme dans link:https://redis.io/commands/eval[Redis] ou link:https://docs.mongodb.com/manual/tutorial/store-javascript-function-on-server/[MongoDB]).
 
 L'idée est simple et le besoin réel{nbsp}: exécuter du code au plus près de sa source (la source de la requêtes pour les _middleware_, la source de la donnée pour les bases de données) permet de gagner en efficacité, par exemple en répondant plus rapidement ou en économisant des traitements.
 Cela se rapproche du link:https://fr.wikipedia.org/wiki/Edge_computing[edge computing].
@@ -66,7 +66,7 @@ Le choix doit se faire en évaluant les gains attendus face à ces contraintes.
 C'est cette manière de faire qui permet à mon avis d'éviter les mauvaises surprises, mais aussi de dissiper les fantasmes{nbsp}: il s'agit d'un outil de plus qui doit s'évaluer comme les autres.
 
 Comme souvent, la solution intermédiaire qui est de limiter les usages est la plus tentante{nbsp}: en théorie elle permet d'avoir les avantages sans les inconvénients.
-En pratique n'oublier pas qu'elle demande de mettre en place de la gouvernance pour piloter les usages, et qu'une fois qu'un outil est mis en place et fonctionne de manière satisfaisante il devient très difficile de refuser d'en augmenter l'usage.
+En pratique n'oubliez pas qu'elle demande de mettre en place de la gouvernance pour piloter les usages, et qu'une fois qu'un outil est mis en place et fonctionne de manière satisfaisante il devient très difficile de refuser d'en augmenter l'usage.
 
 Il n'y a donc pas de réponse unique, comme toujours réfléchissez à vos besoins et évaluez ce qu'il est possible de faire.
 
