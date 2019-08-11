@@ -1,6 +1,7 @@
-= Où mettre son code{nbsp}?
+= Faut-il mettre du code partout{nbsp}?
 Julien Kirch
 v0.1, 2019-08-07
+:article_image: where.jpg
 :article_lang: fr
 
 En informatique, les logiciels de bureautique sont gouvernés par la loi de link:https://www.jwz.org[Zawinski]{nbsp}:
@@ -10,7 +11,7 @@ ____
 Tout logiciel gagne des fonctionnalités jusqu'à être capable de lire des mails. Ceux qui n'en sont pas capables sont remplacés par d'autres qui le sont.
 ____
 
-Une loi semblable semble s'appliquer aux _middleware_{nbsp}:
+J'ai l'impression qu'une loi semblable s'applique aux _middleware_{nbsp}:
 
 [quote]
 ____
@@ -36,7 +37,7 @@ Face à la possibilité d'utiliser ces fonctionnalités, je rencontre plutôt tr
 
 Si les outils existent et que le besoin est pertinent, pourquoi est ce que l'usage de ce genre de choses n'est pas généralisé, et que l'idée même de s'en servir provoque des réactions presque violentes chez certaines personnes{nbsp}?
 
-Tout d'abord il y a la connaissance et les on-dit{nbsp}: les procédures stockées et équivalent ont mauvaise réputation et ces outils sont mal connus et peu prestigieux.
+Il y a tout d'abord les on-dit{nbsp}: les procédures stockées et équivalent ont mauvaise réputation, et quand on en entend parler c'est pour des histoires catastrophique.
 
 Le fait que les technologies soient moins connues car peu utilisées peut peser légitimement dans la balance car ajouter un nouveau langage de programmation n'est pas anodin, d'autant plus pour des langages exotiques comme PL/pgSQL.
 
@@ -47,6 +48,8 @@ Par exemple les frameworks peuvent être moins avancés, le support des éditeur
 L'autre problème est que le code déployé dans des outils n'est pas toujours considéré comme du "`vrai`" code du point de vue de l'organisation et des process.
 D'un côté cela peut vouloir dire pas de _peer review_, pas de vraie recette, ou des déploiement à la sauvette, ce qui peut donner lieu à des effets d'aubaines ("`Chic, on peut déployer quand on veut`"), mais aussi des risques d'erreurs accrus.
 D'un autre cela peut bloquer l'usage de ces outils dans des organisations très structurées, par exemple lorsque le process n'existe pas, ou que la base de données sont le domaine réservé d'une autre équipe.
+
+Dans mon expérience c'est l'accumulation qui fait vraiment mal{nbsp}: un langage mal maîtrisé, pas de tests automatisé et une recette minimaliste et vous vous retrouvez avec du code que personne ne veut toucher.
 
 La dernière limite est l'impact sur l'outil en cas de problème{nbsp}: par exemple une base de donnée est en général réputée fiable et on sait qu'on peut compter dessus, en cas de problème au pire elle ralentira.
 Une base de données avec du code cela signifie que des requêtes peuvent planter, qu'on peut potentiellement avoir des fuite de mémoire … bref toutes les caractéristique d'une brique applicative. Est ce que pour répondre plus rapidement à certaines requêtes, on est prêt à potentiellement planter le proxy http et ne plus répondre à rien{nbsp}?
@@ -61,6 +64,9 @@ Cela signifie que les critères de choix de technologies doivent être les même
 
 Le choix doit se faire en évaluant les gains attendus face à ces contraintes.
 C'est cette manière de faire qui permet à mon avis d'éviter les mauvaises surprises, mais aussi de dissiper les fantasmes{nbsp}: il s'agit d'un outil de plus qui doit s'évaluer comme les autres.
+
+Comme souvent, la solution intermédiaire qui est de limiter les usages est la plus tentante{nbsp}: en théorie elle permet d'avoir les avantages sans les inconvénients.
+En pratique n'oublier pas qu'elle demande de mettre en place de la gouvernance pour piloter les usages, et qu'une fois qu'un outil est mis en place et fonctionne de manière satisfaisante il devient très difficile de refuser d'en augmenter l'usage.
 
 Il n'y a donc pas de réponse unique, comme toujours réfléchissez à vos besoins et évaluez ce qu'il est possible de faire.
 
