@@ -2,3 +2,14 @@
 Julien Kirch
 v1.0, 2019-01-01
 :article_lang: en
+
+== link:http://files.jneen.net/academic/thesis.pdf[Magritte: A Language for Pipe-Based Programming]
+
+[quote]
+___
+Related to the shell-language design problem is the desktop-scripting problem: How should unrelated programs written in different languages be integrated -- especially in an ad-hoc manner in a desktop environment
+Such a task can require a large amount of glue code, written by users who are unfamiliar with the inner workings of the programs they are using.
+Notable attempts at solving the desktop-scripting problem include the TCL language and Guile Scheme.
+However, while most of these approaches use a large, robust language, it still remains difficult to integrate them with external programs -- instead putting the burden on those programs to integrate with their system.
+We believe a shell-based approach is promising, because if we are successful, our language could use the already-ubiquitous UNIX calling convention to integrate unrelated programs.
+____
