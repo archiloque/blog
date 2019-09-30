@@ -13,3 +13,16 @@ Notable attempts at solving the desktop-scripting problem include the TCL langua
 However, while most of these approaches use a large, robust language, it still remains difficult to integrate them with external programs -- instead putting the burden on those programs to integrate with their system.
 We believe a shell-based approach is promising, because if we are successful, our language could use the already-ubiquitous UNIX calling convention to integrate unrelated programs.
 ____
+
+== link:https://gankra.github.io/blah/text-hates-you/[Text Rendering Hates You]
+
+[quote]
+____
+Rendering text, how hard could it be? As it turns out, incredibly hard! To my knowledge, literally no system renders text "perfectly". It's all best-effort, although some efforts are more important than others.
+
+I'll be assuming you want to support arbitrary text provided by users with custom fonts, colors, and styles with line-wrapping and support for text-selection. Basically the minimum required to properly display a simple rich-text document, terminal, webpage, or anything else.
+
+The overarching theme here will be: there are no consistent right answers, everything is way more important than you think, and everything affects everything else.
+
+The topics I focus on here have no particular rhyme or reason, they're just the ones that come to mind after a few years of working on rendering in Firefox. For instance, I don't spend much time talking about the challenges of text-segmentation or managing the different platform-specific text libraries, because I don't look at that much.
+____
