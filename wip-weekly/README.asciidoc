@@ -26,3 +26,18 @@ The overarching theme here will be: there are no consistent right answers, every
 
 The topics I focus on here have no particular rhyme or reason, they're just the ones that come to mind after a few years of working on rendering in Firefox. For instance, I don't spend much time talking about the challenges of text-segmentation or managing the different platform-specific text libraries, because I don't look at that much.
 ____
+
+== link:https://simblob.blogspot.com/2019/10/verb-noun-vs-noun-verb.html[Verb-noun vs noun-verb]
+
+[quote]
+____
+The noun-verb thing comes up in another context. After I stopped making games for a living I went into programming language research. My main topic was studying how functional programming languages and object-oriented programming languages can be combined. Something I noticed at the time was that the syntax for functional languages tends to be _verb_ then _noun_: `f(x)`, whereas the syntax for object oriented languages tends to be _noun_ then _verb_: `x.f()`. At some level these can be considered equivalent. You can express with one what you can express with the other. There's a big difference in usability though: auto-complete.
+
+What happens when we auto-complete `f(x)`? First we need to know all possible `f` that are valid in this context. Since the programmer has just started typing in the expression, _any_ function is valid, and that means there's a very long list to choose from. It takes many keystrokes to pick one. Second we need to know all possible `x` that are valid in this context. These are usually local names, so there aren't that many. Knowing the type of `f` narrows down the list but the list was already small, so there's not much to gain.
+
+What happens when we auto-complete `x.f()`? First we need to know all possible `x`. The programmer has just started typing, so any local name is valid, but there aren't many. Typing just one character can narrow down the list to one or two elements. Second we need to know all possible `f` that are valid in this context. These are methods defined on the type of `x`, so there aren't that many compared to all possible functions. Knowing the type of `x` narrows down the list substantially, so there's a lot gained.
+
+The two syntaxes seem equivalent in theory but they aren't in practice. I wonder if people who use regular text editors end up believing the two syntaxes are equivalent, whereas people who use IDEs prefer the object-oriented syntax, even if they're not taking advantage of object-oriented programming (inheritance, subtyping, etc.).
+
+This asymmetry is orthogonal to whether you're using functional or object-oriented programming. It is better for programmers if they can choose from two medium length lists than to have to choose from a very long list (where a lot has to be typed before it's useful) and then a very short list (where not much is gained). You see this in other contexts too. Command line interfaces like DOS, VMS, and Unix shell typically specify a verb first and then the noun(s). GUIs such as Mac and Windows typically specify a noun first by clicking an icon, and then the verb by choosing from the right click menu. In text editors, vim's commands like d0 are verb then text selection (noun), whereas in more conventional text editors (including Emacs) you'd first select some text (the noun) and then invoke a verb like delete. link:[http://kakoune.org/why-kakoune/why-kakoune.html]Kakoune is a modal editor that uses noun-verb instead of verb-noun.
+____
