@@ -1,0 +1,68 @@
+= Systemd, Debian, Open Source et sens de la vie
+Julien Kirch
+v0.1, 2019-11-04
+:article_lang: fr
+
+Plein de choses pour comprendre l'open source et les communautés de développement
+
+== Debian
+
+* Distribution Linux : propose un assemblage des logiciels
+* Communautaire : personnes font les tâches qui les intéressent, et il n'y a jamais assez de monde par rapport au travail à faire
+
+=== OS universel
+
+Très accueillant pour plein de logiciels, et essaie de rester le plus ouvert possible à l'extérieur en limitant les contraintes (à part celle de l'ouverture du code)
+
+Accueillante aussi en terme de manière d'utiliser les choses en permettant plusieurs manière de faire équivalentes
+
+=== Packaging
+
+Important travail de packaging, c'est-à-dire d'inclure des logiciels dans leur infrastructure pour qu'ils puissent être installés, qu'ils puissent dépendre les uns des autres 
+
+Peut demander de modifier le code source du logiciel pour le rendre compatible, ou parfois d'ajouter / de modifier des choses entre sa version originale et la version Debian
+
+=== Assembler et pas créer
+
+Par rapport à d'autre distributions comme Mint, l'objectif de Debian est de développer le moins possible de logiciel spécifiques pour elle seule mais de se concentrer sur le packaging de choses existantes
+
+Cela signifie que les personnes sont encouragées à participer à des projets existants, ou à créer de nouveaux projets mais qui ne soient pas spécifiques à Debian
+
+== Systemd
+
+=== Lancer des programmes
+
+Les systèmes d'exploitations comme les distributions ont besoin d'une manière de lancer des programmes.
+Par exemple quand vous démarrez votre ordinateur, il va lancer des programmes permettant de se connecter à internet, peut-être d'imprimer des documents, de lancer des mises à jour
+
+Lancer des programmes peut sembler simple mais cela peut devenir complexe en fonction des perfectionnements dont on a besoin, par exemple de démarrer un programme seulement quand on en a besoin, ce qui permet à l'ordinateur de démarrer plus rapidement que si on démarrait tout au début, de faire en sorte qu'un programme A dépende d'un autre programme B et que le lancement de A provoque donc le lancement de B
+
+=== System V init
+
+Historiquement sur les systèmes Linux utilisent pour cela un système appelé "System V init" parce qu'il tire son origine de la version 5 d'Unix (https://en.wikipedia.org/wiki/UNIX_System_V) datant de 1983.
+
+La version utilisée par les système Linux est une réimplémentation de l'original (pour des raisons de license) mais qui lui reste largement compatible.
+
+Avec ce système la gestion des programme se fait avec des script "standards" utilisant les fonctionnalités proposées par l'OS.
+
+Cela signifie qu'il est techniquement possible de tout faire, mais qu'il faut tout faire à la main.
+
+Cela va donc signifier que les comportements avancés peuvent devenir très complexes à mettre en œuvre, et que chaque logiciel a besoin de recoder les mêmes comportements (ou de les copier sur son voisin ou sa voisine).
+
+Du fait de la standardisation de "System V init", ces scripts sont compatibles avec un nombre très importants de systèmes ayant chacun leur implémentation : UNIX, Linux, et d'autres.
+
+Pour Debian, cela signifie qu'un logiciel utilisant ce système peut fonctionner théoriquement tel-quel même s'il n'a pas été pensé pour fonctionner sous Debian.
+
+Du fait des limites de ce système, par exemple le fait qu'il utilise une sorte de plus petit commun multiple (qui correspond donc grosso-modo à l'état de l'art de 1983), certaines distributions, par exemple Debian, se chargent de modifier ces scripts en modifiant certaines parties pour qu'elles utilisent des fonctionnalités plus avancées, par exemple plus fiables.
+
+En fonction des besoins et de la force de travail disponible, les différentes distributions Linux, et les administrateurs systèmes, 
+
+=== Systemd
+
+=== Lennart Poettering
+
+=== Les alternatives
+
+== Debian et Systemd
+
+Plusieurs plaintes
