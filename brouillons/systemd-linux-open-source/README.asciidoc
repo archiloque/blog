@@ -2,8 +2,9 @@
 Julien Kirch
 v0.1, 2019-11-04
 :article_lang: fr
+:syi: System V init
 
-Plein de choses pour comprendre l'open source et les communautés de développement
+Une saga qui permet de comprendre beaucoup de choses sur l'architecture logicielle, l'open source et les communautés de développement
 
 == Debian
 
@@ -32,34 +33,82 @@ Cela signifie que les personnes sont encouragées à participer à des projets e
 
 === Lancer des programmes
 
-Les systèmes d'exploitations comme les distributions ont besoin d'une manière de lancer des programmes.
-Par exemple quand vous démarrez votre ordinateur, il va lancer des programmes permettant de se connecter à internet, peut-être d'imprimer des documents, de lancer des mises à jour
+Les systèmes d'exploitations comme les distributions ont besoin d'une manière de lancer et d'arrêter des programmes.
+Par exemple quand vous démarrez votre ordinateur, il va lancer des programmes permettant de se connecter à internet, peut-être d'imprimer des documents, de lancer des mises à jour.
 
 Lancer des programmes peut sembler simple mais cela peut devenir complexe en fonction des perfectionnements dont on a besoin, par exemple de démarrer un programme seulement quand on en a besoin, ce qui permet à l'ordinateur de démarrer plus rapidement que si on démarrait tout au début, de faire en sorte qu'un programme A dépende d'un autre programme B et que le lancement de A provoque donc le lancement de B
 
 === System V init
 
-Historiquement sur les systèmes Linux utilisent pour cela un système appelé "System V init" parce qu'il tire son origine de la version 5 d'Unix (https://en.wikipedia.org/wiki/UNIX_System_V) datant de 1983.
+Historiquement sur les systèmes Linux utilisent pour cela un système appelé "`{syi}`" parce qu'il tire son origine de la version 5 d'Unix (https://en.wikipedia.org/wiki/UNIX_System_V) datant de 1983.
 
 La version utilisée par les système Linux est une réimplémentation de l'original (pour des raisons de license) mais qui lui reste largement compatible.
 
-Avec ce système la gestion des programme se fait avec des script "standards" utilisant les fonctionnalités proposées par l'OS.
+Avec ce système la gestion des programme se fait avec des script "standards" utilisant les fonctionnalités proposées par la distribution utilisée, c'est à dire l'ensemble des programmes disponibles.
 
 Cela signifie qu'il est techniquement possible de tout faire, mais qu'il faut tout faire à la main.
 
 Cela va donc signifier que les comportements avancés peuvent devenir très complexes à mettre en œuvre, et que chaque logiciel a besoin de recoder les mêmes comportements (ou de les copier sur son voisin ou sa voisine).
 
-Du fait de la standardisation de "System V init", ces scripts sont compatibles avec un nombre très importants de systèmes ayant chacun leur implémentation : UNIX, Linux, et d'autres.
+Du fait de la standardisation de {syi} , ces scripts sont compatibles avec un nombre très importants de systèmes ayant chacun leur implémentation : UNIX, Linux, et d'autres.
 
 Pour Debian, cela signifie qu'un logiciel utilisant ce système peut fonctionner théoriquement tel-quel même s'il n'a pas été pensé pour fonctionner sous Debian.
 
-Du fait des limites de ce système, par exemple le fait qu'il utilise une sorte de plus petit commun multiple (qui correspond donc grosso-modo à l'état de l'art de 1983), certaines distributions, par exemple Debian, se chargent de modifier ces scripts en modifiant certaines parties pour qu'elles utilisent des fonctionnalités plus avancées, par exemple plus fiables.
+Du fait des limites de ce système, par exemple le fait qu'il utilise une sorte de plus petit commun multiple (qui correspond donc grosso-modo à l'état de l'art de 1983), certaines distributions Linux, par exemple Debian, se chargent de modifier ces scripts en modifiant certaines parties pour qu'elles utilisent des fonctionnalités plus avancées, par exemple plus fiables.
 
 En fonction des besoins et de la force de travail disponible, les différentes distributions Linux, et les administrateurs systèmes, 
 
 === Systemd
 
+Systemd est un remplacement au {{syi}} qui propose une approche très différente : celle de fournir l'ensemble des fonctionnalités nécessaires à l'exécution des logiciels sous une forme intégrée.
+
+Cela signifie la gestion du lancement et de l'arrêt commeSystem {syi} mais aussi la gestion des logs, la restriction des accès …
+
+Le fait d'avoir une approche intégrée, c'est-à-dire un ensemble de logiciels développés ensemble, plutôt que d'avoir à composer des briques plus indépendantes simplifie le développement, et donc l'ajout de nouvelles fonctionnalités, et permet d'avoir une configuration unique pour tous ce qui touche à un programme.
+
+=== L'attrait de Systemd
+
+Systemd a donc deux avantages, suivant de quel côté de la barrière on se trouve :
+
+* pour les personnes qui développent des logiciels et qui veulent fournir des scripts permettant de les exécuter, Systemd permet de faire plus facilement certaines choses basiques, et de rendre abordables les choses complexes
+* pour les personnes qui contribuent à des distributions Linux, Systemd propose un standard "sur étagère", qui permet de baisser fortement les chances qu'il y ait besoin d'adapter un logiciel à leur distribution, réduisant ainsi leur force de travail
+
+=== Les critiques
+
+Systemd n'a pas que des avantages mais aussi un certain nombre d'inconvénients
+
+==== C'est différent
+
+La première est de changer les choses alors qu'on avait une solution acceptable
+
+==== La philosophie d'Unix
+
+La seconde critique est que son approche ne correspond pas à la link:https://fr.wikipedia.org/wiki/Philosophie_d%27Unix[philosophie d'Unix], qui préconise d'avoir plutôt des "`programmes qui effectuent une seule chose et qui le font bien``".
+
+Au delà de l'aspect philosophique, cet approche permet en théorie de pouvoir facilement un composant par un autre tant que les deux sont compatibles, et donc de pouvoir permettre une forme de concurrence où de sélection naturelle.
+
+Systemd, développé d'un seul tenant, va donc à l'opposé de ce principe.
+
+Mon avis est que si la philosophie d'Unix peut être pertinent lorsque de la conception de certains types d'applications, elle ne l'est pas pour tous les types de programmes, et notamment pour les système en charge de gérer d'autres programmes.
+Le fait de proposer dans ce cas une approche intégrée permet de simplifier drastiquement le travail de configuration, et d'obtenir un résultat plus fiable.
+
+=== Les choix fait
+
+Beaucoup de supposition fait dans la manière dont les composants devraient se comporter par défaut, du coup même si on peut faire différement, le chemin de moindre résistance cela impulse une manière de faire.
+
+Du coup cela a brusqué les personnes qui avaient fait d'autres choix, et qui du coup se retrouvent dans une position de minorité.
+
+Dans les discussions il est parfois difficile de différencier ce qui tient de la préférence de ce qui tient du besoin objectif.
+
 === Lennart Poettering
+
+Braque les gens, a un gros ego mais ne semble pas toxique
+
+Surtout il développe des logiciels Linux qui -- comme systemd -- vont à l'encontre des principes Unix et qui répondent à des problèmes connus, et il a de l'énergie et la capacité à s'investir jusqu'à convaincre les personnes qui sont en position de choisir de les utiliser (par ex celles qui font du packaging), tout en choisissant de ne pas traiter tous les besoins
+
+Il s'agit d'une approche qui a fait ses preuves, mais qui fâche des gens car elle n'est pas consensuelle.
+
+Du coup quand il a commencé à proposé Systemd, en plus des arguments décris plus haut le fait que ça soit lui a cristalisé des mécontentements, surtout qu'à mon avis, connaissant sa capacité à aller jusqu'au bout et à convaincre, une partie des personnes a du réaliser que la partie était probablement perdue d'avance.
 
 === Les alternatives
 
