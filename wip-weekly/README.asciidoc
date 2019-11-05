@@ -19,3 +19,11 @@ Like surrealism, abstraction, or a humorous presentation (environment) for them 
 
 The tone a program sets is how people will feel inclined to use it.
 ____
+
+== link:http://joeduffyblog.com/2016/02/07/the-error-model/[The Error Model]
+
+[quote]
+____
+My conclusion is that’s why many people in the industry think unchecked exceptions are "`good enough`". They stay out of your way for the common success paths and, because most people don't write robust error handling code in non-systems programs, throwing an exception _usually_ gets you out of a pickle fast. Catching and then proceeding often works too. No harm, no foul. Statistically speaking, programs "`work`".
+
+____
