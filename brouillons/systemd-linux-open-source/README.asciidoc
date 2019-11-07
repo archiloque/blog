@@ -3,31 +3,38 @@ Julien Kirch
 v0.1, 2019-11-04
 :article_lang: fr
 :syi: System V init
+:article_image: systemd.png
+:article_description: Comme Game of thrones, mais pas tout à fait
 
-Une saga qui permet de comprendre beaucoup de choses sur l'architecture logicielle, l'open source et les communautés de développement
+L'histoire de Systemd et de Debian est une saga qui agite une partie du monde de l'open-source depuis quelques années, et qui durera encore probablement quelques temps.
+
+S'y intéresser permet de comprendre beaucoup de choses sur l'architecture logicielle, le fonctionnement des communauté et la manière dont les technologies sont adoptées.
 
 == Debian
 
-* Distribution Linux : propose un assemblage des logiciels
-* Communautaire : personnes font les tâches qui les intéressent, et il n'y a jamais assez de monde par rapport au travail à faire
+link:https://www.debian.org[Debian] est une système d'exploitation libre qui se veut "`universel`", c'est-à-dire qu'il s'agit d'un assemblage de logiciels qui se veut adapté à tous les usages.
+
+Il suit un fonctionnement communautaire où les décisions sont prises démocratiquement et où le travail est effectuée par des personnes volontaires.
+
+Cela signifie que les personnes travaillent sur les tâches de leur choix, et qu'il n'y a jamais assez de monde pour faire tout le travail nécessaire.
 
 === OS universel
 
-Très accueillant pour plein de logiciels, et essaie de rester le plus ouvert possible à l'extérieur en limitant les contraintes (à part celle de l'ouverture du code)
+Au croisement de sa mission de système d'exploitation universel et de son fonctionnement communautaire, Debian se veut très accueillant vis-à-vis des logiciels (tant qu'ils sont libres).
 
-Accueillante aussi en terme de manière d'utiliser les choses en permettant plusieurs manière de faire équivalentes
+Cela signifie essayer de limiter les contraintes techniques qui pourraient bloquer le fait d'inclure un nouveau programme, et permettre d'avoir plusieurs manières de faire la même chose, tant que cela ne met pas en cause le fonctionnement du système.
 
 === Packaging
 
-Important travail de packaging, c'est-à-dire d'inclure des logiciels dans leur infrastructure pour qu'ils puissent être installés, qu'ils puissent dépendre les uns des autres 
+La part du lion du travail à fournir pour faire vivre Debian et un travail de packaging, c'est-à-dire d'inclure des logiciels dans l'écosystème Debian pour qu'ils puissent être installés et fonctionner ensemble.
 
-Peut demander de modifier le code source du logiciel pour le rendre compatible, ou parfois d'ajouter / de modifier des choses entre sa version originale et la version Debian
+Suivant les cas, cela peut nécessiter d'avoir à modifier le logiciel pour le rendre compatible, qu'il s'agisse de son code source ou de fichiers de configuration.
 
 === Assembler et pas créer
 
 Par rapport à d'autre distributions comme Mint, l'objectif de Debian est de développer le moins possible de logiciel spécifiques pour elle seule mais de se concentrer sur le packaging de choses existantes
 
-Cela signifie que les personnes sont encouragées à participer à des projets existants, ou à créer de nouveaux projets mais qui ne soient pas spécifiques à Debian
+Cela signifie que les personnes utilisant Debian et à qui il manque quelque chose sont encouragées à participer à des projets existants, ou à créer de nouveaux projets mais qui ne soient pas spécifiques à Debian.
 
 == Systemd
 
@@ -40,7 +47,7 @@ Lancer des programmes peut sembler simple mais cela peut devenir complexe en fon
 
 === System V init
 
-Historiquement sur les systèmes Linux utilisent pour cela un système appelé "`{syi}`" parce qu'il tire son origine de la version 5 d'Unix (https://en.wikipedia.org/wiki/UNIX_System_V) datant de 1983.
+Historiquement les systèmes Unix et Linux utilisent pour cela un système appelé "`{syi}`" parce qu'il tire son origine de la version 5 d'Unix (https://en.wikipedia.org/wiki/UNIX_System_V) datant de 1983.
 
 La version utilisée par les système Linux est une réimplémentation de l'original (pour des raisons de license) mais qui lui reste largement compatible.
 
@@ -81,7 +88,9 @@ Systemd n'a pas que des avantages mais aussi un certain nombre d'inconvénients
 
 La première est de changer les choses alors qu'on avait une solution acceptable
 
-==== La philosophie d'Unix
+==== La philosophie d'Unix, et la compatibilité Linux
+
+QQQ Mettre un truc sur le fait que Debian n'est pas que Linux
 
 La seconde critique est que son approche ne correspond pas à la link:https://fr.wikipedia.org/wiki/Philosophie_d%27Unix[philosophie d'Unix], qui préconise d'avoir plutôt des "`programmes qui effectuent une seule chose et qui le font bien``".
 
