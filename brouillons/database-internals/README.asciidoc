@@ -1,0 +1,38 @@
+= Fiche de lecture{nbsp}: "`Database Internals: A Deep Dive into How Distributed Data Systems Work`"
+Julien Kirch
+v0.1, 2019-01-16
+:article_lang: fr
+:article_image: cover.jpg
+
+link:http://shop.oreilly.com/product/0636920174462.do[Ce livre] est présenté comme une présentation du fonctionnement interne des bases de données, particulièrement des bases de données distribuées suivant l'idée plusieurs fois répétée (mais parfaitement inepte) que tous les systèmes actuels se doivent d'être distribués.
+
+Dans son introduction Alex Petrov mène une réflexion sur un sujet inédit pour moi : la difficulté d'écrire des livres de niveau intermédiaire, c'est-à-dire s'adressant à des personnes ayant déjà des connaissances sur un sujet et souhaitant les approfondir, mais sans aller jusqu'à l'expertise.
+Écrire ce type de textes signifie devoir choisir quelles sont les choses qui sont supposées déjà connues et quelles sont celles qui sont trop pointues, et écrire entre les deux niveaux.
+
+Le sujet des bases de données mélange de nombreux domaines (systèmes de fichiers, gestion de la mémoire, réseau, parallélisme, résilience …) les lecteur·rice·s auront chacun un niveau différent de connaissance dans chacun de ces domaines.
+Cela signifie qu'à chaque fois, choisir quels supposés sont supposés connus signifie potentiellement perdre une partie du public, et ne pas aller loin en frustrer une autre partie.
+
+On atteint ensuite le début du livre.
+D'après le titre (une plongée _profonde_ sur la manière dont les systèmes de données distribués _fonctionnent_), je m'attendais à des discussions sur l'implémentation des bases de données, avec des exemples de code ou de pseudo-code.
+
+Le premier sujet&#8201;—{nbsp}link:https://fr.wikipedia.org/wiki/Arbre_B[les B-trees]{nbsp}—&#8201;s'en approche, discutant d'organisation mémoire et de l'atomicité des opérations dans les processeurs.
+
+On passe ensuite à la gestion des fichiers pour assurer à la fois performance et résistance au crash, et le contenu commence à prendre de la hauteur en en restant aux principes plutôt qu'à parler implémentation, alors que c'est là que link:https://lwn.net/Articles/752613/[plein de problèmes] link:https://lwn.net/Articles/752063/[intéressants] link:https://lwn.net/Articles/799807/[se trouvent].
+
+La deuxième partie du livre, celle qui traite des systèmes distribués achève le changement de perspective.
+
+Elle s'ouvre sur une explication classiques des principaux link:https://jepsen.io/consistency[types de consistance].
+Suite à l'introduction c'est quelque chose que je ne m'attendais pas à trouver traité de manière aussi détaillée car il s'agit du b.a.-ba sur ce sujet.
+
+Ensuite les différentes familles algorithmes de traitements distribués sont passés en revue : Paxos, Raft …
+J'ai été frustré car on n'y parle que concept et théorie et pas du tout implémentation, mais j'ai été agréablement surpris de tomber sur ce tour d'horizon.
+En effet les publications que j'avais lu sur ces sujets traitent plutôt d'un algorithme en particulier ou les comparent en en restant aux idées générales, alors qu'ici on rentre un peu plus dans le détail.
+Cette partie est probablement le point fort du livre.
+
+Au final, j'en ressors mi-figue mi-raisin : je n'y ai pas trouvé ce que j'attendais et les changements de hauteur entre les parties m'ont donné envie d'arrêter ma lecture avant la fin, par contre le contenu est de bonne qualité, avec de nombreux pointeurs vers des sources permettant d'approfondir la lecture.
+
+Le texte est assez pédagogique, avec beaucoup de diagrammes et des explications détaillées.
+Malheureusement le ton manque un peu de personnalité rendant la lecture parfois monotone, par exemple quand l'auteur explore les différents variantes d'un algorithme, alors que c'est ce contenu qui fait la spécificité de ce livre.
+
+Sur un sujet proche, link:https://dataintensive.net[Designing data-intensive applications] m'avait beaucoup plus enthousiasmé par sa cohérence et son style plus dynamique.
+Je conseillerai plutôt _Database Internals_ aux personnes intéressées spécifiquement par la dernière partie sur les algorithmes distribués, et qui cherchent le niveau de profondeur proposé.
