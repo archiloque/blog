@@ -3,10 +3,11 @@ Julien Kirch
 v0.1, 2019-11-04
 :article_lang: fr
 :syi: System V init
+:s: Systemd
 :article_image: systemd.png
 :article_description: Comme Game of thrones, mais pas tout à fait
 
-L'histoire de Systemd et de Debian est une saga qui agite une partie du monde de l'open-source depuis quelques années, et qui durera encore probablement quelques temps.
+L'histoire de {s} et de Debian est une saga qui agite une partie du monde de l'open-source depuis quelques années, et qui durera encore probablement quelques temps.
 
 S'y intéresser permet de comprendre beaucoup de choses sur l'architecture logicielle, le fonctionnement des communauté et la manière dont les technologies sont adoptées.
 
@@ -39,7 +40,7 @@ Par rapport à d'autre distributions comme link:https://linuxmint.com[Linux Mint
 
 Cela signifie que les personnes utilisant Debian et qui voudraient créer de nouveaux composants sont encouragées à participer à des projets existants, ou à créer de nouveaux projets mais qui ne soient pas spécifiques à Debian.
 
-== Systemd
+== {s}
 
 === Lancer des programmes
 
@@ -206,9 +207,9 @@ Du fait des limites de ce système, par exemple le fait qu'il utilise une sorte 
 
 Bien entendu, un niveau de customization plus élevé signifie plus de bénéfices, mais aussi plus d'efforts de packaging à fournir de la part des personnes qui participent à la distribution.
 
-=== Systemd
+=== {s}
 
-Systemd est un remplacement au {syi} qui propose une approche très différente : celle de fournir l'ensemble des fonctionnalités nécessaires à l'exécution des logiciels sous une forme intégrée et configurable.
+{s} est un remplacement au {syi} qui propose une approche très différente : celle de fournir l'ensemble des fonctionnalités nécessaires à l'exécution des logiciels sous une forme intégrée et configurable.
 
 Cela signifie non seulement la gestion du lancement et de l'arrêt comme {syi} mais aussi la gestion des logs, la restriction des accès …
 
@@ -216,7 +217,7 @@ L'idée sous-jaccente est qu'une approche intégrée, c'est-à-dire un ensemble 
 
 Le fait d'utiliser des fichiers de configuration permet de factoriser les comportements par défaut correspondant aux bonnes pratique, et donc à ne devoir préciser que ce qui est spécifique à chaque programme.
 
-Un exemple de fichier de configuration Systemd du link:https://httpd.apache.org[serveur HTTP Apache].
+Un exemple de fichier de configuration {s} du link:https://httpd.apache.org[serveur HTTP Apache].
 
 [source,sh]
 ----
@@ -242,16 +243,16 @@ WantedBy=multi-user.target
 WantedBy=http-daemon.target
 ----
 
-=== L'attrait de Systemd
+=== Les avantages de {s}
 
-Systemd a donc deux avantages, suivant le rôle qu'on occupe{nbsp}:
+{s} a donc deux avantages, suivant le rôle qu'on occupe{nbsp}:
 
-* pour les personnes qui développent des logiciels et qui veulent fournir des scripts permettant de les exécuter, Systemd permet de faire plus facilement certaines choses basiques, et de rendre abordables les choses complexes
-* pour les personnes qui contribuent à des distributions Linux, Systemd propose un standard "sur étagère", qui permet de baisser fortement les chances qu'il y ait besoin d'adapter un logiciel à leur distribution, réduisant ainsi leur force de travail
+* pour les personnes qui développent des logiciels et qui veulent fournir des scripts permettant de les exécuter, {s} permet de faire plus facilement certaines choses basiques, et de rendre abordables les choses complexes
+* pour les personnes qui contribuent à des distributions Linux, {s} propose un standard "sur étagère", qui permet de baisser fortement les chances qu'il y ait besoin d'adapter un logiciel à leur distribution, réduisant ainsi leur force de travail
 
 === Les critiques
 
-Là où les choses se corsent, c'est que Systemd ne fait pas l'unanimité mais au contraire fait l'objets de nombreuses critiques.
+Là où les choses se corsent, c'est que {s} ne fait pas l'unanimité mais au contraire fait l'objets de nombreuses critiques.
 
 ==== C'est différent
 
@@ -262,24 +263,37 @@ Il ne s'agit pas (seulement) de râler par principe parce que les choses changen
 Pour les personnes pour qui l'approche historique donnait satisfaction ce changement n'est donc pas le bienvenu.
 
 Il faut noter que la complexité des scripts {sysV} demandait un certain niveau d'expertise et donc un certain temps d'apprentissage et cette compétence reconnue.
-Remplacer ces scripts par des fichiers de configuration souvent beaucoup plus simple a pour effet de démonétiser cette compétence, et donc 
+Remplacer ces scripts par des fichiers de configuration souvent beaucoup plus simples fait perdre de la valeur à cette compétence, et donc diminue le statut des personnes qui la maîtrisent.
 
-==== La philosophie d'Unix, et la compatibilité Linux
-
-QQQ Mettre un truc sur le fait que Debian n'est pas que Linux
+==== La philosophie d'Unix
 
 La seconde critique est que son approche ne correspond pas à la link:https://fr.wikipedia.org/wiki/Philosophie_d%27Unix[philosophie d'Unix], qui préconise d'avoir plutôt des "`programmes qui effectuent une seule chose et qui le font bien``".
 
-Au delà de l'aspect philosophique, cet approche permet en théorie de pouvoir facilement un composant par un autre tant que les deux sont compatibles, et donc de pouvoir permettre une forme de concurrence où de sélection naturelle.
+Au delà de l'aspect philosophique, cet approche permet en théorie de pouvoir facilement un composant par un autre tant que les deux sont compatibles, ou de tenter une nouvelle approches car le coût du changement sera faible, et donc de pouvoir permettre une forme de concurrence où de sélection naturelle.
+Des composants plus petits devraient permettre un remplacement plus facile, et donc permettre un ecosystème qui évolue plus rapidement, il s'agit d'un modèle favorisant le couplage faible.
 
-Systemd, développé d'un seul tenant, va donc à l'opposé de ce principe.
+{s}&#8201;—{nbsp}développé d'un seul tenant{nbsp}—&#8201;va donc à l'opposé de ce principe.
 
-Mon avis est que si la philosophie d'Unix peut être pertinent lorsque de la conception de certains types d'applications, elle ne l'est pas pour tous les types de programmes, et notamment pour les système en charge de gérer d'autres programmes.
-Le fait de proposer dans ce cas une approche intégrée permet de simplifier drastiquement le travail de configuration, et d'obtenir un résultat plus fiable.
+L'avis des personnes qui ont créé {s} est que—{nbsp}si la philosophie d'Unix peut être pertinent lorsque de la conception de certains types d'applications{nbsp}—&#8201;elle ne l'est pas pour tous les types de programmes, et notamment pour les système en charge de gérer d'autres programmes.
+
+Les applications qui se prêtent bien à une approche à la Unix, sont celles pour lesquelles les frontières sont limitées, bien délimitées, et assez fixes. L'exemple type est celui de nombreux outils en ligne de commande qui communiquent par des flux de textes séparés par des sauts de lignes et qu'on peut chaîner les uns avec les autres pour mettre en place des flux de traitements.
+
+Ce modèle trouve ses limites lorsque les échanges entre les composants deviennent plus complexes ou que l'exigence en terme de service rendu augmente, car cela signifie devoir dépenser plus d'effort pour faire fonctionner les différentes briques comme un tout cohérent.
+
+C'est le cas avec la gestion des programmes, par exemple permettre à un système (un ordinateur portable ou une machine virtuelle), de démarrer plus vite veut dire permettre aux différents composants de démarrer en parallèle tout en respectant des dépendances (par exemple : lancer A quand B s'est démarré et que le réseau devient disponible), et pareil pour l'extinction (A et B peuvent être arrêtés en même temps, en s'assurant que chacun supprime les fichiers temporaires qu'il a créé).
+
+Dans ce cas un système intégré permet de faciliter la cohérence du tout.
+Il permet aussi de simplifier les évolutions lorsqu'elles touchent plusieurs éléments à la fois car le système est développé en un bloc, plutôt que d'avoir à synchroniser plusieurs projets.
+
+=== Linux et rien d'autre
+
+QQQQ
 
 === Les choix fait
 
-Beaucoup de supposition fait dans la manière dont les composants devraient se comporter par défaut, du coup même si on peut faire différement, le chemin de moindre résistance cela impulse une manière de faire.
+QQQQ
+
+Beaucoup de supposition fait dans la manière dont les composants devraient se comporter par défaut, du coup même si on peut faire différemment, le chemin de moindre résistance cela impulse une manière de faire.
 
 Du coup cela a brusqué les personnes qui avaient fait d'autres choix, et qui du coup se retrouvent dans une position de minorité.
 
@@ -287,16 +301,25 @@ Dans les discussions il est parfois difficile de différencier ce qui tient de l
 
 === Lennart Poettering
 
+QQQQ
+
 Braque les gens, a un gros ego mais ne semble pas toxique
 
-Surtout il développe des logiciels Linux qui&#8201;—{nbsp}comme Systemd{nbsp}—&#8201;vont à l'encontre des principes Unix et qui répondent à des problèmes connus, et il a de l'énergie et la capacité à s'investir jusqu'à convaincre les personnes qui sont en position de choisir de les utiliser (par ex celles qui font du packaging), tout en choisissant de ne pas traiter tous les besoins
+Surtout il développe des logiciels Linux qui&#8201;—{nbsp}comme {s}{nbsp}—&#8201;vont à l'encontre des principes Unix et qui répondent à des problèmes connus, et il a de l'énergie et la capacité à s'investir jusqu'à convaincre les personnes qui sont en position de choisir de les utiliser (par ex celles qui font du packaging), tout en choisissant de ne pas traiter tous les besoins
 
 Il s'agit d'une approche qui a fait ses preuves, mais qui fâche des gens car elle n'est pas consensuelle.
 
-Du coup quand il a commencé à proposé Systemd, en plus des arguments décris plus haut le fait que ça soit lui a cristalisé des mécontentements, surtout qu'à mon avis, connaissant sa capacité à aller jusqu'au bout et à convaincre, une partie des personnes a du réaliser que la partie était probablement perdue d'avance.
+Du coup quand il a commencé à proposé {s}, en plus des arguments décris plus haut le fait que ça soit lui a cristalisé des mécontentements, surtout qu'à mon avis, connaissant sa capacité à aller jusqu'au bout et à convaincre, une partie des personnes a du réaliser que la partie était probablement perdue d'avance.
 
 === Les alternatives
 
-== Debian et Systemd
+D'autres systèmes alternatifs qui existaient et qui répondaient à certaines critiques de {syi}, par exemple link:https://wiki.gentoo.org/wiki/OpenRC[https://wiki.gentoo.org/wiki/OpenRC]. Malheuresement ils ne supportaient pas les choses les plus avancées qui sont dans systemd, ce qui fait que même s'ils étaient plus proches de {syi} et qu'ils promettaient donc une migration moins compliquées, les personnes concernées (dev et admin sys) ont estimés que le jeu n'en vallait pas la chandelle.
 
-Plusieurs plaintes
+== Comment ça s'est passé
+
+
+=== Les crises sur les mailing list
+=== L'entrée de systemd, Devuan
+=== La coexistance
+
+== Conclusion
