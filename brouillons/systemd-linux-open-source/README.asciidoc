@@ -20,21 +20,24 @@ Cela signifie que les personnes travaillent sur les tâches de leur choix, et qu
 
 === OS universel
 
-Au croisement de sa mission de système d'exploitation universel et de son fonctionnement communautaire, Debian se veut très accueillant vis-à-vis des logiciels (tant qu'ils sont libres).
+Au croisement de sa mission de "`système d'exploitation universel`" et de son fonctionnement communautaire, Debian se veut très accueillant vis-à-vis des logiciels (tant qu'ils sont libres).
 
 Cela signifie essayer de limiter les contraintes techniques qui pourraient bloquer le fait d'inclure un nouveau programme, et permettre d'avoir plusieurs manières de faire la même chose, tant que cela ne met pas en cause le fonctionnement du système.
 
+Ainsi, bien que Debian soit essentiellement connu comme une distribution Linux, elle peut fonctionner également avec des noyaux link:https://www.debian.org/ports/hurd/[GNU Hurd] ou link:https://www.debian.org/ports/kfreebsd-gnu/[FreeBSD].
+
+
 === Packaging
 
-La part du lion du travail à fournir pour faire vivre Debian et un travail de packaging, c'est-à-dire d'inclure des logiciels dans l'écosystème Debian pour qu'ils puissent être installés et fonctionner ensemble.
+La majorité du travail à fournir pour faire vivre Debian et un travail de packaging, c'est-à-dire d'inclure des logiciels dans l'écosystème Debian pour qu'ils puissent être installés et fonctionner ensemble.
 
-Suivant les cas, cela peut nécessiter d'avoir à modifier le logiciel pour le rendre compatible, qu'il s'agisse de son code source ou de fichiers de configuration.
+Cela peut nécessiter d'avoir à modifier le logiciel pour le rendre compatible, qu'il s'agisse de son code source ou de fichiers de configuration.
 
 === Assembler et pas créer
 
-Par rapport à d'autre distributions comme Mint, l'objectif de Debian est de développer le moins possible de logiciel spécifiques pour elle seule mais de se concentrer sur le packaging de choses existantes
+Par rapport à d'autre distributions comme link:https://linuxmint.com[Linux Mint], l'objectif de Debian est de développer le moins possible de logiciel spécifiques pour elle seule mais de se concentrer sur le packaging de choses existantes.
 
-Cela signifie que les personnes utilisant Debian et à qui il manque quelque chose sont encouragées à participer à des projets existants, ou à créer de nouveaux projets mais qui ne soient pas spécifiques à Debian.
+Cela signifie que les personnes utilisant Debian et qui voudraient créer de nouveaux composants sont encouragées à participer à des projets existants, ou à créer de nouveaux projets mais qui ne soient pas spécifiques à Debian.
 
 == Systemd
 
@@ -57,36 +60,209 @@ Cela signifie qu'il est techniquement possible de tout faire, mais qu'il faut to
 
 Cela va donc signifier que les comportements avancés peuvent devenir très complexes à mettre en œuvre, et que chaque logiciel a besoin de recoder les mêmes comportements (ou de les copier sur son voisin ou sa voisine).
 
-Du fait de la standardisation de {syi} , ces scripts sont compatibles avec un nombre très importants de systèmes ayant chacun leur implémentation : UNIX, Linux, et d'autres.
+Voici par exemple le script apachectl de gestion du link:https://httpd.apache.org[serveur HTTP Apache], accrochez-vous.
 
-Pour Debian, cela signifie qu'un logiciel utilisant ce système peut fonctionner théoriquement tel-quel même s'il n'a pas été pensé pour fonctionner sous Debian.
+[source,sh]
+----
+ERROR=0
+ARGV="$@"
+if [ "x$ARGV" = "x" ] ; then 
+    ARGS="help"
+fi
 
-Du fait des limites de ce système, par exemple le fait qu'il utilise une sorte de plus petit commun multiple (qui correspond donc grosso-modo à l'état de l'art de 1983), certaines distributions Linux, par exemple Debian, se chargent de modifier ces scripts en modifiant certaines parties pour qu'elles utilisent des fonctionnalités plus avancées, par exemple plus fiables.
+for ARG in $@ $ARGS
+do
+    # check for pidfile
+    if [ -f $PIDFILE ] ; then
+	PID=`cat $PIDFILE`
+	if [ "x$PID" != "x" ] && kill -0 $PID 2>/dev/null ; then
+	    STATUS="httpd (pid $PID) running"
+	    RUNNING=1
+	else
+	    STATUS="httpd (pid $PID?) not running"
+	    RUNNING=0
+	fi
+    else
+	STATUS="httpd (no pid file) not running"
+	RUNNING=0
+    fi
 
-En fonction des besoins et de la force de travail disponible, les différentes distributions Linux, et les administrateurs systèmes, 
+    case $ARG in
+    start)
+	if [ $RUNNING -eq 1 ]; then
+	    echo "$0 $ARG: httpd (pid $PID) already running"
+	    continue
+	fi
+	if $HTTPD ; then
+	    echo "$0 $ARG: httpd started"
+	else
+	    echo "$0 $ARG: httpd could not be started"
+	    ERROR=3
+	fi
+	;;
+    stop)
+	if [ $RUNNING -eq 0 ]; then
+	    echo "$0 $ARG: $STATUS"
+	    continue
+	fi
+	if kill $PID ; then
+	    echo "$0 $ARG: httpd stopped"
+	else
+	    echo "$0 $ARG: httpd could not be stopped"
+	    ERROR=4
+	fi
+	;;
+    restart)
+	if [ $RUNNING -eq 0 ]; then
+	    echo "$0 $ARG: httpd not running, trying to start"
+	    if $HTTPD ; then
+		echo "$0 $ARG: httpd started"
+	    else
+		echo "$0 $ARG: httpd could not be started"
+		ERROR=5
+	    fi
+	else
+	    if $HTTPD -t >/dev/null 2>&1; then
+		if kill -HUP $PID ; then
+		    echo "$0 $ARG: httpd restarted"
+		else
+		    echo "$0 $ARG: httpd could not be restarted"
+		    ERROR=6
+		fi
+	    else
+		echo "$0 $ARG: configuration broken, ignoring restart"
+		echo "$0 $ARG: (run 'apachectl configtest' for details)"
+		ERROR=6
+	    fi
+	fi
+	;;
+    graceful)
+	if [ $RUNNING -eq 0 ]; then
+	    echo "$0 $ARG: httpd not running, trying to start"
+	    if $HTTPD ; then
+		echo "$0 $ARG: httpd started"
+	    else
+		echo "$0 $ARG: httpd could not be started"
+		ERROR=5
+	    fi
+	else
+	    if $HTTPD -t >/dev/null 2>&1; then
+		if kill -WINCH $PID ; then
+		    echo "$0 $ARG: httpd gracefully restarted"
+		else
+		    echo "$0 $ARG: httpd could not be restarted"
+		    ERROR=7
+		fi
+	    else
+		echo "$0 $ARG: configuration broken, ignoring restart"
+		echo "$0 $ARG: (run 'apachectl configtest' for details)"
+		ERROR=7
+	    fi
+	fi
+	;;
+    status)
+	$LYNX $STATUSURL | awk ' /process$/ { print; exit } { print } '
+	;;
+    fullstatus)
+	$LYNX $STATUSURL
+	;;
+    configtest)
+	if $HTTPD -t; then
+	    :
+	else
+	    ERROR=8
+	fi
+	;;
+    *)
+	echo "usage: $0 (start|stop|restart|fullstatus|status|graceful|configtest|help)"
+	cat <<EOF
+
+start      - start httpd
+stop       - stop httpd
+restart    - restart httpd if running by sending a SIGHUP or start if 
+             not running
+fullstatus - dump a full status screen; requires lynx and mod_status enabled
+status     - dump a short status screen; requires lynx and mod_status enabled
+graceful   - do a graceful restart by sending a SIGWINCH or start if not running
+configtest - do a configuration syntax test
+help       - this screen
+
+EOF
+	ERROR=2
+    ;;
+
+    esac
+
+done
+
+exit $ERROR
+----
+
+Du fait de la standardisation de {syi} , ces scripts peuvent être compatibles avec un nombre très importants de systèmes ayant chacun leur implémentation{nbsp}: UNIX, Linux, et d'autres.
+
+Cela signifie qu'un logiciel utilisant ce système peut fonctionner théoriquement tel-quel sous Debian même s'il n'a pas été pensé pour fonctionner sous Debian et donc que le travail de packaging demandera très peu d'effort.
+
+Du fait des limites de ce système, par exemple le fait qu'il utilise une sorte de plus petit commun multiple (qui correspond donc grosso-modo à l'état de l'art de 1983), certaines distributions, modifient ces scripts qu'elles utilisent des fonctionnalités plus avancées mais qui ne font pas partie du tronc commune, par exemple pour améliorer la fiabilité du système ou améliorer la compatibilité entre les différents composants.
+
+Bien entendu, un niveau de customization plus élevé signifie plus de bénéfices, mais aussi plus d'efforts de packaging à fournir de la part des personnes qui participent à la distribution.
 
 === Systemd
 
-Systemd est un remplacement au {{syi}} qui propose une approche très différente : celle de fournir l'ensemble des fonctionnalités nécessaires à l'exécution des logiciels sous une forme intégrée.
+Systemd est un remplacement au {syi} qui propose une approche très différente : celle de fournir l'ensemble des fonctionnalités nécessaires à l'exécution des logiciels sous une forme intégrée et configurable.
 
-Cela signifie la gestion du lancement et de l'arrêt commeSystem {syi} mais aussi la gestion des logs, la restriction des accès …
+Cela signifie non seulement la gestion du lancement et de l'arrêt comme {syi} mais aussi la gestion des logs, la restriction des accès …
 
-Le fait d'avoir une approche intégrée, c'est-à-dire un ensemble de logiciels développés ensemble, plutôt que d'avoir à composer des briques plus indépendantes simplifie le développement, et donc l'ajout de nouvelles fonctionnalités, et permet d'avoir une configuration unique pour tous ce qui touche à un programme.
+L'idée sous-jaccente est qu'une approche intégrée, c'est-à-dire un ensemble de logiciels développés ensemble vaut mieux qu'une composition de briques plus indépendantes, car cela simplifie le développement, et donc l'ajout de nouvelles fonctionnalités, et permet d'avoir une configuration unique plutôt que des morceaux à droite et à gauche et donc plus lisible, et d'éviter les bugs causés par des incohérences entre composants.
+
+Le fait d'utiliser des fichiers de configuration permet de factoriser les comportements par défaut correspondant aux bonnes pratique, et donc à ne devoir préciser que ce qui est spécifique à chaque programme.
+
+Un exemple de fichier de configuration Systemd du link:https://httpd.apache.org[serveur HTTP Apache].
+
+[source,sh]
+----
+[Unit]
+Description=Apache 2 HTTP Web Server
+After=network.target
+
+[Service]
+Type=forking
+EnvironmentFile=/etc/conf.d/apache2
+ExecStart=/usr/sbin/apache2 -k start $APACHE2_OPTS
+ExecStop=/usr/sbin/apache2 -k graceful-stop $APACHE2_OPTS
+ExecReload=/usr/sbin/apache2 -k graceful $APACHE2_OPTS
+PIDFile=/var/run/apache2.pid
+StandardOutput=syslog
+StandardError=syslog
+Restart=always
+ProtectHome=yes
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target
+WantedBy=http-daemon.target
+----
 
 === L'attrait de Systemd
 
-Systemd a donc deux avantages, suivant de quel côté de la barrière on se trouve :
+Systemd a donc deux avantages, suivant le rôle qu'on occupe{nbsp}:
 
 * pour les personnes qui développent des logiciels et qui veulent fournir des scripts permettant de les exécuter, Systemd permet de faire plus facilement certaines choses basiques, et de rendre abordables les choses complexes
 * pour les personnes qui contribuent à des distributions Linux, Systemd propose un standard "sur étagère", qui permet de baisser fortement les chances qu'il y ait besoin d'adapter un logiciel à leur distribution, réduisant ainsi leur force de travail
 
 === Les critiques
 
-Systemd n'a pas que des avantages mais aussi un certain nombre d'inconvénients
+Là où les choses se corsent, c'est que Systemd ne fait pas l'unanimité mais au contraire fait l'objets de nombreuses critiques.
 
 ==== C'est différent
 
-La première est de changer les choses alors qu'on avait une solution acceptable
+La première est de changer les choses alors qu'on avait une solution qui fonctionnait acceptablement bien et connue.
+
+Il ne s'agit pas (seulement) de râler par principe parce que les choses changent : modifier la manière dont les programmes sont gérés demande du temps (pour apprendre à utiliser le nouveau système, et pour migrer les scripts existants), et est facteur de risque (même si la nouvelle approche devrait aboutir à des résultats plus fiables).
+
+Pour les personnes pour qui l'approche historique donnait satisfaction ce changement n'est donc pas le bienvenu.
+
+Il faut noter que la complexité des scripts {sysV} demandait un certain niveau d'expertise et donc un certain temps d'apprentissage et cette compétence reconnue.
+Remplacer ces scripts par des fichiers de configuration souvent beaucoup plus simple a pour effet de démonétiser cette compétence, et donc 
 
 ==== La philosophie d'Unix, et la compatibilité Linux
 
@@ -113,7 +289,7 @@ Dans les discussions il est parfois difficile de différencier ce qui tient de l
 
 Braque les gens, a un gros ego mais ne semble pas toxique
 
-Surtout il développe des logiciels Linux qui -- comme systemd -- vont à l'encontre des principes Unix et qui répondent à des problèmes connus, et il a de l'énergie et la capacité à s'investir jusqu'à convaincre les personnes qui sont en position de choisir de les utiliser (par ex celles qui font du packaging), tout en choisissant de ne pas traiter tous les besoins
+Surtout il développe des logiciels Linux qui&#8201;—{nbsp}comme Systemd{nbsp}—&#8201;vont à l'encontre des principes Unix et qui répondent à des problèmes connus, et il a de l'énergie et la capacité à s'investir jusqu'à convaincre les personnes qui sont en position de choisir de les utiliser (par ex celles qui font du packaging), tout en choisissant de ne pas traiter tous les besoins
 
 Il s'agit d'une approche qui a fait ses preuves, mais qui fâche des gens car elle n'est pas consensuelle.
 
