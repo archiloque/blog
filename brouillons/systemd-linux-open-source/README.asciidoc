@@ -6,6 +6,8 @@ v0.1, 2019-11-04
 :s: Systemd
 :article_image: systemd.png
 :article_description: Comme Game of thrones, mais pas tout à fait
+:toc:
+:toclevels: 3
 
 L'histoire de {s} et de Debian est une saga qui agite une partie du monde de l'open-source depuis quelques années, et qui durera encore probablement quelques temps.
 
@@ -272,8 +274,6 @@ La seconde critique est que son approche ne correspond pas à la link:https://fr
 Au delà de l'aspect philosophique, cet approche permet en théorie de pouvoir facilement un composant par un autre tant que les deux sont compatibles, ou de tenter une nouvelle approches car le coût du changement sera faible, et donc de pouvoir permettre une forme de concurrence où de sélection naturelle.
 Des composants plus petits devraient permettre un remplacement plus facile, et donc permettre un ecosystème qui évolue plus rapidement, il s'agit d'un modèle favorisant le couplage faible.
 
-{s}&#8201;—{nbsp}développé d'un seul tenant{nbsp}—&#8201;va donc à l'opposé de ce principe.
-
 L'avis des personnes qui ont créé {s} est que—{nbsp}si la philosophie d'Unix peut être pertinent lorsque de la conception de certains types d'applications{nbsp}—&#8201;elle ne l'est pas pour tous les types de programmes, et notamment pour les système en charge de gérer d'autres programmes.
 
 Les applications qui se prêtent bien à une approche à la Unix, sont celles pour lesquelles les frontières sont limitées, bien délimitées, et assez fixes. L'exemple type est celui de nombreux outils en ligne de commande qui communiquent par des flux de textes séparés par des sauts de lignes et qu'on peut chaîner les uns avec les autres pour mettre en place des flux de traitements.
@@ -285,38 +285,75 @@ C'est le cas avec la gestion des programmes, par exemple permettre à un systèm
 Dans ce cas un système intégré permet de faciliter la cohérence du tout.
 Il permet aussi de simplifier les évolutions lorsqu'elles touchent plusieurs éléments à la fois car le système est développé en un bloc, plutôt que d'avoir à synchroniser plusieurs projets.
 
-=== Linux et rien d'autre
+==== Linux et rien d'autre
 
-QQQQ
+Ensuite, pour limiter la taille et la complexité du projet, systemd ne fonctionne que sur Linux.
+Ce choix permet deux choses : de pouvoir utiliser toutes les fonctionnalités fournies par ce système alors que d'autres ne sont pas forcément aussi riches (ce qui évite soit de ne pas pouvoir faire certaines choses, soit de devoir les réimplémenter), et d'avoir à gérer de compatibilité avec plusieurs soubassements différents.
 
-=== Les choix fait
+Cela signifie que pour si une application veut fournir des outils permettant de la piloter et qu'elle vise d'autres systèmes que Linux, elle peut avoir à les fournir en version {s} et en version {syi}.
 
-QQQQ
+De même pour les OS comme Debian qui veulent être compatibles avec plusieurs noyaux.
 
-Beaucoup de supposition fait dans la manière dont les composants devraient se comporter par défaut, du coup même si on peut faire différemment, le chemin de moindre résistance cela impulse une manière de faire.
+Trois choix sont possibles :
 
-Du coup cela a brusqué les personnes qui avaient fait d'autres choix, et qui du coup se retrouvent dans une position de minorité.
+. Se passer de {s} et de ses fonctionnalités avancées pour les systèmes Linux
+. Se passer des systèmes hors Linux
+. Augmenter la quantité de travail de maintenance
 
-Dans les discussions il est parfois difficile de différencier ce qui tient de la préférence de ce qui tient du besoin objectif.
+Suivant les cas le meilleur choix n'est pas toujours le même, par exemple pour certains programmes {s} peut avoir une valeur ajoutée plus faibles, d'autres peuvent de toutes façons ne pas être compatibles avec autre chose que Linux.
 
-=== Lennart Poettering
+Il y a eu et il y a encore des discussions sur le fait de rendre les autres systèmes, par exemples les BSD compatibles avec {s}. L'ampleur du travail à fournir, et le fait que le projet {s} continue à évoluer, et donc présente une cible mouvante a, pour le moment en tout cas, découragé les initiatives.
 
-QQQQ
+==== Les choix fait
 
-Braque les gens, a un gros ego mais ne semble pas toxique
+La quatrième critique porte sur les choix fait par {s}.
 
-Surtout il développe des logiciels Linux qui&#8201;—{nbsp}comme {s}{nbsp}—&#8201;vont à l'encontre des principes Unix et qui répondent à des problèmes connus, et il a de l'énergie et la capacité à s'investir jusqu'à convaincre les personnes qui sont en position de choisir de les utiliser (par ex celles qui font du packaging), tout en choisissant de ne pas traiter tous les besoins
+Pour rendre les fichiers de configuration le plus simple possible, {s} a fait des choix sur la manière dont les composants devraient se comporter par défaut.
+Du coup, même s'il est possible de faire différemment, le chemin de moindre résistance proposé par la configuration par défaut fait que les systèmes ont tendance à l'utiliser.
 
-Il s'agit d'une approche qui a fait ses preuves, mais qui fâche des gens car elle n'est pas consensuelle.
+Cette uniformisation de configuration peut être vue comme un avantage car elle signifie une uniformisation des comportements, et donc des systèmes plus simples à comprendre.
 
-Du coup quand il a commencé à proposé {s}, en plus des arguments décris plus haut le fait que ça soit lui a cristalisé des mécontentements, surtout qu'à mon avis, connaissant sa capacité à aller jusqu'au bout et à convaincre, une partie des personnes a du réaliser que la partie était probablement perdue d'avance.
+Mais pour les personnes qui avaient l'habitude d'autres choix, cela peut être un inconvénient, surtout si par rapport aux scripts initiaux, {s} rend plus difficile de customizer les choses à leur manière.
+
+==== Lennart Poettering
+
+La figure de proue de {s} laisse peu de monde indifférent dans le monde Linux.
+
+Je pense qu'il possède quatre caractéristique qui ensemble sont assez explosives :
+
+. Il a beaucoup d'opinions sur un tas de sujets et il aime s'exprimer, il a par exemple la conviction que la philosophie Unix n'est pas adaptée à tous les outils
+. Il a un bon niveau technique
+. Il sait identifier dans un projet ce qui est nécessaire et ce qu'il ne l'est pas et se tenir à ses choix pour ne pas se disperser
+. Il a de l'énergie à revendre quand il s'agit de convaincre les bonnes personnes d'utiliser ses projets, c'est à dire les personnes qui vont faire que ses projets soient un succès.
+
+Il s'agit d'une approche qui a fait ses preuves, mais qui fâche des gens car elle n'est pas consensuelle : il ne vise pas à satisfaire tout le monde ou tous les besoins.
+
+link:https://fr.wikipedia.org/wiki/PulseAudio[PulseAudio], son principal projet avant {s} était dans ce modèle, et il est devenu un quasi-standard sur Linux.
+
+Du coup dès que les personnes ont commencé à entendre parler de {s}, sa personne a cristalisé des mécontentements même s'il n'était pas la seule personne à travailler sur le projet.
+
+Dans les fils d'échanges sur {s}, au milieu des arguments décris plus haut, on trouve souvent une ou deux phrases du genre "`Lennart Poettering est l'antéchrist incarné et cela devrait suffire à disqualifier {s}`".
+
+Mon humble avis c'est que, dès qu'elles l'ont vu arriver en connaissant sa réputation et ses capacités, et ayant compris qu'effectivement sur ce type d'outil il y avait une place à prendre, une partie des personnes a du réaliser que la partie était probablement perdue d'avance et que son projet allait faire place nette.
+Je pense que cela a pu créer de la rage chez certain·e·s.
 
 === Les alternatives
 
-D'autres systèmes alternatifs qui existaient et qui répondaient à certaines critiques de {syi}, par exemple link:https://wiki.gentoo.org/wiki/OpenRC[https://wiki.gentoo.org/wiki/OpenRC]. Malheuresement ils ne supportaient pas les choses les plus avancées qui sont dans systemd, ce qui fait que même s'ils étaient plus proches de {syi} et qu'ils promettaient donc une migration moins compliquées, les personnes concernées (dev et admin sys) ont estimés que le jeu n'en vallait pas la chandelle.
+Même avant {s} d'autres systèmes alternatifs avaient été développées pour répondre à certaines critiques de {syi}, par exemple link:https://wiki.gentoo.org/wiki/OpenRC[https://wiki.gentoo.org/wiki/OpenRC].
 
-== Comment ça s'est passé
+Malheureusement ces alternatives avaient deux inconvénients : 
+. elles ne supportaient pas les choses les plus avancées qui sont dans systemd, du coup l'incitation à migrer n'étaient pas aussi forte
+. les personnes qui les développaient ou qui les promouvaient n'avaient pas l'énergie (et/ou la mégalomanie) de l'équipe de {s}, ce qui fait que même si certaines distributions Linux avaient adoptées l'une ou l'autre de ces alternatives, aucune équipe ne s'était lancé sérieusement dans le chantier de devenir LA solution Linux.
 
+Quand {s} est arrivé, il y a eu des discussions pour savoir s'il ne valait pas mieux utiliser plutôt tel ou tel autre outil, potentiellement déjà plus mature et plus utilisé.
+Malheureusement par manque d'énergie, et dispersion des forces entre les alternatives, ces approches n'ont pas abouti.
+
+Même si la généralisation de {s} n'a pas signé la fin de ces autres projets, il y a de grande chances qu'une partie d'entre eux s'arrêtent à moyen terme, {s} ayant répondu à une partie des douleurs qui justifient leur existance.
+Il en restera forcément quelques une, pour des besoins spécifiques, ou simplement par esprit de contradiction pour pouvoir utiliser autre chose que {s}.
+
+== Comment ça s'est passé chez Debian
+
+QQQQ
 
 === Les crises sur les mailing list
 === L'entrée de systemd, Devuan
