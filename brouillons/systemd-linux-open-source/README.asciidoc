@@ -55,7 +55,7 @@ Lancer des programmes peut sembler simple mais cela peut devenir complexe en fon
 
 Historiquement les systèmes Unix et Linux utilisent pour cela un système appelé "`{syi}`" parce qu'il tire son origine de la version 5 d'Unix (https://en.wikipedia.org/wiki/UNIX_System_V) datant de 1983.
 
-La version utilisée par les système Linux est une réimplémentation de l'original (pour des raisons de license) mais qui lui reste largement compatible.
+La version utilisée par les système Linux est une réimplémentation de l'original (pour des raisons de licence) mais qui lui reste largement compatible.
 
 Avec ce système la gestion des programme se fait avec des script "standards" utilisant les fonctionnalités proposées par la distribution utilisée, c'est à dire l'ensemble des programmes disponibles.
 
@@ -63,7 +63,7 @@ Cela signifie qu'il est techniquement possible de tout faire, mais qu'il faut to
 
 Cela va donc signifier que les comportements avancés peuvent devenir très complexes à mettre en œuvre, et que chaque logiciel a besoin de recoder les mêmes comportements (ou de les copier sur son voisin ou sa voisine).
 
-Voici par exemple le script apachectl de gestion du link:https://httpd.apache.org[serveur HTTP Apache], accrochez-vous.
+Voici par exemple le script `apachectl` de gestion du link:https://httpd.apache.org[serveur HTTP Apache], accrochez-vous.
 
 [source,sh]
 ----
@@ -215,7 +215,7 @@ Bien entendu, un niveau de customization plus élevé signifie plus de bénéfic
 
 Cela signifie non seulement la gestion du lancement et de l'arrêt comme {syi} mais aussi la gestion des logs, la restriction des accès …
 
-L'idée sous-jaccente est qu'une approche intégrée, c'est-à-dire un ensemble de logiciels développés ensemble vaut mieux qu'une composition de briques plus indépendantes, car cela simplifie le développement, et donc l'ajout de nouvelles fonctionnalités, et permet d'avoir une configuration unique plutôt que des morceaux à droite et à gauche et donc plus lisible, et d'éviter les bugs causés par des incohérences entre composants.
+L'idée sous-jacente est qu'une approche intégrée, c'est-à-dire un ensemble de logiciels développés ensemble vaut mieux qu'une composition de briques plus indépendantes, car cela simplifie le développement, et donc l'ajout de nouvelles fonctionnalités, et permet d'avoir une configuration unique plutôt que des morceaux à droite et à gauche et donc plus lisible, et d'éviter les bugs causés par des incohérences entre composants.
 
 Le fait d'utiliser des fichiers de configuration permet de factoriser les comportements par défaut correspondant aux bonnes pratique, et donc à ne devoir préciser que ce qui est spécifique à chaque programme.
 
@@ -264,7 +264,7 @@ Il ne s'agit pas (seulement) de râler par principe parce que les choses changen
 
 Pour les personnes pour qui l'approche historique donnait satisfaction ce changement n'est donc pas le bienvenu.
 
-Il faut noter que la complexité des scripts {sysV} demandait un certain niveau d'expertise et donc un certain temps d'apprentissage et cette compétence reconnue.
+Il faut noter que la complexité des scripts {syi} demandait un certain niveau d'expertise et donc un certain temps d'apprentissage et cette compétence reconnue.
 Remplacer ces scripts par des fichiers de configuration souvent beaucoup plus simples fait perdre de la valeur à cette compétence, et donc diminue le statut des personnes qui la maîtrisent.
 
 ==== La philosophie d'Unix
@@ -272,7 +272,7 @@ Remplacer ces scripts par des fichiers de configuration souvent beaucoup plus si
 La seconde critique est que son approche ne correspond pas à la link:https://fr.wikipedia.org/wiki/Philosophie_d%27Unix[philosophie d'Unix], qui préconise d'avoir plutôt des "`programmes qui effectuent une seule chose et qui le font bien``".
 
 Au delà de l'aspect philosophique, cet approche permet en théorie de pouvoir facilement un composant par un autre tant que les deux sont compatibles, ou de tenter une nouvelle approches car le coût du changement sera faible, et donc de pouvoir permettre une forme de concurrence où de sélection naturelle.
-Des composants plus petits devraient permettre un remplacement plus facile, et donc permettre un ecosystème qui évolue plus rapidement, il s'agit d'un modèle favorisant le couplage faible.
+Des composants plus petits devraient permettre un remplacement plus facile, et donc permettre un écosystème qui évolue plus rapidement, il s'agit d'un modèle favorisant le couplage faible.
 
 L'avis des personnes qui ont créé {s} est que—{nbsp}si la philosophie d'Unix peut être pertinent lorsque de la conception de certains types d'applications{nbsp}—&#8201;elle ne l'est pas pour tous les types de programmes, et notamment pour les système en charge de gérer d'autres programmes.
 
@@ -287,7 +287,7 @@ Il permet aussi de simplifier les évolutions lorsqu'elles touchent plusieurs é
 
 ==== Linux et rien d'autre
 
-Ensuite, pour limiter la taille et la complexité du projet, systemd ne fonctionne que sur Linux.
+Ensuite, pour limiter la taille et la complexité du projet, {s} ne fonctionne que sur Linux.
 Ce choix permet deux choses : de pouvoir utiliser toutes les fonctionnalités fournies par ce système alors que d'autres ne sont pas forcément aussi riches (ce qui évite soit de ne pas pouvoir faire certaines choses, soit de devoir les réimplémenter), et d'avoir à gérer de compatibilité avec plusieurs soubassements différents.
 
 Cela signifie que pour si une application veut fournir des outils permettant de la piloter et qu'elle vise d'autres systèmes que Linux, elle peut avoir à les fournir en version {s} et en version {syi}.
@@ -330,7 +330,7 @@ Il s'agit d'une approche qui a fait ses preuves, mais qui fâche des gens car el
 
 link:https://fr.wikipedia.org/wiki/PulseAudio[PulseAudio], son principal projet avant {s} était dans ce modèle, et il est devenu un quasi-standard sur Linux.
 
-Du coup dès que les personnes ont commencé à entendre parler de {s}, sa personne a cristalisé des mécontentements même s'il n'était pas la seule personne à travailler sur le projet.
+Du coup dès que les personnes ont commencé à entendre parler de {s}, sa personne a cristallisé des mécontentements même s'il n'était pas la seule personne à travailler sur le projet.
 
 Dans les fils d'échanges sur {s}, au milieu des arguments décris plus haut, on trouve souvent une ou deux phrases du genre "`Lennart Poettering est l'antéchrist incarné et cela devrait suffire à disqualifier {s}`".
 
@@ -342,13 +342,13 @@ Je pense que cela a pu créer de la rage chez certain·e·s.
 Même avant {s} d'autres systèmes alternatifs avaient été développées pour répondre à certaines critiques de {syi}, par exemple link:https://wiki.gentoo.org/wiki/OpenRC[OpenRC].
 
 Malheureusement ces alternatives avaient deux inconvénients : 
-. elles ne supportaient pas les choses les plus avancées qui sont dans systemd, du coup l'incitation à migrer n'étaient pas aussi forte
+. elles ne supportaient pas les choses les plus avancées qui sont dans {s}, du coup l'incitation à migrer n'étaient pas aussi forte
 . les personnes qui les développaient ou qui les promouvaient n'avaient pas l'énergie (et/ou la mégalomanie) de l'équipe de {s}, ce qui fait que même si certaines distributions Linux avaient adoptées l'une ou l'autre de ces alternatives, aucune équipe ne s'était lancé sérieusement dans le chantier de devenir LA solution Linux.
 
 Quand {s} est arrivé, il y a eu des discussions pour savoir s'il ne valait pas mieux utiliser plutôt tel ou tel autre outil, potentiellement déjà plus mature et plus utilisé.
 Malheureusement par manque d'énergie, et dispersion des forces entre les alternatives, ces approches n'ont pas abouti.
 
-Même si la généralisation de {s} n'a pas signé la fin de ces autres projets, il y a de grande chances qu'une partie d'entre eux s'arrêtent à moyen terme, {s} ayant répondu à une partie des douleurs qui justifient leur existance.
+Même si la généralisation de {s} n'a pas signé la fin de ces autres projets, il y a de grande chances qu'une partie d'entre eux s'arrêtent à moyen terme, {s} ayant répondu à une partie des douleurs qui justifient leur existence.
 Il en restera forcément quelques une, pour des besoins spécifiques, ou simplement par esprit de contradiction pour pouvoir utiliser autre chose que {s}.
 
 == Comment ça s'est passé chez Debian
@@ -356,7 +356,7 @@ Il en restera forcément quelques une, pour des besoins spécifiques, ou simplem
 QQQQ
 
 === Les crises sur les mailing list
-=== L'entrée de systemd, Devuan
-=== La coexistance
+=== L'entrée de {s}, Devuan
+=== La coexistence
 
 == Conclusion
