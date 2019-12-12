@@ -9,7 +9,7 @@ v0.1, 2019-11-04
 :toc:
 :toclevels: 3
 
-L'histoire de {s} et de Debian est une saga qui agite une partie du monde de l'open-source depuis quelques années, et qui durera encore probablement quelques temps.
+L'histoire de {s} et de Debian est une saga qui agite le monde de l'open-source depuis quelques années, et qui durera encore probablement quelque temps, même si les choses commencent à se calmer.
 
 S'y intéresser permet de comprendre beaucoup de choses sur l'architecture logicielle, le fonctionnement des communauté et la manière dont les technologies sont adoptées.
 
@@ -25,7 +25,7 @@ Cela signifie que les personnes travaillent sur les tâches de leur choix, et qu
 
 Au croisement de sa mission de "`système d'exploitation universel`" et de son fonctionnement communautaire, Debian se veut très accueillant vis-à-vis des logiciels (tant qu'ils sont libres).
 
-Cela signifie essayer de limiter les contraintes techniques qui pourraient bloquer le fait d'inclure un nouveau programme, et permettre d'avoir plusieurs manières de faire la même chose, tant que cela ne met pas en cause le fonctionnement du système.
+Cela signifie essayer de limiter les contraintes techniques qui pourraient bloquer le fait d'inclure de nouveaux programmes, et permettre d'avoir plusieurs manières de faire la même chose, tant que cela ne met pas en cause le fonctionnement du système (à la fois le système technique et l'organisation).
 
 Ainsi, bien que Debian soit essentiellement connu comme une distribution Linux, elle peut fonctionner également avec des noyaux link:https://www.debian.org/ports/hurd/[GNU Hurd] ou link:https://www.debian.org/ports/kfreebsd-gnu/[FreeBSD].
 
@@ -34,7 +34,7 @@ Ainsi, bien que Debian soit essentiellement connu comme une distribution Linux, 
 
 La majorité du travail à fournir pour faire vivre Debian et un travail de packaging, c'est-à-dire d'inclure des logiciels dans l'écosystème Debian pour qu'ils puissent être installés et fonctionner ensemble.
 
-Cela peut nécessiter d'avoir à modifier le logiciel pour le rendre compatible, qu'il s'agisse de son code source ou de fichiers de configuration.
+Cela peut signifier de simplement copier une application sur un serveur pour la rendre disponibles, mais peut aussi nécessiter d'avoir à modifier le logiciel pour le rendre compatible, qu'il s'agisse de son code source ou de fichiers de configuration.
 
 === Assembler et pas créer
 
@@ -44,12 +44,15 @@ Cela signifie que les personnes utilisant Debian et qui voudraient créer de nou
 
 == {s}
 
-=== Lancer des programmes
+=== Gérer des programmes
 
-Les systèmes d'exploitations comme les distributions ont besoin d'une manière de lancer et d'arrêter des programmes.
-Par exemple quand vous démarrez votre ordinateur, il va lancer des programmes permettant de se connecter à internet, peut-être d'imprimer des documents, de lancer des mises à jour.
+Les systèmes d'exploitations comme les distributions ont besoin de gérer les programmes.
+Par exemple quand vous démarrez votre ordinateur, il va lancer des programmes permettant de se connecter à internet, peut-être d'imprimer des documents, de lancer des mises à jour. Ensuite vous allez peut-être lancer un navigateur internet, ou un traitement de texte.
 
-Lancer des programmes peut sembler simple mais cela peut devenir complexe en fonction des perfectionnements dont on a besoin, par exemple de démarrer un programme seulement quand on en a besoin, ce qui permet à l'ordinateur de démarrer plus rapidement que si on démarrait tout au début, de faire en sorte qu'un programme A dépende d'un autre programme B et que le lancement de A provoque donc le lancement de B
+Tout cela peut sembler simple mais, en fonction des perfectionnements dont on a besoin cela peut devenir très complexe.
+
+Un programme peut avoir besoin d'en démarrer un autre pour pouvoir s'exécuter, il peut écrire des fichiers de logs qu'il faut purger, il peut vouloir utiliser une gestion de droits d'accès pour limiter les dégâts possibles en cas de problèmes …
+
 
 === System V init
 
@@ -59,7 +62,7 @@ La version utilisée par les système Linux est une réimplémentation de l'orig
 
 Avec ce système la gestion des programme se fait avec des script "standards" utilisant les fonctionnalités proposées par la distribution utilisée, c'est à dire l'ensemble des programmes disponibles.
 
-Cela signifie qu'il est techniquement possible de tout faire, mais qu'il faut tout faire à la main.
+Il est donc possible de tout faire, mais qu'il faut tout faire à la main.
 
 Cela va donc signifier que les comportements avancés peuvent devenir très complexes à mettre en œuvre, et que chaque logiciel a besoin de recoder les mêmes comportements (ou de les copier sur son voisin ou sa voisine).
 
@@ -351,12 +354,65 @@ Malheureusement par manque d'énergie, et dispersion des forces entre les altern
 Même si la généralisation de {s} n'a pas signé la fin de ces autres projets, il y a de grande chances qu'une partie d'entre eux s'arrêtent à moyen terme, {s} ayant répondu à une partie des douleurs qui justifient leur existence.
 Il en restera forcément quelques une, pour des besoins spécifiques, ou simplement par esprit de contradiction pour pouvoir utiliser autre chose que {s}.
 
+=== Docker
+
+Pour clore cette partie il me faut parler un peu de link:https://fr.wikipedia.org/wiki/Docker_(logiciel)[Docker].
+
+Docker est un système permettant de packager des applications Linux sous formes de "conteneurs".
+
+Pour ce faire, il s'appuie sur de nombreuses fonctionnalités du noyau Linux pour permettre d'isoler les conteneurs, de les piloter, de gérer leurs fichiers de logs … 
+
+Et il y a un recouvrement entre {s} et cs fonctionnalités de Docker.
+
+Le plus intéressant est la manière dont les deux projets ont présenté cela.
+
+{s} s'est toujours présenté comme une manière de consolider des bonnes pratiques.
+Un de ses besoins essentiel pour que {s} soit adopté était de rassurer des personnes qui étaient en charges de maintenir des systèmes en état de marche, et qui savaient comment ces systèmes étaient implémentés.
+"`On n'a rien inventé, c'est ce que vous connaissez avec juste un emballage plus pratique fait pour vous simplifier la vie`" est pour cela une bonne stratégie.
+
+À l'inverse, Docker a largement mis en avant l'aspect novateur et la complexité technique de sa solution, oubliant bien souvent de préciser ce qui tenait de leur contribution propre et ce qui était une utilisation -- certes bien pensée -- de fonctionnalités existantes.
+À les entendre lors du lancement, on aurait pu croire que Docker avait inventé l'idée de conteneurs, ou les technologies d'isolations entre applications.
+
+Mais il faut se rappeler que la communication de Docker s'adressait majoritairement à des décideur·euse·s et des développeur·euse·s pour qui les technologies en rupture sont désirables et qui ont souvent une faible connaissance des systèmes d'exploitations (et qui étaient donc peu en capacité de mesurer la véracité de ce qu'on leur disait).
+
+À nouveau, le message était bien adapté à son auditoire.
+
 == Comment ça s'est passé chez Debian
 
-QQQQ
+{s} est un exemple parfait du type de question que les organisations comme Debian ont du mal à traiter : un sous-groupe basé sur le consensus qui doit faire face à une décision clivante prise par le groupe plus large dont il fait partie (celui de la communauté Linux).
 
-=== Les crises sur les mailing list
-=== L'entrée de {s}, Devuan
-=== La coexistence
+En effet en 2013, plusieurs distributions Linux d'importance avaient choisi {s}.
+Pour Debian était venu le moment de faire un choix pour sa prochaine version : fallait-il passer sur {s}, rester sur {syi}, permettre une coexistence entre les deux, voir choisir un système tiers ?
+
+Le débat a été houleux, avec son lot d'insultes et de personnes qui claquent la porte.
+Cela a été le cas avec d'autres distributions, mais l'organisation de Debian a rendu le sujets encore plus compliqué qu'ailleurs.
+
+En effet le fonctionnement démocratique permet que toute la communauté s'exprime, alors que les conséquences du choix ne sont pas les mêmes pour tout le monde.
+
+Ainsi, rester sur {syi} aurait permis à Debian de conserver un très grande compatibilité, par exemple avec des noyaux non Linux, ce qui plaisait aux personnes qui participent à Debian pour expérimenter avec ce type de constructions exotiques.
+Mais par ailleurs, rester sur {syi} aurait pu augmenter la quantité des travail des bénévoles qui s'occupent du packaging de programmes et qui permettent que Debian soient utilisée et utile.
+
+Cette opposition entre les demandes d'une partie d'une communauté et les volontaires qui produisent le logiciel utilisé par cette communauté est une situation classique dans l'open-source, même si souvent on préfère ne pas en parler de cette manière, mais la taille de Debian lui a donné une ampleur inédite.
+
+link:https://lwn.net/Articles/585319/[Au final], c'est {s} qui a été choisi comme système officiel, mais tout en permettant aux autres systèmes, dont {syi}, d'être toujours utilisé.
+Cela a permis de ne pas couper les ponts avec les personnes qui voulaient utiliser des systèmes alternatifs et qui n'étaient pas frontalement opposées à {s}
+
+Certaines des personnes pour qui {s} est une question de principe ont monté un projet concurrent appelé link:https://devuan.org[Devuan].
+
+La décision de coexistence est parfaitement en ligne avec la vision du monde Debian, mais elle a l'inconvénient d'être sujette à interprétation.
+En effet certaines personnes expliquent que, pour qu'il soit réellement possible d'avoir des systèmes alternatifs, il faut interdire d'utiliser les fonctions de {s} qui ne sont pas disponibles dans les autres systèmes, alors que ce sont ces mêmes fonctions qui lui donnent sa valeur.
+
+Pendant quelques années, la communauté a choisi de ne pas officiellement ouvrir cette question, alors qu'elle se remettait du débat précédent.
+
+Mais, comme de plus en plus d'applications fournissent des configurations {s} prêtes à l'emploi, et qui de fait cassent la compatibilité avec les autres systèmes, l'ambiguïté devient intenable.
+
+Près de six ans plus tard, link:https://lwn.net/Articles/804254/[un nouveau vote est en préparation] pour clarifier la situation, on n'en est donc pas encore sorti.
 
 == Conclusion
+
+Depuis bientôt dix ans {s} sème la discorde dans le monde Linux.
+
+Il a donné lieu à des discussions techniques passionnantes et a aussi permis de mettre en lumière beaucoup de non-dits sur le fonctionnement de cette communauté.
+
+
+Même si l'écosystème Linux et l'open-source en général a ses particularités, je pense que les leçons à en tirer peuvent s'appliquer dans bien d'autres contextes IT, y compris celui des entreprises.
