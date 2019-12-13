@@ -56,7 +56,9 @@ Un programme peut avoir besoin d'en démarrer un autre pour pouvoir s'exécuter,
 
 Historiquement les systèmes Unix et Linux utilisent pour cela un système appelé "`{syi}`" parce qu'il tire son origine de la version 5 d'Unix (https://en.wikipedia.org/wiki/UNIX_System_V) datant de 1983.
 
-La version utilisée par les système Linux est une réimplémentation de l'original (pour des raisons de licence) mais qui lui reste largement compatible.
+La version utilisée par la majorité des systèmes Linux est une réimplémentation de l'original (pour des raisons de licence) mais qui lui reste largement compatible.
+
+(Certaines distributions Linux utilisent des systèmes différents, par exemple link:https://www.gentoo.org[Gentoo] utilise link:https://wiki.gentoo.org/wiki/OpenRC[OpenRC].)
 
 Avec ce système la gestion des programme se fait avec des script "standards" utilisant les fonctionnalités proposées par la distribution utilisée, c'est à dire l'ensemble des programmes disponibles.
 
@@ -202,7 +204,7 @@ done
 exit $ERROR
 ----
 
-Du fait de la standardisation de {syi} , ces scripts peuvent être compatibles avec un nombre très importants de systèmes ayant chacun leur implémentation{nbsp}: UNIX, Linux, et d'autres.
+Du fait de la standardisation de {syi}, ces scripts peuvent être compatibles avec un nombre très importants de systèmes ayant chacun leur implémentation{nbsp}: UNIX, Linux, et d'autres.
 
 Cela signifie qu'un logiciel utilisant ce système peut fonctionner théoriquement tel-quel sous Debian même s'il n'a pas été pensé pour fonctionner sous Debian et donc que le travail de packaging demandera très peu d'effort.
 
@@ -215,6 +217,8 @@ Bien entendu, un niveau de customisation plus élevé signifie plus de bénéfic
 {s} est un remplacement au {syi} qui propose une approche très différente{nbsp}: celle de fournir l'ensemble des fonctionnalités nécessaires à l'exécution des logiciels sous une forme intégrée et configurable.
 
 Cela signifie non seulement la gestion du lancement et de l'arrêt comme {syi} mais aussi la gestion des logs, la restriction des accès{nbsp}…
+
+Il s'agit d'une redéfinition du rôle du système d'initialisation.
 
 L'idée sous-jacente est qu'une approche intégrée, c'est-à-dire un ensemble de logiciels développés ensemble vaut mieux qu'une composition de briques plus indépendantes, car cela simplifie le développement, et donc l'ajout de nouvelles fonctionnalités, et permet d'avoir une configuration unique plutôt que des morceaux à droite et à gauche et donc plus lisible, et d'éviter les bugs causés par des incohérences entre composants.
 
