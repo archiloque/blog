@@ -278,9 +278,9 @@ Remplacer ces scripts par des fichiers de configuration souvent beaucoup plus si
 La seconde critique est que son approche ne correspond pas à la link:https://fr.wikipedia.org/wiki/Philosophie_d%27Unix[philosophie d'Unix], qui préconise d'avoir plutôt des "`programmes qui effectuent une seule chose et qui le font bien``".
 
 Au delà de l'aspect philosophique, cet approche permet en théorie de pouvoir facilement remplacer un composant par un autre tant que les deux sont compatibles, ou de tenter une nouvelle approche car le coût du changement sera faible, et donc de pouvoir permettre une forme de concurrence où de sélection naturelle.
-Des composants plus petits devraient permettre un remplacement plus facile, et donc permettre un écosystème qui évolue plus rapidement, il s'agit d'un modèle favorisant le couplage faible.
+Des composants plus petits devraient plus facilement être remplés, et donc avoir un écosystème qui évolue plus rapidement, il s'agit d'un modèle favorisant le couplage faible.
 
-L'avis des personnes qui ont créé {s} est que—{nbsp}si la philosophie d'Unix peut être pertinent lorsque de la conception de certains types d'applications{nbsp}—&#8201;elle ne l'est pas pour tous les types de programmes, et notamment pour les système en charge de gérer d'autres programmes.
+L'avis des personnes qui ont créé {s} est que—{nbsp}si la philosophie d'Unix peut être pertinente lorsque de la conception de certains types d'applications{nbsp}—&#8201;elle ne l'est pas pour tous les types de programmes, et notamment pour les systèmes en charge de gérer d'autres programmes.
 
 Les applications qui se prêtent bien à une approche à la Unix, sont celles pour lesquelles les frontières sont limitées, bien délimitées, et assez fixes. L'exemple type est celui de nombreux outils en ligne de commande qui communiquent par des flux de textes séparés par des sauts de lignes et qu'on peut chaîner les uns avec les autres pour mettre en place des flux de traitements.
 
@@ -294,7 +294,7 @@ Il permet aussi de simplifier les évolutions lorsqu'elles touchent plusieurs é
 Ensuite, pour limiter la taille et la complexité du projet, {s} ne fonctionne que sur Linux.
 Ce choix permet deux choses{nbsp}: de pouvoir utiliser toutes les fonctionnalités fournies par ce système alors que d'autres ne sont pas forcément aussi riches (ce qui évite soit de ne pas pouvoir faire certaines choses, soit de devoir les réimplémenter), et d'avoir à gérer de compatibilité avec plusieurs soubassements différents.
 
-Cela signifie que pour si une application veut fournir des outils permettant de la piloter et qu'elle vise d'autres systèmes que Linux, elle peut avoir à les fournir en version {s} et en version {syi}.
+Cela signifie que si une application veut fournir des outils permettant de la piloter et qu'elle vise d'autres systèmes que Linux, elle peut avoir à les fournir en version {s} et en version {syi}.
 
 De même pour les OS comme Debian qui veulent être compatibles avec plusieurs noyaux.
 
