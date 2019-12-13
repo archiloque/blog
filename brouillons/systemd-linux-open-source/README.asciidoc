@@ -208,7 +208,8 @@ Du fait de la standardisation de {syi}, ces scripts peuvent être compatibles av
 
 Cela signifie qu'un logiciel utilisant ce système peut fonctionner théoriquement tel-quel sous Debian même s'il n'a pas été pensé pour fonctionner sous Debian et donc que le travail de packaging demandera très peu d'effort.
 
-Du fait des limites de ce système, par exemple le fait qu'il utilise une sorte de plus petit commun multiple (qui correspond donc grosso-modo à l'état de l'art de 1983), certaines distributions, modifient ces scripts qu'elles utilisent des fonctionnalités plus avancées mais qui ne font pas partie du tronc commune, par exemple pour améliorer la fiabilité du système ou améliorer la compatibilité entre les différents composants.
+Ce système représente une sorte de plus petit commun multiple, qui correspond donc grosso-modo à l'état de l'art de 1983, et à cause de cela ne répond pas à tout ce dont on peut avoir besoin de nos jours.
+Certaines distributions modifient donc ces scripts qu'elles utilisent des fonctionnalités plus avancées mais qui ne font pas partie du tronc commun, par exemple pour améliorer la fiabilité du système ou améliorer la compatibilité entre les différents composants.
 
 Bien entendu, un niveau de customisation plus élevé signifie plus de bénéfices, mais aussi plus d'efforts de packaging à fournir de la part des personnes qui participent à la distribution.
 
@@ -276,7 +277,7 @@ Remplacer ces scripts par des fichiers de configuration souvent beaucoup plus si
 
 La seconde critique est que son approche ne correspond pas à la link:https://fr.wikipedia.org/wiki/Philosophie_d%27Unix[philosophie d'Unix], qui préconise d'avoir plutôt des "`programmes qui effectuent une seule chose et qui le font bien``".
 
-Au delà de l'aspect philosophique, cet approche permet en théorie de pouvoir facilement un composant par un autre tant que les deux sont compatibles, ou de tenter une nouvelle approches car le coût du changement sera faible, et donc de pouvoir permettre une forme de concurrence où de sélection naturelle.
+Au delà de l'aspect philosophique, cet approche permet en théorie de pouvoir facilement remplacer un composant par un autre tant que les deux sont compatibles, ou de tenter une nouvelle approche car le coût du changement sera faible, et donc de pouvoir permettre une forme de concurrence où de sélection naturelle.
 Des composants plus petits devraient permettre un remplacement plus facile, et donc permettre un écosystème qui évolue plus rapidement, il s'agit d'un modèle favorisant le couplage faible.
 
 L'avis des personnes qui ont créé {s} est que—{nbsp}si la philosophie d'Unix peut être pertinent lorsque de la conception de certains types d'applications{nbsp}—&#8201;elle ne l'est pas pour tous les types de programmes, et notamment pour les système en charge de gérer d'autres programmes.
