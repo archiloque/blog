@@ -27,7 +27,6 @@ Cela signifie essayer de limiter les contraintes techniques qui pourraient bloqu
 
 Ainsi, bien que Debian soit essentiellement connue comme une distribution Linux, elle peut fonctionner également avec des noyaux link:https://www.debian.org/ports/hurd/[GNU Hurd] ou link:https://www.debian.org/ports/kfreebsd-gnu/[FreeBSD].
 
-
 === Packaging
 
 La majorité du travail à fournir pour faire vivre Debian et un travail de packaging, c'est-à-dire d'inclure des logiciels dans l'écosystème Debian pour qu'ils puissent être installés et fonctionner ensemble.
@@ -50,7 +49,6 @@ Par exemple quand vous démarrez votre ordinateur, il va lancer des programmes p
 Tout cela peut sembler simple mais, en fonction des perfectionnements dont on a besoin cela peut devenir très complexe.
 
 Un programme peut avoir besoin d'en démarrer un autre pour pouvoir s'exécuter, il peut écrire des fichiers de logs qu'il faut purger, il peut vouloir utiliser une gestion de droits d'accès pour limiter les dégâts possibles en cas de problèmes{nbsp}…
-
 
 === System V init
 
