@@ -360,28 +360,6 @@ Malheureusement par manque d'énergie, et dispersion des forces entre les altern
 Même si la généralisation de {s} n'a pas signé la fin de ces autres projets, il y a de grandes chances qu'une partie d'entre eux s'arrêtent à moyen terme, {s} ayant répondu à une partie des douleurs qui justifient leur existence.
 Il en restera forcément quelques-unes, pour des besoins spécifiques, ou simplement par esprit de contradiction pour pouvoir utiliser autre chose que {s}.
 
-=== Docker
-
-Pour clore cette partie il me faut parler un peu de link:https://fr.wikipedia.org/wiki/Docker_(logiciel)[Docker].
-
-Docker est un système permettant de packager des applications Linux sous formes de "conteneurs".
-
-Pour ce faire, il s'appuie sur de nombreuses fonctionnalités du noyau Linux pour permettre d'isoler les conteneurs, de les piloter, de gérer leurs fichiers de logs{nbsp}… 
-
-Et il y a un recouvrement entre {s} et ces fonctionnalités de Docker.
-
-Le plus intéressant est la manière dont les deux projets ont chacun présenté leur produit.
-
-{s} s'est toujours présenté comme une manière de consolider des bonnes pratiques.
-Un de ses besoins essentiel pour que {s} soit adopté était de rassurer des personnes qui étaient en charges de maintenir des systèmes en état de marche, et qui savaient comment ces systèmes étaient implémentés.
-"`On n'a rien inventé, c'est ce que vous connaissez avec juste un emballage plus pratique fait pour vous simplifier la vie`" est pour cela une bonne stratégie.
-
-À l'inverse, Docker a largement mis en avant l'aspect novateur et la complexité technique de sa solution, oubliant bien souvent de préciser ce qui tenait de leur contribution propre et ce qui était un packaging de fonctionnalités existantes.
-
-Leur communication était adaptée à leur public en majorité composé de décideur·euse·s et de développeur·euse·s pour qui les technologies en rupture sont désirables et qui ont souvent une faible connaissance des systèmes d'exploitations.
-
-Chacun sa cible et chacun manière de présenter les choses.
-
 == Comment ça s'est passé chez Debian
 
 {s} est un exemple parfait du type de question que les organisations comme Debian ont du mal à traiter{nbsp}: un sous-groupe basé sur le consensus qui doit faire face à une décision clivante prise par le groupe plus large dont il fait partie (celui de la communauté Linux).
