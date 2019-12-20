@@ -1,0 +1,23 @@
+= Analyse d'une migration catastrophique
+Julien Kirch
+v1.0, 2019-12-20
+
+https://twitter.com/JonHall_/status/1197268706042286081
+
+* Demerged
+* Migration big bang
+* Personnes qui pilotent n'ont pas l'habitude
+* Date à l'avance et qui ne bougent pas, et du coup un retro-planning
+** Date ambitieuse utilisée pour motiver les personnes, mais du coup d'autant plus difficile à bouger
+** Date qui permet des économies et qui a été budgétée
+** Lors d'un replanning, nouvelle date annoncée trop rapidement
+* Négociation sur les cibles à atteindre, différence entre acceptable non-acceptable
+* En cas de retard, tentant de vouloir sacrifier les tests
+* Confiance des migrations passées alors que pas du même type
+** Cas du 80-20 : les points de détails font la différence
+* Décalage des tests d'intégration au plus tard, alors qu'importante complexité
+* Fournisseur interne
+* Manque de compétence pour piloter
+* Annoncé sans changement pour calmer les personnes alors que plein de changements
+* Test pendant les phases de développement
+* Conclusion : beaucoup de personnes savaient probablement
