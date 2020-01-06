@@ -1,0 +1,281 @@
+= Advent of code 2019 in Ruby
+Julien Kirch
+v0.1, 2020-01-06
+:article_lang: en
+:article_image: shot.png
+:article_description: Lots of code
+:ignore_files: 01_1.rb, 02_1.rb, 03_1.rb, 04_1.rb, 05_1.rb, 06_1.rb, 07_1.rb, 08_1.rb, 09_1.rb, 10_1.rb, 11_1.rb, 12_1.rb, 13_1.rb, 14_1.rb, 15_1.rb, 16_1.rb, 17_1.rb, 18_1.rb, 01_2.rb, 02_2.rb, 03_2.rb, 04_2.rb, 05_2.rb, 06_2.rb, 07_2.rb, 08_2.rb, 09_2.rb, 10_2.rb, 11_2.rb, 12_2.rb, 13_2.rb, 14_2.rb, 15_2.rb, 16_2.rb, 17_2.rb
+
+For a second year I did some exercises from link:https://adventofcode.com[advent of code].
+
+Like last year I've started several days after the official beginning to avoid the feel of being part of a competition or to have a fixed schedule.
+
+Most of the exercises have the same qualities I appreciated in last year ones: not very long and don't require external knowledge, and especially no knowledge of specific algorithms.
+
+And same for the things I disliked: the writing theme that add flavor but makes some problems harder to understand, and many exercises have edge cases that are not tested in the provided samples so it makes harder to check if things work as expected.
+
+I've stopped at problem 2 of day 18 because I've lost my interest in it, and I prefer to stop before it feels too much like work.
+
+If you have comments or question about these please contact me.
+
+## Day 01
+
+[source,ruby]
+.01_1.rb
+----
+include::01_1.rb[]
+----
+
+[source,ruby]
+.01_2.rb
+----
+include::01_2.rb[]
+----
+
+
+## Day 02
+
+[source,ruby]
+.02_1.rb
+----
+include::02_1.rb[]
+----
+
+[source,ruby]
+.02_2.rb
+----
+include::02_2.rb[]
+----
+
+
+## Day 03
+
+[source,ruby]
+.03_1.rb
+----
+include::03_1.rb[]
+----
+
+[source,ruby]
+.03_2.rb
+----
+include::03_2.rb[]
+----
+
+
+## Day 04
+
+[source,ruby]
+.04_1.rb
+----
+include::04_1.rb[]
+----
+
+[source,ruby]
+.04_2.rb
+----
+include::04_2.rb[]
+----
+
+
+## Day 05
+
+[source,ruby]
+.05_1.rb
+----
+include::05_1.rb[]
+----
+
+[source,ruby]
+.05_2.rb
+----
+include::05_2.rb[]
+----
+
+
+## Day 06
+
+[source,ruby]
+.06_1.rb
+----
+include::06_1.rb[]
+----
+
+[source,ruby]
+.06_2.rb
+----
+include::06_2.rb[]
+----
+
+
+## Day 07
+
+[source,ruby]
+.07_1.rb
+----
+include::07_1.rb[]
+----
+
+[source,ruby]
+.07_2.rb
+----
+include::07_2.rb[]
+----
+
+
+## Day 08
+
+[source,ruby]
+.08_1.rb
+----
+include::08_1.rb[]
+----
+
+[source,ruby]
+.08_2.rb
+----
+include::08_2.rb[]
+----
+
+
+## Day 09
+
+[source,ruby]
+.09_1.rb
+----
+include::09_1.rb[]
+----
+
+[source,ruby]
+.09_2.rb
+----
+include::09_2.rb[]
+----
+
+
+## Day 10
+
+[source,ruby]
+.10_1.rb
+----
+include::10_1.rb[]
+----
+
+[source,ruby]
+.10_2.rb
+----
+include::10_2.rb[]
+----
+
+
+## Day 11
+
+[source,ruby]
+.11_1.rb
+----
+include::11_1.rb[]
+----
+
+[source,ruby]
+.11_2.rb
+----
+include::11_2.rb[]
+----
+
+
+## Day 12
+
+[source,ruby]
+.12_1.rb
+----
+include::12_1.rb[]
+----
+
+[source,ruby]
+.12_2.rb
+----
+include::12_2.rb[]
+----
+
+
+## Day 13
+
+[source,ruby]
+.13_1.rb
+----
+include::13_1.rb[]
+----
+
+[source,ruby]
+.13_2.rb
+----
+include::13_2.rb[]
+----
+
+
+## Day 14
+
+[source,ruby]
+.14_1.rb
+----
+include::14_1.rb[]
+----
+
+[source,ruby]
+.14_2.rb
+----
+include::14_2.rb[]
+----
+
+
+## Day 15
+
+[source,ruby]
+.15_1.rb
+----
+include::15_1.rb[]
+----
+
+[source,ruby]
+.15_2.rb
+----
+include::15_2.rb[]
+----
+
+
+## Day 16
+
+[source,ruby]
+.16_1.rb
+----
+include::16_1.rb[]
+----
+
+[source,ruby]
+.16_2.rb
+----
+include::16_2.rb[]
+----
+
+
+## Day 17
+
+[source,ruby]
+.17_1.rb
+----
+include::17_1.rb[]
+----
+
+[source,ruby]
+.17_2.rb
+----
+include::17_2.rb[]
+----
+
+## Day 18
+
+[source,ruby]
+.18_1.rb
+----
+include::18_1.rb[]
+----
