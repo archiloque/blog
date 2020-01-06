@@ -29,6 +29,7 @@ Le problème principal est la complexité des systèmes actuels par rapport à l
 Par exemple les approches formelles permettent de prouver que des programmes font ce qu'ils décrivent et uniquement cela, par exemple des link:https://sel4.systems[systèmes d'exploitations]. Mais les contraintes techniques et de coût font qu'elles ne sont applicables qu'à des programmes bien spécifiques et de taille souvent très limitée.
 
 L'espoir de l'auteur c'est qu'avec la nouvelle importance données à ces questions, de nouvelles approches vont émerger et permettre de combler certains des manques actuels.
+C'est par exemple le cas de la link:https://reproducible-builds.org[compilation reproductible], même si elle n'est qu'un maillon d'une chaîne qui reste à construire.
 
 Pour les autres il faudra peut-être choisir de sacrifier certaines fonctionnalités ou un certain niveau de performance pour avoir un système de confiance.
 
