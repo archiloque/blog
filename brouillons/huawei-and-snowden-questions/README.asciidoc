@@ -9,7 +9,7 @@ Que peut-on faire quand on n'a pas confiance dans les organisations qui nous fou
 
 Il y a quelques années il s'agissait d'une question de niche, mais depuis les révélations d'Edward Snowden sur la NSA qui modifiait du matériel Cisco avant qu'il ne soit transmis à ses client·e·s, et les soupçon contre Huawei de fournir des backdoor à l'état Chinois les personnes qui s'intéressent à ces sujets sont de plus en plus en nombreuses, même si c'est seulement pour leur culture.
 
-Dans ce livre, link:https://www.springer.com/gp/book/9783319749495[en libre accès dans sa version électronique], Olav Lysne s'adresse justement à ces personnes qui ont une connaissance très générales en informatique et qui cherchent à acquérir un vernis sur ce sujet.
+Dans ce livre, link:https://www.springer.com/gp/book/9783319749495[en libre accès dans sa version électronique], Olav Lysne s'adresse justement à ces personnes qui ont des connaissances très générales en informatique et qui cherchent à acquérir un vernis sur ce sujet.
 
 Le livre est court et didactique et propose ce qui semble être est bonne synthèse de l'état de l'art sur le sujet de la confiance dans l'informatique.
 
@@ -28,12 +28,12 @@ Le problème principal est la complexité des systèmes actuels par rapport à l
 
 Par exemple les approches formelles permettent de prouver que des programmes font ce qu'ils décrivent et uniquement cela, par exemple des link:https://sel4.systems[systèmes d'exploitations]. Mais les contraintes techniques et de coût font qu'elles ne sont applicables qu'à des programmes bien spécifiques et de taille souvent très limitée.
 
-L'espoir de l'auteur c'est qu'avec la nouvelle importance données à ces questions, de nouvelles approches vont émerger et permettre de combler certains des manques actuels.
+L'espoir de l'auteur c'est qu'avec la nouvelle importance donnée à ces questions, de nouvelles approches vont émerger et permettre de combler certains des manques actuels.
 C'est par exemple le cas de la link:https://reproducible-builds.org[compilation reproductible], même si elle n'est qu'un maillon d'une chaîne qui reste à construire.
 
 Pour les autres il faudra peut-être choisir de sacrifier certaines fonctionnalités ou un certain niveau de performance pour avoir un système de confiance.
 
-Même si une intrusion de la NSA n'est un risque qui ne concerne un petit nombre d'acteurs, toucher du doigt l'incapacité de maîtriser réellement la majorité systèmes qu'on utilise est assez vertigineux et vaut d'ouvrir ce livre.
+Même si une intrusion de la NSA n'est un risque qui ne concerne un petit nombre d'acteurs, toucher du doigt l'incapacité de maîtriser réellement la majorité des systèmes qu'on utilise est assez vertigineux et vaut d'ouvrir ce livre.
 
 On voit bien qu'une nouvelle boite de pandore a été ouverte, et je suis persuadé que d'ici quelques temps de multiples vendeurs viendront nous proposer des solutions _magiques_ à ce problème.
 Connaître un peu ce sujet deviendra alors essentiel pour avoir une chance de leur échapper.
