@@ -1,0 +1,159 @@
+= Compte rendu : La duck conf 2020
+Julien Kirch
+v0.1, 2018-09-10
+:article_lang: fr
+:article_image: logo-duck-conf.png
+:article_description: kwak kwak
+
+Ça fait bizarre de faire le compte rendu d'une conférence après en avoir été le créateur.
+
+En effet, après l'avoir organisé seul en 2018 et avoir fait monter à bord link:https://twitter.com/Cyril_IT[Cyril] et link:https://twitter.com/poildortie[Mathieu Poignant], j'ai quitté Octo en juin dernier pour link:https://souscription.enercoop.fr[Enercoop].footnote:[D'ailleurs on recrute] alors que les discussions sur link:https://www.laduckconf.com/programme/[le programme de 2020] démarraient.
+
+Même si j'avais confiance en eux, ça fait très plaisir de voir que la conférence vit maintenant sa vie sans moi.
+
+Je vais commencer par parler en général, puis je résumerai les éléments que j'ai noté sur les différents talks.
+
+== En général
+
+=== Une conférence au masculin
+
+L'an dernier nous n'avions pas réussi à avoir de speakeuse et je m'en étais excusé.
+
+Cette année il n'y avait pas non plus de speakeuse, mais le sujet n'a pas été abordé, et le code de conduite n'a pas été mentionné.
+Si vous ajoutez le fait d'avoir des slides presque uniquement au masculin, j'ai été très désagréablement surpris qu'Octo s'inscrive sur ces sujets à rebours de ce qui se fait dans la plupart des autres évènements.
+
+=== Les talks{nbsp}: peu mieux faire
+
+Je ne sais pas comme le dire avec des pincettes{nbsp}: un certain nombre de talks manquaient de finition.
+
+Pas de plan annoncé, déroulé pas clair, nombreuses redites{nbsp}… dans plusieurs cas je me suis retrouvé à lutter pour suivre le fil de ce qui était dit, alors que visiblement le contenu était là.
+
+C'était assez rageant car on a le sentiment que 90% du travail avait été fait mais que les 10% manquants manquaient vraiment.
+
+=== Kubernetes, Kubernetes, Kubernetes
+
+Sur le sujets du cloud, Kubernetes a régné en maître quasi-absolu.
+Cela tranche beaucoup avec l'état du marché, ou même le panorama discuté à la conférence l'an dernier (PaaS, lambda{nbsp}…).
+
+Je sais que c'est une conséquence directe du fait qu'Octo vend de l'expertise Kubernetes, et que les personnes font des talks sur les sujets qu'ils connaissent, mais quand même.
+
+Ce qui m'a le plus gêné c'est l'absence de recul sur la complexité que Kubernetes impose aux équipes de développement{nbsp}: quand j'entends qu'il faut avoir un Ops, au moins à temps partiel, par équipe de développement pour gérer les fichiers de déploiements pour des applis standard, je trouve que c'est un peu du foutage de gueule.
+
+Pour moi, qu'une expertise particulière soit nécessaire pour _remplir les fichiers de configuration_ d'une application standard je vois ça comme un manque clair dans l'offre Kubernetes, et je comprends très bien que des entreprises redéveloppent des outils spécifiques (mêmes s'ils ne donnent pas forcément satisfaction) pour avoir à éviter cela.
+
+== Les talks
+
+=== Désiré Atanga{nbsp}: Kube is the new mainframe
+
+Le talk se propose de parler des biais qui freinent l'adoption de Kubernetes à travers un parallèle avec le mainframe.
+L'idée est que lors de leur sortie, le mainframe et Kubernetes fournissent tous les deux des fonctionnalités qu'on ne trouve pas forcément dans les solutions existantes, mais alors que le mainframe s'est imposé sans problème ce n'est pas le cas de Kubernetes.
+
+Beaucoup de choses dans le talk, et parfois difficiles à suivre.
+
+Les éléments que j'en retiens :
+
+* Les plateformes "`DevOps`" développées par certaines entreprises pour simplifier le travail des projet peuvent être un frein car elles empêchent d'utiliser toutes les avantages de Kubernetes, ce qui peut diminuer l'intérêt pour les projets de les utiliser
+* Les contraintes d'avoir une application link:https://12factor.net/fr/[douze facteurs] pèse toujours, même si les frameworks récents sont en principe compatibles avec ces contraintes, cela peut soit augmenter le ticket d'entrée pour migrer sur Kubernetes, ou carrément empêcher de le faire.
+
+=== Alain Faure & Laurent Sollier : no code : la démocratisation du développement
+
+Un talk sur les solutions de no-code (à base d'interface-souris) ou de low-code (genre Excel mais pour du développement) qui permettent à des personnes ayant pas ou peu d'expérience de développement de pouvoir créer des applications.
+
+Même si les choses progressent, le constat ne change pas depuis des années : on peut faire des choses avec ces systèmes, mais plus la complexité de ce qu'on veut faire augmente, plus leurs contraintes et limitations réduisent leur pertinence vis à vis d'outils de développement classiques.
+
+J'ai été un peu brusqué sur la reprise du discours patronal sur "`il manque 50.000 développeurs`" qui repose sur link:https://www.regionsjob.com/actualites/recrutements-numerique.html[des projections de 2012]  et qui manifeste surtout le sentiment que les personnes qui développent sont trop payées par rapport à ce qu'on estime être ce qu'elles méritent.
+
+Une des propositions de valeurs des solutions low-code est de pouvoir confier à des personnes ayant moins de compétences informatiques, et qu'on peut donc payer moins cher, des tâches qu'on confierait sinon à des développeur·euse·s "`classiques`".
+
+Il serait plus courageux d'assumer la chose directement plutôt que se reposer sur des chiffres sortis de leur contexte.
+
+=== Ilker Aksen & Borémi Toch{nbsp}: Les papys de l'ESB ont une histoire à vous conter
+
+Il s'agit d'un rappel sur les fondamentaux des échanges dans le SI au travers de l'histoire des link:https://fr.wikipedia.org/wiki/Enterprise_service_bus[ESB].
+
+Pour les personnes qui n'ont pas connu ces outils et à qui ils ne donneraient pas envie, c'est surtout l'occasion de mieux expliquer certaines pratiques actuelles, et d'éviter de reproduire les erreurs du passé.
+
+Je conseille ce talk quand il sera disponible en vidéo, mais comme Ilker a été mon manager pendant 5 ans je pense que je ne suis pas tout à fait objectif.
+
+=== Thomas Wickham{nbsp}: votre organisation est aussi agile que le moins agile de ses composants
+
+Le sujet du talk n'est pas l'agile mais la vélocité, et son message est que d'augmenter le nombre de personnes qui développent n'est pas forcément la solution pour délivrer plus de fonctionnalités si le goulot d'étranglement est ailleurs.
+
+Dans son raisonnement, Thomas essaie de montrer les effets induits par l'augmentation du nombres de personnes sur le développement, mais pour cela il mélange plusieurs choses, d'un part ce qui augmente avec le nombre de personnes mais en pourcentage constant et ce qui augmente en pourcentage, et d'autre part les choses qui arrivent dans tous les cas avec celles qui risquent d'arriver.
+
+Du coup si au final la conclusion semble être quelque chose qui va de soi, on a l'impression que pour y arriver on a mélangé des choux et des carottes.
+
+=== Fabien Arcelier{nbsp}: mon DSI veut une MEP par jour, comment faire de l’archi quand tout est en mouvement{nbsp}?
+
+J'ai eu le sentiment d'avoir assisté à deux demi-talks{nbsp}.
+
+La première moitié du talk se base sur le livre link:../accelerate/[Accelerate] pour expliquer que pour faire la différence aujourd'hui il faut livrer plus vite et qu'il est possible de le faire sans baisse de qualité, et cela indépendamment de votre stack technique.
+
+La deuxième moitié est un mélange de patterns à mettre en œuvre pour pouvoir délivrer plus vite et de conseils sur la posture de l'architecte dans un environnement de ce type.
+
+Si je suis d'accord sur les solutions techniques comme le fait qu'il faut fournir des sondes de monitoring ou essayer de prendre en compte les défaillances, je suis assez dubitatif sur le discours sur la posture de l'architecte.
+
+Fabien défend l'idée d'un architecte de SI qui devrait avoir une posture de coach·e qui n'impose rien au projet mais qui est tout de même garant du SI.
+Dans une organisation il est tout à fait normal que de temps en temps les besoins ou les priorité des applications et du SI ne soient pas les mêmes.
+
+Dans ce cas, je pense qu'il est légitime que la personne qui porte la voix du SI, typiquement un·e architecte SI, pèse dans la décision pour influencer les choix.
+On ne peut pas espérer que des projets défendent le point du vue du SI quand cela va à l'encontre du leur.
+
+Du coup dire que l'architecte doit uniquement être que dans une posture de coaching c'est donc soit mettre en risque le SI, ou alors tenter de ne pas assumer son pouvoir d'influence sur les projet.
+
+=== Henri Decourt & Cédric Martin{nbsp}: mettre une refonte sur orbite, plus qu'une affaire de technique
+
+Le talk raconte une refonte d'un domaine d'un SI réalisé pour un client, en insistant sur les aspects organisation et métier.
+
+En effet une refonte est un chantier d'envergure, et doit se piloter comme un programme, ce qui suppose planning, appuis politiques et négociations.
+
+Les messages sont intéressants et font un bon tour d'horizon des sujets, à mon goût il a juste manqué de parler quand même un peu d'architecture.
+
+== Adrien Graux & Daniel Sabin{nbsp}: l'API management{nbsp}: au-delà des promesses
+
+Le talk fait un état des lieux de ce qui fonctionne vraiment dans les solutions d'API management et de ce ne donne pas satisfaction pour un besoin d'exposition d'API à l'extérieur du SI.
+
+En résumé{nbsp}: ce qui fonctionne vraiment bien est la partie "`reverse proxy de luxe`", pour le reste comme la sécurité, le portail pour les développeur·euse·s ou les capacité de traitement des flux c'est bof ou bof bof.
+
+Adrien Graux & Daniel Sabin en profitent pour passer en revue les bonnes pratiques à date sur les différents sujets, ça permet donc de se mettre au goût du jour même si je n'ai pas l'impression que les choses aient beaucoup changées.
+
+J'ai apprécié la fin de présentation où les deux speakers expriment leur envie que les solutions se concentrent sur là où elles savent faire et laissent tomber le reste, même si j'ai de sérieux doute sur le fait que cette approche soit compatible avec les objectif business des éditeurs.
+
+Le discours m'a fait sourir car quand les solutions d'API management sont sorti, une partie des architectes expérimentés les comparaient aux solutions link:https://fr.wikipedia.org/wiki/Universal_Description_Discovery_and_Integration[UDDI] qui fournissaient des portails développeur·euse·s pour du SOAP et qui avaient plutôt été un désastre.
+
+On leur répondait "`oui mais comme c'était du SOAP c'était le MAL, alors que le REST c'est le bien, et du coup là on les solutions SOAP on échoué le REST va réussir`".
+
+Au final il semble que le problème ne soit pas forcément un problème de technologie.
+
+== Lucas Boisserie & Benjamin Brabant{nbsp}: elle est où ton appli{nbsp}? dans mon kube{nbsp}!
+
+Un retour d'expérience d'une mise en place de Kubernetes qui s'est bien passé, en présentant les fonctionnalités de Kubernetes, l'impact sur les appli (encore les douze facteurs) et l'organisation de l'accompagnement.
+
+Rien de rare mais une bonne synthèse sur le sujet pour les personnes qui connaissent peu le sujet.
+
+== Pascal Martin{nbsp} migration de 6play : l'amour est dans le cloud
+
+Pascal Martin raconte la migration de 6play, le service de replay de M6 et d'autres télévision depuis leurs serveurs physiques vers le cloud.
+
+Le speaker est énergique et l'histoire est bien menée.
+On voit bien combien le fait d'avoir un vrai gros problème, ici de scalabilité, peut aider à faire prendre des décisions et à avancer les choses dans un chantier de cette ampleur.
+
+La présentation montre les différents patterns de migrations choisis, certains orthodoxes et d'autres moins, et insiste bien sur l'ampleur de la tâche et des compétence à acquérir par l'organisation.
+
+== Didier Bernaudeau & Jean-Baptiste Joly{nbsp}: continuous security{nbsp}: secure a devops world
+
+Les deux speakers montrent que dans un delivery automatisé, chaque étape peut s'appuyer sur différents outils permettant de vérifier tel ou tel aspects de la sécurité de l'application.
+
+Même si ces outils ne font pas tout (étonnant, non{nbsp}?), ils permettent tout de même de couvrir un certain périmètre, et l'intégration dans la chaîne de déploiement permet d'éviter de prendre du retard sur ce qu'on livre comme on le fait dans un audit post-release classique.
+
+J'aurais aimé que les auteurs donnent un peu plus leur avis sur la pertinence des nombreux outils, et sur la manière de prioriser les mise en œuvre, car du coup le talk fait un peu un effet catalogue.
+
+== Emmanuel Toulemonde & Mehdi Houacine{nbsp}:mise en prod de la data science{nbsp}: le jour d'après
+
+Comment faire du monitoring avec de la data science{nbsp}?
+
+Le talk a l'air d'avoir du contenu mais c'était le onzième talk de la journée, la data science n'est pas dans mes sujets de prédilections, et les speakers avaient des intonations plutôt monotones, du coup j'ai complètement décroché et je ne peux pas vous en dire plus.
+
+= En conclusion
+
+QQQ
