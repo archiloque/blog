@@ -11,7 +11,7 @@ En effet, après l'avoir organisé seul en 2018 et avoir fait monter à bord lin
 
 Même si j'avais confiance en eux, ça fait très plaisir de voir que la conférence vit maintenant sa vie sans moi.
 
-Je vais commencer par parler en général, puis je résumerai les éléments que j'ai noté sur les différents talks.
+Je vais commencer par parler en général, puis je résumerai les éléments que j'ai noté sur les différents talks et les réactions qu'ils ont provoqués.
 
 == En général
 
@@ -22,7 +22,7 @@ L'an dernier nous n'avions pas réussi à avoir de speakeuse et je m'en étais e
 Cette année il n'y avait pas non plus de speakeuse, mais le sujet n'a pas été abordé, et le code de conduite n'a pas été mentionné.
 Si vous ajoutez le fait d'avoir des slides presque uniquement au masculin, j'ai été très désagréablement surpris qu'Octo s'inscrive sur ces sujets à rebours de ce qui se fait dans la plupart des autres évènements.
 
-=== Les talks{nbsp}: peu mieux faire
+=== Les talks{nbsp}: peut mieux faire
 
 Je ne sais pas comme le dire avec des pincettes{nbsp}: un certain nombre de talks manquaient de finition.
 
@@ -79,7 +79,7 @@ Je conseille ce talk quand il sera disponible en vidéo, mais comme Ilker a ét�
 
 Le sujet du talk n'est pas l'agile mais la vélocité, et son message est que d'augmenter le nombre de personnes qui développent n'est pas forcément la solution pour délivrer plus de fonctionnalités si le goulot d'étranglement est ailleurs.
 
-Dans son raisonnement, Thomas essaie de montrer les effets induits par l'augmentation du nombres de personnes sur le développement, mais pour cela il mélange plusieurs choses, d'un part ce qui augmente avec le nombre de personnes mais en pourcentage constant et ce qui augmente en pourcentage, et d'autre part les choses qui arrivent dans tous les cas avec celles qui risquent d'arriver.
+Dans son raisonnement, Thomas essaie de montrer les effets induits par l'augmentation du nombres de personnes sur le développement, mais pour cela il mélange plusieurs choses, d'une part ce qui augmente linéairement avec le nombre de personnes et ce qui augmente plus vite que le nombre de personnes, et d'autre part les choses qui arrivent dans tous les cas avec celles qui risquent d'arriver.
 
 Du coup si au final la conclusion semble être quelque chose qui va de soi, on a l'impression que pour y arriver on a mélangé des choux et des carottes.
 
@@ -119,7 +119,7 @@ Adrien Graux & Daniel Sabin en profitent pour passer en revue les bonnes pratiqu
 
 J'ai apprécié la fin de présentation où les deux speakers expriment leur envie que les solutions se concentrent sur là où elles savent faire et laissent tomber le reste, même si j'ai de sérieux doute sur le fait que cette approche soit compatible avec les objectif business des éditeurs.
 
-Le discours m'a fait sourir car quand les solutions d'API management sont sorti, une partie des architectes expérimentés les comparaient aux solutions link:https://fr.wikipedia.org/wiki/Universal_Description_Discovery_and_Integration[UDDI] qui fournissaient des portails développeur·euse·s pour du SOAP et qui avaient plutôt été un désastre.
+Le discours m'a fait sourire car quand les solutions d'API management sont sorti, une partie des architectes expérimentés les comparaient aux solutions link:https://fr.wikipedia.org/wiki/Universal_Description_Discovery_and_Integration[UDDI] qui fournissaient des portails développeur·euse·s pour du SOAP et qui avaient plutôt été un désastre.
 
 On leur répondait "`oui mais comme c'était du SOAP c'était le MAL, alors que le REST c'est le bien, et du coup là on les solutions SOAP on échoué le REST va réussir`".
 
@@ -133,22 +133,24 @@ Rien de rare mais une bonne synthèse sur le sujet pour les personnes qui connai
 
 == Pascal Martin{nbsp} migration de 6play : l'amour est dans le cloud
 
-Pascal Martin raconte la migration de 6play, le service de replay de M6 et d'autres télévision depuis leurs serveurs physiques vers le cloud.
+Pascal Martin raconte la migration de 6play, le service de replay de M6 et d'autres télévisions depuis leurs serveurs physiques vers le cloud.
 
 Le speaker est énergique et l'histoire est bien menée.
 On voit bien combien le fait d'avoir un vrai gros problème, ici de scalabilité, peut aider à faire prendre des décisions et à avancer les choses dans un chantier de cette ampleur.
 
 La présentation montre les différents patterns de migrations choisis, certains orthodoxes et d'autres moins, et insiste bien sur l'ampleur de la tâche et des compétence à acquérir par l'organisation.
 
+Et ça me fait toujours plaisir d'entendre des organisations contentes d'utiliser du PHP.
+
 == Didier Bernaudeau & Jean-Baptiste Joly{nbsp}: continuous security{nbsp}: secure a devops world
 
-Les deux speakers montrent que dans un delivery automatisé, chaque étape peut s'appuyer sur différents outils permettant de vérifier tel ou tel aspects de la sécurité de l'application.
+Les deux speakers montrent que dans un delivery automatisé, chaque étape peut s'appuyer sur différents outils permettant de vérifier tel ou tel aspect de la sécurité de l'application.
 
 Même si ces outils ne font pas tout (étonnant, non{nbsp}?), ils permettent tout de même de couvrir un certain périmètre, et l'intégration dans la chaîne de déploiement permet d'éviter de prendre du retard sur ce qu'on livre comme on le fait dans un audit post-release classique.
 
-J'aurais aimé que les auteurs donnent un peu plus leur avis sur la pertinence des nombreux outils, et sur la manière de prioriser les mise en œuvre, car du coup le talk fait un peu un effet catalogue.
+J'aurais aimé que les auteurs donnent un peu plus leur avis sur la pertinence des nombreux outils, et sur la manière de prioriser leurs mise en œuvre, car du coup le talk fait un peu un effet catalogue.
 
-== Emmanuel Toulemonde & Mehdi Houacine{nbsp}:mise en prod de la data science{nbsp}: le jour d'après
+== Emmanuel-Lin Toulemonde & Mehdi Houacine{nbsp}:mise en prod de la data science{nbsp}: le jour d'après
 
 Comment faire du monitoring avec de la data science{nbsp}?
 
