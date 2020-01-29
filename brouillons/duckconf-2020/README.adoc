@@ -1,4 +1,4 @@
-= Compte rendu : La duck conf 2020
+= Compte rendu{nbsp}: La duck conf 2020
 Julien Kirch
 v0.1, 2018-09-10
 :article_lang: fr
@@ -11,7 +11,7 @@ En effet, après l'avoir organisé seul en 2018 et avoir fait monter à bord lin
 
 Même si j'avais confiance en eux, ça fait très plaisir de voir que la conférence vit maintenant sa vie sans moi.
 
-Je vais commencer par parler en général, puis je résumerai les éléments que j'ai noté sur les différents talks et les réactions qu'ils ont provoqués.
+Je vais commencer par parler en général, puis je résumerai les éléments que j'ai notés sur les différents talks et les réactions qu'ils ont provoqués.
 
 == En général
 
@@ -30,9 +30,9 @@ Pas de plan annoncé, déroulé pas clair, nombreuses redites{nbsp}… dans plus
 
 C'était assez rageant car on a le sentiment que 90% du travail avait été fait mais que les 10% manquants manquaient vraiment.
 
-=== Kubernetes, Kubernetes, Kubernetes
+=== Kubernetes, Kubernetes, Kubernetes{nbsp}!
 
-Sur le sujets du cloud, Kubernetes a régné en maître quasi-absolu.
+Sur le sujet du cloud, Kubernetes a régné en maître quasi-absolu.
 Cela tranche beaucoup avec l'état du marché, ou même le panorama discuté à la conférence l'an dernier (PaaS, lambda{nbsp}…).
 
 Je sais que c'est une conséquence directe du fait qu'Octo vend de l'expertise Kubernetes, et que les personnes font des talks sur les sujets qu'ils connaissent, mais quand même.
@@ -50,16 +50,16 @@ L'idée est que lors de leur sortie, le mainframe et Kubernetes fournissent tous
 
 Beaucoup de choses dans le talk, et parfois difficiles à suivre.
 
-Les éléments que j'en retiens :
+Les éléments que j'en retiens{nbsp}:
 
-* Les plateformes "`DevOps`" développées par certaines entreprises pour simplifier le travail des projet peuvent être un frein car elles empêchent d'utiliser toutes les avantages de Kubernetes, ce qui peut diminuer l'intérêt pour les projets de les utiliser
+* Les plateformes "`DevOps`" développées par certaines entreprises pour simplifier le travail des projets peuvent être un frein, car elles empêchent d'utiliser tous les avantages de Kubernetes, ce qui peut diminuer l'intérêt pour les projets de les utiliser
 * Les contraintes d'avoir une application link:https://12factor.net/fr/[douze facteurs] pèse toujours, même si les frameworks récents sont en principe compatibles avec ces contraintes, cela peut soit augmenter le ticket d'entrée pour migrer sur Kubernetes, ou carrément empêcher de le faire.
 
-=== Alain Faure & Laurent Sollier : no code : la démocratisation du développement
+=== Alain Faure & Laurent Sollier{nbsp}: no code{nbsp}: la démocratisation du développement
 
 Un talk sur les solutions de no-code (à base d'interface-souris) ou de low-code (genre Excel mais pour du développement) qui permettent à des personnes ayant pas ou peu d'expérience de développement de pouvoir créer des applications.
 
-Même si les choses progressent, le constat ne change pas depuis des années : on peut faire des choses avec ces systèmes, mais plus la complexité de ce qu'on veut faire augmente, plus leurs contraintes et limitations réduisent leur pertinence vis à vis d'outils de développement classiques.
+Même si les choses progressent, le constat ne change pas depuis des années{nbsp}: on peut faire des choses avec ces systèmes, mais plus la complexité de ce qu'on veut faire augmente, plus leurs contraintes et limitations réduisent leur pertinence vis à vis d'outils de développement classiques.
 
 J'ai été un peu brusqué sur la reprise du discours patronal sur "`il manque 50.000 développeurs`" qui repose sur link:https://www.regionsjob.com/actualites/recrutements-numerique.html[des projections de 2012]  et qui manifeste surtout le sentiment que les personnes qui développent sont trop payées par rapport à ce qu'on estime être ce qu'elles méritent.
 
@@ -79,7 +79,7 @@ Je conseille ce talk quand il sera disponible en vidéo, mais comme Ilker a ét�
 
 Le sujet du talk n'est pas l'agile mais la vélocité, et son message est que d'augmenter le nombre de personnes qui développent n'est pas forcément la solution pour délivrer plus de fonctionnalités si le goulot d'étranglement est ailleurs.
 
-Dans son raisonnement, Thomas essaie de montrer les effets induits par l'augmentation du nombres de personnes sur le développement, mais pour cela il mélange plusieurs choses, d'une part ce qui augmente linéairement avec le nombre de personnes et ce qui augmente plus vite que le nombre de personnes, et d'autre part les choses qui arrivent dans tous les cas avec celles qui risquent d'arriver.
+Dans son raisonnement, Thomas essaie de montrer les effets induits par l'augmentation du nombre de personnes sur le développement, mais pour cela il mélange plusieurs choses, d'une part ce qui augmente linéairement avec le nombre de personnes et ce qui augmente plus vite que le nombre de personnes, et d'autre part les choses qui arrivent dans tous les cas avec celles qui risquent d'arriver.
 
 Du coup si au final la conclusion semble être quelque chose qui va de soi, on a l'impression que pour y arriver on a mélangé des choux et des carottes.
 
@@ -94,12 +94,12 @@ La deuxième moitié est un mélange de patterns à mettre en œuvre pour pouvoi
 Si je suis d'accord sur les solutions techniques comme le fait qu'il faut fournir des sondes de monitoring ou essayer de prendre en compte les défaillances, je suis assez dubitatif sur le discours sur la posture de l'architecte.
 
 Fabien défend l'idée d'un architecte de SI qui devrait avoir une posture de coach·e qui n'impose rien au projet mais qui est tout de même garant du SI.
-Dans une organisation il est tout à fait normal que de temps en temps les besoins ou les priorité des applications et du SI ne soient pas les mêmes.
+Dans une organisation il est tout à fait normal que de temps en temps les besoins ou les priorités des applications et du SI ne soient pas les mêmes.
 
 Dans ce cas, je pense qu'il est légitime que la personne qui porte la voix du SI, typiquement un·e architecte SI, pèse dans la décision pour influencer les choix.
-On ne peut pas espérer que des projets défendent le point du vue du SI quand cela va à l'encontre du leur.
+On ne peut pas espérer que des projets défendent le point de vue du SI quand cela va à l'encontre du leur.
 
-Du coup dire que l'architecte doit uniquement être que dans une posture de coaching c'est donc soit mettre en risque le SI, ou alors tenter de ne pas assumer son pouvoir d'influence sur les projet.
+Du coup dire que l'architecte doit uniquement être que dans une posture de coaching c'est donc soit mettre en risque le SI, ou alors tenter de ne pas assumer son pouvoir d'influence sur les projets.
 
 === Henri Decourt & Cédric Martin{nbsp}: mettre une refonte sur orbite, plus qu'une affaire de technique
 
@@ -113,32 +113,32 @@ Les messages sont intéressants et font un bon tour d'horizon des sujets, à mon
 
 Le talk fait un état des lieux de ce qui fonctionne vraiment dans les solutions d'API management et de ce ne donne pas satisfaction pour un besoin d'exposition d'API à l'extérieur du SI.
 
-En résumé{nbsp}: ce qui fonctionne vraiment bien est la partie "`reverse proxy de luxe`", pour le reste comme la sécurité, le portail pour les développeur·euse·s ou les capacité de traitement des flux c'est bof ou bof bof.
+En résumé{nbsp}: ce qui fonctionne vraiment bien est la partie "`reverse proxy de luxe`", pour le reste comme la sécurité, le portail pour les développeur·euse·s ou les capacités de traitement des flux c'est bof ou bof bof.
 
 Adrien Graux & Daniel Sabin en profitent pour passer en revue les bonnes pratiques à date sur les différents sujets, ça permet donc de se mettre au goût du jour même si je n'ai pas l'impression que les choses aient beaucoup changées.
 
-J'ai apprécié la fin de présentation où les deux speakers expriment leur envie que les solutions se concentrent sur là où elles savent faire et laissent tomber le reste, même si j'ai de sérieux doute sur le fait que cette approche soit compatible avec les objectif business des éditeurs.
+J'ai apprécié la fin de présentation où les deux speakers expriment leur envie que les solutions se concentrent sur là où elles savent faire et laissent tomber le reste, même si j'ai de sérieux doute sur le fait que cette approche soit compatible avec les objectifs financiers des éditeurs.
 
 Le discours m'a fait sourire car quand les solutions d'API management sont sorti, une partie des architectes expérimentés les comparaient aux solutions link:https://fr.wikipedia.org/wiki/Universal_Description_Discovery_and_Integration[UDDI] qui fournissaient des portails développeur·euse·s pour du SOAP et qui avaient plutôt été un désastre.
 
-On leur répondait "`oui mais comme c'était du SOAP c'était le MAL, alors que le REST c'est le bien, et du coup là on les solutions SOAP on échoué le REST va réussir`".
+On leur répondait "`oui mais comme c'était du SOAP c'était le MAL, alors que le REST c'est le bien, et du coup là on les solutions SOAP ont échoué le REST va réussir`".
 
 Au final il semble que le problème ne soit pas forcément un problème de technologie.
 
 == Lucas Boisserie & Benjamin Brabant{nbsp}: elle est où ton appli{nbsp}? dans mon kube{nbsp}!
 
-Un retour d'expérience d'une mise en place de Kubernetes qui s'est bien passé, en présentant les fonctionnalités de Kubernetes, l'impact sur les appli (encore les douze facteurs) et l'organisation de l'accompagnement.
+Un retour d'expérience d'une mise en place de Kubernetes qui s'est bien passé, en présentant les fonctionnalités de Kubernetes, l'impact sur les applications (encore les douze facteurs) et l'organisation de l'accompagnement.
 
 Rien de rare mais une bonne synthèse sur le sujet pour les personnes qui connaissent peu le sujet.
 
-== Pascal Martin{nbsp} migration de 6play : l'amour est dans le cloud
+== Pascal Martin{nbsp}: migration de 6play{nbsp}: l'amour est dans le cloud
 
 Pascal Martin raconte la migration de 6play, le service de replay de M6 et d'autres télévisions depuis leurs serveurs physiques vers le cloud.
 
 Le speaker est énergique et l'histoire est bien menée.
 On voit bien combien le fait d'avoir un vrai gros problème, ici de scalabilité, peut aider à faire prendre des décisions et à avancer les choses dans un chantier de cette ampleur.
 
-La présentation montre les différents patterns de migrations choisis, certains orthodoxes et d'autres moins, et insiste bien sur l'ampleur de la tâche et des compétence à acquérir par l'organisation.
+La présentation montre les différents patterns de migrations choisis, certains orthodoxes et d'autres moins, et insiste bien sur l'ampleur de la tâche et des compétences à acquérir par l'organisation.
 
 Et ça me fait toujours plaisir d'entendre des organisations contentes d'utiliser du PHP.
 
@@ -148,7 +148,7 @@ Les deux speakers montrent que dans un delivery automatisé, chaque étape peut 
 
 Même si ces outils ne font pas tout (étonnant, non{nbsp}?), ils permettent tout de même de couvrir un certain périmètre, et l'intégration dans la chaîne de déploiement permet d'éviter de prendre du retard sur ce qu'on livre comme on le fait dans un audit post-release classique.
 
-J'aurais aimé que les auteurs donnent un peu plus leur avis sur la pertinence des nombreux outils, et sur la manière de prioriser leurs mise en œuvre, car du coup le talk fait un peu un effet catalogue.
+J'aurais aimé que les auteurs donnent un peu plus leur avis sur la pertinence des nombreux outils, et sur la manière de prioriser leurs mises en œuvres, car du coup le talk fait un peu un effet catalogue.
 
 == Emmanuel-Lin Toulemonde & Mehdi Houacine{nbsp}:mise en prod de la data science{nbsp}: le jour d'après
 
@@ -158,4 +158,6 @@ Le talk a l'air d'avoir du contenu mais c'était le onzième talk de la journée
 
 = En conclusion
 
-QQQ
+Comme chaque année j'aurais aimé des talks un peu plus ciblés sur l'architecture et des retours d'expériences un peu plus exotiques, mais il y avait pas mal de contenu intéressant pour qui veut se tenir au courant.
+
+Et bravo et merci aux personnes qui l'ont organisée.
