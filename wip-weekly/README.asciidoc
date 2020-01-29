@@ -41,3 +41,17 @@ ____
 ____
 Dullien defines weird behavior as the difference between two state machines - an _intended finite state machine_ (IFSM) corresponding to the model that the programmer has in her head when writing the program and an implementation that attempts to realize the IFSM. A weird state in the implementation is one that does not correspond to a state in the IFSM. A weird machine is the collection of computations reachable from a weird state.
 ____
+
+== link:https://www.netmeister.org/blog/ops-lessons.html[(A few) Ops Lessons We All Learn The Hard Way]
+
+[quote]
+____
+* 3. The severity of an incident is measured by the number of rules broken in resolving it.
+* 10. Your infrastructure uses a lot more self-signed certificates than you think. A lot more. In places that make you weep.
+* 26) Your network team has a way into the network that your security team doesn't know about.
+* 37) Nobody knows how git works; everybody simply ``rm -fr && git checkout``'s periodically.
+* 38) There are very few network restrictions creative and determined use of ssh(1) port forwarding can't overcome.
+* 45) Some of your most critical services are kept alive by a handful of people whose job description does not mention those services at all.
+
+
+____
