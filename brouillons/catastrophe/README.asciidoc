@@ -1,8 +1,30 @@
-= Analyse d'une migration catastrophique
+= Analyse d'une catastrophe
 Julien Kirch
-v1.0, 2019-12-20
+v1.0, 2020-02-06
+:article_lang: fr
+:article_image: disaster-girl.jpg
+:article_description: Apprendre des erreurs des autres, ou au moins en rire
 
-https://twitter.com/JonHall_/status/1197268706042286081
+J'ai croisé quelques projets qui ont mal finis.
+Je ne sais pas si tous les gros projets informatiques qui ont mal fini se ressemblent,
+en tous cas ceux que j'ai croisé avaient un certain air de famille.
+
+Un des points communs c'est que souvent on en parle peu{nbsp} à l'extérieur: pour plein de raisons on préfère ne pas ébruiter les choses.
+Quand des articles sortent dans les journaux, suite à un problème particulièrement visible ou parce qu'une entreprise porte plainte contre un sous-traitant, les détails sont rares.
+
+Pour une fois ce n'est pas le cas : suite à un projet de migration qui a mal fini, la banque TSB a demandé un audit, et a eu le rare courage de link:https://www.tsb.co.uk/news-releases/slaughter-and-may/slaughter-and-may-report.pdf[le publier en intégralité].
+
+La lecture me donne un douloureux sentiment de gâchis{nbsp}: tant de problèmes si prévisibles et de temps et d'effort gaspillés.
+
+Si vous n'avez jamais eu la "`chance`" de participer ce genre de projets, je vous conseille vivement la lecture de ce rapport, et cela pour deux raisons.
+
+Tout d'abord si un jour vous travaillez un un gros projets qui commence à tourner mal, cela vous permettra d'en reconnaître les symptômes à temps.
+Je ne sais pas si cela vous permettra d'améliorer les choses, mais cela pourrait au moins vous aider à ne pas y laisser trop de plumes.
+
+Ensuite les gros projets sont des petits projets à plus grande échelle, et cet effet grossissant permet de rendre plus facile à comprendre des mécanismes à l'œuvre même à des tailles plus petites.
+Et pour le coup, cela pourrait vous aider à faire une différence.
+
+Voici les points qui m'ont le plus marqués, en espérant qu'ils vous seront utiles.
 
 * Demerged
 * Migration big bang
