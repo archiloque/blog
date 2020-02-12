@@ -14,9 +14,19 @@ Quand des articles sortent dans les journaux, suite à un problème particulièr
 
 Pour une fois ce n'est pas le cas : suite à un projet de migration qui a mal fini, la banque TSB a demandé un audit, et a eu le rare courage de link:https://www.tsb.co.uk/news-releases/slaughter-and-may/slaughter-and-may-report.pdf[le publier en intégralité].
 
+La migration consistait à changer le système central de gestion bancaire de l'entreprise.
+TSB est une sous-partie de du groupe bancaire Lloyds qui a été transformée en entreprise indépendante pour des raisons réglementaire.
+Après la séparation, TSB a continué à utiliser le système informatique de la Lloyds contre redevance.
+
+Si l'idée peut sembler bizarre, il s'agit d'une manière de faire classique dans ce genre de situation car elle permet une séparation rapide et sans risque des deux entités, même si elle n'est pas forcément pérenne sur le long terme.
+
+Quelques années plus tard, le groupe bancaire espagnol Sabadel décide de racheter TSB.
+Le modèle économique du plan de rachat s'appuyait sur le fait de migrer rapidement le système informatique utilisé par TSB sur le système développé par Sabadel, ce qui permettait d'économiser le prix de la redevance, d'autant que, selon l'échéancier fixé lors de la création de TSB, le prix à payer chaque année allait augmenter significativement.
+D'autres banques rachetées par Sabadel avaient déjà été migrées sur son système informatique et les migrations s'étaient bien passées. Cela donnait confiance dans le fait que le plan pouvait se dérouler comme prévu.
+
 La lecture me donne un douloureux sentiment de gâchis{nbsp}: tant de problèmes si prévisibles et de temps et d'effort gaspillés.
 
-Si vous n'avez jamais eu la "`chance`" de participer ce genre de projets, je vous conseille vivement la lecture de ce rapport, et cela pour deux raisons.
+Si vous n'avez jamais eu la "`chance`" de participer ce genre de projets, je vous conseille vivement la lecture de ce rapport (ou au moins le résumé de quelques pages qui se trouve au début), et cela pour deux raisons.
 
 Tout d'abord si un jour vous travaillez un un gros projets qui commence à tourner mal, cela vous permettra d'en reconnaître les symptômes à temps.
 Je ne sais pas si cela vous permettra d'améliorer les choses, mais cela pourrait au moins vous aider à ne pas y laisser trop de plumes.
@@ -24,22 +34,32 @@ Je ne sais pas si cela vous permettra d'améliorer les choses, mais cela pourrai
 Ensuite les gros projets sont des petits projets à plus grande échelle, et cet effet grossissant permet de rendre plus facile à comprendre des mécanismes à l'œuvre même à des tailles plus petites.
 Et pour le coup, cela pourrait vous aider à faire une différence.
 
-Voici les points qui m'ont le plus marqués, en espérant qu'ils vous seront utiles.
+Voici les points qui m'ont le plus marqués{nbsp}:
 
-* Demerged
-* Migration big bang
-* Personnes qui pilotent n'ont pas l'habitude
-* Date à l'avance et qui ne bougent pas, et du coup un retro-planning
-** Date ambitieuse utilisée pour motiver les personnes, mais du coup d'autant plus difficile à bouger
-** Date qui permet des économies et qui a été budgétée
-** Lors d'un replanning, nouvelle date annoncée trop rapidement
-* Négociation sur les cibles à atteindre, différence entre acceptable non-acceptable
-* En cas de retard, tentant de vouloir sacrifier les tests
-* Confiance des migrations passées alors que pas du même type
-** Cas du 80-20 : les points de détails font la différence
-* Décalage des tests d'intégration au plus tard, alors qu'importante complexité
-* Fournisseur interne
-* Manque de compétence pour piloter
-* Annoncé sans changement pour calmer les personnes alors que plein de changements
-* Test pendant les phases de développement
-* Conclusion : beaucoup de personnes savaient probablement
+''''
+
+== Personnes qui pilotent n'ont pas l'habitude
+=== Manque de compétence pour piloter
+
+== Date à l'avance et qui ne bougent pas, et du coup un retro-planning
+=== Date ambitieuse utilisée pour motiver les personnes, mais du coup d'autant plus difficile à bouger
+=== Date qui permet des économies et qui a été budgétée
+=== Lors d'un replanning, nouvelle date annoncée trop rapidement
+
+== On prend le plus simple
+=== Migration big bang
+== Négociation sur les cibles à atteindre, différence entre acceptable non-acceptable
+
+== Confiance des migrations passées alors que pas du même type
+=== Cas du 80-20 : les points de détails font la différence
+
+== Gestion des tests
+=== En cas de retard, tentant de vouloir sacrifier les tests
+=== Décalage des tests d'intégration au plus tard, alors qu'importante complexité
+=== Test pendant les phases de développement
+
+= Fournisseur interne
+
+== Annoncé sans changement pour calmer les personnes alors que plein de changements
+
+== Conclusion : beaucoup de personnes savaient probablement

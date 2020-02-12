@@ -7,7 +7,7 @@ v0.1, 2020-01-30
 
 Ça fait bizarre de faire le compte rendu d'une conférence après en avoir été le créateur.
 
-En effet, après link:https://blog.octo.com/il-etait-une-fois-un-canard-lhistoire-de-la-duck-conf/[l'avoir organisé seul en 2018] et avoir fait monter à bord link:https://twitter.com/Cyril_IT[Cyril] et link:https://twitter.com/poildortie[Mathieu Poignant], j'ai quitté Octo en juin dernier pour link:https://souscription.enercoop.fr[Enercoop]footnote:[D'ailleurs on recrute] alors que les discussions sur link:https://www.laduckconf.com/programme/[le programme de 2020] démarraient.
+En effet, après link:https://blog.octo.com/il-etait-une-fois-un-canard-lhistoire-de-la-duck-conf/[lancé l'idée et m'être occupé piloté seul le contenu en 2018] et avoir fait monter à bord link:https://twitter.com/Cyril_IT[Cyril] et link:https://twitter.com/poildortie[Mathieu Poignant], j'ai quitté Octo en juin dernier pour link:https://souscription.enercoop.fr[Enercoop]footnote:[D'ailleurs on recrute] alors que les discussions sur link:https://www.laduckconf.com/programme/[le programme de 2020] démarraient.
 
 Même si j'avais confiance en eux, ça fait très plaisir de voir que la conférence vit maintenant sa vie sans moi.
 
@@ -22,13 +22,13 @@ L'an dernier nous n'avions pas réussi à avoir de speakeuse et je m'en étais e
 Cette année il n'y avait pas non plus de speakeuse, mais le sujet n'a pas été abordé, et le code de conduite n'a pas été mentionné.
 Si vous ajoutez le fait d'avoir des slides presque uniquement au masculin, j'ai été très désagréablement surpris qu'Octo s'inscrive sur ces sujets à rebours de ce qui se fait dans la plupart des autres évènements.
 
-=== Les talks{nbsp}: peut mieux faire
+=== Les talks{nbsp}: le fond est là, la forme pas toujours
 
 Je ne sais pas comme le dire avec des pincettes{nbsp}: un certain nombre de talks manquaient de finition.
 
 Pas de plan annoncé, déroulé pas clair, nombreuses redites{nbsp}… dans plusieurs cas je me suis retrouvé à lutter pour suivre le fil de ce qui était dit, alors que visiblement le contenu était là.
 
-C'était assez rageant car on a le sentiment que 90% du travail avait été fait mais que les 10% manquants manquaient vraiment.
+C'était assez rageant car j'avais le sentiment que 90% du travail avait été fait mais que les dix pour cent manquants auraient pu faire une vraie différence.
 
 === Kubernetes, Kubernetes, Kubernetes{nbsp}!
 
@@ -37,9 +37,9 @@ Cela tranche beaucoup avec l'état du marché, ou même le panorama discuté à 
 
 Je sais que c'est une conséquence directe du fait qu'Octo vend de l'expertise Kubernetes, et que les personnes font des talks sur les sujets qu'ils connaissent, mais quand même.
 
-Ce qui m'a le plus gêné c'est l'absence de recul sur la complexité que Kubernetes impose aux équipes de développement{nbsp}: quand j'entends qu'il faut avoir un Ops, au moins à temps partiel, par équipe de développement pour gérer les fichiers de déploiements pour des applis standard, je trouve que c'est un peu du foutage de gueule.
+Ce qui m'a le plus gêné c'est l'absence de recul sur la complexité que Kubernetes impose aux équipes de développement{nbsp}: quand j'entends dire plusieurs fois dans la journée qu'il faut avoir un Ops, au moins à temps partiel, par équipe de développement pour gérer les fichiers de déploiements pour des applications standards et que tout le monde a l'air de trouver ça normal, j'ai un peu l'impression d'être un extra-terrestre.
 
-Pour moi, qu'une expertise particulière soit nécessaire pour _remplir les fichiers de configuration_ d'une application standard je vois ça comme un manque clair dans l'offre Kubernetes, et je comprends très bien que des entreprises redéveloppent des outils spécifiques (mêmes s'ils ne donnent pas forcément satisfaction) pour avoir à éviter cela.
+Pour moi, qu'une expertise particulière soit nécessaire pour _remplir les fichiers de configuration_ d'une application standard je vois ça comme un manque clair dans l'offre (ou dans l'approch) Kubernetes, et je comprends très bien que des entreprises redéveloppent des outils spécifiques (mêmes s'ils ne donnent pas forcément satisfaction) pour avoir à éviter cela.
 
 == Les talks
 
@@ -154,7 +154,9 @@ J'aurais aimé que les auteurs donnent un peu plus leur avis sur la pertinence d
 
 Comment faire du monitoring avec de la data science{nbsp}?
 
-Le talk a l'air d'avoir du contenu mais c'était le onzième talk de la journée, la data science n'est pas dans mes sujets de prédilections, et les speakers avaient des intonations plutôt monotones, du coup j'ai complètement décroché et je ne peux pas vous en dire plus.
+Le talk porte sur les endroits où il peut être pertinent de mettre de monitoring dans un workflow de data science.
+
+Le talk a l'air d'avoir du contenu mais c'était le onzième talk de la journée et la data science n'est pas dans mes sujets de prédilections, du coup j'ai complètement décroché et je ne peux pas vous en dire plus.
 
 = En conclusion
 
