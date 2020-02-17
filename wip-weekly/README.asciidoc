@@ -2,3 +2,33 @@
 Julien Kirch
 v1.0, 2019-01-01
 :article_lang: en
+
+== link:https://blog.nelhage.com/post/computers-can-be-understood/[Computers can be understood]
+
+[quote]
+____
+Modern software and hardware systems contain almost unimaginable complexity amongst many distinct layers, each building atop each other. It is common -- and substantially correct -- to observe that no single human understands all of the layers in, say, a modern web application, starting from the transistors and silicon up through micro-architecture, the CPU instruction set, the OS kernel, the user libraries, the compilers, the web browser, and Javascript VM, the Javascript libraries, and the application code, not even to mention all the network services invoked in loading that code.
+
+In the face of this complexity, it’s easy to assume that there’s just too much to learn, and to adopt the mental shorthand that the systems we work with are best treated as black boxes, not to be understood in any detail.
+
+I argue against that approach. You will never understand every detail of the implementation of every level on that stack; but you _can_ understand all of them to some level of abstraction, and any specific layer to essentially any depth necessary for any purpose.
+____
+
+[quote]
+____
+If you work with any tool long enough, you will butt up against bugs in the tool which affect you, and it’s valuable at a minimum to be able to accurately describe and diagnose them in terms of the tool’s abstractions, in order to produce an actionable bug report or a minimal reproducer.
+
+The trickiest bugs are often those that span multiple layers, or involve leaky abstraction boundaries between layers. These bugs are often impossible to understand at a single layer of the abstraction stack, and sometimes require the ability to view a behavior from multiple levels of abstractions at once to fully understand. These bugs practically require finding someone on your team who is comfortable moving between multiple layers of the stack, in order to track down; on the flip side, to the engineers with the habit of so moving around anyways, these bugs often represent an engaging challenge and form the basis of their favorite war stories.
+____
+
+[quote]
+____
+A deeply related habit to trying to learn about the underlying layers of a software stack is the habit of trying to understand software by building detailed mental models of the underlying system. Instead of understanding systems (languages, libraries, APIs, etc) solely as collections of rules and behaviors and edge-cases, I try to build a smaller model of their core primitives, and the rules or principles that generate the larger behaviors of the system.
+____
+
+[quote]
+____
+As a corollary of having good mental models of software systems, and of those systems being mostly deterministic, it becomes possible to make fairly detailed inferences about program state and behavior off of a a small number of observations about its behavior at points in time (perhaps a stack trace, or a log line, or a core dump). In the most extreme examples, a developer can sometimes root-cause a buggy behavior based on a single encounter with a bug. With a rich mental model of the system and the code at hand, you can perform backwards reasoning in the form of deductions like "`Ah, if this field is set to NULL, someone must have set it … the only code that sets that field is {here}, {here}, and {here} … only the first and third could ever be called with a NULL argument …`" and so on.
+
+Even if you can’t "`one-shot`" a bug, there’s a general skill here of being able to formulate theories and hypotheses and refine your mental models based on observations of the system, which allow you to ask much more specific questions, which you can then test (in a debugger, with a print statement, by reading code, …), which then further refine your models. A rich mental mental and the ability to play it forward and backwards in time is an incredible aid to debugging and to learning a system.
+____
