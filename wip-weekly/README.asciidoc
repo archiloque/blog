@@ -32,3 +32,19 @@ As a corollary of having good mental models of software systems, and of those sy
 
 Even if you can’t "`one-shot`" a bug, there’s a general skill here of being able to formulate theories and hypotheses and refine your mental models based on observations of the system, which allow you to ask much more specific questions, which you can then test (in a debugger, with a print statement, by reading code, …), which then further refine your models. A rich mental mental and the ability to play it forward and backwards in time is an incredible aid to debugging and to learning a system.
 ____
+
+== link:https://lexi-lambda.github.io/blog/2020/01/19/no-dynamic-type-systems-are-not-inherently-more-open/[No, dynamic type systems are not inherently more open]
+
+[quote]
+____
+This is one of the fundamental disconnects between the static typing camp and the dynamic typing camp. Programmers working in statically-typed languages are perplexed when a programmer suggests they can do something in a dynamically typed language that a statically-typed language "`fundamentally`" prevents, since a programmer in a statically-typed language may reply the value has simply not been given a sufficiently precise type. From the perspective of a programmer working in a dynamically-typed language, the type system restricts the space of legal behaviors, but from the perspective of a programmer working in a statically-typed language, the set of legal behaviors _is_ a value’s type.
+
+Neither of these perspectives are actually inaccurate, from the appropriate point of view. Static type systems _do_ impose restrictions on program structure, as it is provably impossible to reject _all_ bad programs in a Turing-complete language without also rejecting some good ones (this is link:https://en.wikipedia.org/wiki/Rice's_theorem[Rice’s theorem]). But it is simultaneously true that the impossibility of solving the general problem does not preclude solving a slightly more restricted version of the problem in a useful way, and a lot of the so-called "`fundamental`" inabilities of static type systems are not fundamental at all.
+____
+
+[quote]
+____
+The key thesis of this blog post has now been delivered: static type systems are not fundamentally worse than dynamic type systems at processing data with an open or partially-known structure. The sorts of claims made in the comments cited at the beginning of this blog post are not accurate depictions of what statically-typed program construction is like, and they misunderstand the limitations of static typing disciplines while exaggerating the capabilities of dynamically typed disciplines.
+
+However, although greatly exaggerated, these myths do have some basis in reality. They appear to have developed at least in part from a misunderstanding about the differences between structural and nominal typing.
+____
