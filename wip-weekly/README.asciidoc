@@ -48,3 +48,16 @@ The key thesis of this blog post has now been delivered: static type systems are
 
 However, although greatly exaggerated, these myths do have some basis in reality. They appear to have developed at least in part from a misunderstanding about the differences between structural and nominal typing.
 ____
+
+== link:https://blog.nelhage.com/post/declarative-configuration-management/[The architecture of declarative configuration management]
+
+[quote]
+____
+Declarative configuration management derives both its power, and many of its pitfalls, from a tool’s engine. The whole point of declarative configuration management is that the configuration specifies only the desired state, and it is up to the engine to figure out _how to get there_, which drastically simplifies configurations and makes them less path-dependent, or reliant on the previous state of the system.
+
+However, this flexibility is also be the source of operational pitfalls: For many systems in production, the question of "`how you get there from here`" _matters_, and when this is the case, declarative configuration management can be fraught.
+
+As a simple example, imagine a tool that supports being configured by reading a configuration file on startup, or via an online API (e.g. an HTTP administration API). Further, let’s imagine that restarting the service involves a period of downtime, but online configuration changes are seamless. link:http://www.haproxy.org/[HAproxy], for example, may have this characteristic depending on how it is deployed.
+
+A pure declarative model only lets us specify the desired "`end state`" configuration; the question of whether to restart the service and incur downtime, or whether to issue online configuration updates, is left to the convergence engine. But if we care about availability, this distinction may be important to use, and using the tool safely may require us to work around the convergence engine, and/or rely on implementation details of a specific version.
+____
