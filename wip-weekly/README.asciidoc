@@ -62,7 +62,7 @@ As a simple example, imagine a tool that supports being configured by reading a 
 A pure declarative model only lets us specify the desired "`end state`" configuration; the question of whether to restart the service and incur downtime, or whether to issue online configuration updates, is left to the convergence engine. But if we care about availability, this distinction may be important to use, and using the tool safely may require us to work around the convergence engine, and/or rely on implementation details of a specific version.
 ____
 
-== link:https://blog.nelhage.com/post/declarative-configuration-management/[Learning to Listen for Design]
+== link:https://dl.acm.org/doi/abs/10.1145/3359591.3359738[Learning to Listen for Design]
 
 [quote]
 ____
