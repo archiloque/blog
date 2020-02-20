@@ -61,3 +61,27 @@ As a simple example, imagine a tool that supports being configured by reading a 
 
 A pure declarative model only lets us specify the desired "`end state`" configuration; the question of whether to restart the service and incur downtime, or whether to issue online configuration updates, is left to the convergence engine. But if we care about availability, this distinction may be important to use, and using the tool safely may require us to work around the convergence engine, and/or rely on implementation details of a specific version.
 ____
+
+== link:https://blog.nelhage.com/post/declarative-configuration-management/[Learning to Listen for Design]
+
+[quote]
+____
+In his essay, _Designed as Designer_, Richard Gabriel suggests that artifacts are agents of their own design. Building on Gabriel’s position, this essay makes three observations (1) Code "`speaks`" to the programmer through code smells, and it talks about the shape it wants to take by signalling design principle violations. By “listening” to code, even a novice programmer can let the code itself signal its own emergent natural structure. (2) Seasoned programmers listen for code smells, but they hear in the language of design principles (3) Design patterns are emergent structures that naturally arise from designers listening to what the code is signaling and then responding to these signals through refactoring transformations. Rather than seeing design patterns as an educational destination, we see them as a vehicle for teaching the skill of listening. By showing novices the stories of listening to code and unfolding design patterns (starting from code smells, through refactorings, to arrive at principled structure), we can open up the possibility of listening for emergent design.
+____
+
+[quote]
+____
+Design principles are typically associated with the dominant code use case: large industrial code that will be undergoing evolution. Not repeating yourself, for instance, is, in that context, almost always a good idea. It feels safe to say that if repetition becomes too insidious, then it should be stamped out through strategic application of abstraction.
+However, digging a little deeper tells us a more nuanced story. That sometimes a code smell to one person, is a design principle to another. For instance: when a student is at the very beginning of learning the concept of sequential execution, it may be very helpful to see the same line of code repeated. This gives them a physical, and intentionally concrete representation of repetition in the code. This is necessary even before they know what a loop is. Showing a loop would be problematic if the student does not yet understand this control abstraction. Similarly, novice students tend to inline behaviour so that they can follow, without jumping around, the details of the implementation of an algorithm. Hiding behaviour behind functional abstractions, especially if there is overriding involved, would confuse the student, and would be, quite rightly, considered poor pedagogical code design.
+
+Open source development may implicate different principles from closed source development. Open source programmers likely prepare their code for public consumption to enhance the principle of readability, and may employ a more granulated style for the sake of facilitating unforeseen expansion and reuse.
+
+That is all to say: different people will hear differently. And what they hear will depend on many factors, including the person’s culture, the use cases that they are imagining, and their past experiences.
+
+As a result of different contexts of hearing, the patterns that would emerge and the principles that would emerge would differ. This type of _design relativity_ implies that patterns and principles are actually subjective and contextual.
+____
+
+[quote]
+____
+Both teams identified a fundamental problem with object orientation, or really with any design paradigm: that of the _tyranny of the dominant decomposition_. That a programmer would need to make a choice when faced with structurally conflicting changes: to optimise for changeability in one way, or the other. When faced with a failure of available abstraction mechanisms, their response was to devise new abstraction mechanisms. Limited by their paradigm, they abstracted into a new paradigm. The solution could not be found within the code or in the language in which it was written. Change had to come from _without_: by introducing a new framework, new interpreter, or making changes to the compiler itself. The problematic and unresolvable contradictory code smells become motivation for new levels of previously unsupported abstraction (Aspects, explicit tests a la JUnit, Lambdas, etc). When abstractions fail us, we need to not just listen to the code, but to listen to the paradigm.
+____
