@@ -71,6 +71,13 @@ ____
 
 [quote]
 ____
+One of the cautions with patterns is applying the wrong variant, perhaps one that contains too much heavy abstraction for the problem at hand. Thinking about patterns first runs this risk. And coming back to Gabriel’s essay, if the writer/painter/programmer imposes their will too strongly on the artifact, its voice will be muted. The wise programmer listens for patterns, instead of forcing them into code where they might not be appropriate.
+
+Patterns as emergent structures, as opposed to prescriptive structures, agrees with Gabriel’s view of emergent design: He points out that if the artist is too dominating in their approach, or too fixed in their design mindset, the artifact will be silenced, and will not emerge to a good design. This suggests that the programmer working on an artifact must develop code listening skills as a primary capability, without which they will not achieve design success.
+____
+
+[quote]
+____
 Design principles are typically associated with the dominant code use case: large industrial code that will be undergoing evolution. Not repeating yourself, for instance, is, in that context, almost always a good idea. It feels safe to say that if repetition becomes too insidious, then it should be stamped out through strategic application of abstraction.
 However, digging a little deeper tells us a more nuanced story. That sometimes a code smell to one person, is a design principle to another. For instance: when a student is at the very beginning of learning the concept of sequential execution, it may be very helpful to see the same line of code repeated. This gives them a physical, and intentionally concrete representation of repetition in the code. This is necessary even before they know what a loop is. Showing a loop would be problematic if the student does not yet understand this control abstraction. Similarly, novice students tend to inline behaviour so that they can follow, without jumping around, the details of the implementation of an algorithm. Hiding behaviour behind functional abstractions, especially if there is overriding involved, would confuse the student, and would be, quite rightly, considered poor pedagogical code design.
 
