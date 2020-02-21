@@ -92,3 +92,12 @@ ____
 ____
 Both teams identified a fundamental problem with object orientation, or really with any design paradigm: that of the _tyranny of the dominant decomposition_. That a programmer would need to make a choice when faced with structurally conflicting changes: to optimise for changeability in one way, or the other. When faced with a failure of available abstraction mechanisms, their response was to devise new abstraction mechanisms. Limited by their paradigm, they abstracted into a new paradigm. The solution could not be found within the code or in the language in which it was written. Change had to come from _without_: by introducing a new framework, new interpreter, or making changes to the compiler itself. The problematic and unresolvable contradictory code smells become motivation for new levels of previously unsupported abstraction (Aspects, explicit tests a la JUnit, Lambdas, etc). When abstractions fail us, we need to not just listen to the code, but to listen to the paradigm.
 ____
+
+== link:https://daniel.haxx.se/blog/2020/02/20/the-command-line-options-we-deserve/[The command line options we deserve]
+
+[quote]
+____
+All the four major web browsers let you link:https://daniel.haxx.se/blog/2015/11/23/copy-as-curl/[export HTTP requests to curl command lines] that you can then execute from your shell prompts or scripts. Other web tools and proxies can also do this.
+
+There are now also tools that can _import_ said curl command lines so that they can figure out what kind of transfer that was exported from those other tools. The applications that import these command lines then don’t want to actually run curl, they want to figure out details about the request that the curl command line would have executed (and instead possibly run it themselves). _The curl command line has become a web request interchange language!_
+____
