@@ -1,0 +1,103 @@
+= Links - 23^rd^ February 2020
+Julien Kirch
+v1.0, 2020-02-23
+:article_lang: en
+
+== link:https://blog.nelhage.com/post/computers-can-be-understood/[Computers can be understood]
+
+[quote]
+____
+Modern software and hardware systems contain almost unimaginable complexity amongst many distinct layers, each building atop each other. It is common -- and substantially correct -- to observe that no single human understands all of the layers in, say, a modern web application, starting from the transistors and silicon up through micro-architecture, the CPU instruction set, the OS kernel, the user libraries, the compilers, the web browser, and Javascript VM, the Javascript libraries, and the application code, not even to mention all the network services invoked in loading that code.
+
+In the face of this complexity, it’s easy to assume that there’s just too much to learn, and to adopt the mental shorthand that the systems we work with are best treated as black boxes, not to be understood in any detail.
+
+I argue against that approach. You will never understand every detail of the implementation of every level on that stack; but you _can_ understand all of them to some level of abstraction, and any specific layer to essentially any depth necessary for any purpose.
+____
+
+[quote]
+____
+If you work with any tool long enough, you will butt up against bugs in the tool which affect you, and it’s valuable at a minimum to be able to accurately describe and diagnose them in terms of the tool’s abstractions, in order to produce an actionable bug report or a minimal reproducer.
+
+The trickiest bugs are often those that span multiple layers, or involve leaky abstraction boundaries between layers. These bugs are often impossible to understand at a single layer of the abstraction stack, and sometimes require the ability to view a behavior from multiple levels of abstractions at once to fully understand. These bugs practically require finding someone on your team who is comfortable moving between multiple layers of the stack, in order to track down; on the flip side, to the engineers with the habit of so moving around anyways, these bugs often represent an engaging challenge and form the basis of their favorite war stories.
+____
+
+[quote]
+____
+A deeply related habit to trying to learn about the underlying layers of a software stack is the habit of trying to understand software by building detailed mental models of the underlying system. Instead of understanding systems (languages, libraries, APIs, etc) solely as collections of rules and behaviors and edge-cases, I try to build a smaller model of their core primitives, and the rules or principles that generate the larger behaviors of the system.
+____
+
+[quote]
+____
+As a corollary of having good mental models of software systems, and of those systems being mostly deterministic, it becomes possible to make fairly detailed inferences about program state and behavior off of a a small number of observations about its behavior at points in time (perhaps a stack trace, or a log line, or a core dump). In the most extreme examples, a developer can sometimes root-cause a buggy behavior based on a single encounter with a bug. With a rich mental model of the system and the code at hand, you can perform backwards reasoning in the form of deductions like "`Ah, if this field is set to NULL, someone must have set it … the only code that sets that field is {here}, {here}, and {here} … only the first and third could ever be called with a NULL argument …`" and so on.
+
+Even if you can’t "`one-shot`" a bug, there’s a general skill here of being able to formulate theories and hypotheses and refine your mental models based on observations of the system, which allow you to ask much more specific questions, which you can then test (in a debugger, with a print statement, by reading code, …), which then further refine your models. A rich mental mental and the ability to play it forward and backwards in time is an incredible aid to debugging and to learning a system.
+____
+
+== link:https://lexi-lambda.github.io/blog/2020/01/19/no-dynamic-type-systems-are-not-inherently-more-open/[No, dynamic type systems are not inherently more open]
+
+[quote]
+____
+This is one of the fundamental disconnects between the static typing camp and the dynamic typing camp. Programmers working in statically-typed languages are perplexed when a programmer suggests they can do something in a dynamically typed language that a statically-typed language "`fundamentally`" prevents, since a programmer in a statically-typed language may reply the value has simply not been given a sufficiently precise type. From the perspective of a programmer working in a dynamically-typed language, the type system restricts the space of legal behaviors, but from the perspective of a programmer working in a statically-typed language, the set of legal behaviors _is_ a value’s type.
+
+Neither of these perspectives are actually inaccurate, from the appropriate point of view. Static type systems _do_ impose restrictions on program structure, as it is provably impossible to reject _all_ bad programs in a Turing-complete language without also rejecting some good ones (this is link:https://en.wikipedia.org/wiki/Rice's_theorem[Rice’s theorem]). But it is simultaneously true that the impossibility of solving the general problem does not preclude solving a slightly more restricted version of the problem in a useful way, and a lot of the so-called "`fundamental`" inabilities of static type systems are not fundamental at all.
+____
+
+[quote]
+____
+The key thesis of this blog post has now been delivered: static type systems are not fundamentally worse than dynamic type systems at processing data with an open or partially-known structure. The sorts of claims made in the comments cited at the beginning of this blog post are not accurate depictions of what statically-typed program construction is like, and they misunderstand the limitations of static typing disciplines while exaggerating the capabilities of dynamically typed disciplines.
+
+However, although greatly exaggerated, these myths do have some basis in reality. They appear to have developed at least in part from a misunderstanding about the differences between structural and nominal typing.
+____
+
+== link:https://blog.nelhage.com/post/declarative-configuration-management/[The architecture of declarative configuration management]
+
+[quote]
+____
+Declarative configuration management derives both its power, and many of its pitfalls, from a tool’s engine. The whole point of declarative configuration management is that the configuration specifies only the desired state, and it is up to the engine to figure out _how to get there_, which drastically simplifies configurations and makes them less path-dependent, or reliant on the previous state of the system.
+
+However, this flexibility is also be the source of operational pitfalls: For many systems in production, the question of "`how you get there from here`" _matters_, and when this is the case, declarative configuration management can be fraught.
+
+As a simple example, imagine a tool that supports being configured by reading a configuration file on startup, or via an online API (e.g. an HTTP administration API). Further, let’s imagine that restarting the service involves a period of downtime, but online configuration changes are seamless. link:http://www.haproxy.org/[HAproxy], for example, may have this characteristic depending on how it is deployed.
+
+A pure declarative model only lets us specify the desired "`end state`" configuration; the question of whether to restart the service and incur downtime, or whether to issue online configuration updates, is left to the convergence engine. But if we care about availability, this distinction may be important to use, and using the tool safely may require us to work around the convergence engine, and/or rely on implementation details of a specific version.
+____
+
+== link:https://dl.acm.org/doi/abs/10.1145/3359591.3359738[Learning to Listen for Design]
+
+[quote]
+____
+In his essay, _Designed as Designer_, Richard Gabriel suggests that artifacts are agents of their own design. Building on Gabriel’s position, this essay makes three observations (1) Code "`speaks`" to the programmer through code smells, and it talks about the shape it wants to take by signalling design principle violations. By “listening” to code, even a novice programmer can let the code itself signal its own emergent natural structure. (2) Seasoned programmers listen for code smells, but they hear in the language of design principles (3) Design patterns are emergent structures that naturally arise from designers listening to what the code is signaling and then responding to these signals through refactoring transformations. Rather than seeing design patterns as an educational destination, we see them as a vehicle for teaching the skill of listening. By showing novices the stories of listening to code and unfolding design patterns (starting from code smells, through refactorings, to arrive at principled structure), we can open up the possibility of listening for emergent design.
+____
+
+[quote]
+____
+One of the cautions with patterns is applying the wrong variant, perhaps one that contains too much heavy abstraction for the problem at hand. Thinking about patterns first runs this risk. And coming back to Gabriel’s essay, if the writer/painter/programmer imposes their will too strongly on the artifact, its voice will be muted. The wise programmer listens for patterns, instead of forcing them into code where they might not be appropriate.
+
+Patterns as emergent structures, as opposed to prescriptive structures, agrees with Gabriel’s view of emergent design: he points out that if the artist is too dominating in their approach, or too fixed in their design mindset, the artifact will be silenced, and will not emerge to a good design. This suggests that the programmer working on an artifact must develop code listening skills as a primary capability, without which they will not achieve design success.
+____
+
+[quote]
+____
+Design principles are typically associated with the dominant code use case: large industrial code that will be undergoing evolution. Not repeating yourself, for instance, is, in that context, almost always a good idea. It feels safe to say that if repetition becomes too insidious, then it should be stamped out through strategic application of abstraction.
+However, digging a little deeper tells us a more nuanced story. That sometimes a code smell to one person, is a design principle to another. For instance: when a student is at the very beginning of learning the concept of sequential execution, it may be very helpful to see the same line of code repeated. This gives them a physical, and intentionally concrete representation of repetition in the code. This is necessary even before they know what a loop is. Showing a loop would be problematic if the student does not yet understand this control abstraction. Similarly, novice students tend to inline behaviour so that they can follow, without jumping around, the details of the implementation of an algorithm. Hiding behaviour behind functional abstractions, especially if there is overriding involved, would confuse the student, and would be, quite rightly, considered poor pedagogical code design.
+
+Open source development may implicate different principles from closed source development. Open source programmers likely prepare their code for public consumption to enhance the principle of readability, and may employ a more granulated style for the sake of facilitating unforeseen expansion and reuse.
+
+That is all to say: different people will hear differently. And what they hear will depend on many factors, including the person’s culture, the use cases that they are imagining, and their past experiences.
+
+As a result of different contexts of hearing, the patterns that would emerge and the principles that would emerge would differ. This type of _design relativity_ implies that patterns and principles are actually subjective and contextual.
+____
+
+[quote]
+____
+Both teams identified a fundamental problem with object orientation, or really with any design paradigm: that of the _tyranny of the dominant decomposition_. That a programmer would need to make a choice when faced with structurally conflicting changes: to optimise for changeability in one way, or the other. When faced with a failure of available abstraction mechanisms, their response was to devise new abstraction mechanisms. Limited by their paradigm, they abstracted into a new paradigm. The solution could not be found within the code or in the language in which it was written. Change had to come from _without_: by introducing a new framework, new interpreter, or making changes to the compiler itself. The problematic and unresolvable contradictory code smells become motivation for new levels of previously unsupported abstraction (Aspects, explicit tests a la JUnit, Lambdas, etc). When abstractions fail us, we need to not just listen to the code, but to listen to the paradigm.
+____
+
+== link:https://daniel.haxx.se/blog/2020/02/20/the-command-line-options-we-deserve/[The command line options we deserve]
+
+[quote]
+____
+All the four major web browsers let you link:https://daniel.haxx.se/blog/2015/11/23/copy-as-curl/[export HTTP requests to curl command lines] that you can then execute from your shell prompts or scripts. Other web tools and proxies can also do this.
+
+There are now also tools that can _import_ said curl command lines so that they can figure out what kind of transfer that was exported from those other tools. The applications that import these command lines then don’t want to actually run curl, they want to figure out details about the request that the curl command line would have executed (and instead possibly run it themselves). _The curl command line has become a web request interchange language!_
+____
