@@ -5,5 +5,203 @@ v0.1, 2020-02-23
 :article_image: cut.png
 :article_description: ???
 
-Après un article sur le https://blog.octo.com/decouplage-decouplage-decouplage/
+Cet article est un peu la suite de link:https://blog.octo.com/decouplage-decouplage-decouplage/[celui-ci]. Mon objectif est de mettre au clair quelques idées, sans avoir de thèse précise à défendre.
 
+== Une méthode
+
+Soit une méthode{nbsp}:
+
+[source,ruby]
+----
+# @param [classe] param1
+# @param [String] param2
+# @return [Array<Boolean>]
+def fait_quelque_chose(param1, param2)
+  # Fait le truc machin
+  if blabla bla
+    bla bli bla
+    …
+  end
+  blu = param1.stonk()
+  …
+  …
+
+  # S'occupe du bidule
+  bla bli bla
+  while blu
+    yada yada
+    …
+    …
+  end
+
+  # On termine par le truc
+  result = param2.map do |element|
+    element.poke
+    …
+    …
+  end
+  result
+end
+----
+
+Dans cette méthode il y a plusieurs blocs de code qui font des choses différentes dans le but de rendre un service unique, sans qu'il soit possible de factoriser de code entre les blocs.
+
+Les blocs de code sont chacun accompagnés d'un commentaire indiquant ce qu'ils font.
+
+Quand on regarde le code de la méthode, j'ai l'impression qu'il est facile de suivre ce qui se passe d'après la structure du code. Pour moi il est facile de passer d'un niveau macro où on regarde les commentaires à un niveau micro où on regarde le contenu de chaque bloc.
+
+La limite étant si la méthode devenant trop longue au point de rendre inconfortable le fait de la parcourir.
+
+== Quatre méthodes
+
+Il est possible de réorganiser ce code ainsi :
+
+[source,ruby]
+----
+# @param [classe] param1
+# @param [String] param2
+# @return [Array<Boolean>]
+def fait_quelque_chose(param1, param2)
+  plop = fait_truc_machin(bla, param1, blu)
+  s_occupe_du_bidule(plop, bah, param2)
+  termine_par_truc(plop, bah)
+end
+
+private
+
+# @param [truc] bla
+# @param [String] param2
+# @param [machin] blu
+# @return [Plop]
+def fait_truc_machin(bla, param1, blu)
+  # Fait le truc machin
+  if blabla bla
+    bla bli bla
+    …
+  end
+  blu = param1.stonk()
+  …
+  …
+  plop
+end
+
+# @param [Plop] plop
+# @param [String] bah
+# @param [Integer] param2
+# @return [void]
+def s_occupe_du_bidule(plop, bah, param2)
+  bla bli bla
+  while blu
+    yada yada
+    …
+    …
+  end
+end
+
+# @param [Plop] plop
+# @param [String] bah
+# @return [Array<Boolean>]
+def termine_par_truc(plop, bah)
+  # On termine par le truc
+  result = param2.map do |element|
+    element.poke
+    …
+    …
+  end
+  result
+end
+----
+
+Par rapport à la première version, les blocs de codes sont encore plus visibles, et les paramètres nécessaires à chaque bloc sont maintenant explicites.
+
+Par contre il est devenu plus difficile d'avoir une vue d'ensemble du comportement, par exemple l'ensemble des usages fait de telle ou telle valeur{nbsp}, la navigation est devenue un peu plus pénible car il faut d'avantage scroller entre les différents blocs.
+
+La lisibilité dépend aussi des signatures de méthodes{nbsp}: si les sous-méthodes ont besoin de beaucoup de paramètres, et retourne plusieurs valeurs nécessitant des destructurations, cela peut notablement dégrader les choses.
+
+Transformé ainsi, le code n'est pas mieux découpé (on s'est contenté de déplacer le code ailleurs sans changer l'interface) ni découplé (peut-être que dans certains évolutions on modifiera une seule sous-méthode mais changer une seule sous-méthode plutôt qu'un bloc de code dans la méthode principale n'apporte pas grand chose).
+Au contraire, certains refactoring pourraient nécessiter d'intervenir dans plusieurs sous-méthodes voire d'en changer les signatures, et dans ce cas le changement sera plus important dans cette version.
+
+Je connais des personnes pour qui les commentaires dans le code sont à bannir sauf cas très particulier, mais pour moi dans l'exemple remplacer les commentaires par des méthodes est plutôt une affaire de goût car le contenu est le même.
+
+Un avantage possible est d'avoir une facilité supérieure de tester les sous-méthodes.
+
+En résumé{nbsp}: je ne pense pas que ce code soit strictement préférable au premier, il a des inconvénients et des avantages. Ma pratique personnelle est de le faire de manière opportuniste quand la méthode principale devient vraiment trop longue et/ou qu'un bloc de code s'y prête particulièrement bien.
+
+Je comprends l'idée de faire attention à la longueur des méthodes pour garder l'œil ouvert afain de détecter les problèmes, mais selon moi encourager trop fortement la création de sous-méthodes ne rend pas forcément le code plus lisible et par contre peut rendre la navigation bien plus pénible.
+
+== Un module
+
+[source,ruby]
+----
+module FaitDesTrucs
+  # @param [classe] param1
+  # @param [String] param2
+  # @return [Array<Boolean>]
+  def fait_quelque_chose(param1, param2)
+    plop = fait_truc_machin(bla, param1, blu)
+    s_occupe_du_bidule(plop, bah, param2)
+    termine_par_truc(plop, bah)
+  end
+
+  private
+
+  # @param [truc] bla
+  # @param [String] param2
+  # @param [machin] blu
+  # @return [Plop]
+  def fait_truc_machin(bla, param1, blu)
+    # Fait le truc machin
+    if blabla bla
+      bla bli bla
+      …
+    end
+    blu = param1.stonk()
+    …
+    …
+    plop
+  end
+
+  # @param [Plop] plop
+  # @param [String] bah
+  # @param [Integer] param2
+  # @return [void]
+  def s_occupe_du_bidule(plop, bah, param2)
+    bla bli bla
+    while blu
+      yada yada
+      …
+      …
+    end
+  end
+
+  # @param [Plop] plop
+  # @param [String] bah
+  # @return [Array<Boolean>]
+  def termine_par_truc(plop, bah)
+    # On termine par le truc
+    result = param2.map do |element|
+      element.poke
+      …
+      …
+    end
+    result
+  end
+end
+----
+
+C'est une étape suivante possible après la séparation en sous-méthodes{nbsp}: on a désormais quatre méthodes qui traitent un domaine spécifique, pourquoi ne pas les isoler dans un module pour mieux isoler les choses{nbsp}?
+
+À nouveau cette approche n'augmente pas le découplage{nbsp}: ce n'est pas parce que la méthode qu'on appelle est dans un autre fichier que le contrat d'interface qu'elle expose sera plus stable.
+Ce qu'on a fait s'apparent à un renommage (on change la manière d'apeller le code).
+
+À nouveau, le principal changement est la navigation{nbsp}: on peut préférer naviguer dans plusieurs fichiers courts plutôt que dans un seul plus long.
+Cela peut dépendre en partie des outils utilisés, par exemple s'ils permettent facilement de suivre des méthodes ou s'il faut naviguer "`à la main`".
+
+Il est intéressant de noter que cette étape est une suite possible de la précédente{nbsp}: parce qu'on a beaucoup découpé et qu'on a maintenant plusieurs sous-méthodes, il peut devenir intéressant de déplacer ces méthodes ailleurs.
+Petit à petit le code peut ainsi s'étaler en suivant des principes.
+
+Le mot étaler est important car à chaque fois la proportion de code opérant diminue en ajoutant petit à petit du code servant à gérer de la logistique.
+
+=== En conclusion
+
+Beaucoup d'idées de refactoring sur le fait de séparer les choses peuvent être dangereuses. QQQQQ
