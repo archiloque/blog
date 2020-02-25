@@ -121,13 +121,17 @@ La lisibilité dépend aussi des signatures de méthodes{nbsp}: si les sous-mét
 Transformé ainsi, le code n'est pas mieux découpé (on s'est contenté de déplacer le code ailleurs sans changer l'interface) ni découplé (peut-être que dans certains évolutions on modifiera une seule sous-méthode mais changer une seule sous-méthode plutôt qu'un bloc de code dans la méthode principale n'apporte pas grand chose).
 Au contraire, certains refactoring pourraient nécessiter d'intervenir dans plusieurs sous-méthodes voire d'en changer les signatures, et dans ce cas le changement sera plus important dans cette version.
 
-Je connais des personnes pour qui les commentaires dans le code sont à bannir sauf cas très particulier, mais pour moi dans l'exemple remplacer les commentaires par des méthodes est plutôt une affaire de goût car le contenu est le même.
+Je connais des personnes pour qui les commentaires dans le code sont à bannir sauf cas très particulier, mais pour moi dans l'exemple remplacer les commentaires par des signature de méthodes est plutôt une affaire de goût car le contenu est le même.
+
+L'utilisation de sous-méthodes peut aussi être justifiée par le principe de link:https://fr.wikipedia.org/wiki/Principe_de_responsabilité_unique[responsabilité unique], par exemple dans l'approche link:https://fr.wikipedia.org/wiki/SOLID_(informatique)[SOLID].
+Mais de mon point de vue la première méthode a bien une responsabilité unique qu'elle met en œuvre en utilisant plusieurs blocs de codes. Décider qu'en fait chaque bloc de code correspond en fait à une responsabilité est un choix. Ce n'est pas parce qu'on peut déplacer le code dans des sous-méthode que la méthode principale a plusieurs responsabilités.
 
 Un avantage possible est d'avoir une facilité supérieure de tester les sous-méthodes.
+Si ce refactoring est fait pour écrire un test qui est rendu plus facile ainsi il s'agit d'une bonne raison, par contre ce n'est pas le cas si c'est pour qu'un jour on puisse le faire si le besoin s'en fait sentir.
 
 En résumé{nbsp}: je ne pense pas que ce code soit strictement préférable au premier, il a des inconvénients et des avantages. Ma pratique personnelle est de le faire de manière opportuniste quand la méthode principale devient vraiment trop longue et/ou qu'un bloc de code s'y prête particulièrement bien.
 
-Je comprends l'idée de faire attention à la longueur des méthodes pour garder l'œil ouvert afain de détecter les problèmes, mais selon moi encourager trop fortement la création de sous-méthodes ne rend pas forcément le code plus lisible et par contre peut rendre la navigation bien plus pénible.
+Je comprends l'idée de faire attention à la longueur des méthodes pour garder l'œil ouvert afin de détecter les problèmes, mais selon moi encourager trop fortement la création de sous-méthodes ne rend pas forcément le code plus lisible et par contre peut rendre la navigation bien plus pénible.
 
 == Un module
 
@@ -192,16 +196,21 @@ end
 C'est une étape suivante possible après la séparation en sous-méthodes{nbsp}: on a désormais quatre méthodes qui traitent un domaine spécifique, pourquoi ne pas les isoler dans un module pour mieux isoler les choses{nbsp}?
 
 À nouveau cette approche n'augmente pas le découplage{nbsp}: ce n'est pas parce que la méthode qu'on appelle est dans un autre fichier que le contrat d'interface qu'elle expose sera plus stable.
-Ce qu'on a fait s'apparent à un renommage (on change la manière d'apeller le code).
+
+Ce qu'on a fait s'apparent à un renommage (on change la manière d'appeler le code).
 
 À nouveau, le principal changement est la navigation{nbsp}: on peut préférer naviguer dans plusieurs fichiers courts plutôt que dans un seul plus long.
 Cela peut dépendre en partie des outils utilisés, par exemple s'ils permettent facilement de suivre des méthodes ou s'il faut naviguer "`à la main`".
 
-Il est intéressant de noter que cette étape est une suite possible de la précédente{nbsp}: parce qu'on a beaucoup découpé et qu'on a maintenant plusieurs sous-méthodes, il peut devenir intéressant de déplacer ces méthodes ailleurs.
+Il est intéressant de noter que cette étape n'est possible qu'à cause de la précédente{nbsp}: parce qu'on a beaucoup découpé et qu'on a maintenant plusieurs sous-méthodes, il peut devenir intéressant de déplacer ces méthodes ailleurs.
 Petit à petit le code peut ainsi s'étaler en suivant des principes.
 
-Le mot étaler est important car à chaque fois la proportion de code opérant diminue en ajoutant petit à petit du code servant à gérer de la logistique.
+Le mot étaler est important car à chaque fois la proportion de code opérant diminue en ajoutant au profit de code servant à gérer de la logistique.
 
 === En conclusion
 
-Beaucoup d'idées de refactoring sur le fait de séparer les choses peuvent être dangereuses. QQQQQ
+Une des choses qui me questionne en ce moment en appliquant à la chaîne certains principes on rajoute des indirections dans le code en le diluant.
+
+Il est facile de s'arbitrer derrière des principes, mais il faut garder en tête que beaucoup d'entre eux ne doivent pas s'appliquer systématiquement mais seulement quand on en fait le choix.
+
+Suivant les préférences personnelles et/ou d'équipe, on peut choisir où placer la limite qui décide de refactorer ou de fractionner le code, mais il faut garder en tête qu'il s'agit d'un choix.
