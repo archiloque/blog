@@ -50,6 +50,23 @@ Les blocs de code sont chacun accompagnés d'un commentaire indiquant ce qu'ils 
 
 Quand on regarde le code de la méthode, j'ai l'impression qu'il est facile de suivre ce qui se passe d'après la structure du code. Pour moi il est facile de passer d'un niveau macro où on regarde les commentaires à un niveau micro où on regarde le contenu de chaque bloc.
 
+Certains languages comme C, C++, Java ou JavaScript fournissent même un moyen syntaxique d'isoler des blocs de code :
+
+[source,javascript]
+----
+fait_quelque_chose(param1, param2) {
+  {
+    // Fait le truc machin
+  }
+  {
+    // S'occupe du bidule
+  }
+  {
+    // On termine par le truc
+  }
+}
+----
+
 La limite étant si la méthode devenant trop longue au point de rendre inconfortable le fait de la parcourir.
 
 == Quatre méthodes
