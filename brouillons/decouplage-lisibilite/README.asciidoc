@@ -50,7 +50,7 @@ Les blocs de code sont chacun accompagnés d'un commentaire indiquant ce qu'ils 
 
 Quand on regarde le code de la méthode, j'ai l'impression qu'il est facile de suivre ce qui se passe d'après la structure du code. Pour moi il est facile de passer d'un niveau macro où on regarde les commentaires à un niveau micro où on regarde le contenu de chaque bloc.
 
-Certains languages comme C, C++, Java ou JavaScript fournissent même un moyen syntaxique d'isoler des blocs de code :
+Certains langages comme C, C++, Java ou JavaScript fournissent même un moyen syntaxique d'isoler des blocs de code, par exemple pour limiter la portée des variables locales{nbsp}:
 
 [source,javascript]
 ----
@@ -67,7 +67,7 @@ fait_quelque_chose(param1, param2) {
 }
 ----
 
-La limite étant si la méthode devient trop longue au point de rendre inconfortable le fait de la parcourir.
+Pour moi, il faut se poser des questions quand la méthode devient tellement longue que la parcourir devient inconfortable.
 
 == Quatre méthodes
 
@@ -133,7 +133,8 @@ Par rapport à la première version, les blocs de codes sont encore plus visible
 
 Par contre il est devenu plus difficile d'avoir une vue d'ensemble du comportement, par exemple l'ensemble des usages fait de telle ou telle valeur{nbsp}, la navigation est devenue un peu plus pénible car il faut d'avantage scroller entre les différents blocs.
 
-La lisibilité dépend aussi des signatures de méthodes{nbsp}: si les sous-méthodes ont besoin de beaucoup de paramètres, et retourne plusieurs valeurs nécessitant des destructurations, cela peut notablement dégrader les choses.
+La lisibilité dépend aussi des signatures de méthodes.
+Si les sous-méthodes ont besoin de beaucoup de paramètres, et retournent plusieurs valeurs nécessitant des destructurations, cela va devenir beaucoup moins intéressant.
 
 Transformé ainsi, le code n'est pas mieux découpé (on s'est contenté de déplacer le code ailleurs sans changer l'interface) ni découplé (peut-être que dans certains évolutions on modifiera une seule sous-méthode mais changer une seule sous-méthode plutôt qu'un bloc de code dans la méthode principale n'apporte pas grand chose).
 Au contraire, certains refactoring pourraient nécessiter d'intervenir dans plusieurs sous-méthodes voire d'en changer les signatures, et dans ce cas le changement sera plus important dans cette version.
@@ -214,7 +215,7 @@ C'est une étape suivante possible après la séparation en sous-méthodes{nbsp}
 
 À nouveau cette approche n'augmente pas le découplage{nbsp}: ce n'est pas parce que la méthode qu'on appelle est dans un autre fichier que le contrat d'interface qu'elle expose sera plus stable.
 
-Ce qu'on a fait s'apparent à un renommage (on change la manière d'appeler le code).
+Ce qu'on a fait s'apparent à un renommage (on change la manière d'appeler le code et donc son nom).
 
 À nouveau, le principal changement est la navigation{nbsp}: on peut préférer naviguer dans plusieurs fichiers courts plutôt que dans un seul plus long.
 Cela peut dépendre en partie des outils utilisés, par exemple s'ils permettent facilement de suivre des méthodes ou s'il faut naviguer "`à la main`".
@@ -226,7 +227,10 @@ Le mot étaler est important car à chaque fois la proportion de code opérant d
 
 === En conclusion
 
-Une des choses qui me questionne en ce moment en appliquant à la chaîne certains principes on rajoute des indirections dans le code en le diluant.
+Une des choses qui me questionne en ce moment en appliquant à la chaîne certaines pratiques on rajoute des indirections dans le code en le diluant.
+
+Les pratiques dont je parle ici sont souvent mises en avant dans un contexte de partage de code, et dans ce cas elles sont bien plus utiles.
+Mon intuition est que leur utilité pour du partage peut mener à surestimer leur utilité lorsqu'iil n'y a pas de partage.
 
 Il est facile de s'arbitrer derrière des principes, mais il faut garder en tête que beaucoup d'entre eux ne doivent pas s'appliquer systématiquement mais seulement quand on en fait le choix.
 
