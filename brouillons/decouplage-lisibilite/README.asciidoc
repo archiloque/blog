@@ -1,9 +1,9 @@
-= Découpage, découplage et lisibilité{nbsp}: où mettre son code{nbsp}?
+= Découpage, lisibilité et dilution{nbsp}: refactorer ou pas{nbsp}?
 Julien Kirch
 v0.1, 2020-02-23
 :article_lang: fr
 :article_image: cut.png
-:article_description: ???
+:article_description: C'est bien d'avoir des principes, mais pas trop quand même
 
 Cet article est un peu la suite de link:https://blog.octo.com/decouplage-decouplage-decouplage/[celui-ci]. Mon objectif est de mettre au clair quelques idées, sans avoir de thèse précise à défendre.
 
@@ -129,25 +129,31 @@ def termine_par_truc(plop, bah)
 end
 ----
 
-Par rapport à la première version, les blocs de codes sont encore plus visibles, et les paramètres nécessaires à chaque bloc sont maintenant explicites.
+Par rapport à la première version, les blocs de codes sont encore plus visibles, et les contrats d'interfaces sont devenus plus visibles.
 
-Par contre il est devenu plus difficile d'avoir une vue d'ensemble du comportement, par exemple l'ensemble des usages fait de telle ou telle valeur{nbsp}, la navigation est devenue un peu plus pénible car il faut d'avantage scroller entre les différents blocs.
+Par contre il est devenu plus difficile d'avoir une vue d'ensemble du comportement, par exemple l'ensemble des usages fait de telle ou telle valeur{nbsp}, pour moi la navigation est devenue un peu plus pénible car il faut d'avantage scroller entre les différents blocs.
 
 La lisibilité dépend aussi des signatures de méthodes.
 Si les sous-méthodes ont besoin de beaucoup de paramètres, et retournent plusieurs valeurs nécessitant des destructurations, cela va devenir beaucoup moins intéressant.
 
-Transformé ainsi, le code n'est pas mieux découpé (on s'est contenté de déplacer le code ailleurs sans changer l'interface) ni découplé (peut-être que dans certains évolutions on modifiera une seule sous-méthode mais changer une seule sous-méthode plutôt qu'un bloc de code dans la méthode principale n'apporte pas grand chose).
-Au contraire, certains refactoring pourraient nécessiter d'intervenir dans plusieurs sous-méthodes voire d'en changer les signatures, et dans ce cas le changement sera plus important dans cette version.
+Transformé ainsi, le code n'est pas mieux découpé ni découplé car l'interface n'a pas changé, elle est juste plus visible.
+Si dans certains évolutions ultérieures on pourrait n'avoir à modifier qu'une seule sous-méthode plutôt qu'un bloc de code dans la méthode principale, cela ne change rien au changement à mettre en œuvre.
 
 Je connais des personnes pour qui les commentaires dans le code sont à bannir sauf cas très particulier, mais pour moi dans l'exemple remplacer les commentaires par des signature de méthodes est plutôt une affaire de goût car le contenu est le même.
 
 L'utilisation de sous-méthodes peut aussi être justifiée par le principe de link:https://fr.wikipedia.org/wiki/Principe_de_responsabilité_unique[responsabilité unique], par exemple dans l'approche link:https://fr.wikipedia.org/wiki/SOLID_(informatique)[SOLID].
-Mais de mon point de vue la première méthode a bien une responsabilité unique qu'elle met en œuvre en utilisant plusieurs blocs de codes. Décider qu'en fait chaque bloc de code correspond en fait à une responsabilité est un choix. Ce n'est pas parce qu'on peut déplacer le code dans des sous-méthode que la méthode principale a plusieurs responsabilités.
+Mais ce n'est pas parce qu'il est possible d'extraire du code dans une sous-méthode qu'il faut obligatoirement le faire.
+Décider qu'un bloc de code correspond une responsabilité différente est un choix.
+Pour moi la première méthode a bien une responsabilité unique qu'elle met en œuvre en utilisant plusieurs blocs de codes.
 
-Un avantage possible est d'avoir une facilité supérieure de tester les sous-méthodes.
+Vouloir appliquer le principe de responsabilité unique de manière systématique pourrait justifier d'extraire chaque ligne ou fragment de ligne de code dans une méthode différent.
+Je préfère conserver ce principe et l'appliquer de manière raisonnée plutôt que de le rejeter en entier.
+
+Un avantage possible de l'extraction de sous-méthode est de pouvoir faire des tests à un niveau plus fin.
 Si ce refactoring est fait pour écrire un test qui est rendu plus facile ainsi il s'agit d'une bonne raison, par contre ce n'est pas le cas si c'est pour qu'un jour on puisse le faire si le besoin s'en fait sentir.
 
-En résumé{nbsp}: je ne pense pas que ce code soit strictement préférable au premier, il a des inconvénients et des avantages. Ma pratique personnelle est de le faire de manière opportuniste quand la méthode principale devient vraiment trop longue et/ou qu'un bloc de code s'y prête particulièrement bien.
+En résumé{nbsp}: je ne pense pas que ce code soit strictement préférable au premier, il a des inconvénients et des avantages.
+Ma pratique personnelle est de le faire de manière opportuniste quand la méthode principale devient vraiment trop longue et/ou qu'un bloc de code s'y prête particulièrement bien.
 
 Je comprends l'idée de faire attention à la longueur des méthodes pour garder l'œil ouvert afin de détecter les problèmes, mais selon moi encourager trop fortement la création de sous-méthodes ne rend pas forcément le code plus lisible et par contre peut rendre la navigation bien plus pénible.
 
@@ -227,11 +233,11 @@ Le mot étaler est important car à chaque fois la proportion de code opérant d
 
 === En conclusion
 
-Une des choses qui me questionne en ce moment en appliquant à la chaîne certaines pratiques on rajoute des indirections dans le code en le diluant.
+En appliquant à la chaîne certaines pratiques, on peut avoir le sentiment d'améliorer les choses alors que tout ce qu'on est parvenu à faire est d'ajouter des indirections et de diluer le code.
 
-Les pratiques dont je parle ici sont souvent mises en avant dans un contexte de partage de code, et dans ce cas elles sont bien plus utiles.
-Mon intuition est que leur utilité pour du partage peut mener à surestimer leur utilité lorsqu'iil n'y a pas de partage.
+Les pratiques dont je parle ici sont souvent mises en avant dans un contexte où il faut partager du code, et dans ce cas elles sont bien plus utiles.
+Mon intuition est que leur utilité quand il s'agit d'un besoin de partage peut mener à surestimer leur utilité lorsque ce n'est pas le cas.
 
-Il est facile de s'arbitrer derrière des principes, mais il faut garder en tête que beaucoup d'entre eux ne doivent pas s'appliquer systématiquement mais seulement quand on en fait le choix.
+Il est facile de s'arbitrer derrière l'autorité de principes, mais il faut garder en tête que beaucoup d'entre eux ne doivent pas s'appliquer systématiquement mais seulement quand on en fait le choix.
 
-Suivant les préférences personnelles et/ou d'équipe, on peut choisir où placer la limite qui décide de refactorer ou de fractionner le code, mais il faut garder en tête qu'il s'agit d'un choix.
+On peut choisir où placer la limite qui décide de refactorer ou de fractionner le code, mais il faut toujours garder en tête qu'il s'agit d'un jugement que l'on porte.
