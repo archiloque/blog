@@ -38,20 +38,50 @@ J'ai relevé les points qui m'ont le plus marqués, je vais tenter d'expliquer c
 
 ''''
 
-== Piloter un gros projet informatique, ce n'est pas une mince affaire
+== Piloter un gros projet informatique n'est pas une mince affaire
 
 Si on se moque souvent de l'incompétences des personnes chargées de piloter des projets informatique, on mentionne rarement la difficulté de leur tâche et le niveau de compétence que ça peut nécessiter{nbsp}: il faut maîtriser la gestion de projet "`standard`", mais aussi dans une certaine mesure les spécificités des différentes technologies.
 
-Dans les organisations comme les banques, les gros projets informatiques sont souvent parmi les projets les plus importants qu'elles ont à gérer, en terme de budget, de durée et de complexité.
+Dans beaucoup d'organisations, comme par exemple les banques, les gros projets informatiques sont souvent parmi les projets les plus importants qu'elles ont à gérer, en terme de budget, de durée et de complexité.
 Cela signifie en général que le pilotage est assuré par des membres de la direction, qui souvent ont des compétences faible en informatique.
+
+La capacité d'un comité de pilotage a faire son travail dans ce genre de situation peut donc être limitée, et peut se limiter à vérifier que les choses sont faites selon les formes.
 
 Si ces personnes peuvent être capable de comprendre les enjeux si on les leur explique, il peut leur être difficile de prendre du recul sur ce qu'on leur raconte, par exemple pour jauger du bien fondé ou du niveau de risque de telle ou telle décision.
 
-On peut tenter de limiter le risque en s'appuyant sur une expertise externe, mais cela ajoute d'autres contraintes et d'autres risques, par exemple si les experts ont leur propres idées à mettre en avant.
-
 == Les calendrier
 
-On connaît les difficultés 
+[quote]
+____
+Il est difficile de faire des prévisions, surtout à propos du futur.
+____
+
+Prévoir la durée d'un projet informatique d'une certaine taille est un exercice compliqué et risqué rien de neuf là dedans.
+Malheureusement il est souvent nécessaire pour pouvoir valider que le projet vaut la peine, et pouvoir organiser sa mise en œuvre.
+
+Dans le cas qui nous occupe, la durée du projet a une incidence directe sur la rentabilité de toute l'opération, à cause du prix de la redevance à payer sur le logiciel existant.
+
+Cela signifie que les retards peuvent avoir des effets importants.
+
+Le rapport explique que le planning a été fait à rebours{nbsp}: une date satisfaisante pour la fin du projet a été choisie, et on s'est efforcé ensuite d'établir un calendrier permettant d'aboutir à cette date.
+
+Dans certaines organisations, cette manière de faire est vue comme un signe de leadership{nbsp}:
+la croyance est que faire un planning standard c'est prendre le risque de se faire avoir par différents groupes qui ne cherchent qu'à prendre leur temps.
+
+Imposer sa volonté au système, en choisissant une date et en mettant la pression pour qu'elle soit tenue, est donc pris pour une démonstration de force de caractère.
+
+Dans ce type de situation, annoncer un retard c'est donc défier la volonté de la personne haut-placée qui a choisi une date.
+
+Cela peut avoir deux conséquences.
+
+La première est sur la fiabilité des informations remontées.
+En général l'effet est assez drastiques{nbsp}: tout ce qu'il est humainement possible sera mis en œuvre pour faire en sorte de cacher les problèmes tant que cela est possible.
+
+L'exemple que j'ai vu régulièrement, et qui arrive encore ici, c'est de proposer de gagner du temps en testant des composants avant que leur développement ne soient terminés.
+Sur le papier cela semble une bonne idée, mais dans la réalité cela signifie dans mon expérience d'avoir d'un côté des équipes de tests ne sachant pas si les problèmes sont dus à des bugs ou à des développements non terminés, et d'un autre des équipes de développement sous pression pour terminer des fonctionnalités recevant des rapports de bugs qu'elles n'ont donc pas le temps de traiter.
+
+La deuxième est sur la capacité à gérer les risques{nbsp}: quand la pression est trop forte sur la tenue d'une date, il n'est plus possible de choisir rationnellement entre une solution risquée mais qui semble plus rapide et une solution moins risquée mais plus lente.
+De fait, ce seront presque systématiquement les solutions les plus risquées qui seront choisies.
 
 == Personnes qui pilotent n'ont pas l'habitude
 === Manque de compétence pour piloter
