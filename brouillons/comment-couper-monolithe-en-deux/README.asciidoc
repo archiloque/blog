@@ -11,13 +11,17 @@ Ce post est une traduction d'link:https://programmingisterrible.com/post/1623464
 
 Ça dépend.
 
-The problem with distributed systems, is that no matter what the question is, the answer is inevitably "`It Depends`".
+Le problème avec les systèmes distribués est que, quelle que soit la question, la réponse est inévitablement "`Ça dépend`".
 
-When you cut a larger service apart, where you cut depends on latency, resources, and access to state, but it also depends on error handling, availably and recovery processes. It depends, but you probably don't want to depend on a message broker.
+Quand vous coupez un service d'une certaine taille en deux, l'endroit où il faut découper dépend de la latence, des resources, et de l'accès aux états, mais il dépend aussi de la gestion des erreur, de la disponibilité, et des processus de reprise.
+Ça dépend, mais vous ne voulez probablement pas d'un bus de messages.
 
-Using a message broker to distribute work is like a cross between a load balancer with a database, with the disadvantages of both and the advantages of neither.
+Utiliser un bus de messages pour distribuer du travail est comme de croiser un répartiteur de charge avec une base de donnée, avec les inconvénients des deux et aucun des avantages.
 
-Message brokers, or persistent queues accessed by publish-subscribe, are a popular way to pull components apart over a network. They're popular because they often have a low setup cost, and provide easy service discovery, but they can come at a high operational cost, depending where you put them in your systems.
+Les bus de messages, ou queues persistantes auxquelles on accède par un mécanisme de publication-souscription, sont une manière populaire de séparer deux composants à travers un réseau.
+Ils sont populaires parce que leur coût de mise en place est souvent faible, qu'ils proposent un accès facile à des fonctionnalités de découverte de services, mais ils peuvent venir avec un coût opérationnel important, en fonction de l'endroit où vous les placez dans vos systèmes.
+
+En pratique, un bus de message est un service qui transforme des erreur de réseaux et des défaillances de machine en disques remplis.
 
 In practice, a message broker is a service that transforms network errors and machine failures into filled disks. Then you add more disks. The advantage of publish-subscribe is that it isolates components from each other, but the problem is usually gluing them together.
 
