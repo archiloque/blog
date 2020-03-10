@@ -12,7 +12,7 @@ en tous cas ceux que j'ai croisé avaient un certain air de famille.
 Un des points communs c'est que souvent on en parle peu à l'extérieur{nbsp}: pour plein de raisons on préfère laver son linge sale en interne, ou même faire comme si le projet avait été un succès pour éviter d'avoir à en tirer les conséquences.
 Quand des articles sortent dans les journaux, suite à un problème particulièrement visible ou parce qu'une entreprise porte plainte contre un sous-traitant, les détails, passés au filtre des services juridiques, ne laissent pas grand chose à se mettre sous la dent.
 
-Pour une fois ce n'est pas le cas : suite à un projet de migration qui a mal fini, la banque TSB a demandé un audit, et a eu le rare courage de link:https://www.tsb.co.uk/news-releases/slaughter-and-may/slaughter-and-may-report.pdf[le publier en intégralité].
+Pour une fois ce n'est pas le cas{nbsp}: suite à un projet de migration qui a mal fini, la banque TSB a demandé un audit, et a eu le rare courage de link:https://www.tsb.co.uk/news-releases/slaughter-and-may/slaughter-and-may-report.pdf[le publier en intégralité].
 
 La migration consistait à changer le système central de gestion bancaire de l'entreprise.
 TSB est une sous-partie de du groupe bancaire Lloyds qui a été transformée en entreprise indépendante pour des raisons réglementaire.
@@ -36,8 +36,6 @@ Et pour le coup, cela pourrait vous aider à faire une différence.
 
 J'ai relevé les points qui m'ont le plus marqués, je vais tenter d'expliquer comment chacun peut arriver, mais je ne proposerai pas forcément de solution.
 
-''''
-
 == Piloter un gros projet informatique n'est pas une mince affaire
 
 Si on se moque souvent de l'incompétences des personnes chargées de piloter des projets informatique, on mentionne rarement la difficulté de leur tâche et le niveau de compétence que ça peut nécessiter{nbsp}: il faut maîtriser la gestion de projet "`standard`", mais aussi dans une certaine mesure les spécificités des différentes technologies.
@@ -59,11 +57,11 @@ ____
 Prévoir la durée d'un projet informatique d'une certaine taille est un exercice compliqué et risqué rien de neuf là dedans.
 Malheureusement il est souvent nécessaire pour pouvoir valider que le projet vaut la peine, et pouvoir organiser sa mise en œuvre.
 
-Dans le cas qui nous occupe, la durée du projet a une incidence directe sur la rentabilité de toute l'opération, à cause du prix de la redevance à payer sur le logiciel existant.
+Dans le cas TSB, la durée du projet a une incidence directe sur la rentabilité de toute l'opération, à cause du prix de la redevance à payer sur le logiciel existant.
 
 Cela signifie que les retards peuvent avoir des effets importants.
 
-Le rapport explique que le planning a été fait à rebours{nbsp}: une date satisfaisante pour la fin du projet a été choisie, et on s'est efforcé ensuite d'établir un calendrier permettant d'aboutir à cette date.
+Le rapport explique que le planning a été fait à rebours{nbsp}: une date satisfaisante pour la fin du projet a été choisie, et on s'est efforcé ensuite d'établir un calendrier permettant d'aboutir à cette date sous forme d'un retro-planning.
 
 Dans certaines organisations, cette manière de faire est vue comme un signe de leadership{nbsp}:
 la croyance est que faire un planning standard c'est prendre le risque de se faire avoir par différents groupes qui ne cherchent qu'à prendre leur temps.
@@ -77,34 +75,74 @@ Cela peut avoir deux conséquences.
 La première est sur la fiabilité des informations remontées.
 En général l'effet est assez drastiques{nbsp}: tout ce qu'il est humainement possible sera mis en œuvre pour faire en sorte de cacher les problèmes tant que cela est possible.
 
-L'exemple que j'ai vu régulièrement, et qui arrive encore ici, c'est de proposer de gagner du temps en testant des composants avant que leur développement ne soient terminés.
+L'exemple que j'ai vu régulièrement, et qui arrive encore pour TSB, c'est de proposer de gagner du temps en testant des composants avant que leur développement ne soit terminé.
+
 Sur le papier cela semble une bonne idée, mais dans la réalité cela signifie dans mon expérience d'avoir d'un côté des équipes de tests ne sachant pas si les problèmes sont dus à des bugs ou à des développements non terminés, et d'un autre des équipes de développement sous pression pour terminer des fonctionnalités recevant des rapports de bugs qu'elles n'ont donc pas le temps de traiter.
 
-La deuxième est sur la capacité à gérer les risques{nbsp}: quand la pression est trop forte sur la tenue d'une date, il n'est plus possible de choisir rationnellement entre une solution risquée mais qui semble plus rapide et une solution moins risquée mais plus lente.
-De fait, ce seront presque systématiquement les solutions les plus risquées qui seront choisies.
+La deuxième est sur la capacité à gérer les risques{nbsp}: quand la pression est trop forte sur la tenue d'une date, il n'est plus possible de choisir rationnellement entre une solution risquée mais qui semble plus rapide et une solution moins risquée mais plus lente ou moins ambitieuse.
+Cela signifie que les solution risquées auront d'avantage de chances d'êtres choisies que dans d'autres projets, et que plus on s'approche de la fin de projet plus cette tendance va se renforcer.
 
-== Personnes qui pilotent n'ont pas l'habitude
-=== Manque de compétence pour piloter
+Dans le cas de TSB, les propositions de tester d'abord la nouvelle solution dans certaines branches, ou seulement pour les nouveaux·elles client·e·s ont ainsi été écartées.
 
-== Date à l'avance et qui ne bougent pas, et du coup un retro-planning
-=== Date ambitieuse utilisée pour motiver les personnes, mais du coup d'autant plus difficile à bouger
-=== Date qui permet des économies et qui a été budgétée
-=== Lors d'un replanning, nouvelle date annoncée trop rapidement
+= "`On l'a déjà fait`"
 
-== On prend le plus simple
-=== Migration big bang
-== Négociation sur les cibles à atteindre, différence entre acceptable non-acceptable
+Une des raisons de l'optimisme affiché lors du planning initial est que Sabadel avait déjà réalisé ce type d'opérations et que les fois précédentes cela c'était bien passé.
 
-== Confiance des migrations passées alors que pas du même type
-=== Cas du 80-20 : les points de détails font la différence
+Leur vision était que leur système&#8201;—{nbsp}ayant pu absorber sans trop de changements d'autres banques dans d'autres pays{nbsp}—&#8201;serait suffisamment adaptable pour TSB.
 
-== Gestion des tests
-=== En cas de retard, tentant de vouloir sacrifier les tests
-=== Décalage des tests d'intégration au plus tard, alors qu'importante complexité
-=== Test pendant les phases de développement
+Pour savoir si c'est le cas, il faut mesurer l'écart entre d'un côté les produits bancaires proposés par TSB et la législation britannique et d'autre part ce qu'il est possible de faire dans le système Sabadel.
+
+Mais pour faire une estimation en début de projet, il faut être capable de faire ce type d'analyse d'une manière macroscopique, parce que le faire dans le détail prendrait des mois et coûterait très cher.
+Cette analyse détaillée est typiquement une des premières choses qu'on fait lorsqu'un projet est déjà démarré, dans l'espoir qu'il est encore temps de modifier le planning en fonction de ce qu'on va trouver.
+
+Lors de la pré-analyse, il faut donc être en mesure d'identifier rapidement les endroits qui pourraient poser problèmes, et d'essayer d'estimer l'effort à fournir pour adapter le système.
+
+Le risque à la fois de rater des zones à problèmes et de mal estimer leur ampleur est donc important, et cela d'autant plus que le système à migrer est complexe.
+On est typiquement dans un cas link:https://en.wikipedia.org/wiki/There_are_known_knowns[d'inconnu inconnu], où les personnes peuvent avoir tendance à se concentrer sur les zones déjà identifiées comme à risque, par exemple parce qu'elles ont posé problèmes dans les migration précédentes, tout en ayant tendance à ignorer les risques dans les endroits qui n'ont pas posé de problèmes dans les cas précédents, car les personnes les n'ont pas la connaissance qui leur permettrait de les identifier comme des zones à risque.
+
+Dans le cas de TSB, ce sont a priori les spécificités du marché britanniques qui ont été sous-estimées, par conséquent le planning initial a été largement sous-estimé.
+
+Revenir en arrière sur le planning une fois le projet démarré par suite des retours de l'analyse détaillée aurait signifié devoir expliquer que le logiciel de gestion de Sabadel n'était pas aussi adaptable que ce qui avait été annoncé, alors même que cette adaptabilité était largement mise en avant dans les plans de développement de l'entreprise.
+
+Comme dans le cas du planning, on retrouve une situation où la capacité du projet à s'adapter en cours de route est sévèrement limité par des contraintes extérieures (la rentabilité de toute l'opération ou l'image de marque de l'entreprise). On se retrouve donc dans une situation où "`ça passe ou ça casse`".
+
+== Les validations
+
+Pour savoir si un système informatique fonctionne, on le soumet généralement à différents types de validations sous forme de tests.
+
+Cela peut être des tests à un niveau fin comme à des niveaux plus élevé, comme par exemple les tests d'intégration qui permettent de valider que différentes briques logicielles sont bien en mesure de fonctionner ensemble comme un tout cohérent.
+
+Tant que ces tests n'ont pas été effectués, on ne sait pas si le système fonctionne ou pas.
+
+Il y a alors deux approches.
+
+La première consiste à vouloir dès que possible lever le doute, et donc à vouloir dès que possible être en mesure d'évaluer le fonctionnement du système.
+L'idée est alors d'identifier les parties les plus à risques pour les éprouver, et ainsi pouvoir mesurer au plus juste l'avancement du projet, et donc pouvoir prendre des le plus rapidement possible des mesures correctives.
+
+La seconde est de vouloir lever le doute le plus tard possible.
+Cela peut sembler paradoxal, voire même idiot, mais souvenez-vous de ce qui a été dit à propos du planning{nbsp}: tout d'abord pour les personnes appartenant le projet, il est extrêmement important de ne pas remettre en cause le planning officiel pour ne pas se mettre en opposition avec la direction, ensuite le planning ne sera changé que lorsqu'il n'est plus tenable de faire autrement.
+
+Connaître rapidement l'état réel du système, cela fait donc porter un risque pour les personnes dans la confidence tout en ayant de grandes chances de ne servir à rien pour le projet.
+
+Dans cette situation il est donc rationnel de vouloir le plus longtemps piloter le projet à partir d'un avancement théorique, plutôt que de se confronter à la réalité.
 
 = Fournisseur interne
 
-== Annoncé sans changement pour calmer les personnes alors que plein de changements
+Le dernier problème d'importance est celle de la gestion d'un fournisseur interne.
 
-== Conclusion : beaucoup de personnes savaient probablement
+Un fournisseur interne dans une entreprise c'est le fait de traiter une partie de l'organisation un peu comme s'il s'agissait d'un fournisseur extérieur, en établissant des échanges du type client - fournisseur plus ou moins formalisés.
+
+Lorsque le fournisseur est un centre de coût, cela peut permettre en théorie de mieux mesurer le prix payé pour le service, par exemple en faisant de la facturation interne.
+Cela signifie aussi dans mon expérience donner aux équipes clientes la légitimité de mettre la pression sur l'équipe fournisseuse pour essayer d'en avoir "`pour son argent`", sans penser à l'équilibre global de l'entreprise.
+
+Et, comme dans le cas de TSB, cela signifie que quand les choses tournent mal on peut se retrouver dans des situations très difficiles à gérer où chaque camp se retranche derrière son rôle officiel (client ou fournisseur) pour ne pas avoir à coopérer, mais sans qu'on dispose des outils qui permettent de trancher ce type de problème dans les cas où il s'agit réellement d'un client et d'un fournisseur, par exemple de "`vrais`" contrats ayant valeur légales, des indemnités{nbsp}…
+
+On a donc alors les inconvénient des deux systèmes (internet et externe) sans les avantages d'aucun des deux.
+
+== Conclusion
+
+Comme l'a dit très justement link:https://twitter.com/uucidl[Nicolas]{nbsp}: "`le truc qui me déprime c'est de penser a tous les gens qui savaient mais n'ont pas pu agir`".
+
+Car ces gros projets ont beau dysfonctionner du sol au plafond, cela n'empêche pas que des personnes de bonnes volontés prennent sur elles d'essayer de sauver les meubles, parfois au risque de leur santé.
+
+J'espère que la lecture de cet article vous évitera de vous retrouver dans cette posture sans l'avoir choisi, voire qu'il vous aidera à faire une différence.
