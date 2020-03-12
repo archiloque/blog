@@ -5,9 +5,10 @@ v1.0, 2020-02-06
 :article_image: disaster-girl.jpg
 :article_description: Essayer d'apprendre des erreurs des autres
 
-J'ai croisé quelques projets qui ont mal finis.
+Dans ma carrière j'ai croisé quelques projets qui ont mal finis, en tant qu'observateur ou en tant que participant.
+
 Je ne sais pas si tous les gros projets informatiques qui ont mal fini se ressemblent,
-en tous cas ceux que j'ai croisé avaient un certain air de famille.
+mais en tous cas ceux que j'ai croisé avaient un certain air de famille.
 
 Un des points communs c'est que souvent on en parle peu à l'extérieur{nbsp}: pour plein de raisons on préfère laver son linge sale en interne, ou même faire comme si le projet avait été un succès pour éviter d'avoir à en tirer les conséquences.
 Quand des articles sortent dans les journaux, suite à un problème particulièrement visible ou parce qu'une entreprise porte plainte contre un sous-traitant, les détails, passés au filtre des services juridiques, ne laissent pas grand chose à se mettre sous la dent.
@@ -26,7 +27,7 @@ D'autres banques rachetées par Sabadel avaient déjà été migrées sur son sy
 
 La lecture me donne un douloureux sentiment de gâchis{nbsp}: tant de problèmes si prévisibles et de temps et d'effort gaspillés.
 
-Si vous n'avez jamais eu la "`chance`" de participer ce genre de projets, je vous conseille vivement la lecture de ce rapport (ou au moins le résumé de quelques pages qui se trouve au début), et cela pour deux raisons.
+Si vous n'avez jamais eu la "`chance`" de participer à ce genre de projets, je vous conseille vivement la lecture de ce rapport (ou au moins le résumé de quelques pages qui se trouve au début), et cela pour deux raisons.
 
 Tout d'abord si un jour vous travaillez un un gros projets qui commence à tourner mal, cela vous permettra d'en reconnaître les symptômes à temps.
 Je ne sais pas si cela vous permettra d'améliorer les choses, mais cela pourrait au moins vous aider à ne pas y laisser trop de plumes.
@@ -47,7 +48,9 @@ La capacité d'un comité de pilotage a faire son travail dans ce genre de situa
 
 Si ces personnes peuvent être capable de comprendre les enjeux si on les leur explique, il peut leur être difficile de prendre du recul sur ce qu'on leur raconte, par exemple pour jauger du bien fondé ou du niveau de risque de telle ou telle décision.
 
-== Les calendrier
+Dans le cas TSB, l'audit explique comment le comité en charge du projet n'a pas été en mesure de jouer son rôle par manque d'expérience, et comment les consultants extérieurs appelés à la rescousse n'ont été d'aucune aide.
+
+== Les calendriers
 
 [quote]
 ____
@@ -73,20 +76,20 @@ Dans ce type de situation, annoncer un retard c'est donc défier la volonté de 
 Cela peut avoir deux conséquences.
 
 La première est sur la fiabilité des informations remontées.
-En général l'effet est assez drastiques{nbsp}: tout ce qu'il est humainement possible sera mis en œuvre pour faire en sorte de cacher les problèmes tant que cela est possible.
+En général l'effet est assez drastique{nbsp}: tout ce qu'il est humainement possible sera mis en œuvre pour faire en sorte de cacher les problèmes tant que cela est possible.
 
 L'exemple que j'ai vu régulièrement, et qui arrive encore pour TSB, c'est de proposer de gagner du temps en testant des composants avant que leur développement ne soit terminé.
 
 Sur le papier cela semble une bonne idée, mais dans la réalité cela signifie dans mon expérience d'avoir d'un côté des équipes de tests ne sachant pas si les problèmes sont dus à des bugs ou à des développements non terminés, et d'un autre des équipes de développement sous pression pour terminer des fonctionnalités recevant des rapports de bugs qu'elles n'ont donc pas le temps de traiter.
 
 La deuxième est sur la capacité à gérer les risques{nbsp}: quand la pression est trop forte sur la tenue d'une date, il n'est plus possible de choisir rationnellement entre une solution risquée mais qui semble plus rapide et une solution moins risquée mais plus lente ou moins ambitieuse.
-Cela signifie que les solution risquées auront d'avantage de chances d'êtres choisies que dans d'autres projets, et que plus on s'approche de la fin de projet plus cette tendance va se renforcer.
+Cela signifie que les solutions risquées auront davantage de chances d'être choisies que dans d'autres projets, et que plus on s'approche de la fin de projet plus cette tendance va se renforcer.
 
 Dans le cas de TSB, les propositions de tester d'abord la nouvelle solution dans certaines branches, ou seulement pour les nouveaux·elles client·e·s ont ainsi été écartées.
 
 = "`On l'a déjà fait`"
 
-Une des raisons de l'optimisme affiché lors du planning initial est que Sabadel avait déjà réalisé ce type d'opérations et que les fois précédentes cela c'était bien passé.
+Une des raisons de l'optimisme affiché lors du planning initial est que Sabadel avait déjà réalisé ce type d'opérations et que les fois précédentes s'étaient bien passé.
 
 Leur vision était que leur système&#8201;—{nbsp}ayant pu absorber sans trop de changements d'autres banques dans d'autres pays{nbsp}—&#8201;serait suffisamment adaptable pour TSB.
 
@@ -100,7 +103,7 @@ Lors de la pré-analyse, il faut donc être en mesure d'identifier rapidement le
 Le risque à la fois de rater des zones à problèmes et de mal estimer leur ampleur est donc important, et cela d'autant plus que le système à migrer est complexe.
 On est typiquement dans un cas link:https://en.wikipedia.org/wiki/There_are_known_knowns[d'inconnu inconnu], où les personnes peuvent avoir tendance à se concentrer sur les zones déjà identifiées comme à risque, par exemple parce qu'elles ont posé problèmes dans les migration précédentes, tout en ayant tendance à ignorer les risques dans les endroits qui n'ont pas posé de problèmes dans les cas précédents, car les personnes les n'ont pas la connaissance qui leur permettrait de les identifier comme des zones à risque.
 
-Dans le cas de TSB, ce sont a priori les spécificités du marché britanniques qui ont été sous-estimées, par conséquent le planning initial a été largement sous-estimé.
+Dans le cas de TSB, ce sont a priori les spécificités du marché britannique qui ont été sous-estimées, par conséquent le planning initial n'était pas du tout réaliste.
 
 Revenir en arrière sur le planning une fois le projet démarré par suite des retours de l'analyse détaillée aurait signifié devoir expliquer que le logiciel de gestion de Sabadel n'était pas aussi adaptable que ce qui avait été annoncé, alors même que cette adaptabilité était largement mise en avant dans les plans de développement de l'entreprise.
 
@@ -110,7 +113,7 @@ Comme dans le cas du planning, on retrouve une situation où la capacité du pro
 
 Pour savoir si un système informatique fonctionne, on le soumet généralement à différents types de validations sous forme de tests.
 
-Cela peut être des tests à un niveau fin comme à des niveaux plus élevé, comme par exemple les tests d'intégration qui permettent de valider que différentes briques logicielles sont bien en mesure de fonctionner ensemble comme un tout cohérent.
+Cela peut être des tests à un niveau fin comme à des niveaux plus élevés, comme par exemple les tests d'intégration qui permettent de valider que différentes briques logicielles sont bien en mesure de fonctionner ensemble comme un tout cohérent.
 
 Tant que ces tests n'ont pas été effectués, on ne sait pas si le système fonctionne ou pas.
 
@@ -125,6 +128,9 @@ Cela peut sembler paradoxal, voire même idiot, mais souvenez-vous de ce qui a �
 Connaître rapidement l'état réel du système, cela fait donc porter un risque pour les personnes dans la confidence tout en ayant de grandes chances de ne servir à rien pour le projet.
 
 Dans cette situation il est donc rationnel de vouloir le plus longtemps piloter le projet à partir d'un avancement théorique, plutôt que de se confronter à la réalité.
+
+Dans le cas de TSB, les tests d'intégrations entre composants ont été planifiés à la fin du projet, et ont révélés de nombreux problèmes.
+Les résoudre a été compliqué car les équipes en charge des différentes briques ont dépensé beaucoup de temps et d'énergie pour démontrer que le problème ne venait pas de chez elles pour ne pas être blâmées, ce qui a retardé d'autant les corrections
 
 = Fournisseur interne
 
@@ -143,6 +149,6 @@ On a donc alors les inconvénient des deux systèmes (internet et externe) sans 
 
 Comme l'a dit très justement link:https://twitter.com/uucidl[Nicolas]{nbsp}: "`le truc qui me déprime c'est de penser a tous les gens qui savaient mais n'ont pas pu agir`".
 
-Car ces gros projets ont beau dysfonctionner du sol au plafond, cela n'empêche pas que des personnes de bonnes volontés prennent sur elles d'essayer de sauver les meubles, parfois au risque de leur santé.
+Car ces gros projets ont beau dysfonctionner du sol au plafond, cela n'empêche pas que des personnes de bonnes volontés prennent sur elles d'essayer de sauver les meubles, parfois au détriment de leur santé.
 
 J'espère que la lecture de cet article vous évitera de vous retrouver dans cette posture sans l'avoir choisi, voire qu'il vous aidera à faire une différence.
