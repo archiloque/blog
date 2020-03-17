@@ -21,11 +21,13 @@ Utiliser un bus de messages pour distribuer du travail est comme de croiser un r
 Les bus de messages, ou queues persistantes auxquelles on accède par un mécanisme de publication-souscription, sont une manière populaire de séparer deux composants à travers un réseau.
 Ils sont populaires parce que leur coût de mise en place est souvent faible, qu'ils proposent un accès facile à des fonctionnalités de découverte de services, mais ils peuvent venir avec un coût opérationnel important, en fonction de l'endroit où vous les placez dans vos systèmes.
 
-En pratique, un bus de message est un service qui transforme des erreur de réseaux et des défaillances de machine en disques remplis.
+En pratique, un bus de message est un service qui transforme des erreur réseau et des défaillances de machines en problèmes de disques remplis.
+Et puis vous ajoutez plus de disque.
+L'avantage de la publication-souscription est qu'elle isole les composants l'un de l'autre, mais le problème est généralement de les coller ensemble.
 
-In practice, a message broker is a service that transforms network errors and machine failures into filled disks. Then you add more disks. The advantage of publish-subscribe is that it isolates components from each other, but the problem is usually gluing them together.
+== Pour les tâches qui s'exécutent rapidement, vous voulez un répartiteur de charge
 
-== For short-lived tasks, you want a load balancer
+
 
 For short-lived tasks, publish-subscribe is a convenient way to build a system quickly, but you inevitably end up implementing a new protocol atop. You have publish-subscribe, but you really want request-response. If you want something computed, you'll probably want to know the result.
 
