@@ -20,3 +20,36 @@ This keeps the logic simple and functional, and it limits the impact on the rest
 
 MSYS is a cross-platform library built in C that operates all the primitives we need. Consolidating the code all into one library makes managing everything much easier; the it is more centralized and more focused. We try to do things in a single way — one way to send messages to the server, one way to send media, one way to log, etc. With MSYS, we have a global view. We’re able to prioritize workloads. Say the task to load your message list should be a higher priority than the task to update whether somebody read a message in a thread from a few days ago; we can move the priority task up in the queue. Having a universal system simplifies how we support the app as well. With MSYS, it’s easier to track performance, spot regressions, and fix bugs across all these features at once. In addition, we made this important part of the system exceptionally robust by investing in automated tests, resulting in a (very rare in the industry) 100 percent line code coverage of MSYS logic.
 ____
+
+== link:https://technology.riotgames.com/news/running-online-services-riot-part-vi[Running Online Services at Riot: Part VI]
+
+[quote]
+____
+It went awesomely. And also poorly. 
+
+At the time of the previous entry in this series, we were operating just above 5000 production containers. That number has not stopped increasing, and today, we run more than 14,500 containers in Riot-operated regions alone. Riot devs love to make new things for players, and the easier it gets for them to write, deploy, and operate services, the more they create new and exciting experiences. 
+
+In true DevOps fashion, teams owned and were responsible for their services. They created workflows to deploy, monitor, and operate their services, and when they couldn’t find just the thing they wanted, they didn’t shy away from inventing it themselves. This was a very liberating time for our developers as they were rarely blocked on anything that they couldn’t resolve on their own.
+
+Slowly however, we started noticing some worrying trends. Our QA and load testing environments were getting less stable every month. We would lose an increasing amount of time tracking down misconfigurations or out-of-date dependencies. Isolated, each event was nothing critical, but collectively, they cost us time and energy that we would much prefer to spend on creating player value.
+
+Worse, our non-Riot shards were starting to exhibit not only similar difficulties but a whole set of other problems. Partner operators had to interface with an ever-increasing number of developers and onboard an ever growing number of microservices, each distinct from the others in different ways. Operators now had to work harder than ever to produce working and stable shards. These non-Riot-operated shards had a much higher incident rate directly attributable to incompatible live versions of microservices or other similar cross-cutting problems.
+____
+
+[quote]
+____
+Deploying and operating a product, not a service
+
+While embracing DevOps and microservices gave us many upsides, it created a risky feedback loop. Development teams made microservices, deployed them, operated them, and were held accountable for their performance. This meant they optimized logs, metrics, and processes for themselves and in general rarely considered their services as something that someone without development context or even engineering ability would have to reason with. 
+
+As developers kept creating more and more microservices, operating the holistic product became very difficult and resulted in an increasing number of failures. On top of that, the fluid team structure at Riot was leaving some microservices with unclear ownership. This made knowing who to contact while triaging difficult, resulting in many incorrectly attributed pages. Partner regions ops teams became overwhelmed by the increasing number of heterogeneous microservices, deployment processes, and organizational changes.
+____
+
+[quote]
+____
+The new solution: riot’s application and environment model
+
+Given that the previous attempts failed to produce the desired outcome, we decided to eliminate partial state manipulation by creating an opinionated declarative specification that captures the entirety of a distributed product - an _environment_. An environment contains all the declarative metadata required to fully specify, deploy, configure, run, and operate a set of distributed microservices collectively representing a _product_ and is holistically and immutably versioned. For those wondering, we picked  "`environment`" because it was the _least_ overloaded term at Riot. Naming things is hard.
+
+With the launch of Legends of Runeterra, we proved that we could describe an entire microservice game backend, game servers included, and have it deploy, run, and be operated as a product in Riot regions as well as in partner data centers across the globe. We also demonstrated the ability to achieve this while improving the upsides of the DevOps methods we’ve grown to love so much.
+____
