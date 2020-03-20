@@ -53,3 +53,26 @@ Given that the previous attempts failed to produce the desired outcome, we decid
 
 With the launch of Legends of Runeterra, we proved that we could describe an entire microservice game backend, game servers included, and have it deploy, run, and be operated as a product in Riot regions as well as in partner data centers across the globe. We also demonstrated the ability to achieve this while improving the upsides of the DevOps methods we’ve grown to love so much.
 ____
+
+== link:https://increment.com/development/the-melting-pot-of-javascript/[The melting pot of JavaScript]
+
+[quote]
+____
+Create reusable toolboxes
+
+If you often find yourself starting projects by cloning your last project because writing configuration files and setting up build tools is too daunting, you might be working on the wrong level of abstraction. Instead of using a few lower-level tools directly, consider wrapping them into a higher-level "`toolbox`" that you can share between different projects.
+
+Yes, I really am proposing to solve the problem of too many tools with another tool. This is not a joke. Hear me out. I think this works because we are constraining the configuration surface rather than widening it.
+
+Toolboxes, not boilerplates
+
+Instead of maintaining the configuration and the build dependencies in every project, you can create a single "`toolbox`" package that provides a curated experience on top of the tools you already use.
+
+We are using this approach in link:https://github.com/facebookincubator/create-react-app/[Create React App]. Many think it’s a boilerplate generator, but it’s a little different. Even though it generates a project with a bundler, a linter, and a test runner, it hides them behind a single package that we maintain, and it works out of the box with no configuration. This helps us ensure that the tools work well together, their versions are always compatible, and our users don’t have to configure anything to get started.
+
+When the new versions of the underlying tools come out, we update them on our side, tweak the configuration if necessary, and release an update to our shared dependency that everybody can upgrade to with a single command. I have heard from multiple people that even though they don’t use Create React App itself, they have adopted a similar strategy at their companies, centralizing the frontend tooling in one package.
+
+Of course, some projects really need project-specific configuration. In Create React App, we solve this with an approach called "`ejecting`"", pioneered by link:https://github.com/eanplatter/enclave[Enclave]. If you run the "`eject`" command, the configuration files and the underlying build dependencies get copied directly into your project. Now you can customize everything you want, but you don’t get the upstream updates since you have essentially forked the tool environment into your project. Ejecting has its downsides, but it lets you choose whether you want to maintain your own per-project tooling setup or not.
+
+I find reusable toolboxes to be an interesting way to make JavaScript tooling approachable. They add some unfortunate indirection, but they also offer a powerful way to reimagine how our tools can work together if we structure a cohesive experience with intention instead of leaving it to chance.
+____
