@@ -1,0 +1,78 @@
+= Links - 22^nd^ March 2020
+Julien Kirch
+v1.0, 2020-03-22
+:article_lang: en
+
+== link:https://culturemachine.net/vol-18-the-nature-of-data-centers/the-data-center-as/[The data center as technological wilderness]
+
+[quote]
+____
+A recurring feature in images and imaginations of the data center is the complete absence of human beings. Drawing from ethnographic fieldwork conducted in the data center industry, this essay approaches the visual form of the depopulated data center through the analytic of "`wilderness`". Often connoting a domain of "`pure nature`" uncorrupted by human presence, the concept of wilderness productively resonates with the representational strategies of the data center industry, where the visual elimination of human workers optically configures the data center as a posthuman "`pure machine`". Through the experimental juxtaposition of "`natural`" and "`technological`" wildernesses, this essay explores how the infrastructure fiction of the depopulated data center intersects with fantasies and futures of technological progress, nonhuman security, automation and data objectivity.
+____
+
+== link:https://engineering.fb.com/data-infrastructure/messenger/[Project LightSpeed: Rewriting the Messenger codebase for a faster, smaller, and simpler messaging app]
+
+[quote]
+____
+Historically, coordinating data sharing across features required the development of custom, complex in-memory data caching and transaction subsystems. Transferring this logic between the database and the UI slowed down the app. We decided to forgo that in favor of simply using SQLite and letting it handle concurrency, caching, and transactions. Now, rather than supporting one system to update which friends are active now, another to update changes in profile pictures in your contact list, and another to retrieve the messages you receive, requests for data from the database are self-contained. All the caching, filtering, transactions, and queries are all done in SQLite. The UI merely reflects the tables in the database. 
+
+This keeps the logic simple and functional, and it limits the impact on the rest of the app. But we went even further. We developed a single integrated schema for all features. We extended SQLite with the capability of stored procedures, allowing Messenger feature developers to write portable, database-oriented business logic, and finally, we built a platform (MSYS) to orchestrate all access to the database, including queued changes, deferred or retriable tasks, and for data sync support.
+
+MSYS is a cross-platform library built in C that operates all the primitives we need. Consolidating the code all into one library makes managing everything much easier; the it is more centralized and more focused. We try to do things in a single way — one way to send messages to the server, one way to send media, one way to log, etc. With MSYS, we have a global view. We’re able to prioritize workloads. Say the task to load your message list should be a higher priority than the task to update whether somebody read a message in a thread from a few days ago; we can move the priority task up in the queue. Having a universal system simplifies how we support the app as well. With MSYS, it’s easier to track performance, spot regressions, and fix bugs across all these features at once. In addition, we made this important part of the system exceptionally robust by investing in automated tests, resulting in a (very rare in the industry) 100 percent line code coverage of MSYS logic.
+____
+
+== link:https://technology.riotgames.com/news/running-online-services-riot-part-vi[Running Online Services at Riot: Part VI]
+
+[quote]
+____
+It went awesomely. And also poorly. 
+
+At the time of the previous entry in this series, we were operating just above 5000 production containers. That number has not stopped increasing, and today, we run more than 14,500 containers in Riot-operated regions alone. Riot devs love to make new things for players, and the easier it gets for them to write, deploy, and operate services, the more they create new and exciting experiences. 
+
+In true DevOps fashion, teams owned and were responsible for their services. They created workflows to deploy, monitor, and operate their services, and when they couldn’t find just the thing they wanted, they didn’t shy away from inventing it themselves. This was a very liberating time for our developers as they were rarely blocked on anything that they couldn’t resolve on their own.
+
+Slowly however, we started noticing some worrying trends. Our QA and load testing environments were getting less stable every month. We would lose an increasing amount of time tracking down misconfigurations or out-of-date dependencies. Isolated, each event was nothing critical, but collectively, they cost us time and energy that we would much prefer to spend on creating player value.
+
+Worse, our non-Riot shards were starting to exhibit not only similar difficulties but a whole set of other problems. Partner operators had to interface with an ever-increasing number of developers and onboard an ever growing number of microservices, each distinct from the others in different ways. Operators now had to work harder than ever to produce working and stable shards. These non-Riot-operated shards had a much higher incident rate directly attributable to incompatible live versions of microservices or other similar cross-cutting problems.
+____
+
+[quote]
+____
+Deploying and operating a product, not a service
+
+While embracing DevOps and microservices gave us many upsides, it created a risky feedback loop. Development teams made microservices, deployed them, operated them, and were held accountable for their performance. This meant they optimized logs, metrics, and processes for themselves and in general rarely considered their services as something that someone without development context or even engineering ability would have to reason with. 
+
+As developers kept creating more and more microservices, operating the holistic product became very difficult and resulted in an increasing number of failures. On top of that, the fluid team structure at Riot was leaving some microservices with unclear ownership. This made knowing who to contact while triaging difficult, resulting in many incorrectly attributed pages. Partner regions ops teams became overwhelmed by the increasing number of heterogeneous microservices, deployment processes, and organizational changes.
+____
+
+[quote]
+____
+The new solution: riot’s application and environment model
+
+Given that the previous attempts failed to produce the desired outcome, we decided to eliminate partial state manipulation by creating an opinionated declarative specification that captures the entirety of a distributed product - an _environment_. An environment contains all the declarative metadata required to fully specify, deploy, configure, run, and operate a set of distributed microservices collectively representing a _product_ and is holistically and immutably versioned. For those wondering, we picked  "`environment`" because it was the _least_ overloaded term at Riot. Naming things is hard.
+
+With the launch of Legends of Runeterra, we proved that we could describe an entire microservice game backend, game servers included, and have it deploy, run, and be operated as a product in Riot regions as well as in partner data centers across the globe. We also demonstrated the ability to achieve this while improving the upsides of the DevOps methods we’ve grown to love so much.
+____
+
+== link:https://increment.com/development/the-melting-pot-of-javascript/[The melting pot of JavaScript]
+
+[quote]
+____
+Create reusable toolboxes
+
+If you often find yourself starting projects by cloning your last project because writing configuration files and setting up build tools is too daunting, you might be working on the wrong level of abstraction. Instead of using a few lower-level tools directly, consider wrapping them into a higher-level "`toolbox`" that you can share between different projects.
+
+Yes, I really am proposing to solve the problem of too many tools with another tool. This is not a joke. Hear me out. I think this works because we are constraining the configuration surface rather than widening it.
+
+Toolboxes, not boilerplates
+
+Instead of maintaining the configuration and the build dependencies in every project, you can create a single "`toolbox`" package that provides a curated experience on top of the tools you already use.
+
+We are using this approach in link:https://github.com/facebookincubator/create-react-app/[Create React App]. Many think it’s a boilerplate generator, but it’s a little different. Even though it generates a project with a bundler, a linter, and a test runner, it hides them behind a single package that we maintain, and it works out of the box with no configuration. This helps us ensure that the tools work well together, their versions are always compatible, and our users don’t have to configure anything to get started.
+
+When the new versions of the underlying tools come out, we update them on our side, tweak the configuration if necessary, and release an update to our shared dependency that everybody can upgrade to with a single command. I have heard from multiple people that even though they don’t use Create React App itself, they have adopted a similar strategy at their companies, centralizing the frontend tooling in one package.
+
+Of course, some projects really need project-specific configuration. In Create React App, we solve this with an approach called "`ejecting`", pioneered by link:https://github.com/eanplatter/enclave[Enclave]. If you run the "`eject`" command, the configuration files and the underlying build dependencies get copied directly into your project. Now you can customize everything you want, but you don’t get the upstream updates since you have essentially forked the tool environment into your project. Ejecting has its downsides, but it lets you choose whether you want to maintain your own per-project tooling setup or not.
+
+I find reusable toolboxes to be an interesting way to make JavaScript tooling approachable. They add some unfortunate indirection, but they also offer a powerful way to reimagine how our tools can work together if we structure a cohesive experience with intention instead of leaving it to chance.
+____
