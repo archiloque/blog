@@ -1,0 +1,47 @@
+= Réflexions sur la compatibilité : engagement, implicite & explicite, périmètre
+Julien Kirch
+v0.1, 2020-03-26
+:article_lang: fr
+:article_image: compat.jpeg
+:article_description: Tout ce que vous exposerez pourras être retenu contre vous
+
+
+Quand un élément logiciel (méthode, bibliothèque, programme exécutable{nbsp}…) expose une interface programmatique (une API), les personnes qui l'utilisent s'attendent à une certaine compatibilité lorsque cet élément logiciel est mis à jour.
+
+Cela signifie qu'en principe on s'attend à ce qu'aucune partie existante de cette interface ne soit modifiée ou supprimée.
+
+Il peut s'agir d'un engagement formel, lorsque l'élément logiciel est fourni dans le cadre d'un contrat qui garantit la compatibilité, ou d'un engagement informel et implicite, par exemple dans un outil distribué gratuitement sur internet par une personne qui le fait sur son temps libre.
+
+Même dans le deuxième cas, les personnes utilisant le logiciel peuvent se sentir très frustrées, et même si l'incompatibilité a une cause réelle est sérieuse.
+
+On s'attend à ce que la compatibilité couvre toutes les facettes d'une API, qu'elles soient implicites ou explicites.
+
+Ainsi corriger un message d'erreur peut casser des scripts qui s'appuient sur le contenu des messages pour déclencher des comportements.
+Le fait qu'un code d'erreur soit fourni, et que la documentation indique de s'appuyer sur le code et pas sur le message quand la compatibilité est en jeu n'empêchera ni que le message d'erreur soit quand même considéré comme une API stable, ni que les personnes dont le code ne fonctionnera plus à cause de ce changement de se sentir autant trahies que s'il s'agissait d'un problème d'incompatibilité sur un élément "`sous garantie`".
+
+Un autre exemple est celui de l'ordre des données{nbsp}: quand des informations suivent un certain ordre relativement constant, même s'il n'est pas officiellement garanti ou si très officiellement cet ordre n'est pas garanti, tout changement dans cet ordre peut causer des problèmes.
+
+J'ai déjà vu cela se produire pour l'ordre des entêtes dans des échanges HTTP ou des résultats de requêtes SQL (qui sont souvent par défaut plus ou moins triées par ordre d'insertion).
+
+Tout comportement observable et raisonnablement constant vaut engagement, et plus ce comportement reste stable d'une version à l'autre plus cet engagement sera ressenti comme fort.
+
+Le fait de vouloir réduire au minimum le périmètre d'une API, et donc le périmètre couvert par les garanties de compatibilité est donc parfaitement logique{nbsp}: cela évite de casser les logiciels qui utilisent votre code, et évite d'avoir à faire aux personnes dont le logiciel a été cassé.
+
+Ce comportement peut s'observer dans certains composants qui préfèrent fournir des APIs les plus élémentaires possibles, alors que d'autres fourniront en plus des APIs plus fournies et qui rendent l'utilisation du composant plus simple, au prix d'une augmentation de la surface de l'API.
+
+C'est l'un des avantages parfois sous-estimé de REST : les choix technique et de pratiques de REST lui permettent d'avoir très peu d'implicite, et donc de pouvoir limiter le risque d'une incompatibilité par accident.
+
+Jusqu'au jour où vous recevez un rapport d'erreur car vous avez changé l'ordre des attributs dans un objet JSON.
+
+La link:https://en.wikipedia.org/wiki/Robustness_principle[loi de Postel] m'a toujours fascinée.
+
+[quote]
+____
+Soyez conservez dans ce que vous faites et libéral dans ce que vous acceptez.
+____
+
+Car être libéral ou tolérant·e dans les paramètres d'un système est le meilleur moyen d'aboutir à une API pleine de comportements implicites.
+
+Un cas classique est d'accepter des nombres sous forme de texte, qui aura l'effet d'intégrer à votre API les règles de conversion de votre système, par exemple un nombre commençant par un zéro est parfois interprété comme link:https://fr.wikipedia.org/wiki/Système_octal[octal] ce qui peut arriver lorsqu'on manipule des nombres comme du texte mais qui est très rare dans d'autres cas
+
+QQQQ
