@@ -5,14 +5,16 @@ v0.1, 2020-03-26
 :article_image: compat.jpeg
 :article_description: Tout ce que vous exposerez pourras être retenu contre vous
 
-
 Quand un élément logiciel (méthode, bibliothèque, programme exécutable{nbsp}…) expose une interface programmatique (une API), les personnes qui l'utilisent s'attendent à une certaine compatibilité lorsque cet élément logiciel est mis à jour.
 
 Cela signifie qu'en principe on s'attend à ce qu'aucune partie existante de cette interface ne soit modifiée ou supprimée.
 
-Il peut s'agir d'un engagement formel, lorsque l'élément logiciel est fourni dans le cadre d'un contrat qui garantit la compatibilité, ou d'un engagement informel et implicite, par exemple dans un outil distribué gratuitement sur internet par une personne qui le fait sur son temps libre.
+Cet engagement peut-être formel, lorsque par exemple l'élément logiciel est fourni dans le cadre d'un contrat avec un éditeur qui garantit la compatibilité, ou complètement informel quand il s'agit d'un outil développé par une personne sur son temps libre et distribué gratuitement sous une licence libre.
 
-Même dans le deuxième cas, les personnes utilisant le logiciel peuvent se sentir très frustrées, et même si l'incompatibilité a une cause réelle est sérieuse.
+Lorsqu'une incompatibilité est détecté, le niveau de frustration ne dépend pas forcément du niveau d'engagement.
+Quiconque décide de partager sur internet du code développé pour son usage propre prend le risque d'avoir à affronter le mécontentement d'une personne ayant décidé d'utiliser ce code et ayant rencontré un problème.
+
+== L'implicite et l'explicite
 
 On s'attend à ce que la compatibilité couvre toutes les facettes d'une API, qu'elles soient implicites ou explicites.
 
@@ -23,7 +25,14 @@ Un autre exemple est celui de l'ordre des données{nbsp}: quand des informations
 
 J'ai déjà vu cela se produire pour l'ordre des entêtes dans des échanges HTTP ou des résultats de requêtes SQL (qui sont souvent par défaut plus ou moins triées par ordre d'insertion).
 
-Tout comportement observable et raisonnablement constant vaut engagement, et plus ce comportement reste stable d'une version à l'autre plus cet engagement sera ressenti comme fort.
+Dès qu'un comportement reste constant un certain temps, on s'attend à ce qu'il continue à l'être.
+Plus la stabilité perdure, plus le sentiment qu'une forme d'engagement existe sera fort.
+
+== Le C et Windows
+
+Exemple de C et de windows
+
+== Réduire le périmètre
 
 Le fait de vouloir réduire au minimum le périmètre d'une API, et donc le périmètre couvert par les garanties de compatibilité est donc parfaitement logique{nbsp}: cela évite de casser les logiciels qui utilisent votre code, et évite d'avoir à faire aux personnes dont le logiciel a été cassé.
 
@@ -32,6 +41,8 @@ Ce comportement peut s'observer dans certains composants qui préfèrent fournir
 C'est l'un des avantages parfois sous-estimé de REST : les choix technique et de pratiques de REST lui permettent d'avoir très peu d'implicite, et donc de pouvoir limiter le risque d'une incompatibilité par accident.
 
 Jusqu'au jour où vous recevez un rapport d'erreur car vous avez changé l'ordre des attributs dans un objet JSON.
+
+== Faciliter, au risque d'être pris au piège
 
 La link:https://en.wikipedia.org/wiki/Robustness_principle[loi de Postel] m'a toujours fascinée.
 
@@ -45,3 +56,5 @@ Car être libéral ou tolérant·e dans les paramètres d'un système est le mei
 Un cas classique est d'accepter des nombres sous forme de texte, qui aura l'effet d'intégrer à votre API les règles de conversion de votre système, par exemple un nombre commençant par un zéro est parfois interprété comme link:https://fr.wikipedia.org/wiki/Système_octal[octal] ce qui peut arriver lorsqu'on manipule des nombres comme du texte mais qui est très rare dans d'autres cas
 
 QQQQ
+
+=== Versionning sémantique
