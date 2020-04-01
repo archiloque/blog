@@ -26,11 +26,32 @@ Un autre exemple est celui de l'ordre des données{nbsp}: quand des informations
 J'ai déjà vu cela se produire pour l'ordre des entêtes dans des échanges HTTP ou des résultats de requêtes SQL (qui sont souvent par défaut plus ou moins triées par ordre d'insertion).
 
 Dès qu'un comportement reste constant un certain temps, on s'attend à ce qu'il continue à l'être.
-Plus la stabilité perdure, plus le sentiment qu'une forme d'engagement existe sera fort.
+Plus cette stabilité perdure, plus le sentiment qu'une forme d'engagement existe devient fort.
 
-== Le C et Windows
+== Windows et le C
 
-Exemple de C et de windows
+Deux exemples opposés&#8201;—{nbsp}et qui ont chacun une influence importante sur le monde de l'informatique{nbsp}—&#8201; illustrent la manière dont il est possible de prendre en compte l'implicite et l'explicite dans les contrats.
+
+Le premier est Windows, lors du développement de nouvelles versions, Microsoft dépense une énergie importante pour assurer la compatibilité des programmes existants.
+Leur objectif n'est pas seulement de continuer à faire fonctionner les programmes qui respectent les règles officielles, mais que cela soit aussi le cas pour les programmes qui ne les respectent pas.
+
+Raymond Chen poste régulièrement link:https://devblogs.microsoft.com/oldnewthing/[sur son blog] link:https://devblogs.microsoft.com/oldnewthing/20060109-27/?p=32723[de] link:https://devblogs.microsoft.com/oldnewthing/20031223-00/?p=41373[nombreux] link:https://devblogs.microsoft.com/oldnewthing/20060330-31/?p=31723[articles] sur des contournements qui doivent être mise en œuvre pour cela.
+
+Windows contient ainsi un nombre important de module détectant des comportements incorrect connus de tel ou tel programme et appliquant des rustines simulant le comportement attendu.
+
+L'idée de Microsoft est que si une application fonctionne sur une version de Windows et ne fonctionne plus sur la suivante, la personne se retrouvant avec une application qui crashe sera mécontente de Microsoft et pas de l'éditeur de l'application, même si la faute est du côté de l'application.
+
+Le deuxième exemple est celui des compilateurs C.
+Dans le langage C, quand quelque chose n'est pas explicitement défini dans la spécification, le programme est libre de faire ce qu'il a envie.
+C'est ce qu'on appelle des link:https://en.wikipedia.org/wiki/Undefined_behavior[comportements indéfinis].
+
+Exploiter ces comportements est vital pour que les programmes s'exécutent rapidement. 
+Pour améliorer les performances, les compilateurs C peuvent être tentés de modifier la manière ils implémentent certains comportements indéfinis, modifiant ainsi le comportement des programmes qui les utilisent.
+
+Cela tourne parfois à la discussion légaliste ou les personnes dissèquent la spécification en pesant chaque mot pour savoir si quelque chose est un comportement indéfini ou pas, et donc s'il est permis de faire planter des programmes qui jusqu'alors fonctionnent.
+LWN a link:https://lwn.net/Articles/511259/[quelques] link:https://lwn.net/Articles/278137/[articles] à ce sujet.
+
+La discussion sur la frontière entre compatibilité explicite (et donc à prendre en compte) et implicite (qu'il est donc permis de ne pas respecter, quitte à facher des personne) est donc un enjeux important car il ne s'agit pas seulement de temps à passer pour corriger des bugs de compatibilité, mais d'être en capacité d'améliorer la performance des logiciels.
 
 == Réduire le périmètre
 
@@ -44,17 +65,41 @@ Jusqu'au jour où vous recevez un rapport d'erreur car vous avez changé l'ordre
 
 == Faciliter, au risque d'être pris au piège
 
-La link:https://en.wikipedia.org/wiki/Robustness_principle[loi de Postel] m'a toujours fascinée.
+La link:https://en.wikipedia.org/wiki/Robustness_principle[loi de Postel] m'a toujours fascinée, souvent citée dans les articles sur le design d'API elle stipule{nbsp}:
 
 [quote]
 ____
-Soyez conservez dans ce que vous faites et libéral dans ce que vous acceptez.
+Soyez conservateur dans ce que vous faites et libéral dans ce que vous acceptez.
 ____
 
-Car être libéral ou tolérant·e dans les paramètres d'un système est le meilleur moyen d'aboutir à une API pleine de comportements implicites.
+L'idée est qu'il est souhaitable la vie des personnes utilisant votre API en essayant d'être le plus tolérant·e dans les paramètres qui sont fournis, car cela permet d'utiliser l'API même si on n'est pas très rigoureux·euse.
 
-Un cas classique est d'accepter des nombres sous forme de texte, qui aura l'effet d'intégrer à votre API les règles de conversion de votre système, par exemple un nombre commençant par un zéro est parfois interprété comme link:https://fr.wikipedia.org/wiki/Système_octal[octal] ce qui peut arriver lorsqu'on manipule des nombres comme du texte mais qui est très rare dans d'autres cas
+Cette tolérance porte le risque d'aboutir à une API très riche et dont la compatibilité sera difficile à maintenir.
 
-QQQQ
+Dans un cas typique, le comportement du logiciel se mettre à dépendre de la manière dont le langage dans lequel le système est implémenté transforme les types de données les uns dans les autres, alors que cela n'est pas forcément souhaitable, par exemple quand l'API exposée est une API réseau.
 
-=== Versionning sémantique
+Par exemple si vous acceptez des nombres sous forme de texte, qui aura l'effet d'intégrer à votre API les règles de conversion de votre système, par exemple un nombre commençant par un zéro est parfois interprété comme link:https://fr.wikipedia.org/wiki/Système_octal[octal] ce qui peut arriver lorsqu'on manipule des nombres comme du texte mais qui est très rare dans d'autres cas.
+
+Si la loi de Postel peut simplifier les choses pour au départ pour les personnes voulant utiliser une API, elle peut augmenter le coût de maintenance mais aussi le risque d'introduire des incompatibilités accidentelles lors des évolutions.
+
+Je pense que dans de nombreux cas, une meilleure manière de rendre une API facile d'emploi est d'avoir une gestion d'erreur qui aide les personnes à identifier et corriger leurs problèmes.
+Ainsi quand un paramètre devrait être un nombre, plutôt que d'être arrangeant·e et d'accepter également du texte, il est possible de remonter une erreur indiquant "`le paramètre XXX est un texte au lieu d'un nombre`".
+
+== Bug ou feature, et la gestion sémantique de version 
+
+On l'a vu, la compatibilité est quelque chose de délicat parfois soumis à interprétation.
+
+Ainsi, chaque fois qu'on corrige quelque chose qu'on voit comme un bug dans du code exposant une API, on prend le risque de casser du code qui&#8201;—{nbsp}volontairement{nbsp}—&#8201; s'appuyait sur l'existence de ce bug.
+
+En allant jusqu'au bout de ce raisonnement, chaque correction introduit une forme d'incompatibilité.
+
+link:https://semver.org/lang/fr/[La gestion sémantique de version], qui propose une manière de nommer les versions de logiciels en fonction du type de changement utilisé par de nombreux projet
+et qui parle de "`corrections d’anomalies rétrocompatibles`" est de ce point de vue inapplicable.
+
+En revenant sur ce qu'on a dit plus haut une correction d’anomalie ne peut être rétrocompatible que si on ne prend en compte que la zone d'engagement explicite, la compatibilité des bugs étant un engagement implicite.
+
+== En conclusion
+
+J'espère vous avoir donné quelques outils pour mieux réfléchir aux questions de compatibilité, et pour prendre de meilleures décisions à ce sujet.
+
+J'espère aussi vous avoir convaincu de l'importance de tenter de limiter à la fois la taille de la frontière de vos APIs et la part d'implicite dans vos contrats.
