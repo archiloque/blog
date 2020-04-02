@@ -49,9 +49,10 @@ Exploiter ces comportements est vital pour que les programmes s'exécutent rapid
 Pour améliorer les performances, les compilateurs C peuvent être tentés de modifier la manière ils implémentent certains comportements indéfinis, modifiant ainsi le comportement des programmes qui les utilisent.
 
 Cela tourne parfois à la discussion légaliste ou les personnes dissèquent la spécification en pesant chaque mot pour savoir si quelque chose est un comportement indéfini ou pas, et donc s'il est permis de faire planter des programmes qui jusqu'alors fonctionnent.
+Ces évolutions sont parfois source de controverses quand les personnes développant des logiciels s'opposent à certains changements qui n'apportent que des gains marginaux tout en rendant le comportement du code moins prévisible, même si celui-ci est conforme aux règles officielles.
 LWN a link:https://lwn.net/Articles/511259/[quelques] link:https://lwn.net/Articles/278137/[articles] à ce sujet.
 
-La discussion sur la frontière entre compatibilité explicite (et donc à prendre en compte) et implicite (qu'il est donc permis de ne pas respecter, quitte à facher des personne) est donc un enjeux important car il ne s'agit pas seulement de temps à passer pour corriger des bugs de compatibilité, mais d'être en capacité d'améliorer la performance des logiciels.
+La discussion sur la frontière entre compatibilité explicite (et donc à prendre en compte) et implicite (qu'il est donc permis de ne pas respecter, quitte à fâcher des personne) est donc un enjeu important car il ne s'agit pas seulement de temps à passer pour corriger des bugs de compatibilité, mais d'être en capacité d'améliorer la performance des logiciels.
 
 == Réduire le périmètre
 
@@ -85,7 +86,7 @@ Si la loi de Postel peut simplifier les choses pour au départ pour les personne
 Je pense que dans de nombreux cas, une meilleure manière de rendre une API facile d'emploi est d'avoir une gestion d'erreur qui aide les personnes à identifier et corriger leurs problèmes.
 Ainsi quand un paramètre devrait être un nombre, plutôt que d'être arrangeant·e et d'accepter également du texte, il est possible de remonter une erreur indiquant "`le paramètre XXX est un texte au lieu d'un nombre`".
 
-== Bug ou feature, et la gestion sémantique de version 
+== Bug ou pas bug{nbsp}?
 
 On l'a vu, la compatibilité est quelque chose de délicat parfois soumis à interprétation.
 
