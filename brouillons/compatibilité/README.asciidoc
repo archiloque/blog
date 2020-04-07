@@ -1,6 +1,6 @@
-= Gestion de la compatibilité : l'implicite & l'explicite
+= Gestion de la compatibilité{nbsp}: l'implicite & l'explicite
 Julien Kirch
-v0.1, 2020-03-26
+v0.1, 2020-04-08
 :article_lang: fr
 :article_image: compat.jpeg
 :article_description: Tout ce que vous exposerez pourras être retenu contre vous
@@ -35,9 +35,9 @@ Deux exemples opposés&#8201;—{nbsp}et qui ont chacun une influence importante
 Le premier est Windows, lors du développement de nouvelles versions, Microsoft dépense une énergie importante pour assurer la compatibilité des programmes existants.
 Leur objectif n'est pas seulement de continuer à faire fonctionner les programmes qui respectent les règles officielles, mais que cela soit aussi le cas pour les programmes qui ne les respectent pas.
 
-Raymond Chen poste régulièrement link:https://devblogs.microsoft.com/oldnewthing/[sur son blog] link:https://devblogs.microsoft.com/oldnewthing/20060109-27/?p=32723[de] link:https://devblogs.microsoft.com/oldnewthing/20031223-00/?p=41373[nombreux] link:https://devblogs.microsoft.com/oldnewthing/20060330-31/?p=31723[articles] sur des contournements qui doivent être mise en œuvre pour cela.
+Raymond Chen poste régulièrement link:https://devblogs.microsoft.com/oldnewthing/[sur son blog] link:https://devblogs.microsoft.com/oldnewthing/20060109-27/?p=32723[de] link:https://devblogs.microsoft.com/oldnewthing/20031223-00/?p=41373[nombreux] link:https://devblogs.microsoft.com/oldnewthing/20060330-31/?p=31723[articles] sur des contournements qui doivent être mis en œuvre pour cela.
 
-Windows contient ainsi un nombre important de module détectant des comportements incorrect connus de tel ou tel programme et appliquant des rustines simulant le comportement attendu.
+Windows contient ainsi un nombre important de modules détectant des comportements incorrects connus de tel ou tel programme et appliquant des rustines simulant le comportement attendu.
 
 L'idée de Microsoft est que si une application fonctionne sur une version de Windows et ne fonctionne plus sur la suivante, la personne se retrouvant avec une application qui crashe sera mécontente de Microsoft et pas de l'éditeur de l'application, même si la faute est du côté de l'application.
 
@@ -52,7 +52,7 @@ Cela tourne parfois à la discussion légaliste ou les personnes dissèquent la 
 Ces évolutions sont parfois source de controverses quand les personnes développant des logiciels s'opposent à certains changements qui n'apportent que des gains marginaux tout en rendant le comportement du code moins prévisible, même si celui-ci est conforme aux règles officielles.
 LWN a link:https://lwn.net/Articles/511259/[quelques] link:https://lwn.net/Articles/278137/[articles] à ce sujet.
 
-La discussion sur la frontière entre compatibilité explicite (et donc à prendre en compte) et implicite (qu'il est donc permis de ne pas respecter, quitte à fâcher des personne) est donc un enjeu important car il ne s'agit pas seulement de temps à passer pour corriger des bugs de compatibilité, mais d'être en capacité d'améliorer la performance des logiciels.
+Les échanges sur la frontière entre compatibilité explicite (et donc à prendre en compte) et implicite (qu'il est donc permis de ne pas respecter, quitte à fâcher des personnes) est donc un enjeu important car il ne s'agit pas seulement de temps à passer pour corriger des bugs de compatibilité, mais d'être en capacité d'améliorer la performance des logiciels.
 
 == Réduire le périmètre
 
@@ -60,7 +60,7 @@ Le fait de vouloir réduire au minimum le périmètre d'une API, et donc le pér
 
 Ce comportement peut s'observer dans certains composants qui préfèrent fournir des APIs les plus élémentaires possibles, alors que d'autres fourniront en plus des APIs plus fournies et qui rendent l'utilisation du composant plus simple, au prix d'une augmentation de la surface de l'API.
 
-C'est l'un des avantages parfois sous-estimé de REST : les choix technique et de pratiques de REST lui permettent d'avoir très peu d'implicite, et donc de pouvoir limiter le risque d'une incompatibilité par accident.
+C'est l'un des avantages parfois sous-estimé de REST{nbsp}: les choix techniques et de pratiques de REST lui permettent d'avoir très peu d'implicite, et donc de pouvoir limiter le risque d'une incompatibilité par accident.
 
 Jusqu'au jour où vous recevez un rapport d'erreur car vous avez changé l'ordre des attributs dans un objet JSON.
 
@@ -73,15 +73,15 @@ ____
 Soyez conservateur dans ce que vous faites et libéral dans ce que vous acceptez.
 ____
 
-L'idée est qu'il est souhaitable la vie des personnes utilisant votre API en essayant d'être le plus tolérant·e dans les paramètres qui sont fournis, car cela permet d'utiliser l'API même si on n'est pas très rigoureux·euse.
+L'idée est qu'il est souhaitable de faciliter la vie des personnes qui utilisent votre API en essayant de faire en sorte qu'elle soit tolérante dans sa gestion des paramètres.
 
 Cette tolérance porte le risque d'aboutir à une API très riche et dont la compatibilité sera difficile à maintenir.
 
-Dans un cas typique, le comportement du logiciel se mettre à dépendre de la manière dont le langage dans lequel le système est implémenté transforme les types de données les uns dans les autres, alors que cela n'est pas forcément souhaitable, par exemple quand l'API exposée est une API réseau.
+Dans un cas typique, le comportement du logiciel peut se mettre à dépendre de la manière dont le langage dans lequel le système est implémenté transforme les types de données les uns dans les autres, alors que cela n'est pas forcément souhaitable, par exemple quand l'API exposée est une API réseau.
 
-Par exemple si vous acceptez des nombres sous forme de texte, qui aura l'effet d'intégrer à votre API les règles de conversion de votre système, par exemple un nombre commençant par un zéro est parfois interprété comme link:https://fr.wikipedia.org/wiki/Système_octal[octal] ce qui peut arriver lorsqu'on manipule des nombres comme du texte mais qui est très rare dans d'autres cas.
+Par exemple si vous acceptez des nombres sous forme de texte, qui aura l'effet d'intégrer à votre API les règles de conversion de votre système, ainsi un nombre commençant par un zéro est parfois interprété comme link:https://fr.wikipedia.org/wiki/Système_octal[octal] ce qui peut arriver lorsqu'on manipule des nombres comme du texte mais qui est très rare dans d'autres cas.
 
-Si la loi de Postel peut simplifier les choses pour au départ pour les personnes voulant utiliser une API, elle peut augmenter le coût de maintenance mais aussi le risque d'introduire des incompatibilités accidentelles lors des évolutions.
+Si la loi de Postel peut simplifier les choses au départ, elle peut augmenter le coût de maintenance mais aussi le risque d'introduire des incompatibilités accidentelles lors des évolutions.
 
 Je pense que dans de nombreux cas, une meilleure manière de rendre une API facile d'emploi est d'avoir une gestion d'erreur qui aide les personnes à identifier et corriger leurs problèmes.
 Ainsi quand un paramètre devrait être un nombre, plutôt que d'être arrangeant·e et d'accepter également du texte, il est possible de remonter une erreur indiquant "`le paramètre XXX est un texte au lieu d'un nombre`".
@@ -94,10 +94,10 @@ Ainsi, chaque fois qu'on corrige quelque chose qu'on voit comme un bug dans du c
 
 En allant jusqu'au bout de ce raisonnement, chaque correction introduit une forme d'incompatibilité.
 
-link:https://semver.org/lang/fr/[La gestion sémantique de version], qui propose une manière de nommer les versions de logiciels en fonction du type de changement utilisé par de nombreux projet
-et qui parle de "`corrections d’anomalies rétrocompatibles`" est de ce point de vue inapplicable.
+link:https://semver.org/lang/fr/[La gestion sémantique de version], qui propose une manière de nommer les versions de logiciels en fonction du type de changement utilisé par de nombreux projets
+et qui parle de "`corrections d’anomalies rétrocompatibles`" est&#8201;—{nbsp}de ce point de vue&{nbsp}—#8201;inapplicable.
 
-En revenant sur ce qu'on a dit plus haut une correction d’anomalie ne peut être rétrocompatible que si on ne prend en compte que la zone d'engagement explicite, la compatibilité des bugs étant un engagement implicite.
+En revenant sur ce qu'on a dit plus haut, une correction d’anomalie ne peut être rétrocompatible que si on ne prend en compte que la zone d'engagement explicite, la compatibilité des bugs étant un engagement implicite.
 
 == En conclusion
 
