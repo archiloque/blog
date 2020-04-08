@@ -3,7 +3,7 @@ Julien Kirch
 v0.1, 2020-04-08
 :article_lang: fr
 :article_image: compat.jpeg
-:article_description: Tout ce que vous exposerez pourras être retenu contre vous
+:article_description: Tout ce que vous exposerez pourra être retenu contre vous
 
 Quand un élément logiciel (méthode, bibliothèque, programme exécutable{nbsp}…) expose une interface programmatique (une API), les personnes qui l'utilisent s'attendent à une certaine compatibilité lorsque cet élément logiciel est mis à jour.
 
@@ -46,7 +46,7 @@ Dans le langage C, quand quelque chose n'est pas explicitement défini dans la s
 C'est ce qu'on appelle des link:https://en.wikipedia.org/wiki/Undefined_behavior[comportements indéfinis].
 
 Exploiter ces comportements est vital pour que les programmes s'exécutent rapidement. 
-Pour améliorer les performances, les compilateurs C peuvent être tentés de modifier la manière ils implémentent certains comportements indéfinis, modifiant ainsi le comportement des programmes qui les utilisent.
+Pour améliorer les performances, les compilateurs C peuvent être tentés de modifier la manière dont ils implémentent certains comportements indéfinis, modifiant ainsi le comportement des programmes qui les utilisent.
 
 Cela tourne parfois à la discussion légaliste ou les personnes dissèquent la spécification en pesant chaque mot pour savoir si quelque chose est un comportement indéfini ou pas, et donc s'il est permis de faire planter des programmes qui jusqu'alors fonctionnent.
 Ces évolutions sont parfois source de controverses quand les personnes développant des logiciels s'opposent à certains changements qui n'apportent que des gains marginaux tout en rendant le comportement du code moins prévisible, même si celui-ci est conforme aux règles officielles.
@@ -90,14 +90,16 @@ Ainsi quand un paramètre devrait être un nombre, plutôt que d'être arrangean
 
 On l'a vu, la compatibilité est quelque chose de délicat parfois soumis à interprétation.
 
-Ainsi, chaque fois qu'on corrige quelque chose qu'on voit comme un bug dans du code exposant une API, on prend le risque de casser du code qui&#8201;—{nbsp}volontairement{nbsp}—&#8201; s'appuyait sur l'existence de ce bug.
+Ainsi, chaque fois qu'on corrige quelque chose qu'on voit comme un bug dans du code exposant une API, on prend le risque de casser du code qui&#8201;—{nbsp}volontairement ou involontairement{nbsp}—&#8201; s'appuyait sur l'existence de ce bug.
 
 En allant jusqu'au bout de ce raisonnement, chaque correction introduit une forme d'incompatibilité.
 
 link:https://semver.org/lang/fr/[La gestion sémantique de version], qui propose une manière de nommer les versions de logiciels en fonction du type de changement utilisé par de nombreux projets
-et qui parle de "`corrections d’anomalies rétrocompatibles`" est&#8201;—{nbsp}de ce point de vue&{nbsp}—#8201;inapplicable.
+et qui parle de "`corrections d’anomalies rétrocompatibles`" est&#8201;—{nbsp}de ce point de vue{nbsp}—&#8201;inapplicable.
 
 En revenant sur ce qu'on a dit plus haut, une correction d’anomalie ne peut être rétrocompatible que si on ne prend en compte que la zone d'engagement explicite, la compatibilité des bugs étant un engagement implicite.
+
+Je ne veux pas dire que la gestion sémantique de version ne sert à rien, mais qu'il ne faut pas se tromper sur son utilité et sur ses limites.
 
 == En conclusion
 
