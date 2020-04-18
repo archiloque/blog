@@ -25,17 +25,25 @@ En pratique, un bus de message est un service qui transforme des erreur réseau 
 Et puis vous ajoutez plus de disque.
 L'avantage de la publication-souscription est qu'elle isole les composants l'un de l'autre, mais le problème est généralement de les coller ensemble.
 
-== Pour les tâches qui s'exécutent rapidement, vous voulez un répartiteur de charge
+== Pour les tâches à durée de vie courte, vous voulez un répartiteur de charge
 
+Pour les tâches à durée de vie courte, la publication-souscription est une manière pratique de construire rapidement un système, mais vous finirez immanquablement par implémenter un nouveau protocole au dessus de l'existant.
+Vous avez de la publication-souscription, mais ce que vous voulez vraiment c'est de la requête-réponse.
+Si vous voulez que quelque chose soit calculé, vous allez probablement vouloir connaître le résultat.
 
+Démarrer avec une publication-souscription facilite le travail{nbsp}: les tâches sont ajoutées à la queues, les workers les suppriment chacun à leur tour.
+Malheureusement, cela rend difficile de savoir ce qui s'est passé, et vous allez devoir ajouter une autre queue pour envoyer les résultat en retour.
 
-For short-lived tasks, publish-subscribe is a convenient way to build a system quickly, but you inevitably end up implementing a new protocol atop. You have publish-subscribe, but you really want request-response. If you want something computed, you'll probably want to know the result.
+Une fois que vous pouvez prendre les compte les cas qui se passent bien, il est temps de s'occuper des erreurs.
+La première étape est souvent d'ajouter du code pour rééssayer les demandes un certain nombre de fois.
+Après que le système soit tombé sous la charge, vous ajoutez un appel à `sleep()`.
+Après que le système soit lentement tombé sous la charge, chaque réessai attend deux fois plus longtemps que le précédent.
 
-Starting with publish-subscribe makes work assignment easy: jobs get added to the queue, workers take turns to remove them. Unfortunately, it makes finding out what happened quite hard, and you'll need to add another queue to send a result back.
+(En passant{nbsp}: la synchronisation accidentelle est toujours un problème, car attendre pour réessayer n'empêche pas qu'un tas de chose n'arrivent en même temps.)
 
-Once you can handle success, it is time to handle the errors. The first step is often adding code to retry the request a few times. After you DDoS your system, you put a call to sleep(). After you slowly DDoS your system, each retry waits twice as long as the previous.
+Quand les workers n'arrivent plus à tenir, les clients abandonnent et le mécanisme de réessai se met en route, mais la requête demandée plus tôt est toujours en attente de traitement.
+La solution est de déplacer 
 
-(Aside: Accidental synchronisation is still a problem, as waiting to retry doesn't prevent a lot of things happening at once.)
 
 As workers fail to keep up, clients give up and retry work, but the earlier request is still waiting to be processed. The solution is to move some of the queue back to clients, asking them to hold onto work until work has been accepted: back-pressure, or acknowledgements.
 
