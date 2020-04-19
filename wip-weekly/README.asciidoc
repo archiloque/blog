@@ -32,7 +32,8 @@ ____
 
 [quote]
 ____
-image::stack.png[A typical scientific software stack]
+.Fig. 1. A typical scientific software stack
+image::stack.png[]
 
 Let’s make this more concrete by considering the layers of a typical scientific software stack as shown in Fig. 1. Its ultimate foundation (in black) is the computer hardware that does all the computations. The gray layer right above it, the operating system, performs basic services and isolates the upper layers of the stack from hardware minutiae. So much, in fact, that most software developers consider the operating system, rather than the hardware, the foundation to keep in mind for their artefacts. What computational scientists are most concerned with are the four numbered white layers in Fig. 1, and that is what I will concentrate on. However, it happens occasionally that software collapse is caused by the two foundation layers, as in the case of the Pentium FDIV bug that made a lot of noise in 1994.
 
