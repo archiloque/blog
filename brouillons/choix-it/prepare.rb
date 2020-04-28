@@ -140,4 +140,10 @@ create_mask(base, RECOMPENSE, BON => MASK, ENVIE => CLIP)
 create_mask(base, RECOMPENSE, BON => MASK, CARRIERE => CLIP)
 write_svg(base, 'recompense-pas-bon-mais')
 
+base = BASE_DOCUMENT.dup
+delete_mask_except(base, ENVIE, CARRIERE, RECOMPENSE)
+delete_clip_except(base, BON)
+create_mask(base, CONSEILLE, ENVIE => MASK, CARRIERE => MASK, RECOMPENSE => MASK, BON => CLIP)
+write_svg(base, 'conseille-bon-mais')
+
 system("svgo *.svg --disable=inlineStyles")
