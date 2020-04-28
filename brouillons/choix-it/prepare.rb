@@ -9,25 +9,10 @@ CARRIERE = 'car'
 RECOMPENSE = 'rec'
 BON = 'bon'
 
+CLIP = 'CLIP'
+MASK = 'MASK'
+
 ELEMENTS = [CONSEILLE, ENVIE, CARRIERE, RECOMPENSE, BON]
-
-FILE_01 = "01-envie"
-FILE_02 = "02-carriere"
-FILE_03 = "03-bon"
-FILE_04 = "04-recompense"
-FILE_05 = "05-conseille"
-FILE_06 = "06-complet"
-FILE_07 = "07-milieu"
-
-FILES = [
-    FILE_01,
-    FILE_02,
-    FILE_03,
-    FILE_04,
-    FILE_05,
-    FILE_06
-]
-
 BASE_DOCUMENT = Nokogiri::XML(IO.read('base.xml'))
 
 def delete_ellipse_except(document, *list)
@@ -54,57 +39,105 @@ def delete_mask_except(document, *list)
   end
 end
 
-def create_clip(document, clip_source, *list)
+def create_clip(document, clip_source, *names)
   source_element = document.at_css("##{clip_source}")
   element = source_element.dup
+  source_element.next = element
   element.parent = source_element.parent
   element.delete('id')
   element.delete('style')
-  element['class']='intersection'
-  list.each do |e|
-    element = element.replace("<g style=\"clip-path:url('#c#{e}');\">#{element.to_xml}</g>").first
+  element['class'] = 'intersection'
+  names.each do |names|
+    element = element.replace("<g style=\"clip-path:url('#c#{names}');\">#{element.to_xml}</g>").first
   end
-  document.at_css('style').content =  document.at_css('style').content + "
+  document.at_css('style').content = document.at_css('style').content + "
   .intersection {
       fill:#ff0000;
       fill-opacity:1;
     }"
 end
 
-def write(document, path)
-  File.write("#{path}.svg", document.to_xml)
+def create_mask(document, mask_source, elements)
+  source_element = document.at_css("##{mask_source}")
+  element = source_element.dup
+  source_element.next = element
+  element.delete('id')
+  element.delete('style')
+  element['class'] = 'masked'
+  elements.each_pair do |name, type|
+    if type == MASK
+      element = element.replace("<g mask=\"url(#m#{name})\">#{element.to_xml}</g>").first
+    elsif type == CLIP
+      element = element.replace("<g style=\"clip-path:url('#c#{name}');\">#{element.to_xml}</g>").first
+    else
+      raise type
+    end
+  end
 end
 
-def fist_thing(name, file)
-  base = BASE_DOCUMENT.dup
-  delete_ellipse_except(base, name)
-  delete_text_except(base, name)
-  delete_clip_except(base)
-  delete_mask_except(base)
-  File.write("#{file}.svg", base.to_xml)
+def write_svg(document, path)
+  File.write("#{path}.svg", document.to_xml)
+  # Add UTF-8 declaration back
+  IO.write("#{path}.svg", "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>#{IO.read("#{path}.svg")}")
+end
+
+def single_element(name, file)
+  document = BASE_DOCUMENT.dup
+  delete_ellipse_except(document, name)
+  delete_text_except(document, name)
+  delete_clip_except(document)
+  delete_mask_except(document)
+  write_svg(document, file)
 end
 
 system("inkscape --without-gui --export-png=#{File.expand_path("base.png")} --file=#{File.expand_path("base.xml")}")
 
-fist_thing(ENVIE, FILE_01)
-fist_thing(CARRIERE, FILE_02)
-fist_thing(BON, FILE_03)
-fist_thing(RECOMPENSE, FILE_04)
-fist_thing(CONSEILLE, FILE_05)
+single_element(ENVIE, 'envie')
+single_element(CARRIERE, 'carriere')
+single_element(BON, 'bon')
+single_element(RECOMPENSE, 'recompense')
+single_element(CONSEILLE, 'conseille')
 
 base = BASE_DOCUMENT.dup
 delete_clip_except(base)
 delete_mask_except(base)
-File.write("#{FILE_06}.svg", base.to_xml)
+write_svg(base, 'complet')
 
 base = BASE_DOCUMENT.dup
 delete_mask_except(base)
 delete_clip_except(base, ENVIE, RECOMPENSE, BON, CARRIERE)
 create_clip(base, CONSEILLE, ENVIE, RECOMPENSE, BON, CARRIERE)
-write(base, FILE_07)
+write_svg(base, 'milieu')
+
+base = BASE_DOCUMENT.dup
+delete_mask_except(base, CARRIERE)
+delete_clip_except(base)
+create_mask(base, ENVIE, CARRIERE => MASK)
+write_svg(base, 'envie-pas-carriere')
+
+base = BASE_DOCUMENT.dup
+delete_mask_except(base, RECOMPENSE)
+delete_clip_except(base)
+create_mask(base, BON, RECOMPENSE => MASK)
+write_svg(base, 'bon-pas-recompense')
+
+base = BASE_DOCUMENT.dup
+delete_mask_except(base, BON)
+delete_clip_except(base)
+create_mask(base, RECOMPENSE, BON => MASK)
+write_svg(base, 'recompense-pas-bon')
+
+base = BASE_DOCUMENT.dup
+delete_mask_except(base, ENVIE, CARRIERE)
+delete_clip_except(base)
+create_mask(base, BON, ENVIE => MASK, CARRIERE => MASK)
+write_svg(base, 'bon-pas-envie-ni-carriere')
+
+base = BASE_DOCUMENT.dup
+delete_mask_except(base, BON)
+delete_clip_except(base, CARRIERE, ENVIE)
+create_mask(base, RECOMPENSE, BON => MASK, ENVIE => CLIP)
+create_mask(base, RECOMPENSE, BON => MASK, CARRIERE => CLIP)
+write_svg(base, 'recompense-pas-bon-mais')
 
 system("svgo *.svg --disable=inlineStyles")
-
-FILES.each do |file|
-  IO.write("#{file}.svg", "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>#{IO.read("#{file}.svg")}")
-end
