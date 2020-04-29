@@ -110,30 +110,40 @@ create_clip(base, CONSEILLE, ENVIE, RECOMPENSE, BON, CARRIERE)
 write_svg(base, 'milieu')
 
 base = BASE_DOCUMENT.dup
+delete_ellipse_except(base, ENVIE, CARRIERE)
+delete_text_except(base, ENVIE, CARRIERE)
 delete_mask_except(base, CARRIERE)
 delete_clip_except(base)
 create_mask(base, ENVIE, CARRIERE => MASK)
 write_svg(base, 'envie-pas-carriere')
 
 base = BASE_DOCUMENT.dup
+delete_ellipse_except(base, BON, RECOMPENSE)
+delete_text_except(base, BON, RECOMPENSE)
 delete_mask_except(base, RECOMPENSE)
 delete_clip_except(base)
 create_mask(base, BON, RECOMPENSE => MASK)
 write_svg(base, 'bon-pas-recompense')
 
 base = BASE_DOCUMENT.dup
+delete_ellipse_except(base, BON, RECOMPENSE)
+delete_text_except(base, BON, RECOMPENSE)
 delete_mask_except(base, BON)
 delete_clip_except(base)
 create_mask(base, RECOMPENSE, BON => MASK)
 write_svg(base, 'recompense-pas-bon')
 
 base = BASE_DOCUMENT.dup
+delete_ellipse_except(base, BON, ENVIE, CARRIERE)
+delete_text_except(base, BON, ENVIE, CARRIERE)
 delete_mask_except(base, ENVIE, CARRIERE)
 delete_clip_except(base)
 create_mask(base, BON, ENVIE => MASK, CARRIERE => MASK)
 write_svg(base, 'bon-pas-envie-ni-carriere')
 
 base = BASE_DOCUMENT.dup
+delete_ellipse_except(base, BON, ENVIE, CARRIERE, RECOMPENSE)
+delete_text_except(base, BON, ENVIE, CARRIERE, RECOMPENSE)
 delete_mask_except(base, BON)
 delete_clip_except(base, CARRIERE, ENVIE)
 create_mask(base, RECOMPENSE, BON => MASK, ENVIE => CLIP)
