@@ -52,7 +52,7 @@ def create_clip(document, clip_source, *names)
   end
   document.at_css('style').content = document.at_css('style').content + "
   .intersection {
-      fill:#ff0000;
+      fill:#FF4136;
       fill-opacity:1;
     }"
 end
