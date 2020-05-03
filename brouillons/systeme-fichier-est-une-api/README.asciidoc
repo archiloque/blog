@@ -9,11 +9,16 @@ Par gestion de fichier j'entend la partie du système qui est chargé de faire l
 
 == Une couche de service sans état au dessus d'un disque dur
 
-Pour une personne qui développe une application, on peut voir la gestion des fichiers comme une simple API sans état au dessus d'un disque dur.
+Pour une personne qui a eu la chance de n'avoir jamais eu à s'intéresser à ce sujet, on peut voir la gestion des fichiers comme une simple API sans état au dessus d'un disque dur.
 
-Dans cette vision, quand on appelle du code pour lire un fichier en lui passant un nom, il va demander au disque dur le contenu correspondant, le stocker dans un espace mémoire, et puis s'arrêter.
+[source,sh]
+----
+cat article.txt
+----
 
-Et effectivement, c'est un peu comme cela que fonctionnaient les tous premiers systèmes.
+Dans cette vision, quand on appelle du code pour lire un fichier en lui passant son nom, il va demander au disque dur le contenu correspondant, le stocker dans un espace mémoire, et puis s'arrêter.
+
+Et effectivement, c'est un peu comme cela que fonctionnaient les tous premiers systèmes informatiques.
 Mais depuis les choses ont bien changé.
 
 == Une couche de service à état au dessus d'un disque dur
@@ -27,7 +32,7 @@ En écriture pour éviter de bloquer le système quand on demande d'écrire des 
 
 On en arrive au point où à force d'ajouter des couches au dessus du disque dur, on en arrive à ne plus savoir à quoi s'attendre de la part de la gestion de fichiers, et notamment qu'est ce qui est vraiment écrit sur le disque à quel moment.
 
-https://lwn.net/Articles/799807/
+C'est par exemple link:https://lwn.net/Articles/799807/[le cas personnes qui développent des bases de données], car sans garantie sur quelles données sont bien enregistrées, il devient impossible d'avoir un système fiable.
 
 == Un système de base de données
 
