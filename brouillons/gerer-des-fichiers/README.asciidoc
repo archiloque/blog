@@ -22,7 +22,7 @@ Dans ce cas, quand on appelle du code pour lire un fichier en lui passant son no
 Et effectivement, c'est un peu comme cela que fonctionnaient les tous premiers systèmes informatiques.
 Mais depuis les choses ont bien changé.
 
-== Une couche de service à état au dessus d'un disque dur
+== Une système à état parallèle
 
 Avec les besoins de performance, on a eu besoin d'ajouter du cache pour la lecture et l'écriture.
 
@@ -32,7 +32,7 @@ L'accès aux fichiers devient donc un système à état.
 
 De même quand du code commence à lire un fichier, il va souvent ensuite accéder à la suite et il est donc intéressant de la lire en avance pour qu'elle soit déjà là quand le code la demande.
 
-En écriture pour éviter de bloquer le système quand on demande d'écrire des fichiers sur le disque, on peut préférer déclencher les écritures plus tard, quand le disque dur est suffisamment disponible pour le faire.
+En écriture pour éviter de bloquer le système quand on demande d'écrire des fichiers sur le disque, on peut préférer rendre la main au code appelant et exécuter les écritures plus tard, quand le disque dur est suffisamment disponible pour le faire.
 
 Pour gérer cela l'accès aux fichiers devient donc un système parallèle.
 
