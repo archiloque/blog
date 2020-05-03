@@ -58,7 +58,7 @@ Avec ces deux éléments -- requêtage et indexation -- la gestion des fichiers 
 
 La dernière brique est le fait que parcourir un système de fichier peut être utilisé pour déclencher des évènements.
 
-Si vous utilisez un langage de programmation comme Ruby, Node.js ou Python, il y a des chances qu'à chaque fois que vous changez de répertoire dans un terminal, votre système va chercher des fichiers `.ruby-version` `.nvmrc` ou `.python-version`, indiquant s'il faut changer la version de votre interpréteur à utiliser.
+Si vous utilisez un langage de programmation comme Ruby, Node.js ou Python, il y a des chances qu'à chaque fois que vous changez de répertoire dans un terminal, votre système cherche des fichiers `.ruby-version` `.nvmrc` ou `.python-version`, indiquant s'il faut changer la version de l'interpréteur correspondant à utiliser.
 
 À l'heure actuelle, cela demande que chaque outil utilise link:https://github.com/rvm/rvm/blob/master/scripts/cd[du code spécifique], mais je me demande si à l'avenir cette fonctionnalité ne sera pas standardisée.
 
