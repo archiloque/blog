@@ -1,9 +1,10 @@
-= Gérer des fichiers, un puit sans fond
+= Le puits sans fond de la gestion des fichiers
 Julien Kirch
 v1.0, 2020-05-02
 :article_lang: fr
+:article_image: puits.jpg
 
-La gestion des fichiers est un comme un puit sans fond{nbsp}: plus on en apprend à leur sujet, plus on se rend compte que les choses sont plus compliquées qu'il n'y paraît, et que l'image mentale qu'on utilise pour y penser n'est pas tout à fait adapter.
+La gestion des fichiers est un comme un puits sans fond{nbsp}: plus on en apprend à leur sujet, plus on se rend compte que les choses sont plus compliquées qu'il n'y paraît, et que l'image mentale qu'on utilise pour y penser n'est pas tout à fait adapter.
 
 Par gestion de fichier j'entend la partie du système qui est chargé de faire l'interface entre des demandes d'accès et le ou les disques durs qui stockent ces données.
 
@@ -16,7 +17,7 @@ Pour une personne qui a eu la chance de n'avoir jamais eu à s'intéresser à ce
 cat article.txt
 ----
 
-Dans cette vision, quand on appelle du code pour lire un fichier en lui passant son nom, il va demander au disque dur le contenu correspondant, le stocker dans un espace mémoire, et puis s'arrêter.
+Dans ce cas, quand on appelle du code pour lire un fichier en lui passant son nom, il va demander au disque dur le contenu correspondant, le stocker dans un espace mémoire, et s'arrêter.
 
 Et effectivement, c'est un peu comme cela que fonctionnaient les tous premiers systèmes informatiques.
 Mais depuis les choses ont bien changé.
@@ -26,9 +27,14 @@ Mais depuis les choses ont bien changé.
 Avec les besoins de performance, on a eu besoin d'ajouter du cache pour la lecture et l'écriture.
 
 En lecture car on s'est aperçu que les systèmes relisaient souvent les mêmes fichiers, et que de garder leur contenu en mémoire accélérait les choses.
+
+L'accès aux fichiers devient donc un système à état.
+
 De même quand du code commence à lire un fichier, il va souvent ensuite accéder à la suite et il est donc intéressant de la lire en avance pour qu'elle soit déjà là quand le code la demande.
 
-En écriture pour éviter de bloquer le système quand on demande d'écrire des fichiers sur le disque.
+En écriture pour éviter de bloquer le système quand on demande d'écrire des fichiers sur le disque, on peut préférer déclencher les écritures plus tard, quand le disque dur est suffisamment disponible pour le faire.
+
+Pour gérer cela l'accès aux fichiers devient donc un système parallèle.
 
 On en arrive au point où à force d'ajouter des couches au dessus du disque dur, on en arrive à ne plus savoir à quoi s'attendre de la part de la gestion de fichiers, et notamment qu'est ce qui est vraiment écrit sur le disque à quel moment.
 
@@ -38,27 +44,27 @@ C'est par exemple link:https://lwn.net/Articles/799807/[le cas personnes qui dé
 
 On a parlé jusque là de la lecture et de l'écriture, mais on fait aussi beaucoup de requêtes pour trouver des fichiers.
 
-Ainsi, il devient également nécessaire de savoir quels sont les fichiers qu'on a cherché et qu'on n'a pas trouvé.
+Car pour accéder à un fichier dans un répertoire, il faut commencer par récupérer des informations sur l'endroit où il est stocké sur le disque.
 
-On se retrouve donc avec un système de requétage avec gestion de cache.
-
-https://lwn.net/Articles/814535/
+Cela signifie se souvenir quels sont les fichiers qui existent dans un répertoire, mais également link:https://lwn.net/Articles/814535/[se souvenir des fichiers qu'on a cherché et qu'on n'a pas trouvé].
 
 Les systèmes d'exploitation de bureau ou pour téléphones gèrent aussi de la recherche en indexant le contenu des fichiers et des métadonnées.
+
+image::laping.png[]
 
 Avec ces deux éléments -- requêtage et indexation -- la gestion des fichiers ressemble donc à un système de base de données.
 
 == Un moteur évènementiel
 
-La dernière brique est le fait que parcourir un système de fichier est de plus en plus utilisé pour déclencher des évènements.
+La dernière brique est le fait que parcourir un système de fichier peut être utilisé pour déclencher des évènements.
 
 Si vous utilisez un langage de programmation comme Ruby, Node.js ou Python, il y a des chances qu'à chaque fois que vous changez de répertoire dans un terminal, votre système va chercher des fichiers `.ruby-version` `.nvmrc` ou `.python-version`, indiquant s'il faut changer la version de votre interpréteur à utiliser.
 
-Changer de répertoire déclenche donc du code via différents hooks comme dans un système de plugins.
+À l'heure actuelle, cela demande que chaque outil utilise link:https://github.com/rvm/rvm/blob/master/scripts/cd[du code spécifique], mais je me demande si à l'avenir cette fonctionnalité ne sera pas standardisée.
 
 Du code exécuté ainsi peut bien entendu déclencher d'autres évènements s'il modifie lui-même des fichiers.
 
-Pour l'instant cela est géré par chaque application, mais j'imagine bien qu'à l'avenir cela puisse se faire nativement pour plus de performance.
+Le parcours de répertoire permet donc de déclencher du code à l'aide de point d'entrées spécifiques, comme dans une application gérant des plugins.
 
 == Conclusion
 
