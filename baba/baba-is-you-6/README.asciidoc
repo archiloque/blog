@@ -18,11 +18,12 @@ endif::[]
 :article_description: Going meta
 :figure-caption!:
 
+Following 
 ifeval::["{doctype}" == "book"]
-Following the fifth part,
+the fifth part,
 endif::[]
 ifeval::["{doctype}" != "book"]
-Following link:../baba-is-you-5/[the fifth part],
+link:../baba-is-you-5/[the fifth part],
 endif::[]
 where I coded missing behaviors, I'll work on the second level on being able to modify the rules.
 
