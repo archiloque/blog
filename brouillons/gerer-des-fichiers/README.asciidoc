@@ -72,4 +72,8 @@ La gestion des fichiers c'est donc quoi ? Une abstraction au dessus d'un disque 
 
 C'est un peu les trois, en fonction de ce que vous en faites, cela peut même être également un système en réseau et distribué si vous utilisez un système comme link:https://fr.wikipedia.org/wiki/Samba_(informatique)[Samba] ou link:https://fr.wikipedia.org/wiki/Network_File_System[NFS].
 
-Ça montre à quel point des choses peuvent sembler simples peuvent être compliquées en informatique, et à quel point stocker des données d'une manière qui réponde aux besoins actuel est devenu d'une complexité insondable.
+Ça montre à quel point des choses peuvent sembler simples peuvent être compliquées en informatique  et à quel point stocker des données d'une manière qui réponde aux besoins actuel est devenu d'une complexité insondable.
+
+Pour revenir sur link:../abstraction-seniorite/[les abstractions], le cas des fichiers est intéressant car comprendre le fonctionnement interne n'est pas seulement utile pour être en mesure de répondre des besoins exotiques mais aussi pour des besoins qu'on pourrait considérer comme standard, par exemple savoir à quel moment une donnée est stockée sur le disque de manière fiable.
+
+Cela signifie que tout système manipulant des fichiers sans faire attention à cela pourrait ne pas être considéré comme fiable, car en cas de crash les données pourraient être corrompues.
