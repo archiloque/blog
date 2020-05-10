@@ -1,0 +1,190 @@
+= Writing an ORM in Ruby part 1: plumbing
+:source-highlighter: pygments
+:pygments-style: friendly
+
+.Gemfile
+[source]
+----
+source "https://rubygems.org"
+
+gem "rake", "~> 12.0"
+gem "sqlite3", "~> 1.4"
+----
+
+.structure.sql
+[source,sql]
+----
+CREATE TABLE 'color' (
+  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+  'name' TEXT NOT NULL
+);
+
+CREATE UNIQUE INDEX idx_color_unique ON color('name');
+
+CREATE TABLE 'brick' (
+  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+  'name' TEXT NOT NULL,
+  'description' TEXT NOT NULL,
+  'color_id' INTEGER NOT NULL,
+
+  FOREIGN KEY('color_id') REFERENCES 'color'('id')
+);
+
+CREATE TABLE 'kit' (
+  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  'name' TEXT NOT NULL,
+  'description' TEXT NOT NULL
+);
+
+CREATE TABLE 'kit_bricks' (
+  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+  'kit_id' INTEGER NOT NULL,
+  'brick_id' INTEGER NOT NULL,
+  'quantity' INTEGER NOT NULL,
+
+  FOREIGN KEY('kit_id') REFERENCES 'kit'('id'),
+  FOREIGN KEY('brick_id') REFERENCES 'brick'('id')
+);
+CREATE UNIQUE INDEX 'idx_kit_brick_uniqu' ON 'kit_bricks'('kit_id', 'brick_id');
+----
+
+.schema.rb
+[source,ruby]
+----
+define_model 'Color' do |model_definition|
+  model_definition.table 'color'
+end
+
+define_model 'Brick' do |model_definition|
+  model_definition.table 'brick'
+end
+
+define_model 'Kit' do |model_definition|
+  model_definition.table 'kit'
+end
+
+define_model 'KitBricks' do |model_definition|
+  model_definition.table 'kit_bricks'
+end
+----
+
+.generator.rb
+[source,ruby]
+----
+class ModelDefinition
+
+  MODELS_DEFINITIONS = []
+
+  attr_reader :name, :table_name
+  
+  # @param [String] name
+  def initialize(name)
+    @name = name
+    MODELS_DEFINITIONS << self
+  end
+
+  # @param [String]
+  # @return [void]
+  def table(table_name)
+    @table_name = table_name
+  end
+end
+
+# @param [String] model_name
+# @yieldparam [ModelDefinition] model_definition
+# @yield [model_definition]
+def define_model(model_name, &block)
+  puts "Defining model [#{model_name}]"
+  model_definition = ModelDefinition.new(model_name)
+  block.yield(model_definition)
+end
+
+require_relative 'schema'
+
+require 'erb'
+
+erb = ERB.new(IO.read('models.rb.erb'))
+
+models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
+  erb.result_with_hash(model: model)
+end
+
+IO.write(
+    'models.rb',
+    models_code.
+        join("\n\n").
+        # Clear lines with only spaces
+        gsub(/\n\s*\n/, "\n\n").
+        # When more than 2 lines break only use 2
+        gsub(/\n{2,}/, "\n\n")
+)
+----
+
+.models.rb.erb
+[source]
+----
+class <%= model.name %>
+
+  # @return [String]
+  def self.table_name
+      '<%= model.table_name %>'
+  end
+end
+----
+
+.Rakefile
+[source,ruby]
+----
+desc 'Generate the models from the schema'
+task :generate_models do
+  require_relative 'generator'
+end
+----
+
+[source,bash]
+----
+$ rake generate_models 
+Defining model [Color]
+Defining model [Brick]
+Defining model [Kit]
+Defining model [KitBricks]
+----
+
+.models.rb
+[source,ruby]
+----
+class Color < Model
+
+  # @return [String]
+  def self.table_name
+      'color'
+  end
+end
+
+class Brick < Model
+
+  # @return [String]
+  def self.table_name
+      'brick'
+  end
+end
+
+class Kit < Model
+
+  # @return [String]
+  def self.table_name
+      'kit'
+  end
+end
+
+class KitBricks < Model
+
+  # @return [String]
+  def self.table_name
+      'kit_bricks'
+  end
+end
+----

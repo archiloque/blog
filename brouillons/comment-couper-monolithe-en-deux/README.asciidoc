@@ -4,6 +4,10 @@ v0.1, 2020-01-21
 :article_lang: fr
 :article_image: cover.jpg
 :article_description: Ça dépend
+:tâche-courtes: les tâches à durée de vie courte
+:tâche-longues: les tâches à durée de vie longue
+:répartiteur: répartiteur de charge
+:bus: bus de messages
 
 Ce post est une traduction d'link:https://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[un article] de link:http://twitter.com/tef_ebooks[tef].
 
@@ -14,20 +18,20 @@ Ce post est une traduction d'link:https://programmingisterrible.com/post/1623464
 Le problème avec les systèmes distribués est que, quelle que soit la question, la réponse est inévitablement "`Ça dépend`".
 
 Quand vous coupez un service d'une certaine taille en deux, l'endroit où il faut découper dépend de la latence, des resources, et de l'accès aux états, mais il dépend aussi de la gestion des erreur, de la disponibilité, et des processus de reprise.
-Ça dépend, mais vous ne voulez probablement pas d'un bus de messages.
+Ça dépend, mais vous ne voulez probablement pas d'un {bus}.
 
-Utiliser un bus de messages pour distribuer du travail est comme de croiser un répartiteur de charge avec une base de donnée, avec les inconvénients des deux et aucun des avantages.
+Utiliser un {bus} pour distribuer du travail est comme de croiser un {répartiteur} avec une base de donnée, avec les inconvénients des deux et aucun des avantages.
 
-Les bus de messages, ou queues persistantes auxquelles on accède par un mécanisme de publication-souscription, sont une manière populaire de séparer deux composants à travers un réseau.
+Les {bus}, ou queues persistantes auxquelles on accède par un mécanisme de publication-souscription, sont une manière populaire de séparer deux composants à travers un réseau.
 Ils sont populaires parce que leur coût de mise en place est souvent faible, qu'ils proposent un accès facile à des fonctionnalités de découverte de services, mais ils peuvent venir avec un coût opérationnel important, en fonction de l'endroit où vous les placez dans vos systèmes.
 
-En pratique, un bus de message est un service qui transforme des erreur réseau et des défaillances de machines en problèmes de disques remplis.
+En pratique, un {bus} est un service qui transforme des erreur réseau et des défaillances de machines en problèmes de disques remplis.
 Et puis vous ajoutez plus de disque.
 L'avantage de la publication-souscription est qu'elle isole les composants l'un de l'autre, mais le problème est généralement de les coller ensemble.
 
-== Pour les tâches à durée de vie courte, vous voulez un répartiteur de charge
+== Pour {tâche-courtes}, vous voulez un {répartiteur}
 
-Pour les tâches à durée de vie courte, la publication-souscription est une manière pratique de construire rapidement un système, mais vous finirez immanquablement par implémenter un nouveau protocole au dessus de l'existant.
+Pour {tâche-courtes}, la publication-souscription est une manière pratique de construire rapidement un système, mais vous finirez immanquablement par implémenter un nouveau protocole au dessus de l'existant.
 Vous avez de la publication-souscription, mais ce que vous voulez vraiment c'est de la requête-réponse.
 Si vous voulez que quelque chose soit calculé, vous allez probablement vouloir connaître le résultat.
 
@@ -42,26 +46,33 @@ Après que le système soit lentement tombé sous la charge, chaque réessai att
 (En passant{nbsp}: la synchronisation accidentelle est toujours un problème, car attendre pour réessayer n'empêche pas qu'un tas de chose n'arrivent en même temps.)
 
 Quand les workers n'arrivent plus à tenir, les clients abandonnent et le mécanisme de réessai se met en route, mais la requête demandée plus tôt est toujours en attente de traitement.
-La solution est de déplacer 
+La solution est de remettre une partie de la queue du côté des clients, en leur demandant de ne pas soumettre plus de demandes tant qu'une demande n'a pas été acceptée{nbsp} via de la contre-pression (_back-pressure_) ou des acquittements.
 
+Bien que les composants interragissent via publication-souscription, nous avons créé un système de requète-réponse au dessus.
+Désormais le {bus} s'occupe de deux choses véritablement utiles{nbsp}: la découverte de service et la répartition de charge.
+Il s'occupe également de deux choses pas tellement utiles{nbsp}: ajouter des requêtes dans la queue et les persister.
 
-As workers fail to keep up, clients give up and retry work, but the earlier request is still waiting to be processed. The solution is to move some of the queue back to clients, asking them to hold onto work until work has been accepted: back-pressure, or acknowledgements.
+Pour {tâche-courtes}, la persistance n'est pas nécéssaire{nbsp}: le client reste de toutes façons dans le coin le temps que là tâche soit executée, et doit gérer la reprise.
+L'utilisation d'une queue n'est pas tellement nécessaire non plus.
 
-Although the components interact via publish-subscribe, we've created a request-response protocol atop. Now the message broker is really only doing two useful things: service discovery, and load balancing. It is also doing two not-so-useful thing: enqueuing requests, and persisting them.
+Les queues ateignent inévitablement deux états{nbsp}: pleines ou vides.
+Si votre queue est pleine, il faut pousser plus de travail vers les clients, et si elle est vide elle agit comme un lent {répartiteur}.
 
-For short-lived tasks, the persistence is unnecessary: the client sticks around for as long as the work needs to be done, and handles recovery. The queuing isn't that necessary either.
+Une queue presque vide fonctionne toujours dans un mode premier arrivé, premier servi, servant de point de contention pour les requêtes.
+Un {bus} ne fait souvent rien à part attendre que les workers ne viennent récupérer de nouveaux messages.
+Si votre queue est faite pour être vide, pourquoi attendre pour transmettre une requête{nbsp}?
 
-Queues inevitably run in two states: full, or empty. If your queue is running full, you haven't pushed enough work to the edges, and if it is running empty, it's working as a slow load balancer.
+(En passant{nbsp}: quelque chose comme une répartition de charge aléatoire va fonctionner, mais l'approche _join-idle-queue_ vaut largement la peine de s'y intéresser.)
 
-A mostly empty queue is still first-come-first-served, serving as point of contention for requests. A broker often does nothing but wait for workers to poll for new messages. If your queue is meant to run empty, why wait to forward on a request.
+Pour {tâche-courtes}, vous pouvez utiliser un {bus}, mais vous allez vous retrouver à construire un {répartiteur}, avec un système d'appel de code à distance, et de la lantence en plus.
 
-(Aside: Something like random load balancing will work, but join-idle-queue is well worth your time investigating)
+== Pour {tâche-longues}, vous aurez besoin d'une base de donnée
 
-For distributing short-lived tasks, you can use a message broker, but you'll be building a load balancer, along with an ad-hoc RPC system, with extra latency.
+Un {répartiteur} avec de la découverte de services ne vous aidera pas pour {tâche-longues}, ou pour les tâches dont la durée est supérieure à la durée de vie du client, ou pour gérer le débit.
+Vous allez vouloir de la persistance, mais pas dans votre {bus}.
+Pour {tâche-longues}, vous allez plutôt vouloir une base de donnée.
 
-== For long-lived tasks, you'll need a database
-
-A load balancer with service discovery won't help you with long running tasks, or work that outlives the client, or manage throughput. You'll want persistence, but not in your message broker. For long-lived tasks, you'll want a database instead.
+Bien que la persistence et les queues soient des obstacles pour {tâches-courtes}, les désavantages sont moins évident pour les {tâche-longues}, mais les 
 
 Although the persistence and queueing were obstacles for short-lived tasks, the disadvantages are less obvious for long-lived tasks, but similar things can go wrong.
 

@@ -1,0 +1,353 @@
+= Writing an ORM in Ruby part 2: inserting and listing
+:source-highlighter: pygments
+:pygments-style: friendly
+
+[source,bash]
+----
+$ sqlite3 orm-ruby.sqlite
+sqlite> .header on
+sqlite> pragma table_info('color');
+
+cid|name|type|notnull|dflt_value|pk
+0|id|INTEGER|1||1
+1|name|TEXT|1||0
+----
+
+.generator.rb
+[source,ruby]
+----
+require 'sqlite3'
+
+DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
+
+class ColumnDefinition
+
+  attr_reader :name, :type
+
+  SQLITE_TYPE_TO_RUBY_CLASS = {
+      'INTEGER' => 'Integer',
+      'TEXT' => 'String'
+  }
+
+  # @param [String] name
+  # @param [String] type
+  def initialize(name, type)
+    @name = name
+    @type = type
+  end
+
+end
+----
+
+.generator.rb
+[source,ruby]
+----
+erb = ERB.new(IO.read('models.rb.erb'))
+
+models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
+  columns_definitions = DATABASE.table_info(model.table_name).collect do |column_info|
+    ColumnDefinition.new(column_info['name'], column_info['type'])
+  end
+  erb.result_with_hash(model: model, columns_definitions: columns_definitions)
+end
+----
+
+.models.erb.rb
+[source]
+----
+class <%= model.name %> < Model
+
+  # @return [String]
+  def self.table_name
+      '<%= model.table_name %>'
+  end
+
+  <% columns_definitions.each do |column_definition| %>
+  <% column_name = column_definition.name %>
+  <% column_type = ColumnDefinition::SQLITE_TYPE_TO_RUBY_CLASS[column_definition.type] %>
+  # @return [<%= column_type %>]
+  def <%= column_name %>
+    @<%= column_name %>
+  end
+
+  # @param [<%= column_type%>] <%= column_name %>
+  # @return [void]
+  def <%= column_name %>=(<%= column_name %>)
+    @<%= column_name %> = <%= column_name %>
+  end
+  <% end %>
+
+end
+----
+
+.models.rb
+[source,ruby]
+----
+class Color < Model
+
+  # @return [String]
+  def self.table_name
+      'color'
+  end
+
+  # @return [Array<String>]
+  def self.columns
+      ["id", "name"]
+  end
+  
+  # @return [Integer]
+  def id
+    @id
+  end
+
+  # @param [Integer] id
+  # @return [void]
+  def id=(id)
+    @id = id
+  end
+  
+  # @return [String]
+  def name
+    @name
+  end
+
+  # @param [String] name
+  # @return [void]
+  def name=(name)
+    @name = name
+  end
+  
+end
+
+class Brick < Model
+
+  # @return [String]
+  def self.table_name
+      'brick'
+  end
+
+  # @return [Array<String>]
+  def self.columns
+      ["id", "name", "description", "color_id"]
+  end
+  
+  # @return [Integer]
+  def id
+    @id
+  end
+
+  # @param [Integer] id
+  # @return [void]
+  def id=(id)
+    @id = id
+  end
+  
+  # @return [String]
+  def name
+    @name
+  end
+
+  # @param [String] name
+  # @return [void]
+  def name=(name)
+    @name = name
+  end
+  
+  # @return [String]
+  def description
+    @description
+  end
+
+  # @param [String] description
+  # @return [void]a
+  def description=(description)
+    @description = description
+  end
+  
+  # @return [Integer]
+  def color_id
+    @color_id
+  end
+
+  # @param [Integer] color_id
+  # @return [void]
+  def color_id=(color_id)
+    @color_id = color_id
+  end
+  
+end
+# …
+----
+
+.model.rb
+[source,ruby]
+----
+require 'sqlite3'
+
+class Model
+
+  DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
+
+  # @abstract
+  # @return [String]
+  def self.table_name
+    raise NotImplementedError
+  end
+
+  # @abstract
+  # @return [Array<String>]
+  def self.columns
+    raise NotImplementedError
+  end
+
+  # @return [String]
+  def self.quoted_table_name
+    SQLite3::Database.quote(table_name)
+  end
+
+  # @return [void]
+  def insert
+    columns_names_except_id = self.class.columns.
+        select { |column| column != 'id' }
+
+    quoted_columns_names_except_id = columns_names_except_id.
+        map { |column_name| SQLite3::Database.quote(column_name) }
+
+    columns_values_except_id = columns_names_except_id.
+        map { |column_name| self.send(column_name) }
+
+    # Query looks like
+    # INSERT INTO table_name
+    #   (column_name_1, column_name_2, …)
+    #   VALUES (?, ?, …)
+    DATABASE.execute(
+        "INSERT INTO #{self.class.quoted_table_name} " +
+            "(#{quoted_columns_names_except_id.join(', ')}) " +
+            "VALUES (#{Array.new(columns_names_except_id.length, '?').join(', ')})",
+        columns_values_except_id
+    )
+    self.id = DATABASE.last_insert_row_id
+  end
+end
+----
+
+.script.rb
+[source,ruby]
+----
+require_relative 'model'
+require_relative 'models'
+
+color = Color.new
+color.name = 'Black'
+color.insert
+
+brick = Brick.new
+brick.color_id = color.id
+brick.name = 'Awesome brick'
+brick.description = 'This brick is awesome'
+brick.insert
+----
+
+[source,bash]
+----
+$bundle exec ruby script.rb
+$ sqlite3 orm-ruby.sqlite
+
+sqlite> select * from color;
+
+1|Black
+
+sqlite> select * from brick;
+
+1|Awesome brick|This brick is awesome|1
+----
+
+.model.rb
+[source,ruby]
+----
+class Model
+  # @return [Array]
+  def self.all
+    quoted_columns_names = columns.
+        map { |column_name| SQLite3::Database.quote(column_name) }
+
+    # Query looks like
+    # SELECT column_name_1, column_name_2, …
+    #   FROM 'table_name'
+    DATABASE.execute(
+        "SELECT #{quoted_columns_names.join(', ')} " +
+            "FROM #{quoted_table_name}"
+    ).map do |result_row|
+      model_instance = self.new
+      columns.each_with_index do |column, column_index|
+        model_instance.send("#{column}=", result_row[column_index])
+      end
+      model_instance
+    end
+  end
+end
+----
+
+.model.rb
+[source,ruby]
+----
+class Model
+  # @return [void]
+  def self.truncate
+    DATABASE.execute("DELETE FROM #{quoted_table_name}")
+  end
+end
+----
+
+.script.rb
+[source,ruby]
+----
+require_relative 'model'
+require_relative 'models'
+
+Brick.truncate
+Color.truncate
+
+black = Color.new
+black.name = 'Black'
+black.insert
+
+yellow = Color.new
+yellow.name = 'Yellow'
+yellow.insert
+
+brick = Brick.new
+brick.color_id = black.id
+brick.name = 'Awesome brick'
+brick.description = 'This brick is awesome'
+brick.insert
+
+puts '# All colors'
+Color.all.each do |color|
+  puts color.id
+  puts color.name
+end
+
+puts '# All Bricks'
+Brick.all.each do |brick|
+  puts brick.id
+  puts brick.name
+  puts brick.description
+  puts brick.color_id
+end
+----
+
+[source,bash]
+----
+$ bundle exec ruby script.rb
+# All colors
+57
+Black
+58
+yellow
+# All Bricks
+47
+Awesome brick
+This brick is awesome
+57
+----
