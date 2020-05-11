@@ -1,6 +1,40 @@
-= Writing an ORM in Ruby part 1: plumbing
+= Écrire un ORM en Ruby partie 1{nbsp}: structure
+Julien Kirch
+v0.1, 2020-05-10
+:article_lang: fr
 :source-highlighter: pygments
 :pygments-style: friendly
+
+Les ORMs sont probablement les outils les plus complexes auxquels ont a affaire directement quand on commence à développer.
+
+De ce fait, on peut avoir du mal à imaginer comment ils peuvent bien fonctionner, et peuvent donner l'impression d'être presque magiques.
+
+Impression souvent renforcé quand on lit leur code, souvent assez dense et utilisant des constructions différentes de celles du code applicatif.
+
+Cette situation peut avoir deux conséquences :
+
+- les personnes ne se sentent pas à l'aise quand elles utilisent des ORMs{nbsp}
+- les personnes ont un avis négatif des ORMs alors qu'il n'est pas basé sur des faits concrets (qu'on ait un avis négatif sur les ORMs basés sur des éléments objectifs ne me pose pas de problèmes).
+
+Pour lutter contre cela, je vous propose une série d'articles décrivant pas à pas comment écrire un ORM minimal en Ruby.
+
+Mon objectif est qu'après avoir lu ces articles, vous ayez le sentiment de comprendre comment ils fonctionnent, et que de ce fait ils ne vous fassent plus peur.
+
+== Génération de code à froid plutôt qu'à chaud
+
+Contrairement à des ORMs comme link:https://guides.rubyonrails.org/active_record_basics.html[Active Record] ou link:http://sequel.jeremyevans.net[Sequel], l'ORM que je vais implémenter utilisera de la génération de code à froid&#8201;—{nbsp} c'est-à-dire sous forme de fichiers{nbsp}—&#8201;, plutôt qu'à chaud sous forme de code généré à l'execution.
+
+Générer du code dans des fichiers permet d'examiner les comportements sans avoir à débuguer, et permet un meilleur support de la part des outils.
+
+Mon avis est que ce type d'approche est préférable à la génération de code à chaud sauf très bonne raison.
+
+Peu de choses m'exaspèrent autant que quand j'utilise Active Record et que j'ai besoin de poser des breakpoints et d'examiner les objets en mémoire pour connaître les méthodes disponibles sur un modèle.
+
+En Ruby, générer du code à l'execution est facile, ce qui est bien, mais je pense que la communauté a tendance à parfois trop l'utiliser, surtout que par ailleurs le rechargement de code à chaud fonctionne très bien.
+
+== Le début
+
+link:../abstraction-seniorite/[J'apprécie les ORMs.]
 
 .Gemfile
 [source]
