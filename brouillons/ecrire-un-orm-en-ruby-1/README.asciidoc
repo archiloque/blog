@@ -16,9 +16,21 @@ Cette situation peut avoir deux conséquences :
 - les personnes ne se sentent pas à l'aise quand elles utilisent des ORMs{nbsp}
 - les personnes ont un avis négatif des ORMs alors qu'il n'est pas basé sur des faits concrets (qu'on ait un avis négatif sur les ORMs basés sur des éléments objectifs ne me pose pas de problèmes).
 
-Pour lutter contre cela, je vous propose une série d'articles décrivant pas à pas comment écrire un ORM minimal en Ruby, par minimal j'entends un ORM capable de faire de l'insertion, du requêtage simple et gérer des relations entre objets.
+Pour lutter contre cela, je vous propose une série d'articles décrivant pas à pas comment écrire un ORM SQL minimal en Ruby, par minimal j'entends un ORM capable de faire de l'insertion, du requêtage simple et gérer des relations entre objets.
 
 Mon objectif est qu'après avoir lu ces articles, vous ayez le sentiment de comprendre comment ils fonctionnent, et que de ce fait ils ne vous fassent plus peur.
+
+== Un exemple mono-base
+
+La plupart des ORMs SQL sont compatibles avec de nombreuses de base de données.
+Cette compatibilité s'implémente généralement en permettant que toutes les méthodes de l'ORM soient surchargeables en fonction des spécificités de chaque base.
+
+Par exemple pour une classe de génération de requète `QueryBuilder`, on aura ainsi un `SQLiteQueryBuilder`, un `PostgreSQLQueryBuilder`{nbsp}…
+
+La difficulté est de parvenir à structurer le code pour pouvoir prendre en compte les spécificités de chaque base sans que cela tourne au plat de spaghetti, sachant que suivant les bases ces particularité ne sont pas toutes au mêmes endroits.
+
+Mais cela ne porte pas à conséquence sur le fonctionnement général de l'outil.
+Mon exemple sera donc mono-base et ciblera SQLite car elle fournit tout ce dont j'ai besoin et qu'elle est facile à installer.
 
 == Génération de code à froid plutôt qu'à chaud
 
@@ -34,6 +46,21 @@ En Ruby, générer du code à l'execution est facile, ce qui est bien, mais je p
 
 == Le début
 
+Le code (framework et code d'exemple) sera dans un projet unique, et ne sera pas packagé sous forme d'une gem.
+
+Le faire ajouterait pas mal de code et un peu de complexité sans que cela apporte quelque chose.
+
+=== Les dépendances
+
+Tout d'abord il faut fixer la version de Ruby, je vais utiliser la dernière à date par principe.
+
+.ruby-version 
+[source]
+----
+2.7.1
+----
+
+Ensuite pour les bibliothèques, en plus de la gem permettant d'utiliser SQLite je vais me servir de Rake pour définir la tâche de génération de code.
 
 .Gemfile
 [source]
@@ -43,6 +70,8 @@ source "https://rubygems.org"
 gem "rake", "~> 12.0"
 gem "sqlite3", "~> 1.4"
 ----
+
+=== La structure
 
 .structure.sql
 [source,sql]
