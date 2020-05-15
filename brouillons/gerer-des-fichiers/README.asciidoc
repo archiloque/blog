@@ -5,13 +5,13 @@ v1.0, 2020-05-02
 :article_lang: fr
 :article_image: puits.jpg
 
-La gestion des fichiers est un comme un puits sans fond{nbsp}: plus on en apprend à leur sujet, plus on se rend compte que les choses sont plus compliquées qu'il n'y paraît, et que l'image mentale qu'on utilise pour y penser n'est pas tout à fait adapter.
+Les systèmes de gestion de fichiers sont un comme un puits sans fond{nbsp}: plus on en apprend à leur sujet, plus on se rend compte que les choses sont plus compliquées qu'il n'y paraît, et que l'image mentale qu'on utilise pour y penser n'est pas tout à fait adapter.
 
-Par gestion de fichier j'entend la partie du système qui est chargé de faire l'interface entre des demandes d'accès et le ou les disques durs qui stockent ces données.
+Par système de gestion de fichiers j'entend la partie du système qui est chargé de faire l'interface entre des demandes d'accès et le ou les disques durs qui stockent ces données.
 
 == Une couche de service sans état au dessus d'un disque dur
 
-Pour une personne qui a eu la chance de n'avoir jamais eu à s'intéresser à ce sujet, on peut voir la gestion des fichiers comme une simple API sans état au dessus d'un disque dur.
+Pour une personne qui a eu la chance de n'avoir jamais eu à s'intéresser à ce sujet, on peut voir la manipulation de fichiers comme une simple API sans état au dessus d'un disque dur.
 
 [source,sh]
 ----
@@ -20,7 +20,8 @@ cat article.txt
 
 Dans ce cas, quand on appelle du code pour lire un fichier en lui passant son nom, il va demander au disque dur le contenu correspondant, le stocker dans un espace mémoire, et s'arrêter.
 
-Et effectivement, c'est un peu comme cela que fonctionnaient les tous premiers systèmes informatiques.
+Et effectivement, c'est un peu comme cela que fonctionnaient les tous premiers systèmes informatiques, et c'est le type de fonctionnement que pourrait laisser présager les APIs de fichiers comme celles que fournit le C et de nombreux autres langages de programmation.
+
 Mais depuis les choses ont bien changé.
 
 == Une système à état parallèle
@@ -37,7 +38,7 @@ En écriture pour éviter de bloquer le système quand on demande d'écrire des 
 
 Pour gérer cela l'accès aux fichiers devient donc un système parallèle.
 
-On en arrive au point où à force d'ajouter des couches au dessus du disque dur, on en arrive à ne plus savoir à quoi s'attendre de la part de la gestion de fichiers, et notamment qu'est ce qui est vraiment écrit sur le disque à quel moment.
+On en arrive au point où à force d'ajouter des couches au dessus du disque dur, on en arrive à ne plus savoir à quoi s'attendre, et notamment qu'est ce qui est vraiment écrit sur le disque à quel moment.
 
 C'est par exemple link:https://lwn.net/Articles/799807/[le cas personnes qui développent des bases de données], car sans garantie sur quelles données sont bien enregistrées, il devient impossible d'avoir un système fiable.
 
@@ -53,7 +54,7 @@ Les systèmes d'exploitation de bureau ou pour téléphones gèrent aussi de la 
 
 image::lapin.png[]
 
-Avec ces deux éléments -- requêtage et indexation -- la gestion des fichiers ressemble donc à un système de base de données.
+Avec ces deux éléments -- requêtage et indexation -- un système de gestion de fichiers ressemble donc à un système de base de données.
 
 == Un moteur évènementiel
 
@@ -69,7 +70,7 @@ Le parcours de répertoire permet donc de déclencher du code à l'aide de point
 
 == Conclusion
 
-La gestion des fichiers c'est donc quoi ? Une abstraction au dessus d'un disque dur, une base de donnée, ou un moteur à évènement ?
+Un système de gestion de fichiers c'est donc quoi ? Une abstraction au dessus d'un disque dur, une base de donnée, ou un moteur à évènement ?
 
 C'est un peu les trois, en fonction de ce que vous en faites, cela peut même être également un système en réseau et distribué si vous utilisez un système comme link:https://fr.wikipedia.org/wiki/Samba_(informatique)[Samba] ou link:https://fr.wikipedia.org/wiki/Network_File_System[NFS].
 

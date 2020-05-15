@@ -71,7 +71,14 @@ gem "rake", "~> 12.0"
 gem "sqlite3", "~> 1.4"
 ----
 
-=== La structure
+== Comme exemple{nbsp}:un jeu de construction
+
+Dans la suite, je vais prendre comme exemple un jeu de construction.
+
+Ce jeu de construction est composé des différents types de briques (`Brick`), qui sont chacun d'une certaine couleur (`Color`).
+Des modèles à construire (`Kit`) sont constitués d'un ensemble de types de briques chacun présent un certain nombre de briques (tant de briques d'une sorte, tant de briques d'une autre sorte), la relation modèle - type de brique étant modélisé par un `KitBrick`.
+
+Voici la structure SQL{nbsp} correspondante:
 
 .structure.sql
 [source,sql]
@@ -82,7 +89,8 @@ CREATE TABLE 'color' (
   'name' TEXT NOT NULL
 );
 
-CREATE UNIQUE INDEX idx_color_unique ON color('name');
+CREATE UNIQUE INDEX idx_color_unique 
+  ON color('name');
 
 CREATE TABLE 'brick' (
   'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -100,7 +108,7 @@ CREATE TABLE 'kit' (
   'description' TEXT NOT NULL
 );
 
-CREATE TABLE 'kit_bricks' (
+CREATE TABLE 'kit_brick' (
   'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 
   'kit_id' INTEGER NOT NULL,
@@ -110,8 +118,16 @@ CREATE TABLE 'kit_bricks' (
   FOREIGN KEY('kit_id') REFERENCES 'kit'('id'),
   FOREIGN KEY('brick_id') REFERENCES 'brick'('id')
 );
-CREATE UNIQUE INDEX 'idx_kit_brick_uniqu' ON 'kit_bricks'('kit_id', 'brick_id');
+CREATE UNIQUE INDEX 'idx_kit_brick_uniqu' 
+  ON 'kit_brick'('kit_id', 'brick_id');
 ----
+
+== Le début des classes de modèles
+
+Pour générer les classes de modèle, je vais utiliser un fichier de configuration.
+Au début il contiendra seulement les noms des modèles et les noms des tables correspondantes.
+
+La syntaxe s'inspire des DSL de configuration qu'on trouve dans Rails{nbsp}:
 
 .schema.rb
 [source,ruby]
@@ -128,10 +144,15 @@ define_model 'Kit' do |model_definition|
   model_definition.table 'kit'
 end
 
-define_model 'KitBricks' do |model_definition|
-  model_definition.table 'kit_bricks'
+define_model 'KitBrick' do |model_definition|
+  model_definition.table 'kit_brick'
 end
 ----
+
+La capacité d'utiliser des noms de table par défaut en les déduisants des noms des classes demanderait un peu plus de code sans changer le fonctionnement d'ensemble.
+
+Je vais 
+
 
 .generator.rb
 [source,ruby]
@@ -160,17 +181,23 @@ end
 # @yield [model_definition]
 def define_model(model_name, &block)
   puts "Defining model [#{model_name}]"
-  model_definition = ModelDefinition.new(model_name)
+  model_definition = 
+    ModelDefinition.new(model_name)
   block.yield(model_definition)
 end
 
 require_relative 'schema'
+----
 
+.generator.rb
+[source,ruby]
+----
 require 'erb'
 
 erb = ERB.new(IO.read('models.rb.erb'))
 
-models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
+models_code = ModelDefinition::MODELS_DEFINITIONS.
+    map do |model|
   erb.result_with_hash(model: model)
 end
 
@@ -212,7 +239,7 @@ $ rake generate_models
 Defining model [Color]
 Defining model [Brick]
 Defining model [Kit]
-Defining model [KitBricks]
+Defining model [KitBrick]
 ----
 
 .models.rb
@@ -242,11 +269,11 @@ class Kit < Model
   end
 end
 
-class KitBricks < Model
+class KitBrick < Model
 
   # @return [String]
   def self.table_name
-      'kit_bricks'
+      'kit_brick'
   end
 end
 ----
