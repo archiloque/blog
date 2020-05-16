@@ -106,7 +106,7 @@ CREATE TABLE 'brick' (
 
 CREATE TABLE 'kit' (
   'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  
+
   'name' TEXT NOT NULL,
   'description' TEXT NOT NULL
 );
@@ -123,6 +123,25 @@ CREATE TABLE 'kit_brick' (
 );
 CREATE UNIQUE INDEX 'idx_kit_brick_uniqu' 
   ON 'kit_brick'('kit_id', 'brick_id');
+----
+
+Pour créer une base avec la bonne structure, vous pouvez lancer la commande
+
+[source,bash]
+----
+$ sqlite3 orm-ruby.sqlite < structure.sql
+----
+
+Et ensuite explorer la base ainsi{nbsp}:
+
+[source,bash]
+----
+$ sqlite3 orm-ruby.sqlite
+SQLite version 3.24.0 2018-06-04 14:10:15
+Enter ".help" for usage hints.
+sqlite> select count(*) from color;
+0
+sqlite> 
 ----
 
 Certains ORMs fournissent des outils pour gérer les migrations.
