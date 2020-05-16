@@ -1,0 +1,26 @@
+classDiagram
+  class Color{
+    Id id
+    String name
+  }
+  class Brick{
+    Id id
+    String name
+    String description
+    Id color_id
+  }
+  Brick --> Color
+  class Kit{
+    Id id
+    String name
+    String description
+  }
+  class KitBrick{
+    Id id
+    Id kit_id
+    Id brick_id
+    Integer quantity
+  }
+  KitBrick --> Kit
+  KitBrick --> Brick
+

@@ -34,7 +34,7 @@ Mon exemple sera donc mono-base et ciblera SQLite car elle fournit tout ce dont 
 
 == Génération de code à froid plutôt qu'à chaud
 
-Contrairement à des ORMs comme link:https://guides.rubyonrails.org/active_record_basics.html[Active Record] ou link:http://sequel.jeremyevans.net[Sequel], l'ORM que je vais implémenter utilisera de la génération de code à froid&#8201;—{nbsp} c'est-à-dire sous forme de fichiers{nbsp}—&#8201; plutôt qu'à chaud sous forme de code généré à l'execution.
+Contrairement à des ORMs comme link:https://guides.rubyonrails.org/active_record_basics.html[Active Record] ou link:http://sequel.jeremyevans.net[Sequel], l'ORM que je vais implémenter utilisera de la génération de code à froid&#8201;—{nbsp} c'est-à-dire sous forme de fichiers{nbsp}—&#8201; plutôt qu'à chaud sous forme de code généré à l'exécution.
 
 Générer du code dans des fichiers permet d'examiner les comportements sans avoir à débuguer, et permet un meilleur support de la part des outils.
 
@@ -42,7 +42,7 @@ Mon avis est que ce type d'approche est préférable à la génération de code 
 
 Quand j'utilise Active Record et que j'ai besoin de poser des breakpoints et d'examiner les objets en mémoire pour connaître les méthodes disponibles sur un modèle ça me rend triste.
 
-En Ruby, générer du code à l'execution est facile, ce qui est bien, mais je pense que la communauté a tendance à parfois trop l'utiliser, surtout que par ailleurs le rechargement de code à chaud fonctionne très bien.
+En Ruby, générer du code à l'exécution est facile, ce qui est bien, mais je pense que la communauté a tendance à parfois trop l'utiliser, surtout que par ailleurs le rechargement de code à chaud fonctionne très bien.
 
 == Le début
 
@@ -78,7 +78,9 @@ Dans la suite, je vais prendre comme exemple un jeu de construction.
 Ce jeu de construction est composé des différents types de briques (`Brick`), qui sont chacun d'une certaine couleur (`Color`).
 Des modèles à construire (`Kit`) sont constitués d'un ensemble de types de briques chacun présent un certain nombre de briques (tant de briques d'une sorte, tant de briques d'une autre sorte), la relation modèle - type de brique étant modélisé par un `KitBrick`.
 
-Voici la structure SQL{nbsp} correspondante:
+image:schema.svg[]
+
+Voici la structure SQL{nbsp} correspondante avec la syntaxe SQLite{nbsp}:
 
 .structure.sql
 [source,sql]
@@ -122,10 +124,13 @@ CREATE UNIQUE INDEX 'idx_kit_brick_uniqu'
   ON 'kit_brick'('kit_id', 'brick_id');
 ----
 
-== Le début des classes de modèles
+Certains ORMs fournissent des outils pour gérer les migrations.
+J'ai fais le choix ici de ne pas implémenter cette fonctionnalité car&#8201;—{nbsp}même si elle peut partager du code avec le reste de l'ORM {nbsp}—&#8201;elle est largement séparée et n'influe donc pas sur le noyau de l'outil.
 
-Pour générer les classes de modèle, je vais utiliser un fichier de configuration.
-Au début il contiendra seulement les noms des modèles et les noms des tables correspondantes.
+== Un DSL pour configurer les modèles
+
+Pour générer les classes de modèle, je vais utiliser un fichier de configuration qui sera lu par un script.
+Au début le fichier de configuration contiendra seulement les noms des modèles et les noms des tables correspondantes.
 
 La syntaxe s'inspire des DSL de configuration qu'on trouve dans Rails{nbsp}:
 
@@ -149,24 +154,22 @@ define_model 'KitBrick' do |model_definition|
 end
 ----
 
-La capacité d'utiliser des noms de table par défaut en les déduisants des noms des classes demanderait un peu plus de code sans changer le fonctionnement d'ensemble.
+La capacité d'utiliser des noms de table par défaut en les déduisant des noms des classes demanderait un peu plus de code sans changer le fonctionnement d'ensemble, du coup je ne vais pas l'intégrer.
 
-Je vais 
+Pour générer les modèles il faut commencer par lire le contenu de fichier.
 
+Pour cela je commencer par créer la classe `ModelDefinition` qui contiendra les contenus des modèles tels que définis dans le fichier en étant passé dans chacun des blocs `define_model`.
 
 .generator.rb
 [source,ruby]
 ----
 class ModelDefinition
 
-  MODELS_DEFINITIONS = []
-
   attr_reader :name, :table_name
   
   # @param [String] name
   def initialize(name)
     @name = name
-    MODELS_DEFINITIONS << self
   end
 
   # @param [String]
@@ -175,10 +178,20 @@ class ModelDefinition
     @table_name = table_name
   end
 end
+----
 
-# @param [String] model_name
-# @yieldparam [ModelDefinition] model_definition
+Comme le script de génération `generator.rb` des modèles sera lancé de manière indépendante du reste du code, je peux définir la méthode `define_model` de manière globale (dans un script indépendant elle ne risque pas de polluer l'espace de nommage), puis de faire un `require_relative` sur le fichier de configuration.
+
+Lorsque le fichier sera chargé, la méthode `define_model` sera ainsi appelée pour chaque bloc du fichier `schema.rb`.
+
+Chaque appel va instancier un `ModelDefinition` avec le nom du modèle, puis le passe en paramètre du bloc.
+
+.generator.rb
+[source,ruby]
+----
 # @yield [model_definition]
+# @yieldparam [ModelDefinition] model_definition
+# @yieldreturn [void]
 def define_model(model_name, &block)
   puts "Defining model [#{model_name}]"
   model_definition = 
@@ -189,28 +202,51 @@ end
 require_relative 'schema'
 ----
 
+Pour pouvoir utiliser ensuite ces `ModelDefinition`, le constructeurs les stockera dans un tableau au fur et à mesure.
+
+
 .generator.rb
 [source,ruby]
 ----
-require 'erb'
+class ModelDefinition
 
-erb = ERB.new(IO.read('models.rb.erb'))
+  MODELS_DEFINITIONS = []
 
-models_code = ModelDefinition::MODELS_DEFINITIONS.
-    map do |model|
-  erb.result_with_hash(model: model)
-end
+  attr_reader :name, :table_name
 
-IO.write(
-    'models.rb',
-    models_code.
-        join("\n\n").
-        # Clear lines with only spaces
-        gsub(/\n\s*\n/, "\n\n").
-        # When more than 2 lines break only use 2
-        gsub(/\n{2,}/, "\n\n")
-)
+  # @param [String] name
+  def initialize(name)
+    @name = name
+    MODELS_DEFINITIONS << self
+  end
+
+  # …
 ----
+
+Après le chargement du fichier de configuration, `ModelDefinition::MODELS_DEFINITIONS` contiendra la ainsi liste des définitions.
+
+== Un template pour générer le fichier
+
+Une fois la configuration chargée il est temps de s'intéresser à la génération du code.
+
+Comme à l'étape précendente, je commence par définir la syntaxe cible qui m'intéresse{nbsp}:
+
+.models.rb
+[source,ruby]
+----
+class Color
+
+  # @return [String]
+  def self.table_name
+      'color'
+  end
+end
+----
+
+Chaque modèle est dans une classe, exposant une méthode de classe pour récupérer le nom de la table.
+
+Pour générer ce fichier à partir des définitions, je vais utiliser link:https://ruby-doc.org/stdlib-2.7.1/libdoc/erb/rdoc/ERB.html[erb].
+Si elle est souvent utilisée pour générer du HTML, la syntaxe erb n'est pas du tout spécifique au HTML (comme peut l'être link:http://slim-lang.com[Slim]) et peut donc servir à générer du Ruby.
 
 .models.rb.erb
 [source]
@@ -224,14 +260,46 @@ class <%= model.name %>
 end
 ----
 
+Pour générer le fichier, il faut alors charger ce template, l'appliquer à chaque des définition qui sont disponibles dans `ModelDefinition::MODELS_DEFINITIONS`, et stocker le résultat dans un fichier.
+
+.generator.rb
+[source,ruby]
+----
+# …
+
+require 'erb'
+
+# Load the template
+erb = ERB.new(IO.read('models.rb.erb'))
+
+# Apply the template to the model definitions
+models_code = ModelDefinition::MODELS_DEFINITIONS.
+    map do |model|
+  # Make the ModelDefinition available as `model` in the template
+  erb.result_with_hash(model: model)
+end
+
+# Write the concatenated result to a file
+IO.write(
+    'models.rb',
+    models_code.
+        join("\n\n")
+)
+----
+
+Le code est alors terminé, il manque seulement une tâche Rake pour pouvoir l'invoquer.
+Comme les chemins des fichiers sont tous en dur dans le code, il n'y a pas besoin de le rendre paramétrable{nbsp}:
+
 .Rakefile
 [source,ruby]
 ----
-desc 'Generate the models from the schema'
+desc 'Generate the models from the schema.rm file'
 task :generate_models do
   require_relative 'generator'
 end
 ----
+
+On peut alors lancer la génération{nbsp}:
 
 [source,bash]
 ----
@@ -242,10 +310,12 @@ Defining model [Kit]
 Defining model [KitBrick]
 ----
 
+Et observer le résultat{nbsp}:
+
 .models.rb
 [source,ruby]
 ----
-class Color < Model
+class Color
 
   # @return [String]
   def self.table_name
@@ -253,7 +323,7 @@ class Color < Model
   end
 end
 
-class Brick < Model
+class Brick
 
   # @return [String]
   def self.table_name
@@ -261,7 +331,7 @@ class Brick < Model
   end
 end
 
-class Kit < Model
+class Kit
 
   # @return [String]
   def self.table_name
@@ -269,7 +339,7 @@ class Kit < Model
   end
 end
 
-class KitBrick < Model
+class KitBrick
 
   # @return [String]
   def self.table_name
@@ -277,3 +347,5 @@ class KitBrick < Model
   end
 end
 ----
+
+La structure de l'outil est alors en place, et dans l'article suivant je vais pouvoir m'intéresser à la partie plus centrale de l'outil et faire mes premières requêtes.
