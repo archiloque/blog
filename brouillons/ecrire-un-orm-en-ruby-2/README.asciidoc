@@ -21,35 +21,32 @@ Même si cela ne fait pas partie du standard SQL, la majorités des bases de don
 
 Suivant les systèmes on pourra utiliser du SQL&#8201;—{nbsp}en intérrogeant des tables particulières{nbsp}—&#8201;ou des commandes spécifiques.
 
-Avec SQLite 
+Avec SQLite, l'accès aux métadonnées se fait via des link:https://www.sqlite.org/pragma.html[la commandes PRAGMA].
 
 
-[source,bash]
+[source]
 ----
 $ sqlite3 orm-ruby.sqlite
-sqlite> .header on
-sqlite> pragma table_info('color');
+sqlite> .header on -- Active l'affichage des noms de colonnes dans les requêtes
+sqlite> pragma table_info('color'); -- Donne des informations sur la table color
 
 cid|name|type|notnull|dflt_value|pk
 0|id|INTEGER|1||1
 1|name|TEXT|1||0
 ----
 
+Pour chaque colonne `table_info` nous donne son identifiant, son nom, son type, si elle est nullable, son éventuelle valeur par défaut, et si il s'agit de la clé primaire de la table.
+
+Dans la gem sqlite3, la méthode `table_info` fait l'appel la pragma et renvoie le résultat sous une forme accessible.
+
+Pour ajouter les colonnes disponibles dans chaque table, commençons par définir une classe `ColumnDefinition` qui contiendra les informations qui nous intéressent, à savoir le nom et le type de la colonne.
+
 .generator.rb
 [source,ruby]
 ----
-require 'sqlite3'
-
-DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
-
 class ColumnDefinition
 
   attr_reader :name, :type
-
-  SQLITE_TYPE_TO_RUBY_CLASS = {
-      'INTEGER' => 'Integer',
-      'TEXT' => 'String'
-  }
 
   # @param [String] name
   # @param [String] type
@@ -61,18 +58,58 @@ class ColumnDefinition
 end
 ----
 
+Ensuite, je dois récupérer les colonnes de chaque table.
+L'endroit le plus simple est de le faire juste avant de créer les classes de modèles, alors qu'on est déjà en train d'itérer sur chaque modèle, on pourra alors passer la liste des colonnes au template.
+
 .generator.rb
 [source,ruby]
 ----
-erb = ERB.new(IO.read('models.rb.erb'))
-
 models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
+  # List the columns definitions
   columns_definitions = DATABASE.table_info(model.table_name).collect do |column_info|
-    ColumnDefinition.new(column_info['name'], column_info['type'])
+    column_name = column_info['name']
+    column_type = column_info['type']
+    ColumnDefinition.new(column_name, column_type)
   end
   erb.result_with_hash(model: model, columns_definitions: columns_definitions)
 end
 ----
+
+Dans le template, `columns_definitions` contient alors la liste des `ColumnDefinition` prêt à l'emploi.
+
+Presque prêt à l'emploi car il reste une subtilité{nbsp}: `table_info` renvoie les types SQL des colonnes (ou plus précisément le type SQLite) comme `TEXT`, pour pouvoir l'utiliser dans le code je dois le transformer en types Ruby comme `String`.
+
+Pour se faire, nous allons utiliser une `Hash` pour faire la conversion.
+
+.generator.rb
+[source,ruby]
+----
+SQLITE_TYPE_TO_RUBY_CLASS = {
+    'INTEGER' => 'Integer',
+    'TEXT' => 'String'
+}
+----
+
+Elle ne contient que les types que l'on va rencontrer dans notre exemple, il sera ensuite possible de l'enrichir en fonction des besoins.
+
+En modifiant le code pour utiliser `SQLITE_TYPE_TO_RUBY_CLASS`, cela donne :
+
+.generator.rb
+[source,ruby]
+----
+models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
+  # List the columns definitions
+  columns_definitions = DATABASE.table_info(model.table_name).collect do |column_info|
+    column_name = column_info['name']
+    sql_type = column_info['type']
+    ruby_type = SQLITE_TYPE_TO_RUBY_CLASS[sql_type]
+    ColumnDefinition.new(column_name, ruby_type)
+  end
+  erb.result_with_hash(model: model, columns_definitions: columns_definitions)
+end
+----
+
+Avec le nom et le type de chaque colonne, je vais pouvoir générer les getter et les setters en itérant sur les `ColumnDefinition` dans le template{nbsp}:
 
 .models.erb.rb
 [source]
@@ -101,6 +138,8 @@ class <%= model.name %> < Model
 
 end
 ----
+
+Ce qui donne ce résultat{nbsp}:
 
 .models.rb
 [source,ruby]
@@ -138,68 +177,15 @@ class Color < Model
   def name=(name)
     @name = name
   end
-  
-end
-
-class Brick < Model
-
-  # @return [String]
-  def self.table_name
-      'brick'
-  end
-
-  # @return [Array<String>]
-  def self.columns
-      ["id", "name", "description", "color_id"]
-  end
-  
-  # @return [Integer]
-  def id
-    @id
-  end
-
-  # @param [Integer] id
-  # @return [void]
-  def id=(id)
-    @id = id
-  end
-  
-  # @return [String]
-  def name
-    @name
-  end
-
-  # @param [String] name
-  # @return [void]
-  def name=(name)
-    @name = name
-  end
-  
-  # @return [String]
-  def description
-    @description
-  end
-
-  # @param [String] description
-  # @return [void]a
-  def description=(description)
-    @description = description
-  end
-  
-  # @return [Integer]
-  def color_id
-    @color_id
-  end
-
-  # @param [Integer] color_id
-  # @return [void]
-  def color_id=(color_id)
-    @color_id = color_id
-  end
-  
 end
 # …
 ----
+
+On peut voir ici l'intérêt de la génération de code à froid car on peut directement consulter les méthodes disponibles avec leurs informations de type.
+
+En utilisant un IDE, on peut même disposer de l'autocompletion.
+
+Je ne l'utilise pas dans mon exemple, mais l'information de nullabilité des colonnes pourrait servir pour renseigner la nu
 
 .model.rb
 [source,ruby]

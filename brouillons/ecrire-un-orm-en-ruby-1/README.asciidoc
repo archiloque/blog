@@ -181,7 +181,7 @@ end
 
 La capacité d'utiliser des noms de table par défaut en les déduisant des noms des classes demanderait un peu plus de code sans changer le fonctionnement d'ensemble, du coup je ne vais pas l'intégrer.
 
-Pour générer les modèles il faut commencer par lire le contenu de fichier.
+Pour générer les modèles je dois commencer par lire le contenu de fichier.
 
 Pour cela je commencer par créer la classe `ModelDefinition` qui contiendra les contenus des modèles tels que définis dans le fichier en étant passé dans chacun des blocs `define_model`.
 
@@ -252,9 +252,9 @@ Après le chargement du fichier de configuration, `ModelDefinition::MODELS_DEFIN
 
 == Un template pour générer le fichier
 
-Une fois la configuration chargée il est temps de s'intéresser à la génération du code.
+Une fois la configuration chargée je vais m'intéresser à la génération du code.
 
-Comme à l'étape précendente, je commence par définir la syntaxe cible qui m'intéresse{nbsp}:
+Comme à l'étape précendente, la première étape est de définir la syntaxe cible qui m'intéresse{nbsp}:
 
 .models.rb
 [source,ruby]
@@ -311,7 +311,7 @@ IO.write(
 )
 ----
 
-Le code est alors terminé, il manque seulement une tâche Rake pour pouvoir l'invoquer.
+Le code est alors terminé, il me manque seulement une tâche Rake pour pouvoir l'invoquer.
 Comme les chemins des fichiers sont tous en dur dans le code, il n'y a pas besoin de le rendre paramétrable{nbsp}:
 
 .Rakefile
