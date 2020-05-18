@@ -28,7 +28,7 @@ Avec SQLite, l'accès aux métadonnées se fait via des link:https://www.sqlite.
 ----
 $ sqlite3 orm-ruby.sqlite
 sqlite> .header on -- Active l'affichage des noms de colonnes dans les requêtes
-sqlite> pragma table_info('color'); -- Donne des informations sur la table color
+sqlite> pragma table_info('color'); -- Donne des informations sur la table `color`
 
 cid|name|type|notnull|dflt_value|pk
 0|id|INTEGER|1||1
@@ -37,7 +37,7 @@ cid|name|type|notnull|dflt_value|pk
 
 Pour chaque colonne `table_info` nous donne son identifiant, son nom, son type, si elle est nullable, son éventuelle valeur par défaut, et si il s'agit de la clé primaire de la table.
 
-Dans la gem sqlite3, la méthode `table_info` fait l'appel la pragma et renvoie le résultat sous une forme accessible.
+Avec la gem sqlite3, la méthode `SQLite3::Database#table_info` fait l'appel la pragma et renvoie le résultat sous une forme accessible.
 
 Pour ajouter les colonnes disponibles dans chaque table, commençons par définir une classe `ColumnDefinition` qui contiendra les informations qui nous intéressent, à savoir le nom et le type de la colonne.
 
@@ -60,6 +60,16 @@ end
 
 Ensuite, je dois récupérer les colonnes de chaque table.
 L'endroit le plus simple est de le faire juste avant de créer les classes de modèles, alors qu'on est déjà en train d'itérer sur chaque modèle, on pourra alors passer la liste des colonnes au template.
+
+Mais pour commencer, il faut se connecter à la base de donnée.
+
+.generator.rb
+[source,ruby]
+----
+DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
+----
+
+puis{nbsp}:
 
 .generator.rb
 [source,ruby]
