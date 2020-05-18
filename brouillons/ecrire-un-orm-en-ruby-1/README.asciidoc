@@ -9,12 +9,12 @@ Les ORMs sont probablement les outils les plus complexes auxquels ont a affaire 
 
 De ce fait, on peut avoir du mal à imaginer comment ils peuvent bien fonctionner, et peuvent donner l'impression d'être presque magiques.
 
-Impression souvent renforcé quand on lit leur code, souvent assez dense et utilisant des constructions différentes de celles du code applicatif.
+Impression souvent renforcé quand on lit le code de ces outils, souvent assez dense et utilisant des constructions différentes de celles du code applicatif.
 
-Cette situation peut avoir deux conséquences :
+Cette situation peut avoir deux conséquences{nbsp}:
 
 - les personnes ne se sentent pas à l'aise quand elles utilisent des ORMs{nbsp}
-- les personnes ont un avis négatif des ORMs alors qu'il n'est pas basé sur des faits concrets (qu'on ait un avis négatif sur les ORMs basés sur des éléments objectifs ne me pose pas de problèmes).
+- les personnes ont un avis négatif des ORMs basé essentiellement sur leur ressenti au moment de leur première rencontre avec ce type d'outil (qu'on ait un avis négatif sur les ORMs basés sur des éléments objectifs ne me pose pas de problèmes).
 
 Pour lutter contre cela, je vous propose une série d'articles décrivant pas à pas comment écrire un ORM SQL minimal en Ruby, par minimal j'entends un ORM capable de faire de l'insertion, du requêtage simple et gérer des relations entre objets.
 
@@ -43,6 +43,9 @@ Mon avis est que ce type d'approche est préférable à la génération de code 
 Quand j'utilise Active Record et que j'ai besoin de poser des breakpoints et d'examiner les objets en mémoire pour connaître les méthodes disponibles sur un modèle ça me rend triste.
 
 En Ruby, générer du code à l'exécution est facile, ce qui est bien, mais je pense que la communauté a tendance à parfois trop l'utiliser, surtout que par ailleurs le rechargement de code à chaud fonctionne très bien.
+
+Pour la génération, je vais utiliser link:https://ruby-doc.org/stdlib-2.7.1/libdoc/erb/rdoc/ERB.html[erb].
+Si elle est souvent utilisée pour générer du HTML, la syntaxe erb n'est pas du tout spécifique au HTML (comme peut l'être link:http://slim-lang.com[Slim]) et peut donc servir à générer du Ruby.
 
 == Le début
 
@@ -144,8 +147,10 @@ sqlite> select count(*) from color;
 sqlite> 
 ----
 
-Certains ORMs fournissent des outils pour gérer les migrations.
+Certains ORMs comme Rails et Sequel fournissent des outils pour gérer les modifications de schéma de a base.
 J'ai fais le choix ici de ne pas implémenter cette fonctionnalité car&#8201;—{nbsp}même si elle peut partager du code avec le reste de l'ORM {nbsp}—&#8201;elle est largement séparée et n'influe donc pas sur le noyau de l'outil.
+
+Dans le monde Java, link:https://hibernate.org/orm/[l'ORM hybernate] qui est très utilisé ne fournit ainsi pas d'outil de migration.
 
 == Un DSL pour configurer les modèles
 
@@ -265,8 +270,7 @@ end
 
 Chaque modèle est dans une classe, exposant une méthode de classe pour récupérer le nom de la table.
 
-Pour générer ce fichier à partir des définitions, je vais utiliser link:https://ruby-doc.org/stdlib-2.7.1/libdoc/erb/rdoc/ERB.html[erb].
-Si elle est souvent utilisée pour générer du HTML, la syntaxe erb n'est pas du tout spécifique au HTML (comme peut l'être link:http://slim-lang.com[Slim]) et peut donc servir à générer du Ruby.
+Comme expliqué plus haut, je me sers d'erb pour la génération, voici donc le template de classe correspondant{nbsp}:
 
 .models.rb.erb
 [source]

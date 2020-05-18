@@ -1,9 +1,28 @@
-= Écrire un ORM en Ruby partie 2{nbsp}: insertion et récupération
+= Écrire un ORM en Ruby partie 2{nbsp}: récupération des champs, insertion et sélection
 Julien Kirch
 v0.1, 2020-05-10
 :article_lang: fr
 :source-highlighter: pygments
 :pygments-style: friendly
+
+Ceci est le deuxième article d'une série de quatre décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
+
+Après link:../ecrire-un-orm-en-ruby-1/[le premier article] où j'ai posé les bases de l'outil, je vais ici ajouter ce qu'il manque pour faire les premières requètes.
+
+== Des modèles avec des champs
+
+La première étape va s'intéresser aux champs des modèles.
+
+Il serait possible de les paramétrer via le fichier de configuration de schema `schema.rb`, mais je vais plutôt utiliser les métadonnées de la base de données, car c'est une bonne occasion de donner un aperçu de leur fonctionnement.
+
+En effet même si tous les ORMs n'utilisent pas les métadonnées beaucoup le font, et comprendre que cela n'est pas si compliquée est bien utile.
+
+Même si cela ne fait pas partie du standard SQL, la majorités des bases de données de ce type fournissent des requéter les métadonnées des bases telles que les tables, les index{nbsp}…
+
+Suivant les systèmes on pourra utiliser du SQL&#8201;—{nbsp}en intérrogeant des tables particulières{nbsp}—&#8201;ou des commandes spécifiques.
+
+Avec SQLite 
+
 
 [source,bash]
 ----
@@ -67,7 +86,7 @@ class <%= model.name %> < Model
 
   <% columns_definitions.each do |column_definition| %>
   <% column_name = column_definition.name %>
-  <% column_type = ColumnDefinition::SQLITE_TYPE_TO_RUBY_CLASS[column_definition.type] %>
+  <% column_type = column_definition.type %>
   # @return [<%= column_type %>]
   def <%= column_name %>
     @<%= column_name %>
