@@ -89,7 +89,7 @@ Dans le template, `columns_definitions` contient alors la liste des `ColumnDefin
 
 Presque prêt à l'emploi car il reste une subtilité{nbsp}: `table_info` renvoie les types SQL des colonnes (ou plus précisément le type SQLite) comme `TEXT`, pour pouvoir l'utiliser dans le code je dois le transformer en types Ruby comme `String`.
 
-Pour se faire, nous allons utiliser une `Hash` pour faire la conversion.
+Pour se faire, nous allons utiliser une `Hash` pour faire la conversion entre les deux.
 
 .generator.rb
 [source,ruby]

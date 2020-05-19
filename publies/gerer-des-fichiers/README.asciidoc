@@ -1,11 +1,11 @@
 = Le puits sans fond de la gestion des fichiers
 Julien Kirch
-v1.0, 2020-05-02
+v1.0, 2020-05-20
 :article_description: Aaaaaaaaaaaaaaaa !
 :article_lang: fr
 :article_image: puits.jpg
 
-Les systèmes de gestion de fichiers sont un comme un puits sans fond{nbsp}: plus on en apprend à leur sujet, plus on se rend compte que les choses sont plus compliquées qu'il n'y paraît, et que l'image mentale qu'on utilise pour y penser n'est pas tout à fait adapter.
+Les systèmes de gestion de fichiers sont comme un puits sans fond{nbsp}: plus on en apprend à leur sujet, plus on se rend compte que les choses sont plus compliquées qu'il n'y paraît, et que l'image mentale qu'on utilise pour y penser n'est pas tout à fait adaptée.
 
 Par système de gestion de fichiers j'entend la partie du système qui est chargé de faire l'interface entre des demandes d'accès et le ou les disques durs qui stockent ces données.
 
@@ -22,25 +22,25 @@ Dans ce cas, quand on appelle du code pour lire un fichier en lui passant son no
 
 Et effectivement, c'est un peu comme cela que fonctionnaient les tous premiers systèmes informatiques, et c'est le type de fonctionnement que pourrait laisser présager les APIs de fichiers comme celles que fournit le C et de nombreux autres langages de programmation.
 
-Mais depuis les choses ont bien changé.
+Mais les choses ont bien changé.
 
-== Une système à état parallèle
+== Un système à états parallèle
 
 Avec les besoins de performance, on a eu besoin d'ajouter du cache pour la lecture et l'écriture.
 
-En lecture car on s'est aperçu que les systèmes relisaient souvent les mêmes fichiers, et que de garder leur contenu en mémoire accélérait les choses.
+En lecture, car on s'est aperçu que les systèmes relisaient souvent les mêmes fichiers, et que garder leur contenu en mémoire accélérait les choses.
 
-L'accès aux fichiers devient donc un système à état.
+L'accès aux fichiers est donc devenu un système à états.
 
-De même quand du code commence à lire un fichier, il va souvent ensuite accéder à la suite et il est donc intéressant de la lire en avance pour qu'elle soit déjà là quand le code la demande.
+De même quand du code commence à lire un fichier, il va souvent accéder à la suite et il est donc intéressant de la lire à l'avance pour qu'elle soit déjà là quand le code la demande.
 
-En écriture pour éviter de bloquer le système quand on demande d'écrire des fichiers sur le disque, on peut préférer rendre la main au code appelant et exécuter les écritures plus tard, quand le disque dur est suffisamment disponible pour le faire.
+En écriture, pour éviter de bloquer le système quand on demande d'écrire des fichiers sur le disque, on peut préférer rendre la main au code appelant et exécuter les écritures plus tard, quand le disque dur est suffisamment disponible pour le faire.
 
-Pour gérer cela l'accès aux fichiers devient donc un système parallèle.
+Pour gérer cela, l'accès aux fichiers devient donc un système parallèle.
 
-On en arrive au point où à force d'ajouter des couches au dessus du disque dur, on en arrive à ne plus savoir à quoi s'attendre, et notamment qu'est ce qui est vraiment écrit sur le disque à quel moment.
+On en arrive au point où à force d'ajouter des couches au dessus du disque dur, on ne sait plus  à quoi s'attendre, et notamment qu'est ce qui est vraiment écrit sur le disque à quel moment.
 
-C'est par exemple link:https://lwn.net/Articles/799807/[le cas personnes qui développent des bases de données], car sans garantie sur quelles données sont bien enregistrées, il devient impossible d'avoir un système fiable.
+C'est par exemple link:https://lwn.net/Articles/799807/[le cas des personnes qui développent des bases de données], car sans garantie sur quelles données sont bien enregistrées, il devient impossible d'avoir un système fiable.
 
 == Un système de base de données
 
@@ -48,7 +48,7 @@ On a parlé jusque là de la lecture et de l'écriture, mais on fait aussi beauc
 
 Car pour accéder à un fichier dans un répertoire, il faut commencer par récupérer des informations sur l'endroit où il est stocké sur le disque.
 
-Cela signifie se souvenir quels sont les fichiers qui existent dans un répertoire, mais également link:https://lwn.net/Articles/814535/[se souvenir des fichiers qu'on a cherché et qu'on n'a pas trouvé].
+Cela signifie se souvenir quels sont les fichiers qui existent dans un répertoire, mais également link:https://lwn.net/Articles/814535/[se souvenir des fichiers qu'on a cherchés et qu'on n'a pas trouvés].
 
 Les systèmes d'exploitation de bureau ou pour téléphones gèrent aussi de la recherche en indexant le contenu des fichiers et des métadonnées.
 
@@ -58,7 +58,7 @@ Avec ces deux éléments -- requêtage et indexation -- un système de gestion d
 
 == Un moteur évènementiel
 
-La dernière brique est le fait que parcourir un système de fichier peut être utilisé pour déclencher des évènements.
+La dernière brique est le fait que parcourir un système de fichiers peut être utilisé pour déclencher des évènements.
 
 Si vous utilisez un langage de programmation comme Ruby, Node.js ou Python, il y a des chances qu'à chaque fois que vous changez de répertoire dans un terminal, votre système cherche des fichiers `.ruby-version` `.nvmrc` ou `.python-version`, indiquant s'il faut changer la version de l'interpréteur correspondant à utiliser.
 
@@ -66,7 +66,7 @@ Si vous utilisez un langage de programmation comme Ruby, Node.js ou Python, il y
 
 Du code exécuté ainsi peut bien entendu déclencher d'autres évènements s'il modifie lui-même des fichiers.
 
-Le parcours de répertoire permet donc de déclencher du code à l'aide de point d'entrées spécifiques, comme dans une application gérant des plugins.
+Le parcours de répertoire permet donc de déclencher du code à l'aide de points d'entrées spécifiques, comme dans une application gérant des plugins.
 
 == Conclusion
 
@@ -74,8 +74,8 @@ Un système de gestion de fichiers c'est donc quoi ? Une abstraction au dessus d
 
 C'est un peu les trois, en fonction de ce que vous en faites, cela peut même être également un système en réseau et distribué si vous utilisez un système comme link:https://fr.wikipedia.org/wiki/Samba_(informatique)[Samba] ou link:https://fr.wikipedia.org/wiki/Network_File_System[NFS].
 
-Ça montre à quel point des choses peuvent sembler simples peuvent être compliquées en informatique  et à quel point stocker des données d'une manière qui réponde aux besoins actuel est devenu d'une complexité insondable.
+Ça montre à quel point des choses qui peuvent sembler simples peuvent être compliquées en informatique  et à quel point stocker des données d'une manière qui réponde aux besoins actuel est devenu d'une complexité insondable.
 
-Pour revenir sur link:../abstraction-seniorite/[les abstractions], le cas des fichiers est intéressant car comprendre le fonctionnement interne n'est pas seulement utile pour être en mesure de répondre des besoins exotiques mais aussi pour des besoins qu'on pourrait considérer comme standard, par exemple savoir à quel moment une donnée est stockée sur le disque de manière fiable.
+Pour revenir sur link:../abstraction-seniorite/[les abstractions], le cas des fichiers est intéressant car comprendre le fonctionnement interne n'est pas seulement utile pour être en mesure de répondre à des besoins exotiques mais aussi pour des besoins qu'on pourrait considérer comme standard, par exemple savoir à quel moment une donnée est stockée sur le disque de manière fiable.
 
 Cela signifie que tout système manipulant des fichiers sans faire attention à cela pourrait ne pas être considéré comme fiable, car en cas de crash les données pourraient être corrompues.
