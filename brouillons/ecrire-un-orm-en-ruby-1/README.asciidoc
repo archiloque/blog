@@ -88,6 +88,7 @@ Voici la structure SQL{nbsp} correspondante avec la syntaxe SQLite{nbsp}:
 .structure.sql
 [source,sql]
 ----
+-- Table color
 CREATE TABLE 'color' (
   'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 
@@ -97,6 +98,7 @@ CREATE TABLE 'color' (
 CREATE UNIQUE INDEX idx_color_unique 
   ON color('name');
 
+-- Table brick
 CREATE TABLE 'brick' (
   'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 
@@ -107,6 +109,7 @@ CREATE TABLE 'brick' (
   FOREIGN KEY('color_id') REFERENCES 'color'('id')
 );
 
+-- Table kit
 CREATE TABLE 'kit' (
   'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 
@@ -114,6 +117,7 @@ CREATE TABLE 'kit' (
   'description' TEXT NOT NULL
 );
 
+-- Table kit_brick
 CREATE TABLE 'kit_brick' (
   'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 
@@ -128,7 +132,7 @@ CREATE UNIQUE INDEX 'idx_kit_brick_uniqu'
   ON 'kit_brick'('kit_id', 'brick_id');
 ----
 
-Pour créer une base avec la bonne structure, vous pouvez lancer la commande
+Pour créer une base avec la bonne structure, vous pouvez lancer la commande{nbsp}:
 
 [source,bash]
 ----
@@ -292,17 +296,18 @@ Pour générer le fichier, il faut alors charger ce template, l'appliquer à cha
 
 require 'erb'
 
-# Load the template
+# Récupère le template
 erb = ERB.new(IO.read('models.rb.erb'))
 
-# Apply the template to the model definitions
+# Applique le template aux modèles
 models_code = ModelDefinition::MODELS_DEFINITIONS.
     map do |model|
-  # Make the ModelDefinition available as `model` in the template
+  # Fait en sorte que le ModelDefinition soit disponible dans le template
+  # via la variable `model`
   erb.result_with_hash(model: model)
 end
 
-# Write the concatenated result to a file
+# Concatène le code des modèles et l'écrit dans un fichier
 IO.write(
     'models.rb',
     models_code.
@@ -316,7 +321,7 @@ Comme les chemins des fichiers sont tous en dur dans le code, il n'y a pas besoi
 .Rakefile
 [source,ruby]
 ----
-desc 'Generate the models from the schema.rm file'
+desc 'Génère les modèles à partir du fichier schema.rb'
 task :generate_models do
   require_relative 'generator'
 end
@@ -379,4 +384,4 @@ require_relative 'models'
 black = Color.new
 ----
 
-Mais la structure générale est en place, et dans l'article suivant je vais pouvoir m'en servir pour faire mes premières requêtes.
+Mais la structure est en place, et dans l'article suivant je vais pouvoir m'en servir pour faire mes premières requêtes.

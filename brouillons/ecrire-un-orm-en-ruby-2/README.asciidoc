@@ -76,7 +76,7 @@ puis{nbsp}:
 [source,ruby]
 ----
 models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
-  # List the columns definitions
+  # Liste les colonnes de la table correspondante
   columns_definitions = DATABASE.table_info(model.table_name).collect do |column_info|
     column_name = column_info['name']
     column_type = column_info['type']
@@ -109,10 +109,11 @@ En modifiant le code pour utiliser `SQLITE_TYPE_TO_RUBY_CLASS`, cela donne :
 [source,ruby]
 ----
 models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
-  # List the columns definitions
+  # Liste les colonnes de la table correspondante
   columns_definitions = DATABASE.table_info(model.table_name).collect do |column_info|
     column_name = column_info['name']
     sql_type = column_info['type']
+    # Transforme le type SQL en type Ruby
     ruby_type = SQLITE_TYPE_TO_RUBY_CLASS[sql_type]
     ColumnDefinition.new(column_name, ruby_type)
   end
@@ -194,7 +195,7 @@ Je ne l'utilise pas dans mon exemple, mais l'information de nullabilité des col
 
 == L'insertion
 
-Une fois qu'on a la liste des champs et qu'il est possible de leur attribuer des valeurs, il est temps de pouvoir insérer ces données dans la base.
+Une fois qu'on a la liste des champs et qu'il est possible de leur attribuer des valeurs, il est temps de pouvoir insérer ces données dans la base, en ajoutant une méthode `insert` aux modèles.
 
 Pour cela il faut générer ce type de requêtes{nbsp}:
 
@@ -228,14 +229,14 @@ Je les déclare dans la classe parente{nbsp}:
 # @abstract
 class Model
 
-  # Method should be implemented in subclasses
+  # Méthode à implémenter dans les sous-classes
   # @abstract
   # @return [String]
   def self.table_name
     raise NotImplementedError
   end
 
-  # Method should be implemented in subclasses
+  # Méthode à implémenter dans les sous-classes
   # @abstract
   # @return [Array<String>]
   def self.columns
@@ -245,7 +246,6 @@ end
 ----
 
 Puis je les ajoute au template de modèle, avec la déclaration de l'héritage{nbsp}:
-
 
 .models.erb.rb
 [source]
@@ -313,25 +313,26 @@ require 'sqlite3'
 # @abstract
 class Model
 
-  # We need a connection to the dabatase
+  # Connection à la base pour executer les requ^tes
   DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
 
   # @return [void]
   def insert
-    # Columns names without the 'id' column
-    # because the id values are managed by the database
+    # Liste des noms de colonnes sans la colonne id
+    # car les valeurs des ids sont gérées par la base
     columns_names_except_id = self.class.columns.
         select { |column| column != 'id' }
 
-    # Quote the columns names to avoid escaping issues
+    # Noms des colonnes échappées pour éviter 
+    # les problèmes avec des guillemets et d'autres symboles
     quoted_columns_names_except_id = columns_names_except_id.
         map { |column_name| SQLite3::Database.quote(column_name) }
 
-    # Columns vales without 'id'
+    # Valeurs des colonnes à part la colonne 'id'
     columns_values_except_id = columns_names_except_id.
         map { |column_name| self.send(column_name) }
 
-    # Query looks like
+    # Les requêtes vont ressembler à
     # INSERT INTO table_name
     #   (column_name_1, column_name_2, …)
     #   VALUES (?, ?, …)
@@ -342,7 +343,8 @@ class Model
         columns_values_except_id
     )
 
-    # Set the `id` of the model from the value provided by the database
+    # Définit la valeur  du champ `id` du modèle
+    # en récupérant la valeur attribuée par la base
     self.id = DATABASE.last_insert_row_id
   end
 end
@@ -385,6 +387,35 @@ sqlite> select * from brick;
 1|Awesome brick|This brick is awesome|1
 ----
 
+== La récupération
+
+Maintenant que je peux insérer des données, je vais pouvoir m'intéresser à leur récuparation.
+
+Je commence par m'occuper de la récupération de l'intégralité des données d'une table en ajoutant une méthode de classe `all` aux modèles.
+
+Cela permettra des appels du type{nbsp}:
+
+[source,ruby]
+----
+Color.all
+----
+
+En SQL cela donne ce type de requêtes{nbsp}:
+
+[source,sql]
+----
+SELECT column_name_1, column_name_2, …
+  FROM table_name
+----
+
+Les noms de la table et des colonnes sont maintenant à disposition.
+
+Une fois les valeurs récupérées, pour chaque ligne trouvée il faur créer une instance de la classe du modèle, et attribuer leurs valeurs au différents champs.
+
+Les noms des attributs étant les mêmes que ceux des colonnes, pour chaque colonne `nom_de_colonne`, j'appellerait le setter `nom_de_colonne=` via la méthode `send` qui permet d'appeller une méthode dynamiquement à partir de son nom.
+
+À l'inverse du cas précédent, il nous faudra également récupérer la valeur de la colonne `id`.
+
 .model.rb
 [source,ruby]
 ----
@@ -394,22 +425,87 @@ class Model
     quoted_columns_names = columns.
         map { |column_name| SQLite3::Database.quote(column_name) }
 
-    # Query looks like
+    # Les requêtes vont ressembler à
     # SELECT column_name_1, column_name_2, …
-    #   FROM 'table_name'
+    #   FROM table_name
     DATABASE.execute(
         "SELECT #{quoted_columns_names.join(', ')} " +
             "FROM #{SQLite3::Database.quote(table_name)}"
     ).map do |result_row|
+      # Instancie l'objet de la classe du modèle
       model_instance = self.new
+      # Pour chaque colonne
       columns.each_with_index do |column, column_index|
-        model_instance.send("#{column}=", result_row[column_index])
+        # On récupère la valeur
+        column_value = result_row[column_index]
+        # On stocke la valeur dans l'attribue correspondant
+        model_instance.send("#{column}=", colonne_value)
       end
       model_instance
     end
   end
 end
 ----
+
+On peut alors récupérer des données{nbsp}:
+
+.script.rb
+[source,ruby]
+----
+require_relative 'model'
+require_relative 'models'
+
+black = Color.new
+black.name = 'Black'
+black.insert
+
+puts '# Les couleurs'
+Color.all.each do |color|
+  puts "  #{color.id} : #{color.name}"
+end
+
+brick = Brick.new
+brick.color_id = black.id
+brick.name = 'Awesome brick'
+brick.description = 'This brick is awesome'
+brick.insert
+
+puts 'Les briques'
+Brick.all.each do |brick|
+  puts "  #{brick.id} : #{brick.name}, #{brick.description}, #{brick.color_id}"
+  puts brick.id
+  puts brick.name
+  puts brick.description
+  puts brick.color_id
+end
+----
+
+[source,bash]
+----
+$ bundle exec ruby script.rb
+Les couleurs
+  1 : Black
+Les briques
+  1 : Awesome brick, This brick is awesome, 1
+----
+
+== Et la suppression
+
+Pour terminer, après l'insertion et la récupération il est temps de supprimer des données.
+
+Dans le standard SQL, il existe une commande `TRUNCATE table_name` qui supprime le contenu d'une table.
+
+Malheuresement elle n'est pas disponible dans SQLite, je vais donc devoir utiliser la requête SQL{nbsp}:
+
+[source,sql]
+----
+DELETE FROM table_name
+----
+
+Je vais tout de même appeller la méthode `truncate` pour qu'elle corresponde à la commande SQL, même l'implémentation ne l'utilise pas.
+
+On a ici un exemple où l'ORM doit assurer la compatibilité entre les bases.
+Si ce cas est assez simple, il permet de comprendre la manière dont les choses pourraient être mise en œuvres{nbsp}:une méthode de base qui utiliserait la commande `truncate`, et une classe spécifique à SQLite qui utiliserait la requête `delete`
 
 .model.rb
 [source,ruby]
@@ -422,6 +518,8 @@ class Model
 end
 ----
 
+On peut alors la tester
+
 .script.rb
 [source,ruby]
 ----
@@ -431,28 +529,14 @@ require_relative 'models'
 Brick.truncate
 Color.truncate
 
-black = Color.new
-black.name = 'Black'
-black.insert
-
-yellow = Color.new
-yellow.name = 'Yellow'
-yellow.insert
-
-brick = Brick.new
-brick.color_id = black.id
-brick.name = 'Awesome brick'
-brick.description = 'This brick is awesome'
-brick.insert
-
-puts '# All colors'
+puts '# Les couleurs'
 Color.all.each do |color|
-  puts color.id
-  puts color.name
+  puts "  #{color.id} : #{color.name}"
 end
 
-puts '# All Bricks'
+puts 'Les briques'
 Brick.all.each do |brick|
+  puts "  #{brick.id} : #{brick.name}, #{brick.description}, #{brick.color_id}"
   puts brick.id
   puts brick.name
   puts brick.description
@@ -463,14 +547,11 @@ end
 [source,bash]
 ----
 $ bundle exec ruby script.rb
-# All colors
-57
-Black
-58
-yellow
-# All Bricks
-47
-Awesome brick
-This brick is awesome
-57
+Les couleurs
+  1 : Black
+Les briques
+  1 : Awesome brick, This brick is awesome, 1
 ----
+
+C'est tout pour cette fois.
+Pour l'article suivant, je vais enrichir les méthodes de récupération pour pouvori ajouter des filtres et trier les données.
