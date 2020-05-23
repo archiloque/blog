@@ -505,7 +505,9 @@ DELETE FROM table_name
 Je vais tout de même appeller la méthode `truncate` pour qu'elle corresponde à la commande SQL, même l'implémentation ne l'utilise pas.
 
 On a ici un exemple où l'ORM doit assurer la compatibilité entre les bases.
-Si ce cas est assez simple, il permet de comprendre la manière dont les choses pourraient être mise en œuvres{nbsp}:une méthode de base qui utiliserait la commande `truncate`, et une classe spécifique à SQLite qui utiliserait la requête `delete`
+Si ce cas est assez simple, il permet de comprendre la manière dont les choses pourraient être mise en œuvres{nbsp}:une méthode de base qui utiliserait la commande `truncate`, et une classe spécifique à SQLite qui utiliserait la requête `delete`.
+
+Le code résultant est assez court et s'inspire des méthodes existantes{nbsp}:
 
 .model.rb
 [source,ruby]
