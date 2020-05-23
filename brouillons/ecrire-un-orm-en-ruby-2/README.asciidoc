@@ -125,12 +125,7 @@ Avec le nom et le type de chaque colonne, je vais pouvoir générer les getter e
 .models.erb.rb
 [source]
 ----
-class <%= model.name %> < Model
-
-  # @return [String]
-  def self.table_name
-      '<%= model.table_name %>'
-  end
+class <%= model.name %>
 
   <% columns_definitions.each do |column_definition| %>
   <% column_name = column_definition.name %>
@@ -155,18 +150,8 @@ Ce qui donne ce résultat{nbsp}:
 .models.rb
 [source,ruby]
 ----
-class Color < Model
+class 
 
-  # @return [String]
-  def self.table_name
-      'color'
-  end
-
-  # @return [Array<String>]
-  def self.columns
-      ["id", "name"]
-  end
-  
   # @return [Integer]
   def id
     @id
@@ -203,45 +188,146 @@ black.name = 'Black'
 ----
 
 On peut voir ici l'intérêt de la génération de code à froid{nbsp}: on peut facilement consulter les méthodes disponibles avec leurs informations de type.
-
 Avec un IDE on peut même disposer de l'autocompletion.
 
 Je ne l'utilise pas dans mon exemple, mais l'information de nullabilité des colonnes peut servir pour renseigner la nullabilité des paramètres ou des retours des méthodes.
 
+== L'insertion
+
+Une fois qu'on a la liste des champs et qu'il est possible de leur attribuer des valeurs, il est temps de pouvoir insérer ces données dans la base.
+
+Pour cela il faut générer ce type de requêtes{nbsp}:
+
+[source,sql]
+----
+INSERT INTO table_name
+  (column_name_1, column_name_2, …)
+  values (column_value_1, column_value_2, …)
+----
+
+Pour partager le code entre les modèles, je vais ajouter une classe `Model` qui sera parente des classes de modèles.
+
 .model.rb
 [source,ruby]
 ----
-require 'sqlite3'
+# @abstract
+class Model
+end
+----
 
+Je la marque comme abstraite avec `@abstract` pour indiquer qu'elle n'est pas utilisable directement mais qu'on doit passer par les classes dérivées.
+
+Pour générer les requêtes d'insertion, je vais avoir besoin du nom de la table et de la liste des colonnes de chaque modèle.
+Pour cela je vais ajouter des méthodes de classes pour récupérer les valeurs.
+
+Je les déclare dans la classe parente{nbsp}:
+
+.model.rb
+[source,ruby]
+----
+# @abstract
 class Model
 
-  DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
-
+  # Method should be implemented in subclasses
   # @abstract
   # @return [String]
   def self.table_name
     raise NotImplementedError
   end
 
+  # Method should be implemented in subclasses
   # @abstract
   # @return [Array<String>]
   def self.columns
     raise NotImplementedError
   end
+end
+----
+
+Puis je les ajoute au template de modèle, avec la déclaration de l'héritage{nbsp}:
+
+
+.models.erb.rb
+[source]
+----
+class <%= model.name %> < Model
+  # @return [String]
+  def self.table_name
+      '<%= model.table_name %>'
+  end
+
+  # @return [Array<String>]
+  def self.columns
+      <%= columns_definitions.map do |column_definition|
+        column_definition.name
+      end %>
+  end
+end
+----
+
+Ce qui donne, en relançant la génération{nbsp}:
+
+.models.rb
+[source,ruby]
+----
+class Color < Model
 
   # @return [String]
-  def self.quoted_table_name
-    SQLite3::Database.quote(table_name)
+  def self.table_name
+      'color'
   end
+
+  # @return [Array<String>]
+  def self.columns
+      ["id", "name"]
+  end
+
+  # …
+end
+----
+
+Avec ces méthodes je peux générer la requête, en ajoutant une connection à la base pour pouvoir l'exécuter.
+
+Pour la requête je vais utiliser la méthode `SQLite3::Database#execute`, qui permet de passer les valeurs des colonnes en paramètre plutôt que de les mettre dans le corps de la requête, ce qui donnera ce genre d'appel{nbsp}:
+
+[source,ruby]
+----
+DATABASE.execute('INSERT INTO color (name) values (?)', ['Black'])
+----
+
+Cette syntaxe permet d'éviter d'avoir à se préocuper du format à utiliser pour passer les valeurs à la base, et donc d'éviter des risque de sécurité.
+
+Dans notre case les valeurs de l'`id` des modèles ne doivent pas être insérée car elles sont gérées par la base, c'est pour cela que les colonnes `id` sont déclarées en `AUTOINCREMENT`.
+Cela simplifie le code et fournit une garantie d'unicité dans le cas d'une base SQL standard.
+
+La manière de s'y prendre n'est pas standardisé et dépend donc de la base de données.
+Il y a deux grandes approches{nbsp}: soit les valeurs sont retournées par la requête d'insertion, ou une requête spécifique permet de récupérer les `id` des valeurs qu'on vient d'insérer.
+
+SQLite utilise la deuxième solution via link:https://www.sqlite.org/lang_corefunc.html#last_insert_rowid[`last_insert_rowid()`].
+
+.model.rb
+[source,ruby]
+----
+require 'sqlite3'
+
+# @abstract
+class Model
+
+  # We need a connection to the dabatase
+  DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
 
   # @return [void]
   def insert
+    # Columns names without the 'id' column
+    # because the id values are managed by the database
     columns_names_except_id = self.class.columns.
         select { |column| column != 'id' }
 
+    # Quote the columns names to avoid escaping issues
     quoted_columns_names_except_id = columns_names_except_id.
         map { |column_name| SQLite3::Database.quote(column_name) }
 
+    # Columns vales without 'id'
     columns_values_except_id = columns_names_except_id.
         map { |column_name| self.send(column_name) }
 
@@ -250,15 +336,21 @@ class Model
     #   (column_name_1, column_name_2, …)
     #   VALUES (?, ?, …)
     DATABASE.execute(
-        "INSERT INTO #{self.class.quoted_table_name} " +
+        "INSERT INTO #{SQLite3::Database.quote(self.class.table_name)} " +
             "(#{quoted_columns_names_except_id.join(', ')}) " +
             "VALUES (#{Array.new(columns_names_except_id.length, '?').join(', ')})",
         columns_values_except_id
     )
+
+    # Set the `id` of the model from the value provided by the database
     self.id = DATABASE.last_insert_row_id
   end
 end
 ----
+
+Les méthodes `table_name` et `columns` étant implémentées dans chaque classe de modèle, utiliser `self.class.table_name` et `self.class.columns` dans la classe parente `Model` appellera bien la méthode spécifique de chaque modèle plutôt que les méthodes de la classe `Model`.
+
+Avec ce code, on peut enfin insérer les données{nbsp}:
 
 .script.rb
 [source,ruby]
@@ -271,11 +363,13 @@ black.name = 'Black'
 black.insert
 
 brick = Brick.new
-brick.color_id = color.id
+brick.color_id = black.id
 brick.name = 'Awesome brick'
 brick.description = 'This brick is awesome'
 brick.insert
 ----
+
+On peut vérifier dans la base que tout s'est bien passé{nbsp}:
 
 [source,bash]
 ----
@@ -305,7 +399,7 @@ class Model
     #   FROM 'table_name'
     DATABASE.execute(
         "SELECT #{quoted_columns_names.join(', ')} " +
-            "FROM #{quoted_table_name}"
+            "FROM #{SQLite3::Database.quote(table_name)}"
     ).map do |result_row|
       model_instance = self.new
       columns.each_with_index do |column, column_index|
@@ -323,7 +417,7 @@ end
 class Model
   # @return [void]
   def self.truncate
-    DATABASE.execute("DELETE FROM #{quoted_table_name}")
+    DATABASE.execute("DELETE FROM #{SQLite3::Database.quote(table_name)}")
   end
 end
 ----
