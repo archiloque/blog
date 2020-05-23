@@ -62,6 +62,7 @@ Ensuite, je dois récupérer les colonnes de chaque table.
 L'endroit le plus simple est de le faire juste avant de créer les classes de modèles, alors qu'on est déjà en train d'itérer sur chaque modèle, on pourra alors passer la liste des colonnes au template.
 
 Mais pour commencer, il faut se connecter à la base de donnée.
+Je vais utiliser une base en local avec un fichier stocké dans le répertoire du projet
 
 .generator.rb
 [source,ruby]
@@ -191,11 +192,21 @@ end
 # …
 ----
 
-On peut voir ici l'intérêt de la génération de code à froid car on peut directement consulter les méthodes disponibles avec leurs informations de type.
+Ce qui permet d'écrire{nbsp}:
 
-En utilisant un IDE, on peut même disposer de l'autocompletion.
+[source,ruby]
+----
+require_relative 'models'
 
-Je ne l'utilise pas dans mon exemple, mais l'information de nullabilité des colonnes pourrait servir pour renseigner la nu
+black = Color.new
+black.name = 'Black'
+----
+
+On peut voir ici l'intérêt de la génération de code à froid{nbsp}: on peut facilement consulter les méthodes disponibles avec leurs informations de type.
+
+Avec un IDE on peut même disposer de l'autocompletion.
+
+Je ne l'utilise pas dans mon exemple, mais l'information de nullabilité des colonnes peut servir pour renseigner la nullabilité des paramètres ou des retours des méthodes.
 
 .model.rb
 [source,ruby]
@@ -255,9 +266,9 @@ end
 require_relative 'model'
 require_relative 'models'
 
-color = Color.new
-color.name = 'Black'
-color.insert
+black = Color.new
+black.name = 'Black'
+black.insert
 
 brick = Brick.new
 brick.color_id = color.id

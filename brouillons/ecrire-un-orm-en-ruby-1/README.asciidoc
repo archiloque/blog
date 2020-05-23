@@ -55,7 +55,7 @@ Le faire ajouterait pas mal de code et un peu de complexité sans que cela appor
 
 === Les dépendances
 
-Tout d'abord il faut fixer la version de Ruby, je vais utiliser la dernière à date par principe.
+Tout d'abord il faut fixer la version de Ruby, je vais prendre la dernière disponible au moment d'écrire l'article.
 
 .ruby-version 
 [source]
@@ -141,7 +141,6 @@ Et ensuite explorer la base ainsi{nbsp}:
 ----
 $ sqlite3 orm-ruby.sqlite
 SQLite version 3.24.0 2018-06-04 14:10:15
-Enter ".help" for usage hints.
 sqlite> select count(*) from color;
 0
 sqlite> 
@@ -150,7 +149,7 @@ sqlite>
 Certains ORMs comme Rails et Sequel fournissent des outils pour gérer les modifications de schéma de a base.
 J'ai fais le choix ici de ne pas implémenter cette fonctionnalité car&#8201;—{nbsp}même si elle peut partager du code avec le reste de l'ORM {nbsp}—&#8201;elle est largement séparée et n'influe donc pas sur le noyau de l'outil.
 
-Dans le monde Java, link:https://hibernate.org/orm/[l'ORM hybernate] qui est très utilisé ne fournit ainsi pas d'outil de migration.
+Dans le monde Java, link:https://hibernate.org/orm/[l'ORM hibernate] qui est très utilisé ne fournit ainsi pas d'outil de migration.
 
 == Un DSL pour configurer les modèles
 
@@ -372,4 +371,12 @@ class KitBrick
 end
 ----
 
-La structure est alors en place, et dans l'article suivant je vais pouvoir m'en servir pour faire mes premières requêtes.
+Pour le moment, tout ce que je peux faire c'est d'instancier les différentes classes{nbsp}:
+
+[source,ruby]
+----
+require_relative 'models'
+black = Color.new
+----
+
+Mais la structure générale est en place, et dans l'article suivant je vais pouvoir m'en servir pour faire mes premières requêtes.
