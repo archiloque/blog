@@ -191,6 +191,8 @@ black.name = 'Black'
 On peut voir ici l'intérêt de la génération de code à froid{nbsp}: on peut facilement consulter les méthodes disponibles avec leurs informations de type.
 Avec un IDE on peut même disposer de l'autocompletion.
 
+En cas d'évolution d'un modèle, l'évolution sera visible dans les classes générées.
+
 Je ne l'utilise pas dans mon exemple, mais l'information de nullabilité des colonnes peut servir pour renseigner la nullabilité des paramètres ou des retours des méthodes.
 
 == L'insertion
@@ -265,7 +267,7 @@ class <%= model.name %> < Model
 end
 ----
 
-Ce qui donne, en relançant la génération{nbsp}:
+Ce qui donne, après avoir relançé la génération avec la commande `rake generate_models`{nbsp}:
 
 .models.rb
 [source,ruby]
@@ -408,7 +410,7 @@ SELECT column_name_1, column_name_2, …
   FROM table_name
 ----
 
-Les noms de la table et des colonnes sont maintenant à disposition.
+Les noms de la table et des colonnes sont à disposition pour construire la requête.
 
 Une fois les valeurs récupérées, pour chaque ligne trouvée il faur créer une instance de la classe du modèle, et attribuer leurs valeurs au différents champs.
 
@@ -504,8 +506,8 @@ DELETE FROM table_name
 
 Je vais tout de même appeller la méthode `truncate` pour qu'elle corresponde à la commande SQL, même l'implémentation ne l'utilise pas.
 
-On a ici un exemple où l'ORM doit assurer la compatibilité entre les bases.
-Si ce cas est assez simple, il permet de comprendre la manière dont les choses pourraient être mise en œuvres{nbsp}:une méthode de base qui utiliserait la commande `truncate`, et une classe spécifique à SQLite qui utiliserait la requête `delete`.
+On a ici un exemple où l'ORM doit assurer la compatibilité entre les systèmes de bases de données.
+Si ce cas est assez simple, il permet de comprendre la manière dont les choses pourraient être mises en œuvre{nbsp}:une méthode de base qui utiliserait la commande `truncate`, et une classe spécifique à SQLite qui utiliserait la requête `delete`.
 
 Le code résultant est assez court et s'inspire des méthodes existantes{nbsp}:
 
@@ -556,4 +558,4 @@ Les briques
 ----
 
 C'est tout pour cette fois.
-Pour l'article suivant, je vais enrichir les méthodes de récupération pour pouvori ajouter des filtres et trier les données.
+Pour l'article suivant, je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.

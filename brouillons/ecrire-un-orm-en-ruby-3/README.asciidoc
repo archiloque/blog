@@ -5,135 +5,230 @@ v0.1, 2020-05-10
 :source-highlighter: pygments
 :pygments-style: friendly
 
+Ceci est le troisième article d'une série de quatre décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
+
+Après link:../ecrire-un-orm-en-ruby-1/[le premier article] où j'ai posé les bases de l'outil, et link:../ecrire-un-orm-en-ruby-1/[le deuxième article] où j'ai ajouté la génération des requêtes, je vais m'occuper ici du filtrage et de l'order des résultats dans les requêtes de sélection.
+
+À la fin de l'article, il sera possible d'utiliser ce genre d'appels{nbsp}:
+
+[source,ruby]
+----
+Color.where('name = ?', 'Black').first
+Color.where('name = ?', 'b*').order_by('name desc').all
+----
+
+== L'approche "`builder`"
+
+Ce type d'API utilise souvent le design pattern "`builder`" qui consiste à stocker les différent paramètres d'une requête dans des objets, et les utiliser au moment où la requête est executée.
+
+Ainsi la commande
+
+[source,ruby]
+----
+Color.where('name = ?', 'b*').order_by('name desc').all
+----
+
+peut se décomposer en
+
+[source,ruby]
+----
+query_parameters_1 = Color.where('name = ?', 'b*')
+query_parameters_2 = query_parameters_1.order_by('name desc')
+result = query_parameters_2.all
+----
+
+Le premier appel `Color.where` construit un objet qui contient la condition `where`, appeler `order_by` sur cet objet construit un autre objet qui contient la condition `where` ainsi que l'ordre de tri du `order_by`.
+
+Finalement appeller `all` sur le dernier objet utilise tous les paramètres stockés jusque là pour construire la requête.
+
+Quand on enchaîne plusieurs appels comme dans 
+
+[source,ruby]
+----
+Color.where('name = ?', 'b*').order_by('name desc').all
+----
+
+le code construit donc une suite d'objets, un à chaque appel.
+
+== La classe `QueryParameters`
+
+La classe `QueryParameters` va donc contenir les différents types de paramètres qu'on peut utiliser dans une requêtes.
+Dans notre exemple je vais couvrir le cas des filtres, de l'ordre et du nombre d'éléments remontés, mais dans un ORM plus complet il peut s'agit de l'ensemble de la grammaire SQL : `group by`, `distinct`, pouvoir choisir quels champs sont remontés{nbsp}…
+
+Voici le début de la classe avec ses attributs{nbsp}:
+
+.model.rb
+[source,ruby]
+----
+class QueryParameters
+
+  # @param [Class] model_class
+  def initialize(model_class)
+    @model_class = model_class
+    @wheres = []
+    @order_bys = []
+  end
+end
+----
+
+En plus des paramètres pour les `where` et les `order by`, elle a besoin de connaître la classe du modèle à traiter pour avoir accès au nom de la table et aux champs, et pour savoir quels objets instancier avec les résultats.
+
+Comme décrit plus haut, appeller `where` ou `order_by` construit une nouvelle instance de `QueryParameters` en ajoutant le paramètre correspondant et la renvoie.
+
+La méthode `order_by` prend un seul paramètre qui est une chaîne de caractère qui contient l'information de tri comme `'name desc'`.
+Ils sont stockés sous la forme d'un tableau dans l'attribut `@order_bys`.
+
+La méthode `where` prend un nombre variable de paramètres, le premier est une chaîne de caractère qui contient l'expression SQL comme `'name = ?'` et les éventuels paramètres suivants contiennent les valeurs à utiliser comme `'Black'` et auront donc des types variés (chaîne de charactère, nombre entier ou à virgule flotante{nbsp}…).
+Ils sont stockés sous la forme d'un tableau de table de hachages (`Hash`) dans l'attribut `@wheres`, .
+
+.model.rb
+[source,ruby]
+----
+class QueryParameters
+  # …
+
+  # @param [String] expression
+  # @param [Array] parameters
+  # @return [QueryParameters]
+  def where(expression, *parameters)
+    new_query_parameters = self.dup
+    new_query_parameters.wheres << {expression: expression, parameters: parameters}
+    new_query_parameters
+  end
+
+  # @param [String] order_by
+  # @return [QueryParameters]
+  def order_by(order_by)
+    new_query_parameters = self.dup
+    new_query_parameters.order_bys << order_by
+    new_query_parameters
+  end
+end
+----
+
+== Les méthodes du modèle
+
+Cela permet de construire un `QueryParameters` à partir d'un `QueryParameters` existant, mais il faut aussi pouvoir construire le premier `QueryParameters` à partir du modèle, par exemple quand on appelle `Color.where('name = ?', 'Black')`.
+
+Cela signifie ajouter ces mêmes méthodes aux modèles, qui initialisent le `QueryParameters` avec la classe du modèle et appelent les méthodes correspondantes sur le `QueryParameters`.
 
 .model.rb
 [source,ruby]
 ----
 class Model
-  # @param [String] filter
-  # @param [Array] params
-  # @return [Model::QueryParameters]
-  def self.where(filter, *params)
-    QueryParameters.new(self).where(filter, *params)
+  # @return [QueryParameters]
+  def self.query_parameters
+    QueryParameters.new(self)
+  end
+
+  # @param [String] expression
+  # @param [Array] parameters
+  # @return [QueryParameters]
+  def self.where(expression, *parameters)
+    query_parameters.where(expression, *parameters)
   end
 
   # @param [String] order_by
-  # @return [Model::QueryParameters]
+  # @return [QueryParameters]
   def self.order_by(order_by)
-    QueryParameters.new(self).order_by(order_by)
-  end
-
-  # @param [Integer] limit
-  # @return [Model::QueryParameters]
-  def self.limit(limit)
-    QueryParameters.new(self).limit(limit)
-  end
-
-  # @return [Array]
-  def self.all
-    QueryParameters.new(self).all
-  end
-
-  # @return [Object]
-  def self.first
-    QueryParameters.new(self).first
-  end
-
-  # @return [void]
-  def self.truncate
-    DATABASE.execute("DELETE FROM #{quoted_table_name}")
-  end
-
-  class QueryParameters
-
-    attr_writer :limit
-    attr_reader :wheres, :order_bys, :limit
-
-    # @param [Class] model_class
-    def initialize(model_class)
-      @model_class = model_class
-      @wheres = []
-      @order_bys = []
-      @limit = nil
-    end
-
-    # @param [String] filter
-    # @param [Array] params
-    # @return [Model::QueryParameters]
-    def where(filter, *params)
-      new_query_parameters = self.dup
-      new_query_parameters.wheres << [filter, params]
-      new_query_parameters
-    end
-
-    # @param [String] order_by
-    # @return [Model::QueryParameters]
-    def order_by(order_by)
-      new_query_parameters = self.dup
-      new_query_parameters.order_bys << order_by
-      new_query_parameters
-    end
-
-    # @param [Integer] limit
-    # @return [Model::QueryParameters]
-    def limit(limit)
-      new_query_parameters = self.dup
-      new_query_parameters.limit = limit
-      new_query_parameters
-    end
-
-    # @return [Array]
-    def all
-      quoted_columns_names = @model_class.columns.
-          map { |column_name| SQLite3::Database.quote(column_name) }
-
-      if @wheres.empty?
-        where_clause = ' '
-        where_params = []
-      else
-        where_clause = "WHERE #{@wheres.map { |filter| filter[0] }.join(' AND ')} "
-        where_params = @wheres.map { |filter| filter[1] }.flatten
-      end
-
-      if @order_bys.empty?
-        order_by_clause = ''
-      else
-        order_by_clause = "ORDER BY #{@order_bys.join(', ')} "
-      end
-
-      if @limit.nil?
-        limit_clause = ' '
-      else
-        limit_clause = "LIMIT #{@limit} "
-      end
-
-      # Query looks like
-      # SELECT column_name_1, column_name_2, …
-      #   FROM 'table_name'
-      #   WHERE column_1 = ? AND column_2 = ?
-      #   LIMIT 10
-      DATABASE.execute(
-          "SELECT #{quoted_columns_names.join(', ')} " +
-              "FROM #{@model_class.quoted_table_name} " +
-              where_clause +
-              order_by_clause +
-              limit_clause,
-          where_params
-      ).map do |result_row|
-        model_instance = @model_class.new
-        @model_class.columns.each_with_index do |column, column_index|
-          model_instance.send("#{column}=", result_row[column_index])
-        end
-        model_instance
-      end
-    end
-
-    def first
-      limit(1).all.first
-    end
+    query_parameters.order_by(order_by)
   end
 end
 ----
+
+Avec cela je peux appeler `Color.where('name = ?', 'b*').order_by('name desc')` et récupérer un `QueryParameters` avec les bonnes données, reste ensuite à s'occuper de la génération de la requête.
+
+== La requête
+
+La méthode existante `Model#all` construit ce genre de requêtes{nbsp}:
+
+[source,sql]
+----
+SELECT column_name_1, column_name_2, …
+  FROM table_name
+----
+
+Avec les nouveaux paramètres, cela va donner{nbsp}:
+
+[source,sql]
+----
+SELECT column_name_1, column_name_2, …
+  FROM table_name
+  WHERE column_A = ? AND column_B < ?
+  ORDER BY column_X asc, column_Y desc
+----
+
+Pour les `where` et `order by` la logique est la même{nbsp}: s'il existe au moins un paramétre de ce type, ajouter la clause en concaténants les éléments séparés par des `AND` ou des virgules, et pour le `where` il faut ensuite passer les valeurs à la requête sous forme d'un tableau contenant l'ensemble des éléments dans le bon ordre.
+
+La partie finale de la méthode qui instancie et renseigne les modèles est reprise de la méthode `Model#all`.
+
+C'est un peu fastidieux mais pas si long que ça{nbsp}:
+
+.model.rb
+[source,ruby]
+----
+class QueryParameters
+  # …
+
+  # @return [Array]
+  def all
+    quoted_columns_names = @model_class.columns.
+        map { |column_name| SQLite3::Database.quote(column_name) }
+
+    if @wheres.empty?
+      where_clause = ' '
+      where_params = []
+    else
+      where_clause = "WHERE #{@wheres.map { |where| where[:expression] }.join(' AND ')} "
+      where_params = @wheres.map { |where| where[:parameters] }.flatten
+    end
+
+    if @order_bys.empty?
+      order_by_clause = ''
+    else
+      order_by_clause = "ORDER BY #{@order_bys.join(', ')} "
+    end
+
+    # Les requêtes vont ressembler à
+    # SELECT column_name_1, column_name_2, …
+    #   FROM table_name
+    #   WHERE column_A = ? AND column_B < ?
+    #   ORDER BY column_X asc, column_Y desc
+    DATABASE.execute(
+        "SELECT #{quoted_columns_names.join(', ')} " +
+            "FROM #{@model_class.quoted_table_name} " +
+            where_clause +
+            order_by_clause,
+        where_params
+    ).map do |result_row|
+      # Construit les instances du modèle
+      model_instance = @model_class.new
+      @model_class.columns.each_with_index do |column, column_index|
+        model_instance.send("#{column}=", result_row[column_index])
+      end
+      model_instance
+    end
+  end
+
+end
+----
+
+Ne me reste plus qu'à remplacer l'implémentation de `Model#all` existante par un appel à cette nouvelle méthode, pour pouvoir récupérer tous les éléments d'un modèle.
+
+.model.rb
+[source,ruby]
+----
+class Model
+  # …
+
+  # @return [Array]
+  def self.all
+    query_parameters.all
+  end
+end
+----
+
+C'est le moment de tester{nbsp}:
 
 .script.rb
 [source,ruby]
@@ -178,16 +273,11 @@ Color.where('name = ?', 'Black').all.each do |color|
   puts color.name
 end
 
-puts '# Color by name'
+puts '# Colors by name'
 Color.order_by('name desc').all.each do |color|
   puts color.id
   puts color.name
 end
-
-puts '# First color by desc name'
-color = Color.order_by('name desc').first
-puts color.id
-puts color.name
 ----
 
 [source,bash]
@@ -206,12 +296,95 @@ This brick is awesome
 # Black color
 73
 Black
-# Color by name
+# Colors by name
 74
 Yellow
 73
 Black
-# First color by name
-74
-Yellow
 ----
+
+== Limiter les résultats
+
+Pour terminer cet article, je vais encore ajouter un cas, celui de la clause `limit` qui permet de limiter le nombre de résultats à récupérer en spcifiant un entier.
+
+Au lieu de stocker les différentes valeurs comme pour `where` et `order by`, on ne conserve qu'une valeur.
+On pourrait aussi envisager de lever une exception si une valeur a déjà été spécifié plus tôt dans la chaîne des `QueryParameters`.
+
+`limit` est le plus souvent utilisé indirectement quand on veut récupérer une seule valeur, sous la forme d'une méthode `first` qui spécifie le `limit` à 1, puis renvoie le premier élément du tableau de résultat.
+
+.model.rb
+[source,ruby]
+----
+class QueryParameters
+  attr_writer :limit
+  attr_reader :wheres, :order_bys, :limit
+
+  # @param [Class] model_class
+  def initialize(model_class)
+    @model_class = model_class
+    @wheres = []
+    @order_bys = []
+    @limit = nil
+  end
+
+  # @param [Integer] limit
+  # @return [Model::QueryParameters]
+  def limit(limit)
+    new_query_parameters = self.dup
+    new_query_parameters.limit = limit
+    new_query_parameters
+  end
+
+    # @return [Array]
+  def all
+    # …
+    if @limit.nil?
+      limit_clause = ' '
+    else
+      limit_clause = "LIMIT #{@limit} "
+    end
+    
+    # Les requêtes vont ressembler à
+    # SELECT column_name_1, column_name_2, …
+    #   FROM table_name
+    #   WHERE column_A = ? AND column_B < ?
+    #   ORDER BY column_X asc, column_Y desc
+    #   LIMIT 10
+    DATABASE.execute(
+        "SELECT #{quoted_columns_names.join(', ')} " +
+            "FROM #{@model_class.quoted_table_name} " +
+            where_clause +
+            order_by_clause +
+            limit_clause,
+        where_params
+    ).map do |result_row|
+    #
+  end
+
+  def first
+    limit(1).all.first
+  end
+end
+----
+
+Reste encore à ajouter les méthodes sur le modèle qui font la délégation à `QueryParameters`{nbsp}:
+
+.model.rb
+[source,ruby]
+----
+class Model
+  # @param [Integer] limit
+  # @return [Model::QueryParameters]
+  def self.limit(limit)
+    query_parameters.limit(limit)
+  end
+
+  # @return [Object]
+  def self.first
+    query_parameters.first
+  end
+end
+----
+
+C'est tout pour cette fois.
+Pour l'article suivant, j'ajouterai une gestion minimale des relations entre objets permettant de parcourir une grape de dépendances.
