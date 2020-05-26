@@ -567,5 +567,10 @@ Les briques
   1 : Awesome brick, This brick is awesome, 1
 ----
 
+Je ne vais pas les détailler ici mais pour les suppression de modèle il faut générer une requête `DELETE FROM table_name WHERE ID = ?` et lui passer l'id du modèle, et pour les mises à jour s'inspirer de la requête d'insertion pour écrire une requête du type `UPDATE table_name SET column_name_1 = ?, column_name_2 = ? WHERE id = ?`.
+
+Toutes les requêtes vues ici s'appuient sur l'hypothèse d'un identifiant technique présent dans toutes les tables, ce qui est la pratique généralement conseillée en SQL.
+Prendre en compte les autres types d'identifiant demande de rendre paramétrable cette partie des requêtes.
+
 C'est tout pour cette fois.
 Pour l'article suivant, je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
