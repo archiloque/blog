@@ -1,9 +1,19 @@
+[#ORM-4]
+ifeval::["{doctype}" == "book"]
+= Partie 4{nbsp}: relations
+endif::[]
+ifeval::["{doctype}" != "book"]
 = Écrire un ORM en Ruby partie 4{nbsp}: relations
-Julien Kirch
-v0.1, 2020-05-10
+endif::[]
+
+:author: Julien Kirch
+:revnumber: v0.1
+:docdate: 2020-05-10
 :article_lang: fr
+ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
+endif::[]
 
 .schema.rb
 [source,ruby]

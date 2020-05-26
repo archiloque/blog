@@ -1,9 +1,19 @@
+[#ORM-2]
+ifeval::["{doctype}" == "book"]
+= Partie 2{nbsp}: récupération des champs, insertion et sélection
+endif::[]
+ifeval::["{doctype}" != "book"]
 = Écrire un ORM en Ruby partie 2{nbsp}: récupération des champs, insertion et sélection
-Julien Kirch
-v0.1, 2020-05-10
+endif::[]
+
+:author: Julien Kirch
+:revnumber: v0.1
+:docdate: 2020-05-10
 :article_lang: fr
+ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
+endif::[]
 
 Ceci est le deuxième article d'une série de quatre décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 
@@ -204,8 +214,8 @@ Pour cela il faut générer ce type de requêtes{nbsp}:
 [source,sql]
 ----
 INSERT INTO table_name
-  (column_name_1, column_name_2, …)
-  values (column_value_1, column_value_2, …)
+  (column_name_1, column_name_2)
+  values (column_value_1, column_value_2)
 ----
 
 Pour partager le code entre les modèles, je vais ajouter une classe `Model` qui sera parente des classes de modèles.
@@ -336,8 +346,8 @@ class Model
 
     # Les requêtes vont ressembler à
     # INSERT INTO table_name
-    #   (column_name_1, column_name_2, …)
-    #   VALUES (?, ?, …)
+    #   (column_name_1, column_name_2)
+    #   VALUES (?, ?)
     DATABASE.execute(
         "INSERT INTO #{SQLite3::Database.quote(self.class.table_name)} " +
             "(#{quoted_columns_names_except_id.join(', ')}) " +
@@ -406,7 +416,7 @@ En SQL cela donne ce type de requêtes{nbsp}:
 
 [source,sql]
 ----
-SELECT column_name_1, column_name_2, …
+SELECT column_name_1, column_name_2
   FROM table_name
 ----
 
@@ -428,7 +438,7 @@ class Model
         map { |column_name| SQLite3::Database.quote(column_name) }
 
     # Les requêtes vont ressembler à
-    # SELECT column_name_1, column_name_2, …
+    # SELECT column_name_1, column_name_2
     #   FROM table_name
     DATABASE.execute(
         "SELECT #{quoted_columns_names.join(', ')} " +

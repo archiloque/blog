@@ -1,9 +1,19 @@
+[#ORM-1]
+ifeval::["{doctype}" == "book"]
+= Partie 1{nbsp}: structure
+endif::[]
+ifeval::["{doctype}" != "book"]
 = Écrire un ORM en Ruby partie 1{nbsp}: structure
-Julien Kirch
-v0.1, 2020-05-10
+endif::[]
+
+:author: Julien Kirch
+:revnumber: v0.1
+:docdate: 2020-05-10
 :article_lang: fr
+ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
+endif::[]
 
 Les ORMs sont probablement les outils les plus complexes auxquels ont a affaire directement quand on commence à développer.
 
@@ -81,7 +91,7 @@ Dans la suite, je vais prendre comme exemple un jeu de construction.
 Ce jeu de construction est composé des différents types de briques (`Brick`), qui sont chacun d'une certaine couleur (`Color`).
 Des modèles à construire (`Kit`) sont constitués d'un ensemble de types de briques chacun présent un certain nombre de briques (tant de briques d'une sorte, tant de briques d'une autre sorte), la relation modèle - type de brique étant modélisé par un `KitBrick`.
 
-image:schema.svg[]
+image:../ecrire-un-orm-en-ruby-1/schema.svg[]
 
 Voici la structure SQL{nbsp} correspondante avec la syntaxe SQLite{nbsp}:
 

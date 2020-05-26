@@ -1,9 +1,19 @@
+[#ORM-3]
+ifeval::["{doctype}" == "book"]
+= Partie 3{nbsp}: filtrage et ordre
+endif::[]
+ifeval::["{doctype}" != "book"]
 = Écrire un ORM en Ruby partie 3{nbsp}: filtrage et ordre
-Julien Kirch
-v0.1, 2020-05-10
+endif::[]
+
+:author: Julien Kirch
+:revnumber: v0.1
+:docdate: 2020-05-10
 :article_lang: fr
+ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
+endif::[]
 
 Ceci est le troisième article d'une série de quatre décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 
@@ -144,7 +154,7 @@ La méthode existante `Model#all` construit ce genre de requêtes{nbsp}:
 
 [source,sql]
 ----
-SELECT column_name_1, column_name_2, …
+SELECT column_name_1, column_name_2
   FROM table_name
 ----
 
@@ -152,7 +162,7 @@ Avec les nouveaux paramètres, cela va donner{nbsp}:
 
 [source,sql]
 ----
-SELECT column_name_1, column_name_2, …
+SELECT column_name_1, column_name_2
   FROM table_name
   WHERE column_A = ? AND column_B < ?
   ORDER BY column_X asc, column_Y desc
@@ -190,7 +200,7 @@ class QueryParameters
     end
 
     # Les requêtes vont ressembler à
-    # SELECT column_name_1, column_name_2, …
+    # SELECT column_name_1, column_name_2
     #   FROM table_name
     #   WHERE column_A = ? AND column_B < ?
     #   ORDER BY column_X asc, column_Y desc
@@ -345,7 +355,7 @@ class QueryParameters
     end
     
     # Les requêtes vont ressembler à
-    # SELECT column_name_1, column_name_2, …
+    # SELECT column_name_1, column_name_2
     #   FROM table_name
     #   WHERE column_A = ? AND column_B < ?
     #   ORDER BY column_X asc, column_Y desc
