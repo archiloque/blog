@@ -15,9 +15,14 @@ ifndef::source-highlighter[]
 :pygments-style: friendly
 endif::[]
 
+ifeval::["{doctype}" == "book"]
+Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir posé les bases de l'outil>>, je vais ici ajouter ce qu'il manque pour faire les premières requètes.
+endif::[]
+ifeval::["{doctype}" != "book"]
 Ceci est le deuxième article d'une série de quatre décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 
-Après link:../ecrire-un-orm-en-ruby-1/[le premier article] où j'ai posé les bases de l'outil, je vais ici ajouter ce qu'il manque pour faire les premières requètes.
+Après link:../ecrire-un-orm-en-ruby-1/[avoir posé les bases de l'outil], je vais ici ajouter ce qu'il manque pour faire les premières requètes.
+endif::[]
 
 == Des modèles avec des champs
 

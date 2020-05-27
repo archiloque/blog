@@ -15,9 +15,14 @@ ifndef::source-highlighter[]
 :pygments-style: friendly
 endif::[]
 
+ifeval::["{doctype}" == "book"]
+Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir posé les bases de l'outil>> puis <<../ecrire-un-orm-en-ruby-2/README.adoc#ORM-2,avoir ajouté la génération des requêtes>>, je vais m'occuper ici du filtrage et de l'order des résultats dans les requêtes de sélection.
+endif::[]
+ifeval::["{doctype}" != "book"]
 Ceci est le troisième article d'une série de quatre décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 
-Après link:../ecrire-un-orm-en-ruby-1/[le premier article] où j'ai posé les bases de l'outil, et link:../ecrire-un-orm-en-ruby-1/[le deuxième article] où j'ai ajouté la génération des requêtes, je vais m'occuper ici du filtrage et de l'order des résultats dans les requêtes de sélection.
+Après link:../ecrire-un-orm-en-ruby-1/[avoir posé les bases de l'outil] puis link:../ecrire-un-orm-en-ruby-2/[avoir ajouté la génération des requêtes], je vais m'occuper ici du filtrage et de l'order des résultats dans les requêtes de sélection.
+endif::[]
 
 À la fin de l'article, il sera possible d'utiliser ce genre d'appels{nbsp}:
 
@@ -321,6 +326,8 @@ Au lieu de stocker les différentes valeurs comme pour `where` et `order by`, on
 On pourrait aussi envisager de lever une exception si une valeur a déjà été spécifié plus tôt dans la chaîne des `QueryParameters`.
 
 `limit` est le plus souvent utilisé indirectement quand on veut récupérer une seule valeur, sous la forme d'une méthode `first` qui spécifie le `limit` à 1, puis renvoie le premier élément du tableau de résultat.
+
+Cette méthode me sera utile dans l'article suivant pour les requêtes de relations.
 
 .model.rb
 [source,ruby]
