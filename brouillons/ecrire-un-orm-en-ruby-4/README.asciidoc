@@ -1,9 +1,9 @@
 [#ORM-4]
 ifeval::["{doctype}" == "book"]
-= Partie 4{nbsp}: relations
+= Partie 4{nbsp}: filtrage et ordre
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un ORM en Ruby partie 4{nbsp}: relations
+= Écrire un ORM en Ruby partie 4{nbsp}: filtrage et ordre
 endif::[]
 
 :author: Julien Kirch
@@ -16,187 +16,234 @@ ifndef::source-highlighter[]
 endif::[]
 
 ifeval::["{doctype}" == "book"]
-Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir posé les bases de l'outil>> puis <<../ecrire-un-orm-en-ruby-2/README.adoc#ORM-2,avoir ajouté la génération des requêtes>> et enfin <<../ecrire-un-orm-en-ruby-3/README.adoc#ORM-3,m'être occupé du filtrage des requêtes>>, je vais m'occuper ici des relations entre objets.
+Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir introduit le sujet>>, <<../ecrire-un-orm-en-ruby-2/README.adoc#ORM-2,avoir posé les bases de l'outil>> puis <<../ecrire-un-orm-en-ruby-3/README.adoc#ORM-3,avoir ajouté la génération des requêtes>>, je vais m'occuper ici du filtrage et de l'ordre des résultats dans les requêtes de sélection.
 endif::[]
 ifeval::["{doctype}" != "book"]
-Ceci est le quatrième et dernier article d'une série de quatre décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
+Ceci est le troisième article d'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 
-Après link:../ecrire-un-orm-en-ruby-1/[avoir posé les bases de l'outil] puis link:../ecrire-un-orm-en-ruby-2/[avoir ajouté la génération des requêtes] et enfin link:../ecrire-un-orm-en-ruby-3/[m'être occupé du filtrage des requêtes], je vais m'occuper ici des relations entre objets.
+Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet], link:../ecrire-un-orm-en-ruby-2/[avoir posé les bases de l'outil] puis link:../ecrire-un-orm-en-ruby-3/[avoir ajouté la génération des requêtes], je vais m'occuper ici du filtrage et de l'ordre des résultats dans les requêtes de sélection.
 endif::[]
 
-Les ORM permettent en général de définir quatre types de relations{nbsp}: `one-to-many`, `many-to-one`, `one-to-one` et `many-to-many`.
-Je vais couvrir les deux premiers qui sont ceux que l'on rencontre le plus souvent.
-
-== Le modèle
-
-Les articles utilisent le modèle d'un jeu de construction qui fournit des relations one-to-many et many-to-one.
-
-Ce jeu de construction est composé des différents types de briques (`Brick`), qui sont chacun d'une certaine couleur (`Color`).
-Des modèles à construire (`Kit`) sont constitués d'un ensemble de types de briques chacun présent un certain nombre de briques (tant de briques d'une sorte, tant de briques d'une autre sorte), la relation modèle - type de brique étant modélisé par un `KitBrick`.
-
-image:../ecrire-un-orm-en-ruby-1/schema.svg[]
-
-== Le `many-to-one`
-
-=== Extension du DSL
-
-Le DSL que j'avais défini permettait de définir les noms des tables et des classes de modèles.
-Il est temps de l'étendre pour y ajouter des informations sur les relations.
-
-Je vais commencer par le `many-to-one`, en introduisant une méthode `has_one`. Pour définir une relation de ce type j'ai besoin du nom de la classe à lier, du nom de la colonne qui contien l'id et du nom de l'attribut que je veux ajouter à la classe de modèle.
-
-.schema.rb
-[source,ruby]
-----
-define_model 'Color' do |model_definition|
-  model_definition.table 'color'
-end
-
-define_model 'Brick' do |model_definition|
-  model_definition.table 'brick'
-  model_definition.has_one(
-      attribute_name: 'color',
-      model_class: 'Color',
-      column_name: 'color_id'
-  )
-end
-
-define_model 'Kit' do |model_definition|
-  model_definition.table 'kit'
-end
-
-define_model 'KitBricks' do |model_definition|
-  model_definition.table 'kit_brick'
-  model_definition.has_one(
-      attribute_name: 'kit',
-      model_class: 'Kit',
-      column_name: 'kit_id'
-  )
-  model_definition.has_one(
-      attribute_name: 'brick',
-      model_class: 'Brick',
-      column_name: 'brick_id'
-  )
-end
-----
-
-=== Que dois-je obtenir ?
-
-Maintenant comment gérer les relations{nbsp}?
-
-Je vais prendre pour exemple la relation entre brique et couleur{nbsp}:
-
-[source, ruby]
-----
-define_model 'Brick' do |model_definition|
-  model_definition.table 'brick'
-  model_definition.has_one(
-      attribute_name: 'color',
-      model_class: 'Color',
-      column_name: 'color_id'
-  )
-end
-----
-
-Quand je veux récupérer la couleur d'une brique, je dois charger la couleur qui correspond à la valeur de la colonne `color_id`, disponible dans le modèle par la méthode `color_id`. En SQL cela donnerait quelque chose comme{nbsp}:
-
-[source,SQL]
-----
-SELECT color_column_name_1, color_column_name_1
-  FROM color
-  WHERE id = ?
-----
-
-Avec les méthodes définies dans l'article précédent cela donne
+À la fin de l'article, il sera possible d'utiliser ce genre d'appels{nbsp}:
 
 [source,ruby]
 ----
-Color.where('id = ?', brick.color_id).first
+Color.where('name = ?', 'Black').first
+Color.where('name = ?', 'b*').order_by('name desc').all
 ----
 
-Cette couleur doit être accessible à travers un getter nommé `color`{nbsp}:
+== L'approche "`builder`"
+
+Ce type d'API utilise souvent le design pattern "`builder`" qui consiste à stocker les différent paramètres d'une requête dans des objets, et les utiliser au moment où la requête est exécutée.
+
+Ainsi la commande
 
 [source,ruby]
 ----
-class Brick < Model
-  # @return [Color]
-  def color
-    Color.where('id = ?', color_id).first
+Color.where('name = ?', 'b*').order_by('name desc').all
+----
+
+peut se décomposer en
+
+[source,ruby]
+----
+query_parameters_1 = Color.where('name = ?', 'b*')
+query_parameters_2 = query_parameters_1.order_by('name desc')
+result = query_parameters_2.all
+----
+
+Le premier appel `Color.where` construit un objet qui contient la condition `where`, appeler `order_by` sur cet objet construit un autre objet qui contient la condition `where` ainsi que l'ordre de tri du `order_by`.
+
+Finalement appeler `all` sur le dernier objet utilise tous les paramètres stockés jusque là pour construire la requête.
+
+Quand on enchaîne plusieurs appels comme dans 
+
+[source,ruby]
+----
+Color.where('name = ?', 'b*').order_by('name desc').all
+----
+
+le code construit donc une suite d'objets, un à chaque appel.
+
+== La classe `QueryParameters`
+
+La classe `QueryParameters` va donc contenir les différents types de paramètres qu'on peut utiliser dans une requêtes.
+Dans notre exemple je vais couvrir le cas des filtres, de l'ordre et du nombre d'éléments remontés, mais dans un ORM plus complet il peut s'agit de l'ensemble de la grammaire SQL : `group by`, `distinct`, pouvoir choisir quels champs sont remontés{nbsp}…
+
+Voici le début de la classe avec ses attributs{nbsp}:
+
+.model.rb
+[source,ruby]
+----
+class QueryParameters
+
+  # @param [Class] model_class
+  def initialize(model_class)
+    @model_class = model_class
+    @wheres = []
+    @order_bys = []
   end
 end
 ----
 
-Pour le setter, il n'y a pas de besoin de SQL: il faut seulement setter la valeur de l'attribut `color_id`, la valeur sera alors sauvegardée en même temps que les autres attributs de l'objet.
+En plus des paramètres pour les `where` et les `order by`, elle a besoin de connaître la classe du modèle à traiter pour avoir accès au nom de la table et aux champs, et pour savoir quels objets instancier avec les résultats.
 
+Comme décrit plus haut, appeler `where` ou `order_by` construit une nouvelle instance de `QueryParameters` en ajoutant le paramètre correspondant et la renvoie.
+
+La méthode `order_by` prend un seul paramètre qui est une chaîne de caractère qui contient l'information de tri comme `'name desc'`.
+Ils sont stockés sous la forme d'un tableau dans l'attribut `@order_bys`.
+
+La méthode `where` prend un nombre variable de paramètres, le premier est une chaîne de caractère qui contient l'expression SQL comme `'name = ?'` et les éventuels paramètres suivants contiennent les valeurs à utiliser comme `'Black'` et auront donc des types variés (chaîne de caractères, nombre entier ou à virgule flottante{nbsp}…).
+Ils sont stockés sous la forme d'un tableau de table de hachages (`Hash`) dans l'attribut `@wheres`, .
+
+.model.rb
 [source,ruby]
 ----
-class Brick < Model
-  # @param [Color] color
-  # @return [void]
-  def color=(color)
-    @color_id = color.id
-  end
-end
-----
-
-Maintenant je sais quel code je veux obtenir.
-
-=== Implémentation
-
-Pour y arriver, il faut commencer par implémenter la méthode `has_one` dans le DSL pour qu'elle stocke les informations qu'on lui passe.
-
-.generator.rb
-[source,ruby]
-----
-class ModelDefinition
-
-  MODELS_DEFINITIONS = []
-
-  attr_reader :name, :table_name, :has_ones
-
-  # @param [String] name
-  def initialize(name)
-    @name = name
-    @has_ones = []
-    MODELS_DEFINITIONS << self
-  end
-
+class QueryParameters
   # …
 
-  # @param [String] attribute_name
-  # @param [String] model_class
-  # @param [String] column_name
-  # @return [void]
-  def has_one(attribute_name:, model_class:, column_name:)
-    @has_ones << {
-        attribute_name: attribute_name,
-        model_class: model_class,
-        column_name: column_name
-    }
+  # @param [String] expression
+  # @param [Array] parameters
+  # @return [QueryParameters]
+  def where(expression, *parameters)
+    new_query_parameters = self.dup
+    new_query_parameters.wheres << {expression: expression, parameters: parameters}
+    new_query_parameters
+  end
+
+  # @param [String] order_by
+  # @return [QueryParameters]
+  def order_by(order_by)
+    new_query_parameters = self.dup
+    new_query_parameters.order_bys << order_by
+    new_query_parameters
   end
 end
 ----
 
-Pour le template il faut transcrire le code auquel j'avais abouti plus haut en utilisant les différentes valeurs{nbsp}:
+== Les méthodes du modèle
 
-.models.rb.erb
-[source]
+Cela permet de construire un `QueryParameters` à partir d'un `QueryParameters` existant, mais il faut aussi pouvoir construire le premier `QueryParameters` à partir du modèle, par exemple quand on appelle `Color.where('name = ?', 'Black')`.
+
+Cela signifie ajouter ces mêmes méthodes aux modèles, qui initialisent le `QueryParameters` avec la classe du modèle et appellent les méthodes correspondantes sur le `QueryParameters`.
+
+.model.rb
+[source,ruby]
 ----
-  <% model.has_ones.each do |has_one| %>
-  # @return [<%= has_one[:model_class] %>]
-  def <%= has_one[:attribute_name] %>
-    <%= has_one[:model_class] %>.where('id = ?', <%= has_one[:column_name] %>).first
+class Model
+  # @return [QueryParameters]
+  def self.query_parameters
+    QueryParameters.new(self)
   end
 
-  # @param [<%= has_one[:model_class] %>] <%= has_one[:attribute_name] %>
-  # @return [void]
-  def <%= has_one[:attribute_name] %>=(<%= has_one[:attribute_name] %>)
-    @<%= has_one[:column_name] %> = <%= has_one[:attribute_name] %>.id
+  # @param [String] expression
+  # @param [Array] parameters
+  # @return [QueryParameters]
+  def self.where(expression, *parameters)
+    query_parameters.where(expression, *parameters)
   end
-  <% end %>
+
+  # @param [String] order_by
+  # @return [QueryParameters]
+  def self.order_by(order_by)
+    query_parameters.order_by(order_by)
+  end
+end
 ----
 
-On peut alors tester que cela fonctionne{nbsp}:
+Avec cela je peux appeler `Color.where('name = ?', 'b*').order_by('name desc')` et récupérer un `QueryParameters` avec les bonnes données, reste ensuite à s'occuper de la génération de la requête.
+
+== La requête
+
+La méthode existante `Model#all` construit ce genre de requêtes{nbsp}:
+
+[source,sql]
+----
+SELECT column_name_1, column_name_2
+  FROM table_name
+----
+
+Avec les nouveaux paramètres, cela va donner{nbsp}:
+
+[source,sql]
+----
+SELECT column_name_1, column_name_2
+  FROM table_name
+  WHERE column_A = ? AND column_B < ?
+  ORDER BY column_X asc, column_Y desc
+----
+
+Pour les `where` et `order by` la logique est la même{nbsp}: s'il existe au moins un paramétre de ce type, ajouter la clause en concaténants les éléments séparés par des `AND` ou des virgules, et pour le `where` il faut ensuite passer les valeurs à la requête sous forme d'un tableau contenant l'ensemble des éléments dans le bon ordre.
+
+La partie finale de la méthode qui instancie et renseigne les modèles est reprise de la méthode `Model#all`.
+
+C'est un peu fastidieux mais pas si long que ça{nbsp}:
+
+.model.rb
+[source,ruby]
+----
+class QueryParameters
+  # …
+
+  # @return [Array]
+  def all
+    quoted_columns_names = @model_class.columns.
+        map { |column_name| SQLite3::Database.quote(column_name) }
+
+    if @wheres.empty?
+      where_clause = ' '
+      where_params = []
+    else
+      where_clause = "WHERE #{@wheres.map { |where| where[:expression] }.join(' AND ')} "
+      where_params = @wheres.map { |where| where[:parameters] }.flatten
+    end
+
+    if @order_bys.empty?
+      order_by_clause = ''
+    else
+      order_by_clause = "ORDER BY #{@order_bys.join(', ')} "
+    end
+
+    # Les requêtes vont ressembler à
+    # SELECT column_name_1, column_name_2
+    #   FROM table_name
+    #   WHERE column_A = ? AND column_B < ?
+    #   ORDER BY column_X asc, column_Y desc
+    DATABASE.execute(
+        "SELECT #{quoted_columns_names.join(', ')} " +
+            "FROM #{@model_class.quoted_table_name} " +
+            where_clause +
+            order_by_clause,
+        where_params
+    ).map do |result_row|
+      # Construit les instances du modèle
+      model_instance = @model_class.new
+      @model_class.columns.each_with_index do |column, column_index|
+        model_instance.send("#{column}=", result_row[column_index])
+      end
+      model_instance
+    end
+  end
+
+end
+----
+
+Ne me reste plus qu'à remplacer l'implémentation de `Model#all` existante par un appel à cette nouvelle méthode, pour pouvoir récupérer tous les éléments d'un modèle.
+
+.model.rb
+[source,ruby]
+----
+class Model
+  # …
+
+  # @return [Array]
+  def self.all
+    query_parameters.all
+  end
+end
+----
+
+C'est le moment de tester{nbsp}:
 
 .script.rb
 [source,ruby]
@@ -204,182 +251,157 @@ On peut alors tester que cela fonctionne{nbsp}:
 require_relative 'model'
 require_relative 'models'
 
+Brick.truncate
+Color.truncate
+
 black = Color.new
 black.name = 'Black'
 black.insert
 
+yellow = Color.new
+yellow.name = 'Yellow'
+yellow.insert
+
 brick = Brick.new
-brick.color = black
+brick.color_id = black.id
 brick.name = 'Awesome brick'
 brick.description = 'This brick is awesome'
 brick.insert
 
-puts brick.color.name
+puts '# All colors'
+Color.all.each do |color|
+  puts color.id
+  puts color.name
+end
+
+puts '# All Bricks'
+Brick.all.each do |brick|
+  puts brick.id
+  puts brick.name
+  puts brick.description
+  puts brick.color_id
+end
+
+puts '# Black color'
+Color.where('name = ?', 'Black').all.each do |color|
+  puts color.id
+  puts color.name
+end
+
+puts '# Colors by name'
+Color.order_by('name desc').all.each do |color|
+  puts color.id
+  puts color.name
+end
 ----
 
 [source,bash]
 ----
 $ bundle exec ruby script.rb 
+# All colors
+73
+Black
+74
+Yellow
+# All Bricks
+55
+Awesome brick
+This brick is awesome
+73
+# Black color
+73
+Black
+# Colors by name
+74
+Yellow
+73
 Black
 ----
 
-L'exemple d'ORM que je décris ici ne gère pas de cache, ce qui signifie que chaque appel de `brick.color` va générer une nouvelle requête SQL.
+== Limiter les résultats
 
-== Le `one-to-many`
+Pour terminer cet article, je vais encore ajouter un cas, celui de la clause `limit` qui permet de limiter le nombre de résultats à récupérer en spécifiant un entier.
 
-La mise en œuvre du `one-to-many` est très similaire.
+Au lieu de stocker les différentes valeurs comme pour `where` et `order by`, on ne conserve qu'une valeur.
+On pourrait aussi envisager de lever une exception si une valeur a déjà été spécifié plus tôt dans la chaîne des `QueryParameters`.
 
-Je commence par définir la syntaxe dans le DSL avec une méthode `has_many`.
+`limit` est le plus souvent utilisé indirectement quand on veut récupérer une seule valeur, sous la forme d'une méthode `first` qui spécifie le `limit` à 1, puis renvoie le premier élément du tableau de résultat.
 
-.schema.rb
+Cette méthode me sera utile dans l'article suivant pour les requêtes de relations.
+
+.model.rb
 [source,ruby]
 ----
-define_model 'Color' do |model_definition|
-  model_definition.table 'color'
-  model_definition.has_many(
-      attribute_name: 'bricks',
-      model_class: 'Brick',
-      column_name: 'color_id'
-  )
-end
+class QueryParameters
+  attr_writer :limit
+  attr_reader :wheres, :order_bys, :limit
 
-define_model 'Brick' do |model_definition|
-  model_definition.table 'brick'
-  model_definition.has_one(
-      attribute_name: 'color',
-      model_class: 'Color',
-      column_name: 'color_id'
-  )
-  model_definition.has_many(
-      attribute_name: 'kit_brick',
-      model_class: 'KitBricks',
-      column_name: 'brick_id'
-  )
-end
-
-define_model 'Kit' do |model_definition|
-  model_definition.table 'kit'
-  model_definition.has_many(
-      attribute_name: 'kit_brick',
-      model_class: 'KitBricks',
-      column_name: 'kit_id'
-  )
-end
-
-define_model 'KitBricks' do |model_definition|
-  model_definition.table 'kit_brick'
-  model_definition.has_one(
-      attribute_name: 'kit',
-      model_class: 'Kit',
-      column_name: 'kit_id'
-  )
-  model_definition.has_one(
-      attribute_name: 'brick',
-      model_class: 'Brick',
-      column_name: 'brick_id'
-  )
-end
-----
-
-Qui devrait générer ce type de code{nbsp}:
-
-.models.rb
-[source,ruby]
-----
-class Color < Model
-
-  # @return [Array<Brick>]
-  def bricks
-    Brick.where('color_id = ?', id).all
+  # @param [Class] model_class
+  def initialize(model_class)
+    @model_class = model_class
+    @wheres = []
+    @order_bys = []
+    @limit = nil
   end
 
-end
-----
-
-Je ne vais pas définir le setter car il est assez rare, en général ce type de modification se fait plutôt de l'autre côté de la relation.
-
-J'ajouter la nouvelle méthode `has_many` au DSL{nbsp}:
-
-.generator.rb
-[source,ruby]
-----
-class ModelDefinition
-
-  MODELS_DEFINITIONS = []
-
-  attr_reader :name, :table_name, :has_ones, :has_manys
-
-  # @param [String] name
-  def initialize(name)
-    @name = name
-    @has_ones = []
-    @has_manys = []
-    MODELS_DEFINITIONS << self
+  # @param [Integer] limit
+  # @return [Model::QueryParameters]
+  def limit(limit)
+    new_query_parameters = self.dup
+    new_query_parameters.limit = limit
+    new_query_parameters
   end
 
-  # …
+    # @return [Array]
+  def all
+    # …
+    if @limit.nil?
+      limit_clause = ' '
+    else
+      limit_clause = "LIMIT #{@limit} "
+    end
+    
+    # Les requêtes vont ressembler à
+    # SELECT column_name_1, column_name_2
+    #   FROM table_name
+    #   WHERE column_A = ? AND column_B < ?
+    #   ORDER BY column_X asc, column_Y desc
+    #   LIMIT 10
+    DATABASE.execute(
+        "SELECT #{quoted_columns_names.join(', ')} " +
+            "FROM #{@model_class.quoted_table_name} " +
+            where_clause +
+            order_by_clause +
+            limit_clause,
+        where_params
+    ).map do |result_row|
+    #
+  end
 
-  def has_many(attribute_name:, model_class:, column_name:)
-    @has_manys << {
-        attribute_name: attribute_name,
-        model_class: model_class,
-        column_name: column_name
-    }
+  def first
+    limit(1).all.first
   end
 end
 ----
 
-Et pour terminer, le template{nbsp}:
+Reste encore à ajouter les méthodes sur le modèle qui font la délégation à `QueryParameters`{nbsp}:
 
-.models.rb.erb
-[source]
-----
-  <% model.has_manys.each do |has_many| %>
-  # @return [Array<<%= has_many[:model_class] %>>]
-  def <%= has_many[:attribute_name] %>
-    <%= has_many[:model_class] %>.where('<%= has_many[:column_name] %> = ?', id).all
-  end
-  <% end %>
-----
-
-Ce qui donne{nbsp}:
-
-.script.rb
+.model.rb
 [source,ruby]
 ----
-require_relative 'model'
-require_relative 'models'
+class Model
+  # @param [Integer] limit
+  # @return [Model::QueryParameters]
+  def self.limit(limit)
+    query_parameters.limit(limit)
+  end
 
-black = Color.new
-black.name = 'Black'
-black.insert
-
-brick = Brick.new
-brick.color = black
-brick.name = 'Awesome brick'
-brick.description = 'This brick is awesome'
-brick.insert
-
-puts black.bricks.length
-puts black.bricks.first.name
+  # @return [Object]
+  def self.first
+    query_parameters.first
+  end
+end
 ----
 
-[source,bash]
-----
-$ bundle exec ruby script.rb 
-1
-Awesome brick
-----
-
-== Pour finir
-
-Et voila{nbsp}!
-À ce stade j'ai la base d'un ORM minimal.
-
-Il manque quelques éléments pour qu'il soit vraiment utile, par exemple la gestion des `UPDATE` et de la suppression unitaire de modèle, mais leur implémentation devrait largement s'appuyer sur le code existant.
-
-J'espère que ces articles ont pu vous donner une aperçu du fonctionnement de ce type d'outils et les ont rendu moins mystérieux.
-
-S'ils vous donné des idées pour coder votre propre ORM d'une manière différente, lancez-vous, tant que vous restez raisonable dans vos ambitions, nottament celle de l'utilisez en production.
-
-Si d'autres éléments vous semblent compliqués, link:http://twitter.com/archiloque[contactez-moi], et j'ajouterai peut-être ce contenu dans un article supplémentaire.
+C'est tout pour cette fois.
+Pour l'article suivant, j'ajouterai une gestion minimale des relations entre objets permettant de parcourir une grappe de dépendances.

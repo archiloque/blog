@@ -1,9 +1,9 @@
 [#ORM-1]
 ifeval::["{doctype}" == "book"]
-= Partie 1{nbsp}: structure
+= Partie 1{nbsp}: introduction
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un ORM en Ruby partie 1{nbsp}: structure
+= Écrire un ORM en Ruby partie 1{nbsp}: introduction
 endif::[]
 
 :author: Julien Kirch
@@ -15,27 +15,40 @@ ifndef::source-highlighter[]
 :pygments-style: friendly
 endif::[]
 
-Les ORMs sont probablement les outils les plus complexes auxquels ont a affaire directement quand on commence à développer.
+Ceci est le premier article d'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
+Avant de plonger dans le code, je vais ici introduire les sujets et expliquer certains des choix de design.
+
+== Les ORMs
+
+Un ORM est une couche qui fait le lien entre une base de données et la représentation des données dans un programme.
+Elle permet d'automatiser ou de simplifier certains actions, notamment la génération de requêtes, et enrobe les appels à la base dans une API dans le style du langage de programmation utilisé.
+
+Elle peut aussi fournir une compatibilité entre plusieurs systèmes de base de données, et un système de cache.
+
+Les ORMs sont probablement les outils les plus complexes auxquels on a affaire quand on commence à développer une application web.
 
 De ce fait, on peut avoir du mal à imaginer comment ils peuvent bien fonctionner, et peuvent donner l'impression d'être presque magiques.
 
-Impression souvent renforcé quand on lit le code de ces outils, souvent assez dense et utilisant des constructions différentes de celles du code applicatif.
+Impression souvent renforcé quand on lit le code de ces outils.
+Il est souvent assez dense et utilise des constructions différentes de celles du code applicatif auquel on est habitué.
 
-Cette situation peut avoir deux conséquences{nbsp}:
+J'ai pu observer deux conséquences à cette situation{nbsp}:
 
-- les personnes ne se sentent pas à l'aise quand elles utilisent des ORMs{nbsp}
-- les personnes ont un avis négatif des ORMs basé essentiellement sur leur ressenti au moment de leur première rencontre avec ce type d'outil (qu'on ait un avis négatif sur les ORMs basés sur des éléments objectifs ne me pose pas de problèmes).
+- les personnes ne se sentent pas à l'aise quand elles utilisent des ORMs{nbsp}, même longtemps après{nbsp};
+- les personnes ont un avis négatif des ORMs basé essentiellement sur ce ressenti au moment de leur première rencontre (qu'on ait un avis négatif sur les ORMs basés sur des éléments objectifs ne me pose pas de problèmes).
+
+Cela peut gêner les personnes dans leur travail, ou biaiser leur jugement.
 
 Pour lutter contre cela, je vous propose une série d'articles décrivant pas à pas comment écrire un ORM SQL minimal en Ruby, par minimal j'entends un ORM capable de faire de l'insertion, du requêtage simple et gérer des relations entre objets.
 
-Mon objectif est qu'après avoir lu ces articles, vous ayez le sentiment de comprendre comment ils fonctionnent, et que de ce fait ils ne vous fassent plus peur.
+Mon objectif est qu'après avoir lu ces articles, vous compreniez comment ils fonctionnent, et que vous vous soyez approprié ce type d'outils.
 
 == Un exemple mono-base
 
 La plupart des ORMs SQL sont compatibles avec de nombreuses de base de données.
 Cette compatibilité s'implémente généralement en permettant que toutes les méthodes de l'ORM soient surchargeables en fonction des spécificités de chaque base.
 
-Par exemple pour une classe de génération de requète `QueryBuilder`, on aura ainsi un `SQLiteQueryBuilder`, un `PostgreSQLQueryBuilder`{nbsp}…
+Par exemple pour une classe de génération de requêtes `QueryBuilder`, on aura ainsi un `SQLiteQueryBuilder`, un `PostgreSQLQueryBuilder`{nbsp}…
 
 La difficulté est de parvenir à structurer le code pour pouvoir prendre en compte les spécificités de chaque base sans que cela tourne au plat de spaghetti, sachant que suivant les bases ces particularité ne sont pas toutes au mêmes endroits.
 
@@ -46,352 +59,19 @@ Mon exemple sera donc mono-base et ciblera SQLite car elle fournit tout ce dont 
 
 Contrairement à des ORMs comme link:https://guides.rubyonrails.org/active_record_basics.html[Active Record] ou link:http://sequel.jeremyevans.net[Sequel], l'ORM que je vais implémenter utilisera de la génération de code à froid&#8201;—{nbsp} c'est-à-dire sous forme de fichiers{nbsp}—&#8201; plutôt qu'à chaud sous forme de code généré à l'exécution.
 
-Générer du code dans des fichiers permet d'examiner les comportements sans avoir à débuguer, et permet un meilleur support de la part des outils.
+Générer du code dans des fichiers permet d'examiner les comportements sans avoir à débuguer, et permet un meilleur support de la part des outils comme de l'auto-complétion.
 
 Mon avis est que ce type d'approche est préférable à la génération de code à chaud sauf très bonne raison.
 
-Quand j'utilise Active Record et que j'ai besoin de poser des breakpoints et d'examiner les objets en mémoire pour connaître les méthodes disponibles sur un modèle ça me rend triste.
+Quand j'utilise Active Record et que j'ai besoin de poser des breakpoints et d'examiner les objets en mémoire pour connaître les méthodes disponibles sur un modèle, ça me rend triste.
 
-En Ruby, générer du code à l'exécution est facile, ce qui est bien, mais je pense que la communauté a tendance à parfois trop l'utiliser, surtout que par ailleurs le rechargement de code à chaud fonctionne très bien.
+Travailler ainsi demande un plus gros effort de mémorisation.
+
+En Ruby, générer du code à l'exécution est facile, ce qui est très bien quand c'est la bonne solution.
+Mais je pense que la communauté a tendance à trop l'utiliser.
+Surtout que par ailleurs le rechargement de code fonctionne très bien, par exemple dans Ruby on Rails.
 
 Pour la génération, je vais utiliser link:https://ruby-doc.org/stdlib-2.7.1/libdoc/erb/rdoc/ERB.html[erb].
 Si elle est souvent utilisée pour générer du HTML, la syntaxe erb n'est pas du tout spécifique au HTML (comme peut l'être link:http://slim-lang.com[Slim]) et peut donc servir à générer du Ruby.
 
-== Le début
-
-Le code (framework et code d'exemple) sera dans un projet unique, et ne sera pas packagé sous forme d'une gem.
-
-Le faire ajouterait pas mal de code et un peu de complexité sans que cela apporte quelque chose.
-
-=== Les dépendances
-
-Tout d'abord il faut fixer la version de Ruby, je vais prendre la dernière disponible au moment d'écrire l'article.
-
-.ruby-version 
-[source]
-----
-2.7.1
-----
-
-Ensuite pour les bibliothèques, en plus de la gem permettant d'utiliser SQLite je vais me servir de Rake pour définir la tâche de génération de code.
-
-.Gemfile
-[source]
-----
-source "https://rubygems.org"
-
-gem "rake", "~> 12.0"
-gem "sqlite3", "~> 1.4"
-----
-
-== Comme exemple{nbsp}:un jeu de construction
-
-Dans la suite, je vais prendre comme exemple un jeu de construction.
-
-Ce jeu de construction est composé des différents types de briques (`Brick`), qui sont chacun d'une certaine couleur (`Color`).
-Des modèles à construire (`Kit`) sont constitués d'un ensemble de types de briques chacun présent un certain nombre de briques (tant de briques d'une sorte, tant de briques d'une autre sorte), la relation modèle - type de brique étant modélisé par un `KitBrick`.
-
-image:../ecrire-un-orm-en-ruby-1/schema.svg[]
-
-Voici la structure SQL{nbsp} correspondante avec la syntaxe SQLite{nbsp}:
-
-.structure.sql
-[source,sql]
-----
--- Table color
-CREATE TABLE 'color' (
-  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-
-  'name' TEXT NOT NULL
-);
-
-CREATE UNIQUE INDEX idx_color_unique 
-  ON color('name');
-
--- Table brick
-CREATE TABLE 'brick' (
-  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-
-  'name' TEXT NOT NULL,
-  'description' TEXT NOT NULL,
-  'color_id' INTEGER NOT NULL,
-
-  FOREIGN KEY('color_id') REFERENCES 'color'('id')
-);
-
--- Table kit
-CREATE TABLE 'kit' (
-  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-
-  'name' TEXT NOT NULL,
-  'description' TEXT NOT NULL
-);
-
--- Table kit_brick
-CREATE TABLE 'kit_brick' (
-  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-
-  'kit_id' INTEGER NOT NULL,
-  'brick_id' INTEGER NOT NULL,
-  'quantity' INTEGER NOT NULL,
-
-  FOREIGN KEY('kit_id') REFERENCES 'kit'('id'),
-  FOREIGN KEY('brick_id') REFERENCES 'brick'('id')
-);
-CREATE UNIQUE INDEX 'idx_kit_brick_uniqu' 
-  ON 'kit_brick'('kit_id', 'brick_id');
-----
-
-Pour créer une base avec la bonne structure, vous pouvez lancer la commande{nbsp}:
-
-[source,bash]
-----
-$ sqlite3 orm-ruby.sqlite < structure.sql
-----
-
-Et ensuite explorer la base ainsi{nbsp}:
-
-[source,bash]
-----
-$ sqlite3 orm-ruby.sqlite
-SQLite version 3.24.0 2018-06-04 14:10:15
-sqlite> select count(*) from color;
-0
-sqlite> 
-----
-
-Certains ORMs comme Rails et Sequel fournissent des outils pour gérer les modifications de schéma de a base.
-J'ai fais le choix ici de ne pas implémenter cette fonctionnalité car&#8201;—{nbsp}même si elle peut partager du code avec le reste de l'ORM {nbsp}—&#8201;elle est largement séparée et n'influe donc pas sur le noyau de l'outil.
-
-Dans le monde Java, link:https://hibernate.org/orm/[l'ORM hibernate] qui est très utilisé ne fournit ainsi pas d'outil de migration.
-
-== Un DSL pour configurer les modèles
-
-Pour générer les classes de modèle, je vais utiliser un fichier de configuration qui sera lu par un script.
-Au début le fichier de configuration contiendra seulement les noms des modèles et les noms des tables correspondantes.
-
-La syntaxe s'inspire des DSL de configuration qu'on trouve dans Rails{nbsp}:
-
-.schema.rb
-[source,ruby]
-----
-define_model 'Color' do |model_definition|
-  model_definition.table 'color'
-end
-
-define_model 'Brick' do |model_definition|
-  model_definition.table 'brick'
-end
-
-define_model 'Kit' do |model_definition|
-  model_definition.table 'kit'
-end
-
-define_model 'KitBrick' do |model_definition|
-  model_definition.table 'kit_brick'
-end
-----
-
-La capacité d'utiliser des noms de table par défaut en les déduisant des noms des classes demanderait un peu plus de code sans changer le fonctionnement d'ensemble, du coup je ne vais pas l'intégrer.
-
-Pour générer les modèles je dois commencer par lire le contenu de fichier.
-
-Pour cela je commencer par créer la classe `ModelDefinition` qui contiendra les contenus des modèles tels que définis dans le fichier en étant passé dans chacun des blocs `define_model`.
-
-.generator.rb
-[source,ruby]
-----
-class ModelDefinition
-
-  attr_reader :name, :table_name
-  
-  # @param [String] name
-  def initialize(name)
-    @name = name
-  end
-
-  # @param [String]
-  # @return [void]
-  def table(table_name)
-    @table_name = table_name
-  end
-end
-----
-
-Comme le script de génération `generator.rb` des modèles sera lancé de manière indépendante du reste du code, je peux définir la méthode `define_model` de manière globale (dans un script indépendant elle ne risque pas de polluer l'espace de nommage), puis de faire un `require_relative` sur le fichier de configuration.
-
-Lorsque le fichier sera chargé, la méthode `define_model` sera ainsi appelée pour chaque bloc du fichier `schema.rb`.
-
-Chaque appel va instancier un `ModelDefinition` avec le nom du modèle, puis le passe en paramètre du bloc.
-
-.generator.rb
-[source,ruby]
-----
-# @yield [model_definition]
-# @yieldparam [ModelDefinition] model_definition
-# @yieldreturn [void]
-def define_model(model_name, &block)
-  puts "Defining model [#{model_name}]"
-  model_definition = 
-    ModelDefinition.new(model_name)
-  block.yield(model_definition)
-end
-
-require_relative 'schema'
-----
-
-Pour pouvoir utiliser ensuite ces `ModelDefinition`, le constructeurs les stockera dans un tableau au fur et à mesure.
-
-
-.generator.rb
-[source,ruby]
-----
-class ModelDefinition
-
-  MODELS_DEFINITIONS = []
-
-  attr_reader :name, :table_name
-
-  # @param [String] name
-  def initialize(name)
-    @name = name
-    MODELS_DEFINITIONS << self
-  end
-
-  # …
-----
-
-Après le chargement du fichier de configuration, `ModelDefinition::MODELS_DEFINITIONS` contiendra la ainsi liste des définitions.
-
-== Un template pour générer le fichier
-
-Une fois la configuration chargée je vais m'intéresser à la génération du code.
-
-Comme à l'étape précendente, la première étape est de définir la syntaxe cible qui m'intéresse{nbsp}:
-
-.models.rb
-[source,ruby]
-----
-class Color
-
-  # @return [String]
-  def self.table_name
-      'color'
-  end
-end
-----
-
-Chaque modèle est dans une classe, exposant une méthode de classe pour récupérer le nom de la table.
-
-Comme expliqué plus haut, je me sers d'erb pour la génération, voici donc le template de classe correspondant{nbsp}:
-
-.models.rb.erb
-[source]
-----
-class <%= model.name %>
-
-  # @return [String]
-  def self.table_name
-      '<%= model.table_name %>'
-  end
-end
-----
-
-Pour générer le fichier, il faut alors charger ce template, l'appliquer à chaque des définition qui sont disponibles dans `ModelDefinition::MODELS_DEFINITIONS`, et stocker le résultat dans un fichier.
-
-.generator.rb
-[source,ruby]
-----
-# …
-
-require 'erb'
-
-# Récupère le template
-erb = ERB.new(IO.read('models.rb.erb'))
-
-# Applique le template aux modèles
-models_code = ModelDefinition::MODELS_DEFINITIONS.
-    map do |model|
-  # Fait en sorte que le ModelDefinition soit disponible dans le template
-  # via la variable `model`
-  erb.result_with_hash(model: model)
-end
-
-# Concatène le code des modèles et l'écrit dans un fichier
-IO.write(
-    'models.rb',
-    models_code.
-        join("\n\n")
-)
-----
-
-Le code est alors terminé, il me manque seulement une tâche Rake pour pouvoir l'invoquer.
-Comme les chemins des fichiers sont tous en dur dans le code, il n'y a pas besoin de le rendre paramétrable{nbsp}:
-
-.Rakefile
-[source,ruby]
-----
-desc 'Génère les modèles à partir du fichier schema.rb'
-task :generate_models do
-  require_relative 'generator'
-end
-----
-
-On peut alors lancer la génération{nbsp}:
-
-[source,bash]
-----
-$ rake generate_models 
-Defining model [Color]
-Defining model [Brick]
-Defining model [Kit]
-Defining model [KitBrick]
-----
-
-Et observer le résultat{nbsp}:
-
-.models.rb
-[source,ruby]
-----
-class Color
-
-  # @return [String]
-  def self.table_name
-      'color'
-  end
-end
-
-class Brick
-
-  # @return [String]
-  def self.table_name
-      'brick'
-  end
-end
-
-class Kit
-
-  # @return [String]
-  def self.table_name
-      'kit'
-  end
-end
-
-class KitBrick
-
-  # @return [String]
-  def self.table_name
-      'kit_brick'
-  end
-end
-----
-
-Pour le moment, tout ce que je peux faire c'est d'instancier les différentes classes{nbsp}:
-
-[source,ruby]
-----
-require_relative 'models'
-black = Color.new
-----
-
-Mais la structure est en place, et dans l'article suivant je vais pouvoir m'en servir pour faire mes premières requêtes.
+Dans l'article suivant je vais m'occuper à la structure du projet.

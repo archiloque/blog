@@ -1,9 +1,9 @@
 [#ORM-3]
 ifeval::["{doctype}" == "book"]
-= Partie 3{nbsp}: filtrage et ordre
+= Partie 3{nbsp}: récupération des champs, insertion et sélection
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un ORM en Ruby partie 3{nbsp}: filtrage et ordre
+= Écrire un ORM en Ruby partie 3{nbsp}: récupération des champs, insertion et sélection
 endif::[]
 
 :author: Julien Kirch
@@ -16,234 +16,528 @@ ifndef::source-highlighter[]
 endif::[]
 
 ifeval::["{doctype}" == "book"]
-Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir posé les bases de l'outil>> puis <<../ecrire-un-orm-en-ruby-2/README.adoc#ORM-2,avoir ajouté la génération des requêtes>>, je vais m'occuper ici du filtrage et de l'order des résultats dans les requêtes de sélection.
+Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir introduit le sujet>> puis <<../ecrire-un-orm-en-ruby-2/README.adoc#ORM-2,avoir posé les bases de l'outil>>, je vais ici ajouter ce qu'il manque pour faire les premières requêtes.
 endif::[]
 ifeval::["{doctype}" != "book"]
-Ceci est le troisième article d'une série de quatre décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
+Ceci est le troisème article d'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 
-Après link:../ecrire-un-orm-en-ruby-1/[avoir posé les bases de l'outil] puis link:../ecrire-un-orm-en-ruby-2/[avoir ajouté la génération des requêtes], je vais m'occuper ici du filtrage et de l'order des résultats dans les requêtes de sélection.
+Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet] puis link:../ecrire-un-orm-en-ruby-2/[avoir posé les bases de l'outil], je vais ici ajouter ce qu'il manque pour faire les premières requêtes.
 endif::[]
 
-À la fin de l'article, il sera possible d'utiliser ce genre d'appels{nbsp}:
+== Des modèles avec des champs
+
+La première étape va s'intéresser aux champs des modèles.
+
+Il serait possible de les paramétrer via le fichier de configuration de schéma `schema.rb`, mais je vais plutôt utiliser les métadonnées de la base de données, car c'est une bonne occasion de donner un aperçu de leur fonctionnement.
+
+En effet même si tous les ORMs n'utilisent pas les métadonnées beaucoup le font, et comprendre que cela n'est pas si compliquée est bien utile.
+
+Même si cela ne fait pas partie du standard SQL, la majorités des bases de données de ce type fournissent des requêter les métadonnées des bases telles que les tables, les index{nbsp}…
+
+Suivant les systèmes on pourra utiliser du SQL&#8201;—{nbsp}en interrogeant des tables particulières{nbsp}—&#8201;ou des commandes spécifiques.
+
+Avec SQLite, l'accès aux métadonnées se fait via des link:https://www.sqlite.org/pragma.html[la commandes PRAGMA].
+
+
+[source]
+----
+$ sqlite3 orm-ruby.sqlite
+sqlite> .header on -- Active l'affichage des noms de colonnes dans les requêtes
+sqlite> pragma table_info('color'); -- Donne des informations sur la table `color`
+
+cid|name|type|notnull|dflt_value|pk
+0|id|INTEGER|1||1
+1|name|TEXT|1||0
+----
+
+Pour chaque colonne `table_info` nous donne son identifiant, son nom, son type, si elle est nullable, son éventuelle valeur par défaut, et si il s'agit de la clé primaire de la table.
+
+Avec la gem sqlite3, la méthode `SQLite3::Database#table_info` fait l'appel la pragma et renvoie le résultat sous une forme accessible.
+
+Pour ajouter les colonnes disponibles dans chaque table, commençons par définir une classe `ColumnDefinition` qui contiendra les informations qui nous intéressent, à savoir le nom et le type de la colonne.
+
+.generator.rb
+[source,ruby]
+----
+class ColumnDefinition
+
+  attr_reader :name, :type
+
+  # @param [String] name
+  # @param [String] type
+  def initialize(name, type)
+    @name = name
+    @type = type
+  end
+
+end
+----
+
+Ensuite, je dois récupérer les colonnes de chaque table.
+L'endroit le plus simple est de le faire juste avant de créer les classes de modèles, alors qu'on est déjà en train d'itérer sur chaque modèle, on pourra alors passer la liste des colonnes au template.
+
+Mais pour commencer, il faut se connecter à la base de donnée.
+Je vais utiliser une base en local avec un fichier stocké dans le répertoire du projet
+
+.generator.rb
+[source,ruby]
+----
+DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
+----
+
+puis{nbsp}:
+
+.generator.rb
+[source,ruby]
+----
+models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
+  # Liste les colonnes de la table correspondante
+  columns_definitions = DATABASE.table_info(model.table_name).collect do |column_info|
+    column_name = column_info['name']
+    column_type = column_info['type']
+    ColumnDefinition.new(column_name, column_type)
+  end
+  erb.result_with_hash(model: model, columns_definitions: columns_definitions)
+end
+----
+
+Dans le template, `columns_definitions` contient alors la liste des `ColumnDefinition` prêt à l'emploi.
+
+Presque prêt à l'emploi car il reste une subtilité{nbsp}: `table_info` renvoie les types SQL des colonnes (ou plus précisément le type SQLite) comme `TEXT`, pour pouvoir l'utiliser dans le code je dois le transformer en types Ruby comme `String`.
+
+Pour se faire, nous allons utiliser une `Hash` pour faire la conversion entre les deux.
+
+.generator.rb
+[source,ruby]
+----
+SQLITE_TYPE_TO_RUBY_CLASS = {
+    'INTEGER' => 'Integer',
+    'TEXT' => 'String'
+}
+----
+
+Elle ne contient que les types que l'on va rencontrer dans notre exemple, il sera ensuite possible de l'enrichir en fonction des besoins.
+
+En modifiant le code pour utiliser `SQLITE_TYPE_TO_RUBY_CLASS`, cela donne :
+
+.generator.rb
+[source,ruby]
+----
+models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
+  # Liste les colonnes de la table correspondante
+  columns_definitions = DATABASE.table_info(model.table_name).collect do |column_info|
+    column_name = column_info['name']
+    sql_type = column_info['type']
+    # Transforme le type SQL en type Ruby
+    ruby_type = SQLITE_TYPE_TO_RUBY_CLASS[sql_type]
+    ColumnDefinition.new(column_name, ruby_type)
+  end
+  erb.result_with_hash(model: model, columns_definitions: columns_definitions)
+end
+----
+
+Avec le nom et le type de chaque colonne, je vais pouvoir générer les getters et les setters en itérant sur les `ColumnDefinition` dans le template{nbsp}:
+
+.models.erb.rb
+[source]
+----
+class <%= model.name %>
+
+  <% columns_definitions.each do |column_definition| %>
+  <% column_name = column_definition.name %>
+  <% column_type = column_definition.type %>
+  # @return [<%= column_type %>]
+  def <%= column_name %>
+    @<%= column_name %>
+  end
+
+  # @param [<%= column_type%>] <%= column_name %>
+  # @return [void]
+  def <%= column_name %>=(<%= column_name %>)
+    @<%= column_name %> = <%= column_name %>
+  end
+  <% end %>
+
+end
+----
+
+Ce qui donne ce résultat{nbsp}:
+
+.models.rb
+[source,ruby]
+----
+class 
+
+  # @return [Integer]
+  def id
+    @id
+  end
+
+  # @param [Integer] id
+  # @return [void]
+  def id=(id)
+    @id = id
+  end
+  
+  # @return [String]
+  def name
+    @name
+  end
+
+  # @param [String] name
+  # @return [void]
+  def name=(name)
+    @name = name
+  end
+end
+# …
+----
+
+Ce qui permet d'écrire{nbsp}:
 
 [source,ruby]
 ----
-Color.where('name = ?', 'Black').first
-Color.where('name = ?', 'b*').order_by('name desc').all
+require_relative 'models'
+
+black = Color.new
+black.name = 'Black'
 ----
 
-== L'approche "`builder`"
+On peut voir ici l'intérêt de la génération de code à froid{nbsp}: on peut facilement consulter les méthodes disponibles avec leurs informations de type.
+Avec un IDE on peut même disposer de l'autocompletion.
 
-Ce type d'API utilise souvent le design pattern "`builder`" qui consiste à stocker les différent paramètres d'une requête dans des objets, et les utiliser au moment où la requête est executée.
+En cas d'évolution d'un modèle, l'évolution sera visible dans les classes générées.
 
-Ainsi la commande
+Je ne l'utilise pas dans mon exemple, mais l'information de nullabilité des colonnes peut servir pour renseigner la nullabilité des paramètres ou des retours des méthodes.
 
-[source,ruby]
+== L'insertion
+
+Une fois qu'on a la liste des champs et qu'il est possible de leur attribuer des valeurs, il est temps de pouvoir insérer ces données dans la base, en ajoutant une méthode `insert` aux modèles.
+
+Pour cela il faut générer ce type de requêtes{nbsp}:
+
+[source,sql]
 ----
-Color.where('name = ?', 'b*').order_by('name desc').all
-----
-
-peut se décomposer en
-
-[source,ruby]
-----
-query_parameters_1 = Color.where('name = ?', 'b*')
-query_parameters_2 = query_parameters_1.order_by('name desc')
-result = query_parameters_2.all
-----
-
-Le premier appel `Color.where` construit un objet qui contient la condition `where`, appeler `order_by` sur cet objet construit un autre objet qui contient la condition `where` ainsi que l'ordre de tri du `order_by`.
-
-Finalement appeller `all` sur le dernier objet utilise tous les paramètres stockés jusque là pour construire la requête.
-
-Quand on enchaîne plusieurs appels comme dans 
-
-[source,ruby]
-----
-Color.where('name = ?', 'b*').order_by('name desc').all
+INSERT INTO table_name
+  (column_name_1, column_name_2)
+  values (column_value_1, column_value_2)
 ----
 
-le code construit donc une suite d'objets, un à chaque appel.
-
-== La classe `QueryParameters`
-
-La classe `QueryParameters` va donc contenir les différents types de paramètres qu'on peut utiliser dans une requêtes.
-Dans notre exemple je vais couvrir le cas des filtres, de l'ordre et du nombre d'éléments remontés, mais dans un ORM plus complet il peut s'agit de l'ensemble de la grammaire SQL : `group by`, `distinct`, pouvoir choisir quels champs sont remontés{nbsp}…
-
-Voici le début de la classe avec ses attributs{nbsp}:
+Pour partager le code entre les modèles, je vais ajouter une classe `Model` qui sera parente des classes de modèles.
 
 .model.rb
 [source,ruby]
 ----
-class QueryParameters
+# @abstract
+class Model
+end
+----
 
-  # @param [Class] model_class
-  def initialize(model_class)
-    @model_class = model_class
-    @wheres = []
-    @order_bys = []
+Je la marque comme abstraite avec `@abstract` pour indiquer qu'elle n'est pas utilisable directement mais qu'on doit passer par les classes dérivées.
+
+Pour générer les requêtes d'insertion, je vais avoir besoin du nom de la table et de la liste des colonnes de chaque modèle.
+Pour cela je vais ajouter des méthodes de classes pour récupérer les valeurs.
+
+Je les déclare dans la classe parente{nbsp}:
+
+.model.rb
+[source,ruby]
+----
+# @abstract
+class Model
+
+  # Méthode à implémenter dans les sous-classes
+  # @abstract
+  # @return [String]
+  def self.table_name
+    raise NotImplementedError
+  end
+
+  # Méthode à implémenter dans les sous-classes
+  # @abstract
+  # @return [Array<String>]
+  def self.columns
+    raise NotImplementedError
   end
 end
 ----
 
-En plus des paramètres pour les `where` et les `order by`, elle a besoin de connaître la classe du modèle à traiter pour avoir accès au nom de la table et aux champs, et pour savoir quels objets instancier avec les résultats.
+Puis je les ajoute au template de modèle, avec la déclaration de l'héritage{nbsp}:
 
-Comme décrit plus haut, appeller `where` ou `order_by` construit une nouvelle instance de `QueryParameters` en ajoutant le paramètre correspondant et la renvoie.
+.models.erb.rb
+[source]
+----
+class <%= model.name %> < Model
+  # @return [String]
+  def self.table_name
+      '<%= model.table_name %>'
+  end
 
-La méthode `order_by` prend un seul paramètre qui est une chaîne de caractère qui contient l'information de tri comme `'name desc'`.
-Ils sont stockés sous la forme d'un tableau dans l'attribut `@order_bys`.
+  # @return [Array<String>]
+  def self.columns
+      <%= columns_definitions.map do |column_definition|
+        column_definition.name
+      end %>
+  end
+end
+----
 
-La méthode `where` prend un nombre variable de paramètres, le premier est une chaîne de caractère qui contient l'expression SQL comme `'name = ?'` et les éventuels paramètres suivants contiennent les valeurs à utiliser comme `'Black'` et auront donc des types variés (chaîne de charactère, nombre entier ou à virgule flotante{nbsp}…).
-Ils sont stockés sous la forme d'un tableau de table de hachages (`Hash`) dans l'attribut `@wheres`, .
+Ce qui donne, après avoir relançé la génération avec la commande `rake generate_models`{nbsp}:
 
-.model.rb
+.models.rb
 [source,ruby]
 ----
-class QueryParameters
+class Color < Model
+
+  # @return [String]
+  def self.table_name
+      'color'
+  end
+
+  # @return [Array<String>]
+  def self.columns
+      ["id", "name"]
+  end
+
   # …
+end
+----
 
-  # @param [String] expression
-  # @param [Array] parameters
-  # @return [QueryParameters]
-  def where(expression, *parameters)
-    new_query_parameters = self.dup
-    new_query_parameters.wheres << {expression: expression, parameters: parameters}
-    new_query_parameters
-  end
+Avec ces méthodes je peux générer la requête, en ajoutant une connexion à la base pour pouvoir l'exécuter.
 
-  # @param [String] order_by
-  # @return [QueryParameters]
-  def order_by(order_by)
-    new_query_parameters = self.dup
-    new_query_parameters.order_bys << order_by
-    new_query_parameters
+Pour la requête je vais utiliser la méthode `SQLite3::Database#execute`, qui permet de passer les valeurs des colonnes en paramètre plutôt que de les mettre dans le corps de la requête, ce qui donnera ce genre d'appel{nbsp}:
+
+[source,ruby]
+----
+DATABASE.execute('INSERT INTO color (name) values (?)', ['Black'])
+----
+
+Cette syntaxe permet d'éviter d'avoir à se préoccuper du format à utiliser pour passer les valeurs à la base, et donc d'éviter des risque de sécurité.
+
+Dans notre case les valeurs de l'`id` des modèles ne doivent pas être insérée car elles sont gérées par la base, c'est pour cela que les colonnes `id` sont déclarées en `AUTOINCREMENT`.
+Cela simplifie le code et fournit une garantie d'unicité dans le cas d'une base SQL standard.
+
+La manière de s'y prendre n'est pas standardisé et dépend donc de la base de données.
+Il y a deux grandes approches{nbsp}: soit les valeurs sont retournées par la requête d'insertion, ou une requête spécifique permet de récupérer les `id` des valeurs qu'on vient d'insérer.
+
+SQLite utilise la deuxième solution via link:https://www.sqlite.org/lang_corefunc.html#last_insert_rowid[`last_insert_rowid()`].
+
+.model.rb
+[source,ruby]
+----
+require 'sqlite3'
+
+# @abstract
+class Model
+
+  # Connection à la base pour executer les requ^tes
+  DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
+
+  # @return [void]
+  def insert
+    # Liste des noms de colonnes sans la colonne id
+    # car les valeurs des ids sont gérées par la base
+    columns_names_except_id = self.class.columns.
+        select { |column| column != 'id' }
+
+    # Noms des colonnes échappées pour éviter 
+    # les problèmes avec des guillemets et d'autres symboles
+    quoted_columns_names_except_id = columns_names_except_id.
+        map { |column_name| SQLite3::Database.quote(column_name) }
+
+    # Valeurs des colonnes à part la colonne 'id'
+    columns_values_except_id = columns_names_except_id.
+        map { |column_name| self.send(column_name) }
+
+    # Les requêtes vont ressembler à
+    # INSERT INTO table_name
+    #   (column_name_1, column_name_2)
+    #   VALUES (?, ?)
+    DATABASE.execute(
+        "INSERT INTO #{SQLite3::Database.quote(self.class.table_name)} " +
+            "(#{quoted_columns_names_except_id.join(', ')}) " +
+            "VALUES (#{Array.new(columns_names_except_id.length, '?').join(', ')})",
+        columns_values_except_id
+    )
+
+    # Définit la valeur  du champ `id` du modèle
+    # en récupérant la valeur attribuée par la base
+    self.id = DATABASE.last_insert_row_id
   end
 end
 ----
 
-== Les méthodes du modèle
+Les méthodes `table_name` et `columns` étant implémentées dans chaque classe de modèle, utiliser `self.class.table_name` et `self.class.columns` dans la classe parente `Model` appellera bien la méthode spécifique de chaque modèle plutôt que les méthodes de la classe `Model`.
 
-Cela permet de construire un `QueryParameters` à partir d'un `QueryParameters` existant, mais il faut aussi pouvoir construire le premier `QueryParameters` à partir du modèle, par exemple quand on appelle `Color.where('name = ?', 'Black')`.
+Avec ce code, on peut enfin insérer les données{nbsp}:
 
-Cela signifie ajouter ces mêmes méthodes aux modèles, qui initialisent le `QueryParameters` avec la classe du modèle et appelent les méthodes correspondantes sur le `QueryParameters`.
+.script.rb
+[source,ruby]
+----
+require_relative 'model'
+require_relative 'models'
+
+black = Color.new
+black.name = 'Black'
+black.insert
+
+brick = Brick.new
+brick.color_id = black.id
+brick.name = 'Awesome brick'
+brick.description = 'This brick is awesome'
+brick.insert
+----
+
+On peut vérifier dans la base que tout s'est bien passé{nbsp}:
+
+[source,bash]
+----
+$bundle exec ruby script.rb
+$ sqlite3 orm-ruby.sqlite
+
+sqlite> select * from color;
+
+1|Black
+
+sqlite> select * from brick;
+
+1|Awesome brick|This brick is awesome|1
+----
+
+== La récupération
+
+Maintenant que je peux insérer des données, je vais pouvoir m'intéresser à leur récuparation.
+
+Je commence par m'occuper de la récupération de l'intégralité des données d'une table en ajoutant une méthode de classe `all` aux modèles.
+
+Cela permettra des appels du type{nbsp}:
+
+[source,ruby]
+----
+Color.all
+----
+
+En SQL cela donne ce type de requêtes{nbsp}:
+
+[source,sql]
+----
+SELECT column_name_1, column_name_2
+  FROM table_name
+----
+
+Les noms de la table et des colonnes sont à disposition pour construire la requête.
+
+Une fois les valeurs récupérées, pour chaque ligne trouvée il faur créer une instance de la classe du modèle, et attribuer leurs valeurs au différents champs.
+
+Les noms des attributs étant les mêmes que ceux des colonnes, pour chaque colonne `nom_de_colonne`, j'appellerait le setter `nom_de_colonne=` via la méthode `send` qui permet d'appeller une méthode dynamiquement à partir de son nom.
+
+À l'inverse du cas précédent, il nous faudra également récupérer la valeur de la colonne `id`.
 
 .model.rb
 [source,ruby]
 ----
 class Model
-  # @return [QueryParameters]
-  def self.query_parameters
-    QueryParameters.new(self)
-  end
-
-  # @param [String] expression
-  # @param [Array] parameters
-  # @return [QueryParameters]
-  def self.where(expression, *parameters)
-    query_parameters.where(expression, *parameters)
-  end
-
-  # @param [String] order_by
-  # @return [QueryParameters]
-  def self.order_by(order_by)
-    query_parameters.order_by(order_by)
-  end
-end
-----
-
-Avec cela je peux appeler `Color.where('name = ?', 'b*').order_by('name desc')` et récupérer un `QueryParameters` avec les bonnes données, reste ensuite à s'occuper de la génération de la requête.
-
-== La requête
-
-La méthode existante `Model#all` construit ce genre de requêtes{nbsp}:
-
-[source,sql]
-----
-SELECT column_name_1, column_name_2
-  FROM table_name
-----
-
-Avec les nouveaux paramètres, cela va donner{nbsp}:
-
-[source,sql]
-----
-SELECT column_name_1, column_name_2
-  FROM table_name
-  WHERE column_A = ? AND column_B < ?
-  ORDER BY column_X asc, column_Y desc
-----
-
-Pour les `where` et `order by` la logique est la même{nbsp}: s'il existe au moins un paramétre de ce type, ajouter la clause en concaténants les éléments séparés par des `AND` ou des virgules, et pour le `where` il faut ensuite passer les valeurs à la requête sous forme d'un tableau contenant l'ensemble des éléments dans le bon ordre.
-
-La partie finale de la méthode qui instancie et renseigne les modèles est reprise de la méthode `Model#all`.
-
-C'est un peu fastidieux mais pas si long que ça{nbsp}:
-
-.model.rb
-[source,ruby]
-----
-class QueryParameters
-  # …
-
   # @return [Array]
-  def all
-    quoted_columns_names = @model_class.columns.
+  def self.all
+    quoted_columns_names = columns.
         map { |column_name| SQLite3::Database.quote(column_name) }
-
-    if @wheres.empty?
-      where_clause = ' '
-      where_params = []
-    else
-      where_clause = "WHERE #{@wheres.map { |where| where[:expression] }.join(' AND ')} "
-      where_params = @wheres.map { |where| where[:parameters] }.flatten
-    end
-
-    if @order_bys.empty?
-      order_by_clause = ''
-    else
-      order_by_clause = "ORDER BY #{@order_bys.join(', ')} "
-    end
 
     # Les requêtes vont ressembler à
     # SELECT column_name_1, column_name_2
     #   FROM table_name
-    #   WHERE column_A = ? AND column_B < ?
-    #   ORDER BY column_X asc, column_Y desc
     DATABASE.execute(
         "SELECT #{quoted_columns_names.join(', ')} " +
-            "FROM #{@model_class.quoted_table_name} " +
-            where_clause +
-            order_by_clause,
-        where_params
+            "FROM #{SQLite3::Database.quote(table_name)}"
     ).map do |result_row|
-      # Construit les instances du modèle
-      model_instance = @model_class.new
-      @model_class.columns.each_with_index do |column, column_index|
-        model_instance.send("#{column}=", result_row[column_index])
+      # Instancie l'objet de la classe du modèle
+      model_instance = self.new
+      # Pour chaque colonne
+      columns.each_with_index do |column, column_index|
+        # On récupère la valeur
+        column_value = result_row[column_index]
+        # On stocke la valeur dans l'attribue correspondant
+        model_instance.send("#{column}=", colonne_value)
       end
       model_instance
     end
   end
-
 end
 ----
 
-Ne me reste plus qu'à remplacer l'implémentation de `Model#all` existante par un appel à cette nouvelle méthode, pour pouvoir récupérer tous les éléments d'un modèle.
+On peut alors récupérer des données{nbsp}:
+
+.script.rb
+[source,ruby]
+----
+require_relative 'model'
+require_relative 'models'
+
+black = Color.new
+black.name = 'Black'
+black.insert
+
+puts '# Les couleurs'
+Color.all.each do |color|
+  puts "  #{color.id} : #{color.name}"
+end
+
+brick = Brick.new
+brick.color_id = black.id
+brick.name = 'Awesome brick'
+brick.description = 'This brick is awesome'
+brick.insert
+
+puts 'Les briques'
+Brick.all.each do |brick|
+  puts "  #{brick.id} : #{brick.name}, #{brick.description}, #{brick.color_id}"
+  puts brick.id
+  puts brick.name
+  puts brick.description
+  puts brick.color_id
+end
+----
+
+[source,bash]
+----
+$ bundle exec ruby script.rb
+Les couleurs
+  1 : Black
+Les briques
+  1 : Awesome brick, This brick is awesome, 1
+----
+
+== Et la suppression
+
+Pour terminer, après l'insertion et la récupération il est temps de supprimer des données.
+
+Dans le standard SQL, il existe une commande `TRUNCATE table_name` qui supprime le contenu d'une table.
+
+Malheuresement elle n'est pas disponible dans SQLite, je vais donc devoir utiliser la requête SQL{nbsp}:
+
+[source,sql]
+----
+DELETE FROM table_name
+----
+
+Je vais tout de même appeller la méthode `truncate` pour qu'elle corresponde à la commande SQL, même l'implémentation ne l'utilise pas.
+
+On a ici un exemple où l'ORM doit assurer la compatibilité entre les systèmes de bases de données.
+Si ce cas est assez simple, il permet de comprendre la manière dont les choses pourraient être mises en œuvre{nbsp}:une méthode de base qui utiliserait la commande `truncate`, et une classe spécifique à SQLite qui utiliserait la requête `delete`.
+
+Le code résultant est assez court et s'inspire des méthodes existantes{nbsp}:
 
 .model.rb
 [source,ruby]
 ----
 class Model
-  # …
-
-  # @return [Array]
-  def self.all
-    query_parameters.all
+  # @return [void]
+  def self.truncate
+    DATABASE.execute("DELETE FROM #{SQLite3::Database.quote(table_name)}")
   end
 end
 ----
 
-C'est le moment de tester{nbsp}:
+On peut alors la tester
 
 .script.rb
 [source,ruby]
@@ -254,154 +548,34 @@ require_relative 'models'
 Brick.truncate
 Color.truncate
 
-black = Color.new
-black.name = 'Black'
-black.insert
-
-yellow = Color.new
-yellow.name = 'Yellow'
-yellow.insert
-
-brick = Brick.new
-brick.color_id = black.id
-brick.name = 'Awesome brick'
-brick.description = 'This brick is awesome'
-brick.insert
-
-puts '# All colors'
+puts '# Les couleurs'
 Color.all.each do |color|
-  puts color.id
-  puts color.name
+  puts "  #{color.id} : #{color.name}"
 end
 
-puts '# All Bricks'
+puts 'Les briques'
 Brick.all.each do |brick|
+  puts "  #{brick.id} : #{brick.name}, #{brick.description}, #{brick.color_id}"
   puts brick.id
   puts brick.name
   puts brick.description
   puts brick.color_id
 end
-
-puts '# Black color'
-Color.where('name = ?', 'Black').all.each do |color|
-  puts color.id
-  puts color.name
-end
-
-puts '# Colors by name'
-Color.order_by('name desc').all.each do |color|
-  puts color.id
-  puts color.name
-end
 ----
 
 [source,bash]
 ----
-$ bundle exec ruby script.rb 
-# All colors
-73
-Black
-74
-Yellow
-# All Bricks
-55
-Awesome brick
-This brick is awesome
-73
-# Black color
-73
-Black
-# Colors by name
-74
-Yellow
-73
-Black
+$ bundle exec ruby script.rb
+Les couleurs
+  1 : Black
+Les briques
+  1 : Awesome brick, This brick is awesome, 1
 ----
 
-== Limiter les résultats
+Je ne vais pas les détailler ici mais pour les suppression de modèle il faut générer une requête `DELETE FROM table_name WHERE ID = ?` et lui passer l'id du modèle, et pour les mises à jour s'inspirer de la requête d'insertion pour écrire une requête du type `UPDATE table_name SET column_name_1 = ?, column_name_2 = ? WHERE id = ?`.
 
-Pour terminer cet article, je vais encore ajouter un cas, celui de la clause `limit` qui permet de limiter le nombre de résultats à récupérer en spcifiant un entier.
-
-Au lieu de stocker les différentes valeurs comme pour `where` et `order by`, on ne conserve qu'une valeur.
-On pourrait aussi envisager de lever une exception si une valeur a déjà été spécifié plus tôt dans la chaîne des `QueryParameters`.
-
-`limit` est le plus souvent utilisé indirectement quand on veut récupérer une seule valeur, sous la forme d'une méthode `first` qui spécifie le `limit` à 1, puis renvoie le premier élément du tableau de résultat.
-
-Cette méthode me sera utile dans l'article suivant pour les requêtes de relations.
-
-.model.rb
-[source,ruby]
-----
-class QueryParameters
-  attr_writer :limit
-  attr_reader :wheres, :order_bys, :limit
-
-  # @param [Class] model_class
-  def initialize(model_class)
-    @model_class = model_class
-    @wheres = []
-    @order_bys = []
-    @limit = nil
-  end
-
-  # @param [Integer] limit
-  # @return [Model::QueryParameters]
-  def limit(limit)
-    new_query_parameters = self.dup
-    new_query_parameters.limit = limit
-    new_query_parameters
-  end
-
-    # @return [Array]
-  def all
-    # …
-    if @limit.nil?
-      limit_clause = ' '
-    else
-      limit_clause = "LIMIT #{@limit} "
-    end
-    
-    # Les requêtes vont ressembler à
-    # SELECT column_name_1, column_name_2
-    #   FROM table_name
-    #   WHERE column_A = ? AND column_B < ?
-    #   ORDER BY column_X asc, column_Y desc
-    #   LIMIT 10
-    DATABASE.execute(
-        "SELECT #{quoted_columns_names.join(', ')} " +
-            "FROM #{@model_class.quoted_table_name} " +
-            where_clause +
-            order_by_clause +
-            limit_clause,
-        where_params
-    ).map do |result_row|
-    #
-  end
-
-  def first
-    limit(1).all.first
-  end
-end
-----
-
-Reste encore à ajouter les méthodes sur le modèle qui font la délégation à `QueryParameters`{nbsp}:
-
-.model.rb
-[source,ruby]
-----
-class Model
-  # @param [Integer] limit
-  # @return [Model::QueryParameters]
-  def self.limit(limit)
-    query_parameters.limit(limit)
-  end
-
-  # @return [Object]
-  def self.first
-    query_parameters.first
-  end
-end
-----
+Toutes les requêtes vues ici s'appuient sur l'hypothèse d'un identifiant technique présent dans toutes les tables, ce qui est la pratique généralement conseillée en SQL.
+Prendre en compte les autres types d'identifiant demande de rendre paramétrable cette partie des requêtes.
 
 C'est tout pour cette fois.
-Pour l'article suivant, j'ajouterai une gestion minimale des relations entre objets permettant de parcourir une grape de dépendances.
+Pour l'article suivant, je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
