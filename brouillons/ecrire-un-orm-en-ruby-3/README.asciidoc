@@ -427,9 +427,9 @@ SELECT column_name_1, column_name_2
 
 Les noms de la table et des colonnes sont à disposition pour construire la requête.
 
-Une fois les valeurs récupérées, pour chaque ligne trouvée il faur créer une instance de la classe du modèle, et attribuer leurs valeurs au différents champs.
+Une fois les valeurs récupérées, pour chaque ligne trouvée il faut créer une instance de la classe du modèle, et attribuer leurs valeurs au différents champs.
 
-Les noms des attributs étant les mêmes que ceux des colonnes, pour chaque colonne `nom_de_colonne`, j'appellerait le setter `nom_de_colonne=` via la méthode `send` qui permet d'appeller une méthode dynamiquement à partir de son nom.
+Les noms des attributs étant les mêmes que ceux des colonnes, pour chaque colonne `nom_de_colonne`, j'appellerait le setter `nom_de_colonne=` via la méthode `send` qui permet d'appeler une méthode dynamiquement à partir de son nom.
 
 À l'inverse du cas précédent, il nous faudra également récupérer la valeur de la colonne `id`.
 
@@ -512,14 +512,14 @@ Pour terminer, après l'insertion et la récupération il est temps de supprimer
 
 Dans le standard SQL, il existe une commande `TRUNCATE table_name` qui supprime le contenu d'une table.
 
-Malheuresement elle n'est pas disponible dans SQLite, je vais donc devoir utiliser la requête SQL{nbsp}:
+Malheureusement elle n'est pas disponible dans SQLite, je vais donc devoir utiliser la requête SQL{nbsp}:
 
 [source,sql]
 ----
 DELETE FROM table_name
 ----
 
-Je vais tout de même appeller la méthode `truncate` pour qu'elle corresponde à la commande SQL, même l'implémentation ne l'utilise pas.
+Je vais tout de même appeler la méthode `truncate` pour qu'elle corresponde à la commande SQL, même l'implémentation ne l'utilise pas.
 
 On a ici un exemple où l'ORM doit assurer la compatibilité entre les systèmes de bases de données.
 Si ce cas est assez simple, il permet de comprendre la manière dont les choses pourraient être mises en œuvre{nbsp}:une méthode de base qui utiliserait la commande `truncate`, et une classe spécifique à SQLite qui utiliserait la requête `delete`.
@@ -577,5 +577,6 @@ Je ne vais pas les détailler ici mais pour les suppression de modèle il faut g
 Toutes les requêtes vues ici s'appuient sur l'hypothèse d'un identifiant technique présent dans toutes les tables, ce qui est la pratique généralement conseillée en SQL.
 Prendre en compte les autres types d'identifiant demande de rendre paramétrable cette partie des requêtes.
 
-C'est tout pour cette fois.
+== C'est tout pour le moment
+
 Pour l'article suivant, je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
