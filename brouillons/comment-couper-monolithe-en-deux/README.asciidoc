@@ -72,13 +72,16 @@ Un {répartiteur} avec de la découverte de services ne vous aidera pas pour {t�
 Vous allez vouloir de la persistance, mais pas dans votre {bus}.
 Pour {tâche-longues}, vous allez plutôt vouloir une base de donnée.
 
-Bien que la persistence et les queues soient des obstacles pour {tâches-courtes}, les désavantages sont moins évident pour les {tâche-longues}, mais les 
+Bien que la persistence et les queues soient des obstacles pour {tâches-courtes}, les inconvénients sont moins évident pour {tâche-longues}, mais les mêmes genres de choses peuvent mal se passer.
 
-Although the persistence and queueing were obstacles for short-lived tasks, the disadvantages are less obvious for long-lived tasks, but similar things can go wrong.
+Si vous vous intéressez au résultat d'une tâche, vous allez vouloir stocker le fait que quelque chose a besoin d'elle ailleurs que dans la queue persistante.
+Si la tâche est lancée mais échoue à mi-chemin, il faut que quelque chose en prenne la responsabilité, et le {bus} aura oublié.
+C'est pour cela que vous voulez une base de données.
 
-If you care about the result of a task, you'll want to store that it is needed somewhere other than in the persistent queue. If the task is run but fails midway, something will have to take responsibility for it, and the broker will have forgotten. This is why you want a database.
-
-Duplicates in a queue often cause more headaches, as long-lived tasks have more opportunities to overlap. Although we're using the broker to distribute work, we're also using it implicitly as a mutex. To stop work from overlapping, you implement a lock atop. After it breaks a couple of times, you replace it with leases, adding timeouts.
+Les messages dupliqués dans une queue causent souvent d'autres maux de têtes, parce que {tâche-longues} ont plus de chances de se chevaucher.
+Bien que nous utilisons le {bus} pour distribuer du travail, nous l'utilisons aussi implicitement comme un système de gestion d'exclusion mutuelle (_mutex_).
+Pour empêcher les tâches de se chevaucher, vous ajoutez un verrou (_lock_) au dessus du système.
+Après qu'il ait planté un certain nombre de choix, vous le remplacez par un système d'emprunt, en ajoutant des durées d'expiration.
 
 (Note: This is not why you want a database, using transactions for long running tasks is suffering. Long running processes are best modelled as state machines.)
 
