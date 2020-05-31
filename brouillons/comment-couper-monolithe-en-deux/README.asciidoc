@@ -8,6 +8,13 @@ v0.1, 2020-01-21
 :tâche-longues: les tâches à durée de vie longue
 :répartiteur: répartiteur de charge
 :bus: bus de messages
+:passant: En passant{nbsp}:
+:bdd: base de données
+:discovery: découverte de services
+:ordo: ordonnanceur
+:rr: requête-réponse
+:ps: publication-souscription
+:bp: contre-pression
 
 Ce post est une traduction d'link:https://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[un article] de link:http://twitter.com/tef_ebooks[tef].
 
@@ -20,22 +27,22 @@ Le problème avec les systèmes distribués est que, quelle que soit la question
 Quand vous coupez un service d'une certaine taille en deux, l'endroit où il faut découper dépend de la latence, des resources, et de l'accès aux états, mais il dépend aussi de la gestion des erreur, de la disponibilité, et des processus de reprise.
 Ça dépend, mais vous ne voulez probablement pas d'un {bus}.
 
-Utiliser un {bus} pour distribuer du travail est comme de croiser un {répartiteur} avec une base de donnée, avec les inconvénients des deux et aucun des avantages.
+Utiliser un {bus} pour distribuer du travail est comme de croiser un {répartiteur} avec une {bdd}, avec les inconvénients des deux et aucun des avantages.
 
-Les {bus}, ou queues persistantes auxquelles on accède par un mécanisme de publication-souscription, sont une manière populaire de séparer deux composants à travers un réseau.
-Ils sont populaires parce que leur coût de mise en place est souvent faible, qu'ils proposent un accès facile à des fonctionnalités de découverte de services, mais ils peuvent venir avec un coût opérationnel important, en fonction de l'endroit où vous les placez dans vos systèmes.
+Les {bus}, ou queues persistantes auxquelles on accède par un mécanisme de {ps}, sont une manière populaire de séparer deux composants à travers un réseau.
+Ils sont populaires parce que leur coût de mise en place est souvent faible, qu'ils proposent un accès facile à des fonctionnalités de {discovery}, mais ils peuvent venir avec un coût opérationnel important, en fonction de l'endroit où vous les placez dans vos systèmes.
 
 En pratique, un {bus} est un service qui transforme des erreur réseau et des défaillances de machines en problèmes de disques remplis.
 Et puis vous ajoutez plus de disque.
-L'avantage de la publication-souscription est qu'elle isole les composants l'un de l'autre, mais le problème est généralement de les coller ensemble.
+L'avantage de la {ps} est qu'elle isole les composants l'un de l'autre, mais le problème est généralement de les coller ensemble.
 
 == Pour {tâche-courtes}, vous voulez un {répartiteur}
 
-Pour {tâche-courtes}, la publication-souscription est une manière pratique de construire rapidement un système, mais vous finirez immanquablement par implémenter un nouveau protocole au dessus de l'existant.
-Vous avez de la publication-souscription, mais ce que vous voulez vraiment c'est de la requête-réponse.
+Pour {tâche-courtes}, la {ps} est une manière pratique de construire rapidement un système, mais vous finirez immanquablement par implémenter un nouveau protocole au dessus de l'existant.
+Vous avez de la {ps}, mais ce que vous voulez vraiment c'est de la {rr}.
 Si vous voulez que quelque chose soit calculé, vous allez probablement vouloir connaître le résultat.
 
-Démarrer avec une publication-souscription facilite le travail{nbsp}: les tâches sont ajoutées à la queues, les workers les suppriment chacun à leur tour.
+Démarrer avec une {ps} facilite le travail{nbsp}: les tâches sont ajoutées à la queues, les workers les suppriment chacun à leur tour.
 Malheureusement, cela rend difficile de savoir ce qui s'est passé, et vous allez devoir ajouter une autre queue pour envoyer les résultat en retour.
 
 Une fois que vous pouvez prendre les compte les cas qui se passent bien, il est temps de s'occuper des erreurs.
@@ -43,138 +50,177 @@ La première étape est souvent d'ajouter du code pour rééssayer les demandes 
 Après que le système soit tombé sous la charge, vous ajoutez un appel à `sleep()`.
 Après que le système soit lentement tombé sous la charge, chaque réessai attend deux fois plus longtemps que le précédent.
 
-(En passant{nbsp}: la synchronisation accidentelle est toujours un problème, car attendre pour réessayer n'empêche pas qu'un tas de chose n'arrivent en même temps.)
+({passant}la synchronisation accidentelle est toujours un problème, car attendre pour réessayer n'empêche pas qu'un tas de chose n'arrivent en même temps.)
 
 Quand les workers n'arrivent plus à tenir, les clients abandonnent et le mécanisme de réessai se met en route, mais la requête demandée plus tôt est toujours en attente de traitement.
-La solution est de remettre une partie de la queue du côté des clients, en leur demandant de ne pas soumettre plus de demandes tant qu'une demande n'a pas été acceptée{nbsp} via de la contre-pression (_back-pressure_) ou des acquittements.
+La solution est de remettre une partie de la queue du côté des clients, en leur demandant de ne pas soumettre plus de demandes tant qu'une demande n'a pas été acceptée{nbsp} via de la {bp} (_back-pressure_) ou des acquittements.
 
-Bien que les composants interragissent via publication-souscription, nous avons créé un système de requète-réponse au dessus.
-Désormais le {bus} s'occupe de deux choses véritablement utiles{nbsp}: la découverte de service et la répartition de charge.
+Bien que les composants interragissent via {ps}, nous avons créé un système de {rr} au dessus.
+Désormais le {bus} s'occupe de deux choses véritablement utiles{nbsp}: la {discovery} et la répartition de charge.
 Il s'occupe également de deux choses pas tellement utiles{nbsp}: ajouter des requêtes dans la queue et les persister.
 
-Pour {tâche-courtes}, la persistance n'est pas nécéssaire{nbsp}: le client reste de toutes façons dans le coin le temps que là tâche soit executée, et doit gérer la reprise.
+Pour {tâche-courtes}, la persistance n'est pas nécéssaire{nbsp}: le client reste de toutes façons dans le coin le temps que là tâche soit exécutée, et doit gérer la reprise.
 L'utilisation d'une queue n'est pas tellement nécessaire non plus.
 
-Les queues ateignent inévitablement deux états{nbsp}: pleines ou vides.
-Si votre queue est pleine, il faut pousser plus de travail vers les clients, et si elle est vide elle agit comme un lent {répartiteur}.
+Les queues atteignent inévitablement deux états{nbsp}: pleines ou vides.
+Si votre queue est pleine, il faut pousser plus de travail vers les extrémités, et si elle est vide elle agit comme un lent {répartiteur}.
 
 Une queue presque vide fonctionne toujours dans un mode premier arrivé, premier servi, servant de point de contention pour les requêtes.
 Un {bus} ne fait souvent rien à part attendre que les workers ne viennent récupérer de nouveaux messages.
 Si votre queue est faite pour être vide, pourquoi attendre pour transmettre une requête{nbsp}?
 
-(En passant{nbsp}: quelque chose comme une répartition de charge aléatoire va fonctionner, mais l'approche _join-idle-queue_ vaut largement la peine de s'y intéresser.)
+({passant} quelque chose comme une répartition de charge aléatoire va fonctionner, mais l'approche _join-idle-queue_ vaut largement la peine de s'y intéresser.)
 
-Pour {tâche-courtes}, vous pouvez utiliser un {bus}, mais vous allez vous retrouver à construire un {répartiteur}, avec un système d'appel de code à distance, et de la lantence en plus.
+Pour {tâche-courtes}, vous pouvez utiliser un {bus}, mais vous allez vous retrouver à construire un {répartiteur}, avec un système d'appel de code à distance, et de la latence en plus.
 
-== Pour {tâche-longues}, vous aurez besoin d'une base de donnée
+== Pour {tâche-longues}, vous aurez besoin d'une {bdd}
 
-Un {répartiteur} avec de la découverte de services ne vous aidera pas pour {tâche-longues}, ou pour les tâches dont la durée est supérieure à la durée de vie du client, ou pour gérer le débit.
+Un {répartiteur} avec de la {discovery} ne vous aidera pas pour {tâche-longues}, ou pour les tâches dont la durée est supérieure à la durée de vie du client, ou pour gérer le débit.
 Vous allez vouloir de la persistance, mais pas dans votre {bus}.
-Pour {tâche-longues}, vous allez plutôt vouloir une base de donnée.
+Pour {tâche-longues}, vous allez plutôt vouloir une {bdd}.
 
-Bien que la persistence et les queues soient des obstacles pour {tâches-courtes}, les inconvénients sont moins évident pour {tâche-longues}, mais les mêmes genres de choses peuvent mal se passer.
+Bien que la persistance et les queues soient des obstacles pour {tâche-courtes}, les inconvénients sont moins évident pour {tâche-longues}, mais les mêmes genres de choses peuvent mal se passer.
 
 Si vous vous intéressez au résultat d'une tâche, vous allez vouloir stocker le fait que quelque chose a besoin d'elle ailleurs que dans la queue persistante.
 Si la tâche est lancée mais échoue à mi-chemin, il faut que quelque chose en prenne la responsabilité, et le {bus} aura oublié.
-C'est pour cela que vous voulez une base de données.
+C'est pour cela que vous voulez une {bdd}.
 
 Les messages dupliqués dans une queue causent souvent d'autres maux de têtes, parce que {tâche-longues} ont plus de chances de se chevaucher.
 Bien que nous utilisons le {bus} pour distribuer du travail, nous l'utilisons aussi implicitement comme un système de gestion d'exclusion mutuelle (_mutex_).
 Pour empêcher les tâches de se chevaucher, vous ajoutez un verrou (_lock_) au dessus du système.
 Après qu'il ait planté un certain nombre de choix, vous le remplacez par un système d'emprunt, en ajoutant des durées d'expiration.
 
-(Note: This is not why you want a database, using transactions for long running tasks is suffering. Long running processes are best modelled as state machines.)
+(Note{nbsp}: ce n'est pour cela que vous voulez une {bdd}, utiliser des transactions pour des {tâche-longues} est très pénible.
+Il vaut mieux modéliser les processus dont l'exécution est longue comme des machines à états.)
 
-When the database becomes the primary source of truth, you can handle a broker going offline, or a broker losing the contents of a queue, by backfilling from the database. As a result, you don't need to directly enqueue work with the broker, but mark it as required in the database, and wait for something else to handle it.
+Quand la {bdd} devient la source principale de vérité, vous êtes capable de gérer le cas d'un {bus} qui devient indisponible, ou d'un {bus} qui perd le contenu d'une queue, en récupérant le contenu depuis la {bdd}.
+Par conséquent, vous n'avez pas besoin d'ajouter directement les tâches dans la queue le {bus}, mais vous pouvez les marquer comme telles dans la {bdd} et attendre que quelque chose d'autre s'en charge.
 
-Assuming that something else isn't a human who has been paged.
+Dans l'hypothèse où ce quelque chose n'est pas une personne qui a été réveillée pour ça.
 
-A message pump can scan the database periodically and send work requests to the broker. Enqueuing work in batches can be an effective way of making an expensive database call survivable. The pump responsible for enqueuing the work can also track if it has completed, and so handle recovery or retries too.
+Une pompe de message peut régulièrement parcourir la {bdd} et envoyer les demandes de travail au {bus}.
+Ajouter les tâches dans une queue par lot peut être un moyen efficace de survivre avec un appel coûteux à la {bdd}.
+La pompe responsable d'ajouter le travail peut aussi suivre s'il a été terminé, et ainsi gérer les reprises et les réessais.
 
-Backlog is still a problem, so you'll want to use back-pressure to keep the queue fairly empty, and only fill from the database when needed. Although a broker can handle temporary overload, back-pressure should mean it never has to.
+Il reste toujours le problèmes des tâches en attente, alors vous allez vouloir utiliser la {bp} pour garder la queue relativement vide, et seulement la remplir depuis la {bdd} quand c'est nécéssaire.
+Bien qu'un {bus} puisse accepter une surcharge temporaire, la {bp} devrait faire en sorte qu'il n'ait jamais à le faire.
 
-At this point the message broker is really providing two things: service discovery, and work assignment, but really you need a scheduler. A scheduler is what scans a database, works out which jobs need to run, and often where to run them too. A scheduler is what takes responsibility for handling errors.
+À cette étape, le {bus} fournit réellement deux chose{nbsp}: la {discovery} et l'assignation de tâches, mais ce dont vous avez réellement besoin c'est un {ordo}.
+Un {ordo} est ce qui parcourt la {bdd}, détermine quelles tâches doivent être lancées, et souvent aussi qui les lance.
+Un {ordo} est ce qui prend la responsabilité de gérer les erreurs.
 
-(Aside: Writing a scheduler is hard. It is much easier to have 1000 while loops waiting for the right time, than one while loop waiting for which of the 1000 is first. A scheduler can track when it last ran something, but the work can't rely on that being the last time it ran. Idempotency isn't just your friend, it is your saviour.)
+({passant} écrire un {ordo} est difficile. Il est beaucoup plus simple d'avoir 1{nbsp}000 boucles `while` qui attendent le bon moment, plutôt que d'écrire une boucle qui attend le prochain parmi 1{nbsp}000.
+Un {ordo} peut suivre la dernière fois qu'il a lancé quelque chose, mais une tâche ne peut pas compter sur le fait qu'il s'agit de la dernière fois où elle a été lancée.
+L'idempotence n'est pas seulement votre amie, elle est votre sauveuse.)
 
-You can use a message broker for long-lived tasks, but you'll be building a lock manager, a database, and a scheduler, along with yet another home-brew request-response system.
+Vous pouvez utiliser un {bus} pour {tâche-longues}, mais vous allez devoir construire un gestionnaire de verrous, une {bdd} et un {ordo}, plus un système maison de {rr} de plus.
 
-== Publish-Subscribe is about isolating components
+== La {rr} c'est pour isoler des composants
 
-The problem with running tasks with publish-subscribe is that you really want request-response. The problem with using queues to assign work is that you don't want to wait for a worker to ask.
+Le problème avec le fait d'exécuter des tâches avec de la {ps} c'est que ce que vous voulez vraiment c'est de la {rr}.
+Le problème avec le fait d'utiliser des queues pour assigner des tâches c'est que vous ne voulez pas attendre jusqu'à ce qu'un worker demande ce qu'il doit faire.
 
-The problem with relying on a persistent queue for recovery, is that recovery must get handled elsewhere, and the problem with brokers is nothing else makes service discovery so trivial.
+Le problème avec le fait de se reposer sur une queue persistante pour la reprise c'est que la reprise doit être gérée ailleurs, et que le problème avec les {bus} est que rien d'autre ne rend la {discovery} aussi triviale.
 
-Message brokers can be misused, but it isn't to say they have no use. Brokers work well when you need to cross system boundaries.
+Les {bus} peuvent être mal utilisés, mais cela ne signifie pas qu'ils n'ont pas d'utilité.
+Les {bus} fonctionnent bien quand vous avez à traverser les frontières d'un système.
 
-Although you want to keep queues empty between components, it is convenient to have a buffer at the edges of your system, to hide some failures from external clients. When you handle external faults at the edges, you free the insides from handling them. The inside of your system can focus on handling internal problems, of which there are many.
+Bien que vous vouliez garder les queues vides entre composants, il est pratique de pouvoir avoir des tampons (_buffers_) aux extrémités de votre système, pour cacher des défaillances aux clients externes.
+Quand vous donner la responsabilité de gérez les fautes externes aux extrémités, vous évitez d'avoir à le faire dans vos composants internes.
+L'intérieur de votre système peut se concentrer sur le fait de gérer les problèmes internes, sachant qu'il y en a suffisamment.
 
-A broker can be used to buffer work at the edges, but it can also be used as an optimisation, to kick off work a little earlier than planned. A broker can pass on a notification that data has been changed, and the system can fetch data through another API.
+Un {bus} peut utiliser pour créer des tampons aux extrémités, mais il peut aussi être utilisé comme une optimisation, pour démarrer du travail un peu plus tôt que nécéssaire.
+Un {bis} peut transmettre une notification qu'une donnée a été modifié, et le système peut récupérer de la donnée par une autre API.
 
-(Aside: If you use a broker to speed up a process, the system will grow to rely on it for performance. People use caches to speed up database calls, but there are many systems that simply do not work fast enough until the cache is warmed up, filled with data. Although you are not relying on the message broker for reliability, relying on it for performance is just as treacherous.)
+({passant} si vous utilisez un {bus} pour accélérer un processus, au bout d'un moment le système s'appuiera dessus pour être performant.
+Les personnes utilisent des caches pour accélérer les appels de {bdd}, mais de nombreux systèmes ne travaillent pas assez vite tant que le tâches n'est pas chaud, rempli de donnée.
+Bien que vous ne reposiez pas sur le {bus} pour la fiabilité, se reposer dessus pour la performance est tout aussi risqué.)
 
-Sometimes you want a load balancer, sometimes you'll need a database, but sometimes a message broker will be a good fit.
+Parfois vous voulez un {répartiteur}, parfois vous allez avoir besoin d'une {bdd}, mais parfois un {bus} peut être un bon choix.
 
-Although persistence can't handle many errors, it is convenient if you need to restart with new code or settings, without data loss. Sometimes the error handling offered is just right.
+Bien que la persistance ne puisse pas gérer beaucoup d'erreur, elle est pratique si vous avez besoin de redémarrer après avoir modifié du code ou de la configuration, sans perdre de données.
+Parfois la gestion d'erreur qui est fournie est exactement celle qu'il vous faut.
 
-Although a persistent queue offers some protection against failure, it can't take responsibility for when things go wrong halfway through a task. To be able to recover from failure you have to stop hiding it, you must add acknowledgements, back-pressure, error handling, to get back to a working system.
+Bien qu'une queue persistante vous fournisse des protections contre des défaillances, elle ne peut rien faire quand quelque chose se passe mal au milieu d'une tâche.
+Pour être capable de reprendre après une défaillance vous devez arrêter de la cacher, vous devez ajouter des acquittements, de la {bp}, de la gestion d'erreur, pour pouvoir revenir à un système qui fonctionne.
 
-A persistent message queue is not bad in itself, but relying on it for recovery, and by extension, correct behaviour, is fraught with peril.
+Une queue de message persistante n'est pas mauvaise en elle-même, mais s'appuyer dessus pour la reprise, et par extension, pour un comportement correct, est un chemin semé d'embûches.
 
-== Systems grow by pushing responsibilities to the edges
+== Les systèmes croissent en poussant les responsabilités aux extrémités
 
-Performance isn't easy either. You don't want queues, or persistence in the central or underlying layers of your system. You want them at the edges.
+La performance n'est pas facile non plus.
+Vous ne voulez pas de queues, ou de persistance dans les couches centrales ou inférieures de votre système.
+Vous les voulez aux extrémités.
 
-_It's slow_ is the hardest problem to debug, and often the reason is that something is stuck in a queue. For long and short-lived tasks, we used back-pressure to keep the queue empty, to reduce latency.
+_C'est lent_ est le problème le plus difficile à corriger, et souvent la raison est que quelque chose est coincé dans une queue.
+Pour les tâches à durée de vie longue et courts, nous avons utilisé la {bp} pour garder la queue vide, pour réduire la latence.
 
-When you have several queues between you and the worker, it becomes even more important to keep the queue out of the centre of the network. We've spent decades on tcp congestion control to avoid it.
+Quand vous avez plusieurs queues entre vous et le worker, il devient encore plus important de ne pas avoir de queues au centre du réseau.
+Des décennies de travail ont été passés sur le contrôle de congestion de TCP pour éviter cette situation.
 
-If you're curious, the history of tcp congestion makes for interesting reading. Although the ends of a tcp connection were responsible for failure and retries, the routers were responsible for congestion: drop things when there is too much.
+Si cela excite votre curiosité, l'histoire de la congestion de TCP est une lecture intéressante.
+Bien que les extrémités d'une connexion TCP étaient responsables de gérer les défaillances et les rééssais, les routeurs étaient responsables de gérer la congestion, c'est-à-dire de laisser tomber des choses quand il y en avait trop.
 
-The problem is that it worked until the network was saturated, and similar to backlog in queues, when it broke, errors cascaded. The solution was similar: back-pressure. Similar to sleeping twice as long on errors, tcp sends half as many packets, before gradually increasing the amount as things improve.
+Le problème est que ça a fonctionné jusqu'à ce que le réseau soit saturé, et&#8201;—{nbsp}d'une manière similaire aux tâches en attente dans des queues{nbsp}—&#8201;quand c'est arrivé les erreurs se sont produites en cascades.
+La solution a été similaire{nbsp}: la {bp}.
+De la même manière au fait d'attendre deux fois plus longtemps en cas d'erreur, TCP envoie deux fois moins de paquets, avant d'augmenter progressivement leurs nombres quand les choses s'améliorent.
 
-Back-pressure is about pushing work to the edges, letting the ends of the conversation find stability, rather than trying to optimise all of the links in-between in isolation. Congestion control is about using back-pressure to keep the queues in-between as empty as possible, to keep latency down, and to increase throughput by avoiding the need to drop packets.
+La {bp} conciste à pousser le travail aux extrémités, en laissant les extrémités de la conversation s'occuper de la stabilité, plutôt que d'essayer d'optimiser tous les liens intermédiaires de manière isolée.
+Le contrôle de congestion consiste à utiliser la {bd} pour garder les queues intermédiaires aussi vides que possibles, pour garder une latence faible, et pour augmenter le débit en évitant d'avoir besoin de laisser tomber des paquets.
 
-Pushing work to the edges is how your system scales. We have spent a lot of time and a considerable amount of money on IP-Multicast, but nothing has been as effective as BitTorrent. Instead of relying on smart routers to work out how to broadcast, we rely on smart clients to talk to each other.
+C'est en poussant le travail aux extrémités que votre système se met à l'échelle.
+Beaucoup de temps et une quantité considérable d'argent a été investi dans le multicast IP, mais rien n'a jamais été aussi efficace que BitTorrent.
+Au lieu de s'appuyer sur des routeurs intelligent pour déterminer comment diffuser des données, on s'appuie sur des clients intelligents qui se parlent les uns aux autres.
 
-Pushing recovery to the outer layers is how your system handles failure. In the earlier examples, we needed to get the client, or the scheduler to handle the lifecycle of a task, as it outlived the time on the queue.
+Pour que votre système gère les défaillances il faut pousser la reprise vers les couches externes.
+Dans les exemples pré-cités, on a besoin que le client ou l'{ordo} gère le cycle de vie de la tâche, car il a une durée de vie supérieur à la présence de la tâche dans la queue.
 
-Error recovery in the lower layers of a system is an optimisation, and you can't push work to the centre of a network and scale. This is the end-to-end principle, and it is one of the most important ideas in system design.
+La reprise sur erreur dans les couches basses d'une système est une optimisation, et il est impossible de pousser le travail au centre du réseaux de le mettre à l'échelle.
+C'est le principe de bout en bout, et c'est l'une des idées les plus importantes dans la conception de systèmes.
 
-The end-to-end principle is why you can restart your home router, when it crashes, without it having to replay all of the websites you wanted to visit before letting you ask for a new page. The browser (and your computer) is responsible for recovery, not the computers in between.
+Le principe de bout en bout est la raison pour laquelle vous pouvez redémarrer votre box, quand elle plante, sans qu'elle ait besoin de rejouer tous les sites que vous vouliez visiter avant de vous laisser ouvrir une nouvelle page.
+Le navigateur (et votre ordinateur) est responsable de la reprise, et pas les ordinateurs au milieu.
 
-This isn't a new idea, and Erlang/OTP owes a lot to it. OTP organises a running program into a supervision tree. Each process will often have one process above it, restarting it on failure, and above that, another supervisor to do the same.
+Ce n'est pas une idée nouvelle, et Erlang/OTP lui doit beaucoup.
+OTP organise un programme en train de s'exécuter en un arbre de supervision.
+Les processus ont souvent un processus au-dessus d'eux, et le redémarrent en cas de défaillance, et encore au-dessus, un autre superviseur qui fait la même chose.
 
-(Aside: Pipelines aren't incompatible with process supervision, one way is for each part to spawn the program that reads its output. A failure down the chain can propagate back up to be handled correctly.)
+({passant} les pipelines ne sont pas incompatibles avec la supervision de processus, une manière de s'y prendre est que chaque programme soit responsable de lancer le programme qui le suit et qui lit sa sortie. De cette manière une erreur en bas de la chaîne peut se propager pour être prise en compte correctement.)
 
-Although each program will handle some errors, the top levels of the supervision tree handle larger faults with restarts. Similarly, it's nice if your webpage can recover from a fault, but inevitably someone will have to hit refresh.
+Bien que chaque programme prenne en compte certaines erreurs, les niveaux supérieurs de l'arbre de supervision prend en compte les défaillances plus grave avec des redémarrage.
+De la même manière, c'est agréable si votre page web puisse se remettre d'une erreur, mais inévitablement quelqu'un aura besoin de cliquer sur le bouton rafraichir.
 
-The end-to-end principle is realising that no matter how many exceptions you handle deep down inside your program, some will leak out, and something at the outer layer has to take responsibility.
+Le principe de bout-en-bout c'est la réalisation que, quel que soit le nombre d'exceptions que vous prenez en compte à l'intérieur de votre programmes, certaines s'échapperont, et quelque chose dans la couche extérieur devra s'en occuper.
 
-Although sometimes taking responsibility is writing things to an audit log, and message brokers are pretty good at that.
+Bien que parfois s'en occuper signifie écrire des choses dans un log d'audit, et les {bus} sont plutôt bon à ça.
 
-== Aside: But what about replicated logs?
+== {passant} mais qu'en est-il des logs répliqués{nbsp}?
 
-[quote, I believe I did, Bob, jrecursive]
+[quote, "`Il me semble l'avoir fait, Bob`", jrecursive]
 ____
-"`How do I subscribe to the topic on the message broker?`"
+-- Comment est ce que je fais pour souscrire à un sujet du {bus}{nbsp}?
 
-"`It's not a message broker, it's a replicated log`"
+-- Ce n'est pas un {bus}, c'est un log répliqué
 
-"`Ok, How do I subscribe to the replicated log`"
+-- OK, comment est ce que je fais pour souscrire au log répliqué{nbsp}?
 ____
 
-Although a replicated log is often confused with a message broker, they aren't immune from handling failure. Although it's good the components are isolated from each other, they still have to be integrated into the system at large. Both offer a one way stream for sharing, both offer publish-subscribe like interfaces, but the intent is wildly different.
+Bien qu'un log répliqué soit souvent confondu avec {bus}, il ne vous immunise pas contre la gestion d'erreur.
+Bien que ça soit une bonne chose que les composants soient isolés les uns des autres, ils doivent tout de même être intégrés dans le système en lui-même.
+Les deux fournissent un flux à sens unique pour faire du partage, et les deux proposent une interface qui ressemble à de la {bp}, mais leur objectifs sont radicalement différents.
 
-A replicated log is often about auditing, or recovery: having a central point of truth for decisions. Sometimes a replicated log is about building a pipeline with fan-in (aggregating data), or fan-out (broadcasting data), but always building a system where data flows in one direction.
+Un log répliqué a souvent pour but l'audit ou la reprise{nbsp}: avoir un point de vérité central pour pouvoir prendre des décisions.
+Parfois un log répliqué a pour but l'aggrégation (_fan-in_) ou la diffusion (_fan-out_) de données, mais il s'agit toujours de construire un système ou les données circulent dans une direction.
 
-The easiest way to see the difference between a replicated log and a message broker is to ask an engineer to draw a diagram of how the pieces connect.
+La manière la plus simple de voir la différence entre un log répliqué et un {bus} c'est de demander à un·e ingénieur·e de dessiner un diagramme de la manière dont les éléments se connectent.
 
-If the diagram looks like a one-way system, it's a replicated log. If almost every component talks to it, it's a message broker. If you can draw a flow-chart, it's a replicated log. If you take all the arrows away and you're left with a venn diagram of '`things that talk to each other`', it's a message broker.
+Si le diagramme ressemble à un système à sens unique, il s'agit d'un log répliqué. Si presque tous les composants lui parlent, il s'agit d'un {bus}.
+Si vous pouvez le dessiner sous forme d'un flow chart, c'est un log répliqué.
+Si vous enlevez toutes les flèches et ce qui vous reste c'est un diagramme de Venn des "`chose qui se parlent`", c'est un {bus}.
 
-Be warned: A distributed system is something you can draw on a whiteboard pretty quickly, but it'll take hours to explain how all the pieces interact.
+Soyez prévenu·e·s{nbsp}: un système distribué est quelque chose qu'on peut dessiner assez facilement sur un tableau blanc, mais il faut des heures pour expliquer comment toutes les éléments interagissent.
 
-== You cut a monolith with a protocol
+== Vous coupez un monolithe avec un protocole
 
 How you cut a monolith is often more about how you are cutting up responsibility within a team, than cutting it into components. It really does depend, and often more on the social aspects than the technical ones, but you are still responsible for the protocol you create.
 
