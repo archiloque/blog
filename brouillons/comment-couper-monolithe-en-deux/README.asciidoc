@@ -16,7 +16,7 @@ v0.1, 2020-01-21
 :ps: publication-souscription
 :bp: contre-pression
 
-Ce post est une traduction d'link:https://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[un article] de link:http://twitter.com/tef_ebooks[tef].
+Cet article est une traduction d'link:https://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[un article] de link:http://twitter.com/tef_ebooks[tef].
 
 ''''
 
@@ -130,7 +130,7 @@ Quand vous donner la responsabilité de gérez les fautes externes aux extrémit
 L'intérieur de votre système peut se concentrer sur le fait de gérer les problèmes internes, sachant qu'il y en a suffisamment.
 
 Un {bus} peut utiliser pour créer des tampons aux extrémités, mais il peut aussi être utilisé comme une optimisation, pour démarrer du travail un peu plus tôt que nécéssaire.
-Un {bis} peut transmettre une notification qu'une donnée a été modifié, et le système peut récupérer de la donnée par une autre API.
+Un {bus} peut transmettre une notification qu'une donnée a été modifié, et le système peut récupérer de la donnée par une autre API.
 
 ({passant} si vous utilisez un {bus} pour accélérer un processus, au bout d'un moment le système s'appuiera dessus pour être performant.
 Les personnes utilisent des caches pour accélérer les appels de {bdd}, mais de nombreux systèmes ne travaillent pas assez vite tant que le tâches n'est pas chaud, rempli de donnée.
@@ -165,8 +165,8 @@ Le problème est que ça a fonctionné jusqu'à ce que le réseau soit saturé, 
 La solution a été similaire{nbsp}: la {bp}.
 De la même manière au fait d'attendre deux fois plus longtemps en cas d'erreur, TCP envoie deux fois moins de paquets, avant d'augmenter progressivement leurs nombres quand les choses s'améliorent.
 
-La {bp} conciste à pousser le travail aux extrémités, en laissant les extrémités de la conversation s'occuper de la stabilité, plutôt que d'essayer d'optimiser tous les liens intermédiaires de manière isolée.
-Le contrôle de congestion consiste à utiliser la {bd} pour garder les queues intermédiaires aussi vides que possibles, pour garder une latence faible, et pour augmenter le débit en évitant d'avoir besoin de laisser tomber des paquets.
+La {bp} consiste à pousser le travail aux extrémités, en laissant les extrémités de la conversation s'occuper de la stabilité, plutôt que d'essayer d'optimiser tous les liens intermédiaires de manière isolée.
+Le contrôle de congestion consiste à utiliser la {bdd} pour garder les queues intermédiaires aussi vides que possibles, pour garder une latence faible, et pour augmenter le débit en évitant d'avoir besoin de laisser tomber des paquets.
 
 C'est en poussant le travail aux extrémités que votre système se met à l'échelle.
 Beaucoup de temps et une quantité considérable d'argent a été investi dans le multicast IP, mais rien n'a jamais été aussi efficace que BitTorrent.
@@ -222,27 +222,40 @@ Soyez prévenu·e·s{nbsp}: un système distribué est quelque chose qu'on peut 
 
 == Vous coupez un monolithe avec un protocole
 
-How you cut a monolith is often more about how you are cutting up responsibility within a team, than cutting it into components. It really does depend, and often more on the social aspects than the technical ones, but you are still responsible for the protocol you create.
+La manière de couper un monolithe dépend souvent plus de la manière de séparer les responsabilités dans une équipe plutôt que de la manière de le découper en composants.
+Ça dépend vraiment des cas, et souvent plus des aspects techniques que des aspects techniques, mais vous êtes tout de même responsable du protocole que vous créez.
 
-Distributed systems are messy because of how the pieces interact over time, rather than which pieces are interacting. The complexity of a distributed system does not come from having hundreds of machines, but hundreds of ways for them to interact. A protocol must take into account performance, safety, stability, availability, and most importantly, error handling.
+La raison pour laquelle les systèmes distribués sont désordonnés est la manière dont les éléments interagissent dans le temps plutôt que simplement de quels éléments interagissent entre eux.
+La complexité d'un système distribué ne vient du fait d'avoir des centaines de machines, mais du fait que ces machines ont des centaines de manière d'interagir.
+Un protocole doit prendre en compte la performance, la sécurité, la stabilité, la disponibilité, et le plus important, la gestion d'erreur.
 
-When we talk about distributed systems, we are talking about power structures: how resources are allocated, how work is divided, how control is shared, or how order is kept across systems ostensibly built out of well meaning but faulty components.
+Quand nous parlons de systèmes distribués, nous parlons de structure de pouvoir{nbsp}: comment les ressources soit réparties, comment le travail est divisé, comment le contrôle est partagé, ou comment l'ordre est maintenu au travers de systèmes construits ostensiblement avec des composants bien intentionnés mais défectueux.
 
-A protocol is the rules and expectations of participants in a system, and how they are beholden to each other. A protocol defines who takes responsibility for failure.
+Un protocole définit les règles et les attentes de participation à un système, et comment les éléments sont redevables les uns aux autres.
+Un protocole définit qui est responsable en cas de défaillance.
 
-The problem with message brokers, and queues, is that no-one does.
+Le problème avec les {bus}, et les queues, et que personne ne l'est.
 
-Using a message broker is not the end of the world, nor a sign of poor engineering. Using a message broker is a tradeoff. Use them freely knowing they work well on the edges of your system as buffers. Use them wisely knowing that the buck has to stop somewhere else. Use them cheekily to get something working.
+Utiliser un {bus} n'est pas la fin du monde, ou le signe d'une ingénierie de mauvaise qualité.
+Utiliser un {bus} est un compromis.
+Utilisez-les librement en sachant qu'ils fonctionnent bien aux extrémités d'un système en tant que tampon.
+Utilisez-les à bon escient en sachant que la responsabilité doit se situer ailleurs.
+Utilisez-les sans vous stresser pour faire fonctionner quelque chose.
 
-I say don't rely on a message broker, but I can't point to easy off-the-shelf answers. HTTP and DNS are remarkable protocols, but I still have no good answers for service discovery.
+Je dis que vous devez pas vous appuyer sur un {bus}, mais je ne peux pas vous donner de réponse toute prête.
+HTTP et DNS sont des protocoles remarquables, mais je n'ai pas de bonne solution pour la {discovery}.
 
-Lots of software regularly gets pushed into service way outside of its designed capabilities, and brokers are no exception. Although the bad habits around brokers and the relative ease of getting a prototype up and running lead to nasty effects at scale, you don't need to build everything at once.
+De nombreux logiciels sont régulièrement utilisés très largement en dehors des cas pour lesquels ils ont été conçus, et les {bus} n'y font pas exception.
+Bien que les mauvaises habitudes autour des {bus} et la facilité relative d'obtenir un prototype qui fonctionne aboutissent à de mauvaises surprise lors des mises à l'échelle, vous n'avez pas besoin de tout construire d'un coup.
 
-The complexity of a system lies in its protocol not its topology, and a protocol is what you create when you cut your monolith into pieces. If modularity is about building software, protocol is about how we break it apart.
+La complexité d'un système réside dans son protocole et pas dans sa topologie, et un protocole est ce que vous créez lorsque vous coupez un monolithe en morceaux.
+Si la construction de logiciel s'appuie sur la modularité, la manière de découper un logiciel s'appuie sur un protocole.
 
-[quote, Analysis of Nonlinear Control Systems, 'Dustan Graham and Duane McRuer, p 436']
+
+[quote, Analyse de systèmes de contrôles non linéaires, 'Dustan Graham et Duane McRuer, p 436']
 ____
-The main task of the engineering analyst is not merely to obtain "`solutions`" but is rather to understand the dynamic behaviour of the system in such a way that the secrets of the mechanism are revealed, and that if it is built it will have no surprises left for [them]. Other than exhaustive physical experimentations, this is the only sound basis for engineering design, and disregard of this cardinal principle has not infrequently lead to disaster.
+La tâche principale de l'analyste en ingénierie n'est pas seulement d'obtenir des "`solutions`" mais plutôt de comprendre le comportement dynamique du système de manière à révéler les secret du mécanisme, de manière à ce qu'il soit construit sans comporter aucune surprise [pour il·elle·s].
+Plutôt que des expérimentations physiques exhaustives, c'est la seule approche solide pour la conception technique, et il n'est pas rare que l'ignorance de ce principe fondamental conduise au désastre.
 ____
 
-Protocol is the reason why "`it depends`", and the reason why you shouldn't depend on a message broker: you can use a message broker to glue systems together, but never use one to cut systems apart.
+Le protocole est la raison pour laquelle "`ça dépend`", et la raison pour laquelle vous ne deviez pas dépendre d'un {bus}{nbsp}: vous pouvez utiliser un {bus} pour assembler des systèmes, mais n'en utilisez jamais pour séparer des systèmes.
