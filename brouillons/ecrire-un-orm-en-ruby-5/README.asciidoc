@@ -9,6 +9,7 @@ endif::[]
 :author: Julien Kirch
 :revnumber: v0.1
 :docdate: 2020-05-10
+:ignore_files: all.pdf, all.asciidoc
 :article_lang: fr
 ifndef::source-highlighter[]
 :source-highlighter: pygments
@@ -375,6 +376,8 @@ Awesome brick
 
 Et voila{nbsp}!
 À ce stade j'ai la base d'un ORM minimal.
+
+Le code se trouve link:https://github.com/archiloque/orm-ruby[ici].
 
 Il manque quelques éléments pour qu'il soit vraiment utile, par exemple la gestion des `UPDATE` et de la suppression unitaire de modèle, mais leur implémentation devrait largement s'appuyer sur le code existant.
 

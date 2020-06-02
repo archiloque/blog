@@ -15,17 +15,23 @@ ifndef::source-highlighter[]
 :pygments-style: friendly
 endif::[]
 
+ifeval::["{doctype}" == "book"]
+Dans ce texte je vais décrire pas à pas comment écrire un ORM SQL minimal en Ruby.
+endif::[]
+ifeval::["{doctype}" != "book"]
 Ceci est le premier article d'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
-Avant de plonger dans le code, je vais ici introduire les sujets et expliquer certains des choix de design.
+endif::[]
 
-== Les ORMs
+Avant de plonger dans le code, je vais ici introduire les sujets et expliquer certains des choix que j'ai fait.
+
+== Pourquoi un ORM{nbsp}?
 
 Un ORM est une couche qui fait le lien entre une base de données et la représentation des données dans un programme.
 Elle permet d'automatiser ou de simplifier certains actions, notamment la génération de requêtes, et enrobe les appels à la base dans une API dans le style du langage de programmation utilisé.
 
-Elle peut aussi fournir une compatibilité entre plusieurs systèmes de base de données, et un système de cache.
+Elle peut aussi fournir une compatibilité entre plusieurs systèmes de base de données et un système de cache.
 
-Les ORMs sont probablement les outils les plus complexes auxquels on a affaire quand on commence à développer une application web.
+Les ORMs sont probablement les outils les plus complexes auxquels on a affaire quand on commence à développer des applications web.
 
 De ce fait, on peut avoir du mal à imaginer comment ils peuvent bien fonctionner, et peuvent donner l'impression d'être presque magiques.
 
@@ -73,7 +79,5 @@ Surtout que par ailleurs le rechargement de code fonctionne très bien, par exem
 
 Pour la génération, je vais utiliser link:https://ruby-doc.org/stdlib-2.7.1/libdoc/erb/rdoc/ERB.html[erb].
 Si elle est souvent utilisée pour générer du HTML, la syntaxe erb n'est pas du tout spécifique au HTML (comme peut l'être link:http://slim-lang.com[Slim]) et peut donc servir à générer du Ruby.
-
-== C'est tout pour le moment
 
 Voila pour l'introduction, dans l'article suivant je vais m'occuper à la structure du projet.

@@ -77,7 +77,7 @@ Ensuite, je dois récupérer les colonnes de chaque table.
 L'endroit le plus simple est de le faire juste avant de créer les classes de modèles, alors qu'on est déjà en train d'itérer sur chaque modèle, on pourra alors passer la liste des colonnes au template.
 
 Mais pour commencer, il faut se connecter à la base de donnée.
-Je vais utiliser une base en local avec un fichier stocké dans le répertoire du projet
+Je vais utiliser une base en local avec un fichier stocké dans le répertoire du projet{nbsp}:
 
 .generator.rb
 [source,ruby]
@@ -577,6 +577,4 @@ Je ne vais pas les détailler ici mais pour les suppression de modèle il faut g
 Toutes les requêtes vues ici s'appuient sur l'hypothèse d'un identifiant technique présent dans toutes les tables, ce qui est la pratique généralement conseillée en SQL.
 Prendre en compte les autres types d'identifiant demande de rendre paramétrable cette partie des requêtes.
 
-== C'est tout pour le moment
-
-Pour l'article suivant, je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
+C'est tout pour le moment, dans l'article suivant je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
