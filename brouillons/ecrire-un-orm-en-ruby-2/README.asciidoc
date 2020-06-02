@@ -49,7 +49,7 @@ gem "rake", "~> 12.0"
 gem "sqlite3", "~> 1.4"
 ----
 
-== Comme exemple{nbsp}:un jeu de construction
+  == Comme exemple{nbsp}: un jeu de construction
 
 Dans la suite, je vais prendre comme exemple un jeu de construction.
 
@@ -125,8 +125,8 @@ sqlite> select count(*) from color;
 sqlite> 
 ----
 
-Certains ORMs comme Rails et Sequel fournissent des outils pour gérer les modifications de schéma de a base.
-J'ai fais le choix ici de ne pas implémenter cette fonctionnalité car&#8201;—{nbsp}même si elle peut partager du code avec le reste de l'ORM {nbsp}—&#8201;elle est largement séparée et n'influe donc pas sur le noyau de l'outil.
+Certains ORMs comme Rails et Sequel fournissent des outils pour gérer les modifications de schéma de la base.
+J'ai fait le choix ici de ne pas implémenter cette fonctionnalité car&#8201;—{nbsp}même si elle peut partager du code avec le reste de l'ORM {nbsp}—&#8201;elle est largement séparée et n'influe donc pas sur le noyau de l'outil.
 
 Dans le monde Java, link:https://hibernate.org/orm/[l'ORM hibernate] qui est très utilisé ne fournit ainsi pas d'outil de migration.
 
