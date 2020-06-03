@@ -28,20 +28,20 @@ Ce problème est parfois mentionné dans les article sur le _bloat_ de l'informa
 
 Mais je ne pense pas que les choses vont changer dans ce domaine d'une manière significative même si de nouveaux OS comme Android peuvent permettre de supprimer quelques couches.
 
-Par contre ce qui s'améliore avec le temps c'est la qualité des abstractions, c'est-à-dire que l'empilement des couches sera plus harmonieux, et produira moins de cas limites générateurs d'imprévus.
+Par contre ce qui s'améliore avec le temps c'est la qualité des abstractions, c'est-à-dire que l'empilement des couches sera plus harmonieux et produira moins de cas limites générateurs d'imprévus.
 
 == Que faire{nbsp}?
 
 La meilleure solution est bien entendu de disposer de la connaissance dont on peut avoir besoin suffisamment à l'avance pour ne pas être bloqué.
 
-Ce qui suppose de savoir à l'avance de quoi on va avoir besoin, et de quand cela va se produire.
+Ce qui suppose de savoir à l'avance de quoi on va avoir besoin et de quand cela va se produire.
 
 Avec de l'expérience on peut arriver à déterminer les zones "`chaudes`" qu'il y a besoin de connaître.
 Il s'agit alors de s'assurer d'avoir les bonnes compétences sous la main, même si elles ne servent pas tous les jours.
 C'est une des raisons d'avoir dans ses équipes des link:../ovin-a-5-pattes[ovins à 5 pattes].
 
-Plus votre organisation est grande, plus il est facile d'entretenir un "`pool`" large de connaissances sur les différentes briques, et donc d'avoir un risque plus faible.
-C'est d'autant plus vrai qu'une organisation plus grande signifie souvent besoins plus complexes, et ces connaissances sont dans ce cas utilisées et pas seulement nécessaires "`au cas où`".
+Plus votre organisation est grande, plus il est facile d'entretenir un "`pool`" large de connaissances sur les différentes briques et donc d'avoir un risque plus faible.
+C'est d'autant plus vrai qu'une organisation plus grande signifie souvent besoins plus complexes et ces connaissances sont dans ce cas utilisées et pas seulement nécessaires "`au cas où`".
 
 Pour réduire le risque on peut aussi limiter le nombre de technologies pour réduire les compétences à maîtriser.
 Cela peut faire grincer des dents, mais c'est à mettre en rapport avec les conséquences en cas de problèmes.
