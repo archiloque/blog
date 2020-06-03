@@ -34,7 +34,7 @@ Color.where('name = ?', 'b*').order_by('name desc').all
 
 == L'approche "`builder`"
 
-Ce type d'API utilise souvent le design pattern "`builder`" qui consiste à stocker les différent paramètres d'une requête dans des objets, et les utiliser au moment où la requête est exécutée.
+Ce type d'API utilise souvent le design pattern "`builder`" qui consiste à stocker les différent paramètres d'une requête dans des objets et les utiliser au moment où la requête est exécutée.
 
 Ainsi la commande
 
@@ -86,7 +86,7 @@ class QueryParameters
 end
 ----
 
-En plus des paramètres pour les `where` et les `order by`, elle a besoin de connaître la classe du modèle à traiter pour avoir accès au nom de la table et aux champs, et pour savoir quels objets instancier avec les résultats.
+En plus des paramètres pour les `where` et les `order by`, elle a besoin de connaître la classe du modèle à traiter pour avoir accès au nom de la table et aux champs et pour savoir quels objets instancier avec les résultats.
 
 Comme décrit plus haut, appeler `where` ou `order_by` construit une nouvelle instance de `QueryParameters` en ajoutant le paramètre correspondant et la renvoie.
 
@@ -173,7 +173,7 @@ SELECT column_name_1, column_name_2
   ORDER BY column_X asc, column_Y desc
 ----
 
-Pour les `where` et `order by` la logique est la même{nbsp}: s'il existe au moins un paramétre de ce type, ajouter la clause en concaténants les éléments séparés par des `AND` ou des virgules, et pour le `where` il faut ensuite passer les valeurs à la requête sous forme d'un tableau contenant l'ensemble des éléments dans le bon ordre.
+Pour les `where` et `order by` la logique est la même{nbsp}: s'il existe au moins un paramétre de ce type, ajouter la clause en concaténants les éléments séparés par des `AND` ou des virgules et pour le `where` il faut ensuite passer les valeurs à la requête sous forme d'un tableau contenant l'ensemble des éléments dans le bon ordre.
 
 La partie finale de la méthode qui instancie et renseigne les modèles est reprise de la méthode `Model#all`.
 
@@ -323,7 +323,7 @@ Black
 Pour terminer cet article, je vais encore ajouter un cas, celui de la clause `limit` qui permet de limiter le nombre de résultats à récupérer en spécifiant un entier.
 
 Au lieu de stocker les différentes valeurs comme pour `where` et `order by`, on ne conserve qu'une valeur.
-On pourrait aussi envisager de lever une exception si une valeur a déjà été spécifié plus tôt dans la chaîne des `QueryParameters`.
+On pourrait aussi envisager de lever une exception si une valeur a déjà été spécifiée plus tôt dans la chaîne des `QueryParameters`.
 
 `limit` est le plus souvent utilisé indirectement quand on veut récupérer une seule valeur, sous la forme d'une méthode `first` qui spécifie le `limit` à 1, puis renvoie le premier élément du tableau de résultat.
 

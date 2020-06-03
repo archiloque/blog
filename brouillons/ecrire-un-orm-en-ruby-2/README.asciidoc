@@ -24,7 +24,7 @@ Ceci est le deuxième article d'une série de cinq décrivant pas à pas comment
 Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet], je vais ici poser les bases de l'outil.
 endif::[]
 
-Le code (framework et code d'exemple) sera dans un projet unique, et ne sera pas packagé sous forme d'une gem.
+Le code (framework et code d'exemple) sera dans un projet unique et ne sera pas packagé sous forme d'une gem.
 
 Le faire ajouterait pas mal de code et un peu de complexité sans que cela apporte quelque chose.
 
@@ -54,7 +54,7 @@ gem "sqlite3", "~> 1.4"
 Dans la suite, je vais prendre comme exemple un jeu de construction.
 
 Ce jeu de construction est composé des différents types de briques (`Brick`), qui sont chacun d'une certaine couleur (`Color`).
-Des modèles à construire (`Kit`) sont constitués d'un ensemble de types de briques chacun présent un certain nombre de briques (tant de briques d'une sorte, tant de briques d'une autre sorte), la relation modèle - type de brique étant modélisé par un `KitBrick`.
+Des modèles à construire (`Kit`) sont constitués d'un ensemble de types de briques, chacun contient un certain nombre de briques (tant de briques d'une sorte, tant de briques d'une autre sorte), la relation modèle - type de brique étant modélisée par un `KitBrick`.
 
 image:../ecrire-un-orm-en-ruby-2/schema.svg[]
 
@@ -161,7 +161,7 @@ La capacité d'utiliser des noms de table par défaut en les déduisant des noms
 
 Pour générer les modèles je dois commencer par lire le contenu de fichier.
 
-Pour cela je commencer par créer la classe `ModelDefinition` qui contiendra les contenus des modèles tels que définis dans le fichier en étant passé dans chacun des blocs `define_model`.
+Pour cela je commencer par créer la classe `ModelDefinition` qui contiendra les contenus des modèles tels que définis dans le fichier, en étant passé dans chacun des blocs `define_model`.
 
 .generator.rb
 [source,ruby]
@@ -262,7 +262,7 @@ class <%= model.name %>
 end
 ----
 
-Pour générer le fichier, il faut alors charger ce template, l'appliquer à chaque des définition qui sont disponibles dans `ModelDefinition::MODELS_DEFINITIONS`, et stocker le résultat dans un fichier.
+Pour générer le fichier, il faut alors charger ce template, l'appliquer à chacun des définitions qui sont disponibles dans `ModelDefinition::MODELS_DEFINITIONS` et stocker le résultat dans un fichier.
 
 .generator.rb
 [source,ruby]
@@ -359,4 +359,4 @@ require_relative 'models'
 black = Color.new
 ----
 
-Mais la structure est en place, et dans l'article suivant je vais pouvoir m'en servir pour faire mes premières requêtes.
+Mais la structure est en place et dans l'article suivant je vais pouvoir m'en servir pour faire mes premières requêtes.

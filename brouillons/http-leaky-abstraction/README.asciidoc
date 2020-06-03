@@ -56,7 +56,7 @@ Dans le cas d'un outil dont la fonction principale est de masquer le fait que de
 === Une abstraction ça va …
 
 Mais quand plusieurs abstractions sont empilées, cela devient plus compliqué.
-Par exemple si vous utilisez un outil d'édition de texte avec un système de fichier distants, comme un partage de fichier windows, les performances seront peut-être dégradées, et vous aurez peut-être des erreurs -- comme des erreurs de déconnexions réseau -- auxquelles vous ne vous attendiez pas de la part d'un éditeur de texte, car votre modèle mental d'un éditeur de texte est celui d'une éditions de fichier locale.
+Par exemple si vous utilisez un outil d'édition de texte avec un système de fichier distants, comme un partage de fichier windows, les performances seront peut-être dégradées et vous aurez peut-être des erreurs -- comme des erreurs de déconnexions réseau -- auxquelles vous ne vous attendiez pas de la part d'un éditeur de texte, car votre modèle mental d'un éditeur de texte est celui d'une éditions de fichier locale.
 
 L'outil d'édition ne texte ne sait rien de l'endroit d'où viennent les fichiers : il s'agit d'une abstraction fournie par le système d'exploitation.
 Il est même possible que les personnes qui développent l'outil ne l'aient jamais utilisé ou testé dans cette situation.
@@ -83,12 +83,12 @@ Un exemple parlant est link:https://danluu.com/deconstruct-files/[la gestion de 
 
 Avec un link:https://fr.wikipedia.org/wiki/Mapping_objet-relationnel[ORM] : un ORM et une base de donnée standard peuvent permettre de faire pas mal de chose sans savoir comment les requêtes sont construites ni comment la base fonctionne.
 
-Avec le progrès de la technologie et des modèles de conceptions, on peut aller de plus en plus loin de cette manière, c'est une bonne chose car cela veut dire que les personnes qui développent ce genre d'applications ont besoin de savoir moins de choses, et donc peuvent être formées plus rapidement.
+Avec le progrès de la technologie et des modèles de conceptions, on peut aller de plus en plus loin de cette manière, c'est une bonne chose car cela veut dire que les personnes qui développent ce genre d'applications ont besoin de savoir moins de choses et donc peuvent être formées plus rapidement.
 
 Mais plus le modèle de donnée devient compliqué et plus les volumes augmentent, plus il devient difficile ou risqué de se passer d'une connaissance intime des différents éléments.
 Cela signifie qu'à un moment donnée il faudra d'une certaine manière rembourser l'économie de connaissance qu'on a fait jusque là.
 
-Dans l'idéal, la connaissance d'un outil devrait croître avec son utilisation, et l'écart entre ce qu'on sait d'un système et son fonctionnement devrait rester sous contrôle.
+Dans l'idéal, la connaissance d'un outil devrait croître avec son utilisation et l'écart entre ce qu'on sait d'un système et son fonctionnement devrait rester sous contrôle.
 
 Malheureusement, tant que tout va bien il est difficile de mesurer cet écart si on n'en sait pas déjà suffisamment sur le fonctionnement du système. Dans ce cas là on n'en sait pas assez pour savoir ce qu'on ne sait. 
 
@@ -98,11 +98,11 @@ Malheureusement, tant que tout va bien il est difficile de mesurer cet écart si
 
 La mise en place d'abstractions peut permettre d'éviter aux personnes qui l'utilisent d'avoir à comprendre son fonctionnement interne pour pouvoir l'utiliser.
 
-Comme on l'a vu plus haut, il arrive qu'un problème de conception ou de mise en œuvre du modèle fasse fuiter l'abstraction, et on est alors obligé de comprendre les rouages internes pour s'en servir.
+Comme on l'a vu plus haut, il arrive qu'un problème de conception ou de mise en œuvre du modèle fasse fuiter l'abstraction et on est alors obligé de comprendre les rouages internes pour s'en servir.
 
 Dans d'autres case, connaître l'abstraction suffit pour faire fonctionner le système dans les situations standards.
 
-Mais il reste les cas standards, et c'est là qu'arrive la _mechanical sympathy_ ou sympathie pour la mécanique.
+Mais il reste les cas standards et c'est là qu'arrive la _mechanical sympathy_ ou sympathie pour la mécanique.
 
 [quote, Jackie Stewart, pilote de course]
 ____
@@ -119,19 +119,19 @@ Les deux postures ayant des avantages et des inconvénients, le mieux est d'essa
 
 === Mechanical sympathy et respect du modèle
 
-Plus on comprend le fonctionnement interne d'une abstraction, et plus on a conscience de ses limites ou simplement de ses imperfections.
+Plus on comprend le fonctionnement interne d'une abstraction et plus on a conscience de ses limites ou simplement de ses imperfections.
 
 Dans une situation où l'abstraction nous gène, on a les dents qui grincent.
 Parfois cette gène est légitime car elle a des conséquences mesurables, mais parfois il s'agit simplement d'une frustration causée par l'écart entre le fonctionnement observé et la situation idéale, même s'il ne change rien.
 
-C'est le cliché de la personne obsédée par l'inefficacité des ORMs comparé au fait d'écrire des requêtes SQL optimisées à chaque cas, et qui en fait une affaire personnelle.
+C'est le cliché de la personne obsédée par l'inefficacité des ORMs comparé au fait d'écrire des requêtes SQL optimisées à chaque cas et qui en fait une affaire personnelle.
 
 Mais il ne s'agit pas de la seule attitude possible :
 si mieux comprendre le fonctionnement interne des systèmes fait mieux comprendre leurs imperfections, il peut aussi permettre de mieux percevoir les avantages conférés par leurs abstractions, par exemple la capacité à garder la complexité sous contrôle.
 
 D'une certaine manière, diminuer la complexité d'un système et donc avoir recourt à des abstractions a souvent un coût sous forme d'inefficacité.
 
-Connaître de fond en comble un ORM peut permettre de percevoir que l'inefficacité des requêtes qu'il produit peut être acceptable, et de savoir comment s'en sortir dans les cas limites sans remettre en cause tout le modèle.
+Connaître de fond en comble un ORM peut permettre de percevoir que l'inefficacité des requêtes qu'il produit peut être acceptable et de savoir comment s'en sortir dans les cas limites sans remettre en cause tout le modèle.
 
 On a toujours les dents qui grincent, mais on sait qu'il s'agit de la moins mauvaise solution.
 
@@ -158,7 +158,7 @@ private Entity getContent (String code, String referentielUrl) {
 ----
 
 
-Cette méthode est correcte, fait un appel http à une API REST, et retourne un objet 
+Cette méthode est correcte, fait un appel http à une API REST et retourne un objet 
 `Entity` récupéré.
 L'avantage de cette méthode est qu'elle crée donc une abstraction de l'appel HTTP. C'est à dire qu'elle cache toutes ces logiques
 d'URL, de verbe HTTP, de protocole et de désérialization derrière une méthode plus facilement utilisable, avec une interface plus simple.

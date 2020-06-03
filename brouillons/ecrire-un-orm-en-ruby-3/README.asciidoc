@@ -30,9 +30,9 @@ La première étape va s'intéresser aux champs des modèles.
 
 Il serait possible de les paramétrer via le fichier de configuration de schéma `schema.rb`, mais je vais plutôt utiliser les métadonnées de la base de données, car c'est une bonne occasion de donner un aperçu de leur fonctionnement.
 
-En effet même si tous les ORMs n'utilisent pas les métadonnées beaucoup le font, et comprendre que cela n'est pas si compliquée est bien utile.
+En effet même si tous les ORMs n'utilisent pas les métadonnées beaucoup le font et comprendre que cela n'est pas si compliquée est bien utile.
 
-Même si cela ne fait pas partie du standard SQL, la majorités des bases de données de ce type fournissent des requêter les métadonnées des bases telles que les tables, les index{nbsp}…
+Même si cela ne fait pas partie du standard SQL, la majorités des bases de données de ce type fournissent des moyens d'accéder aux métadonnées comme les tables, les index{nbsp}…
 
 Suivant les systèmes on pourra utiliser du SQL&#8201;—{nbsp}en interrogeant des tables particulières{nbsp}—&#8201;ou des commandes spécifiques.
 
@@ -50,7 +50,7 @@ cid|name|type|notnull|dflt_value|pk
 1|name|TEXT|1||0
 ----
 
-Pour chaque colonne `table_info` nous donne son identifiant, son nom, son type, si elle est nullable, son éventuelle valeur par défaut, et si il s'agit de la clé primaire de la table.
+Pour chaque colonne `table_info` nous donne son identifiant, son nom, son type, si elle est nullable, son éventuelle valeur par défaut et si il s'agit de la clé primaire de la table.
 
 Avec la gem sqlite3, la méthode `SQLite3::Database#table_info` fait l'appel la pragma et renvoie le résultat sous une forme accessible.
 
@@ -312,12 +312,12 @@ Pour la requête je vais utiliser la méthode `SQLite3::Database#execute`, qui p
 DATABASE.execute('INSERT INTO color (name) values (?)', ['Black'])
 ----
 
-Cette syntaxe permet d'éviter d'avoir à se préoccuper du format à utiliser pour passer les valeurs à la base, et donc d'éviter des risque de sécurité.
+Cette syntaxe permet d'éviter d'avoir à se préoccuper du format à utiliser pour passer les valeurs à la base, cela simplifie le code et évite d'introduire des risques de sécurité en cas de problème d'échappement.
 
-Dans notre case les valeurs de l'`id` des modèles ne doivent pas être insérée car elles sont gérées par la base, c'est pour cela que les colonnes `id` sont déclarées en `AUTOINCREMENT`.
+Dans notre cas les valeurs de l'`id` des modèles ne doivent pas être insérées car elles sont gérées par la base, c'est pour cela que les colonnes `id` sont déclarées en `AUTOINCREMENT`.
 Cela simplifie le code et fournit une garantie d'unicité dans le cas d'une base SQL standard.
 
-La manière de s'y prendre n'est pas standardisé et dépend donc de la base de données.
+La manière de s'y prendre n'est pas standardisée et dépend donc de la base de données.
 Il y a deux grandes approches{nbsp}: soit les valeurs sont retournées par la requête d'insertion, ou une requête spécifique permet de récupérer les `id` des valeurs qu'on vient d'insérer.
 
 SQLite utilise la deuxième solution via link:https://www.sqlite.org/lang_corefunc.html#last_insert_rowid[`last_insert_rowid()`].
@@ -427,7 +427,7 @@ SELECT column_name_1, column_name_2
 
 Les noms de la table et des colonnes sont à disposition pour construire la requête.
 
-Une fois les valeurs récupérées, pour chaque ligne trouvée il faut créer une instance de la classe du modèle, et attribuer leurs valeurs au différents champs.
+Une fois les valeurs récupérées, pour chaque ligne trouvée il faut créer une instance de la classe du modèle et attribuer leurs valeurs au différents champs.
 
 Les noms des attributs étant les mêmes que ceux des colonnes, pour chaque colonne `nom_de_colonne`, j'appellerait le setter `nom_de_colonne=` via la méthode `send` qui permet d'appeler une méthode dynamiquement à partir de son nom.
 
@@ -522,7 +522,7 @@ DELETE FROM table_name
 Je vais tout de même appeler la méthode `truncate` pour qu'elle corresponde à la commande SQL, même l'implémentation ne l'utilise pas.
 
 On a ici un exemple où l'ORM doit assurer la compatibilité entre les systèmes de bases de données.
-Si ce cas est assez simple, il permet de comprendre la manière dont les choses pourraient être mises en œuvre{nbsp}:une méthode de base qui utiliserait la commande `truncate`, et une classe spécifique à SQLite qui utiliserait la requête `delete`.
+Si ce cas est assez simple, il permet de comprendre la manière dont les choses pourraient être mises en œuvre{nbsp}:une méthode de base qui utiliserait la commande `truncate` et une classe spécifique à SQLite qui utiliserait la requête `delete`.
 
 Le code résultant est assez court et s'inspire des méthodes existantes{nbsp}:
 
@@ -572,7 +572,7 @@ Les briques
   1 : Awesome brick, This brick is awesome, 1
 ----
 
-Je ne vais pas les détailler ici mais pour les suppression de modèle il faut générer une requête `DELETE FROM table_name WHERE ID = ?` et lui passer l'id du modèle, et pour les mises à jour s'inspirer de la requête d'insertion pour écrire une requête du type `UPDATE table_name SET column_name_1 = ?, column_name_2 = ? WHERE id = ?`.
+Je ne vais pas les détailler ici mais pour les suppression de modèle il faut générer une requête `DELETE FROM table_name WHERE ID = ?` et lui passer l'id du modèle et pour les mises à jour s'inspirer de la requête d'insertion pour écrire une requête du type `UPDATE table_name SET column_name_1 = ?, column_name_2 = ? WHERE id = ?`.
 
 Toutes les requêtes vues ici s'appuient sur l'hypothèse d'un identifiant technique présent dans toutes les tables, ce qui est la pratique généralement conseillée en SQL.
 Prendre en compte les autres types d'identifiant demande de rendre paramétrable cette partie des requêtes.
