@@ -18,7 +18,7 @@ v0.1, 2020-06-04
 :article_image: avatar.jpg
 :ignore_files: original.asciidoc
 
-Ce texte est une traduction de link:https://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[cet article] de link:https://twitter.com/tef_ebooks[tef].
+Ce texte est une traduction de link:https://programmingisterrible.com/post/162346490883/how-do-you-cut-a-monolith-in-half[un article] de link:https://twitter.com/tef_ebooks[tef].
 
 ''''
 
@@ -26,7 +26,7 @@ Ce texte est une traduction de link:https://programmingisterrible.com/post/16234
 
 Le problème avec les systèmes distribués est que, quelle que soit la question, la réponse est inévitablement "`Ça dépend`".
 
-Quand vous coupez un service d'une certaine taille en deux, l'endroit où il faut découper dépend de la latence, des ressources, et de l'accès aux états, mais il dépend aussi de la gestion des erreurs, de la disponibilité, et des processus de reprise.
+Quand vous coupez un service d'une certaine taille en deux, l'endroit où il faut découper dépend de la latence, des ressources et de l'accès aux états, mais il dépend aussi de la gestion des erreurs, de la disponibilité et des processus de reprise.
 Ça dépend, mais vous ne voulez probablement pas d'un {bus}.
 
 Utiliser un {bus} pour distribuer du travail est comme croiser un {répartiteur} avec une {bdd}, avec les inconvénients des deux et aucun des avantages.
@@ -45,7 +45,7 @@ Vous avez de la {ps}, mais ce que vous voulez vraiment c'est de la {rr}.
 Si vous voulez que quelque chose soit calculé, vous allez probablement vouloir connaître le résultat.
 
 Démarrer avec une {ps} facilite le travail{nbsp}: les tâches sont ajoutées à la queue, les workers les suppriment chacun à leur tour.
-Malheureusement, cela rend difficile de savoir ce qui s'est passé, et vous allez devoir ajouter une autre queue pour envoyer les résultats en retour.
+Malheureusement, cela rend difficile de savoir ce qui s'est passé et vous allez devoir ajouter une autre queue pour envoyer les résultats en retour.
 
 Une fois que vous pouvez prendre en compte les cas qui se passent bien, il est temps de s'occuper des erreurs.
 La première étape est souvent d'ajouter du code pour rééssayer les demandes un certain nombre de fois.
@@ -61,11 +61,11 @@ Bien que les composants interragissent via {ps}, nous avons créé un système d
 Désormais le {bus} s'occupe de deux choses véritablement utiles{nbsp}: la {discovery} et la répartition de charge.
 Il s'occupe également de deux choses pas tellement utiles{nbsp}: ajouter des requêtes dans la queue et les persister.
 
-Pour {tâche-courtes}, la persistance n'est pas nécessaire{nbsp}: le client reste de toute façon dans le coin le temps que la tâche soit exécutée, et doit gérer la reprise.
+Pour {tâche-courtes}, la persistance n'est pas nécessaire{nbsp}: le client reste de toute façon dans le coin le temps que la tâche soit exécutée et doit gérer la reprise.
 L'utilisation d'une queue n'est pas tellement nécessaire non plus.
 
 Les queues atteignent inévitablement deux états{nbsp}: pleines ou vides.
-Si votre queue est pleine, il faut pousser plus de travail vers les extrémités, et si elle est vide elle agit comme un lent {répartiteur}.
+Si votre queue est pleine, il faut pousser plus de travail vers les extrémités et si elle est vide elle agit comme un lent {répartiteur}.
 
 Une queue presque vide fonctionne toujours dans un mode premier arrivé, premier servi, servant de point de contention pour les requêtes.
 Un {bus} ne fait souvent rien à part attendre que les workers viennent récupérer de nouveaux messages.
@@ -73,7 +73,7 @@ Si votre queue est faite pour être vide, pourquoi attendre pour transmettre une
 
 ({passant} quelque chose comme une répartition de charge aléatoire va fonctionner, mais l'approche _join-idle-queue_ vaut largement la peine de s'y intéresser.)
 
-Pour {tâche-courtes}, vous pouvez utiliser un {bus}, mais vous allez vous retrouver à construire un {répartiteur}, avec un système d'appel de code à distance, et de la latence en plus.
+Pour {tâche-courtes}, vous pouvez utiliser un {bus}, mais vous allez vous retrouver à construire un {répartiteur}, avec un système d'appel de code à distance et de la latence en plus.
 
 == Pour {tâche-longues}, vous aurez besoin d'une {bdd}
 
@@ -84,7 +84,7 @@ Pour {tâche-longues}, vous allez plutôt vouloir une {bdd}.
 Bien que la persistance et les queues soit un inconvénient pour {tâche-courtes}, les problèmes sont moins évidents pour {tâche-longues}, mais le même genre de choses peut mal se passer.
 
 Si vous vous intéressez au résultat d'une tâche, vous allez vouloir stocker le fait que quelque chose a besoin d'elle ailleurs que dans la queue persistante.
-Si la tâche est lancée mais échoue à mi-chemin, il faut que quelque chose en prenne la responsabilité, et le {bus} aura oublié.
+Si la tâche est lancée mais échoue à mi-chemin, il faut que quelque chose en prenne la responsabilité et le {bus} aura oublié.
 C'est pour cela que vous voulez une {bdd}.
 
 Les messages dupliqués dans une queue causent souvent d'autres maux de têtes, parce que {tâche-longues} ont plus de chances de se chevaucher.
@@ -102,13 +102,13 @@ Dans l'hypothèse où ce composant n'est pas une personne qui a été réveillé
 
 Une pompe de message peut régulièrement parcourir la {bdd} et envoyer les demandes de travail au {bus}.
 Ajouter les tâches dans une queue par lot peut être un moyen efficace de survivre avec un appel coûteux à la {bdd}.
-La pompe responsable d'ajouter le travail peut aussi suivre si celui-ci s'est terminé, et ainsi gérer les reprises et les réessais.
+La pompe responsable d'ajouter le travail peut aussi suivre si celui-ci s'est terminé et ainsi gérer les reprises et les réessais.
 
-Il reste toujours le problème des tâches en attente, alors vous allez vouloir utiliser la {bp} pour garder la queue relativement vide, et seulement la remplir depuis la {bdd} quand c'est nécéssaire.
+Il reste toujours le problème des tâches en attente, alors vous allez vouloir utiliser la {bp} pour garder la queue relativement vide et seulement la remplir depuis la {bdd} quand c'est nécéssaire.
 Bien qu'un {bus} puisse accepter une surcharge temporaire, la {bp} devrait faire en sorte qu'il n'ait jamais à le faire.
 
 À cette étape, le {bus} fournit réellement deux choses{nbsp}: la {discovery} et l'assignation de tâches, mais ce dont vous avez réellement besoin c'est un {ordo}.
-Un {ordo} est ce qui parcourt la {bdd}, détermine quelles tâches doivent être lancées, et souvent aussi qui les lance.
+Un {ordo} est ce qui parcourt la {bdd}, détermine quelles tâches doivent être lancées et souvent aussi qui les lance.
 Un {ordo} est ce qui prend la responsabilité de gérer les erreurs.
 
 ({passant} écrire un {ordo} est difficile. Il est beaucoup plus simple d'avoir 1{nbsp}000 boucles `while` qui attendent le bon moment, plutôt que d'écrire une boucle qui attend le prochain parmi 1{nbsp}000.
@@ -122,7 +122,7 @@ Vous pouvez utiliser un {bus} pour {tâche-longues}, mais vous allez devoir cons
 Le problème avec le fait d'exécuter des tâches avec de la {ps} c'est que ce que vous voulez vraiment c'est de la {rr}.
 Le problème avec le fait d'utiliser des queues pour assigner des tâches c'est que vous ne voulez pas attendre jusqu'à ce qu'un worker demande ce qu'il doit faire.
 
-Le problème avec le fait de se reposer sur une queue persistante pour la reprise c'est que la reprise doit être gérée ailleurs, et que le problème avec les {bus} est que rien d'autre ne rend la {discovery} aussi triviale.
+Le problème avec le fait de se reposer sur une queue persistante pour la reprise c'est que la reprise doit être gérée ailleurs et que le problème avec les {bus} est que rien d'autre ne rend la {discovery} aussi triviale.
 
 Les {bus} peuvent être mal utilisés, mais cela ne signifie pas qu'ils n'ont pas d'utilité.
 Les {bus} fonctionnent bien quand vous avez à traverser les frontières d'un système.
@@ -132,7 +132,7 @@ Quand vous donnez la responsabilité de gérer les fautes externes aux extrémit
 L'intérieur de votre système peut se concentrer sur le fait de gérer les problèmes internes, sachant qu'il y en a suffisamment.
 
 Un {bus} peut être utilisé pour créer des tampons aux extrémités, mais il peut aussi être utilisé comme une optimisation, pour démarrer du travail un peu plus tôt que nécessaire.
-Un {bus} peut envoyer une notification indiquant qu'une donnée a été modifié, et le système peut récupérer cette donnée par une autre API.
+Un {bus} peut envoyer une notification indiquant qu'une donnée a été modifié et le système peut récupérer cette donnée par une autre API.
 
 ({passant} si vous utilisez un {bus} pour accélérer un processus, au bout d'un moment le système s'appuiera dessus pour être performant.
 Les personnes utilisent des caches pour accélérer les appels de {bdd}, mais de nombreux systèmes ne travaillent pas suffisamment vite tant que le cache n'est pas chaud, rempli de donnée.
@@ -146,7 +146,7 @@ Parfois la gestion d'erreur qui est fournie est exactement celle qu'il vous faut
 Bien qu'une queue persistante vous fournisse des protections contre des défaillances, elle ne peut rien faire quand quelque chose se passe mal au milieu d'une tâche.
 Pour être capable de reprendre après une défaillance vous devez arrêter de la cacher, vous devez ajouter des acquittements, de la {bp}, de la gestion d'erreur, pour pouvoir revenir à un système qui fonctionne.
 
-Une queue de message persistante n'est pas mauvaise en elle-même, mais s'appuyer dessus pour la reprise, et par extension, pour un comportement correct, est un chemin semé d'embûches.
+Une queue de message persistante n'est pas mauvaise en elle-même, mais s'appuyer dessus pour la reprise et par extension, pour un comportement correct, est un chemin semé d'embûches.
 
 == Les systèmes croissent en poussant les responsabilités aux extrémités
 
@@ -154,7 +154,7 @@ La performance n'est pas facile non plus.
 Vous ne voulez pas de queues, ou de persistance dans les couches centrales ou inférieures de votre système.
 Vous les voulez aux extrémités.
 
-_C'est lent_ est le problème le plus difficile à corriger, et souvent la raison est que quelque chose est coincée dans une queue.
+_C'est lent_ est le problème le plus difficile à corriger et souvent la raison est que quelque chose est coincée dans une queue.
 Pour les tâches à durée de vie longue et courte, nous avons utilisé la {bp} pour garder la queue vide, pour réduire la latence.
 
 Quand vous avez plusieurs queues entre vous et le worker, il devient encore plus important de ne pas avoir de queues au centre du réseau.
@@ -163,12 +163,12 @@ Des décennies de travail ont été passées sur le contrôle de congestion de T
 Si cela excite votre curiosité, l'histoire de la congestion de TCP est une lecture intéressante.
 Bien que les extrémités d'une connexion TCP étaient responsables de gérer les défaillances et les rééssais, les routeurs étaient responsables de gérer la congestion, c'est-à-dire de laisser tomber des choses quand il y en avait trop.
 
-Le problème est que ça a fonctionné jusqu'à ce que le réseau soit saturé, et&#8201;—{nbsp}d'une manière similaire aux tâches en attente dans des queues{nbsp}—&#8201;quand c'est arrivé les erreurs se sont produites en cascades.
+Le problème est que ça a fonctionné jusqu'à ce que le réseau soit saturé et&#8201;—{nbsp}d'une manière similaire aux tâches en attente dans des queues{nbsp}—&#8201;quand c'est arrivé les erreurs se sont produites en cascades.
 La solution a été similaire{nbsp}: la {bp}.
 De la même manière que le fait d'attendre deux fois plus longtemps en cas d'erreur, TCP envoie deux fois moins de paquets, avant d'augmenter progressivement leurs nombres quand les choses s'améliorent.
 
 La {bp} consiste à pousser le travail aux extrémités, en laissant les extrémités de la conversation s'occuper de la stabilité, plutôt que d'essayer d'optimiser tous les liens intermédiaires de manière isolée.
-Le contrôle de congestion consiste à utiliser la {bdd} pour garder les queues intermédiaires aussi vides que possible, pour garder une latence faible, et pour augmenter le débit en évitant d'avoir besoin de laisser tomber des paquets.
+Le contrôle de congestion consiste à utiliser la {bdd} pour garder les queues intermédiaires aussi vides que possible, pour garder une latence faible et pour augmenter le débit en évitant d'avoir besoin de laisser tomber des paquets.
 
 C'est en poussant le travail aux extrémités que votre système se met à l'échelle.
 Beaucoup de temps et une quantité considérable d'argent a été investi dans le multicast IP, mais rien n'a jamais été aussi efficace que BitTorrent.
@@ -177,24 +177,24 @@ Au lieu de s'appuyer sur des routeurs intelligents pour déterminer comment diff
 Pour que votre système gère les défaillances il faut pousser la reprise vers les couches externes.
 Dans les exemples pré-cités, on a besoin que le client ou l'{ordo} gère le cycle de vie de la tâche, car il a une durée de vie supérieure à la présence de la tâche dans la queue.
 
-La reprise sur erreur dans les couches bases d'un système est une optimisation, et il est impossible de pousser le travail au centre du réseau de le mettre à l'échelle.
-C'est le principe de bout en bout, et c'est l'une des idées les plus importantes dans la conception de systèmes.
+La reprise sur erreur dans les couches bases d'un système est une optimisation et il est impossible de pousser le travail au centre du réseau de le mettre à l'échelle.
+C'est le principe de bout en bout et c'est l'une des idées les plus importantes dans la conception de systèmes.
 
 Le principe de bout en bout est la raison pour laquelle vous pouvez redémarrer votre box, quand elle plante, sans qu'elle ait besoin de rejouer tous les sites que vous vouliez visiter avant de vous laisser ouvrir une nouvelle page.
-Le navigateur (et votre ordinateur) est responsable de la reprise, et pas les ordinateurs au milieu.
+Le navigateur (et votre ordinateur) est responsable de la reprise et pas les ordinateurs au milieu.
 
-Ce n'est pas une idée nouvelle, et Erlang/OTP lui doit beaucoup.
+Ce n'est pas une idée nouvelle et Erlang/OTP lui doit beaucoup.
 OTP organise un programme en train de s'exécuter en un arbre de supervision.
-Les processus ont souvent un processus au-dessus d'eux, et le redémarrent en cas de défaillance, et encore au-dessus, un autre superviseur qui fait la même chose.
+Les processus ont souvent un processus au-dessus d'eux et le redémarrent en cas de défaillance et encore au-dessus, un autre superviseur qui fait la même chose.
 
 ({passant} les pipelines ne sont pas incompatibles avec la supervision de processus, une manière de s'y prendre est que chaque programme soit responsable de lancer le programme qui le suit et qui lit sa sortie. De cette manière une erreur en bas de la chaîne peut se propager pour être prise en compte correctement.)
 
 Bien que chaque programme prenne en compte certaines erreurs, les niveaux supérieurs de l'arbre de supervision prend en compte les défaillances plus grave avec des redémarrages.
 De la même manière, c'est agréable si votre page web peut se remettre d'une erreur, mais inévitablement quelqu'un aura besoin à un moment donné de cliquer sur le bouton rafraichir.
 
-Le principe de bout-en-bout c'est la réalisation que, quel que soit le nombre d'exceptions que vous prenez en compte à l'intérieur de votre programme, certaines s'échapperont, et quelque chose dans la couche extérieure devra s'en occuper.
+Le principe de bout-en-bout c'est la réalisation que, quel que soit le nombre d'exceptions que vous prenez en compte à l'intérieur de votre programme, certaines s'échapperont et quelque chose dans la couche extérieure devra s'en occuper.
 
-Parfois s'en occuper signifie écrire des choses dans un log d'audit, et les {bus} sont plutôt bon à ça.
+Parfois s'en occuper signifie écrire des choses dans un log d'audit et les {bus} sont plutôt bon à ça.
 
 == {passant} mais qu'en est-il des logs répliqués{nbsp}?
 
@@ -209,7 +209,7 @@ ____
 
 Bien qu'un log répliqué soit souvent confondu avec un {bus}, il ne vous immunise pas contre la gestion d'erreurs.
 Bien que ça soit une bonne chose que les composants soient isolés les uns des autres, ils doivent tout de même être intégrés dans le système en lui-même.
-Les deux fournissent un flux à sens unique pour faire du partage, et les deux proposent une interface qui ressemble à de la {bp}, mais leur objectifs sont radicalement différents.
+Les deux fournissent un flux à sens unique pour faire du partage et les deux proposent une interface qui ressemble à de la {bp}, mais leur objectifs sont radicalement différents.
 
 Un log répliqué a souvent pour but l'audit ou la reprise{nbsp}: avoir un point de vérité central pour pouvoir prendre des décisions.
 Parfois un log répliqué a pour but l'aggrégation (_fan-in_) ou la diffusion (_fan-out_) de données, mais il s'agit toujours de construire un système ou les données circulent dans une direction.
@@ -225,18 +225,18 @@ Soyez prévenu·e·s{nbsp}: un système distribué est quelque chose qu'on peut 
 == Vous coupez un monolithe avec un protocole
 
 La manière de couper un monolithe dépend souvent plus de la manière de séparer les responsabilités dans une équipe plutôt que de la manière de le découper en composants.
-Ça dépend vraiment des cas, et souvent plus des aspects personnels que des aspects sociaux, mais vous êtes tout de même responsable du protocole que vous créez.
+Ça dépend vraiment des cas et souvent plus des aspects personnels que des aspects sociaux, mais vous êtes tout de même responsable du protocole que vous créez.
 
 Si les systèmes distribués sont désordonnés, ce n'est pas pas parce que des composants interagissent mais à cause de la manière dont les interactions ont lieu.
 La complexité d'un système distribué ne vient pas du fait d'avoir des centaines de machines, mais du fait que ces machines ont des centaines de manière d'interagir.
-Un protocole doit prendre en compte la performance, la sécurité, la stabilité, la disponibilité, et le plus important, la gestion d'erreurs.
+Un protocole doit prendre en compte la performance, la sécurité, la stabilité, la disponibilité et le plus important, la gestion d'erreurs.
 
 Quand nous parlons de systèmes distribués, nous parlons de structure de pouvoir{nbsp}: comment les resources soit réparties{nbsp}? comment le travail est divisé{nbsp}? comment le contrôle est partagé{nbsp}? ou comment l'ordre est maintenu au travers de systèmes construits ostensiblement avec des composants bien intentionnés mais défectueux{nbsp}?
 
-Un protocole définit les règles et les attentes de participation à un système, et comment les éléments sont redevables les uns aux autres.
+Un protocole définit les règles et les attentes de participation à un système et comment les éléments sont redevables les uns aux autres.
 Un protocole définit qui est responsable en cas de défaillance.
 
-Le problème avec les {bus}, et les queues, et que personne ne l'est.
+Le problème avec les {bus} et les queues est que personne ne l'est.
 
 Utiliser un {bus} n'est pas la fin du monde, ou le signe d'une ingénierie de mauvaise qualité.
 Utiliser un {bus} est un compromis.
@@ -247,17 +247,17 @@ Utilisez-les sans vous stresser pour faire fonctionner quelque chose.
 Je dis que vous ne devez pas vous appuyer sur un {bus}, mais je ne peux pas vous donner de réponse toute prête.
 HTTP et DNS sont des protocoles remarquables, mais je n'ai pas de bonne solution pour la {discovery}.
 
-De nombreux logiciels sont régulièrement utilisés très largement en dehors des cas pour lesquels ils ont été conçus, et les {bus} n'y font pas exception.
+De nombreux logiciels sont régulièrement utilisés très largement en dehors des cas pour lesquels ils ont été conçus et les {bus} n'y font pas exception.
 Bien que les mauvaises habitudes autour des {bus} et la facilité relative d'obtenir un prototype qui fonctionne aboutissent à de mauvaises surprise lors des mises à l'échelle, vous n'avez pas besoin de tout construire d'un coup.
 
-La complexité d'un système réside dans son protocole et pas dans sa topologie, et un protocole est ce que vous créez lorsque vous coupez un monolithe en morceaux.
+La complexité d'un système réside dans son protocole et pas dans sa topologie et un protocole est ce que vous créez lorsque vous coupez un monolithe en morceaux.
 Si la construction de logiciel s'appuie sur la modularité, la manière de découper un logiciel s'appuie sur un protocole.
 
 
 [quote, Analyse de systèmes de contrôles non linéaires, 'Dustan Graham et Duane McRuer, p 436']
 ____
 La tâche principale de l'analyste en ingénierie n'est pas seulement d'obtenir des "`solutions`" mais plutôt de comprendre le comportement dynamique du système de manière à révéler les secrets du mécanisme, de manière à ce qu'il soit construit sans comporter aucune surprise [pour il·elle·s].
-Plutôt que des expérimentations physiques exhaustives, c'est la seule approche solide pour la conception technique, et il n'est pas rare que l'ignorance de ce principe fondamental conduise au désastre.
+Plutôt que des expérimentations physiques exhaustives, c'est la seule approche solide pour la conception technique et il n'est pas rare que l'ignorance de ce principe fondamental conduise au désastre.
 ____
 
-Le protocole est la raison pour laquelle "`ça dépend`", et la raison pour laquelle vous ne deviez pas dépendre d'un {bus}{nbsp}: vous pouvez utiliser un {bus} pour assembler des systèmes, mais n'en utilisez jamais pour séparer des systèmes.
+Le protocole est la raison pour laquelle "`ça dépend`" et la raison pour laquelle vous ne deviez pas dépendre d'un {bus}{nbsp}: vous pouvez utiliser un {bus} pour assembler des systèmes, mais n'en utilisez jamais pour séparer des systèmes.
