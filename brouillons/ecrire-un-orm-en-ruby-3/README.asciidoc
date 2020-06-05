@@ -30,13 +30,13 @@ La première étape va s'intéresser aux champs des modèles.
 
 Il serait possible de les paramétrer via le fichier de configuration de schéma `schema.rb`, mais je vais plutôt utiliser les métadonnées de la base de données, car c'est une bonne occasion de donner un aperçu de leur fonctionnement.
 
-En effet même si tous les ORMs n'utilisent pas les métadonnées beaucoup le font et comprendre que cela n'est pas si compliquée est bien utile.
+En effet, même si tous les ORMs n'utilisent pas les métadonnées, beaucoup le font il est donc important de comprendre comment comment cela fonctionne et de réaliser que ça n'est pas si compliqué{nbsp}…
 
-Même si cela ne fait pas partie du standard SQL, la majorités des bases de données de ce type fournissent des moyens d'accéder aux métadonnées comme les tables, les index{nbsp}…
+Même si cela ne fait pas partie du standard SQL, la majorité des bases de données de ce type fournissent des moyens d'accéder aux métadonnées comme les tables, les index…
 
 Suivant les systèmes on pourra utiliser du SQL&#8201;—{nbsp}en interrogeant des tables particulières{nbsp}—&#8201;ou des commandes spécifiques.
 
-Avec SQLite, l'accès aux métadonnées se fait via des link:https://www.sqlite.org/pragma.html[la commandes PRAGMA].
+Avec SQLite, l'accès aux métadonnées se fait via link:https://www.sqlite.org/pragma.html[des commandes PRAGMA].
 
 
 [source]
@@ -52,7 +52,7 @@ cid|name|type|notnull|dflt_value|pk
 
 Pour chaque colonne `table_info` nous donne son identifiant, son nom, son type, si elle est nullable, son éventuelle valeur par défaut et si il s'agit de la clé primaire de la table.
 
-Avec la gem sqlite3, la méthode `SQLite3::Database#table_info` fait l'appel la pragma et renvoie le résultat sous une forme accessible.
+Avec la gem sqlite3, la méthode `SQLite3::Database#table_info` fait l'appel à la pragma et renvoie le résultat sous une forme accessible.
 
 Pour ajouter les colonnes disponibles dans chaque table, commençons par définir une classe `ColumnDefinition` qui contiendra les informations qui nous intéressent, à savoir le nom et le type de la colonne.
 
@@ -76,7 +76,7 @@ end
 Ensuite, je dois récupérer les colonnes de chaque table.
 L'endroit le plus simple est de le faire juste avant de créer les classes de modèles, alors qu'on est déjà en train d'itérer sur chaque modèle, on pourra alors passer la liste des colonnes au template.
 
-Mais pour commencer, il faut se connecter à la base de donnée.
+Mais pour commencer, il faut se connecter à la base de données.
 Je vais utiliser une base en local avec un fichier stocké dans le répertoire du projet{nbsp}:
 
 .generator.rb
@@ -101,7 +101,7 @@ models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
 end
 ----
 
-Dans le template, `columns_definitions` contient alors la liste des `ColumnDefinition` prêt à l'emploi.
+Dans le template, `columns_definitions` contient alors la liste des `ColumnDefinition` prête à l'emploi.
 
 Presque prêt à l'emploi car il reste une subtilité{nbsp}: `table_info` renvoie les types SQL des colonnes (ou plus précisément le type SQLite) comme `TEXT`, pour pouvoir l'utiliser dans le code je dois le transformer en types Ruby comme `String`.
 
@@ -204,7 +204,7 @@ black.name = 'Black'
 ----
 
 On peut voir ici l'intérêt de la génération de code à froid{nbsp}: on peut facilement consulter les méthodes disponibles avec leurs informations de type.
-Avec un IDE on peut même disposer de l'autocompletion.
+Avec un IDE on peut même disposer de l'autocomplétion.
 
 En cas d'évolution d'un modèle, l'évolution sera visible dans les classes générées.
 
@@ -330,7 +330,7 @@ require 'sqlite3'
 # @abstract
 class Model
 
-  # Connection à la base pour executer les requ^tes
+  # Connection à la base pour executer les requêtes
   DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
 
   # @return [void]
@@ -406,7 +406,7 @@ sqlite> select * from brick;
 
 == La récupération
 
-Maintenant que je peux insérer des données, je vais pouvoir m'intéresser à leur récuparation.
+Maintenant que je peux insérer des données, je vais pouvoir m'intéresser à leur récupération.
 
 Je commence par m'occuper de la récupération de l'intégralité des données d'une table en ajoutant une méthode de classe `all` aux modèles.
 
@@ -427,7 +427,7 @@ SELECT column_name_1, column_name_2
 
 Les noms de la table et des colonnes sont à disposition pour construire la requête.
 
-Une fois les valeurs récupérées, pour chaque ligne trouvée il faut créer une instance de la classe du modèle et attribuer leurs valeurs au différents champs.
+Une fois les valeurs récupérées, pour chaque ligne trouvée il faut créer une instance de la classe du modèle et attribuer leurs valeurs aux différents champs.
 
 Les noms des attributs étant les mêmes que ceux des colonnes, pour chaque colonne `nom_de_colonne`, j'appellerait le setter `nom_de_colonne=` via la méthode `send` qui permet d'appeler une méthode dynamiquement à partir de son nom.
 
@@ -519,7 +519,7 @@ Malheureusement elle n'est pas disponible dans SQLite, je vais donc devoir utili
 DELETE FROM table_name
 ----
 
-Je vais tout de même appeler la méthode `truncate` pour qu'elle corresponde à la commande SQL, même l'implémentation ne l'utilise pas.
+Je vais tout de même nommer ma méthode `truncate` pour qu'elle corresponde à la commande SQL standard, même si l'implémentation SQLite utilise pas cette commande.
 
 On a ici un exemple où l'ORM doit assurer la compatibilité entre les systèmes de bases de données.
 Si ce cas est assez simple, il permet de comprendre la manière dont les choses pourraient être mises en œuvre{nbsp}:une méthode de base qui utiliserait la commande `truncate` et une classe spécifique à SQLite qui utiliserait la requête `delete`.
@@ -572,9 +572,9 @@ Les briques
   1 : Awesome brick, This brick is awesome, 1
 ----
 
-Je ne vais pas les détailler ici mais pour les suppression de modèle il faut générer une requête `DELETE FROM table_name WHERE ID = ?` et lui passer l'id du modèle et pour les mises à jour s'inspirer de la requête d'insertion pour écrire une requête du type `UPDATE table_name SET column_name_1 = ?, column_name_2 = ? WHERE id = ?`.
+Je ne vais pas les détailler ici mais pour les suppressions de modèles il faut générer une requête `DELETE FROM table_name WHERE ID = ?` et lui passer l'id de du modèle et pour les mises à jour s'inspirer de la requête d'insertion pour écrire une requête du type `UPDATE table_name SET column_name_1 = ?, column_name_2 = ? WHERE id = ?`.
 
 Toutes les requêtes vues ici s'appuient sur l'hypothèse d'un identifiant technique présent dans toutes les tables, ce qui est la pratique généralement conseillée en SQL.
-Prendre en compte les autres types d'identifiant demande de rendre paramétrable cette partie des requêtes.
+Prendre en compte les autres types d'identifiants demande de rendre paramétrable cette partie des requêtes.
 
 C'est tout pour le moment, dans l'article suivant je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
