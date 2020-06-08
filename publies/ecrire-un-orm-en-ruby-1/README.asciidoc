@@ -5,11 +5,12 @@ endif::[]
 ifeval::["{doctype}" != "book"]
 = Écrire un ORM en Ruby partie 1{nbsp}: introduction
 endif::[]
-
 :author: Julien Kirch
 :revnumber: v0.1
-:docdate: 2020-05-10
+:revdate: 2020-06-08
 :article_lang: fr
+:article_description: Vive la génération de code à froid
+:article_image: map.png
 ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
@@ -22,11 +23,11 @@ ifeval::["{doctype}" != "book"]
 Ceci est le premier article d'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 endif::[]
 
-Avant de plonger dans le code, je vais ici introduire les sujets et expliquer certains des choix que j'ai fait.
+Avant de plonger dans le code, je vais ici introduire le sujet et expliquer certains des choix que j'ai fait.
 
 == Pourquoi un ORM{nbsp}?
 
-Un ORM est une couche qui fait le lien entre une base de données et la représentation des données dans un programme.
+Un ORM est une couche qui fait le lien (un mapping) entre une base de données et la représentation des données dans un programme.
 Elle permet d'automatiser ou de simplifier certaines actions, notamment la génération de requêtes et enrobe les appels à la base dans une API dans le style du langage de programmation utilisé.
 
 Elle peut aussi fournir une compatibilité entre plusieurs systèmes de bases de données et un système de cache.
