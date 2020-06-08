@@ -54,7 +54,7 @@ Mon objectif est qu'après avoir lu ces articles, vous compreniez comment ils fo
 La plupart des ORMs SQL sont compatibles avec de nombreuses bases de données.
 Cette compatibilité s'implémente généralement en permettant que toutes les méthodes de l'ORM soient surchargeables en fonction des spécificités de chaque base.
 
-Par exemple pour une classe de génération de requêtes `QueryBuilder`, on aura ainsi un `SQLiteQueryBuilder`, un `PostgreSQLQueryBuilder`{nbsp}…
+Par exemple pour une classe de génération de requêtes `QueryBuilder`, on aura ainsi un `SQLiteQueryBuilder`, un `PostgreSQLQueryBuilder`…
 
 La difficulté est de parvenir à structurer le code pour pouvoir prendre en compte les spécificités de chaque base sans que cela tourne au plat de spaghetti, sachant que, suivant les bases, ces particularités ne sont pas toutes aux mêmes endroits.
 

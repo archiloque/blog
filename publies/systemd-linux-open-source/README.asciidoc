@@ -48,7 +48,7 @@ Par exemple quand vous démarrez votre ordinateur, il va lancer des programmes p
 
 Tout cela peut sembler simple mais, en fonction des perfectionnements dont on a besoin cela peut devenir très complexe.
 
-Un programme peut avoir besoin d'en démarrer un autre pour pouvoir s'exécuter, il peut écrire des fichiers de logs qu'il faut purger, il peut vouloir utiliser une gestion de droits d'accès pour limiter les dégâts possibles en cas de problèmes{nbsp}…
+Un programme peut avoir besoin d'en démarrer un autre pour pouvoir s'exécuter, il peut écrire des fichiers de logs qu'il faut purger, il peut vouloir utiliser une gestion de droits d'accès pour limiter les dégâts possibles en cas de problèmes…
 
 === System V init
 
@@ -215,7 +215,7 @@ Bien entendu, un niveau de customisation plus élevé signifie plus de bénéfic
 
 {s} est un remplacement de {syi} qui propose une approche très différente{nbsp}: celle de fournir l'ensemble des fonctionnalités nécessaires à l'exécution des logiciels sous une forme intégrée et configurable.
 
-Cela signifie non seulement la gestion du lancement et de l'arrêt comme {syi} mais aussi la gestion des logs, la restriction des accès{nbsp}…
+Cela signifie non seulement la gestion du lancement et de l'arrêt comme {syi} mais aussi la gestion des logs, la restriction des accès…
 
 Il s'agit d'une redéfinition du rôle du système d'initialisation.
 

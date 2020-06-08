@@ -68,7 +68,7 @@ le code construit donc une suite d'objets, un à chaque appel.
 == La classe `QueryParameters`
 
 La classe `QueryParameters` va donc contenir les différents types de paramètres qu'on peut utiliser dans une requêtes.
-Dans notre exemple je vais couvrir le cas des filtres, de l'ordre et du nombre d'éléments remontés, mais dans un ORM plus complet il peut s'agit de l'ensemble de la grammaire SQL : `group by`, `distinct`, pouvoir choisir quels champs sont remontés{nbsp}…
+Dans notre exemple je vais couvrir le cas des filtres, de l'ordre et du nombre d'éléments remontés, mais dans un ORM plus complet il peut s'agit de l'ensemble de la grammaire SQL : `group by`, `distinct`, pouvoir choisir quels champs sont remontés…
 
 Voici le début de la classe avec ses attributs{nbsp}:
 
@@ -93,7 +93,7 @@ Comme décrit plus haut, appeler `where` ou `order_by` construit une nouvelle in
 La méthode `order_by` prend un seul paramètre qui est une chaîne de caractère qui contient l'information de tri comme `'name desc'`.
 Ils sont stockés sous la forme d'un tableau dans l'attribut `@order_bys`.
 
-La méthode `where` prend un nombre variable de paramètres, le premier est une chaîne de caractère qui contient l'expression SQL comme `'name = ?'` et les éventuels paramètres suivants contiennent les valeurs à utiliser comme `'Black'` et auront donc des types variés (chaîne de caractères, nombre entier ou à virgule flottante{nbsp}…).
+La méthode `where` prend un nombre variable de paramètres, le premier est une chaîne de caractère qui contient l'expression SQL comme `'name = ?'` et les éventuels paramètres suivants contiennent les valeurs à utiliser comme `'Black'` et auront donc des types variés (chaîne de caractères, nombre entier ou à virgule flottante).
 Ils sont stockés sous la forme d'un tableau de table de hachages (`Hash`) dans l'attribut `@wheres`, .
 
 .model.rb
