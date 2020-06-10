@@ -68,6 +68,12 @@ Contrairement à des ORMs comme link:https://guides.rubyonrails.org/active_recor
 
 Générer du code dans des fichiers permet d'examiner les comportements sans avoir à débuguer et permet un meilleur support de la part des outils comme de l'auto-complétion.
 
+Lorsque le modèle de donnée change, il faut relancer le script de génération de code, et on peut ainsi suivre les évolutions dans le code généré en même temps que celles du code qui l'utilise.
+
+Le code généré ainsi ne doit pas être modifié manuellement pour éviter les conflits en cas de mise à jour.
+Pour ajouter des méthodes aux classes générées, il vaut mieux utiliser le monkey-patching.
+Par exemple si les modèles sont générés dans un fichier `models.rb`, on peut utiliser un fichier `models-extension.rb` pour ajouter du code aux différentes classes des modèles.
+
 Mon avis est que ce type d'approche est préférable à la génération de code à chaud sauf très bonne raison.
 
 Quand j'utilise Active Record et que j'ai besoin de poser des breakpoints et d'examiner les objets en mémoire pour connaître les méthodes disponibles sur un modèle, ça me rend triste.
