@@ -26,7 +26,8 @@ Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet], link:../ecrir
 endif::[]
 
 Les ORM permettent en général de définir quatre types de relations{nbsp}: `one-to-many`, `many-to-one`, `one-to-one` et `many-to-many`.
-Je vais couvrir les deux premiers qui sont ceux que l'on rencontre le plus souvent.
+
+Je vais couvrir les deux premiers (`one-to-many`, `many-to-one`) parce que dans mon expérience on les rencontre beaucoup plus souvent que les deux autres, et que leur implémentation est la plus simple.
 
 == Le modèle
 
