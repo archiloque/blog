@@ -381,7 +381,7 @@ Et voila{nbsp}!
 
 Le code se trouve link:https://github.com/archiloque/orm-ruby[ici].
 
-Il manque quelques éléments pour qu'il soit vraiment utile, par exemple la gestion des `UPDATE` et de la suppression unitaire d'enregistrements, mais leur implémentation devrait largement s'appuyer sur le code existant.
+Il manque quelques éléments pour qu'il soit vraiment utile, par exemple la gestion des `UPDATE` et de la suppression unitaire (plutôt que de vider toute une table avec `truncate`), mais une implémentation minimale s'appuierait beaucoup à ce qui a déjà été fait sans introduire de nouvelles idées.
 
 J'espère que ces articles ont pu vous donner une aperçu du fonctionnement de ce type d'outils et les ont rendus moins mystérieux.
 
