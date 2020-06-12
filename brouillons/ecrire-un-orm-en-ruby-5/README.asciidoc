@@ -128,7 +128,8 @@ class Brick < Model
 end
 ----
 
-Pour le setter, il n'y a pas de besoin de SQL: il faut seulement setter la valeur de l'attribut `color_id`, la valeur sera alors sauvegardée en même temps que les autres attributs de l'objet.
+Pour le setter `color=`, il n'y a pas de besoin de SQL{nbsp}: je peut me contenter de stocker la valeur de l'attribut `color_id`, la valeur sera alors sauvegardée en même temps que les autres attributs de l'objet.
+Si juste ensuite je refais un appel à `color`, la requête récupérera la couleur correspond au nouvel `color_id`.
 
 [source,ruby]
 ----
@@ -145,7 +146,7 @@ Maintenant je sais quel code je veux obtenir.
 
 === Implémentation
 
-Pour y arriver, il faut commencer par implémenter la méthode `has_one` dans le DSL pour qu'elle stocke les informations qu'on lui passe.
+Pour y arriver, je commence par implémenter la méthode `has_one` dans le DSL pour qu'elle stocke les informations qu'on lui passe.
 
 .generator.rb
 [source,ruby]
@@ -179,7 +180,7 @@ class ModelDefinition
 end
 ----
 
-Pour le template il faut transcrire le code auquel j'avais abouti plus haut en utilisant les différentes valeurs{nbsp}:
+Pour le template je retranscris le code auquel j'avais abouti plus haut en utilisant les différentes valeurs{nbsp}:
 
 .models.rb.erb
 [source]
