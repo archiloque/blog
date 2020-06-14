@@ -5,11 +5,13 @@ endif::[]
 ifeval::["{doctype}" != "book"]
 = Écrire un ORM en Ruby partie 2{nbsp}: structure
 endif::[]
-
 :author: Julien Kirch
 :revnumber: v0.1
-:docdate: 2020-05-10
+:revdate: 2020-06-15
 :article_lang: fr
+:article_description: Mise en place de la structure
+:article_image: map.png
+:ignore_files: schema.mmd
 ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
