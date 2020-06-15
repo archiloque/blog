@@ -1,53 +1,41 @@
 = Comment se mettre à l'échelle en présence d'erreurs -- ne les ignorez pas
-Julien Kirch
+tef
 v0.1, 2020-06-01
 :article_lang: fr
 :article_image: avatar.jpg
 
-Ce texte est une traduction d'link:https://programmingisterrible.com/post/188942142748/scaling-in-the-presence-of-errorsdont-ignore[un article] de link:http://twitter.com/tef_ebooks[tef].
+Ceci est une traduction d'link:https://programmingisterrible.com/post/188942142748/scaling-in-the-presence-of-errorsdont-ignore[un article] de link:http://twitter.com/tef_ebooks[tef].
 
 ''''
 
 Construire un service fiable et robuste signifie souvent construire quelque chose qui peut continuer à fonctionner quand certaines parties sont défaillantes.
-Un site web où certaines fonctionnalités ne fonctionnent pas vaut souvent mieux qu'un site complètement indisponible.
+Un site web où certaines des fonctionnalités ne fonctionnent pas vaut souvent mieux qu'un site complètement indisponible.
 La bonne manière de s'y prendre n'est pas évidente.
 
+La réponse habituelle est d'embaucher plus de DBAs, plus de SREs, et encore plus de personnes pour s'occuper du support.
+La gestion d'erreur, autrement dit concevoir des logiciels qui peuvent faire de la reprise sur erreut, semble souvent à l'option en dernier recours, et encore faut-il qu'elle soit envisagée.
 
+La réponse habituelle à la gestion d'erreur est l'optimisme.
+Malheursement, les autres possibilités ne sont pas forcément clait, et faire son choix est souvent difficile.
+Si vous avez deux services, que faites-vous quand l'un des deux est indisponible{nbsp}: Rééssayer plus tard{nbsp}? Abandonner complètement{nbsp}? Ou juste l'ignorer et espérer que le problème s'en aille{nbsp}?
 
-The usual response is to hire more DBAs, more SREs, and even more folk
-in Support. Error handling, or making software that can recover from
-faults, often feels like the option of last resort—if ever considered in
-the first place.
-
-The usual response to error handling is optimism. Unfortunately, the
-other choices aren't exactly clear, and often difficult to choose from
-too. If you have two services, what do you do when one of them is
-offline: Try again later? Give up entirely? Or just ignore it and hope
-the problem goes away?
-
-Surprisingly, all of these can be reasonable approaches. Even ignoring
-problems can work out for some systems. Sort-of. You don't get to ignore
-errors, but sometimes recovering from an error can look very similar to
-ignoring it.
+Étonnamment, toutes ces approches peuvent être raisonnables.
+Même ignorer les problèmes peut fonctionner pour certain systèmes.
+Plus ou moins.
+Vous ne pouvez pas ignorer les erreurs, mais parfois la reprise après une erreur peut ressembler beaucoup à l'ignorer.
 
 ''''
 
-Imagine an orchard filled with wireless sensors for heat, light, and
-moisture. It makes little sense to try and resend old temperature
-readings upon error. It isn't the sensor's job to ensure the system
-works, and there's very little a sensor can do about it, too. As a
-result, it's pretty reasonable for a sensor to send messages with wild
-abandon—or in other words, fire-and-forget.
+Imaginez un verger rempli de capteurs mesurant la chaleur, la lumière et l'humidité.
+Cela n'aurait pas beaucoup de sens d'essayer de renvoyer des températures passées en cas d'erreut.
+Ce n'est pas le rôle du capteur de s'assurer que le système fonctionne, et le capteur n'y peut pas grand chose non plus.
+Par conséquent il est raisonnable pour un capteur d'envoyer des messages sans se compliquer la vie, autrement dit en mode _fire-and-forget_ (où le système qui envoie les message ne se préoccupe pas de savoir ce qui leur arrive).
 
-The idea behind fire-and-forget is that you don't need to save old
-messages when the next message overrides it, or when a missing message
-will not cause problems. A situation where each message is treated as
-being the first message sent—forgetting that any attempt was made prior.
+L'idée derrière le _fire-and-forget_ c'est que vous n'avez pas besoin de sauvegarder les anciens messages quand le prochain message est disponible, ou qu'un message manquant ne va pas causer de problème.
+Dans cette situation chaque message est traité comme s'il était le premier message envoyé, en oubliant toute tentative qui aurait eu lieu plus tôt.
 
-Done well, fire-and-forget is like a daily meeting—if someone misses the
-meeting, they can turn up the next day. Done badly, fire-and-forget is
-akin to replacing email with shouting across the office, hoping that
-someone else will take notes.
+Bien fait, le _fire-and-forget_ est comme la réunion journalière (_daily meeting_){nbsp}: si une personne manque la réunion, elle peut participer le jour suivant.
+Mal fait, le _fire-and-forget_ est comme de hurler dans le bureau au lieu d'envoyer un mail, en espérant que quelqu'un prendra des notes.
 
 It isn't that there's no error handling in a fire-and-forget client,
 it's that the best method of recovery is to just keep going.
