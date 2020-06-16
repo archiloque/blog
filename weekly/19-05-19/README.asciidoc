@@ -91,7 +91,7 @@ We have another great tool at our service and that is link:https://godbolt.org/[
 Compiler Explorer, combined with the fact that undefined behavior is ill-formed in a constant expressions, allows us to explore what is and what is not undefined behavior in an interactive and quick manner. Now I know what you are thinking, "`Shafik, this sounds too much like having your cake and eating it too`", ok so there are some caveats here. I mentioned before that not everything is allowed in a constant expression. For example heap allocation, reinterpret_cast etc. so there are classes of undefined behavior we cannot explore e.g. use after free and strict aliasing violations. Will also learned about a couple of exceptions, (_this wouldn't be {cpp} if there weren't exceptions_). There are still plenty of interesting cases to explore and learn from.
 ____
 
-== link:http://tasvideos.org/6347S.html[Submission #6347: Chef Stef's NES Arkanoid "warpless" in 11:11.18]
+== link:http://tasvideos.org/6347S.html[Submission #6347: Chef Stef's NES Arkanoid "`warpless`" in 11:11.18]
 
 [quote]
 ____
@@ -107,7 +107,7 @@ And then I realized something - what if I could simulate the game state instead 
 
 So I went back to the drawing board. I disassembled the game, analyzed its logic, pulled out the routines that mattered for gameplay, and rewrote them all in {cpp}. Logic for graphics, sound, and such could be omitted since they don't affect the physics or any outcomes in the game.
 
-With the replicated game engine in hand, the next step was proving it was equivalent to the original. I constructed a test harness that fed Baxter's TAS inputs into the engine and compared memory values against what BizHawk showed for any divergence. This uncovered many small issues and inconsistencies that I painstakingly fixed. Eventually I'd resolved everything and could "play back" Baxter's TAS perfectly.
+With the replicated game engine in hand, the next step was proving it was equivalent to the original. I constructed a test harness that fed Baxter's TAS inputs into the engine and compared memory values against what BizHawk showed for any divergence. This uncovered many small issues and inconsistencies that I painstakingly fixed. Eventually I'd resolved everything and could "`play back`" Baxter's TAS perfectly.
 
 Now I could finally move on to brute-forcing the game. I wrote an evaluation engine with a bunch of rules (discussed later) to go through levels and output BizHawk movies with their solutions. After about a year of execution time on six CPU cores, I'd finally evaluated everything to a satisfactory point to assemble and produce this TAS.
 

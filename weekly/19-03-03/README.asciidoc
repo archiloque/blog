@@ -14,7 +14,7 @@ ____
 
 [quote]
 ____
-For a long time, we worked behind the façade of a single centralized database. If you wanted to talk to other computers, that was an "application problem" and not in the purview of the system. Data lived as values in cells in the relational database. Everything could be explained in simple abstractions, and life was good!
+For a long time, we worked behind the façade of a single centralized database. If you wanted to talk to other computers, that was an "`application problem`" and not in the purview of the system. Data lived as values in cells in the relational database. Everything could be explained in simple abstractions, and life was good!
 
 Then, we started splitting up centralized systems for scale and manageability. We also tried to get different systems that had been independently developed to work together. That created many challenges in understanding each other4 and ensuring predictable outcomes, especially for atomic transactions.
 
