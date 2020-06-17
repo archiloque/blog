@@ -1,0 +1,29 @@
+= Bien choisir ses outils
+Julien Kirch
+v0.1, 2020-06-17
+:article_lang: fr
+:article_image: tools.png
+
+Je formalise ici un certain nombres d'idées sur les choix d'outils.
+
+== Le maintien en condition opérationnelle
+
+Dans les grandes organisations pour lesquelles j'ai travaillé j'ai souvent croisé le terme de "`Maintien en condition opérationnelle`" ou MCO.
+
+Pour un outil, le MCO c'est le fait de maintenir un fonctionnement satisfaisant, hors des évolutions qu'on lui fait subir.
+
+Pour un logiciel, cela correspond au fait de corriger des bugs et de faire les mises à jour d'outils permettant de bénéficier de mises à jour de sécurité.
+
+=== Le prix de la MCO
+
+Si on parle beaucoup des problèmes pour développer de nouveaux logiciels, et que certains produits continuent à évoluer tout au long de leur vie, il n'en restent pas moins que pour d'autres la phase de développement actif est suivi d'une phase de maintenance, où les évolutions se font de-ci de-là, avec parfois des périodes longues entre chacune d'entre-elles.
+
+Si ce logiciel utilise des outils qui évoluent rapidement, cela peut signifier que même sans avoir à développer de nouvelles fonctionnalités du temps doit être dépensé régulièrement pour le maintenir en l'état.
+
+À l'inverse, s'appuyer sur des outils stables et pérennes permet de limiter ce temps.
+
+Si on peut se moquer de ce genre d'outils pour ne pas être toujours au goût du jour, par exemple la distribution Debian ou même les distributions d'entreprise comme RedHat, mais pour des logiciels qui sont destinés à durer, s'appuyer sur ce type d'infrastructure peut faire une différence importante sur le montant de la facture chaque année.
+
+=== Pensé pour évoluer ou pour durer{nbsp}?
+
+=== La MCO pendant le développement
