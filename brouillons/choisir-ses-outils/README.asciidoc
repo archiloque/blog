@@ -14,16 +14,29 @@ Pour un outil, le MCO c'est le fait de maintenir un fonctionnement satisfaisant,
 
 Pour un logiciel, cela correspond au fait de corriger des bugs et de faire les mises à jour d'outils permettant de bénéficier de mises à jour de sécurité.
 
-=== Le prix de la MCO
+== Le prix de la MCO
 
 Si on parle beaucoup des problèmes pour développer de nouveaux logiciels, et que certains produits continuent à évoluer tout au long de leur vie, il n'en restent pas moins que pour d'autres la phase de développement actif est suivi d'une phase de maintenance, où les évolutions se font de-ci de-là, avec parfois des périodes longues entre chacune d'entre-elles.
 
-Si ce logiciel utilise des outils qui évoluent rapidement, cela peut signifier que même sans avoir à développer de nouvelles fonctionnalités du temps doit être dépensé régulièrement pour le maintenir en l'état.
+Quand un logiciel utilise des outils qui évoluent rapidement, cela peut signifier que même sans avoir à développer de nouvelles fonctionnalités du temps doit être dépensé régulièrement pour le maintenir en l'état.
 
 À l'inverse, s'appuyer sur des outils stables et pérennes permet de limiter ce temps.
 
-Si on peut se moquer de ce genre d'outils pour ne pas être toujours au goût du jour, par exemple la distribution Debian ou même les distributions d'entreprise comme RedHat, mais pour des logiciels qui sont destinés à durer, s'appuyer sur ce type d'infrastructure peut faire une différence importante sur le montant de la facture chaque année.
+On peut se moquer de ce genre d'outils pour ne pas être toujours au goût du jour, par exemple Java, Debian ou même RedHat, mais pour des logiciels qui sont destinés à durer, s'appuyer sur ce type d'infrastructure peut faire une différence importante sur le montant de la facture chaque année.
 
-=== Pensé pour évoluer ou pour durer{nbsp}?
+== Si une dépendance s'arrête{nbsp}?
 
-=== La MCO pendant le développement
+Si des dépendances peuvent évoluer, et donc demander des adaptations régulières, d'autres peuvent s'arrêter, par exemple parce qu'un projet open source n'a plus personne pour le maintenir.
+
+Si le code en question n'est pas exposé à l'extérieur et que ses propres dépendances cela peut ne pas être un problème.
+Cela peut même être une bonne nouvelle car si des mises à jours ne sont plus publiées cela signifie qu'il n'est plus nécessaire de les intégrer.
+
+Dans le cas contraire cela signifie généralement des arbitrages compliqués{nbsp}: faut-il accepter le risque de faille de sécurité non corrigées, monter en compétence sur l'outil pour internaliser sa maintenance, se décider à migrer…{nbsp}?
+
+== Comment décider{nbsp}?
+
+== La MCO pendant le développement
+
+== Les projets perso
+
+== Quand la MCO ne compte pas

@@ -3,6 +3,7 @@ tef
 v0.1, 2020-06-01
 :article_lang: fr
 :article_image: avatar.jpg
+:faf: fire-and-forget
 
 Ceci est une traduction d'link:https://programmingisterrible.com/post/188942142748/scaling-in-the-presence-of-errorsdont-ignore[un article] de link:http://twitter.com/tef_ebooks[tef].
 
@@ -13,10 +14,10 @@ Un site web où certaines des fonctionnalités ne fonctionnent pas vaut souvent 
 La bonne manière de s'y prendre n'est pas évidente.
 
 La réponse habituelle est d'embaucher plus de DBAs, plus de SREs, et encore plus de personnes pour s'occuper du support.
-La gestion d'erreur, autrement dit concevoir des logiciels qui peuvent faire de la reprise sur erreut, semble souvent à l'option en dernier recours, et encore faut-il qu'elle soit envisagée.
+La gestion d'erreur, autrement dit concevoir des logiciels qui peuvent faire de la reprise sur erreur, semble souvent à l'option en dernier recours, et encore faut-il qu'elle soit envisagée.
 
 La réponse habituelle à la gestion d'erreur est l'optimisme.
-Malheursement, les autres possibilités ne sont pas forcément clait, et faire son choix est souvent difficile.
+Malheureusement, les autres possibilités ne sont pas forcément clait, et faire son choix est souvent difficile.
 Si vous avez deux services, que faites-vous quand l'un des deux est indisponible{nbsp}: Rééssayer plus tard{nbsp}? Abandonner complètement{nbsp}? Ou juste l'ignorer et espérer que le problème s'en aille{nbsp}?
 
 Étonnamment, toutes ces approches peuvent être raisonnables.
@@ -29,29 +30,24 @@ Vous ne pouvez pas ignorer les erreurs, mais parfois la reprise après une erreu
 Imaginez un verger rempli de capteurs mesurant la chaleur, la lumière et l'humidité.
 Cela n'aurait pas beaucoup de sens d'essayer de renvoyer des températures passées en cas d'erreut.
 Ce n'est pas le rôle du capteur de s'assurer que le système fonctionne, et le capteur n'y peut pas grand chose non plus.
-Par conséquent il est raisonnable pour un capteur d'envoyer des messages sans se compliquer la vie, autrement dit en mode _fire-and-forget_ (où le système qui envoie les message ne se préoccupe pas de savoir ce qui leur arrive).
+Par conséquent il est raisonnable pour un capteur d'envoyer des messages sans se compliquer la vie, autrement dit en mode _{faf}_ (où le système qui envoie les message ne se préoccupe pas de savoir ce qui leur arrive).
 
-L'idée derrière le _fire-and-forget_ c'est que vous n'avez pas besoin de sauvegarder les anciens messages quand le prochain message est disponible, ou qu'un message manquant ne va pas causer de problème.
+L'idée derrière le _{faf}_ c'est que vous n'avez pas besoin de sauvegarder les anciens messages quand le prochain message est disponible, ou qu'un message manquant ne va pas causer de problème.
 Dans cette situation chaque message est traité comme s'il était le premier message envoyé, en oubliant toute tentative qui aurait eu lieu plus tôt.
 
-Bien fait, le _fire-and-forget_ est comme la réunion journalière (_daily meeting_){nbsp}: si une personne manque la réunion, elle peut participer le jour suivant.
-Mal fait, le _fire-and-forget_ est comme de hurler dans le bureau au lieu d'envoyer un mail, en espérant que quelqu'un prendra des notes.
+Bien fait, le _{faf}_ est comme la réunion journalière (_daily meeting_){nbsp}: si une personne manque la réunion, elle peut participer à celle qui se tiendra le jour d'après.
+Mal fait, le _{faf}_ est comme de hurler dans le bureau au lieu d'envoyer un mail en espérant que quelqu'un prendra des notes.
 
-It isn't that there's no error handling in a fire-and-forget client,
-it's that the best method of recovery is to just keep going.
-Unfortunately, people often misinterpret fire-and-forget to mean "`avoid
-any error handling and hoping for the best`".
+Ce n'est pas qu'il n'y a pas de gestion d'erreur dans un client _{faf}_, mais que de simplement continuer est la meilleur méthode de reprise sur erreur.
+Malheuresement, _{faf}_ est souvent interprété à tord comme signifiant "`passons-nous de toute gestion d'erreur et espérons que tout se passe au mieux`".
 
-You don't get to ignore errors.
+Vous ne pouvez pas vous permettre d'ignorer les erreurs.
 
-When you ignore errors, you only put off discovering them—it's not until
-another problem is caused that anyone even realises something has gone
-wrong. When you ignore errors, you waste time that could be spent
-recovering from them.
+Quand vous ignorez les erreur, tout ce que vous faites c'est retarder le moment où vous les découvrez{nbsp}: c'est seulement lorsuqu'un autre problème est causé par le premier que quelqu'un réalisé que quelque chose s'est mal passé.
+Quand vous ignorez les erreur, vous gaspillez du temps qui pourrait être utilisé pour restaurer la situation.
 
-This is why, despite the occasional counter example, the best thing to
-do when encountering an error is to give up. Stop before you make
-anything worse and let something else handle it.
+C'est pour cela que, malgrès quelques contre-exxemples, la meilleur chose à faire quand vous rencontrez une erreur est d'abandonner.
+Arrêtez avant de faire empirer les chose, et laisser quelque chose d'autre s'en occuper.
 
 ''''
 
