@@ -1,0 +1,73 @@
+= Links - 21^st^ June 2020
+Julien Kirch
+v1.0, 2020-06-21
+:article_lang: en
+:figure-caption!:
+
+== link:https://blog.darknedgy.net/technology/2020/05/02/0/[systemd, 10 years later: a historical and technical retrospective]
+
+[quote]
+____
+The major cultural cleavage in the Linux "`community`" boils down to two things: its entanglement with the history of GNU and the free software movement, and its image as the "`revolution OS`" -- a product of free culture worked on by hobbyists and volunteers towards the end of emancipation from shrink-wrapped software vendors and pointy-haired bosses, or the snooping cloud service provider as the more modern equivalent would be.
+
+Consequently, the professional Linux plumber and the plebeian hobbyist occupy two different worlds. The people who work at the vanguard of Desktop Linux and DevOps middleware as paid employees have no common ground with the subculture of people who use suckless software, build musl-based distros from scratch and espouse the values of minimalism and self-sufficiency. For many in the latter camp who came to Linux from the message of free software, their eventual realization that real-world Linux development is increasingly dominated by the business interests of large-scale cloud providers as represented in the platinum memberships of the Linux Foundation, is almost analogous to the disillusionment of a communist true believer upon witnessing Comrade Trotsky brutally punish the sailors of the Kronstadt rebellion. The iron law of oligarchy still reigns as usual irrespective of the pretense toward progress and equality.
+
+Despite the age of the homesteading hobbyist making a substantial difference long being over, the image still persists. The communitarian ethos of free software can never be fully wiped from the DNA of GNU/Linux, but it can be increasingly relegated to an irrelevant curiosity. The likes of Richard Stallman, GNU and the FSF are seen more and more as an embarrassment to be overcome in favor of a more "`professional`" and "`inclusive`" scene, which will in all likelihood mean professionally showing the user their place as a data entry within the panopticon, not a free and independent yeoman as the admittedly utopian pipe dream envisioned.
+____
+
+[quote]
+____
+There is an almost dialectical relationship in the way that trying to unify a bazaar only reinforces its contradictions more strongly, as the participants gain a greater self-consciousness of their position within the software distribution channel.
+____
+
+== link:https://blogs.gnome.org/tbernard/2018/10/15/restyling-apps-at-scale/[Restyling apps at scale]
+
+
+[quote]
+____
+One of the most frustrating things about the current situation is that to users, it looks like it _almost works_. For the most part, third-party themes look and work okayish, there are just a few small bugs here and there. A button with too little contrast, an underline clashing with a border, a really large loading spinner. Not that big a deal, you’d think.
+
+However, this view of the situation misses a few really important realities:
+
+. App developers are doing a lot of bug fixing to account for "`themin`", because people complain to them when their app is broken on certain distros. The current situation essentially forces developers to fix bugs for setups they never intended to support in the first place. They’re not happy about it, but they’re doing it because they don’t want their users to have broken apps.
+. App developers are trying hard not do anything innovative or visual in their apps, because they know it will break with other stylesheets.
+. "`Theme`" developers are fixing a lot of bugs for edge cases in individual apps in their stylesheets. Of course, this is a never-ending task because as soon as a new version of an app is released, something will very likely be broken again.
+
+All of this only kinda sorta works because we have very few apps. If we ever hope to grow our ecosystem past a few dozen apps things have to change, because maintaining a "`theme`" gets less sustainable with every new app.
+____
+
+== link:https://medium.com/@skamille/product-for-internal-platforms-9205c3a08142[Product for Internal Platforms]
+
+[quote]
+____
+Not only do we have a small group of customers, we have a captive audience. Other teams can and sometimes do decide to go off on their own and build their own platforms, but for many types of products, we provide the only option. You can ask customers what they want or how they like your products, but they may not want to complain to their colleagues. Of course, platform products also suffer from the problem that some engineers always think they could build something better, if only they had the time, so you also have a customer segment that seems to never be satisfied no matter how hard you work.
+
+A captive audience leads us to believe that basic metrics for customer adoption are not interesting, which in turn leads us to ignore them, sometimes to our peril. Many platform teams end up with several overlapping half-finished products because they assumed a captive audience would lead to product success.
+____
+
+== link:http://neugierig.org/software/blog/2020/05/ninja.html[The Success and Failure of Ninja]
+
+[quote]
+____
+By default, Ninja executes the desired commands in parallel. Make is capable of this too; Ninja borrows the same flag name for this capability (`-j`) and just uses a different default value. However, because Make defaulted to running commands serially, it is relatively easy to write a Makefile that underspecifies dependencies such that it is unsafe to execute it in parallel. In fact, there's even some commercial vendor that offers some sort of "Makefile accelerator" tool that helps people discover and repair underspecified dependencies.
+
+In contrast, because Ninja always executes commands in parallel (even on a single-core system) it ends up revealing mistakes like these earlier. This means that programs that build with Ninja typically end up safe to build in parallel. (Ninja has no fancy system for detecting when you've gotten things wrong, it just causes wrong builds more often.) In contrast, users often forget or are unaware of the flag to Make that makes it also run in parallel. It is embarrassing to take credit for this because it's just a flag, but just because of its default value, Ninja in practice will end up being "`twice as fast as Make`" or more for users who aren't careful. The lesson is that all the optimization in the world doesn't matter if your users don't actually see it.
+____
+
+== link:https://lucumr.pocoo.org/2020/1/1/async-pressure/[I'm not feeling the async pressure]
+
+[quote]
+____
+async/await is great but it encourages writing stuff that will behave catastrophically when overloaded. On the one hand because it's just so easy to queue but also because making a function _async_ after the fact is an API breakage. I can only assume this is why Python still has a non awaitable _write_ function on the stream writer.
+
+The biggest reason though is that async/await lets you write code many people wouldn't have written with threads in the first place. That's I think a good thing, because it lowers the barrier to actually writing larger systems. The downside is that it also means many more developers who previously had little experience with distributed system now have many of the problems of a distributed system even if they only write a single program. HTTP2 is a protocol that is complex enough due to the multiplexing nature that the only reasonable way to implement it is based on async/await as an example.
+____
+
+== link:https://blog.mecheye.net/2020/06/modern-graphics-apis-1-intro/[The Missing Guide to Modern Graphics APIs – 1. Intro]
+
+[quote]
+____
+What makes these APIs hard to use is the lack of a true reference on the problem space: the conceptual understanding of what a modern GPU is, what it looks like, and what it’s best at doing. This goes hand in hand with architecting your graphics engine, as well.
+
+When left to our own devices, fed tiny nibbles of information here and there, we’ll use our imagination and come up with our own mental model of what a GPU is and how it works. Unfortunately, the universe is against us here; a combination of decades of inaccurate marketing to a gaming populus most interested in just comparing raw specs, legitimate differences in GPU architecture between vendors, and the sheer mass of code tucked away in drivers to win benchmarks have made it incredibly difficult to build that mental model effectively. How are we supposed to understand modern APIs that promise to expose the whole GPU to us, but don’t tell us what our hardware even is? Every senior graphics programmer I’ve talked to had to go through several difficult sessions of "`unlearning`", of tearing down mental models made with incomplete or outdated information.
+____

@@ -5,10 +5,9 @@ endif::[]
 ifeval::["{doctype}" != "book"]
 = Écrire un ORM en Ruby partie 3{nbsp}: récupération des champs, insertion et sélection
 endif::[]
-
 :author: Julien Kirch
 :revnumber: v0.1
-:docdate: 2020-05-10
+:revdate: 2020-06-22
 :article_lang: fr
 ifndef::source-highlighter[]
 :source-highlighter: pygments
@@ -464,7 +463,7 @@ class Model
 end
 ----
 
-On peut alors récupérer des données{nbsp}:
+Je peux alors récupérer des données{nbsp}:
 
 .script.rb
 [source,ruby]
