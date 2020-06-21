@@ -2,6 +2,8 @@
 Julien Kirch
 v1.0, 2020-03-22
 :article_lang: en
+:article_description: Data center, rewrittings, runnin online services, toolboxes
+:figure-caption!:
 
 == link:https://culturemachine.net/vol-18-the-nature-of-data-centers/the-data-center-as/[The data center as technological wilderness]
 
@@ -21,7 +23,7 @@ This keeps the logic simple and functional, and it limits the impact on the rest
 MSYS is a cross-platform library built in C that operates all the primitives we need. Consolidating the code all into one library makes managing everything much easier; the it is more centralized and more focused. We try to do things in a single way — one way to send messages to the server, one way to send media, one way to log, etc. With MSYS, we have a global view. We’re able to prioritize workloads. Say the task to load your message list should be a higher priority than the task to update whether somebody read a message in a thread from a few days ago; we can move the priority task up in the queue. Having a universal system simplifies how we support the app as well. With MSYS, it’s easier to track performance, spot regressions, and fix bugs across all these features at once. In addition, we made this important part of the system exceptionally robust by investing in automated tests, resulting in a (very rare in the industry) 100 percent line code coverage of MSYS logic.
 ____
 
-== link:https://technology.riotgames.com/news/running-online-services-riot-part-vi[Running Online Services at Riot: Part VI]
+== link:https://technology.riotgames.com/news/running-online-services-riot-part-vi[Running online services at Riot: part VI]
 
 [quote]
 ____
