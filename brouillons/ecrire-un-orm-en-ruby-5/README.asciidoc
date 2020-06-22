@@ -134,7 +134,7 @@ Si juste ensuite je refais un appel à `color`, la requête récupérera la coul
 [source,ruby]
 ----
 class Brick < Model
-  # @param [Color] color
+  # @param color [Color]
   # @return [void]
   def color=(color)
     @color_id = color.id
@@ -157,7 +157,7 @@ class ModelDefinition
 
   attr_reader :name, :table_name, :has_ones
 
-  # @param [String] name
+  # @param name [String]
   def initialize(name)
     @name = name
     @has_ones = []
@@ -166,9 +166,9 @@ class ModelDefinition
 
   # …
 
-  # @param [String] attribute_name
-  # @param [String] model_class
-  # @param [String] column_name
+  # @param attribute_name [String]
+  # @param model_class [String]
+  # @param column_name [String]
   # @return [void]
   def has_one(attribute_name:, model_class:, column_name:)
     @has_ones << {
@@ -191,7 +191,7 @@ Pour le template je retranscris le code auquel j'avais abouti plus haut en utili
     <%= has_one[:model_class] %>.where('id = ?', <%= has_one[:column_name] %>).first
   end
 
-  # @param [<%= has_one[:model_class] %>] <%= has_one[:attribute_name] %>
+  # @param <%= has_one[:attribute_name] %> [<%= has_one[:model_class] %>]
   # @return [void]
   def <%= has_one[:attribute_name] %>=(<%= has_one[:attribute_name] %>)
     @<%= has_one[:column_name] %> = <%= has_one[:attribute_name] %>.id
@@ -312,7 +312,7 @@ class ModelDefinition
 
   attr_reader :name, :table_name, :has_ones, :has_manys
 
-  # @param [String] name
+  # @param name [String]
   def initialize(name)
     @name = name
     @has_ones = []

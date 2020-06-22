@@ -102,8 +102,8 @@ Ils sont stockés sous la forme d'un tableau de table de hachages (`Hash`) dans 
 class QueryParameters
   # …
 
-  # @param [String] expression
-  # @param [Array] parameters
+  # @param expression [String]
+  # @param parameters [Array]
   # @return [QueryParameters]
   def where(expression, *parameters)
     new_query_parameters = self.dup
@@ -111,7 +111,7 @@ class QueryParameters
     new_query_parameters
   end
 
-  # @param [String] order_by
+  # @param order_by [String]
   # @return [QueryParameters]
   def order_by(order_by)
     new_query_parameters = self.dup
@@ -136,14 +136,14 @@ class Model
     QueryParameters.new(self)
   end
 
-  # @param [String] expression
-  # @param [Array] parameters
+  # @param expression [String]
+  # @param parameters [Array]
   # @return [QueryParameters]
   def self.where(expression, *parameters)
     query_parameters.where(expression, *parameters)
   end
 
-  # @param [String] order_by
+  # @param order_by [String]
   # @return [QueryParameters]
   def self.order_by(order_by)
     query_parameters.order_by(order_by)
@@ -336,7 +336,7 @@ class QueryParameters
   attr_writer :limit
   attr_reader :wheres, :order_bys, :limit
 
-  # @param [Class] model_class
+  # @param model_class [Class]
   def initialize(model_class)
     @model_class = model_class
     @wheres = []
@@ -344,7 +344,7 @@ class QueryParameters
     @limit = nil
   end
 
-  # @param [Integer] limit
+  # @param limit [Integer]
   # @return [Model::QueryParameters]
   def limit(limit)
     new_query_parameters = self.dup
@@ -390,7 +390,7 @@ Reste encore à ajouter les méthodes sur le modèle qui font la délégation à
 [source,ruby]
 ----
 class Model
-  # @param [Integer] limit
+  # @param limit [Integer]
   # @return [Model::QueryParameters]
   def self.limit(limit)
     query_parameters.limit(limit)

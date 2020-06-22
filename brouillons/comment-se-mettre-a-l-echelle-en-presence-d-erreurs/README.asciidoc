@@ -51,26 +51,18 @@ Arrêtez avant de faire empirer les chose, et laisser quelque chose d'autre s'en
 
 ''''
 
-Giving up is a surprisingly reasonable approach to error handling,
-assuming something else will try to recover, restart, or resume the
-program. That's why almost ever network service gets run in a
-loop—restarting immediately upon crashing, hoping the fault was
-transient. It often is.
+Abandonner est une approche surprenament raisonnable de la gestion d'erreur, en supposant que quelque chose d'autre essaiera de reprendre, redémarrer ou de faire continuer le programme.
+C'est pour cela que presque tous les services réseaux s'executent dans une boucle qui les fait redémarrer immediatement en cas de plantage, en esperant que l'erreur est temporaire.
+Elle l'est souvent.
 
-There's little point in trying to repeatedly connect to a database when
-the user is already mashing refresh in the browser. A unix pipeline
-could handle every possible bad outcome, but more often than not,
-running the program again makes everything work.
+Cela ne sert pas à grand chose d'essayer de se reconnecter plusieurs fois à une base de données quand l'utilisateur·rice est déjà en train d'essayer de cliquer en boucle sue le bontn "`rafraîchir`" de son navigateur.
+Un pipeline Unix pourrait gérer tous les cas d'erreurs posibles, mais le plus souvent relancer le programme suffit à tout faire fonctionner.
 
-Although giving up is a good way to handle errors, restarting from
-scratch isn't always the best way to recover from them.
+Bien qu'abandonner soit une bonne manière de gérer les erreur, redémarrer de zero n'est pas toujours la meilleure manière de faire de la reprise.
 
-Some pipelines work on large volumes or data, or do arduous amounts of
-numerical processing, and no-one is ever happy about repeating days or
-weeks or work. In theory, you could add error handling code, reduce the
-risk that the program will crash, and avoid an expensive restart, but in
-practice it's often easier to restructure code to carry on where it left
-off.
+Certains pipelines fonctionnent sur des gros volumes de données, ou font des tas de traitements numériques compliqués, et personne n'est jamais content de devoir répérer des jours ou des semaines de travail.
+En théorie, vous pourriez ajouter de la gestion d'erreur, réduire le risque que le programme se plante, et éviter un redémarrage coûteux, mais en pratique il est souvent plus facile de réorganiser votre code pour qu'il continue là où il s'est arrêté.
+
 
 In other words, give up, but save your progress to make restarting less
 time consuming.

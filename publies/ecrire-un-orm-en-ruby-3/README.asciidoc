@@ -64,8 +64,8 @@ class ColumnDefinition
 
   attr_reader :name, :type
 
-  # @param [String] name
-  # @param [String] type
+  # @param name [String]
+  # @param type [String]
   def initialize(name, type)
     @name = name
     @type = type
@@ -152,7 +152,7 @@ class <%= model.name %>
     @<%= column_name %>
   end
 
-  # @param [<%= column_type%>] <%= column_name %>
+  # @param <%= column_name %> [<%= column_type%>]
   # @return [void]
   def <%= column_name %>=(<%= column_name %>)
     @<%= column_name %> = <%= column_name %>
@@ -167,14 +167,14 @@ Ce qui donne ce résultat{nbsp}:
 .models.rb
 [source,ruby]
 ----
-class 
+class Model
 
   # @return [Integer]
   def id
     @id
   end
 
-  # @param [Integer] id
+  # @param id [Integer]
   # @return [void]
   def id=(id)
     @id = id
@@ -185,7 +185,7 @@ class
     @name
   end
 
-  # @param [String] name
+  # @param name [String]
   # @return [void]
   def name=(name)
     @name = name
@@ -477,7 +477,7 @@ black = Color.new
 black.name = 'Black'
 black.insert
 
-puts '# Les couleurs'
+puts 'Les couleurs'
 Color.all.each do |color|
   puts "  #{color.id} : #{color.name}"
 end
@@ -568,9 +568,7 @@ end
 ----
 $ bundle exec ruby script.rb
 Les couleurs
-  1 : Black
 Les briques
-  1 : Awesome brick, This brick is awesome, 1
 ----
 
 Je ne vais pas les détailler ici mais pour les suppressions de données il faut générer des requêtes `DELETE FROM table_name WHERE ID = ?` et leurs passer l'id de l'instance à supprimer et pour les mises à jour s'inspirer des requêtes d'insertion pour obtenir des requêtes du type `UPDATE table_name SET column_name_1 = ?, column_name_2 = ? WHERE id = ?`.

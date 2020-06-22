@@ -172,7 +172,7 @@ class ModelDefinition
 
   attr_reader :name, :table_name
   
-  # @param [String] name
+  # @param name [String]
   def initialize(name)
     @name = name
   end
@@ -219,7 +219,7 @@ class ModelDefinition
 
   attr_reader :name, :table_name
 
-  # @param [String] name
+  # @param name [String]
   def initialize(name)
     @name = name
     MODELS_DEFINITIONS << self
