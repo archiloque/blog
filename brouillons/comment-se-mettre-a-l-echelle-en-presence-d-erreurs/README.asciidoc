@@ -63,9 +63,9 @@ Bien qu'abandonner soit une bonne manière de gérer les erreur, redémarrer de 
 Certains pipelines fonctionnent sur des gros volumes de données, ou font des tas de traitements numériques compliqués, et personne n'est jamais content de devoir répérer des jours ou des semaines de travail.
 En théorie, vous pourriez ajouter de la gestion d'erreur, réduire le risque que le programme se plante, et éviter un redémarrage coûteux, mais en pratique il est souvent plus facile de réorganiser votre code pour qu'il continue là où il s'est arrêté.
 
+En d'autres termes{nbsp}: abandonnez, mais sauvegardez votre progression pour que le redémarrage prenne moins de temps.
 
-In other words, give up, but save your progress to make restarting less
-time consuming.
+Pour un pileline, cela signifie généralement un horrible tas de fichiers temporaires pour sauvegarder le résultat de chaque sous-commande, et le résultat de découper les données d'entrée en 
 
 For a pipeline, this usually entails a awful lot of temporary files—to
 save the output of each subcommand, and the result of splitting the
