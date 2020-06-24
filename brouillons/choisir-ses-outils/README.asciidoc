@@ -28,12 +28,20 @@ On peut se moquer de ce genre d'outils pour ne pas être toujours au goût du jo
 
 Si des dépendances peuvent évoluer, et donc demander des adaptations régulières, d'autres peuvent s'arrêter, par exemple parce qu'un projet open source n'a plus personne pour le maintenir.
 
-Si le code en question n'est pas exposé à l'extérieur et que ses propres dépendances cela peut ne pas être un problème.
+Si le code en question n'est pas exposé à l'extérieur et que ses propres dépendances sont stables cela peut avoir peu ou pas de conséquences.
 Cela peut même être une bonne nouvelle car si des mises à jours ne sont plus publiées cela signifie qu'il n'est plus nécessaire de les intégrer.
 
-Dans le cas contraire cela signifie généralement des arbitrages compliqués{nbsp}: faut-il accepter le risque de faille de sécurité non corrigées, monter en compétence sur l'outil pour internaliser sa maintenance, se décider à migrer…{nbsp}?
+Dans le cas contraire cela signifie généralement des arbitrages compliqués{nbsp}: faut-il accepter le risque de faille de sécurité non corrigées, monter en compétence sur l'outil pour internaliser sa maintenance, se décider à migrer sur un autre outil…{nbsp}?
 
 == Comment décider{nbsp}?
+
+Il n'y a pas de formule simple, car comme disait Yogi Berra "`Faire des prévisions est difficiles, et encore plus quand elles concernent le futur`".
+
+link:https://hal.archives-ouvertes.fr/hal-02117588/document[Cet article] propose une approche intéressante qui prend en compte la durée de vie du projet par rapport à la stabilité des dépendances.
+
+Sauf que bien entendu il peut-être assez difficile de prévoir la durée de vie d'un projet, sachant qu'elle peut dépendre elle-même du niveau de sa MCO, car plus un projet coûte cher ou plus il pose de risque plus l'incitation à le décomissionner est forte.
+
+Si être pessimiste permet de limiter les risques, cela limite aussi ce qu'il est possible de faire, par exemple en ce qui concerne les besoins récents pour lesquels les écosystèmes ne sont pas forcément stabilisés, et portent donc un risque plus grand.
 
 == La MCO pendant le développement
 

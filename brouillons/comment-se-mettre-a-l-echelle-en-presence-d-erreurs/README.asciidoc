@@ -65,13 +65,11 @@ En théorie, vous pourriez ajouter de la gestion d'erreur, réduire le risque qu
 
 En d'autres termes{nbsp}: abandonnez, mais sauvegardez votre progression pour que le redémarrage prenne moins de temps.
 
-Pour un pileline, cela signifie généralement un horrible tas de fichiers temporaires pour sauvegarder le résultat de chaque sous-commande, et le résultat de découper les données d'entrée en 
+Pour un pileline, cela signifie généralement un horrible tas de fichiers temporaires pour sauvegarder le résultat de l'execution de chaque sous-commande, et le résultat du découpage des données d'entrée en lots plus petits.
+Vous pouvez même mettre en place des rééssais automatiques, mais pour de nombreux pipelines, une reprise manuelle est toujours relativement peu coûteuse.
 
-For a pipeline, this usually entails a awful lot of temporary files—to
-save the output of each subcommand, and the result of splitting the
-input up into smaller batches. You can even retry things automatically,
-but for a lot of pipelines, manual recovery is still relatively
-inexpensive.
+Pour d'autres tâches à durée de vie longue, cela signifie habituelle quelque chose comme des points de contrôles ou des sagas.
+En d'autres termes, transformer un traitement long en un court qui s'execute constamment, écrivant les progrès effectués quelque 
 
 For other long running processes, this usually means something like
 checkpoints, or sagas. Or in other words, transforming a long running
