@@ -576,4 +576,9 @@ Je ne vais pas les détailler ici mais pour les suppressions de données il faut
 Toutes les requêtes vues ici s'appuient sur l'hypothèse d'un identifiant technique présent dans toutes les tables, ce qui est la pratique généralement conseillée en SQL.
 Prendre en compte les autres types d'identifiants demande de rendre paramétrable cette partie des requêtes.
 
-C'est tout pour le moment, dans l'article suivant je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
+ifeval::["{doctype}" == "book"]
+C'est tout pour le moment, dans la partie suivante je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
+endif::[]
+ifeval::["{doctype}" != "book"]
+C'est tout pour le moment,  link:../ecrire-un-orm-en-ruby-4/[dans l'article suivant] je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
+endif::[]

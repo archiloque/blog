@@ -361,4 +361,9 @@ require_relative 'models'
 black = Color.new
 ----
 
+ifeval::["{doctype}" == "book"]
+Mais la structure est en place et dans la partie suivante je vais pouvoir m'en servir pour faire mes premières requêtes.
+endif::[]
+ifeval::["{doctype}" != "book"]
 Mais la structure est en place et link:../ecrire-un-orm-en-ruby-3/[dans l'article suivant] je vais pouvoir m'en servir pour faire mes premières requêtes.
+endif::[]
