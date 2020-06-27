@@ -41,10 +41,23 @@ link:https://hal.archives-ouvertes.fr/hal-02117588/document[Cet article] propose
 
 Sauf que bien entendu il peut-être assez difficile de prévoir la durée de vie d'un projet, sachant qu'elle peut dépendre elle-même du niveau de sa MCO, car plus un projet coûte cher ou plus il pose de risque plus l'incitation à le décomissionner est forte.
 
-Si être pessimiste permet de limiter les risques, cela limite aussi ce qu'il est possible de faire, par exemple en ce qui concerne les besoins récents pour lesquels les écosystèmes ne sont pas forcément stabilisés, et portent donc un risque plus grand.
+Si être pessimiste permet de limiter les risques, cela limite aussi ce qu'il est possible de faire si les solutions qui ont le plus de fonctionalités ne sont pas encore stabilisées, comme certains frameworks JavaScript actuels.
 
-== La MCO pendant le développement
+Pour les projets plutôt gros, il peut être intéressant de faire des choix différents en fonction des parties, par exemple d'avoir des solutions pérènnes pour la partie serveur qui devrait vivre plus longtemps, et des choix plus libres sur la partie front.
+Dans ce cas on rend le système un peu plus complexe en échange de plus de liberté technologique.
 
-== Les projets perso
+À l'inverse, une solution qui peut être tentante mais qui n'en vaut souvent pas la peine et d'ajouter une couche d'indirection entre le code métier et le code du framework.
+Dans mon expérience, la couche d'indirection ainsi obtenue ajoute du travail sans généralement apporter le découplage qu'on espére{nbsp}: les changements de frameworks s'accompagnent le plus souvent d'un changement d'API, et il est rare qu'une couche d'indirection développée ainsi soit en mesure de compenser proprement ces modifications d'API.
+
+== Frameworks internes et externes
+
+On trouve des mouvements comme celui du link:https://www.frameworklessmovement.org[frameworkless movement] qui propose de ne pas du tout utiliser de frameworks externes, ou au moins de limiter drastiquement leur usage.
+Si la question du risque qu'ils posent est légitime, le fait de vouloir trop redévelopper de choses en interne pose d'autre risques, signifie assumer seul la charge de maintenance, 
+
+
+== Les projets personnels
+
+Sur les projets personnels le MCO peut vraiment être usant.
+Par exemple sur un projet sur lequel vous vous remettez de temps en temps pour explorer une idée, si à chaque fois que vous ouvrez votre code vous devez passer du temps à mettre à jour les dépendances et à comprendre pourquoi quelque chose s'est cassé, vous risquez de vous démotiver et de vous arrêter.
 
 == Quand la MCO ne compte pas
