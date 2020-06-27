@@ -4,6 +4,7 @@ v0.1, 2020-06-01
 :article_lang: fr
 :article_image: avatar.jpg
 :faf: fire-and-forget
+:bus: bus de messages
 
 Ceci est une traduction d'link:https://programmingisterrible.com/post/188942142748/scaling-in-the-presence-of-errorsdont-ignore[un article] de link:http://twitter.com/tef_ebooks[tef].
 
@@ -30,7 +31,7 @@ Vous ne pouvez pas ignorer les erreurs, mais parfois la reprise après une erreu
 Imaginez un verger rempli de capteurs mesurant la chaleur, la lumière et l'humidité.
 Cela n'aurait pas beaucoup de sens d'essayer de renvoyer des températures passées en cas d'erreut.
 Ce n'est pas le rôle du capteur de s'assurer que le système fonctionne, et le capteur n'y peut pas grand chose non plus.
-Par conséquent il est raisonnable pour un capteur d'envoyer des messages sans se compliquer la vie, autrement dit en mode _{faf}_ (où le système qui envoie les message ne se préoccupe pas de savoir ce qui leur arrive).
+Par conséquent il est raisonnable pour un capteur d'envoyer des messages sans se compliquer la vie, autrement dit en mode _{faf}_ ("`tire et oublie`" où le système qui envoie les message ne se préoccupe pas de savoir ce qui leur arrive).
 
 L'idée derrière le _{faf}_ c'est que vous n'avez pas besoin de sauvegarder les anciens messages quand le prochain message est disponible, ou qu'un message manquant ne va pas causer de problème.
 Dans cette situation chaque message est traité comme s'il était le premier message envoyé, en oubliant toute tentative qui aurait eu lieu plus tôt.
@@ -69,133 +70,90 @@ Pour un pileline, cela signifie généralement un horrible tas de fichiers tempo
 Vous pouvez même mettre en place des rééssais automatiques, mais pour de nombreux pipelines, une reprise manuelle est toujours relativement peu coûteuse.
 
 Pour d'autres tâches à durée de vie longue, cela signifie habituelle quelque chose comme des points de contrôles ou des sagas.
-En d'autres termes, transformer un traitement long en un court qui s'execute constamment, écrivant les progrès effectués quelque 
+En d'autres termes, transformer un traitement long en un traitement court qui s'execute constamment, en écrivant les progrès effectués dans un fichier ou une base de données quelque part.
 
-For other long running processes, this usually means something like
-checkpoints, or sagas. Or in other words, transforming a long running
-process into a short running one that's run constantly, writing out the
-progress it makes to some file or database somewhere.
+Avec le temps, tous les traitements longs sont découpés en parties plus petites, quand le coût de les redémmarrer de zero devient prohibitif.
+Un traitement long a beaucoup plus de chances de tomber sur une erreur impossible&#8201;—{nbsp}des  disques pleins, plus de mémoire disponibles, des rayons cosmiques{nbsp}—&#8201;et être forcé d'abandonner.
 
-Over time, every long running process will get broken up into smaller
-parts, as restarting from scratch becomes prohibitively expensive. A
-long running process is just that more likely to run into an impossible
-error—full disks, no free memory, cosmic rays—and be forced to give up.
+Parfois la seule manière de gérer une erreur est d'abandonner.
 
-Sometimes the only way to handle an error is to give up.
+Par conséquent, la meilleure manière de gérer les erreurs est d'organiser vos programmes de façon à rendre les reprises faciles.
+La reprise c'est tout la différence entre "`_{faf}_`" et "`ignorer-toutes-les-erreurs`", même si les deux partagent le même optimisme.
 
-As a result, the best way to handle errors is to structure your program
-to make recovery easier. Recovery is what makes all the difference
-between "`fire-and-forget`" and "`ignoring-every-error`" despite sharing the
-same optimism.
+Vous pouvez faire des choses qui ressemblent au fait d'ignorer des erreurs, ou même laisser quelque chose d'autre s'en occuper, tant qu'il y a un plan pour pouvoir faire une reprise.
+Même si c'est de recommencer de zéro, même si c'est de réveiller quelqu'un pendant la nuit, tant qu'il y a un plan cela signifie que vous n'ignorez pas le problème.
+En supposant bien entendu que le plan fonctionne.
 
-You can do things that look like ignoring errors, or even letting
-something else handle it, as long as there's a plan to recover from
-them. Even if it's restarting from scratch, even if it's waking someone
-up at night, as long as there's some plan, then you aren't ignoring the
-problem. Assuming the plan works, that is.
+Vous ne pouvez pas ignorer les erreurs.
+Elles sont inévitablement le problème _de quelqu'un_.
+Si une personne vous dit qu'elle peut ignorer les erreurs, elle vous dit que quelqu'un d'autre est d'astreinte pour leur logiciel.
 
-You don't get to ignore errors. They're inevitably _someone's_ problem.
-If someone tells you they can ignore errors, they're telling you someone
-else is on-call for their software.
-
-That, or they're using a message broker.
+Ça, ou alors qu'elle utilise un {bus}.
 
 ''''
 
-A message broker, if you're not sure, is a networked service that offers
-a variety of queues that other computers on the network can interact
-with. Usually some clients enqueue messages, and others poll for the
-next unread message, but they can be used in a variety of other
-configurations too.
+Un {bus}, si vous n'en êtes pas sûr·e, est un service réseau qui propose un ensemble de queues avec lesquelles d'autres ordinateurs sur le réseau peuvent interragir.
+Généralement des clients ajoutent des message, et d'autres l'interrogent pour récupérer le prochain message non lu, mais on peut les utiliser d'un tas d'autres manières.
 
-Like with a unix pipe, message brokers are used to get software off the
-ground. Similarly to using temporary files, the broker allows for
-different parts of the pipeline to consume and produce inputs at
-different rates, but don't easily allow replaying or restarting when
-errors occur.
+Comme un _pipe_ unix, les {bus} sont utilisé pour démarrer des projets.
+De la même manière que les fichiers temporaires, les bus permettent à différentes parties du pipeline de consommer et de produire des contenus à des vitesses différentes, mais ne permettent pas facilement de faire des rejeux ou de redémarrer en cas d'erreur.
 
-Like a unix pipe, message brokers are used in a very optimistic fashion.
-Firing messages into the queue and moving on to the next task at hand.
+Comme un _pipe_ unix, les {bus} sont utilisés d'une manière très optimiste{nbso}:
+envoyer des messages dans la queue et passer à la tâche suivante.
 
-Somewhat like a unix pipeline, but with some notable differences. A unix
-pipeline blocks when full, pausing the producer until the consumer can
-catch up. A unix pipeline will exit if any of the subcommands exit, and
-return an error if the last subcommand failed.
+À peu près comme un pipeline unix, mais avec des différences notables.
+Un pipeline unix se bloque quand il est plein, mettant en pause le producteur jusqu'à ce que le consommateur comble son retard.
+Un pipeline unix s'arrête si une des sous-commandes s'arrête, et retourne une erreur si la dernière sous-commande échoue.
 
-A message broker does not block the producer until the consumer can
-catch up. In theory, this means transient errors or network issues
-between components don't bring the entire system down. In practice, the
-more queues you have in a pipeline, the longer it takes to find out if
-there's a problem.
+Un {bus} ne bloque pas le producteur jusqu'à ce que le consommateur comble son retard.
+En théorie, cela signifie que les erreurs temporaires ou les erreurs réseau entre les composants ne plantent pas tout le système.
+En pratique, plus vous avez de queues dans un pipeline, plus il faut de temps pour déterminer s'il y a un problème.
 
-Sometimes that works out. When there's no growth, brokers act like a
-buffer between parts of a system, handling variance in load. They work
-well at slowing bursty clients down, and can provide a central point for
-auditing or access control.
+Parfois ça fonctionne.
+Quand il n'y a pas de croissance, les {bus} agissent comme des tampons entre les parties du système, gérant les variations de charges.
+Ils fonctionnent bien pour ralentir les clients qui fonctionnent en rafale, et peuvent fournir un point central pour l'audit ou le contrôle d'accès.
 
-When there is growth, queues explode regularly until some form of rate
-limiting appears. When more load arrives, queues are partitioned, and
-then repartitioned. Scaling a broker inevitably results in moving to
-something where the queue is bounded, or even ephemeral.
+Quand il y a de la coissance, les queues explosent régulièrement jusqu'à ce qu'une forme de limite de débit apparaîsse.
+Quand plus de charge arrive, les queues sont partitionnées, et ensuite repartitionnées.
+Mettre à l'échelle un {bus} mène inévitablement à limiter la taille de la queue ou à même à la rendre éphémère.
 
-The problem with optimism is that when things do go wrong, not only do
-you have no idea how to fix it, you don't even know what went wrong. To
-some extent, a message broker hides errors—programs can come and go as
-they please, and there's no way to tell if the other part is still
-reading your messages—but it can only hide errors for so long.
+Le problème avec l'optimisme est que quand les choses se passent mal, non seulement vous n'avez aucune idée de la manière de corriger, mais vous ne savez même pas ce qui s'est mas passé.
+Dans une certaine limite, un {bus} cache les erreurs&#8201;—{nbsp}les programmes peuvent venir et s'en aller comme ils le veulent, et il n'y aucun moyen de savoir si l'autre partie du système est toujours en en train de lire vos messages{nbsp}—&#8201;, mais il peut seulement cacher les erreurs pendant un certain temps.
 
-In other words, fire-and-regret.
+En d'autres termes, _fire-and-regret_ ("`tire et regrette`").
 
-Although an unbounded queue is a tempting abstraction, it rarely lives
-up to the mythos of freeing you from having to handle errors. Unlike a
-unix pipeline, a message broker will always fill up your disks before
-giving up, and changing things to make recovery easy isn't as straight
-forward as adding more temporary files.
+Bien qu'une queue sans limite de taille soit une abstraction tentate, elle réalise rarement le fantasme de vous libérer du besoin de gérer les erreurs.
+À l'inverse d'un pipeline unix, un {bus} remplira toujours votre disque avant d'abandonner, et modifier les choses pour rendre la reprise facile que d'ajouter plus de fichiers temporaires.
 
-Brokers can only recover from one error—a temporary network outage—so
-other mechanisms get brought in to compensate. Timeouts, retries, and
-sometimes even a second "`priority`" queue, because head-of-line blocking
-is genuinely terrible to deal with. Even then, if a worker crashes,
-messages can still get dropped.
+Les {bus} peuvent se remettre d'une seule erreur&#8201;—{nbsp}une panne réseau temporaire{nbsp}—&#8201;alors il faut ajouter d'autre mécanisme pour compenser.
+Durées d'expirations, rééssais, et parfois une deuxième queue "`prioritaire`", parce que le blocage en tête de file est quelque chose de réellement horrible à gérer.
+En plus, si un traitement se plante, des messages peuvent être perdus.
 
-Queues rarely help with recovery. They frequently impede it.
+Les queue aident rarement à la reprise.
+Elles la gènent fréquément.
 
-Imagine a build pipeline, or background job service where requests are
-dumped into some queue with wild abandon. When something breaks, or
-isn't running like it is supposed to, you have no idea where to start
-recovery.
+Imaginez un pipeline de build, ou un système de tâches en arrière-plan ou les requêtes sont balancées dans une queue sans se poser de questions.
+Quand quelque chose casse, ou ne fonctionne pas comme cela devrait, vous n'avez aucune idée de l'endroit où commencer la reprise.
 
-With a background queue, you can't tell what jobs are currently being
-run right now. You can't tell if something's being retried, or failed,
-but maybe you've got log files you can search through. With logs, you
-can see what the system was doing a few minutes ago, but you still have
-no idea what it might be doing right now.
+Avec une queue en arrière-plan, vous ne savez pas quelles sont les tâches qui sont en train d'être executées en ce moment.
+Vous ne pouvez pas dire si quelque chose est en train d'être rééssayé, ou a échoué, mais peut-être que vous avez des fichiers de log que vous pouvez fouiller.
+Avec des logs, vous pouvez voir ce que le système faisait quelques minutes plus tôt, mais vous n'avez toujours aucune idée de ce qu'il est en train de faire en ce moment.
 
-Even if you know the size of a queue, you'll have to check the dashboard
-a few minutes later—to see if the line wiggled—before you know for sure
-if things are probably working. Hopefully.
+Même si vous connaissez la taille d'une queue, vous allez devoir regarder le tableau de bord quelques minutes plus tard&#8201;—{nbsp}pour voir si la ligne a bougé{nbsp}—&#8201;avant d'être certain·e que les choses fonctionnent probablement. Avec un peu de chance.
 
-Making a build pipeline with queues is relatively easy, but building one
-that the user can cancel, or watch, involves a lot more work. As soon as
-you want to cancel a task, or inspect a task, you need to keep things
-somewhere other than a queue.
+Créer un pipeline de build avec des queues est relativement facilement, mais en construire un où les utilisateur·rice·s peuvent annuler des tâches ou surveiller ce qui se passe demande beaucoup plus de travail.
+Dès que vous voulez annuler ou inspecter une tâche, vous devez garder des choses ailleurs que dans une queue.
 
-Knowing what a program is up to means tracking the in-between parts, and
-even for something as simple as running a background task, it can
-involve many states—Created, Enqueued, Processing, Complete, Failed, not
-just Enqueued—and a broker only handles that last part.
+Savoir qu'une programme est en train de faire signifie suivre les éléments intermédiaires, et même pour quelque chose d'aussi simple que d'executer une tâche en arrière-plan, cela peut nécessiter de nombreux états&#8201;—{nbsp}créé, dans la queue, en cours de traitement, terminé, en échec, et pas seulement dans la queue{nbsp}—&#8201;et un {bus} gère seulement ce dernier cas.
 
-Not very well. As soon as one queue feeds into another, an item of work
-can be in several different queues at once. If an item is missing from
-the queue, you know it's either being dropped or processed, if an item
-is in the queue, you don't know if it's being processed, but you do know
-it will be. A queue doesn't just hide errors, it hides state too.
+Et ensuite les chose se gâtent.
+Dès qu'une queue en remplit une autre, une unité de travail peut être dans plusieurs queues différentes.
+Si un élément n'est pas dans la queue, vous savez qu'il a été supprimé ou traité, si un élément est dans la queue, vous ne savez pas s'il est en train d'être traité, mais souvez savez qu'il le sera.
+Une queue ne se contente pas de cacher les erreur, elle cache aussi les états.
 
-Recovery means knowing what state the program was in before things went
-wrong, and when you fire-and-forget into a queue, you give up on knowing
-what happens to it. Handling errors, recovering from errors, means
-building software that can knows what state it is currently operating
-in. It also means structuring things to make recovery possible.
+Pour pouvoir faire une reprise il faut savoir dans quel état était le programme avant que les choses ne se passent mal, et quand vous utilisez le _{fof}_ dans une queue, vous abandonnez l'idée de savoir ce qui se passe ensuite.
+Gérer des erreur, reprendre après des erreurs, signifie construire des logiciels qui peuvent savoir quel est leur état.
+Cela signifie aussi structurer les choses pour que la reprise soit possible.
 
 That, or you give up on on automated recovery of almost any kind. In
 some ways, I'm not arguing against fire-and-forget, or against
