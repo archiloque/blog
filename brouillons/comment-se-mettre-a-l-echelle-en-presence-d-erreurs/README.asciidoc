@@ -148,7 +148,7 @@ Dès que vous voulez annuler ou inspecter une tâche, vous devez garder des chos
 Savoir qu'un programme est en train de faire signifie suivre les éléments intermédiaires, et même pour quelque chose d'aussi simple que d'exécuter une tâche en arrière-plan, cela peut nécessiter de nombreux états&#8201;—{nbsp}créé, dans la queue, en cours de traitement, terminé, en échec, et pas seulement dans la queue{nbsp}—&#8201;et un {bus} gère seulement ce dernier cas.
 
 Et ensuite les chose se gâtent.
-Dès qu'une queue en remplit une autre, une unité de travail peut être dans plusieurs queues différentes.
+Dès qu'une queue en remplit une autre, une unité de travail peut se trouver dans plusieurs queues différentes.
 Si un élément n'est pas dans la queue, vous savez qu'il a été supprimé ou traité, si un élément est dans la queue, vous ne savez pas s'il est en train d'être traité, mais vous savez qu'il le sera.
 Une queue ne se contente pas de cacher les erreur, elle cache aussi les états.
 
