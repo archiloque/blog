@@ -153,7 +153,7 @@ Si un élément n'est pas dans la queue, vous savez qu'il a été supprimé ou t
 Une queue ne se contente pas de cacher les erreur, elle cache aussi les états.
 
 Pour pouvoir faire une reprise il faut savoir dans quel état était le programme avant que les choses ne se passent mal, et quand vous utilisez le _{faf}_ dans une queue, vous abandonnez l'idée de savoir ce qui se passe ensuite.
-Gérer des erreur, reprendre après des erreurs, signifie construire des logiciels qui peuvent savoir quel est leur état.
+Gérer des erreur, faire une reprise après des erreurs, signifie construire des logiciels qui peuvent savoir quel est leur état.
 Cela signifie aussi structurer les choses pour que la reprise soit possible.
 
 C'est ça ou abandonner presque toutes les possibilités de reprise automatique.
