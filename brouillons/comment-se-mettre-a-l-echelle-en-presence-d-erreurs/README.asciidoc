@@ -5,6 +5,7 @@ v0.1, 2020-06-01
 :article_image: avatar.jpg
 :faf: fire-and-forget
 :bus: bus de messages
+:jr: journal répliqué
 
 Ceci est une traduction d'link:https://programmingisterrible.com/post/188942142748/scaling-in-the-presence-of-errorsdont-ignore[un article] de link:http://twitter.com/tef_ebooks[tef].
 
@@ -155,180 +156,121 @@ Pour pouvoir faire une reprise il faut savoir dans quel état était le programm
 Gérer des erreur, reprendre après des erreurs, signifie construire des logiciels qui peuvent savoir quel est leur état.
 Cela signifie aussi structurer les choses pour que la reprise soit possible.
 
-That, or you give up on on automated recovery of almost any kind. In
-some ways, I'm not arguing against fire-and-forget, or against
-optimism—but against optimism that prevents recovery. Not against
-queues, but how queues inevitably get used.
+C'est ça ou abandonner presque toutes les possibilités de reprise automatique.
+D'une certaine manière, je n'argumente pas contre le _{faf}_, ou contre l'optimisme, mais contre l'optimisme qui empêche la reprise.
+Pas contre les queues mais contre la manière dont les queues sont inévitablement utilisées.
 
-Unfortunately, recovery is relatively easy to imagine but not
-necessarily straight forward to implement.
+Malheuresement, la reprise est facile à imaginer mais pas nécessairement aussi facile à mettre en œuvre.
 
-This is why some people opt to use a replicated log, instead of a
-message broker.
+C'est pour cela que des préfère utiliser un {jr} plutôt qu'un {bus}.
 
 ''''
 
-If you've never used a replicated log, imagine an append only database
-table without a primary key, or a text file with backups, and you're
-close. Or imagine a message broker, but instead of enqueue and dequeue,
-you can append to the log or read from the log.
+Si vous n'avez jamais utilisé un {jr}, imaginez une table sans clé primaire d'une base de donnée qui permette seulement d'ajouter des données, ou un fichier texte avec des sauvegardes, et vous ne serez pas loin.
+Ou imaginer un {bus}, mais au lieu d'ajouter et de supprimer des éléments dans une queue vous pouvez ajouter du contenu au journal ou lire depuis le journal.
 
-Like a queue, a replicated log can be used in a fire-and-forget fashion
-with not so great consequences. Just like before, chaos will ensue as
-concepts like rate-limiting, head-of-line blocking, and the
-end-to-end-principle are slowly contended with—If you use a replicated
-log like a queue, it will fail like a queue.
+De la même manière qu'une queue, un {jr} peut être utilisé pour du {faf} même si cela n'a pas grand intérêt.
+Comme avant, le chaos s'ensuivra le temps que les concepts comme la limitation de débit, le blocage en tête de file et le principe de bout en bout sont lentements implémentés.
+Si vous utilisee un {jr} comme une queue, il échouera comme une queue.
 
-Unlike a queue, a replicated log can aid recovery.
+À l'inverse d'une queue, un {jr} peut aider à la reprise.
 
-Every consumer sees the same log entries, in the same order, so it's
-possible to recover by replaying the log, or by catching up on old
-entries. In some ways it's more like using temporary files instead of a
-pipeline to join things together, and the strategies for recovery
-overlap with temporary files, too—like partitioning the log so that
-restarts aren't as expensive.
+Chaque consommateur voit les même enregistrements du journal, dans le même ordre, il est donc possible de faire une reprise en rejouant le journal, ou de combler son retard sur les vieux enregistrements.
+D'une certaine manière, cela ressemble à connecter les éléments avec des fichiers temporaires plitôt qu'un pipeline, et les stratégies de reprises ressemblent aussi à celles qu'un utilise pour les fichiers temproaires, comme le fait de partionner le journal pour que les redémarrages ne sont pas aussi coûteux.
 
-Like temporary files, a replicated log can aid in recovery, but only to
-a certain point. A consumer will see the same messages, in the same
-order, but if a entry gets dropped before reaching the log, or if
-entries arrive in the wrong order, some, or potentially all hell can
-break loose.
+Comme des fichiers temporaires, un {jr} peut aider à la reprise, mais seulement jusqu'à un certain point.
+Chaque consommateur verra les mêmes enregistrements, dans le même ordre, mais s'il arrive quelque chose à un enregistrement avant qu'il atteindre le journal, ou si les enregistrements arrivent dans le mauvais ordre, cela peut avoir des conséquences néfastes ou même catastrophiques.
 
-You can't just fire-and-forget into a log, not over a network. Although
-a replicated log is ordered, it will preserve the ordering it gets,
-whatever that happens to be.
+Vous ne pouvez pas simplement utiliser le _{fof}_ dans un {jr}, ou à travers le réseau.
+Même si un {jr} est ordonné, il préservera l'ordre des enregistrements qu'on lui donne, quel qu'il soit.
 
-This isn't always a problem. Some logs are used to capture analytic
-data, or fed into aggregators, so the impact of a few missing or out of
-order entries is relatively low—a few missing entries might as well be
-called high-volume random sampling and declared a non-issue.
+Ce n'est pas toujours un problème.
+Certains {jr} sont utilisés pour enregistrer des données analytiques ou pour alimenter des aggrégateurs, dans ces cas les conséquences de quelques entrées qui manquent ou qui sont dans le désordre est relativement faible, on peut tout aussi bien dire que quelques entrées manquantes correspondent à un échantillonnage aléatoire et considérer que ça n'est pas un problème.
 
-For other logs, missing entries could cause untold misery. Recovering
-from missing entries might involve rebuilding the entire log from
-scratch. If you're using a replicated log for replication, you probably
-care quite a lot about the order of log entries.
+Pour d'autres {jr}, des entrées manquantes peuvent causer une misère indicible.
+Faire une reprise quand il manque des entrées signifie reconstruire l'intégralité du {jr} à partir de zéro.
+Si vous utilisez un {jr} pour la réplication, vous accordez probablement une grande importance à l'ordre des entrées du journal.
 
-Like before, you can't ignore errors—you only make things expensive to
-recover from.
+Comme auparavant, vous ne pouvez pas ignorer les erreurs, vous pouvez seulement rendre la reprise compliquée.
 
-Handling errors like out of order or missing log entries means being
-able to work out when they have occurred.
+Prendre en compte les erreur comme des entrées de journal dans le mauvais ordre ou manquantes signifie être capable de s'en sortir quand elles se produisent.
 
-This is more difficult than you might imagine.
+C'est plus difficile que ce que vous pouvez imaginer.
 
 ''''
 
-Take two services, a primary and a secondary, both with databases, and
-imagine using a replicated log to copy changes from one to another.
+Prenez deux servives, un primaire et un secondaire, tous les deux avec des bases de données, et imaginez utiliser un {jr} pour copier les modifications de l'un à l'autre.
 
-It doesn't seem to difficult at first. Every time the primary service
-makes a change to the database, it writes to to log. The secondary reads
-from the log, and updates its database. If the primary service is a
-single process, it's pretty easy to ensure that every message is sent in
-the right order. When there's more than one writer, things can get
-rather involved.
+Au premier abord cela ne semble pas si difficile.
+Chaque vois que le service primaire modifie la base, il écrit dans le journal.
+Le service secondaire lit depuis le journal, et met à jour sa base.
+Si le service primaire est un process unique, il est plutôt facile de s'assurer que chaque message est envoyé dans le bon ordre.
+Quand il y plus d'un process qui écrit, les choses peuvent devenir compliquées.
 
-Now, you could switch things around—write to the log first, then apply
-the changes to the database, or use the database's log directly—and
-avoid the problem altogether, but these aren't always an option.
-Sometimes you're forced to handle the problem of ordering the entries
-yourself.
+Sinon, vous pouvez inverser les choses en écrivant d'abord dans le journal puis en appliquant les modification dans la base de données, ou utiliser directement le journal de la base et éviter complètement le problème, mais ces choix ne sont pas toujours possibles.
+Parfois vous êtes forcé·e de vous occupez vous même du gérer l'ordre des entrées.
 
-In other words, you'll need to order the messages before writing them to
-the log.
+En d'autres termes, vous allez devoir trier les messages avant de les écrire dans le journal.
 
-You could let something else provide the order, but you'd be mistaken if
-you think a timestamp would help. Clocks move forwards and backwards and
-this can cause all sorts of headaches.
+Vous pouvez laissez quelque chose d'autre déterminer l'ordre, mais vous vous trompez si vous pensez qu'un horodatage peut vous aider.
+Les horloges se déplacent dans un sens et dans l'autre et cela peut causer des tas de problèmes.
 
-One of the most frustrating problems with timestamps is ‘doomstones':
-when a service deletes a key but has a wonky clock far out in the
-future, and issues an event with a similar timestamp. All operations get
-silently dropped until the deletion event is cleared. The other problem
-with timestamps is that if you have two entries, one after the other,
-you can't tell if there are any entries that came between them.
+L'un des problèmes les plus frustrants avec l'horodatage est celui des "`pierre tombales`"{nbsp}: quand un service supprime une clé, mais a une horloge détraquée qui indique une heure très éloignée dans le futur, et qui créé un évènement avec un horodatage similaire.
+Toutes les opérations sont silencieusement supprimées jusqu'à ce que l'évènement de suppression est traité.
+L'autre problème avec l'horodatage est que si vous avez deux entrées, une après l'autre, vous ne pouvez pas savoir s'il existe des entrées entre les deux.
 
-Things like "`Hybrid Logical Clocks`", or even atomic clocks can help to
-narrow down clock drift, but only so much. You can only narrow down the
-window of uncertainty, there's still _some_ clock skew. Again, clocks
-will go forwards and backwards—timestamps are terrible for ordering
-things precisely.
+Des choses comme les "`horloges logiques hybrides`" ou même des horloges atomiques peuvent réduire la dérive des horloges, mais seulement dans une certaine mesure.
+Vous pouvez seulement réduire la fenêtre d'incertitude, il reste toujours _un peu_ de décalage entre les horloges.
+Encore une fois, les horloges peuvent se déplacer dans un sens et dans l'autre, l'horodatage est une très mauvaise idée pour avoir un ordre précis.
 
-In practice you need explicit version numbers, 1,2,3… etc, or a unique
-identifier for each version of each entry, and a link back to the record
-being updated, to order messages.
+En pratique vous avez besoin de numéros de versions explicites, 1,2,3… , ou un identifiant unique pour chaque version de chaque entrée, et un lien vers l'enregistrement qui est mis à jour, pour que les messages aient un ordre.
 
-With a version number, messages can be reordered, missing messages can
-be detected, and both can be recovered from, although managing and
-assigning those version numbers can be quite difficult in practice.
-Timestamps are still useful, if only for putting things in a human
-perspective, but without a version number, it's impossible to know what
-precise order things happened in—and that no steps are missing, either.
+Avec un numéro de version, les messages peuvent être remis dans le bon ordre, les messages manquants peuvent être détectés, et dans les deux cas il est possible de faire une reprise, bien qu'en pratique il doit difficile de gérer et d'attribuer ces numéros de version.
+L'horodatage est toujours utile, ne serait-ce que pour donner aux choses une perspective humaine, mais sans numéro de version il est impossible de savoir dans quel ordre précis les choses se sont passée, et pas non plus qu'aucune étape n'est manquante.
 
-You don't get to ignore errors, but sometimes the error handling code
-isn't that obvious.
+Vous ne pouvez pas ignorer les erreurs, mais parfois le code de gestion d'erreur n'est pas si simple.
 
-Using version numbers or even timestamps both fall under building a plan
-for recovery. Building something that can continue to operate in the
-presence of failure. Unfortunately, building something that works when
-other parts fail is one of the more challenging parts of software
-engineering.
+Utiliser des numéros de version ou même de l'horodatage signifie tous les deux construire un plan pour faire une reprise.
+Construire quelque chose qui peut continuer à opérer en cas d'erreur.
+Malheureusement, construire quelque chose qui fonctionne même quand d'autres parties se plantent est l'une des choses les plus difficile de l'ingénierie logicielle.
 
-It doesn't help that doing the same thing in the same order is so
-difficult that people use terms like causality and determinism to make
-the point sink in.
+Le fait que faire les mêmes choses dans le même ordre soit si difficiles que des personnes utilisent des mots comme causalité ou déterminisme pour faire passer le message n'aide pas les choses.
 
-You don't get to ignore errors, but no one said it was going to be easy.
+Vous ne pouvez pas ignorer les erreurs, mais personne n'a dit que ce serait simple.
 
 ''''
 
-Although using things like replicated logs, message brokers, or even
-using unix pipes can allow you to build prototypes, clear demonstrations
-of how your software works—they do not free you from the burden of
-handling errors.
+Bien qu'utiliser des choses comme des journaux répliqués, des {bus}, ou même des _pipe_ unix peuvent vous aider à construire des prototypes, montrant clairement comment votre logiciel fonctionne, elles ne vous libèrent pas du fardeau de la gestion d'erreur.
 
-You can't avoid error handling code, not at scale.
+Vous ne pouvez pas ignorer le code de gestion d'erreur, pas à grande échelle.
 
-The secret to error handling at scale isn't giving up, ignoring the
-problem, or even it trying again—it is structuring a program for
-recovery, making errors stand out, allowing other parts of the program
-to make decisions.
+Le secret de la gestion d'erreur à l'échelle n'est pas d'abandonner, d'ignorer le problème, ou même d'essayer encore, c'est de structurer un programme pour la reprise, faire en sorte que les erreurs soient visibles, et permettre aux autres parties du programmes de prendre des décisions.
 
-Techniques like fail-fast, crash-only-software, process supervision, but
-also things like clever use of version numbers, and occasionally the odd
-bit of statelessness or idempotence. What these all have in common is
-that they're all methods of recovery.
+Les techniques comme la défaillance rapide, les programmes qui se redémarrent en cas d'erreur, la supervision de processus, mais aussi des choses comme l'usage ingénieux des numéros de versions, et parfois un peu de traitements sans états ou d'idempotence.
+Ce que ces choses ont toutes en commun est qu'elles sont des méthodes de reprises.
 
-Recovery is the secret to handling errors. Especially at scale.
+La reprise est le secret de la gestion d'erreur. Surtout à grande échelle.
 
-Giving up early so other things have a chance, continuing on so other
-things can catch up, restarting from a clean state to try again, saving
-progress so that things do not have to be repeated.
+Abandonner tôt pour laisser leur chance à d'autres choses, continuer pour que d'autres puissent vous rattraper, redémarrer d'un état correct, sauvegarder votre progression pour que les choses n'aient pas besoin d'être répétées.
 
-That, or put it off for a while. Buy a lot of disks, hire a few SREs,
-and add another graph to the dashboard.
+Ça, ou laisser les choses traîner un moment. Acheter un tas de disques, embaucher quelques SREs, et ajouter un autre graphique au tableau de bord.
 
-The problem with scale is that you can't approach it with optimism. As
-the system grows, it needs redundancy, or to be able to function in the
-presence of partial errors or intermittent faults. Humans can only fill
-in so many gaps.
+Le problème avec les choses à grande échelles et que vous ne pouvez pas les avoir une approche optimiste.
+Quand le système grandit, il a besoin de redondance, ou d'être capable de fonctionner en cas d'erreur partielles ou de pannes intermitentes.
+Les humains ne peuvent combler qu'un certain nombre de lacunes.
 
-Staff turnover is the worst form of technical debt.
+Le renouvellement des personnes est la pire forme de dette technique.
 
-Writing robust software means building systems that can exist in a state
-of partial failure (like incomplete output), and writing resilient
-software means building systems that are always in a state of recovery
-(like restarting)—neither come from engineering the happy path of your
-software.
+Écrire des logiciels robuste signifie construire des systèmes qui peuvent exister dans un état de panne partielle (comme un résultat incomplet), et écrire des logiciels résilients signifie construire des systèmes qui sont toujours en capacité de faire des reprises (comme redémarrer), et aucun des deux ne s'appuie sur la manière dont vous concevez le scenario nomimal de votre logiciel.
 
-When you ignore errors, you transform them into mysteries to solve.
-Something or someone else will have to handle them, and then have to
-recover from them—usually by hand, and almost always at great expense.
+Quand vous ignorez les erreurs, vous les transformez en mystères à résoudre.
+Quelque chose ou quelqu'un d'autre devra s'en occuper, et ensuite faire une reprise, généralement à la main, et presque toujours à grand coût.
 
-The problem with avoiding error handling in code is that you're only
-avoiding automating it.
+Le problème avec le fait d'éviter la gestion d'erreur dans le code est que vous évitez seulement de l'automatiser.
 
-In other words, the trick to scaling in the presence of errors is
-building software around the notion of recovery. Automated recovery.
+En d'autres termes, l'astuce pour se mettre à l'échelle en présence d'erreurs et de construire vos logiciels autour de la notion de reprise.
+De reprise automatique.
 
-That, or burnout. Lots of burnout. You don't get to ignore errors.
+Ça ou le burnout.
+Beaucoup de burnouts.
+Vous ne pouvez pas ignorer les erreurs.

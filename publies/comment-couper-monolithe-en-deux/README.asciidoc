@@ -194,30 +194,30 @@ De la même manière, c'est agréable si votre page web peut se remettre d'une e
 
 Le principe de bout-en-bout c'est la réalisation que, quel que soit le nombre d'exceptions que vous prenez en compte à l'intérieur de votre programme, certaines s'échapperont et quelque chose dans la couche extérieure devra s'en occuper.
 
-Parfois s'en occuper signifie écrire des choses dans un log d'audit et les {bus} sont plutôt bon à ça.
+Parfois s'en occuper signifie écrire des choses dans un journal d'audit et les {bus} sont plutôt bon à ça.
 
-== {passant} mais qu'en est-il des logs répliqués{nbsp}?
+== {passant} mais qu'en est-il des journaux répliqués{nbsp}?
 
 [quote, "`Il me semble l'avoir fait, Bob`", jrecursive]
 ____
 -- Comment est ce que je fais pour souscrire à un sujet du {bus}{nbsp}?
 
--- Ce n'est pas un {bus}, c'est un log répliqué
+-- Ce n'est pas un {bus}, c'est un journal répliqué
 
--- OK, comment est ce que je fais pour souscrire au log répliqué{nbsp}?
+-- OK, comment est ce que je fais pour souscrire au journal répliqué{nbsp}?
 ____
 
-Bien qu'un log répliqué soit souvent confondu avec un {bus}, il ne vous immunise pas contre la gestion d'erreurs.
+Bien qu'un journal répliqué soit souvent confondu avec un {bus}, il ne vous immunise pas contre la gestion d'erreurs.
 Bien que ça soit une bonne chose que les composants soient isolés les uns des autres, ils doivent tout de même être intégrés dans le système en lui-même.
 Les deux fournissent un flux à sens unique pour faire du partage et les deux proposent une interface qui ressemble à de la {bp}, mais leur objectifs sont radicalement différents.
 
-Un log répliqué a souvent pour but l'audit ou la reprise{nbsp}: avoir un point de vérité central pour pouvoir prendre des décisions.
-Parfois un log répliqué a pour but l'aggrégation (_fan-in_) ou la diffusion (_fan-out_) de données, mais il s'agit toujours de construire un système ou les données circulent dans une direction.
+Un journal répliqué a souvent pour but l'audit ou la reprise{nbsp}: avoir un point de vérité central pour pouvoir prendre des décisions.
+Parfois un journal répliqué a pour but l'aggrégation (_fan-in_) ou la diffusion (_fan-out_) de données, mais il s'agit toujours de construire un système ou les données circulent dans une direction.
 
-La manière la plus simple de voir la différence entre un log répliqué et un {bus} c'est de demander à un·e ingénieur·e de dessiner un diagramme de la manière dont les éléments se connectent.
+La manière la plus simple de voir la différence entre un journal répliqué et un {bus} c'est de demander à un·e ingénieur·e de dessiner un diagramme de la manière dont les éléments se connectent.
 
-Si le diagramme ressemble à un système à sens unique, il s'agit d'un log répliqué. Si presque tous les composants lui parlent, il s'agit d'un {bus}.
-Si vous pouvez le dessiner sous forme d'un flow chart, c'est un log répliqué.
+Si le diagramme ressemble à un système à sens unique, il s'agit d'un journal répliqué. Si presque tous les composants lui parlent, il s'agit d'un {bus}.
+Si vous pouvez le dessiner sous forme d'un flow chart, c'est un journal répliqué.
 Si vous enlevez toutes les flèches et ce qui vous reste c'est un diagramme de Venn des "`chose qui se parlent`", c'est un {bus}.
 
 Soyez prévenu·e·s{nbsp}: un système distribué est quelque chose qu'on peut dessiner assez facilement sur un tableau blanc, mais il faut des heures pour expliquer comment tous les éléments interagissent.
