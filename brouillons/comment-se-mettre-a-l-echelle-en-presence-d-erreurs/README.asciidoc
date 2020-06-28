@@ -62,13 +62,13 @@ Un pipeline Unix pourrait gérer tous les cas d'erreurs possibles, mais le plus 
 
 Bien qu'abandonner soit une bonne manière de gérer les erreur, redémarrer de zéro n'est pas toujours la meilleure manière de faire de la reprise.
 
-Certains pipelines fonctionnent sur des gros volumes de données, ou font des tas de traitements numériques compliqués, et personne n'est jamais content de devoir repérer des jours ou des semaines de travail.
+Certains pipelines fonctionnent sur des gros volumes de données, ou font des tas de traitements numériques compliqués, et personne n'est jamais content de devoir recommencer des jours ou des semaines de travail.
 En théorie, vous pourriez ajouter de la gestion d'erreur, réduire le risque que le programme se plante, et éviter un redémarrage coûteux, mais en pratique il est souvent plus facile de réorganiser votre code pour qu'il continue là où il s'est arrêté.
 
 En d'autres termes{nbsp}: abandonnez, mais sauvegardez votre progression pour que le redémarrage prenne moins de temps.
 
 Pour un pipeline, cela signifie généralement un horrible tas de fichiers temporaires pour sauvegarder le résultat de l'exécution de chaque sous-commande, et le résultat du découpage des données d'entrée en lots plus petits.
-Vous pouvez même mettre en place des réessais automatiques, mais pour de nombreux pipelines, une reprise manuelle est toujours relativement peu coûteuse.
+Vous pouvez même mettre en place des réessais automatiques, mais pour de nombreux pipelines, une reprise manuelle reste relativement peu coûteux.
 
 Pour d'autres tâches à durée de vie longue, cela signifie habituelle quelque chose comme des points de contrôles ou des sagas.
 En d'autres termes, transformer un traitement long en un traitement court qui s'exécute constamment, en écrivant les progrès effectués dans un fichier ou une base de données quelque part.
@@ -87,27 +87,27 @@ En supposant bien entendu que le plan fonctionne.
 
 Vous ne pouvez pas ignorer les erreurs.
 Elles sont inévitablement le problème _de quelqu'un_.
-Si une personne vous dit qu'elle peut ignorer les erreurs, elle vous dit que quelqu'un d'autre est d'astreinte pour leur logiciel.
+Si une personne vous dit qu'elle peut ignorer les erreurs, en fait elle vous dit que c'est quelqu'un d'autre qui est d'astreinte pour leur logiciel.
 
 Ça, ou alors qu'elle utilise un {bus}.
 
 ''''
 
 Un {bus}, si vous n'en êtes pas sûr·e, est un service réseau qui propose un ensemble de queues avec lesquelles d'autres ordinateurs sur le réseau peuvent interagir.
-Généralement des clients ajoutent des message, et d'autres l'interrogent pour récupérer le prochain message non lu, mais on peut les utiliser d'un tas d'autres manières.
+Généralement des clients ajoutent des messages, et d'autres l'interrogent pour récupérer le prochain message non lu, mais on peut les utiliser d'un tas d'autres manières.
 
 Comme un _pipe_ Unix, les {bus} sont utilisé pour démarrer des projets.
 De la même manière que les fichiers temporaires, les bus permettent à différentes parties du pipeline de consommer et de produire des contenus à des vitesses différentes, mais ne permettent pas facilement de faire des rejeux ou de redémarrer en cas d'erreur.
 
 Comme un _pipe_ Unix, les {bus} sont utilisés d'une manière très optimiste{nbsp}:
-envoyer des messages dans la queue et passer à la tâche suivante.
+envoyer des messages dans la queue et passer à la suite.
 
 À peu près comme un pipeline Unix, mais avec des différences notables.
 Un pipeline Unix se bloque quand il est plein, mettant en pause le producteur jusqu'à ce que le consommateur comble son retard.
 Un pipeline Unix s'arrête si une des sous-commandes s'arrête, et retourne une erreur si la dernière sous-commande échoue.
 
 Un {bus} ne bloque pas le producteur jusqu'à ce que le consommateur comble son retard.
-En théorie, cela signifie que les erreurs temporaires ou les erreurs réseau entre les composants ne plantent pas tout le système.
+En théorie, cela signifie que les erreurs temporaires ou les défaillances réseau entre les composants ne plantent pas tout le système.
 En pratique, plus vous avez de queues dans un pipeline, plus il faut de temps pour déterminer s'il y a un problème.
 
 Parfois ça fonctionne.
@@ -124,9 +124,9 @@ Dans une certaine limite, un {bus} cache les erreurs&#8201;—{nbsp}les programm
 En d'autres termes, _{faf}_ ("`tire et regrette`").
 
 Bien qu'une queue sans limite de taille soit une abstraction tentante, elle réalise rarement le fantasme de vous libérer du besoin de gérer les erreurs.
-À l'inverse d'un pipeline Unix, un {bus} remplira toujours votre disque avant d'abandonner, et modifier les choses pour rendre la reprise facile que d'ajouter plus de fichiers temporaires.
+À l'inverse d'un pipeline Unix, un {bus} remplira toujours votre disque avant d'abandonner, et modifier les choses pour rendre la reprise est moins facile que d'ajouter plus de fichiers temporaires.
 
-Les {bus} peuvent se remettre d'une seule erreur&#8201;—{nbsp}une panne réseau temporaire{nbsp}—&#8201;alors il faut ajouter d'autre mécanisme pour compenser.
+Les {bus} peuvent se remettre d'une seule erreur&#8201;—{nbsp}une défaillance réseau temporaire{nbsp}—&#8201;alors il faut ajouter d'autre mécanisme pour compenser.
 Durées d'expirations, rééssais, et parfois une deuxième queue "`prioritaire`", parce que le blocage en tête de file est quelque chose de réellement horrible à gérer.
 En plus, si un traitement se plante, des messages peuvent être perdus.
 
@@ -145,7 +145,7 @@ Même si vous connaissez la taille d'une queue, vous allez devoir regarder le ta
 Créer un pipeline de build avec des queues est relativement facilement, mais en construire un où les utilisateur·rice·s peuvent annuler des tâches ou surveiller ce qui se passe demande beaucoup plus de travail.
 Dès que vous voulez annuler ou inspecter une tâche, vous devez garder des choses ailleurs que dans une queue.
 
-Savoir qu'une programme est en train de faire signifie suivre les éléments intermédiaires, et même pour quelque chose d'aussi simple que d'exécuter une tâche en arrière-plan, cela peut nécessiter de nombreux états&#8201;—{nbsp}créé, dans la queue, en cours de traitement, terminé, en échec, et pas seulement dans la queue{nbsp}—&#8201;et un {bus} gère seulement ce dernier cas.
+Savoir qu'un programme est en train de faire signifie suivre les éléments intermédiaires, et même pour quelque chose d'aussi simple que d'exécuter une tâche en arrière-plan, cela peut nécessiter de nombreux états&#8201;—{nbsp}créé, dans la queue, en cours de traitement, terminé, en échec, et pas seulement dans la queue{nbsp}—&#8201;et un {bus} gère seulement ce dernier cas.
 
 Et ensuite les chose se gâtent.
 Dès qu'une queue en remplit une autre, une unité de travail peut être dans plusieurs queues différentes.
