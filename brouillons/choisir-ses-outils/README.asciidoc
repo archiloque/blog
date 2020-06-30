@@ -46,8 +46,9 @@ Dans ce cas on rend le système un peu plus complexe en échange de plus de libe
 
 À l'inverse, une solution qui peut être tentante mais qui n'en vaut souvent pas la peine et d'ajouter une couche d'indirection entre le code métier et le code du framework.
 Dans mon expérience, la couche d'indirection ainsi obtenue ajoute du travail sans généralement apporter le découplage qu'on espère{nbsp}: les changements de frameworks s'accompagnent le plus souvent d'un changement d'API, et il est rare qu'une couche d'indirection développée ainsi soit en mesure de compenser proprement ces modifications d'API.
+Les personnes ayant développé en Java dans les années 2000 devraient très bien voir de quoi je parle.
 
-== Sans framework
+== Sans framework, ou le framework masqué
 
 On trouve des mouvements comme celui du link:https://www.frameworklessmovement.org[frameworkless movement] qui propose de ne pas du tout utiliser de frameworks externes, ou au moins de limiter drastiquement leur usage.
 
@@ -56,10 +57,12 @@ L'idée est qu'une solution maison (même s'il s'agit toujours d'un framework m�
 Si la question qu'ils posent est légitime, le fait de vouloir développer plus de choses en interne signifie porter seul le coût de développement et de maintenance.
 Il s'agit de choisir de payer dès maintenant un certain prix dont on espère qu'il sera moins élevé que cela qu'on aurait payé plus tard.
 
-L'autre grand risque est celui d'aboutir à un "`framework maison`" qui soit un frein à la productivité, et qui&#8201;—{nbsp}n'étant pas standard{nbsp}—&#8201;dissuade les personnes de travailler sur le projet.
+L'autre grand risque est celui d'aboutir à un "`framework maison`" qui soit un frein à la productivité (car moins complet fonctionnellement, moins ergonomique et qui contient plus de bugs), et qui&#8201;—{nbsp}n'étant pas standard{nbsp}—&#8201;augmente les coûts de formation et dissuade les personnes de travailler sur le projet.
 
 Une autre réponse possible à cette question c'est de choisir des outils qui intègrent plus de choses dans leur bibliothèque standard car ces briques devraient être maintenus sur un temps plus long.
 Ainsi Python se veut un langage « piles incluses », c'est-à-dire que sa bibliothèque standard devrait être suffisante pour répondre à un certain nombre de besoins.
+
+(Ça ne veut pas dire que JEE soit un bon choix, seulement que ça part d'une bonne idée.)
 
 == Les projets personnels
 
