@@ -4,13 +4,11 @@ v0.1, 2020-06-17
 :article_lang: fr
 :article_image: tools.png
 
-Je formalise ici un certain nombres d'idées sur les choix d'outils.
-
 == Le maintien en condition opérationnelle
 
 Dans les grandes organisations pour lesquelles j'ai travaillé j'ai souvent croisé le terme de "`Maintien en condition opérationnelle`" ou MCO.
 
-Pour un outil, le MCO c'est le fait de maintenir un fonctionnement satisfaisant, hors des évolutions qu'on lui fait subir.
+Pour un outil, le MCO c'est le fait de maintenir un fonctionnement satisfaisant, hors des évolutions qu'on lui fait subir, et par extension l'effort que cela demande.
 
 Pour un logiciel, cela correspond au fait de corriger des bugs et de faire les mises à jour d'outils permettant de bénéficier de mises à jour de sécurité.
 
@@ -29,7 +27,7 @@ On peut se moquer de ce genre d'outils pour ne pas être toujours au goût du jo
 Si des dépendances peuvent évoluer, et donc demander des adaptations régulières, d'autres peuvent s'arrêter, par exemple parce qu'un projet open source n'a plus personne pour le maintenir.
 
 Si le code en question n'est pas exposé à l'extérieur et que ses propres dépendances sont stables cela peut avoir peu ou pas de conséquences.
-Cela peut même être une bonne nouvelle car si des mises à jours ne sont plus publiées cela signifie qu'il n'est plus nécessaire de les intégrer.
+Cela peut même être une bonne nouvelle car si des mises à jours ne sont plus publiées cela signifie qu'il n'est plus nécessaire de faire le travail de les intégrer.
 
 Dans le cas contraire cela signifie généralement des arbitrages compliqués{nbsp}: faut-il accepter le risque de faille de sécurité non corrigées, monter en compétence sur l'outil pour internaliser sa maintenance, se décider à migrer sur un autre outil…{nbsp}?
 
@@ -41,22 +39,40 @@ link:https://hal.archives-ouvertes.fr/hal-02117588/document[Cet article] propose
 
 Sauf que bien entendu il peut-être assez difficile de prévoir la durée de vie d'un projet, sachant qu'elle peut dépendre elle-même du niveau de sa MCO, car plus un projet coûte cher ou plus il pose de risque plus l'incitation à le décomissionner est forte.
 
-Si être pessimiste permet de limiter les risques, cela limite aussi ce qu'il est possible de faire si les solutions qui ont le plus de fonctionalités ne sont pas encore stabilisées, comme certains frameworks JavaScript actuels.
+Si être pessimiste permet de limiter les risques, cela limite aussi ce qu'il est possible de faire si les solutions qui ont le plus de fonctionnalités ne sont pas encore stabilisées, comme certains frameworks JavaScript actuels.
 
-Pour les projets plutôt gros, il peut être intéressant de faire des choix différents en fonction des parties, par exemple d'avoir des solutions pérènnes pour la partie serveur qui devrait vivre plus longtemps, et des choix plus libres sur la partie front.
+Pour les projets d'une certaine taille, il peut être intéressant de faire des choix différents en fonction des parties, par exemple d'avoir des solutions pérennes pour la partie serveur qui devrait vivre plus longtemps, et des choix plus libres sur la partie front.
 Dans ce cas on rend le système un peu plus complexe en échange de plus de liberté technologique.
 
 À l'inverse, une solution qui peut être tentante mais qui n'en vaut souvent pas la peine et d'ajouter une couche d'indirection entre le code métier et le code du framework.
-Dans mon expérience, la couche d'indirection ainsi obtenue ajoute du travail sans généralement apporter le découplage qu'on espére{nbsp}: les changements de frameworks s'accompagnent le plus souvent d'un changement d'API, et il est rare qu'une couche d'indirection développée ainsi soit en mesure de compenser proprement ces modifications d'API.
+Dans mon expérience, la couche d'indirection ainsi obtenue ajoute du travail sans généralement apporter le découplage qu'on espère{nbsp}: les changements de frameworks s'accompagnent le plus souvent d'un changement d'API, et il est rare qu'une couche d'indirection développée ainsi soit en mesure de compenser proprement ces modifications d'API.
 
-== Frameworks internes et externes
+== Sans framework
 
 On trouve des mouvements comme celui du link:https://www.frameworklessmovement.org[frameworkless movement] qui propose de ne pas du tout utiliser de frameworks externes, ou au moins de limiter drastiquement leur usage.
-Si la question du risque qu'ils posent est légitime, le fait de vouloir trop redévelopper de choses en interne pose d'autre risques, signifie assumer seul la charge de maintenance, 
+
+L'idée est qu'une solution maison (même s'il s'agit toujours d'un framework même s'il ne dit pas son nom) qui répond uniquement aux besoins avérés sera d'une taille bien plus faible qu'une solution sur l'étagère.
+
+Si la question qu'ils posent est légitime, le fait de vouloir développer plus de choses en interne signifie porter seul le coût de développement et de maintenance.
+Il s'agit de choisir de payer dès maintenant un certain prix dont on espère qu'il sera moins élevé que cela qu'on aurait payé plus tard.
+
+L'autre grand risque est celui d'aboutir à un "`framework maison`" qui soit un frein à la productivité, et qui&#8201;—{nbsp}n'étant pas standard{nbsp}—&#8201;dissuade les personnes de travailler sur le projet.
+
+Une autre réponse possible à cette question c'est de choisir des outils qui intègrent plus de choses dans leur bibliothèque standard car ces briques devraient être maintenus sur un temps plus long.
+Ainsi Python se veut un langage « piles incluses », c'est-à-dire que sa bibliothèque standard devrait être suffisante pour répondre à un certain nombre de besoins.
 
 == Les projets personnels
 
 Sur les projets personnels le MCO peut vraiment être usant.
+
 Par exemple sur un projet sur lequel vous vous remettez de temps en temps pour explorer une idée, si à chaque fois que vous ouvrez votre code vous devez passer du temps à mettre à jour les dépendances et à comprendre pourquoi quelque chose s'est cassé, vous risquez de vous démotiver et de vous arrêter.
 
-== Quand la MCO ne compte pas
+== Ne pas en faire une obsession
+
+Si la MCO peut être importante, elle ne l'est pas systématiquement.
+
+Tous les projets ne sont pas fait pour durer des dizaines d'années.
+
+Et à trop vouloir limiter le risque et capitaliser sur l'existant, on arrête de changer et d'apprendre, et on oublie même comment le faire.
+
+Cela signifie qu'il faut prendre soin de laisser des marges de manœuvres pour tester de nouvelles technologies, et accepter de prendre une certaine dose de risque à long terme pour gagner en productivité.
