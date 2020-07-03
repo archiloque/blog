@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en" xml:id="ORM-5">
+<info>
+<title>Écrire un ORM en Ruby partie 5&#160;</title>
+<subtitle>relations</subtitle>
+<date>2020-07-06</date>
+<author>
+<personname>
+<firstname>Julien</firstname>
+<surname>Kirch</surname>
+</personname>
+</author>
+<authorinitials>JK</authorinitials>
+<revhistory>
+<revision>
+<revnumber>v0.1</revnumber>
+<date>2020-07-06</date>
+<authorinitials>JK</authorinitials>
+</revision>
+</revhistory>
+</info>
+<simpara>Ceci est le cinquième et dernier article d&#8217;une série décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.</simpara>
+<simpara>Après <link xl:href="../ecrire-un-orm-en-ruby-1/">avoir introduit le sujet</link>, <link xl:href="../ecrire-un-orm-en-ruby-2/">avoir posé les bases de l&#8217;outil</link> puis <link xl:href="../ecrire-un-orm-en-ruby-3/">avoir ajouté la génération des requêtes</link> et enfin <link xl:href="../ecrire-un-orm-en-ruby-4/">m&#8217;être occupé du filtrage des requêtes</link>, je vais m&#8217;occuper ici des relations entre objets.</simpara>
+<simpara>Les ORM permettent en général de définir quatre types de relations&#160;: <literal>one-to-many</literal>, <literal>many-to-one</literal>, <literal>one-to-one</literal> et <literal>many-to-many</literal>.</simpara>
+<simpara>Je vais couvrir les deux premiers (<literal>one-to-many</literal>, <literal>many-to-one</literal>) parce que dans mon expérience on les rencontre beaucoup plus souvent que les deux autres, et que leur implémentation est la plus simple.</simpara>
+<section xml:id="_le_modèle">
+<title>Le modèle</title>
+<simpara>Les articles utilisent le modèle d&#8217;un jeu de construction qui fournit des relations one-to-many et many-to-one.</simpara>
+<simpara>Ce jeu de construction est composé des différents types de briques (<literal>Brick</literal>), qui sont chacun d&#8217;une certaine couleur (<literal>Color</literal>).
+Des modèles à construire (<literal>Kit</literal>) sont constitués d&#8217;un ensemble de types de briques chacun présent un certain nombre de briques (tant de briques d&#8217;une sorte, tant de briques d&#8217;une autre sorte), la relation modèle - type de brique étant modélisé par un <literal>KitBrick</literal>.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="../ecrire-un-orm-en-ruby-2/schema.svg"/>
+</imageobject>
+<textobject><phrase>schema</phrase></textobject>
+</inlinemediaobject></simpara>
+</section>
+<section xml:id="_le_many_to_one">
+<title>Le <literal>many-to-one</literal></title>
+<section xml:id="_extension_du_dsl">
+<title>Extension du DSL</title>
+<simpara>Le DSL que j&#8217;avais défini permettait de définir les noms des tables et des classes de modèles.
+Il est temps de l&#8217;étendre pour y ajouter des informations sur les relations.</simpara>
+<simpara>Je vais commencer par le <literal>many-to-one</literal>, en introduisant une méthode <literal>has_one</literal>. Pour définir une relation de ce type j&#8217;ai besoin du nom de la classe à lier, du nom de la colonne qui contient l&#8217;id et du nom de l&#8217;attribut que je veux ajouter à la classe de modèle.</simpara>
+<formalpara>
+<title>schema.rb</title>
+<para>
+<programlisting language="ruby" linenumbering="unnumbered">define_model 'Color' do |model_definition|
+  model_definition.table 'color'
+end
+
+define_model 'Brick' do |model_definition|
+  model_definition.table 'brick'
+  model_definition.has_one(
+      attribute_name: 'color',
+      model_class: 'Color',
+      column_name: 'color_id'
+  )
+end
+
+define_model 'Kit' do |model_definition|
+  model_definition.table 'kit'
+end
+
+define_model 'KitBricks' do |model_definition|
+  model_definition.table 'kit_brick'
+  model_definition.has_one(
+      attribute_name: 'kit',
+      model_class: 'Kit',
+      column_name: 'kit_id'
+  )
+  model_definition.has_one(
+      attribute_name: 'brick',
+      model_class: 'Brick',
+      column_name: 'brick_id'
+  )
+end</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_que_dois_je_obtenir">
+<title>Que dois-je obtenir ?</title>
+<simpara>Maintenant comment gérer les relations&#160;?</simpara>
+<simpara>Je vais prendre pour exemple la relation entre brique et couleur&#160;:</simpara>
+<programlisting language="ruby" linenumbering="unnumbered">define_model 'Brick' do |model_definition|
+  model_definition.table 'brick'
+  model_definition.has_one(
+      attribute_name: 'color',
+      model_class: 'Color',
+      column_name: 'color_id'
+  )
+end</programlisting>
+<simpara>Quand je veux récupérer la couleur d&#8217;une brique, je dois charger la couleur qui correspond à la valeur de la colonne <literal>color_id</literal>, disponible dans le modèle par la méthode <literal>color_id</literal>. En SQL cela donnerait quelque chose comme&#160;:</simpara>
+<programlisting language="SQL" linenumbering="unnumbered">SELECT color_column_name_1, color_column_name_1
+  FROM color
+  WHERE id = ?</programlisting>
+<simpara>Avec les méthodes définies dans l&#8217;article précédent cela donne</simpara>
+<programlisting language="ruby" linenumbering="unnumbered">Color.where('id = ?', brick.color_id).first</programlisting>
+<simpara>Cette couleur doit être accessible à travers un getter nommé <literal>color</literal>&#160;:</simpara>
+<programlisting language="ruby" linenumbering="unnumbered">class Brick &lt; Model
+  # @return [Color]
+  def color
+    Color.where('id = ?', color_id).first
+  end
+end</programlisting>
+<simpara>Pour le setter <literal>color=</literal>, il n&#8217;y a pas de besoin de SQL&#160;: je peut me contenter de stocker la valeur de l&#8217;attribut <literal>color_id</literal>, la valeur sera alors sauvegardée en même temps que les autres attributs de l&#8217;objet.
+Si juste ensuite je refais un appel à <literal>color</literal>, la requête récupérera la couleur correspond au nouvel <literal>color_id</literal>.</simpara>
+<programlisting language="ruby" linenumbering="unnumbered">class Brick &lt; Model
+  # @param color [Color]
+  # @return [void]
+  def color=(color)
+    @color_id = color.id
+  end
+end</programlisting>
+<simpara>Maintenant je sais quel code je veux obtenir.</simpara>
+</section>
+<section xml:id="_implémentation">
+<title>Implémentation</title>
+<simpara>Pour y arriver, je commence par implémenter la méthode <literal>has_one</literal> dans le DSL pour qu&#8217;elle stocke les informations qu&#8217;on lui passe.</simpara>
+<formalpara>
+<title>generator.rb</title>
+<para>
+<programlisting language="ruby" linenumbering="unnumbered">class ModelDefinition
+
+  MODELS_DEFINITIONS = []
+
+  attr_reader :name, :table_name, :has_ones
+
+  # @param name [String]
+  def initialize(name)
+    @name = name
+    @has_ones = []
+    MODELS_DEFINITIONS &lt;&lt; self
+  end
+
+  # …
+
+  # @param attribute_name [String]
+  # @param model_class [String]
+  # @param column_name [String]
+  # @return [void]
+  def has_one(attribute_name:, model_class:, column_name:)
+    @has_ones &lt;&lt; {
+        attribute_name: attribute_name,
+        model_class: model_class,
+        column_name: column_name
+    }
+  end
+end</programlisting>
+</para>
+</formalpara>
+<simpara>Pour le template je retranscris le code auquel j&#8217;avais abouti plus haut en utilisant les différentes valeurs&#160;:</simpara>
+<formalpara>
+<title>models.rb.erb</title>
+<para>
+<screen linenumbering="unnumbered">  &lt;% model.has_ones.each do |has_one| %&gt;
+  # @return [&lt;%= has_one[:model_class] %&gt;]
+  def &lt;%= has_one[:attribute_name] %&gt;
+    &lt;%= has_one[:model_class] %&gt;.where('id = ?', &lt;%= has_one[:column_name] %&gt;).first
+  end
+
+  # @param &lt;%= has_one[:attribute_name] %&gt; [&lt;%= has_one[:model_class] %&gt;]
+  # @return [void]
+  def &lt;%= has_one[:attribute_name] %&gt;=(&lt;%= has_one[:attribute_name] %&gt;)
+    @&lt;%= has_one[:column_name] %&gt; = &lt;%= has_one[:attribute_name] %&gt;.id
+  end
+  &lt;% end %&gt;</screen>
+</para>
+</formalpara>
+<simpara>On peut alors tester que cela fonctionne&#160;:</simpara>
+<formalpara>
+<title>script.rb</title>
+<para>
+<programlisting language="ruby" linenumbering="unnumbered">require_relative 'model'
+require_relative 'models'
+
+black = Color.new
+black.name = 'Black'
+black.insert
+
+brick = Brick.new
+brick.color = black
+brick.name = 'Awesome brick'
+brick.description = 'This brick is awesome'
+brick.insert
+
+puts brick.color.name</programlisting>
+</para>
+</formalpara>
+<programlisting language="bash" linenumbering="unnumbered">$ bundle exec ruby script.rb
+Black</programlisting>
+<simpara>L&#8217;exemple d&#8217;ORM que je décris ici ne gère pas de cache, ce qui signifie que chaque appel de <literal>brick.color</literal> va générer une nouvelle requête SQL.</simpara>
+</section>
+</section>
+<section xml:id="_le_one_to_many">
+<title>Le <literal>one-to-many</literal></title>
+<simpara>La mise en œuvre du <literal>one-to-many</literal> est très similaire.</simpara>
+<simpara>Je commence par définir la syntaxe dans le DSL avec une méthode <literal>has_many</literal>.</simpara>
+<formalpara>
+<title>schema.rb</title>
+<para>
+<programlisting language="ruby" linenumbering="unnumbered">define_model 'Color' do |model_definition|
+  model_definition.table 'color'
+  model_definition.has_many(
+      attribute_name: 'bricks',
+      model_class: 'Brick',
+      column_name: 'color_id'
+  )
+end
+
+define_model 'Brick' do |model_definition|
+  model_definition.table 'brick'
+  model_definition.has_one(
+      attribute_name: 'color',
+      model_class: 'Color',
+      column_name: 'color_id'
+  )
+  model_definition.has_many(
+      attribute_name: 'kit_brick',
+      model_class: 'KitBricks',
+      column_name: 'brick_id'
+  )
+end
+
+define_model 'Kit' do |model_definition|
+  model_definition.table 'kit'
+  model_definition.has_many(
+      attribute_name: 'kit_brick',
+      model_class: 'KitBricks',
+      column_name: 'kit_id'
+  )
+end
+
+define_model 'KitBricks' do |model_definition|
+  model_definition.table 'kit_brick'
+  model_definition.has_one(
+      attribute_name: 'kit',
+      model_class: 'Kit',
+      column_name: 'kit_id'
+  )
+  model_definition.has_one(
+      attribute_name: 'brick',
+      model_class: 'Brick',
+      column_name: 'brick_id'
+  )
+end</programlisting>
+</para>
+</formalpara>
+<simpara>Qui devrait générer ce type de code&#160;:</simpara>
+<formalpara>
+<title>models.rb</title>
+<para>
+<programlisting language="ruby" linenumbering="unnumbered">class Color &lt; Model
+
+  # @return [Array&lt;Brick&gt;]
+  def bricks
+    Brick.where('color_id = ?', id).all
+  end
+
+end</programlisting>
+</para>
+</formalpara>
+<simpara>Je ne vais pas définir le setter car il est assez rare, en général ce type de modification se fait plutôt de l&#8217;autre côté de la relation.</simpara>
+<simpara>J&#8217;ajouter la nouvelle méthode <literal>has_many</literal> au DSL&#160;:</simpara>
+<formalpara>
+<title>generator.rb</title>
+<para>
+<programlisting language="ruby" linenumbering="unnumbered">class ModelDefinition
+
+  MODELS_DEFINITIONS = []
+
+  attr_reader :name, :table_name, :has_ones, :has_manys
+
+  # @param name [String]
+  def initialize(name)
+    @name = name
+    @has_ones = []
+    @has_manys = []
+    MODELS_DEFINITIONS &lt;&lt; self
+  end
+
+  # …
+
+  def has_many(attribute_name:, model_class:, column_name:)
+    @has_manys &lt;&lt; {
+        attribute_name: attribute_name,
+        model_class: model_class,
+        column_name: column_name
+    }
+  end
+end</programlisting>
+</para>
+</formalpara>
+<simpara>Et pour terminer, le template&#160;:</simpara>
+<formalpara>
+<title>models.rb.erb</title>
+<para>
+<screen linenumbering="unnumbered">  &lt;% model.has_manys.each do |has_many| %&gt;
+  # @return [Array&lt;&lt;%= has_many[:model_class] %&gt;&gt;]
+  def &lt;%= has_many[:attribute_name] %&gt;
+    &lt;%= has_many[:model_class] %&gt;.where('&lt;%= has_many[:column_name] %&gt; = ?', id).all
+  end
+  &lt;% end %&gt;</screen>
+</para>
+</formalpara>
+<simpara>Ce qui donne&#160;:</simpara>
+<formalpara>
+<title>script.rb</title>
+<para>
+<programlisting language="ruby" linenumbering="unnumbered">require_relative 'model'
+require_relative 'models'
+
+black = Color.new
+black.name = 'Black'
+black.insert
+
+brick = Brick.new
+brick.color = black
+brick.name = 'Awesome brick'
+brick.description = 'This brick is awesome'
+brick.insert
+
+puts black.bricks.length
+puts black.bricks.first.name</programlisting>
+</para>
+</formalpara>
+<programlisting language="bash" linenumbering="unnumbered">$ bundle exec ruby script.rb
+1
+Awesome brick</programlisting>
+</section>
+<section xml:id="_pour_finir">
+<title>Pour finir</title>
+<simpara>Et voila&#160;!
+À ce stade j&#8217;ai la base d&#8217;un ORM minimal.</simpara>
+<simpara>Le code se trouve <link xl:href="https://github.com/archiloque/orm-ruby">ici</link>.</simpara>
+<simpara>Il manque quelques éléments pour qu&#8217;il soit vraiment utile, par exemple la gestion des <literal>UPDATE</literal> et de la suppression unitaire (plutôt que de vider toute une table avec <literal>truncate</literal>), mais une implémentation minimale s&#8217;appuierait beaucoup à ce qui a déjà été fait sans introduire de nouvelles idées.</simpara>
+<simpara>J&#8217;espère que ces articles ont pu vous donner une aperçu du fonctionnement de ce type d&#8217;outils et les ont rendus moins mystérieux.</simpara>
+<simpara>S&#8217;ils vous donne des idées pour coder votre propre ORM d&#8217;une manière différente, lancez-vous, tant que vous restez raisonnable dans vos ambitions, notamment celle de l&#8217;utiliser en production.</simpara>
+<simpara>Si d&#8217;autres éléments vous semblent compliqués, <link xl:href="http://twitter.com/archiloque">contactez-moi</link> et j&#8217;ajouterai peut-être ce contenu dans un article supplémentaire.</simpara>
+</section>
+</article>

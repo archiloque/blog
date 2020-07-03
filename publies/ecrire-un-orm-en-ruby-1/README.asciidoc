@@ -21,6 +21,10 @@ Dans ce texte je vais décrire pas à pas comment écrire un ORM SQL minimal en 
 endif::[]
 ifeval::["{doctype}" != "book"]
 Ceci est le premier article d'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
+
+Vous pouvez les lire en ligne ou sous forme d'un ebook, vous trouverez link:../ecrire-un-orm-en-ruby-5/all.epub[ici la version EPUB] et link:../ecrire-un-orm-en-ruby-5/all.pdf[là la version PDF].
+
+Le code correspondant se trouve à link:https://github.com/archiloque/orm-ruby[https://github.com/archiloque/orm-ruby].
 endif::[]
 
 Avant de plonger dans le code, je vais ici introduire le sujet et expliquer certains des choix que j'ai fait.

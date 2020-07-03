@@ -108,7 +108,10 @@ class QueryParameters
   # @return [QueryParameters]
   def where(expression, *parameters)
     new_query_parameters = self.dup
-    new_query_parameters.wheres << {expression: expression, parameters: parameters}
+    new_query_parameters.wheres << {
+      expression: expression, 
+      parameters: parameters
+    }
     new_query_parameters
   end
 
@@ -195,7 +198,10 @@ class QueryParameters
       where_clause = ' '
       where_params = []
     else
-      where_clause = "WHERE #{@wheres.map { |where| where[:expression] }.join(' AND ')} "
+      where_content = @wheres.map do |where| 
+        where[:expression]
+      end.join(' AND ')
+      where_clause = "WHERE #{where_content} "
       where_params = @wheres.map { |where| where[:parameters] }.flatten
     end
 
@@ -404,4 +410,9 @@ class Model
 end
 ----
 
+ifeval::["{doctype}" == "book"]
 C'est tout pour le moment, dans l'article suivant j'ajouterai une gestion minimale des relations entre objets permettant de parcourir une grappe de dépendances.
+endif::[]
+ifeval::["{doctype}" != "book"]
+C'est tout pour le moment, link:../ecrire-un-orm-en-ruby-5/[dans l'article suivant] j'ajouterai une gestion minimale des relations entre objets permettant de parcourir une grappe de dépendances.
+endif::[]

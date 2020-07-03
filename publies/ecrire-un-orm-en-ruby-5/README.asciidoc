@@ -5,12 +5,13 @@ endif::[]
 ifeval::["{doctype}" != "book"]
 = Écrire un ORM en Ruby partie 5{nbsp}: relations
 endif::[]
-
 :author: Julien Kirch
 :revnumber: v0.1
-:docdate: 2020-05-10
-:ignore_files: all.pdf, all.asciidoc
+:revdate: 2020-07-06
+:ignore_files: all.asciidoc, all.xml, Menlo-Bold.ttf, Menlo-BoldItalic.ttf, Menlo-Italic.ttf, Menlo.ttf, NewYorkMedium-Bold.otf, NewYorkMedium-BoldItalic.otf, NewYorkMedium-Italic.otf, NewYorkMedium.otf, pdf.sh
 :article_lang: fr
+:article_description: Les relations
+:article_image: map.png
 ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
@@ -36,7 +37,12 @@ Les articles utilisent le modèle d'un jeu de construction qui fournit des relat
 Ce jeu de construction est composé des différents types de briques (`Brick`), qui sont chacun d'une certaine couleur (`Color`).
 Des modèles à construire (`Kit`) sont constitués d'un ensemble de types de briques chacun présent un certain nombre de briques (tant de briques d'une sorte, tant de briques d'une autre sorte), la relation modèle - type de brique étant modélisé par un `KitBrick`.
 
+ifeval::["{doctype}" == "book"]
+image:../ecrire-un-orm-en-ruby-2/schema_dark.svg[]
+endif::[]
+ifeval::["{doctype}" != "book"]
 image:../ecrire-un-orm-en-ruby-2/schema.svg[]
+endif::[]
 
 == Le `many-to-one`
 
@@ -379,7 +385,7 @@ Awesome brick
 Et voila{nbsp}!
 À ce stade j'ai la base d'un ORM minimal.
 
-Le code se trouve link:https://github.com/archiloque/orm-ruby[ici].
+Le code se trouve à link:https://github.com/archiloque/orm-ruby[https://github.com/archiloque/orm-ruby].
 
 Il manque quelques éléments pour qu'il soit vraiment utile, par exemple la gestion des `UPDATE` et de la suppression unitaire (plutôt que de vider toute une table avec `truncate`), mais une implémentation minimale s'appuierait beaucoup à ce qui a déjà été fait sans introduire de nouvelles idées.
 
