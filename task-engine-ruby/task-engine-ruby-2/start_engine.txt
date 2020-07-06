@@ -1,0 +1,36 @@
+$ rake
+Starting engine
+Starting worker 0
+Starting worker 1
+Starting worker 2
+Starting worker 3
+Starting worker 4
+(0.000731s) BEGIN
+(0.001842s) SELECT "id" FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1 FOR UPDATE
+(0.000392s) UPDATE "tasks" SET "status" = 'running' WHERE ("id" = 701)
+(0.000818s) COMMIT
+Worker 0 starting task 701
+(0.000286s) BEGIN
+(0.000582s) BEGIN
+(0.000642s) BEGIN
+(0.004352s) SELECT "id" FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1 FOR UPDATE
+(0.001839s) UPDATE "tasks" SET "status" = 'running' WHERE ("id" = 702)
+(0.000183s) BEGIN
+(0.001389s) COMMIT
+Worker 2 starting task 702
+(0.008252s) SELECT "id" FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1 FOR UPDATE
+(0.000682s) UPDATE "tasks" SET "status" = 'running' WHERE ("id" = 703)
+(0.000644s) COMMIT
+Worker 4 starting task 703
+(0.008829s) SELECT "id" FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1 FOR UPDATE
+(0.000422s) UPDATE "tasks" SET "status" = 'running' WHERE ("id" = 704)
+(0.000721s) COMMIT
+Worker 3 starting task 704
+(0.005337s) SELECT "id" FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1 FOR UPDATE
+(0.000946s) UPDATE "tasks" SET "status" = 'running' WHERE ("id" = 705)
+(0.000791s) COMMIT
+Worker 1 starting task 705
+Worker 0 finished task 701, took 107.86200000000001ms
+(0.000386s) BEGIN
+(0.000475s) DELETE FROM "tasks" WHERE ("id" = 701)
+(0.000540s) COMMIT

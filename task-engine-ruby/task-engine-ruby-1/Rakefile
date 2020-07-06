@@ -1,0 +1,7 @@
+desc 'Start the engine'
+task :start_engine do
+  require_relative 'task_engine'
+  TaskEngine::Engine.new
+end
+
+task default: :start_engine
