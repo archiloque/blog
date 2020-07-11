@@ -1,4 +1,24 @@
 = 3 : Persistance
 
+[source,bash]
+----
 $ createuser task_engine
 $ createdb --owner=task_engine task_engine
+----
+
+.task_engine.rb
+[source,ruby]
+----
+include::task_engine.rb[]
+----
+
+.Rakefile
+[source,ruby]
+----
+include::Rakefile[]
+----
+
+[source,bash]
+----
+include::start_engine.txt[]
+----
