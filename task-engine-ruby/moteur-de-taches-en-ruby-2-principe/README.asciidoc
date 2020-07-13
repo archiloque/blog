@@ -1,6 +1,78 @@
-= 2 : Principe
+[#MDT-2]
+ifeval::["{doctype}" == "book"]
+= Partie 2 : la boucle de traitement
+endif::[]
+ifeval::["{doctype}" != "book"]
+= Écrire un moteur de tâches en Ruby partie 2 : la boucle de traitement
+endif::[]
+:author: Julien Kirch
+:revnumber: v0.1
+:revdate: 2020-07-12
+:article_lang: fr
+:article_description: Le cœur de la machine
+:article_image: steampunk.jpg
+ifndef::source-highlighter[]
+:source-highlighter: pygments
+:pygments-style: friendly
+endif::[]
+:mdt: moteur de tâches
+:msdt: moteurs de tâches
 
+ifeval::["{doctype}" == "book"]
+Après <<../moteur-de-taches-en-ruby-1-introduction/README.adoc#MDT-2,avoir introduit le sujet>>, je vais ici construire la base de la boucle de traitement.
+endif::[]
+ifeval::["{doctype}" != "book"]
+Ceci est le deuxième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
 
+Après link:../moteur-de-taches-en-ruby-1-introduction[avoir introduit le sujet], je vais ici construire la base de la boucle de traitement.
+endif::[]
+
+== La boucle de traitement
+
+Le principe d'un {mdt} c'est une boucle qui fait quatre choses{nbsp}:
+
+. Sélectionner la prochaine tâche à exécuter
+. Effectuer des pré-traitements (par exemple loguer)
+. Exécuter la tâche
+. Effectuer des post-traitements (par exemple loguer et faire des traitements spécifiques en cas d'erreur)
+
+image::workflow.svg[]
+
+Chaque élément qui effectue cette boucle en généralement appelé un "`worker`".
+
+== Faire plus de traitements
+
+Pour pouvoir augmenter la capacité de traitement, il doit être possible d'ajouter des workers.
+
+Cela signifie que les phases en dehors de celle d'exécution de la tâche doivent pouvoir être parallélisées le plus possible en évitant ou en limitant les moment où les différents workers peuvent interférer les uns avec les autres.
+
+Si les tâches à exécuter ont elles-même des problèmes de contention, cela va limiter la parallélisation de tout le système, mais c'est est en dehors du périmètre du {mdt} en lui-même.
+
+Ajouter des workers peut se faire de deux manières{nbsp}: en lançant plusieurs workers dans un même processus et en lançant plusieurs processus.
+
+La première approche s'appuie souvent sur des threads, qui est un mécanisme fournit par les systèmes d'exploitations. Elle a l'avantage de limiter la consommation mémoire car les différents threads peuvent partager des ressources, par exemple la mémoire dans laquelle le code est chargé.
+
+La deuxième approche a comme avantage principal de ne pas être limitée par la puissance d'une machine, en effets les différents processus peuvent être lancés sur des serveurs différents.
+
+Les deux options sont complémentaires{nbsp}: on peut avoir plusieurs processus hébergeant chacun plusieurs threads.
+
+La condition nécessaire étant que le système le permette, ce qui signifie que les différents processus ne doivent pas se marcher sur les pieds quand il s'agit de sélectionner les tâches. Un {mdt} utilisant plusieurs processus est donc un système distribué, et subit par conséquents les contraintes de ce type d'applications.
+
+L'idéal est d'avoir un système qui sache tirer partie des threads, tout en fonctionnant bien en multi-process.
+
+== Threading et Ruby
+
+Les thread en Ruby ont une spécificité{nbsp}: l'implémentation Ruby de référence ne permet pas plusieurs thread de s'exécuter en même temps à cause de limitation dans l'implémentation de la machine virtuelle.
+Si vous utilisez un {mdt} en Ruby et que vous voulez pleinement profiter d'avoir plusieurs thread, il faut ainsi utiliser des implémentation alternatives comme JRuby.
+
+Cela ne signifie pas qu'utiliser plusieurs thread en Ruby soit inutile dans un {mdt} avec l'implémentation de référence. Car même si la machine virtuelle ne peut exécuter qu'un thread à la fois, plusieurs tâches peuvent tout de même être en train de progresser.
+C'est le cas parce que lorsqu'un appel extérieur est fait, par exemple une requête en base de données ou un appel réseau, le thread qui fait l'appel est mis en pause et un autre thread peut alors s'exécuter.
+Lorsque la requête ou l'appel se termine, le premier thread va alors attendre son tour pour continuer son traitement.
+
+Dans un système ou la majorité du temps est passé à attendre le reste du monde, avoir plusieurs threads peut donc être tout de même assez avantageux.
+À l'inverse si les traitements demandent des traitements longs dans le {mdt}, les threads peuvent être pratiquement inutiles et faudra alors s'appuyer uniquement sur des processus.
+
+IMPORTANT: QQQQQQQQ
 
 .task_engine.rb
 [source,ruby]

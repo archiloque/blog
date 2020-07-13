@@ -1,6 +1,22 @@
-= 1 : Introduction
+[#MDT-1]
+ifeval::["{doctype}" == "book"]
+= Partie 1 : introduction
+endif::[]
+ifeval::["{doctype}" != "book"]
+= Écrire un moteur de tâches en Ruby partie 1 : introduction
+endif::[]
+:author: Julien Kirch
+:revnumber: v0.1
+:revdate: 2020-07-12
+:article_lang: fr
 :mdt: moteur de tâches
 :msdt: moteurs de tâches
+:article_description: De quoi s'agit-il ?
+:article_image: steampunk.jpg
+ifndef::source-highlighter[]
+:source-highlighter: pygments
+:pygments-style: friendly
+endif::[]
 
 Un {mdt} est une brique logicielles dont le rôle est d'exécuter de manière asynchrone des tâches qu'on lui fournit. On l'alimente en tâche en ajoutant des éléments dans un tuyau&#8201;—{nbsp}par exemple une file de messages{nbsp}—&#8201;et il les consomme aussi rapidement que possible.
 
@@ -21,8 +37,16 @@ Cela signifie que bien comprendre le fonctionnement d'un {mdt} permet de compren
 Je vous propose donc de décrire pas à pas la construction de ce type d'outil.
 À chaque étape, je vais expliquer le besoin auquel répond chaque nouvel élément, et la manière d'y répondre.
 
-Si l'outil résultant ne sera pas aussi complet qu'un "`vrai`" {mdt}, il comportera tous les éléments essentiel qu'on retrouve dans les différents systèmes.
+Si l'outil résultant ne sera pas aussi complet qu'un "`vrai`" {mdt}, il comportera tous les éléments essentiels.
 
-Le code (framework et code d'exemple) sera dans un projet unique et ne sera pas packagé sous forme d'une gem. 
+Le code (framework et code d'exemple) sera dans un projet unique et ne sera pas packagé sous forme d'une gem.
+Le faire ajouterait pas mal de code et un peu de complexité sans que cela apporte quelque chose.
 
-Le stockage des données utilisera PostgreSQL car le fonctionnement des transactions des bases de données SQL sera utile pour gérer la parallélisation, et que PostgreSQL est une base de données très utilisée dans le monde Ruby.
+TIP: Le stockage des données utilisera PostgreSQL car le fonctionnement des transactions des bases de données SQL sera utile pour gérer la parallélisation, et que PostgreSQL fournit un certain nombre de fonctionnalités bien pratiques pour implémenter un {mdt}.
+
+ifeval::["{doctype}" == "book"]
+Voila pour l'introduction, dans la partie suivante je vais construire la boucle de traitement qui forme le centre de l'outil.
+endif::[]
+ifeval::["{doctype}" != "book"]
+Voila pour l'introduction, link:moteur-de-taches-en-ruby-2-principe[dans l'article suivant] je vais construire la boucle de traitement qui forme le centre de l'outil.
+endif::[]

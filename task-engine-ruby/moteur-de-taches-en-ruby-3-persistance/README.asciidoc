@@ -1,4 +1,20 @@
-= 3 : Persistance
+[#MDT-3]
+ifeval::["{doctype}" == "book"]
+= Partie 3 : le début de la persistance
+endif::[]
+ifeval::["{doctype}" != "book"]
+= Écrire un moteur de tâches en Ruby partie 3 : le début de la persistance
+endif::[]
+:author: Julien Kirch
+:revnumber: v0.1
+:revdate: 2020-07-12
+:article_lang: fr
+:article_description: L'importance d'être transactionnel
+:article_image: steampunk.jpg
+ifndef::source-highlighter[]
+:source-highlighter: pygments
+:pygments-style: friendly
+endif::[]
 
 [source,bash]
 ----

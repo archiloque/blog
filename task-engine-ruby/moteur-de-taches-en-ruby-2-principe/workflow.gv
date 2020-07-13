@@ -1,0 +1,10 @@
+digraph G {
+  s[label="Sélectionner la prochaine tâche"];
+  pre[label="Effectuer des pré-traitements"];
+  x[label="Exécuter la tâche"];
+  post[label="Effectuer des post-traitements"];
+  s -> pre;
+  pre -> x;
+  x -> post;
+  post -> s;
+}
