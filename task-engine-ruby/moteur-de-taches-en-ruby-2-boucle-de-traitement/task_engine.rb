@@ -6,7 +6,7 @@ module TaskEngine
   WORKERS_NUMBER = 5
   MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000
   LOGGER = Logger.new(STDOUT)
-
+  
   class Engine
     def initialize
       LOGGER.info("Starting engine")

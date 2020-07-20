@@ -18,29 +18,26 @@ endif::[]
 :mdt: moteur de tâches
 :msdt: moteurs de tâches
 
-ifeval::["{doctype}" == "book"]
-Après <<../moteur-de-taches-en-ruby-1-introduction/README.adoc#MDT-2,avoir introduit le sujet>>, je vais ici construire la base de la boucle de traitement.
-endif::[]
 ifeval::["{doctype}" != "book"]
 Ceci est le deuxième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
 
-Après link:../moteur-de-taches-en-ruby-1-introduction[avoir introduit le sujet], je vais ici construire la base de la boucle de traitement.
+Après link:../moteur-de-taches-en-ruby-1-introduction[avoir introduit le sujet], je vais maintenant construire la base de la boucle de traitement.
 endif::[]
 
 == La boucle de traitement
 
 Le principe d'un {mdt} c'est une boucle qui fait quatre choses{nbsp}:
 
+image::workflow.svg[scaledwidth=50%,align="center"]
+
 . Sélectionner la prochaine tâche à exécuter
 . Effectuer des pré-traitements (par exemple loguer)
 . Exécuter la tâche
 . Effectuer des post-traitements (par exemple loguer et faire des traitements spécifiques en cas d'erreur)
 
-image::workflow.svg[]
-
 Chaque élément qui effectue cette boucle en généralement appelé un "`worker`".
 
-== Faire plus de traitements
+== Augmenter la capacité de traitement
 
 Pour pouvoir augmenter la capacité de traitement, il doit être possible d'ajouter des workers.
 
@@ -70,9 +67,56 @@ C'est le cas parce que lorsqu'un appel extérieur est fait, par exemple une requ
 Lorsque la requête ou l'appel se termine, le premier thread va alors attendre son tour pour continuer son traitement.
 
 Dans un système ou la majorité du temps est passé à attendre le reste du monde, avoir plusieurs threads peut donc être tout de même assez avantageux.
-À l'inverse si les traitements demandent des traitements longs dans le {mdt}, les threads peuvent être pratiquement inutiles et faudra alors s'appuyer uniquement sur des processus.
+À l'inverse si les traitements demandent des traitements longs dans le {mdt}, les threads sont pratiquement inutiles et faudra alors s'appuyer uniquement sur des processus ou utiliser une autre machine virtuelle.
 
-IMPORTANT: QQQQQQQQ
+== Démarrer le projet
+
+Je vais mettre l'ensemble du code (framework et code d'exemple) dans un projet unique et je ne le packagerai pas sous forme d'une gem.
+Le faire ajouterait pas mal de code et un peu de complexité sans que cela apporte quelque chose au sujets dont je veux discuter ici.
+
+Je commence par définir la version de Ruby à utiliser
+
+..ruby-version
+[source]
+----
+2.7.1
+----
+
+et ma dépendance de départ
+
+.Gemfile
+[source,ruby]
+----
+source 'https://rubygems.org'
+
+gem 'rake', '~> 13.0'
+----
+
+Pour montrer comment fonctionnent le threading, la première implémentation des tâches se contentera d'attendre quelques secondes via la méthode `Kernel#sleep` ce qui permet aux autres threads de s'exécuter. Et pour le moment elle n'iront pas chercher quelles tâches sont disponibles, mais s'exécuteront de manière continue dans une boucle infinie
+
+La version simplifiée d'un worker se résume alors à{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+Thread.new do
+  while true
+    execute
+  end
+
+def execute
+      p "Task is starting"
+      sleep(5)
+      p "Task is stopping"
+end
+----
+
+Pour vérifier que cela fonctionne, il est nécessaire de lancer plusieurs workers, et d'ajouter des logs.
+
+Je vais placer le code des workers dans un classe spécifique `TaskEngine::Worker`, et une autre classe `TaskEngine::Engine` sera chargée de les lancer.
+
+Chaque instance de worker reçoit un numéro de façon à pouvoir suivre ce qu'elle fait dans les logs.
+
 
 .task_engine.rb
 [source,ruby]
@@ -80,13 +124,31 @@ IMPORTANT: QQQQQQQQ
 include::task_engine.rb[]
 ----
 
+Le nombre de worker est défini dans une constante pour le moment, il sera temps plus tard de passer par un fichier de configuration.
+
+Il me reste à écrire une tâche Rake pour pouvoir lancer le moteur :
+
 .Rakefile
 [source,ruby]
 ----
 include::Rakefile[]
 ----
 
+Et je peux vérifier que tout fonctionne comme prévu{nbsp}:
+
 [source,bash]
 ----
 include::start_engine.txt[]
 ----
+
+Les tâches se bien lancent les unes après les autres, et se passent la main après avoir démarré une fois qu'elles atteignent le `sleep`.
+La boucle de traitement fonctionne donc bien, ou du moins sa version simplifiée.
+
+Arrêter le programme stoppe immédiatement toutes les tâches en cours d'exécution.
+
+ifeval::["{doctype}" == "book"]
+Dans la partie suivante je vais m'intéresser au stockage des tâches pour que les workers aillent chercher ce qu'ils ont à faire.
+endif::[]
+ifeval::["{doctype}" != "book"]
+link:../moteur-de-taches-en-ruby-2-principe/[Dans l'article suivant] je vais m'intéresser au stockage des tâches pour que les workers aillent chercher ce qu'ils ont à faire.
+endif::[]

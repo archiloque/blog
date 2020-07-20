@@ -39,14 +39,9 @@ Je vous propose donc de décrire pas à pas la construction de ce type d'outil.
 
 Si l'outil résultant ne sera pas aussi complet qu'un "`vrai`" {mdt}, il comportera tous les éléments essentiels.
 
-Le code (framework et code d'exemple) sera dans un projet unique et ne sera pas packagé sous forme d'une gem.
-Le faire ajouterait pas mal de code et un peu de complexité sans que cela apporte quelque chose.
-
-TIP: Le stockage des données utilisera PostgreSQL car le fonctionnement des transactions des bases de données SQL sera utile pour gérer la parallélisation, et que PostgreSQL fournit un certain nombre de fonctionnalités bien pratiques pour implémenter un {mdt}.
-
 ifeval::["{doctype}" == "book"]
 Voila pour l'introduction, dans la partie suivante je vais construire la boucle de traitement qui forme le centre de l'outil.
 endif::[]
 ifeval::["{doctype}" != "book"]
-Voila pour l'introduction, link:moteur-de-taches-en-ruby-2-principe[dans l'article suivant] je vais construire la boucle de traitement qui forme le centre de l'outil.
+Voila pour l'introduction, link:../moteur-de-taches-en-ruby-2-boucle-de-traitement[dans l'article suivant] je vais construire la boucle de traitement qui forme le centre de l'outil.
 endif::[]

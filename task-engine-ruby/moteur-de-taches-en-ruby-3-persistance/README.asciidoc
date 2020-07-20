@@ -15,6 +15,22 @@ ifndef::source-highlighter[]
 :source-highlighter: pygments
 :pygments-style: friendly
 endif::[]
+:mdt: moteur de tâches
+:msdt: moteurs de tâches
+
+ifeval::["{doctype}" != "book"]
+Ceci est le troisième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
+
+Après link:../moteur-de-taches-en-ruby-1-introduction[avoir introduit le sujet], link:../moteur-de-taches-en-ruby-2-boucle-de-traitement[construit la base de la boucle de traitement] et je vais maintenant m'intéresser à la persistance.
+endif::[]
+
+== Quoi et comment stocker{nbsp}?
+
+Un {mdt}
+
+
+Le stockage des données utilisera PostgreSQL car le fonctionnement des transactions des bases de données SQL sera utile pour gérer la parallélisation, et que PostgreSQL fournit un certain nombre de fonctionnalités bien pratiques pour implémenter un {mdt}.
+
 
 [source,bash]
 ----
