@@ -28,9 +28,7 @@ endif::[]
 
 Un {mdt}
 
-
-Le stockage des données utilisera PostgreSQL car le fonctionnement des transactions des bases de données SQL sera utile pour gérer la parallélisation, et que PostgreSQL fournit un certain nombre de fonctionnalités bien pratiques pour implémenter un {mdt}.
-
+Le stockage des données utilisera PostgreSQL car le fonctionnement des transactions des bases de données SQL sera utile pour viter la perte de données et gérer la parallélisation, et que PostgreSQL fournit un certain nombre de fonctionnalités bien pratiques pour implémenter un {mdt}.
 
 [source,bash]
 ----
