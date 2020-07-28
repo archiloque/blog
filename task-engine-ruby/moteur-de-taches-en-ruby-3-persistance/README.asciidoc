@@ -26,9 +26,39 @@ endif::[]
 
 == Quoi et comment stocker{nbsp}?
 
-Un {mdt}
+Un {mdt} a besoin de stocker deux types de données : les les tâches qui ne sont pas encore lancées et les logs de tâches exécutées.
 
-Le stockage des données utilisera PostgreSQL car le fonctionnement des transactions des bases de données SQL sera utile pour viter la perte de données et gérer la parallélisation, et que PostgreSQL fournit un certain nombre de fonctionnalités bien pratiques pour implémenter un {mdt}.
+Pour les tâches qui ne sont pas encore lancées, l'idéal est d'avoir un système de stockage{nbsp}:
+
+.  fiable (pour ne pas perdre de tâches même en cas de crash),
+. qui gère la parallélisation (pour qu'une tâche ne soit prise en compte que par un worker, et qu'il soit possible d'avoir un nombre important de workers),
+. qui gère des notification pour être prévenu quand des tâches sont disponibles pour être exécutées (ce besoin peut être couvert en exécutant régulièrement du code qui vérifie si des  tâches sont en attente, mais un système de notification est en général plus rapide et plus économe en ressources).
+
+Pour les tâches exécutées, les contraintes sont plus faibles et on a seulement besoin d'un système permettant de la recherche pour faciliter les investigations.
+
+Il est possible d'utiliser deux systèmes différents pour les deux besoins, par exemple pour les tâches pas encore lancées il n'est pas rare d'utiliser un bus de messages, car en plus du stockage il peut servir de mediateur entre  un système qui créé des tâches et le {mdt} en fournissant une API facile à utiliser.
+
+Il est également possible d'utiliser un seul système, par exemple une base de données SQL ou même une base de données comme Redis.
+
+== Les technologies du projet
+
+J'utiliserai ici PostgreSQL car le fonctionnement des transactions des bases de données SQL sera utile pour éviter la perte de données et gérer la parallélisation, et que PostgreSQL fournit un système de notification permettant de répondre au troisième point.
+
+Pour l'accès aux données je vais utiliser un ORM, plutôt qu'ActiveRecord qui amène avec lui tous l'écosystème Rails, je vais utiliser link:http://sequel.jeremyevans.net[Sequel], qui n'est pas aussi complet mais qui fournit ce dont j'ai besoin et qui n'utilise aucune dépendance à part le driver de la base de données tout en ayant un fonctionnement assez proche de celui ActiveRecord.
+
+J'ajoute donc les dépendances au Gemfile{nbsp}:
+
+.Gemfile
+[source,ruby]
+----
+source 'https://rubygems.org'
+
+gem 'rake', '~> 13.0'
+gem 'sequel', '~> 5.34'
+gem 'pg', '~> 1.2.3'
+----
+
+== Modéliser les tâches à exécuter
 
 [source,bash]
 ----

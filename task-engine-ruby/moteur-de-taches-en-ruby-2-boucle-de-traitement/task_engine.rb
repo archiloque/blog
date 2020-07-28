@@ -37,7 +37,9 @@ module TaskEngine
       LOGGER.info("Worker #{@worker_index} is starting")
       sleep(5)
       stopping_time = DateTime.now
-      elapsed_time = (stopping_time - starting_time).to_f * MILLISECONDS_IN_A_DAY
+      # The difference between two DateTimes is a Rational
+      # representing the number of days
+      elapsed_time = ((stopping_time - starting_time) * MILLISECONDS_IN_A_DAY).to_f
       LOGGER.info("Worker #{@worker_index} is stopping, took #{elapsed_time}ms")
     end
   end
