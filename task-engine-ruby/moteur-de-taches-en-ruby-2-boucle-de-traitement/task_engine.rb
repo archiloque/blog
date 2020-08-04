@@ -38,7 +38,7 @@ module TaskEngine
       sleep(5)
       stopping_time = DateTime.now
       # The difference between two DateTimes is a Rational
-      # representing the number of days
+      # representing the value as a number of days  
       elapsed_time = ((stopping_time - starting_time) * MILLISECONDS_IN_A_DAY).to_f
       LOGGER.info("Worker #{@worker_index} is stopping, took #{elapsed_time}ms")
     end

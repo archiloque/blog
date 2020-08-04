@@ -47,13 +47,15 @@ Si les tâches à exécuter ont elles-même des problèmes de contention, cela v
 
 Ajouter des workers peut se faire de deux manières{nbsp}: en lançant plusieurs workers dans un même processus et en lançant plusieurs processus.
 
-La première approche s'appuie souvent sur des threads, qui est un mécanisme fournit par les systèmes d'exploitations. Elle a l'avantage de limiter la consommation mémoire car les différents threads peuvent partager des ressources, par exemple la mémoire dans laquelle le code est chargé.
+La première approche s'appuie souvent sur des threads, qui est un mécanisme fournit par les systèmes d'exploitations.
+Elle a l'avantage de limiter la consommation mémoire car les différents threads peuvent partager des ressources, par exemple la mémoire dans laquelle le code est chargé.
 
 La deuxième approche a comme avantage principal de ne pas être limitée par la puissance d'une machine, en effets les différents processus peuvent être lancés sur des serveurs différents.
 
 Les deux options sont complémentaires{nbsp}: on peut avoir plusieurs processus hébergeant chacun plusieurs threads.
 
-La condition nécessaire étant que le système le permette, ce qui signifie que les différents processus ne doivent pas se marcher sur les pieds quand il s'agit de sélectionner les tâches. Un {mdt} utilisant plusieurs processus est donc un système distribué, et subit par conséquents les contraintes de ce type d'applications.
+La condition nécessaire étant que le système le permette, ce qui signifie que les différents processus ne doivent pas se marcher sur les pieds quand il s'agit de sélectionner les tâches.
+Un {mdt} utilisant plusieurs processus est donc un système distribué, et subit par conséquents les contraintes de ce type d'applications.
 
 L'idéal est d'avoir un système qui sache tirer partie des threads, tout en fonctionnant bien en multi-process.
 
@@ -62,7 +64,8 @@ L'idéal est d'avoir un système qui sache tirer partie des threads, tout en fon
 Les thread en Ruby ont une spécificité{nbsp}: l'implémentation Ruby de référence ne permet pas plusieurs thread de s'exécuter en même temps à cause de limitation dans l'implémentation de la machine virtuelle.
 Si vous utilisez un {mdt} en Ruby et que vous voulez pleinement profiter d'avoir plusieurs thread, il faut ainsi utiliser des implémentation alternatives comme JRuby.
 
-Cela ne signifie pas qu'utiliser plusieurs thread en Ruby soit inutile dans un {mdt} avec l'implémentation de référence. Car même si la machine virtuelle ne peut exécuter qu'un thread à la fois, plusieurs tâches peuvent tout de même être en train de progresser.
+Cela ne signifie pas qu'utiliser plusieurs thread en Ruby soit inutile dans un {mdt} avec l'implémentation de référence.
+Car même si la machine virtuelle ne peut exécuter qu'un thread à la fois, plusieurs tâches peuvent tout de même être en train de progresser.
 C'est le cas parce que lorsqu'un appel extérieur est fait, par exemple une requête en base de données ou un appel réseau, le thread qui fait l'appel est mis en pause et un autre thread peut alors s'exécuter.
 Lorsque la requête ou l'appel se termine, le premier thread va alors attendre son tour pour continuer son traitement.
 
@@ -92,7 +95,8 @@ source 'https://rubygems.org'
 gem 'rake', '~> 13.0'
 ----
 
-Pour montrer comment fonctionnent le threading, la première implémentation des tâches se contentera d'attendre quelques secondes via la méthode `Kernel#sleep` ce qui permet aux autres threads de s'exécuter. Et pour le moment elle n'iront pas chercher quelles tâches sont disponibles, mais s'exécuteront de manière continue dans une boucle infinie
+Pour montrer comment fonctionnent le threading, la première implémentation des tâches se contentera d'attendre quelques secondes via la méthode `Kernel#sleep` ce qui permet aux autres threads de s'exécuter.
+Et pour le moment elle n'iront pas chercher quelles tâches sont disponibles, mais s'exécuteront de manière continue dans une boucle infinie
 
 La version simplifiée d'un worker se résume alors à{nbsp}:
 

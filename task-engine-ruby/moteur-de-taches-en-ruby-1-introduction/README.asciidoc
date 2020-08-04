@@ -18,7 +18,8 @@ ifndef::source-highlighter[]
 :pygments-style: friendly
 endif::[]
 
-Un {mdt} est une brique logicielles dont le rôle est d'exécuter de manière asynchrone des tâches qu'on lui fournit. On l'alimente en tâche en ajoutant des éléments dans un tuyau&#8201;—{nbsp}par exemple une file de messages{nbsp}—&#8201;et il les consomme aussi rapidement que possible.
+Un {mdt} est une brique logicielle dont le rôle est d'exécuter de manière asynchrone des tâches qu'on lui fournit.
+On l'alimente en tâche en ajoutant des éléments dans un tuyau&#8201;—{nbsp}par exemple une file de messages{nbsp}—&#8201;et il les consomme aussi rapidement que possible.
 
 Vous avez par exemple Quartz en Java ou Sidekiq en Ruby.
 
