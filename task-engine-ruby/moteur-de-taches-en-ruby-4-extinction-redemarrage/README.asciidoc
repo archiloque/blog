@@ -3,13 +3,13 @@ ifeval::["{doctype}" == "book"]
 = Partie 4 : l'extinction
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un moteur de tâches en Ruby partie 4 : l'extinction
+= Écrire un moteur de tâches en Ruby partie 4 : extinction et redémarrage
 endif::[]
 :author: Julien Kirch
 :revnumber: v0.1
 :revdate: 2020-07-12
 :article_lang: fr
-:article_description: S'arrêter proprement c'est important
+:article_description: S'arrêter proprement, et vérifier que tout est OK au redémarrage
 :article_image: steampunk.jpg
 ifndef::source-highlighter[]
 :source-highlighter: pygments

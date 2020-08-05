@@ -9,7 +9,7 @@ module TaskEngine
   
   class Engine
     def initialize
-      LOGGER.info("Starting engine")
+      LOGGER.info('Starting engine')
       0.upto(WORKERS_NUMBER - 1) do |worker_index|
         Worker.new(worker_index)
       end

@@ -109,9 +109,9 @@ Thread.new do
   end
 
 def execute
-      p "Task is starting"
+      p 'Task is starting'
       sleep(5)
-      p "Task is stopping"
+      p 'Task is stopping'
 end
 ----
 
