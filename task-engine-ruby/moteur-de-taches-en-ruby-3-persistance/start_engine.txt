@@ -30,7 +30,7 @@ Worker 3 starting task 704
 (0.000946s) UPDATE "tasks" SET "status" = 'running' WHERE ("id" = 705)
 (0.000791s) COMMIT
 Worker 1 starting task 705
-Worker 0 finished task 701, took 107.86200000000001ms
+Worker 0 finished task 701, took 5002.389ms
 (0.000386s) BEGIN
 (0.000475s) DELETE FROM "tasks" WHERE ("id" = 701)
 (0.000540s) COMMIT

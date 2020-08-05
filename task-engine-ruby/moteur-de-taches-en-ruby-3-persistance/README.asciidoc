@@ -113,6 +113,10 @@ Indexes:
 ----
 
 Pour pouvoir manipuler les tâches il me reste à déclarer la connexion à la base et le modèle qui représente une tâche.
+
+Lors de la configuration de l'accès à la base de donnée, j'indiquerai d'utiliser au maximum une connection par worker plus une pour le moteur.
+Cela permet que chaque worker ait une connection à lui plutôt que de risquer que les worker ne s'attendent pour pouvoir faire des requêtes.
+
 Pour le moment je vais tout conserver dans le même fichier{nbsp}:
 
 .task_engine.rb
@@ -243,11 +247,11 @@ Reste ensuite à modifier `TaskEngine::Worker#exécute` pour utiliser ces deux m
 .task_engine.rb
 [source,ruby]
 ----
-def exécute
-  starting_time = DateTime.now
+def execute
   while (task = try_acquire_task)
+    starting_time = DateTime.now
     LOGGER.info("Worker #{@worker_index} starting task #{task.id}")
-    sleep(0.1)
+    sleep(5)
     stopping_time = DateTime.now
     elapsed_time = (stopping_time - starting_time).to_f * MILLISECONDS_IN_A_DAY
     LOGGER.info("Worker #{@worker_index} finished task #{task.id}, took #{elapsed_time}ms")
@@ -267,8 +271,8 @@ include::start_engine.txt[]
 À cette étape le noyau du système est là{nbsp}: on peut créer des tâches et quand on le lance le moteur va les exécuter jusqu'à épuisement.
 
 ifeval::["{doctype}" == "book"]
-Dans la partie suivante je vais m'intéresser à l'extinction du moteur.
+Dans la partie suivante je vais m'intéresser à l'arrêt et et au redémarrage du moteur.
 endif::[]
 ifeval::["{doctype}" != "book"]
-link:../moteur-de-taches-en-ruby-4-extinction/[Dans l'article suivant] je vais m'intéresser à l'extinction et et au redémarrage.
+link:../moteur-de-taches-en-ruby-4-extinction/[Dans l'article suivant] je vais m'intéresser à l'arrêt et et au redémarrage.
 endif::[]

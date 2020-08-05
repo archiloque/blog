@@ -109,11 +109,13 @@ Thread.new do
   end
 
 def execute
-      p 'Task is starting'
-      sleep(5)
-      p 'Task is stopping'
+  p 'Task is starting'
+  sleep(5)
+  p 'Task is stopping'
 end
 ----
+
+Après avoir lancé les différent workers, le thread principal se met en pause pour permettre aux worker de s'exécuter.
 
 Pour vérifier que cela fonctionne, il est nécessaire de lancer plusieurs workers, et d'ajouter des logs.
 

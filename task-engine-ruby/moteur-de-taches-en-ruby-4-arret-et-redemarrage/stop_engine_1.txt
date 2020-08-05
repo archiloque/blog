@@ -1,0 +1,13 @@
+I, [2020-08-05T10:42:22.284819 #41714]  INFO -- : Worker 2 starting task 844
+I, [2020-08-05T10:42:22.284956 #41714]  INFO -- : (0.006916s) SELECT * FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1 FOR UPDATE
+I, [2020-08-05T10:42:22.285702 #41714]  INFO -- : (0.000322s) UPDATE "tasks" SET "status" = 'running' WHERE ("id" = 845)
+I, [2020-08-05T10:42:22.286261 #41714]  INFO -- : (0.000481s) COMMIT
+I, [2020-08-05T10:42:22.286368 #41714]  INFO -- : Worker 1 starting task 845
+^Crake aborted!
+Interrupt: 
+/task-engine-ruby/task_engine.rb:35:in `sleep'
+/task-engine-ruby/task_engine.rb:35:in `initialize'
+/task-engine-ruby/Rakefile:4:in `new'
+/task-engine-ruby/Rakefile:4:in `block in <top (required)>'
+Tasks: TOP => default => start_engine
+(See full trace by running task with --trace)

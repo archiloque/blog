@@ -1,0 +1,270 @@
+[#MDT-4]
+ifeval::["{doctype}" == "book"]
+= Partie 4 : arrêt et redémarrage
+endif::[]
+ifeval::["{doctype}" != "book"]
+= Écrire un moteur de tâches en Ruby partie 4 : arrêt et redémarrage
+endif::[]
+:author: Julien Kirch
+:revnumber: v0.1
+:revdate: 2020-07-12
+:article_lang: fr
+:article_description: S'arrêter proprement, et vérifier que tout est OK au redémarrage
+:article_image: steampunk.jpg
+ifndef::source-highlighter[]
+:source-highlighter: pygments
+:pygments-style: friendly
+endif::[]
+:mdt: moteur de tâches
+:msdt: moteurs de tâches
+
+ifeval::["{doctype}" != "book"]
+Ceci est le quatrième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
+
+Après link:../moteur-de-taches-en-ruby-1-introduction[avoir introduit le sujet], link:../moteur-de-taches-en-ruby-2-boucle-de-traitement[construit la base de la boucle de traitement], link:../moteur-de-taches-en-ruby-3-persistance[mis en place la persistance] je vais m'intéresser maintenant à l'arrêt et au redémarrage.
+endif::[]
+
+== L'importance de bien éteindre le {mdt}
+
+Après l'avoir lancé, voici ce qui se passe quand on éteint le {mdt} en appuyant sur `CONTROL`+`C`{nbsp}:
+
+[source,bash]
+----
+include::stop_engine_1.txt[]
+----
+
+Le {mdt} s'arrête immédiatement et toutes les tâches s'arrêtent net.
+Si on veut utiliser ce type de fonctionnement, cela signifie que toutes les tâches doivent être développées de manière à ce qu'elles puissent être arrêté es n'importe quand.
+
+Si les tâches n'utilisent que la base de données et une seule transaction, cela peut être envisageable, mais dès lors qu'elles communiquent avec l'extérieur les choses deviennent plus compliquées.
+Par exemple une tâches chargée d'envoyer un mail puis de mettre à jour la base de donnée pour indiquer que le mail est parti pourrait être arrêtée juste après l'envoi du mail.
+Cela signifie qu'au redémarrage du {mdt} si la tâche est relancée elle enverrait un autre mail identique.
+
+C'est pour cela qu'en général, lorsqu'un {mdt} reçoit une commande d'arrêt, au lieu de stopper les tâches en cours il ne démarre de nouvelles tâches et attend pour s'éteindre que les tâches déjà lancées se terminent.
+
+Cela signifie dans les conditions normales d'opérations d'un arrêt/relance, les tâches peuvent s'appuyer sur l'hypothèse qu'elles ne seront pas stoppées en cours de route.
+
+Je parle de conditions normale car un cas exceptionnel est toujours possible de la même manière que n'importe quel programme, par exemple une machine virtuelle qui crashe. Cela signifie que le risque existe toujours, même s'il est faible.
+
+Pour une tâche qui envoie un mail, il est peut-être acceptable qu'en cas de crash le mail soit envoyé deux fois, par contre pour une tâche qui fait un virement entre deux comptes bancaires, il vaut peut-être mieux se prémunir contre le risque que le virement soit effectué deux fois même si le risque de crash est faible.
+
+== Les signaux
+
+Pour exécuter du code lorsqu'un programme s'arrête, il faut généralement indiquer au système qu'en cas de demande d'arrêt il doit executer un bloc de code ou une méthode spécifique plutôt que d'utiliser le comportement par défaut qui est de tout stopper d'un coup.
+
+Sur les systèmes d'exploitations comme Linux ou macOS, la demande d'arrêt (par exemple lorsque vous appuyez sur `CONTROL`+`C`) est communiquée au programme sous forme d'un link:https://fr.wikipedia.org/wiki/Signal_(informatique)[signal].
+
+Il existe différents types de signaux identifiés par un nom et un numéro, certains sont normalisés et correspondent aux mesages que le système avait besoin d'envoyer dans les systèmes UNIX classiques, et d'autres sont dépendants du système d'exploitation.
+
+Pour gérer une fin d'execution, il faut en principe écouter deux signaux qui font partie de ceux qui sont normalisés{nbsp}:
+
+- `SIGTERM` (pour _termination_) qui porte le numéro 15 et qui indique que le programme à qui on envoie le signal doit s'arrêter.
+- `SIGINT` (pour _interrupt_) qui porte le numéro 2 et qui est envoyé lorsqu'on appuie sur `CONTROL`+`C` dans un terminal.
+
+Le comportement est souvent le même pour les deux signaux.
+
+En Ruby, pour définir un bloc de code à appeller quand un signal est reçu il faut appeller `Signal::trap` en lui passant en paramètre le nom ou le numéro du signal{nbsp}:
+
+[source,ruby]
+----
+Signal.trap('SIGTERM') do
+  # TODO: implement signal handling
+end
+----
+
+À noter que le code appelé lors de la réception d'un signal n'est pas du code comme les autres car le système d'exploitation utilise des routines spécifiques pour l'invoquer, et ce faisant certaines fonctionnalités qu'on tient normallement pour acquises sont indisponibles.
+
+Cela signifie qu'il doit respecter certaines règles pour ne pas poser de problème au système d'exploitation et faite crasher l'application.
+Ainsi en théorie les allocation mémoire ou les entrées/sorties sont interdites.
+En pratique il est possible que cela ne pose pas problème, même dans la très grande majorité des cas, mais vous n'avez aucune garantie.
+
+Par exemple si vous essayer d'utiliser un log dans un code de gestion de signal{nbsp}:
+
+[source,ruby]
+----
+require 'logger'
+
+LOGGER = Logger.new(STDOUT)
+
+Signal.trap('SIGTERM') do
+  LOGGER.info('Received a SIGTERM signal')
+end
+----
+
+Ruby vous indiquera que cela ne fonctionnera pas par un "`log writing failed. can\'t be called from trap context`", car pour éviter le risque que cet appel fasse crasher le programme, la machine virtuelle désactive explicitement son fonctionnement dans ce contexte.
+
+La bonne pratique est donc de limiter au maximum ce que vous mettez dans le bloc de gestion de signal, par exemple d'uniquement changer la valeur d'une variable, et de faire en sorte que le vrai traitement se fasse en dehors du bloc.
+
+== Le signal d'arrêt dans le {mdt}
+
+Dans le {mdt}, chaque worker execute une boucle où il essaie de trouver une tâche à executer puis la lance{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+def execute
+  while (task = try_acquire_task)
+    # …
+  end
+end
+----
+
+Pour gérer l'extinction, le bloc de gestion de signal va donc changer la valeur d'une variable, et à chaque tour de boucle le worker va vérifier s'il faut s'arrêter{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+def execute
+  while (status == RUNNING) && (task = try_acquire_task)
+    # …
+  end
+end
+----
+
+Ce statut va être stocké au niveau du `TaskEngine::Engine`, auquel les worker vont accéder{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+class Engine
+  ENGINE_STATUS_RUNNING = 'running'
+  ENGINE_STATUS_STOPPING = 'stopping'
+
+  attr_reader :status
+
+  def initialize
+    @workers = []
+    LOGGER.info('Starting engine')
+    @status = ENGINE_STATUS_RUNNING
+    Signal.trap('SIGTERM') do
+      @status = ENGINE_STATUS_STOPPING
+    end
+    Signal.trap('SIGINT') do
+      @status = ENGINE_STATUS_STOPPING
+    end
+    0.upto(WORKERS_NUMBER - 1) do |worker_index|
+      Worker.new(self, worker_index)
+    end
+    sleep
+  end
+end
+
+class Worker
+  # @param [TaskEngine::Engine] engine
+  # @param [Integer] worker_index
+  def initialize(engine, worker_index)
+    @engine = engine
+    @worker_index = worker_index
+    LOGGER.info("Starting worker #{worker_index}")
+    @thread = Thread.new do
+      execute
+    end
+  end
+
+  def execute
+    while (@engine.status == TaskEngine::Engine::ENGINE_STATUS_RUNNING) &&
+        (task = try_acquire_task)
+      starting_time = DateTime.now
+      LOGGER.info("Worker #{@worker_index} starting task #{task.id}")
+      sleep(5)
+      stopping_time = DateTime.now
+      elapsed_time = (stopping_time - starting_time).to_f * MILLISECONDS_IN_A_DAY
+      LOGGER.info("Worker #{@worker_index} finished task #{task.id}, took #{elapsed_time}ms")
+      end_task(task)
+    end
+    LOGGER.info("Worker #{@worker_index} is stopping")
+  end
+# …
+----
+
+Lorsque le thread du worker n'a plus rien à faire, il s'arrête.
+
+Testons{nbsp}:
+
+[source,bash]
+----
+include::stop_engine_2.txt[]
+----
+
+== S'arrêter vraiment
+
+Après avoir apuyé sur sur `CONTROL`+`C`, on voit bien les différents workers qui s'arrêtent après avoir terminé l'exécution de leurs tâches, mais le {mdt} lui ne s'arrête pas. D'autres appuis sur `CONTROL`+`C` ne servent à rien.
+
+Le problème c'est le thread principal qui est celui qui démarre du moteur.
+
+Après avoir créé les différents worker, le thread principal se met en attente pour une durée indéfinie et ne s'arrête donc j'amais, et il est de même pour le {mdt}.
+
+Une solution serait d'arrêter ce thread dans le code de traitement du signal, mais cela aurait pour effet d'arrêter immédiatement le programme, sans laisser aux workers la possibilité de terminer leurs traitements.
+
+Il faut donc que le thread principal se termine après la fin de l'execution de l'ensemble des tâches en cours, c'est à dire quand les threads correspondant aux différents workers se sont terminés.
+
+Dans l'API des thread `Thread#join` permet justement de suspendre l'activité d'un thread en attendant qu'un autre thread se termine.
+Il faut dont attendre ainsi les threads de tous les workers l'un après l'autre.
+Si un thread est déjà arrêté lorsqu'on appelle `Thread#join` sur lui, la méthode retourne immédiatement.
+Cela signifie qu'il n'y a pas à se préoccuper de savoir si un worker a déjà terminé ou pas.
+
+Lorsqu'on démarre les worker, il faut donc les stocker pour pouvoir ensuite accéder à leurs threads, et plutôt que d'appeler `Kernel#sleep`, le moteur attendra la fin du premier thread.
+
+.task_engine.rb
+[source,ruby]
+----
+class Engine
+  def initialize
+    @workers = []
+    LOGGER.info('Starting engine')
+    @status = ENGINE_STATUS_RUNNING
+    Signal.trap('SIGTERM') do
+      @status = ENGINE_STATUS_STOPPING
+    end
+    Signal.trap('SIGINT') do
+      @status = ENGINE_STATUS_STOPPING
+    end
+    0.upto(WORKERS_NUMBER - 1) do |worker_index|
+      @workers << Worker.new(self, worker_index)
+    end
+    @workers.each do |worker|
+      LOGGER.info("Joining worker #{worker.worker_index}")
+      worker.thread.join
+    end
+  end
+end
+
+class Worker
+  attr_reader :thread, :worker_index
+
+  # @param [TaskEngine::Engine] engine
+  # @param [Integer] worker_index
+  def initialize(engine, worker_index)
+    @engine = engine
+    @worker_index = worker_index
+    LOGGER.info("Starting worker #{worker_index}")
+    @thread = Thread.new do
+      execute
+    end
+  end
+  # …
+end
+----
+
+[source,bash]
+----
+include::stop_engine_3.txt[]
+----
+
+Après récection du signal, on voit que le thread de moteur attend successivement les différents worker pour ensuite arriver au bout de la méthode `TaskEngine::Engine#initialize`, ce qui stoppe le programme.
+
+== Redémarrer proprement
+
+Le cas de l'arrêt dans une situation normale est donc couvert.
+Reste celui de l'arrêt exceptionnel.
+
+Cela peut correspondre à une machine virtuelle qui crashe, un bug qui fait planter la machine virtuelle Ruby.
+Cela peut aussi être une conséquence d'un arrêt normal qui ne s'est pas bien terminé.
+
+En effet si une tâche reste bloquée, par exemple parce qu'un appel réseau n'a pas de timeout en cas de non réponse, une tâche peut rester bloquée indéfiniment, et donc empêcher le {mdt} de s'arrêter.
+
+Pour le stopper, on peut utiliser un autre signal, typiquement `SIGKILL` (qui en passant ne peut pas être intercepté par du code applicatif: c'est le système d'exploitation qui se charge de faire le ménage lui-même).
+Ce signal portant le numéro 9, c'est lui qui est envoyé quand on appelle `kill -9`.
+
+Dans ce cas le programme s'arrête bel et bien.
+Il faut maintenant s'intéresser aux tâches qui ont été stoppées brutalement.
