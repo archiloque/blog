@@ -32,7 +32,9 @@ Le type de tâche sera défini par le nom de la classe de la tâche qu'il faut l
 
 Par contre il y a plusieurs choix possibles pour le fonctionnement des tâches, par exemple{nbsp}:
 
-. Les tâches peuvent être des singletons qu'on instancie une seule fois par {mdt} et sur lesquelle on appelle une méthode `execute`
+=== Singletons
+
+Les tâches peuvent être des singletons qu'on instancie une seule fois par {mdt} et sur lesquelle on appelle une méthode `execute`
 
 [source,ruby]
 ----
@@ -47,8 +49,9 @@ class MyTask
 end
 ----
 
-[start=2]
-. Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur sans paramètre puis une méthode `execute` qui prend en paramètre les paramètres d'exécution
+=== `execute` avec paramètres
+
+Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur sans paramètre puis une méthode `execute` qui prend en paramètre les paramètres d'exécution
 
 [source,ruby]
 ----
@@ -62,8 +65,9 @@ class MyTask
 end
 ----
 
-[start=3]
-. Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution puis une méthode `execute` sans paramètre 
+=== `execute` sans paramètres
+
+Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution puis une méthode `execute` sans paramètre 
 
 [source,ruby]
 ----
@@ -77,8 +81,9 @@ class MyTask
 end
 ----
 
-[start=4]
-. Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution qui fait tout le traitement, il n'y a pas de méthode `execute`
+=== Tout dans le constructeur
+
+Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution qui fait tout le traitement, il n'y a pas de méthode `execute`
 
 [source,ruby]
 ----
@@ -113,3 +118,4 @@ class MyTask
     end
   end
 end
+----
