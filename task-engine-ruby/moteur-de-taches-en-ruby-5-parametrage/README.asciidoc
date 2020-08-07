@@ -99,7 +99,9 @@ Je vais choisir la ???? approche.
 La première est peut-être plus élégante mais elle a deux inconvénients :
 
 - si le code de la tâche est un peu complexe et que des sous-méthodes deviennent nécessaires, le fait de ne pas pouvoir utiliser de membre d'instance oblige à passer plus de choses en paramètres, ou de créer des classes ou des structures spécifiques
-- elle empêche d'utiliser certains modules qui ajoutent des membres d'instances ou à nouveau elle oblige à créer des classes supplémentaires qui de fait vont remplacer la classe de la tâche car le code va ressembler à{nbsp}:
+- elle empêche d'utiliser certains modules qui ajoutent des membres d'instances ou à nouveau elle oblige à créer des classes supplémentaires qui de fait vont remplacer la classe de la tâche
+
+Au final le code va souvent ressembler à{nbsp}:
 
 [source,ruby]
 ----
@@ -119,3 +121,5 @@ class MyTask
   end
 end
 ----
+
+Au final il vaut mieux laisser aux tâches la responsabilité d'utiliser elles-mêmes des singletons en interne si c'est nécessaire, et de permettre d'économiser une indirection dans le cas le plus fréquent.
