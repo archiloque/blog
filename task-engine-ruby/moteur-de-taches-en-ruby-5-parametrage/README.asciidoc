@@ -24,7 +24,7 @@ Ceci est le cinquième article d'une série de XXX décrivant pas à pas comment
 Après m'être occupé de link:../moteur-de-taches-en-ruby-4-arret-et-redemarrage[l'arrêt et du redémarrage] je vais m'intéresser maintenant au paramétrage des tâches.
 endif::[]
 
-Pour le moment le {mdt} ne sait executer qu'un seul type de tâches et n'accepte pas de paramètres, c'était suffisant jusque là mais pour la suite il va devenir nécessaire de le changer.
+Pour le moment le {mdt} ne sait exécuter qu'un seul type de tâches et n'accepte pas de paramètres, c'était suffisant jusque là mais pour la suite il va devenir nécessaire de le changer.
 
 == Comment paramétrer
 
@@ -34,7 +34,7 @@ Par contre il y a plusieurs choix possibles pour le fonctionnement des tâches, 
 
 === Singletons
 
-Les tâches peuvent être des singletons qu'on instancie une seule fois par {mdt} et sur lesquelle on appelle une méthode `execute`
+Les tâches peuvent être des singletons qu'on instancie une seule fois par {mdt} et sur lesquelles on appelle une méthode `execute`
 
 [source,ruby]
 ----
@@ -51,7 +51,7 @@ end
 
 === `execute` avec paramètres
 
-Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur sans paramètre puis une méthode `execute` qui prend en paramètre les paramètres d'exécution
+Les tâches sont instanciées à chaque exécution, pour cela on appelle un constructeur sans paramètre puis une méthode `execute` qui prend en paramètre les paramètres d'exécution
 
 [source,ruby]
 ----
@@ -67,7 +67,7 @@ end
 
 === `execute` sans paramètres
 
-Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution puis une méthode `execute` sans paramètre 
+Les tâches sont instanciées à chaque exécution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution puis une méthode `execute` sans paramètre 
 
 [source,ruby]
 ----
@@ -83,7 +83,7 @@ end
 
 === Tout dans le constructeur
 
-Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution qui fait tout le traitement, il n'y a pas de méthode `execute`
+Les tâches sont instanciées à chaque exécution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution qui fait tout le traitement, il n'y a pas de méthode `execute`
 
 [source,ruby]
 ----
@@ -96,7 +96,7 @@ end
 
 Je vais choisir la ???? approche.
 
-La première est peut-être plus élégante mais elle a deux inconvénients :
+La première a une forme d'élégance mais elle a deux inconvénients{nbsp}:
 
 - si le code de la tâche est un peu complexe et que des sous-méthodes deviennent nécessaires, le fait de ne pas pouvoir utiliser de membre d'instance oblige à passer plus de choses en paramètres, ou de créer des classes ou des structures spécifiques
 - elle empêche d'utiliser certains modules qui ajoutent des membres d'instances ou à nouveau elle oblige à créer des classes supplémentaires qui de fait vont remplacer la classe de la tâche
