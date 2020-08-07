@@ -19,8 +19,97 @@ endif::[]
 :msdt: moteurs de tâches
 
 ifeval::["{doctype}" != "book"]
-Ceci est le quatrième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
+Ceci est le cinquième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
 
 Après m'être occupé de link:../moteur-de-taches-en-ruby-4-arret-et-redemarrage[l'arrêt et du redémarrage] je vais m'intéresser maintenant au paramétrage des tâches.
 endif::[]
 
+Pour le moment le {mdt} ne sait executer qu'un seul type de tâches et n'accepte pas de paramètres, c'était suffisant jusque là mais pour la suite il va devenir nécessaire de le changer.
+
+== Comment paramétrer
+
+Le type de tâche sera défini par le nom de la classe de la tâche qu'il faut lancer, c'est ce que font tous les outils que je connais et je ne vois pas d'autre approche intéressante.
+
+Par contre il y a plusieurs choix possibles pour le fonctionnement des tâches, par exemple{nbsp}:
+
+. Les tâches peuvent être des singletons qu'on instancie une seule fois par {mdt} et sur lesquelle on appelle une méthode `execute`
+
+[source,ruby]
+----
+class MyTask
+  # Instance is a singleton managed by the engine
+  def initialize()
+  end
+
+  # @param [Hash] parameters
+  def execute(parameters)
+  end
+end
+----
+
+[start=2]
+. Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur sans paramètre puis une méthode `execute` qui prend en paramètre les paramètres d'exécution
+
+[source,ruby]
+----
+class MyTask
+  def initialize()
+  end
+
+  # @param [Hash] parameters
+  def execute(parameters)
+  end
+end
+----
+
+[start=3]
+. Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution puis une méthode `execute` sans paramètre 
+
+[source,ruby]
+----
+class MyTask
+  # @param [Hash] parameters
+  def initialize(parameters)
+  end
+
+  def execute()
+  end
+end
+----
+
+[start=4]
+. Les tâches sont instanciées à chaque execution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution qui fait tout le traitement, il n'y a pas de méthode `execute`
+
+[source,ruby]
+----
+class MyTask
+  # @param [Hash] parameters
+  def initialize(parameters)
+  end
+end
+----
+
+Je vais choisir la ???? approche.
+
+La première est peut-être plus élégante mais elle a deux inconvénients :
+
+- si le code de la tâche est un peu complexe et que des sous-méthodes deviennent nécessaires, le fait de ne pas pouvoir utiliser de membre d'instance oblige à passer plus de choses en paramètres, ou de créer des classes ou des structures spécifiques
+- elle empêche d'utiliser certains modules qui ajoutent des membres d'instances ou à nouveau elle oblige à créer des classes supplémentaires qui de fait vont remplacer la classe de la tâche car le code va ressembler à{nbsp}:
+
+[source,ruby]
+----
+class MyTask
+  def initialize
+  end
+
+  # @param [Hash] parameters
+  def execute(parameters)
+    MyRealTask.new(parameters)
+  end
+
+  class MyRealTask
+    # @param [Hash] parameters
+    def initialize(parameters)
+    end
+  end
+end
