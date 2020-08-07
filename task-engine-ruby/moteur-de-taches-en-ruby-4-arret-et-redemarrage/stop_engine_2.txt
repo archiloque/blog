@@ -1,26 +1,26 @@
-I, [2020-08-05T12:26:55.697906 #44597]  INFO -- : Worker 2 starting task 850
-^CI, [2020-08-05T12:27:00.685661 #44597]  INFO -- : Worker 0 finished task 846, took 5005.947ms
-I, [2020-08-05T12:27:00.686304 #44597]  INFO -- : (0.000379s) BEGIN
-I, [2020-08-05T12:27:00.687431 #44597]  INFO -- : (0.000607s) DELETE FROM "tasks" WHERE ("id" = 846)
-I, [2020-08-05T12:27:00.688762 #44597]  INFO -- : (0.001182s) COMMIT
-I, [2020-08-05T12:27:00.688942 #44597]  INFO -- : Worker 0 is stopping
-I, [2020-08-05T12:27:00.696050 #44597]  INFO -- : Worker 3 finished task 847, took 5005.294ms
-I, [2020-08-05T12:27:00.696140 #44597]  INFO -- : Worker 1 finished task 848, took 5002.687ms
-I, [2020-08-05T12:27:00.696852 #44597]  INFO -- : (0.000278s) BEGIN
-I, [2020-08-05T12:27:00.697003 #44597]  INFO -- : (0.000632s) BEGIN
-I, [2020-08-05T12:27:00.697957 #44597]  INFO -- : (0.000560s) DELETE FROM "tasks" WHERE ("id" = 848)
-I, [2020-08-05T12:27:00.698142 #44597]  INFO -- : (0.000462s) DELETE FROM "tasks" WHERE ("id" = 847)
-I, [2020-08-05T12:27:00.698556 #44597]  INFO -- : (0.000455s) COMMIT
-I, [2020-08-05T12:27:00.698631 #44597]  INFO -- : Worker 1 is stopping
-I, [2020-08-05T12:27:00.698795 #44597]  INFO -- : (0.000555s) COMMIT
-I, [2020-08-05T12:27:00.698870 #44597]  INFO -- : Worker 3 is stopping
-I, [2020-08-05T12:27:00.700869 #44597]  INFO -- : Worker 4 finished task 849, took 5004.507ms
-I, [2020-08-05T12:27:00.701154 #44597]  INFO -- : (0.000166s) BEGIN
-I, [2020-08-05T12:27:00.701685 #44597]  INFO -- : (0.000324s) DELETE FROM "tasks" WHERE ("id" = 849)
-I, [2020-08-05T12:27:00.701827 #44597]  INFO -- : Worker 2 finished task 850, took 5003.889ms
-I, [2020-08-05T12:27:00.702106 #44597]  INFO -- : (0.000172s) BEGIN
-I, [2020-08-05T12:27:00.702452 #44597]  INFO -- : (0.000671s) COMMIT
-I, [2020-08-05T12:27:00.702548 #44597]  INFO -- : Worker 4 is stopping
-I, [2020-08-05T12:27:00.702785 #44597]  INFO -- : (0.000354s) DELETE FROM "tasks" WHERE ("id" = 850)
-I, [2020-08-05T12:27:00.703299 #44597]  INFO -- : (0.000449s) COMMIT
-I, [2020-08-05T12:27:00.703361 #44597]  INFO -- : Worker 2 is stopping
+Worker 2 starting task 850
+^CWorker 0 finished task 846, took 5005.947ms
+(0.000379s) BEGIN
+(0.000607s) DELETE FROM "tasks" WHERE ("id" = 846)
+(0.001182s) COMMIT
+Worker 0 is stopping
+Worker 3 finished task 847, took 5005.294ms
+Worker 1 finished task 848, took 5002.687ms
+(0.000278s) BEGIN
+(0.000632s) BEGIN
+(0.000560s) DELETE FROM "tasks" WHERE ("id" = 848)
+(0.000462s) DELETE FROM "tasks" WHERE ("id" = 847)
+(0.000455s) COMMIT
+Worker 1 is stopping
+(0.000555s) COMMIT
+Worker 3 is stopping
+Worker 4 finished task 849, took 5004.507ms
+(0.000166s) BEGIN
+(0.000324s) DELETE FROM "tasks" WHERE ("id" = 849)
+Worker 2 finished task 850, took 5003.889ms
+(0.000172s) BEGIN
+(0.000671s) COMMIT
+Worker 4 is stopping
+(0.000354s) DELETE FROM "tasks" WHERE ("id" = 850)
+(0.000449s) COMMIT
+Worker 2 is stopping

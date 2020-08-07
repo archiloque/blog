@@ -1,0 +1,26 @@
+[#MDT-5]
+ifeval::["{doctype}" == "book"]
+= Partie 5 : paramétrage
+endif::[]
+ifeval::["{doctype}" != "book"]
+= Écrire un moteur de tâches en Ruby partie 5 : paramétrage
+endif::[]
+:author: Julien Kirch
+:revnumber: v0.1
+:revdate: 2020-07-12
+:article_lang: fr
+:article_description: Choisir les tâches à executer et les paramétrer
+:article_image: steampunk.jpg
+ifndef::source-highlighter[]
+:source-highlighter: pygments
+:pygments-style: friendly
+endif::[]
+:mdt: moteur de tâches
+:msdt: moteurs de tâches
+
+ifeval::["{doctype}" != "book"]
+Ceci est le quatrième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
+
+Après m'être occupé de link:../moteur-de-taches-en-ruby-4-arret-et-redemarrage[l'arrêt et du redémarrage] je vais m'intéresser maintenant au paramétrage des tâches.
+endif::[]
+
