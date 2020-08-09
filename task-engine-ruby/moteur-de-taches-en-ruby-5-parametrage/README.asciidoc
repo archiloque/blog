@@ -26,13 +26,15 @@ endif::[]
 
 Pour le moment le {mdt} ne sait exécuter qu'un seul type de tâches et n'accepte pas de paramètres, c'était suffisant jusque là mais pour la suite il va devenir nécessaire de le changer.
 
-== Comment paramétrer
+== Définition de l'API des tâches
 
 Le type de tâche sera défini par le nom de la classe de la tâche qu'il faut lancer, c'est ce que font tous les outils que je connais et je ne vois pas d'autre approche intéressante.
 
+Les paramètres d'exécution des tâches sont sous forme d'une `Hash` qui est à la main des tâches.
+
 Par contre il y a plusieurs choix possibles pour le fonctionnement des tâches, par exemple{nbsp}:
 
-=== Singletons
+=== Solution 1{nbsp}: singletons
 
 Les tâches peuvent être des singletons qu'on instancie une seule fois par {mdt} et sur lesquelles on appelle une méthode `execute`
 
@@ -49,7 +51,7 @@ class MyTask
 end
 ----
 
-=== `execute` avec paramètres
+=== Solution 2{nbsp}: `execute` avec paramètres
 
 Les tâches sont instanciées à chaque exécution, pour cela on appelle un constructeur sans paramètre puis une méthode `execute` qui prend en paramètre les paramètres d'exécution
 
@@ -65,7 +67,7 @@ class MyTask
 end
 ----
 
-=== `execute` sans paramètres
+=== Solution 3{nbsp}: `execute` sans paramètres
 
 Les tâches sont instanciées à chaque exécution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution puis une méthode `execute` sans paramètre 
 
@@ -81,7 +83,7 @@ class MyTask
 end
 ----
 
-=== Tout dans le constructeur
+=== Solution 4{nbsp}: tout dans le constructeur
 
 Les tâches sont instanciées à chaque exécution, pour cela on appelle un constructeur qui prend en paramètre les paramètres d'exécution qui fait tout le traitement, il n'y a pas de méthode `execute`
 
@@ -94,9 +96,9 @@ class MyTask
 end
 ----
 
-Je vais choisir la ???? approche.
+=== Le choix
 
-La première a une forme d'élégance mais elle a deux inconvénients{nbsp}:
+La solution 1 a une forme d'élégance mais elle a deux inconvénients{nbsp}:
 
 - si le code de la tâche est un peu complexe et que des sous-méthodes deviennent nécessaires, le fait de ne pas pouvoir utiliser de membre d'instance oblige à passer plus de choses en paramètres, ou de créer des classes ou des structures spécifiques
 - elle empêche d'utiliser certains modules qui ajoutent des membres d'instances ou à nouveau elle oblige à créer des classes supplémentaires qui de fait vont remplacer la classe de la tâche
@@ -123,3 +125,18 @@ end
 ----
 
 Au final il vaut mieux laisser aux tâches la responsabilité d'utiliser elles-mêmes des singletons en interne si c'est nécessaire, et de permettre d'économiser une indirection dans le cas le plus fréquent.
+
+Les autres solutions sont assez ressemblantes, et entre toutes je préfère la solution de "`tout dans le constructeur`" qui a le numéro 4.
+
+Même si c'est celle qui peut sembler le moins "`objet`", dans les autres approches la frontière entre ce qu'il faut mettre dans le constructeur et dans le `execute` n'est pas forcément clair (ce qui peut amener à des discussion stériles), et la séparation en deux méthodes n'apporte rien en terme d'API extérieure.
+
+== Modification de schéma
+
+Je vais ajouter les deux colonnes qui manquent à la table `tasks`.
+Je vais les définir comme non nullable pour éviter toute fausse manipulations.
+Si une tâche n'a aucun paramètre d'exécution, on utilisera une `Hash` vide plutôt d'un `nil`, cela évite l'ambiguïté entre aucun paramètre d'exécution et une valeur qui manque.
+
+Pour stocker les paramètres d'exécution en utilisant une colonne de type link:https://www.postgresql.org/docs/12/datatype-json.html[`jsonb`] qui permet de stocker des données sous forme de JSON.
+
+Par rapport au fait d'utiliser du JSON stocké dans une colonne de texte, cela coûte un peu plus cher en temps d'exécution (car la base de données doit parser et valider le format), par contre cela peut simplifier les investigation car il est possible de link:https://www.postgresql.org/docs/current/functions-json.html[d'accéder au contenu des valeurs] depuis des requêtes.
+
