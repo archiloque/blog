@@ -50,20 +50,20 @@ Pour une tâche qui envoie un mail, il est peut-être acceptable qu'en cas de cr
 
 == Les signaux
 
-Pour exécuter du code lorsqu'un programme s'arrête, il faut généralement indiquer au système qu'en cas de demande d'arrêt il doit executer un bloc de code ou une méthode spécifique plutôt que d'utiliser le comportement par défaut qui est de tout stopper d'un coup.
+Pour exécuter du code lorsqu'un programme s'arrête, il faut généralement indiquer au système qu'en cas de demande d'arrêt il doit exécuter un bloc de code ou une méthode spécifique plutôt que d'utiliser le comportement par défaut qui est de tout stopper d'un coup.
 
 Sur les systèmes d'exploitations comme Linux ou macOS, la demande d'arrêt (par exemple lorsque vous appuyez sur `CONTROL`+`C`) est communiquée au programme sous forme d'un link:https://fr.wikipedia.org/wiki/Signal_(informatique)[signal].
 
 Il existe différents types de signaux identifiés par un nom et un numéro, certains sont normalisés et correspondent aux mesages que le système avait besoin d'envoyer dans les systèmes UNIX classiques, et d'autres sont dépendants du système d'exploitation.
 
-Pour gérer une fin d'execution, il faut en principe écouter deux signaux qui font partie de ceux qui sont normalisés{nbsp}:
+Pour gérer une fin d'exécution, il faut en principe écouter deux signaux qui font partie de ceux qui sont normalisés{nbsp}:
 
 - `SIGTERM` (pour _termination_) qui porte le numéro 15 et qui indique que le programme à qui on envoie le signal doit s'arrêter.
 - `SIGINT` (pour _interrupt_) qui porte le numéro 2 et qui est envoyé lorsqu'on appuie sur `CONTROL`+`C` dans un terminal.
 
 Le comportement est souvent le même pour les deux signaux.
 
-En Ruby, pour définir un bloc de code à appeller quand un signal est reçu il faut appeller `Signal::trap` en lui passant en paramètre le nom ou le numéro du signal{nbsp}:
+En Ruby, pour définir un bloc de code à appeler quand un signal est reçu il faut appeler `Signal::trap` en lui passant en paramètre le nom ou le numéro du signal{nbsp}:
 
 [source,ruby]
 ----
@@ -72,7 +72,7 @@ Signal.trap('SIGTERM') do
 end
 ----
 
-À noter que le code appelé lors de la réception d'un signal n'est pas du code comme les autres car le système d'exploitation utilise des routines spécifiques pour l'invoquer, et ce faisant certaines fonctionnalités qu'on tient normallement pour acquises sont indisponibles.
+À noter que le code appelé lors de la réception d'un signal n'est pas du code comme les autres car le système d'exploitation utilise des routines spécifiques pour l'invoquer, et ce faisant certaines fonctionnalités qu'on tient normalement pour acquises sont indisponibles.
 
 Cela signifie qu'il doit respecter certaines règles pour ne pas poser de problème au système d'exploitation et faite crasher l'application.
 Ainsi en théorie les allocation mémoire ou les entrées/sorties sont interdites.
@@ -97,7 +97,7 @@ La bonne pratique est donc de limiter au maximum ce que vous mettez dans le bloc
 
 == Le signal d'arrêt dans le {mdt}
 
-Dans le {mdt}, chaque worker execute une boucle où il essaie de trouver une tâche à executer puis la lance{nbsp}:
+Dans le {mdt}, chaque worker exécute une boucle où il essaie de trouver une tâche à exécuter puis la lance{nbsp}:
 
 .task_engine.rb
 [source,ruby]
@@ -177,9 +177,7 @@ class Worker
 # …
 ----
 
-Lorsque le thread du worker n'a plus rien à faire, il s'arrête.
-
-Testons{nbsp}:
+Lorsque le thread du worker n'a plus rien à faire, il s'arrête{nbsp}:
 
 [source]
 ----
@@ -188,15 +186,17 @@ include::stop_engine_2.txt[]
 
 == S'arrêter vraiment
 
-Après avoir apuyé sur sur `CONTROL`+`C`, on voit bien les différents workers qui s'arrêtent après avoir terminé l'exécution de leurs tâches, mais le {mdt} lui ne s'arrête pas. D'autres appuis sur `CONTROL`+`C` ne servent à rien.
+Après avoir apuyé sur sur `CONTROL`+`C`, les différents workers s'arrêtent après avoir terminé l'exécution de leurs tâches, mais le {mdt} lui ne s'arrête pas. 
+
+D'autres appuis sur `CONTROL`+`C` ne servent à rien.
 
 Le problème c'est le thread principal qui est celui qui démarre du moteur.
 
-Après avoir créé les différents worker, le thread principal se met en attente pour une durée indéfinie et ne s'arrête donc j'amais, et il est de même pour le {mdt}.
+Après avoir créé les différents worker, le thread principal se met en attente pour une durée indéfinie et ne s'arrête donc jamais, et il est de même pour le {mdt}.
 
 Une solution serait d'arrêter ce thread dans le code de traitement du signal, mais cela aurait pour effet d'arrêter immédiatement le programme, sans laisser aux workers la possibilité de terminer leurs traitements.
 
-Il faut donc que le thread principal se termine après la fin de l'execution de l'ensemble des tâches en cours, c'est à dire quand les threads correspondant aux différents workers se sont terminés.
+Il faut donc que le thread principal se termine après la fin de l'exécution de l'ensemble des tâches en cours, c'est à dire quand les threads correspondant aux différents workers se sont terminés.
 
 Dans l'API des thread `Thread#join` permet justement de suspendre l'activité d'un thread en attendant qu'un autre thread se termine.
 Il faut dont attendre ainsi les threads de tous les workers l'un après l'autre.
@@ -251,7 +251,7 @@ end
 include::stop_engine_3.txt[]
 ----
 
-Après récection du signal, on voit que le thread de moteur attend successivement les différents worker pour ensuite arriver au bout de la méthode `TaskEngine::Engine#initialize`, ce qui stoppe le programme.
+Après réception du signal, on voit que le thread de moteur attend successivement les différents worker pour ensuite arriver au bout de la méthode `TaskEngine::Engine#initialize`, ce qui stoppe le programme.
 
 == Redémarrer{nbsp}: la théorie
 
@@ -293,13 +293,13 @@ Une manière d'y parvenir est de stocker dans les tâches quelle instance du {md
 Lorsque l'instance est plantée, on peut alors facilement identifier ces tâches.
 Au redémarrage, l'instance du {mdt} peut détecter qu'il existe des tâches marquée `running` qui portent son identifiant.
 
-Cette approche aide aussi aux investigations pendant l'execution d'une tâche{nbsp}: si une tâche est lente on peut aller consulter le monitoring de la machine sur laquelle elle est lancée pour voir si on voit quelque chose d'anormal.
+Cette approche aide aussi aux investigations pendant l'exécution d'une tâche{nbsp}: si une tâche est lente on peut aller consulter le monitoring de la machine sur laquelle elle est lancée pour voir si on voit quelque chose d'anormal.
 
 Le plus simple est alors de stopper immédiatement le {mdt} en indiquant explicitement quel est le problème.
 Certes cette approche retarde la relance de du {mdt}, mais elle a deux avantages{nbsp}:
 
 - elle force à traiter le problème (même si c'est en supprimant les tâches de la base de données, mais au moins une action volontaire a été faite)
-- elle évite les mauvaises suprises dans le cas où deux instances de {mdt} sont lancées avec le même identifiant.
+- elle évite les mauvaises surprises dans le cas où deux instances de {mdt} sont lancées avec le même identifiant.
 
 Par exemple, il serait aussi possible qu'au démarrage d'une instance I1 de {mdt}, toutes les tâches marquées comme `running` soit mise à jour dans un statut spécial, par exemple `crashed`.
 Mais imaginez que suite à une erreur de configuration une autre instance I2 de {mdt} utilise le même identifiant.
@@ -424,8 +424,9 @@ Found running tasks with same instance name in the database [instance_01]
 On peut ensuite affiner les choses, par exemple afficher la liste des tâches qui sont en cours d'exécution, ou fournir des méthodes pour faciliter la reprise, mais l'essentiel est là.
 
 ifeval::["{doctype}" == "book"]
-Dans la partie suivante je vais m'intéresser au paramétrage des tâches.
+Dans la partie suivante
 endif::[]
 ifeval::["{doctype}" != "book"]
-link:../moteur-de-taches-en-ruby-5-parametrage/[Dans l'article suivant] je vais m'intéresser au paramétrage des tâches.
+link:../moteur-de-taches-en-ruby-5-parametrage/[Dans l'article suivant]
 endif::[]
+je vais m'intéresser au paramétrage des tâches.

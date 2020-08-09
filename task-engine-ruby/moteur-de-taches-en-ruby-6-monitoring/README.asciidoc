@@ -17,3 +17,21 @@ ifndef::source-highlighter[]
 endif::[]
 :mdt: moteur de tâches
 :msdt: moteurs de tâches
+
+ifeval::["{doctype}" != "book"]
+Ceci est le sixième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
+
+Après m'être intéressé au link:../moteur-de-taches-en-ruby-5-parametrage/[paramétrage des tâches] je vais m'intéresser maintenant au monitoring.
+endif::[]
+
+Pour le moment quand une tâche a été exécutée elle est effacée et on n'en garde aucune trace, à part dans les logs.
+
+Parser les logs est faisable, mais extraire certaines lignes parmi une myriades d'autres est toujours risqué, c'est pour ça que je préfère les stocker dans un endroit spécifique.
+
+ifeval::["{doctype}" == "book"]
+Comme je l'ai expliqué dans la troisième partie,
+endif::[]
+ifeval::["{doctype}" != "book"]
+Comme je l'ai expliqué dans le link:../moteur-de-taches-en-ruby-3-persistance[troisième article],
+endif::[]
+ je vais les stocker dans PostgreSQL comme les données des tâches à exécuter.

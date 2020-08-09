@@ -19,21 +19,22 @@ ifndef::source-highlighter[]
 endif::[]
 
 Un {mdt} est une brique logicielle dont le rôle est d'exécuter de manière asynchrone des tâches qu'on lui fournit.
-On l'alimente en tâche en ajoutant des éléments dans un tuyau&#8201;—{nbsp}par exemple une file de messages{nbsp}—&#8201;et il les consomme aussi rapidement que possible.
+On l'alimente en tâches en ajoutant des éléments&#8201;—{nbsp}par exemple une file de messages{nbsp}—&#8201;et il les consomme, en général aussi vite que possible.
 
 Vous avez par exemple Quartz en Java ou Sidekiq en Ruby.
 
-Leur utilisation est souvent assez simple, du moins si on s'en tient aux fonctionnalités standard, mais ce n'est pas le cas de leur fonctionnement interne.
+Leur mise en œuvre est souvent assez simple, surtout si on s'en tient aux fonctionnalités standard, mais ce n'est pas le cas de leur fonctionnement interne.
 
-En effet un {mdt} se doit (en principe) d'être efficace via du parallélisme, de ne pas perdre de tâches qu'on lui fournit, de fournir une gestion d'erreur qui permette d'investiguer les problèmes et un tas d'autres choses.
+En effet un {mdt} se doit (en principe) d'être efficace via du parallélisme, de ne pas perdre de données, de fournir une gestion d'erreur qui permette d'investiguer les problèmes et un tas d'autres choses.
 
-Ces caractéristiques ne sont pas propres à des {msdt}, au contraire on les retrouve, ou on est sensé les retrouver, dans la majorité des logiciels serveurs et des systèmes (c'est-à-dire de compositions de logiciels).
+Ces caractéristiques ne sont pas propres à des {msdt}, au contraire on les retrouve, ou on est sensé les retrouver, dans la majorité des logiciels serveurs.
 
-Elles s'appuient chacune sur des pratiques de conception des logiciels plutôt que sur du code particulièrement complexe, du moins tant qu'on choisi de s'appuyer sur des outils comme des systèmes d'exploitations ou des moteurs de bases de données.
+Aucune d'entre elle ne requiert de code particulièrement complexe, du moins tant qu'on choisi de s'appuyer sur des outils comme des systèmes d'exploitations ou des moteurs de bases de données.
 
+Il s'agit plutôt de s'appuyer sur des patterns bien choisis.
 link:https://archiloque.net/blog/comment-se-mettre-a-l-echelle-en-presence-d-erreurs/[Cet article] illustre cette situation dans le domaine de la gestion d'erreur.
 
-Cela signifie que bien comprendre le fonctionnement d'un {mdt} permet de comprendre pourquoi ces caractéristiques sont désirables quand on écrit des logiciels et comment les mettre en œuvre.
+Cela signifie que bien comprendre le fonctionnement d'un {mdt} permet de comprendre le fonctionnement d'autres logiciels qui ont les mêmes caractéristiques.
 
 Je vous propose donc de décrire pas à pas la construction de ce type d'outil.
 À chaque étape, je vais expliquer le besoin auquel répond chaque nouvel élément, et la manière d'y répondre.
@@ -41,8 +42,9 @@ Je vous propose donc de décrire pas à pas la construction de ce type d'outil.
 Si l'outil résultant ne sera pas aussi complet qu'un "`vrai`" {mdt}, il comportera tous les éléments essentiels.
 
 ifeval::["{doctype}" == "book"]
-Voila pour l'introduction, dans la partie suivante je vais construire la boucle de traitement qui forme le centre de l'outil.
+Voila pour l'introduction, dans la partie suivante
 endif::[]
 ifeval::["{doctype}" != "book"]
-Voila pour l'introduction, link:../moteur-de-taches-en-ruby-2-boucle-de-traitement[dans l'article suivant] je vais construire la boucle de traitement qui forme le centre de l'outil.
+Voila pour l'introduction, link:../moteur-de-taches-en-ruby-2-boucle-de-traitement[dans l'article suivant]
 endif::[]
+je vais construire la boucle de traitement qui forme le centre de l'outil.

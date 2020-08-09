@@ -116,8 +116,8 @@ Indexes:
 
 Pour pouvoir manipuler les tâches il me reste à déclarer la connexion à la base et le modèle qui représente une tâche.
 
-Lors de la configuration de l'accès à la base de donnée, j'indiquerai d'utiliser au maximum une connection par worker plus une pour le moteur.
-Cela permet que chaque worker ait une connection à lui plutôt que de risquer que les worker ne s'attendent pour pouvoir faire des requêtes.
+Lors de la configuration de l'accès à la base de donnée, j'indiquerai d'utiliser au maximum une connexion par worker plus une pour le moteur.
+Cela permet que chaque worker ait une connexion à lui plutôt que de risquer que les worker ne s'attendent pour pouvoir faire des requêtes.
 
 Pour le moment je vais tout conserver dans le même fichier{nbsp}:
 
@@ -128,11 +128,11 @@ require 'sequel'
 
 module TaskEngine
 
-  # Database connection path
+  # Database connexion path
   DATABASE_URL = 'postgres://task_engine@localhost/task_engine'
-  # Open the connections to the database
-  # Use at most one connection per worker plus one for the engine
-  DB = ::Sequel.connect(DATABASE_URL, max_connections: WORKERS_NUMBER + 1, logger: LOGGER)
+  # Open the connexions to the database
+  # Use at most one connexion per worker plus one for the engine
+  DB = ::Sequel.connect(DATABASE_URL, max_connexions: WORKERS_NUMBER + 1, logger: LOGGER)
 
   # The `created_at` and `updated_at` attributes should be managed by Sequel
   Sequel::Model.plugin :timestamps, force: true, update_on_create: true
@@ -167,16 +167,16 @@ Pour cela il faut sélectionner la tâche la plus ancienne, et changer son statu
 
 Mais comme plusieurs workers travaillent en parallèle, il faut faire en sorte que la même tâche ne soit pas prise en compte deux fois par deux workers.
 
-Une chose importante dans le design des tâches{nbsp}: il est souhaitable&#8201;—{nbsp}tant que cela est possible{nbsp}—&#8201;qu'une même tâche puisse être exécutée plusieurs fois de suite sans que cela soit génant.
+Une chose importante dans le design des tâches{nbsp}: il est souhaitable&#8201;—{nbsp}tant que cela est possible{nbsp}—&#8201;qu'une même tâche puisse être exécutée plusieurs fois de suite sans que cela soit gênant.
 
 Par exemple si une tâche est chargée d'envoyer un mail, si on l'exécute de nouveau il faudrait que le même mail ne soit pas envoyé une deuxième fois.
 
 Cela vient du fait qu'il est très difficile de faire en sorte que le {mdt} ne perde pas de tâche et en même temps n'exécute pas la même tâche deux fois, même en cas d'erreur ou de problème réseau.
-Dans les outils de messages, on appelle cela "`at least once`" (au moins une fois), "`at most once`" (au plus une fois) et "`exactly once`".
+Dans les outils de messages, on appelle cela "`__at least once__`" (au moins une fois), "`__at most once__`" (au plus une fois) et "`__exactly once__`".
 
 Le {mdt} se contentera de faire en sorte que la même tâche ne soit pas exécutée deux fois en même temps.
 
-Plutôt que d'essayer de faire en sorte d'avoir un système qui garantit du "`exactly once`", on préfère que le {mdt} se concentre sur le fait de ne pas perdre de tâche, et si une même tâche est exécutée une deuxième fois c'est la tâche qui est chargée que cela n'ait pas d'effet gênant.
+Plutôt que d'essayer de faire en sorte d'avoir un système qui garantit du "`__exactly once__`", on préfère que le {mdt} se concentre sur le fait de ne pas perdre de tâche, et si une même tâche est exécutée une deuxième fois c'est la tâche qui est chargée que cela n'ait pas d'effet gênant.
 
 Cela permet d'obtenir le même objectif (que le traitement final se comporte comme s'il avait été exécuté une fois), tout en modifiant les contraintes{nbsp}: au lieu d'avoir toutes les contraintes au niveau du {mdt}, elles sont en partie au niveau du {mdt} et en partie au niveau des tâches en elles-mêmes.
 
@@ -196,7 +196,7 @@ Pour cela on va utiliser la commande `SELECT … FOR UPDATE`, qui verrouille les
 
 Le relâchement du verrou se fait à la fin de la transaction en cours, qui doit donc être faite dès que possible pour limiter la période pendant laquelle les autres workers risquent d'être en attente.
 
-L'acquisition de la tâche (sélection et mise à jour du statut) doivent de toutes façon se faire dans une transaction séparée de celle de l'execution de la tâche{nbsp}:
+L'acquisition de la tâche (sélection et mise à jour du statut) doivent de toutes façon se faire dans une transaction séparée de celle de l'exécution de la tâche{nbsp}:
 
 - pour l'acquisition soit immédiatement visible dans la base{nbsp};
 - pour qu'en cas d'erreur dans la tâche qui déclencherait un `rollback`, l'acquisition ne soit pas automatiquement annulée, ce qui rendrait plus difficile la reprise.
@@ -227,7 +227,7 @@ end
 
 La méthode `try_acquire_task` retournera la tâche à exécuter ou `nil` si aucune tâche n'est disponible.
 
-Lorsque l'execution se termine, pas besoin de poser de verrou car il n'y a pas de risque qu'un autre worker veuille terminer la même tâche.
+Lorsque l'exécution se termine, pas besoin de poser de verrou car il n'y a pas de risque qu'un autre worker veuille terminer la même tâche.
 Par contre il est toujours nécessaire d'isoler le code dans une transaction à part, notamment pour qu'une erreur dans le {mdt} puisse avoir une conséquence sur la tâche qui vient d'être exécutée.
 
 .task_engine.rb
@@ -273,8 +273,9 @@ include::start_engine.txt[]
 À cette étape le noyau du système est là{nbsp}: on peut créer des tâches et quand on le lance le moteur va les exécuter jusqu'à épuisement.
 
 ifeval::["{doctype}" == "book"]
-Dans la partie suivante je vais m'intéresser à l'arrêt et et au redémarrage du moteur.
+Dans la partie suivante
 endif::[]
 ifeval::["{doctype}" != "book"]
-link:../moteur-de-taches-en-ruby-4-extinction/[Dans l'article suivant] je vais m'intéresser à l'arrêt et et au redémarrage.
+link:../moteur-de-taches-en-ruby-4-extinction/[Dans l'article suivant]
 endif::[]
+je vais m'intéresser à l'arrêt et et au redémarrage du moteur.

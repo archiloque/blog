@@ -9,7 +9,7 @@ endif::[]
 :revnumber: v0.1
 :revdate: 2020-07-12
 :article_lang: fr
-:article_description: Choisir les tâches à executer et les paramétrer
+:article_description: Choisir les tâches à exécuter et les paramétrer
 :article_image: steampunk.jpg
 ifndef::source-highlighter[]
 :source-highlighter: pygments
@@ -103,7 +103,7 @@ La solution 1 a une forme d'élégance mais elle a deux inconvénients{nbsp}:
 - si le code de la tâche est un peu complexe et que des sous-méthodes deviennent nécessaires, le fait de ne pas pouvoir utiliser de membre d'instance oblige à passer plus de choses en paramètres, ou de créer des classes ou des structures spécifiques
 - elle empêche d'utiliser certains modules qui ajoutent des membres d'instances ou à nouveau elle oblige à créer des classes supplémentaires qui de fait vont remplacer la classe de la tâche
 
-Au final le code va souvent ressembler à{nbsp}:
+Le résultat c'est que le code va souvent ressembler à{nbsp}:
 
 [source,ruby]
 ----
@@ -136,7 +136,152 @@ Je vais ajouter les deux colonnes qui manquent à la table `tasks`.
 Je vais les définir comme non nullable pour éviter toute fausse manipulations.
 Si une tâche n'a aucun paramètre d'exécution, on utilisera une `Hash` vide plutôt d'un `nil`, cela évite l'ambiguïté entre aucun paramètre d'exécution et une valeur qui manque.
 
+Cela signifie que la table doit être vide avant de lancer la migration, sinon elle échouera car la base n'acceptera pas d'ajouter des colonnes non nullable sans valeur par défaut.
+
 Pour stocker les paramètres d'exécution en utilisant une colonne de type link:https://www.postgresql.org/docs/12/datatype-json.html[`jsonb`] qui permet de stocker des données sous forme de JSON.
 
-Par rapport au fait d'utiliser du JSON stocké dans une colonne de texte, cela coûte un peu plus cher en temps d'exécution (car la base de données doit parser et valider le format), par contre cela peut simplifier les investigation car il est possible de link:https://www.postgresql.org/docs/current/functions-json.html[d'accéder au contenu des valeurs] depuis des requêtes.
+Comparé à stocker le JSON dans un champ de texte, cela coûte un peu plus cher en temps d'insertion (car la base de données doit parser et valider le format des données à l'insertion), par contre cela peut simplifier les investigation car il est possible de link:https://www.postgresql.org/docs/current/functions-json.html[d'accéder au contenu des valeurs] depuis des requêtes.
 
+.migrations/03_add_parameters.rb
+[source,ruby]
+----
+include::03_add_parameters.rb[]
+----
+
+== Définition d'une classe de tâche
+
+Pour avoir une première définition de tâche je vais migrer la tâche existante pour utiliser la nouvelle API, et en profiter pour la déplacer dans un fichier séparé.
+
+Pour mémoire, cette tâche se contentait d'attendre 5 secondes{nbsp}:
+
+[source,ruby]
+----
+sleep(5)
+----
+
+Puisqu'on a maintenant des paramètres, je vais rendre la durée d'attente paramétrable.
+Pour cela je vais récupérer la valeur dans la `Hash` de paramètres{nbsp}:
+
+.tasks.rb
+[source,ruby]
+----
+include::tasks.rb[]
+----
+
+== Création de tâches
+
+Il est possible d'insérer directement des tâches dans la base de données depuis le code métier, mais il est plus pratique de passer par une API Ruby qui isole un peu le stockage, notamment le fait de stocker les paramètres au format JSON.
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  # Make json-related methodes available
+  DB.extension :pg_json
+
+  # @param [String] task_class
+  # @param [Hash] task_parameters
+  def self.create_task(task_class, task_parameters)
+    TaskEngine::Task.create(
+        task_class: task_class,
+        # Sequel.pg_json_wrap serialize a Hash
+        # into something that can be inserted into a jsonb column
+        task_parameters: Sequel.pg_jsonb_wrap(task_parameters)
+    )
+  end
+end
+----
+
+Et je peux m'en servir pour modifier la tâche Rake qui peuple la table{nbsp}:
+
+.Rakefile
+[source,ruby]
+----
+desc 'Create tasks'
+task :create_tasks do
+  require_relative 'task_engine'
+  100.times do
+    TaskEngine.create_task(
+        'TaskEngine::Tasks::WaitingTask',
+        {
+            waiting_time: 5
+        })
+  end
+end
+----
+
+Et après exécution on peut vérifier que l'insertion se passe bien{nbsp}:
+
+[source]
+----
+psql --user=task_engine --dbname=task_engine --command="select id, task_class, task_parameters from tasks;"
+  id  |           task_class           |   task_parameters   
+------+--------------------------------+---------------------
+ 1511 | TaskEngine::Tasks::WaitingTask | {"waiting_time": 5}
+ 1512 | TaskEngine::Tasks::WaitingTask | {"waiting_time": 5}
+ 1513 | TaskEngine::Tasks::WaitingTask | {"waiting_time": 5}
+ 1514 | TaskEngine::Tasks::WaitingTask | {"waiting_time": 5}
+----
+
+== L'exécution
+
+Il manque la dernière pièce du puzzle{nbsp}: utiliser les valeurs pour créer la tâche et l'exécuter.
+
+Pour récupérer une classe à partir d'une chaîne contenant son nom Ruby fournit une méthode `Module#const_get`, il faudra ensuite en instancier le résultat en lui passant les paramètres {nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Engine
+    def execute
+      while (@engine.status == TaskEngine::Engine::ENGINE_STATUS_RUNNING) &&
+          (task = try_acquire_task)
+        starting_time = DateTime.now
+        LOGGER.info("Worker #{@worker_index} starting task #{task.id}")
+
+        task_class_name = task.task_class
+        task_class = Object.const_get(task_class_name)
+        task_class.new(task.task_parameters)
+        
+        stopping_time = DateTime.now
+        elapsed_time = (stopping_time - starting_time).to_f * MILLISECONDS_IN_A_DAY
+        LOGGER.info("Worker #{@worker_index} finished task #{task.id}, took #{elapsed_time}ms")
+        end_task(task)
+      end
+      LOGGER.info("Worker #{@worker_index} is stopping")
+    end
+  end
+end
+----
+
+Et on peut tester que le fonctionnement{nbsp}:
+
+[source]
+----
+$ TASK_ENGINE_INSTANCE=instance_01 rake start_engine
+Starting engine
+Starting worker 0
+Starting worker 1
+Starting worker 2
+Starting worker 3
+Starting worker 4
+Joining worker 0
+(0.000937s) BEGIN
+(0.001048s) SELECT * FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1 FOR UPDATE
+(0.000534s) UPDATE "tasks" SET "status" = 'running', "instance" = 'my_instance' WHERE ("id" = 1501)
+(0.000797s) COMMIT
+Worker 0 starting task 1501
+----
+
+Et voila{nbsp}: il est maintennant possible de sélectionner des tâches et de leur passer des paramètres.
+
+Pour le moment c'est assez rustique, par exemple il n'y a pas encore de gestion d'erreur, mais la structure est là.
+
+ifeval::["{doctype}" == "book"]
+Dans la partie suivante
+endif::[]
+ifeval::["{doctype}" != "book"]
+link:../moteur-de-taches-en-ruby-6-monitoring/[Dans l'article suivant]
+endif::[]
+ je vais ajouter un premier niveau de monitoring.
