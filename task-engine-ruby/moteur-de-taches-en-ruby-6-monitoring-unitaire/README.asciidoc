@@ -1,9 +1,9 @@
 [#MDT-6]
 ifeval::["{doctype}" == "book"]
-= Partie 6 : monitoring
+= Partie 6 : le monitoring unitaire
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un moteur de tâches en Ruby partie 6 : monitoring
+= Écrire un moteur de tâches en Ruby partie 6 : le monitoring unitaire
 endif::[]
 :author: Julien Kirch
 :revnumber: v0.1
@@ -28,10 +28,11 @@ Pour le moment quand une tâche a été exécutée elle est effacée et on n'en 
 
 Parser les logs est faisable, mais extraire certaines lignes parmi une myriades d'autres est toujours risqué, c'est pour ça que je préfère les stocker dans un endroit spécifique.
 
+Comme expliqué dans 
 ifeval::["{doctype}" == "book"]
-Comme je l'ai expliqué dans la troisième partie,
+la troisième partie,
 endif::[]
 ifeval::["{doctype}" != "book"]
-Comme je l'ai expliqué dans le link:../moteur-de-taches-en-ruby-3-persistance[troisième article],
+le link:../moteur-de-taches-en-ruby-3-persistance[troisième article],
 endif::[]
  je vais les stocker dans PostgreSQL comme les données des tâches à exécuter.

@@ -1,9 +1,9 @@
 [#MDT-5]
 ifeval::["{doctype}" == "book"]
-= Partie 5 : paramétrage
+= Partie 5 : le paramétrage des tâches
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un moteur de tâches en Ruby partie 5 : paramétrage
+= Écrire un moteur de tâches en Ruby partie 5 : le paramétrage des tâches
 endif::[]
 :author: Julien Kirch
 :revnumber: v0.1
@@ -282,6 +282,6 @@ ifeval::["{doctype}" == "book"]
 Dans la partie suivante
 endif::[]
 ifeval::["{doctype}" != "book"]
-link:../moteur-de-taches-en-ruby-6-monitoring/[Dans l'article suivant]
+link:../moteur-de-taches-en-ruby-6-monitoring-unitaire/[Dans l'article suivant]
 endif::[]
  je vais ajouter un premier niveau de monitoring.
