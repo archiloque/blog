@@ -1,12 +1,6 @@
 [#MDT-2]
 = Partie 2 : {article-2-nom}
 
-ifeval::["{doctype}" != "book"]
-Ceci est le deuxième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
-
-Après link:../{article-1-url}[avoir introduit le sujet], je vais maintenant construire la base de la boucle de traitement.
-endif::[]
-
 == La boucle de traitement
 
 Le centre d'un {mdt} c'est une boucle qui fait quatre choses{nbsp}:

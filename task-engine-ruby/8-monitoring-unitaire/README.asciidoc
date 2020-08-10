@@ -1,11 +1,5 @@
-[#MDT-6]
-= Partie 6 : {article-6-nom}
-
-ifeval::["{doctype}" != "book"]
-Ceci est le sixième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
-
-Après m'être intéressé au link:../{article-5-url}/[paramétrage des tâches] je vais m'intéresser maintenant au monitoring.
-endif::[]
+[#MDT-8]
+= Partie 8 : {article-8-nom}
 
 Pour le moment quand une tâche a été exécutée elle est effacée et on n'en garde aucune trace, à part dans les logs.
 
@@ -90,6 +84,8 @@ module TaskEngine
 end
 ----
 
+== Le test
+
 On peut ensuite tester le résultat{nbsp}:
 
 [source]
@@ -138,3 +134,7 @@ result     | null
 created_at | 2020-08-10 16:52:54.080519
 updated_at | 2020-08-10 16:52:59.09332
 ----
+
+La structure fonctionne donc et les données sont bien là, même si pour le moment on ne sait suivre que les tâches qui se terminent bien car la gestion d'erreur n'a pas encore été implémentée.
+
+Et justement le dernier élément qui manque pour mettre en place cette gestion d'erreur est la capacité à planifier des tâches, qui sera traitée dans la partie suivante.

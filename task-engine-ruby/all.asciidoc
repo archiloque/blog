@@ -20,20 +20,24 @@ Julien Kirch
 :article-2-nom: la boucle de traitement
 :article-3-url: 3-persistance
 :article-3-nom: le début de la persistance
-:article-4-url: 4-arret-et-redemarrage
-:article-4-nom: l'arrêt et le redémarrage
-:article-5-url: 5-parametrage
-:article-5-nom: le paramétrage des tâches
-:article-6-url: 6-monitoring-unitaire
-:article-6-nom: le monitoring unitaire
-:article-7-url: 7-planification
-:article-7-nom: la planification
-:article-8-url: 8-gestion-d-erreurs
-:article-8-nom: la gestion d'erreurs
-:article-9-url: 9-monitoring-de-bout-en-bout
-:article-9-nom: le monitoring de bout en bout
-:article-10-url: 10-optimisations
-:article-10-nom: quelques optimisations
+:article-4-url: 4-arret
+:article-4-nom: l'arrêt
+:article-5-url: 5-redemarrage
+:article-5-nom: le redémarrage
+:article-6-url: 6-parametrage
+:article-6-nom: le paramétrage des tâches
+:article-7-url: 7-ajout-taches
+:article-7-nom: l'ajout de tâches
+:article-8-url: 8-monitoring-unitaire
+:article-8-nom: le monitoring unitaire
+:article-9-url: 9-planification
+:article-9-nom: la planification
+:article-10-url: 10-gestion-d-erreurs
+:article-10-nom: la gestion d'erreurs
+:article-11-url: 11-monitoring-de-bout-en-bout
+:article-11-nom: le monitoring de bout en bout
+:article-12-url: 12-quelques-optimisations
+:article-12-nom: quelques optimisations
 
 include::{article-1-url}/README.asciidoc[]
 
@@ -54,3 +58,7 @@ include::{article-8-url}/README.asciidoc[]
 include::{article-9-url}/README.asciidoc[]
 
 include::{article-10-url}/README.asciidoc[]
+
+include::{article-11-url}/README.asciidoc[]
+
+include::{article-12-url}/README.asciidoc[]

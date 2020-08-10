@@ -1,0 +1,184 @@
+[#MDT-5]
+= Partie 5 : {article-5-nom}
+
+== Redémarrer{nbsp}: la théorie
+
+Le cas de l'arrêt dans une situation normale est donc couvert.
+Reste celui de l'arrêt exceptionnel.
+
+Cela peut correspondre à une machine virtuelle qui crashe, un bug qui fait planter la machine virtuelle Ruby.
+Cela peut aussi être une conséquence d'un arrêt normal qui ne s'est pas bien terminé.
+
+En effet si une tâche reste bloquée, par exemple parce qu'un appel réseau n'a pas de timeout en cas de non réponse, une tâche peut rester bloquée indéfiniment, et donc empêcher le {mdt} de s'arrêter.
+
+Pour le stopper, on peut utiliser un autre signal, typiquement `SIGKILL` (qui en passant ne peut pas être intercepté par du code applicatif: c'est le système d'exploitation qui se charge de faire le ménage lui-même).
+Ce signal portant le numéro 9, c'est lui qui est envoyé quand on appelle `kill -9`.
+
+Dans ce cas le programme s'arrête net et avec lui les tâches en cours d'exécution.
+
+Avec l'implémentation actuelle du {mdt}, ces tâches restent définies comme étant dans l'état `running`. Si vous avez testé le code précédent où le thread principal ne s'arrêtait pas et que vous avez du vous aussi le stopper brutalement{nbsp}:
+
+[source]
+----
+$ psql --user=task_engine --dbname=task_engine  --expanded --command="select * from tasks"
+
+-[ RECORD 1 ]---+-------------------------------
+id              | 211
+status          | running
+created_at      | 2020-08-10 16:52:50.219772
+updated_at      | 2020-08-10 16:52:50.219772
+-[ RECORD 2 ]---+-------------------------------
+id              | 212
+status          | waiting
+created_at      | 2020-08-10 16:52:50.221219
+updated_at      | 2020-08-10 16:52:50.221219
+instance        | running
+----
+
+Cela signifie qu'il est difficile de les différencier des tâches qui sont réellement lancées, que ça soit parmi les tâches des autres instances de {mdt} qui tournent, ou après avoir (volontairement ou pas) relancé l'instance de {mdt} qui a planté.
+
+Il est possible d'aller chercher dans les logs pour déterminer les tâches qui ont été lancées et qui n'ont pas été terminées avant l'arrêt, mais c'est une approche artisanale alors que pour la gestion d'erreur je préfère des solutions les plus fiables possibles.
+
+Pour identifier ces tâches, il faut pourvoir déterminer qu'elles appartiennent à l'instance de {mdt} qui a été arrêté de manière brutale.
+Une manière d'y parvenir est de stocker dans les tâches quelle instance du {mdt} est en train de les exécuter en ajoutant un identifiant.
+
+Lorsque l'instance est plantée, on peut alors facilement identifier ces tâches.
+Au redémarrage, l'instance du {mdt} peut détecter qu'il existe des tâches marquée `running` qui portent son identifiant.
+
+Cette approche aide aussi aux investigations pendant l'exécution d'une tâche{nbsp}: si une tâche est lente on peut aller consulter le monitoring de la machine sur laquelle elle est lancée pour voir si on voit quelque chose d'anormal.
+
+Le plus simple est alors de stopper immédiatement le {mdt} en indiquant explicitement quel est le problème.
+Certes cette approche retarde la relance de du {mdt}, mais elle a deux avantages{nbsp}:
+
+- elle force à traiter le problème (même si c'est en supprimant les tâches de la base de données, mais au moins une action volontaire a été faite)
+- elle évite les mauvaises surprises dans le cas où deux instances de {mdt} sont lancées avec le même identifiant.
+
+Par exemple, il serait aussi possible qu'au démarrage d'une instance I1 de {mdt}, toutes les tâches marquées comme `running` soit mise à jour dans un statut spécial, par exemple `crashed`.
+Mais imaginez que suite à une erreur de configuration une autre instance I2 de {mdt} utilise le même identifiant.
+Lors du démarrage de I1, les tâches qu'I2 est en train d'exécuter passeraient en statut `crashed`.
+Cela n'aurait peut-être aucune conséquence sur l'exécution de ces tâches, mais cela pourrait porter à confusion les personnes qui consulteraient l'état des tâches.
+
+La solution de s'arrêter immédiatement évite donc ce risque.
+
+== Redémarrer{nbsp}: la pratique
+
+La mise en œuvre est moins longue que l'explication.
+
+Tout d'abord il faut ajouter la colonne à la table{nbsp}:
+
+.migrations/02_add_instance_name.rb
+[source,ruby]
+----
+include::02_add_instance_name.rb[]
+----
+
+Pour rappel, pour lancer les migrations, la commande est `sequel -m migrations postgres://task_engine@localhost/task_engine`
+
+Ensuite il faut récupérer le nom de l'instance dans la tâche Rake de lancement et la passer au moteur. Pour ce faire je vais utiliser une variable d'environnement{nbsp}:
+
+.Rakefile
+[source,ruby]
+----
+TASK_ENGINE_INSTANCE = 'TASK_ENGINE_INSTANCE'
+
+task :start_engine do
+  unless ENV.key?(TASK_ENGINE_INSTANCE)
+    raise "Missing env variable #{TASK_ENGINE_INSTANCE}"
+  end
+  instance = ENV.fetch(TASK_ENGINE_INSTANCE)
+  require_relative 'task_engine'
+  TaskEngine::Engine.new(instance)
+end
+----
+
+Je peux ensuite l'utiliser lorsqu'un worker récupère une tâche{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+class Engine
+  ENGINE_STATUS_RUNNING = 'running'
+  ENGINE_STATUS_STOPPING = 'stopping'
+
+  attr_reader :instance, :status
+
+  def initialize(instance)
+    @instance = instance
+    # …
+  end
+end
+
+class Worker
+  # @return [TaskEngine::Task, nil]
+  def try_acquire_task
+    DB.transaction do
+      task = Task.where(status: Task::STATUS_WAITING).order(:created_at).for_update.first
+      unless task.nil?
+        Task.where(id: task.id).update(
+            status: Task::STATUS_RUNNING,
+            instance: @engine.instance
+            )
+        task
+      end
+    end
+  end
+end
+----
+
+Si je lance le {mdt} (en passant le nom de l'instance en variable d'environnement) et que je regarde ce qui se passe dans la base de données, on retrouve bien le nom de l'instance{nbsp}:
+
+[source,bash]
+----
+$ TASK_ENGINE_INSTANCE=instance_01 rake start_engine
+----
+
+[source]
+----
+$ psql --user=task_engine --dbname=task_engine  --expanded --command="select * from tasks"
+
+-[ RECORD 1 ]---+-------------------------------
+id              | 211
+status          | running
+created_at      | 2020-08-10 16:52:50.219772
+updated_at      | 2020-08-10 16:52:50.219772
+instance        | instance_01
+-[ RECORD 2 ]---+-------------------------------
+id              | 212
+status          | running
+created_at      | 2020-08-10 16:52:50.221219
+updated_at      | 2020-08-10 16:52:50.221219
+instance        | instance_01
+----
+
+Et pour terminer, au lancement du {mdt}, il faut vérifier si des tâches n'existent pas déjà avec le même nom d'instance{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+class Engine
+  def initialize(instance)
+    unless Task.where(
+        status: ENGINE_STATUS_RUNNING,
+        instance: instance).empty?
+      raise "Found running tasks with same instance name in the database [#{instance}]"
+    end
+  # …
+  end
+end
+----
+
+On peut le tester en stoppant brutalement l'instance en train de se tourner et en la relançant{nbsp}:
+
+[source]
+----
+$ TASK_ENGINE_INSTANCE=instance_01 rake start_engine
+rake aborted!
+Found running tasks with same instance name in the database [instance_01]
+/task-engine-ruby/task_engine.rb:32:in `initialize'
+/task-engine-ruby/Rakefile:11:in `new'
+/task-engine-ruby/Rakefile:11:in `block in <top (required)>'
+----
+
+On peut ensuite affiner les choses, par exemple afficher la liste des tâches qui sont en cours d'exécution, ou fournir des méthodes pour faciliter la reprise, mais l'essentiel est là.
+
+Dans la partie suivante je vais m'intéresser au paramétrage des tâches.

@@ -1,11 +1,5 @@
-[#MDT-5]
-= Partie 5 : {article-5-nom}
-
-ifeval::["{doctype}" != "book"]
-Ceci est le cinquième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
-
-Après m'être occupé de link:../{article-4-url}[l'arrêt et du redémarrage] je vais m'intéresser maintenant au paramétrage des tâches.
-endif::[]
+[#MDT-6]
+= Partie 6 : {article-6-nom}
 
 Pour le moment le {mdt} ne sait exécuter qu'un seul type de tâches et n'accepte pas de paramètres, c'était suffisant jusque là mais pour la suite il va devenir nécessaire de le changer.
 
@@ -273,8 +267,8 @@ Joining worker 0
 Worker 0 starting task 1501
 ----
 
-Et voila{nbsp}: il est maintennant possible de sélectionner des tâches et de leur passer des paramètres.
+Et voila{nbsp}: il est maintenant possible de sélectionner des tâches et de leur passer des paramètres.
 
 Pour le moment c'est assez rustique, par exemple il n'y a pas encore de gestion d'erreur, mais la structure est là.
 
-Dans la partie suivante je vais ajouter un premier niveau de monitoring.
+Dans la partie suivante je vais faire en sorte que le moteur réagisse quand on ajoute des tâches en cours de route.

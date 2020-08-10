@@ -1,12 +1,6 @@
 [#MDT-3]
 = Partie 3 : {article-3-nom}
 
-ifeval::["{doctype}" != "book"]
-Ceci est le troisième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
-
-Après avoir link:../{article-2-url}[construit la boucle de traitement] je vais maintenant m'intéresser à la persistance.
-endif::[]
-
 == Quoi et comment stocker{nbsp}?
 
 Un {mdt} a besoin de stocker deux types de données : les les tâches qui ne sont pas encore lancées et les logs de tâches exécutées.
@@ -255,4 +249,4 @@ include::start_engine.txt[]
 
 À cette étape le noyau du système est là{nbsp}: on peut créer des tâches et quand on le lance le moteur va les exécuter jusqu'à épuisement.
 
-Dans la partie suivante je vais m'intéresser à l'arrêt et et au redémarrage du moteur.
+Dans la partie suivante je vais m'intéresser à l'arrêt du moteur.
