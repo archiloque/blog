@@ -1,10 +1,5 @@
 [#MDT-3]
-ifeval::["{doctype}" == "book"]
 = Partie 3 : {article-3-nom}
-endif::[]
-ifeval::["{doctype}" != "book"]
-= {titre-série} partie 3 : {article-3-nom}
-endif::[]
 
 ifeval::["{doctype}" != "book"]
 Ceci est le troisième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
@@ -260,10 +255,4 @@ include::start_engine.txt[]
 
 À cette étape le noyau du système est là{nbsp}: on peut créer des tâches et quand on le lance le moteur va les exécuter jusqu'à épuisement.
 
-ifeval::["{doctype}" == "book"]
-Dans la partie suivante
-endif::[]
-ifeval::["{doctype}" != "book"]
-link:../{article-4-url}/[Dans l'article suivant]
-endif::[]
-je vais m'intéresser à l'arrêt et et au redémarrage du moteur.
+Dans la partie suivante je vais m'intéresser à l'arrêt et et au redémarrage du moteur.

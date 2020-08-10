@@ -1,10 +1,5 @@
 [#MDT-1]
-ifeval::["{doctype}" == "book"]
 = Partie 1 : {article-1-nom}
-endif::[]
-ifeval::["{doctype}" != "book"]
-= {titre-série} partie 1 : {article-1-nom}
-endif::[]
 
 Un {mdt} est une brique logicielle dont le rôle est d'exécuter de manière asynchrone des tâches qu'on lui fournit.
 On l'alimente en tâches en ajoutant des éléments&#8201;—{nbsp}par exemple une file de messages{nbsp}—&#8201;et il les consomme, en général aussi vite que possible.
@@ -29,10 +24,4 @@ Je vous propose donc de décrire pas à pas la construction de ce type d'outil.
 
 Si l'outil résultant ne sera pas aussi complet qu'un "`vrai`" {mdt}, il comportera tous les éléments essentiels.
 
-ifeval::["{doctype}" == "book"]
-Voila pour l'introduction, dans la partie suivante
-endif::[]
-ifeval::["{doctype}" != "book"]
-Voila pour l'introduction, link:../{article-2-url}[dans l'article suivant]
-endif::[]
-je vais construire la boucle de traitement qui forme le centre de l'outil.
+Voila pour l'introduction, dans la partie suivante je vais construire la boucle de traitement qui forme le centre de l'outil.

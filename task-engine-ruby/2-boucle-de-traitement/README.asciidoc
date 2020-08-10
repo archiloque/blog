@@ -1,10 +1,5 @@
 [#MDT-2]
-ifeval::["{doctype}" == "book"]
 = Partie 2 : {article-2-nom}
-endif::[]
-ifeval::["{doctype}" != "book"]
-= {titre-série} partie 2 : {article-2-nom}
-endif::[]
 
 ifeval::["{doctype}" != "book"]
 Ceci est le deuxième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
@@ -144,10 +139,4 @@ La boucle de traitement fonctionne donc bien, ou du moins sa version simplifiée
 
 Arrêter le programme stoppe immédiatement toutes les tâches en cours d'exécution.
 
-ifeval::["{doctype}" == "book"]
-Dans la partie suivante
-endif::[]
-ifeval::["{doctype}" != "book"]
-link:../{article-3-url/[Dans l'article suivant]
-endif::[]
-je vais m'intéresser au stockage des tâches pour que les workers aillent chercher ce qu'ils ont à faire.
+Dans la partie suivante je vais m'intéresser au stockage des tâches pour que les workers aillent chercher ce qu'ils ont à faire.

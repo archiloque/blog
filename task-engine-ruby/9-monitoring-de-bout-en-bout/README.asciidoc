@@ -1,7 +1,2 @@
 [#MDT-9]
-ifeval::["{doctype}" == "book"]
 = Partie 9 : {article-9-nom}
-endif::[]
-ifeval::["{doctype}" != "book"]
-= {titre-série} partie 9 : {article-9-nom}
-endif::[]

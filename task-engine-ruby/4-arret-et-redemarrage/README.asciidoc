@@ -1,18 +1,7 @@
 [#MDT-4]
-ifeval::["{doctype}" == "book"]
 = Partie 4 : {article-4-nom}
-endif::[]
-ifeval::["{doctype}" != "book"]
-= {titre-série} partie 4 : {article-4-nom}
-endif::[]
 
-ifeval::["{doctype}" != "book"]
-Ceci est le quatrième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
-
-Après avoir link:../{article-3-url}[mis en place la persistance] je vais m'intéresser maintenant à l'arrêt et au redémarrage.
-endif::[]
-
-== L'importance de bien éteindre le {mdt}
+== Pourquoi l'extinction est importante
 
 Après l'avoir lancé, voici ce qui se passe quand on éteint le {mdt} en appuyant sur `CONTROL`+`C`{nbsp}:
 
@@ -411,10 +400,4 @@ Found running tasks with same instance name in the database [instance_01]
 
 On peut ensuite affiner les choses, par exemple afficher la liste des tâches qui sont en cours d'exécution, ou fournir des méthodes pour faciliter la reprise, mais l'essentiel est là.
 
-ifeval::["{doctype}" == "book"]
-Dans la partie suivante
-endif::[]
-ifeval::["{doctype}" != "book"]
-link:../{article-5-url}/[Dans l'article suivant]
-endif::[]
-je vais m'intéresser au paramétrage des tâches.
+Dans la partie suivante je vais m'intéresser au paramétrage des tâches.

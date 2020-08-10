@@ -1,10 +1,5 @@
 [#MDT-6]
-ifeval::["{doctype}" == "book"]
 = Partie 6 : {article-6-nom}
-endif::[]
-ifeval::["{doctype}" != "book"]
-= {titre-série} partie 6 : {article-6-nom}
-endif::[]
 
 ifeval::["{doctype}" != "book"]
 Ceci est le sixième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
@@ -16,11 +11,4 @@ Pour le moment quand une tâche a été exécutée elle est effacée et on n'en 
 
 Parser les logs est faisable, mais extraire certaines lignes parmi une myriades d'autres est toujours risqué, c'est pour ça que je préfère les stocker dans un endroit spécifique.
 
-Comme expliqué dans 
-ifeval::["{doctype}" == "book"]
-la troisième partie,
-endif::[]
-ifeval::["{doctype}" != "book"]
-le link:../{article-3-url}[troisième article],
-endif::[]
- je vais les stocker dans PostgreSQL comme les données des tâches à exécuter.
+Comme expliqué dans la troisième partie, je vais les stocker dans PostgreSQL comme les données des tâches à exécuter.
