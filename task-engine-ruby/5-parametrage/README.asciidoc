@@ -45,6 +45,7 @@ class MyTask
   end
 
   # @param [Hash] parameters
+  # @return [Hash, nil]
   def execute(parameters)
   end
 end
@@ -61,6 +62,7 @@ class MyTask
   def initialize(parameters)
   end
 
+  # @return [Hash, nil]
   def execute()
   end
 end
@@ -109,9 +111,11 @@ end
 
 Au final il vaut mieux laisser aux tâches la responsabilité d'utiliser elles-mêmes des singletons en interne si c'est nécessaire, et de permettre d'économiser une indirection dans le cas le plus fréquent.
 
-Les autres solutions sont assez ressemblantes, et entre toutes je préfère la solution de "`tout dans le constructeur`" qui a le numéro 4.
+Les autres solutions sont assez ressemblantes, et entre toutes je préfère la solution de "```execute`` avec paramètres`" qui a le numéro 2.
 
-Même si c'est celle qui peut sembler le moins "`objet`", dans les autres approches la frontière entre ce qu'il faut mettre dans le constructeur et dans le `execute` n'est pas forcément clair (ce qui peut amener à des discussion stériles), et la séparation en deux méthodes n'apporte rien en terme d'API extérieure.
+Le fait d'utiliser une méthode `execute` séparée du constructeur permet de récupérer des valeurs de retours qui peuvent être utiles pour le monitoring.
+
+Et quitte à avoir une méthode `execute` séparée, autant qu'elle reçoive les paramètres, c'est un peu plus logique du point de vue objet, et cela permet de se passer du constructeur dans une partie des cas.
 
 == Modification de schéma
 
@@ -165,7 +169,7 @@ module TaskEngine
   # @param [String] task_class
   # @param [Hash] task_parameters
   def self.create_task(task_class, task_parameters)
-    TaskEngine::Task.create(
+    Task.create(
         task_class: task_class,
         # Sequel.pg_json_wrap serialize a Hash
         # into something that can be inserted into a jsonb column
@@ -197,20 +201,31 @@ Et après exécution on peut vérifier que l'insertion se passe bien{nbsp}:
 
 [source]
 ----
-psql --user=task_engine --dbname=task_engine --command="select id, task_class, task_parameters from tasks;"
-  id  |           task_class           |   task_parameters   
-------+--------------------------------+---------------------
- 1511 | TaskEngine::Tasks::WaitingTask | {"waiting_time": 5}
- 1512 | TaskEngine::Tasks::WaitingTask | {"waiting_time": 5}
- 1513 | TaskEngine::Tasks::WaitingTask | {"waiting_time": 5}
- 1514 | TaskEngine::Tasks::WaitingTask | {"waiting_time": 5}
+$ psql --user=task_engine --dbname=task_engine  --expanded --command="select * from tasks"
+
+-[ RECORD 1 ]---+-------------------------------
+id              | 211
+status          | waiting
+created_at      | 2020-08-10 16:52:50.219772
+updated_at      | 2020-08-10 16:52:50.219772
+instance        | 
+task_class      | TaskEngine::Tasks::WaitingTask
+task_parameters | {"waiting_time": 5}
+-[ RECORD 2 ]---+-------------------------------
+id              | 212
+status          | waiting
+created_at      | 2020-08-10 16:52:50.221219
+updated_at      | 2020-08-10 16:52:50.221219
+instance        | 
+task_class      | TaskEngine::Tasks::WaitingTask
+task_parameters | {"waiting_time": 5}
 ----
 
 == L'exécution
 
 Il manque la dernière pièce du puzzle{nbsp}: utiliser les valeurs pour créer la tâche et l'exécuter.
 
-Pour récupérer une classe à partir d'une chaîne contenant son nom Ruby fournit une méthode `Module#const_get`, il faudra ensuite en instancier le résultat en lui passant les paramètres {nbsp}:
+Pour récupérer une classe à partir d'une chaîne contenant son nom Ruby fournit une méthode `Module#const_get`, il faudra ensuite en instancier la classe ainsi obtenue, puis appeler `execute` sur l'instance en lui passant les paramètres{nbsp}:
 
 .task_engine.rb
 [source,ruby]
@@ -225,7 +240,8 @@ module TaskEngine
 
         task_class_name = task.task_class
         task_class = Object.const_get(task_class_name)
-        task_class.new(task.task_parameters)
+        task_instance = task_class.new()
+        task_instance.execute(task.task_parameters)
         
         stopping_time = DateTime.now
         elapsed_time = (stopping_time - starting_time).to_f * MILLISECONDS_IN_A_DAY

@@ -4,7 +4,8 @@ module TaskEngine
       PARAMETER_WAITING_TIME = 'waiting_time'
 
       # @param [Hash] parameters
-      def initialize(parameters)
+      # @return [Hash, nil]
+      def execute(parameters)
         sleep(parameters[PARAMETER_WAITING_TIME])
       end
     end

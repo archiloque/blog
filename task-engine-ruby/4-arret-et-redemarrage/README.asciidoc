@@ -250,14 +250,19 @@ Avec l'implémentation actuelle du {mdt}, ces tâches restent définies comme é
 
 [source]
 ----
-$ psql --user=task_engine --dbname=task_engine --command="select * from tasks"
-  id  | status  |         created_at         |         updated_at         
-------+---------+----------------------------+----------------------------
-  814 | running | 2020-08-04 19:03:57.960571 | 2020-08-04 19:03:57.960571
-  815 | running | 2020-08-04 19:03:57.961684 | 2020-08-04 19:03:57.961684
-  856 | running | 2020-08-04 19:03:58.020623 | 2020-08-04 19:03:58.020623
-  857 | running | 2020-08-04 19:03:58.022388 | 2020-08-04 19:03:58.022388
-  858 | running | 2020-08-04 19:03:58.024096 | 2020-08-04 19:03:58.024096
+$ psql --user=task_engine --dbname=task_engine  --expanded --command="select * from tasks"
+
+-[ RECORD 1 ]---+-------------------------------
+id              | 211
+status          | running
+created_at      | 2020-08-10 16:52:50.219772
+updated_at      | 2020-08-10 16:52:50.219772
+-[ RECORD 2 ]---+-------------------------------
+id              | 212
+status          | waiting
+created_at      | 2020-08-10 16:52:50.221219
+updated_at      | 2020-08-10 16:52:50.221219
+instance        | running
 ----
 
 Cela signifie qu'il est difficile de les différencier des tâches qui sont réellement lancées, que ça soit parmi les tâches des autres instances de {mdt} qui tournent, ou après avoir (volontairement ou pas) relancé l'instance de {mdt} qui a planté.
@@ -359,14 +364,20 @@ $ TASK_ENGINE_INSTANCE=instance_01 rake start_engine
 
 [source]
 ----
-$ psql --user=task_engine --dbname=task_engine --command="select * from tasks"
-id   | status  | created_at          | updated_at          |  instance
------+---------+---------------------+---------------------+------------
-1101 | running | 2020-08-07 00:04:14 | 2020-08-07 00:04:14 | instance_01
-1102 | running | 2020-08-07 00:04:14 | 2020-08-07 00:04:14 | instance_01
-1103 | running | 2020-08-07 00:04:14 | 2020-08-07 00:04:14 | instance_01
-1104 | running | 2020-08-07 00:04:14 | 2020-08-07 00:04:14 | instance_01
-1105 | running | 2020-08-07 00:04:14 | 2020-08-07 00:04:14 | instance_01
+$ psql --user=task_engine --dbname=task_engine  --expanded --command="select * from tasks"
+
+-[ RECORD 1 ]---+-------------------------------
+id              | 211
+status          | running
+created_at      | 2020-08-10 16:52:50.219772
+updated_at      | 2020-08-10 16:52:50.219772
+instance        | instance_01
+-[ RECORD 2 ]---+-------------------------------
+id              | 212
+status          | running
+created_at      | 2020-08-10 16:52:50.221219
+updated_at      | 2020-08-10 16:52:50.221219
+instance        | instance_01
 ----
 
 Et pour terminer, au lancement du {mdt}, il faut vérifier si des tâches n'existent pas déjà avec le même nom d'instance{nbsp}:

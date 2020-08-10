@@ -9,6 +9,132 @@ endif::[]
 
 Pour le moment quand une tâche a été exécutée elle est effacée et on n'en garde aucune trace, à part dans les logs.
 
-Parser les logs est faisable, mais extraire certaines lignes parmi une myriades d'autres est toujours risqué, c'est pour ça que je préfère les stocker dans un endroit spécifique.
+Parser les logs est faisable, mais extraire certaines lignes parmi une myriades d'autres est toujours risqué, je préfère donc les stocker dans un endroit spécifique.
 
 Comme expliqué dans la troisième partie, je vais les stocker dans PostgreSQL comme les données des tâches à exécuter.
+
+Cela me permettra de faire des liens entre les informations de monitoring et les tâches.
+
+== Les informations de monitoring
+
+Pour l'instant lors de l'exécution d'une tâche, trois informations sont disponibles{nbsp}:
+
+- l'heure de début d'exécution
+- l'heure de fin d'exécution
+- le résultat de l'exécution des tâches
+
+Dans les trois, la première est présente dès le début de l'exécution de la tâche, et elle peut donc être définie comme non-nullable. Les autres seront renseignées à la fin de la tâche. Le résultat de l'exécution de tâches est stocké dans une colonne de type `jsonb`, pour les même raisons que les paramètres des tâches.
+
+Il faut aussi ajouter un nouveau statut `stopped` aux tâches qui indique qu'elles ont été exécutées, puisqu'elles ne seront plus supprimées.
+
+.migrations/04_create_task_executions.rb
+[source,ruby]
+----
+include::04_create_task_executions.rb[]
+----
+
+Ensuite j'ajoute la déclaration du modèle, en modifiant la définition de `Task` pour ajouter le nouveau statut la relation entre les deux{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Task < Sequel::Model
+    STATUS_WAITING = 'waiting'
+    STATUS_RUNNING = 'running'
+    STATUS_STOPPED = 'stopped'
+    one_to_many :task_executions
+  end
+  class TaskExecution < Sequel::Model
+    many_to_one :task
+  end
+end
+----
+
+== L'ajout des informations
+
+Reste à ajouter l'insertion et la mise à jour des informations d'exécution{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Worker
+    def execute
+      while (@engine.status == Engine::ENGINE_STATUS_RUNNING) &&
+          (task = try_acquire_task)
+        starting_time = DateTime.now
+        LOGGER.info("Worker #{@worker_index} starting task #{task.id}")
+        
+        task_execution = TaskExecution.create(
+            task: task,
+            started_at: starting_time
+        )
+
+        task_class_name = task.task_class
+        task_class = Object.const_get(task_class_name)
+        task_instance = task_class.new()
+        task_result = task_instance.execute(task.task_parameters)
+
+        stopping_time = DateTime.now
+        elapsed_time = (stopping_time - starting_time).to_f * MILLISECONDS_IN_A_DAY
+        LOGGER.info("Worker #{@worker_index} finished task #{task.id}, took #{elapsed_time}ms")
+        task_execution.update(
+            stopped_at: stopping_time,
+            result: Sequel.pg_json_wrap(task_result)
+        )
+        end_task(task)
+      end
+      LOGGER.info("Worker #{@worker_index} is stopping")
+    end
+end
+----
+
+On peut ensuite tester le résultat{nbsp}:
+
+[source]
+----
+$ TASK_ENGINE_INSTANCE=instance_01 rake start_engine
+
+Starting engine
+Starting worker 0
+Joining worker 0
+(0.000138s) BEGIN
+(0.000793s) SELECT * FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1 FOR UPDATE
+(0.001295s) UPDATE "tasks" SET "status" = 'running', "instance" = 'engine_1' WHERE ("id" = 201)
+(0.000911s) COMMIT
+Worker 0 starting task 201
+(0.000130s) BEGIN
+(0.000946s) INSERT INTO "task_executions" ("task_id", "started_at", "created_at", "updated_at") VALUES (201, '2020-08-10 16:52:54.054783+0200', '2020-08-10 16:52:54.055373+0200', '2020-08-10 16:52:54.055373+0200') RETURNING *
+(0.000474s) COMMIT
+Worker 0 finished task 201, took 5007.844ms
+(0.000365s) BEGIN
+(0.000829s) UPDATE "task_executions" SET "stopped_at" = '2020-08-10 16:52:59.062627+0200', "result" = 'null'::jsonb, "updated_at" = '2020-08-10 16:52:59.063566+0200' WHERE ("id" = 6)
+(0.001536s) COMMIT
+(0.000355s) BEGIN
+(0.000551s) UPDATE "tasks" SET "status" = 'stopped' WHERE ("id" = 201)
+----
+
+La table `task_executions` contient bien les informations attendues{nbsp}:
+
+[source]
+----
+$ psql --user=task_engine --dbname=task_engine  --expanded --command="select * from task_executions"
+
+-[ RECORD 1 ]--------------------------
+id         | 6
+task_id    | 201
+started_at | 2020-08-10 16:52:54.054783
+stopped_at | 2020-08-10 16:52:59.062627
+result     | null
+created_at | 2020-08-10 16:52:54.055373
+updated_at | 2020-08-10 16:52:59.063566
+-[ RECORD 2 ]--------------------------
+id         | 7
+task_id    | 202
+started_at | 2020-08-10 16:52:54.080271
+stopped_at | 2020-08-10 16:52:59.091997
+result     | null
+created_at | 2020-08-10 16:52:54.080519
+updated_at | 2020-08-10 16:52:59.09332
+----
