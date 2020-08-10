@@ -1,0 +1,7 @@
+[#MDT-7]
+ifeval::["{doctype}" == "book"]
+= Partie 7 : {article-7-nom}
+endif::[]
+ifeval::["{doctype}" != "book"]
+= {titre-série} partie 7 :  {article-7-nom}
+endif::[]

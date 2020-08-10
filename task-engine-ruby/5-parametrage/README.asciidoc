@@ -1,27 +1,15 @@
 [#MDT-5]
 ifeval::["{doctype}" == "book"]
-= Partie 5 : le paramétrage des tâches
+= Partie 5 : {article-5-nom}
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un moteur de tâches en Ruby partie 5 : le paramétrage des tâches
+= {titre-série} partie 5 : {article-5-nom}
 endif::[]
-:author: Julien Kirch
-:revnumber: v0.1
-:revdate: 2020-07-12
-:article_lang: fr
-:article_description: Choisir les tâches à exécuter et les paramétrer
-:article_image: steampunk.jpg
-ifndef::source-highlighter[]
-:source-highlighter: pygments
-:pygments-style: friendly
-endif::[]
-:mdt: moteur de tâches
-:msdt: moteurs de tâches
 
 ifeval::["{doctype}" != "book"]
 Ceci est le cinquième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
 
-Après m'être occupé de link:../moteur-de-taches-en-ruby-4-arret-et-redemarrage[l'arrêt et du redémarrage] je vais m'intéresser maintenant au paramétrage des tâches.
+Après m'être occupé de link:../{article-4-url}[l'arrêt et du redémarrage] je vais m'intéresser maintenant au paramétrage des tâches.
 endif::[]
 
 Pour le moment le {mdt} ne sait exécuter qu'un seul type de tâches et n'accepte pas de paramètres, c'était suffisant jusque là mais pour la suite il va devenir nécessaire de le changer.
@@ -282,6 +270,6 @@ ifeval::["{doctype}" == "book"]
 Dans la partie suivante
 endif::[]
 ifeval::["{doctype}" != "book"]
-link:../moteur-de-taches-en-ruby-6-monitoring-unitaire/[Dans l'article suivant]
+link:../{article-6-url}/[Dans l'article suivant]
 endif::[]
  je vais ajouter un premier niveau de monitoring.

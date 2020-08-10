@@ -1,21 +1,9 @@
 [#MDT-1]
 ifeval::["{doctype}" == "book"]
-= Partie 1 : introduction
+= Partie 1 : {article-1-nom}
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un moteur de tâches en Ruby partie 1 : introduction
-endif::[]
-:author: Julien Kirch
-:revnumber: v0.1
-:revdate: 2020-07-12
-:article_lang: fr
-:mdt: moteur de tâches
-:msdt: moteurs de tâches
-:article_description: De quoi s'agit-il ?
-:article_image: steampunk.jpg
-ifndef::source-highlighter[]
-:source-highlighter: pygments
-:pygments-style: friendly
+= {titre-série} partie 1 : {article-1-nom}
 endif::[]
 
 Un {mdt} est une brique logicielle dont le rôle est d'exécuter de manière asynchrone des tâches qu'on lui fournit.
@@ -45,6 +33,6 @@ ifeval::["{doctype}" == "book"]
 Voila pour l'introduction, dans la partie suivante
 endif::[]
 ifeval::["{doctype}" != "book"]
-Voila pour l'introduction, link:../moteur-de-taches-en-ruby-2-boucle-de-traitement[dans l'article suivant]
+Voila pour l'introduction, link:../{article-2-url}[dans l'article suivant]
 endif::[]
 je vais construire la boucle de traitement qui forme le centre de l'outil.

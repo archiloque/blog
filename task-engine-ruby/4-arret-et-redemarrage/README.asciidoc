@@ -1,27 +1,15 @@
 [#MDT-4]
 ifeval::["{doctype}" == "book"]
-= Partie 4 : l'arrêt et le redémarrage
+= Partie 4 : {article-4-nom}
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un moteur de tâches en Ruby partie 4 : l'arrêt et le redémarrage
+= {titre-série} partie 4 : {article-4-nom}
 endif::[]
-:author: Julien Kirch
-:revnumber: v0.1
-:revdate: 2020-07-12
-:article_lang: fr
-:article_description: S'arrêter proprement, et vérifier que tout est OK au redémarrage
-:article_image: steampunk.jpg
-ifndef::source-highlighter[]
-:source-highlighter: pygments
-:pygments-style: friendly
-endif::[]
-:mdt: moteur de tâches
-:msdt: moteurs de tâches
 
 ifeval::["{doctype}" != "book"]
 Ceci est le quatrième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
 
-Après avoir link:../moteur-de-taches-en-ruby-3-persistance[mis en place la persistance] je vais m'intéresser maintenant à l'arrêt et au redémarrage.
+Après avoir link:../{article-3-url}[mis en place la persistance] je vais m'intéresser maintenant à l'arrêt et au redémarrage.
 endif::[]
 
 == L'importance de bien éteindre le {mdt}
@@ -427,6 +415,6 @@ ifeval::["{doctype}" == "book"]
 Dans la partie suivante
 endif::[]
 ifeval::["{doctype}" != "book"]
-link:../moteur-de-taches-en-ruby-5-parametrage/[Dans l'article suivant]
+link:../{article-5-url}/[Dans l'article suivant]
 endif::[]
 je vais m'intéresser au paramétrage des tâches.

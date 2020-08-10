@@ -1,27 +1,15 @@
 [#MDT-6]
 ifeval::["{doctype}" == "book"]
-= Partie 6 : le monitoring unitaire
+= Partie 6 : {article-6-nom}
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un moteur de tâches en Ruby partie 6 : le monitoring unitaire
+= {titre-série} partie 6 : {article-6-nom}
 endif::[]
-:author: Julien Kirch
-:revnumber: v0.1
-:revdate: 2020-07-12
-:article_lang: fr
-:article_description: Savoir ce qui s'est passé
-:article_image: steampunk.jpg
-ifndef::source-highlighter[]
-:source-highlighter: pygments
-:pygments-style: friendly
-endif::[]
-:mdt: moteur de tâches
-:msdt: moteurs de tâches
 
 ifeval::["{doctype}" != "book"]
 Ceci est le sixième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
 
-Après m'être intéressé au link:../moteur-de-taches-en-ruby-5-parametrage/[paramétrage des tâches] je vais m'intéresser maintenant au monitoring.
+Après m'être intéressé au link:../{article-5-url}/[paramétrage des tâches] je vais m'intéresser maintenant au monitoring.
 endif::[]
 
 Pour le moment quand une tâche a été exécutée elle est effacée et on n'en garde aucune trace, à part dans les logs.
@@ -33,6 +21,6 @@ ifeval::["{doctype}" == "book"]
 la troisième partie,
 endif::[]
 ifeval::["{doctype}" != "book"]
-le link:../moteur-de-taches-en-ruby-3-persistance[troisième article],
+le link:../{article-3-url}[troisième article],
 endif::[]
  je vais les stocker dans PostgreSQL comme les données des tâches à exécuter.

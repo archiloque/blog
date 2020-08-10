@@ -1,4 +1,4 @@
-= Écrire un moteur de tâches en Ruby
+= {titre-série}
 Julien Kirch
 :revdate: 2020-08-03
 :article_lang: fr
@@ -11,23 +11,46 @@ Julien Kirch
 :figure-caption!:
 :autofit-option:
 :icons: font
+:mdt: moteur de tâches
+:msdt: moteurs de tâches
+:titre-série: Écrire un moteur de tâches en Ruby
+:article-1-url: 1-introduction
+:article-1-nom: introduction
+:article-2-url: 2-boucle-de-traitement
+:article-2-nom: la boucle de traitement
+:article-3-url: 3-persistance
+:article-3-nom: le début de la persistance
+:article-4-url: 4-arret-et-redemarrage
+:article-4-nom: l'arrêt et le redémarrage
+:article-5-url: 5-parametrage
+:article-5-nom: le paramétrage des tâches
+:article-6-url: 6-monitoring-unitaire
+:article-6-nom: le monitoring unitaire
+:article-7-url: 7-planification
+:article-7-nom: la planification
+:article-8-url: 8-gestion-d-erreurs
+:article-8-nom: la gestion d'erreurs
+:article-9-url: 9-monitoring-de-bout-en-bout
+:article-9-nom: le monitoring de bout en bout
+:article-10-url: 10-optimisations
+:article-10-nom: quelques optimisations
 
-ifndef::imagesdir[:imagesdir: ./]
+include::{article-1-url}/README.asciidoc[]
 
-include::moteur-de-taches-en-ruby-1-introduction/README.asciidoc[]
+include::{article-2-url}/README.asciidoc[]
 
-include::moteur-de-taches-en-ruby-2-boucle-de-traitement/README.asciidoc[]
+include::{article-3-url}/README.asciidoc[]
 
-include::moteur-de-taches-en-ruby-3-persistance/README.asciidoc[]
+include::{article-4-url}/README.asciidoc[]
 
-include::moteur-de-taches-en-ruby-4-arret-et-redemarrage/README.asciidoc[]
+include::{article-5-url}/README.asciidoc[]
 
-include::moteur-de-taches-en-ruby-5-parametrage/README.asciidoc[]
+include::{article-6-url}/README.asciidoc[]
 
-include::moteur-de-taches-en-ruby-6-monitoring-unitaire/README.asciidoc[]
+include::{article-7-url}/README.asciidoc[]
 
-include::moteur-de-taches-en-ruby-7-gestion-d-erreurs/README.asciidoc[]
+include::{article-8-url}/README.asciidoc[]
 
-include::moteur-de-taches-en-ruby-8-monitoring-de-bout-en-bout/README.asciidoc[]
+include::{article-9-url}/README.asciidoc[]
 
-include::moteur-de-taches-en-ruby-9-optimisations/README.asciidoc[]
+include::{article-10-url}/README.asciidoc[]

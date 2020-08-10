@@ -1,34 +1,27 @@
 [#MDT-2]
 ifeval::["{doctype}" == "book"]
-= Partie 2 : la boucle de traitement
+= Partie 2 : {article-2-nom}
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un moteur de tâches en Ruby partie 2 : la boucle de traitement
+= {titre-série} partie 2 : {article-2-nom}
 endif::[]
-:author: Julien Kirch
-:revnumber: v0.1
-:revdate: 2020-07-12
-:article_lang: fr
-:article_description: Le cœur de la machine
-:article_image: steampunk.jpg
-ifndef::source-highlighter[]
-:source-highlighter: pygments
-:pygments-style: friendly
-endif::[]
-:mdt: moteur de tâches
-:msdt: moteurs de tâches
 
 ifeval::["{doctype}" != "book"]
 Ceci est le deuxième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
 
-Après link:../moteur-de-taches-en-ruby-1-introduction[avoir introduit le sujet], je vais maintenant construire la base de la boucle de traitement.
+Après link:../{article-1-url}[avoir introduit le sujet], je vais maintenant construire la base de la boucle de traitement.
 endif::[]
 
 == La boucle de traitement
 
 Le centre d'un {mdt} c'est une boucle qui fait quatre choses{nbsp}:
 
+ifeval::["{backend}" == "docbook5"]
 image::workflow.svg[scaledwidth=50%,align="center"]
+endif::[]
+ifeval::["{backend}" != "docbook5"]
+image::{article-2-url}/workflow.svg[scaledwidth=50%,align="center"]
+endif::[]
 
 . Sélectionner la prochaine tâche à exécuter
 . Effectuer des pré-traitements (par exemple loguer)
@@ -155,6 +148,6 @@ ifeval::["{doctype}" == "book"]
 Dans la partie suivante
 endif::[]
 ifeval::["{doctype}" != "book"]
-link:../moteur-de-taches-en-ruby-2-principe/[Dans l'article suivant]
+link:../{article-3-url/[Dans l'article suivant]
 endif::[]
 je vais m'intéresser au stockage des tâches pour que les workers aillent chercher ce qu'ils ont à faire.

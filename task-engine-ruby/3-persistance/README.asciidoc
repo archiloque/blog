@@ -1,27 +1,15 @@
 [#MDT-3]
 ifeval::["{doctype}" == "book"]
-= Partie 3 : le début de la persistance
+= Partie 3 : {article-3-nom}
 endif::[]
 ifeval::["{doctype}" != "book"]
-= Écrire un moteur de tâches en Ruby partie 3 : le début de la persistance
+= {titre-série} partie 3 : {article-3-nom}
 endif::[]
-:author: Julien Kirch
-:revnumber: v0.1
-:revdate: 2020-07-12
-:article_lang: fr
-:article_description: L'importance d'être transactionnel
-:article_image: steampunk.jpg
-ifndef::source-highlighter[]
-:source-highlighter: pygments
-:pygments-style: friendly
-endif::[]
-:mdt: moteur de tâches
-:msdt: moteurs de tâches
 
 ifeval::["{doctype}" != "book"]
 Ceci est le troisième article d'une série de XXX décrivant pas à pas comment écrire un {mdt} en Ruby.
 
-Après avoir link:../moteur-de-taches-en-ruby-2-boucle-de-traitement[construit la base de la boucle de traitement] et je vais maintenant m'intéresser à la persistance.
+Après avoir link:../{article-2-url}[construit la boucle de traitement] je vais maintenant m'intéresser à la persistance.
 endif::[]
 
 == Quoi et comment stocker{nbsp}?
@@ -276,6 +264,6 @@ ifeval::["{doctype}" == "book"]
 Dans la partie suivante
 endif::[]
 ifeval::["{doctype}" != "book"]
-link:../moteur-de-taches-en-ruby-4-extinction/[Dans l'article suivant]
+link:../{article-4-url}/[Dans l'article suivant]
 endif::[]
 je vais m'intéresser à l'arrêt et et au redémarrage du moteur.
