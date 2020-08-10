@@ -1,5 +1,5 @@
-[#MDT-6]
-= Partie 6 : {article-6-nom}
+[#MDT-06]
+= Partie 6 : {article-06-nom}
 
 Pour le moment le {mdt} ne sait exécuter qu'un seul type de tâches et n'accepte pas de paramètres, c'était suffisant jusque là mais pour la suite il va devenir nécessaire de le changer.
 
@@ -234,7 +234,7 @@ module TaskEngine
 
         task_class_name = task.task_class
         task_class = Object.const_get(task_class_name)
-        task_instance = task_class.new()
+        task_instance = task_class.new
         task_instance.execute(task.task_parameters)
         
         stopping_time = DateTime.now

@@ -1,5 +1,5 @@
-[#MDT-3]
-= Partie 3 : {article-3-nom}
+[#MDT-03]
+= Partie 3 : {article-03-nom}
 
 == Quoi et comment stocker{nbsp}?
 
@@ -108,8 +108,8 @@ module TaskEngine
   # Database connexion path
   DATABASE_URL = 'postgres://task_engine@localhost/task_engine'
   # Open the connexions to the database
-  # Use at most one connexion per worker plus one for the engine
-  DB = ::Sequel.connect(DATABASE_URL, max_connexions: WORKERS_NUMBER + 1, logger: LOGGER)
+  # Use at most one connexion per worker
+  DB = ::Sequel.connect(DATABASE_URL, max_connexions: WORKERS_NUMBER, logger: LOGGER)
 
   # The `created_at` and `updated_at` attributes should be managed by Sequel
   Sequel::Model.plugin :timestamps, force: true, update_on_create: true

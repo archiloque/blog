@@ -1,0 +1,34 @@
+[#MDT-07]
+= Partie 7 : {article-07-nom}
+
+Pour le moment, quand le {mdt} est lancé il commence à traiter des tâches, et s'arrête quand il n'y en a plus.
+Si j'ajoute des tâches après-coup, il ne se passe rien.
+En effet une fois les workers en pause, aucun mécanisme ne les réveille quand d'autres tâches sont insérées dans la base de données.
+
+L'un des avantage de l'utilisation de bus de messages comme ActiveMQ ou Kafka pour stocker les tâches d'une {mdt} vient de leur fonctionalités de notification, où le code du moteur peut écouter des évènements (ici les tâches qui sont ajoutées), pour déclecher le traitement des tâches.
+
+Redis fournit également ce type de méchanisme, mais c'est aussi le cas pour PostgreSQL à travers les fonctions link:https://www.postgresql.org/docs/current/sql-listen.html[`LISTEN`] et link:https://www.postgresql.org/docs/current/sql-notify.html[`NOTIFY`].
+
+== Le principe des notifications
+
+Lorsque les worker sont en train de tourner, ils continuent à aller chercher de nouvelles tâches à exécuter même si elles ont été ajoutées après le démarrage des workers. Dans ce cas il n'y a rien de spécial à faire.
+
+Par contre, lorsqu'au moins un des workers est disponible car il s'est arrêté, il faut le solliciter dès qu'une tâche devient disponible pour qu'ils se remette au travail.
+
+Lorsqu'on insère une nouvelle tâche, il faudra donc envoyer une notification en même temps afin de réveiller les éventuels worker disponibles.
+
+Il faut garder en tête que ce fonctionnement doit être compatible avec le fait d'avoir plusieurs threads et plusieurs instances de {mdt}.
+
+Un thread sera chargé d'écouter les notifications envoyées, et de réveiller les thread des workers.
+
+En Ruby, la classe link:https://ruby-doc.org/core-2.7.0/Queue.html[Queue] est destinée à ce type d'usage où des thread doivent s'attendre et communiquer entre eux.
+
+Il serait possible de manipuler directement les thread des workers, par exemple en testant si les thread des workers ont le statut `sleep` et dans ce cas de les réveiller avec `Thread#wakeup`, mais `Queue` fournit une API prête à l'emploi pour cela.
+
+== La double boucle de traitement des workers
+
+
+
+''''
+
+Dans la partie suivante je vais ajouter un premier niveau de monitoring pour pouvoir commencer à suivre ce qui se passe.

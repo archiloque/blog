@@ -1,5 +1,5 @@
-[#MDT-8]
-= Partie 8 : {article-8-nom}
+[#MDT-08]
+= Partie 8 : {article-08-nom}
 
 Pour le moment quand une tâche a été exécutée elle est effacée et on n'en garde aucune trace, à part dans les logs.
 
@@ -67,7 +67,7 @@ module TaskEngine
 
         task_class_name = task.task_class
         task_class = Object.const_get(task_class_name)
-        task_instance = task_class.new()
+        task_instance = task_class.new
         task_result = task_instance.execute(task.task_parameters)
 
         stopping_time = DateTime.now
