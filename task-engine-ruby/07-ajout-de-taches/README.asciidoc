@@ -13,20 +13,44 @@ Redis fournit également ce type de méchanisme, mais c'est aussi le cas pour Po
 
 Lorsque les worker sont en train de tourner, ils continuent à aller chercher de nouvelles tâches à exécuter même si elles ont été ajoutées après le démarrage des workers. Dans ce cas il n'y a rien de spécial à faire.
 
-Par contre, lorsqu'au moins un des workers est disponible car il s'est arrêté, il faut le solliciter dès qu'une tâche devient disponible pour qu'ils se remette au travail.
+Par contre, lorsqu'au moins un des workers est disponible car il s'est arrêté, il faut le solliciter dès qu'une tâche devient disponible pour qu'il se remette au travail.
 
 Lorsqu'on insère une nouvelle tâche, il faudra donc envoyer une notification en même temps afin de réveiller les éventuels worker disponibles.
 
-Il faut garder en tête que ce fonctionnement doit être compatible avec le fait d'avoir plusieurs threads et plusieurs instances de {mdt}.
+Il faut garder en tête que le fonctionnement final doit être compatible avec le fait d'avoir plusieurs threads et plusieurs instances de {mdt}, et qu'il faut toujours pouvoir arrêter les différentes instances.
 
 Un thread sera chargé d'écouter les notifications envoyées, et de réveiller les thread des workers.
 
 En Ruby, la classe link:https://ruby-doc.org/core-2.7.0/Queue.html[Queue] est destinée à ce type d'usage où des thread doivent s'attendre et communiquer entre eux.
 
-Il serait possible de manipuler directement les thread des workers, par exemple en testant si les thread des workers ont le statut `sleep` et dans ce cas de les réveiller avec `Thread#wakeup`, mais `Queue` fournit une API prête à l'emploi pour cela.
+Il serait possible de manipuler directement les thread des workers comme pour l'arrêt du {mdt}, par exemple en testant si les thread des workers ont le statut `sleep` et dans ce cas de les réveiller avec `Thread#wakeup`, mais `Queue` fournit une API prête à l'emploi pour cela et qui évite d'avoir le genre de bugs pénibles qui apparaît quand on décide de réinventer la roue sur un sujet qui touche au multi-threading.
 
 == La double boucle de traitement des workers
 
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Worker
+    def execute
+      while @engine.status == Engine::ENGINE_STATUS_RUNNING
+        while (@engine.status == Engine::ENGINE_STATUS_RUNNING) && (task = try_acquire_task)
+        # …
+        end
+        # Wait until the notification awakes the worker
+        LOGGER.info("Worker #{@worker_index} is sleeping")
+        @engine.queue.pop
+        LOGGER.info("Worker #{@worker_index} is awaken")
+      end
+      LOGGER.info("Worker #{@worker_index} is stopping")
+    end
+  end
+end
+----
+
+== La horde retentissante
+
+== Notifications et transations
 
 
 ''''
