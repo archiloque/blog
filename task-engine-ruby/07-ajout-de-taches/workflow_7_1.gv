@@ -1,0 +1,12 @@
+digraph G {
+  n1[label="Arrêt du moteur demandé ?"];
+  n2[label="Prochaine tâche\nà exécuter ?"];
+  n3[label="Arrêter le worker"];
+  n4[label="Exécuter la tâche"];
+  n1 -> n2 [label="Non"];
+  n1 -> n3 [label="Oui"];
+  n2 -> n3 [label="Pas de\ntâche"];
+  n2 -> n4 [label="Tâche trouvée"];
+  n4 -> n1 [label="Tâche exécutée"];
+  n4 -> n3 [style=invis];
+}

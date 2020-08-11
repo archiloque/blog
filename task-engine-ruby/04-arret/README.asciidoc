@@ -101,10 +101,10 @@ end
 Ce qui peut se traduire par{nbsp}:
 
 ifeval::["{backend}" == "docbook5"]
-image::workflow.svg[scaledwidth=50%,align="center"]
+image::workflow_4_1.svg[scaledwidth=50%,align="center"]
 endif::[]
 ifeval::["{backend}" != "docbook5"]
-image::{article-04-url}/workflow.svg[scaledwidth=50%,align="center"]
+image::{article-04-url}/workflow_4_1.svg[scaledwidth=50%,align="center"]
 endif::[]
 
 Ce statut va être stocké au niveau du `TaskEngine::Engine`, auquel les worker vont accéder{nbsp}:

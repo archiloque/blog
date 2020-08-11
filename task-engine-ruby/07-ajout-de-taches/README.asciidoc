@@ -28,17 +28,17 @@ Il serait possible de manipuler directement les thread des workers comme pour l'
 == La nouvelle boucle de traitement des workers
 
 ifeval::["{backend}" == "docbook5"]
-image::workflow_1.svg[scaledwidth=50%,align="center"]
+image::workflow_7_1.svg[scaledwidth=50%,align="center"]
 endif::[]
 ifeval::["{backend}" != "docbook5"]
-image::{article-07-url}/workflow_1.svg[scaledwidth=50%,align="center"]
+image::{article-07-url}/workflow_7_1.svg[scaledwidth=50%,align="center"]
 endif::[]
 
 ifeval::["{backend}" == "docbook5"]
-image::workflow_2.svg[scaledwidth=50%,align="center"]
+image::workflow_7_2.svg[scaledwidth=50%,align="center"]
 endif::[]
 ifeval::["{backend}" != "docbook5"]
-image::{article-07-url}/workflow_2.svg[scaledwidth=50%,align="center"]
+image::{article-07-url}/workflow_7_2.svg[scaledwidth=50%,align="center"]
 endif::[]
 
 .task_engine.rb
