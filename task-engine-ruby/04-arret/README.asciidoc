@@ -86,7 +86,7 @@ def execute
 end
 ----
 
-Pour gérer l'extinction, le bloc de gestion de signal va donc changer la valeur d'une variable, et à chaque tour de boucle le worker va vérifier s'il faut s'arrêter{nbsp}:
+Pour gérer l'extinction, le bloc de gestion de signal va donc changer la valeur d'une variable, et à chaque tour de boucle le worker va vérifier s'il faut s'arrêter.
 
 .task_engine.rb
 [source,ruby]
@@ -97,6 +97,15 @@ def execute
   end
 end
 ----
+
+Ce qui peut se traduire par{nbsp}:
+
+ifeval::["{backend}" == "docbook5"]
+image::workflow.svg[scaledwidth=50%,align="center"]
+endif::[]
+ifeval::["{backend}" != "docbook5"]
+image::{article-04-url}/workflow.svg[scaledwidth=50%,align="center"]
+endif::[]
 
 Ce statut va être stocké au niveau du `TaskEngine::Engine`, auquel les worker vont accéder{nbsp}:
 
@@ -114,15 +123,19 @@ class Engine
     LOGGER.info('Starting engine')
     @status = ENGINE_STATUS_RUNNING
     Signal.trap('SIGTERM') do
-      @status = ENGINE_STATUS_STOPPING
+      signal_trap
     end
     Signal.trap('SIGINT') do
-      @status = ENGINE_STATUS_STOPPING
+      signal_trap
     end
     0.upto(WORKERS_NUMBER - 1) do |worker_index|
       Worker.new(self, worker_index)
     end
     sleep
+  end
+
+  def signal_trap
+    @status = ENGINE_STATUS_STOPPING
   end
 end
 

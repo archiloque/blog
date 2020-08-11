@@ -9,7 +9,7 @@ ifeval::["{backend}" == "docbook5"]
 image::workflow.svg[scaledwidth=50%,align="center"]
 endif::[]
 ifeval::["{backend}" != "docbook5"]
-image::{article-2-url}/workflow.svg[scaledwidth=50%,align="center"]
+image::{article-02-url}/workflow.svg[scaledwidth=50%,align="center"]
 endif::[]
 
 . Sélectionner la prochaine tâche à exécuter

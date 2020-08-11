@@ -25,7 +25,21 @@ En Ruby, la classe link:https://ruby-doc.org/core-2.7.0/Queue.html[Queue] est de
 
 Il serait possible de manipuler directement les thread des workers comme pour l'arrêt du {mdt}, par exemple en testant si les thread des workers ont le statut `sleep` et dans ce cas de les réveiller avec `Thread#wakeup`, mais `Queue` fournit une API prête à l'emploi pour cela et qui évite d'avoir le genre de bugs pénibles qui apparaît quand on décide de réinventer la roue sur un sujet qui touche au multi-threading.
 
-== La double boucle de traitement des workers
+== La nouvelle boucle de traitement des workers
+
+ifeval::["{backend}" == "docbook5"]
+image::workflow_1.svg[scaledwidth=50%,align="center"]
+endif::[]
+ifeval::["{backend}" != "docbook5"]
+image::{article-07-url}/workflow_1.svg[scaledwidth=50%,align="center"]
+endif::[]
+
+ifeval::["{backend}" == "docbook5"]
+image::workflow_2.svg[scaledwidth=50%,align="center"]
+endif::[]
+ifeval::["{backend}" != "docbook5"]
+image::{article-07-url}/workflow_2.svg[scaledwidth=50%,align="center"]
+endif::[]
 
 .task_engine.rb
 [source,ruby]

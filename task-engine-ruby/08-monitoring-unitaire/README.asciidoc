@@ -55,8 +55,7 @@ Reste à ajouter l'insertion et la mise à jour des informations d'exécution{nb
 module TaskEngine
   class Worker
     def execute
-      while (@engine.status == Engine::ENGINE_STATUS_RUNNING) &&
-          (task = try_acquire_task)
+      while # …
         starting_time = DateTime.now
         LOGGER.info("Worker #{@worker_index} starting task #{task.id}")
         
@@ -79,7 +78,7 @@ module TaskEngine
         )
         end_task(task)
       end
-      LOGGER.info("Worker #{@worker_index} is stopping")
+      # …
     end
 end
 ----
