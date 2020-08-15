@@ -5,27 +5,33 @@ Pour le moment, quand le {mdt} est lancé il commence à traiter des tâches, et
 Si j'ajoute des tâches après-coup, il ne se passe rien.
 En effet une fois les workers en pause, aucun mécanisme ne les réveille quand d'autres tâches sont insérées dans la base de données.
 
-L'un des avantage de l'utilisation de bus de messages comme ActiveMQ ou Kafka pour stocker les tâches d'une {mdt} vient de leur fonctionalités de notification, où le code du moteur peut écouter des évènements (ici les tâches qui sont ajoutées), pour déclecher le traitement des tâches.
+L'un des avantage de l'utilisation de bus de messages comme ActiveMQ ou Kafka pour stocker les tâches d'une {mdt} par rapport à une base de données tradictionnelle vient de leur fonctionalités de notification, où le code du moteur peut écouter des évènements (ici les tâches qui sont ajoutées) envoyés par le bus, pour déclecher le traitement des tâches.
 
 Redis fournit également ce type de méchanisme, mais c'est aussi le cas pour PostgreSQL à travers les fonctions link:https://www.postgresql.org/docs/current/sql-listen.html[`LISTEN`] et link:https://www.postgresql.org/docs/current/sql-notify.html[`NOTIFY`].
 
 == Le principe des notifications
 
-Lorsque les worker sont en train de tourner, ils continuent à aller chercher de nouvelles tâches à exécuter même si elles ont été ajoutées après le démarrage des workers. Dans ce cas il n'y a rien de spécial à faire.
+Lorsque les worker sont en train de tourner, après avoir terminé une tâche ils vont en chercher une autre, même si cette dernière a été ajoutée après le démarrage du {mdt}. Dans ce cas il n'y a rien de spécial à faire.
 
-Par contre, lorsqu'au moins un des workers est disponible car il s'est arrêté, il faut le solliciter dès qu'une tâche devient disponible pour qu'il se remette au travail.
+Par contre, lorsqu'au moins un des workers s'est arrêté car il n'a pas trouvé de tâche disponible, il faut le solliciter pour qu'il se remette au travail quand une nouvelle tâche est créée.
 
-Lorsqu'on insère une nouvelle tâche, il faudra donc envoyer une notification en même temps afin de réveiller les éventuels worker disponibles.
+Cela permet que la nouvelle tâche soit traitée au plus vite, plutôt que d'attendre qu'un worker qui est déjà en train d'exécuter une autre tâche ne la termine.
+
+Lorsqu'on insère une nouvelle tâche, il faudra donc envoyer une notification pour réveiller les worker qui pourraient être disponibles.
+
+Pour cela j'utiliserai un thread supplémentaire qui sera chargé d'écouter les notifications envoyées pour réveiller les workers.
+
+En Ruby, la classe link:https://ruby-doc.org/core-2.7.0/Queue.html[Queue] est destinée à ce type d'usage où des thread doivent s'attendre et communiquer entre eux.
+Il s'agit d'une file (une sorte de liste dont les élements sortent dans le même ordre que celui où ils sont insérés), à laquelle plusieurs threads peuvent accéder en parallèle.
+Le comportement le plus intéressant pour un {mdt} est que si du code demande à récupérer un élément de la queue alors qu'elle est vide, le thread correspondant se mettra en attente jusqu'à ce qu'un élément soit disponible.
+
+Il serait possible de manipuler directement les thread des workers comme pour l'arrêt du {mdt}, en passant les thread des workers en le statut `sleep` puis en les réveillant avec `Thread#wakeup`, mais `Queue` fournit une API prête à l'emploi pour cela, et cela évite d'avoir le genre de bugs pénibles qui apparaît quand on décide de réinventer la roue sur un sujet qui touche au threading.
 
 Il faut garder en tête que le fonctionnement final doit être compatible avec le fait d'avoir plusieurs threads et plusieurs instances de {mdt}, et qu'il faut toujours pouvoir arrêter les différentes instances.
 
-Un thread sera chargé d'écouter les notifications envoyées, et de réveiller les thread des workers.
-
-En Ruby, la classe link:https://ruby-doc.org/core-2.7.0/Queue.html[Queue] est destinée à ce type d'usage où des thread doivent s'attendre et communiquer entre eux.
-
-Il serait possible de manipuler directement les thread des workers comme pour l'arrêt du {mdt}, par exemple en testant si les thread des workers ont le statut `sleep` et dans ce cas de les réveiller avec `Thread#wakeup`, mais `Queue` fournit une API prête à l'emploi pour cela et qui évite d'avoir le genre de bugs pénibles qui apparaît quand on décide de réinventer la roue sur un sujet qui touche au multi-threading.
-
 == La nouvelle boucle de traitement des workers
+
+Le fonctionnement actuel des worker est celui-ci{nbsp}:
 
 ifeval::["{backend}" == "docbook5"]
 image::workflow_7_1.svg[scaledwidth=50%,align="center"]
@@ -34,12 +40,36 @@ ifeval::["{backend}" != "docbook5"]
 image::{article-07-url}/workflow_7_1.svg[scaledwidth=50%,align="center"]
 endif::[]
 
+La demande d'arrêt du moteur et l'absence de tâche à exécuter mènent tous les deux à l'arrêt du worker.
+
+Il faut ajouter une nouvelle boucle dans le schéma{nbsp}: en l'absence de tâche, au lieu de s'arrêter les workers doivent se mettre en pause en attendant une notification.
+
+Lorsqu'on les réveille, ils vérifient que le moteur est toujours en fonctionnement, et dans ce cas se remettent à chercher une tâche.
+
 ifeval::["{backend}" == "docbook5"]
 image::workflow_7_2.svg[scaledwidth=50%,align="center"]
 endif::[]
 ifeval::["{backend}" != "docbook5"]
 image::{article-07-url}/workflow_7_2.svg[scaledwidth=50%,align="center"]
 endif::[]
+
+On pourrait vouloir directement passer de la pause au fait de chercher des tâches à exécuter{nbsp}:
+
+ifeval::["{backend}" == "docbook5"]
+image::workflow_7_3.svg[scaledwidth=50%,align="center"]
+endif::[]
+ifeval::["{backend}" != "docbook5"]
+image::{article-07-url}/workflow_7_3.svg[scaledwidth=50%,align="center"]
+endif::[]
+
+Mais dans ce cas il n'est pas possible d'arrêter le moteur si le worker n'a pas déjà exécuté une tâche, à moins d'ajouter du code spécifique pour ce cas.
+
+La proposition précédente est donc un peu plus générique.
+
+Pour implémenter le workflow, on peut utiliser une double boucle{nbsp}:
+
+- la boucle extérieur vérifie l'extinction du moteur, et est déclenchée au réveil
+- la boucle intérieur vérifier l'extinction et cherche la prochaine tâche, et est exécutée à chaque tâche
 
 .task_engine.rb
 [source,ruby]
@@ -49,10 +79,12 @@ module TaskEngine
     def execute
       while @engine.status == Engine::ENGINE_STATUS_RUNNING
         while (@engine.status == Engine::ENGINE_STATUS_RUNNING) && (task = try_acquire_task)
-        # …
+          # Execute the task
         end
         # Wait until the notification awakes the worker
         LOGGER.info("Worker #{@worker_index} is sleeping")
+        # We don't care about the message we got from the queue
+        # since we just want to be awaken
         @engine.queue.pop
         LOGGER.info("Worker #{@worker_index} is awaken")
       end
@@ -62,7 +94,52 @@ module TaskEngine
 end
 ----
 
-== La horde retentissante
+== Envoyer une notification ou le contenu d'une tâche
+
+
+
+
+Lors de la création d'une tâche, le code connaît la tâche à créer et ses paramètres.
+
+On pourrait vouloir utiliser ces informations dans le worker, pour simplifier l'acquisition de tâches.
+Au lieu de chercher la prochaine tâche à exécuter, le code pourrait plutôt chercher si la tâche avec un certain `id` est toujours disponible, ce qui rendrait la requête plus rapide.
+
+Mais il faut se rappeller que le code du {mdt} doit bien fonctionner avec plusieurs instances.
+
+Je vais prendre l'exemple de deux instance de {mdt} M1 et M2, avec chacune un worker disponible.
+
+=== Une seule tâche
+
+Si une seule tâche T1 est créée.
+
+M1 et M2 recevront tous les deux la notification de création.
+Les deux instances vont tenter de s'approprier T1, si c'est M1 qui réussi à l'acquérier, alors M2 ne trouvera aucune tâche disponible et se mettra en pause.
+
+Le comportement est le même qu'on cherche T1 en utilisant la requête générique ou en cherchant par son `id`.
+Dans ce cas la rechercher par `id` serait donc préférable car plus rapide.
+
+ifeval::["{backend}" == "docbook5"]
+image::one_task.svg[scaledwidth=50%,align="center"]
+endif::[]
+ifeval::["{backend}" != "docbook5"]
+image::{article-07-url}/one_task.svg[scaledwidth=50%,align="center"]
+endif::[]
+
+== Deux tâches
+
+Si deux tâches T1 et T2 sont créées.
+M1 et M2 reçoivent les deux notifications de création .
+
+
+
+Les deux vont tenter de s'approprier T1, si c'est à nouveau M1, alors M2 trouvera aucune tâche disponible et se mettra en pause.
+
+Si la notification pour T2 arrive pendant que M2 cherche T1 par son `id`, alors la notification ne sera peut-être pas prise en compte si aucun worker de M2 n'est disponible, et si la notification arrive ensuite, M2 devra faire uen deuxième requête pour récupérer T2.
+
+
+
+
+== La partie notification
 
 == Notifications et transations
 
