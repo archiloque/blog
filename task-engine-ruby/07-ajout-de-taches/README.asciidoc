@@ -110,88 +110,51 @@ Comme indiqué dans la partie 3, ce type de mécanisme est très difficile à me
 
 Lors de la création d'une tâche, le code connaît la tâche à créer et ses paramètres.
 
-On pourrait vouloir utiliser ces informations pour simplifier l'acquisition de tâches{nsbp}: quand réveille un worker, au lieu de chercher la prochaine tâche à exécuter avec la requête existante, il pourrais plutôt chercher la tâche par son `id` une requête qui cherche si la tâche avec un certain `id` est toujours disponible.
-Cette requête devrait être plus rapide.
+On pourrait vouloir utiliser ces informations pour simplifier l'acquisition de tâches{nsbp}: quand réveille un worker, au lieu de chercher la prochaine tâche à exécuter avec la requête existante, il pourrais plutôt chercher la tâche par son `id` une requête qui cherche si la tâche avec un certain `id` est toujours disponible, ce qui devrait rendre la requête plus rapide.
 
 Malheureusement cette solution n'est pas adaptée au fait d'avoir plusieurs {mdts} qui s'exécutent simultanément quand plusieurs tâches sont crées.
 
-Si du code créé deux tâches T1 et T2.
+Par exemple si du code créé deux tâches T1 et T2, et que deux instances du {mdt} disposent de workers en sommeil.
+En utilisant la requête par défaut, le premier worker à se réveiller va récupérer T1, et le deuxième worker T2.
+Si les deux workers cherchent T1 par son `id`, le premier worker va la trouver mais pas le deuxième.
 
-Une instance M1 du {mdt} reçoit la notification pour T1 et dispose d'un worker en sommeil, il va alors le réveiller, et réussir à l'acquérir et donc à l'exécuter.
-
-Une autre instance M2 du {mdt} reçoit également la notification pour T1 et dispose lui-aussi d'un worker en sommeil, il va alors le réveiller et ne pourra pas l'acquérir vu que M1 l'a déjà fait.
-
-ifeval::["{backend}" == "docbook5"]
-image::one_task.svg[scaledwidth=50%,align="center"]
-endif::[]
-ifeval::["{backend}" != "docbook5"]
-image::{article-07-url}/one_task.svg[scaledwidth=50%,align="center"]
-endif::[]
-
-Si la notification pour T2 arrive entre le moment où 
-
-
-
-
-
-- le premier c'est que quand plusieurs instances de {mdt} sont en cours d'exécution, 
-
-
-Cela explique pourquoi un worker qui est réveillé par une notification va chercher la prochaine tâche à exécuter, plutôt que d'essayer d'acquérir la tâche qui correspond à la notification, par exemple en la cherchant par son `id`.
-Si on cherchait la tâche pas son `id`, la requête serait plus rapide, mais elle ne serait efficace que pour le {mdt} qui réussi à l'acquérir.
-
-Les autres instances du moteur qui feraient la requête par `id`ensuite se remettraient en sommeil immédiatement faute de tâche à exécuter.
-
-
-
-
-
-
-Lors de la création d'une tâche, le code connaît la tâche à créer et ses paramètres.
-
-On pourrait vouloir utiliser ces informations dans le worker, pour simplifier l'acquisition de tâches.
-Au lieu de chercher la prochaine tâche à exécuter, le code pourrait plutôt chercher si la tâche avec un certain `id` est toujours disponible, ce qui rendrait la requête plus rapide.
-
-Mais il faut se rappeller que le code du {mdt} doit bien fonctionner avec plusieurs instances.
-
-Je vais prendre l'exemple de deux instance de {mdt} M1 et M2, avec chacune un worker disponible.
-
-=== Une seule tâche
-
-Si une seule tâche T1 est créée.
-
-M1 et M2 recevront tous les deux la notification de création.
-Les deux instances vont tenter de s'approprier T1, si c'est M1 qui réussi à l'acquérier, alors M2 ne trouvera aucune tâche disponible et se mettra en pause.
-
-Le comportement est le même qu'on cherche T1 en utilisant la requête générique ou en cherchant par son `id`.
-Dans ce cas la rechercher par `id` serait donc préférable car plus rapide.
-
-ifeval::["{backend}" == "docbook5"]
-image::one_task.svg[scaledwidth=50%,align="center"]
-endif::[]
-ifeval::["{backend}" != "docbook5"]
-image::{article-07-url}/one_task.svg[scaledwidth=50%,align="center"]
-endif::[]
-
-== Deux tâches
-
-Si deux tâches T1 et T2 sont créées.
-M1 et M2 reçoivent les deux notifications de création .
-
-
-
-Les deux vont tenter de s'approprier T1, si c'est à nouveau M1, alors M2 trouvera aucune tâche disponible et se mettra en pause.
-
-Si la notification pour T2 arrive pendant que M2 cherche T1 par son `id`, alors la notification ne sera peut-être pas prise en compte si aucun worker de M2 n'est disponible, et si la notification arrive ensuite, M2 devra faire uen deuxième requête pour récupérer T2.
-
-
-
+Il lui faudra alors utiliser la requête par défaut pour déterminer si une autre tâche est disponible.
+En échange d'une requête plus rapide, on aura donc exécuté une requête inutile.
 
 == La partie notification
 
+Pour déclencher la notification, j'ajoute l'appel à la méthode `notify` lors de la création d'une tâche{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  # @param [String] task_class
+  # @param [Hash] task_parameters
+  def self.create_task(task_class, task_parameters)
+    Task.create(
+        task_class: task_class,
+        task_parameters: Sequel.pg_json_wrap(task_parameters)
+    )
+    DB.notify(NOTIFICATION_CHANNEL, payload: task_class)
+  end
+end
+----
+
 == Notifications et transations
 
+Une des avantages d'utiliser le même outil pour stocker les données et gérer les messages et que les mêmes transactions s'appliquent aux deux.
 
-''''
+Ainsi dans le code de `TaskEngine.create_task`, l'insertion de la tâche et l'envoi de la notification se font dans la même transation que le code appelant.
 
-Dans la partie suivante je vais ajouter un premier niveau de monitoring pour pouvoir commencer à suivre ce qui se passe.
+Cela signifie que qu'en cas de `rollback` la tâche n'est pas crée et la notification envoyée.
+
+Par exemple si une tâche a besoin d'un objet métier créé juste avant, si la tâche est crée puis que la création de l'objet est rollbackée, la tâche ne pourra pas le trouver.
+
+Si vos traitements ont un risque significatif de `rollbak`, cela peut être assez pratique car cela évite d'avoir à prendre en compte cette situation dans le code de la tâche.
+
+En effet un `rollback` de transaction ne signifie pas forcément qu'une erreur s'est produite, mais peut être le signe d'une tentative de modification concurente, et dans ce cas arriver régulièrement.
+
+Si on ne souhaite pas ce comportement, la création de tâche peut être isolée dans une transaction séparée, mais le comportement par défaut fournit une garantie qui peut être bien pratique.
+
+Maintenant que le moteur sait traiter les ajouts de tâche, je vais m'intéresser au monitoring pour pouvoir commencer à suivre ce qui se passe.
