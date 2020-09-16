@@ -22,7 +22,7 @@ Managing with unspoken expectations is dangerous. How can employees perform to a
 A lot of companies end up with null process because they're afraid of bad process. There is this myth that having no process is liberating and that it frees people up to solve problems the best way possible. While that might be true on a very small, flexible, early-stage team, as a company grows the null process quickly becomes a hindrance. Undocumented process is extremely difficult to teach to new employees, making onboarding and team growth more expensive. The null process can easily transform into unspoken expectations that things are done a certain way, even though the company has not documented the implicitly understood process for completing a task. As Jo Freeman says in her famous essay _The Tyranny of Structurelessness_, "`For everyone to have the opportunity to be involved in a given group and to participate in its activities the structure must be explicit, not implicit`". By relying on implicit processes, companies are creating environments with unspoken expectations that can make it difficult for employees to succeed at their jobs.
 ____
 
-== link:++https://lwn.net/ml/netdev/CAHk-=wiSw7zYVUxiGT=_TPx1fqtNNYgu0L6rC=GaSGpCDnDbVw@mail.gmail.com/++[Re: Flaw in "random32: update the net random state on interrupt and activity"]
+== link:{plus}{plus}https://lwn.net/ml/netdev/CAHk-=wiSw7zYVUxiGT=_TPx1fqtNNYgu0L6rC=GaSGpCDnDbVw@mail.gmail.com/{plus}{plus}[Re: Flaw in "random32: update the net random state on interrupt and activity"]
 
 [quote]
 ____
@@ -114,4 +114,39 @@ Using services rather than a single centralized database is like going from Newt
 - Before services, distributed computing strove to make many systems look like one, with RPC (remote procedure call), two-phase commit, etc.
 - In Einstein's universe, everything is relative to one's perspective.
 - Within each service, there is a "`now`" inside, and the "`past`" arriving in messages.
+____
+
+== link:https://cor3ntin.github.io/posts/c/[The problem with C]
+
+[quote]
+____
+On the surface, C and C{plus}{plus} cater to the same use cases: high performance, deterministic, native but portable code for the widest range of hardware and applications.
+
+But C is proudly a low-level language. A nicer assembly.
+
+From day one, C{plus}{plus} had magic. Dark witchcraft: destructors. Suddenly the compiler was doing things on its own. It also had type inference very early on, but the developers of the mid-80s were not quite ready for that and Bjarne Stroustrup was pressured into removing `auto`, until it was added back to C{plus}{plus}11.
+
+From then, C{plus}{plus} got more and more tools to build abstractions. I don’t think it would be fair to say that C{plus}{plus} is a low-level or high-level language. It’s both, by design. But building high-level abstractions while not sacrificing performance is hard. C{plus}{plus} then needed tools to achieve that: `constexpr`, move semantics, templates, and an ever-growing standard library.
+
+Fundamentally I think C trusts developers while C{plus}{plus} trusts compilers. This is a massive difference that sharing the same native types or syntax for while loop cannot hide.
+
+C{plus}{plus} developers blame C for all their lost limbs, while C developers probably think C{plus}{plus} is batshit crazy. I imagine that is a fair perspective if you look at C{plus}{plus} through a C lense. C{plus}{plus} is pretty wild as a superset of C. A seasoned C person looking at C{plus}{plus} expecting familiarity in C{plus}{plus} will not find it. C{plus}{plus} is not C. This is enough to feed flamewars for generations.
+____
+
+[quote]
+____
+If you are a C developer, I imagine you see C as a neat programming language. But for the rest of us, C is something else.
+
+C is the universal, cross-language glue that ties it all together.
+
+For C{plus}{plus} users, C is exactly its API. And with that in mind, the value of C is in its simplicity. Remember that the subset of C that C{plus}{plus} cares about is the subset that appears in interfaces, in header files. We care about declarations. Not definitions. C{plus}{plus} wants to call functions in C libraries (or Python, Fortran, Rust, D, Java, etc, in all cases C can be used at the interface boundary).
+
+In that light, _C is an interface definition language_. The more bells and whistles are added to C, the harder it gets to define interfaces. And the less likely it is that these interfaces will remain stable over time.
+____
+
+== link:https://blog.wesleyac.com/posts/robert-martin[A Quick Primer on Robert "`Uncle Bob`" Martin]
+
+[quote]
+____
+It's easy and comforting to blame individual programmers for bad code. But if you're actually interested in making software better, then you should realize that being careful and using tools that prevent mistakes are not mutually exclusive — using tools that prevent mistakes frees up your mental energy to focus on preventing higher level errors, rather than worrying about null pointer exceptions and double-frees.
 ____
