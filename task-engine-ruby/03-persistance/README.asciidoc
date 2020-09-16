@@ -15,7 +15,7 @@ Pour les tâches exécutées, les contraintes sont plus faibles et on a seulemen
 
 Il est possible d'utiliser deux systèmes différents pour les deux besoins, par exemple pour les tâches pas encore lancées il n'est pas rare d'utiliser un bus de messages, car en plus du stockage il peut servir de médiateur entre  un système qui créé des tâches et le {mdt} en fournissant une API facile à utiliser.
 
-Il est également possible d'utiliser un seul système, par exemple une base de données SQL ou même une base de données comme Redis.
+Il est également possible d'utiliser un seul système, par exemple une {bdd} SQL ou même une {bdd} comme Redis.
 
 == Les technologies du projet
 
@@ -56,7 +56,7 @@ Après exécution, les tâches seront supprimées de la base.
 Pour le moment je vais continuer d'utiliser les mêmes tâches qui se contentent de mettre le worker en attente, ce qui signifie que je n'ai pas à gérer de paramètres.
 
 Pour stocker l'état des tâches je vais utiliser un link:https://www.postgresql.org/docs/current/datatype-enum.html[type énuméré] (on dit aussi une énumération).
-Un peu comme dans les langages comme C ou Java, cela signifie que la base de données pourra vérifier que les valeurs qu'on lui fournit seront valides (en cas de valeur inconnue la base renvoie une erreur), et que si dans le code Ruby et dans les requêtes on utilisera les valeur textuelles, en interne la base le stockera de manière efficace comme un nombre.
+Un peu comme dans les langages comme C ou Java, cela signifie que la {bdd} pourra vérifier que les valeurs qu'on lui fournit seront valides (en cas de valeur inconnue la base renvoie une erreur), et que si dans le code Ruby et dans les requêtes on utilisera les valeur textuelles, en interne la base le stockera de manière efficace comme un nombre.
 
 Voici la migration permettant de créer la table `tasks` (si vous avez l'habitude des migrations ActiveRecord, vous ne devriez pas être dépaysé·e){nbsp}:
 
@@ -137,7 +137,7 @@ include::create_tasks.txt[]
 
 == Ne pas perdre de tâche
 
-Il reste la part du lion qui est de mettre à jour le moteur pour qu'il s'appuie sur la base de données.
+Il reste la part du lion qui est de mettre à jour le moteur pour qu'il s'appuie sur la {bdd}.
 
 La partie la plus complexe est l'acquisition de tâches à exécuter.
 Pour cela il faut sélectionner la tâche la plus ancienne, et changer son statut.

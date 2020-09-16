@@ -50,7 +50,7 @@ Cette approche aide aussi aux investigations pendant l'exécution d'une tâche{n
 Le plus simple est alors de stopper immédiatement le {mdt} en indiquant explicitement quel est le problème.
 Certes cette approche retarde la relance de du {mdt}, mais elle a deux avantages{nbsp}:
 
-- elle force à traiter le problème (même si c'est en supprimant les tâches de la base de données, mais au moins une action volontaire a été faite)
+- elle force à traiter le problème (même si c'est en supprimant les tâches de la {bdd}, mais au moins une action volontaire a été faite)
 - elle évite les mauvaises surprises dans le cas où deux instances de {mdt} sont lancées avec le même identifiant.
 
 Par exemple, il serait aussi possible qu'au démarrage d'une instance I1 de {mdt}, toutes les tâches marquées comme `running` soit mise à jour dans un statut spécial, par exemple `crashed`.
@@ -125,7 +125,7 @@ class Worker
 end
 ----
 
-Si je lance le {mdt} (en passant le nom de l'instance en variable d'environnement) et que je regarde ce qui se passe dans la base de données, on retrouve bien le nom de l'instance{nbsp}:
+Si je lance le {mdt} (en passant le nom de l'instance en variable d'environnement) et que je regarde ce qui se passe dans la {bdd}, on retrouve bien le nom de l'instance{nbsp}:
 
 [source,bash]
 ----

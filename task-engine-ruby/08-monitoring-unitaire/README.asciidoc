@@ -137,3 +137,42 @@ updated_at | 2020-08-10 16:52:59.09332
 La structure fonctionne donc et les données sont bien là, même si pour le moment on ne sait suivre que les tâches qui se terminent bien car la gestion d'erreur n'a pas encore été implémentée.
 
 Et justement le dernier élément qui manque pour mettre en place cette gestion d'erreur est la capacité à planifier des tâches, qui sera traitée dans la partie suivante.
+
+== Et un index
+
+Avant de terminer, il faut s'intéresser un peu à la performance.
+
+Avec le temps la table `tasks` devrait contenir de plus en plus d'occurences de tâches terminées (avec l'hypothèse que le nombre de tâches à exécuter devrait rester raisonable).
+
+Cela risque de ralentir et fur et à mesure la sélection des tâches à exécuter, car la requête a besoin pour le moment de parcourir tous les enregistrements de la table.
+
+Pour éviter cela, je vais ajouter un index à la table `tasks`.
+
+La requête est la suivante{nbsp}:
+
+[source,sql]
+----
+SELECT * FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1
+----
+
+Je pourrais simplement créer un index sur `statut`, ce qui ferait que la requête n'aurait qu'à parcourir les enregistrements qui ont le bon statut.
+
+Mais pour que la recherche soit encore plus rapide, il est possible de créer un index sur les colonnes `statut` et `created_at`, de cette manière la recherche utilisera seulement l'index.
+
+J'ajoute pour cela une nouvelle migration{nbsp}:
+
+.migrations/05_create_task_index.rb
+[source,ruby]
+----
+include::05_create_task_index.rb[]
+----
+
+Après exécution de la migration, l'exécution de la requête utilise bien l'index pour faire la recherche{nbsp}:
+
+[source]
+# explain SELECT * FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1;
+----
+Limit  (cost=0.14..0.30 rows=1 width=120)
+  ->  Index Scan using tasks_status_created_at_index on tasks  (cost=0.14..16.20 rows=100 width=120)
+        Index Cond: (status = 'waiting'::task_status)
+----

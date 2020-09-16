@@ -47,7 +47,7 @@ Si vous utilisez un {mdt} en Ruby et que vous voulez pleinement profiter d'avoir
 
 Cela ne signifie pas qu'utiliser plusieurs thread en Ruby soit inutile dans un {mdt} avec l'implémentation de référence.
 Car même si la machine virtuelle ne peut exécuter qu'un thread à la fois, plusieurs tâches peuvent tout de même être en train de progresser.
-C'est le cas parce que lorsqu'un appel extérieur est fait, par exemple une requête en base de données ou un appel réseau, le thread qui fait l'appel est mis en pause et un autre thread peut alors s'exécuter.
+C'est le cas parce que lorsqu'un appel extérieur est fait, par exemple une requête en {bdd} ou un appel réseau, le thread qui fait l'appel est mis en pause et un autre thread peut alors s'exécuter.
 Lorsque la requête ou l'appel se termine, le premier thread va alors attendre son tour pour continuer son traitement.
 
 Dans un système ou la majorité du temps est passé à attendre le reste du monde, avoir plusieurs threads peut donc être tout de même assez avantageux.

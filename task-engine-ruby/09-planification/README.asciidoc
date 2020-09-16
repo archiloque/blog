@@ -1,2 +1,123 @@
 [#MDT-09]
 = Partie 9 : {article-09-nom}
+
+Jusqu'à présent il est seulement possible de créer des tâches à exécution immédiate, et donc pas de tâche dans le futur.
+
+Créer des tâches dans le futur permet de programmer des tâches à des horaires planifiés, par exemple toutes les heures ou tous les jours à une certaine heure, et me servira plus tard pour pouvoir relancer des tâches en échec après un certain délai.
+
+== Les tâches à exécution unique
+
+La première étape est de pouvoir programmer des tâches à exécution unique qui doivent s'exécuter dans le futur plutôt qu'immédiatement.
+
+Jusqu'à présent, une tâche dans l'état `waiting` était forcément prête à être exécutée, je vais devoir changer ce comportement.
+
+Pour cela, je vais ajouter un nouveau champ `scheduled_at` qui contiendra l'heure à partir de laquelle la tâche peut être exécutée, avec pour valeur par défaut l'heure actuelle pour que la tâche puisse se lancer immediatement.
+
+L'implémentation va au final toucher peu de code.
+
+Tout d'abord la migration qui ajoute le champ et qui recrée un nouvel index sur les colonnes `statut` et `scheduled_at` pour accélerer la requête de sélection de la prochaine tâche à exécute tout en supprimant l'index existant.
+
+.migrations/06_add_scheduled_at.rb
+[source,ruby]
+----
+include::06_add_scheduled_at.rb[]
+----
+
+Je préfère la base de donnée se charger de donner la valeur par défaut de la colonne car cela évite d'avoir à dépendre du fait que les différents clients soit bien à l'heure.
+Comme la {bdd} est unique, cela garantit la cohérence des valeurs.
+
+Ensuite l'ajout du paramètre permettant de spécifier la valeur lors de la création d'une tâche{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  # @param [String] task_class
+  # @param [Hash] task_parameters
+  # @param [DateTime, nil] scheduled_at nil means an immediate execution
+  def self.create_task(task_class, task_parameters, scheduled_at = nil)
+    creation_params = {
+        task_class: task_class,
+        task_parameters: Sequel.pg_json_wrap(task_parameters)
+    }
+    # Don't send a null value to the DB so the DB use the default value
+    unless scheduled_at.nil?
+      creation_params[:scheduled_at] = scheduled_at
+    end
+    Task.create(creation_params)
+    unless scheduled_at.nil?
+      DB.notify(NOTIFICATION_CHANNEL, payload: task_class)
+    end
+  end
+end
+----
+
+Si le paramètre `scheduled_at` est spécifié, et que la tâche est programmée pour s'exécutée plus tard, il n'est pas nécessaire d'envoyer de notification car les notifications servent à réveiller des workers pour une exécution immédiate.
+
+Le dernier élement à modifier est la requête qui cherche la prochaine tâche à exécuter, qui doit maintenant faire un tri sur `scheduled_at`, et qui doit également ignorer les tâches dont la valeur de `scheduled_at` est dans le futur.
+
+Comme pour la valeur par défaut, je vais laisser la base définir l'heure actuelle.
+`Sequel.lit` indique à Sequel d'utiliser la valeur telle-quelle sans l'interpréter, elle est utile comme lorsqu'ici on utilise des fonctions SQL.
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Worker
+    # @return [TaskEngine::Task, nil]
+    def try_acquire_task
+      DB.transaction do
+        task = Task.
+            where(status: Task::STATUS_WAITING).
+            where(Sequel.lit('scheduled_at < LOCALTIMESTAMP')).
+            order(:scheduled_at).for_update.first
+        unless task.nil?
+          Task.where(id: task.id).update(
+              status: Task::STATUS_RUNNING,
+              instance: @engine.instance
+          )
+          task
+        end
+      end
+    end
+  end
+end
+----
+
+On peut vérifier que si on créé des tâches dans le futur, elles ne sont pas immédiatement executées.
+
+Je vais créer une tâche qui doit s'exécuter 30 secondes dans le futur.
+Pour cela j'ajoute la fraction `30 / 86400` (c'est-à-dire le nombre standard de secondes dans un jour) à l'heure actuelle.
+
+[source]
+----
+$ bundle exec irb
+require_relative 'task_engine'
+TaskEngine.create_task(
+    'TaskEngine::Tasks::WaitingTask',
+    {
+        waiting_time: 5
+    },
+    DateTime.now + Rational(30, 86400))
+exit
+
+$ TASK_ENGINE_INSTANCE=instance_01 rake start_engine
+----
+
+Tout d'acord comme prévu il ne se passe rien, car la date est dans le futur.
+
+Mais au bout de 30 secondes il ne se passe rien non plus, car en l'absence de notification aucun worker ne vérifie si la tâche est disponible pour être exécutée.
+
+Si une autre tâche était créée en exécution immédiate après que 30 secondes se soient passées, cela réveillerait un worker, et la tâche programmée serait traitée, mais tant que ce n'est le cas la tâche restera à attendre.
+
+Si de nouvelles tâches à exécution immédiates sont crées régulièrement, cette attente peut ne pas être un problème, mais peut-être que ça n'est pas le cas, ou que même si c'est le cas en principe, on peut préférer garantir que la tâche ne va pas attendre trop longtemps si des workers sont disponibles.
+
+La manière idéale de faire serait faire en sorte de réveiller un worker dès qu'une tâche devient exécutable, mais il n'y a pas d'approche facile pour le faire avec les outils que j'ai choisis.
+Une approche possible serait d'envoyer des notifications lors des créations de ces tâches, et de programmer un réveil pour chaque moment où au moins une tâche s'exécute.
+L'inconvénient est que cela pourrait augmenter pas mal la consommation mémoire des instances du {mdt}, et leur demanderait de stocker des donées en mémoires.
+Cela signifie qu'au redémarrage des {}
+
+Je vais plutôt partir du principe que si une tâche est programmée pour s'exécuter dans le futur, ce n'est pas grave si elle a quelques secondes de retard.
+
+
+

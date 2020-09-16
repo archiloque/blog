@@ -13,6 +13,7 @@ Julien Kirch
 :icons: font
 :mdt: moteur de tâches
 :msdt: moteurs de tâches
+:bdd: base de données
 :titre-série: Écrire un moteur de tâches en Ruby
 :article-01-url: 01-introduction
 :article-01-nom: introduction
@@ -34,10 +35,8 @@ Julien Kirch
 :article-09-nom: la planification
 :article-10-url: 10-gestion-d-erreurs
 :article-10-nom: la gestion d'erreurs
-:article-11-url: 11-monitoring-de-bout-en-bout
-:article-11-nom: le monitoring de bout en bout
-:article-12-url: 12-quelques-optimisations
-:article-12-nom: quelques optimisations
+:article-11-url: 11-conclusion
+:article-11-nom: Conclusion
 
 include::{article-01-url}/README.asciidoc[]
 
@@ -60,5 +59,3 @@ include::{article-09-url}/README.asciidoc[]
 include::{article-10-url}/README.asciidoc[]
 
 include::{article-11-url}/README.asciidoc[]
-
-include::{article-12-url}/README.asciidoc[]

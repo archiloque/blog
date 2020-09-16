@@ -3,9 +3,9 @@
 
 Pour le moment, quand le {mdt} est lancé il commence à traiter des tâches, et s'arrête quand il n'y en a plus.
 Si j'ajoute des tâches après-coup, il ne se passe rien.
-En effet une fois les workers en pause, aucun mécanisme ne les réveille quand d'autres tâches sont insérées dans la base de données.
+En effet une fois les workers en pause, aucun mécanisme ne les réveille quand d'autres tâches sont insérées dans la {bdd}.
 
-L'un des avantage de l'utilisation de bus de messages comme ActiveMQ ou Kafka pour stocker les tâches d'une {mdt} par rapport à une base de données traditionnelle vient de leur fonctionnalités de notification, où le code du moteur peut écouter des évènements (ici les tâches qui sont ajoutées) envoyés par le bus, pour déclencher le traitement des tâches.
+L'un des avantage de l'utilisation de bus de messages comme ActiveMQ ou Kafka pour stocker les tâches d'une {mdt} par rapport à une {bdd} traditionnelle vient de leur fonctionnalités de notification, où le code du moteur peut écouter des évènements (ici les tâches qui sont ajoutées) envoyés par le bus, pour déclencher le traitement des tâches.
 
 Redis fournit également ce type de méchanisme, mais c'est aussi le cas pour PostgreSQL à travers les fonctions link:https://www.postgresql.org/docs/current/sql-listen.html[`LISTEN`] et link:https://www.postgresql.org/docs/current/sql-notify.html[`NOTIFY`].
 
@@ -94,9 +94,48 @@ module TaskEngine
 end
 ----
 
+Pour recevoir la notification, je dois créer un nouveau thread, en effet l'écoute bloque l'exécution du thread qui attend d'être notifié.
+
+Je créé ce thread dans le constructeur de l'``Engine``.
+
+À la réception d'un message, il utilise la `Queue` pour réveiller un worker si l'un d'eux est disponible.
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Engine
+    def initialize(instance)
+    # …
+    Thread.new do
+      DB.listen(NOTIFICATION_CHANNEL, loop: true) do |_channel, _pid, task_class|
+        LOGGER.info("Received notification for a task [#{task_class}]")
+        unless @queue.num_waiting == 0
+          LOGGER.info('Notifying worker')
+          @queue.push(task_class)
+        end
+      end
+    end
+    # …
+  end
+----
+
+Le nom de la classe de la tâche est envoyé dans la notification pour être logué, mais ne sert pas dans le reste du code, en tous cas pour le moment.
+
+Il faut penser à ajouter une connection à la configuration de la base de donnée plus haut dans le fichier{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  # Use at most one connexion per worker + the connexion for notifications
+  DB = ::Sequel.connect(DATABASE_URL, max_connections: WORKERS_NUMBER + 1, logger: LOGGER)
+end
+----
+
 == Envoyer une notification ou le contenu d'une tâche
 
-Dans le modèle que je décris, le {mdt} reçoit des notification l'informant qu'une tâche devient disponible et il doit ensuite acquérir la tâche dans la base de données, et en passant récupérer les paramètres d'exécution.
+Dans le modèle que je décris, le {mdt} reçoit des notification l'informant qu'une tâche devient disponible et il doit ensuite acquérir la tâche dans la {bdd}, et en passant récupérer les paramètres d'exécution.
 
 Cela vient du fait que dans le système de notification de PostgreSQL les notifications sont envoyées à toutes les instances qui sont à l'écoute.
 
@@ -139,6 +178,27 @@ module TaskEngine
     DB.notify(NOTIFICATION_CHANNEL, payload: task_class)
   end
 end
+----
+
+On peut tester le fonctionnement en lançant le {mdt} dans une console, et en lançant la création de tâche dans une autre{nbsp}:
+
+[source]
+----
+$ TASK_ENGINE_INSTANCE=instance_01 rake start_engine
+
+Worker 2 is sleeping
+Worker 3 is sleeping
+Worker 0 is sleeping
+Worker 1 is sleeping
+Worker 4 is sleeping
+Received notification for a task [TaskEngine::Tasks::WaitingTask]
+Notifying worker
+Worker 2 is awaken
+Received notification for a task [TaskEngine::Tasks::WaitingTask]
+Notifying worker
+Worker 3 is awaken
+Received notification for a task [TaskEngine::Tasks::WaitingTask]
+Worker 2 starting task 1601
 ----
 
 == Notifications et transations

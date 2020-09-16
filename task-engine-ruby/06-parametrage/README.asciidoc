@@ -121,7 +121,7 @@ Cela signifie que la table doit être vide avant de lancer la migration, sinon e
 
 Pour stocker les paramètres d'exécution en utilisant une colonne de type link:https://www.postgresql.org/docs/12/datatype-json.html[`jsonb`] qui permet de stocker des données sous forme de JSON.
 
-Comparé à stocker le JSON dans un champ de texte, cela coûte un peu plus cher en temps d'insertion (car la base de données doit parser et valider le format des données à l'insertion), par contre cela peut simplifier les investigation car il est possible de link:https://www.postgresql.org/docs/current/functions-json.html[d'accéder au contenu des valeurs] depuis des requêtes.
+Comparé à stocker le JSON dans un champ de texte, cela coûte un peu plus cher en temps d'insertion (car la {bdd} doit parser et valider le format des données à l'insertion), par contre cela peut simplifier les investigation car il est possible de link:https://www.postgresql.org/docs/current/functions-json.html[d'accéder au contenu des valeurs] depuis des requêtes.
 
 .migrations/03_add_parameters.rb
 [source,ruby]
@@ -151,7 +151,7 @@ include::tasks.rb[]
 
 == Création de tâches
 
-Il est possible d'insérer directement des tâches dans la base de données depuis le code métier, mais il est plus pratique de passer par une API Ruby qui isole un peu le stockage, notamment le fait de stocker les paramètres au format JSON.
+Il est possible d'insérer directement des tâches dans la {bdd} depuis le code métier, mais il est plus pratique de passer par une API Ruby qui isole un peu le stockage, notamment le fait de stocker les paramètres au format JSON.
 
 .task_engine.rb
 [source,ruby]

@@ -13,7 +13,7 @@ include::stop_engine_1.txt[]
 Le {mdt} s'arrête immédiatement et toutes les tâches s'arrêtent net.
 Si on veut utiliser ce type de fonctionnement, cela signifie que toutes les tâches doivent être développées de manière à ce qu'elles puissent être arrêté es n'importe quand.
 
-Si les tâches n'utilisent que la base de données et une seule transaction, cela peut être envisageable, mais dès lors qu'elles communiquent avec l'extérieur les choses deviennent plus compliquées.
+Si les tâches n'utilisent que la {bdd} et une seule transaction, cela peut être envisageable, mais dès lors qu'elles communiquent avec l'extérieur les choses deviennent plus compliquées.
 Par exemple une tâches chargée d'envoyer un mail puis de mettre à jour la base de donnée pour indiquer que le mail est parti pourrait être arrêtée juste après l'envoi du mail.
 Cela signifie qu'au redémarrage du {mdt} si la tâche est relancée elle enverrait un autre mail identique.
 
