@@ -1,17 +1,54 @@
 [#MDT-09]
 = Partie 9 : {article-09-nom}
 
-Jusqu'à présent il est seulement possible de créer des tâches à exécution immédiate, et donc pas de tâche dans le futur.
+Jusqu'à présent il est seulement possible de créer des tâches à exécution immédiate.
 
-Créer des tâches dans le futur permet de programmer des tâches à des horaires planifiés, par exemple toutes les heures ou tous les jours à une certaine heure, et me servira plus tard pour pouvoir relancer des tâches en échec après un certain délai.
+Les tâches dont l'exécution n'est pas immédiate correspondent à deux cas{nbsp}:
+
+- les tâches dont on veut programmer des exécutions régulières, par exemple toutes les quelques minutes ou toutes les nuits à 03h12{nbsp};
+- les tâches qu'on veut exécuter une seule fois mais dans le futur à une heure déterminée, elles sont peu utilisées directement par les applications, mais permette de faire de réessais plus tard en cas d'erreur.
+
+== Les tâches à exécution régulière
+
+Les tâches à exécution régulière correspondent à ce qu'il est possible de faire avec l'utilitaire link:https://fr.wikipedia.org/wiki/Cron[cron] dans les système Unix et Linux.
+
+Cela peut par exemple servir pour programmer des traitement d'archivage ou des rappels toutes les nuits.
+
+La solution la plus simple est d'utiliser l'outil cron directement.
+Même s'il est un peu passé de mode, c'est un utilitaire fiable et dont l'usage est bien documenté.
+
+Lors d'un déploiement il est facile de mettre à jour la liste des tâches programmées si la configuration cron fait partie du code.
+
+Ses deux inconvénients majeurs pour cet usage sont{nbsp}:
+
+- l'impossibilité de modifier la configuration cron facilement, par exemple à travers une interface graphique
+- le fait que les commandes cron doivent être lancées sur une seule machine (sinon les tâches seront créés autant de fois qu'il y a de machines), ce qui peut poser des contraintes de disponibilité.
+
+Si vous n'êtes pas dans une de ces situations, cron pourrait donc parfaitement faire l'affaire.
+
+Pour créer les tâches depuis cron, il y a deux manières de faire :
+
+. Lancer une commande Ruby qui va faire l'insertion en utilisant la méthode `TaskEngine.create_task`.
+. Faire directement l'insertion en base de donnée en utilisant du SQL et link:https://www.postgresql.org/docs/current/app-psql.html[psql].
+
+La première a l'avantage de la simplicité, par contre elle a l'inconvénient de lancer une machine virtuelle Ruby pour exécuter deux commandes SQL très simple (l'insertion de la tâche et la notification).
+
+L'inconvénient principal de la seconde manière est que le format des données dans la base devient une API.
+En effet s'il change il faudra modifier le code Ruby mais aussi peut-être les scripts qui accèdent directement à la base.
+
+Si c'est une approche qui est plutôt à éviter lorsqu'il s'agit d'une API exposée à d'autres systèmes, elle peut être acceptable ici vu que la programmation des tâches fait partie du même ensemble applicatif.
+
+Je ne vais détailler l'utilisation de cron, il y a déjà bien assez de documentation à ce sujet, et je vais donc passer aux tâches à exécution unique.
 
 == Les tâches à exécution unique
 
-La première étape est de pouvoir programmer des tâches à exécution unique qui doivent s'exécuter dans le futur plutôt qu'immédiatement.
+Ces tâches ressemblent beaucoup aux tâches existantes, sauf qu'elles doivent s'exécuter dans le futur plutôt qu'immédiatement.
 
-Jusqu'à présent, une tâche dans l'état `waiting` était forcément prête à être exécutée, je vais devoir changer ce comportement.
+Jusqu'à présent, une tâche dans l'état `waiting` était forcément prête à être exécutée.
 
-Pour cela, je vais ajouter un nouveau champ `scheduled_at` qui contiendra l'heure à partir de laquelle la tâche peut être exécutée, avec pour valeur par défaut l'heure actuelle pour que la tâche puisse se lancer immediatement.
+Je vais devoir changer ce comportement pour prendre en compte qu'une tâche puisse être en attente mais pas encore prête à être exécutée tout de suite.
+
+Pour cela, je vais ajouter un nouveau champ `scheduled_at` qui contiendra l'heure à partir de laquelle la tâche peut être exécutée, avec pour valeur par défaut l'heure actuelle pour que la tâche puisse se lancer immédiatement.
 
 L'implémentation va au final toucher peu de code.
 
@@ -54,7 +91,7 @@ end
 
 Si le paramètre `scheduled_at` est spécifié, et que la tâche est programmée pour s'exécutée plus tard, il n'est pas nécessaire d'envoyer de notification car les notifications servent à réveiller des workers pour une exécution immédiate.
 
-Le dernier élement à modifier est la requête qui cherche la prochaine tâche à exécuter, qui doit maintenant faire un tri sur `scheduled_at`, et qui doit également ignorer les tâches dont la valeur de `scheduled_at` est dans le futur.
+Le dernier élément à modifier est la requête qui cherche la prochaine tâche à exécuter, qui doit maintenant faire un tri sur `scheduled_at`, et qui doit également ignorer les tâches dont la valeur de `scheduled_at` est dans le futur.
 
 Comme pour la valeur par défaut, je vais laisser la base définir l'heure actuelle.
 `Sequel.lit` indique à Sequel d'utiliser la valeur telle-quelle sans l'interpréter, elle est utile comme lorsqu'ici on utilise des fonctions SQL.
@@ -106,18 +143,53 @@ $ TASK_ENGINE_INSTANCE=instance_01 rake start_engine
 
 Tout d'acord comme prévu il ne se passe rien, car la date est dans le futur.
 
-Mais au bout de 30 secondes il ne se passe rien non plus, car en l'absence de notification aucun worker ne vérifie si la tâche est disponible pour être exécutée.
+== Allo la tâche ?
 
-Si une autre tâche était créée en exécution immédiate après que 30 secondes se soient passées, cela réveillerait un worker, et la tâche programmée serait traitée, mais tant que ce n'est le cas la tâche restera à attendre.
+Mais au bout de 30 secondes il ne se passe rien non plus.
+Le problème c'est qu'en l'absence de notification aucun worker ne vérifie si la tâche est disponible pour être exécutée.
 
-Si de nouvelles tâches à exécution immédiates sont crées régulièrement, cette attente peut ne pas être un problème, mais peut-être que ça n'est pas le cas, ou que même si c'est le cas en principe, on peut préférer garantir que la tâche ne va pas attendre trop longtemps si des workers sont disponibles.
+Si une autre tâche était créée en exécution immédiate après que les 30 secondes se soient passées, cela réveillerait un worker, et la tâche programmée serait traitée, mais tant qu'aucune tâche immédiate n'est créée, la tâche programmée restera à attendre.
+
+Si de nouvelles tâches à exécution immédiates sont crées régulièrement, cette attente peut ne pas être un problème, mais peut-être que ça n'est pas le cas, ou que même si c'est le cas en principe, on peut préférer garantir que la tâche ne va pas attendre trop longtemps, en tous cas si des workers sont disponibles.
 
 La manière idéale de faire serait faire en sorte de réveiller un worker dès qu'une tâche devient exécutable, mais il n'y a pas d'approche facile pour le faire avec les outils que j'ai choisis.
-Une approche possible serait d'envoyer des notifications lors des créations de ces tâches, et de programmer un réveil pour chaque moment où au moins une tâche s'exécute.
-L'inconvénient est que cela pourrait augmenter pas mal la consommation mémoire des instances du {mdt}, et leur demanderait de stocker des donées en mémoires.
-Cela signifie qu'au redémarrage des {}
+
+Une approche possible serait d'envoyer une notification lors de chaque création de ces tâches, et que les instances de {mdt} programment un réveil de worker pour chaque moment où au moins une des tâches doit s'exécuter.
+
+Mais elle a cependant deux inconvénients.
+Le premier est est que cela augmenterait la consommation mémoire des instances du {mdt}, avec un risque de dépassement mémoire si trop de tâches sont crées.
+Le second est que le fonctionnement se mettrait à dépendre du fait que les instances de {mdt} ne soient pas redémarrées, car alors les informations de réveil seraient perdus.
 
 Je vais plutôt partir du principe que si une tâche est programmée pour s'exécuter dans le futur, ce n'est pas grave si elle a quelques secondes de retard.
+Cela me permet de choisir une approche moins fine mais qui n'a pas les deux inconvénients cités plus hauts.
 
+Ma solution sera de programmer à intervalle régulier des "`réveils`" qui reproduiront le même mécanisme que la réception d'une notification en poussant un élément dans la `Queue` où attendent les workers disponibles.
+Cela signifie envoyer un message pour réveiller un éventuel worker disponible, qui ira voir si une tâche est prête à être exécutée.
 
+Pour cela je vais créer un nouveau `Thread` qui sera dédié à cet usage{nbsp}:
 
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Engine
+    def initialize(instance)
+      # …
+      
+      # Scheduled wake-ups
+      Thread.new do
+        while true do
+          LOGGER.info('Scheduled wake-up')
+          @queue.push('Scheduled wake-up')
+          sleep(10)
+        end
+      end
+      # …
+    end
+  end
+end
+----
+
+Le temps entre deux réveil, ici fixé à 10 seconde, correspond au temps maximum d'attente pour une tâche programmée, si des workers sont disponibles.
+
+En effet si les worker sont déjà tous occupées à traiter un arriéré de tâches, il peut s'écouler un certain temps avant qu'une tâche programmée qui vient de devenir exécutable soit effectivement lancée.
