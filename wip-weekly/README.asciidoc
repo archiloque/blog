@@ -126,7 +126,7 @@ But C is proudly a low-level language. A nicer assembly.
 
 From day one, C{plus}{plus} had magic. Dark witchcraft: destructors. Suddenly the compiler was doing things on its own. It also had type inference very early on, but the developers of the mid-80s were not quite ready for that and Bjarne Stroustrup was pressured into removing `auto`, until it was added back to C{plus}{plus}11.
 
-From then, C{plus}{plus} got more and more tools to build abstractions. I don’t think it would be fair to say that C{plus}{plus} is a low-level or high-level language. It’s both, by design. But building high-level abstractions while not sacrificing performance is hard. C{plus}{plus} then needed tools to achieve that: `constexpr`, move semantics, templates, and an ever-growing standard library.
+From then, C{plus}{plus} got more and more tools to build abstractions. I don't think it would be fair to say that C{plus}{plus} is a low-level or high-level language. It's both, by design. But building high-level abstractions while not sacrificing performance is hard. C{plus}{plus} then needed tools to achieve that: `constexpr`, move semantics, templates, and an ever-growing standard library.
 
 Fundamentally I think C trusts developers while C{plus}{plus} trusts compilers. This is a massive difference that sharing the same native types or syntax for while loop cannot hide.
 
@@ -161,5 +161,16 @@ There were so many of these cults that in 2001 seventeen white dudes decided to 
 ____
 
 ____
-They had to make Software Craftsmanship because Agile became too much about project management and not about code. This made software devs said because they hate it when things aren’t about them. Uncle Bob and others thought too much code sucked. And people weren't paying enough attention to writing code that didn't suck. They decided the solution was to LARP as medieval craftspeople. And pretend they were making beautiful woodcarvings instead of pop up windows on websites.
+They had to make Software Craftsmanship because Agile became too much about project management and not about code. This made software devs said because they hate it when things aren't about them. Uncle Bob and others thought too much code sucked. And people weren't paying enough attention to writing code that didn't suck. They decided the solution was to LARP as medieval craftspeople. And pretend they were making beautiful woodcarvings instead of pop up windows on websites.
+____
+
+== link:https://abuqader.substack.com/p/on-browser-tabs[On Browser Tabs]
+
+[quote]
+____
+Keeping these tabs open is a form of externalized working memory. Jumping back in _should_ feel akin to the last time a user was immersed in that window. At some point though, the number of tabs begins to toe the line between externalized memory and information hoarding. The desire to keep tabs open for too long with no end-state is similar to physical hoarding.
+
+I know there are some solutions that "`save`" tabs. These extensions are designed to snapshot a window and store it. I've used these before and find them useful although they still feel very unorganized and stiff. There's also a significant amount of cognitive load to readjust to all of the information. These solutions address the problem directly but the tab issue is a manifestation of a more "`core`" issue around organizing goal-driven information consumption. Unpacking the relationship between tabs and cognition may be a step in the right direction.
+
+The tab is also just a wrapper around what's really important: the content inside it. Maybe it's a paragraph, a piece of code, or a video vs. everything else that comes with the site. Part of the solution here is rethinking the way we organize the information that we think is relevant on a given site.
 ____
