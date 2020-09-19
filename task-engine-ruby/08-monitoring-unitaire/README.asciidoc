@@ -59,10 +59,13 @@ module TaskEngine
         starting_time = DateTime.now
         LOGGER.info("Worker #{@worker_index} starting task #{task.id}")
         
-        task_execution = TaskExecution.create(
-            task: task,
-            started_at: starting_time
-        )
+        task_execution = nil
+        DB.transaction do
+          task_execution = TaskExecution.create(
+              task: task,
+              started_at: starting_time
+          )
+        end
 
         task_class_name = task.task_class
         task_class = Object.const_get(task_class_name)
@@ -72,11 +75,17 @@ module TaskEngine
         stopping_time = DateTime.now
         elapsed_time = (stopping_time - starting_time).to_f * MILLISECONDS_IN_A_DAY
         LOGGER.info("Worker #{@worker_index} finished task #{task.id}, took #{elapsed_time}ms")
-        task_execution.update(
-            stopped_at: stopping_time,
-            result: Sequel.pg_json_wrap(task_result)
-        )
-        end_task(task)
+
+        DB.transaction do
+          task_execution.update(
+              stopped_at: stopping_time,
+              result: Sequel.pg_json_wrap(task_result),
+              status: TaskExecution::STATUS_SUCCESS
+          )
+          task.update(
+              status: Task::STATUS_STOPPED
+          )
+        end
       end
       # …
     end
@@ -105,9 +114,9 @@ Worker 0 starting task 201
 Worker 0 finished task 201, took 5007.844ms
 (0.000365s) BEGIN
 (0.000829s) UPDATE "task_executions" SET "stopped_at" = '2020-08-10 16:52:59.062627+0200', "result" = 'null'::jsonb, "updated_at" = '2020-08-10 16:52:59.063566+0200' WHERE ("id" = 6)
-(0.001536s) COMMIT
 (0.000355s) BEGIN
 (0.000551s) UPDATE "tasks" SET "status" = 'stopped' WHERE ("id" = 201)
+(0.001536s) COMMIT
 ----
 
 La table `task_executions` contient bien les informations attendues{nbsp}:

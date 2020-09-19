@@ -1,5 +1,16 @@
 [#MDT-11]
 = {article-11-nom}
 
-- Monitoring de bout en bout
-- Priorisation
+Et voila c'est terminé, le {mdt} est fonctionnel, ou du moins il a toute les fonctionnalités de base qu'on attend à trouver dans ce genre d'outils.
+
+Par rapport à un {mdt} plus complet il manque encore de nombreuses choses comme{nbsp}:
+
+- link:https://blog.octo.com/present-et-avenir-du-monitoring-de-flux/[Du monitoring de bout en bout], en utilisant par exemple des identifiant de corrélation transmis d'une tâche à l'autre et qui pourrait utiliser le contexte des tâches.
+- Une gestion de la priorité, par exemple en ajoutant une colonne permettant de définir un niveau de priorité pour que certaines tâches ou certains types de tâches s'exécutent avant d'autres.
+- La capacité d'enrichir le moteur à l'aide de hooks pour avoir notamment des pré-traitement et des post-traitements.
+
+Mais ces ajouts ne changeraient pas la structure du code, et leur implémentation n'aiderait probablement à mieux comprendre ou mieux utiliser un {mdt}, elles sont donc en dehors du périmètre que j'ai choisi de traiter.
+
+J'espère que la lecture aura permis de démystifier les {mdt}, et qu'elle en aura fait un outil "`comme les autres`" dont vous n'hésiterez pas à vous servir.
+
+Si vous avez des remarques, des critiques ou des questions, link:https://archiloque.net[contactez-moi]{nbsp}!

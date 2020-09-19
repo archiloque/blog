@@ -1,2 +1,486 @@
 [#MDT-10]
 = Partie 10 : {article-10-nom}
+
+Parfois les choses se passent mal, et le code plante.
+Cela se produit même plus que parfois quand il s'agit de faire des appels réseaux, c'est-à-dire typiquement le genre de choses que fait un {mdt}.
+
+Il faut donc que le {mdt} puisse prendre en compte cette possibilité.
+
+Tout d'abord il faut que, autant que possible, une erreur dans une tâche n'ait pas de conséquence sur le {mdt}.
+Cela vaut bien entendu pour les erreurs applicatives, on ne peut pas grande chose face un crash de la machine virtuelle pour cause de mémoire insuffisante.
+
+Ensuite il faut pouvoir monitorer ce qui s'est passé, en stockant les messages d'erreurs et les heures d'exécutions pour pouvoir aider à comprendre.
+
+En finalement il faut pouvoir relancer les tâches, en effet l'expérience prouve que de relancer les tâches automatiquement un peu plus tard est souvent la bonne solution car beaucoup de problèmes sont temporaires.
+
+== Une tâche qui plante
+
+La première chose à faire est d'avoir une tâche qui plante pour pouvoir tester ce qui va suivre.
+
+Jusqu'ici le seul type de tâche qui existait était la `WaitingTask`, je vais donc ajouter une `FailingTask`{nbsp}:
+
+.tasks.rb
+[source,ruby]
+----
+module TaskEngine
+  module Tasks
+    class FailingTask
+      # @param [Hash] parameters
+      # @return [Hash, nil]
+      def execute(parameters)
+        1 / 0
+      end
+    end
+  end
+end
+----
+
+Comme il n'y aucune gestion d'erreur pour le moment, la division par zéro fait planter l'instance du {mdt}.
+
+[source]
+----
+#<Thread:0x00007fa2531e5a30 /task_engine.rb:123 run> terminated with exception (report_on_exception is true):
+Traceback (most recent call last):
+	3: from /task_engine.rb:124:in `block in initialize'
+	2: from /task_engine.rb:144:in `execute'
+	1: from /tasks.rb:18:in `execute'
+/tasks.rb:18:in `/': divided by 0 (ZeroDivisionError)
+^CI, [2020-09-18T21:16:54.385296 #53807]  INFO -- : Worker 2 is awaken
+I, [2020-09-18T21:16:54.385604 #53807]  INFO -- : Worker 2 is stopping
+I, [2020-09-18T21:16:54.385467 #53807]  INFO -- : Worker 4 is awaken
+I, [2020-09-18T21:16:54.385714 #53807]  INFO -- : Worker 4 is stopping
+I, [2020-09-18T21:16:54.385403 #53807]  INFO -- : Worker 0 is awaken
+I, [2020-09-18T21:16:54.385818 #53807]  INFO -- : Worker 0 is stopping
+I, [2020-09-18T21:16:54.385541 #53807]  INFO -- : Worker 3 is awaken
+I, [2020-09-18T21:16:54.386093 #53807]  INFO -- : Worker 3 is stopping
+I, [2020-09-18T21:16:54.385996 #53807]  INFO -- : Joining worker 1
+rake aborted!
+ZeroDivisionError: divided by 0
+/tasks.rb:18:in `/'
+/tasks.rb:18:in `execute'
+/task_engine.rb:144:in `execute'
+/task_engine.rb:124:in `block in initialize'
+Tasks: TOP => start_engine
+----
+
+Pour mettre en place la gestion d'erreur je vais commencer par enrichir le modèle de données{nbsp}: dans la table `task_executions` je vais ajouter un `status` pour déclarer que l'exécution a eu une erreur, et une `error` pour pouvoir enregistrer les informations sur l'erreur.
+
+.migrations/07_add_errors_to_task_execution.rb
+[source,ruby]
+----
+include::07_add_errors_to_task_execution.rb[]
+----
+
+Le `status` `running` va correspondre aux tâches en cours d'exécution.
+Jusque là il était possible de déterminer qu'une exécution n'était pas terminée en regardant si colonne `stopped_at` était vide.
+Mais comme je préfère que la colonne `status` ne soit pas nullable pour éviter les oublis, j'ai besoin d'un `status` pendant l'exécution.
+
+La première chose est d'ensuite de déclarer les `status` comme des constantes dans la classe `TaskExecution`{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class TaskExecution < Sequel::Model
+    STATUS_RUNNING = 'running'
+    STATUS_SUCCESS = 'success'
+    STATUS_FAILURE = 'failure'
+    many_to_one :task
+  end
+end
+----
+
+Et je peux maintenant ajouter le début de la gestion d'erreur{nbsp}: quand l'exécution d'une tâche renvoie une exception, elle sera déclarée en erreur et l'erreur sera enregistrée sous la forme du message d'erreur, de la classe de l'exception, et de la pile d'appel.
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Worker
+    def execute
+      # …
+      while (@engine.status == Engine::ENGINE_STATUS_RUNNING) && (task = try_acquire_task)
+        starting_time = DateTime.now
+        LOGGER.info("Worker #{@worker_index} starting task #{task.id}")
+
+        task_execution = nil
+        DB.transaction do
+          task_execution = TaskExecution.create(
+              task: task,
+              started_at: starting_time,
+              status: TaskExecution::STATUS_RUNNING
+          )
+        end
+
+        task_class_name = task.task_class
+        begin
+          task_class = Object.const_get(task_class_name)
+          task_instance = task_class.new
+          task_result = task_instance.execute(task.task_parameters)
+
+          stopping_time = DateTime.now
+          elapsed_time = (stopping_time - starting_time).to_f * MILLISECONDS_IN_A_DAY
+          LOGGER.info("Worker #{@worker_index} finished successfully task #{task.id} in #{elapsed_time}ms, result is #{result}")
+          DB.transaction do
+            task_execution.update(
+                stopped_at: stopping_time,
+                result: Sequel.pg_json_wrap(task_result),
+                status: TaskExecution::STATUS_SUCCESS
+            )
+              task.update(
+                  status: Task::STATUS_STOPPED
+            )
+          end
+        rescue Exception => e
+          stopping_time = DateTime.now
+          elapsed_time = (stopping_time - starting_time).to_f * MILLISECONDS_IN_A_DAY
+          LOGGER.info("Worker #{@worker_index} failed task #{task.id} in #{elapsed_time}ms, error is #{e.inspect}")
+          DB.transaction do
+            task_execution.update(
+                stopped_at: stopping_time,
+                error: Sequel.pg_json_wrap(
+                    {
+                        exception: e.class,
+                        message: e.message,
+                        backtrace: e.backtrace
+                    }),
+                status: TaskExecution::STATUS_FAILURE
+            )
+            task.update(
+                status: Task::STATUS_STOPPED
+            )
+          end
+        end
+      end
+      # …
+    end
+  end
+end
+----
+
+Et voici le résultat quand je rééessaie d'exécuter une `FailingTask`{nsbp}:
+
+[source]
+----
+Worker 0 starting task 1
+(0.000353s) BEGIN
+(0.003452s) INSERT INTO "task_executions" ("task_id", "started_at", "status", "created_at", "updated_at") VALUES (1, '2020-09-18 21:53:03.890717+0200', 'running', '2020-09-18 21:53:03.893951+0200', '2020-09-18 21:53:03.893951+0200') RETURNING *
+(0.000827s) COMMIT
+Worker 0 failed task 1 in 9.501ms, error is #<ZeroDivisionError: divided by 0>
+(0.000334s) BEGIN
+(0.001450s) UPDATE "task_executions" SET "stopped_at" = '2020-09-19 11:27:17.430026+0200', "updated_at" = '2020-09-19 11:27:17.431071+0200', "status" = 'failure', "error" = '{"exception":"ZeroDivisionError","message":"divided by 0","backtrace":["/tasks.rb:18:in `/''","/tasks.rb:18:in `execute''","/task_engine.rb:149:in `execute''","/task_engine.rb:127:in `block in initialize''"]}'::jsonb WHERE ("id" = 1)
+(0.000737s) UPDATE "tasks" SET "status" = 'stopped' WHERE ("id" = 1)
+(0.000681s) COMMIT
+----
+
+== Réessayer
+
+Comme décrit plus haut, il est souvent bénéfique de relancer une tâche qui a échoué pour les cas où la source de l'erreur était transitoire.
+
+Cela signifie que les tâches doivent être prévues pour cela, par exemple si une tâche échoue à la fin de son exécution alors qu'elle a déjà effectués certains traitements des traitements, le fait de la relancer ne doit pas avoir d'effet secondaires.
+
+Parfois cela est facile à faire, par exemple si toute la tâche s'exécute dans une seule transaction, mais si la tâche interagit avec des systèmes extérieurs cela peut être plus compliqué.
+
+Pour un {mdt}, une manière de résoudre ce problème est de rendre le réessai configurable, je vais commencer par implémenter des réessais systématiques, puis j'ajouterai la configurabilité.
+
+Quand on veut réessayer une tâche dans l'espoir que le problème qui l'empêchait de fonctionner ne se produira plus, il faut que le réessai ne soit pas immédiat.
+En général on commence par réessayer un peu plus tard, puis encore un peu plus tard mais en attendant un peu plus, et ainsi de suite en augmentant à chaque fois la durée de l'attente.
+
+Il s'agit de trouver un équilibre entre une attente plus longue, qui augmente les chances que le problème ait été résolu, et une attente trop longue qui deviendrait pénalisante.
+
+Une approche souvent employée est d'utiliser des puissance de deux{nbsp}: le premier réessai se faut au bout de 2^0^ = 1 minute, le second au bout de 2^1^ = 2 minutes, puis 4, 8, 16…
+
+Il faut aussi savoir abandonner, car au bout d'un moment réessayer ne sert plus à rien. Pour cela je vais définir un nombre maximum de réessais au bout duquel la tâche ne sera pas relancée.
+Le choix de la valeur est un peu arbitraire et dépend de l'environnement dans lequel on se trouve.
+Je vais choisir 10, ainsi la dernière tentative exécution se produira `1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 = 1023` minutes après l'exécution initiale, soit un peu plus de 17 heures.
+
+Si besoin, il serait possible de la rendre paramétrable, en utilisant par exemple le contexte que je vais ajouter juste en dessous.
+
+Une tâche a besoin de savoir à quel numéro de réessai elle correspond, pour calculer l'heure du prochain rééssai et pour déterminer qu'il est temps de s'arrêter quand elle a atteint le nombre maximum.
+
+Pour stocker cette information je pourrais utiliser les paramètres de la tâche, mais je préfère les réserver aux paramètres applicatifs.
+
+Je vais donc ajouter une nouvelle colonne à la table `tasks`.
+Plutôt que d'ajouter une colonne spécifique qui ne contiendrait que cette unique valeur, je vais créer une colonne de contexte au format `jsonb`.
+L'idée est de pouvoir ensuite l'utiliser pour ajouter d'autre métadonnées si le {mdt} est étendu.
+
+Je vais aussi avoir besoin d'un nouveau statut `failed` pour les tâches qui indiquer qu'elles ont épuisé leurs réessais.
+
+Quand une tâche aura été relancée, il faudra donc distinguer le statut de la tâche des status de ses exécutions successives.
+Une tâche en status `waiting` avec des exécutions en `failed` aura donc déjà été lancée et sera donc en train d'attendre une nouvelle tentative.
+
+.migrations/08_add_task_context_and_task_failure
+[source,ruby]
+----
+include::08_add_task_context_and_task_failure.rb[]
+----
+
+Je déclare le nouveau statut{nsbp}:
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Task < Sequel::Model
+      STATUS_WAITING = 'waiting'
+      STATUS_RUNNING = 'running'
+      STATUS_STOPPED = 'stopped'
+      STATUS_FAILED = 'failed'
+      one_to_many :task_executions
+  end
+end
+----
+
+Puis vient l'implémentation des réessais.
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Worker
+
+    MAX_RETRIES_NUMBER = 10
+
+    def execute
+      # …
+      rescue Exception => e
+        stopping_time = DateTime.now
+        elapsed_time = (stopping_time - starting_time).to_f * MILLISECONDS_IN_A_DAY
+        LOGGER.info("Worker #{@worker_index} failed task #{task.id} in #{elapsed_time}ms, error is #{e.inspect}")
+        DB.transaction do
+          task_execution.update(
+              stopped_at: stopping_time,
+              error: Sequel.pg_json_wrap(
+                  {
+                      exception: e.class,
+                      message: e.message,
+                      backtrace: e.backtrace
+                  }),
+              status: TaskExecution::STATUS_FAILURE
+          )
+        end
+        current_retry_number = task.context['retry_number'] || 0
+        if current_retry_number < MAX_RETRIES_NUMBER
+          task.context['retry_number'] = current_retry_number + 1
+          # 2^current_retry_number numbers of minutes / number of minutes in a day
+          retry_scheduled_at = DateTime.now + Rational(2 ** current_retry_number, 1440)
+          LOGGER.info("Worker #{@worker_index} task #{task.id} will be retried at #{retry_scheduled_at}")
+          DB.transaction do
+            task.update(
+                status: Task::STATUS_WAITING,
+                context: task.context,
+                scheduled_at: retry_scheduled_at
+            )
+          end
+        else
+          LOGGER.info("Worker #{@worker_index} task #{task.id} retries exhausted")
+          DB.transaction do
+            task.update(
+                status: Task::STATUS_FAILED
+            )
+          end
+        end
+      end
+    end
+  end
+end
+----
+
+Ce qui donne{nbsp}:
+
+[source]
+----
+Worker 0 starting task 2
+(0.000135s) BEGIN
+(0.001220s) INSERT INTO "task_executions" ("task_id", "started_at", "status", "created_at", "updated_at") VALUES (2, '2020-09-19 17:41:07.166732+0200', 'running', '2020-09-19 17:41:07.167594+0200', '2020-09-19 17:41:07.167594+0200') RETURNING *
+(0.000648s) COMMIT
+Worker 0 failed task 2 in 3.49ms, error is #<ZeroDivisionError: divided by 0>
+(0.000141s) BEGIN
+(0.000911s) UPDATE "task_executions" SET "stopped_at" = '2020-09-19 17:41:07.170222+0200', "updated_at" = '2020-09-19 17:41:07.170743+0200', "status" = 'failure', "error" = '{"exception":"ZeroDivisionError","message":"divided by 0","backtrace":["/tasks.rb:18:in `/''","/tasks.rb:18:in `execute''","/task_engine.rb:156:in `execute''","/task_engine.rb:131:in `block in initialize''"]}'::jsonb WHERE ("id" = 2)
+(0.000560s) COMMIT
+Worker 0 task 2 will be retried at 2020-09-19T17:42:07+02:00
+(0.000142s) BEGIN
+(0.000636s) UPDATE "tasks" SET "updated_at" = '2020-09-19 17:41:07.173521+0200', "scheduled_at" = '2020-09-19 17:42:07.172737+0200' WHERE ("id" = 2)
+(0.000685s) COMMIT
+----
+
+== Réessayer mais pas tout le temps
+
+Comme je le disais plus haut, parfois il n'est pas nécessaire de réessayer une tâche qui a échoué, et parfois il serait néfaste de le faire{nbsp}:
+
+- Certains types de tâches ne sont pas compatibles du tout avec le réessai.
+- Lors de l'exécution, certaines situations ne doivent pas donner lieu à des réessai, il faut donc pouvoir spécifier que quand cela arrive, il ne faut plus faire de ressais.
+
+Pour les types de tâches qui ne doivent jamais être réessayer, cette information est liée au type de la tâche, et l'idéal est de pouvoir le spécifier au niveau de la classe qui implémente la classe, plutôt que lorsqu'on créé la tâche.
+
+Pour cela je vais utiliser une approche inspirée de Java, en utilisant un module sans méthode.
+Ce module servira à marquer que ce type de tâche n'est jamais à relancer.
+
+Utiliser un module plutôt qu'une classe évite d'ajouter une contrainte sur les classes qui implémentent les tâches en les empêchant d'hériter d'une autre classe.
+
+Voici le module{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  # …
+
+  # Used to tag tasks classes that should not be retried
+  module NoRetryTask
+  end
+end
+----
+
+Et voici une tâche qui va échouer et qui utilise ce module{nbsp}:
+
+.tasks.rb
+[source,ruby]
+----
+module TaskEngine
+  module Tasks
+    class FailingNotRetryTask
+      include TaskEngine::NoRetryTask
+
+      # @param [Hash] parameters
+      # @return [Hash, nil]
+      def execute(parameters)
+        1 / 0
+      end
+    end
+  end
+end
+----
+
+Lors d'une exécution en erreur, je vais vérifier si la tâche en question inclus ce module{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Worker
+    def execute
+      # …
+      rescue Exception => e
+        # …
+        if (!task_instance.nil?) && (task_instance.is_a?(TaskEngine::NoRetryTask))
+          LOGGER.info("Worker #{@worker_index} task #{task.id} should not be retried")
+          DB.transaction do
+            task.update(
+                status: Task::STATUS_FAILED
+            )
+          end
+        else
+          current_retry_number = task.context['retry_number'] || 0
+          # …
+        end
+      end
+    end
+  end
+end
+----
+
+Ce qui donne, en lançant une `TaskEngine::Tasks::FailingNotRetryTask`{nbsp}:
+
+[source]
+----
+Worker 2 starting task 3
+(0.000189s) BEGIN
+(0.001801s) INSERT INTO "task_executions" ("task_id", "started_at", "status", "created_at", "updated_at") VALUES (3, '2020-09-19 17:59:19.561146+0200', 'running', '2020-09-19 17:59:19.562535+0200', '2020-09-19 17:59:19.562535+0200') RETURNING *
+(0.000665s) COMMIT
+Worker 2 failed task 3 in 4.8260000000000005ms, error is #<ZeroDivisionError: divided by 0>
+(0.000219s) BEGIN
+(0.001036s) UPDATE "task_executions" SET "stopped_at" = '2020-09-19 17:59:19.565972+0200', "updated_at" = '2020-09-19 17:59:19.566692+0200', "status" = 'failure', "error" = '{"exception":"ZeroDivisionError","message":"divided by 0","backtrace":["/tasks.rb:28:in `/''","/tasks.rb:28:in `execute''","/task_engine.rb:161:in `execute''","/task_engine.rb:135:in `block in initialize''"]}'::jsonb WHERE ("id" = 3)
+(0.000653s) COMMIT
+Worker 2 task 3 should not be retried
+(0.000154s) BEGIN
+(0.000879s) UPDATE "tasks" SET "status" = 'failed', "updated_at" = '2020-09-19 17:59:19.569792+0200' WHERE ("id" = 3)
+----
+
+Quand une tâche qui en principe devrait être réessayée ne devrait pas l'être dans certain cas, je vais m'appuyer sur l'exception qui est remontée en cas d'erreur.
+Comme pour les tâche, je vais utiliser un module pour permettre de marquer les classes d'exception dans ce cas.
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  # …
+
+  # Used to tag exception classes that should not trigger a retry when they happen
+  module NoRetryExceptionModule
+  end
+end
+----
+
+
+Et voici une tâche qui va échouer en utilisant une exception de ce type{nbsp}:
+
+.tasks.rb
+[source,ruby]
+----
+module TaskEngine
+  module Tasks
+    class FailingNotRetryExceptionTask
+      class FailingNotRetryTaskException < Exception
+        include TaskEngine::NoRetryException
+      end
+
+      # @param [Hash] parameters
+      # @return [Hash, nil]
+      def execute(parameters)
+        raise FailingNotRetryTaskException.new('Oh no')
+      end
+    end
+  end
+end
+----
+
+La gestion de ce cas ressemble beaucoup au précédent{nbsp}:
+
+.task_engine.rb
+[source,ruby]
+----
+module TaskEngine
+  class Worker
+    def execute
+      # …
+      rescue Exception => e
+        # …
+        if (!task_instance.nil?) && (task_instance.is_a?(TaskEngine::NoRetryTask))
+          # …
+        elsif e.is_a?(NoRetryException)
+          LOGGER.info("Worker #{@worker_index} task #{task.id} raised a #{e.class} so it should not be retried")
+          DB.transaction do
+            task.update(
+                status: Task::STATUS_FAILED
+            )
+          end
+        else
+          current_retry_number = task.context['retry_number'] || 0
+          # …
+        end
+      end
+    end
+  end
+end
+----
+
+Ce qui donne, en lançant une `TaskEngine::Tasks::FailingNotRetryExceptionTask`{nbsp}:
+
+[source]
+----
+Worker 0 starting task 6
+(0.000201s) BEGIN
+(0.001445s) INSERT INTO "task_executions" ("task_id", "started_at", "status", "created_at", "updated_at") VALUES (6, '2020-09-19 18:22:36.700020+0200', 'running', '2020-09-19 18:22:36.701062+0200', '2020-09-19 18:22:36.701062+0200') RETURNING *
+(0.000640s) COMMIT
+Worker 0 failed task 6 in 4.019ms, error is #<TaskEngine::Tasks::FailingNotRetryExceptionTask::FailingNotRetryTaskException: Oh no>
+(0.000173s) BEGIN
+(0.000946s) UPDATE "task_executions" SET "stopped_at" = '2020-09-19 18:22:36.704039+0200', "updated_at" = '2020-09-19 18:22:36.704737+0200', "status" = 'failure', "error" = '{"exception":"TaskEngine::Tasks::FailingNotRetryExceptionTask::FailingNotRetryTaskException","message":"Oh no","backtrace":["/tasks.rb:40:in `execute''","/task_engine.rb:165:in `execute''","/task_engine.rb:139:in `block in initialize''"]}'::jsonb WHERE ("id" = 6)
+(0.000556s) COMMIT
+Worker 0 task 6 raised a TaskEngine::Tasks::FailingNotRetryExceptionTask::FailingNotRetryTaskException so it should not be retried
+(0.000151s) BEGIN
+(0.000703s) UPDATE "tasks" SET "status" = 'failed', "updated_at" = '2020-09-19 18:22:36.707380+0200' WHERE ("id" = 6)
+I
+----
+
+Ce qui boucle la gestion des cas d'erreurs{nsbp}: les erreurs sont enregistrées, les tâches sont par défaut relancées, mais il est possible de gérer de manière fine les situation où cela n'est pas souhaitable.
