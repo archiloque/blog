@@ -1,6 +1,6 @@
 = {titre-série}
 Julien Kirch
-:revdate: 2020-08-03
+:revdate: 2020-09-19
 :article_lang: fr
 :doctype: book
 :source-highlighter: pygments
@@ -37,6 +37,8 @@ Julien Kirch
 :article-10-nom: la gestion d'erreurs
 :article-11-url: 11-conclusion
 :article-11-nom: Conclusion
+:article-12-url: 12-code
+:article-12-nom: Annexe : le code source
 
 include::{article-01-url}/README.asciidoc[]
 
@@ -59,3 +61,5 @@ include::{article-09-url}/README.asciidoc[]
 include::{article-10-url}/README.asciidoc[]
 
 include::{article-11-url}/README.asciidoc[]
+
+include::{article-12-url}/README.asciidoc[]
