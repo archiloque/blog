@@ -11,16 +11,48 @@ On peut y voir ce qui se passe quand on applique des principes à la lettre sans
 Si certaines des caractéristiques de l'étude sont spécifiques à l'industrie aéronautique, par exemple la très longue période (plusieurs dizaines d'années) pendant laquelle il faut garantir l'approvisionnement en pièces détachées, j'y ai retrouvé de nombreux points communs avec des projets que j'ai pu croiser et il m'a permis de mettre des mots sur certaines intuitions.
 
 Si dans les achats en informatique, je lis beaucoup de réflexions de fond sur "`Build versus buy`" à propos d'achat de logiciel tout fait, j'ai l'impression que les publications sous la sous-traitance pour développer des logiciels, typiquement le fait de faire appel à des ENS (ex-SSII) sont plus rares.
+
 En plus, ceux que je vois passer sont plutôt des récits de projets qui ont tourné au désastre, toujours amusants (ou triste) à lire, mais pauvres en analyses.
 
-== Le sous-traitant n'est pas ton ami
+Je vais parler ici du cas où le sous-traitant paie, de manière directe ou indirecte, en fonction de la quantité de travail effectuée.
+Par exemple lorsque le sous-traitant travaille sur des lots dont la taille et donc le prix sont négociés en fonction d'une estimation du travail qu'ils demandent.
+J'exclus donc le cas du projet entièrement au forfait, et le cas de la régie où les employé·e·s du sous-traitant travaillent directement pour le·a donneur·euse d'ordre, comme s'il·elle·s étaient directement ses employé·e·s.
+
+== L'entreprise sous-traitante n'est pas ton amie
 
 Souvent, quand une partie conséquente d'un projet (voir l'ensemble du développement) est déléguée à une entreprise tierce, on appelle l'entreprise sous-traitante "`partenaire`".
 On ne m'a jamais expliqué l'usage de ce terme dans cette situation, mais ma compréhension est qu'il est sensé indiquer que les deux organisations ont dans le projet un même objectif et que par conséquent leurs intérêts sont les mêmes.
 
 En général c'est assez loin de la réalité, s'ils ne sont pas totalement contraire, les objectifs du client et du sous-traitant s'opposent sur un certains nombre de points.
 
-Il est vrai qu'aucun des deux n'a (en général) intérêt à ce que le projet se plante, au risque que le sous-traitant perde une source de revenu (jamais agréable, surtout sur un gros projet), et risque d'y gagner une mauvaise réputation (quoique souvent ils n'en sont pas à une casserole prêt) et/ou un procès (même les choses arrivent rarement jusque là, les tords étant souvent partagés et les contrats mal ficelés).
+Il est vrai qu'aucune des deux parties n'a (en général) intérêt à ce que le projet échoue de manière trop visible, au risque que le sous-traitant perde une source de revenu (ce qui n'est jamais agréable, surtout sur un gros projet prévu pour durer longtemps), et risque gagne une mauvaise réputation (quoique souvent ils n'en sont pas à une casserole prêt) et/ou un procès (même les choses arrivent rarement jusque là, les tords étant souvent partagés et les contrats mal ficelés).
+
+Mais pour chacune unité de travail sous-traitée, il y a une opposition frontale sur le prix{nbsp}: l'organisation qui sous-traite veut payer le moins cher possible, et l'entreprise sous-traitante veut être payée le plus cher possible.
+
+Après tout est affaire de patience, de rapport de force, et de savoir bien rédiger les clauses du contrat.
+
+La négociation consiste souvent pour l'entreprise sous-traitante à essayer de déterminer le prix maximum que l'organisation donneuse d'ordre est prête à payer.
+En se rappelant que pour beaucoup de développements, évaluer le temps à passer sur un développement est un art incertain.
+
+Le DC-10 est un parfait exemple de cette opposition car il décrit comment les sous-traitants ont encaissé tous les profits alors que l'entreprise donneuse d'ordre a absorbé tous les surcoûts.
+
+== L'automatisation
+
+Comme link:..//lean-chaine-d-assemblage/[je l'ai déjà écrit ailleurs], une des caractéristiques du développement logiciel est la capacité à s’outiller pour créer des effets de levier{nbsp}: plutôt que de faire les choses à la main on peut les automatiser, et quand on a automatisé une chose et qu'on a besoin d'une autre chose semblable on peut la réutiliser ou la généraliser.
+
+Cet effet de levier permet d'accélérer les développements, et de rendre les outils plus évolutifs en limitant le nombre de choses à modifier lorsqu'on veut changer un comportement.
+
+Malheureusement, quand on est payé à la quantité de travail, on ne voit pas forcément d'un bon œil cette automatisation.
+
+Pour un sous-traitant, réutiliser un bout de code plutôt que de le développer une deuxième fois (et donc être payé une deuxième fois) n'est pas forcément une bonne idée, ou même simplement automatiser une opération manuelle qui prend du temps.
+
+J'ai ainsi croisé plusieurs projet où les tests automatisés étaient absents ou presque inexistants et où l'entreprise sous-traitante se débrouillait pour ne pas en écrire malgré les demandes régulières.
+L'organisation donneuse d'ordre payait à chaque fois l'entreprise sous-traitante pour une campagne de test manuels à chaque nouvelle version, et en général finançait également une partie des corrections, qu'on faisait semblant de considérer comme des évolutions (car les vrais bugs sont en principes corrigés sans coût supplémentaire car ils sont considérés comme des erreurs de l'entreprise sous-traitante).
+
+En dehors du coût, cela signifie que&#8201;—{nbsp}dans certains cas{nbsp}—&#8201;l'intérêt financier de l'entreprise sous-traitante peut mener à des logiciels moins fiables et moins faciles à faire évoluer.
+
+== L'entreprise sous-traitante en sait souvent plus que toi
 
 
-Euphémiser
+
+== L'entreprise sous-traitante rend les choses plus compliquées
