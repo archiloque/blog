@@ -4,10 +4,8 @@ v0.1, 2018-10-21
 :article_lang: fr
 :article_image: rule.jpg
 :article_description: … c'est parfois plus compliqué qu'on ne le croit
-:sous: l'entreprise sous-traitante
-:Sous: L'entreprise sous-traitante
-:ordre: l'organisation donneuse d'ordre
-:Ordre: L'organisation donneuse d'ordre
+:sous: 'entreprise sous-traitante
+:ordre: 'organisation donneuse d'ordre
 
 link:https://www.semanticscholar.org/paper/BOEING-PROPRIETARY-BOEING-PROPRIETARY-1-OUTSOURCED-PROPRIETARY/e9daf5cc1c94c6e34e29095ca168e8fa2d750df9?p2df[Cette analyse] de l'échec commercial de l'avion link:https://en.wikipedia.org/wiki/McDonnell_Douglas_DC-10[McDonnell Douglas DC-10] décrit les conséquences néfaste d'une sous-traitance mal maîtrisée.
 On peut y voir ce qui se passe quand on applique des principes à la lettre sans se demander si ils sont bien adapté à un certain contexte.
@@ -18,29 +16,29 @@ Si dans les achats en informatique, je lis beaucoup de réflexions de fond sur "
 
 En plus, ceux que je vois passer sont plutôt des récits de projets qui ont tourné au désastre, toujours amusants (ou triste) à lire, mais pauvres en analyses.
 
-Je vais parler ici du cas où {sous} est payée, de manière directe ou indirecte, en fonction de la quantité du temps qu'il passe.
-Par exemple lorsque {sous} réalise des lots dont la taille et donc le prix sont négociés en fonction d'une estimation du temps de travaille qu'ils demandent.
-J'exclus donc le cas du projet entièrement au forfait, et le cas de la régie où les employé·e·s de {sous} travaillent directement pour {ordre}, comme s'il·elle·s étaient directement ses employé·e·s.
+Je vais parler ici du cas où l{sous} est payée, de manière directe ou indirecte, en fonction de la quantité du temps qu'il passe.
+Par exemple lorsque l{sous} réalise des lots dont la taille et donc le prix sont négociés en fonction d'une estimation du temps de travaille qu'ils demandent.
+J'exclus donc le cas du projet entièrement au forfait, et le cas de la régie où les employé·e·s de l{sous} travaillent directement pour l{ordre}, comme s'il·elle·s étaient directement ses employé·e·s.
 
-== {Sous} n'est pas ton amie
+== L{sous} n'est pas ton amie
 
-Souvent, quand une partie conséquente d'un projet (voir l'ensemble du développement) est déléguée à une entreprise tierce, on appelle {sous} "`partenaire`".
+Souvent, quand une partie conséquente d'un projet (voir l'ensemble du développement) est déléguée à une entreprise tierce, on appelle l{sous} "`partenaire`".
 On ne m'a jamais expliqué l'usage de ce terme dans cette situation, mais ma compréhension est qu'il est sensé indiquer que les deux structures ont dans le projet un même objectif et que par conséquent leurs intérêts sont les mêmes.
 
 En général c'est assez loin de la réalité, s'ils ne sont pas totalement contraire, les objectifs du client et du sous-traitant s'opposent sur un certains nombre de points.
 
 Il est vrai qu'aucune des deux parties n'a (en général) intérêt à ce que le projet échoue de manière trop visible, au risque que le sous-traitant perde une source de revenu (ce qui n'est jamais agréable, surtout sur un gros projet prévu pour durer longtemps), et risque gagne une mauvaise réputation (quoique souvent ils n'en sont pas à une casserole prêt) et/ou un procès (même les choses arrivent rarement jusque là, les tords étant souvent partagés et les contrats mal ficelés).
 
-Mais pour chacune unité de travail sous-traitée, il y a une opposition frontale sur le prix{nbsp}: {ordre} veut payer le moins cher possible, et {sous} veut être payée le plus cher possible.
+Mais pour chacune unité de travail sous-traitée, il y a une opposition frontale sur le prix{nbsp}: l{ordre} veut payer le moins cher possible, et l{sous} veut être payée le plus cher possible.
 
 Après tout est affaire de patience, de rapport de force, et de savoir bien rédiger les clauses du contrat.
 
-La négociation consiste souvent pour {sous} à essayer de déterminer le prix maximum que {ordre} est prête à payer.
+La négociation consiste souvent pour l{sous} à essayer de déterminer le prix maximum que l{ordre} est prête à payer.
 En se rappelant que pour beaucoup de développements, évaluer le temps à passer sur un développement est un art incertain.
 
 Le DC-10 est un parfait exemple de cette opposition car il décrit comment les sous-traitants ont encaissé tous les profits alors que l'entreprise donneuse d'ordre a absorbé tous les surcoûts.
 
-Je ne dis pas que {sous} va nécessairement se conduire d'une manière extrême&#8201;—{nbsp}par exemple en surévaluant les tâches qui lui sont confiées{nbsp}—&#8201;mais que son intérêt objectif peut l'amener à le faire.
+Je ne dis pas que l{sous} va nécessairement se conduire d'une manière extrême&#8201;—{nbsp}par exemple en surévaluant les tâches qui lui sont confiées{nbsp}—&#8201;mais que son intérêt objectif peut l'amener à le faire.
 
 == L'automatisation
 
@@ -52,17 +50,17 @@ Malheureusement, quand on est payé au temps passé, on ne voit pas forcément d
 
 Pour un sous-traitant, réutiliser un bout de code plutôt que de le développer une deuxième fois (et donc être payé une deuxième fois) n'est pas forcément une bonne idée, ou même simplement automatiser une opération manuelle qui prend du temps.
 
-J'ai ainsi croisé plusieurs projet où les tests automatisés étaient absents ou presque inexistants et où {sous} se débrouillait pour ne pas en écrire malgré les demandes régulières.
-{Ordre} payait à chaque fois {sous} pour une campagne de test manuels à chaque nouvelle version, et en général finançait également une partie des corrections, qu'on faisait semblant de considérer comme des évolutions (car les vrais bugs sont en principe corrigés sans coût supplémentaire car ils sont considérés comme des erreurs de {sous}).
+J'ai ainsi croisé plusieurs projet où les tests automatisés étaient absents ou presque inexistants et où l{sous} se débrouillait pour ne pas en écrire malgré les demandes régulières.
+L{ordre} payait à chaque fois l{sous} pour une campagne de test manuels à chaque nouvelle version, et en général finançait également une partie des corrections, qu'on faisait semblant de considérer comme des évolutions (car les vrais bugs sont en principe corrigés sans coût supplémentaire car ils sont considérés comme des erreurs de l{sous}).
 
-En dehors du coût, cela signifie que&#8201;—{nbsp}dans certains cas{nbsp}—&#8201;l'intérêt financier de {sous} peut mener à des logiciels moins fiables et moins faciles à faire évoluer.
+En dehors du coût, cela signifie que&#8201;—{nbsp}dans certains cas{nbsp}—&#8201;l'intérêt financier de l{sous} peut mener à des logiciels moins fiables et moins faciles à faire évoluer.
 
-La non-réutilisation peut même être tentante pour {ordre}, car elle peut simplifier les négociations sur le prix des évolutions.
+La non-réutilisation peut même être tentante pour l{ordre}, car elle peut simplifier les négociations sur le prix des évolutions.
 Par exemple si les deux structures se mettent d'accord sur le temps à passer et donc le tarif pour développer un écran standard avec 5 boutons.
-Pour chaque nouvel écran, la question va donc se poser pour savoir si {ordre} accepte de payer le plein tarif, ou si elle va investir du temps et de l'énergie pour tenter de négocier une réduction en justifiant de la possibilité de réutiliser un écran existant.
+Pour chaque nouvel écran, la question va donc se poser pour savoir si l{ordre} accepte de payer le plein tarif, ou si elle va investir du temps et de l'énergie pour tenter de négocier une réduction en justifiant de la possibilité de réutiliser un écran existant.
 
-== {Sous} en sait souvent plus que toi
+== L{sous} en sait souvent plus que toi
 
 
 
-== {Sous} rend les choses plus compliquées
+== L{sous} rend les choses plus compliquées
