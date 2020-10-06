@@ -43,7 +43,7 @@ Je ne dis pas que l{sous} va nécessairement se conduire d'une manière extrême
 
 == L'automatisation
 
-Comme link:..//lean-chaine-d-assemblage/[je l'ai déjà écrit ailleurs], une des caractéristiques du développement logiciel est la capacité à s’outiller pour créer des effets de levier{nbsp}: plutôt que de faire les choses à la main on peut les automatiser, et quand on a automatisé une chose et qu'on a besoin d'une autre chose semblable on peut la réutiliser ou la généraliser.
+Comme link:../lean-chaine-d-assemblage/[je l'ai déjà écrit ailleurs], une des caractéristiques du développement logiciel est la capacité à s’outiller pour créer des effets de levier{nbsp}: plutôt que de faire les choses à la main on peut les automatiser, et quand on a automatisé une chose et qu'on a besoin d'une autre chose semblable on peut la réutiliser ou la généraliser.
 
 Cet effet de levier permet d'accélérer les développements, et de rendre les outils plus évolutifs en limitant le nombre de choses à modifier lorsqu'on veut changer un comportement.
 
@@ -62,7 +62,7 @@ Pour chaque nouvel écran, la question va donc se poser pour savoir si l{ordre} 
 
 == L{sous} en sait souvent plus que toi
 
-Pour pouvoir évaluer en amont la taille d'une tâche et donc son prix et en aval si l'{sous} fait du bon travail, il faut une certaine connaissance du sujet que vous sous-traitez.
+Pour pouvoir évaluer en amont la taille d'une tâche et donc son prix et en aval si l{sous} fait du bon travail, il faut une certaine connaissance du sujet que vous sous-traitez.
 
 De la même manière que vous tentez d'évaluer le devis ou le travail d'un·e plombier·ère ou d'un·e garagiste.
 Moi quand ça m'arrive je suis comme une poule devant un couteau.
@@ -72,11 +72,11 @@ Dans ce cas là il est malheureusement nécessaire de se reposer sur la confianc
 
 Mais lorsque l'activité n'est pas spécialisée, par exemple quand le projet à sous-traiter est un site web destiné à un intranet, on n'est pas dans cette situation{nbsp}: il est possible d'acquérir et d'entretenir cette compétence, même si ça n'est pas forcément simple.
 
-Sur des projets qui coûtent des centaines de milliers d'euros ou plus, le coût pour disposer de personnes capables d'évaluer le travail de l'{sous} est très faible par rapport au coût total du contrat.
+Sur des projets qui coûtent des centaines de milliers d'euros ou plus, le coût pour disposer de personnes capables d'évaluer le travail de l{sous} est très faible par rapport au coût total du contrat.
 
-Ne pas disposer de ces compétences signifie que, pour évaluer le travail de l'{sous}, l'{ordre} ne dispose que d'indicateur indirects, comme le nombre de bugs identifié, ou le sentiment que les choses mettent de plus en plus de temps pour avancer.
+Ne pas disposer de ces compétences signifie que, pour évaluer le travail de l{sous}, l{ordre} ne dispose que d'indicateur indirects, comme le nombre de bugs identifié, ou le sentiment que les choses mettent de plus en plus de temps pour avancer.
 
-Et en cas de désaccord avec l'{sous}, il est difficile d'argumenter sans disposer d'éléments concrets.
+Et en cas de désaccord avec l{sous}, il est difficile d'argumenter sans disposer d'éléments concrets.
 
 Ce n'est pas forcément simple, car il s'agit d'entretenir la capacité à encadrer ou à mesurer ce qui est fait sans faire soi-même, en sachant que les personnes qui savent faire ne sont pas forcément intéressées par le fait de passer du temps à faire-faire plutôt qu'à faire.
 
@@ -86,8 +86,31 @@ Personnellement même si j'en ai régulièrement entendu parler, je n'ai jamais 
 En revanche, une approche que j'ai plusieurs fois croisée est d'également sous-traiter cette partie, en délégant la gestion du projet et le contrôle du résultat à une autre entreprise.
 
 Cela peut fonctionner, mais le risque est toujours le même{nbsp}: déléguer sans maîtriser un sujet demande de faire confiance.
-D'autant que si les deux entreprises ne sont pas d'accord, c'est à l'{ordre} de trancher.
+D'autant que si les deux entreprises ne sont pas d'accord, c'est à l{ordre} de trancher.
 
 Dans ce cas je suppose qu'il peut toujours faire appel à une troisième entreprise, en ainsi de suite…
 
-== L{sous} rend les choses plus compliquées
+== L{sous} et les externalités négatives
+
+Le dernier point saillant de la sous-traitance en informatique est celui des externalités négatives.
+
+En économie une externalité est le fait pour un agent d’avoir un effet sur un autre agent sans contrepartie. Un externalité négative survient lorsqu'un agent a un effet négatif sur un autre agent.
+
+Ainsi une entreprise dont l'activité crée de la pollution environnementale crée une externalité négative pour l'écosystème où elle est installée.
+
+La sous-traitance d'un projet est souvent porteuse d'externalités négatives sur les autres projets de la même organisation, et principalement en rendant plus complexes les interactions avec ce projet.
+
+Ainsi si un projet A a besoin d'une évolution dans un projet B qui est sous-traité, cela signifie qu'il faut échanger avec l{sous} au travers des personnes internes du projet A.
+
+Ou si un certain niveau de formalisme est nécessaire entre l{ordre} et l{sous} du projet B, ce formalisme s'impose au projet A.
+
+Le choix de sous-traiter pour un projet a donc des conséquences pour les projets avec qui il est en lien.
+Le plus pénible, c'est que souvent ces conséquences ne sont pas prises en compte lors de l'évaluation du projet B, par exemple si on évalue la rentabilité de la sous-traitance.
+
+Cela peut être un peu les mêmes contraintes que si les projets A et B étaient dans deux entités différentes d'une même organisation dont les intérêts et les fonctionnements sont différents, mais dans ce cas là les contraintes sont souvent connues et acceptées (même sans l'avouer), alors que ça n'est pas toujours le cas pour la sous-traitance.
+
+== Pour conclure
+
+Les projets informatiques sont souvent compliqués{nbsp}: les choses ne se passent généralement pas comme on le croyait, les idées murissent pendant les développements, et la cohésion d'ensemble n'est jamais gagnée d'avance.
+
+Sous-traiter a certains avantages, et principalement celui de la flexibilité de la force de travail, mais a l'inconvénient de tout rendre encore un peu plus compliqué.
