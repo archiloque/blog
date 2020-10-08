@@ -31,7 +31,7 @@ You guys know what's relevant?  Reality.
 
 The thing is, I see Spelvin's rant, and I've generally enjoyed our encounters in the past, but I look back at the kinds of securit problems we've had, and they are the exact _reverse_ of what cryptographers and Spelvin is worried about.
 
-The fact is, nobody ever EVER had any practical issues with our "`secure hash functio`" even back when it was MD5, which is today considered trivially breakable.
+The fact is, nobody ever EVER had any practical issues with our "`secure hash function`" even back when it was MD5, which is today considered trivially breakable.
 
 Thinking back on it, I don't think it was even md5. I think it was half-md5, wasn't it?
 
@@ -45,7 +45,7 @@ We've had absolutely horrendous performance issues due to the so-called "`secure
 
 We've had absolutely garbage fast random numbers because the crypto people don't think performance matters, so the people who _do_ think it matters just roill their own.
 
-We've had "`random`" numbers that weren't, because random.c wanted to use only use inputs it can analyze and as a result didn't use any input at all, and every single embedded device ended up having the exact same state (this ends up being intertwined with the latency thing).
+We've had "`random`" numbers that weren't, because `random.c` wanted to use only use inputs it can analyze and as a result didn't use any input at all, and every single embedded device ended up having the exact same state (this ends up being intertwined with the latency thing).
 
 We've had years of the `drivers/char/random.c` not getting fixed because Ted listens too much to the "`serious crypto`" guys, with the end result that I then have to step in and say "`f*ck that, we're doing this RIGHT`".
 
