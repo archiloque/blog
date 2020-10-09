@@ -17,38 +17,42 @@ endif::[]
 . Exécuter la tâche
 . Effectuer des post-traitements (par exemple loguer et faire des traitements spécifiques en cas d'erreur)
 
-Les composants du système qui effectuent cette boucle sont généralement appelé des "`workers`".
+Les composants du système qui effectuent cette boucle sont généralement appelés des "`workers`".
 
 == Augmenter la capacité de traitement
 
-Pour pouvoir augmenter la capacité de traitement, il doit être possible d'ajouter des workers.
+Un {mdt} passe la très grande majorité de son temps à exécuter les tâches.
+
+Une fois que les tâches ont été correctement optimisées, augmenter la capacité de traitement nécessite de pouvoir lancer des tâches supplémentaires, et donc ajouter des workers.
 
 Cela signifie que les phases en dehors de celle d'exécution de la tâche doivent pouvoir être parallélisées le plus possible.
 Cela passe principalement par éviter ou limiter les moment où les différents workers peuvent interférer les uns avec les autres.
 
 Si les tâches à exécuter ont elles-même des problèmes de contention, cela va limiter la parallélisation de tout le système, mais c'est est en dehors du périmètre du {mdt} en lui-même.
 
+Tout ce qu'il à faire pendant l'exécution c'est de ne pas être une gène.
+
 Ajouter des workers peut se faire de deux manières{nbsp}: en lançant plusieurs workers dans un même processus et en lançant plusieurs processus.
 
 La première approche s'appuie souvent sur des threads, qui est un mécanisme fournit par la plupart des systèmes d'exploitations.
-Elle a l'avantage de limiter la consommation mémoire car les différents threads peuvent partager des ressources, par exemple la mémoire dans laquelle le code est chargé.
+Elle a l'avantage de limiter la consommation mémoire car les différents threads peuvent partager des ressources, par exemple la mémoire dans laquelle le code qui s'exécute est chargé.
 
-La deuxième approche a pour elle de ne pas être limitée par la puissance d'une machine, en effets les différents processus peuvent être lancés sur des serveurs différents.
-Par contre elle transforme le {mdt} en système distribué, et subit par conséquents les contraintes de ce type d'applications.
+Utiliser plusieurs processus évite d'être limité par la puissance d'une machine, en effets les différents processus peuvent être lancés sur des serveurs différents.
+Par contre elle transforme le {mdt} en système distribué, et subit par conséquents les contraintes de ce type de programmes.
 
 Les deux options sont complémentaires{nbsp}: on peut avoir plusieurs processus hébergeant chacun plusieurs threads.
 
-L'idéal est d'avoir un système qui sache tirer partie des threads, tout en fonctionnant bien en multi-process quand ça devient nécessaire.
+L'idéal est d'avoir un système qui sache tirer partie des threads pour bénéficier de l'économie de ressources, tout en fonctionnant bien en multi-process quand ça devient nécessaire.
 
 == Threading et Ruby
 
-Les thread en Ruby ont une spécificité{nbsp}: l'implémentation Ruby de référence (probablement celle que vous utilisez si vous n'avez pas choisi spécifiquement d'en utiliser une autre) ne permet pas plusieurs thread de s'exécuter en même temps, à cause de limitation dans l'implémentation de la machine virtuelle.
-Si vous utilisez un {mdt} en Ruby et que vous voulez pleinement profiter d'avoir plusieurs thread, il faut ainsi utiliser des implémentation alternatives comme JRuby.
+Les thread en Ruby ont une spécificité{nbsp}: l'implémentation Ruby de référence (probablement celle que vous utilisez si vous n'avez pas choisi spécifiquement d'en utiliser une autre) ne permet pas plusieurs thread de s'exécuter en même temps, à cause de limitations dans la manière dont elle est implémentée.
+Si vous utilisez un {mdt} en Ruby et que vous voulez pleinement profiter d'avoir plusieurs threads, il faut ainsi utiliser des implémentation alternatives comme JRuby.
 
-Cela ne signifie pas qu'utiliser plusieurs thread en Ruby soit inutile dans un {mdt} avec l'implémentation de référence.
-Car même si la machine virtuelle ne peut exécuter qu'un thread à la fois, plusieurs tâches peuvent tout de même être en train de progresser.
-C'est le cas parce que lorsqu'un appel extérieur est fait, par exemple une requête en {bdd} ou un appel réseau, le thread qui fait l'appel est mis en pause et un autre thread peut alors s'exécuter.
-Lorsque la requête ou l'appel se termine, le premier thread va alors attendre son tour pour continuer son traitement.
+Cela ne signifie pas qu'utiliser plusieurs threads en Ruby soit inutile dans un {mdt} avec l'implémentation de référence.
+Car même si un seul thread s'exécute à la fois, plusieurs tâches peuvent tout de même être en train de progresser.
+C'est le cas parce que lorsqu'un appel extérieur est fait, par exemple une requête en {bdd} ou un appel réseau, le thread qui fait l'appel est mis en pause et un autre thread peut alors s'exécuter, pendant que l'appel est en train de se faire.
+Lorsqu'il se termine, le premier thread va alors attendre son tour et continuer son traitement.
 
 Dans un système ou la majorité du temps est passé à attendre le reste du monde, avoir plusieurs threads peut donc être tout de même assez avantageux.
 À l'inverse si les traitements demandent des traitements longs dans le {mdt}, les threads sont pratiquement inutiles et faudra alors s'appuyer uniquement sur des processus ou utiliser une autre machine virtuelle.
@@ -56,7 +60,8 @@ Dans un système ou la majorité du temps est passé à attendre le reste du mon
 == Démarrer le projet
 
 Je vais mettre l'ensemble du code (framework et code d'exemple) dans un projet unique et je ne le packagerai pas sous forme d'une gem.
-Le faire ajouterait pas mal de code et un peu de complexité sans que cela apporte quelque chose au sujets dont je veux discuter ici.
+
+Le faire ajouterait de la configuration et du code et donc un peu de complexité sans que cela apporte quelque chose aux sujets dont je veux discuter ici.
 
 Je commence par définir la version de Ruby à utiliser
 
@@ -77,7 +82,7 @@ gem 'rake', '~> 13.0'
 ----
 
 Pour montrer comment fonctionnent le threading, la première implémentation des tâches se contentera d'attendre quelques secondes via la méthode `Kernel#sleep` ce qui permet aux autres threads de s'exécuter.
-Et pour le moment elle n'iront pas chercher quelles tâches sont disponibles, mais s'exécuteront de manière continue dans une boucle infinie
+Et pour le moment elle n'iront pas chercher quelles tâches sont disponibles, mais s'exécuteront de manière continue dans une boucle infinie.
 
 La version simplifiée d'un worker se résume alors à{nbsp}:
 
@@ -96,11 +101,11 @@ def execute
 end
 ----
 
-Après avoir lancé les différent workers, le thread principal se met en pause pour permettre aux worker de s'exécuter.
+Le thread principal du {mdt} va démarrer les différent workers puis se mettre en pause pour leur permettre s'exécuter.
 
 Pour vérifier que cela fonctionne, il est nécessaire de lancer plusieurs workers, et d'ajouter des logs.
 
-Je vais placer le code des workers dans un classe spécifique `TaskEngine::Worker`, et une autre classe `TaskEngine::Engine` sera chargée de les lancer.
+Je vais placer le code des workers dans un classe spécifique `TaskEngine::Worker`, et une autre classe `TaskEngine::Engine` sera chargée de les lancer, c'est elle qui sera exécutée au démarrage du {mdt}.
 
 Chaque instance de worker reçoit un numéro de façon à pouvoir suivre ce qu'elle fait dans les logs.
 
@@ -111,9 +116,9 @@ Chaque instance de worker reçoit un numéro de façon à pouvoir suivre ce qu'e
 include::task_engine.rb[]
 ----
 
-Le nombre de worker est défini dans une constante pour le moment, il sera temps plus tard de passer par un fichier de configuration.
+Le nombre de workers est défini dans une constante, passer par un fichier de configuration ajouterait du code sans changer l'idée.
 
-Il me reste à écrire une tâche Rake pour pouvoir lancer le moteur :
+Il me reste à écrire une tâche Rake pour pouvoir démarrer le moteur{nbsp}:
 
 .Rakefile
 [source,ruby]
@@ -128,7 +133,7 @@ Et je peux vérifier que tout fonctionne comme prévu{nbsp}:
 include::start_engine.txt[]
 ----
 
-Les tâches se bien lancent les unes après les autres, et se passent la main après avoir démarré une fois qu'elles atteignent le `sleep`.
+Les tâches se bien lancent les unes après les autres, et se passent effectivement la main après avoir démarré une fois qu'elles atteignent le `sleep`.
 La boucle de traitement fonctionne donc bien, ou du moins sa version simplifiée.
 
 Arrêter le programme stoppe immédiatement toutes les tâches en cours d'exécution.

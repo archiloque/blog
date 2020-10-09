@@ -1,29 +1,29 @@
 [#MDT-01]
 = Partie 1 : {article-01-nom}
 
-Un {mdt} est une brique logicielle dont le rôle est d'exécuter de manière asynchrone des tâches qu'on lui fournit.
-On l'alimente en tâches en ajoutant des éléments&#8201;—{nbsp}par exemple une file de messages{nbsp}—&#8201;et il les consomme, en général aussi vite que possible.
+Un {mdt} est une brique logicielle dont le rôle est d'exécuter de manière asynchrone des morceaux de code qu'on lui fournit qu'on appelle tâches.
+On l'alimente en tâches (par exemple via une file de messages) et il les consomme, en général aussi vite que possible.
 
 Vous avez par exemple Quartz en Java ou Sidekiq en Ruby.
 
-Leur mise en œuvre est souvent assez simple, surtout si on s'en tient aux fonctionnalités standard, mais ce n'est pas le cas de leur fonctionnement interne.
+Ils sont généralement très simple à utiliser, surtout si on s'en tient aux fonctionnalités standard, mais ce n'est pas le cas de leur fonctionnement interne.
 
 En effet un {mdt} se doit (en principe) d'être efficace via du parallélisme, de ne pas perdre de données, de fournir une gestion d'erreur qui permette d'investiguer les problèmes et un tas d'autres choses.
 
-Ces caractéristiques ne sont pas propres à des {msdt}, au contraire on les retrouve, ou on est sensé les retrouver, dans la majorité des logiciels serveurs.
+Ces caractéristiques ne sont pas propres aux {msdt}, au contraire on les retrouve, ou on est sensé les retrouver, dans la majorité des logiciels serveurs.
 
-Aucune d'entre elle ne requiert de code particulièrement complexe, du moins tant qu'on choisi de s'appuyer sur des outils comme des systèmes d'exploitations ou des moteurs de bases de données.
+Aucune d'entre elle ne requiert de code particulièrement complexe, du moins tant qu'on choisi de s'appuyer sur des outils existants comme des moteurs de bases de données.
 
-Il s'agit plutôt de s'appuyer sur des patterns bien choisis.
+Il s'agit plutôt de s'appuyer sur des patterns bien choisis et éprouvés.
 link:https://archiloque.net/blog/comment-se-mettre-a-l-echelle-en-presence-d-erreurs/[Cet article] illustre cette situation dans le domaine de la gestion d'erreur.
 
 Cela signifie que bien comprendre le fonctionnement d'un {mdt} permet de comprendre le fonctionnement d'autres logiciels qui ont les mêmes caractéristiques.
 
-Je vous propose donc de décrire pas à pas la construction de ce type d'outil.
+Pour cela je vous propose donc de décrire pas à pas la construction de ce type d'outil.
 À chaque étape, je vais expliquer le besoin auquel répond chaque nouvel élément, et la manière d'y répondre.
 
-Si l'outil résultant ne sera pas aussi complet qu'un "`vrai`" {mdt}, il comportera tous les éléments essentiels.
+Si l'outil résultant ne sera pas aussi complet qu'un "`vrai`" {mdt}, il en comportera tous les éléments essentiels.
 
-Voila pour l'introduction et il est temps de passer aux choses sérieuses, et je vais commencer par construire la boucle de traitement qui forme le centre de l'outil.
+Il est temps de passer aux choses sérieuses, et je vais commencer par construire la boucle de traitement qui forme le centre de l'outil.
 
 Le code source complet de l'outil est disponible en annexe, et il est également disponible en ligne link:https://github.com/archiloque/task_engine[ici].

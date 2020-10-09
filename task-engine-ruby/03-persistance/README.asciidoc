@@ -3,27 +3,33 @@
 
 == Quoi et comment stocker{nbsp}?
 
-Un {mdt} a besoin de stocker deux types de données : les les tâches qui ne sont pas encore lancées et les logs de tâches exécutées.
+Un {mdt} a besoin de stocker deux types de données : les tâches qui ne sont pas encore lancées et les logs de tâches exécutées.
 
 Pour les tâches qui ne sont pas encore lancées, l'idéal est d'avoir un système de stockage{nbsp}:
 
-.  fiable (pour ne pas perdre de tâches même en cas de crash),
-. qui gère la parallélisation (pour qu'une tâche ne soit prise en compte que par un worker, et qu'il soit possible d'avoir un nombre important de workers),
+. fiable (pour ne pas perdre de tâches même en cas de crash),
+. qui gère la parallélisation (pour qu'il soit possible d'avoir un nombre importants de workers, et pouvoir faire en sorte qu'une tâche ne soit prise en compte que par _un seul_ worker),
 . qui gère des notification pour être prévenu quand des tâches sont disponibles pour être exécutées (ce besoin peut être couvert en exécutant régulièrement du code qui vérifie si des  tâches sont en attente, mais un système de notification est en général plus rapide et plus économe en ressources).
 
-Pour les tâches exécutées, les contraintes sont plus faibles et on a seulement besoin d'un système permettant de la recherche pour faciliter les investigations.
+Pour les logs de tâches exécutées, les contraintes sont plus faibles (même si on préfère tout de même éviter de perdre des données et que le système ne soit pas trop lent), on a surtout besoin d'un système qui permette de la recherche pour faciliter les investigations.
 
-Il est possible d'utiliser deux systèmes différents pour les deux besoins, par exemple pour les tâches pas encore lancées il n'est pas rare d'utiliser un bus de messages, car en plus du stockage il peut servir de médiateur entre  un système qui créé des tâches et le {mdt} en fournissant une API facile à utiliser.
+Il est possible d'utiliser deux systèmes différents pour les deux usages, par exemple pour les tâches pas encore lancées il est courant d'utiliser un bus de messages, car en plus du stockage il peut servir de médiateur entre un système qui créé des tâches et le {mdt} en fournissant une API facile à utiliser.
 
 Il est également possible d'utiliser un seul système, par exemple une {bdd} SQL ou même une {bdd} comme Redis.
 
 == Les technologies du projet
 
-J'ai choisi d'utiliser PostgreSQL car le fonctionnement des transactions des bases de données SQL sera utile pour éviter la perte de données et gérer la parallélisation, et que PostgreSQL fournit un système de notification permettant de répondre au troisième point.
+J'ai choisi d'utiliser PostgreSQL pour l'ensemble du stockage{nbsp}: le fonctionnement des transactions des bases de données SQL sera utile pour éviter la perte de données et gérer la parallélisation, et PostgreSQL fournit un système de notification permettant de répondre au troisième point.
+Pour la recherche, les capacités d'indexation SQL seront bien suffisantes.
 
 Pour l'accès aux données je vais utiliser un ORM.
-Plutôt qu'ActiveRecord qui amène avec lui tous l'écosystème Rails, je vais utiliser link:http://sequel.jeremyevans.net[Sequel].
-Sequel n'est pas aussi complet qu'ActiveRecord mais il embarque beaucoup moins de code tout en fournissant ce dont j'ai besoin en utilisant des patterns qui sont proches, tout en me permettant de mieux maîtriser le SQL généré.
+Plutôt qu'ActiveRecord qui amène avec lui tout l'écosystème Rails, je vais utiliser link:http://sequel.jeremyevans.net[Sequel].
+
+Sequel n'est pas aussi complet qu'ActiveRecord mais il a trois avantages :
+
+- les patterns sont à peu près les mêmes
+- il embarque beaucoup moins de code 
+- il permet de maîtriser le SQL généré de façon assez simple, alors qu'avec ActiveRecord c'est un peu moins naturel.
 
 J'ajoute donc les dépendances au Gemfile{nbsp}:
 
@@ -51,9 +57,9 @@ Pour commencer je vais m'intéresser aux tâches qui ne sont pas encore lancées
 
 Les tâches seront créées dans un état `waiting`, et passeront dans un état `running` lorsqu'un des worker du {mdt} les lancera.
 Les tâches les plus anciennes seront choisies d'abord.
-Après exécution, les tâches seront supprimées de la base.
+Après exécution, les tâches seront supprimées de la base (la gestion de l'historique sera faite plus tard).
 
-Pour le moment je vais continuer d'utiliser les mêmes tâches qui se contentent de mettre le worker en attente, ce qui signifie que je n'ai pas à gérer de paramètres.
+Pour le moment je vais continuer d'utiliser les mêmes tâches qui se contentent de mettre le worker en attente, ce qui signifie que je n'ai pas à gérer de paramètres pour le moment.
 
 Pour stocker l'état des tâches je vais utiliser un link:https://www.postgresql.org/docs/current/datatype-enum.html[type énuméré] (on dit aussi une énumération).
 Un peu comme dans les langages comme C ou Java, cela signifie que la {bdd} pourra vérifier que les valeurs qu'on lui fournit seront valides (en cas de valeur inconnue la base renvoie une erreur), et que si dans le code Ruby et dans les requêtes on utilisera les valeur textuelles, en interne la base le stockera de manière efficace comme un nombre.
@@ -70,7 +76,7 @@ Je peux ensuite la lancer (le `-m` indique à Sequel où se trouve le répertoir
 
 [source,bash]
 ----
-sequel -m migrations postgres://task_engine@localhost/task_engine
+$ sequel -m migrations postgres://task_engine@localhost/task_engine
 ----
 
 Et vérifier que la table a bien été créée{nbsp}:
@@ -95,8 +101,6 @@ Pour pouvoir manipuler les tâches il me reste à déclarer la connexion à la b
 
 Lors de la configuration de l'accès à la base de donnée, j'indiquerai d'utiliser au maximum une connexion par worker plus une pour le moteur.
 Cela permet que chaque worker ait une connexion à lui plutôt que de risquer que les worker ne s'attendent pour pouvoir faire des requêtes.
-
-Pour le moment je vais tout conserver dans le même fichier{nbsp}:
 
 .task_engine.rb
 [source,ruby]
@@ -148,16 +152,20 @@ Une chose importante dans le design des tâches{nbsp}: il est souhaitable&#8201;
 
 Par exemple si une tâche est chargée d'envoyer un mail, si on l'exécute de nouveau il faudrait que le même mail ne soit pas envoyé une deuxième fois.
 
-Cela vient du fait qu'il est très difficile de faire en sorte que le {mdt} ne perde pas de tâche et en même temps n'exécute pas la même tâche deux fois, même en cas d'erreur ou de problème réseau.
+Cela vient du fait qu'il est très difficile de réunir deux conditions à la fois{nbsp}:
+
+- faire en sorte que le {mdt} ne perde pas de tâche, pour faire en sorte que chaque tâche soit exécutée au moins une fois.
+- faire en sorte que le {mdt} n'exécute pas la même tâche deux fois, même en cas d'erreur ou de problème réseau où on se fait pas forcément si une exécution qu'on a demandé a vraiment en lieu.
+
 Dans les outils de messages, on appelle cela "`__at least once__`" (au moins une fois), "`__at most once__`" (au plus une fois) et "`__exactly once__`".
 
-Le {mdt} se contentera de faire en sorte que la même tâche ne soit pas exécutée deux fois en même temps.
+Le {mdt} se contentera de faire en sorte que la même tâche ne soit pas exécutée deux fois.
 
-Plutôt que d'essayer de faire en sorte d'avoir un système qui garantit du "`__exactly once__`", on préfère que le {mdt} se concentre sur le fait de ne pas perdre de tâche, et si une même tâche est exécutée une deuxième fois c'est la tâche qui est chargée que cela n'ait pas d'effet gênant.
+Plutôt que d'essayer de faire en sorte d'avoir un système qui garantit du "`__exactly once__`", on préfère que le {mdt} se concentre sur le fait de ne pas perdre de tâche, et si une même tâche est exécutée une deuxième fois c'est la tâche elle-même qui est chargée que cela n'ait pas d'effet gênant.
 
 Cela permet d'obtenir le même objectif (que le traitement final se comporte comme s'il avait été exécuté une fois), tout en modifiant les contraintes{nbsp}: au lieu d'avoir toutes les contraintes au niveau du {mdt}, elles sont en partie au niveau du {mdt} et en partie au niveau des tâches en elles-mêmes.
 
-L'autre avantage de cette approche est qu'en cas de gros problème, il devient possible de réinjecter dans le {mdt} toutes les tâches passées et de les laisser les traiter, sans avoir à se préoccuper de celles qui avaient déjà été exécutées.
+L'autre avantage de cette approche est qu'en cas de gros problème, il devient possible de réinjecter dans le {mdt} des tâches passées et de les laisser les traiter, sans avoir à se préoccuper de celles qui avaient déjà été exécutées.
 
 == Verrou et transaction
 
@@ -166,17 +174,17 @@ Revenons à nos moutons{nbsp}:  sélectionner la tâche la plus ancienne et chan
 En SQL pour cela on se sert de verrous (ou _locks_).
 Lorsqu'un thread va sélectionner la tâche T1 à exécuter il va en même temps verrouiller cette tâche dans la base, de sorte que les autres threads qui cherchent aussi la tâche la plus ancienne et qui pourraient vouloir utiliser T1 ne puissent le faire.
 Cela signifie que les autres workers seront bloqués en attendant que le verrou sur T1 soit relâché.
-Juste après avoir mis à jour le statut de T1, on la déverrouillera dès que possible pour débloquer les autres threads.
+Après avoir mis à jour le statut de T1, on la déverrouillera dès que possible pour débloquer les autres threads.
 À leur tour ils pourront chercher la tâche la plus ancienne à exécuter, qui sera donc la tâche suivante car le statut de T1 aura changé et elle ne sera donc plus sélectionnable pour eux.
 
 Pour cela on va utiliser la commande `SELECT … FOR UPDATE`, qui verrouille les lignes sélectionnée en vue de pouvoir faire une mise à jour.
 
-Le relâchement du verrou se fait à la fin de la transaction en cours, qui doit donc être faite dès que possible pour limiter la période pendant laquelle les autres workers risquent d'être en attente.
+Le relâchement du verrou se fait à la fin de la transaction en cours, qui doit donc être terminée dès que possible pour limiter la période pendant laquelle les autres workers risquent d'être en attente.
 
 L'acquisition de la tâche (sélection et mise à jour du statut) doivent de toutes façon se faire dans une transaction séparée de celle de l'exécution de la tâche{nbsp}:
 
 - pour l'acquisition soit immédiatement visible dans la base{nbsp};
-- pour qu'en cas d'erreur dans la tâche qui déclencherait un `rollback`, l'acquisition ne soit pas automatiquement annulée, ce qui rendrait plus difficile la reprise.
+- pour qu'en cas d'erreur dans le code de la tâche qui déclencherait un `rollback`, l'acquisition ne soit pas automatiquement annulée, ce qui rendrait plus difficile la reprise.
 
 Voici donc à quoi ressemble le code{nbsp}:
 
@@ -205,7 +213,7 @@ end
 La méthode `try_acquire_task` retournera la tâche à exécuter ou `nil` si aucune tâche n'est disponible.
 
 Lorsque l'exécution se termine, pas besoin de poser de verrou car il n'y a pas de risque qu'un autre worker veuille terminer la même tâche.
-Par contre il est toujours nécessaire d'isoler le code dans une transaction à part, notamment pour qu'une erreur dans le {mdt} puisse avoir une conséquence sur la tâche qui vient d'être exécutée.
+Par contre il est toujours nécessaire d'isoler le code dans une transaction à part, notamment pour qu'une erreur dans le {mdt} ne risque pas d'avoir de conséquence sur la tâche qui vient d'être exécutée.
 
 .task_engine.rb
 [source,ruby]
