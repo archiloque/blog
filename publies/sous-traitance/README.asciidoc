@@ -8,16 +8,16 @@ v0.1, 2020-10-09
 :ordre: 'organisation donneuse d'ordre
 :ordres: 'organisations donneuses d'ordres
 
-link:https://www.semanticscholar.org/paper/BOEING-PROPRIETARY-BOEING-PROPRIETARY-1-OUTSOURCED-PROPRIETARY/e9daf5cc1c94c6e34e29095ca168e8fa2d750df9?p2df[Cette analyse] de l'échec commercial de l'avion link:https://en.wikipedia.org/wiki/McDonnell_Douglas_DC-10[McDonnell Douglas DC-10] décrit les conséquences néfaste d'une sous-traitance mal maîtrisée.
-On peut y voir ce qui se passe quand on applique des principes à la lettre sans se demander si ils sont bien adapté à un certain contexte.
+link:https://www.semanticscholar.org/paper/BOEING-PROPRIETARY-BOEING-PROPRIETARY-1-OUTSOURCED-PROPRIETARY/e9daf5cc1c94c6e34e29095ca168e8fa2d750df9?p2df[Cette analyse] de l'échec commercial de l'avion link:https://en.wikipedia.org/wiki/McDonnell_Douglas_DC-10[McDonnell Douglas DC-10] décrit les conséquences néfastes d'une sous-traitance mal maîtrisée.
+On peut y voir ce qui se passe quand on applique des principes à la lettre sans se demander si ils sont bien adaptés à un certain contexte.
 
 Si certaines des caractéristiques de l'étude sont spécifiques à l'industrie aéronautique, par exemple la très longue période (plusieurs dizaines d'années) pendant laquelle il faut garantir l'approvisionnement en pièces détachées, j'y ai retrouvé de nombreux points communs avec des projets que j'ai pu croiser et il m'a permis de mettre des mots sur certaines intuitions.
 
-Si dans les achats en informatique, je lis beaucoup de réflexions de fond sur "`Build versus buy`" à propos d'achat de logiciel tout fait, j'ai l'impression que les publications sous la sous-traitance pour développer des logiciels, typiquement le fait de faire appel à des ESN (ex-SSII) sont plus rares.
+Si dans les achats en informatique, je lis beaucoup de réflexions de fond sur "`Build versus buy`" à propos d'achat de logiciel tout fait, j'ai l'impression que les publications sur la sous-traitance pour développer des logiciels, typiquement le fait de faire appel à des ESN (ex-SSII) sont plus rares.
 
-En plus, ceux que je vois passer sont plutôt des récits de projets qui ont tourné au désastre, toujours amusants (ou triste) à lire, mais pauvres en analyses.
+En plus, ceux que je vois passer sont plutôt des récits de projets qui ont tourné au désastre, toujours amusants (ou tristes) à lire, mais pauvres en analyses.
 
-Je vais parler ici du cas où l{sous} est payée, de manière directe ou indirecte, en fonction de la quantité du temps qu'il passe.
+Je vais parler ici du cas où l{sous} est payée, de manière directe ou indirecte, en fonction de la quantité du temps qu'elle  passe.
 Par exemple lorsque l{sous} réalise des lots dont la taille et donc le prix sont négociés en fonction d'une estimation du temps de travail qu'ils demandent.
 J'exclus donc le cas du projet entièrement au forfait, et le cas de la régie où les employé·e·s de l{sous} travaillent directement pour l{ordre}, comme s'il·elle·s étaient directement ses employé·e·s.
 
@@ -26,9 +26,9 @@ J'exclus donc le cas du projet entièrement au forfait, et le cas de la régie o
 Souvent, quand une partie conséquente d'un projet (voir l'ensemble du développement) est déléguée à une entreprise tierce, on appelle l{sous} "`partenaire`".
 On ne m'a jamais expliqué l'usage de ce terme dans cette situation, mais ma compréhension est qu'il est sensé indiquer que les deux structures ont dans le projet un même objectif et que par conséquent leurs intérêts sont les mêmes.
 
-En général c'est assez loin de la réalité, s'ils ne sont pas totalement contraire, les objectifs du client et du sous-traitant s'opposent sur un certains nombre de points.
+En général c'est assez loin de la réalité, s'ils ne sont pas totalement contraires, les objectifs du client et du sous-traitant s'opposent sur un certains nombre de points.
 
-Il est vrai qu'aucune des deux parties n'a (en général) intérêt à ce que le projet échoue de manière trop visible, au risque que le sous-traitant perde une source de revenu (ce qui n'est jamais agréable, surtout sur un gros projet prévu pour durer longtemps), et risque gagne une mauvaise réputation (quoique souvent ils n'en sont pas à une casserole prêt) et/ou un procès (même les choses arrivent rarement jusque là, les tords étant souvent partagés et les contrats mal ficelés).
+Il est vrai qu'aucune des deux parties n'a (en général) intérêt à ce que le projet échoue de manière trop visible, au risque que le sous-traitant perde une source de revenu (ce qui n'est jamais agréable, surtout sur un gros projet prévu pour durer longtemps), et gagne une mauvaise réputation (quoique souvent ils n'en sont pas à une casserole près) et/ou un procès (mais les choses en arrivent rarement jusque là, les torts étant souvent partagés et les contrats mal ficelés).
 
 Mais pour chacune unité de travail sous-traitée, il y a une opposition frontale sur le prix{nbsp}: l{ordre} veut payer le moins cher possible, et l{sous} veut être payée le plus cher possible.
 
@@ -67,7 +67,7 @@ Pour pouvoir évaluer en amont la taille d'une tâche et donc son prix et en ava
 De la même manière que vous tentez d'évaluer le devis ou le travail d'un·e plombier·ère ou d'un·e garagiste.
 Moi quand ça m'arrive je suis comme une poule devant un couteau.
 
-Lorsque l'activité à sous-traitée est spécialisée, il peut être assez difficile de disposer de cette compétence.
+Lorsque l'activité à sous-traiter est spécialisée, il peut être assez difficile de disposer de cette compétence.
 Dans ce cas là il est malheureusement nécessaire de se reposer sur la confiance.
 
 Mais lorsque l'activité n'est pas spécialisée, par exemple quand le projet à sous-traiter est un site web destiné à un intranet, on n'est pas dans cette situation{nbsp}: il est possible d'acquérir et d'entretenir cette compétence, même si ça n'est pas forcément simple.
@@ -123,4 +123,4 @@ C'est un parfait exemple où les optimisations locales peuvent aller à l'encont
 
 Si mon article vous a plus, je vous engage à lire link:https://www.semanticscholar.org/paper/BOEING-PROPRIETARY-BOEING-PROPRIETARY-1-OUTSOURCED-PROPRIETARY/e9daf5cc1c94c6e34e29095ca168e8fa2d750df9?p2df[l'audit] en question.
 
-En plus de fournir des détails intéressants sur le fonctionnement du projet, il discute la partie budget que je n'ai pas traitée ici, et là encore la sous-traitance semble d'autant plus intéressante qu'on applique des recommandations générales, comme l'amélioration à tous prix de la link:https://fr.wikipedia.org/wiki/Rentabilité_des_actifs[rentabilité des actifs], en  perdant de vue le contexte globale de l'organisation et du domaine dans laquelle on opère.
+En plus de fournir des détails intéressants sur le fonctionnement du projet, il discute la partie budget que je n'ai pas traitée ici, et là encore la sous-traitance semble d'autant plus intéressante qu'on applique des recommandations générales, comme l'amélioration à tous prix de la link:https://fr.wikipedia.org/wiki/Rentabilité_des_actifs[rentabilité des actifs], en  perdant de vue le contexte global de l'organisation et du domaine dans lequel on opère.
