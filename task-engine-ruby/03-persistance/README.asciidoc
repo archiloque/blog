@@ -27,7 +27,7 @@ Plutôt qu'ActiveRecord qui amène avec lui tout l'écosystème Rails, je vais u
 
 Sequel n'est pas aussi complet qu'ActiveRecord mais il a trois avantages :
 
-- les patterns sont à peu près les mêmes
+- les API se ressemble pas mal
 - il embarque beaucoup moins de code 
 - il permet de maîtriser le SQL généré de façon assez simple, alors qu'avec ActiveRecord c'est un peu moins naturel.
 
@@ -100,7 +100,7 @@ Indexes:
 Pour pouvoir manipuler les tâches il me reste à déclarer la connexion à la base et le modèle qui représente une tâche.
 
 Lors de la configuration de l'accès à la base de donnée, j'indiquerai d'utiliser au maximum une connexion par worker plus une pour le moteur.
-Cela permet que chaque worker ait une connexion à lui plutôt que de risquer que les worker ne s'attendent pour pouvoir faire des requêtes.
+Cela permet que chaque worker ait une connexion à lui plutôt que de risquer que les workers ne s'attendent pour pouvoir faire des requêtes.
 
 .task_engine.rb
 [source,ruby]

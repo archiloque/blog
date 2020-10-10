@@ -12,7 +12,7 @@ include::stop_engine_1.txt[]
 
 Le {mdt} s'arrête immédiatement et toutes les tâches s'arrêtent net.
 
-Si on voulait utiliser ce type de fonctionnement, cela signifie que toutes les tâches doivent être développées de manière à ce qu'elles puissent être arrêté es n'importe quand.
+Si on voulait utiliser ce type de fonctionnement dans un {mdt} en production, cela signifie que toutes les tâches doivent être développées de manière à ce qu'elles puissent être arrêté net n'importe quand.
 
 Si les tâches n'utilisent que la {bdd}, cela peut être envisageable car alors la transaction est annulée, et quand on les relance elles recommencent de zéro.
 
@@ -35,8 +35,9 @@ Pour une tâche qui envoie un mail, il est peut-être acceptable qu'en cas de cr
 Pour exécuter du code lorsqu'un programme s'arrête, il faut généralement indiquer au système qu'en cas de demande d'arrêt il doit exécuter un bloc de code ou une méthode spécifique plutôt que d'utiliser le comportement par défaut qui est de tout stopper d'un coup.
 
 Sur les systèmes d'exploitations comme Linux ou macOS, la demande d'arrêt (par exemple lorsque vous appuyez sur `CONTROL`+`C`) est communiquée au programme sous forme d'un link:https://fr.wikipedia.org/wiki/Signal_(informatique)[signal].
+Un programme peut informer le système d'exploitation que tel ou tel signal l'intéresse, et qu'il prend la responsabilité de répondre au signal, en remplacement du comportement par défaut.
 
-Il existe différents types de signaux identifiés par un nom et un numéro, certains sont normalisés et correspondent aux mesages que le système avait besoin d'envoyer dans les systèmes UNIX classiques, et d'autres sont dépendants du système d'exploitation.
+Il existe différents signaux identifiés chacun par un nom et un numéro, certains sont normalisés et correspondent aux messages que le système avait besoin d'envoyer dans les systèmes UNIX classiques et d'autres sont dépendants du système d'exploitation.
 
 Pour gérer une fin d'exécution, il faut en principe écouter deux signaux qui font partie de ceux qui sont normalisés{nbsp}:
 
@@ -45,7 +46,7 @@ Pour gérer une fin d'exécution, il faut en principe écouter deux signaux qui 
 
 Le comportement est souvent le même pour les deux signaux.
 
-En Ruby, pour définir un bloc de code à appeler quand un signal est reçu il faut appeler `Signal::trap` en lui passant en paramètre le nom ou le numéro du signal{nbsp}:
+En Ruby, pour définir un bloc de code à appeler quand un signal est reçu il faut appeler la méthode `Signal::trap` en lui passant en paramètre le nom ou le numéro du signal{nbsp}:
 
 [source,ruby]
 ----
@@ -54,10 +55,13 @@ Signal.trap('SIGTERM') do
 end
 ----
 
-À noter que le code appelé lors de la réception d'un signal n'est pas du code comme les autres car le système d'exploitation utilise des routines spécifiques pour l'invoquer, et ce faisant certaines fonctionnalités qu'on tient normalement pour acquises sont indisponibles.
+À noter que le code appelé lors de la réception d'un signal n'est pas du code comme les autres car le système d'exploitation utilise des routines spécifiques pour appelle ce code et il s'exécute dans un contexte un peu spécial, et ce faisant certaines fonctionnalités qu'on tient normalement pour acquises sont indisponibles.
 
 Cela signifie qu'il doit respecter certaines règles pour ne pas poser de problème au système d'exploitation et faite crasher l'application.
 Ainsi en théorie les allocation mémoire ou les entrées/sorties sont interdites.
+
+Par exemple si le système d'exploitation décide d'arrêter un processus car sa mémoire est devenue insuffisante, si le code gérant l'arrêt essaie d'allouer de la mémoire supplémentaire cela ne fonctionnera pas.
+
 En pratique il est possible que cela ne pose pas problème, même dans la très grande majorité des cas, mais vous n'avez aucune garantie.
 
 Par exemple si vous essayer d'utiliser un log dans un code de gestion de signal{nbsp}:
@@ -73,7 +77,7 @@ Signal.trap('SIGTERM') do
 end
 ----
 
-Ruby vous indiquera que cela ne fonctionnera pas par un "`log writing failed. can\'t be called from trap context`", car pour éviter le risque que cet appel fasse crasher le programme, la machine virtuelle désactive explicitement son fonctionnement dans ce contexte.
+Ruby vous indiquera que cela ne fonctionnera pas par un "`log writing failed. can\'t be called from trap context`", car pour éviter le risque que cet appel fasse crasher le programme, la machine virtuelle Ruby le désactive dans ce contexte.
 
 La bonne pratique est donc de limiter au maximum ce que vous mettez dans le bloc de gestion de signal, par exemple d'uniquement changer la valeur d'une variable, et de faire en sorte que le vrai traitement se fasse en dehors du bloc.
 
@@ -112,7 +116,7 @@ ifeval::["{backend}" != "docbook5"]
 image::{article-04-url}/workflow_4_1.svg[scaledwidth=50%,align="center"]
 endif::[]
 
-Ce statut va être stocké au niveau du `TaskEngine::Engine`, auquel les worker vont accéder{nbsp}:
+Ce statut va être stocké dans l'instance de `TaskEngine::Engine`, auquel les workers vont accéder{nbsp}:
 
 .task_engine.rb
 [source,ruby]
@@ -181,7 +185,7 @@ include::stop_engine_2.txt[]
 
 == S'arrêter vraiment
 
-Après avoir apuyé sur sur `CONTROL`+`C`, les différents workers s'arrêtent après avoir terminé l'exécution de leurs tâches, mais le {mdt} lui ne s'arrête pas. 
+Après avoir appuyé sur sur `CONTROL`+`C`, les différents workers s'arrêtent après avoir terminé l'exécution de leurs tâches, mais le {mdt} lui ne s'arrête pas. 
 
 D'autres appuis sur `CONTROL`+`C` ne servent à rien.
 
@@ -189,16 +193,16 @@ Le problème c'est le thread principal qui est celui qui démarre du moteur.
 
 Après avoir créé les différents worker, le thread principal se met en attente pour une durée indéfinie et ne s'arrête donc jamais, et il est de même pour le {mdt}.
 
-Une solution serait d'arrêter ce thread dans le code de traitement du signal, mais cela aurait pour effet d'arrêter immédiatement le programme, sans laisser aux workers la possibilité de terminer leurs traitements.
+On pourrait vouloir arrêter ce thread dans le code de traitement du signal, mais cela aurait pour effet d'arrêter immédiatement le programme, sans laisser aux workers la possibilité de terminer leurs traitements.
 
 Il faut donc que le thread principal se termine après la fin de l'exécution de l'ensemble des tâches en cours, c'est à dire quand les threads correspondant aux différents workers se sont terminés.
 
 Dans l'API des thread `Thread#join` permet justement de suspendre l'activité d'un thread en attendant qu'un autre thread se termine.
-Il faut dont attendre ainsi les threads de tous les workers l'un après l'autre.
+L'idée est d'attendre les threads de tous les workers l'un après l'autre.
 Si un thread est déjà arrêté lorsqu'on appelle `Thread#join` sur lui, la méthode retourne immédiatement.
-Cela signifie qu'il n'y a pas à se préoccuper de savoir si un worker a déjà terminé ou pas.
+Cela signifie qu'il n'y a pas à se préoccuper de savoir si un worker a déjà terminé ou pas avant de faire l'appel à `join`.
 
-Lorsqu'on démarre les worker, il faut donc les stocker pour pouvoir ensuite accéder à leurs threads, et plutôt que d'appeler `Kernel#sleep`, le moteur attendra la fin du premier thread.
+Lorsqu'on démarre les worker, il faut donc les stocker les différentes instances pour pouvoir ensuite accéder à leurs threads, et plutôt que d'appeler `Kernel#sleep`, le moteur attendra la fin du premier thread.
 
 .task_engine.rb
 [source,ruby]

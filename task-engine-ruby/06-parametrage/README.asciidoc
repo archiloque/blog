@@ -9,7 +9,7 @@ Le type de tâche sera défini par le nom de la classe de la tâche qu'il faut l
 
 Les paramètres d'exécution des tâches sont sous forme d'une `Hash` qui est à la main des tâches.
 
-Par contre il y a plusieurs choix possibles pour le fonctionnement des tâches, par exemple{nbsp}:
+Il y a plusieurs choix possibles pour le fonctionnement des tâches, par exemple{nbsp}:
 
 === Solution 1{nbsp}: singletons
 
@@ -109,19 +109,19 @@ Les autres solutions sont assez ressemblantes, et entre toutes je préfère la s
 
 Le fait d'utiliser une méthode `execute` séparée du constructeur permet de récupérer des valeurs de retours qui peuvent être utiles pour le monitoring.
 
-Et quitte à avoir une méthode `execute` séparée, autant qu'elle reçoive les paramètres, c'est un peu plus logique du point de vue objet, et cela permet de se passer du constructeur dans une partie des cas.
+Et quitte à avoir une méthode `execute` séparée, autant qu'elle reçoive les paramètres, c'est un peu plus logique du point de vue objet, et cela permet de se passer du constructeur dans pas mal de cas.
 
 == Modification de schéma
 
 Je vais ajouter les deux colonnes qui manquent à la table `tasks`.
-Je vais les définir comme non nullable pour éviter toute fausse manipulations.
+Je vais les définir comme non nullable pour éviter toute fausse manipulation.
 Si une tâche n'a aucun paramètre d'exécution, on utilisera une `Hash` vide plutôt d'un `nil`, cela évite l'ambiguïté entre aucun paramètre d'exécution et une valeur qui manque.
 
 Cela signifie que la table doit être vide avant de lancer la migration, sinon elle échouera car la base n'acceptera pas d'ajouter des colonnes non nullable sans valeur par défaut.
 
 Pour stocker les paramètres d'exécution en utilisant une colonne de type link:https://www.postgresql.org/docs/12/datatype-json.html[`jsonb`] qui permet de stocker des données sous forme de JSON.
 
-Comparé à stocker le JSON dans un champ de texte, cela coûte un peu plus cher en temps d'insertion (car la {bdd} doit parser et valider le format des données à l'insertion), par contre cela peut simplifier les investigation car il est possible de link:https://www.postgresql.org/docs/current/functions-json.html[d'accéder au contenu des valeurs] depuis des requêtes.
+Par rapport à stocker le JSON dans un champ de texte, cela coûte un peu plus cher en temps d'insertion (car la {bdd} doit parser et valider le format des données à l'insertion), par contre cela peut simplifier les investigation car il est possible de link:https://www.postgresql.org/docs/current/functions-json.html[d'accéder au contenu des valeurs] depuis des requêtes.
 
 .migrations/03_add_parameters.rb
 [source,ruby]
@@ -131,7 +131,7 @@ include::03_add_parameters.rb[]
 
 == Définition d'une classe de tâche
 
-Pour avoir une première définition de tâche je vais migrer la tâche existante pour utiliser la nouvelle API, et en profiter pour la déplacer dans un fichier séparé.
+Pour avoir une première définition de tâche je vais modifier le code la tâche existante pour utiliser la nouvelle API, et en profiter pour la déplacer dans un fichier séparé.
 
 Pour mémoire, cette tâche se contentait d'attendre 5 secondes{nbsp}:
 
@@ -152,12 +152,15 @@ include::tasks.rb[]
 == Création de tâches
 
 Il est possible d'insérer directement des tâches dans la {bdd} depuis le code métier, mais il est plus pratique de passer par une API Ruby qui isole un peu le stockage, notamment le fait de stocker les paramètres au format JSON.
+Je vais donc ajouter une méthode dans le module `TaskEngine`.
+
+Dans une version packagée du code, on pourrait vouloir l'isoler dans une gem à part pour éviter d'avoir à embarquer le code du {mdt} dans une application qui ne ferait qu'insérer des tâches.
 
 .task_engine.rb
 [source,ruby]
 ----
 module TaskEngine
-  # Make json-related methodes available
+  # Make json-related methods available
   DB.extension :pg_json
 
   # @param [String] task_class
@@ -219,7 +222,7 @@ task_parameters | {"waiting_time": 5}
 
 Il manque la dernière pièce du puzzle{nbsp}: utiliser les valeurs pour créer la tâche et l'exécuter.
 
-Pour récupérer une classe à partir d'une chaîne contenant son nom Ruby fournit une méthode `Module#const_get`, il faudra ensuite en instancier la classe ainsi obtenue, puis appeler `execute` sur l'instance en lui passant les paramètres{nbsp}:
+Pour récupérer une classe à partir d'une chaîne contenant son nom, Ruby fournit une méthode `Module#const_get`, il faudra ensuite en instancier un objet de la classe ainsi obtenue, puis appeler `execute` sur l'instance en lui passant les paramètres{nbsp}:
 
 .task_engine.rb
 [source,ruby]
@@ -248,7 +251,7 @@ module TaskEngine
 end
 ----
 
-Et on peut tester que le fonctionnement{nbsp}:
+Ce qui donne{nbsp}:
 
 [source]
 ----

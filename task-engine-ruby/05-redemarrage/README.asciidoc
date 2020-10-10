@@ -11,12 +11,12 @@ Cela peut aussi être une conséquence d'un arrêt normal qui ne s'est pas bien 
 
 En effet si une tâche reste bloquée, par exemple parce qu'un appel réseau n'a pas de timeout en cas de non réponse, une tâche peut rester bloquée indéfiniment, et donc empêcher le {mdt} de s'arrêter.
 
-Pour le stopper, on peut utiliser un autre signal, typiquement `SIGKILL` (qui en passant ne peut pas être intercepté par du code applicatif: c'est le système d'exploitation qui se charge de faire le ménage lui-même).
+Pour le stopper, on peut utiliser un autre signal, typiquement `SIGKILL` (qui lui ne peut pas être intercepté par du code applicatif:{nbsp}c'est le système d'exploitation qui se charge de faire le ménage lui-même).
 Ce signal portant le numéro 9, c'est lui qui est envoyé quand on appelle `kill -9`.
 
 Dans ce cas le programme s'arrête net et avec lui les tâches en cours d'exécution.
 
-Avec l'implémentation actuelle du {mdt}, ces tâches restent définies comme étant dans l'état `running`. Si vous avez testé le code précédent où le thread principal ne s'arrêtait pas et que vous avez du vous aussi le stopper brutalement{nbsp}:
+Avec l'implémentation actuelle du {mdt}, ces tâches restent définies comme étant dans l'état `running`. Par exemple voici le résultat obtenu en stoppant brutalement le code précédent où le thread principal ne s'arrêtait pas{nbsp}:
 
 [source]
 ----
@@ -35,7 +35,7 @@ updated_at      | 2020-08-10 16:52:50.221219
 instance        | running
 ----
 
-Cela signifie qu'il est difficile de les différencier des tâches qui sont réellement lancées, que ça soit parmi les tâches des autres instances de {mdt} qui tournent, ou après avoir (volontairement ou pas) relancé l'instance de {mdt} qui a planté.
+Cela signifie qu'il est difficile de différencier les tâches mal arrêtées de celles qui tournent réellement.
 
 Il est possible d'aller chercher dans les logs pour déterminer les tâches qui ont été lancées et qui n'ont pas été terminées avant l'arrêt, mais c'est une approche artisanale alors que pour la gestion d'erreur je préfère des solutions les plus fiables possibles.
 
@@ -47,8 +47,9 @@ Au redémarrage, l'instance du {mdt} peut détecter qu'il existe des tâches mar
 
 Cette approche aide aussi aux investigations pendant l'exécution d'une tâche{nbsp}: si une tâche est lente on peut aller consulter le monitoring de la machine sur laquelle elle est lancée pour voir si on voit quelque chose d'anormal.
 
-Le plus simple est alors de stopper immédiatement le {mdt} en indiquant explicitement quel est le problème.
-Certes cette approche retarde la relance de du {mdt}, mais elle a deux avantages{nbsp}:
+Le plus simple, si un {mdt} démarre et trouve des tâches en statut `running` est alors de stopper immédiatement le {mdt} en indiquant explicitement quel est le problème.
+
+Cette approche retarde la relance de du {mdt}, mais elle a deux avantages{nbsp}:
 
 - elle force à traiter le problème (même si c'est en supprimant les tâches de la {bdd}, mais au moins une action volontaire a été faite)
 - elle évite les mauvaises surprises dans le cas où deux instances de {mdt} sont lancées avec le même identifiant.
@@ -64,7 +65,7 @@ La solution de s'arrêter immédiatement évite donc ce risque.
 
 La mise en œuvre est moins longue que l'explication.
 
-Tout d'abord il faut ajouter la colonne à la table{nbsp}:
+Tout d'abord il faut ajouter la colonne d' l'instance à la table `tasks`{nbsp}:
 
 .migrations/02_add_instance_name.rb
 [source,ruby]
@@ -72,7 +73,12 @@ Tout d'abord il faut ajouter la colonne à la table{nbsp}:
 include::02_add_instance_name.rb[]
 ----
 
-Pour rappel, pour lancer les migrations, la commande est `sequel -m migrations postgres://task_engine@localhost/task_engine`
+Pour rappel, pour lancer les migrations, la commande est 
+
+[source,bash]
+----
+sequel -m migrations postgres://task_engine@localhost/task_engine
+----
 
 Ensuite il faut récupérer le nom de l'instance dans la tâche Rake de lancement et la passer au moteur. Pour ce faire je vais utiliser une variable d'environnement{nbsp}:
 
@@ -179,6 +185,6 @@ Found running tasks with same instance name in the database [instance_01]
 /task-engine-ruby/Rakefile:11:in `block in <top (required)>'
 ----
 
-On peut ensuite affiner les choses, par exemple afficher la liste des tâches qui sont en cours d'exécution, ou fournir des méthodes pour faciliter la reprise, mais l'essentiel est là.
+On peut ensuite affiner les choses, par exemple afficher la liste des tâches qui sont en cours d'exécution, ou fournir des méthodes pour faciliter la reprise, mais la partie importante est là.
 
 Dans la partie suivante je vais m'intéresser au paramétrage des tâches.

@@ -192,6 +192,6 @@ end
 
 Le temps entre deux réveil, ici fixé à 10 seconde, correspond au temps maximum d'attente pour une tâche programmée, si des workers sont disponibles.
 
-En effet si les worker sont déjà tous occupées à traiter un arriéré de tâches, il peut s'écouler un certain temps avant qu'une tâche programmée qui vient de devenir exécutable soit effectivement lancée.
+En effet si les workers sont déjà tous occupées à traiter un arriéré de tâches, il peut s'écouler un certain temps avant qu'une tâche programmée qui vient de devenir exécutable soit effectivement lancée.
 
 Maintenant qu'il est possible de créer des tâches qui s'exécuteront plus tard, je vais pouvoir m'en servir pour mettre en place la gestion d'erreur.
