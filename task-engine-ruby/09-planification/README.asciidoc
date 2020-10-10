@@ -15,26 +15,26 @@ Les tâches à exécution régulière correspondent à ce qu'il est possible de 
 Cela peut par exemple servir pour programmer des traitement d'archivage ou des rappels toutes les nuits.
 
 La solution la plus simple est d'utiliser l'outil cron directement.
-Même s'il est un peu passé de mode, c'est un utilitaire fiable et dont l'usage est bien documenté.
+Même s'il est un peu passé de mode, il est fiable et bien documenté.
 
-Lors d'un déploiement il est facile de mettre à jour la liste des tâches programmées si la configuration cron fait partie du code.
+Lors d'un déploiement il est facile de mettre à jour la liste des tâches programmées si le fichier contenant la configuration cron fait partie du code.
 
 Ses deux inconvénients majeurs pour cet usage sont{nbsp}:
 
 - l'impossibilité de modifier la configuration cron facilement, par exemple à travers une interface graphique
 - le fait que les commandes cron doivent être lancées sur une seule machine (sinon les tâches seront créés autant de fois qu'il y a de machines), ce qui peut poser des contraintes de disponibilité.
 
-Si vous n'êtes pas dans une de ces situations, cron pourrait donc parfaitement faire l'affaire.
+Si vous n'êtes pas dans une de ces situations, cron peut donc parfaitement faire l'affaire.
 
 Pour créer les tâches depuis cron, il y a deux manières de faire :
 
 . Lancer une commande Ruby qui va faire l'insertion en utilisant la méthode `TaskEngine.create_task`.
 . Faire directement l'insertion en base de donnée en utilisant du SQL et link:https://www.postgresql.org/docs/current/app-psql.html[psql].
 
-La première a l'avantage de la simplicité, par contre elle a l'inconvénient de lancer une machine virtuelle Ruby pour exécuter deux commandes SQL très simple (l'insertion de la tâche et la notification).
+La première a l'avantage de la simplicité de mise en œuvre, par contre elle a l'inconvénient de lancer une machine virtuelle Ruby pour exécuter deux commandes SQL très simple (l'insertion de la tâche et la notification).
 
 L'inconvénient principal de la seconde manière est que le format des données dans la base devient une API.
-En effet s'il change il faudra modifier le code Ruby mais aussi peut-être les scripts qui accèdent directement à la base.
+En effet s'il change il faudra modifier le code Ruby mais peut-être aussi les scripts qui accèdent directement à la base.
 
 Si c'est une approche qui est plutôt à éviter lorsqu'il s'agit d'une API exposée à d'autres systèmes, elle peut être acceptable ici vu que la programmation des tâches fait partie du même ensemble applicatif.
 
@@ -60,7 +60,7 @@ Tout d'abord la migration qui ajoute le champ et qui recrée un nouvel index sur
 include::06_add_scheduled_at.rb[]
 ----
 
-Je préfère la base de donnée se charger de donner la valeur par défaut de la colonne car cela évite d'avoir à dépendre du fait que les différents clients soit bien à l'heure.
+Je préfère la base de donnée se charge de donner la valeur par défaut de la colonne (qui correspond à l'heure en cours) car cela évite d'avoir à dépendre du fait que les différents clients soient bien à l'heure.
 Comme la {bdd} est unique, cela garantit la cohérence des valeurs.
 
 Ensuite l'ajout du paramètre permettant de spécifier la valeur lors de la création d'une tâche{nbsp}:
@@ -91,7 +91,7 @@ end
 
 Si le paramètre `scheduled_at` est spécifié, et que la tâche est programmée pour s'exécutée plus tard, il n'est pas nécessaire d'envoyer de notification car les notifications servent à réveiller des workers pour une exécution immédiate.
 
-Le dernier élément à modifier est la requête qui cherche la prochaine tâche à exécuter, qui doit maintenant faire un tri sur `scheduled_at`, et qui doit également ignorer les tâches dont la valeur de `scheduled_at` est dans le futur.
+Le dernier élément à modifier est la requête qui cherche la prochaine tâche à exécuter, qui doit maintenant faire un tri sur `scheduled_at` plutôt que `created_at`, et qui doit également ignorer les tâches dont la valeur de `scheduled_at` est dans le futur.
 
 Comme pour la valeur par défaut, je vais laisser la base définir l'heure actuelle.
 `Sequel.lit` indique à Sequel d'utiliser la valeur telle-quelle sans l'interpréter, elle est utile comme lorsqu'ici on utilise des fonctions SQL.
@@ -121,7 +121,7 @@ module TaskEngine
 end
 ----
 
-On peut vérifier que si on créé des tâches dans le futur, elles ne sont pas immédiatement executées.
+On peut vérifier que si on créé des tâches dans le futur, elles ne sont pas immédiatement exécutées.
 
 Je vais créer une tâche qui doit s'exécuter 30 secondes dans le futur.
 Pour cela j'ajoute la fraction `30 / 86400` (c'est-à-dire le nombre standard de secondes dans un jour) à l'heure actuelle.
@@ -141,7 +141,7 @@ exit
 $ TASK_ENGINE_INSTANCE=instance_01 rake start_engine
 ----
 
-Tout d'acord comme prévu il ne se passe rien, car la date est dans le futur.
+Tout d'abord comme prévu il ne se passe rien, car la date est dans le futur.
 
 == Allo la tâche ?
 
@@ -157,7 +157,9 @@ La manière idéale de faire serait faire en sorte de réveiller un worker dès 
 Une approche possible serait d'envoyer une notification lors de chaque création de ces tâches, et que les instances de {mdt} programment un réveil de worker pour chaque moment où au moins une des tâches doit s'exécuter.
 
 Mais elle a cependant deux inconvénients.
+
 Le premier est est que cela augmenterait la consommation mémoire des instances du {mdt}, avec un risque de dépassement mémoire si trop de tâches sont crées.
+
 Le second est que le fonctionnement se mettrait à dépendre du fait que les instances de {mdt} ne soient pas redémarrées, car alors les informations de réveil seraient perdus.
 
 Je vais plutôt partir du principe que si une tâche est programmée pour s'exécuter dans le futur, ce n'est pas grave si elle a quelques secondes de retard.

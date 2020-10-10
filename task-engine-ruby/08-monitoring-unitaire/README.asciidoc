@@ -3,7 +3,7 @@
 
 Pour le moment quand une tâche a été exécutée elle est effacée et on n'en garde aucune trace, à part dans les logs.
 
-Parser les logs est faisable, mais extraire certaines lignes parmi une myriades d'autres est toujours risqué, je préfère donc les stocker dans un endroit spécifique.
+Parser les logs est faisable, mais extraire certaines lignes parmi une myriades d'autres est toujours risqué et je préfère donc les stocker dans un endroit spécifique.
 
 Comme expliqué dans la troisième partie, je vais les stocker dans PostgreSQL comme les données des tâches à exécuter.
 
@@ -17,7 +17,7 @@ Pour l'instant lors de l'exécution d'une tâche, trois informations sont dispon
 - l'heure de fin d'exécution
 - le résultat de l'exécution des tâches
 
-Dans les trois, la première est présente dès le début de l'exécution de la tâche, et elle peut donc être définie comme non-nullable. Les autres seront renseignées à la fin de la tâche. Le résultat de l'exécution de tâches est stocké dans une colonne de type `jsonb`, pour les même raisons que les paramètres des tâches.
+Dans les trois, la première est présente dès le début de l'exécution de la tâche, et elle peut donc être définie comme non-nullable. Les autres seront renseignées à la fin de la tâche. Le résultat de l'exécution de tâches sera stocké dans une colonne de type `jsonb`, pour les même raisons que les paramètres des tâches.
 
 Il faut aussi ajouter un nouveau statut `stopped` aux tâches qui indique qu'elles ont été exécutées, puisqu'elles ne seront plus supprimées.
 
@@ -151,7 +151,7 @@ Et justement le dernier élément qui manque pour mettre en place cette gestion 
 
 Avant de terminer, il faut s'intéresser un peu à la performance.
 
-Avec le temps la table `tasks` devrait contenir de plus en plus d'occurences de tâches terminées (avec l'hypothèse que le nombre de tâches à exécuter devrait rester raisonable).
+Avec le temps la table `tasks` devrait contenir de plus en plus d'occurrences de tâches terminées (avec l'hypothèse que le nombre de tâches à exécuter devrait rester raisonnable).
 
 Cela risque de ralentir et fur et à mesure la sélection des tâches à exécuter, car la requête a besoin pour le moment de parcourir tous les enregistrements de la table.
 

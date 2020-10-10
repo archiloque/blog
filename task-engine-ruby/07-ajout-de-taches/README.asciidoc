@@ -94,9 +94,9 @@ module TaskEngine
 end
 ----
 
-Pour recevoir la notification, je dois créer un nouveau thread, en effet l'écoute bloque l'exécution du thread qui attend d'être notifié.
+Pour recevoir la notification, je dois créer un nouveau thread car l'écoute bloque l'exécution du thread qui attend d'être notifié.
 
-Je créé ce thread dans le constructeur de l'``Engine``.
+Je vais créer ce thread dans le constructeur de l'``Engine``.
 
 À la réception d'un message, il utilise la `Queue` pour réveiller un worker si l'un d'eux est disponible.
 
@@ -122,7 +122,7 @@ module TaskEngine
 
 Le nom de la classe de la tâche est envoyé dans la notification pour être logué, mais ne sert pas dans le reste du code, en tous cas pour le moment.
 
-Il faut penser à ajouter une connection à la configuration de la base de donnée plus haut dans le fichier{nbsp}:
+Il faut penser à ajouter une connexion à la configuration de la base de donnée plus haut dans le fichier{nbsp}:
 
 .task_engine.rb
 [source,ruby]
@@ -142,7 +142,7 @@ Cela vient du fait que dans le système de notification de PostgreSQL les notifi
 D'autres système de messages (par exemple ActiveMQ) permettent que chaque message ne soit reçu que par une instance au plus.
 Dans ce cas l'acquisition de la tâche et la récupération des paramètres sont concentrés en une seule action{nbsp}: un {mdt} qui reçoit un message sait qu'il est le seul dans ce cas et peut donc directement exécuter la tâche.
 
-Pour reprendre le vocabulaire de la partie 3, les systèmes de message comme ActiveMQ peuvent fournir du "`__exactly once__`".
+Pour reprendre le vocabulaire de la partie 3, les systèmes de message comme ActiveMQ peuvent fournir plus ou moins du "`__exactly once__`".
 Comme indiqué dans la partie 3, ce type de mécanisme est très difficile à mettre en œuvre de manière fiable, et en cas de crash du bus de message il y a des chances (même si elles sont faibles) que vous receviez le même message deux fois, il faut donc être préparé à cette éventualité.
 
 == Pourquoi ne pas utiliser une `id` pour récupérer la prochaine tâche{nbsp}?
@@ -151,7 +151,7 @@ Lors de la création d'une tâche, le code connaît la tâche à créer et ses p
 
 On pourrait vouloir utiliser ces informations pour simplifier l'acquisition de tâches{nsbp}: quand réveille un worker, au lieu de chercher la prochaine tâche à exécuter avec la requête existante, il pourrais plutôt chercher la tâche par son `id` une requête qui cherche si la tâche avec un certain `id` est toujours disponible, ce qui devrait rendre la requête plus rapide.
 
-Malheureusement cette solution n'est pas adaptée au fait d'avoir plusieurs {mdts} qui s'exécutent simultanément quand plusieurs tâches sont crées.
+Malheureusement cette solution n'est pas adaptée au fait d'avoir plusieurs {mdts} qui s'exécutent simultanément.
 
 Par exemple si du code créé deux tâches T1 et T2, et que deux instances du {mdt} disposent de workers en sommeil.
 En utilisant la requête par défaut, le premier worker à se réveiller va récupérer T1, et le deuxième worker T2.
@@ -159,6 +159,8 @@ Si les deux workers cherchent T1 par son `id`, le premier worker va la trouver m
 
 Il lui faudra alors utiliser la requête par défaut pour déterminer si une autre tâche est disponible.
 En échange d'une requête plus rapide, on aura donc exécuté une requête inutile.
+
+Utiliser la requête générique évite donc cela, tout en gardant le code un peu plus simple.
 
 == La partie notification
 
@@ -205,16 +207,16 @@ Worker 2 starting task 1601
 
 Une des avantages d'utiliser le même outil pour stocker les données et gérer les messages et que les mêmes transactions s'appliquent aux deux.
 
-Ainsi dans le code de `TaskEngine.create_task`, l'insertion de la tâche et l'envoi de la notification se font dans la même transation que le code appelant.
+Ainsi dans le code de `TaskEngine.create_task`, l'insertion de la tâche et l'envoi de la notification se font dans la même transaction que le code appelant.
 
 Cela signifie que qu'en cas de `rollback` la tâche n'est pas crée et la notification envoyée.
 
-Par exemple si une tâche a besoin d'un objet métier créé juste avant, si la tâche est crée puis que la création de l'objet est rollbackée, la tâche ne pourra pas le trouver.
+Par exemple si une tâche a besoin d'un objet métier créé juste avant, si la tâche est créée puis que la création de l'objet est rollbackée, la tâche ne pourra pas le trouver.
 
 Si vos traitements ont un risque significatif de `rollbak`, cela peut être assez pratique car cela évite d'avoir à prendre en compte cette situation dans le code de la tâche.
 
-En effet un `rollback` de transaction ne signifie pas forcément qu'une erreur s'est produite, mais peut être le signe d'une tentative de modification concurente, et dans ce cas arriver régulièrement.
+En effet un `rollback` de transaction ne signifie pas forcément qu'une erreur s'est produite, mais peut être le signe d'une tentative de modification concurrente dans la base de données, et dans ce cas arriver régulièrement.
 
-Si on ne souhaite pas ce comportement, la création de tâche peut être isolée dans une transaction séparée, mais le comportement par défaut fournit une garantie qui peut être bien pratique.
+Si on ne souhaite pas ce comportement, la création de tâche peut être isolée dans une transaction séparée dans le code applicatif, mais le comportement par défaut fournit une garantie qui peut être bien pratique.
 
 Maintenant que le moteur sait traiter les ajouts de tâche, je vais m'intéresser au monitoring pour pouvoir commencer à suivre ce qui se passe.
