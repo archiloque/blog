@@ -213,7 +213,7 @@ Cela signifie que qu'en cas de `rollback` la tâche n'est pas crée et la notifi
 
 Par exemple si une tâche a besoin d'un objet métier créé juste avant, si la tâche est créée puis que la création de l'objet est rollbackée, la tâche ne pourra pas le trouver.
 
-Si vos traitements ont un risque significatif de `rollbak`, cela peut être assez pratique car cela évite d'avoir à prendre en compte cette situation dans le code de la tâche.
+Si vos traitements ont un risque significatif de `rollback`, cela peut être assez pratique car cela évite d'avoir à prendre en compte cette situation dans le code de la tâche.
 
 En effet un `rollback` de transaction ne signifie pas forcément qu'une erreur s'est produite, mais peut être le signe d'une tentative de modification concurrente dans la base de données, et dans ce cas arriver régulièrement.
 
