@@ -3,3 +3,15 @@ Julien Kirch
 v1.0, 2020-01-01
 :article_lang: en
 :figure-caption!:
+
+== link:https://blog.jcoglan.com/2020/10/12/reading-and-writing-part-3/[Reading and writing, part 3: web applications]
+
+[quote]
+____
+I should emphasize that the problems I am about to demonstrate are not unique to Rails, they're commonplace in web application logic across many platforms. Rails is simply a well-known example, with which I'm most familiar. It has also had an enormous influence on how web apps in general are written; tools like Rails are how many people have _learned_ to develop applications, and so its lack of decent concurrency control contributes to many people never learning how to notice, diagnose or fix the bugs it leads to. Tools aren't just a means of getting work done, they're a means of _understanding_ the work itself, and the ergonomic effect of a tool making it easy to write certain categories of bug has an impact beyond the use of that tool in particular.
+____
+
+[quote]
+____
+An important element of ergonomic design in software systems is the decision to eagerly report errors for things that aren't guaranteed to work, rather than letting the code work sometimes and letting you go to production before finding out it might fail.
+____
