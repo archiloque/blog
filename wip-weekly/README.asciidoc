@@ -15,3 +15,22 @@ ____
 ____
 An important element of ergonomic design in software systems is the decision to eagerly report errors for things that aren't guaranteed to work, rather than letting the code work sometimes and letting you go to production before finding out it might fail.
 ____
+
+== link:https://blog.regehr.org/archives/861[Operant Conditioning by Software Bugs]
+
+[quote]
+____
+How have software bugs trained us? The core lesson that most of us have learned is to stay in the well-tested regime and stay out of corner cases. Specifically, we will:
+
+- periodically restart operating systems and applications to avoid software aging effects,
+- avoid interrupting the computer when it is working (especially when it is installing or updating programs) since early-exit code is pretty much always wrong,
+- do things more slowly when the computer appears overloaded—in contrast, computer novices often make overload worse by clicking on things more and more times,
+- avoid too much multitasking,
+- avoid esoteric configuration options,
+- avoid relying on implicit operations, such as the fact that MS Word is supposed to ask us if we want to save a document on quit if unsaved changes exist.
+____
+
+[quote]
+____
+The second reason I wrote this piece is that I think operant conditioning provides a partial explanation for the apparent paradox where many people believe that most software works pretty well most of the time, while others believe that link:http://www.hanselman.com/blog/EverythingsBrokenAndNobodysUpset.aspx[software is basically crap]. People in the latter camp, I believe, are somehow able to resist or discard their conditioning in order to use software in a more unbiased way. Or maybe they’re just slow learners. Either way, those people would make amazing members of a software testing team.
+____
