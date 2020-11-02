@@ -32,5 +32,14 @@ ____
 
 [quote]
 ____
-The second reason I wrote this piece is that I think operant conditioning provides a partial explanation for the apparent paradox where many people believe that most software works pretty well most of the time, while others believe that link:http://www.hanselman.com/blog/EverythingsBrokenAndNobodysUpset.aspx[software is basically crap]. People in the latter camp, I believe, are somehow able to resist or discard their conditioning in order to use software in a more unbiased way. Or maybe they’re just slow learners. Either way, those people would make amazing members of a software testing team.
+The second reason I wrote this piece is that I think operant conditioning provides a partial explanation for the apparent paradox where many people believe that most software works pretty well most of the time, while others believe that link:http://www.hanselman.com/blog/EverythingsBrokenAndNobodysUpset.aspx[software is basically crap]. People in the latter camp, I believe, are somehow able to resist or discard their conditioning in order to use software in a more unbiased way. Or maybe they're just slow learners. Either way, those people would make amazing members of a software testing team.
+____
+
+== link:https://smallcultfollowing.com/babysteps/blog/2013/06/11/on-the-connection-between-memory-management-and-data-race-freedom/[On the connection between memory management and data-race freedom]
+
+[quote]
+____
+I've often thought that while data-races in a technical sense can only occur in a parallel system, problems that feel a lot like data races crop up all the time in sequential systems. One example would be what {cpp} folk call _iterator invalidation_ -- basically, if you are iterating over a hashtable and you try to modify the hashtable during that iteration, you get undefined behavior. Sometimes your iteration skips keys or values, sometimes it shows you the new key, sometimes it doesn't, etc. In {cpp}, this leads to crashes. In Java, this (hopefully) leads to an exception.
+
+But whatever the outcome, iterator invalidation feels very similar to a data race. The problem often arises because you have one piece of code iterating over a hashtable and then calling a subroutine defined over in some other module. This other module then writes to the same hashtable. Both modules look fine on their own, it's only the combination of the two that causes the issue. And because of the undefined nature of the result, it often happens that the code works fine for a long time -- until it doesn't.
 ____
