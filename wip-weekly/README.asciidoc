@@ -43,3 +43,14 @@ I've often thought that while data-races in a technical sense can only occur in 
 
 But whatever the outcome, iterator invalidation feels very similar to a data race. The problem often arises because you have one piece of code iterating over a hashtable and then calling a subroutine defined over in some other module. This other module then writes to the same hashtable. Both modules look fine on their own, it's only the combination of the two that causes the issue. And because of the undefined nature of the result, it often happens that the code works fine for a long time -- until it doesn't.
 ____
+
+== link:https://manishearth.github.io/blog/2015/05/17/the-problem-with-shared-mutability/[]
+
+[quote]
+____
+My intuition is that code far away from my code might as well be in another thread, for all I can reason about what it will do to shared mutable state.
+
+It’s easy to create a method and add documentation "`the first two arguments should not point to the same memory`". But if this method is used by other methods, the contract can change to much more complicated things that are harder to express or check. When generics get involved, it only gets worse; you sometimes have no way of forcing that there are no shared mutable aliases, or of expressing what isn’t allowed in the documentation. Nor will it be easy for an API consumer to enforce this.
+
+This makes it harder and harder to write safe, generic abstractions. Such abstractions rely on invariants, and these invariants can often be broken by the problems in the previous section. It’s not always easy to enforce these invariants, and such abstractions will either be misused or not written in the first place, opting for a heavier option. Generally one sees that such abstractions or patterns are avoided altogether, even though they may provide a performance boost, because they are risky and hard to maintain. Even if the present version of the code is correct, someone may change something in the future breaking the invariants again.
+____
