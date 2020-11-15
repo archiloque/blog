@@ -1,0 +1,57 @@
+= Links - 15^th^ November 2020
+Julien Kirch
+v1.0, 2020-11-15
+:article_lang: en
+:figure-caption!:
+:article_description: Data races, Bugs
+
+== link:https://blog.jcoglan.com/2020/10/12/reading-and-writing-part-3/[Reading and writing, part 3: web applications]
+
+[quote]
+____
+I should emphasize that the problems I am about to demonstrate are not unique to Rails, they're commonplace in web application logic across many platforms. Rails is simply a well-known example, with which I'm most familiar. It has also had an enormous influence on how web apps in general are written; tools like Rails are how many people have _learned_ to develop applications, and so its lack of decent concurrency control contributes to many people never learning how to notice, diagnose or fix the bugs it leads to. Tools aren't just a means of getting work done, they're a means of _understanding_ the work itself, and the ergonomic effect of a tool making it easy to write certain categories of bug has an impact beyond the use of that tool in particular.
+____
+
+[quote]
+____
+An important element of ergonomic design in software systems is the decision to eagerly report errors for things that aren't guaranteed to work, rather than letting the code work sometimes and letting you go to production before finding out it might fail.
+____
+
+== link:https://blog.regehr.org/archives/861[Operant Conditioning by Software Bugs]
+
+[quote]
+____
+How have software bugs trained us? The core lesson that most of us have learned is to stay in the well-tested regime and stay out of corner cases. Specifically, we will:
+
+- periodically restart operating systems and applications to avoid software aging effects,
+- avoid interrupting the computer when it is working (especially when it is installing or updating programs) since early-exit code is pretty much always wrong,
+- do things more slowly when the computer appears overloaded—in contrast, computer novices often make overload worse by clicking on things more and more times,
+- avoid too much multitasking,
+- avoid esoteric configuration options,
+- avoid relying on implicit operations, such as the fact that MS Word is supposed to ask us if we want to save a document on quit if unsaved changes exist.
+____
+
+[quote]
+____
+The second reason I wrote this piece is that I think operant conditioning provides a partial explanation for the apparent paradox where many people believe that most software works pretty well most of the time, while others believe that link:http://www.hanselman.com/blog/EverythingsBrokenAndNobodysUpset.aspx[software is basically crap]. People in the latter camp, I believe, are somehow able to resist or discard their conditioning in order to use software in a more unbiased way. Or maybe they're just slow learners. Either way, those people would make amazing members of a software testing team.
+____
+
+== link:https://smallcultfollowing.com/babysteps/blog/2013/06/11/on-the-connection-between-memory-management-and-data-race-freedom/[On the connection between memory management and data-race freedom]
+
+[quote]
+____
+I've often thought that while data-races in a technical sense can only occur in a parallel system, problems that feel a lot like data races crop up all the time in sequential systems. One example would be what {cpp} folk call _iterator invalidation_ -- basically, if you are iterating over a hashtable and you try to modify the hashtable during that iteration, you get undefined behavior. Sometimes your iteration skips keys or values, sometimes it shows you the new key, sometimes it doesn't, etc. In {cpp}, this leads to crashes. In Java, this (hopefully) leads to an exception.
+
+But whatever the outcome, iterator invalidation feels very similar to a data race. The problem often arises because you have one piece of code iterating over a hashtable and then calling a subroutine defined over in some other module. This other module then writes to the same hashtable. Both modules look fine on their own, it's only the combination of the two that causes the issue. And because of the undefined nature of the result, it often happens that the code works fine for a long time -- until it doesn't.
+____
+
+== link:https://manishearth.github.io/blog/2015/05/17/the-problem-with-shared-mutability/[The Problem With Single-threaded Shared Mutability]
+
+[quote]
+____
+My intuition is that code far away from my code might as well be in another thread, for all I can reason about what it will do to shared mutable state.
+
+It’s easy to create a method and add documentation "`the first two arguments should not point to the same memory`". But if this method is used by other methods, the contract can change to much more complicated things that are harder to express or check. When generics get involved, it only gets worse; you sometimes have no way of forcing that there are no shared mutable aliases, or of expressing what isn’t allowed in the documentation. Nor will it be easy for an API consumer to enforce this.
+
+This makes it harder and harder to write safe, generic abstractions. Such abstractions rely on invariants, and these invariants can often be broken by the problems in the previous section. It’s not always easy to enforce these invariants, and such abstractions will either be misused or not written in the first place, opting for a heavier option. Generally one sees that such abstractions or patterns are avoided altogether, even though they may provide a performance boost, because they are risky and hard to maintain. Even if the present version of the code is correct, someone may change something in the future breaking the invariants again.
+____
