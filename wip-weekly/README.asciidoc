@@ -3,3 +3,15 @@ Julien Kirch
 v1.0, 2020-01-01
 :article_lang: en
 :figure-caption!:
+
+
+== link:https://martinfowler.com/articles/data-monolith-to-mesh.html[How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh]
+[quote]
+____
+I personally don't envy the life of a data platform engineer. They need to consume data from teams who have no incentive in providing meaningful, truthful and correct data. They have very little understanding of the source domains that generate the data and lack the domain expertise in their teams. They need to provide data for a diverse set of needs, operational or analytical, without a clear understanding of the application of the data and access to the consuming domain's experts.
+____
+
+[quote]
+____
+In a mature and ideal situation, an operational system and it's team or organizational unit, are not only responsible for providing business capabilities but also responsible for providing the _truths of their business domain_ as source domain datasets. At enterprise scale there is never a one to one mapping between a domain concept and a source system. There are often many systems that can serve parts of the data that belongs to a domain, some legacy and some easy to change. Hence there might be many _source aligned datasets_ aka _reality datasets_ that ultimately need to be aggregated to a cohesive domain aligned dataset.
+____
