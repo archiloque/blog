@@ -1,0 +1,160 @@
+= Écrire un scrapper de site web en Ruby
+Julien Kirch
+v0.1, 2020-11-19
+:article_lang: fr
+
+Pour mon usage personnel, par exemple télécharger des sites ou des BDs pour les lire hors ligne sur une liseuse, ou pour rendre services à des amis en extrayant des données structurées, j'ai souvent besoin d'écrire des scrapper pour des sites web.
+
+Il serait généralement possible d'utiliser un outil de scrapping générique et de le paramétrer, ou de télécharger l'intégralité du site avec un outil comme link:https://www.httrack.com[HTTrack] puis de traiter les fichiers en local, mais un scrapper maison est souvent plus efficace car on peut facilement ne télécharger que les contenu qui nous intéressent, et extraire à la volée les données dont on a besoin.
+
+Une fois qu'on a une base de code qui fonctionne et qu'on maîtrise bien, le modifier pour un nouveau usage se fait facilement.
+C'est un des cas où copier / coller un existant et le rééditer pour chaque nouveau besoin est plus efficace que d'essayer d'avoir une solution générique qu'on aurait "`seulement`" à configurer.
+
+Cet article se propose de vous guider pas à pas jusqu'à avoir une première version complète, dans l'idée de vous rendre autonome.
+
+Par ailleurs, la conception d'un scrapper permet de creuser quelques sujets intéressantes, naturellement un peu de HTML et de HTTP mais aussi de stockage de données.
+
+Avertissement{nbsp}: de nombreux sites indiquent dans leur conditions d'utilisation qu'il n'est pas autorisé de les scrapper.
+Je ne sais pas si ces messages ont une valeur légale, mais cet article n'est pas un encouragement à scrapper ces sites.
+
+== Le scrapper à développer
+
+Je vais ici développer un scrapper qui fait de l'archivage de site web.
+Son objectif est d'obtenir une copie locale d'un site qui soit navigable en ouvrant les fichiers dans un navigateur.
+
+Pour les fichiers et le parcours du site, le scrapper parcourra le HTML généré côté serveur sans exécuter le JavaScript, et ne sera donc pas compatible avec des sites générés côté client.
+
+Il est possible d'écrire en Ruby des scrapper qui savent exécuter du JavaScript, par exemple avec des outils comme linkhttps://github.com/YusukeIwaki/puppeteer-ruby[Puppeteer Ruby] qui peut piloter une instance de Chrome, mais cela demande plus de travail et j'en ai rarement eu besoin quand j'ai fais du scrapping, je ne traiterai donc pas ce sujet ici.
+
+Comme l'objectif est d'obtenir un code facile à modifier plutôt que facile à étendre, le code sera placé dans un fichier unique est dans un style procédural, c'est-à-dire en évitant de structurer le code à l'aide de classe mais en utilisant uniquement des méthodes.
+
+== Télécharger une seule page
+
+Pour commencer je vais télécharger uniquement le contenu HTML d'une page dont l'adresse est spécifiée dans le code.
+
+Pour le téléchargement j'utilise la classe `Net::HTTP` fournie par la bibliothèque standard Ruby.
+Certes il existe de nombreuses librairies externes fournissant des fonctionnalités plus évoluées et/ou des API plus simple, mais pour les besoins de scrapping `Net::HTTP` suffit amplement, et il intéressant de la connaître un peu car elle est utilisée par défaut par de nombreuses librairies.
+Pour un scrapper, la seule méthode à connaître est `Net::HTTP#get_response` qui fait une requête `GET` à partir d'une URL.
+
+La classe `URI::HTTP` de la bibliothèque standard Ruby implémente les différents standards mais elle est assez stricte.
+Cela signifie qu'elle n'apprécie pas toujours qu'on prenne des liberté avec les standard.
+Les navigateurs sont eux plutôt tolérants, et par conséquent les sites webs ne sont pas incités à suivre les standard au pied de la lettre.
+Cela signifie que pour du scrapper, mieux un parseur d'URL tolérant, et pour cela je vais utiliser la bibliothèque link:https://github.com/sporkmonger/addressable[Addressable].
+
+Voici donc le code{nbsp}:
+
+.scrapper.rb
+[source, ruby]
+----
+include::scrapper_1.rb[]
+----
+
+L'exécution du script devrait créer en local un fichier `index.html` qui contient le source de la page.
+La page téléchargée à link:http://example.com[example.com] n'utilisant ni image ni CSS externe, la version locale est auto-portante (en tous cas au moment où j'écris cet article).
+
+== Configurabilité{nbsp}? Non, merci{nbsp}!
+
+Pour un outil classique, la deuxième étape serait de rendre le script configurable, en permettant par exemple de lui passer l'URL d'entrée du site ou le répertoire cible en paramètre.
+
+Mais rappelez vous que mon objectif n'est pas d'avoir un script configurable mais un script facilement éditable.
+Avoir une URL en dur dans une constante en début de fichier fait donc très bien l'affaire.
+
+== Télécharger une page et ses dépendances
+
+À la place, la deuxième étape va consister à télécharger une page et ses dépendances externes{nbsp}: images, feuilles de style et fichiers JavaScript.
+
+Je vais prendre pour cible le site du magazine link:https://queue.acm.org[ACM Queue] qui est un magazine publiant des articles d'ingénierie logicielle.
+
+== URLS et noms de fichiers
+
+Mais d'abord il me faut parler des URLs et des noms de fichiers.
+
+link:http://www.faqs.org/rfcs/rfc1738.html[Il y a très longtemps], les URLs ne pouvaient quasiment utiliser que des caractères alphanumériques.
+Les dinosaures régnaient sur le monde et la vie était simple.
+
+Désormais on peut avoir des URLs avec des loutres comme link:https://emojipedia.org/emoji/🦦/[https://emojipedia.org/emoji/🦦/].
+
+Dans un scrapper qui archive un site chaque contenu est sauvegardé.
+Si cette sauvegarde est faite dans une base de données classique, comme par exemple une base SQL, vous pouvez stocker les URLs dans un champ de texte, même si elles contiennent des loutres.
+
+Si la base de donnée utilisée par le stockage est un système de fichier, les choses peuvent être moins simple.
+
+Les systèmes d'exploitation peuvent être peu contraignants sur les formats de noms de fichiers (par exemple avec le système de fichiers ext4 souvent utilisé sous Linux tous les caractères sont autorisés à part `NULL` et `/`).
+
+Mais en pratique vous n'avez peut-être pas envie d'avoir sur votre disque dur ü͉̞͖͇̥̫̊͞n̢̟͖̺̗̥̱̬̅̾̿ͅ ̬̑̀ f͆ͧ҉̺̪͚̩̭̭̙i̵̤̟͚̳̠̟̣̬̽̊̑c͎̳̘̟̼͊ͤ͠h̫̫̎̒ͯͪ͘ͅi̦͉̞̩̠̫̲̅ͥ̀͠e̵͚̘̒r̹̝͔̪͉̙̒͑ͦ͞ ͉̲͓̘͌͢ͅq̶͈̺͈̫̜͎͉͉̌͊̍̚u̫̤͖̼̮̝͐ͤ͢ḭ̱͕͔̮̗̲̂͂̇̽̕ ̈́͌҉̭͎̪ͅṣ̨͕͇͕̯̗̗̭͙̭̳̼̖̄̐͋͂͡'̴̩̥̭̤̫̖̈̐a̳̙͍̯ͩ̆̽͛́p̝̮̦̹͇̥ͪ͗̂͟p͈͙͓̻ͤͭ͟e̪͆ͬ̆ͭ̕ͅl͈̩̜̓ͫ̕l̴̞̟̼͕͙̮̤̺̊̓ͣe̷͇̰͙͒̔͛̚ ̭̻̰͇̖̆͡c̨̬̖̥̖̽ͪ̈́o̢͈̲̭͈̟̫̭̒̂̾ͤm̭͉̩͔͎̼̳͖ͧ͡m̴͎̙̳̟̖͆̔ę͇̲̻̠͎̊͂ͬ̊ͅ ̨͕͔͕̹̼̓̒̃�̛͎̜͇̹̻̰͚̹ͧͩ�̭̗͓͖̤̖̬ͫ̆̑͞a̡̪͍̪̍
+
+Cela signifie qu'il faut trouver une opération permettant de transformer les URLs en nom de fichier acceptables.
+
+On pourrait vouloir supprimer les caractères qu'on veut éviter en ne conservant que les caractères compatibles.
+C'est ce qui est est fait dans certains CMS pour transformer des noms de fichiers en URLs.
+
+L'inconvénient de cette méthode est qu'elle supprime des informations (les caractères non acceptables), et qu'en faisait ça deux URLs différentes peuvent être transformer en un nom de fichier identique.
+
+`https://emojipedia.org/emoji/🦦/` et `https://emojipedia.org/emoji/🦔/` auraient ainsi le même nom de fichier.
+
+L'opération de transformation doit donc avoir les caractéristiques suivantes{nbsp}:
+
+- une même URL doit toujours about au même nom de fichier (pour éviter d'avoir des doublons)
+- un nom de fichier doit correspondre à une seule URL (pour éviter le cas décrit plus haut)
+
+En mathématique, ce type de transformation est appelé link:https://fr.wikipedia.org/wiki/Bijection[bijection].
+
+Une manière de mettre en place cette transformation est d'utiliser un dictionnaire, c'est-à-dire une source de données qui permette de stocker la correspondance entre URL en nom de fichier.
+C'est un des usages des bases de données SQL{nbsp}:
+on peut ainsi créer une table `URL` avec une colonne qui contient l'URL originale avec une clé d'unicité, et une colonne contenant un incrément automatique (aussi appelé séquence).
+Lorsqu'on veut récupérer le nom de fichier correspondant à une URL, on commence par vérifier si cette URL est déjà dans la table, et sinon on l'insère.
+La valeur de la colonne contenant l'incrément automatique fournit alors des identifiant adaptés à des fichiers, on aurait ainsi des fichiers `1`, `2`…
+C'est comme si le nom de fichier était une clé étrangère vis-à-vis de cette table.
+
+Sans utiliser de base de donnée externe, on pourrait gérer ce dictionnaire dans un fichier, par exemple un fichier JSON, ou même un fichier textuel contenant une URL par ligne en utilisant le numéro de ligne comme identifiant pour le fichier.
+
+L'approche dictionnaire à un inconvénient{nbsp}: elle demande de passer par une source de donnée supplémentaire qui n'est pas un des fichiers du site.
+
+Une autre solution est de trouver une transformation qui réponde aux deux caractéristiques décrite ci-dessous et qui se passe de dictionnaire.
+
+Encoder les URL au format link:https://fr.wikipedia.org/wiki/Base64[base64], souvent utilisé sur le web pour encoder des resources binaire dans un contenu textuel est un bon candidat car cela ne repose pas sur un dictionnaire et répond aux deux caractéristiques, mais il a deux inconvénients qui empêchent de s'en servir :
+
+- Il utilise le caractère '/' qui n'est pas légal dans des noms de fichiers.
+- Il utilise des majuscules et des minuscules, alors que certains systèmes de fichiers (notablement celui de macOS) ne font pas cette distinction.
+
+Un format d'encodage qui n'a pas ces inconvénients est d'utiliser les numéros des caractères composant l'URL (dont le nom officiel est link:https://fr.wikipedia.org/wiki/Point_de_code[point de code]). Comme il s'agit d'une suite de valeurs numériques cela convient bien à des noms de fichiers. On peut même utiliser la représentation hexadécimale de ces nombres pour avoir des noms de fichiers moins longs.
+
+En Ruby, la méthode `String#ord` permet de récupérer le point de code d'un caractère, voici comment faire la transformation{nbsp}:
+
+[source, ruby]
+----
+url = 'https://emojipedia.org/emoji/🦦/'
+decimal_codepoints = url.chars.map{ |c| c.ord }
+hexadecimal_codepoints = decimal_codepoints.map{ |c| c.to_s(16) }
+file_name = hexadecimal_codepoints.join('-')
+----
+
+Ce qui nous donne `68-74-74-70-73-3a-2f-2f-65-6d-6f-6a-69-70-65-64-69-61-2e-6f-72-67-2f-65-6d-6f-6a-69-2f-1f9a6-2f`.
+
+Il est nécessaire de mettre des tirets entre les nombres pour pouvoir distinguer les valeurs successives, car elles n'ont pas toutes la même longueur.
+
+== Télécharger une page et ses dépendances (pour de vrai)
+
+Maintenant qu'on sait comment transformer une URL en nom de fichier, on peut s'intéresser au téléchargement proprement dit.
+
+Pour télécharger les dépendances externes d'une page, le mécanisme est le suivant{nbsp}:
+
+. Identifier la liste des dépendances
+. Pour chaque dépendance
+.. Si elle n'a pas déjà été téléchargée, la télécharger et la stocker sous le nom calculé en utilisant le code ci-dessus
+.. Modifier le HTML de la page pour remplacer l'URL de la dépendance par le chemin du fichier
+
+Pour identifier la liste des dépendances, il faut parcourir le HTML.
+Pour cela la bibliothèque Ruby la plus utilisée est link:https://nokogiri.org[Nokogiri], elle sait parser du HTML et du XML et fournit ensuite une interface permettant de requêter et de modifier le contenu.
+
+La première étape est de parser le contenu du HTML que l'on reçoit, et de préparer le fait que la sauvegarde va se faire dans un sous-répertoire pour éviter de mélanger le site avec le scrapper.
+
+Comme l'objectif est de scrapper le magazine ACM Queue, j'ai aussi remplacé l'URL.
+
+.scrapper.rb
+[source, ruby]
+----
+include::scrapper_2.rb[]
+----
+
+Mais, quand on essaie d'ouvrir
