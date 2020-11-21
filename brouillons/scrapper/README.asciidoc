@@ -114,7 +114,7 @@ Une autre solution est de trouver une transformation qui réponde aux deux carac
 
 Encoder les URL au format link:https://fr.wikipedia.org/wiki/Base64[base64], souvent utilisé sur le web pour encoder des resources binaire dans un contenu textuel est un bon candidat car cela ne repose pas sur un dictionnaire et répond aux deux caractéristiques, mais il a deux inconvénients qui empêchent de s'en servir :
 
-- Il utilise le caractère '/' qui n'est pas légal dans des noms de fichiers.
+- Il utilise le caractère `/` qui n'est pas autorisé dans des noms de fichiers.
 - Il utilise des majuscules et des minuscules, alors que certains systèmes de fichiers (notablement celui de macOS) ne font pas cette distinction.
 
 Un format d'encodage qui n'a pas ces inconvénients est d'utiliser les numéros des caractères composant l'URL (dont le nom officiel est link:https://fr.wikipedia.org/wiki/Point_de_code[point de code]). Comme il s'agit d'une suite de valeurs numériques cela convient bien à des noms de fichiers. On peut même utiliser la représentation hexadécimale de ces nombres pour avoir des noms de fichiers moins longs.
