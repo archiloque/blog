@@ -7,5 +7,5 @@ MAIN_URL = 'http://example.com'
 
 puts "Downloading [#{MAIN_URL}]"
 parsed_url = Addressable::URI.parse(main_url)
-response = Net::HTTP.get_response(parsed_url)
-IO.write('index.html', response.body)
+response = Net::HTTP.get(parsed_url)
+IO.write('index.html', response)

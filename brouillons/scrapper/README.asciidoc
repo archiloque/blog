@@ -33,8 +33,8 @@ Comme l'objectif est d'obtenir un code facile à modifier plutôt que facile à 
 Pour commencer je vais télécharger uniquement le contenu HTML d'une page dont l'adresse est spécifiée dans le code.
 
 Pour le téléchargement j'utilise la classe `Net::HTTP` fournie par la bibliothèque standard Ruby.
-Certes il existe de nombreuses librairies externes fournissant des fonctionnalités plus évoluées et/ou des API plus simple, mais pour les besoins de scrapping `Net::HTTP` suffit amplement, et il intéressant de la connaître un peu car elle est utilisée par défaut par de nombreuses librairies.
-Pour un scrapper, la seule méthode à connaître est `Net::HTTP#get_response` qui fait une requête `GET` à partir d'une URL.
+Certes il existe de nombreuses librairies externes fournissant des fonctionnalités plus évoluées et/ou des API plus simple, mais pour les besoins de scrapping `Net::HTTP` suffit généralement, et il intéressant de la connaître un peu car elle est utilisée par défaut par de nombreuses librairies.
+Pour un scrapper minimal, la seule méthode à connaître est `Net::HTTP#get` qui fait une requête `GET` à partir d'une URL et qui renvoie le contenu.
 
 La classe `URI::HTTP` de la bibliothèque standard Ruby implémente les différents standards mais elle est assez stricte.
 Cela signifie qu'elle n'apprécie pas toujours qu'on prenne des liberté avec les standard.
@@ -157,4 +157,45 @@ Comme l'objectif est de scrapper le magazine ACM Queue, j'ai aussi remplacé l'U
 include::scrapper_2.rb[]
 ----
 
-Mais, quand on essaie d'ouvrir
+Mais, quand on essaie d'ouvrir le fichier `download/index.html` résultant{nbsp}:
+
+image::blocked.png[]
+
+Pas de panique{nbsp}: il s'agit d'un mécanisme rudimentaire pour bloquer les robots.
+
+Quand ce genre de choses arrive, il vaut mieux faire deux choses{nbsp}:
+
+- utiliser une bibliothèque HTTP qui a un comportement plus proche de celui des navigateurs que celui des navigateurs
+- fournir une en-tête link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent[User-Agent] pour accentuer la ressemblance avec un navigateur.
+
+Je vais donc passer de `Net::HTTP` à la bibliothèque link:https://github.com/taf2/curb[Curb] qui fournit une API Ruby au dessus de la bibliothèque libcurl, que vous connaissez peut-être à travers la commande `curl` utilisée pour faire des téléchargement depuis la ligne de commande.
+
+.scrapper.rb
+[source, ruby]
+----
+include::scrapper_3.rb[]
+----
+
+Et ça fonctionne{nbsp}!
+
+image::success_no_dependency.png[]
+
+Le HTML est là, même si pour le moment sans CSS ni image.
+
+Si vous allez jeter un œil au fichier HTML, une petite surprise vous attend{nbsp}:
+
+[source, XML]
+---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript">/* <![CDATA[ */_cf_loadingtexthtml="<img alt=' ' src='/cf_scripts/scripts/ajax/resources/cf/images/loading.gif'/>";
+---
+
+En effet le contenu n'est pas au format HTML mais au format XHTML.
+Il s'agit à peu près d'une version XML de HTML4, créé par le W3C à l'époque où le XML était à la monde.
+Les deux avantages de cette approche étaient de pouvoir utiliser des outils XML pour pouvoir publier des sites (ce qui permettait notamment d'avoir la même chaîne de publication pour les livres que pour le contenu web) et de pouvoir utiliser des parsers XML, plus performants que les parsers HTML (cela prend son sens quand on se souvient des téléphones mobiles disponibles dans les années 2000).
+La vague du XML sur le web a été stoppée lorsqu'Apple, Mozilla et Opera ont décidé de monter un putsch contre le W3C en créant leur propre instance et leur propre format qui a abouti au HTML5.
+
+Pour le scrapper cela n'a aucune conséquence car Nokogiri traite le HTML et le XHTML de la même manière.
+
