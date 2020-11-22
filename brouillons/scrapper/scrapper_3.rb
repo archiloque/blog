@@ -10,18 +10,18 @@ require 'curl'
 MAIN_URL = 'https://queue.acm.org'
 TARGET_DIRECTORY = 'download'
 
-# Cleaning target directory if it exists and recreates it
+# Supprime le répertoire de destination s'il existe et le recréé
 if File.exists?(TARGET_DIRECTORY)
-  puts "Deleting [#{TARGET_DIRECTORY}]"
+  puts "Supprime [#{TARGET_DIRECTORY}]"
   FileUtils.remove_entry_secure(TARGET_DIRECTORY)
 end
-puts "Creating [#{TARGET_DIRECTORY}]"
+puts "Créé [#{TARGET_DIRECTORY}]"
 Dir.mkdir(TARGET_DIRECTORY)
 
-puts "Downloading [#{MAIN_URL}]"
+puts "Télécharge [#{MAIN_URL}]"
 parsed_url = Addressable::URI.parse(MAIN_URL)
 response = Curl.get(parsed_url) do |http|
-  # I'm a web browser!
+  # Je suis un navigateur web !
   http.headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0'
 end
 doc = Nokogiri::HTML(response.body_str)

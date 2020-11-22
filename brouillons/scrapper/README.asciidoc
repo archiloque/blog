@@ -124,14 +124,25 @@ En Ruby, la méthode `String#ord` permet de récupérer le point de code d'un ca
 [source, ruby]
 ----
 url = 'https://emojipedia.org/emoji/🦦/'
-decimal_codepoints = url.chars.map{ |c| c.ord }
-hexadecimal_codepoints = decimal_codepoints.map{ |c| c.to_s(16) }
+hexadecimal_codepoints = url.chars.map do |character| 
+  character.ord.to_s(16)
+end
 file_name = hexadecimal_codepoints.join('-')
 ----
 
 Ce qui nous donne `68-74-74-70-73-3a-2f-2f-65-6d-6f-6a-69-70-65-64-69-61-2e-6f-72-67-2f-65-6d-6f-6a-69-2f-1f9a6-2f`.
 
-Il est nécessaire de mettre des tirets entre les nombres pour pouvoir distinguer les valeurs successives, car elles n'ont pas toutes la même longueur.
+Il est nécessaire de mettre des tirets entre les nombres pour pouvoir distinguer les valeurs successives, car elles n'ont pas toutes le même nombre de chiffres.
+
+Si besoin, voici comment réaliser l'opération inverse{nbsp}:
+
+[source, ruby]
+----
+file_name = '68-74-74-70-73-3a-2f-2f-65-6d-6f-6a-69-70-65-64-69-61-2e-6f-72-67-2f-65-6d-6f-6a-69-2f-1f9a6-2f'
+url = file_name.split('-').map do |hexadecimal_codepoint|
+  hexadecimal_codepoint.to_i(16).chr(Encoding::UTF_8)
+end.join('')
+----
 
 == Télécharger une page et ses dépendances (pour de vrai)
 
@@ -165,10 +176,12 @@ Pas de panique{nbsp}: il s'agit d'un mécanisme rudimentaire pour bloquer les ro
 
 Quand ce genre de choses arrive, il vaut mieux faire deux choses{nbsp}:
 
-- utiliser une bibliothèque HTTP qui a un comportement plus proche de celui des navigateurs que celui des navigateurs
+- utiliser une bibliothèque HTTP qui a un comportement plus proche de celui des navigateurs
 - fournir une en-tête link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent[User-Agent] pour accentuer la ressemblance avec un navigateur.
 
-Je vais donc passer de `Net::HTTP` à la bibliothèque link:https://github.com/taf2/curb[Curb] qui fournit une API Ruby au dessus de la bibliothèque libcurl, que vous connaissez peut-être à travers la commande `curl` utilisée pour faire des téléchargement depuis la ligne de commande.
+Si vous avez l'habitude d'utiliser une des bibliothèques HTTP qui est faite pour des appels REST, elle risque d'avoir le même problème, car une API REST n'a pas vocation à bloquer les clients qui ne sont pas des navigateurs.
+
+Je vais passer de `Net::HTTP` à la bibliothèque link:https://github.com/taf2/curb[Curb] qui fournit une API Ruby au dessus de la bibliothèque libcurl, que vous connaissez peut-être à travers la commande `curl` utilisée pour faire des téléchargement depuis la ligne de commande.
 
 .scrapper.rb
 [source, ruby]
@@ -184,7 +197,7 @@ Le HTML est là, même si pour le moment sans CSS ni image.
 
 Si vous allez jeter un œil au fichier HTML, une petite surprise vous attend{nbsp}:
 
-[source, XML]
+[source, xml]
 ---
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -199,3 +212,140 @@ La vague du XML sur le web a été stoppée lorsqu'Apple, Mozilla et Opera ont d
 
 Pour le scrapper cela n'a aucune conséquence car Nokogiri traite le HTML et le XHTML de la même manière.
 
+Je commence par déplacer le code de téléchargement dans une méthode séparée, car je vais en avoir besoin pour les ressources externes{nbsp}:
+
+.scrapper.rb
+[source, ruby]
+----
+# @param [Addressable::URI] url
+# @return [String]
+def download_url_content(url)
+  response = Curl.get(url) do |http|
+    # Je suis un navigateur web !
+    http.headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0'
+  end
+  response.body_str
+end
+----
+
+Ensuite je vais commencer par récupérer les images.
+
+Le code suit exactement les étapes décrites plus haut, pour commencer je ne vais pas tenter de factoriser de code.
+
+Pour la recherche dans le HTML, Nokogiri propose une méthode `.css` qui link:https://nokogiri.org/tutorials/searching_a_xml_html_document.html[permet d'utiliser la syntaxe CSS]{nbsp}:
+
+.scrapper.rb
+[source, ruby]
+----
+# Localise les éléments img
+doc.css('img').each do |image|
+  image_src = image['src']
+  # Assure d'avoir une URL absolue en combinant l'adresse de l'image
+  # avec celle de la page si l'image a une adresse relative,
+  # par exemple http://exemple.com +  lapin.png = http://exemple.com/lapin.png
+  # si l'image a déjà une adresse absolue alors utilise celle là
+  # Addressable::URI#normalize essaie de corriger les URls incorrectes, par exemple celles qui contiennent des espace
+  image_url = parsed_url.join(image_src).normalize
+  puts "Downloading [#{image_url}]"
+
+  # Calcule le nom du fichier
+  hexadecimal_codepoints = image_url.to_s.chars.map do |character|
+    character.ord.to_s(16)
+  end
+  image_file_name = hexadecimal_codepoints.join('-')
+  image_file_path = File.join(TARGET_DIRECTORY, image_file_name)
+
+  # Si le fichier n'existe pas encore, c'est qu'il faut télécharger l'image
+  unless File.exists?(image_file_path)
+    IO.write(
+      image_file_path,
+      download_url_content(image_url)
+    )
+  end
+  # Remplace l'URL d'origine par le nom du fichier
+  image['src'] = image_file_name
+end
+----
+
+En lançant le script, les fichiers images sont bien crées{nbsp}:
+
+image::images_files.png[]
+
+Elles sont bien remplacées dans le HTML{nbsp}:
+
+[source, html]
+----
+        <a href="index.cfm"><img
+                src="68-74-74-70-73-3a-2f-2f-71-75-65-75-65-2e-61-63-6d-2e-6f-72-67-2f-69-6d-67-2f-61-63-6d-71-75-65-75-65-5f-6c-6f-67-6f-2e-67-69-66"></a>
+        <br>
+        <a href="whyjoinacm.cfm"><img
+                src="68-74-74-70-73-3a-2f-2f-71-75-65-75-65-2e-61-63-6d-2e-6f-72-67-2f-69-6d-67-2f-6c-6f-67-6f-5f-61-63-6d-2e-67-69-66"
+                border="0" style="clear:both;"></a>
+----
+
+Et quand on visualise le fichier, les images s'affichent bien{nbsp}:
+
+image::images_display.png[]
+
+Reste à faire de même pour les feuilles CSS et le JavaScript. Ce qui donne l'occasion de factoriser un peu le code.
+
+Pour faciliter un peu le parcours des fichiers, je vais également ajouter les extensions des URLs aux noms des fichiers, on aura ainsi des fichiers `.png` ou `.js`, en faisant le pari que les sites n'utilisent pas dans leurs extensions d'emoji ou d'autres caractères à éviter dans les noms de fichiers.
+
+Par courtoisie pour éviter de trop solliciter le serveur et potentiellement de se faire bloquer, je vais mettre une seconde d'attente après chaque téléchargement.
+
+.scrapper.rb
+[source, ruby]
+----
+puts "Downloading [#{MAIN_URL}]"
+parsed_url = Addressable::URI.parse(MAIN_URL)
+doc = Nokogiri::HTML(download_url_content(parsed_url))
+
+# @param [Addressable::URI] html_page_url
+# @param [String] resource_url
+# @return [String]
+def scrape_resource(html_page_url, resource_url)
+  # Assure d'avoir une URL absolue en combinant l'adresse de la resource
+  # avec celle de la page
+  absolute_url = html_page_url.join(resource_url).normalize
+  puts "Checking resource [#{absolute_url}]"
+
+  hexadecimal_codepoints = absolute_url.to_s.chars.map do |character|
+    character.ord.to_s(16)
+  end
+  file_name = "#{hexadecimal_codepoints.join('-')}#{File.extname(absolute_url.path)}"
+  target_file_path = File.join(TARGET_DIRECTORY, file_name)
+  unless File.exists?(target_file_path)
+    puts "Télécharge [#{absolute_url}] to [#{target_file_path}]"
+    IO.write(target_file_path, download_url_content(absolute_url))
+    # Attendre un peu
+    sleep(1)
+  end
+  file_name
+end
+
+doc.css('img').each do |image|
+  image['src'] = scrape_resource(parsed_url, image['src'])
+end
+
+doc.css('link').each do |link|
+  # Télécharge seulement les feuilles de styles externes
+  if (link['rel'] == 'stylesheet') && link.key?('href')
+    link['href'] = scrape_resource(parsed_url, link['href'])
+  end
+end
+
+doc.css('script').each do |script|
+  # Télécharge seulement les scripts externes
+  if script.key?('src')
+    script['src'] = scrape_resource(parsed_url, script['src'])
+  end
+end
+
+IO.write(File.join(TARGET_DIRECTORY, 'index.html'), doc.to_html)
+----
+
+Et voilà{nbsp}:
+
+image::first_page_with_resources.png[]
+
+== Télécharger le reste du site
