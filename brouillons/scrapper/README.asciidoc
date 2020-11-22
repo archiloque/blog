@@ -246,7 +246,7 @@ doc.css('img').each do |image|
   # si l'image a déjà une adresse absolue alors utilise celle là
   # Addressable::URI#normalize essaie de corriger les URls incorrectes, par exemple celles qui contiennent des espace
   image_url = parsed_url.join(image_src).normalize
-  puts "Downloading [#{image_url}]"
+  puts "Télécharge [#{image_url}]"
 
   # Calcule le nom du fichier
   hexadecimal_codepoints = image_url.to_s.chars.map do |character|
