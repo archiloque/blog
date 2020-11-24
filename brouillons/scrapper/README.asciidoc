@@ -88,7 +88,7 @@ Cela signifie qu'il faut trouver une opération permettant de transformer les UR
 On pourrait vouloir supprimer les caractères qu'on veut éviter en ne conservant que les caractères compatibles.
 C'est ce qui est est fait dans certains CMS pour transformer des noms de fichiers en URLs.
 
-L'inconvénient de cette méthode est qu'elle supprime des informations (les caractères non acceptables), et qu'en faisait ça deux URLs différentes peuvent être transformer en un nom de fichier identique.
+L'inconvénient de cette méthode est qu'elle supprime des informations (les caractères non acceptables), et qu'en faisait ça deux URLs différentes peuvent être transformées en un nom de fichier identique.
 
 `https://emojipedia.org/emoji/🦦/` et `https://emojipedia.org/emoji/🦔/` auraient ainsi le même nom de fichier.
 
@@ -99,49 +99,33 @@ L'opération de transformation doit donc avoir les caractéristiques suivantes{n
 
 En mathématique, ce type de transformation est appelé link:https://fr.wikipedia.org/wiki/Bijection[bijection].
 
-Une manière de mettre en place cette transformation est d'utiliser un dictionnaire, c'est-à-dire une source de données qui permette de stocker la correspondance entre URL en nom de fichier.
+Une méthode pour transformer une URL en nom de fichier serait d'utiliser les numéros des caractères composant l'URL (dont le nom officiel est link:https://fr.wikipedia.org/wiki/Point_de_code[point de code]).
+Comme il s'agit d'une suite de valeurs numériques cela convient bien à des noms de fichiers. Malheureusement les noms de fichiers résultants sont plutôt longs (`https://emojipedia.org/emoji/🦦/` est transformé en `68-74-74-70-73-3a-2f-2f-65-6d-6f-6a-69-70-65-64-69-61-2e-6f-72-67-2f-65-6d-6f-6a-69-2f-1f9a6-2f`) ce qui n'est pas compatible avec tous les systèmes de fichiers.
+
+Si vous voulez suivre cette approche une solution possible est de séparer la chaîne ainsi calculée en plusieurs tronçons, par exemple par blocs de 10 valeurs, et que chaque tronçon intermédiaire corresponde à un niveau de répertoire (dans notre exemple `68-74-74-70-73-3a-2f-2f-65-6d/6f-6a-69-70-65-64-69-61-2e-6f/72-67-2f-65-6d-6f-6a-69-2f-1f9a6/2f`).
+L'avantage de cette approche est que la transformation entre l'URL et le nom de fichier dépend uniquement de l'URL, mais sa mise en œuvre commence à être compliquée.
+
+Une autre manière de mettre en place cette transformation est d'utiliser un dictionnaire, c'est-à-dire une source de données qui permette de stocker la correspondance entre URL en nom de fichier.
 C'est un des usages des bases de données SQL{nbsp}:
 on peut ainsi créer une table `URL` avec une colonne qui contient l'URL originale avec une clé d'unicité, et une colonne contenant un incrément automatique (aussi appelé séquence).
 Lorsqu'on veut récupérer le nom de fichier correspondant à une URL, on commence par vérifier si cette URL est déjà dans la table, et sinon on l'insère.
 La valeur de la colonne contenant l'incrément automatique fournit alors des identifiant adaptés à des fichiers, on aurait ainsi des fichiers `1`, `2`…
 C'est comme si le nom de fichier était une clé étrangère vis-à-vis de cette table.
 
-Sans utiliser de base de donnée externe, on pourrait gérer ce dictionnaire dans un fichier, par exemple un fichier JSON, ou même un fichier textuel contenant une URL par ligne en utilisant le numéro de ligne comme identifiant pour le fichier.
-
-L'approche dictionnaire à un inconvénient{nbsp}: elle demande de passer par une source de donnée supplémentaire qui n'est pas un des fichiers du site.
-
-Une autre solution est de trouver une transformation qui réponde aux deux caractéristiques décrite ci-dessous et qui se passe de dictionnaire.
-
-Encoder les URL au format link:https://fr.wikipedia.org/wiki/Base64[base64], souvent utilisé sur le web pour encoder des resources binaire dans un contenu textuel est un bon candidat car cela ne repose pas sur un dictionnaire et répond aux deux caractéristiques, mais il a deux inconvénients qui empêchent de s'en servir :
-
-- Il utilise le caractère `/` qui n'est pas autorisé dans des noms de fichiers.
-- Il utilise des majuscules et des minuscules, alors que certains systèmes de fichiers (notablement celui de macOS) ne font pas cette distinction.
-
-Un format d'encodage qui n'a pas ces inconvénients est d'utiliser les numéros des caractères composant l'URL (dont le nom officiel est link:https://fr.wikipedia.org/wiki/Point_de_code[point de code]). Comme il s'agit d'une suite de valeurs numériques cela convient bien à des noms de fichiers. On peut même utiliser la représentation hexadécimale de ces nombres pour avoir des noms de fichiers moins longs.
-
-En Ruby, la méthode `String#ord` permet de récupérer le point de code d'un caractère, voici comment faire la transformation{nbsp}:
+Sans utiliser de système de base de donnée externe, on peut utiliser une structure en mémoire, par exemple un `Hash` dont les clés seraient les URLs, ce qui assure l'unicité. Pour générer les valeurs de noms de fichiers, on peut utiliser le nombres d'entrées dans ce `Hash`, il s'agit d'une sorte d'incrément naturel{nbsp}:
 
 [source, ruby]
 ----
-url = 'https://emojipedia.org/emoji/🦦/'
-hexadecimal_codepoints = url.chars.map do |character| 
-  character.ord.to_s(16)
+KNOWN_URLS = {}
+
+url = `https://emojipedia.org/emoji/🦦/`
+
+if KNOWN_URLS.key?(url)
+  file_name = KNOWN_URLS[absolute_url]
+else
+  file_name = KNOWN_URLS.length
+  KNOWN_URLS[url] = file_name
 end
-file_name = hexadecimal_codepoints.join('-')
-----
-
-Ce qui nous donne `68-74-74-70-73-3a-2f-2f-65-6d-6f-6a-69-70-65-64-69-61-2e-6f-72-67-2f-65-6d-6f-6a-69-2f-1f9a6-2f`.
-
-Il est nécessaire de mettre des tirets entre les nombres pour pouvoir distinguer les valeurs successives, car elles n'ont pas toutes le même nombre de chiffres.
-
-Si besoin, voici comment réaliser l'opération inverse{nbsp}:
-
-[source, ruby]
-----
-file_name = '68-74-74-70-73-3a-2f-2f-65-6d-6f-6a-69-70-65-64-69-61-2e-6f-72-67-2f-65-6d-6f-6a-69-2f-1f9a6-2f'
-url = file_name.split('-').map do |hexadecimal_codepoint|
-  hexadecimal_codepoint.to_i(16).chr(Encoding::UTF_8)
-end.join('')
 ----
 
 == Télécharger une page et ses dépendances (pour de vrai)
@@ -152,7 +136,7 @@ Pour télécharger les dépendances externes d'une page, le mécanisme est le su
 
 . Identifier la liste des dépendances
 . Pour chaque dépendance
-.. Si elle n'a pas déjà été téléchargée, la télécharger et la stocker sous le nom calculé en utilisant le code ci-dessus
+.. Si elle n'a pas déjà été téléchargée, la télécharger et la stocker sous le nom calculé en utilisant la méthode décrite plus haut
 .. Modifier le HTML de la page pour remplacer l'URL de la dépendance par le chemin du fichier
 
 Pour identifier la liste des dépendances, il faut parcourir le HTML.
@@ -198,12 +182,12 @@ Le HTML est là, même si pour le moment sans CSS ni image.
 Si vous allez jeter un œil au fichier HTML, une petite surprise vous attend{nbsp}:
 
 [source, xml]
----
+----
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <script type="text/javascript">/* <![CDATA[ */_cf_loadingtexthtml="<img alt=' ' src='/cf_scripts/scripts/ajax/resources/cf/images/loading.gif'/>";
----
+----
 
 En effet le contenu n'est pas au format HTML mais au format XHTML.
 Il s'agit à peu près d'une version XML de HTML4, créé par le W3C à l'époque où le XML était à la monde.
@@ -215,17 +199,9 @@ Pour le scrapper cela n'a aucune conséquence car Nokogiri traite le HTML et le 
 Je commence par déplacer le code de téléchargement dans une méthode séparée, car je vais en avoir besoin pour les ressources externes{nbsp}:
 
 .scrapper.rb
-[source, ruby]
+[source, ruby, indent=0]
 ----
-# @param [Addressable::URI] url
-# @return [String]
-def download_url_content(url)
-  response = Curl.get(url) do |http|
-    # Je suis un navigateur web !
-    http.headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0'
-  end
-  response.body_str
-end
+include::scrapper_4.rb[tag=download_url_content]
 ----
 
 Ensuite je vais commencer par récupérer les images.
@@ -235,36 +211,9 @@ Le code suit exactement les étapes décrites plus haut, pour commencer je ne va
 Pour la recherche dans le HTML, Nokogiri propose une méthode `.css` qui link:https://nokogiri.org/tutorials/searching_a_xml_html_document.html[permet d'utiliser la syntaxe CSS]{nbsp}:
 
 .scrapper.rb
-[source, ruby]
+[source, ruby, indent=0]
 ----
-# Localise les éléments img
-doc.css('img').each do |image|
-  image_src = image['src']
-  # Assure d'avoir une URL absolue en combinant l'adresse de l'image
-  # avec celle de la page si l'image a une adresse relative,
-  # par exemple http://exemple.com +  lapin.png = http://exemple.com/lapin.png
-  # si l'image a déjà une adresse absolue alors utilise celle là
-  # Addressable::URI#normalize essaie de corriger les URls incorrectes, par exemple celles qui contiennent des espace
-  image_url = parsed_url.join(image_src).normalize
-  puts "Télécharge [#{image_url}]"
-
-  # Calcule le nom du fichier
-  hexadecimal_codepoints = image_url.to_s.chars.map do |character|
-    character.ord.to_s(16)
-  end
-  image_file_name = hexadecimal_codepoints.join('-')
-  image_file_path = File.join(TARGET_DIRECTORY, image_file_name)
-
-  # Si le fichier n'existe pas encore, c'est qu'il faut télécharger l'image
-  unless File.exists?(image_file_path)
-    IO.write(
-      image_file_path,
-      download_url_content(image_url)
-    )
-  end
-  # Remplace l'URL d'origine par le nom du fichier
-  image['src'] = image_file_name
-end
+include::scrapper_4.rb[tag=scrape_images]
 ----
 
 En lançant le script, les fichiers images sont bien crées{nbsp}:
@@ -275,12 +224,9 @@ Elles sont bien remplacées dans le HTML{nbsp}:
 
 [source, html]
 ----
-        <a href="index.cfm"><img
-                src="68-74-74-70-73-3a-2f-2f-71-75-65-75-65-2e-61-63-6d-2e-6f-72-67-2f-69-6d-67-2f-61-63-6d-71-75-65-75-65-5f-6c-6f-67-6f-2e-67-69-66"></a>
-        <br>
-        <a href="whyjoinacm.cfm"><img
-                src="68-74-74-70-73-3a-2f-2f-71-75-65-75-65-2e-61-63-6d-2e-6f-72-67-2f-69-6d-67-2f-6c-6f-67-6f-5f-61-63-6d-2e-67-69-66"
-                border="0" style="clear:both;"></a>
+<a href="index.cfm"><img src="0"></a>
+<br>
+<a href="whyjoinacm.cfm"><img src="1" border="0" style="clear:both;"></a>
 ----
 
 Et quand on visualise le fichier, les images s'affichent bien{nbsp}:
@@ -294,54 +240,9 @@ Pour faciliter un peu le parcours des fichiers, je vais également ajouter les e
 Par courtoisie pour éviter de trop solliciter le serveur et potentiellement de se faire bloquer, je vais mettre une seconde d'attente après chaque téléchargement.
 
 .scrapper.rb
-[source, ruby]
+[source, ruby, indent=0]
 ----
-puts "Downloading [#{MAIN_URL}]"
-parsed_url = Addressable::URI.parse(MAIN_URL)
-doc = Nokogiri::HTML(download_url_content(parsed_url))
-
-# @param [Addressable::URI] html_page_url
-# @param [String] resource_url
-# @return [String]
-def scrape_resource(html_page_url, resource_url)
-  # Assure d'avoir une URL absolue en combinant l'adresse de la resource
-  # avec celle de la page
-  absolute_url = html_page_url.join(resource_url).normalize
-  puts "Checking resource [#{absolute_url}]"
-
-  hexadecimal_codepoints = absolute_url.to_s.chars.map do |character|
-    character.ord.to_s(16)
-  end
-  file_name = "#{hexadecimal_codepoints.join('-')}#{File.extname(absolute_url.path)}"
-  target_file_path = File.join(TARGET_DIRECTORY, file_name)
-  unless File.exists?(target_file_path)
-    puts "Télécharge [#{absolute_url}] to [#{target_file_path}]"
-    IO.write(target_file_path, download_url_content(absolute_url))
-    # Attendre un peu
-    sleep(1)
-  end
-  file_name
-end
-
-doc.css('img').each do |image|
-  image['src'] = scrape_resource(parsed_url, image['src'])
-end
-
-doc.css('link').each do |link|
-  # Télécharge seulement les feuilles de styles externes
-  if (link['rel'] == 'stylesheet') && link.key?('href')
-    link['href'] = scrape_resource(parsed_url, link['href'])
-  end
-end
-
-doc.css('script').each do |script|
-  # Télécharge seulement les scripts externes
-  if script.key?('src')
-    script['src'] = scrape_resource(parsed_url, script['src'])
-  end
-end
-
-IO.write(File.join(TARGET_DIRECTORY, 'index.html'), doc.to_html)
+include::scrapper_5.rb[tag=extract]
 ----
 
 Et voilà{nbsp}:

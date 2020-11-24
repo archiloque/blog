@@ -18,6 +18,7 @@ end
 puts "Créé [#{TARGET_DIRECTORY}]"
 Dir.mkdir(TARGET_DIRECTORY)
 
+# tag::download_url_content[]
 # @param [Addressable::URI] url
 # @return [String]
 def download_url_content(url)
@@ -27,50 +28,39 @@ def download_url_content(url)
   end
   response.body_str
 end
+# end::download_url_content[]
 
+# tag::scrape_images[]
 puts "Télécharge [#{MAIN_URL}]"
 parsed_url = Addressable::URI.parse(MAIN_URL)
 doc = Nokogiri::HTML(download_url_content(parsed_url))
 
-# @param [Addressable::URI] html_page_url
-# @param [String] resource_url
-# @return [String]
-def scrape_resource(html_page_url, resource_url)
-  # Assure d'avoir une URL absolue en combinant l'adresse de la resource
-  # avec celle de la page
-  absolute_url = html_page_url.join(resource_url).normalize
-  puts "Vérifie la ressource [#{absolute_url}]"
-
-  hexadecimal_codepoints = absolute_url.to_s.chars.map do |character|
-    character.ord.to_s(16)
-  end
-  file_name = "#{hexadecimal_codepoints.join('-')}#{File.extname(absolute_url.path)}"
-  target_file_path = File.join(TARGET_DIRECTORY, file_name)
-  unless File.exists?(target_file_path)
-    puts "Télécharge [#{absolute_url}] to [#{target_file_path}]"
-    IO.write(target_file_path, download_url_content(absolute_url))
-    # Attendre un peu
-    sleep(1)
-  end
-  file_name
-end
-
+KNOWN_URLS = {}
+# Localise les éléments img
 doc.css('img').each do |image|
-  image['src'] = scrape_resource(parsed_url, image['src'])
-end
+  image_src = image['src']
+  # Assure d'avoir une URL absolue en combinant l'adresse de l'image
+  # avec celle de la page si l'image a une adresse relative,
+  # par exemple http://exemple.com +  lapin.png = http://exemple.com/lapin.png
+  # si l'image a déjà une adresse absolue alors utilise celle là
+  # Addressable::URI#normalize essaie de corriger les URls incorrectes, par exemple celles qui contiennent des espace
+  image_url = parsed_url.join(image_src).normalize
+  puts "Télécharge [#{image_url}]"
 
-doc.css('link').each do |link|
-  # Télécharge seulement les feuilles de styles externes
-  if (link['rel'] == 'stylesheet') && link.key?('href')
-    link['href'] = scrape_resource(parsed_url, link['href'])
+  if KNOWN_URLS.key?(image_url.to_s)
+    image_file_name = KNOWN_URLS[image_url.to_s]
+  else
+    image_file_name = KNOWN_URLS.length.to_s
+    KNOWN_URLS[image_url.to_s] = image_file_name
+    image_file_path = File.join(TARGET_DIRECTORY, image_file_name)
+    IO.write(
+      image_file_path,
+      download_url_content(image_url)
+    )
   end
-end
-
-doc.css('script').each do |script|
-  # Télécharge seulement les scripts externes
-  if script.key?('src')
-    script['src'] = scrape_resource(parsed_url, script['src'])
-  end
+  # Remplace l'URL d'origine par le nom du fichier
+  image['src'] = image_file_name
 end
 
 IO.write(File.join(TARGET_DIRECTORY, 'index.html'), doc.to_html)
+# end::scrape_images[]
