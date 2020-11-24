@@ -66,22 +66,17 @@ def scrape_resource(html_page_url, resource_url)
   end
 end
 
-doc.css('img').each do |image|
+doc.css('img[src]').each do |image|
   image['src'] = scrape_resource(parsed_initial_url, image['src'])
 end
 
-doc.css('link').each do |link|
-  # Télécharge seulement les feuilles de styles externes
-  if (link['rel'] == 'stylesheet') && link.key?('href')
-    link['href'] = scrape_resource(parsed_initial_url, link['href'])
-  end
+doc.css('link[rel=stylesheet][href]').each do |link|
+  link['href'] = scrape_resource(parsed_initial_url, link['href'])
 end
 
-doc.css('script').each do |script|
+doc.css('script[src]').each do |script|
   # Télécharge seulement les scripts externes
-  if script.key?('src')
-    script['src'] = scrape_resource(parsed_initial_url, script['src'])
-  end
+  script['src'] = scrape_resource(parsed_initial_url, script['src'])
 end
 
 IO.write(File.join(TARGET_DIRECTORY, 'index.html'), doc.to_html)

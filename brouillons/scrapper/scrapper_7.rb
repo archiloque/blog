@@ -119,36 +119,28 @@ until PAGES_TO_PROCESS.empty?
   puts "Traite [#{current_page_url}] [#{current_file_path}] (reste #{PAGES_TO_PROCESS.length})"
   doc = Nokogiri::HTML(IO.read(current_file_path))
 
-  images = doc.css('img')
+  images = doc.css('img[src]')
   puts "\t#{images.length} images"
   images.each.with_index do |image, index|
     image['src'] = scrape_resource(current_page_url, image['src'], images.length, index)
   end
 
-  css = doc.css('link')
+  css = doc.css('link[rel=stylesheet][href]')
   puts "\t#{css.length} css"
   css.each.with_index do |link, index|
-    # Télécharge seulement les feuilles de styles externes
-    if (link['rel'] == 'stylesheet') && link.key?('href')
-      link['href'] = scrape_resource(current_page_url, link['href'], css.length, index)
-    end
+    link['href'] = scrape_resource(current_page_url, link['href'], css.length, index)
   end
 
-  scripts = doc.css('script')
+  scripts = doc.css('script[src]')
   puts "\t#{scripts.length} scripts"
   scripts.each.with_index do |script, index|
-    # Télécharge seulement les scripts externes
-    if script.key?('src')
-      script['src'] = scrape_resource(current_page_url, script['src'], scripts.length, index)
-    end
+    script['src'] = scrape_resource(current_page_url, script['src'], scripts.length, index)
   end
 
-  as = doc.css('a')
+  as = doc.css('a[href]')
   puts "\t#{as.length} liens"
   as.each.with_index do |a, index|
-    if a.key?('href')
-      scrape_link(current_page_url, a, as.length, index)
-    end
+    scrape_link(current_page_url, a, as.length, index)
   end
 
   IO.write(current_file_path, doc.to_html)
