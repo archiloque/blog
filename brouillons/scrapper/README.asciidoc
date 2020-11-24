@@ -293,10 +293,17 @@ Si pour sauvegarder B je dois la traiter et donc parcourir ses liens, et que B a
 Si pour sauvegarder C je dois la traiter…
 
 Bref on se retrouve avec genre de fonctionnement récursif, où on aurait besoin de parcourir l'ensemble du site une page après l'autre pour pouvoir ensuite à rebours sauvegarder les différentes pages.
-Les choses se compliquent encore car les liens entre pages forment souvent des cycles, par exemple si la page A est la page de sommaire du site, il y a des chances que toutes les pages vers lesquelles A pointent vont à son tour pointer vers elle.
-Donc pour traiter A il y a besoin d'avoir traité de B mais pour traiter B il y a besoin d'avoir traité de A.
 
-La solution est une approche en deux passes :
+Les choses se compliquent encore car les liens entre pages forment souvent des cycles
+Par exemple si la page A est la page de sommaire du site, il y a des chances que toutes les pages vers lesquelles A pointe pointent à leur tour vers elle.
+Donc pour traiter A il y a besoin d'avoir traité B mais pour traiter B il y a besoin d'avoir traité de A.
+
+La solution est une approche en deux passes en séparant ce qu'il est nécessaire de faire pour transformer les URLs des pages en lien, et le fait de traiter les pages vers lesquelles on pointe{nbsp}:
 
 . Commencer par télécharger et sauvegarder les cible des différents liens _sans les traiter_, afin de vérifier si leur contenu est au format HTML et d'obtenir les chemins des fichiers correspondant, ce qui permet de finir de traiter A.
 . Ensuite pour chaque cible de lien non encore traité, relire le contenu qui a été sauvegardé sur disque, le traiter (en téléchargeant possiblement les autres pages vers lesquelles il pointe), puis écraser le fichier sur disque avec la version traitée, c'est à dire avec les contenu des images, script, feuilles de styles et liens pointant désormais vers leurs fichiers.
+
+En parcourant le site, le script conservera une liste de page HTML sauvegardées mais pas encore traitées.
+Lors du traitement d'une de ces pages, on pourra découvrir d'autres pages qui seront à traiter à leur tour et ainsi de suite.
+
+Lorsque cette liste sera vide, cela signifiera que tout le site aura été parcouru.
