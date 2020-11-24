@@ -35,8 +35,8 @@ parsed_url = Addressable::URI.parse(INITIAL_URL)
 doc = Nokogiri::HTML(fetch_content(parsed_url))
 
 KNOWN_URLS = {}
-# Localise les éléments img
-doc.css('img').each do |image|
+# Localise les éléments img avec un attribut src
+doc.css('img[src]').each do |image|
   image_src = image['src']
   # Assure d'avoir une URL absolue en combinant l'adresse de l'image
   # avec celle de la page si l'image a une adresse relative,
