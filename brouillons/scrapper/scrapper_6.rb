@@ -75,7 +75,6 @@ doc.css('link[rel=stylesheet][href]').each do |link|
 end
 
 doc.css('script[src]').each do |script|
-  # Télécharge seulement les scripts externes
   script['src'] = scrape_resource(parsed_initial_url, script['src'])
 end
 
