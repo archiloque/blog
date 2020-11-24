@@ -257,6 +257,8 @@ include::scrapper_5.rb[tag=scrape_images_internal]
 
 Les fichiers avec extension sont du coup bien reconnu par le système qui affiche les miniatures.
 
+image::images_list_with_extension.png[]
+
 Reste à faire de même pour les feuilles CSS et le JavaScript. Ce qui donne l'occasion de factoriser un peu le code en extrayant le code de traitement d'une ressource dans une méthode `scrape_resource`.
 
 Par courtoisie pour éviter de trop solliciter le serveur et potentiellement de se faire bloquer, je vais mettre une seconde d'attente après chaque téléchargement.
