@@ -118,7 +118,7 @@ Sans utiliser de système de base de donnée externe, on peut utiliser une struc
 ----
 KNOWN_URLS = {}
 
-url = `https://emojipedia.org/emoji/🦦/`
+url = 'https://emojipedia.org/emoji/🦦/'
 
 if KNOWN_URLS.key?(url)
   file_name = KNOWN_URLS[absolute_url]
@@ -127,6 +127,8 @@ else
   KNOWN_URLS[url] = file_name
 end
 ----
+
+Utiliser une structure en mémoire convient très bien tant que le site à scrapper ne contient pas des millions de pages, au delà il serait peut-être intéressant d'utiliser une base de donnée externe.
 
 == Télécharger une page et ses dépendances (pour de vrai)
 
@@ -183,10 +185,7 @@ Si vous allez jeter un œil au fichier HTML, une petite surprise vous attend{nbs
 
 [source, xml]
 ----
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<script type="text/javascript">/* <![CDATA[ */_cf_loadingtexthtml="<img alt=' ' src='/cf_scripts/scripts/ajax/resources/cf/images/loading.gif'/>";
+include::header.xml[]
 ----
 
 En effet le contenu n'est pas au format HTML mais au format XHTML.
@@ -201,7 +200,7 @@ Je commence par déplacer le code de téléchargement dans une méthode séparé
 .scrapper.rb
 [source, ruby, indent=0]
 ----
-include::scrapper_4.rb[tag=download_url_content]
+include::scrapper_4.rb[tag=fetch_content]
 ----
 
 Ensuite je vais commencer par récupérer les images.
@@ -218,7 +217,7 @@ include::scrapper_4.rb[tag=scrape_images]
 
 En lançant le script, les fichiers images sont bien crées{nbsp}:
 
-image::images_files.png[]
+image::images_list_no_extension[]
 
 Elles sont bien remplacées dans le HTML{nbsp}:
 
@@ -233,16 +232,39 @@ Et quand on visualise le fichier, les images s'affichent bien{nbsp}:
 
 image::images_display.png[]
 
-Reste à faire de même pour les feuilles CSS et le JavaScript. Ce qui donne l'occasion de factoriser un peu le code.
+Par contre stocker les images dans des fichiers sans extension rend moins pratique l'exploration des résultats si on veut par exemple parcourir les fichiers.
 
-Pour faciliter un peu le parcours des fichiers, je vais également ajouter les extensions des URLs aux noms des fichiers, on aura ainsi des fichiers `.png` ou `.js`, en faisant le pari que les sites n'utilisent pas dans leurs extensions d'emoji ou d'autres caractères à éviter dans les noms de fichiers.
+Il est possible de récupérer les extension depuis les URLs et cela fonctionne plutôt bien pour les images.
+Malheureusement ça n'est pas toujours le cas pour les fichiers générés dynamiquement comme les documents HTML ou XML.
+Par conséquent il vaut mieux s'appuyer sur la déclaration de `Content-Type` qu'on trouve dans les entête de réponse.
+La bibliothèque link:https://github.com/mime-types/ruby-mime-types[mime-types] permet de déduire l'extension qui correspond à un certain type de contenu.
+
+Je vais modifier la méthode `fetch_content` pour qu'elle renvoie l'extension à utiliser en même temps que le contenu téléchargé.
+
+.scrapper.rb
+[source, ruby, indent=0]
+----
+include::scrapper_5.rb[tag=fetch_content]
+----
+
+Et je vais m'en servir pour le nom des fichiers.
+
+.scrapper.rb
+[source, ruby, indent=0]
+----
+include::scrapper_5.rb[tag=scrape_images_internal]
+----
+
+Les fichiers avec extension sont du coup bien reconnu par le système qui affiche les miniatures.
+
+Reste à faire de même pour les feuilles CSS et le JavaScript. Ce qui donne l'occasion de factoriser un peu le code en extrayant le code de traitement d'une ressource dans une méthode `scrape_resource`.
 
 Par courtoisie pour éviter de trop solliciter le serveur et potentiellement de se faire bloquer, je vais mettre une seconde d'attente après chaque téléchargement.
 
 .scrapper.rb
 [source, ruby, indent=0]
 ----
-include::scrapper_5.rb[tag=extract]
+include::scrapper_6.rb[tag=extract]
 ----
 
 Et voilà{nbsp}:
@@ -250,3 +272,28 @@ Et voilà{nbsp}:
 image::first_page_with_resources.png[]
 
 == Télécharger le reste du site
+
+Pour récupérer l'ensemble du site, il va s'agir d'étendre le comportement actuel en l'étendant aux pages.
+
+Lors du traitement d'une page, en plus des images, des feuilles de styles et des scripts, il va falloir chercher les liens.
+Si la cible du lien n'est pas encore connu, il faut le télécharger, et s'il s'agit d'une page HTML, il faut la traiter à son tour.
+
+Ainsi de lien en lien, on devrait petit à petit parcourir l'ensemble du contenu du site.
+
+La conception du parcours des liens est intéressante.
+Pour traiter une image il suffit de la télécharger et de la stocker sur disque en sauvegardant la relation entre son URL et le chemin du fichier où elle est stockée.
+
+Mais lorsqu'un lien pointe vers une page HTML, cette page doit elle-même être traitée en remplaçant les URLs qu'elle contient vers les chemins des fichiers, après éventuellement les avoir sauvegardé.
+
+Si une page HTML A référence une page HTML B, pour traiter la page A j'ai besoin d'avoir le nom du fichier où B sera sauvegardée.
+Si pour sauvegarder B je dois la traiter et donc parcourir ses liens, et que B a un lien vers une page C, j'ai besoin d'avoir le nom du fichier où C sera sauvegardée.
+Si pour sauvegarder C je dois la traiter…
+
+Bref on se retrouve avec genre de fonctionnement récursif, où on aurait besoin de parcourir l'ensemble du site une page après l'autre pour pouvoir ensuite à rebours sauvegarder les différentes pages.
+Les choses se compliquent encore car les liens entre pages forment souvent des cycles, par exemple si la page A est la page de sommaire du site, il y a des chances que toutes les pages vers lesquelles A pointent vont à son tour pointer vers elle.
+Donc pour traiter A il y a besoin d'avoir traité de B mais pour traiter B il y a besoin d'avoir traité de A.
+
+La solution est une approche en deux passes :
+
+. Commencer par télécharger et sauvegarder les cible des différents liens _sans les traiter_, afin de vérifier si leur contenu est au format HTML et d'obtenir les chemins des fichiers correspondant, ce qui permet de finir de traiter A.
+. Ensuite pour chaque cible de lien non encore traité, relire le contenu qui a été sauvegardé sur disque, le traiter (en téléchargeant possiblement les autres pages vers lesquelles il pointe), puis écraser le fichier sur disque avec la version traitée, c'est à dire avec les contenu des images, script, feuilles de styles et liens pointant désormais vers leurs fichiers.
