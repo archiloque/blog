@@ -3,7 +3,6 @@
 require 'fileutils'
 
 require 'addressable'
-require 'nokogiri'
 require 'curl'
 
 INITIAL_URL = 'https://queue.acm.org'
@@ -17,12 +16,14 @@ end
 puts "Créé [#{TARGET_DIRECTORY}]"
 Dir.mkdir(TARGET_DIRECTORY)
 
+# tag::download[]
 puts "Télécharge [#{INITIAL_URL}]"
 parsed_url = Addressable::URI.parse(INITIAL_URL)
 response = Curl.get(parsed_url) do |http|
   # Je suis un navigateur web !
-  http.headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0'
+  http.headers['User-Agent'] =
+    'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0'
 end
-doc = Nokogiri::HTML(response.body_str)
 
-IO.write(File.join(TARGET_DIRECTORY, 'index.html'), doc.to_html)
+IO.write(File.join(TARGET_DIRECTORY, 'index.html'), response.body_str)
+# end::download[]

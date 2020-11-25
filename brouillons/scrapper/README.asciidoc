@@ -171,9 +171,9 @@ Si vous avez l'habitude d'utiliser une des bibliothèques HTTP qui est faite pou
 Je vais passer de `Net::HTTP` à la bibliothèque link:https://github.com/taf2/curb[Curb] qui fournit une API Ruby au dessus de la bibliothèque libcurl, que vous connaissez peut-être à travers la commande `curl` utilisée pour faire des téléchargement depuis la ligne de commande.
 
 .scrapper.rb
-[source, ruby]
+[source, ruby, highlight=3..9]
 ----
-include::scrapper_3.rb[]
+include::scrapper_3.rb[tag=download]
 ----
 
 Et ça fonctionne{nbsp}!
@@ -243,7 +243,7 @@ La bibliothèque link:https://github.com/mime-types/ruby-mime-types[mime-types] 
 Je vais modifier la méthode `fetch_content` pour qu'elle renvoie l'extension à utiliser en même temps que le contenu téléchargé.
 
 .scrapper.rb
-[source, ruby, indent=0]
+[source, ruby, indent=0, highlight=2;9..13]
 ----
 include::scrapper_5.rb[tag=fetch_content]
 ----
@@ -251,7 +251,7 @@ include::scrapper_5.rb[tag=fetch_content]
 Et je vais m'en servir pour le nom des fichiers.
 
 .scrapper.rb
-[source, ruby, indent=0]
+[source, ruby, indent=0, highlight=2..9]
 ----
 include::scrapper_5.rb[tag=scrape_images_internal]
 ----
@@ -265,7 +265,7 @@ Reste à faire de même pour les feuilles CSS et le JavaScript. Ce qui donne l'o
 Par courtoisie pour éviter de trop solliciter le serveur et potentiellement de se faire bloquer, je vais mettre une seconde d'attente après chaque téléchargement.
 
 .scrapper.rb
-[source, ruby, indent=0]
+[source, ruby, indent=0, highlight=25..26;36..42]
 ----
 include::scrapper_6.rb[tag=extract]
 ----

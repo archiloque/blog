@@ -24,7 +24,8 @@ Dir.mkdir(TARGET_DIRECTORY)
 def fetch_content(url)
   response = Curl.get(url) do |http|
     # Je suis un navigateur web !
-    http.headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0'
+    http.headers['User-Agent'] =
+      'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0'
   end
   extension = MIME::Types[response.content_type].first.preferred_extension
   {
@@ -41,7 +42,6 @@ doc = Nokogiri::HTML(fetch_content(parsed_initial_url)[:body])
 KNOWN_URLS = {}
 # @param [Addressable::URI] html_page_url
 # @param [String] resource_url
-# @param [String] default_extension
 # @return [String]
 def scrape_resource(html_page_url, resource_url)
   # Assure d'avoir une URL absolue en combinant l'adresse de la resource
