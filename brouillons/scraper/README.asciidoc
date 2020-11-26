@@ -291,7 +291,7 @@ Bref on se retrouve avec un genre de fonctionnement récursif, où on aurait bes
 
 Les choses sont en fait plus compliquées que cela car les liens entre pages forment souvent des cycles.
 Par exemple si la page A est la page de sommaire du site, il y a des chances que toutes les pages vers lesquelles A pointe pointent à leur tour vers elle.
-Donc pour traiter A il y a besoin d'avoir traité B mais pour traiter B il y a besoin d'avoir traité de A.
+Donc pour traiter A il y a besoin d'avoir traité B mais pour traiter B il y a besoin d'avoir traité A.
 
 (╯°□°)╯︵ ┻━┻
 
