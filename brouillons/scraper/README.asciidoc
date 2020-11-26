@@ -400,7 +400,7 @@ L'état du scraping correspond à deux ensemble de données{nbsp}:
 
 À chaque fois qu'on modifie l'une de ces deux données il faut donc la sauvegarder.
 
-Je vais sauvegarder `KNOWN_URLS` dans un fichier `known_urls.txt`, en utilisant une ligne par entrée{nbsp}:
+Je vais sauvegarder `KNOWN_URLS` dans un fichier `known_urls.txt`, en utilisant une ligne par entrée en séparant l'URL et le nom de fichier par un espace{nbsp}:
 
 [source]
 ----
