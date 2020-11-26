@@ -1,31 +1,34 @@
-= Écrire un scrapper de site web en Ruby
+= Écrire un scraper de site web en Ruby
 Julien Kirch
-v0.1, 2020-11-19
+v0.1, 2020-11-27
 :article_lang: fr
 :source-highlighter: pygments
+:article_description: Pour lire des BDs ou faire des livres électroniques à partir de sites
+:article_image: 2794.jpg
+:ignore_files: 2794.jpg, Gemfile.lock, header.xml, scraper_01.rb, scraper_02.rb, scraper_03.rb, scraper_04.rb, scraper_05.rb, scraper_06.rb, scraper_07.rb, scraper_08.rb, scraper_09.rb, scraper_10.rb
 
-Pour mon usage personnel, par exemple télécharger des sites ou des BDs pour les lire hors ligne sur une liseuse, ou pour rendre services à des amis en extrayant des données structurées, j'ai souvent besoin d'écrire des scrapper pour des sites web.
+Pour mon usage personnel, par exemple télécharger des sites ou des BDs pour les lire hors ligne sur une liseuse, ou pour rendre services à des amis en extrayant des données structurées, j'ai souvent besoin d'écrire des scraper pour des sites web.
 
-Il serait généralement possible d'utiliser un outil de scrapping générique et de le paramétrer, ou de télécharger l'intégralité du site avec un outil comme link:https://www.httrack.com[HTTrack] puis de traiter les fichiers en local, mais un scrapper maison est souvent plus efficace car on peut facilement ne télécharger que les contenu qui nous intéressent, et extraire à la volée les données dont on a besoin.
+Il serait généralement possible d'utiliser un outil de scraping générique et de le paramétrer, ou de télécharger l'intégralité du site avec un outil comme link:https://www.httrack.com[HTTrack] puis de traiter les fichiers en local, mais un scraper maison est souvent plus efficace car on peut facilement ne télécharger que les contenu qui nous intéressent, et extraire à la volée les données dont on a besoin.
 
 Une fois qu'on a une base de code qui fonctionne et qu'on maîtrise bien, le modifier pour un nouveau usage se fait facilement.
 C'est un des cas où copier / coller un existant et le rééditer pour chaque nouveau besoin est plus efficace que d'essayer d'avoir une solution générique qu'on aurait "`seulement`" à configurer.
 
 Cet article se propose de vous guider pas à pas jusqu'à avoir une première version complète, dans l'idée de vous rendre autonome.
 
-Par ailleurs, la conception d'un scrapper permet de creuser quelques sujets intéressantes, naturellement un peu de HTML et de HTTP mais aussi de stockage de données.
+Par ailleurs, la conception d'un scraper permet de creuser quelques sujets intéressantes, naturellement un peu de HTML et de HTTP mais aussi de stockage de données.
 
-Avertissement{nbsp}: de nombreux sites indiquent dans leur conditions d'utilisation qu'il n'est pas autorisé de les scrapper.
-Je ne sais pas si ces messages ont une valeur légale, mais cet article n'est pas un encouragement à scrapper ces sites.
+Avertissement{nbsp}: de nombreux sites indiquent dans leur conditions d'utilisation qu'il n'est pas autorisé de les scraper.
+Je ne sais pas si ces messages ont une valeur légale, mais cet article n'est pas un encouragement à scraper ces sites.
 
-== Le scrapper à développer
+== Le scraper à développer
 
-Je vais ici développer un scrapper qui fait de l'archivage de site web.
+Je vais ici développer un scraper qui fait de l'archivage de site web.
 Son objectif est d'obtenir une copie locale d'un site qui soit navigable en ouvrant les fichiers dans un navigateur.
 
-Pour les fichiers et le parcours du site, le scrapper parcourra le HTML généré côté serveur sans exécuter le JavaScript, et ne sera donc pas compatible avec des sites générés côté client.
+Pour les fichiers et le parcours du site, le scraper parcourra le HTML généré côté serveur sans exécuter le JavaScript, et ne sera donc pas compatible avec des sites générés côté client.
 
-Il est possible d'écrire en Ruby des scrapper qui savent exécuter du JavaScript, par exemple avec des outils comme linkhttps://github.com/YusukeIwaki/puppeteer-ruby[Puppeteer Ruby] qui peut piloter une instance de Chrome, mais cela demande plus de travail et j'en ai rarement eu besoin quand j'ai fais du scrapping, je ne traiterai donc pas ce sujet ici.
+Il est possible d'écrire en Ruby des scraper qui savent exécuter du JavaScript, par exemple avec des outils comme link:https://github.com/YusukeIwaki/puppeteer-ruby[Puppeteer Ruby] qui peut piloter une instance de Chrome, mais cela demande plus de travail et j'en ai rarement eu besoin quand j'ai fais du scraping, je ne traiterai donc pas ce sujet ici.
 
 Comme l'objectif est d'obtenir un code facile à modifier plutôt que facile à étendre, le code sera placé dans un fichier unique est dans un style procédural, c'est-à-dire en évitant de structurer le code à l'aide de classe mais en utilisant uniquement des méthodes.
 
@@ -34,19 +37,19 @@ Comme l'objectif est d'obtenir un code facile à modifier plutôt que facile à 
 Pour commencer je vais télécharger uniquement le contenu HTML d'une page dont l'adresse est spécifiée dans le code.
 
 Pour le téléchargement j'utilise la classe `Net::HTTP` fournie par la bibliothèque standard Ruby.
-Certes il existe de nombreuses librairies externes fournissant des fonctionnalités plus évoluées et/ou des API plus simple, mais pour les besoins de scrapping `Net::HTTP` suffit généralement, et il intéressant de la connaître un peu car elle est utilisée par défaut par de nombreuses librairies.
-Pour un scrapper minimal, la seule méthode à connaître est `Net::HTTP#get` qui fait une requête `GET` à partir d'une URL et qui renvoie le contenu.
+Certes il existe de nombreuses librairies externes fournissant des fonctionnalités plus évoluées et/ou des API plus simple, mais pour les besoins de scraping `Net::HTTP` suffit généralement, et il intéressant de la connaître un peu car elle est utilisée par défaut par de nombreuses librairies.
+Pour un scraper minimal, la seule méthode à connaître est `Net::HTTP#get` qui fait une requête `GET` à partir d'une URL et qui renvoie le contenu.
 
 La classe `URI::HTTP` de la bibliothèque standard Ruby implémente les différents standards mais elle est assez stricte.
 Cela signifie qu'elle n'apprécie pas toujours qu'on prenne des liberté avec les standard.
-Les navigateurs sont eux plutôt tolérants, et par conséquent les sites webs ne sont pas incités à suivre les standard au pied de la lettre.
-Cela signifie que pour du scrapper, mieux un parseur d'URL tolérant, et pour cela je vais utiliser la bibliothèque link:https://github.com/sporkmonger/addressable[Addressable].
+Les navigateurs sont eux plutôt tolérants, et par conséquent les sites  ne sont pas incités à suivre les standard au pied de la lettre.
+Cela signifie que pour du scraper, mieux un parser d'URL tolérant, et pour cela je vais utiliser la bibliothèque link:https://github.com/sporkmonger/addressable[Addressable].
 
 Voici donc le code{nbsp}:
 
 [source, ruby]
 ----
-include::scrapper_01.rb[]
+include::scraper_01.rb[]
 ----
 
 L'exécution du script devrait créer en local un fichier `index.html` qui contient le source de la page.
@@ -74,7 +77,7 @@ Les dinosaures régnaient sur le monde et la vie était simple.
 
 Désormais on peut avoir des URLs avec des loutres comme link:https://emojipedia.org/emoji/🦦/[https://emojipedia.org/emoji/🦦/].
 
-Dans un scrapper qui archive un site chaque contenu est sauvegardé.
+Dans un scraper qui archive un site chaque contenu est sauvegardé.
 Si cette sauvegarde est faite dans une base de données classique, comme par exemple une base SQL, vous pouvez stocker les URLs dans un champ de texte, même si elles contiennent des loutres.
 
 Si la base de donnée utilisée par le stockage est un système de fichier, les choses peuvent être moins simple.
@@ -128,7 +131,7 @@ else
 end
 ----
 
-Utiliser une structure en mémoire convient très bien tant que le site à scrapper ne contient pas des millions de pages, au delà il serait peut-être intéressant d'utiliser une base de donnée externe.
+Utiliser une structure en mémoire convient très bien tant que le site à scraper ne contient pas des millions de pages, au delà il serait peut-être intéressant d'utiliser une base de donnée externe.
 
 == Télécharger une page et ses dépendances (pour de vrai)
 
@@ -144,13 +147,13 @@ Pour télécharger les dépendances externes d'une page, le mécanisme est le su
 Pour identifier la liste des dépendances, il faut parcourir le HTML.
 Pour cela la bibliothèque Ruby la plus utilisée est link:https://nokogiri.org[Nokogiri], elle sait parser du HTML et du XML et fournit ensuite une interface permettant de requêter et de modifier le contenu.
 
-La première étape est de parser le contenu du HTML que l'on reçoit, et de préparer le fait que la sauvegarde va se faire dans un sous-répertoire pour éviter de mélanger le site avec le scrapper.
+La première étape est de parser le contenu du HTML que l'on reçoit, et de préparer le fait que la sauvegarde va se faire dans un sous-répertoire pour éviter de mélanger le site avec le scraper.
 
-Comme l'objectif est de scrapper le magazine ACM Queue, j'ai aussi remplacé l'URL.
+Comme l'objectif est de scraper le magazine ACM Queue, j'ai aussi remplacé l'URL.
 
 [source, ruby]
 ----
-include::scrapper_02.rb[]
+include::scraper_02.rb[]
 ----
 
 Mais, quand on essaie d'ouvrir le fichier `download/index.html` résultant{nbsp}:
@@ -170,7 +173,7 @@ Je vais passer de `Net::HTTP` à la bibliothèque link:https://github.com/taf2/c
 
 [source, ruby, highlight=3..9]
 ----
-include::scrapper_03.rb[tag=download]
+include::scraper_03.rb[tag=download]
 ----
 
 Et ça fonctionne{nbsp}!
@@ -191,13 +194,13 @@ Il s'agit à peu près d'une version XML de HTML4, créé par le W3C à l'époqu
 Les deux avantages de cette approche étaient de pouvoir utiliser des outils XML pour pouvoir publier des sites (ce qui permettait notamment d'avoir la même chaîne de publication pour les livres que pour le contenu web) et de pouvoir utiliser des parsers XML, plus performants que les parsers HTML (cela prend son sens quand on se souvient des téléphones mobiles disponibles dans les années 2000).
 La vague du XML sur le web a été stoppée lorsqu'Apple, Mozilla et Opera ont décidé de monter un putsch contre le W3C en créant leur propre instance et leur propre format qui a abouti au HTML5.
 
-Pour le scrapper cela n'a aucune conséquence car Nokogiri traite le HTML et le XHTML de la même manière.
+Pour le scraper cela n'a aucune conséquence car Nokogiri traite le HTML et le XHTML de la même manière.
 
 Je commence par déplacer le code de téléchargement dans une méthode séparée, car je vais en avoir besoin pour les ressources externes{nbsp}:
 
 [source, ruby, indent=0]
 ----
-include::scrapper_04.rb[tag=fetch_content]
+include::scraper_04.rb[tag=fetch_content]
 ----
 
 Ensuite je vais commencer par récupérer les images.
@@ -208,7 +211,7 @@ Pour la recherche dans le HTML, Nokogiri propose une méthode `.css` qui link:ht
 
 [source, ruby, indent=0]
 ----
-include::scrapper_04.rb[tag=scrape_images]
+include::scraper_04.rb[tag=scrape_images]
 ----
 
 En lançant le script, les fichiers images sont bien crées{nbsp}:
@@ -239,14 +242,14 @@ Je vais modifier la méthode `fetch_content` pour qu'elle renvoie l'extension à
 
 [source, ruby, indent=0, highlight=2;9..13]
 ----
-include::scrapper_05.rb[tag=fetch_content]
+include::scraper_05.rb[tag=fetch_content]
 ----
 
 Et je vais m'en servir pour le nom des fichiers.
 
 [source, ruby, indent=0, highlight=2..9]
 ----
-include::scrapper_05.rb[tag=scrape_images_internal]
+include::scraper_05.rb[tag=scrape_images_internal]
 ----
 
 Les fichiers avec extension sont du coup bien reconnu par le système qui affiche les miniatures.
@@ -259,7 +262,7 @@ Par courtoisie pour éviter de trop solliciter le serveur et potentiellement de 
 
 [source, ruby, indent=0, highlight=25..26;36..42]
 ----
-include::scrapper_06.rb[tag=extract]
+include::scraper_06.rb[tag=extract]
 ----
 
 Et voilà{nbsp}:
@@ -306,17 +309,17 @@ La première étape est d'extraire la partie de `scrape_resource` qui s'occupe d
 
 [source, ruby, indent=0, highlight=15;19..32]
 ----
-include::scrapper_07.rb[tag=scrape_resource]
+include::scraper_07.rb[tag=scrape_resource]
 ----
 
-Ensuite la méthode `scrape_link`, va me permettre de traiter les liens de la même manière que `scrape_resource` pour les autres types d'URL. `PAGES_TO_PROCESS` va contenir les pages qui restent à traiter, j'en fait un `Set` pour avoir un dédoublonage.
+Ensuite la méthode `scrape_link`, va me permettre de traiter les liens de la même manière que `scrape_resource` pour les autres types d'URL. `PAGES_TO_PROCESS` va contenir les pages qui restent à traiter, j'en fait un `Set` pour avoir un dedoublonnage.
 
 [source, ruby, indent=0]
 ----
-include::scrapper_07.rb[tag=scrape_link]
+include::scraper_07.rb[tag=scrape_link]
 ----
 
-La méthode `scrape_link` est typiquement une méthode qui sera modifiée en fonction du contenu à scrapper.
+La méthode `scrape_link` est typiquement une méthode qui sera modifiée en fonction du contenu à scraper.
 On pourra par exemple exclure certaines URLs, exporter certaines informations dans un fichier ou une base de données séparées.
 
 Les fonctionnements de `scrape_link` et celui de `scrape_resource` se ressemblent (vérifier si un contenu est déjà dans la liste, et sinon le télécharger) et on pourrait être tenté de les factoriser.
@@ -327,7 +330,7 @@ Pour initialiser la boucle, `PAGES_TO_PROCESS` est remplis avec la page initiale
 
 [source, ruby, indent=0, highlight=1..14;30..37]
 ----
-include::scrapper_07.rb[tag=loop]
+include::scraper_07.rb[tag=loop]
 ----
 
 On peut vérifier le fonctionnement dans le log{nbsp}:
@@ -377,7 +380,7 @@ La modification concerne seulement la méthode `scrape_link`{nbsp}:
 
 [source, ruby, indent=0, highlight=11..26]
 ----
-include::scrapper_08.rb[tag=scrape_link]
+include::scraper_08.rb[tag=scrape_link]
 ----
 
 == Reprise en cas d'erreur
@@ -386,11 +389,11 @@ La dernière choses à modifier est de mettre en place une capacité de reprise 
 
 Il arrive qu'un site ait des erreurs, ou que votre connexion internet plante, ou vous aurez peut-être envie d'interrompre le process.
 
-Et quand cela arrive, il serait dommage d'avoir à recommencer le scrapping depuis le début.
+Et quand cela arrive, il serait dommage d'avoir à recommencer le scraping depuis le début.
 
-Pour éviter cela, il faut sauvegarder l'état du scrapping après chaque étape, et lors du démarrage du script vérifier s'il existe un état sauvegardé, et dans ce cas le charger et repartir de ce point.
+Pour éviter cela, il faut sauvegarder l'état du scraping après chaque étape, et lors du démarrage du script vérifier s'il existe un état sauvegardé, et dans ce cas le charger et repartir de ce point.
 
-L'état du scrapping correspond à deux ensemble de données{nbsp}:
+L'état du scraping correspond à deux ensemble de données{nbsp}:
 
 - `KNOWN_URLS` qui est le dictionnaire qui fournit les noms de fichiers correspondant aux URLs
 - `PAGES_TO_PROCESS` qui est la liste des pages qui restent à traiter
@@ -411,14 +414,14 @@ https://queue.acm.org/app/2020_09-10_lrg.png 5.png
 
 [source, ruby, indent=0, highlight=10]
 ----
-include::scrapper_09.rb[tag=save_content]
+include::scraper_09.rb[tag=save_content]
 ----
 
 Et voici le code qui gère le chargement au démarrage si le fichier est présent{nbsp}:
 
 [source, ruby, indent=0]
 ----
-include::scrapper_09.rb[tag=load_KNOWN_URLS]
+include::scraper_09.rb[tag=load_KNOWN_URLS]
 ----
 
 `PAGES_TO_PROCESS` sera sauvegardé dans un fichier `pages_to_process.txt`, en utilisant une ligne par entrée{nbsp}:
@@ -435,22 +438,22 @@ https://queue.acm.org/app/2020_09-10_lrg.png 5.png
 
 [source, ruby, indent=0, highlight=4]
 ----
-include::scrapper_09.rb[tag=save_pages]
+include::scraper_09.rb[tag=save_pages]
 ----
 
 Et voici le code qui gère le chargement au démarrage si le fichier est présent, s'il en l'est pas on initialise le contenu avec le contenu du l'URL d'entrée du site{nbsp}:
 
 [source, ruby, indent=0]
 ----
-include::scrapper_09.rb[tag=load_pages]
+include::scraper_09.rb[tag=load_pages]
 ----
 
 J'ai choisi de ne pas mettre de gestion d'erreur dans le script, par exemple une reconnexion automatique en cas d'erreur.
-Si un site est particulièrement instable il peut être nécessaire d'en ajouter, mais par défaut je préfère laisser remonter les exception et donc laisser le scrapper s'arrêter pour me permettre de faire le choix moi-même.
+Si un site est particulièrement instable il peut être nécessaire d'en ajouter, mais par défaut je préfère laisser remonter les exception et donc laisser le scraper s'arrêter pour me permettre de faire le choix moi-même.
 
 == Conclusion
 
-Et voilà{nbsp}: le scrapper est terminé{nbsp}!
+Et voilà{nbsp}: le scraper est terminé{nbsp}!
 J'espère qu'il vous sera utile, si vous avez des questions vous pouvez me contacter et j'essaierai de vous aider.
 
 Ci-dessous la version finale du script pour vous servir de base.
@@ -459,5 +462,5 @@ Ci-dessous la version finale du script pour vous servir de base.
 
 [source, ruby]
 ----
-include::scrapper_10.rb[]
+include::scraper_10.rb[]
 ----
