@@ -45,19 +45,17 @@ KNOWN_URLS = {}
 
 # @param [Addressable::URI] html_page_url
 # @param [String] resource_url
-# @param [Integer] count
-# @param [Integer] index
 # @return [String] le nom du fichier
-def scrape_resource(html_page_url, resource_url, count, index)
+def scrape_resource(html_page_url, resource_url)
   # Assure d'avoir une URL absolue en combinant l'adresse de la resource
   # avec celle de la page
   absolute_url = html_page_url.join(resource_url).normalize
-  puts "\t#{index + 1}/#{count} Vérifie la ressource [#{absolute_url}]"
+  puts "Vérifie la ressource [#{absolute_url}]"
 
   if KNOWN_URLS.key?(absolute_url.to_s)
     KNOWN_URLS[absolute_url.to_s]
   else
-    puts "\t\tTélécharge [#{absolute_url}]"
+    puts "Télécharge [#{absolute_url}]"
     content = fetch_content(absolute_url)
     save_content(absolute_url, content[:extension], content[:body])
   end
@@ -85,70 +83,66 @@ content = fetch_content(PARSED_INITIAL_URL)
 save_content(PARSED_INITIAL_URL, content[:extension], content[:body])
 PAGES_TO_PROCESS.add(PARSED_INITIAL_URL)
 
+# tag::scrape_link[]
 # @param [String] current_page_url
-# @param [Nokogiri::XML::Node] a
-# @param [Integer] count
-# @param [Integer] index
-# @return [void]
-def scrape_link(current_page_url, a, count, index)
-  href = a['href']
-  absolute_href = current_page_url.join(href).normalize
+# @param [String] resource_url
+# @return [String]
+def scrape_link(current_page_url, resource_url)
+  absolute_url = current_page_url.join(resource_url).normalize
   # Traite seulement les liens qui sont sur le même nom d'hôte
-  if PARSED_INITIAL_URL.host == absolute_href.host
-    puts "\t#{index + 1}/#{count} Lien interne trouvé [#{absolute_href}]"
-    absolute_href_no_fragment = absolute_href.omit(:fragment)
-    unless KNOWN_URLS.key?(absolute_href_no_fragment.to_s)
-      puts "\t\tNouveau lien interne [#{absolute_href_no_fragment}]"
-      content = fetch_content(absolute_href_no_fragment)
-      save_content(absolute_href_no_fragment, content[:extension], content[:body])
+  # On peut également filtrer les adresses des pages
+  # dont on sait qu'elles ne nous intéressent pas
+  if PARSED_INITIAL_URL.host == absolute_url.host
+    puts "Lien interne trouvé [#{absolute_url}]"
+    absolute_url_no_fragment = absolute_url.omit(:fragment)
+    unless KNOWN_URLS.key?(absolute_url_no_fragment.to_s)
+      puts "Nouveau lien interne [#{absolute_url_no_fragment}]"
+      content = fetch_content(absolute_url_no_fragment)
+      save_content(absolute_url_no_fragment, content[:extension], content[:body])
       if content[:extension] == 'html'
-        puts "\t\t\tNouvelle page à traiter [#{absolute_href_no_fragment}]"
-        PAGES_TO_PROCESS.add(absolute_href_no_fragment)
+        puts "Nouvelle page à traiter [#{absolute_url_no_fragment}]"
+        PAGES_TO_PROCESS.add(absolute_url_no_fragment)
       end
     end
 
-    file = KNOWN_URLS[absolute_href_no_fragment.to_s]
+    file = KNOWN_URLS[absolute_url_no_fragment.to_s]
     # Remet le fragment en fin d'URL s'il y en a un
     file_url = Addressable::URI.parse(file)
-    file_url.fragment = absolute_href.fragment
-
-    a['href'] = file_url.to_s
+    file_url.fragment = absolute_url.fragment
+    file_url.to_s
   else
-    puts "\t#{index + 1}/#{count} Lien externe trouvé [#{absolute_href}]"
-    a['href'] = absolute_href.to_s
+    puts "Lien externe trouvé [#{absolute_url}]"
+    absolute_url.to_s
   end
 end
+# end::scrape_link[]
 
 until PAGES_TO_PROCESS.empty?
   current_page_url = PAGES_TO_PROCESS.first
   PAGES_TO_PROCESS.delete(current_page_url)
 
   current_file_path = full_file_path(KNOWN_URLS[current_page_url.to_s])
-  puts "Traite [#{current_page_url}] [#{current_file_path}] (reste #{PAGES_TO_PROCESS.length})"
+  puts "Traite [#{current_page_url}] [#{current_file_path}]"
   doc = Nokogiri::HTML(IO.read(current_file_path))
 
   images = doc.css('img[src]')
-  puts "\t#{images.length} images"
-  images.each.with_index do |image, index|
-    image['src'] = scrape_resource(current_page_url, image['src'], images.length, index)
+  images.each.with_index do |image|
+    image['src'] = scrape_resource(current_page_url, image['src'])
   end
 
   css = doc.css('link[rel=stylesheet][href]')
-  puts "\t#{css.length} css"
-  css.each.with_index do |link, index|
-    link['href'] = scrape_resource(current_page_url, link['href'], css.length, index)
+  css.each.with_index do |link|
+    link['href'] = scrape_resource(current_page_url, link['href'])
   end
 
   scripts = doc.css('script[src]')
-  puts "\t#{scripts.length} scripts"
-  scripts.each.with_index do |script, index|
-    script['src'] = scrape_resource(current_page_url, script['src'], scripts.length, index)
+  scripts.each.with_index do |script|
+    script['src'] = scrape_resource(current_page_url, script['src'])
   end
 
   as = doc.css('a[href]')
-  puts "\t#{as.length} liens"
-  as.each.with_index do |a, index|
-    scrape_link(current_page_url, a, as.length, index)
+  as.each.with_index do |a|
+    a['href'] = scrape_link(current_page_url, a['href'])
   end
 
   IO.write(current_file_path, doc.to_html)

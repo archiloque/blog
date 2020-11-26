@@ -10,13 +10,26 @@ require 'mime/types'
 
 INITIAL_URL = 'https://queue.acm.org'
 TARGET_DIRECTORY = 'download'
-KNOWN_URLS_FILE_NAME = 'known_urls.txt'
 PAGES_TO_PROCESS_FILE_NAME = 'pages_to_process.txt'
 
 unless File.exists?(TARGET_DIRECTORY)
   puts "Créé [#{TARGET_DIRECTORY}]"
   Dir.mkdir(TARGET_DIRECTORY)
 end
+
+# tag::load_KNOWN_URLS[]
+KNOWN_URLS_FILE_NAME = 'known_urls.txt'
+# @return [Hash{String, String}]
+def initial_known_urls
+  if File.exists?(KNOWN_URLS_FILE_NAME)
+    Hash.new(IO.readlines(KNOWN_URLS_FILE_NAME).map{ |l| l.split(' ')})
+  else
+    {}
+  end
+end
+
+KNOWN_URLS = initial_known_urls
+# end::load_KNOWN_URLS[]
 
 # @param [Addressable::URI] url
 # @return [Hash] contient un :body et une :extension
@@ -40,17 +53,6 @@ def full_file_path(file_name)
   File.join(TARGET_DIRECTORY, file_name)
 end
 
-# @return [Hash{String, String}]
-def initial_known_urls
-  if File.exists?(KNOWN_URLS_FILE_NAME)
-    Hash.new(IO.readlines(KNOWN_URLS_FILE_NAME).map{ |l| l.split(' ')})
-  else
-    {}
-  end
-end
-
-KNOWN_URLS = initial_known_urls
-
 # @param [Addressable::URI] html_page_url
 # @param [String] resource_url
 # @return [String] le nom du fichier
@@ -69,6 +71,7 @@ def scrape_resource(html_page_url, resource_url)
   end
 end
 
+# tag::save_content[]
 # @param [Addressable::URI] url
 # @param [String] extension
 # @param [String] content
@@ -83,9 +86,11 @@ def save_content(url, extension, content)
   sleep(1)
   file_name
 end
+# end::save_content[]
 
 PARSED_INITIAL_URL = Addressable::URI.parse(INITIAL_URL)
 
+# tag::load_pages[]
 # @return [Set]
 def initial_pages_to_process
   if File.exists?(PAGES_TO_PROCESS_FILE_NAME)
@@ -98,75 +103,69 @@ def initial_pages_to_process
 end
 
 PAGES_TO_PROCESS = initial_pages_to_process
-
-def save_pages_to_process
-  IO.write(PAGES_TO_PROCESS_FILE_NAME, PAGES_TO_PROCESS.to_a.map{|u| u.to_s}.join("\n"))
-end
+# end::load_pages[]
 
 # @param [String] current_page_url
-# @param [Nokogiri::XML::Node] a
-# @return [void]
-def scrape_link(current_page_url, a)
-  href = a['href']
-  absolute_href = current_page_url.join(href).normalize
+# @param [String] resource_url
+# @return [String]
+def scrape_link(current_page_url, resource_url)
+  absolute_url = current_page_url.join(resource_url).normalize
   # Traite seulement les liens qui sont sur le même nom d'hôte
-  if PARSED_INITIAL_URL.host == absolute_href.host
-    puts "Lien interne trouvé [#{absolute_href}]"
-    absolute_href_no_fragment = absolute_href.omit(:fragment)
-    unless KNOWN_URLS.key?(absolute_href_no_fragment.to_s)
-      puts "Nouveau lien interne [#{absolute_href_no_fragment}]"
-      content = fetch_content(absolute_href_no_fragment)
-      save_content(absolute_href_no_fragment, content[:extension], content[:body])
+  # On peut également filtrer les adresses des pages
+  # dont on sait qu'elles ne nous intéressent pas
+  if PARSED_INITIAL_URL.host == absolute_url.host
+    puts "Lien interne trouvé [#{absolute_url}]"
+    absolute_url_no_fragment = absolute_url.omit(:fragment)
+    unless KNOWN_URLS.key?(absolute_url_no_fragment.to_s)
+      puts "Nouveau lien interne [#{absolute_url_no_fragment}]"
+      content = fetch_content(absolute_url_no_fragment)
+      save_content(absolute_url_no_fragment, content[:extension], content[:body])
       if content[:extension] == 'html'
-        puts "Nouvelle page à traiter [#{absolute_href_no_fragment}]"
-        PAGES_TO_PROCESS.add(absolute_href_no_fragment)
-        save_pages_to_process
+        puts "Nouvelle page à traiter [#{absolute_url_no_fragment}]"
+        PAGES_TO_PROCESS.add(absolute_url_no_fragment)
       end
     end
 
-    file = KNOWN_URLS[absolute_href_no_fragment.to_s]
+    file = KNOWN_URLS[absolute_url_no_fragment.to_s]
     # Remet le fragment en fin d'URL s'il y en a un
     file_url = Addressable::URI.parse(file)
-    file_url.fragment = absolute_href.fragment
-
-    a['href'] = file_url.to_s
+    file_url.fragment = absolute_url.fragment
+    file_url.to_s
   else
-    puts "Lien externe trouvé [#{absolute_href}]"
-    a['href'] = absolute_href.to_s
+    puts "Lien externe trouvé [#{absolute_url}]"
+    absolute_url.to_s
   end
 end
 
+# tag::save_pages[]
 until PAGES_TO_PROCESS.empty?
   current_page_url = PAGES_TO_PROCESS.first
   PAGES_TO_PROCESS.delete(current_page_url)
-  save_pages_to_process
+  IO.write(PAGES_TO_PROCESS_FILE_NAME, PAGES_TO_PROCESS.to_a.map { |u| u.to_s }.join("\n"))
+  # end::save_pages[]
 
   current_file_path = full_file_path(KNOWN_URLS[current_page_url.to_s])
   puts "Traite [#{current_page_url}] [#{current_file_path}]"
   doc = Nokogiri::HTML(IO.read(current_file_path))
 
   images = doc.css('img[src]')
-  puts "\t#{images.length} images"
-  images.each.with_index do |image, index|
+  images.each.with_index do |image|
     image['src'] = scrape_resource(current_page_url, image['src'])
   end
 
   css = doc.css('link[rel=stylesheet][href]')
-  puts "\t#{css.length} css"
-  css.each.with_index do |link, index|
+  css.each.with_index do |link|
     link['href'] = scrape_resource(current_page_url, link['href'])
   end
 
   scripts = doc.css('script[src]')
-  puts "\t#{scripts.length} scripts"
-  scripts.each.with_index do |script, index|
+  scripts.each.with_index do |script|
     script['src'] = scrape_resource(current_page_url, script['src'])
   end
 
   as = doc.css('a[href]')
-  puts "\t#{as.length} liens"
-  as.each.with_index do |a, index|
-    scrape_link(current_page_url, a)
+  as.each.with_index do |a|
+    a['href'] = scrape_link(current_page_url, a['href'])
   end
 
   IO.write(current_file_path, doc.to_html)

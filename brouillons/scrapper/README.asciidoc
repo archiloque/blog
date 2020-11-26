@@ -44,10 +44,9 @@ Cela signifie que pour du scrapper, mieux un parseur d'URL tolérant, et pour ce
 
 Voici donc le code{nbsp}:
 
-.scrapper.rb
 [source, ruby]
 ----
-include::scrapper_1.rb[]
+include::scrapper_01.rb[]
 ----
 
 L'exécution du script devrait créer en local un fichier `index.html` qui contient le source de la page.
@@ -149,10 +148,9 @@ La première étape est de parser le contenu du HTML que l'on reçoit, et de pr�
 
 Comme l'objectif est de scrapper le magazine ACM Queue, j'ai aussi remplacé l'URL.
 
-.scrapper.rb
 [source, ruby]
 ----
-include::scrapper_2.rb[]
+include::scrapper_02.rb[]
 ----
 
 Mais, quand on essaie d'ouvrir le fichier `download/index.html` résultant{nbsp}:
@@ -170,10 +168,9 @@ Si vous avez l'habitude d'utiliser une des bibliothèques HTTP qui est faite pou
 
 Je vais passer de `Net::HTTP` à la bibliothèque link:https://github.com/taf2/curb[Curb] qui fournit une API Ruby au dessus de la bibliothèque libcurl, que vous connaissez peut-être à travers la commande `curl` utilisée pour faire des téléchargement depuis la ligne de commande.
 
-.scrapper.rb
 [source, ruby, highlight=3..9]
 ----
-include::scrapper_3.rb[tag=download]
+include::scrapper_03.rb[tag=download]
 ----
 
 Et ça fonctionne{nbsp}!
@@ -198,10 +195,9 @@ Pour le scrapper cela n'a aucune conséquence car Nokogiri traite le HTML et le 
 
 Je commence par déplacer le code de téléchargement dans une méthode séparée, car je vais en avoir besoin pour les ressources externes{nbsp}:
 
-.scrapper.rb
 [source, ruby, indent=0]
 ----
-include::scrapper_4.rb[tag=fetch_content]
+include::scrapper_04.rb[tag=fetch_content]
 ----
 
 Ensuite je vais commencer par récupérer les images.
@@ -210,10 +206,9 @@ Le code suit exactement les étapes décrites plus haut, pour commencer je ne va
 
 Pour la recherche dans le HTML, Nokogiri propose une méthode `.css` qui link:https://nokogiri.org/tutorials/searching_a_xml_html_document.html[permet d'utiliser la syntaxe CSS]{nbsp}:
 
-.scrapper.rb
 [source, ruby, indent=0]
 ----
-include::scrapper_4.rb[tag=scrape_images]
+include::scrapper_04.rb[tag=scrape_images]
 ----
 
 En lançant le script, les fichiers images sont bien crées{nbsp}:
@@ -242,18 +237,16 @@ La bibliothèque link:https://github.com/mime-types/ruby-mime-types[mime-types] 
 
 Je vais modifier la méthode `fetch_content` pour qu'elle renvoie l'extension à utiliser en même temps que le contenu téléchargé.
 
-.scrapper.rb
 [source, ruby, indent=0, highlight=2;9..13]
 ----
-include::scrapper_5.rb[tag=fetch_content]
+include::scrapper_05.rb[tag=fetch_content]
 ----
 
 Et je vais m'en servir pour le nom des fichiers.
 
-.scrapper.rb
 [source, ruby, indent=0, highlight=2..9]
 ----
-include::scrapper_5.rb[tag=scrape_images_internal]
+include::scrapper_05.rb[tag=scrape_images_internal]
 ----
 
 Les fichiers avec extension sont du coup bien reconnu par le système qui affiche les miniatures.
@@ -264,10 +257,9 @@ Reste à faire de même pour les feuilles CSS et le JavaScript. Ce qui donne l'o
 
 Par courtoisie pour éviter de trop solliciter le serveur et potentiellement de se faire bloquer, je vais mettre une seconde d'attente après chaque téléchargement.
 
-.scrapper.rb
 [source, ruby, indent=0, highlight=25..26;36..42]
 ----
-include::scrapper_6.rb[tag=extract]
+include::scrapper_06.rb[tag=extract]
 ----
 
 Et voilà{nbsp}:
@@ -292,18 +284,180 @@ Si une page HTML A référence une page HTML B, pour traiter la page A j'ai beso
 Si pour sauvegarder B je dois la traiter et donc parcourir ses liens, et que B a un lien vers une page C, j'ai besoin d'avoir le nom du fichier où C sera sauvegardée.
 Si pour sauvegarder C je dois la traiter…
 
-Bref on se retrouve avec genre de fonctionnement récursif, où on aurait besoin de parcourir l'ensemble du site une page après l'autre pour pouvoir ensuite à rebours sauvegarder les différentes pages.
+Bref on se retrouve avec un genre de fonctionnement récursif, où on aurait besoin de parcourir l'ensemble du site une page après l'autre pour pouvoir ensuite à rebours sauvegarder les différentes pages{nbsp}: quand j'ai terminé de traiter C je peux la sauvegarder, et donc terminer de traiter B et la sauvegarder, et donc traiter A et la sauvegarder.
 
-Les choses se compliquent encore car les liens entre pages forment souvent des cycles
+Les choses sont en fait plus compliquées que cela car les liens entre pages forment souvent des cycles.
 Par exemple si la page A est la page de sommaire du site, il y a des chances que toutes les pages vers lesquelles A pointe pointent à leur tour vers elle.
 Donc pour traiter A il y a besoin d'avoir traité B mais pour traiter B il y a besoin d'avoir traité de A.
 
-La solution est une approche en deux passes en séparant ce qu'il est nécessaire de faire pour transformer les URLs des pages en lien, et le fait de traiter les pages vers lesquelles on pointe{nbsp}:
+(╯°□°)╯︵ ┻━┻
 
-. Commencer par télécharger et sauvegarder les cible des différents liens _sans les traiter_, afin de vérifier si leur contenu est au format HTML et d'obtenir les chemins des fichiers correspondant, ce qui permet de finir de traiter A.
-. Ensuite pour chaque cible de lien non encore traité, relire le contenu qui a été sauvegardé sur disque, le traiter (en téléchargeant possiblement les autres pages vers lesquelles il pointe), puis écraser le fichier sur disque avec la version traitée, c'est à dire avec les contenu des images, script, feuilles de styles et liens pointant désormais vers leurs fichiers.
+La solution est une approche en deux passes en séparant d'une part ce qu'il est nécessaire de faire pour transformer les URLs des pages en lien vers des fichiers locaux, et d'autre part le fait de traiter ces pages{nbsp}:
 
-En parcourant le site, le script conservera une liste de page HTML sauvegardées mais pas encore traitées.
-Lors du traitement d'une de ces pages, on pourra découvrir d'autres pages qui seront à traiter à leur tour et ainsi de suite.
+. On commence par télécharger et sauvegarder les cible des différents liens _sans les traiter_, afin de vérifier si leur contenu est au format HTML et d'obtenir les chemins des fichiers correspondant, ce qui permet de finir de traiter A.
+. Ensuite pour chaque cible de lien non encore traité, on relit le contenu qui a été sauvegardé sur disque, on le traite (en téléchargeant possiblement les autres pages vers lesquelles il pointe), puis on écrase le fichier avec la version traitée, c'est-à-dire avec les URLs des images, script, feuilles de styles et des liens qui pointent désormais vers leurs fichiers.
 
-Lorsque cette liste sera vide, cela signifiera que tout le site aura été parcouru.
+En parcourant le site, le script conservera une liste de page HTML déjà sauvegardées mais pas encore traitées.
+Lors du traitement d'une page, on pourra découvrir de nouveaux liens vers d'autres pages qui seront à traiter à leur tour et ainsi de suite.
+
+Lorsque cette liste sera vide et donc toutes les pages traitées, cela signifiera que tout le site aura été parcouru.
+
+La première étape est d'extraire la partie de `scrape_resource` qui s'occupe de sauvegarder un contenu dans un fichier dans une méthode séparée, afin de pouvoir l'utiliser directement.
+
+[source, ruby, indent=0, highlight=15;19..32]
+----
+include::scrapper_07.rb[tag=scrape_resource]
+----
+
+Ensuite la méthode `scrape_link`, va me permettre de traiter les liens de la même manière que `scrape_resource` pour les autres types d'URL. `PAGES_TO_PROCESS` va contenir les pages qui restent à traiter, j'en fait un `Set` pour avoir un dédoublonage.
+
+[source, ruby, indent=0]
+----
+include::scrapper_07.rb[tag=scrape_link]
+----
+
+La méthode `scrape_link` est typiquement une méthode qui sera modifiée en fonction du contenu à scrapper.
+On pourra par exemple exclure certaines URLs, exporter certaines informations dans un fichier ou une base de données séparées.
+
+Les fonctionnements de `scrape_link` et celui de `scrape_resource` se ressemblent (vérifier si un contenu est déjà dans la liste, et sinon le télécharger) et on pourrait être tenté de les factoriser.
+Mais `scrape_link` est suffisamment différent pour que ça ne soit pas une bonne idée car le mélange des deux perdrait en lisibilité.
+
+Pour finir il manque la boucle de traitement des pages qui va être chargé de vider `PAGES_TO_PROCESS`.
+Pour initialiser la boucle, `PAGES_TO_PROCESS` est remplis avec la page initiale qui doit auparavant être sauvegardée.
+
+[source, ruby, indent=0, highlight=1..14;30..37]
+----
+include::scrapper_07.rb[tag=loop]
+----
+
+On peut vérifier le fonctionnement dans le log{nbsp}:
+
+[source]
+----
+Supprime [download]
+Créé [download]
+Traite [https://queue.acm.org] [download/0.html]
+Vérifie la ressource [https://queue.acm.org/img/acmqueue_logo.gif]
+Télécharge [https://queue.acm.org/img/acmqueue_logo.gif]
+Vérifie la ressource [https://queue.acm.org/img/logo_acm.gif]
+Télécharge [https://queue.acm.org/img/logo_acm.gif]
+
+Lien interne trouvé [https://queue.acm.org/index.cfm]
+Nouveau lien interne [https://queue.acm.org/index.cfm]
+Nouvelle page à traiter [https://queue.acm.org/index.cfm]
+Lien interne trouvé [https://queue.acm.org/whyjoinacm.cfm]
+Nouveau lien interne [https://queue.acm.org/whyjoinacm.cfm]
+Nouvelle page à traiter [https://queue.acm.org/whyjoinacm.cfm]
+Lien externe trouvé [https://www.acm.org/joinacm2?ref=queue]
+Lien interne trouvé [https://queue.acm.org/whyjoinacm.cfm]
+Lien interne trouvé [https://queue.acm.org/index.cfm]
+
+Traite [https://queue.acm.org/index.cfm] [download/18.html]
+Vérifie la ressource [https://queue.acm.org/img/acmqueue_logo.gif]
+Vérifie la ressource [https://queue.acm.org/img/logo_acm.gif]
+Vérifie la ressource [https://queue.acm.org/confimg/Kode_Vicious2.jpg]
+Vérifie la ressource [https://queue.acm.org/confimg/2020VirtualWinterSummit125x125(002).png]
+----
+
+Si vous laissez le script tourner suffisamment longtemps, il devrait parcourir tout le site et l'archiver, et vous aurez sur votre disque dur une version navigable complète.
+
+== Les fragments
+
+Le script fonctionne, on y est presque{nbsp}!
+Il reste encore deux choses à modifier.
+
+La première est la gestion des fragments dans les liens.
+
+Pour le moment, on vérifie si une page est déjà connue en vérifiant si son URL complète existe dans `KNOWN_URLS`.
+La conséquence est que si une URL contient un fragment, par exemple `https://queue.acm.org/detail.cfm?id=2000516#content-comments`, elle est considérée comme une URL différente de `https://queue.acm.org/detail.cfm?id=2000516`, et sera donc archivée comme une page à part. Suivant que les autres pages ont un lien avec ou sans fragment le lien aboutira donc à des pages différentes.
+
+La solution est donc de retirer les éventuels fragments des URLs avant de consulter le contenu de `KNOWN_URLS`.
+Pour calculer une URL cible, il faut donc chercher le nom du fichier dans `KNOWN_URLS` en utilisant l'URL sans fragment, et ajouter le fragment au nom du fichier.
+La modification concerne seulement la méthode `scrape_link`{nbsp}:
+
+[source, ruby, indent=0, highlight=11..26]
+----
+include::scrapper_08.rb[tag=scrape_link]
+----
+
+== Reprise en cas d'erreur
+
+La dernière choses à modifier est de mettre en place une capacité de reprise en cas d'erreur.
+
+Il arrive qu'un site ait des erreurs, ou que votre connexion internet plante, ou vous aurez peut-être envie d'interrompre le process.
+
+Et quand cela arrive, il serait dommage d'avoir à recommencer le scrapping depuis le début.
+
+Pour éviter cela, il faut sauvegarder l'état du scrapping après chaque étape, et lors du démarrage du script vérifier s'il existe un état sauvegardé, et dans ce cas le charger et repartir de ce point.
+
+L'état du scrapping correspond à deux ensemble de données{nbsp}:
+
+- `KNOWN_URLS` qui est le dictionnaire qui fournit les noms de fichiers correspondant aux URLs
+- `PAGES_TO_PROCESS` qui est la liste des pages qui restent à traiter
+
+À chaque fois qu'on modifie l'une de ces deux données il faut donc la sauvegarder.
+
+Je vais sauvegarder `KNOWN_URLS` dans un fichier `known_urls.txt`, en utilisant une ligne par entrée{nbsp}:
+
+[source]
+----
+https://queue.acm.org 0.html
+https://queue.acm.org/img/acmqueue_logo.gif 1.gif
+https://queue.acm.org/img/logo_acm.gif 2.gif
+https://queue.acm.org/confimg/Kode_Vicious2.jpg 3.jpeg
+https://queue.acm.org/confimg/2020VirtualWinterSummit125x125(002).png 4.png
+https://queue.acm.org/app/2020_09-10_lrg.png 5.png
+----
+
+[source, ruby, indent=0, highlight=10]
+----
+include::scrapper_09.rb[tag=save_content]
+----
+
+Et voici le code qui gère le chargement au démarrage si le fichier est présent{nbsp}:
+
+[source, ruby, indent=0]
+----
+include::scrapper_09.rb[tag=load_KNOWN_URLS]
+----
+
+`PAGES_TO_PROCESS` sera sauvegardé dans un fichier `pages_to_process.txt`, en utilisant une ligne par entrée{nbsp}:
+
+[source]
+----
+https://queue.acm.org 0.html
+https://queue.acm.org/img/acmqueue_logo.gif 1.gif
+https://queue.acm.org/img/logo_acm.gif 2.gif
+https://queue.acm.org/confimg/Kode_Vicious2.jpg 3.jpeg
+https://queue.acm.org/confimg/2020VirtualWinterSummit125x125(002).png 4.png
+https://queue.acm.org/app/2020_09-10_lrg.png 5.png
+----
+
+[source, ruby, indent=0, highlight=4]
+----
+include::scrapper_09.rb[tag=save_pages]
+----
+
+Et voici le code qui gère le chargement au démarrage si le fichier est présent, s'il en l'est pas on initialise le contenu avec le contenu du l'URL d'entrée du site{nbsp}:
+
+[source, ruby, indent=0]
+----
+include::scrapper_09.rb[tag=load_pages]
+----
+
+J'ai choisi de ne pas mettre de gestion d'erreur dans le script, par exemple une reconnexion automatique en cas d'erreur.
+Si un site est particulièrement instable il peut être nécessaire d'en ajouter, mais par défaut je préfère laisser remonter les exception et donc laisser le scrapper s'arrêter pour me permettre de faire le choix moi-même.
+
+== Conclusion
+
+Et voilà{nbsp}: le scrapper est terminé{nbsp}!
+J'espère qu'il vous sera utile, si vous avez des questions vous pouvez me contacter et j'essaierai de vous aider.
+
+Ci-dessous la version finale du script pour vous servir de base.
+
+''''
+
+[source, ruby]
+----
+include::scrapper_10.rb[]
+----
