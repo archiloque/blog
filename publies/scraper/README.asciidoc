@@ -93,7 +93,7 @@ C'est ce qui est est fait dans certains CMS pour transformer des noms de fichier
 
 L'inconvénient de cette méthode est qu'elle supprime des informations (les caractères non acceptables), et qu'en faisait ça deux URLs différentes peuvent être transformées en un nom de fichier identique.
 
-`https://emojipedia.org/emoji/🦦/` et `https://emojipedia.org/emoji/🦔/` auraient ainsi le même nom de fichier.
+`https://emojipedia.org/emoji/🐰/` et `https://emojipedia.org/emoji/🐈/` auraient ainsi le même nom de fichier.
 
 L'opération de transformation doit donc avoir les caractéristiques suivantes{nbsp}:
 
@@ -103,9 +103,9 @@ L'opération de transformation doit donc avoir les caractéristiques suivantes{n
 En mathématique, ce type de transformation est appelé link:https://fr.wikipedia.org/wiki/Bijection[bijection].
 
 Une méthode pour transformer une URL en nom de fichier serait d'utiliser les numéros des caractères composant l'URL (dont le nom officiel est link:https://fr.wikipedia.org/wiki/Point_de_code[point de code]).
-Comme il s'agit d'une suite de valeurs numériques cela convient bien à des noms de fichiers. Malheureusement les noms de fichiers résultants sont plutôt longs (`https://emojipedia.org/emoji/🦦/` est transformé en `68-74-74-70-73-3a-2f-2f-65-6d-6f-6a-69-70-65-64-69-61-2e-6f-72-67-2f-65-6d-6f-6a-69-2f-1f9a6-2f`) ce qui n'est pas compatible avec tous les systèmes de fichiers.
+Comme il s'agit d'une suite de valeurs numériques cela convient bien à des noms de fichiers. Malheureusement les noms de fichiers résultants sont plutôt longs (`https://emojipedia.org/emoji/🐰/` est transformé en `68-74-74-70-73-3a-2f-2f-65-6d-6f-6a-69-70-65-64-69-61-2e-6f-72-67-2f-65-6d-6f-6a-69-2f-1f430-2f`) ce qui n'est pas compatible avec tous les systèmes de fichiers.
 
-Si vous voulez suivre cette approche une solution possible est de séparer la chaîne ainsi calculée en plusieurs tronçons, par exemple par blocs de 10 valeurs, et que chaque tronçon intermédiaire corresponde à un niveau de répertoire (dans notre exemple `68-74-74-70-73-3a-2f-2f-65-6d/6f-6a-69-70-65-64-69-61-2e-6f/72-67-2f-65-6d-6f-6a-69-2f-1f9a6/2f`).
+Si vous voulez suivre cette approche une solution possible est de séparer la chaîne ainsi calculée en plusieurs tronçons, par exemple par blocs de 10 valeurs, et que chaque tronçon intermédiaire corresponde à un niveau de répertoire (dans notre exemple `68-74-74-70-73-3a-2f-2f-65-6d/6f-6a-69-70-65-64-69-61-2e-6f/72-67-2f-65-6d-6f-6a-69-2f-1f430/2f`).
 L'avantage de cette approche est que la transformation entre l'URL et le nom de fichier dépend uniquement de l'URL, mais sa mise en œuvre commence à être compliquée.
 
 Une autre manière de mettre en place cette transformation est d'utiliser un dictionnaire, c'est-à-dire une source de données qui permette de stocker la correspondance entre URL en nom de fichier.
@@ -121,7 +121,7 @@ Sans utiliser de système de base de donnée externe, on peut utiliser une struc
 ----
 KNOWN_URLS = {}
 
-url = 'https://emojipedia.org/emoji/🦦/'
+url = 'https://emojipedia.org/emoji/🐰/'
 
 if KNOWN_URLS.key?(url)
   file_name = KNOWN_URLS[absolute_url]
