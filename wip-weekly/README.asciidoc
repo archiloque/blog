@@ -26,3 +26,14 @@ The underlying issue is that data and services don’t sing too sweetly together
 
 But data systems have little to do with encapsulation. In fact, quite the contrary. Databases do everything they can to expose the data they hold. They come with a wonderfully powerful, declarative interface that can contort data into pretty much any shape you might desire. Exactly what you need for exploratory investigation, but not so great for managing the onset of complexity in a burgeoning service estate.
 ____
+
+== link:https://www.philosophicalhacker.com/post/when-to-dry/[When should we create abstractions instead of duplication?]
+
+[quote]
+____
+The problem here is that our feelings can mislead us, which probably partially explains the appeal of heuristics: we want something more as a guide.
+
+Some readers -- and presumably Dodd -- would reply, "`But more experienced programmers have more trust-worthy feelings!`"
+
+Maybe. But if we’re to believe the science on expert judgment and intuition, the impact of experience in helpfully shaping our intuitions here is more limited than we think. Psychologist and behavioral economist Daniel Kahneman won a nobel prize partially because he taught us that expert judgement doesn’t form simply because we’ve been doing something for a long time. For that judgment to form, we need specific feedback loopsfootnote:[Daniel Kahneman, Thinking Fast and Slow. Too lazy to find the specific pages. Just read all of it.], loops that are often absent for many programmers who have an average job tenure of 18 months or who use tools and languages that change quickly enough to inspire fatigue or who work for companies that undergo radical changes as they grow from tiny startups to large, proper businesses.
+____
