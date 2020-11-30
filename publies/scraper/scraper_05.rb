@@ -47,7 +47,8 @@ doc.css('img[src]').each do |image|
   # avec celle de la page si l'image a une adresse relative,
   # par exemple http://exemple.com +  lapin.png = http://exemple.com/lapin.png
   # si l'image a déjà une adresse absolue alors utilise celle là
-  # Addressable::URI#normalize essaie de corriger les URls incorrectes, par exemple celles qui contiennent des espace
+  # Addressable::URI#normalize essaie de corriger les URls incorrectes, 
+  # par exemple celles qui contiennent des espace
   image_url = parsed_url.join(image_src).normalize
 
   if KNOWN_URLS.key?(image_url.to_s)
