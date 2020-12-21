@@ -1,0 +1,178 @@
+= Switch, optimisation et prédictibilité
+Julien Kirch
+v0.1, 2020-10-13
+:article_lang: fr
+
+Cet article traite de la manière dont certaines optimisations sont faites dans les systèmes informatiques et me perte de définir un classement entre plusieurs d'entre elles.
+
+== Le C
+
+Dans plusieurs langages de programmation donc le C, existe une construction `switch` avec cette syntaxe{nbsp}:
+
+[source, c]
+----
+int valeur;
+switch(valeur){
+    case 0 :
+    // Bloc de code 0
+    break;
+
+    case 1 :
+    // Bloc de code 1
+    break;
+
+    case 3 :
+    // Bloc de code 2
+    break;
+
+    case 4 :
+    // Bloc de code 3
+    break;
+
+    default:
+    // Bloc de code par défaut
+}
+----
+
+Dans le monde où C a été inventé, cette construction était intéressante car elle permet de produire du code efficace.
+
+Avec un compilateur simple, le code compilé donnait quelque chose comme{nbsp}:
+
+[source]
+----
+charge valeur dans un registre
+si valeur du registre vaut 0, sauter au début du bloc de code 0
+si valeur du registre vaut 1, sauter au début du bloc de code 1
+si valeur du registre vaut 2, sauter au début du bloc de code 2
+si valeur du registre vaut 3, sauter au début du bloc de code 3
+si valeur du registre vaut 4, sauter au début du bloc de code 4
+début du bloc de code par défaut
+----
+
+cela signifie que chaque `case` utilisait une seule instruction, et qu'un seul registre était utilisé.
+
+À condition que les cas des `case` soit suffisamment rapprochés un compilateur avancé pourra utiliser du code comme{nbsp}:
+
+[source]
+----
+charge valeur dans un registre
+si la valeur du registre est entre 0 et 4, aller au code placé à l'index correspond à la valeur.
+index du début du code 0 // quand valeur vaut 0
+index du début du code 1 // quand valeur vaut 1
+index du début du code 2 // quand valeur vaut 2
+index du début du code 3 // quand valeur vaut 3
+index du début du code 4 // quand valeur vaut 4
+début du bloc de code par défaut
+----
+
+Cela s'appelle link:https://en.wikipedia.org/wiki/Branch_table[une table de saut], et permet d'avoir du code plus compact.
+En fonction des cas, il existe d'autres optimisations possibles, toutes reposant sur le fait que la valeur à tester est toujours la même.
+
+La construction du `switch` correspond donc directement à une optimisation assez utilisée, notamment dans le code des langages de programmation.
+
+Les personnes qui développent en C on généralement connaissance de cette situation, et s'attendent donc à ce que les `switch` soient implémentés de manière efficaces.
+
+Le fait qu'un `switch` soit mise en œuvre de cette manière n'est pas une obligation de la part d'un compilateur C.
+Il pourrait tout à fait transformer le `switch` en une série de `if` / `else if`.
+Un tel compilateur respecterait le standard C, même si son implémentation irait probablement à l'encontre des attentes qu'ont les personnes qui développent en C et qui sont basées sur les comportements généralement observés ou des connaissances en assembleur.
+
+== `switch` ailleurs qu'en C
+
+D'autres langages de programmations fournissent une construction `switch`, plus ou moins calquée sur celle du C.
+
+En dehors de la performance, cela s'explique par le fait qu'un `switch` est plus explicite qu'une suite de `if` / `else if`{nbsp}: la construction indique que les différentes branches correspondent à des tests différents sur la même variable, sans avoir à vérifier que les différentes branche d'un `else if` testent bien la même chose.
+
+En Ruby, les tests des branches d'un `switch` peuvent correspondre des intervalles de valeurs (dans ce cas on vérifie si la valeur est dans l'intervalle) ou à ou à des expressions régulières (dans ce cas on vérifie si la valeur rend l'expression régulière valide), voire un mélange des deux.
+Dans ce cas il n'est pas possible d'utiliser les mêmes astuces d'implémentations qu'en C (même si d'autres sont peut-être possibles), l'intérêt de la construction est donc uniquement sa lisibilité.
+
+De la même manière qu'avec un compilateur C non optimisé, une telle implémentation peut surprendre certains personnes.
+
+Dans ce cas une propriété de certains compilateurs C, qui a à tord été généralisée à l'ensemble des compilateurs C, est étendue à d'autres langages de programmation, alors même que leur modèle peut être très éloigné du C{nbsp}: cela a créé une attente implicite.
+
+== L'optimisation sans le `switch`
+
+En C, il n'y aucune raison que l'optimisation qu'on a vu pour le `switch` soit réservée à l'utilisation de cette construction.
+
+Ainsi avec ce code{nbsp}:
+
+[source, c]
+----
+int valeur;
+if (valeur == 0) {
+  // Bloc de code 0
+} else if (valeur == 1) {
+  // Bloc de code 1
+} else if (valeur == 2) {
+  // Bloc de code 2
+} else if (valeur == 3) {
+  // Bloc de code 3
+} else if (valeur == 4) {
+  // Bloc de code 4
+} else {
+  // Bloc de code par défaut
+}
+----
+
+Un compilateur pourrait détecter que ce code est équivalent à un `switch`, et donc utiliser les optimisations adaptées.
+
+Lors de l'analyse syntaxique du code, les `switch` pourraient être transformés en une série de `if` / `else if`, et lors de la phase d'optimisation toutes les constructions qui sont équivalents à des `switchs` pourraient être optimisés de la même manières, qu'elles soient originellement des `switch` ou pas.
+
+Cela permettrait de rendre plus performantes d'autres portions de code.
+
+Même des langages ne fournissant pas de construction `switch` comme Lua pourraient utiliser cette optimisation.
+
+L'inconvénient majeur de cette approche est qu'elle rend moins explicite le lien entre le code écrit et sa performance.
+Ainsi en modifiant un des `else if`, la construction pourrait ne plus être équivalent à un `switch` et donc devenir beaucoup moins performante.
+
+On gagne donc en performance tout en perdant en prévisibilité.
+
+En passant, le cas peut se produire même avec un `switch` classique{nbsp}: avec un compilateur avancé il peut être difficile de savoir quand tel bout de code utilisera une table de saut ou une autre approche.
+En pratique, l'important est de savoir que quand les valeurs sont contigües, on peut s'attendre à un niveau de performance au moins équivalent à celui d'une table de saut.
+
+== Les optimisation implicites sont partout
+
+Si les optimisations implicites peuvent faire un peu peur à cause de l'imprévisibilité qu'elles apportent, elles contribuent massivement à la performance des systèmes grand public actuels.
+
+C'est le cas par exemple des moteurs JavaScript.
+Le langage ne fournissant pas de moyen de déclarer les types des variables, les moteurs vont tâcher de déterminer si telle ou telle variable est par exemple un entier ou un nombre à virgule flottante pour pouvoir utiliser une version spécialisée d'un algorithme.
+
+Les personnes qui développent ces moteurs vont étudier le code qui est exécuté, par exemple le code des sites les plus visités, pour identifier des optimisations à ajouter dans les versions suivantes.
+
+Les personnes qui développent des logiciels en JavaScript dont la performance est importante, par exemple les jeux, vont tâcher de déterminer le fonctionnement des moteurs à partir de leurs observations.
+Ces performances travaillent donc avec des connaissances partielles, parfois issues de on-dit et parfois obsolète.
+
+C'est la même chose pour les processeurs d'ordinateurs.
+Les processeurs vont retransformer à la volée le code qu'on leur fournit pour pouvoir gagner quelques point de performance.
+Ce compilateur peut, dans certains limites, être mis à jour pour introduire de nouvelles optimisations, de la même manière qu'un compilateur C.
+
+En interne leur fonctionnement est de plus en plus éloigné du modèle de processeur déterministe qu'on présente souvent lorsqu'on apprend le C, mais leur API externe a peu évolué, ils vont donc exposer une API réduite "`à la C`" au reste du monde.
+
+Lorsque ce qui se passe sous le capot ne fonctionne pas aussi bien que prévu, cela peut par exemple donner lieu à des bugs ou à link:https://fr.wikipedia.org/wiki/Meltdown_(vulnérabilité)[des failles de sécurité].
+
+=== Itanium{nbsp}: l'échec de l'explicite
+
+Si le côté imprévisibles des processeurs modernes peut faire peur, il faut se rappeler que des tentatives ont été faite pour d'autres approches.
+
+L'une d'elle a été la famille de processeur link:https://en.wikipedia.org/wiki/Itanium[Itanium].
+L'idée, intellectuellement attirante, était de rendre public toute la tuyauterie interne des processeurs pour permettre au compilateurs de les exploiter au mieux, notamment pour ce qui touchait au parallélisme.
+Sans optimisations masquées et disposant de toute la gamme de fonctionnalités des processeurs, les compilateurs auraient du pouvoir produire le code le plus efficace possible, car par rapport aux processeurs ils ont vue plus globale du code à exécuter, et qu'ils ne sont pas forcés de générer le code à la volée.
+
+Le problème est que ces compilateurs n'ont jamais vu le jour.
+
+En effet écrire des compilateurs raisonnablement efficaces pour des processeurs classiques est déjà un défi d'ingénierie.
+Mêmes les compilateurs modernes sont loins de couvrir toutes optimisations possibles, en ciblant les plus utilisées.
+
+Écrire des compilateurs Itanium compétitif s'est révélé hors de portée{nbsp}: l'API était trop complexe et analyser le code d'entrée d'une manière suffisamment fine pour générer du code optimal trop difficile.
+
+Surtout qu'en même temps, les compilateurs et les processeurs standards continuaient à progresser de leur côté.
+
+== Rust et le borrow checker
+
+Le borrow checker est un retour de l'explicite ou du semi-explicite{nbsp}: les informations qu'il fournit permet d'aider le compilateur à générer du code efficace. Même s'il aide aussi à éviter les erreurs de threading.
+
+Intéressant car on arrête de traiter le CPU comme une CPU C.
+
+== Conclusion
+
+
+
