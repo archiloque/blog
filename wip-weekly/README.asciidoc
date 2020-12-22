@@ -22,7 +22,7 @@ ____
 ____
 Service-based approaches may have been around for a while, but they still offer relatively little insight into how to share significant datasets between services.
 
-The underlying issue is that data and services don’t sing too sweetly together. On one side, encapsulation encourages us to hide data; decoupling services from one another so they can continue to change and grow. This is about planning for the future. But on the other side, we need the freedom to slice and dice shared data like any other dataset. This is about getting on with our job right now, with the same freedoms as any other data system.
+The underlying issue is that data and services don't sing too sweetly together. On one side, encapsulation encourages us to hide data; decoupling services from one another so they can continue to change and grow. This is about planning for the future. But on the other side, we need the freedom to slice and dice shared data like any other dataset. This is about getting on with our job right now, with the same freedoms as any other data system.
 
 But data systems have little to do with encapsulation. In fact, quite the contrary. Databases do everything they can to expose the data they hold. They come with a wonderfully powerful, declarative interface that can contort data into pretty much any shape you might desire. Exactly what you need for exploratory investigation, but not so great for managing the onset of complexity in a burgeoning service estate.
 ____
@@ -35,5 +35,17 @@ The problem here is that our feelings can mislead us, which probably partially e
 
 Some readers -- and presumably Dodd -- would reply, "`But more experienced programmers have more trust-worthy feelings!`"
 
-Maybe. But if we’re to believe the science on expert judgment and intuition, the impact of experience in helpfully shaping our intuitions here is more limited than we think. Psychologist and behavioral economist Daniel Kahneman won a nobel prize partially because he taught us that expert judgement doesn’t form simply because we’ve been doing something for a long time. For that judgment to form, we need specific feedback loopsfootnote:[Daniel Kahneman, Thinking Fast and Slow. Too lazy to find the specific pages. Just read all of it.], loops that are often absent for many programmers who have an average job tenure of 18 months or who use tools and languages that change quickly enough to inspire fatigue or who work for companies that undergo radical changes as they grow from tiny startups to large, proper businesses.
+Maybe. But if we're to believe the science on expert judgment and intuition, the impact of experience in helpfully shaping our intuitions here is more limited than we think. Psychologist and behavioral economist Daniel Kahneman won a nobel prize partially because he taught us that expert judgement doesn't form simply because we've been doing something for a long time. For that judgment to form, we need specific feedback loopsfootnote:[Daniel Kahneman, Thinking Fast and Slow. Too lazy to find the specific pages. Just read all of it.], loops that are often absent for many programmers who have an average job tenure of 18 months or who use tools and languages that change quickly enough to inspire fatigue or who work for companies that undergo radical changes as they grow from tiny startups to large, proper businesses.
+____
+
+== link:https://bellmar.medium.com/toxic-and-woke-engineering-orgs-8abf20e07de5[Toxic and Woke Engineering Orgs]
+
+[quote]
+____
+The biggest mistake organizations make with boundaries is over socializing. It's good to get people together informally from time to time. It's good to have staff parties, happy hours, maybe a company sports team or an outing. All of these things are great for team building and bonding. But the more often you turn the work space into a friend space the more people start to see their colleagues as friends.
+
+That's problematic because people expect loyalty and conformity from their friends. Nobody really talks about it that way, but it's true. You want your friends to agree with you and when they don't it bothers you much more than it would if an acquaintance disagreed. The more strongly you feel about a subject, the more difficult it is for you to deal with disagreement from friends.
+People need to be able to disagree at work. Teams can't make good decisions if they can't disagree. And while some friendships survive or even thrive on debate, people still tend to take dissent much more personally from their friends.
+
+People also tend to take more liberties with their friends. You are less embarrassed about showing up late or inconveniencing a friend because you assume that close bond will guarantee you forgiveness. What's more, once workplaces start over socializing they tend to get defensive about it and see not engaging as a form of rejection in and of itself. Off hour events slowly become not optional. Not wanting to be BFFs or "`part of the family`" becomes an offense on equal level with missing deadlines and deliverables.
 ____
