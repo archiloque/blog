@@ -49,3 +49,23 @@ People need to be able to disagree at work. Teams can't make good decisions if t
 
 People also tend to take more liberties with their friends. You are less embarrassed about showing up late or inconveniencing a friend because you assume that close bond will guarantee you forgiveness. What's more, once workplaces start over socializing they tend to get defensive about it and see not engaging as a form of rejection in and of itself. Off hour events slowly become not optional. Not wanting to be BFFs or "`part of the family`" becomes an offense on equal level with missing deadlines and deliverables.
 ____
+
+== link:https://lwn.net/ml/oss-security/192EDE83-5DF6-40A9-8928-1CD1739177A0@dwheeler.com/[CVE-2021-20177 kernel: iptables string match rule could result in kernel panic]
+
+[quote]
+____
+I suspect in many cases there's a simple answer: who takes the *blame* when something goes wrong?
+
+If someone updates a component when "`they don't have to`", and it causes a problem, that person
+takes the fall: gets demoted, fired, whatever. If a component is not updated, and the system is
+attacked, the *attacker** is blamed & the admins don't get demoted, fired, whatever. So updates are
+rare & involve >1 year testing to ensure that the blame is fully distributed away from any one
+person.
+
+Some organizations make an explicit exception: if there's a CVE, then you *are* "`required`" to
+update the component by policy. Then those who updated the component are no longer at serious
+career risk, because when someone tries to blame the person who did the update, they can say "`I was
+required to update by policy`".
+
+In short, I think it's all about incentives.
+____
