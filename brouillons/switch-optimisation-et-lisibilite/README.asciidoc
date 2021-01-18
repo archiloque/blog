@@ -2,14 +2,14 @@
 Julien Kirch
 v0.1, 2020-10-13
 :article_lang: fr
+:article_description: Vous reprendrez bien une couche de magie{nbsp}?
+:article_image: wand.jpeg
 
-Dans cet article j'explique quelques éléments sur le fonctionnement des optimisations dans les systèmes passés et actuels.
-
-Cet article traite de la manière dont  optimisations sont faites dans les systèmes informatiques
+Je vais expliquer ici quelques éléments sur le fonctionnement des optimisations dans quelques systèmes informatiques passés et actuels.
 
 == Le C
 
-Dans plusieurs langages de programmation donc le C, existe une construction `switch` avec cette syntaxe{nbsp}:
+Dans plusieurs langages de programmation donc le C, existe une construction `switch` avec une syntaxe qui ressemble à{nbsp}:
 
 [source, c]
 ----
@@ -36,9 +36,9 @@ switch(valeur){
 }
 ----
 
-Dans le monde où C a été inventé, cette construction était intéressante car elle permet de produire du code efficace.
+Dans le monde où C a été inventé, cette construction était intéressante car elle permet de produire du code efficace du point de la taille et de la vitesse d'exécution.
 
-Avec un compilateur simple, le code compilé donnait quelque chose comme{nbsp}:
+Avec un compilateur simple, le code compilé donne quelque chose comme{nbsp}:
 
 [source]
 ----
@@ -51,9 +51,9 @@ si valeur du registre vaut 4, sauter au début du bloc de code 4
 début du bloc de code par défaut
 ----
 
-cela signifie que chaque `case` utilisait une seule instruction, et qu'un seul registre était utilisé.
+cela signifie que chaque `case` utilise une seule instruction, et qu'un seul registrefootnote:[un peu l'équivalent de variable locales dans le processeur, mais qui sont en nombres limité] est utilisé.
 
-À condition que les cas des `case` soit suffisamment rapprochés un compilateur avancé pourra utiliser du code comme{nbsp}:
+À condition que les cas des `case` soit suffisamment rapprochés (par exemple s'ils se suivent) un compilateur avancé pourra générer du code qui ressemble à{nbsp}:
 
 [source]
 ----
@@ -67,12 +67,12 @@ index du début du code 4 // quand valeur vaut 4
 début du bloc de code par défaut
 ----
 
-Cela s'appelle link:https://en.wikipedia.org/wiki/Branch_table[une table de saut], et permet d'avoir du code plus compact.
+Cela s'appelle link:https://en.wikipedia.org/wiki/Branch_table[une table de saut], et permet de générer du code encore plus efficace, toujours du point de la taille et de la vitesse d'exécution.
 En fonction des cas, il existe d'autres optimisations possibles, toutes reposant sur le fait que la valeur à tester est toujours la même.
 
-La construction du `switch` correspond donc directement à une optimisation assez utilisée, notamment dans le code des langages de programmation.
+La construction du `switch` correspond donc directement à des optimisation dans le code compilé.
 
-Les personnes qui développent en C on généralement connaissance de cette situation, et s'attendent donc à ce que les `switch` soient implémentés de manière efficaces.
+Les personnes qui développent en C ont généralement connaissance de cette situation, et s'attendent donc à ce que les `switch` soient implémentés de manière efficaces.
 
 Le fait qu'un `switch` soit mise en œuvre de cette manière n'est pas une obligation de la part d'un compilateur C.
 Il pourrait tout à fait transformer le `switch` en une série de `if` / `else if`.
