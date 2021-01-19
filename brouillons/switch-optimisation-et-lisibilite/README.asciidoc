@@ -51,9 +51,9 @@ si valeur du registre vaut 4, sauter au début du bloc de code 4
 début du bloc de code par défaut
 ----
 
-cela signifie que chaque `case` utilise une seule instruction, et qu'un seul registrefootnote:[un peu l'équivalent de variable locales dans le processeur, mais qui sont en nombres limité] est utilisé.
+cela signifie que chaque `case` utilise une seule instruction, et qu'un seul registrefootnote:[un peu l'équivalent de variable locales dans le processeur, mais qui sont en nombre limité] est utilisé.
 
-À condition que les cas des `case` soit suffisamment rapprochés (par exemple s'ils se suivent) un compilateur avancé pourra générer du code qui ressemble à{nbsp}:
+À condition que les cas des différents `case` soient suffisamment rapprochés (par exemple s'ils se suivent) un compilateur avancé pourra générer du code qui ressemble à{nbsp}:
 
 [source]
 ----
@@ -70,13 +70,13 @@ début du bloc de code par défaut
 Cela s'appelle link:https://en.wikipedia.org/wiki/Branch_table[une table de saut], et permet de générer du code encore plus efficace, toujours du point de la taille et de la vitesse d'exécution.
 En fonction des cas, il existe d'autres optimisations possibles, toutes reposant sur le fait que la valeur à tester est toujours la même.
 
-La construction du `switch` correspond donc directement à des optimisation dans le code compilé.
+La construction du `switch` en C correspond donc directement à des optimisation dans le code compilé.
 
-Les personnes qui développent en C ont généralement connaissance de cette situation, et s'attendent donc à ce que les `switch` soient implémentés de manière efficaces.
+Les personnes qui développent en C sont souvent au courant de cela, et s'attendent donc à ce que les `switch` soient implémentés de manière efficaces.
 
-Le fait qu'un `switch` soit mise en œuvre de cette manière n'est pas une obligation de la part d'un compilateur C.
+Le fait qu'un `switch` soit mis en œuvre de cette manière n'est pas une obligation de la part d'un compilateur C.
 Il pourrait tout à fait transformer le `switch` en une série de `if` / `else if`.
-Un tel compilateur respecterait le standard C, même si son implémentation irait probablement à l'encontre des attentes qu'ont les personnes qui développent en C et qui sont basées sur les comportements généralement observés ou des connaissances en assembleur.
+Un tel compilateur respecterait le standard C car le comportement du code serait le bon, même si son implémentation irait à l'encontre des attentes d'une partie des personnes.
 
 == `switch` ailleurs qu'en C
 
@@ -84,16 +84,16 @@ D'autres langages de programmations fournissent une construction `switch`, plus 
 
 En dehors de la performance, cela s'explique par le fait qu'un `switch` est plus explicite qu'une suite de `if` / `else if`{nbsp}: la construction indique que les différentes branches correspondent à des tests différents sur la même variable, sans avoir à vérifier que les différentes branche d'un `else if` testent bien la même chose.
 
-En Ruby, les tests des branches d'un `switch` peuvent correspondre des intervalles de valeurs (dans ce cas on vérifie si la valeur est dans l'intervalle) ou à ou à des expressions régulières (dans ce cas on vérifie si la valeur rend l'expression régulière valide), voire un mélange des deux.
-Dans ce cas il n'est pas possible d'utiliser les mêmes astuces d'implémentations qu'en C (même si d'autres sont peut-être possibles), l'intérêt de la construction est donc uniquement sa lisibilité.
+En Ruby, chaque branche d'un `switch` peut correspondre à un intervalle de valeurs (dans ce cas on vérifie si la valeur est dans l'intervalle) ou à ou à une expression régulière (dans ce cas on vérifie si la valeur rend l'expression régulière valide), voire un mélange des deux.
+Dans ce cas il n'est pas possible d'utiliser les mêmes astuces d'implémentations qu'en C (même si d'autres sont probablement possibles), l'intérêt de la construction est donc uniquement sa lisibilité.
 
-De la même manière qu'avec un compilateur C non optimisé, une telle implémentation peut surprendre certains personnes.
+De la même manière qu'avec un compilateur C non optimisé, une telle implémentation peut surprendre certains personnes, par exemple celles qui ont développé en C qui s'attendent à ce que les constructions `switch` dans les autres langages aient les mêmes caractéristiques de performance.
 
-Dans ce cas une propriété de certains compilateurs C, qui a à tord été généralisée à l'ensemble des compilateurs C, est étendue à d'autres langages de programmation, alors même que leur modèle peut être très éloigné du C{nbsp}: cela a créé une attente implicite.
+Dans ce cas une propriété de certains compilateurs C, qui peut être à torde généralisée comme une caractéristique du C, est étendue à d'autres langages de programmation, alors même que leur modèle peut être très éloigné du C{nbsp}: cela a créé une attente implicite.
 
 == L'optimisation sans le `switch`
 
-En C, il n'y aucune raison que l'optimisation qu'on a vu pour le `switch` soit réservée à l'utilisation de cette construction.
+En C, il n'y aucune raison que les optimisations qu'on a vu pour le `switch` soit réservées à l'utilisation de cette construction.
 
 Ainsi avec ce code{nbsp}:
 
@@ -115,21 +115,17 @@ if (valeur == 0) {
 }
 ----
 
-Un compilateur pourrait détecter que ce code est équivalent à un `switch`, et donc utiliser les optimisations adaptées.
+Un compilateur pourrait détecter que ce code est équivalent à un `switch`, et donc utiliser les mêmes optimisations pour les deux cas.
 
-Lors de l'analyse syntaxique du code, les `switch` pourraient être transformés en une série de `if` / `else if`, et lors de la phase d'optimisation toutes les constructions qui sont équivalents à des `switchs` pourraient être optimisés de la même manières, qu'elles soient originellement des `switch` ou pas.
+Une autre approche pourrait être de commencer par transformer les `switch` en une série de `if` / `else if`, et lors de la phase d'optimisation toutes les constructions qui sont équivalents à des `switchs` pourraient être optimisés de la même manières, qu'elles soient originellement des `switch` ou pas.
+Cela permettrait de rendre plus performantes d'autres portions de code en partageant les optimisations.
 
-Cela permettrait de rendre plus performantes d'autres portions de code.
+Cette solution pourrait même s'appliquer à des langages ne fournissant pas de construction `switch` comme Lua, si on juge que cela en vaut la peine.
+En plus de l'augmentation de complexité à l'implémentation du langage, son inconvénient majeur est de rendre moins direct le lien entre le code écrit et sa performance.
+Ainsi en modifiant un des `else if`, la construction pourrait ne plus être équivalent à un `switch` et donc ne plus rentrer dans les cas optimisés. On gagnerait donc en performance en perdant en prévisibilité.
 
-Même des langages ne fournissant pas de construction `switch` comme Lua pourraient utiliser cette optimisation.
-
-L'inconvénient majeur de cette approche est qu'elle rend moins explicite le lien entre le code écrit et sa performance.
-Ainsi en modifiant un des `else if`, la construction pourrait ne plus être équivalent à un `switch` et donc devenir beaucoup moins performante.
-
-On gagne donc en performance tout en perdant en prévisibilité.
-
-En passant, le cas peut se produire même avec un `switch` classique{nbsp}: avec un compilateur avancé il peut être difficile de savoir quand tel bout de code utilisera une table de saut ou une autre approche.
-En pratique, l'important est de savoir que quand les valeurs sont contigües, on peut s'attendre à un niveau de performance au moins équivalent à celui d'une table de saut.
+Le cas peut se produire même avec un `switch` car différentes optimisations sont possibles, par exemple en fonction de la répartition des valeurs.
+Mais en pratique l'écart de performance est en principe plus faible entre différentes implémentations d'un `switch` qu'entre un `switch` un et une série de `if` / `else if` standard.
 
 == Les optimisation implicites sont partout
 
