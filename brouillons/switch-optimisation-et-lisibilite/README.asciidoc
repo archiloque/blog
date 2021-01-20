@@ -129,47 +129,89 @@ Mais en pratique l'écart de performance est en principe plus faible entre diff�
 
 == Les optimisation implicites sont partout
 
-Si les optimisations implicites peuvent faire un peu peur à cause de l'imprévisibilité qu'elles apportent, elles contribuent massivement à la performance des systèmes grand public actuels.
+Si les optimisations implicites peuvent faire un peu peur à cause de l'imprévisibilité qu'elles apportent, elles contribuent de façon très importante à la performance des systèmes grand public actuels.
 
 C'est le cas par exemple des moteurs JavaScript.
-Le langage ne fournissant pas de moyen de déclarer les types des variables, les moteurs vont tâcher de déterminer si telle ou telle variable est par exemple un entier ou un nombre à virgule flottante pour pouvoir utiliser une version spécialisée d'un algorithme.
 
-Les personnes qui développent ces moteurs vont étudier le code qui est exécuté, par exemple le code des sites les plus visités, pour identifier des optimisations à ajouter dans les versions suivantes.
+JavaScript ne fournit pas de moyen de déclarer les types des variables.
+À l'inverse, pouvoir déterminer qu'un paramètre d'une fonction est toujours un nombre ou une chaîne de caractère peut permettre d'accélérer son exécution, par exemple savoir à l'avance si `+` va correspondre à une addition où à une concaténation permet de spécialiser le code de cette fonction.
 
-Les personnes qui développent des logiciels en JavaScript dont la performance est importante, par exemple les jeux, vont tâcher de déterminer le fonctionnement des moteurs à partir de leurs observations.
-Ces performances travaillent donc avec des connaissances partielles, parfois issues de on-dit et parfois obsolète.
+Les moteurs JavaScript avancés comme ceux des navigateurs vont donc analyser le code qu'on leur demande d'exécuter pour tenter de déterminer le plus d'information de type, afin de spécialiser le plus possible le code exécuté.
+
+Les personnes qui développent ces moteurs JavaScript vont étudier le code des sites les plus visités, pour identifier des optimisations ce type et d'autres types qu'il est possible d'ajouter dans les versions suivantes des navigateurs.
+
+Ces optimisations, à part les plus générales, sont parfois peu documentées en dehors du code qui les implémente.
+
+Les personnes qui développent des logiciels en JavaScript dont la performance est importante, par exemple les jeux, ont besoin de connaître ces optimisations.
+Elles vont donc parfois essayer d'extrapoler le fonctionnement interne des moteurs à partir de leurs observations.
+C'est l'équivalent d'essayer de déterminer quel type de `if` / `else if` est transformé en une table de saut, après s'être rendu compte que certains `if` / `else if` s'exécutaient plus rapidement que d'autres.
 
 C'est la même chose pour les processeurs d'ordinateurs.
-Les processeurs vont retransformer à la volée le code qu'on leur fournit pour pouvoir gagner quelques point de performance.
-Ce compilateur peut, dans certains limites, être mis à jour pour introduire de nouvelles optimisations, de la même manière qu'un compilateur C.
 
-En interne leur fonctionnement est de plus en plus éloigné du modèle de processeur déterministe qu'on présente souvent lorsqu'on apprend le C, mais leur API externe a peu évolué, ils vont donc exposer une API réduite "`à la C`" au reste du monde.
+Les processeurs vont retransformer à la volée le code qu'on leur fournit pour pouvoir gagner quelques points de performance.
+Il s'agit en quelque sorte d'une nouvelle phase de compilation qui a lieu à l'intérieur des processeurs.
+Le langage machine qu'on fournit aux processeur n'est donc en réalité pas exécuté directement mais il est retransformé et il correspond donc à une API.
+
+En interne, les processeurs peuvent ainsi disposer de plus de registres que ceux qui sont exposés, ou d'instructions supplémentaires. La phase de compilation peut aussi réordonner le code fournit, si cela n'entraîne (en principe) pas de conséquences observables et que cela lui permet d'éviter des étapes intermédiaires dans un traitement ou d'avoir des choses à faire en attendant qu'une donnée soit chargée depuis la mémoire.
 
 Lorsque ce qui se passe sous le capot ne fonctionne pas aussi bien que prévu, cela peut par exemple donner lieu à des bugs ou à link:https://fr.wikipedia.org/wiki/Meltdown_(vulnérabilité)[des failles de sécurité].
 
+Avec le temps leur fonctionnement interne de ces processeurs est de plus en plus éloigné du modèle de processeur déterministe qu'on présente souvent lorsqu'on apprend le C, alors que leur API externe est restée plus stable.
+D'une certaine manière, écrire en C correspond à écrire du code avec pour cible un ordinateur qui correspond à l'état de l'art de l'époque où le C a été inventé, et les processeurs modernes font un peut semblant de continuer à fonctionner de cette manière.
+
+Cela signifie que les performances de ces processeurs sont de plus en plus difficile à prévoir avec un certain niveau de précision.
+De la même manière qu'avec un compilateur C, on peut facilement avoir une idée générale de la performance à attendre dans le cas par défaut, qui correspond à la situation non optimisée, mais plus se penche sur des cas précis moins les choses sont claires.
+
 === Itanium{nbsp}: l'échec de l'explicite
 
-Si le côté imprévisibles des processeurs modernes peut faire peur, il faut se rappeler que des tentatives ont été faite pour d'autres approches.
+L'idée d'avoir un deuxième niveau de compilation à l'intérieur des processeurs peut sembler très étrange{nbsp}: le processeur ne travaille à chaque fois que sur une petite partie du code, et ne dispose que d'un temps très limité pour faire ses optimisations.
 
-L'une d'elle a été la famille de processeur link:https://en.wikipedia.org/wiki/Itanium[Itanium].
-L'idée, intellectuellement attirante, était de rendre public toute la tuyauterie interne des processeurs pour permettre au compilateurs de les exploiter au mieux, notamment pour ce qui touchait au parallélisme.
-Sans optimisations masquées et disposant de toute la gamme de fonctionnalités des processeurs, les compilateurs auraient du pouvoir produire le code le plus efficace possible, car par rapport aux processeurs ils ont vue plus globale du code à exécuter, et qu'ils ne sont pas forcés de générer le code à la volée.
+Pourquoi ne pas plutôt rendre public toute cette tuyauterie interne pour permettre au compilateurs de les exploiter au mieux{nbsp}?
+Les compilateurs disposent de tout le code à exécuter, et devraient pouvoir faire de meilleurs optimisations, et peuvent investir plus de temps pour leur compilation.
+L'autre avantage est que cela pourrait permettre de simplifier les processeurs et donc de réduire leur coût et leur consommation électrique.
+
+En fait cela a été tenté dans les années 2000 par HP et Intel, sous le nom d'link:https://en.wikipedia.org/wiki/Itanium[Itanium]
+Leur lancement a été optimiste{nbsp}: on allait voir ce qu'on allait voir.
+Dès que les compilateurs pouvant tirer profit de toutes ces nouvelles possibilités seraient sortis, les performances seraient stupéfiantes, notamment pour tout ce qui touchait à la parallélisation.
+
+Intellectuellement l'idée était séduisante.
 
 Le problème est que ces compilateurs n'ont jamais vu le jour.
 
-En effet écrire des compilateurs raisonnablement efficaces pour des processeurs classiques est déjà un défi d'ingénierie.
-Mêmes les compilateurs modernes sont loins de couvrir toutes optimisations possibles, en ciblant les plus utilisées.
+En effet, écrire des compilateurs raisonnablement efficaces pour des processeurs classiques est déjà un défi d'ingénierie.
+Mêmes les compilateurs modernes les plus avancés sont loins de couvrir toutes optimisations possibles, en ciblant les plus utilisées.
 
-Écrire des compilateurs Itanium compétitif s'est révélé hors de portée{nbsp}: l'API était trop complexe et analyser le code d'entrée d'une manière suffisamment fine pour générer du code optimal trop difficile.
+Écrire des compilateurs tirant parti des possibilités d'Itanium s'est révélé hors de portée{nbsp}: l'API était trop complexe et analyser le code d'entrée d'une manière suffisamment fine pour générer du code optimal trop difficile, en tout cas dans les quelques années où Itanium paraissait une solution raisonnable.
 
-Surtout qu'en même temps, les compilateurs et les processeurs standards continuaient à progresser de leur côté.
+Car pendant ce temps, les processeurs classiques continuaient à progresser, ajoutant de nouvelles optimisations, et creusant encore l'écart. Et au bout d'un moment les clients se sont lassés d'attendre et l'aventure s'est arrêtée.
+
+Si le sujet vous intéresse, je vous recommande link:https://devblogs.microsoft.com/oldnewthing/20150727-00/?p=90821[la série d'article de Raymond Chen] sur ce sujet.
 
 == Rust et le borrow checker
 
-Le borrow checker est un retour de l'explicite ou du semi-explicite{nbsp}: les informations qu'il fournit permet d'aider le compilateur à générer du code efficace. Même s'il aide aussi à éviter les erreurs de threading.
+Passer d'Itanium à Rust peut sembler un peu acrobatique mais vous allez comprendre.
 
-Intéressant car on arrête de traiter le CPU comme une CPU C.
+Les compilateurs Itanium avait pour objectif de générer du code qui notamment explicitait les dépendances entres variables pour indiquer ce qu'il était possible de paralléliser, ou d'exécuter en avance.
+
+Et malheureusement générer ce type d'information lorsque le code d'entrée est du C est très difficile, par exemple avec la gestion des pointeurs qu'il permet, pour creuser le sujet vous pouvez par exemple vous renseigner sur l'link:https://en.wikipedia.org/wiki/Pointer_aliasing[aliasing].
+En effet les machines qui existaient lorsque le C a été inventé n'avaient pas besoin de ces informations, car elles étaient beaucoup plus simples, par exemple elles n'étaient pas capable de parallélisme.
+Des mots clés comme link:https://en.wikipedia.org/wiki/Restrict[restrict] ont été ajoutées pour pouvoir aider les compilateurs, mais on est loin d'atteindre la granularité donc sont capables les processeurs modernes.
+
+Pour pouvoir tirer partie d'un Itanium, un compilateur doit donc déduire des informations qui ne sont pas dans le code source d'origine, comme c'est le cas pour les moteurs JavaScript.
+
+À l'inverse, le langage Rust est pensé pour le parallélisme.
+Sa conception force à être explicite dans le code sur les accès aux données.
+La conséquence souvent mise en avant est que cela évite les bugs lorsque plusieurs thread accèdent aux même données et créent des incohérence.
+L'autre conséquence, que vous avec peut-être déjà déduite, c'est qu'elle rend beaucoup plus facile de générer du code efficace pour un processeur moderne en partant de code Rust qu'en partant d'un code C équivalent.footnote:[Pour être tout à fait précis Rust utilise le compilateur link:https://fr.wikipedia.org/wiki/LLVM[LLVM] qui est aussi et surtout un compilateur C et {cpp} et je ne sais pas si pour le moment il intègre des optimisations spécifique à Rust.]
+
+Cela correspond donc à un retour vers des optimisations explicites.
+
+Même avec un processeurs non-Itanium, le code généré peut s'exécuter plus efficacement car le compilateur du processeur peut produire du code plus efficace depuis du code machine issu du Rust que depuis du code machine provenant de C.
+
+Je ne sais pas une autre architecture comme Itanium verra à nouveau le jour, mais si c'est le cas, le développement de langage comme Rust pourrait permettre que la marche soit moins haute.
 
 == Conclusion
 
+J'espère que ce long article vous aura donné envie d'en apprendre plus sur un au moins des sujets dont il parle, sans trop vous rendre anxieux sur le fonctionnement de votre ordinateur ou de votre smartphone.
 
+Le fonctionnement des ordinateurs modernes est d'une complexité insondable, mais ma conviction est qu'en savoir un peu sur leur fonctionnement général contribue à concevoir de meilleur systèmes.
