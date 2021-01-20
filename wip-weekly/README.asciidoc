@@ -86,3 +86,34 @@ That's when I realized something about everybody involved in all of these argume
 
 They've never built a bridge.
 ____
+
+== link:https://latacora.singles/2019/07/16/the-pgp-problem.html[The PGP Problem]
+
+[quote]
+____
+If you're stranded in the woods and, I don't know, need to repair your jean cuffs, it's handy if your utility knife has a pair of scissors. But nobody who does serious work uses their multitool scissors regularly.
+
+A Swiss Army knife does a bunch of things, all of them poorly. PGP does a mediocre job of signing things, a relatively poor job of encrypting them with passwords, and a pretty bad job of encrypting them with public keys. PGP is not an especially good way to securely transfer a file. It's a clunky way to sign packages. It's not great at protecting backups. It's a downright dangerous way to converse in secure messages.
+
+Back in the MC Hammer era from which PGP originates, "`encryption`" was its own special thing; there was one tool to send a file, or to back up a directory, and another tool to encrypt and sign a file. Modern cryptography doesn't work like this; it's purpose built. Secure messaging wants crypto that is different from secure backups or package signing.
+____
+
+[quote]
+____
+PGP supports ElGamal. PGP supports RSA. PGP supports the NIST P-Curves. PGP supports Brainpool. PGP supports Curve25519. PGP supports SHA-1. PGP supports SHA-2. PGP supports RIPEMD160. PGP supports IDEA. PGP supports 3DES. PGP supports CAST5. PGP supports AES. There is no way this is a complete list of what PGP supports.
+
+If we've learned 3 important things about cryptography design in the last 20 years, at least 2 of them are that negotiation and compatibility are evil. The flaws in cryptosystems tend to appear in the joinery, not the lumber, and expansive crypto compatibility increases the amount of joinery. Modern protocols like TLS 1.3 are jettisoning backwards compatibility with things like RSA, not adding it. New systems support _just a single suite of primitives_, and a simple version number. If one of those primitives fails, you bump the version and chuck the old protocol all at once.
+
+If we're unlucky, and people are still using PGP 20 years from now, PGP will be the only reason any code anywhere includes CAST5. We can't say this more clearly or often enough: you can have backwards compatibility with the 1990s or you can have sound cryptography; you can't have both.
+____
+
+[quote]
+____
+One of the rhetorical challenges of persuading people to stop using PGP is that there's no one thing you can replace it with, _nor should there be_. What you should use instead depends on what you're doing.
+____
+
+[quote]
+____
+Encrypting email is asking for a calamity. Recommending email encryption to at-risk users is malpractice. Anyone who tells you it's secure to communicate over PGP-encrypted email is putting their weird preferences ahead of your safety.
+____
+
