@@ -9,7 +9,7 @@ Je vais expliquer ici quelques éléments sur le fonctionnement des optimisation
 
 == Le C
 
-Dans plusieurs langages de programmation donc le C, existe une construction `switch` avec une syntaxe qui ressemble à{nbsp}:
+Dans plusieurs langages de programmation dont le C, existe une construction `switch` avec une syntaxe qui ressemble à{nbsp}:
 
 [source, c]
 ----
@@ -90,7 +90,7 @@ Dans ce cas il n'est pas possible d'utiliser les mêmes astuces d'implémentatio
 
 De la même manière qu'avec un compilateur C non optimisé, une telle implémentation peut surprendre certains personnes, par exemple celles qui ont développé en C qui s'attendent à ce que les constructions `switch` dans les autres langages aient les mêmes caractéristiques de performance.
 
-Dans ce cas une propriété de certains compilateurs C, qui peut être à torde généralisée comme une caractéristique du C, est étendue à d'autres langages de programmation, alors même que leur modèle peut être très éloigné du C{nbsp}: cela a créé une attente implicite.
+Dans ce cas une propriété de certains compilateurs C, qui peut être à tort généralisée comme une caractéristique du C, est étendue à d'autres langages de programmation, alors même que leur modèle peut être très éloigné du C{nbsp}: cela a créé une attente implicite.
 
 == L'optimisation sans le `switch`
 
@@ -139,7 +139,7 @@ JavaScript ne fournit pas de moyen de déclarer les types des variables.
 
 Les moteurs JavaScript avancés comme ceux des navigateurs vont donc analyser le code qu'on leur demande d'exécuter pour tenter de déterminer le plus d'information de type, afin de spécialiser le plus possible le code exécuté.
 
-Les personnes qui développent ces moteurs JavaScript vont étudier le code des sites les plus visités, pour identifier des optimisations ce type et d'autres types qu'il est possible d'ajouter dans les versions suivantes des navigateurs.
+Les personnes qui développent ces moteurs JavaScript vont étudier le code des sites les plus visités, pour identifier des optimisations de ce type et d'autres types qu'il est possible d'ajouter dans les versions suivantes des navigateurs.
 
 Ces optimisations, à part les plus générales, sont parfois peu documentées en dehors du code qui les implémente.
 
@@ -157,10 +157,10 @@ En interne, les processeurs peuvent ainsi disposer de plus de registres que ceux
 
 Lorsque ce qui se passe sous le capot ne fonctionne pas aussi bien que prévu, cela peut par exemple donner lieu à des bugs ou à link:https://fr.wikipedia.org/wiki/Meltdown_(vulnérabilité)[des failles de sécurité].
 
-Avec le temps leur fonctionnement interne de ces processeurs est de plus en plus éloigné du modèle de processeur déterministe qu'on présente souvent lorsqu'on apprend le C, alors que leur API externe est restée plus stable.
+Avec le temps le fonctionnement interne de ces processeurs est de plus en plus éloigné du modèle de processeur déterministe qu'on présente souvent lorsqu'on apprend le C, alors que leur API externe est restée plus stable.
 D'une certaine manière, écrire en C correspond à écrire du code avec pour cible un ordinateur qui correspond à l'état de l'art de l'époque où le C a été inventé, et les processeurs modernes font un peut semblant de continuer à fonctionner de cette manière.
 
-Cela signifie que les performances de ces processeurs sont de plus en plus difficile à prévoir avec un certain niveau de précision.
+Cela signifie que les performances de ces processeurs sont de plus en plus difficiles à prévoir avec un certain niveau de précision.
 De la même manière qu'avec un compilateur C, on peut facilement avoir une idée générale de la performance à attendre dans le cas par défaut, qui correspond à la situation non optimisée, mais plus se penche sur des cas précis moins les choses sont claires.
 
 === Itanium{nbsp}: l'échec de l'explicite
@@ -201,9 +201,9 @@ Des mots clés comme link:https://en.wikipedia.org/wiki/Restrict[restrict] ont �
 Pour pouvoir tirer partie d'un Itanium, un compilateur doit donc déduire des informations qui ne sont pas dans le code source d'origine, comme c'est le cas pour les moteurs JavaScript pour le typage.
 
 À l'inverse, le langage Rust est pensé pour le parallélisme.
-Dans le code Rust, la gestion d'accès au donnée doit être indiquée explicitement.
+Dans le code Rust, la gestion d'accès aux données doit être indiquée explicitement.
 La conséquence souvent mise en avant est que cela évite les bugs lorsque plusieurs threads accèdent à la même donnée et créent des incohérences.
-L'autre conséquence, que vous avec peut-être déjà déduite, c'est qu'elle rend plus facile de générer du code efficace pour un processeur moderne en partant de code Rust, par exemple en comparant avec du code C équivalent.footnote:[Pour être tout à fait précis Rust utilise le compilateur link:https://fr.wikipedia.org/wiki/LLVM[LLVM] qui est aussi et surtout un compilateur C et {cpp} et je ne sais pas si pour le moment il intègre des optimisations spécifique à Rust.]
+L'autre conséquence, que vous avez peut-être déjà déduite, c'est qu'elle rend plus facile de générer du code efficace pour un processeur moderne en partant de code Rust, par exemple en comparant avec du code C équivalent.footnote:[Pour être tout à fait précis Rust utilise le compilateur link:https://fr.wikipedia.org/wiki/LLVM[LLVM] qui est aussi et surtout un compilateur C et {cpp} et je ne sais pas si pour le moment il intègre des optimisations spécifique à Rust.]
 
 Cela correspond donc à un retour vers des optimisations explicites où le lien entre le code écrit et sa performance est moins indirect.
 
