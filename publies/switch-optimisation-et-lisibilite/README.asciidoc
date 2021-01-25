@@ -43,11 +43,11 @@ Avec un compilateur simple, le code compilé donne quelque chose comme{nbsp}:
 [source]
 ----
 charge valeur dans un registre
-si valeur du registre vaut 0, sauter au début du bloc de code 0
-si valeur du registre vaut 1, sauter au début du bloc de code 1
-si valeur du registre vaut 2, sauter au début du bloc de code 2
-si valeur du registre vaut 3, sauter au début du bloc de code 3
-si valeur du registre vaut 4, sauter au début du bloc de code 4
+si valeur vaut 0, sauter au début du bloc de code 0
+si valeur vaut 1, sauter au début du bloc de code 1
+si valeur vaut 2, sauter au début du bloc de code 2
+si valeur vaut 3, sauter au début du bloc de code 3
+si valeur vaut 4, sauter au début du bloc de code 4
 début du bloc de code par défaut
 ----
 
@@ -58,8 +58,8 @@ cela signifie que chaque `case` utilise une seule instruction, et qu'un seul reg
 [source]
 ----
 charge valeur dans un registre
-si la valeur du registre est entre 0 et 4, 
-    aller au code placé à l'index correspond à la valeur.
+si la valeur est entre 0 et 4, 
+    aller au code placé à l'index correspond à la valeur
 index du début du code 0 // quand valeur vaut 0
 index du début du code 1 // quand valeur vaut 1
 index du début du code 2 // quand valeur vaut 2
