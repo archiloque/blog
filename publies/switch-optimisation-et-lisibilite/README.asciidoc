@@ -58,7 +58,8 @@ cela signifie que chaque `case` utilise une seule instruction, et qu'un seul reg
 [source]
 ----
 charge valeur dans un registre
-si la valeur du registre est entre 0 et 4, aller au code placé à l'index correspond à la valeur.
+si la valeur du registre est entre 0 et 4, 
+    aller au code placé à l'index correspond à la valeur.
 index du début du code 0 // quand valeur vaut 0
 index du début du code 1 // quand valeur vaut 1
 index du début du code 2 // quand valeur vaut 2
