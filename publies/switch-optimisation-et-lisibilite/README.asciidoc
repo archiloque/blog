@@ -118,7 +118,7 @@ if (valeur == 0) {
 
 Un compilateur pourrait détecter que ce code est équivalent à un `switch`, et donc utiliser les mêmes optimisations pour les deux cas.
 
-Une autre approche pourrait être de commencer par transformer les `switch` en une série de `if` / `else if`, et lors de la phase d'optimisation toutes les constructions qui sont équivalents à des `switchs` pourraient être optimisés de la même manières, qu'elles soient originellement des `switch` ou pas.
+Une autre approche pourrait être de commencer par transformer les `switch` en une série de `if` / `else if`, et lors de la phase d'optimisation toutes les constructions qui sont équivalentes à des `switchs` pourraient être optimisées de la même manière, qu'elles soient originellement des `switch` ou pas.
 Cela permettrait de rendre plus performantes d'autres portions de code en partageant les optimisations.
 
 Cette solution pourrait même s'appliquer à des langages ne fournissant pas de construction `switch` comme Lua, si on juge que cela en vaut la peine.
@@ -168,7 +168,7 @@ De la même manière qu'avec un compilateur C, on peut facilement avoir une idé
 L'idée d'avoir un deuxième niveau de compilation à l'intérieur des processeurs peut sembler très étrange{nbsp}: le processeur ne travaille à chaque fois que sur une petite partie du code, et ne dispose que d'un temps très limité pour faire ses optimisations.
 
 Pourquoi ne pas plutôt rendre public toute cette tuyauterie interne (ou au moins une partie significative d'entre elle) pour permettre aux compilateurs de l'exploiter au mieux{nbsp}?
-En effet les compilateurs disposent de tout le code à exécuter et devraient donc pouvoir faire de meilleurs optimisations, et peuvent investir plus de temps pour déterminer les optimisations à apporter.
+En effet les compilateurs disposent de tout le code à exécuter et devraient donc pouvoir faire de meilleures optimisations, et peuvent investir plus de temps pour déterminer les optimisations à apporter.
 Cela pourrait aussi permettre de simplifier ces parties des processeurs.
 
 En fait cela a été tenté dans les années 2000 par HP et Intel, sous le nom d'link:https://en.wikipedia.org/wiki/Itanium[Itanium]
