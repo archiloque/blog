@@ -51,7 +51,7 @@ si valeur vaut 4, sauter au début du bloc de code 4
 début du bloc de code par défaut
 ----
 
-cela signifie que chaque `case` utilise une seule instruction, et qu'un seul registrefootnote:[un peu l'équivalent de variable locales dans le processeur, mais qui sont en nombre limité] est utilisé.
+cela signifie que chaque `case` utilise deux seul instructions (la comparaison et et le saut conditionnel), et qu'un seul registrefootnote:[un peu l'équivalent de variable locales dans le processeur, mais qui sont en nombre limité] est utilisé.
 
 À condition que les cas des différents `case` soient suffisamment rapprochés (par exemple s'ils se suivent) un compilateur avancé pourra générer du code qui ressemble à{nbsp}:
 
@@ -151,17 +151,17 @@ C'est la même chose pour les processeurs d'ordinateurs.
 
 Les processeurs vont retransformer à la volée le code qu'on leur fournit pour pouvoir gagner quelques points de performance.
 Il s'agit en quelque sorte d'une nouvelle phase de compilation qui a lieu à l'intérieur des processeurs.
-Le langage machine qu'on fournit aux processeur n'est donc en réalité pas exécuté directement mais il est retransformé et il correspond donc à une API.
+Le langage machine qu'on fournit aux processeurs n'est donc en réalité pas exécuté directement mais il est retransformé et il correspond donc à une API.
 
 En interne, les processeurs peuvent ainsi disposer de plus de registres que ceux qui sont exposés, ou d'instructions supplémentaires. La phase de compilation peut aussi réordonner le code fournit, si cela n'entraîne (en principe) pas de conséquences observables et que cela lui permet d'éviter des étapes intermédiaires dans un traitement ou d'avoir des choses à faire en attendant qu'une donnée soit chargée depuis la mémoire.
 
 Lorsque ce qui se passe sous le capot ne fonctionne pas aussi bien que prévu, cela peut par exemple donner lieu à des bugs ou à link:https://fr.wikipedia.org/wiki/Meltdown_(vulnérabilité)[des failles de sécurité].
 
 Avec le temps le fonctionnement interne de ces processeurs est de plus en plus éloigné du modèle de processeur déterministe qu'on présente souvent lorsqu'on apprend le C, alors que leur API externe est restée plus stable.
-D'une certaine manière, écrire en C correspond à écrire du code avec pour cible un ordinateur qui correspond à l'état de l'art de l'époque où le C a été inventé, et les processeurs modernes font un peut semblant de continuer à fonctionner de cette manière.
+D'une certaine manière, écrire en C correspond à écrire du code avec pour cible un ordinateur qui correspond à l'état de l'art de l'époque où le C a été inventé, et les processeurs modernes font un peu semblant de continuer à fonctionner de cette manière.
 
 Cela signifie que les performances de ces processeurs sont de plus en plus difficiles à prévoir avec un certain niveau de précision.
-De la même manière qu'avec un compilateur C, on peut facilement avoir une idée générale de la performance à attendre dans le cas par défaut, qui correspond à la situation non optimisée, mais plus se penche sur des cas précis moins les choses sont claires.
+De la même manière qu'avec un compilateur C, on peut facilement avoir une idée générale de la performance à attendre dans le cas par défaut, qui correspond à la situation non optimisée, mais plus on se penche sur des cas précis moins les choses sont claires.
 
 === Itanium{nbsp}: l'échec de l'explicite
 
@@ -196,7 +196,7 @@ Les compilateurs Itanium avait pour objectif de générer du code qui notamment 
 
 Et malheureusement générer ce type d'information lorsque le code d'entrée est du C est très difficile, par exemple avec la gestion des pointeurs qu'il permet, pour creuser le sujet vous pouvez par exemple vous renseigner sur l'link:https://en.wikipedia.org/wiki/Pointer_aliasing[aliasing].
 En effet les machines qui existaient lorsque le C a été inventé n'avaient pas besoin de ces informations, car elles étaient beaucoup plus simples, par exemple elles n'étaient pas capable de parallélisme.
-Des mots clés comme link:https://en.wikipedia.org/wiki/Restrict[restrict] ont été ajoutées pour pouvoir aider les compilateurs, mais on est loin d'atteindre la granularité donc sont capables les processeurs modernes.
+Des mots-clés comme link:https://en.wikipedia.org/wiki/Restrict[restrict] ont été ajoutés pour pouvoir aider les compilateurs, mais on est loin d'atteindre la granularité donc sont capables les processeurs modernes.
 
 Pour pouvoir tirer partie d'un Itanium, un compilateur doit donc déduire des informations qui ne sont pas dans le code source d'origine, comme c'est le cas pour les moteurs JavaScript pour le typage.
 
