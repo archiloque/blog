@@ -3,3 +3,16 @@ Julien Kirch
 v1.0, 2021-01-01
 :article_lang: en
 :figure-caption!:
+
+== link:https://www.cybertec-postgresql.com/en/postgres-scaling-advice-for-2021/[Postgres scaling advice for 2021]
+
+[quote]
+____
+Try to avoid the serious mistake of having your data “architecture” centered around a single huge table
+
+You’d be surprised how often we see that… so slice and dice early, or set up some partitioning. Partitioning will also do a lot of good to the long-term health of the database, since it allows multiple autovacuum workers on the same logical table, and it can speed up IO considerably on enterprise storage. If IO indeed becomes a bottleneck at some point, you can employ Postgres native remote partitions, so that some older data lives on another node.
+
+Make sure to "`bake in`" a proper sharding key for your tables/databases
+
+Initially, the data can just reside on a single physical node. If your data model revolves around the "`millions of independent clients`" concept for example, then it might even be best to start with many "`sharded`" databases with identical schemas, so that transferring out the shards to separate hardware nodes will be a piece of cake in the future.
+____
