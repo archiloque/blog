@@ -16,3 +16,9 @@ Make sure to "`bake in`" a proper sharding key for your tables/databases
 
 Initially, the data can just reside on a single physical node. If your data model revolves around the "`millions of independent clients`" concept for example, then it might even be best to start with many "`sharded`" databases with identical schemas, so that transferring out the shards to separate hardware nodes will be a piece of cake in the future.
 ____
+
+== link:https://queue.acm.org/detail.cfm?ref=rss&id=3447806[Best Practice: Application Frameworks]
+
+[quote]
+Another challenge is that adding more hops between microservices may add latency to the overall request. In some cases, this latency can be mitigated by architectural improvements that happen as part of a microservices rewrite. For its microservices platform, Google has also ensured that requests between services that happen to be co-located in the same server use an optimized in-process transport.
+[quote]
