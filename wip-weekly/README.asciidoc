@@ -20,5 +20,38 @@ ____
 == link:https://queue.acm.org/detail.cfm?ref=rss&id=3447806[Best Practice: Application Frameworks]
 
 [quote]
+____
 Another challenge is that adding more hops between microservices may add latency to the overall request. In some cases, this latency can be mitigated by architectural improvements that happen as part of a microservices rewrite. For its microservices platform, Google has also ensured that requests between services that happen to be co-located in the same server use an optimized in-process transport.
+____
+
+== link:https://hakibenita.com/postgresql-unused-index-size[The Unexpected Find That Freed 20GB of Unused Index Space]
+
 [quote]
+____
+While we were looking at the sizes of the indexes after we finished rebuilding them, an interesting thing caught our eye.
+
+One of our largest tables stores transaction data. In our system, after a payment is made, the user can choose to cancel and get a refund. This is not happening very often, and only a fraction of the transactions end up being cancelled.
+
+In our transactions table, there are foreign keys to both the purchasing user and the cancelling user, and each field has a B-Tree index defined on it. The purchasing user has a NOT NULL constraint on it so all the rows hold a value. The cancelling user on the other hand, is nullable, and only a fraction of the rows hold any data. Most of the values in the cancelling user field are NULL.
+
+We expected the index on the cancelling user to be significantly smaller than the index on the purchasing user, but they were exactly the same. Coming from Oracle, I was always taught that link:v[NULLs are not indexed], but in PostgreSQL they are! This "`Aha`" moment led us to the realization that _we were indexing a lot of unnecessary values for no reason_.
+
+This was the original index we had for the cancelling user:
+
+[source,SQL]
+----
+CREATE INDEX transaction_cancelled_by_ix ON transactions(cancelled_by_user_id);
+----
+
+To check our thesis, we replaced the index with a partial index that excludes null values:
+
+[source,SQL]
+----
+DROP INDEX transaction_cancelled_by_ix;
+
+CREATE INDEX transaction_cancelled_by_part_ix ON transactions(cancelled_by_user_id)
+WHERE cancelled_by_user_id IS NOT NULL;
+----
+
+The full index after we reindexed it was 769MB in size, with more than 99% null values. The partial index that excluded null values was less than 5MB. That's more than 99% percent of dead weight shaved off the index!
+____
