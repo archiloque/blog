@@ -1,0 +1,2 @@
+asciidoctor -b docbook README.asciidoc                                                      
+pandoc -f docbook -o README.pdf README.xml --pdf-engine=xelatex -V mainfont="SF Pro Text" -V geometry:margin=3cm  -V geometry=a4paper -V linestretch=1.2
