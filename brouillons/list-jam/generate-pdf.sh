@@ -1,2 +1,2 @@
 asciidoctor -b docbook README.asciidoc                                                      
-pandoc -f docbook -o README.pdf README.xml --pdf-engine=xelatex -V mainfont="SF Pro Text" -V geometry:margin=3cm  -V geometry=a4paper -V linestretch=1.2
+pandoc -f docbook -o README.pdf README.xml --pdf-engine=xelatex -V mainfont="Futura" -V geometry:margin=3cm  -V geometry=a4paper -V linestretch=1.2 -V metadata=lang:"en-US" --template eisvogel --listings -V titlepage=true -V titlepage-color="4575d2" -V titlepage-text-color="FFFFFF" -V titlepage-rule-height=0 -V disable-header-and-footer=true
