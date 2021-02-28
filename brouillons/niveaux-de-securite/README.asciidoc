@@ -1,0 +1,64 @@
+= Sécurité : se protéger contre les accidents ou contre un acte délibéré
+Julien Kirch
+v0.1, 2021-02-28
+:article_lang: fr
+
+Quand on parle de sécurité ou d'isolation en informatique, pour mieux se comprendre je pense qu'il serait utile de distinguer deux choses.
+
+- Lorsqu'on veut se protéger contre les accidents
+- Lorsqu'on veut se protéger contre un acte délibéré
+
+Prenons le cas des méthodes privées en programmation.
+
+En Ruby, il est facile d'appeler une méthode privée d'une classe.
+
+Si une classe `Chat` implémente une méthode `miaule()`, il est impossible de faire `chat.miaule`.
+Il faut utiliser la syntaxe `chat.send(:miaule)`.
+
+L'idée est de ne pas bloquer la possibilité de faire ce type d'appel quand il est nécessaire, mais de faire en sorte qu'il soit délibéré, pour éviter les accidents.
+
+L'approche de Python, qui est de définir les méthodes privées uniquement par une convention de nommagefootnote:[le nom d'une méthode privée méthode privée doit commencer par deux tirets bas] est encore plus libérale.
+
+En Java, au contraire, l'appel d'une méthode privée passe par le fait link:https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/AccessibleObject.html#setAccessible-boolean-[de rendre cette méthode accessible]. La spécification indique que cette opération peut être refusée pour des raisons de sécurité.
+
+Dans ce cas, il est donc possible et même relativement facile d'interdire l'accès à tel ou tel méthode privée, voire à l'ensemble des méthodes privées.
+Cela signifie qu'en Java, il est possible de se protéger contre certains appels de méthodesfootnote:[bien entendu il est toujours possible que des bugs existent dans l'implémentation de cette fonctionnalité et permettent de la contourner, mais cela ne remet pas en cause son objectif].
+
+Ruby choisit donc de se protéger uniquement des accidents, et Java choisit de permettre de se protéger même contre une action délibérée.
+
+Lorsqu'on développe en Ruby (et qu'on vient par exemple du monde Java), on pourrait préférer que Ruby fonctionne comme Java de ce point de vue, ou on pourrait penser que l'implémentation des méthodes privées en Ruby est incomplète.
+Mais cela est faux{nbsp}: l'objectif des méthodes privées en Ruby est différent de celles de Java.
+
+Le même genre de chose existe dans les systèmes d'exploitations.
+
+Par exemple dans le noyau Linux, différents mécanismes permettent de limiter la consommation de ressources, et notamment les _control groups_.
+
+L'idée est de pouvoir choisir la manière dont les ressources sont distribuées, et d'éviter qu'un processus, ou un ensemble de processus, ne consomme trop de mémoire, ou de temps CPU.
+
+Dans la vie du noyau Linux, ces mécanismes débutent généralement leur vie comme un outil "`du premier type`", c'est-à-dire qu'ils visent à empêcher une application de consommer accidentellement toutes les resources d'une machine, que ça soit à cause d'un bug ou d'une utilisation mal contrôlée comme un traitement trop lourd par rapport aux capacité de la machine.
+
+Éviter qu'une application mal paramétrée ne puisse rendre une machine inaccessible peut se révéler très utile, mais il ne faut pas le confondre avec le fait de se protéger contre une application malveillante.
+
+Quand une fonctionnalité du premier type est mise en place est qu'elle est utile, il peut être légitime de se rendre compte qu'on aimerait l'équivalent mais de second type, mais il faut faire attention à deux choses :
+
+- à ne pas penser qu'il est facile de transformer l'une en l'autre
+- de confondre les deux.
+
+Le premier cas peut ainsi être très difficile quand le système n'a pas été conçu pour ça.
+Typiquement dans le noyau Linux, qui n'a pas été conçu pour une isolation forte entre processus, l'implémentation du second type peut être assez difficile.
+Par exemple la volonté d'avoir un système performant, et donc de parfois partager des ressources entre processus et utilisateurs suppose que l'ensemble du système joue le jeu et va à l'encontre de la capacité à se protéger d'un acteur malveillant.
+
+C'est le cas notamment des accès disques où il reste facile, même accidentellement, de saturer les accès à un disque dur et donc de gêner considérablement les autres applications.
+
+Le deuxième arrive fréquemment dans les discussions autour des conteneurs Linux.
+Les _control groups_, et les conteneurs Linux qui en sont une utilisation sont souvent un exemple du second cas.
+En effet ils _control groups_ ont été conçus pour réguler les systèmes où les processus ne sont pas malveillants, c'est-à-dire où ils ne cherchent pas volontairement à s'accaparer plus de ressources que ce qu'on juge bon de leur donner.
+Ce n'est pas la même chose que de se protéger contre un système malveillant.
+
+Cela ne signifie pas qu'il ne soit pas souhaitable de pouvoir traiter ce cas, ni n'est pas possible d'étendre ces systèmes pour essayer de le le prendre en compte (ce qui est d'ailleurs le cas).
+
+Seulement qu'il s'agit de deux besoins différents, et que confondre les deux amène à de la confusion.
+
+La prochaine fois que vous prenez connaissance d'une capacité d'isolation dans un système, posez-vous la question{nbsp}: de quel type s'agit-il{nbsp}?
+
+Cela pourrait vous permettre de gagner du temps et d'éviter des erreurs.
