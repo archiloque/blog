@@ -24,7 +24,7 @@ L'approche de Python, qui est de définir les méthodes privées uniquement par 
 En Java, au contraire, l'appel d'une méthode privée passe par le fait link:https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/AccessibleObject.html#setAccessible-boolean-[de rendre cette méthode accessible]. La spécification indique que cette opération peut être refusée pour des raisons de sécurité.
 
 Dans ce cas, il est donc possible et même relativement facile d'interdire l'accès à tel ou tel méthode privée, voire à l'ensemble des méthodes privées.
-Je ne connais pas l'écosystème Android donc je ne sais pas si cette fonctionnalité y est utilisée, mais côté serveur elle l'était, par exemple pour permettre à des hébergeurs de partager un même serveur d'application entre plusieurs client·e·s quand cette approche avait du sens.
+Je ne connais pas l'écosystème Android et je ne sais donc pas si cette fonctionnalité y est utilisée, mais côté serveur elle l'était, par exemple pour permettre à des hébergeurs de partager un même serveur d'application entre plusieurs client·e·s quand cette approche avait du sens.
 
 Ruby choisit donc de se protéger uniquement des accidents, et Java choisit de permettre de se protéger même contre une action délibérée.
 
