@@ -33,16 +33,16 @@ Mais cela est faux{nbsp}: l'objectif des variables d'instances privées en Ruby 
 
 Le même genre de chose existe dans les systèmes d'exploitations, par exemple dans le noyau Linux.
 
-La volonté d'avoir des systèmes performants mène au fait de vouloir partager des ressources, par exemple les nombreux caches dont les caches de fichiers ou link:https://lwn.net/Articles/814535/[le cache de fichiers qui n'existent pas].
+La volonté d'avoir des systèmes performants mène au fait de vouloir partager des ressources, par exemple les nombreux caches dont par exemple les contenus des derniers fichiers lus.
 
-Ces caches ne sont pas isolés par processus ou par utilisateur·rice·s car cela diminuerait leur efficacité en limitant le partage tout en augmentant leur coût de gestion.
+Ces caches ne sont pas tous isolés par processus ou par utilisateur·rice·s car cela diminuerait leur efficacité en limitant le partage tout en augmentant leur coût de gestion.
 
 Cela signifie que quand on veut limiter la consommation mémoire d'un processus, on peut limiter la mémoire prise par le code du processus et ses traitements, mais pas la mémoire qu'il occupe dans le cache de fichier via les mécanismes du système d'exploitation.
 
 Même si elle est incomplète, en pratique ce fonctionnement suffit quand il s'agit d'éviter qu'un programme ne sature une machine en consommant toute sa mémoire par accident, par exemple suite à un bug ou à un traitement trop lourd.
 À nouveau ici, le système est conçu et est bien adapté pour se protéger des accidents. 
 
-Mais à l'inverse, un processus pourrait tout à fait accaparer ces ressources (par exemple en ouvrant et fermant rapidement de nombreux fichiers) au point de ralentir considérablement les autres processus de la machine sans que qu'il ne dépasse les quotas qui lui sont alloués.
+Mais à l'inverse, un processus pourrait tout à fait accaparer ces ressources (par exemple lisant rapidement le contenu de nombreux fichiers) au point de ralentir considérablement les autres processus de la machine sans que qu'il ne dépasse les quotas qui lui sont alloués.
 
 La solution actuelle si on veut éviter ce risque est de passer par de la virtualisation, ce qui comme dit plus haut fera perdre les bénéfices qu'on peut tirer du partage de ressources.
 
