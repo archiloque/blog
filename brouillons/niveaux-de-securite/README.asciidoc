@@ -14,8 +14,8 @@ Prenons le cas des méthodes privées en programmation.
 
 En Ruby, il est facile d'appeler une méthode privée d'une classe.
 
-Si une classe `Chat` implémente une méthode `miaule()`, il est impossible de faire `chat.miaule`.
-Il faut utiliser la syntaxe `chat.send(:miaule)`.
+Si une classe `Chat` implémente une méthode `miaule()`, il est impossible de faire `🐈.miaule`.
+Il faut utiliser la syntaxe `🐈.send(:miaule)`.
 
 L'idée est de ne pas bloquer la possibilité de faire ce type d'appel quand il est nécessaire, mais de faire en sorte qu'il soit délibéré, pour éviter les accidents.
 
