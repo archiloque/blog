@@ -10,44 +10,44 @@ Quand on parle de sécurité ou d'isolation en informatique, pour mieux se compr
 - Lorsqu'on veut se protéger contre les accidents
 - Lorsqu'on veut se protéger contre un acte délibéré
 
-Prenons le cas des méthodes privées en programmation.
+Prenons le cas des variables d'instances privées en programmation.
 
-En Ruby, il est facile d'appeler une méthode privée d'une classe.
+En Ruby, les variables d'instances sont tous privés, mais il est tout de même facile d'y accéder en lecture et en écriture.
 
-Si une classe `Chat` implémente une méthode `miaule()`, il est impossible de faire `🐈.miaule`.
-Il faut utiliser la syntaxe `🐈.send(:miaule)`.
+Si une classe `Chat` a une variable d'instance `poids`, `chat.instance_variable_get(:poids)` permet d'y accéder, et `chat.instance_variable_set(:poids, 5)` de la modifier.
 
 L'idée est de ne pas bloquer la possibilité de faire ce type d'appel quand il est nécessaire, mais de faire en sorte qu'il soit délibéré, pour éviter les accidents.
 
-L'approche de Python, qui est de définir les méthodes privées uniquement par une convention de nommagefootnote:[le nom d'une méthode privée méthode privée doit commencer par deux tirets bas] est encore plus libérale.
+L'approche de Python, qui est de définir les variables d'instances privées uniquement par une convention de nommagefootnote:[le nom d'une variable d'instance privée doit commencer par deux tirets bas] est encore plus libérale.
 
-En Java, au contraire, l'appel d'une méthode privée passe par le fait link:https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/AccessibleObject.html#setAccessible-boolean-[de rendre cette méthode accessible]. La spécification indique que cette opération peut être refusée pour des raisons de sécurité.
+En Java, au contraire, l'accès à une variable d'instance privée passe par le fait link:https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/AccessibleObject.html#setAccessible-boolean-[de la rendre accessible]. La spécification indique que cette opération peut être refusée pour des raisons de sécurité.
 
-Dans ce cas, il est donc possible et même relativement facile d'interdire l'accès à tel ou tel méthode privée, voire à l'ensemble des méthodes privées.
-Je ne connais pas l'écosystème Android et je ne sais donc pas si cette fonctionnalité y est utilisée, mais côté serveur elle l'était, par exemple pour permettre à des hébergeurs de partager un même serveur d'application entre plusieurs client·e·s quand cette approche avait du sens.
+Dans ce cas, il est donc possible et même relativement facile d'interdire l'accès à tel ou tel variable d'instance, voire à l'ensemble des variables d'instances.
+
+Je ne connais pas l'écosystème Android et je ne sais donc pas si cette fonctionnalité y est utilisée, mais côté serveur elle l'était pour que les applications de client·e·s ne puissent pas accéder ou modifier des données du serveur.
 
 Ruby choisit donc de se protéger uniquement des accidents, et Java choisit de permettre de se protéger même contre une action délibérée.
 
-Lorsqu'on développe en Ruby (et qu'on vient par exemple du monde Java), on pourrait préférer que Ruby fonctionne comme Java de ce point de vue, ou on pourrait penser que l'implémentation des méthodes privées en Ruby est incomplète.
-Mais cela est faux{nbsp}: l'objectif des méthodes privées en Ruby est différent de celles de Java.
+Lorsqu'on développe en Ruby (et qu'on vient par exemple du monde Java), on pourrait préférer que Ruby fonctionne comme Java de ce point de vue, ou on pourrait penser que l'implémentation des variables d'instances privées en Ruby est incomplète.
+Mais cela est faux{nbsp}: l'objectif des variables d'instances privées en Ruby est différent de celles de Java.
 
 Le même genre de chose existe dans les systèmes d'exploitations, par exemple dans le noyau Linux.
 
-La volonté d'avoir des systèmes performants mène au fait de vouloir partager les ressources et de procéder à des optimisation globales, par exemple les nombreux caches dont les caches de fichiers ou link:https://lwn.net/Articles/814535/[le cache de fichiers qui n'existent pas].
+La volonté d'avoir des systèmes performants mène au fait de vouloir partager des ressources, par exemple les nombreux caches dont les caches de fichiers ou link:https://lwn.net/Articles/814535/[le cache de fichiers qui n'existent pas].
 
 Ces caches ne sont pas isolés par processus ou par utilisateur·rice·s car cela diminuerait leur efficacité en limitant le partage tout en augmentant leur coût de gestion.
 
 Cela signifie que quand on veut limiter la consommation mémoire d'un processus, on peut limiter la mémoire prise par le code du processus et ses traitements, mais pas la mémoire qu'il occupe dans le cache de fichier via les mécanismes du système d'exploitation.
 
-Même si elle est incomplète, en pratique ce fonctionnement convient bien quand il s'agit d'éviter qu'un programme ne sature une machine en consommant toute sa mémoire par accident, par exemple suite à un bug ou à un traitement trop lourd.
-À nouveau ici, le système est conçu pour se protéger des accidents. 
+Même si elle est incomplète, en pratique ce fonctionnement suffit quand il s'agit d'éviter qu'un programme ne sature une machine en consommant toute sa mémoire par accident, par exemple suite à un bug ou à un traitement trop lourd.
+À nouveau ici, le système est conçu et est bien adapté pour se protéger des accidents. 
 
-Mais à l'inverse, un processus pourrait tout à fait accaparer ces ressources (par exemple en multipliant les recherches de fichiers, ou en ouvrant et fermant de nombreux fichiers) au point de ralentir considérablement les autres processus de la machine sans que cela n'apparaisse directement.
+Mais à l'inverse, un processus pourrait tout à fait accaparer ces ressources (par exemple en ouvrant et fermant rapidement de nombreux fichiers) au point de ralentir considérablement les autres processus de la machine sans que qu'il ne dépasse les quotas qui lui sont alloués.
 
-Cela ne veut pas dire qu'il n'est pas possible de faire évoluer le fonctionnement du système pour prendre ces cas en compte, mais il ne faut pas mélanger les deux cas.
+La solution actuelle si on veut éviter ce risque est de passer par de la virtualisation, ce qui comme dit plus haut fera perdre les bénéfices qu'on peut tirer du partage de ressources.
 
-Pour un système Linux, augmenter le niveau d'isolation pour se protéger pourra ainsi passer par de la virtualisation, ce qui comme dit plus haut fera perdre les bénéfices qu'on peut tirer du partage de ressources.
+Cela ne veut pas dire qu'il ne serait pas possible de faire évoluer le fonctionnement du système pour prendre ces cas en compte, mais que le système actuel n'est pas fait pour ça.
 
-La prochaine fois que vous prenez connaissance d'une capacité d'isolation dans un système, posez-vous la question{nbsp}: de quel type s'agit-il{nbsp}?
+Donc la prochaine fois que vous prenez connaissance d'une capacité d'isolation dans un système, posez-vous la question{nbsp}: de quel type s'agit-il{nbsp}?
 
-Cela pourrait vous permettre de gagner du temps et d'éviter des erreurs.
+Cela pourrait vous éviter des erreurs de compréhension et vous permettre de gagner du temps.
