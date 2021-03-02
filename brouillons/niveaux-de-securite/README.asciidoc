@@ -40,6 +40,7 @@ Ces caches ne sont pas isolés par processus ou par utilisateur·rice·s car cel
 Cela signifie que quand on veut limiter la consommation mémoire d'un processus, on peut limiter la mémoire prise par le code du processus et ses traitements, mais pas la mémoire qu'il occupe dans le cache de fichier via les mécanismes du système d'exploitation.
 
 Même si elle est incomplète, en pratique ce fonctionnement convient bien quand il s'agit d'éviter qu'un programme ne sature une machine en consommant toute sa mémoire par accident, par exemple suite à un bug ou à un traitement trop lourd.
+À nouveau ici, le système est conçu pour se protéger des accidents. 
 
 Mais à l'inverse, un processus pourrait tout à fait accaparer ces ressources (par exemple en multipliant les recherches de fichiers, ou en ouvrant et fermant de nombreux fichiers) au point de ralentir considérablement les autres processus de la machine sans que cela n'apparaisse directement.
 
