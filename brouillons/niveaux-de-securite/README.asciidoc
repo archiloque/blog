@@ -31,17 +31,19 @@ Ruby choisit donc de se protéger uniquement des accidents, et Java choisit de p
 Lorsqu'on développe en Ruby (et qu'on vient par exemple du monde Java), on pourrait préférer que Ruby fonctionne comme Java de ce point de vue, ou on pourrait penser que l'implémentation des méthodes privées en Ruby est incomplète.
 Mais cela est faux{nbsp}: l'objectif des méthodes privées en Ruby est différent de celles de Java.
 
-Le même genre de chose existe dans les systèmes d'exploitations.
+Le même genre de chose existe dans les systèmes d'exploitations, par exemple dans le noyau Linux.
 
 La volonté d'avoir des systèmes performants mène au fait de vouloir partager les ressources et de procéder à des optimisation globales, par exemple les nombreux caches dont les caches de fichiers ou link:https://lwn.net/Articles/814535/[le cache de fichiers qui n'existent pas].
 
-Ces caches ne sont pas isolés par processus ou par utilisateur·rice·s car cela diminuerait l'efficacité du cache en limitant le partage tout en augmentant son coût de gestion.
+Ces caches ne sont pas isolés par processus ou par utilisateur·rice·s car cela diminuerait leur efficacité en limitant le partage tout en augmentant leur coût de gestion.
 
-Cela signifie que quand on veut mesurer ou limiter la consommation mémoire d'un processus, ces éléments ne sont pas pris en compte.
+Cela signifie que quand on veut limiter la consommation mémoire d'un processus, on peut limiter la mémoire prise par le code du processus et ses traitements, mais pas la mémoire qu'il occupe dans le cache de fichier via les mécanismes du système d'exploitation.
 
-Ainsi un processus pourrait privilégier l'utilisation de certains types de ressources qui ne sont pas comptabilisée pour rester sous la limite, ou même priver les autres de ressources en se les accaparant.
+Même si elle est incomplète, en pratique ce fonctionnement convient bien quand il s'agit d'éviter qu'un programme ne sature une machine en consommant toute sa mémoire par accident, par exemple suite à un bug ou à un traitement trop lourd.
 
-Cela ne veut pas dire qu'il n'est pas possible de faire évoluer le fonctionnement du système pour prendre ces cas en compte si le problème devient suffisamment important, mais il ne faut pas mélanger les deux cas.
+Mais à l'inverse, un processus pourrait tout à fait accaparer ces ressources (par exemple en multipliant les recherches de fichiers, ou en ouvrant et fermant de nombreux fichiers) au point de ralentir considérablement les autres processus de la machine sans que cela n'apparaisse directement.
+
+Cela ne veut pas dire qu'il n'est pas possible de faire évoluer le fonctionnement du système pour prendre ces cas en compte, mais il ne faut pas mélanger les deux cas.
 
 Pour un système Linux, augmenter le niveau d'isolation pour se protéger pourra ainsi passer par de la virtualisation, ce qui comme dit plus haut fera perdre les bénéfices qu'on peut tirer du partage de ressources.
 
