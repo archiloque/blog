@@ -39,18 +39,20 @@ We expected the index on the cancelling user to be significantly smaller than th
 
 This was the original index we had for the cancelling user:
 
-[source,SQL]
+[source,sql]
 ----
-CREATE INDEX transaction_cancelled_by_ix ON transactions(cancelled_by_user_id);
+CREATE INDEX transaction_cancelled_by_ix
+ON transactions(cancelled_by_user_id);
 ----
 
 To check our thesis, we replaced the index with a partial index that excludes null values:
 
-[source,SQL]
+[source,sql]
 ----
 DROP INDEX transaction_cancelled_by_ix;
 
-CREATE INDEX transaction_cancelled_by_part_ix ON transactions(cancelled_by_user_id)
+CREATE INDEX transaction_cancelled_by_part_ix
+ON transactions(cancelled_by_user_id)
 WHERE cancelled_by_user_id IS NOT NULL;
 ----
 
