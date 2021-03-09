@@ -3,6 +3,10 @@ Julien Kirch
 v0.1, 2021-03-09
 :article_lang: fr
 
+Par rapport à link:/duckconf-2020/[l'an dernier] j'ai été agréablement surpris{nbsp}: des speakeuses et des talks à la finition plus aboutie qui m'ont fait bien meilleure impression.
+
+Mon regret numéro un a été les talks et les slides uniquement au masculin, l'inconvénient de travailler dans une link:https://www.enercoop.fr[structure où l'écriture inclusive est la norme] est qu'on s'y habitue.
+
 == Jour 1 : Architectures & architectes
 
 === Le rôle de l'architect(ur)e dans un contexte agile / Thomas Brien
@@ -24,13 +28,14 @@ Il s'agit d'une présentation des fonctions de Master Data Management, c'est-à-
 
 Ces outils sont des composants spécifiques en charge de gérer la qualité des données, et qui servent de point d'accès aux données.
 
-J'ai trouvé intéressant l'injonction à s'appuyer sur les cibles (par exemple sur la qualité) et les besoins métier pour travailler les données.
+J'ai trouvé intéressant l'injonction à s'appuyer sur les cibles (par exemple sur la qualité) et les besoins métier pour travailler les données plutôt que d'essayer par exemple de viser une qualité parfaite.
 
 Quand j'ai travaillé à Octo, les produits de MDMs "`sur l'étagère`" étaient sévèrement jugés par rapport à des développement custom car ils était considérés comme lourds à gérer et pas à la hauteur de leurs promesses.
 J'aurais bien aimé savoir sur quoi s'appuie ce changement de discours.
 
 L'autre question que je me pose c'est le positionnement de ces solutions vis-à-vis de l'approche microservices qui pousse à ce que chaque application soit maître de ses données.
-Cela correspond aux critiques de l'approche "`puit de données`" dont link:https://blog.octo.com/superbe-maison-darchitecte-avec-vue-sur-le-lac-compte-rendu-du-talk-de-thomas-vial-a-la-duck-conf-2018/[Thomas Vial avait parlé dans le cas du DataLake].
+
+Ma vision est que les MDM peuvent avoir les mêmes problèmes que les "`puit de données`" dont link:https://blog.octo.com/superbe-maison-darchitecte-avec-vue-sur-le-lac-compte-rendu-du-talk-de-thomas-vial-a-la-duck-conf-2018/[Thomas Vial avait parlé dans le cas du DataLake], donc je serais intéressé de savoir pourquoi ça n'est pas le cas.
 
 Au final j'ai trouvé la partie sur les besoins intéressante mais je n'ai pas été convaincu par le fait d'utiliser une solution.
 
@@ -41,48 +46,46 @@ Le talk commence par un historique des patterns d'intégrations dans les SI{nbsp
 L'orchestration a atteint ses limites dans les grand systèmes car l'application cheffe d'orchestre a tendance à concentrer beaucoup de logique, ce qui ne monte pas à l'échelle.
 
 À l'inverse, le modèle décentralisé de chorégraphie peut être compliqué à gérer, par exemple pour la gestion de versions.
-C'est d'autant plus compliqué que les API exposées sont unitaires et techniques, car alors les consommateurs ont besoin d'implémenter plus de métier, ce qui augmente le couplage.
 
-Même avec des outils de monitoring on ne s'en sort pas.
+C'est d'autant plus compliqué que les API exposées sont unitaires et techniques (de type ressource par exemple), car alors les consommateurs ont besoin d'implémenter plus de métier de leur côté, ce qui augmente le couplage.
 
-L'approche qui se dégage est d'avoir un modèle de chorégraphie mais avec des application qui exposent des fonctions plus riches, qui permettent une chorégraphie.
+Même avec du monitoring de bout en bout de bonne qualité on ne s'en sort pas.
+
+L'approche qui se dégage est d'avoir un modèle de chorégraphie mais avec des application qui exposent des fonctionnalités plus riches.
+La synchronization s'en trouve alors simplifiée et le couplage diminué.
 
 === DevOps & Dataviz, un amour impossible ? / Jérôme Lambert & Mohamed Nidhal Safta
 
 L'idée du talk est de présenter comment mettre en place trois pratiques DevOps dans un projet de Dataviz{nbsp}: la gestion de version, les tests automatisés, et l'automatisation des déploiement.
 
-La difficulté est que sur le projet en question, la Dataviz est réalisée par un outil tout intégré et qui ne fournit pas ces fonctionnalités de manière native.
+La difficulté est que sur le projet en question, la Dataviz est réalisée par un outil tout intégrée en SAAS et qui ne fournit pas ces fonctionnalités de manière native.
 La solution est d'utiliser des outils périphériques, et s'appuyer sur l'API de l'outil de Dataviz pour les piloter.
 
 Le résultat n'est pas parfait (par exemple ce sont des fichier binaires qui sont versionnés), mais semble acceptable.
 
-Il m'a rappelé ce qu'on faisait il y a quelques années quand il s'agissait de faire la même chose avec des outils d'ESB, avant link:https://blog.octo.com/middlewares-et-autres-outils-ce-quil-faut-verifier-avant-dacheter/[que ces fonctionnalités fassent partie intégrantes de ces outils].
+Il m'a rappelé ce qu'on faisait il y a quelques années quand il s'agissait de faire la même chose avec des outils d'ESB, avant link:https://blog.octo.com/middlewares-et-autres-outils-ce-quil-faut-verifier-avant-dacheter/[que ces fonctionnalités ne fassent partie intégrantes de ces outils].
 
-En passant, j'ai été amusé d'entendre que les tests automatisés et la gestion de version sont une invention du DevOps, et qu'à ce titre ils sont récents et cela excuse que les outils de Dataviz ne les permettent pas.
+En passant, j'ai été amusé d'entendre que les tests automatisés et la gestion de version sont une invention du DevOps, ah les jeunes.
 
 === Je suis architecte et je me soigne / Borémi Toch & Laurent Sollier
 
-Problème de la place de l'architecte dans les organisations modernes alors qu'elles sont très centrée sur les équipes projets.
+Ce talk parle de la place de l'architecte dans les organisations modernes, alors qu'elles sont très centrées sur les équipes projets et laissent donc moins de place aux rôles transverses comme ceux des architectes.
 
-https://blog.octo.com/avec-le-cloud-et-lagile-il-ny-a-plus-besoin-darchitectes/
+(Pub{nbsp}: link:https://blog.octo.com/avec-le-cloud-et-lagile-il-ny-a-plus-besoin-darchitectes/[j'avais déjà un peu parlé de ce sujet ici]).
 
-Du coup il faut trouver les postures qui permettent d'apporter des choses d'une manière qui soit compatible.
+Il font donc trouver qu'est ce que les architecte peuvent apporter dans ce type de structure, et quelles sont les postures à adopter pour y parvenir :
 
-* Vigie : 
-** faire de la veille
-** transmettre l'info
-** identifier les risques
-* Ambassadeur
-** Il faut se focaliser sur les frontières : entre équipes et entre entreprises
-** Faciliter les échanges entre équipes
-** Vulgariser
-* Coach du système
-** Coach du SI et pas des équipes
-** Évolutive
-** Transmettre l'humilité
+- l'architecte vigie qui fait de la veille et identifie les risques
+- l'architecte ambassadeur·rice qui traite les questions de frontières entre systèmes informatique et équipes, et qui sait vulgariser
+- l'architecte coach·e du SI qui travaille à ce qu'il évolue dans le bon sens
+
+Le portrait m'a paru assez parlant, même si je suis un peu plus optimiste que les speakers sur la capicité d'un·e un architecte à pousser des solutions, même quand les équipes n'en veulent pas forcément (du moins s'il·elle a l'appui de sa hiérarchie).
 
 === Table ronde{nbsp}: l'architecte SI au temps de l'hyperspécialisation
 
+Je n'ai pas beaucoup pris de note (et j'ai contribué à faire dérailler l'échange en posant une question sur le cloud).
+
+L'idée qui se dégageait est que les architectes doivent accepter de ne plus être spécialistes de tout, et se concentrer sur des compétences en largeur (donc être un généraliste).
 
 == Jour 2 : Architecture & cloud
 
