@@ -1,0 +1,82 @@
+= Compte rendu de la DuckConf 2021
+Julien Kirch
+v0.1, 2021-03-09
+:article_lang: fr
+
+== Jour 1 : Architectures & architectes
+
+=== Le rôle de l'architect(ur)e dans un contexte agile / Thomas Brien
+
+Le talk présente deux exemple de fonctionnement de l'architecture dans des contextes d'agile à l'échelle : un fonctionnement avec le modèle team topologies, et un fonctionnement avec le modèle SAFe 5.
+
+Dans les deux cas les architectes sont placés dans une équipe transverse, avec le périmètre qui correspond à celui d'une cellule d'architecture classique (donner de la cohérence, faire des cadrages, porter de l'expertise…).
+
+Les pratiques se rapprochent de celles qui évitent le pattern de la tour d'ivoire, par exemple de rester au plus proche des projets ou d'essayer de ne pas être dans une posture trop confrontante.
+
+J'ai repéré deux éléments spécifiques à l'agile{nbsp}:
+
+- Le fait que les décisions d'architecture doivent s'inscrire dans les itérations des équipes métier.
+- La capacité à avoir des retours rapidement sur les propositions d'architecture, ce qui permet d'affiner les choses graduellement, mais attention à ne pas changer de cap trop souvent car les projets ont une capacité à s'adapter de manière limitée.
+
+=== Passons au niveau supérieur dans la qualité des données référentielles / Ekaterina Simonenko & Selima Masmoudi
+
+Il s'agit d'une présentation des fonctions de Master Data Management, c'est-à-dire de gestion des données de référence dans un SI, et des outils qui existent sur ce créneau.
+
+Ces outils sont des composants spécifiques en charge de gérer la qualité des données, et qui servent de point d'accès aux données.
+
+J'ai trouvé intéressant l'injonction à s'appuyer sur les cibles (par exemple sur la qualité) et les besoins métier pour travailler les données.
+
+Quand j'ai travaillé à Octo, les produits de MDMs "`sur l'étagère`" étaient sévèrement jugés par rapport à des développement custom car ils était considérés comme lourds à gérer et pas à la hauteur de leurs promesses.
+J'aurais bien aimé savoir sur quoi s'appuie ce changement de discours.
+
+L'autre question que je me pose c'est le positionnement de ces solutions vis-à-vis de l'approche microservices qui pousse à ce que chaque application soit maître de ses données.
+Cela correspond aux critiques de l'approche "`puit de données`" dont link:https://blog.octo.com/superbe-maison-darchitecte-avec-vue-sur-le-lac-compte-rendu-du-talk-de-thomas-vial-a-la-duck-conf-2018/[Thomas Vial avait parlé dans le cas du DataLake].
+
+Au final j'ai trouvé la partie sur les besoins intéressante mais je n'ai pas été convaincu par le fait d'utiliser une solution.
+
+=== Qui maîtrise mieux le chaos de votre SI{nbsp}: Mozart ou Béjart ? / Safa Mabrouk
+
+Le talk commence par un historique des patterns d'intégrations dans les SI{nbsp}: partant d'une brique unique, on a souvent commencé par découper le système en plusieurs éléments qu'on va vouloir "`orchestrer`" (c'est-à-dire en utilisant une application unique pour organiser les échanges entre toutes les autres) pour ensuite basculer vers de la "`chorégraphie`" (où les applications se coordonnent entre elles).
+
+L'orchestration a atteint ses limites dans les grand systèmes car l'application cheffe d'orchestre a tendance à concentrer beaucoup de logique, ce qui ne monte pas à l'échelle.
+
+À l'inverse, le modèle décentralisé de chorégraphie peut être compliqué à gérer, par exemple pour la gestion de versions.
+C'est d'autant plus compliqué que les API exposées sont unitaires et techniques, car alors les consommateurs ont besoin d'implémenter plus de métier, ce qui augmente le couplage.
+
+Même avec des outils de monitoring on ne s'en sort pas.
+
+L'approche qui se dégage est d'avoir un modèle de chorégraphie mais avec des application qui exposent des fonctions plus riches, qui permettent une chorégraphie.
+
+=== DevOps & Dataviz, un amour impossible ? / Jérôme Lambert & Mohamed Nidhal Safta
+
+L'idée du talk est de présenter comment mettre en place trois pratiques DevOps dans un projet de Dataviz{nbsp}: la gestion de version, les tests automatisés, et l'automatisation des déploiement.
+
+La difficulté est que sur le projet en question, la Dataviz est réalisée par un outil tout intégré et qui ne fournit pas ces fonctionnalités de manière native.
+La solution est d'utiliser des outils périphériques, et s'appuyer sur l'API de l'outil de Dataviz pour les piloter.
+
+Le résultat n'est pas parfait (par exemple ce sont des fichier binaires qui sont versionnés), mais semble acceptable.
+
+Il m'a rappelé ce qu'on faisait il y a quelques années quand il s'agissait de faire la même chose avec des outils d'ESB, avant link:https://blog.octo.com/middlewares-et-autres-outils-ce-quil-faut-verifier-avant-dacheter/[que ces fonctionnalités fassent partie intégrantes de ces outils].
+
+En passant, j'ai été amusé d'entendre que les tests automatisés et la gestion de version sont une invention du DevOps, et qu'à ce titre ils sont récents et cela excuse que les outils de Dataviz ne les permettent pas.
+
+=== Je suis architecte et je me soigne / Borémi Toch & Laurent Sollier
+
+Problème de la place de l'architecte dans les organisations modernes alors qu'elles sont très centrée sur les équipes.
+
+* Vigie : 
+** faire de la veille
+** transmettre l'info
+** identifier les risques
+* Ambassadeur
+** Il faut se focaliser sur les frontières : entre équipes et entre entreprises
+** Faciliter les échanges entre équipes
+** Vulgariser
+* Coach du système
+** Coach du SI et pas des équipes
+** Évolutive
+** Transmettre l'humilité
+
+== Jour 2 : Architecture & cloud
+
+== Jour 3 : Architecture & changement
