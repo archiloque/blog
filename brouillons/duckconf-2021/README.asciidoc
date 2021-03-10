@@ -9,7 +9,7 @@ Le fait d'assister à une conférence en visio et avec des présentations pré-e
 
 Mon regret numéro un a été les talks et les slides uniquement au masculin, l'inconvénient de travailler dans une link:https://www.enercoop.fr[structure où l'écriture inclusive est la norme] est qu'on s'y habitue.
 
-== Jour 1 : Architectures & architectes
+== Jour 1{nbsp}: Architectures & architectes
 
 === Le rôle de l'architect(ur)e dans un contexte agile / Thomas Brien
 
@@ -89,7 +89,7 @@ Je n'ai pas beaucoup pris de note sur cette table ronde (et j'ai contribué à f
 
 L'idée qui se dégageait est que les architectes doivent accepter de ne plus être spécialistes de tout, et se concentrer sur le fait d'être des généralises et d'être capable de faire le lien entre toutes les personnes.
 
-== Jour 2 : Architecture & cloud
+== Jour 2{nbsp}: Architecture & cloud
 
 Note{nbsp}: contrairement au titre, les présentations du jour n'avaient pas toutes un rapport évident avec le cloud.
 
@@ -117,28 +117,29 @@ Le détail est très largement inspiré de deux longs articles de Zhamak Dehghan
 
 === Architecture émergente dans l'intelligence artificielle / Emmanuel-Lin Toulemonde
 
-Fait un schéma d'architecture globale puis l'ont découpé.
+Après la présentation d'hier sur "`on peut faire de l'agile avec de la DataViz`", voici un exemple de "`on peut faire de l'agile avec de l'IA`"{nbsp}: après s'être lancé au départ dans un plan d'architecture à l'ancienne nécessitant d'avoir une plateforme complète dès le départ, l'équipe a opté pour une approche itérative et à pu ainsi délivrer rapidement de la valeur après une lutte qui a semblé acharné avec l'équipe d'architecture centrale.
 
-Ont commencé par des transfert de données manuels et sans CI.
-
-Lutte qui semble dure face à l'architecture.
+20 ans après le manifeste agile et même si ça fait toujours plaisir, l'impression de déjà vu devant ce type de talk commence à devenir lassant.
 
 === Tour d'horizon des algorithmes de consensus en 2021 / Ameyric Benthencourt & Franck Hillard
 
+Il s'agit d'algorithmes de blockchain.
+Même si j'aime bien les sujets d'architecture distribué, mon manque d'intérêt pour la blockchain fait que je n'ai rien suivi.
+
 === CQRS à notre secours / Florent Jaby
 
-Un déroulé d'une mise en place d'un process CQRS.
+Cette présentation décrit la mise en place d'une architecture link:https://www.martinfowler.com/bliki/CQRS.html[CQRS].
+
+J'ai particulièrement apprécié l'approche légère, sans le bus Kafka et le reste de l'outillage qui souvent présenté comme l'architecture-type CQRS.
 
 === Table ronde{nbsp}: les coûts dans le Cloud
 
-Couteux : se réapproprier les plateformes et les aspects humains
+Les offres clouds des gros fournisseurs (Amazon, Microsoft et Google) sont devenues extrêmement fournies.
 
-Gros impacts des applis pas conçues hors du cloud
+Même si on peut payer à la demande, il est tout de même souhaitable de pouvoir anticiper le budget dont on va avoir besoin, et d'essayer de maîtriser ses dépenses.
 
-Le cloud simplifie certaines choses mais la multiplicité des choix 
+J'ai l'impression que cette ce sujet et donc l'expertise dans ce domaine se retrouve souvent dans le périmètre de l'équipe plateforme, toujours dans l'idée que cette équipe a un air de famille avec les architectes à l'ancienne.
 
-Gestion de la finance par l'équipe en charge de la plateforme
+La capacité à pouvoir mesurer le coût d'hébergement application par application, et à pouvoir donc faire prendre des décisions au plus juste (est ce qu'une application coûte plus qu'elle ne rapporte ?) est intéressant, même si je me méfie un peu des effets pervers que peut entraîner la capacité à faire des arbitrages trop fin dans ce domaine.
 
-J'étais un peu étonné de l'idée que les fournisseurs de Cloud fait payer en fonction du coût et pas en fonction de la valeur du client
-
-== Jour 3 : Architecture & changement
+== Jour 3{nbsp}: Architecture & changement
