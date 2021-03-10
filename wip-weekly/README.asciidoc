@@ -4,6 +4,8 @@ v1.0, 2021-01-01
 :article_lang: en
 :figure-caption!:
 
+== link:https://martinfowler.com/articles/data-mesh-principles.html[Data Mesh Principles and Logical Architecture]
+
 [quote]
 Analytical data plane itself has diverged into two main architectures and technology stacks: link:https://martinfowler.com/bliki/DataLake.html[_data lake_ and _data warehouse_]; with data lake supporting data science access patterns, and data warehouse supporting analytical and business intelligence reporting access patterns. For this conversation, I put aside the dance between the two technology stacks: data warehouse attempting to link:https://cloud.google.com/bigquery-ml/docs[onboard data science workflows] and data lake attempting to link:https://databricks.com/blog/2020/01/30/what-is-a-data-lakehouse.html[serve data analysts and business intelligence]. The original writeup on data mesh explores the link:https://martinfowler.com/articles/data-monolith-to-mesh.html#ArchitecturalFailureModes[challenges of the existing analytical data plane architecture].
 

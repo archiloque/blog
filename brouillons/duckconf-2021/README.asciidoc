@@ -5,6 +5,8 @@ v0.1, 2021-03-09
 
 Par rapport à link:/duckconf-2020/[l'an dernier] j'ai été agréablement surpris{nbsp}: des speakeuses et des talks à la finition plus aboutie qui m'ont fait bien meilleure impression.
 
+Le fait d'assister à une conférence en visio et avec des présentations pré-enregistrées est un peu bizarre, on y gagne en confort mais la perte de spontanéité coupe un peu le lien.
+
 Mon regret numéro un a été les talks et les slides uniquement au masculin, l'inconvénient de travailler dans une link:https://www.enercoop.fr[structure où l'écriture inclusive est la norme] est qu'on s'y habitue.
 
 == Jour 1 : Architectures & architectes
@@ -54,7 +56,7 @@ Même avec du monitoring de bout en bout de bonne qualité on ne s'en sort pas.
 L'approche qui se dégage est d'avoir un modèle de chorégraphie mais avec des application qui exposent des fonctionnalités plus riches.
 La synchronization s'en trouve alors simplifiée et le couplage diminué.
 
-=== DevOps & Dataviz, un amour impossible ? / Jérôme Lambert & Mohamed Nidhal Safta
+=== DevOps & Dataviz, un amour impossible{nbsp}? / Jérôme Lambert & Mohamed Nidhal Safta
 
 L'idée du talk est de présenter comment mettre en place trois pratiques DevOps dans un projet de Dataviz{nbsp}: la gestion de version, les tests automatisés, et l'automatisation des déploiement.
 
@@ -71,7 +73,7 @@ En passant, j'ai été amusé d'entendre que les tests automatisés et la gestio
 
 Ce talk parle de la place de l'architecte dans les organisations modernes, alors qu'elles sont très centrées sur les équipes projets et laissent donc moins de place aux rôles transverses comme ceux des architectes.
 
-(Pub{nbsp}: link:https://blog.octo.com/avec-le-cloud-et-lagile-il-ny-a-plus-besoin-darchitectes/[j'avais déjà un peu parlé de ce sujet ici]).
+(Autopromo{nbsp}: link:https://blog.octo.com/avec-le-cloud-et-lagile-il-ny-a-plus-besoin-darchitectes/[j'avais déjà un peu parlé de ce sujet ici]).
 
 Il font donc trouver qu'est ce que les architecte peuvent apporter dans ce type de structure, et quelles sont les postures à adopter pour y parvenir :
 
@@ -83,10 +85,60 @@ Le portrait m'a paru assez parlant, même si je suis un peu plus optimiste que l
 
 === Table ronde{nbsp}: l'architecte SI au temps de l'hyperspécialisation
 
-Je n'ai pas beaucoup pris de note (et j'ai contribué à faire dérailler l'échange en posant une question sur le cloud).
+Je n'ai pas beaucoup pris de note sur cette table ronde (et j'ai contribué à faire dérailler l'échange en posant une question sur le cloud).
 
-L'idée qui se dégageait est que les architectes doivent accepter de ne plus être spécialistes de tout, et se concentrer sur des compétences en largeur (donc être un généraliste).
+L'idée qui se dégageait est que les architectes doivent accepter de ne plus être spécialistes de tout, et se concentrer sur le fait d'être des généralises et d'être capable de faire le lien entre toutes les personnes.
 
 == Jour 2 : Architecture & cloud
+
+Note{nbsp}: contrairement au titre, les présentations du jour n'avaient pas toutes un rapport évident avec le cloud.
+
+=== Une équipe plateforme qui délivre{nbsp}! / François-Xavier Vende
+
+Cette présentation décrit la construction d'un système d'information en partant de rien, l'infrastructure ayant été construite en même temps que les projets.
+
+La plateforme est prise en charge par une équipe dédiée spécialisée, avec des relais identifiés dans les différentes équipes projets.
+
+Par rapport aux échanges de la veille sur la nécessité pour les architectes SI de se réinventer et à ne plus jouer les démiurges entre eux, j'ai parfois l'impression que les Ops des équipes plateforme ont repris une partie de leurs anciennes attributions.
+
+J'ai trouvé intéressant l'accent mis sur le temps que prends l'industrialisation, dans une organisation où la plateforme technique avance en même temps que les projets, cela signifie parfois accepter de faire du manuel et de la dette technique Ops pour ne pas bloquer les projets.
+
+=== Pour être "`data-centric`", faut-il centraliser{nbsp}? / Julien Assémat & Renaud Andrieux
+
+Cette présentation couvre les très grandes organisations avec de multiples entités où une plateforme de donnée unique ne suffit plus{nbsp}: trop de types de données, qui n'ont pas toujours vocation à être partagées par tout le monde, trop de besoins différents, trop de plans projets et de budgets à synchroniser.
+
+La solution ressemble à celle appliquée côté SI classique{nbsp}: avoir une équipe transverse qui définit des cadres, et qui se concentre sur les questions d'interopérabilité.
+
+Dans les très grosses organisations il y a des difficultés
+
+Même approche que pour l'architecture vis à vis de projet, où une équipe transverse construit une plateforme et un cadre pour des équipes projets qui sont dans les différentes entités.
+
+Le détail est très largement inspiré de deux longs articles de Zhamak Dehghani publiés sur le blog de Martin Fowler{nbsp}: link:https://martinfowler.com/articles/data-monolith-to-mesh.html[How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh] et link:https://martinfowler.com/articles/data-mesh-principles.html[Data Mesh Principles and Logical Architecture].
+
+=== Architecture émergente dans l'intelligence artificielle / Emmanuel-Lin Toulemonde
+
+Fait un schéma d'architecture globale puis l'ont découpé.
+
+Ont commencé par des transfert de données manuels et sans CI.
+
+Lutte qui semble dure face à l'architecture.
+
+=== Tour d'horizon des algorithmes de consensus en 2021 / Ameyric Benthencourt & Franck Hillard
+
+=== CQRS à notre secours / Florent Jaby
+
+Un déroulé d'une mise en place d'un process CQRS.
+
+=== Table ronde{nbsp}: les coûts dans le Cloud
+
+Couteux : se réapproprier les plateformes et les aspects humains
+
+Gros impacts des applis pas conçues hors du cloud
+
+Le cloud simplifie certaines choses mais la multiplicité des choix 
+
+Gestion de la finance par l'équipe en charge de la plateforme
+
+J'étais un peu étonné de l'idée que les fournisseurs de Cloud fait payer en fonction du coût et pas en fonction de la valeur du client
 
 == Jour 3 : Architecture & changement
