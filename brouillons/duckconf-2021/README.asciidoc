@@ -7,7 +7,7 @@ Par rapport à link:/duckconf-2020/[l'an dernier] j'ai été agréablement surpr
 
 Le fait d'assister à une conférence en visio et avec des présentations pré-enregistrées est un peu bizarre, on y gagne en confort mais la perte de spontanéité coupe un peu le lien.
 
-Mon regret numéro un a été les talks et les slides uniquement au masculin, l'inconvénient de travailler dans une link:https://www.enercoop.fr[structure où l'écriture inclusive est la norme] est qu'on s'y habitue.
+Mon regret numéro un a été les talks et les slides uniquement au masculin, l'inconvénient de travailler dans une link:https://www.enercoop.fr[structure où le language inclusif est la norme] est qu'on s'y habitue.
 
 == Jour 1{nbsp}: Architectures & architectes
 
@@ -140,6 +140,52 @@ Même si on peut payer à la demande, il est tout de même souhaitable de pouvoi
 
 J'ai l'impression que cette ce sujet et donc l'expertise dans ce domaine se retrouve souvent dans le périmètre de l'équipe plateforme, toujours dans l'idée que cette équipe a un air de famille avec les architectes à l'ancienne.
 
-La capacité à pouvoir mesurer le coût d'hébergement application par application, et à pouvoir donc faire prendre des décisions au plus juste (est ce qu'une application coûte plus qu'elle ne rapporte ?) est intéressant, même si je me méfie un peu des effets pervers que peut entraîner la capacité à faire des arbitrages trop fin dans ce domaine.
+La capacité à pouvoir mesurer le coût d'hébergement application par application, et à pouvoir donc faire prendre des décisions au plus juste (est ce qu'une application coûte plus qu'elle ne rapporte{nbsp}?) est intéressant, même si je me méfie un peu des effets pervers que peut entraîner la capacité à faire des arbitrages trop fin dans ce domaine.
 
 == Jour 3{nbsp}: Architecture & changement
+
+=== REX Bilan Carbone d'une ESN / Alexis Nicolas
+
+=== Être rattrapé par la dette technique, est-ce une fatalité{nbsp}? / Mickael Wegerich
+
+Ce talk présente une vision de la dette technique, des raisons qui font qu'elle apparaît et des solutions pour en sortir.
+
+J'ai plutôt été agacé par le talk.
+
+Le point de départ c'est que la dette technique est la conséquence de choix fait consciemment pour tenir l'engagement pris sur le périmètre des sprints de développement.
+
+Dans mon expérience une partie significative
+
+Une description
+
+Dette technique : choix de manière consciente, qui sont fait pour tenir le périmètre d'une itération, car on prend un engagement.
+Même SCRUM ne parle pas 
+
+Une partie des problèmes et les solutions correspondent aux discours de l'architecture hexagonale.
+
+Mon expérience sur le sujet c'est que je ne suis pas convaincu que les niveaux d'indirections qu'elle pousse à ajouter valent la peine.
+
+De plus, comme cette complexité fait partie du modèle, elle est difficile à discuter, car on a tendance à penser --pour reprendre leur classification-- qu'elle fait partie de la complexité "`essentielle`" du logiciel.
+
+Les personnes qui ont fait du JEE 
+
+Il faut corriger 
+
+=== Les Fake News du Low-Code / Sylvain Fagnent & Alain Fauré
+
+Low-code vs No-code
+
+Progiciels qui montent en maturité
+
+Par contre le fait de caricaturer les opposants du Low Code en Donal Trump m'a mis physiquement mal à l'aise.
+Je pense qu'on peut critiquer des technologies, même en se trompant ou en étant de mauvaise foi, sans être assimilé à une personne raciste et misogyne qui menace de mort ses opposant·e·s.
+
+=== Réussir une "Conway Inversée" / Romain Vailleux
+
+Moins de contexte et des équipes réduites orienté par rapport aux produit IT qu'on veut produire
+
+https://teamtopologies.com
+
+=== CovidTracker : la data au service de tous{nbsp}! / Guillaume Rozier
+
+=== Table ronde{nbsp}: tour d'horizon des impacts architecturaux de la COVID
