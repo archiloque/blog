@@ -85,7 +85,7 @@ Le portrait m'a paru assez parlant, même si je suis un peu plus optimiste que l
 
 === Table ronde{nbsp}: l'architecte SI au temps de l'hyperspécialisation
 
-Je n'ai pas beaucoup pris de note sur cette table ronde (et j'ai contribué à faire dérailler l'échange en posant une question sur le cloud).
+Je n'ai pas beaucoup pris de note sur cette table ronde (et j'ai contribué à faire dérailler l'échange en posant une question sur le cloud 😬).
 
 L'idée qui se dégageait est que les architectes doivent accepter de ne plus être spécialistes de tout, et se concentrer sur le fait d'être des généralises et d'être capable de faire le lien entre toutes les personnes.
 
@@ -123,14 +123,17 @@ Après la présentation d'hier sur "`on peut faire de l'agile avec de la DataViz
 
 === Tour d'horizon des algorithmes de consensus en 2021 / Ameyric Benthencourt & Franck Hillard
 
-Il s'agit d'algorithmes de blockchain.
+Il s'agit d'algorithmes de consensus sur la blockchain.
 Même si j'aime bien les sujets d'architecture distribué, mon manque d'intérêt pour la blockchain fait que je n'ai rien suivi.
 
 === CQRS à notre secours / Florent Jaby
 
 Cette présentation décrit la mise en place d'une architecture link:https://www.martinfowler.com/bliki/CQRS.html[CQRS].
 
-J'ai particulièrement apprécié l'approche légère, sans le bus Kafka et le reste de l'outillage qui souvent présenté comme l'architecture-type CQRS.
+J'ai particulièrement apprécié deux choses :
+
+- l'approche légère, sans le bus Kafka et le reste de l'outillage qui sont souvent présenté comme l'architecture-type CQRS
+- le CQRS ajouté pendant la vie de l'application et pas dès le début, ce qui permet d'avoir plus d'informations pour faire son choix.
 
 === Table ronde{nbsp}: les coûts dans le Cloud
 
@@ -146,46 +149,51 @@ La capacité à pouvoir mesurer le coût d'hébergement application par applicat
 
 === REX Bilan Carbone d'une ESN / Alexis Nicolas
 
+Alexis Nicolas décrit la manière dont Octo a fait son bilan carbone et les questions qui se posent pour arriver à réduire l'empreinte carbone de l'entreprise.
+
+Ce qui m'a un peu démangé c'est qu'un des leviers est l'objectif de croissance important (20% par an) demandé à l'entreprise qui devrait permettre d'amortir certains des coûts.
+D'un côté le calcul fonctionne, mais d'un autre côté une croissance importante et continue comme fin en soi est une des raisons de la surconsommation de ressources, l'utiliser comme solution me semble un peu étrange.
+
+Et bien entendu si le sujet du développement durable vous intéresse, link:https://enercoop.fr[on recrute]{nbsp}!
+
 === Être rattrapé par la dette technique, est-ce une fatalité{nbsp}? / Mickael Wegerich
 
 Ce talk présente une vision de la dette technique, des raisons qui font qu'elle apparaît et des solutions pour en sortir.
 
-J'ai plutôt été agacé par le talk.
+Même s'il contient des idées intéressantes, j'ai été gêné par trois choses{nbsp}:
 
-Le point de départ c'est que la dette technique est la conséquence de choix fait consciemment pour tenir l'engagement pris sur le périmètre des sprints de développement.
-
-Dans mon expérience une partie significative
-
-Une description
-
-Dette technique : choix de manière consciente, qui sont fait pour tenir le périmètre d'une itération, car on prend un engagement.
-Même SCRUM ne parle pas 
-
-Une partie des problèmes et les solutions correspondent aux discours de l'architecture hexagonale.
-
-Mon expérience sur le sujet c'est que je ne suis pas convaincu que les niveaux d'indirections qu'elle pousse à ajouter valent la peine.
-
-De plus, comme cette complexité fait partie du modèle, elle est difficile à discuter, car on a tendance à penser --pour reprendre leur classification-- qu'elle fait partie de la complexité "`essentielle`" du logiciel.
-
-Les personnes qui ont fait du JEE 
-
-Il faut corriger 
+. L'idée que la dette technique est une conséquence de choix fait consciemment en connaissance de cause, alors que dans mon expérience elle est le plus souvent involontaire (mais c'est peut-être le signe que je ne suis pas assez bon 🤔).
+. L'idée qu'il est normal de faire régulièrement des raccourcis en fin d'itération pour tenir l'engagement pris sur le périmètre de l'itération. C'est une pratique dont on sait qu'elle pose problème depuis longtemps, par exemple cela fait link:https://www.scrum.org/resources/commitment-vs-forecast[10 ans] que Scrum a remplacé l'usage du mot "`engagement`"" par  "`prévision`" pour parler du périmètre d'itération. Je comprends qu'il peut être souhaitable de faire au mieux sur des projets qui ne se passent pas dans de bonnes conditions, mais c'est différent de faire comme s'il s'agissait de circonstances normales.
+. Le dernier est que certains des problèmes (ou du moins la manière dont ils sont présentés) et des solutions correspondent au discours de link:https://fr.wikipedia.org/wiki/Architecture_hexagonale_(logiciel)[l'architecture hexagonale]. Je ne suis pas convaincu par cette approche, et notamment des couches d'indirections qu'elle pousse à ajouter dans les applications. Les personnes ayant fait du J2EE verront très bien à quoi peut mener l'idée de vouloir séparer les choses par principe.
 
 === Les Fake News du Low-Code / Sylvain Fagnent & Alain Fauré
 
-Low-code vs No-code
+Le talk vise à démystifier les plateforme low-code.
+Les auteurs précisent bien qu'il ne faut pas confondre les outils low-code et les outils no-code.
 
-Progiciels qui montent en maturité
+Les outils no-code visent des personnes n'ayant aucune compétence informatique, et sont plutôt limitées à des applications très simples.
+À l'inverse les outils low-code nécessitent une certaine connaissance, et leur objectif est de permettre d'accélérer le développement en fournissant des progiciels intégrées et de ce fait facilitant le travail.
 
-Par contre le fait de caricaturer les opposants du Low Code en Donal Trump m'a mis physiquement mal à l'aise.
-Je pense qu'on peut critiquer des technologies, même en se trompant ou en étant de mauvaise foi, sans être assimilé à une personne raciste et misogyne qui menace de mort ses opposant·e·s.
+Depuis le temps qu'on en parle, ces plateformes ont bien progressé et il est désormais possible d'y faire du développement en mettant en œuvre un certain nombre de bonnes pratiques (tests unitaires, réutilisation de code, gestion de source…), l'enjeu étant désormais plus que les personnes utilisatrices ne sont pas forcément sensibilisées à ces aspects.
+
+Par contre ces plateformes sont adaptées à certains usages et ne vont donc pas remplacer l'ensemble des développements, par exemple des applications mobiles ou des sites intranet avec une complexité limitée.
+Lors du cadrage d'un projet il faut donc être vigilant à bien vérifier s'il est compatible avec le domaine de pertinence de l'outil.
+
+Un point noir pour moi sur le talk{nbsp}:les opposants au low code sont représentés par des caricatures de Donald Trump, et cela m'a mis physiquement mal à l'aise.
+Je pense qu'on peut critiquer des technologies, même en étant de mauvaise foi, sans être assimilé à une personne raciste et misogyne qui menace de mort ses opposant·e·s.
 
 === Réussir une "Conway Inversée" / Romain Vailleux
 
-Moins de contexte et des équipes réduites orienté par rapport aux produit IT qu'on veut produire
+L'idée du talk est que si les organisations ont tendance à produire des produits qui sont le reflets de leur structure de communication, il est devient nécessaire d'organiser l'entreprise en fonction des produit qu'elle veut construire.
 
-https://teamtopologies.com
+L'idée étant notamment de gagner en efficacité en limitant le nombre de sujets sur lesquels une personne doit travailler, et de rassembler dans des équipes les personnes qui sont nécessaires à un projet.
 
-=== CovidTracker : la data au service de tous{nbsp}! / Guillaume Rozier
+L'approche proposée est celle du livre link:https://teamtopologies.com[team topologies], donc le vocabulaire et les modèles ont déjà beaucoup irrigué le reste de la conférence.
+
+=== CovidTracker{nbsp}: la data au service de tous{nbsp}! / Guillaume Rozier
+
+Guillaume Rozier, créateur du sitelink:https://covidtracker.fr[CovidTracker] décrit comment le site s'est construit petit à petit, en fonction des besoins et des pics de charges successifs.
+
+C'est un agréable talk de clôture, qui montre qu'on peut faire un site très visité sans plateforme DevOps ni Digital Factory.
 
 === Table ronde{nbsp}: tour d'horizon des impacts architecturaux de la COVID
