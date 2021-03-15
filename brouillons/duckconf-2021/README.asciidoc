@@ -13,7 +13,9 @@ Mon regret numéro un a été les talks et les slides uniquement au masculin, l'
 
 === Le rôle de l'architect(ur)e dans un contexte agile / Thomas Brien
 
-Le talk présente deux exemple de fonctionnement de l'architecture dans des contextes d'agile à l'échelle : un fonctionnement avec le modèle team topologies, et un fonctionnement avec le modèle SAFe 5.
+link:https://www.youtube.com/watch?v=_S7ySqrBQz4[Lien]
+
+Ce talk présente deux exemple de fonctionnement de l'architecture dans des contextes d'agile à l'échelle : un fonctionnement avec le modèle team topologies, et un fonctionnement avec le modèle SAFe 5.
 
 Dans les deux cas les architectes sont placés dans une équipe transverse, avec le périmètre qui correspond à celui d'une cellule d'architecture classique (donner de la cohérence, faire des cadrages, porter de l'expertise…).
 
@@ -25,6 +27,8 @@ J'ai repéré deux éléments spécifiques à l'agile{nbsp}:
 - La capacité à avoir des retours rapidement sur les propositions d'architecture, ce qui permet d'affiner les choses graduellement, mais attention à ne pas changer de cap trop souvent car les projets ont une capacité à s'adapter de manière limitée.
 
 === Passons au niveau supérieur dans la qualité des données référentielles / Ekaterina Simonenko & Selima Masmoudi
+
+link:https://www.youtube.com/watch?v=SzHeIIG0p4c[Lien]
 
 Il s'agit d'une présentation des fonctions de Master Data Management, c'est-à-dire de gestion des données de référence dans un SI, et des outils qui existent sur ce créneau.
 
@@ -43,7 +47,9 @@ Au final j'ai trouvé la partie sur les besoins intéressante mais je n'ai pas �
 
 === Qui maîtrise mieux le chaos de votre SI{nbsp}: Mozart ou Béjart ? / Safa Mabrouk
 
-Le talk commence par un historique des patterns d'intégrations dans les SI{nbsp}: partant d'une brique unique, on a souvent commencé par découper le système en plusieurs éléments qu'on va vouloir "`orchestrer`" (c'est-à-dire en utilisant une application unique pour organiser les échanges entre toutes les autres) pour ensuite basculer vers de la "`chorégraphie`" (où les applications se coordonnent entre elles).
+link:https://www.youtube.com/watch?v=0zgDpZ0JOr0[Lien]
+
+Ce talk commence par un historique des patterns d'intégrations dans les SI{nbsp}: partant d'une brique unique, on a souvent commencé par découper le système en plusieurs éléments qu'on va vouloir "`orchestrer`" (c'est-à-dire en utilisant une application unique pour organiser les échanges entre toutes les autres) pour ensuite basculer vers de la "`chorégraphie`" (où les applications se coordonnent entre elles).
 
 L'orchestration a atteint ses limites dans les grand systèmes car l'application cheffe d'orchestre a tendance à concentrer beaucoup de logique, ce qui ne monte pas à l'échelle.
 
@@ -58,7 +64,7 @@ La synchronization s'en trouve alors simplifiée et le couplage diminué.
 
 === DevOps & Dataviz, un amour impossible{nbsp}? / Jérôme Lambert & Mohamed Nidhal Safta
 
-L'idée du talk est de présenter comment mettre en place trois pratiques DevOps dans un projet de Dataviz{nbsp}: la gestion de version, les tests automatisés, et l'automatisation des déploiement.
+L'idée de ce talk est de présenter comment mettre en place trois pratiques "`DevOps`" dans un projet de Dataviz{nbsp}: la gestion de version, les tests automatisés, et l'automatisation des déploiement.
 
 La difficulté est que sur le projet en question, la Dataviz est réalisée par un outil tout intégrée en SAAS et qui ne fournit pas ces fonctionnalités de manière native.
 La solution est d'utiliser des outils périphériques, et s'appuyer sur l'API de l'outil de Dataviz pour les piloter.
@@ -70,6 +76,8 @@ Il m'a rappelé ce qu'on faisait il y a quelques années avant link:https://blog
 En passant, j'ai été amusé d'entendre que les tests automatisés et la gestion de version sont une invention du DevOps, le temps passe et link:https://blog.octo.com/larrivee-de-lagile-a-octo-introduction/[l'histoire s'oublie].
 
 === Je suis architecte et je me soigne / Borémi Toch & Laurent Sollier
+
+link:https://www.youtube.com/watch?v=G1jpSsogYyU[Lien]
 
 Ce talk parle de la place de l'architecte dans les organisations modernes, alors qu'elles sont très centrées sur les équipes projets et laissent donc moins de place aux rôles transverses comme ceux des architectes.
 
@@ -95,6 +103,8 @@ Note{nbsp}: contrairement au titre, les présentations du jour n'avaient pas tou
 
 === Une équipe plateforme qui délivre{nbsp}! / François-Xavier Vende
 
+link:https://i.ytimg.com/an_webp/CwclZThS3wc/mqdefault_6s.webp?du=3000&sqp=CMOzvIIG&rs=AOn4CLAbTIB6DKlOCwBJ-Nhd9TZKjYrR0g[Lien]
+
 Cette présentation décrit la construction d'un système d'information en partant de rien, l'infrastructure ayant été construite en même temps que les projets.
 
 La plateforme est prise en charge par une équipe dédiée spécialisée, avec des relais identifiés dans les différentes équipes projets.
@@ -104,6 +114,8 @@ Par rapport aux échanges de la veille sur la nécessité pour les architectes S
 J'ai trouvé intéressant l'accent mis sur le temps que prends l'industrialisation, dans une organisation où la plateforme technique avance en même temps que les projets, cela signifie parfois accepter de faire du manuel et de la dette technique Ops pour ne pas bloquer les projets.
 
 === Pour être "`data-centric`", faut-il centraliser{nbsp}? / Julien Assémat & Renaud Andrieux
+
+link:https://www.youtube.com/watch?v=2EFTeX9jVPo[Lien]
 
 Cette présentation couvre les très grandes organisations avec de multiples entités où une plateforme de donnée unique ne suffit plus{nbsp}: trop de types de données, qui n'ont pas toujours vocation à être partagées par tout le monde, trop de besoins différents, trop de plans projets et de budgets à synchroniser.
 
@@ -117,16 +129,22 @@ Le détail est très largement inspiré de deux longs articles de Zhamak Dehghan
 
 === Architecture émergente dans l'intelligence artificielle / Emmanuel-Lin Toulemonde
 
+link:https://www.youtube.com/watch?v=qj3lVoaAe3Q[Lien]
+
 Après la présentation d'hier sur "`on peut faire de l'agile avec de la DataViz`", voici un exemple de "`on peut faire de l'agile avec de l'IA`"{nbsp}: après s'être lancé au départ dans un plan d'architecture à l'ancienne nécessitant d'avoir une plateforme complète dès le départ, l'équipe a opté pour une approche itérative et à pu ainsi délivrer rapidement de la valeur après une lutte qui a semblé acharné avec l'équipe d'architecture centrale.
 
 20 ans après le manifeste agile et même si ça fait toujours plaisir, l'impression de déjà vu devant ce type de talk commence à devenir lassant.
 
 === Tour d'horizon des algorithmes de consensus en 2021 / Ameyric Benthencourt & Franck Hillard
 
+link:https://www.youtube.com/watch?v=JvCBkev1CNQ[Lien]
+
 Il s'agit d'algorithmes de consensus sur la blockchain.
 Même si j'aime bien les sujets d'architecture distribué, mon manque d'intérêt pour la blockchain fait que je n'ai rien suivi.
 
 === CQRS à notre secours / Florent Jaby
+
+link:https://www.youtube.com/watch?v=RHUsQui8moc[Lien]
 
 Cette présentation décrit la mise en place d'une architecture link:https://www.martinfowler.com/bliki/CQRS.html[CQRS].
 
@@ -149,6 +167,8 @@ La capacité à pouvoir mesurer le coût d'hébergement application par applicat
 
 === REX Bilan Carbone d'une ESN / Alexis Nicolas
 
+link:https://www.youtube.com/watch?v=JMUCotczHR0[Lien]
+
 Alexis Nicolas décrit la manière dont Octo a fait son bilan carbone et les questions qui se posent pour arriver à réduire l'empreinte carbone de l'entreprise.
 
 Ce qui m'a un peu démangé c'est qu'un des leviers est l'objectif de croissance important (20% par an) demandé à l'entreprise qui devrait permettre d'amortir certains des coûts.
@@ -162,6 +182,8 @@ Et bien entendu si le sujet du développement durable et soutenable vous intére
 
 === Être rattrapé par la dette technique, est-ce une fatalité{nbsp}? / Mickael Wegerich
 
+link:https://www.youtube.com/watch?v=C2COBA4EFrM[Lien]
+
 Ce talk présente une vision de la dette technique, des raisons qui font qu'elle apparaît et des solutions pour en sortir.
 
 Même s'il contient des idées intéressantes, j'ai été gêné par trois choses{nbsp}:
@@ -172,11 +194,13 @@ Même s'il contient des idées intéressantes, j'ai été gêné par trois chose
 
 === Les Fake News du Low-Code / Sylvain Fagnent & Alain Fauré
 
+link:https://www.youtube.com/watch?v=sQZqyB-EZro[Lien]
+
 Le talk vise à démystifier les plateforme low-code.
 Les auteurs précisent bien qu'il ne faut pas confondre les outils low-code et les outils no-code.
 
-Les outils no-code visent des personnes n'ayant aucune compétence informatique, et sont plutôt limitées à des applications très simples.
-À l'inverse les outils low-code nécessitent une certaine connaissance, et leur objectif est de permettre d'accélérer le développement en fournissant des progiciels intégrées et de ce fait facilitant le travail.
+Les outils no-code visent des personnes n'ayant aucune compétence informatique, et sont plutôt limités à des applications très simples.
+À l'inverse les outils low-code nécessitent une certaine connaissance en programmation, et leur objectif est de permettre d'accélérer le développement en fournissant des outils complets intégrant de nombreuses fonctionnalités (monitoring, sécurité…) ce qui permet d'accélérer le travail.
 
 Depuis le temps qu'on en parle, ces plateformes ont bien progressé et il est désormais possible d'y faire du développement en mettant en œuvre un certain nombre de bonnes pratiques (tests unitaires, réutilisation de code, gestion de source…), l'enjeu étant désormais plus que les personnes utilisatrices ne sont pas forcément sensibilisées à ces aspects.
 
@@ -188,6 +212,8 @@ Je pense qu'on peut critiquer des technologies, même en étant de mauvaise foi,
 
 === Réussir une "Conway Inversée" / Romain Vailleux
 
+link:https://www.youtube.com/watch?v=zmJknCVQ3Tc[Lien]
+
 L'idée du talk est que si les organisations ont tendance à produire des produits qui sont le reflets de leur structure de communication, il est devient nécessaire d'organiser l'entreprise en fonction des produit qu'elle veut construire.
 
 L'idée étant notamment de gagner en efficacité en limitant le nombre de sujets sur lesquels une personne doit travailler, et de rassembler dans des équipes les personnes qui sont nécessaires à un projet.
@@ -196,9 +222,11 @@ L'approche proposée est celle du livre link:https://teamtopologies.com[team top
 
 === CovidTracker{nbsp}: la data au service de tous{nbsp}! / Guillaume Rozier
 
+link:https://www.youtube.com/watch?v=K7DuqLOGy4c[Lien]
+
 Guillaume Rozier, créateur du sitelink:https://covidtracker.fr[CovidTracker] décrit comment le site s'est construit petit à petit, en fonction des besoins et des pics de charges successifs.
 
-C'est un agréable talk de clôture, qui montre qu'on peut faire un site très visité sans plateforme DevOps ni Digital Factory.
+C'est un bon cas d'usage de l'approche agile et lean start up qui montre qu'on peut faire un site très visité sans plateforme DevOps ni Digital Factory, même si les messages forts sont répétés jusqu'à devenir un peu agaçants.
 
 === Table ronde{nbsp}: tour d'horizon des impacts architecturaux de la COVID
 
