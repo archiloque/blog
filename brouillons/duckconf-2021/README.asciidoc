@@ -6,21 +6,26 @@ v0.1, 2021-03-09
 
 La DuckConf est une conférence sur l'architecture de SI organisée par link:http://octo.com[Octo Technology].
 
-Par rapport à link:/duckconf-2020/[l'an dernier] j'ai été agréablement surpris{nbsp}: des speakeuses et des talks à la finition plus aboutie qui m'ont fait bien meilleure impression.
+Par rapport à link:/duckconf-2020/[l'an dernier], j'ai été agréablement surpris{nbsp}: avoir des talks donnés par speakeuses et des talks à la finition plus aboutie m'ont fait bien meilleure impression.
 
 Le fait d'assister à une conférence en visio et avec des présentations pré-enregistrées est un peu bizarre, on y gagne en confort mais la perte de spontanéité coupe un peu le lien.
 
-Mon regret numéro un a été les talks et les slides uniquement au masculin, l'inconvénient de travailler dans une link:https://www.enercoop.fr[structure où le language inclusif est la norme] est qu'on s'y habitue.
+Principal regret, les talks et les slides étaient uniquement au masculin. Après deux ans chez Enercoop, link:https://www.enercoop.fr[où le langage inclusif est la norme], ces pratiques me sautent aux yeux.
+
+Si vous ne voulez pas lire tous les détail, deux talks m'ont plus particulièrement intéressés{nbsp}:
+
+- <<chaos>>
+- <<plateforme>>
 
 == Jour 1{nbsp}: Architectures & architectes
 
-=== Le rôle de l'architect(ur)e dans un contexte agile / Thomas Brien
+=== Le rôle de l'architect(ur)e dans un contexte agile par Thomas Brien
 
 link:https://www.youtube.com/watch?v=_S7ySqrBQz4[Lien vers la vidéo]
 
-Ce talk présente deux exemple de fonctionnement de l'architecture dans des contextes d'agile à l'échelle : un fonctionnement avec le modèle team topologies, et un fonctionnement avec le modèle SAFe 5.
+Ce talk présente deux exemples de fonctionnement de l'architecture dans des contextes d'agile à l'échelle{nbsp}: un fonctionnement avec le modèle team topologies, et un fonctionnement avec le modèle SAFe 5.
 
-Dans les deux cas les architectes sont placés dans une équipe transverse, avec le périmètre qui correspond à celui d'une cellule d'architecture classique (donner de la cohérence, faire des cadrages, porter de l'expertise…).
+Dans les deux cas, les architectes sont placés dans une équipe transverse, avec le périmètre qui correspond à celui d'une cellule d'architecture classique (donner de la cohérence, faire des cadrages, porter de l'expertise…).
 
 Les pratiques se rapprochent de celles qui évitent le pattern de la tour d'ivoire, par exemple de rester au plus proche des projets ou d'essayer de ne pas être dans une posture trop confrontante.
 
@@ -29,26 +34,28 @@ J'ai repéré deux éléments spécifiques à l'agile{nbsp}:
 - Le fait que les décisions d'architecture doivent s'inscrire dans les itérations des équipes métier.
 - La capacité à avoir des retours rapidement sur les propositions d'architecture, ce qui permet d'affiner les choses graduellement, mais attention à ne pas changer de cap trop souvent car les projets ont une capacité à s'adapter de manière limitée.
 
-=== Passons au niveau supérieur dans la qualité des données référentielles / Ekaterina Simonenko & Selima Masmoudi
+=== Passons au niveau supérieur dans la qualité des données référentielles par Ekaterina Simonenko & Selima Masmoudi
 
 link:https://www.youtube.com/watch?v=SzHeIIG0p4c[Lien vers la vidéo]
 
-Il s'agit d'une présentation des fonctions de Master Data Management, c'est-à-dire de gestion des données de référence dans un SI, et des outils qui existent sur ce créneau.
+Il s'agit d'une présentation des fonctions de master data management (MDM), c'est-à-dire de gestion des données de référence dans un SI, et des outils qui existent sur ce créneau.
 
 Ces outils sont des composants spécifiques en charge de gérer la qualité des données, et qui servent de point d'accès aux données.
 
-J'ai trouvé intéressant l'injonction à s'appuyer sur les cibles (par exemple sur la qualité) et les besoins métier pour travailler les données plutôt que d'essayer par exemple de viser une qualité parfaite.
+J'ai trouvé intéressant l'idée de s'appuyer sur les besoins métier, par exemple des critères de qualité correspondant à des nécessités opérationnels, pour travailler les données, plutôt que de viser une qualité parfaite.
 
 Quand j'ai travaillé à Octo, les produits de MDMs "`sur l'étagère`" étaient sévèrement jugés par rapport à des développement custom car ils était considérés comme lourds à gérer et pas à la hauteur de leurs promesses.
-J'aurais bien aimé savoir sur quoi s'appuie ce changement de discours.
+
+J'aurais bien aimé savoir sur quoi s'appuie ce changement de discours, les deux speakeases accompagnant les client·e·s sur la mise en place de ces logiciels.
 
 L'autre question que je me pose c'est le positionnement de ces solutions vis-à-vis de l'approche microservices qui pousse à ce que chaque application soit maître de ses données.
 
-Ma vision est que les MDM peuvent avoir les mêmes problèmes que les "`puit de données`" dont link:https://blog.octo.com/superbe-maison-darchitecte-avec-vue-sur-le-lac-compte-rendu-du-talk-de-thomas-vial-a-la-duck-conf-2018/[Thomas Vial avait parlé dans le cas du DataLake], donc je serais intéressé de savoir pourquoi ça n'est pas le cas.
+Pour moi, les MDM peuvent avoir les mêmes problèmes que les "`puits de données`" dont link:https://blog.octo.com/superbe-maison-darchitecte-avec-vue-sur-le-lac-compte-rendu-du-talk-de-thomas-vial-a-la-duck-conf-2018/[Thomas Vial avait parlé dans le cas du DataLake], il serait donc intéressant de savoir pourquoi ce n'est pas le cas.
 
-Au final j'ai trouvé la partie sur les besoins intéressante mais je n'ai pas été convaincu par le fait d'utiliser une solution.
+En résumé, la partie sur les besoins était intéressante mais je n'ai pas été convaincu par le fait d'utiliser une solution.
 
-=== Qui maîtrise mieux le chaos de votre SI{nbsp}: Mozart ou Béjart ? / Safa Mabrouk
+[#chaos]
+=== Qui maîtrise mieux le chaos de votre SI{nbsp}: Mozart ou Béjart{nbsp}? par Safa Mabrouk
 
 link:https://www.youtube.com/watch?v=0zgDpZ0JOr0[Lien vers la vidéo]
 
@@ -60,19 +67,19 @@ L'orchestration a atteint ses limites dans les grand systèmes car l'application
 
 C'est d'autant plus compliqué que les API exposées sont unitaires et techniques (de type ressource par exemple), car alors les consommateurs ont besoin d'implémenter plus de métier de leur côté, ce qui augmente le couplage.
 
-Même avec du monitoring de bout en bout de bonne qualité on ne s'en sort pas.
+Même avec du monitoring de bout en bout de bonne qualité, on ne s'en sort pas.
 
 L'approche qui se dégage est d'avoir un modèle de chorégraphie mais avec des application qui exposent des fonctionnalités plus riches.
-La synchronization s'en trouve alors simplifiée et le couplage diminué.
+La synchronisation s'en trouve alors simplifiée et le couplage diminué.
 
-=== DevOps & Dataviz, un amour impossible{nbsp}? / Jérôme Lambert & Mohamed Nidhal Safta
+=== DevOps & fataviz, un amour impossible{nbsp}? par Jérôme Lambert & Mohamed Nidhal Safta
 
 link:https://www.youtube.com/watch?v=RcnvtlWo-Ns[Lien vers la vidéo]
 
-L'idée de ce talk est de présenter comment mettre en place trois pratiques "`DevOps`" dans un projet de Dataviz{nbsp}: la gestion de version, les tests automatisés, et l'automatisation des déploiement.
+L'idée de ce talk est de présenter comment mettre en place trois pratiques "`DevOps`" dans un projet de dataviz{nbsp}: la gestion de version, les tests automatisés, et l'automatisation des déploiements.
 
-La difficulté est que sur le projet en question, la Dataviz est réalisée par un outil tout intégrée en SAAS et qui ne fournit pas ces fonctionnalités de manière native.
-La solution est d'utiliser des outils périphériques, et s'appuyer sur l'API de l'outil de Dataviz pour les piloter.
+La difficulté est que sur le projet en question, la dataviz est réalisée par un outil tout intégrée en SAAS et qui ne fournit pas ces fonctionnalités de manière native.
+La solution est d'utiliser des outils périphériques, et s'appuyer sur l'API de l'outil de dataviz pour les piloter.
 
 Le résultat n'est pas parfait (par exemple ce sont des fichier binaires qui sont versionnés), mais semble acceptable.
 
@@ -80,7 +87,7 @@ Il m'a rappelé ce qu'on faisait il y a quelques années avant link:https://blog
 
 En passant, j'ai été amusé d'entendre que les tests automatisés et la gestion de version sont une invention du DevOps, le temps passe et link:https://blog.octo.com/larrivee-de-lagile-a-octo-introduction/[l'histoire s'oublie].
 
-=== Je suis architecte et je me soigne / Borémi Toch & Laurent Sollier
+=== Je suis architecte et je me soigne par Borémi Toch & Laurent Sollier
 
 link:https://www.youtube.com/watch?v=G1jpSsogYyU[Lien vers la vidéo]
 
@@ -88,25 +95,20 @@ Ce talk parle de la place de l'architecte dans les organisations modernes, alors
 
 (Autopromo{nbsp}: link:https://blog.octo.com/avec-le-cloud-et-lagile-il-ny-a-plus-besoin-darchitectes/[j'avais déjà un peu parlé de ce sujet ici]).
 
-Il font donc trouver qu'est ce que les architecte peuvent apporter dans ce type de structure, et quelles sont les postures à adopter pour y parvenir :
+Il font donc trouver ce que les architecte peuvent apporter dans ce type de structure, et quelles sont les postures à adopter pour y parvenir{nbsp}:
 
 - l'architecte vigie qui fait de la veille et identifie les risques
 - l'architecte ambassadeur·rice qui traite les questions de frontières entre systèmes informatique et équipes, et qui sait vulgariser
 - l'architecte coach·e du SI qui travaille à ce qu'il évolue dans le bon sens
 
-Le portrait m'a paru assez parlant, même si je suis un peu plus optimiste que les speakers sur la capicité d'un·e un architecte à pousser des solutions, même quand les équipes n'en veulent pas forcément (du moins s'il·elle a l'appui de sa hiérarchie).
-
-=== Table ronde{nbsp}: l'architecte SI au temps de l'hyperspécialisation
-
-Je n'ai pas beaucoup pris de note sur cette table ronde (et j'ai contribué à faire dérailler l'échange en posant une question sur le cloud 😬).
-
-L'idée qui se dégageait est que les architectes doivent accepter de ne plus être spécialistes de tout, et se concentrer sur le fait d'être des généralises et d'être capable de faire le lien entre toutes les personnes.
+Le portrait m'a paru assez parlant, même si je suis un peu plus optimiste que les speakers sur la capacité d'un·e un architecte à soutenir des solutions, même quand les équipes n'en veulent pas forcément (du moins s'il·elle a l'appui de sa hiérarchie).
 
 == Jour 2{nbsp}: Architecture & cloud
 
 Note{nbsp}: contrairement au titre, les présentations du jour n'avaient pas toutes un rapport évident avec le cloud.
 
-=== Une équipe plateforme qui délivre{nbsp}! / François-Xavier Vende
+[#plateforme]
+=== Une équipe plateforme qui délivre{nbsp}! par François-Xavier Vende
 
 link:https://i.ytimg.com/an_webp/CwclZThS3wc/mqdefault_6s.webp?du=3000&sqp=CMOzvIIG&rs=AOn4CLAbTIB6DKlOCwBJ-Nhd9TZKjYrR0g[Lien vers la vidéo]
 
@@ -118,7 +120,7 @@ Par rapport aux échanges de la veille sur la nécessité pour les architectes S
 
 J'ai trouvé intéressant l'accent mis sur le temps que prends l'industrialisation, dans une organisation où la plateforme technique avance en même temps que les projets, cela signifie parfois accepter de faire du manuel et de la dette technique Ops pour ne pas bloquer les projets.
 
-=== Pour être "`data-centric`", faut-il centraliser{nbsp}? / Julien Assémat & Renaud Andrieux
+=== Pour être "`data-centric`", faut-il centraliser{nbsp}? par Julien Assémat & Renaud Andrieux
 
 link:https://www.youtube.com/watch?v=2EFTeX9jVPo[Lien vers la vidéo]
 
@@ -132,7 +134,7 @@ Même approche que pour l'architecture vis à vis de projet, où une équipe tra
 
 Le détail est très largement inspiré de deux longs articles de Zhamak Dehghani publiés sur le blog de Martin Fowler{nbsp}: link:https://martinfowler.com/articles/data-monolith-to-mesh.html[How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh] et link:https://martinfowler.com/articles/data-mesh-principles.html[Data Mesh Principles and Logical Architecture].
 
-=== Architecture émergente dans l'intelligence artificielle / Emmanuel-Lin Toulemonde
+=== Architecture émergente dans l'intelligence artificielle par Emmanuel-Lin Toulemonde
 
 link:https://www.youtube.com/watch?v=qj3lVoaAe3Q[Lien vers la vidéo]
 
@@ -140,20 +142,20 @@ Après la présentation d'hier sur "`on peut faire de l'agile avec de la DataViz
 
 20 ans après le manifeste agile et même si ça fait toujours plaisir, l'impression de déjà vu devant ce type de talk commence à devenir lassant.
 
-=== Tour d'horizon des algorithmes de consensus en 2021 / Ameyric Benthencourt & Franck Hillard
+=== Tour d'horizon des algorithmes de consensus en 2021 par Ameyric Benthencourt & Franck Hillard
 
 link:https://www.youtube.com/watch?v=JvCBkev1CNQ[Lien vers la vidéo]
 
 Il s'agit d'algorithmes de consensus sur la blockchain.
 Même si j'aime bien les sujets d'architecture distribué, mon manque d'intérêt pour la blockchain fait que je n'ai rien suivi.
 
-=== CQRS à notre secours / Florent Jaby
+=== CQRS à notre secours par Florent Jaby
 
 link:https://www.youtube.com/watch?v=RHUsQui8moc[Lien vers la vidéo]
 
 Cette présentation décrit la mise en place d'une architecture link:https://www.martinfowler.com/bliki/CQRS.html[CQRS].
 
-J'ai particulièrement apprécié deux choses :
+J'ai particulièrement apprécié deux choses{nbsp}:
 
 - l'approche légère, sans le bus Kafka et le reste de l'outillage qui sont souvent présenté comme l'architecture-type CQRS
 - le CQRS ajouté pendant la vie de l'application et pas dès le début, ce qui permet d'avoir plus d'informations pour faire son choix.
@@ -170,7 +172,7 @@ La capacité à pouvoir mesurer le coût d'hébergement application par applicat
 
 == Jour 3{nbsp}: Architecture & changement
 
-=== REX Bilan Carbone d'une ESN / Alexis Nicolas
+=== REX Bilan Carbone d'une ESN par Alexis Nicolas
 
 link:https://www.youtube.com/watch?v=JMUCotczHR0[Lien vers la vidéo]
 
@@ -185,7 +187,7 @@ Par conséquent j'ai peur que l'utiliser comme solution ne corresponde au fait d
 
 Et bien entendu si le sujet du développement durable et soutenable vous intéresse, link:https://enercoop.fr[on recrute]{nbsp}!
 
-=== Être rattrapé par la dette technique, est-ce une fatalité{nbsp}? / Mickael Wegerich
+=== Être rattrapé par la dette technique, est-ce une fatalité{nbsp}? par Mickael Wegerich
 
 link:https://www.youtube.com/watch?v=C2COBA4EFrM[Lien vers la vidéo]
 
@@ -197,7 +199,7 @@ Même s'il contient des idées intéressantes, j'ai été gêné par trois chose
 . L'idée qu'il est normal de faire régulièrement des raccourcis en fin d'itération pour tenir l'engagement pris sur le périmètre de l'itération. C'est une pratique dont on sait qu'elle pose problème depuis longtemps, par exemple cela fait link:https://www.scrum.org/resources/commitment-vs-forecast[10 ans] que Scrum a remplacé l'usage du mot "`engagement`"" par  "`prévision`" pour parler du périmètre d'itération. Je comprends qu'il peut être souhaitable de faire au mieux sur des projets qui ne se passent pas dans de bonnes conditions, mais c'est différent de faire comme s'il s'agissait de circonstances normales.
 . Le dernier est que certains des problèmes (ou du moins la manière dont ils sont présentés) et des solutions correspondent au discours de link:https://fr.wikipedia.org/wiki/Architecture_hexagonale_(logiciel)[l'architecture hexagonale]. Je ne suis pas convaincu par cette approche, et notamment des couches d'indirections qu'elle pousse à ajouter dans les applications. Les personnes ayant fait du J2EE verront très bien à quoi peut mener l'idée de vouloir séparer les choses par principe.
 
-=== Les Fake News du Low-Code / Sylvain Fagnent & Alain Fauré
+=== Les Fake News du Low-Code par Sylvain Fagnent & Alain Fauré
 
 link:https://www.youtube.com/watch?v=sQZqyB-EZro[Lien vers la vidéo]
 
@@ -215,7 +217,7 @@ Lors du cadrage d'un projet il faut donc être vigilant à bien vérifier s'il e
 Un point noir pour moi sur le talk{nbsp}:les opposants au low code sont représentés par des caricatures de Donald Trump, et cela m'a mis physiquement mal à l'aise.
 Je pense qu'on peut critiquer des technologies, même en étant de mauvaise foi, sans être assimilé à une personne raciste et misogyne.
 
-=== Réussir une "Conway Inversée" / Romain Vailleux
+=== Réussir une "Conway Inversée" par Romain Vailleux
 
 link:https://www.youtube.com/watch?v=zmJknCVQ3Tc[Lien vers la vidéo]
 
@@ -225,7 +227,7 @@ L'idée étant notamment de gagner en efficacité en limitant le nombre de sujet
 
 L'approche proposée est celle du livre link:https://teamtopologies.com[team topologies], donc le vocabulaire et les modèles ont déjà beaucoup irrigué le reste de la conférence.
 
-=== CovidTracker{nbsp}: la data au service de tous{nbsp}! / Guillaume Rozier
+=== CovidTracker{nbsp}: la data au service de tous{nbsp}! par Guillaume Rozier
 
 link:https://www.youtube.com/watch?v=K7DuqLOGy4c[Lien vers la vidéo]
 
