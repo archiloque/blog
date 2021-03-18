@@ -44,7 +44,7 @@ Ces outils sont des composants spécifiques en charge de gérer la qualité des 
 
 J'ai trouvé intéressant l'idée de s'appuyer sur les besoins métier, par exemple des critères de qualité correspondant à des nécessités opérationnels, pour travailler les données, plutôt que de viser une qualité parfaite.
 
-Quand j'ai travaillé à Octo, les produits de MDMs "`sur l'étagère`" étaient sévèrement jugés par rapport à des développement custom car ils était considérés comme lourds à gérer et pas à la hauteur de leurs promesses.
+Quand j'ai travaillé à Octo, les produits de MDMs "`sur l'étagère`" étaient sévèrement jugés par rapport à des développements custom car ils était considérés comme lourds à gérer et pas à la hauteur de leurs promesses.
 
 J'aurais bien aimé savoir sur quoi s'appuie ce changement de discours, les deux speakeases accompagnant les client·e·s sur la mise en place de ces logiciels.
 
@@ -61,7 +61,7 @@ link:https://www.youtube.com/watch?v=0zgDpZ0JOr0[Lien vers la vidéo]
 
 Ce talk commence par un historique des patterns d'intégrations dans les SI{nbsp}: partant d'une brique unique, on a souvent commencé par découper le système en plusieurs éléments qu'on va vouloir "`orchestrer`" (c'est-à-dire en utilisant une application unique pour organiser les échanges entre toutes les autres) pour ensuite basculer vers de la "`chorégraphie`" (où les applications se coordonnent entre elles).
 
-L'orchestration a atteint ses limites dans les grand systèmes car l'application cheffe d'orchestre a tendance à concentrer beaucoup de logique, ce qui ne monte pas à l'échelle.
+L'orchestration a atteint ses limites dans les grands systèmes car l'application cheffe d'orchestre a tendance à concentrer beaucoup de logique, ce qui ne monte pas à l'échelle.
 
 À l'inverse, le modèle décentralisé de chorégraphie peut être compliqué à gérer, par exemple pour la gestion de versions.
 
@@ -81,7 +81,7 @@ L'idée de ce talk est de présenter comment mettre en place trois pratiques "`D
 La difficulté est que sur le projet en question, la dataviz est réalisée par un outil tout intégrée en SAAS et qui ne fournit pas ces fonctionnalités de manière native.
 La solution est d'utiliser des outils périphériques, et s'appuyer sur l'API de l'outil de dataviz pour les piloter.
 
-Le résultat n'est pas parfait (par exemple ce sont des fichier binaires qui sont versionnés), mais semble acceptable.
+Le résultat n'est pas parfait (par exemple ce sont des fichiers binaires qui sont versionnés), mais semble acceptable.
 
 Il m'a rappelé ce qu'on faisait il y a quelques années avant link:https://blog.octo.com/middlewares-et-autres-outils-ce-quil-faut-verifier-avant-dacheter/[quand il s'agissait de faire la même chose avec des outils d'intégration comme les ESB].
 
@@ -98,7 +98,7 @@ Ce talk parle de la place de l'architecte dans les organisations modernes, alors
 Il font donc trouver ce que les architecte peuvent apporter dans ce type de structure, et quelles sont les postures à adopter pour y parvenir{nbsp}:
 
 - l'architecte vigie qui fait de la veille et identifie les risques
-- l'architecte ambassadeur·rice qui traite les questions de frontières entre systèmes informatique et équipes, et qui sait vulgariser
+- l'architecte ambassadeur·rice qui traite les questions de frontières entre systèmes informatiques et équipes, et qui sait vulgariser
 - l'architecte coach·e du SI qui travaille à ce qu'il évolue dans le bon sens
 
 Le portrait m'a paru assez parlant, même si je suis un peu plus optimiste que les speakers sur la capacité d'un·e un architecte à soutenir des solutions, même quand les équipes n'en veulent pas forcément (du moins s'il·elle a l'appui de sa hiérarchie).
@@ -124,7 +124,7 @@ J'ai trouvé intéressant l'accent mis sur le temps que prends l'industrialisati
 
 link:https://www.youtube.com/watch?v=2EFTeX9jVPo[Lien vers la vidéo]
 
-Cette présentation couvre les très grandes organisations avec de multiples entités où une plateforme de donnée unique ne suffit plus{nbsp}: trop de types de données, qui n'ont pas toujours vocation à être partagées par tout le monde, trop de besoins différents, trop de plans projets et de budgets à synchroniser.
+Cette présentation couvre les très grandes organisations avec de multiples entités où une plateforme de données unique ne suffit plus{nbsp}: trop de types de données, qui n'ont pas toujours vocation à être partagées par tout le monde, trop de besoins différents, trop de plans projets et de budgets à synchroniser.
 
 La solution ressemble à celle appliquée côté SI classique{nbsp}: avoir une équipe transverse qui définit des cadres, et qui se concentre sur les questions d'interopérabilité.
 
@@ -162,13 +162,22 @@ J'ai particulièrement apprécié deux choses{nbsp}:
 
 === Table ronde{nbsp}: les coûts dans le Cloud
 
-Les offres cloud des gros fournisseurs (Amazon, Microsoft et Google) sont devenues extrêmement fournies.
+Les offres cloud des gros fournisseurs (Amazon, Microsoft et Google) sont devenues extrêmement fournies (par exemple de nombreux types de serveurs, de middleware et de stockage).
 
-Même si on peut payer à la demande, il est tout de même souhaitable de pouvoir anticiper le budget dont on va avoir besoin, et d'essayer de maîtriser ses dépenses.
+Cela donne plus de flexibilité et permet de déployer des architectures auparavant réservées au _on premise_, mais cela rend aussi plus difficile de pouvoir prévoir les coûts que cela engendre.
+
+Pour des entreprises migrant vers le cloud, la structure de prix n'est pas forcément la même que celle à laquelle elles sont habituées (par exemple pour les coûts réseaux), et il faut donc monter en compétence et refaire ses calculs.
+Cela signifie que si une application a été conçue pour être adaptée une structure de coût _on premise_, elle pourra se révéler bien plus chère une fois déployée dans le cloud.
+Dans certains cas, une migration de plateforme peut alors nécessiter une adaptation du système.
+
+Même si un des avantages du cloud est de pouvoir payer à la demande, il est tout de même souhaitable de pouvoir anticiper le budget dont on va avoir besoin.
+Cala permet de bénéficier de prix plus bas en réservant des ressources à l'avance et d'éviter les mauvaises surprises.
 
 J'ai l'impression que cette ce sujet et donc l'expertise dans ce domaine se retrouve souvent dans le périmètre de l'équipe plateforme, toujours dans l'idée que cette équipe a un air de famille avec les architectes à l'ancienne.
 
-La capacité à pouvoir mesurer le coût d'hébergement application par application, et à pouvoir donc faire prendre des décisions au plus juste (est ce qu'une application coûte plus qu'elle ne rapporte{nbsp}?) est intéressant, même si je me méfie un peu des effets pervers que peut entraîner la capacité à faire des arbitrages trop fin dans ce domaine.
+La capacité à pouvoir mesurer le coût d'hébergement application par application, et donc à pouvoir donc faire prendre des décisions au plus juste (est ce qu'une application coûte plus qu'elle ne rapporte{nbsp}?) peut se révéler intéressante, par exemple pour responsabiliser les architectes et les personnes qui développent.
+
+À l'inverse, je me méfie un peu des effets pervers que peut entraîner la capacité à faire des arbitrages trop fins dans ce domaine, par exemple quand on parle de refacturation entre applications.
 
 == Jour 3{nbsp}: Architecture & changement
 
