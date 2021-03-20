@@ -124,15 +124,11 @@ J'ai trouvé intéressant l'accent mis sur le temps que prends l'industrialisati
 
 link:https://www.youtube.com/watch?v=2EFTeX9jVPo[Lien vers la vidéo]
 
-Cette présentation couvre les très grandes organisations avec de multiples entités où une plateforme de données unique ne suffit plus{nbsp}: trop de types de données, qui n'ont pas toujours vocation à être partagées par tout le monde, trop de besoins différents, trop de plans projets et de budgets à synchroniser.
+Cette présentation couvre les très grandes organisations avec de multiples entités où une plateforme de données unique ne suffit plus{nbsp}:
+trop de types de données, qui n'ont pas toujours vocation à être partagées par tout le monde, trop de besoins différents, trop de plans projets et de budgets à synchroniser.
+La solution ressemble à celle appliquée côté SI classique{nbsp}: avoir une équipe transverse qui définit des cadres, et qui se concentre sur les questions d'interopérabilité plutôt que d'essayer de tout piloter.
 
-La solution ressemble à celle appliquée côté SI classique{nbsp}: avoir une équipe transverse qui définit des cadres, et qui se concentre sur les questions d'interopérabilité.
-
-Dans les très grosses organisations il y a des difficultés
-
-Même approche que pour l'architecture vis à vis de projet, où une équipe transverse construit une plateforme et un cadre pour des équipes projets qui sont dans les différentes entités.
-
-Le détail est très largement inspiré de deux longs articles de Zhamak Dehghani publiés sur le blog de Martin Fowler{nbsp}: link:https://martinfowler.com/articles/data-monolith-to-mesh.html[How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh] et link:https://martinfowler.com/articles/data-mesh-principles.html[Data Mesh Principles and Logical Architecture].
+Le talk s'inspire largement de deux longs articles de Zhamak Dehghani publiés sur le blog de Martin Fowler{nbsp}: link:https://martinfowler.com/articles/data-monolith-to-mesh.html[How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh] et link:https://martinfowler.com/articles/data-mesh-principles.html[Data Mesh Principles and Logical Architecture], si le sujet vous intéresse, je vous invite à les lire.
 
 === Architecture émergente dans l'intelligence artificielle par Emmanuel-Lin Toulemonde
 
@@ -140,14 +136,7 @@ link:https://www.youtube.com/watch?v=qj3lVoaAe3Q[Lien vers la vidéo]
 
 Après la présentation d'hier sur "`on peut faire de l'agile avec de la DataViz`", voici un exemple de "`on peut faire de l'agile avec de l'IA`"{nbsp}: après s'être lancé au départ dans un plan d'architecture à l'ancienne nécessitant d'avoir une plateforme complète dès le départ, l'équipe a opté pour une approche itérative et à pu ainsi délivrer rapidement de la valeur après une lutte qui a semblé acharné avec l'équipe d'architecture centrale.
 
-20 ans après le manifeste agile et même si ça fait toujours plaisir, l'impression de déjà vu devant ce type de talk commence à devenir lassant.
-
-=== Tour d'horizon des algorithmes de consensus en 2021 par Ameyric Benthencourt & Franck Hillard
-
-link:https://www.youtube.com/watch?v=JvCBkev1CNQ[Lien vers la vidéo]
-
-Il s'agit d'algorithmes de consensus sur la blockchain.
-Même si j'aime bien les sujets d'architecture distribué, mon manque d'intérêt pour la blockchain fait que je n'ai rien suivi.
+20 ans après le manifeste agile et même si ça fait toujours plaisir, j'ai une forte impression de déjà vu devant ce type de talks.
 
 === CQRS à notre secours par Florent Jaby
 
@@ -171,9 +160,9 @@ Cela signifie que si une application a été conçue pour être adaptée une str
 Dans certains cas, une migration de plateforme peut alors nécessiter une adaptation du système.
 
 Même si un des avantages du cloud est de pouvoir payer à la demande, il est tout de même souhaitable de pouvoir anticiper le budget dont on va avoir besoin.
-Cala permet de bénéficier de prix plus bas en réservant des ressources à l'avance et d'éviter les mauvaises surprises.
+Cela permet de bénéficier de prix plus bas en réservant des ressources à l'avance et d'éviter les mauvaises surprises.
 
-J'ai l'impression que cette ce sujet et donc l'expertise dans ce domaine se retrouve souvent dans le périmètre de l'équipe plateforme, toujours dans l'idée que cette équipe a un air de famille avec les architectes à l'ancienne.
+J'ai l'impression que ce sujet et donc l'expertise dans ce domaine se retrouve souvent dans le périmètre de l'équipe plateforme, toujours dans l'idée que cette équipe a un air de famille avec les architectes à l'ancienne.
 
 La capacité à pouvoir mesurer le coût d'hébergement application par application, et donc à pouvoir donc faire prendre des décisions au plus juste (est ce qu'une application coûte plus qu'elle ne rapporte{nbsp}?) peut se révéler intéressante, par exemple pour responsabiliser les architectes et les personnes qui développent.
 
@@ -181,20 +170,16 @@ La capacité à pouvoir mesurer le coût d'hébergement application par applicat
 
 == Jour 3{nbsp}: Architecture & changement
 
-=== REX Bilan Carbone d'une ESN par Alexis Nicolas
+=== REX Bilan Carbone d'une ESN par Alexis Nicolas xxx
 
 link:https://www.youtube.com/watch?v=JMUCotczHR0[Lien vers la vidéo]
 
 Alexis Nicolas décrit la manière dont Octo a fait son bilan carbone et les questions qui se posent pour arriver à réduire l'empreinte carbone de l'entreprise.
 
-Ce qui m'a un peu démangé c'est qu'un des leviers est l'objectif de croissance important (20% par an) demandé à l'entreprise qui devrait permettre d'amortir certains des coûts.
+La conclusion du talk est qu'une entreprise de service numérique n'a pas beaucoup de leviers à sa disposition dans ce domaine.
+Le plus important est le niveau élevé de croissance (20% par an) qui est demandé à l'entreprise, et qui devrait permettre d'amortir certains coûts fixes comme les locaux en les répartissant sur un nombre de personnes plus importants.
 
-D'un côté le calcul fonctionne.
-
-Mais d'un autre côté une croissance importante et continue comme fin en soi est une des raisons de la surconsommation de ressources.
-Par conséquent j'ai peur que l'utiliser comme solution ne corresponde au fait de vouloir traiter un des symptômes d'un problème en renforçant sa cause.
-
-Et bien entendu si le sujet du développement durable et soutenable vous intéresse, link:https://enercoop.fr[on recrute]{nbsp}!
+Si le sujet du développement durable et soutenable vous intéresse, link:https://enercoop.fr[on recrute]{nbsp}!
 
 === Être rattrapé par la dette technique, est-ce une fatalité{nbsp}? par Mickael Wegerich
 
@@ -202,11 +187,11 @@ link:https://www.youtube.com/watch?v=C2COBA4EFrM[Lien vers la vidéo]
 
 Ce talk présente une vision de la dette technique, des raisons qui font qu'elle apparaît et des solutions pour en sortir.
 
-Même s'il contient des idées intéressantes, j'ai été gêné par trois choses{nbsp}:
+Même s'il contient des idées intéressantes, j'ai été gêné par deux choses{nbsp}:
 
-. L'idée que la dette technique est une conséquence de choix fait consciemment en connaissance de cause, alors que dans mon expérience elle est le plus souvent involontaire (mais c'est peut-être le signe que je ne suis pas assez bon 🤔).
-. L'idée qu'il est normal de faire régulièrement des raccourcis en fin d'itération pour tenir l'engagement pris sur le périmètre de l'itération. C'est une pratique dont on sait qu'elle pose problème depuis longtemps, par exemple cela fait link:https://www.scrum.org/resources/commitment-vs-forecast[10 ans] que Scrum a remplacé l'usage du mot "`engagement`"" par  "`prévision`" pour parler du périmètre d'itération. Je comprends qu'il peut être souhaitable de faire au mieux sur des projets qui ne se passent pas dans de bonnes conditions, mais c'est différent de faire comme s'il s'agissait de circonstances normales.
-. Le dernier est que certains des problèmes (ou du moins la manière dont ils sont présentés) et des solutions correspondent au discours de link:https://fr.wikipedia.org/wiki/Architecture_hexagonale_(logiciel)[l'architecture hexagonale]. Je ne suis pas convaincu par cette approche, et notamment des couches d'indirections qu'elle pousse à ajouter dans les applications. Les personnes ayant fait du J2EE verront très bien à quoi peut mener l'idée de vouloir séparer les choses par principe.
+. L'idée que la dette technique est une conséquence de choix fait consciemment en connaissance de cause (et en particulier de raccourcis pris en fin d'itération pour pouvoir tenir le périmètre), alors que dans mon expérience elle est le plus souvent involontaire.
+. L'autre est que l'analyse des problèmes et les solutions proposées sont très proches du discours de link:https://fr.wikipedia.org/wiki/Architecture_hexagonale_(logiciel)[l'architecture hexagonale] alors qu'elle est mentionnée seulement vers la fin.
+J'aurais préféré que cela le soit dès le début et de manière plus directe pour mieux permettre de placer le talk dans son contexte, d'autant que je ne suis pas convaincu par l'approche très systématique qu'elle propose.
 
 === Les Fake News du Low-Code par Sylvain Fagnent & Alain Fauré
 
@@ -223,7 +208,7 @@ Depuis le temps qu'on en parle, ces plateformes ont bien progressé et il est d�
 Par contre ces plateformes sont adaptées à certains usages et ne vont donc pas remplacer l'ensemble des développements, par exemple des applications mobiles ou des sites intranet avec une complexité limitée.
 Lors du cadrage d'un projet il faut donc être vigilant à bien vérifier s'il est compatible avec le domaine de pertinence de l'outil.
 
-Un point noir pour moi sur le talk{nbsp}:les opposants au low code sont représentés par des caricatures de Donald Trump, et cela m'a mis physiquement mal à l'aise.
+Un point noir pour moi sur le talk{nbsp}:les opposants au low-code sont représentés par des caricatures de Donald Trump, et cela m'a mis physiquement mal à l'aise.
 Je pense qu'on peut critiquer des technologies, même en étant de mauvaise foi, sans être assimilé à une personne raciste et misogyne.
 
 === Réussir une "Conway Inversée" par Romain Vailleux
