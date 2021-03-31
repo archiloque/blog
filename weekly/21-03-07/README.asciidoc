@@ -158,3 +158,66 @@ So Cree is more of a lateral/parallel thinking form of language (as opposed to s
 . The Cree Star Chart of syllabics is a 2D representation of the language, so can the new programming language also be represented in a 2D format? And how would that work? Is a visual object language better suited?
 . Many [English] programming languages rely on extended symbols and punctuation like quotation marks, semi-colons, braces/brackets, etc.. to mark code for function – in Cree written language there is no punctuation except a period. So is introducing punctuation and symbols that are not part of the language acceptable for purposes of "`programming`" or is it a form of colonial homogenization?
 ____
+
+== link:https://www.cybertec-postgresql.com/en/how-the-postgresql-query-optimizer-works/[How the PostgreSQL optimizer works and speeds up queries]
+
+[quote]
+____
+Implicit vs. explicit joins in PostgreSQL
+
+Many people keep asking about explicit versus implicit joins. Basically, both variants are the same. Let’s check out two queries and see what we are actually talking about in the context of PostgreSQL:
+
+[source,SQL]
+----
+SELECT * FROM a, b WHERE a.id = b.id;
+----
+
+vs.
+
+[source,SQL]
+----
+SELECT * FROM a JOIN b ON a.id = b.id;
+----
+
+Both queries are identical and the planner will treat them the same way as for most commonly seen queries. Mind that the explicit joins work with and without parenthesis. However, there is one parameter that is of great importance here:
+
+[source,SQL]
+----
+demo=# SHOW join_collapse_limit;
+ join_collapse_limit
+---------------------
+ 8
+(1 row)
+----
+
+The `join_collapse_limit` controls how many explicit joins are planned implicitly. In other words, an implicit join is just like an explicit join, but only up to a certain number of joins controlled by this parameter.
+
+For the sake of simplicity, we can assume that it makes no difference for 95% of all queries and for most customers.
+____
+
+[quote]
+____
+EXISTS and anti-joins
+
+There is also a quite common thing you will see everywhere in the code within SQL EXISTS. Here’s an example:
+
+[source,SQL]
+----
+demo=# explain SELECT * FROM a
+           WHERE NOT EXISTS (SELECT 1 FROM b
+                 WHERE a.x = b.x
+                 AND b.x = 42);
+                            QUERY PLAN
+-------------------------------------------------------------------
+Hash Anti Join (cost=4.46..2709.95 rows=100000 width=8)
+ Hash Cond: (a.x = b.x)
+ -> Seq Scan on a (cost=0.00..1443.00 rows=100000 width=8)
+ -> Hash (cost=4.44..4.44 rows=1 width=4)
+      -> Index Only Scan using b_x on b
+         (cost=0.42..4.44 rows=1 width=4)
+            Index Cond: (x = 42)
+(6 rows)
+----
+
+This might not look like a big deal, but consider the alternatives: What PostgreSQL does here is to create a "`hash anti-join`". This is way more efficient than some sort of nested loop. In short: The nested loop is replaced with a join which can yield significant performance gains.
+____
