@@ -1,0 +1,503 @@
+= Advent of code 2020 in Nim
+Julien Kirch
+v0.1, 2021-04-09
+:article_lang: en
+:article_image: win.png
+:article_description: Lots of code, again
+:ignore_files: 01/day011.nim, 01/day012.nim, 02/day021.nim, 02/day022.nim, 03/day031.nim, 03/day032.nim, 04/day041.nim, 04/day042.nim, 05/day051.nim, 05/day052.nim, 06/day061.nim, 06/day062.nim, 07/day071.nim, 07/day072.nim, 08/day081.nim, 08/day082.nim, 09/day091.nim, 09/day092.nim, 10/day101.nim, 10/day102.nim, 11/day111.nim, 11/day112.nim, 12/day121.nim, 12/day122.nim, 13/day131.nim, 13/day132.nim, 14/day141.nim, 14/day142.nim, 15/day151.nim, 15/day152.nim, 16/day161.nim, 16/day162.nim, 17/day171.nim, 17/day172.nim, 18/day181.nim, 18/day182.nim, 19/day191.nim, 19/day192.nim, 20/day201.nim, 20/day202.nim, 21/day211.nim, 21/day212.nim, 22/day221.nim, 22/day222.nim, 23/day231.nim, 23/day232.nim, 24/day241.nim, 24/day242.nim, 25/day251.nim
+
+For a link:../aoc2019/[third year] I did some exercises from link:https://adventofcode.com[advent of code].
+
+The advent of code is a set of not too long (hopefully) coding exercises covering various subjects.
+
+They tend to lean heavy on data manipulation algorithms (processing lists of lists, tree traversals…) so they are good to learn or practice standard libraries, while still to require specific domain knowledge.
+
+As implied by its name, they are supposed to be done during the advent.
+A two-parts problem is published each day, and you can even compete on solving them as fast as possible.
+This process help some people to keep their motivation all along the 25 days.
+
+I hate the peer pressure and the idea of self-imposed mandatory homework to do everyday, so as each year I do them later so I can choose my pace to work on them.
+
+== This year's advent of code
+
+Compared to link:../aoc2019/[last year], the problems were much more aligned with my tastes:
+
+- The samples provided were much more comprehensive, so I didn't have to look at solutions to be able to figure what was wrong in my code.
+- Less problems that required to implement math-heavy solutions, the only one this year was the day 13
+
+As a consequence I've solved all the problems \o/.
+
+== Nim
+
+This year I've decided to use the advent of code to practice link:https://nim-lang.org[Nim].
+
+Ruby is still my language of choice, but I needed another tool for specific _personal_ projects I want to try.
+
+So since a few years I was looking for a programming language with these requirements:
+
+- Statically-typed at build-time
+- Easy to integrate with C so I can use binding with things like link:https://github.com/ocornut/imgui[Dear ImGui] to write graphical standalone applications
+- Garbage-collected
+- Mature enough to not require too much busy work to keep my code up to date
+- Not managed by a large corporation with terrible practices
+- A welcoming community free of obnoxious people
+
+Nim is an interesting tool, to me it looks like +++<del>+++Python vored C+++</del>+++ a mix of Python and C, where you can have Python expressivity with C-level performance.
+It means that you have to have a high-level understanding of how the link:http://zevv.nl/nim-memory/[memory models works], which is a kind of thing I never had to deal with with any of languages I used.
+
+I enjoy the mix of minimal OOP and functional style, even if I know that other people hate this kind of multi-paradigm approach.
+
+The advent of code problems didn't required me to learn about the link:https://nim-lang.org/docs/macros.html[macros system] but as it looks cool I hope I'll be able to use them in a real project.
+
+If you want to have a look at Nim, the link:https://book.picheta.me[Nim in action] was a great resource.
+I specially liked that the text explain not only what is possible to do but also what is idiomatic in Nim.
+When you learn a programming language on your own, there's a risk to inadvertently create your own personal style that doesn't look like mainstream code and learning what is idiomatic helps to mitigate this.
+
+Disclaimers:
+
+. The bellow code is the first code I've written in Nim after reading the book, so it's probably not a example of good Nim code.
+. If you have a look at Nim because of me and you want to use it for your personal or professional projects (I want only to use it for personal ones, at least so far) and it goes badly, in no event shall I be liable for any claim, damages or other liability because of it.
+
+== The code
+
+=== Day 1
+
+==== Part one
+
+[source,nim]
+.day011.nim
+----
+include::01/day011.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day012.nim
+----
+include::01/day012.nim[]
+----
+
+=== Day 2
+
+==== Part one
+
+[source,nim]
+.day021.nim
+----
+include::02/day021.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day022.nim
+----
+include::02/day022.nim[]
+----
+
+=== Day 3
+
+==== Part one
+
+[source,nim]
+.day031.nim
+----
+include::03/day031.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day032.nim
+----
+include::03/day032.nim[]
+----
+
+=== Day 4
+
+==== Part one
+
+[source,nim]
+.day041.nim
+----
+include::04/day041.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day042.nim
+----
+include::04/day042.nim[]
+----
+
+=== Day 5
+
+==== Part one
+
+[source,nim]
+.day051.nim
+----
+include::05/day051.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day052.nim
+----
+include::05/day052.nim[]
+----
+
+=== Day 6
+
+==== Part one
+
+[source,nim]
+.day061.nim
+----
+include::06/day061.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day062.nim
+----
+include::06/day062.nim[]
+----
+
+=== Day 7
+
+==== Part one
+
+[source,nim]
+.day071.nim
+----
+include::07/day071.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day072.nim
+----
+include::07/day072.nim[]
+----
+
+=== Day 8
+
+==== Part one
+
+[source,nim]
+.day081.nim
+----
+include::08/day081.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day082.nim
+----
+include::08/day082.nim[]
+----
+
+=== Day 9
+
+==== Part one
+
+[source,nim]
+.day091.nim
+----
+include::09/day091.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day092.nim
+----
+include::09/day092.nim[]
+----
+
+=== Day 10
+
+==== Part one
+
+[source,nim]
+.day101.nim
+----
+include::10/day101.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day102.nim
+----
+include::10/day102.nim[]
+----
+
+=== Day 11
+
+==== Part one
+
+[source,nim]
+.day111.nim
+----
+include::11/day111.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day112.nim
+----
+include::11/day112.nim[]
+----
+
+=== Day 12
+
+==== Part one
+
+[source,nim]
+.day121.nim
+----
+include::12/day121.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day122.nim
+----
+include::12/day122.nim[]
+----
+
+=== Day 13
+
+==== Part one
+
+[source,nim]
+.day131.nim
+----
+include::13/day131.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day132.nim
+----
+include::13/day132.nim[]
+----
+
+=== Day 14
+
+==== Part one
+
+[source,nim]
+.day141.nim
+----
+include::14/day141.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day142.nim
+----
+include::14/day142.nim[]
+----
+
+=== Day 15
+
+==== Part one
+
+[source,nim]
+.day151.nim
+----
+include::15/day151.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day152.nim
+----
+include::15/day152.nim[]
+----
+
+=== Day 16
+
+==== Part one
+
+[source,nim]
+.day161.nim
+----
+include::16/day161.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day162.nim
+----
+include::16/day162.nim[]
+----
+
+=== Day 17
+
+==== Part one
+
+[source,nim]
+.day171.nim
+----
+include::17/day171.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day172.nim
+----
+include::17/day172.nim[]
+----
+
+=== Day 18
+
+==== Part one
+
+[source,nim]
+.day181.nim
+----
+include::18/day181.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day182.nim
+----
+include::18/day182.nim[]
+----
+
+=== Day 19
+
+==== Part one
+
+[source,nim]
+.day191.nim
+----
+include::19/day191.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day192.nim
+----
+include::19/day192.nim[]
+----
+
+=== Day 20
+
+==== Part one
+
+[source,nim]
+.day201.nim
+----
+include::20/day201.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day202.nim
+----
+include::20/day202.nim[]
+----
+
+=== Day 21
+
+==== Part one
+
+[source,nim]
+.day211.nim
+----
+include::21/day211.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day212.nim
+----
+include::21/day212.nim[]
+----
+
+=== Day 22
+
+==== Part one
+
+[source,nim]
+.day221.nim
+----
+include::22/day221.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day222.nim
+----
+include::22/day222.nim[]
+----
+
+=== Day 23
+
+==== Part one
+
+[source,nim]
+.day231.nim
+----
+include::23/day231.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day232.nim
+----
+include::23/day232.nim[]
+----
+
+=== Day 24
+
+==== Part one
+
+[source,nim]
+.day241.nim
+----
+include::24/day241.nim[]
+----
+
+==== Part two
+
+[source,nim]
+.day242.nim
+----
+include::24/day242.nim[]
+----
+
+=== Day 25
+
+==== Part one
+
+[source,nim]
+.day251.nim
+----
+include::25/day251.nim[]
+----
