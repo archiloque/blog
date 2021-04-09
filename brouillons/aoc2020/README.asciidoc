@@ -36,13 +36,16 @@ Ruby is still my language of choice, but I needed another tool for specific _per
 So since a few years I was looking for a programming language with these requirements:
 
 - Statically-typed at build-time
-- Easy to integrate with C so I can use binding with things like link:https://github.com/ocornut/imgui[Dear ImGui] to write graphical standalone applications
 - Garbage-collected
+- Easy to integrate with C so I can use binding with things like link:https://github.com/ocornut/imgui[Dear ImGui] to write graphical standalone applications
 - Mature enough to not require too much busy work to keep my code up to date
-- Not managed by a large corporation with terrible practices
+- No strong link to a large corporation with terrible practices
+- No hype
 - A welcoming community free of obnoxious people
 
-Nim is an interesting tool, to me it looks like +++<del>+++Python vored C+++</del>+++ a mix of Python and C, where you can have Python expressivity with C-level performance.
+And so far Nim seem to meet all the requirements, I should have looked at it earlier.
+
+It's is an interesting tool, to me it looks like +++<del>+++Python vored C+++</del>+++ a mix of Python and C, where you can have Python expressivity with C-level performance.
 It means that you have to have a high-level understanding of how the link:http://zevv.nl/nim-memory/[memory models works], which is a kind of thing I never had to deal with with any of languages I used.
 
 I enjoy the mix of minimal OOP and functional style, even if I know that other people hate this kind of multi-paradigm approach.
@@ -52,6 +55,8 @@ The advent of code problems didn't required me to learn about the link:https://n
 If you want to have a look at Nim, the link:https://book.picheta.me[Nim in action] was a great resource.
 I specially liked that the text explain not only what is possible to do but also what is idiomatic in Nim.
 When you learn a programming language on your own, there's a risk to inadvertently create your own personal style that doesn't look like mainstream code and learning what is idiomatic helps to mitigate this.
+
+My main gripe so far is the very limited support in IntelliJ, having to use Visual Studio Code is not a deal breaker but it's not my preferred editor.
 
 Disclaimers:
 
