@@ -22,3 +22,44 @@ _Data statistics are more complicated._ It's not enough to just know the distrib
 
 _Plans may get very deep._ It's increasingly common to stack views on views on views. Unfortunately combining cost estimates exactly is currently intractable so we rely on simplifying assumptions (eg no correlation between different predicates) that introduce some degree of error. The deeper the plans get, the more these errors multiply.
 ____
+
+== link:https://zverok.github.io/blog/2021-05-06-how-to-spellcheck.html[I forgot how to spellcheck]
+
+[quote]
+____
+The solution to every intellectual problem lies between two opposites: "`with understanding`" and "`with experience`". Most of the time, we use a mix of both, though one can imagine "`pure understanding, no experience`" and "`pure experience, no understanding`" ways of solving.
+
+When implemented in software, understanding-based (analytical) solutions require a developer to understand the domain fully and reflect it in the code; while experience-based solutions can be created by fitting a few heuristics matching most important cases and then iteratively changing these heuristics (or adding new ones) when new cases are uncovered. This iterative fitting can be performed by the developer or by another algorithm—the latter we now call "`machine learning`" (that's a criminal oversimplification, but it is enough for the current context).
+
+There is one common confusion related to using the word "`model`" in ML context -- which isn't anything near "`models`" of the problem domain in the analytical sense. I'd really prefer we name those "`experiences`"; it would be much more appropriate ("`download those experiences of image recognition trained on that dataset, or gather custom experiences from a different dataset by running this training script`"), don't you think?
+
+Experience works better than understanding in two base cases (which can be seen as one and the same): i) either the full understanding is too complex/unclear for human to model it in code (image recognition), ii) or there is no underlying "`analytical model`" in the target domain, just an infinite list of edge cases (say, bank scoring).
+____
+
+== link:https://www.holistics.io/blog/the-rise-and-fall-of-the-olap-cube/[The Rise and Fall of the OLAP Cube]
+
+[quote]
+____
+One of the biggest shifts in data analytics over the past decade is the move away from building "`data cubes`", or "`OLAP cubes`", to running OLAPfootnote:[OLAP means online analytical processing, but we'll get into what that means in a bit] workloads directly on columnar databases.
+
+The decline of the OLAP cube is a huge change, especially if you've built your career in data analytics over the past three decades.
+This is a huge change, especially if you've built your career in data analytics over the past three decades. It may seem bizarre to you that OLAP cubes -- which were so dominant over the past 50 years of business intelligence -- are going away. And you might be rightly skeptical of this shift to columnar databases. What are the tradeoffs? What are the costs? Is this move really as good as all the new vendors say that it is? And of course, there's that voice at the back of your head, asking: is this just another fad that will go away, like the NoSQL movement before it? Will it even last?
+
+This essay seeks to be an exhaustive resource on the history and development of the OLAP cube, and the current shift away from it. We'll start with definitions of the terminology (OLAP vs OLTP), cover the emergence of the OLAP cube, and then explore the emergence of columnar data warehouses as an alternative approach to OLAP workloads.
+____
+
+[quote]
+____
+"`"So what is OLAP?`" you might ask. The easiest way to explain this is to describe the two types of business application usage. Let's say that you run a car dealership. There are two kinds of database-backed operations that you need to do:
+
+. You need to use a database as part of some business process. For instance, your salesperson sells the latest Honda Civic to a customer, and you need to record this transaction in a business application. You do this for operational reasons: you need a way to keep track of the deal, you need a way to contact the customer when the car loan or insurance is finally approved, and you need it to calculate sales bonuses for your salesperson at the end of the month.
+. You use a database as part of analysis. Periodically, you will need to collate numbers to understand how your overall business is doing. In his 1993 paper, Codd called this activity ‘"`decision-making-support`". These queries are things like "`how many Honda Civics were sold in London the last 3 months?`" and "`who are the most productive salespeople?`" and "`are sedans or SUVs selling better overall?`" These are questions you ask at the end of a month or a quarter to guide your business planning for the near future.
+The first category of database usage is known as "`Online Transaction Processing`", or "`OLTP`". The second category of database usage is known as "`Online Analytical Processing`", or "`OLAP`".
+
+Or, as I like to think of it:
+
+* OLTP: using a database to run your business
+* OLAP: using a database to understand your business
+
+Why do we treat these two categories differently? As it turns out, the two usage types have vastly different data-access patterns.
+____
