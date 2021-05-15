@@ -63,3 +63,20 @@ Or, as I like to think of it:
 
 Why do we treat these two categories differently? As it turns out, the two usage types have vastly different data-access patterns.
 ____
+
+== link:https://garba.org/posts/2021/uml/[Has UML died without anyone noticing?]
+
+[quote]
+____
+Whilst some people employ lightweight modeling techniques such as link:https://c4model.com/[C4], most diagrams in use today, are what I call, somewhat derogatorily, _masala diagrams_. No hard feelings, I call my own diagrams like this. Why masala? Because they are informal; they cover multiple dimensions at once, they may be both structural and behavioural, logical and physical. They are often a mishmash of the link:https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf[4+1 architectural model's] views.
+
+Multi-million systems, upon which your life and finances depend, are devised, funded and executed entirely on the back of said masala diagrams, with often no more additional collateral than a bunch of epics and user stories.
+
+Ernie, surely my bank's mortgage system hasn't been architected using one of these dreadful masala models that you describe.
+
+That can't be right? Yes, if your bank isn't running CICS, and the solution was sold last year, it is very likely that it had been entirely conceived using the very same kind of masala diagrams that I am talking about.
+
+Has the world gone mad? No, it's just that we have just given up on the _engineering_ side of software. It is just a _coding affair_ for now. I am not saying that those who write software aren't engineers themselves; they largely are. The point is that, _at the organizational level, software isn't being engineered any longer_, as per the equivalent processes and artifacts found in disciplines such as mechanical engineering. Boeing would never order a jet engine from Rolls Royce on the back of a set of said informal masala diagrams.
+
+Masala diagrams have a role though. If you take them for what they are, they can be beautiful things. See, _they aren't specs_. Their purpose is to evoke emotions. Masala diagrams are valuable when _they spark joy_ in the heart of every stakeholder the diagram is intended for, as per link:https://www.amazon.co.uk/dp/B0186O2N2O/[Marie Kondo's] principle.
+____
