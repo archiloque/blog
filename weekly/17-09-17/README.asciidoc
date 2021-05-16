@@ -4,7 +4,7 @@ v1.0, 2017-09-17
 :article_lang: en
 :article_description: Cost-to-fix, message delivery, code duplication, microservice
 
-== link:https://arxiv.org/pdf/1609.04886.pdf[Are Delayed Issues Harder to Resolve? Revisiting Cost-to-Fix of Defects throughout the Lifecycle]
+== link:https://arxiv.org/pdf/1609.04886.pdf[Are delayed issues harder to resolve? revisiting cost-to-fix of defects throughout the lifecycle]
 
 [quote]
 ____
@@ -15,7 +15,7 @@ This paper tests for the delayed issue effect in 171 software projects conducted
 This paper documents the above study and explores reasons for this mismatch between this common rule of thumb and empirical data. In summary, DIE is not some constant across all projects. Rather, DIE might be an historical relic that occurs intermittently only in certain kinds of projects. This is a significant result since it predicts that new development processes that promise to faster retire more issues will not have a guaranteed return on investment (depending on the context where applied), and that a long-held truth in software engineering should not be considered a global truism.
 ____
 
-== link:http://procedural-generation.tumblr.com/post/162985593328/nail-polish-bot-one-thing-that-immediately-sets[Nail Polish Bot]
+== link:http://procedural-generation.tumblr.com/post/162985593328/nail-polish-bot-one-thing-that-immediately-sets[Nail polish bot]
 
 image::tumblr_oso8beQgxs1uo5d9jo1_540.gif[]
 
@@ -24,7 +24,7 @@ ____
 One thing that immediately sets link:https://twitter.com/nailpolishbot[Nail Polish Bot] apart from other Twitter bots is that it uses 3D raytracing to generate its images. Which significantly ups the implementation complexity (it uses povray) but also expands the systemic complexity behind the image. 
 ____
 
-== link:https://segment.com/blog/exactly-once-delivery/[Delivering Billions of Messages Exactly Once]
+== link:https://segment.com/blog/exactly-once-delivery/[Delivering billions of messages exactly once]
 
 [quote]
 ____
@@ -71,5 +71,5 @@ ____
 ____
 Really, It is more important to build a system that admits microservices, than it is to built out of them entirely. Once you admit something is running across the network, it isn't much of a stretch to admit it running on a different service entirely. Without a common framework or ecosystem for microservices, the maintenance burden will outweigh many potential benefits.
 
-A well engineered distributed system will likely have some elements of loose coupling, uniformity, and modularity, all essential for making microservices successful. The real question is not “should I write my system as microservices”, but “What sort of modules should I break my system into” and “what benefit is there from running it as a distinct service”.
+A well engineered distributed system will likely have some elements of loose coupling, uniformity, and modularity, all essential for making microservices successful. The real question is not "`should I write my system as microservices`", but "`What sort of modules should I break my system into`" and "`what benefit is there from running it as a distinct service`".
 ____
