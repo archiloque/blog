@@ -2,6 +2,7 @@
 Julien Kirch
 v1.0, 2017-08-20
 :article_lang: en
+:article_description: LaTeX, distributed systems, pain-driven development, microarchitecture, microkernels, SimCities, Lovecraft and Ballard
 
 == link:http://www.danielallington.net/2016/09/the-latex-fetish/[The LaTeX fetish (Or: Don't write in LaTeX! It's just for typesetting)]
 
@@ -10,7 +11,7 @@ ____
 It's that time of year when students are signing up for study skills classes. One of the skills that science students are likely to be encouraged to develop is the use of LaTeX. Other people may come to LaTeX for other reasons: people who want to typeset their own books; people who've heard that LaTeX may have something to do with Digital Humanities; etc. I've written this essay as a sort of pre-introduction to LaTeX. It won't teach you how to use it (I'm not qualified!), but it will try to give non-users a clear understanding of what LaTeX is really for, which may help them to make their minds up about whether the effort of learning it (not to mention simply getting it to work) is really going to be worthwhile. Why such a long essay? Because many of those who evangelise for the use of LaTeX fetishise it to the extent of spreading misinformation about its true benefits and I want to clear some of that up.
 ____
 
-== link:https://www.somethingsimilar.com/2013/01/14/notes-on-distributed-systems-for-young-bloods/[Notes on Distributed Systems for Young Bloods]
+== link:https://www.somethingsimilar.com/2013/01/14/notes-on-distributed-systems-for-young-bloods/[Notes on distributed systems for young bloods]
 
 [quote]
 ____
@@ -25,18 +26,18 @@ The worst characteristic of this list is that it focuses on technical problems w
 Our background, education, and experience bias us towards a technical solution even when a social solution would be more efficient, and more pleasing. Let's try to correct for that. People are less finicky than computers, even if their interface is a little less standardized.
 ____
 
-== link:http://bravenewgeek.com/pain-driven-development-why-greedy-algorithms-are-bad-for-engineering-orgs/[Pain-Driven Development: Why Greedy Algorithms Are Bad for Engineering Orgs]
+== link:http://bravenewgeek.com/pain-driven-development-why-greedy-algorithms-are-bad-for-engineering-orgs/[Pain-driven development: why greedy algorithms are bad for engineering orgs]
 
 [quote]
 ____
 I recently wrote about the importance of understanding decision impact and why it's important for building an empathetic engineering culture. I presented the distinction between pain displacement and pain deferral, and this was something I wanted to expand on a bit.
 
-When you distill it down, I think what's at the heart of a lot of engineering orgs is this idea of “pain-driven development.” When a company grows to a certain size, it develops limbs, and each of these limbs has its own pain receptors. This is when empathy becomes important because it becomes harder and less natural. These limbs of course are teams or, more generally speaking, silos. Teams have a natural tendency to operate in a way that minimizes the amount of pain they feel.
+When you distill it down, I think what's at the heart of a lot of engineering orgs is this idea of "`pain-driven development`". When a company grows to a certain size, it develops limbs, and each of these limbs has its own pain receptors. This is when empathy becomes important because it becomes harder and less natural. These limbs of course are teams or, more generally speaking, silos. Teams have a natural tendency to operate in a way that minimizes the amount of pain they feel.
 
 It's time for some game theory: pain is a zero-sum game. By always following the path of least resistance, we end up displacing pain instead of feeling it. This is literally just instinct. In other words, by making locally optimal choices, we run the risk of losing out on a globally optimal solution. Sometimes this is an explicit business decision, but many times it's not.
 ____
 
-== link:http://scholar.harvard.edu/files/mickens/files/thesaddestmoment.pdf[The Saddest Moment]
+== link:http://scholar.harvard.edu/files/mickens/files/thesaddestmoment.pdf[The saddest moment]
 
 [quote]
 ____
@@ -47,12 +48,11 @@ ____
 
 [quote]
 ____
-
 The present manual describes the details of the microarchitectures of x86 microprocessors from Intel and AMD. The Itanium processor is not covered. The purpose of this manual is to enable assembly programmers and compiler makers to optimize software for a specific microprocessor. The main focus is on details that are relevant to calculations of how much time a piece of code takes to execute, such as the latencies of different execution units and the throughputs of various parts of the pipelines. Branch prediction algorithms are also covered in detail.
 
 This manual will also be interesting to students of microarchitecture. But it must be noted that the technical descriptions are mostly based on my own research, which is limited to what is measurable. The descriptions of the "`mechanics`" of the pipelines are therefore limited to what can be measured by counting clock cycles or micro-operations (μops) and what can be deduced from these measurements. Mechanistic explanations in this manual should be regarded as a model which is useful for predicting microprocessor behavior. I have no way of knowing with certainty whether it is in accordance with the actual physical structure of the microprocessors. The main purpose of providing this information is to enable programmers and compiler makers to optimize their code.
 
-On the other hand, my method of deducing information from measurements rather than relying on information published by microprocessor vendors provides a lot of new informa- tion that cannot be found anywhere else. Technical details published by microprocessor vendors is often superficial, incomplete, selective and sometimes misleading.
+On the other hand, my method of deducing information from measurements rather than relying on information published by microprocessor vendors provides a lot of new information that cannot be found anywhere else. Technical details published by microprocessor vendors is often superficial, incomplete, selective and sometimes misleading.
 ____
 
 == link:https://utcc.utoronto.ca/~cks/space/blog/tech/AcademicMicrokernels[Microkernels are quite attractive to academic computer science researchers]
