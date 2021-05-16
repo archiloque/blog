@@ -32,7 +32,7 @@ This applies not only for external libraries, but even the Java standard library
 
 […]
 
-However, jlink establishes “link time” as a new optional phase, in between compile-time and run-time, for performing optimizations such as removing unreachable code. Meaning that unlike javapackager, which bundles the entire standard library, jlink bundles a stripped-down JRE with only those modules that your application needs.
+However, jlink establishes "`link time`" as a new optional phase, in between compile-time and run-time, for performing optimizations such as removing unreachable code. Meaning that unlike javapackager, which bundles the entire standard library, jlink bundles a stripped-down JRE with only those modules that your application needs.
 ____
 
 

@@ -5,7 +5,7 @@ v1.0, 2021-04-25
 :figure-caption!:
 :article_description: Data Mesh, PostgreSQL optimizer, CI
 
-== link:https://martinfowler.com/articles/data-mesh-principles.html[Data Mesh Principles and Logical Architecture]
+== link:https://martinfowler.com/articles/data-mesh-principles.html[Data mesh principles and logical architecture]
 
 [quote]
 ____
@@ -45,7 +45,7 @@ ____
 ____
 Implicit vs. explicit joins in PostgreSQL
 
-Many people keep asking about explicit versus implicit joins. Basically, both variants are the same. Let’s check out two queries and see what we are actually talking about in the context of PostgreSQL:
+Many people keep asking about explicit versus implicit joins. Basically, both variants are the same. Let's check out two queries and see what we are actually talking about in the context of PostgreSQL:
 
 [source,SQL]
 ----
@@ -79,7 +79,7 @@ ____
 ____
 EXISTS and anti-joins
 
-There is also a quite common thing you will see everywhere in the code within SQL EXISTS. Here’s an example:
+There is also a quite common thing you will see everywhere in the code within SQL EXISTS. Here's an example:
 
 [source,SQL]
 ----
@@ -113,7 +113,7 @@ In a good graphical interface, you not only can use the mouse, you want to.
 There are a good number of graphical interfaces that are ordinary and decent and good enough. They make effective use of the mouse and graphics, they're nice, and they by and large fail to fill me with any particular actual enthusiasm for those graphical features. They're just sort of there, in an ordinary and perfectly acceptable way.
 ____
 
-== link:https://gregoryszorc.com/blog/2021/04/07/modern-ci-is-too-complex-and-misdirected/[Modern CI is Too Complex and Misdirected]
+== link:https://gregoryszorc.com/blog/2021/04/07/modern-ci-is-too-complex-and-misdirected/[Modern CI is too complex and misdirected]
 
 [quote]
 ____
