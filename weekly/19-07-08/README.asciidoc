@@ -2,8 +2,9 @@
 Julien Kirch
 v1.0, 2019-07-08
 :article_lang: en
+:article_description: Hypothetical indexes, information maintenance, event sourcing, distributed tracing, designing for coziness
 
-== link:https://www.percona.com/blog/2019/06/21/hypothetical-indexes-in-postgresql/[Hypothetical Indexes in PostgreSQL]
+== link:https://www.percona.com/blog/2019/06/21/hypothetical-indexes-in-postgresql/[Hypothetical indexes in PostgreSQL]
 
 [quote]
 ____
@@ -12,7 +13,7 @@ The execution time of an SQL in most of the relational databases depends on the 
 But often developers wish to see if an index can be really helpful. The only option available is to create the index and check to see if the queries are able to use it with a reduced cost. Creating the index may be fine if it is in a test environment, or a table that is not huge in size, but if for some reason you wish to see if an index can be helpful for an SQL without actually creating it, then you may test and try this extension to create hypothetical indexes.
 ____
 
-== link:http://themaintainers.org/info-mc-work[Information Maintenance as a Practice of Care: An Invitation to Reflect and Share]
+== link:http://themaintainers.org/info-mc-work[Information maintenance as a practice of care: an invitation to reflect and share]
 
 [quote]
 ____
@@ -42,7 +43,7 @@ We added notifications to our event store so services could subscribe to updates
 The literature describes event-sourced and event-driven architectures as orthogonal, and that tripped us up. We came to realise that clearly distinguishing between commands that trigger activity and events that represent what happened in the past is even more important than Command/Query Responsibility Segregation, especially at the modest scale and strict consistency requirements of our system. The word “event” is such an overused term we had many discussions about how to name different kinds of event to distinguish between those that are part of the event-sourcing history, those that are emitted by our active application monitoring, those that are notifications that should trigger activity, and so on. In our new applications we use the term Business Process Event for events recorded in our event-sourcing history.
 ____
 
-== link:https://lists.llvm.org/pipermail/cfe-dev/2019-July/062799.html[ConstExprPreter — clang constexpr interpreter]
+== link:https://lists.llvm.org/pipermail/cfe-dev/2019-July/062799.html[ConstExprPreter — Clang constexpr interpreter]
 
 [quote]
 ____
@@ -73,7 +74,7 @@ code and emit useful diagnostic messages, paving the way for a future fast,
 potentially JIT-ed, interpreter.
 ____
 
-== link:https://medium.com/@copyconstruct/distributed-tracing-weve-been-doing-it-wrong-39fc92a857df[Distributed Tracing — we've been doing it wrong]
+== link:https://medium.com/@copyconstruct/distributed-tracing-weve-been-doing-it-wrong-39fc92a857df[Distributed tracing — we've been doing it wrong]
 
 [quote]
 ____
@@ -82,7 +83,7 @@ The foundational premise of a microservices architecture is that as the business
 If you truly have a mind-bogglingly complex distributed system, then no one single person can have a complete understanding of the system in their head at any given time. In fact, building tooling under the assumption that this is even possible or desirable seems a bit of an anti-pattern. What's ideally required at the time of debugging is a tool that'll help _reduce the search_ space, so that engineers can zero in on a subset of dimensions (services/users/hosts etc.) that are of interest to the debugging scenario at hand. Requiring engineers to understand what happened across the _entire service graph_ at the time of _debugging_ an incident seems counter to the ethos of microservices architectures in the first place.
 ____
 
-== link:https://www.gamasutra.com/blogs/TanyaXShort/20180305/315179/Designing_for_Coziness.php[Designing for Coziness]
+== link:https://www.gamasutra.com/blogs/TanyaXShort/20180305/315179/Designing_for_Coziness.php[Designing for coziness]
 
 [quote]
 ____

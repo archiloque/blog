@@ -2,8 +2,9 @@
 Julien Kirch
 v1.0, 2019-03-24
 :article_lang: en
+:article_description: Purely functional software deployment model, layers, on-call, reindexing
 
-== link:https://nixos.org/~eelco/pubs/phd-thesis.pdf[The Purely Functional Software Deployment Model]
+== link:https://nixos.org/~eelco/pubs/phd-thesis.pdf[The purely functional software deployment model]
 
 A bunch of quotes on link:https://archiloque.net/blog/nix/#_quelques_citations[my blog].
 
@@ -36,7 +37,7 @@ Large companies (1,000-10,000 employees)
 At this scale a company has become truly massive, moving from a handful of on-call rotations to dozens of them. Outages are immensely expensive, and when one does occur, prioritize recovery over understanding, as it's too expensive to debug in production.
 ____
 
-== link:https://gist.github.com/mkremins/cb0707180dd8653e3fc6560f6dda63d3[Stop Building Static Worlds]
+== link:https://gist.github.com/mkremins/cb0707180dd8653e3fc6560f6dda63d3[Stop building static worlds]
 
 [quote]
 ____
@@ -45,7 +46,7 @@ Facebook and twitter are trying to be third places but they are the shopping mal
 so games -- social games like minecraft and fortnite -- are becoming our NEW DIGITAL THIRD PLACES they are the community gathering spaces for a whole generation of kids who are growing up online and critically, these games work as third places in part because they enable players to change their environment!
 ____
 
-== link:https://developers.soundcloud.com/blog/how-to-reindex-1-billion-documents-in-1-hour-at-soundcloud.html[How to Reindex One Billion Documents in One Hour at SoundCloud]
+== link:https://developers.soundcloud.com/blog/how-to-reindex-1-billion-documents-in-1-hour-at-soundcloud.html[How to reindex one billion documents in one hour at SoundCloud]
 
 [quote]
 ____

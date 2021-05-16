@@ -4,7 +4,7 @@ v1.0, 2017-09-17
 :article_lang: en
 :article_description: Cost-to-fix, message delivery, code duplication, microservice
 
-== link:https://arxiv.org/pdf/1609.04886.pdf[Are delayed issues harder to resolve? revisiting cost-to-fix of defects throughout the lifecycle]
+== link:https://arxiv.org/pdf/1609.04886.pdf[Are delayed issues harder to resolve? Revisiting cost-to-fix of defects throughout the lifecycle]
 
 [quote]
 ____
@@ -30,18 +30,18 @@ ____
 ____
 The single requirement of all data pipelines is that *they cannot* _lose_ *data*. Data can usually be delayed or re-ordered–but never dropped. 
 
-To satisfy this requirement, most distributed systems guarantee link:http://www.cloudcomputingpatterns.org/at_least_once_delivery/[at-least-once delivery]. The techniques to achieve at-least-once delivery typically amount to: “_retry, retry, retry_”. You never consider a message ‘delivered' until you receive a firm acknowledgement from the consumer.
+To satisfy this requirement, most distributed systems guarantee link:http://www.cloudcomputingpatterns.org/at_least_once_delivery/[at-least-once delivery]. The techniques to achieve at-least-once delivery typically amount to: "`__retry, retry, retry__`". You never consider a message "`delivered`" until you receive a firm acknowledgement from the consumer.
 
 But as a user, _at-least-once delivery_ isn't really what I want. I want messages to be delivered *once*. And _only_ once.
 
-Unfortunately, link:http://bravenewgeek.com/you-cannot-have-exactly-once-delivery/[achieving anything close to exactly-once delivery requires a bullet-proof design]. Each failure case has to be carefully considered as part of the architecture–it can't be “bolted on” to an existing implementation after the fact. And even then, it's pretty much impossible to have messages only ever be delivered once. 
+Unfortunately, link:http://bravenewgeek.com/you-cannot-have-exactly-once-delivery/[achieving anything close to exactly-once delivery requires a bullet-proof design]. Each failure case has to be carefully considered as part of the architecture–it can't be "`bolted on`" to an existing implementation after the fact. And even then, it's pretty much impossible to have messages only ever be delivered once. 
 
 In the past three months we've built an entirely new de-duplication system to get as close as possible to exactly-once delivery, in the face of a wide variety of failure modes. 
 
 The new system is able to track 100x the number of messages of the old system, with increased reliability, at a fraction of the cost. Here's how.
 ____
 
-== link:https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction[duplication is far cheaper than the wrong abstraction]
+== link:https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction[Duplication is far cheaper than the wrong abstraction]
 
 [quote]
 ____

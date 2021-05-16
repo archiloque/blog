@@ -2,8 +2,9 @@
 Julien Kirch
 v1.0, 2018-05-27
 :article_lang: en
+:article_description: Data on the outside versus data on the inside
 
-== link:http://cidrdb.org/cidr2005/papers/P12.pdf[Data on the Outside versus Data on the Inside]
+== link:http://cidrdb.org/cidr2005/papers/P12.pdf[Data on the outside versus data on the inside]
 
 [quote]
 ____
@@ -19,5 +20,5 @@ Going to SOA is like going from Newton's physics to Einstein's physics.
 * Newton's time marched forward uniformly with instant knowledge at a distance.
 * Before SOA, distributed computing strove to make many systems look like one with RPC, 2PC, etc.
 * In Einstein's universe, everything is relative to one's perspective.
-* SOA has “now” inside and the “past” arriving in messages.
+* SOA has "`now`" inside and the "`past`" arriving in messages.
 ____

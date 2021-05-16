@@ -22,7 +22,6 @@ ____
 If we could say that a class was a _plain data carrier_ for a given state vector, then we could provide sensible and correct defaults for state-related members like constructors, accessors, and `Object` methods. Since there's currently no way to say what we really mean, our only alternative is to get out our imperative hammer and start bashing. But "`plain`" domain classes are so common that it would be nice to capture this design decision directly in the code – where readers and compilers alike could take advantage of it – rather than simulating it imperatively (and thereby obfuscating our design intent). So while boilerplate may be the symptom, the disease is that our code cannot directly capture our design intent, and if we cure the disease, the boilerplate goes away.
 ____
 
-
 == link:https://steveperkins.com/using-java-9-modularization-to-ship-zero-dependency-native-apps/[Using Java 9 modularization to ship zero-dependency native apps]
 
 [quote]
