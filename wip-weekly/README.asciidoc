@@ -23,3 +23,17 @@ I can tell you what things I will demand of any future method before I even cons
 
 I won't accept less than that, and I will most likely want more, much more. I would hope that the whole trade would join me in this.
 ____
+
+== link:https://clig.dev/[Command Line Interface Guidelines]
+
+[quote]
+____
+Traditionally, UNIX commands were written under the assumption they were going to be used primarily by other programs. They had more in common with functions in a programming language than with graphical applications.
+
+Today, even though many CLI programs are used primarily (or even exclusively) by humans, a lot of their interaction design still carries the baggage of the past. It’s time to shed some of this baggage: if a command is going to be used primarily by humans, it should be designed for humans first.
+____
+
+[quote]
+____
+_For maximum portability, environment variable names must only contain uppercase letters, numbers, and underscores (and mustn’t start with a number)_. Which means `O_O` and `OWO` are the only emoticons that are also valid environment variable names.
+____
