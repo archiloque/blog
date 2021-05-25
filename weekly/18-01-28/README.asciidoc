@@ -2,10 +2,16 @@
 Julien Kirch
 v1.0, 2018-01-28
 :article_lang: en
+:article_description: service boundaries
 
 == link:https://www.thoughtworks.com/insights/blog/well-factored-approach-securing-roi-your-service-investment-part-three[The well-factored approach to securing ROI on your service investment: Part Three]
 
 [quote]
 ____
 The right service boundaries hide complexity – domain and technical.
+____
+
+[quote]
+____
+When designing services, it’s important to have the high cohesion of related concepts — things that change at the same time. Low (loose) coupling is about pulling unrelated concepts apart -- things that can be built, tested, deployed, evolved and scaled independently. In a tightly coupled (tangled) system, introducing a simple change causes a ripple effect across the entire system; that can be very expensive.
 ____
