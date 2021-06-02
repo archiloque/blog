@@ -57,3 +57,14 @@ ____
 ____
 A content-management system for displaying a zine over telnet.
 ____
+
+== link:https://queue.acm.org/detail.cfm?ref=rss&id=3468263[Schrödinger's Code]
+
+[quote]
+____
+Physical intuition misleads some developers into believing they can predict the behavior of software that executes undefined operations: "`If defective track derails a locomotive, the train will go _somewhere_`", they reason, concluding that we can know where. If pure reasoning can't deduce the outcome, surely experiment must be definitive: "`Like Schrödinger's cat, undefined software exists in an indeterminate state only until we observe its behavior, whereupon _something_ will happen`". Try it and see, says this mentality.
+
+Predicting the behavior of undefined code, however, is a fool's errand. Experiments merely record what happened when undefined code ran in the past. They can't predict the future, when the code encounters smarter compilers, upgraded runtime support, new hardware, and seemingly irrelevant differences in the execution environment. Pure reasoning about source code is futile because it relies on language standards that explicitly deem undefined behavior unpredictable.
+
+Moreover, astonishment may begin well before execution reaches an undefined operation. An ominous passage in the {cpp}17 standard portends a looking-glass world where cause follows consequence: "`[If an] execution contains an undefined operation, this International Standard places no requirement on the implementation executing that program with that input (_not even with regard to operations preceding the first undefined operation_)`" [emphasis added].footnote:[{cpp}17 language standard (N4660). 2017; link:https://web.archive.org/web/20170325025026/http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4660.pdf[https://web.archive.org/web/20170325025026/http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4660.pdf]. Though they use different words, the C and {cpp} standards take nearly identical positions on undefined behavior.].
+____
