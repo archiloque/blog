@@ -68,3 +68,20 @@ Predicting the behavior of undefined code, however, is a fool's errand. Experime
 
 Moreover, astonishment may begin well before execution reaches an undefined operation. An ominous passage in the {cpp}17 standard portends a looking-glass world where cause follows consequence: "`[If an] execution contains an undefined operation, this International Standard places no requirement on the implementation executing that program with that input (_not even with regard to operations preceding the first undefined operation_)`" [emphasis added].footnote:[{cpp}17 language standard (N4660). 2017; link:https://web.archive.org/web/20170325025026/http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4660.pdf[https://web.archive.org/web/20170325025026/http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4660.pdf]. Though they use different words, the C and {cpp} standards take nearly identical positions on undefined behavior.].
 ____
+
+== link:https://martinfowler.com/bliki/UnitTest.html[UnitTest]
+
+[quote]
+____
+A more important distinction is whether the unit you're testing should be sociable or solitary.footnote:[Jay Fields link:https://leanpub.com/wewut[came up with the terms] "`solitary`" and "`sociable`"] Imagine you're testing an order class's price method. The price method needs to invoke some functions on the product and customer classes. If you like your unit tests to be solitary, you don't want to use the real product or customer classes here, because a fault in the customer class would cause the order class's tests to fail. Instead you use link:https://martinfowler.com/bliki/TestDouble.html[TestDoubles] for the collaborators.
+
+image::isolate.png[]
+
+But not all unit testers use solitary unit tests. Indeed when xunit testing began in the 90's we made no attempt to go solitary unless communicating with the collaborators was awkward (such as a remote credit card verification system). We didn't find it difficult to track down the actual fault, even if it caused neighboring tests to fail. So we felt allowing our tests to be sociable didn't lead to problems in practice.
+
+Indeed using sociable unit tests was one of the reasons we were criticized for our use of the term "`unit testing`". I think that the term "`unit testing`" is appropriate because these tests are tests of the behavior of a single unit. We write the tests assuming everything other than that unit is working correctly.
+
+As xunit testing became more popular in the 2000's the notion of solitary tests came back, at least for some people. We saw the rise of Mock Objects and frameworks to support mocking. Two schools of xunit testing developed, which link:https://martinfowler.com/articles/mocksArentStubs.html[I call the classic and mockist styles]. One of the differences between the two styles is that mockists insist upon solitary unit tests, while classicists prefer sociable tests. Today I know and respect xunit testers of both styles (personally I've stayed with classic style).
+
+Even a classic tester like myself uses test doubles when there's an awkward collaboration. They are invaluable to remove link:https://martinfowler.com/articles/nonDeterminism.html#RemoteServices[non-determinism when talking to remote services]. Indeed some classicist xunit testers also argue that any collaboration with external resources, such as a database or filesystem, should use doubles. Partly this is due to non-determinism risk, partly due to speed. While I think this is a useful guideline, I don't treat using doubles for external resources as an absolute rule. If talking to the resource is stable and fast enough for you then there's no reason not to do it in your unit tests.
+____
