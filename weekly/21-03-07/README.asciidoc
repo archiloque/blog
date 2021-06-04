@@ -18,7 +18,7 @@ Make sure to "`bake in`" a proper sharding key for your tables/databases
 Initially, the data can just reside on a single physical node. If your data model revolves around the "`millions of independent clients`" concept for example, then it might even be best to start with many "`sharded`" databases with identical schemas, so that transferring out the shards to separate hardware nodes will be a piece of cake in the future.
 ____
 
-== link:https://queue.acm.org/detail.cfm?ref=rss&id=3447806[Best Practice: Application Frameworks]
+== link:https://queue.acm.org/detail.cfm?id=3447806[Best Practice: Application Frameworks]
 
 [quote]
 ____
