@@ -4,7 +4,7 @@ v1.0, 2019-05-19
 :article_lang: en
 :article_description: Game development, DSL, 2D graphics, UML, architectural relic, Arkanoid
 
-== link:https://queue.acm.org/detail.cfm?id=971590[Game Development: Harder Than You Think]
+== link:https://queue.acm.org/detail.cfm?id=971590[Game Development: harder than you think]
 
 [quote]
 ____
@@ -19,7 +19,7 @@ Interesting simulations inherently involve subtle interactions between many diff
 ____
 
 
-== link:https://github.com/jeanqasaur/dsl-syllabus-fall-2016/blob/master/README.md[Domain-Specific Languages Syllabus]
+== link:https://github.com/jeanqasaur/dsl-syllabus-fall-2016/blob/master/README.md[Domain-specific languages syllabus]
 
 [quote]
 ____
@@ -55,7 +55,7 @@ ____
 
 image::thomasson.jpg[align="center",width=450,height=600]
 
-== link:https://blog.mecheye.net/2019/04/6-years-of-noclip-website/[Six Years of noclip.website]
+== link:https://blog.mecheye.net/2019/04/6-years-of-noclip-website/[Six years of noclip.website]
 
 [quote]
 ____
@@ -67,7 +67,7 @@ ____
 Third, I decided that refactors were off-limits. To help with this, I wanted as little "`abstractions`" and "`frameworks`" as possible. I should share code when it makes sense, but never be forced to share code when I do not want it. For this, I took an approach inspired by the Linux kernel and built what they call "`helpers`" -- reusable bits and bobs here and there to help cut down on boilerplate and common tasks, but are used on an as-needed basis. If you need custom code, you outgrow the training wheels, from the helpers to your own thing, perhaps by copy/pasting it, and then customizing it. Both link:https://programmingisterrible.com/post/173883533613/code-to-debug[tef] and link:https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction[Sandi Metz] have explored this idea before: code is easier to write than it is to change. When I need to change an idea that did not work out well, I should be able to do it incrementally -- port small pieces of the codebase over to the new idea, and keep the old one around. Or just delete ideas that did not work out without large change to the rest of the code.
 ____
 
-== link:https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction[The Wrong Abstraction]
+== link:https://www.sandimetz.com/blog/2016/1/20/the-wrong-abstraction[The wrong abstraction]
 
 [quote]
 ____
@@ -81,7 +81,7 @@ ____
 TL;DR This blog post talks about reverse engineering the Dropbox client, breaking its obfuscation mechanisms, de-compiling it to Python code as well as modifying the client in order to use debug features which are normally hidden from view.
 ____
 
-== link:https://shafik.github.io/c++/undefined%20behavior/2019/05/11/explporing_undefined_behavior_using_constexpr.html[Exploring Undefined Behavior Using Constexpr]
+== link:https://shafik.github.io/c++/undefined%20behavior/2019/05/11/explporing_undefined_behavior_using_constexpr.html[Exploring undefined behavior using constexpr]
 
 [quote]
 ____
@@ -118,4 +118,3 @@ ____
 == link:https://twitter.com/potch/status/1129095107855040513[Voronoi diagram of the CSS color keywords!]
 
 image::voronoi.jpeg[align="center",width=480,height=300]
-

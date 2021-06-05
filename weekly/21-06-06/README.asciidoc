@@ -1,0 +1,87 @@
+= Links - 6^th^ June 2021
+Julien Kirch
+v1.0, 2021-06-06
+:article_lang: en
+:figure-caption!:
+:article_description: Agile methods, CLI, alerts, telnet zine, Schrödinger's code, unit test
+
+== link:https://www.geepawhill.org/2021/04/27/on-agile-methods/[On agile methods]
+
+[quote]
+____
+No current "`Agile`" method can create high-performing software development teams.
+
+I don't endorse any of them. I don't sell them. I don't coach them. I actively advocate against adopting them.
+
+I said I wasn't ready yet to propose a positive view, and I'm not. But.
+
+I can tell you what things I will demand of any future method before I even consider embracing it.
+
+. It must focus explicitly on the development of what I have called community -- active, dynamic, mutually beneficial, and healthy relationships between human beings.
+. It must describe multi-option multi-variant multi-step paths from a number of "`heres`" to the "`there`" it proposes.
+. It must address causation as multi-source, multi-effect, multi-directional and multi-layer, rather than the naive mechanical models with their single causes always arising in single directions from a single "`above`".
+
+I won't accept less than that, and I will most likely want more, much more. I would hope that the whole trade would join me in this.
+____
+
+== link:https://clig.dev/[Command Line Interface Guidelines]
+
+[quote]
+____
+Traditionally, UNIX commands were written under the assumption they were going to be used primarily by other programs. They had more in common with functions in a programming language than with graphical applications.
+
+Today, even though many CLI programs are used primarily (or even exclusively) by humans, a lot of their interaction design still carries the baggage of the past. It's time to shed some of this baggage: if a command is going to be used primarily by humans, it should be designed for humans first.
+____
+
+[quote]
+____
+_For maximum portability, environment variable names must only contain uppercase letters, numbers, and underscores (and mustn't start with a number)._ Which means `O_O` and `OWO` are the only emoticons that are also valid environment variable names.
+____
+
+== link:https://utcc.utoronto.ca/~cks/space/blog/sysadmin/AlertsHaveIntentions[Sometimes alerts have inobvious reasons for existing]
+
+[quote]
+____
+Another very important corollary is link:https://utcc.utoronto.ca/~cks/space/blog/sysadmin/ConfigMgmtIsNotDocumentation[the same thing we saw for configuration management] and link:https://utcc.utoronto.ca/~cks/space/blog/sysadmin/ProceduresAreNotDocumentation[procedures], which is that by themselves your alerts don't tell you why you put them into place, just what you're alerting on. Understanding why an alert exists is important, so you want to document that too, in comments or in the alert messages or both. Even if the bare alert seems to be obviously sensible, you should document why you picked that particular thing to alert on to tell you about the overall problem. It's probably useful to describe what high level problem (or problems) the alert is trying to pick up on, since that isn't necessarily obvious either.
+
+Having this sort of "`why`" documentation is especially important for alerts because alerts are notorious for drifting out of sync with reality, at which point you need to bring them back in line for them to be useful. This is effectively debugging, and now I will point everyone to link:https://utcc.utoronto.ca/~cks/space/blog/links/CodeOnlySaysWhatItDoes[Code Only Says What it Does] and paraphrase a section of the lead paragraph:
+
+Fundamentally, [updating alerts] is an exercise in changing what [an alert] does to match what it should do. It requires us to know what [an alert] should do, which isn't captured in the alert.
+
+So, _alerts have intentions_, and we should make sure to document those intentions. Without the intentions, any alert can look stupid.
+____
+
+== link:https://github.com/caraesten/dial_a_zine[Dial-A-Zine]
+
+[quote]
+____
+A content-management system for displaying a zine over telnet.
+____
+
+== link:https://queue.acm.org/detail.cfm?id=3468263[Schrödinger's Code]
+
+[quote]
+____
+Physical intuition misleads some developers into believing they can predict the behavior of software that executes undefined operations: "`If defective track derails a locomotive, the train will go _somewhere_`", they reason, concluding that we can know where. If pure reasoning can't deduce the outcome, surely experiment must be definitive: "`Like Schrödinger's cat, undefined software exists in an indeterminate state only until we observe its behavior, whereupon _something_ will happen`". Try it and see, says this mentality.
+
+Predicting the behavior of undefined code, however, is a fool's errand. Experiments merely record what happened when undefined code ran in the past. They can't predict the future, when the code encounters smarter compilers, upgraded runtime support, new hardware, and seemingly irrelevant differences in the execution environment. Pure reasoning about source code is futile because it relies on language standards that explicitly deem undefined behavior unpredictable.
+
+Moreover, astonishment may begin well before execution reaches an undefined operation. An ominous passage in the {cpp}17 standard portends a looking-glass world where cause follows consequence: "`[If an] execution contains an undefined operation, this International Standard places no requirement on the implementation executing that program with that input (_not even with regard to operations preceding the first undefined operation_)`" [emphasis added].footnote:[{cpp}17 language standard (N4660). 2017; link:https://web.archive.org/web/20170325025026/http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4660.pdf[https://web.archive.org/web/20170325025026/http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4660.pdf]. Though they use different words, the C and {cpp} standards take nearly identical positions on undefined behavior.].
+____
+
+== link:https://martinfowler.com/bliki/UnitTest.html[UnitTest]
+
+[quote]
+____
+A more important distinction is whether the unit you're testing should be sociable or solitary.footnote:[Jay Fields link:https://leanpub.com/wewut[came up with the terms] "`solitary`" and "`sociable`"] Imagine you're testing an order class's price method. The price method needs to invoke some functions on the product and customer classes. If you like your unit tests to be solitary, you don't want to use the real product or customer classes here, because a fault in the customer class would cause the order class's tests to fail. Instead you use link:https://martinfowler.com/bliki/TestDouble.html[TestDoubles] for the collaborators.
+
+image::isolate.png[]
+
+But not all unit testers use solitary unit tests. Indeed when xunit testing began in the 90's we made no attempt to go solitary unless communicating with the collaborators was awkward (such as a remote credit card verification system). We didn't find it difficult to track down the actual fault, even if it caused neighboring tests to fail. So we felt allowing our tests to be sociable didn't lead to problems in practice.
+
+Indeed using sociable unit tests was one of the reasons we were criticized for our use of the term "`unit testing`". I think that the term "`unit testing`" is appropriate because these tests are tests of the behavior of a single unit. We write the tests assuming everything other than that unit is working correctly.
+
+As xunit testing became more popular in the 2000's the notion of solitary tests came back, at least for some people. We saw the rise of Mock Objects and frameworks to support mocking. Two schools of xunit testing developed, which link:https://martinfowler.com/articles/mocksArentStubs.html[I call the classic and mockist styles]. One of the differences between the two styles is that mockists insist upon solitary unit tests, while classicists prefer sociable tests. Today I know and respect xunit testers of both styles (personally I've stayed with classic style).
+
+Even a classic tester like myself uses test doubles when there's an awkward collaboration. They are invaluable to remove link:https://martinfowler.com/articles/nonDeterminism.html#RemoteServices[non-determinism when talking to remote services]. Indeed some classicist xunit testers also argue that any collaboration with external resources, such as a database or filesystem, should use doubles. Partly this is due to non-determinism risk, partly due to speed. While I think this is a useful guideline, I don't treat using doubles for external resources as an absolute rule. If talking to the resource is stable and fast enough for you then there's no reason not to do it in your unit tests.
+____
