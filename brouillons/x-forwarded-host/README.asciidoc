@@ -1,0 +1,81 @@
+= X-Forwarded-Host, Rack & Hasura: good deeds never goes unpunished
+Julien Kirch
+v0.1, 2021-06-05
+:article_lang: en
+
+I had to track down a bug at work this week, and it was caused by the unpredicted interaction between two components that both do something that makes sense in their own context.
+
+Understanding why the problem happens requires to know a few things about enterprise networking, so it's a great excuse to write a blog post.
+
+== X-Forwarded-Host & networking
+
+In many organizations, application servers like web servers are not directly exposed on the internet but are isolated through a layer of firewalls:
+
+image:firewall1.svg[]
+
+From a browser, the requests first goes through the firewall then reach the server behind them (if the firewalls decide they should let the request pass).
+
+The firewall are reachable on the `www.domain.cute` domain, and the application servers are reachable on the `web.domain.cute` domain from within the network.
+
+(Note: using a domain to reach the application server is not the only approach, for example you can use a link:https://en.wikipedia.org/wiki/Virtual_IP_address[virtual IP address], but it's not the case here.)
+
+When a query reach the proxy, the URL is like `https://www.domain.cute/cats`, and when it is transmitted to the the application servers, it will become `https://web.domain.cute/cats`.
+
+And sometimes this happens:
+
+image:firewall2.svg[]
+
+When the same application servers are used for several domains with different contents, from their point of view the request is targeted at `https://web.domain.cute/cats`, but they need to know if the request was originally targeted to `https://www.domain.cute/cats` or to `https://secret.domain.cute/cats`.
+
+A possible solution would be to have a separate domain for the application servers for each public domain so you could do a kind of matching between them, like `www.app.domain.cute` for `www.domain.cute` and `secret.app.domain.cute` for `secret.domain.cute` but it increases the infrastructure's complexity.
+
+The de-facto standard for this is to use the link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host[`X-Forwarded-Host`] header: when a proxy pass the query to an application server, it adds a `X-Forwarded-Host` header containing the original host that has been queried, in our case `www.domain.cute` or `secret.domain.cute`.
+The application server can then use this header to decide which content to serve.
+
+== Rack want to help you
+
+link:https://github.com/rack/rack[Rack] is a Ruby framework that "`provides a minimal, modular, and adaptable interface for developing web applications in Ruby`".
+It provides a middleware between web servers and web framework in Ruby, which means that if you decide to write a new Ruby web servers and make it Rack-compatible, it should works with all Rack-compatible web frameworks like Rails, or if you decide to write your own web framework, doing it using the Rack API should make it work with all the Rack-compatible web servers.
+
+Rack is mostly an (well-designed) API, but it also does a few plumbing-related things that are generally useful for all web-related things, like normalizing the requests headers.
+One of these things is to use the `X-Forwarded-Host` header -- when it's available -- to replace the host of the request.
+
+In the previous example, it means that if your application server is in Ruby an use Rack, when the proxied request has a `X-Forwarded-Host` header with the value `www.domain.cute`, from the application code it looks like the request that hit you is targeted at `www.domain.cute` instead of `web.domain.cute`.
+This way, the proxy layer is kind of hidden and you can write your code like it doesn't exist and your application is accessed through the public domain.
+
+== Hasura also wants to help you
+
+link:https://hasura.io[Hasura] is a tool that enable you to expose GraphQL APIs from a database.
+This kind of tool makes some people angry but it can handy when you want to share data between components of your system without connecting directly to their database but don't want to invest into designing custom APIs.
+
+To secure the requests, link:https://hasura.io/docs/latest/graphql/core/auth/authentication/webhook.html[Hasura can use webhooks], in this case the Hasura server call a endpoint you specified to validate that the request is allowed.
+
+image:hasura1.svg[]
+
+In some case, you could want to use the same Hasura server to expose several APIs to several consumers.
+For example you could have a private API for internal consumers so can expose more data to them.
+And in this case you may want to make the Hasura server available on several domains:
+
+image:hasura2.svg[]
+
+You probably guess what will happen: sometimes the authentication rules may rely on the domain the request comes from (`pub-api.domain.cute` or `priv-api.domain.cute`) so you need to transmit this data to the authentication server.
+
+There's no specified way to do this, but there's an existing mechanism that could be repurposed because this use case is not so different: the `X-Forwarded-Host` header.
+So when the Hasura server call the authentication server, it will put the original host in the `X-Forwarded-Host` header.
+
+== Hasura + Rack: well yes, but actually no
+
+In our application server, we use the request domain to decide which endpoint to call with Rails' link:https://guides.rubyonrails.org/routing.html#request-based-constraints[request-based constraints].
+
+We don't use the kind of proxy described above: our servers acts like their directly reached on the public-facing domains.
+
+And when I tried to deploy our new Hasura authentication endpoint on `auth.website.cute`, the authentication failed because it got an unexpected answer from the authentication server.
+When looking at the authentication server logs, I saw `404` errors.
+
+After adding more logs, it seemed like the requests reached our servers with a `api.domain.cute` domain, which didn't make any sense at first, specially since we don't use any private DNS setup.
+
+As the server is setuped to answer to `auth.website.cute`, calling it on `api.website.cute` returned 404 since it didn't have any endpoint configured on this domain.
+
+If you read the article until here, who can understand what was happening: Rack and Hasura conspired together in an unexpected way.
+
+The Rack solution is not a bad idea, and Hasura's way to repurpose the `X-Forwarded-Host` header kind of make sense, but together the result was unexpected, and I needed a few hours to figure the whole explanation.
