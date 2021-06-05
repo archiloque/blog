@@ -41,7 +41,7 @@ Rack is mostly an (well-designed) API, but it also does a few plumbing-related t
 One of these things is to use the `X-Forwarded-Host` header -- when it's available -- to replace the host of the request.
 
 In the previous example, it means that if your application server is in Ruby an use Rack, when the proxied request has a `X-Forwarded-Host` header with the value `www.domain.cute`, from the application code it looks like the request that hit you is targeted at `www.domain.cute` instead of `web.domain.cute`.
-This way, the proxy layer is kind of hidden and you can write your code like it doesn't exist and your application is accessed through the public domain.
+This way, the proxy layer is kind of hidden and you can write your code like it doesn't exist and your application is accessed on the initial domain.
 
 == Hasura also wants to help you
 
@@ -79,3 +79,10 @@ As the server is setuped to answer to `auth.website.cute`, calling it on `api.we
 If you read the article until here, who can understand what was happening: Rack and Hasura conspired together in an unexpected way.
 
 The Rack solution is not a bad idea, and Hasura's way to repurpose the `X-Forwarded-Host` header kind of make sense, but together the result was unexpected, and I needed a few hours to figure the whole explanation.
+
+There is no configuration to disable the `X-Forwarded-Host` trick on Rack or to tell Hasura to not add the header, so I see two ways to deal with the issue:
+
+. Add a routing rule based on the Hasura domain on the application server, even if it doesn't make any real sense.
+. Add a Rack middleware to remove the header before it can be processed to avoid the problem.
+
+I'm not sure yet which one I'll choose.
