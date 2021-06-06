@@ -1,7 +1,10 @@
-= X-Forwarded-Host, Rack & Hasura: good deeds never goes unpunished
+= `X-Forwarded-Host`, Rack & Hasura: good deeds never goes unpunished
 Julien Kirch
-v0.1, 2021-06-05
+v0.1, 2021-06-06
 :article_lang: en
+:article_image: hasura2.png
+:article_description: Unpredicted interaction
+:ignore_files: schemas.drawio
 
 I had to track down a bug at work this week, and it was caused by the unpredicted interaction between two components that both do something that makes sense in their own context.
 
@@ -40,7 +43,7 @@ It provides a middleware between web servers and web framework in Ruby, which me
 Rack is mostly an (well-designed) API, but it also does a few plumbing-related things that are generally useful for all web-related things, like normalizing the requests headers.
 One of these things is to use the `X-Forwarded-Host` header -- when it's available -- to replace the host of the request.
 
-In the previous example, it means that if your application server is in Ruby an use Rack, when the proxied request has a `X-Forwarded-Host` header with the value `www.domain.cute`, from the application code it looks like the request that hit you is targeted at `www.domain.cute` instead of `web.domain.cute`.
+In the previous example, it means that if your application server is in Ruby and use Rack, when the proxied request has a `X-Forwarded-Host` header with the value `www.domain.cute`, from the application code it looks like the request that hit you is targeted at `www.domain.cute` instead of `web.domain.cute`.
 This way, the proxy layer is kind of hidden and you can write your code like it doesn't exist and your application is accessed on the initial domain.
 
 == Hasura also wants to help you
@@ -48,7 +51,7 @@ This way, the proxy layer is kind of hidden and you can write your code like it 
 link:https://hasura.io[Hasura] is a tool that enable you to expose GraphQL APIs from a database.
 This kind of tool makes some people angry but it can handy when you want to share data between components of your system without connecting directly to their database but don't want to invest into designing custom APIs.
 
-To secure the requests, link:https://hasura.io/docs/latest/graphql/core/auth/authentication/webhook.html[Hasura can use webhooks], in this case the Hasura server call a endpoint you specified to validate that the request is allowed.
+To secure the requests, link:https://hasura.io/docs/latest/graphql/core/auth/authentication/webhook.html[Hasura can use webhooks], in this case the Hasura server call an endpoint you specified to validate that the request is allowed.
 
 image:hasura1.svg[]
 
