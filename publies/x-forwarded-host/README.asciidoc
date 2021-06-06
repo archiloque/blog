@@ -28,7 +28,7 @@ And sometimes this happens:
 
 image:firewall2.svg[]
 
-When the same application servers are used for several domains with different contents, from their point of view the request is targeted at `\https://web.domain.cute/cats`, but they need to know if the request was originally targeted to `\https://www.domain.cute/cats` or to `\secret.domain.cute/cats`.
+When the same application servers are used for several domains with different contents, from their point of view the request is targeted at `\https://web.domain.cute/cats`, but they need to know if the request was originally targeted to `\https://www.domain.cute/cats` or to `\https://secret.domain.cute/cats`.
 
 A possible solution would be to have a separate domain for the application servers for each public domain so you could do a kind of matching between them, like `www.app.domain.cute` for `www.domain.cute` and `secret.app.domain.cute` for `secret.domain.cute` but it increases the infrastructure's complexity.
 
