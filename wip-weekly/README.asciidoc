@@ -20,3 +20,15 @@ ____
 ____
 The skills-gap narrative shifts the responsibility for training away from business owners and toward young individuals at the beginning of their working lives, as well as toward the public institutions that train them: universities, community colleges, and local and state governments. As management researcher Peter Cappelli has shown, what little evidence we have suggests that employers today devote very little time to on-the-job training relative to the postwar "`golden era`" of long-term, single-firm employment. 
 ____
+
+== link:https://sigops.org/s/conferences/hotos/2021/papers/hotos21-s06-greenberg.pdf[Unix Shell Programming: The Next 50 Years]
+
+[quote]
+____
+There is no point denying it: the shell has many shortcomings and is hated by many. Shell scripts are unmaintainable, easy to get wrong, and inflexible with respect to performance; once a script is written it is difficult to refactor it to avoid redundant computation or properly utilize all the available computational resources. To make matters worse, the shell has been mostly left for dead by both academia and industry, considering it an unsalvageable piece of junk that needs to be replaced at the first opportunity.
+____
+
+[quote]
+____
+The features and abstractions of the shell are well suited to the Unix file system and file-based abstractions. Unix can be viewed as a naming service, mapping strings to longer strings, be it data files or programs. Naming is both convenient and essential to (powerful classes of) computation.footnote:[OlinShivers.2018. What’s in a name? link:https://www.ccs.neu.edu/home/shivers/papers/whats-in-a-name.html[https://www.ccs.neu.edu/home/shivers/papers/whats-in-a-name.html] Accessed: 2018-09-27.] Processes, PATH entries, files, streams, and environment variables are all names, and the shell is the tool for manipulating and interacting with these names.
+____
