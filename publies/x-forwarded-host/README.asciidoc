@@ -32,10 +32,10 @@ When the same application servers are used for several domains with different co
 
 A possible solution would be to have a separate domain for the application servers for each public domain so you could do a kind of matching between them, like `www.app.domain.cute` for `www.domain.cute` and `secret.app.domain.cute` for `secret.domain.cute` but it increases the infrastructure's complexity.
 
-The de-facto standard for this is to use the link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host[`X-Forwarded-Host`] header: when a proxy pass the query to an application server, it adds a `X-Forwarded-Host` header containing the original host that has been queried, in our case `www.domain.cute` or `secret.domain.cute`.
+The de-facto standard for this is to use the link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host[`X-Forwarded-Host`] header: when a proxy passes the query to an application server, it adds a `X-Forwarded-Host` header containing the original host that has been queried, in our case `www.domain.cute` or `secret.domain.cute`.
 The application server can then use this header to decide which content to serve.
 
-== Rack want to help you
+== Rack wants to help you
 
 link:https://github.com/rack/rack[Rack] is a Ruby framework that "`provides a minimal, modular, and adaptable interface for developing web applications in Ruby`".
 It provides a middleware between web servers and web framework in Ruby, which means that if you decide to write a new Ruby web servers and make it Rack-compatible, it should works with all Rack-compatible web frameworks like Rails, or if you decide to write your own web framework, doing it using the Rack API should make it work with all the Rack-compatible web servers.
@@ -49,9 +49,9 @@ This way, the proxy layer is kind of hidden and you can write your code like it 
 == Hasura also wants to help you
 
 link:https://hasura.io[Hasura] is a tool that enable you to expose GraphQL APIs from a database.
-This kind of tool makes some people angry but it can handy when you want to share data between components of your system without connecting directly to their database but don't want to invest into designing custom APIs.
+This kind of tool makes some people angry but it can be handy when you want to share data between components of your system without connecting directly to their database but don't want to invest into designing custom APIs.
 
-To secure the requests, link:https://hasura.io/docs/latest/graphql/core/auth/authentication/webhook.html[Hasura can use webhooks], in this case the Hasura server call an endpoint you specified to validate that the request is allowed.
+To secure the requests, link:https://hasura.io/docs/latest/graphql/core/auth/authentication/webhook.html[Hasura can use webhooks], in this case the Hasura server calls an endpoint you specified to validate that the request is allowed.
 
 image:hasura1.svg[]
 
@@ -75,9 +75,9 @@ We don't use the kind of proxy described above: our servers acts like their dire
 And when I tried to deploy our new Hasura authentication endpoint on `auth.website.cute`, the authentication failed because it got an unexpected answer from the authentication server.
 When looking at the authentication server logs, I saw `404` errors.
 
-After adding more logs, it seemed like the requests reached our servers with a `api.domain.cute` domain, which didn't make any sense at first, specially since we don't use any private DNS setup.
+After adding more logs, it seemed like the requests reached our servers with a `api.domain.cute` domain, which didn't make any sense at first, especially since we don't use any private DNS setup.
 
-As the server is setuped to answer to `auth.website.cute`, calling it on `api.website.cute` returned 404 since it didn't have any endpoint configured on this domain.
+As the server is set up to answer to `auth.website.cute`, calling it on `api.website.cute` returns 404 since it didn't have any endpoint configured on this domain.
 
 If you read the article until here, who can understand what was happening: Rack and Hasura conspired together in an unexpected way.
 
