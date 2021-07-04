@@ -4,3 +4,27 @@ v1.0, 2021-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://prog21.dadgum.com/40.html[On being sufficiently smart]
+
+[quote]
+____
+Let's say that a compiler can detect O(N^2) algorithms and replace them with O(N) equivalents. This is a classic example of being sufficiently smart. You can write code knowing that the compiler will transform and fix it for you. But what if the compiler isn't perfect (and it clearly won't be, as there aren't O(N) versions all algorithms)? It will fix some parts of your code and leave others as-is. Now you run your program, and it's slow, but why? You need insight into what's going on behind the scenes to figure that out, and if you find the problem then you'll have to manually recode that section to use a linear approach. Wouldn't it be more transparent to simply use linear algorithms where possible in the first place, rather than having to second guess the system?
+
+There's another option, and that's to have the compiler give concrete information about behind the scenes transformations. I have a good mental picture of how Erlang works, in terms of the compiler and run-time. It's usually straightforward to understand what kind of BEAM code will be generated from particular source. That was true until fancy optimizations on binary operations were introduced in 2008. The documentation uses low-level concepts like "`match context`" and discusses when segmented binaries are copied and so on. It's all abstract and difficult to grasp, and that's why there's a new compiler switch, "`bin_opt_info`", to provide a window into what kind of code is being generated. Going back to my early programming days, the manual for Turbo Pascal 4 listed exactly what optimizations were performed by the compiler.
+
+The Glasgow Haskell Compiler (GHC) is the closest I've seen to a sufficiently smart compiler, with the advantages and drawbacks that come with such a designation.
+
+I can write code that looks like it generates all kinds of intermediate lists -- and indeed such would be the case with similar code in Erlang -- and yet the compiler is sufficiently smart to usually remove all of that. Even in the cases where that isn't possible, it's not a make or break issue. In the worst case the Haskell code works like the Erlang version.
+
+But then there's laziness. Laziness is such an intriguing idea: an operation can "`complete`" immediately, because the actual result isn't computed until there's specific demand for it, which might be very soon or it might be in some other computation that happens much later. Now suppose you've got two very memory intensive algorithms in your code, and each independently pushes the limits of available RAM. The question is, can you guarantee that first algorithm won't be lazily delayed until it is forced to run right in the middle of the second algorithm, completely blowing the memory limit?
+
+The GHC developers know that laziness can be expensive (or at least unnecessary in many cases), so strictness analysis is done to try to convert lazy code to non-lazy code. If and when that's successful, wonderful! Maybe some programs that would have previously blown-up now won't. But this only works in some cases, so as a Haskell coder you've got to worry about the cases where it doesn't happen. As much as I admire the Haskell language and the GHC implementation, I find it difficult to form a solid mental model of how Haskell code is executed, partially because that model can change drastically depending on what the compiler does. And that's the price of being sufficiently smart.
+____
+
+== link:https://prog21.dadgum.com/33.html[Understanding What It's Like to Program in Forth]
+
+[quote]
+____
+But as pretty as these code snippets are, they're the easy, meaningless examples, much like the link:http://www.haskell.org/haskellwiki/Introduction#Quicksort_in_Haskell[two-line quicksort in Haskell]. They're trotted out to show the the strengths of a language, then reiterated by new converts. The primary reason I wrote the link:http://prog21.dadgum.com/23.html[Purely Functional Retrogames series], is because of the disconnect between advocates saying everything is easy without destructive updates, and the utter lack of examples of how to approach many kinds of problems in a purely functional way. The same small set of pretty examples isn't enough to understand what it's like to program in a particular language or style.
+____
