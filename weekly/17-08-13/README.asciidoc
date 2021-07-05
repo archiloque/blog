@@ -2,12 +2,13 @@
 Julien Kirch
 v1.0, 2017-08-13
 :article_lang: en
+:article_description: Ron Jeffries: New framework, CAP theorem & organizations, ascii art, electrical engineering, and programming, Linux load averages, font-size, I/O-free (Sans-I/O) protocol implementations
 
-== link:http://ronjeffries.com/articles/017-08ff/new-framework-increment/[Ron Jeffries: New Framework -- the Increment]
+== link:https://ronjeffries.com/articles/017-08ff/new-framework-increment/[Ron Jeffries: New framework -- the Increment]
 
 [quote]
 ____
-I'm not planning to produce a new brand-named framework, but I am interested in ways of deriving, expressing, describing, and developing the ideas that surround "`Agile`"1 software development. I've been running on at length about the "`Increment`", and today I'm wondering whether the Increment could be a driver for successful software development in the "`Agile`" style. Walk with me – we'll explore the idea.
+I'm not planning to produce a new brand-named framework, but I am interested in ways of deriving, expressing, describing, and developing the ideas that surround "`Agilefootnote:[You're probably wondering why I so often put the word “Agile” in quotes. This is my passive-aggressive way of responding to the fact that the term means many things to many people. I myself use the rough definition that Agile software development is an approach that is in good accord with the values and principles of the link:https://agilemanifesto.org/[Agile Manifesto].]`" software development. I've been running on at length about the "`Increment`", and today I'm wondering whether the Increment could be a driver for successful software development in the "`Agile`" style. Walk with me – we'll explore the idea.
 ____
 
 == link:https://twitter.com/coda/status/892378733176274944[CAP theorem & organizations]
@@ -28,7 +29,7 @@ ____
 
 image::asciidots.gif[]
 
-== link:http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html[Linux Load Averages: Solving the Mystery]
+== link:http://www.brendangregg.com/blog/2017-08-08/linux-load-averages.html[Linux load averages: solving the mystery]
 
 [quote]
 ____
@@ -39,7 +40,7 @@ The use of the uninterruptible state has since grown in the Linux kernel, and no
 In this post, I dug up the Linux load average patch from 1993 – which was surprisingly difficult to find – containing the original explanation by the author. I also measured stack traces and time in the uninterruptible state using bcc/eBPF on a modern Linux system, and visualized this time as an off-CPU flame graph. This visualization provides many examples of uninterruptible sleeps, and can be generated whenever needed to explain unusually high load averages. I also proposed other metrics you can use to understand system load in more detail, instead of load averages.
 ____
 
-== link:https://manishearth.github.io/blog/2017/08/10/font-size-an-unexpectedly-complex-css-property/[Font-size: An Unexpectedly Complex CSS Property]
+== link:https://manishearth.github.io/blog/2017/08/10/font-size-an-unexpectedly-complex-css-property/[Font-size: an unexpectedly complex CSS property]
 
 [quote]
 ____
@@ -50,7 +51,7 @@ And it's super complicated.
 "`But it's just a number`", you say. "`How can that be complicated?`"
 ____
 
-== link:https://sans-io.readthedocs.io/how-to-sans-io.html[Writing I/O-Free (Sans-I/O) Protocol Implementations]
+== link:https://sans-io.readthedocs.io/how-to-sans-io.html[Writing I/O-free (Sans-I/O) protocol implementations]
 
 [quote]
 ____
