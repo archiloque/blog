@@ -1,0 +1,78 @@
+= Links - 11^th^ July 2021
+Julien Kirch
+v1.0, 2021-07-11
+:article_lang: en
+:figure-caption!:
+:article_description: Smart compilers, good example, broken tools, ,UX theatre, scrum
+
+== link:https://prog21.dadgum.com/40.html[On being sufficiently smart]
+
+[quote]
+____
+Let's say that a compiler can detect O(N^2) algorithms and replace them with O(N) equivalents. This is a classic example of being sufficiently smart. You can write code knowing that the compiler will transform and fix it for you. But what if the compiler isn't perfect (and it clearly won't be, as there aren't O(N) versions all algorithms)? It will fix some parts of your code and leave others as-is. Now you run your program, and it's slow, but why? You need insight into what's going on behind the scenes to figure that out, and if you find the problem then you'll have to manually recode that section to use a linear approach. Wouldn't it be more transparent to simply use linear algorithms where possible in the first place, rather than having to second guess the system?
+
+There's another option, and that's to have the compiler give concrete information about behind the scenes transformations. I have a good mental picture of how Erlang works, in terms of the compiler and run-time. It's usually straightforward to understand what kind of BEAM code will be generated from particular source. That was true until fancy optimizations on binary operations were introduced in 2008. The documentation uses low-level concepts like "`match context`" and discusses when segmented binaries are copied and so on. It's all abstract and difficult to grasp, and that's why there's a new compiler switch, "`bin_opt_info`", to provide a window into what kind of code is being generated. Going back to my early programming days, the manual for Turbo Pascal 4 listed exactly what optimizations were performed by the compiler.
+
+The Glasgow Haskell Compiler (GHC) is the closest I've seen to a sufficiently smart compiler, with the advantages and drawbacks that come with such a designation.
+
+I can write code that looks like it generates all kinds of intermediate lists -- and indeed such would be the case with similar code in Erlang -- and yet the compiler is sufficiently smart to usually remove all of that. Even in the cases where that isn't possible, it's not a make or break issue. In the worst case the Haskell code works like the Erlang version.
+
+But then there's laziness. Laziness is such an intriguing idea: an operation can "`complete`" immediately, because the actual result isn't computed until there's specific demand for it, which might be very soon or it might be in some other computation that happens much later. Now suppose you've got two very memory intensive algorithms in your code, and each independently pushes the limits of available RAM. The question is, can you guarantee that first algorithm won't be lazily delayed until it is forced to run right in the middle of the second algorithm, completely blowing the memory limit?
+
+The GHC developers know that laziness can be expensive (or at least unnecessary in many cases), so strictness analysis is done to try to convert lazy code to non-lazy code. If and when that's successful, wonderful! Maybe some programs that would have previously blown-up now won't. But this only works in some cases, so as a Haskell coder you've got to worry about the cases where it doesn't happen. As much as I admire the Haskell language and the GHC implementation, I find it difficult to form a solid mental model of how Haskell code is executed, partially because that model can change drastically depending on what the compiler does. And that's the price of being sufficiently smart.
+____
+
+== link:https://prog21.dadgum.com/33.html[Understanding What It's Like to Program in Forth]
+
+[quote]
+____
+But as pretty as these code snippets are, they're the easy, meaningless examples, much like the link:http://www.haskell.org/haskellwiki/Introduction#Quicksort_in_Haskell[two-line quicksort in Haskell]. They're trotted out to show the the strengths of a language, then reiterated by new converts. The primary reason I wrote the link:http://prog21.dadgum.com/23.html[Purely Functional Retrogames series], is because of the disconnect between advocates saying everything is easy without destructive updates, and the utter lack of examples of how to approach many kinds of problems in a purely functional way. The same small set of pretty examples isn't enough to understand what it's like to program in a particular language or style.
+____
+
+== link:https://prog21.dadgum.com/197.html[You can't sit on the sidelines and become a philosopher]
+
+[quote]
+____
+At some point every competent developer has that flash of insight when he or she realizes everything is fundamentally broken: the tools, the languages, the methodologies. The brokenness -- and who could argue with it -- is not the important part. What matters is what happens next after this moment of clarity, after this exposure to the ugly realities of software.
+
+You could ignore it, because that's how it is. You still get paid regardless of what you're forced to use.
+
+You could go on a quest for perfection and try all the exotic languages and development environments, even taking long archaeological expeditions into once promising but now lost ideas of the 1970s and 80s. Beware, for you may never return.
+
+You could try to recreate computing in your own image, starting from a new language, no wait, a new operating system -- wait, wait, wait -- a new processor architecture. This may take a while, and eventually you will be visited by people on archaeological expeditions.
+
+The right answer is a blend of all of these. You have to ignore some things, because while they're driving you mad, not everyone sees them that way; you've built up a sensitivity. You can try new tools and languages, though you may have to carry some of their concepts into future projects and not the languages themselves. You can fix things, especially specific problems you have a solid understanding of, and probably not the world of technology as a whole.
+
+As long as you eventually get going again you'll be fine.
+____
+
+== link:https://www.spydergrrl.com/2020/05/ux-theatre-poster.html[UX theatre: the poster]
+
+[quote]
+____
+UX Theatre is easy to define. It's the application of any sort of design methodology without including a single user in the process. UX theatre is becoming more prevalent as executives learn the term user experience but their teams aren't empowered to do all the work that UX entails. 
+
+* We see it when UX is a bolt-on at the end of the development process -- "`Now that it's done, have the UX person look at it`".
+* We see it when project teams _think from a user perspective_ as in, they role-play using assumptions they make about user behaviour based on their own experiences with their tool.
+* We see it when phrases like "`Everyone is a designer`" are interpreted to mean that anyone can do -- or worse -- lead design.
+* We see UX Theatre when the requirements are make believe and no users are involved in the process. When "`we think`" becomes a substitute for "`we saw`" and "`we heard`".
+____
+
+== link:https://ronjeffries.com/articles/021-01ff/end-scrum-now/[An interesting web site]
+
+[quote]
+____
+* _Scrum:_ I fail to see how this is our problem. We specifically said that the team self-organizes, and that only the team decides how much work to take on. Pressure shouldn't be applied, and if it is, it should be ignored.
+* _Ron:_ You can't ignore pressure from management. If these developers are not happy, then their Scrum process is not working. As the purveyors of Scrum process, we have a serious responsibility when it doesn't work.
+* _Scrum:_ Scrum is a perfect system. It can't fail to work if you do it right.
+* _Ron:_ Scrum is a lightweight framework, by design. As the work of humans, it is surely flawed. By design, it does not have extra checks and balances. It is a loose net, full of holes. Taking a systems viewpoint, we can see many ways it can go wrong.
+* _Scrum:_ Can not!
+* _Ron:_ Can too!
+____
+
+[quote]
+____
+* _Ron:_ Yes! The "`success`" of Jira in the Scrum market has replaced human communication with putting stuff into a ticket system. This militates against the essential aspects of Scrum and Agile as a way for humans to work together. In my opinion, Jira is directly harmful to proper Scrum.
+* _Scrum:_ We don't say anything about Jira. And if we teach stories, it's not our fault, they are part of XP. We call them backlog items. It's not our fault.
+* _Ron:_ It's your ecosystem, you are responsible for what grows in it.
+____
