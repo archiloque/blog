@@ -1,0 +1,77 @@
+= Links - 27^th^ July 2021
+Julien Kirch
+v1.0, 2021-07-25
+:article_lang: en
+:figure-caption!:
+:article_description: Vocabulary, role of judgment, successful outcomes, benchmarking, funcitonal programming,
+
+== link:http://okmij.org/ftp/Algorithms/grasping-all-apples-at-once.html[Grasping "`all-the-apples-at-once`"]
+
+[quote]
+____
+A comment cited earlier hits the nail on the head: to describe an algorithm, one needs vocabulary. A large part of programming is building -- learning or constructing -- vocabulary to talk about common (sub)problems, e.g., run-length-encoding, groupBy, mapping, accumulating, filtering, etc. Learning, finding and naming the "`right`" abstractions is the core mathematical activity -- as explicated in the "`Notation as a tool of thought`".
+
+A natural language is also a tool of thought. Building vocabulary and understanding when and how to use a particular word is the hardest part of learning a language. That natural and formal languages have a lot in common is the idea with a long pedigree -- famously and forcefully articulated by Montague in 1970s. Keith Smillie, in his paper about array languages cited earlierfootnote:[Keith Smillie: "`My Life with Array Languages`". October 2005] further argues that teaching programming ought to adapt the best ideas of teaching foreign languages.
+
+Both in programming and natural languages, one can acquire basics relatively quickly. Fluency takes decades. There doesn't seem to be anything better than constant practice, speaking and listening, writing and rewriting. 
+____
+
+== link:https://software.rajivprab.com/2021/07/11/the-law-of-net-design-costs/[The law of net design costs]
+
+[quote]
+____
+No Substitute for Judgement
+
+It is very tempting to cling to catchphrases or cargo-culted best practices. They promise a simple and universal answer, without the need for messy judgement calls. To their credit, aphorisms like YAGNI are very useful as a way to curb our tendency to overengineer things. And popular best practices from larger companies help make us aware of the problems we may run into in future, and how we can solve them. But when it comes time to make an actual decision for your project, these general suggestions will need to be adapted to fit your specific circumstances.
+
+There will arise occasions when you will have to choose between planning ahead, or doing the simplest possible thing today. When such dilemmas arise, take the time to think through the long-term consequences of your decision… as well as the likelihood of those consequences actually materializing. There is ample role for judgement and experience in making the right decision.
+____
+
+== link:https://www.jpattonassociates.com/mindset-that-kills-product-thinking/[The mindset that kills product thinking]
+
+[quote]
+____
+The biggest missing value statement in the agile manifesto is:
+
+Successful outcomes over efficient delivery
+Just like the manifesto, the thing on the right is valuable. In fact it’s necessary. But, the thing on the left matters more.
+____
+
+== link:https://prog21.dadgum.com/2.html[On the perils of benchmarking Erlang]
+
+[quote]
+____
+Benchmarks are tricky to write if you're new to a language, because it's easy for the run-time to be dominated by something quirky and unexpected. Consider a naive Python loop that appends data to a string each iteration. Strings are immutable in Python, so each append causes the entire string created thus far to be copied.
+____
+
+
+== link:https://prog21.dadgum.com/3.html[Admitting that functional programming can be awkward]
+
+[quote]
+____
+My initial interest in functional programming was because it seemed so perverse.
+____
+
+== link:https://prog21.dadgum.com/31.html[Functional programming went mainstream years ago]
+
+[quote]
+____
+Still, the purists proclaim, it's not enough. Python is not a replacement for Haskell. But does it matter? 90% of the impressive magic from early functional languages has been rolled into mainstream languages. That last 10%, well, it's not clear that anyone is really wanting it or that the benefits are actually there. Purity has some advantages, but it's so convenient and useful to directly modify a dictionary in Python. Fold and map are beautiful, but they work just as well in the guise of a foreach loop.
+
+The answer to "`When will Haskell finally go mainstream?`" is "`most of it already has`".
+____
+
+== link:https://prog21.dadgum.com/209.html[If you haven't done it before, all bets are off]
+
+[quote]
+____
+I've been on one side or the other of most approaches to managing software development: from hyper-detailed used of specs and flowcharts to variants of agile to not having any kind of planning or scheduling at all. And I've distilled all of that down into one simple rule: If you haven't done it befor e-- if you haven't built something close to this before -- then all bets are off.
+
+It's one of the fundamental principles of programming, that it's extremely difficult to gauge how much work is hidden behind the statement of a task, even to where the trivial and impossible look the same when silhouetted in the morning haze. Yet even the best intentioned software development methodologies still ride atop this disorientation. That little, easy feature hiding in the schedule, the one that gets passed over in discussions because everyone knows it's little and easy, turns out to be poorly understood and cascades into another six months for the project.
+
+This doesn't mean you shouldn't keep track of what work you think you have left, or that you shouldn't break down vague tasks into concrete ones, or that you shouldn't be making drastic simplifications to what you're making (if nothing else, do this last one).
+
+What it does mean is that there's value in having built the same sort of thing a couple of times.
+
+If you've previously created a messaging service and you want to build a new messaging service, then you have infinitely more valuable insight than someone who has only worked on satellite power management systems and decides to get into messaging. You know some of the dead ends. You know some of the design decisions to be made.
+____
