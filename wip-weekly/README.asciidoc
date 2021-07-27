@@ -4,3 +4,12 @@ v1.0, 2021-01-01
 :article_lang: en
 :figure-caption!:
 :article_description:
+
+== link:https://brooker.co.za/blog/2021/01/22/cloud-scale.html[The Fundamental Mechanism of Scaling]
+
+[quote]
+____
+A common misconception among people picking up distributed systems is that replication and consensus protocols -- Paxos, Raft, and friends -- are the tools used to build the largest and most scalable systems. It's obviously true that these protocols are important building blocks. They're used to build systems that offer more availability, better durability, and stronger integrity than a single machine. At the most basic level, though, they don't make systems scale.
+
+Instead, the fundamental approach used to scale distributed systems is avoiding co-ordination. Finding ways to make progress on work that doesn't require messages to pass between machines, between clusters of machines, between datacenters and so on. The fundamental tool of cloud scaling is coordination avoidance.
+____
