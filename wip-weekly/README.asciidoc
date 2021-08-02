@@ -13,3 +13,18 @@ A common misconception among people picking up distributed systems is that repli
 
 Instead, the fundamental approach used to scale distributed systems is avoiding co-ordination. Finding ways to make progress on work that doesn't require messages to pass between machines, between clusters of machines, between datacenters and so on. The fundamental tool of cloud scaling is coordination avoidance.
 ____
+
+== link:http://charap.co/scalable-but-wasteful-or-why-fast-replication-protocols-are-actually-slow/[Scalable but wasteful or why fast replication protocols are actually slow]
+
+[quote]
+____
+Most evaluations of these consensus-based replication protocol papers are conducted in some sort of dedicated environment, be it bare-metal servers in the lab or VMs in the cloud. These environments have fixed allocated resources, and to improve the performance we ideally want to maximize the resource usage of these dedicated machines. Consider Multi-Paxos or Raft. These protocols are skewed towards the leader, causing the leader to do disproportionately more work than the followers. So if we deploy Multi-Paxos in five identical VMs, one will be used a lot more than the remaining four, essentially leaving unused resources on the table. EPaxos, by design, avoids the leader bottleneck and harvests all the resources at all nodes. So naturally, EPaxos outperforms Multi-Paxos by using the resources Multi-Paxos cannot get a hold of ue to its design. Such uniform resource usage across nodes is rather desirable, as long as avoiding the leader bottleneck and allowing each node to participate equally comes cheaply.
+____
+
+[quote]
+____
+* Absolute performance as measured on dedicated VMs or bare-metal servers is not necessarily a good measure of performance in real-life, especially in resource-shared setting (aka the cloud)
+* We need to consider efficiency when evaluating protocols to have a better understanding of how well the protocol may behave in the resource-shared, task-packed settings
+* The efficiency of protocols is largely under-studied, as most evaluations from academic literature simply focus on absolute performance.
+* The efficiency (or the lack of it) may be the reason why protocols popular in academia stay in academia and do not get wide adoption in the industry.
+____
