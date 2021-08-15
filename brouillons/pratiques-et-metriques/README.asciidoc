@@ -1,6 +1,63 @@
-= Pratiques et métriques
+= Pratiques, exceptions et métriques
 Julien Kirch
 v0.1, 2021-01-01
 :article_lang: fr
 
-L'idée de cet article m'est venue en lisant la première partie de link:https://theanarchistlibrary.org/library/james-c-scott-seeing-like-a-state[_Seeing Like a State_] qui illustre plusieurs manières dont des États ont mis en place des règles pour rendre mesurable les personnes ou les choses qu'ils gouvernent.
+Je travaille actuellement dans une petite équipe sur du développement web.
+
+Nous avons un processus type de développement avec un tableau en colonnes permettant de suivre l'avancement des sujets.
+
+Ce processus type est appliqué dans la majorité des cas, mais des exceptions arrivent.
+
+== Des pratiques et des exceptions
+
+Par exemple :
+
+* Ne pas estimer certains sujets difficile à estimer quand nous pensons que la discussion sur l'estimation n'apporterait rien. C'est par exemple le cas avec les mises à jours d'outils nécessaire pour bénéficier du support.
+* Ajouter ponctuellement des sujets en cours d'itération.
+* Déployer sur un environnement de recette des sujets dont le code n'a pas encore été revue, quand nous pensons que le comportement qui a été développé a besoin d'être affiné. L'objectif de ne pas passer du temps à revoir du code qui a des chances de changer significativement ensuite et aura donc lieu ensuite. 
+
+L'existence de ces exceptions ne signifie pas que le processus pose problème : il est prévu pour gérer les cas standards, et le fait que des cas non-standard demandent des adaptations ne le remet pas en cause, surtout s'il est suffisamment malléable pour que ces exception ne soit pas une gène.
+
+Le pilotage des exceptions se fait au fil de l'eau.
+Il s'agit de maintenir un mélange satisfaisant entre la "`charge mentale`" de l'équipe, qui augmente avec le nombre d'exception à un moment donné, le niveau d'urgence des besoins qui justifient ou nous de faire une exceptions, et le temps à passer sur la gestion de ces situations.
+Ce type d'approche est acceptable dans une équipe où la relation entre le·a PO et les personnes qui développent est fonctionnelle, et où personne ne tente de tirer profit des exceptions en lésant les autres.
+
+Actuellement nous utilisons peu de métriques pour suivre l'avancée des sujets.
+
+Quand on parle de métrique de développements, le risque que je vois le plus souvent cité est link:https://fr.wikipedia.org/wiki/Loi_de_Campbell[la loi de Campbell], indiquant le risque de se concentrer sur ces métriques elles-mêmes.
+
+Dans un projet avec des pratiques informelles, comme celui dont je vous parle, il existe deux autres risques.
+
+== Rigidifier
+
+Le premier est celui rigidifier la manière de travailler.
+
+En effet une métrique projet matérialise un certain type de processus.
+
+Par exemple une métrique mesurant le nombre de bugs implique que certaines demandes d'évolutions soient classifiés comme des bugs.
+Le fait de dire qu'une demande d'évolution est un bug est souvent faite car ces évolutions sont traitées différemment, généralement avec un processus plus court afin d'accélérer la correction.
+
+Si le nombre de bug n'est pas mesuré, on peut se permettre d'identifier comme bug des demandes d'évolutions qui ne sont de manière évidente pas des bugs, mais dont on veut qu'elles suivent le processus plus court.
+
+Le processus "`gestion d'un bug`" est alors un outil, dont on peut choisir d'adapter l'utilisation pour y faire rentrer des exception quand cela est utile.
+
+Mais si le nombre de bug est mesuré, l'utiliser pour quelque chose qui n'est pas un bug vaut fausser cette mesure.
+
+Même si l'objectif n'est pas de réduire le nombre de bug mesurés en soi, utiliser cet outil pour autre chose qu'un bug va alors fausser cette mesure.
+Tant que la proportion d'exceptions reste faible par rapport au nombres de cas standard, cela peut ne pas poser problème, mais cela signifie qu'il faut maintenant surveiller cela pour faire en sorte que la métrique reste pertinente.
+
+Par ailleurs si on veut faire évoluer un processus avec une métrique, on va perdre l'historique de la métrique, cela peut ne pas être grave, mais cela signifie qu'il faut se poser la question, ou alors risque de passer du temps plus tard à investiguer pourquoi les valeurs mesurées ont changé à un certain moment.
+
+== Décontextualiser
+
+L'autre risque est celui décontaxtualiser les informations.
+
+En effet une métrique peut voyager seule, sans le contexte qui peut être nécessaire à la comprendre.
+
+C'est d'autant plus vrai pour les métriques qui semblent ne pas avoir besoin de contexte, par exemple un nombre de tickets traités par itération.
+
+QQQQ
+
+
+_Post-scriptum : L'idée de cet article m'est venue en lisant la première partie de link:https://theanarchistlibrary.org/library/james-c-scott-seeing-like-a-state[Seeing Like a State] qui illustre plusieurs manières dont des États ont mis en place des règles pour rendre mesurable les personnes ou les choses qu'ils gouvernent._
