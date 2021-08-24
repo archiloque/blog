@@ -7,21 +7,28 @@ Je travaille actuellement dans une petite équipe sur du développement web.
 
 Nous avons un processus type de développement avec un tableau en colonnes permettant de suivre l'avancement des sujets.
 
-Ce processus type est appliqué dans la majorité des cas, mais des exceptions arrivent.
-
 == Des pratiques et des exceptions
 
-Par exemple :
+Ce processus type est appliqué dans la majorité des cas, mais des exceptions arrivent, par exemple :
 
-* Ne pas estimer certains sujets difficile à estimer quand nous pensons que la discussion sur l'estimation n'apporterait rien. C'est par exemple le cas avec les mises à jours d'outils nécessaire pour bénéficier du support.
+* Ne pas estimer certains sujets difficile à estimer quand nous pensons que la discussion sur l'estimation n'apporterait rien. C'est par exemple le cas des mises à jours d'outils nécessaires pour bénéficier du support.
 * Ajouter ponctuellement des sujets en cours d'itération.
 * Déployer sur un environnement de recette des sujets dont le code n'a pas encore été revue, quand nous pensons que le comportement qui a été développé a besoin d'être affiné. L'objectif de ne pas passer du temps à revoir du code qui a des chances de changer significativement ensuite et aura donc lieu ensuite. 
 
-L'existence de ces exceptions ne signifie pas que le processus pose problème : il est prévu pour gérer les cas standards, et le fait que des cas non-standard demandent des adaptations ne le remet pas en cause, surtout s'il est suffisamment malléable pour que ces exception ne soit pas une gène.
+L'existence de ces exceptions ne signifie pas que le processus pose problème car il est prévu pour gérer les cas standards.
+Le fait que des cas non-standard demandent des adaptations ne remet pas le cas standard en cause.
 
-Le pilotage des exceptions se fait au fil de l'eau.
-Il s'agit de maintenir un mélange satisfaisant entre la "`charge mentale`" de l'équipe, qui augmente avec le nombre d'exception à un moment donné, le niveau d'urgence des besoins qui justifient ou nous de faire une exceptions, et le temps à passer sur la gestion de ces situations.
-Ce type d'approche est acceptable dans une équipe où la relation entre le·a PO et les personnes qui développent est fonctionnelle, et où personne ne tente de tirer profit des exceptions en lésant les autres.
+Je préfère un processus simple et suffisamment malléable pour que ces exception ne soient pas une gène plutôt qu'un processus qui tenterait de couvrir tous les cas possibles.
+
+Le pilotage de ces exceptions se fait au fil de l'eau.
+
+Il s'agit de maintenir un mélange satisfaisant entre :
+
+- la "`charge mentale`" de l'équipe, qui augmente avec le nombre d'exceptions en cours à un moment donné car il faut que les personnes soient au courant,
+- le niveau d'urgence des besoins qui justifient ou pas de faire une exception,
+- le temps à passer sur la gestion de ces situations (car le temps à passer pour discuter si on fait une exception n'est pas gratuit).
+
+Ce type d'approche est acceptable dans une équipe où la relation entre le·a PO et les personnes qui développent fonctionne bien, par exemple il ne faut pas qu'une personne ne tente de tirer profit des exceptions en lésant les autres.
 
 Actuellement nous utilisons peu de métriques pour suivre l'avancée des sujets.
 
@@ -36,28 +43,42 @@ Le premier est celui rigidifier la manière de travailler.
 En effet une métrique projet matérialise un certain type de processus.
 
 Par exemple une métrique mesurant le nombre de bugs implique que certaines demandes d'évolutions soient classifiés comme des bugs.
-Le fait de dire qu'une demande d'évolution est un bug est souvent faite car ces évolutions sont traitées différemment, généralement avec un processus plus court afin d'accélérer la correction.
+Dans les projets sur lesquels j'ai travaillé, les bugs peuvent être traités différemment des autres évolutions, par exemple avec un processus plus court afin d'accélérer la correction.
+Dire qu'une demande d'évolution est un bug signifie qu'on va lui appliquer ce processus particulier.
 
-Si le nombre de bug n'est pas mesuré, on peut se permettre d'identifier comme bug des demandes d'évolutions qui ne sont de manière évidente pas des bugs, mais dont on veut qu'elles suivent le processus plus court.
+Si le nombre de bugs n'est pas mesuré, on peut se permettre sans effet secondaire de parfois identifier comme bug des demandes d'évolutions qui ne sont pas des bugs (dans le sens de "`comportement fautif`"), mais dont on veut qu'elles suivent le processus plus court.
 
-Le processus "`gestion d'un bug`" est alors un outil, dont on peut choisir d'adapter l'utilisation pour y faire rentrer des exception quand cela est utile.
+Le processus "`gestion d'un bug`" est alors un outil, dont on peut choisir d'adapter l'utilisation pour y faire rentrer des exception quand cela est utile, tant que cela ne dénature pas le fonctionnement général.
 
-Mais si le nombre de bug est mesuré, l'utiliser pour quelque chose qui n'est pas un bug vaut fausser cette mesure.
+Mais si le nombre de bug est mesuré, l'utiliser pour quelque chose qui n'est pas un bug vient fausser cette mesure.
+Car en mesurant quelque chose qui s'appelle "`le nombre de bugs`", il y a pas mal de chance qu'on veuille mesurer les bugs (dans le sens de "`comportement fautif`"), pas le nombre de fois où on a appliqué le processus plus courts de traitement de bugs.
 
-Même si l'objectif n'est pas de réduire le nombre de bug mesurés en soi, utiliser cet outil pour autre chose qu'un bug va alors fausser cette mesure.
-Tant que la proportion d'exceptions reste faible par rapport au nombres de cas standard, cela peut ne pas poser problème, mais cela signifie qu'il faut maintenant surveiller cela pour faire en sorte que la métrique reste pertinente.
+Même si l'objectif n'est pas directement de réduire le nombre de bug mesurés, utiliser le processus plus court pour autre chose qu'un bug va alors fausser cette mesure.
+Tant que la proportion d'exceptions reste faible par rapport au nombres de cas standard, cela peut ne pas poser problème, mais cela signifie qu'il faut maintenant surveiller cela pour faire en sorte que la métrique reste pertinentefootnote:[Une autre solution possible serait de distinguer de renommer le processus en "`processus court`" et de distinguer entre les bugs et les non-bugs, ce qui permet d'avoir une métrique juste en échange d'une augmentation de la complexité de la gestion du projet.
+].
 
-Par ailleurs si on veut faire évoluer un processus avec une métrique, on va perdre l'historique de la métrique, cela peut ne pas être grave, mais cela signifie qu'il faut se poser la question, ou alors risque de passer du temps plus tard à investiguer pourquoi les valeurs mesurées ont changé à un certain moment.
+Par ailleurs si on veut faire évoluer un processus suivi une métrique, l'historique de la métrique risque d'être perdu, cela peut ne pas être grave, mais cela signifie qu'il faut se poser la question, ou alors risque de passer du temps plus tard à investiguer pourquoi les valeurs mesurées ont changé à un certain moment.
+
+Le processus court n'est plus un outil qu'on peut utiliser et adapter librement.
+Cela ne signifie pas que la métrique l'a rendu impossible à modifier, mais qu'elle a tendance à le rigidifier.
 
 == Décontextualiser
 
-L'autre risque est celui décontaxtualiser les informations.
+L'autre risque est celui de la décontextualisation.
 
 En effet une métrique peut voyager seule, sans le contexte qui peut être nécessaire à la comprendre.
 
-C'est d'autant plus vrai pour les métriques qui semblent ne pas avoir besoin de contexte, par exemple un nombre de tickets traités par itération.
+Imaginez que vous mesurez le nombre d'évolutions identifiées comme des bugs, et que dans l'équipe vous prenez soin d'utiliser cette métrique dans son contexte, par exemple vous savez qu'elle n'est pas tout à fait juste, et qu'en particulier pour certaines itérations vous avez fait des exceptions qui la rendent inexploitable, et qu'à un moment vous avez modifié cette métrique.
 
-QQQQ
+En interne vous n'avez pas forcément formalisé tout ce contexte, et même si vous l'avez fait la métrique peut être disponible sans son contexte, ou les personnes qui accèdent à la métrique peuvent ignorer le contexte (surtout pour les métriques qui semblent ne pas avoir besoin de contexte, comme le nombre de bugs).
 
+Cela signifie que lorsque vous communiquez une métrique, et même dès qu'elle devient disponible, il faut prendre en compte qu'elle soit interprétée sans son contexte.
+
+Mon expérience est que quand une personne a lu une métrique est qu'elle en a tiré une conclusion fausse par rapport à ce qu'elle a cru comprendre, il peut être difficile de rattraper le coup.
+Par exemple un N+2 ou +3 qui a parcouru en diagonale les slides d'un comité de suivi qu'on lui a fait suivre.
+
+Cela ne signifie pas que cela soit forcément grave, mais qu'il faut le prendre en comptefootnote:[Et même sans métrique, le même risque s'applique aussi link:../cacher-management-visuel/[au management visuel].].
+
+J'aurais un conseil ici :
 
 _Post-scriptum : L'idée de cet article m'est venue en lisant la première partie de link:https://theanarchistlibrary.org/library/james-c-scott-seeing-like-a-state[Seeing Like a State] qui illustre plusieurs manières dont des États ont mis en place des règles pour rendre mesurable les personnes ou les choses qu'ils gouvernent._

@@ -32,3 +32,23 @@ There is one technique for producing a software system that rarely gets mentione
 
 To answer the question posed at the start of this post. What might be learned from a study of early software development techniques is the need for management to have lots of luck and to be flexible; funding is easier to obtain when managing a life-or-death project.
 ____
+
+== link:https://www.cmyr.net/blog/gui-framework-ingredients.html[So you want to write a GUI framework]
+
+[quote]
+____
+A GUI framework can be a lot of different things, with different use cases and different deployment targets. A framework intended for building embedded applications is not going to also trivially work on the desktop; a framework for building desktop applications is not going to trivially work on the web.
+
+Regardless of the specifics, there is one major dividing line to recognize, and this is whether or not a framework is expected to _integrate closely into an existing platform or environment_.
+
+On one side of this line, then, are tools for building games, embedded applications, and (to a lesser degree) web apps. In this world, you are responsible for providing almost everything your applications will need, and you will be interacting closely with the underlying hardware: accepting raw input events, and outputting your UI to some sort of buffer or surface. (The web is different; here the browser vendors have done that integration work for you.)
+
+On the other side of this line are tools for building traditional desktop applications. In _this_ world, you must integrate tightly into a large number of existing platform APIs, design patterns, and conventions, and it is this integration that is the source of most of your design complexity.
+____
+
+== link:https://slack.engineering/how-we-design-our-apis-at-slack/[How we design Our APIs at Slack]
+
+[quote]
+____
+If you’re also building SDKs and libraries for developers, it’s important not to "`swallow`" error messages and warnings. Ensure the developer has access to anything that could be useful in a harrowing debugging session, like HTTP headers and raw request bodies. It’s great if an SDK can interpret errors and make them even more useful, but a developer should also be able to read raw API documentation about an error and still pinpoint it at the SDK level. 
+____
