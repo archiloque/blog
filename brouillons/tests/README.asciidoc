@@ -59,9 +59,9 @@ Ainsi, je me méfie de l'utilisation de DSLs pour les tests quand ils s'écarten
 
 == Plutôt plus de couches que moins
 
-Toutes choses égales par ailleurs, je préfère quand du code touche plus de code à la fois que moins, car cela a tendance à intercepter plus d'erreurs.
+Toutes choses égales par ailleurs, je préfère quand du code de test touche plus de code à la fois que moins, car cela a tendance à intercepter plus d'erreurs.
 
-Tester des couches de code en isolation peut répondre à un certain nombre de besoins (rendre plus facile de diagnostiquer les soucis, accélérer l'exécution des tests de manière qui fasse une différence…) mais n'est pas pour moi une fin en soi.
+Tester des couches de code en isolation peut répondre à un certain nombre de besoins (rendre plus rapide d'écrire de tests, accélérer l'exécution des tests de manière qui fasse une différence…) mais n'est pas pour moi une fin en soi.
 
 Et comme dit plus haut, il ne faut pas oublier que l'écriture de mocks ou l'ajout et la maintenance des indirections a un coût.
 
