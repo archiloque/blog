@@ -2,6 +2,7 @@
 Julien Kirch
 v0.1, 2021-01-01
 :article_lang: fr
+:article_image: stonks.png
 
 Je travaille actuellement dans une petite équipe sur du développement web.
 
@@ -9,7 +10,7 @@ Nous avons un processus type de développement avec un tableau en colonnes perme
 
 == Des pratiques et des exceptions
 
-Ce processus type est appliqué dans la majorité des cas, mais des exceptions arrivent, par exemple :
+Ce processus type est appliqué dans la majorité des cas, mais des exceptions arrivent, par exemple{nbsp}:
 
 * Ne pas estimer certains sujets difficile à estimer quand nous pensons que la discussion sur l'estimation n'apporterait rien. C'est par exemple le cas des mises à jours d'outils nécessaires pour bénéficier du support.
 * Ajouter ponctuellement des sujets en cours d'itération.
@@ -22,7 +23,7 @@ Je préfère un processus simple et suffisamment malléable pour que ces excepti
 
 Le pilotage de ces exceptions se fait au fil de l'eau.
 
-Il s'agit de maintenir un mélange satisfaisant entre :
+Il s'agit de maintenir un mélange satisfaisant entre{nbsp}:
 
 - la "`charge mentale`" de l'équipe, qui augmente avec le nombre d'exceptions en cours à un moment donné car il faut que les personnes soient au courant,
 - le niveau d'urgence des besoins qui justifient ou pas de faire une exception,
@@ -79,6 +80,22 @@ Par exemple un N+2 ou +3 qui a parcouru en diagonale les slides d'un comité de 
 
 Cela ne signifie pas que cela soit forcément grave, mais qu'il faut le prendre en comptefootnote:[Et même sans métrique, le même risque s'applique aussi link:../cacher-management-visuel/[au management visuel].].
 
-J'aurais un conseil ici :
+Je pense qu'il n'est pas possible d'empêcher toute mauvaise interprétation, mais il est possible d'essayer de diminuer le risque, par exemple{nbsp}:
 
-_Post-scriptum : L'idée de cet article m'est venue en lisant la première partie de link:https://theanarchistlibrary.org/library/james-c-scott-seeing-like-a-state[Seeing Like a State] qui illustre plusieurs manières dont des États ont mis en place des règles pour rendre mesurable les personnes ou les choses qu'ils gouvernent._
+- En choisissant attentivement le nom des métriques, et en changeant son nom quand cette métrique change.
+- En évitant d'utiliser le même nom pour deux métriques qui ne mesurent pas tout à fait la même chose, par exemple dans deux équipes différentes. En effet il est très difficile de résister à l'envie de comparer deux choses qui ont le même nom, même si on sait intellectuellement qu'elles sont différentes.
+
+== Métriques & métriques
+
+Si l'article est plutôt à charge contre les métriques, je ne veux pas dire que les métriques sont obligatoirement une mauvaise choses.
+
+Certaines métriques peuvent être utiles, voire nécessaires au fonctionnement d'une équipe.
+
+Mais cela ne signifie pas qu'elles n'ont pas d'effets secondaires.
+
+Mon message n'est donc pas "`non aux métriques`" mais "`portez attention aux effets des métriques`", et surtout de celles qui portent sur les pratiques des équipesfootnote:[Il peut être utile de faire une différence entre les métriques mesurant un système uniquement non-humain (comme le nombre de requêtes par secondes traitées par un serveur) et celles qui mesurent celles d'un système ou des personnes sont impliquées. Mêmes si les premières ne sont pas sans risques, par exemple de fausse interprétation, je pense qu'elles le sont beaucoup moins que les secondes.].
+
+Mon conseil final est de faire attention à l'envie de mesurer des choses à priori, par exemple car le coût de la mesure est faible, sans se poser de question.
+Je préfère prendre le risque de perdre du temps si une métrique n'est pas disponible au moment même où on en a besoin, plutôt que celui d'une mauvaise interprétation.
+
+_Post-scriptum{nbsp}: L'idée de cet article m'est venue en lisant la première partie de link:https://theanarchistlibrary.org/library/james-c-scott-seeing-like-a-state[Seeing Like a State] qui illustre plusieurs manières dont des États ont mis en place des règles pour rendre mesurable les personnes ou les choses qu'ils gouvernent._
