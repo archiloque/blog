@@ -1,12 +1,14 @@
-= À propos de tests
+= À propos de tests automatisés
 Julien Kirch
 v0.1, 2021-01-01
 :article_lang: fr
 :article_image: venn.png
 
-Voici où j'en suis actuellement de mes réflexions et pratiques sur les tests.
+Voici où j'en suis actuellement de mes réflexions et pratiques sur les tests automatisés.
 
 Beaucoup d'éléments ici sont probablement des évidences, mais les avoir rédigé permet de voir si mes idées tiennent debout.
+
+Pour les tests automatisés je pense que beaucoup de choses dépendent du projet, de la technologie et de l'équipe, donc cet article contiendra peu de vérités absolues mais plutôt des tendances.
 
 == L'écriture des tests doit être rapides
 
@@ -36,3 +38,31 @@ Mais souvent les deux se complètent.
 
 == Les tests ne doivent pas trop être intrusifs
 
+Il est très souvent nécessaire d'aménager le code à tester pour le rendre plus facile à tester.
+
+Mais ces aménagement ont tendance à rendre plus difficile à suivre ce qui se passe dans le code.
+
+Par exemple quand il faut ajouter des indirections pour pouvoir modifier des comportements lors des tests.
+Car chaque indirection a un coût, même si unitairement il est faible, et même si l'habitude fait qu'on peut l'oublier (par exemple si vous utilisez un outil d'injection de dépendance).
+
+Cela ne signifie pas qu'il ne fait pas faire ces modifications, mais que toutes choses égales par ailleurs, je préfère quand elles sont limitées.
+
+== Pas trop de choses à savoir en plus pour écrire des test
+
+Travailler sur une application web standard demande de manipuler de nombreuses APIs et types d'outils (requêtes en base de données, appels de services, parfois front…).
+
+Chacune et chacun a un coût{nbsp}: coût d'apprentissage mais aussi effort pour mobiliser telle ou telle connaissance quand on passe de l'un à l'autre.
+
+Comme je veux éviter que ce coût n'augmente trop, je préfère que le code des tests ne s'écarte pas trop du code à tester.
+
+Ainsi, je me méfie de l'utilisation de DSLs pour les tests quand ils s'écartent trop du code à tester et que leur bénéfice ne semble pas suffisant.
+
+== Plutôt plus de couches que moins
+
+Toutes choses égales par ailleurs, je préfère quand du code touche plus de code à la fois que moins, car cela a tendance à intercepter plus d'erreurs.
+
+Tester des couches de code en isolation peut répondre à un certain nombre de besoins (rendre plus facile de diagnostiquer les soucis, accélérer l'exécution des tests de manière qui fasse une différence…) mais n'est pas pour moi une fin en soi.
+
+Et comme dit plus haut, il ne faut pas oublier que l'écriture de mocks ou l'ajout et la maintenance des indirections a un coût.
+
+De même qu'une même partie de code soit exécutée dans plusieurs tests ne me gène pas en soi, cela n'est un soucis que si cela a des conséquences sur l'écriture ou l'exécution des tests.
