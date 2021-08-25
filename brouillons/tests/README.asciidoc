@@ -1,0 +1,38 @@
+= À propos de tests
+Julien Kirch
+v0.1, 2021-01-01
+:article_lang: fr
+:article_image: venn.png
+
+Voici où j'en suis actuellement de mes réflexions et pratiques sur les tests.
+
+Beaucoup d'éléments ici sont probablement des évidences, mais les avoir rédigé permet de voir si mes idées tiennent debout.
+
+== L'écriture des tests doit être rapides
+
+Le temps est rare, et s'il est nécessaire d'avoir des tests automatisés, je veux que l'écriture des tests soit le plus rapide possible pour un certain niveau de couverture.
+
+== L'exécution des tests doit être suffisamment rapide
+
+Au delà d'une certaine durée, attendre que les tests s'exécutent a des effets secondaires indésirables (on va passer sur une autre tache en attendant, on ne va pas lancer les tests alors qu'on aurait envie de le faire).
+
+Il est donc important que les tests soient suffisamment rapides pour que ça n'arrive pas.
+
+Je pense qu'il est acceptable que de lancer l'ensemble des tests d'un système prenne un certain temps (par exemple plusieurs minutes) si le lancement des tests de la partie du code touchée par une modification normale est facile et rapide (de l'ordre de quelques secondes).
+
+L'idée est que pendant le développement on peut lancer les tests dont on pense qu'ils sont touchés par la modification, et d'attendre la fin du développement que le build continu lance l'ensemble des tests.
+
+Je pense que de pouvoir exécuter rapidement l'ensemble des tests est encore mieux quand c'est possible, mais quand ça n'est pas le cas je peux tout à faire vivre avec.
+
+== Le diagnostique des tests doit être facile
+
+Quand un test ne passe pas il doit être facile d'en comprendre la cause et de la corriger (que ça soit une correction du code testé ou une correction du test).
+
+Mon expérience est que si dans une base de code il est facile de diagnostiquer la raison de tests qui ne passent pas, il est souvent facile de diagnostiquer les erreurs en production.
+
+Cela signifie que je préfère investir dans une amélioration de la capacité à observer le comportement du code à tester plutôt que dans la capacité de diagnostiquer les choses dans la partie test.
+
+Mais souvent les deux se complètent.
+
+== Les tests ne doivent pas trop être intrusifs
+
