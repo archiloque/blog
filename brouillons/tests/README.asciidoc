@@ -66,3 +66,13 @@ Tester des couches de code en isolation peut répondre à un certain nombre de b
 Et comme dit plus haut, il ne faut pas oublier que l'écriture de mocks ou l'ajout et la maintenance des indirections a un coût.
 
 De même qu'une même partie de code soit exécutée dans plusieurs tests ne me gène pas en soi, cela n'est un soucis que si cela a des conséquences sur l'écriture ou l'exécution des tests.
+
+== Pas de répartition-type pour les différents types de tests
+
+Je pense qu'il peut être utile de discuter des avantages et des inconvénients des différents types de tests dans différents contextes, sans essayer d'en faire des vérités universelles.
+
+Mais je ne pense pas qu'il existe une répartition-type universelle qui soit applicable clé en main (déjà que chacun a ses définitions sur ce que sont les différents types de tests).
+
+Et j'aimerai que les personnes écrivent plus sur le premier tout en se préoccupant moins du second.
+
+image::venn.png[caption="", title="Mon cerveau quand je regarde une image de pyramide de test"]
