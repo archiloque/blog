@@ -53,9 +53,9 @@ Travailler sur une application web standard demande de manipuler de nombreuses A
 
 Chacune et chacun a un coût{nbsp}: coût d'apprentissage mais aussi effort pour mobiliser telle ou telle connaissance quand on passe de l'un à l'autre.
 
-Comme je veux éviter que ce coût n'augmente trop, je préfère que le code des tests ne s'écarte pas trop du code à tester.
+Comme je veux éviter que ce coût n'augmente trop, je préfère que les style de code des tests ne s'écarte pas trop du code à tester.
 
-Ainsi, je me méfie de l'utilisation de DSLs pour les tests quand ils s'écartent trop du code à tester et que leur bénéfice ne semble pas suffisant.
+Ainsi, je me méfie de l'utilisation de DSLs pour les tests comme link:https://cucumber.io/docs/gherkin/reference/[Gherkin], qui sont attirants quand ils sont présentés, mais dont l'utilisation demande beaucoup d'efforts.
 
 == Plutôt plus de couches que moins
 
