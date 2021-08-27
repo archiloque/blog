@@ -19,14 +19,16 @@ En effet l'écriture et la mise à jour d'un navigateur web demande un travail �
 
 Dans la mythologie de l'informatique, si un outil nous manque, il devrait suffire de quelques heures, par exemple pendant un week-end, pour en développer un, même minimaliste.
 
-C'est vrai pour certains types d'outilsfootnote:[Et c'est une des raisons pour lesquelles les nouveaux langages de programmations peuvent être attirants], mais ce n'est pas le cas pour d'autres{nbsp}: lecteurs de PDF, éditeurs de texte, IDEs…
+C'est vrai pour certain type d'outilsfootnote:[Et c'est une des raisons pour lesquelles les nouveaux langages de programmations peuvent être attirants], mais ce n'est pas le cas pour d'autres{nbsp}: lecteurs de PDF, éditeurs de texte, IDEs…
 
-Sur les discussions techniques, je vois souvent des gens proposer de repartir sur des outils plus simples, par exemple un navigateur web qui n'implémenterait pas toutes les fonctionnalités des standard contemporain mais seulement les plus utiles.
-L'idée étant que la majorité de la complexité viendrait d'une minorité de fonctions dont on pourrait se passer, et qu'en ne les implémentant la taille du projet deviendrait raisonnable.
+Sur les discussions techniques, je vois souvent des gens proposer de repartir sur des outils plus simples, par exemple un navigateur web qui n'implémenterait pas toutes les fonctionnalités des standard contemporains mais seulement les plus utiles.
+
+La théorie sous-jacente étant que la majorité de la complexité viendrait d'une minorité de fonctions dont on pourrait se passer, et qu'en ne les implémentant la taille du projet deviendrait raisonnable.
 
 L'idée est séduisante, et résonne avec une certain idéal-type rustique de l'informatique, mais j'ai peur qu'en pratique{nbsp}:
 
-- la répartition de complexité entre les fonctions dont on peut se passer et les autres ne soit pas aussi favorable que ça,
+- la répartition de complexité entre les fonctions dont on peut se passer et les autres ne soit pas aussi favorable que ça{nbsp};
 - un outil qui ne soit pas à la hauteur "`du marché`" ne soit utilisé que par des militant·e·s prêt·e·s à faire les compromis nécessaires.
 
-Cela ne veut pas dire que l'outil en question serait inutile, mais qu'il restera un outil de niche.
+Cela ne veut pas dire que l'outil en question serait inutile, mais qu'il a de très grande chance d'être un outil de niche.
+
