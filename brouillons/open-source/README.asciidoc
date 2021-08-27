@@ -1,18 +1,32 @@
-= Standards ouverts ou pas ?
+= Standards ouverts ou pas{nbsp}?
 Julien Kirch
 v0.1, 2021-01-01
 :article_lang: fr
 
-Le web est basé sur des standard ouverts : HTML5, JavaScript, HTTP, DNS ainsi que de nombreux formats d'images, de sons et de vidéosfootnote:[Excepté par exemple ceux qui sont utilisés sur les sites de streaming comme Netflix pour leur permettre de contrôler l'utilisation de leurs contenus] sont basés sur des formats dont la documentation est accessible gratuitement, et que tout le monde peut implémenter sans contrainte technique ou financière.
+Le web est basé sur des standard ouverts : HTML5, JavaScript, HTTP, DNS ainsi que de nombreux formats d'images, de sons et de vidéosfootnote:[Excepté par exemple ceux qui sont utilisés sur les sites de streaming comme Netflix pour leur permettre de contrôler l'utilisation de leurs contenus].
+Leur documentation est accessible gratuitement et tout le monde peut implémenter sans contrainte technique ou financière.
 
-Mais il n'existe à l'heure actuelle que trois moteurs de navigateurs web compatibles avec la grande majorité des sites : Chrome, Firefox et Safarifootnote:[Chrome étant lui-même un fork de Safari].
+Mais il n'existe à l'heure actuelle que trois moteurs de navigateurs web compatibles avec la grande majorité des sites : Chrome, Firefox et Safarifootnote:[Chrome étant lui-même un ancien fork de Safari].
 
-Comme le disait un tweet effacé depuis : que veut dire que le web est "`ouvert`" si personne n'est en mesure de créer un nouveau moteur de navigateur, il s'agit d'une illusion d'ouverture.
+Comme le disait un tweet effacé depuis{nbsp}: 
 
-En effet l'écriture et l'évolution d'un navigateur web demande un travail énorme, même en tenant compte des nombreux outils open-source sur lesquels on peut s'appuyer, de sorte que seule une grande organisation peut se le permettre.
+[quote]
+____
+que veut dire que le web est "`ouvert`" si personne n'est en mesure de créer un nouveau moteur de navigateur, il s'agit d'une illusion d'ouverture.
+____
 
-Dans la mythologie de l'informatique, si dans l'écosystème qu'on utilise il nous manque un outil implémentant un certain standard, il devrait suffire de quelques heures, par exemple pendant un week-end, pour en développer un, même minimaliste.
+En effet l'écriture et la mise à jour d'un navigateur web demande un travail énorme, même en tenant compte des nombreux outils open-source sur lesquels on peut s'appuyer, de sorte que seule une grande organisation peut se le permettre.
 
-C'est vrai pour certains types d'outils, mais ce n'est pas le cas pour d'autres, et j'ai le sentiment que c'est de moins en moins vrai.
+Dans la mythologie de l'informatique, si un outil nous manque, il devrait suffire de quelques heures, par exemple pendant un week-end, pour en développer un, même minimaliste.
 
-En plus 
+C'est vrai pour certains types d'outilsfootnote:[Et c'est une des raisons pour lesquelles les nouveaux langages de programmations peuvent être attirants], mais ce n'est pas le cas pour d'autres{nbsp}: lecteurs de PDF, éditeurs de texte, IDEs…
+
+Sur les discussions techniques, je vois souvent des gens proposer de repartir sur des outils plus simples, par exemple un navigateur web qui n'implémenterait pas toutes les fonctionnalités des standard contemporain mais seulement les plus utiles.
+L'idée étant que la majorité de la complexité viendrait d'une minorité de fonctions dont on pourrait se passer, et qu'en ne les implémentant la taille du projet deviendrait raisonnable.
+
+L'idée est séduisante, et résonne avec une certain idéal-type rustique de l'informatique, mais j'ai peur qu'en pratique{nbsp}:
+
+- la répartition de complexité entre les fonctions dont on peut se passer et les autres ne soit pas aussi favorable que ça,
+- un outil qui ne soit pas à la hauteur "`du marché`" ne soit utilisé que par des militant·e·s prêt·e·s à faire les compromis nécessaires.
+
+Cela ne veut pas dire que l'outil en question serait inutile, mais qu'il restera un outil de niche.
