@@ -17,18 +17,19 @@ ____
 
 En effet l'écriture et la mise à jour d'un navigateur web demande un travail énorme, même en tenant compte des nombreux outils open-source sur lesquels on peut s'appuyer, de sorte que seule une grande organisation peut se le permettre.
 
-Dans la mythologie de l'informatique, si un outil nous manque, il devrait suffire de quelques heures, par exemple pendant un week-end, pour en développer un, même minimaliste.
+Dans la mythologie de l'informatique, si un outil nous manque, il devrait suffire de quelques heures, par exemple pendant un week-end, pour en développer un, même minimaliste, en partant de la spécification.
 
-C'est vrai pour certain type d'outilsfootnote:[Et c'est une des raisons pour lesquelles les nouveaux langages de programmations peuvent être attirants], mais ce n'est pas le cas pour d'autres{nbsp}: lecteurs de PDF, éditeurs de texte, IDEs…
+C'est vrai pour certain type d'outilsfootnote:[Et c'est une des raisons pour lesquelles les nouveaux langages de programmations peuvent être attirants], mais ce n'est pas le cas pour d'autres{nbsp}: lecteurs de PDF, outils de téléchargement, éditeurs de texte…
 
-Sur les discussions techniques, je vois souvent des gens proposer de repartir sur des outils plus simples, par exemple un navigateur web qui n'implémenterait pas toutes les fonctionnalités des standard contemporains mais seulement les plus utiles.
+Sur les discussions techniques, je vois souvent des gens proposer de repartir sur des outils plus simples, par exemple un navigateur web qui n'implémenterait pas toutes les fonctionnalités des standard contemporains mais seulement celles qui sont strictement nécessaires.
 
 La théorie sous-jacente étant que la majorité de la complexité viendrait d'une minorité de fonctions dont on pourrait se passer, et qu'en ne les implémentant la taille du projet deviendrait raisonnable.
 
-L'idée est séduisante, et résonne avec une certain idéal-type rustique de l'informatique, mais j'ai peur qu'en pratique{nbsp}:
+L'idée est séduisante, et résonne avec une certain idéal rustique de l'informatique, mais j'ai peur qu'en pratique{nbsp}:
 
 - la répartition de complexité entre les fonctions dont on peut se passer et les autres ne soit pas aussi favorable que ça{nbsp};
 - un outil qui ne soit pas à la hauteur "`du marché`" ne soit utilisé que par des militant·e·s prêt·e·s à faire les compromis nécessaires.
 
 Cela ne veut pas dire que l'outil en question serait inutile, mais qu'il a de très grande chance d'être un outil de niche.
 
+Cela ne signifie pas que les standards ouverts ne sont pas utiles, car implémenter un outil en s'appuyant sur un standard demande moins de travail que de le faire en rétro-ingénierant une implémentation, mais que les standards ouverts ne sont pas suffisant pour qu'écrire un outil soit facile, ni pour qu'un écosystème riche existe.
