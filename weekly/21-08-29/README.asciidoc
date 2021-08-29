@@ -1,0 +1,61 @@
+= Links - 29^th^ August 2021
+Julien Kirch
+v1.0, 2021-08-29
+:article_lang: en
+:figure-caption!:
+:article_description: Miracle of the commons, community on a single 1.44MB floppy, studying long gone development practices, writing a GUI framework, APIs diesn, software crisis
+
+== link:https://aeon.co/essays/the-tragedy-of-the-commons-is-a-false-and-dangerous-myth[The miracle of the commons]
+
+[quote]
+____
+In December 1968, the ecologist and biologist Garrett Hardin had an essay published in the journal _Science_ link:https://science.sciencemag.org/content/162/3859/1243[called] "`The Tragedy of the Commons`". His proposition was simple and unsparing: humans, when left to their own devices, compete with one another for resources until the resources run out. "`Ruin is the destination toward which all men rush, each pursuing his own best interest`", he wrote. "`Freedom in a commons brings ruin to all`". Hardin's argument made intuitive sense, and provided a temptingly simple explanation for catastrophes of all kinds -- traffic jams, dirty public toilets, species extinction. His essay, widely read and accepted, would become one of the most-cited scientific papers of all time.
+
+Even before Hardin's "`The Tragedy of the Commons`" was published, however, the young political scientist Elinor Ostrom had proven him wrong. While Hardin speculated that the tragedy of the commons could be avoided only through total privatisation or total government control, Ostrom had link:https://dlc.dlib.indiana.edu/dlc/handle/10535/3581[witnessed] groundwater users near her native Los Angeles hammer out a system for sharing their coveted resource. Over the next several decades, as a professor at Indiana University Bloomington, she link:https://www.thecgo.org/research/the-environmental-optimism-of-elinor-ostrom/[studied] collaborative management systems developed by cattle herders in Switzerland, forest dwellers in Japan, and irrigators in the Philippines. These communities had found ways of both preserving a shared resource -- pasture, trees, water -- and providing their members with a living. Some had been deftly avoiding the tragedy of the commons for centuries; Ostrom was simply one of the first scientists to pay close attention to their traditions, and analyse how and why they worked.
+____
+
+== link:https://sectordisk.pw[Welcome to sector disk!]
+
+[quote]
+____
+Welcome to Sector Disk! This is an online community of users on a single 1.44MB floppy disk! Every user owns one or more of the 2880 512-byte sectors on the disk and can edit them either in a shell or by uploading them via SFTP.
+____
+
+
+== link:https://shape-of-code.coding-guidelines.com/2021/08/01/what-can-be-learned-from-studying-long-gone-development-practices/[What can be learned from studying long gone development practices?]
+
+[quote]
+____
+I think the best management technique for successfully developing a software system in the 1970s and 1980s (and perhaps in the following decades), is based on being lucky enough to have a few very capable people, and then providing them with what is needed to get the job done while maintaining the fiction to upper management that the agreed bureaucratic plan is being followed.
+
+There is one technique for producing a software system that rarely gets mentioned: keep paying for development until something good enough is delivered. Given the life-or-death need an organization might have for some software systems, paying what it takes may well have been a prevalent methodology during the early days of major software development.
+
+To answer the question posed at the start of this post. What might be learned from a study of early software development techniques is the need for management to have lots of luck and to be flexible; funding is easier to obtain when managing a life-or-death project.
+____
+
+== link:https://www.cmyr.net/blog/gui-framework-ingredients.html[So you want to write a GUI framework]
+
+[quote]
+____
+A GUI framework can be a lot of different things, with different use cases and different deployment targets. A framework intended for building embedded applications is not going to also trivially work on the desktop; a framework for building desktop applications is not going to trivially work on the web.
+
+Regardless of the specifics, there is one major dividing line to recognize, and this is whether or not a framework is expected to _integrate closely into an existing platform or environment_.
+
+On one side of this line, then, are tools for building games, embedded applications, and (to a lesser degree) web apps. In this world, you are responsible for providing almost everything your applications will need, and you will be interacting closely with the underlying hardware: accepting raw input events, and outputting your UI to some sort of buffer or surface. (The web is different; here the browser vendors have done that integration work for you.)
+
+On the other side of this line are tools for building traditional desktop applications. In _this_ world, you must integrate tightly into a large number of existing platform APIs, design patterns, and conventions, and it is this integration that is the source of most of your design complexity.
+____
+
+== link:https://slack.engineering/how-we-design-our-apis-at-slack/[How we design our APIs at Slack]
+
+[quote]
+____
+If you’re also building SDKs and libraries for developers, it’s important not to "`swallow`" error messages and warnings. Ensure the developer has access to anything that could be useful in a harrowing debugging session, like HTTP headers and raw request bodies. It’s great if an SDK can interpret errors and make them even more useful, but a developer should also be able to read raw API documentation about an error and still pinpoint it at the SDK level. 
+____
+
+== https://www.baldurbjarnason.com/2021/software-crisis-2/[Software crisis 2.0]
+
+[quote]
+____
+Another way to describe it (and probably the more common, less poetic North American way) is that every project has an _innovation budget_: the amount of "`new`" you can safely handle with your resources without increasing the risk of project failure. Most software companies blow this budget out of the water and then keep on piling until it’s a miracle they even manage to get started in the first place.
+____
