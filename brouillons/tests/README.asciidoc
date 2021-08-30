@@ -55,13 +55,16 @@ Chacune et chacun a un coût{nbsp}: coût d'apprentissage mais aussi effort pour
 
 Comme je veux éviter que ce coût n'augmente trop, je préfère que les style de code des tests ne s'écarte pas trop du code à tester.
 
-Ainsi, je me méfie de l'utilisation de DSLs pour les tests comme link:https://cucumber.io/docs/gherkin/reference/[Gherkin], qui sont attirants quand ils sont présentés, mais dont l'utilisation demande beaucoup d'efforts.
+Ainsi, je me méfie de l'utilisation de DSLs pour les tests comme link:https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md[factory_bot] ou link:https://cucumber.io/docs/gherkin/reference/[Gherkin], qui sont attirants quand ils sont présentés, mais dont l'utilisation et le débuggage peut demander beaucoup d'efforts.
+
 
 == Plutôt plus de couches que moins
 
 Toutes choses égales par ailleurs, je préfère quand du code de test touche plus de code à la fois que moins, car cela a tendance à intercepter plus d'erreurs.
 
 Tester des couches de code en isolation peut répondre à un certain nombre de besoins (rendre plus rapide d'écrire de tests, accélérer l'exécution des tests de manière qui fasse une différence…) mais n'est pas pour moi une fin en soi.
+
+Dans le vocabulaire de Martin Fowler, je préfère link:https://www.martinfowler.com/bliki/UnitTest.html[les tests sociables].
 
 Et comme dit plus haut, il ne faut pas oublier que l'écriture de mocks ou l'ajout et la maintenance des indirections a un coût.
 
