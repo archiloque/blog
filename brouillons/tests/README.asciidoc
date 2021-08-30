@@ -21,6 +21,7 @@ Au delà d'une certaine durée, attendre que les tests s'exécutent a des effets
 Il est donc important que les tests soient suffisamment rapides pour que ça n'arrive pas.
 
 Je pense qu'il est acceptable que de lancer l'ensemble des tests d'un système prenne un certain temps (par exemple plusieurs minutes), si le lancement des tests de la partie du code touchée par une modification normale est facile et rapide (de l'ordre de quelques secondes).
+Organiser les tests en modules ou en packages le permet assez facilement, surtout quand votre IDE le prend en compte.
 
 L'idée est que pendant le développement on peut lancer les tests dont on pense qu'ils sont touchés par la modification, et d'attendre ensuite la fin du développement pour que le build continu lance l'ensemble des tests.
 
