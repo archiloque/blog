@@ -12,14 +12,14 @@ Nous avons un processus type de développement avec un tableau en colonnes perme
 
 Ce processus type est appliqué dans la majorité des cas, mais des exceptions arrivent, par exemple{nbsp}:
 
-* Ne pas estimer certains sujets difficile à estimer quand nous pensons que la discussion sur l'estimation n'apporterait rien. C'est par exemple le cas des mises à jours d'outils nécessaires pour bénéficier du support.
+* Ne pas estimer certains sujets difficiles à estimer quand nous pensons que la discussion sur l'estimation n'apporterait rien. C'est par exemple le cas des mises à jours d'outils nécessaires pour bénéficier du support.
 * Ajouter ponctuellement des sujets en cours d'itération.
-* Déployer sur un environnement de recette des sujets dont le code n'a pas encore été revue, quand nous pensons que le comportement qui a été développé a besoin d'être affiné. L'objectif de ne pas passer du temps à revoir du code qui a des chances de changer significativement ensuite et aura donc lieu ensuite. 
+* Déployer sur un environnement de recette des sujets dont le code n'a pas encore été revu, quand nous pensons que le comportement qui a été développé a besoin d'être affiné. L'objectif de ne pas passer du temps à revoir du code qui a des chances de changer significativement mais de le revoir après sa stabilisation.
 
 L'existence de ces exceptions ne signifie pas que le processus pose problème car il est prévu pour gérer les cas standards.
 Le fait que des cas non-standard demandent des adaptations ne remet pas le cas standard en cause.
 
-Je préfère un processus simple et suffisamment malléable pour que ces exception ne soient pas une gène plutôt qu'un processus qui tenterait de couvrir tous les cas possibles.
+Je préfère un processus simple et suffisamment malléable pour que ces exceptions ne soient pas une gène plutôt qu'un processus qui tenterait de couvrir tous les cas possibles.
 
 Le pilotage de ces exceptions se fait au fil de l'eau.
 
@@ -29,7 +29,7 @@ Il s'agit de maintenir un mélange satisfaisant entre{nbsp}:
 - le niveau d'urgence des besoins qui justifient ou pas de faire une exception,
 - le temps à passer sur la gestion de ces situations (car le temps à passer pour discuter si on fait une exception n'est pas gratuit).
 
-Ce type d'approche est acceptable dans une équipe où la relation entre le·a PO et les personnes qui développent fonctionne bien, par exemple il ne faut pas qu'une personne ne tente de tirer profit des exceptions en lésant les autres.
+Ce type d'approche est acceptable dans une équipe où la relation PO — personnes qui développent fonctionne bien, par exemple il ne faut pas qu'une personne ne tente de tirer profit des exceptions en lésant les autres.
 
 Actuellement nous utilisons peu de métriques pour suivre l'avancée des sujets.
 
@@ -54,11 +54,11 @@ Le processus "`gestion d'un bug`" est alors un outil, dont on peut choisir d'ada
 Mais si le nombre de bug est mesuré, l'utiliser pour quelque chose qui n'est pas un bug vient fausser cette mesure.
 Car en mesurant quelque chose qui s'appelle "`le nombre de bugs`", il y a pas mal de chance qu'on veuille mesurer les bugs (dans le sens de "`comportement fautif`"), pas le nombre de fois où on a appliqué le processus plus courts de traitement de bugs.
 
-Même si l'objectif n'est pas directement de réduire le nombre de bug mesurés, utiliser le processus plus court pour autre chose qu'un bug va alors fausser cette mesure.
-Tant que la proportion d'exceptions reste faible par rapport au nombres de cas standard, cela peut ne pas poser problème, mais cela signifie qu'il faut maintenant surveiller cela pour faire en sorte que la métrique reste pertinentefootnote:[Une autre solution possible serait de distinguer de renommer le processus en "`processus court`" et de distinguer entre les bugs et les non-bugs, ce qui permet d'avoir une métrique juste en échange d'une augmentation de la complexité de la gestion du projet.
+Même si l'objectif n'est pas directement de réduire le nombre de bugs mesurés, utiliser le processus plus court pour autre chose qu'un bug va alors fausser cette mesure.
+Cela peut ne pas poser problème tant que la proportion d'exceptions reste faible par rapport au nombres de cas standards, mais cela signifie qu'il faut maintenant surveiller cela pour faire en sorte que la métrique reste pertinentefootnote:[Une autre solution possible serait de distinguer de renommer le processus en "`processus court`" et de distinguer entre les bugs et les non-bugs, ce qui permet d'avoir une métrique juste en échange d'une augmentation de la complexité de la gestion du projet.
 ].
 
-Par ailleurs si on veut faire évoluer un processus suivi une métrique, l'historique de la métrique risque d'être perdu, cela peut ne pas être grave, mais cela signifie qu'il faut se poser la question, ou alors risque de passer du temps plus tard à investiguer pourquoi les valeurs mesurées ont changé à un certain moment.
+Par ailleurs si on veut faire évoluer un processus qui fait l'objet d'une métrique, l'historique de la métrique risque d'être perdu, cela peut ne pas être grave, mais cela signifie qu'il faut se poser la question, ou alors risquer de passer du temps plus tard à investiguer pourquoi les valeurs mesurées ont changé à un certain moment.
 
 Le processus court n'est plus un outil qu'on peut utiliser et adapter librement.
 Cela ne signifie pas que la métrique l'a rendu impossible à modifier, mais qu'elle a tendance à le rigidifier.
@@ -98,4 +98,4 @@ Mon message n'est donc pas "`non aux métriques`" mais "`portez attention aux ef
 Mon conseil final est de faire attention à l'envie de mesurer des choses à priori, par exemple car le coût de la mesure est faible, sans se poser de question.
 Je préfère prendre le risque de perdre du temps si une métrique n'est pas disponible au moment même où on en a besoin, plutôt que celui d'une mauvaise interprétation.
 
-_Post-scriptum{nbsp}: L'idée de cet article m'est venue en lisant la première partie de link:https://theanarchistlibrary.org/library/james-c-scott-seeing-like-a-state[Seeing Like a State] qui illustre plusieurs manières dont des États ont mis en place des règles pour rendre mesurable les personnes qu'ils gouvernent, et leurs effets sur les vies de ces personnes._
+_Post-scriptum{nbsp}: L'idée de cet article m'est venue en lisant la première partie de link:https://theanarchistlibrary.org/library/james-c-scott-seeing-like-a-state[Seeing Like a State] qui illustre plusieurs manières dont des États ont mis en place des règles pour rendre mesurables les personnes qu'ils gouvernent, et leurs effets sur les vies de ces personnes._
