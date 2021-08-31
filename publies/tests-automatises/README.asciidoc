@@ -1,8 +1,10 @@
 = À propos de tests automatisés
 Julien Kirch
-v0.1, 2021-01-01
+v0.1, 2021-00-01
 :article_lang: fr
 :article_image: venn.png
+:ignore_files: venn.xcf
+:article_description: Ma synthèse personnelle
 
 Voici où j'en suis actuellement de mes réflexions et pratiques sur les tests automatisés.
 
@@ -77,6 +79,8 @@ Je pense qu'il peut être utile de discuter des avantages et des inconvénients 
 
 Mais je ne pense pas qu'il existe une répartition-type universelle qui soit applicable clé en main (déjà que chacun a ses définitions sur ce que sont les différents types de tests).
 
-Et j'aimerai que les personnes écrivent plus sur le premier tout en se préoccupant moins du second.
+Par exemple des tests d'intégration utilisant des navigateur ne ressemblent pas du tout au tests d'intégrations avec des appels de services
+
+Et j'aimerai que les personnes écrivent plus sur leur contextes tout en se préoccupant moins d'essayer d'en généraliser des modèles.
 
 image::venn.png[caption="", title="Mon cerveau quand je regarde une image de pyramide de test"]
