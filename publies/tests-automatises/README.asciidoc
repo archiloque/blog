@@ -37,9 +37,7 @@ Quand un test ne passe pas il doit être facile d'en comprendre la cause et de l
 
 Mon expérience est que si dans une base de code il est facile de diagnostiquer la raison de tests qui ne passent pas, il est souvent facile de diagnostiquer les erreurs en production.
 
-Cela signifie que je préfère investir dans une amélioration de la capacité à observer le comportement du code à tester plutôt que dans la capacité de diagnostiquer les choses dans la partie test.
-
-Mais souvent les deux se complètent.
+Cela signifie que quand vous avez des difficulté à diagnostiquer ce qui ne va pas dans un test, plutôt que de chercher à modifier le test, par exemple en mockant plus de chose, il faut souvent mieux essayer de modifier le code à tester pour rendre son comportement plus facile à comprendre ou à observer.
 
 == Les tests ne doivent pas trop être intrusifs
 

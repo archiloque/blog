@@ -34,3 +34,23 @@ Intuitively, if I look for an order in progress more than 6 months ago, I should
 
 With a partitioning by date, it can estimate that there are no orders in progress for deliveries of more than one month. This approach is mainly used to reduce an estimation error in an execution plan.
 ____
+
+== link:https://blog.crunchydata.com/blog/message-queuing-using-native-postgresql[Devious SQL: Message Queuing Using Native PostgreSQL]
+
+[quote]
+____
+Hmm, let's think. The `DELETE` statement is able to return data to us as if it were a `SELECT` statement via the `RETURNING` clause, however `DELETE` lacks a `LIMIT` clause, nor can we take row locks on it explicitly. That said, we can use the `USING` clause to join to itself and get both limits and row locks.
+This gives us a final query as follows:
+
+[source,sql]
+----
+DELETE FROM
+    queue_table
+USING (
+    SELECT * FROM queue_table LIMIT 10 FOR UPDATE SKIP LOCKED
+) q
+WHERE q.id = queue_table.id RETURNING queue_table.*;
+----
+
+We are using the self-join method of deletion here with a subquery to both lock the underlying rows being returned, as well as deleting the rows and returning all values for the set of rows as if this were an original `SELECT` statement.
+____
