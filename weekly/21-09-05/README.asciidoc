@@ -18,7 +18,7 @@ ____
 ____
 To determine the best execution plan, Postgres makes decisions based on statistics. They are obtained from a sample of the table (the `default_statistic_target` which is 100 by default).
 
-By default, postgres will collect 300 x `default_statistic_target` rows, that is 30 000 rows. With a table of several hundred million rows, this sample is sometimes too small.
+By default, postgres will collect 300 × `default_statistic_target` rows, that is 30{nbsp}000 rows. With a table of several hundred million rows, this sample is sometimes too small.
 
 We can drastically increase the sample size, but this approach has some drawbacks:
 
