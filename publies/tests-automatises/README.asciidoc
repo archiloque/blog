@@ -67,6 +67,8 @@ Toutes choses égales par ailleurs, je préfère quand du code de test touche pl
 
 Tester des couches de code en isolation peut répondre à un certain nombre de besoins (rendre plus rapide d'écrire de tests, accélérer l'exécution des tests de manière qui fasse une différence…) mais n'est pas pour moi une fin en soi.
 
+Dit autrement : si des tests en isolation peuvent permettre de passer significativement moins de temps à écrire certains tests alors c'est ce que je vais choisir, mais si je n'ai pas ce genre d'incitation je préfère les tests couvrant plusieurs couches.
+
 Dans le vocabulaire de Martin Fowler, je préfère link:https://www.martinfowler.com/bliki/UnitTest.html[les tests sociables].
 
 Et comme dit plus haut, il ne faut pas oublier que l'écriture de mocks ou l'ajout et la maintenance des indirections a un coût.
