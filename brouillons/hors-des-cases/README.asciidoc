@@ -3,3 +3,25 @@ Julien Kirch
 v0.1, 2021-01-01
 :article_lang: fr
 :article_image: lego.jpeg
+
+Vous avez un système bien organisé, qui vous guide sur la manière d'organiser tel ou tel bout de code{nbsp}: les validations vont là, les règles métier ici, les templates HTML dans ce coin.
+
+Et vous vous retrouvez avec un bout de code qui ne rentre dans aucune des cases déjà définies, et qui sont si bien adaptées le reste du temps.
+
+image::lego.jpeg[]
+
+Il s'agit d'un travail de design que je trouve intéressant, et qui mériterait qu'on s'y penche un peu plus.
+
+Il y a beaucoup d'exercice de design en page blanche, ou des exercices de refactoring pour lesquels une solution est beaucoup plus avantageuse que les autres et s'impose d'elle-même.
+
+Mais que faire quand il n'y en a pas{nbsp}: quand aucune n'est vraiment "`mieux`".
+
+C'est la possibilité d'avoir une discussion plus riche où on peut peser le pour et le contre, pour interroger notre manière de faire pour savoir quel serait le moins mauvais endroit où ranger ce truc qui ne va bien nulle part.
+Attention cependant, Cela peut malheureusement aussi être l'occasion de brandir des slogans à l'emporte-pièce et du name-dropping.
+
+Il y a une solution qui est toujours possible, et qui est de ne refuser d'avoir des cas particuliers.
+Cela signifie que fasse à une exception, on tente de la convertir en cas général.
+
+Pour cela on peut tenter d'étirer un cas général pour gérer cette situation. Par exemple ajouter un paramètre partout même s'il ne sert qu'une fois.
+
+Ou décréter que ce cas est un nouveau cas général, au même titre
