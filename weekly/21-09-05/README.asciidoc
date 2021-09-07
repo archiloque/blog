@@ -47,9 +47,13 @@ This gives us a final query as follows:
 DELETE FROM
     queue_table
 USING (
-    SELECT * FROM queue_table LIMIT 10 FOR UPDATE SKIP LOCKED
+    SELECT * FROM queue_table 
+    LIMIT 10
+    FOR UPDATE
+    SKIP LOCKED
 ) q
-WHERE q.id = queue_table.id RETURNING queue_table.*;
+WHERE q.id = queue_table.id 
+RETURNING queue_table.*;
 ----
 
 We are using the self-join method of deletion here with a subquery to both lock the underlying rows being returned, as well as deleting the rows and returning all values for the set of rows as if this were an original `SELECT` statement.
