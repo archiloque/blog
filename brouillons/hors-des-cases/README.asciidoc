@@ -8,20 +8,38 @@ Vous avez un système bien organisé, qui vous guide sur la manière d'organiser
 
 Et vous vous retrouvez avec un bout de code qui ne rentre dans aucune des cases déjà définies, et qui sont si bien adaptées le reste du temps.
 
+Parfois il existe une manière raisonnable d'adapter une des cases pour l'y faire tenir, et dans ce cas la solution est toute trouvée, mais pas toujours.
+
 image::lego.jpeg[]
 
-Il s'agit d'un travail de design que je trouve intéressant, et qui mériterait qu'on s'y penche un peu plus.
+Il s'agit d'un travail de design que je trouve intéressant, et qui mériterait je pense qu'on s'y penche un peu plus.
 
-Il y a beaucoup d'exercice de design en page blanche, ou des exercices de refactoring pour lesquels une solution est beaucoup plus avantageuse que les autres et s'impose d'elle-même.
+Beaucoup d'exercice de design en page blanche, ou des exercices de refactoring ont une solution beaucoup plus avantageuse que les autres qui s'impose d'elle-même quand on la connaît.
 
 Mais que faire quand il n'y en a pas{nbsp}: quand aucune n'est vraiment "`mieux`".
 
-C'est la possibilité d'avoir une discussion plus riche où on peut peser le pour et le contre, pour interroger notre manière de faire pour savoir quel serait le moins mauvais endroit où ranger ce truc qui ne va bien nulle part.
-Attention cependant, Cela peut malheureusement aussi être l'occasion de brandir des slogans à l'emporte-pièce et du name-dropping.
+Pour une équipe ça peut être la possibilité d'avoir une discussion plus riche où on peut peser le pour et le contre.
 
-Il y a une solution qui est toujours possible, et qui est de ne refuser d'avoir des cas particuliers.
-Cela signifie que fasse à une exception, on tente de la convertir en cas général.
+Cela peut permettre d'interroger notre manière de faire pour savoir quel serait le "`moins mauvais`" endroit où ranger ce truc qui ne va bien nulle part, et d'apprendre à faire des compromis.
 
-Pour cela on peut tenter d'étirer un cas général pour gérer cette situation. Par exemple ajouter un paramètre partout même s'il ne sert qu'une fois.
+(Attention cependant, cela peut malheureusement aussi être l'occasion de brandir des slogans à l'emporte-pièce et du name-dropping.)
 
-Ou décréter que ce cas est un nouveau cas général, au même titre
+Il y a une solution qui est toujours possible, et qui est de refuser d'avoir des cas particuliers.
+
+Cela signifie que face à une exception, on tente de la convertir en cas général.
+
+Pour cela on peut tenter d'étirer un cas général au delà du raisonnable. Par exemple ajouter un paramètre partout même s'il ne sert qu'une fois.
+
+Ou décréter que ce cas est un nouveau cas général, au même titre que les autres, et peut-importe qu'il soit tous seuls.
+
+Cette approche systématique a une certaine pureté intellectuelle et est donc attirante, et elle permet probablement de se poser moins de questions.
+
+Mais j'ai le sentiment qu'elle va avoir tendance à ajouter de la complexité, et/ou du code qui n'est là que pour respecter les règles, et que cela peut ne pas être souhaitable.
+
+Depuis quelques temps je me suis éloigné de l'aspect systématique, et j'admets plus volontiers d'avoir une proportion même faible de cas un peu bizarres, et j'ai l'impression que le résultat est plutôt "`mieux`".
+
+(À l'inverse attention à ne pas trop multiplier les exceptions et à les garder à l'œil, des patterns de code suffisamment respectés sont essentiels pour que le code soit plus facile à suivre et à faire évoluer.)
+
+J'admets qu'il s'agit aussi d'une affaire de goût et de technologie (le curseur de choix n'est peut-être pas à placer au même endroit entre par exemple Ruby ou Java).
+
+Je ne vous dit pas de faire comme moi, mais je vous suggère de vous poser la question, la prochaine fois que vous vous trouverez face à ce genre de problème.
