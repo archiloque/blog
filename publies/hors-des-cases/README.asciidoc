@@ -1,12 +1,12 @@
 = Hors des cases
 Julien Kirch
-v0.1, 2021-01-01
+v0.1, 2021-09-11
 :article_lang: fr
 :article_image: lego.jpeg
 
 Vous avez un système bien organisé, qui vous guide sur la manière d'organiser tel ou tel bout de code{nbsp}: les validations vont là, les règles métier ici, les templates HTML dans ce coin.
 
-Et vous vous retrouvez avec un bout de code qui ne rentre dans aucune des cases déjà définies, et qui sont si bien adaptées le reste du temps.
+Et vous vous retrouvez avec un bout de code qui ne rentre dans aucune des ces cases déjà définies, et qui sont si bien adaptées le reste du temps.
 
 Parfois il existe une manière raisonnable d'adapter une des cases pour l'y faire tenir, et dans ce cas la solution est toute trouvée, mais pas toujours.
 
@@ -22,9 +22,7 @@ Pour une équipe ça peut être la possibilité d'avoir une discussion plus rich
 
 Cela peut permettre d'interroger notre manière de faire pour savoir quel serait le "`moins mauvais`" endroit où ranger ce truc qui ne va bien nulle part, et d'apprendre à faire des compromis.
 
-(Attention cependant, cela peut malheureusement aussi être l'occasion de brandir des slogans à l'emporte-pièce et du name-dropping.)
-
-Il y a une solution qui est toujours possible, et qui est de refuser d'avoir des cas particuliers.
+Il y a une approche qui est toujours possible, et qui est de refuser d'avoir des cas particuliers.
 
 Cela signifie que face à une exception, on tente de la convertir en cas général.
 
