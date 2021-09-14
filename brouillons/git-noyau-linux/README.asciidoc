@@ -3,12 +3,35 @@ Julien Kirch
 v0.1, 2021-07-01
 :article_lang: fr
 
-Git est un outil très fluide qui s'adapte à de nombreuses manières de travailler.
+Git est un outil très maléable qui s'adapte à de nombreuses manières de travailler.
 
-Git est aussi un outil qui tient son origine dans le noyau Linux, et je pense qu'à cause de cela, et de l'aura du noyau Linux dans le monde du logiciel, le modèle de développement du noyau Linux a une influence importante sur l'usage de Git en général, même dans des cas très éloignés.
+Git est aussi un outil qui tient son origine dans le noyau Linux.
+Je pense qu'à cause de cela, et de l'aura du noyau Linux dans le monde du logiciel, le modèle de développement du noyau Linux a une influence importante sur l'usage de Git en général, même dans des cas très éloignés.
 
 Or le noyau Linux a un modèle de développement assez spécifique, notamment quand on le compare à celui de la majorité des projets web.
 
-Une partie de ces spécificités vient du type de logiciel (le noyau d'un système d'exploitation conçu pour tourner nativement sur de nombreux types de matériels), d'autres tiennent à son organisation (hiérachique et répartie entre plusieurs organisations) et d'autres enfin sont des choix historiques ou des préférences.
+Ces spécificités proviennent à la fois du type de logiciel qu'est le noyau Linux (le noyau d'un système d'exploitation), de son organisation (hiérarchique et répartie entre plusieurs organisations) et d'autres enfin sont des choix historiques ou des préférences.
 
-Je pense qu'en savoir un peu sur ce modèle permet de mieux comprendre la popularité de certaines approches sur la gestion des sources, voir même sur le développement logiciel en général, même si vous ne comptez pas contribuer au noyau Linux ou à d'autres projets semblables.
+Je pense que comprendre ces aspects du développement du noyau Linux est intéressant pour prendre du recul sur ses habitudes de développement, par exemple pour se rendre compte que des choses qu'on prend pour acquises ne le sont pas forcément.
+
+Je ne veux pas dire qu'il est souhaitable de recopier ou de s'inspirer de ces approches, mais ma conviction est que les connaître permet de mieux éclairer nos choix
+
+== Des revues sans pouvoir tester
+
+Parfois du code sans pouvoir tester.
+
+== Du code sans test automatisés
+
+== Des reports de code entre les versions
+
+== Un besoin de _buy-in_
+
+== Des PR sur plusieurs années
+
+== Conclusion
+
+Accordre de l'importance aux commits individuels et à l'historique car c'est quelque chose qui est nécessaire pour leur modèle de développement.
+
+Pour revenir sur mon avertissement, je pense que ce modèle est probablement inadapté à un projet web classique.
+
+Je comprends qu'on ai envie de 
