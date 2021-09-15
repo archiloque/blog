@@ -1,24 +1,74 @@
-= Git et le modèle de développement du noyau Linux
+= Git et le modèle de développement du {nL}
 Julien Kirch
 v0.1, 2021-07-01
 :article_lang: fr
+:nL: noyau Linux
+:LT: Linus Torvald
 
 Git est un outil très maléable qui s'adapte à de nombreuses manières de travailler.
 
-Git est aussi un outil qui tient son origine dans le noyau Linux.
-Je pense qu'à cause de cela, et de l'aura du noyau Linux dans le monde du logiciel, le modèle de développement du noyau Linux a une influence importante sur l'usage de Git en général, même dans des cas très éloignés.
+Git est aussi un outil qui tient son origine dans le {nL}.
+Je pense qu'à cause de cela, et de l'aura du {nL} dans le monde du logiciel, le modèle de développement du {nL} a une influence importante sur l'usage de Git en général, même dans des cas très éloignés.
 
-Or le noyau Linux a un modèle de développement assez spécifique, notamment quand on le compare à celui de la majorité des projets web.
+Or le {nL} a un modèle de développement assez spécifique, notamment quand on le compare à celui de la majorité des projets web.
 
-Ces spécificités proviennent à la fois du type de logiciel qu'est le noyau Linux (le noyau d'un système d'exploitation), de son organisation (hiérarchique et répartie entre plusieurs organisations) et d'autres enfin sont des choix historiques ou des préférences.
+Ces spécificités proviennent à la fois du type de logiciel qu'est le {nL} (le noyau d'un système d'exploitation), de son organisation (hiérarchique et répartie entre plusieurs organisations) et d'autres enfin sont des choix historiques ou des préférences.
 
-Je pense que comprendre ces aspects du développement du noyau Linux est intéressant pour prendre du recul sur ses habitudes de développement, par exemple pour se rendre compte que des choses qu'on prend pour acquises ne le sont pas forcément.
+Je pense que comprendre ces aspects du développement du {nL} est intéressant pour prendre du recul sur ses habitudes de développement, par exemple pour se rendre compte que des choses qu'on prend pour acquises ne le sont pas forcément.
 
-Je ne veux pas dire qu'il est souhaitable de recopier ou de s'inspirer de ces approches, mais ma conviction est que les connaître permet de mieux éclairer nos choix
+Je ne veux pas dire qu'il est souhaitable de recopier ou de s'inspirer de ces approches, mais ma conviction est que les connaître permet de mieux éclairer nos choix.
 
-== Des revues sans pouvoir tester
+Une connaissance minimale du fonctionnement d'un projet et de Git est nécessaire pour comprendre ce qui suit.
 
-Parfois du code sans pouvoir tester.
+== Le process de développement
+
+Si le {nL} n'est pas la propriété d'une entreprise ou d'une organisation, son process de développement est assez link:https://www.kernel.org/doc/html/latest/process/2.Process.html[codifié] et hiérarchique.
+
+En haut de la pyramide {LT} est responsable de la branche de développement principale, c'est-à-dire que c'est lui qui fait les merges depuis les autres branches.
+
+Différents sous-ensembles du {nl} appelés _subsystem_ sont sous la responsabilité chacun d'au moins une personne appelée _maintainer_.
+Dans le code ces sous-ensembles correspondent à des répertoires ou à des fichiers.
+link:https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/MAINTAINERS[Un fichier] définit les périmètres des différentes personnes.
+
+Dans un sous-ensemble, le ou les responsables ont une certaine autonomie tant que les règles générales du fonctionnement du noyau sont respectées.
+
+C'est {LT} qui nomme ces responsable, et il peut à tout moment leur retirer leur rôle ou revenir sur leurs décisions.
+
+Le développement de la branche principale du {nL} se fait de manière itérative, par version.
+
+Lors de l'ouverture d'une nouvelle version du {nL} au développement, {LT} va commencer par récupérer les commits disponibles dans différentes branches préparées par ces responsables et qui en principe contiennent du code "`prêt à être mergé`".
+
+Une partie de ce code est écrit par ces responsables.
+Le reste provient d'autre personnes.
+
+Pour voir leur code inclus dans le {nL}, ces autres personnes doivent convaincre au moins un responsable du domaine en question de le merger.
+
+En effet {LT} ne prend pas proposition de code "`en direct`" mais se repose sur les responsables qu'il nommé.
+
+Ce qui signifie que ces personnes ont droit de vie ou de mort sur votre code.
+
+En cas de besoin, il est toujours possible de s'adresser à {LT} directement, mais c'est l'équivalent dans ne organisation de contacter votre N+2 quand vous avez un problème avec votre N+1{nbsp}: vous pouvez le faire mais ça peut avoir des conséquences, surtout si vous avez l'intention ensuite de continuer à travailler sur cette partie du code.
+
+Par rapport à une organisation classique, où (en principe) un certain niveau de collaboration prévaut, les personnes qui travaillent sur le {nL} travaillent dans une multiplicité de structure (et une partie continue à le faire sur ton temps de loisir).
+Ce qui signifie que les mécanismes de régulation qui peuvent avoir lieu, par exemple pour éviter qu'un ou une responsable ne merge pas du code qu'on lui a proposé parce qu'il ou elle n'en a simplement pas envie, ne sont pas ou très peu opérant.
+
+Cela signifie que quand vous voulez proposer une évolution, vous avez besoin de la "`vendre`" pour que les personnes acceptent d'y prêter attention, et potentiellement accepter de la merger.
+
+Cela signifie aussi que les revues peuvent être fastidieuses à cause du rapport de force très déséquilibrés.
+
+L'équivalent des pull requests sont ainsi parfois réécris 10 ou 20 fois jusqu'à être validées, ou jusqu'à ce que la personne se lasse.
+
+Le {nL} continuant à être modifié pendant ce temps, qui peut prendre plusieurs mois ou années, il faut aussi réadapter votre code à ces évolutions et donc le rebaser régulièrement.
+
+Je ne veux pas dire que les responsables font ça par méchanceté{nbsp}: il est normal que pour un projet comme le {nL} le niveau d'attente soit élevé, et quand on veut développer du code qui soit maintenable sur une longue durée, il est compréhensible de vouloir que le style soit cohérent.
+
+== Des revues sans toujours pouvoir tester
+
+Une partie conséquente du {nL} est composé des pilotes qui sont les liens entre les périphériques matériels et le noyau, fournissant les implémentations de différentes API en fonction du matériel en question (générer du son ou de la vidéo, réagir à l'appui d'une touche sur un clavier ou une souris…).
+
+Pour pouvoir tester un pilote en condition réelle, il faut disposer du matériel correspondant.
+
+Pour du matériel standard, il est possible que des personnes 
 
 == Du code sans test automatisés
 
