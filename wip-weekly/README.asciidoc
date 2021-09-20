@@ -18,8 +18,14 @@ When you look at performance, cross-platform and mobile support, reliability, an
 Replacing those with even a mediocre Multi-Page-App is generally going to be a substantial win. You usually see improvements on all of the issues mentioned above. You get the same general UX except with more reliable loading, history management, and loading features—provided by the browser.
 ____
 
-
 [quote]
 ____
 The Multi-Page-App forces the team to narrow the scope to a level they can handle. It puts a hard limit on their technological aspirations. Mandating a traditional Multi-Page-App under the auspices of performance, accessibility, or Search-Engine-Optimisation is a face-saving way to force the hand of management to be more realistic about what their teams can accomplish.
+____
+
+== link:https://neilmitchell.blogspot.com/2021/09/reflecting-on-shake-build-system.html[Reflecting on the Shake Build System]
+
+[quote]
+____
+The most important thing Shake got right was adding monadic/dynamic dependencies. Most build systems start with a static graph, and then, realising that can't express the real world, start hacking in an unprincipled manner. The resulting system becomes a bunch of special cases. Shake embraced dynamic dependencies. That makes some things harder (no static cycle detection, less obvious parallelism, must store dependency edges), but all those make Shake itself harder to write, while dynamic dependencies make Shake easier to use. I hope that eventually all build systems gain dynamic dependencies.
 ____
