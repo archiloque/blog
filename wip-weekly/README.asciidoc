@@ -29,3 +29,15 @@ ____
 ____
 The most important thing Shake got right was adding monadic/dynamic dependencies. Most build systems start with a static graph, and then, realising that can't express the real world, start hacking in an unprincipled manner. The resulting system becomes a bunch of special cases. Shake embraced dynamic dependencies. That makes some things harder (no static cycle detection, less obvious parallelism, must store dependency edges), but all those make Shake itself harder to write, while dynamic dependencies make Shake easier to use. I hope that eventually all build systems gain dynamic dependencies.
 ____
+
+
+== link:https://notes.andymatuschak.org/z66PNF1Wt4AZ4j7TVEenkvPZgvDcHPuSdJC2r[Note-writing practices provide weak feedback]
+
+[quote]
+____
+One reason why link:https://notes.andymatuschak.org/z8V2q398qu89vdJ73N2BEYCgevMqux3yxQUAC[Note-writing practices are generally ineffective] may be that note systems generally offer poor feedback.
+
+If one starts a spaced repetition practice, they’ll get strong feedback every day: if they write a bad question, it’ll bother them immediately and regularly thereafter; they’ll feel (to some extent) their growing retention of a given topic.
+
+By contrast, in note-taking the feedback is very delayed: in typical practice, when you write a note, you may not see it again for weeks. The feedback is also ambiguous: if a note helps you distill some insight (or fail to), that usually won’t be especially evident.
+____
