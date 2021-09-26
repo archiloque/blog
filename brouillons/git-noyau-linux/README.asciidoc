@@ -66,13 +66,40 @@ Je ne veux pas dire que les responsables font ça par méchanceté{nbsp}: il est
 
 Une partie conséquente du {nL} est composé des pilotes qui sont les liens entre les périphériques matériels et le noyau, fournissant les implémentations de différentes API en fonction du matériel en question (générer du son ou de la vidéo, réagir à l'appui d'une touche sur un clavier ou une souris…).
 
-Pour pouvoir tester un pilote en condition réelle, il faut disposer du matériel correspondant.
+Une personne responsable d'un sous-système couvrant de pilotes possède en principe quelques périphériques du domaine correspondant (comme quelques modèles de souris ou de cartes graphiques).
+Si on lui propose une évolution du code d'un pilote et qu'elle possède le matériel en question, elle pourra alors le tester.
 
-Pour du matériel standard, il est possible que des personnes 
+Mais si on lui propose un changement et qu'elle ne possède pas le matériel, elle va devoir faire une revue du code sans pouvoir le tester en condition réelle.
 
-== Du code sans test automatisés
+Les tests automatisés peuvent permettre de détecter des changements de comportements entre des versions en mockant le matériel, mais ne sont pas forcément suffisant pour valider que le code va véritablement fonctionner .
+
+En effet les périphériques ont la mauvaises habitudes de ne pas suivre exactement leurs spécifications, et certains vendeurs ne fournissent pas de documentation avec un niveau de détail suffisant.
+Ne reste alors qu'à tester en conditions réelles en documentant suffisamment ce qu'on observe pour qu'une personne qui n'a pas le matériel puisse suivre ce qui se passe en se basant uniquement sur le code, voire soit en mesure de corriger des bugs.
 
 == Des reports de code entre les versions
+
+À l'inverse d'une application web qui n'a qu'une version en production à un moment donné, link:https://en.wikipedia.org/wiki/Linux_kernel_version_history[plusieurs versions du {nL} sont supportées à un moment donné].
+
+Cela permet à certaines distributions Linux de ne pas changer de version du noyau après leur sortie, et ainsi d'essayer de limiter les risques d'introduire de nouveaux bugs.
+
+Cela ne signifie pas que le noyau des versions passées n'évolue pas, mais que les changements qu'on va y appliquer sont soit des corrections de problèmes de sécurités, soit des corrections de bugs qui ont un ratio gravité / risque d'introduire d'autres problèmes suffisamment élevé.
+
+Concrètement il va s'agir d'identifier les changements pertinents quand ils sont ajoutés à la version suivante, et les appliquer sur les différentes versions encore supportées.
+
+Bien entendu, vouloir porter seulement certains changements et pas tous signifie potentiellement devoir les adapter pour les faire correspondre au code des anciennes versions.
+C'est un peu la même chose que de réadapter du code pas encore mergé mais à l'envers.
+
+Si besoin la personne en charge de telle ou telle version en maintenance peut demander de l'aide à personne responsable du sous-système correspondant, mais elle n'a pas de garantie de l'obtenir, car tout le monde ne donne pas la même priorité à cette partie du développement.
+
+Et pour revenir sur la partie précédente, parfois ni la personne en charge de la version ni la personne responsable du sous-système n'a le moyen de tester que le changement fonctionne bien.
+
+Ici aussi la capacité du code à pouvoir être compris sans être exécuté est importante.
+
+Le fait d'avoir des versions supportées pendant longtemps amène aussi à ne pas vouloir faire de changements à l'utilisé insuffisante dans le code.
+
+Si les refactoring nécessaires sont réguliers quand une API change ou qu'une nouvelle approche est choisie, les personnes qui développent ont appris à ne pas faire de renommages de variables qui apporte peu de choses ou de changement de formatage du code, car chaque changement peut rendre plus complexe le portage de code entre les versions.
+
+Il ne s'agit pas de freiner les modifications, mais de s'assurer qu'elles sont utiles pour ne pas rendre plus difficile le travail des autres.
 
 == Un besoin de _buy-in_
 
