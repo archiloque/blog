@@ -62,7 +62,7 @@ Le {nL} continuant à être modifié pendant ce temps, qui peut prendre plusieur
 
 Je ne veux pas dire que les responsables font ça par méchanceté{nbsp}: il est normal que pour un projet comme le {nL} le niveau d'attente soit élevé, et quand on veut développer du code qui soit maintenable sur une longue durée, il est compréhensible de vouloir que le style soit cohérent.
 
-== Des revues sans toujours pouvoir tester
+== Valider du code sans pouvoir tester
 
 Une partie conséquente du {nL} est composé des pilotes qui sont les liens entre les périphériques matériels et le noyau, fournissant les implémentations de différentes API en fonction du matériel en question (générer du son ou de la vidéo, réagir à l'appui d'une touche sur un clavier ou une souris…).
 
@@ -73,8 +73,11 @@ Mais si on lui propose un changement et qu'elle ne possède pas le matériel, el
 
 Les tests automatisés peuvent permettre de détecter des changements de comportements entre des versions en mockant le matériel, mais ne sont pas forcément suffisant pour valider que le code va véritablement fonctionner .
 
-En effet les périphériques ont la mauvaises habitudes de ne pas suivre exactement leurs spécifications, et certains vendeurs ne fournissent pas de documentation avec un niveau de détail suffisant.
-Ne reste alors qu'à tester en conditions réelles en documentant suffisamment ce qu'on observe pour qu'une personne qui n'a pas le matériel puisse suivre ce qui se passe en se basant uniquement sur le code, voire soit en mesure de corriger des bugs.
+En effet les périphériques ont la mauvaises habitudes de ne pas suivre exactement leurs spécifications, et certains vendeurs fournissent des spécifications insuffisantes voire pas de spécification du tout, le développement doit alors se faire par essai et erreur.
+
+Il faut alors documenter de manière précise ce qui se passe, le code n'étant souvent pas assez explicite en lui-même, pour qu'une personne qui n'a pas le matériel puisse suivre ce qui se passe et éventuellement faire des retours.
+
+La phase de merge passée, il arrive régulièrement que les personnes tentent de corriger des bugs sans pouvoir tester, quand la personne qui a initialement soumis le code est passée à autre chose.
 
 == Des reports de code entre les versions
 
@@ -99,15 +102,11 @@ Le fait d'avoir des versions supportées pendant longtemps amène aussi à ne pa
 
 Si les refactoring nécessaires sont réguliers quand une API change ou qu'une nouvelle approche est choisie, les personnes qui développent ont appris à ne pas faire de renommages de variables qui apporte peu de choses ou de changement de formatage du code, car chaque changement peut rendre plus complexe le portage de code entre les versions.
 
-Il ne s'agit pas de freiner les modifications, mais de s'assurer qu'elles sont utiles pour ne pas rendre plus difficile le travail des autres.
-
-== Un besoin de _buy-in_
-
 == Des PR sur plusieurs années
 
 == Conclusion
 
-Accordre de l'importance aux commits individuels et à l'historique car c'est quelque chose qui est nécessaire pour leur modèle de développement.
+Accorder de l'importance aux commits individuels et à l'historique car c'est quelque chose qui est nécessaire pour leur modèle de développement.
 
 Pour revenir sur mon avertissement, je pense que ce modèle est probablement inadapté à un projet web classique.
 
