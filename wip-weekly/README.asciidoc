@@ -5,3 +5,40 @@ v1.0, 2021-01-01
 :figure-caption!:
 :article_description:
 
+== link:https://danluu.com/in-house/[The value of in-house expertise]
+
+[quote]
+____
+Coincidentally, I was just talking about this exact topic to Pam Wolf, a civil engineering professor with experience in (civil engineering) industry on multiple continents, who had a related opinion. For large scale systems (projects), you need an in-house expert (owner's-side engineer) for each area that you don't handle in your own firm. While it's technically possible to hire yet another firm to be the expert, that's more expensive than developing or hiring in-house expertise and, in the long run, also more risky. That's pretty analogous to my experience working as an electrical engineer as well, where orgs that outsource functions to other companies without retaining an in-house expert pay a very high cost, and not just monetarily. They often ship sub-par designs with long delays on top of having high costs. "`Buying`" can and often does reduce the amount of expertise necessary, but it often doesn't remove the need for expertise.
+____
+
+== link:https://danluu.com/in-house/[Things unlearned]
+
+[quote]
+____
+It's so easy to think that simple solutions exist. But if you look at the history of ideas that actually worked, they tend to only be simple from a distance. The closer you get, the more you notice that the working idea is surrounding by a huge number of almost identical ideas that don't work.
+____
+
+
+[quote]
+____
+Finding the idea that actually works amidst the sea of very similar ideas that don't work requires staying curious long enough to encounter the fine-grained detail of reality and humble enough to recognize and learn from each failure.
+
+It's ok to think that things have flaws or could be improved. But it's a trap to believe that solutions are trivial and everyone else is just too enfeebled of character to push the miracle button.
+____
+
+[quote]
+____
+A similar trap hit often got me on a smaller scale. Whenever I ran up against something that was ugly or difficult, I would start looking for a simpler solution.
+
+For example when link:https://web.archive.org/web/20180611020249/https://github.com/jamii/inkling[I tried to make a note-taking app for tablets] many years ago I had to make the gui, but gui tools are always kind of gross so I kept switching to new languages and libraries to try to get away from it. In each successive version I made less and less progress towards actually building the thing and had to cover more and more unknown ground (eg qtjava relies on using reflection to discover slots and at the time was difficult to implement the correct types from clojure). I wasted many hours and never got to take notes on my tablet.
+
+If you have a mountain of shit to move, how much time should you spend looking for a bigger shovel? There's no obviously correct answer - it must depend on the size of the mountain, the availability of large shovels, how quickly you have to move it etc. But the answer absolutely cannot be 100% of your time. At some point you have to shovel some shit.
+____
+
+[quote]
+____
+As a corollary to searching for the easy way, I've always been prone to spending far too much time on new or niche ideas. It's usually programming languages that get me, but I see other people do the same with frameworks, methodologies or architectures too. If you're really attracted to novelty you can spend all your time jumping between new things and never actually engage with the mainstream.
+
+Mainstream ideas are mainstream for a reason. They are, almost by definition, the set of ideas which are well understood and well tested. We know where their strengths are and we've worked out how to ameliorate their weaknesses. The mainstream is the place where we've already figured out all the annoying details that are required to actually get stuff done. It's a pretty good place to hang out.
+____
