@@ -12,7 +12,7 @@ ____
 Coincidentally, I was just talking about this exact topic to Pam Wolf, a civil engineering professor with experience in (civil engineering) industry on multiple continents, who had a related opinion. For large scale systems (projects), you need an in-house expert (owner's-side engineer) for each area that you don't handle in your own firm. While it's technically possible to hire yet another firm to be the expert, that's more expensive than developing or hiring in-house expertise and, in the long run, also more risky. That's pretty analogous to my experience working as an electrical engineer as well, where orgs that outsource functions to other companies without retaining an in-house expert pay a very high cost, and not just monetarily. They often ship sub-par designs with long delays on top of having high costs. "`Buying`" can and often does reduce the amount of expertise necessary, but it often doesn't remove the need for expertise.
 ____
 
-== link:https://danluu.com/in-house/[Things unlearned]
+== link:https://scattered-thoughts.net/writing/things-unlearned[Things unlearned]
 
 [quote]
 ____
@@ -31,7 +31,7 @@ ____
 ____
 A similar trap hit often got me on a smaller scale. Whenever I ran up against something that was ugly or difficult, I would start looking for a simpler solution.
 
-For example when link:https://web.archive.org/web/20180611020249/https://github.com/jamii/inkling[I tried to make a note-taking app for tablets] many years ago I had to make the gui, but gui tools are always kind of gross so I kept switching to new languages and libraries to try to get away from it. In each successive version I made less and less progress towards actually building the thing and had to cover more and more unknown ground (eg qtjava relies on using reflection to discover slots and at the time was difficult to implement the correct types from clojure). I wasted many hours and never got to take notes on my tablet.
+For example when link:https://web.archive.org/web/20180611020249/https://github.com/jamii/inkling[I tried to make a note-taking app for tablets] many years ago I had to make the GUI, but GUI tools are always kind of gross so I kept switching to new languages and libraries to try to get away from it. In each successive version I made less and less progress towards actually building the thing and had to cover more and more unknown ground (eg QtJava relies on using reflection to discover slots and at the time was difficult to implement the correct types from Clojure). I wasted many hours and never got to take notes on my tablet.
 
 If you have a mountain of shit to move, how much time should you spend looking for a bigger shovel? There's no obviously correct answer - it must depend on the size of the mountain, the availability of large shovels, how quickly you have to move it etc. But the answer absolutely cannot be 100% of your time. At some point you have to shovel some shit.
 ____
