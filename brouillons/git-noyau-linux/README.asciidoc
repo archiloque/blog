@@ -88,18 +88,18 @@ Parvenir à parvenir à découper son changement demande des compétences bien s
 
 Lorsque des changements sont demandés dans une revue (le patch ci-dessus en est à sa troisième version), cela demande de reprendre les différents commits, parfois d'en ajouter d'intermédiaires ou d'en supprimer, tout en s'assurant que tout fonctionne bien à chaque étape.
 
-== Des reports de code entre les versions
+== Les reports de code entre les versions
 
 À l'inverse d'une application web qui n'a qu'une version en production à un moment donné, link:https://en.wikipedia.org/wiki/Linux_kernel_version_history[plusieurs versions du {nL} sont supportées à un moment donné].
 
 Cela permet à certaines distributions Linux de ne pas changer de version du noyau après leur sortie, et ainsi d'essayer de limiter les risques d'introduire de nouveaux bugs.
 
-Cela ne signifie pas que le noyau des versions passées n'évolue pas, mais que les changements qu'on va y appliquer sont soit des corrections de problèmes de sécurités, soit des corrections de bugs qui ont un ratio gravité / risque d'introduire d'autres problèmes suffisamment élevé.
+Cela ne signifie pas que le noyau des versions passées n'évolue pas, mais que les changements qu'on va y appliquer sont soit des corrections de problèmes de sécurité, soit des corrections de bugs qui ont un rapport gravité sur risque d'introduire d'autres problèmes suffisamment élevé.
 
-Concrètement il va s'agir d'identifier les changements pertinents quand ils sont ajoutés à la version suivante, et les appliquer sur les différentes versions encore supportées.
+Concrètement il va s'agir d'identifier les changements pertinents quand ils sont ajoutés à la version en cours, et de les appliquer sur les différentes versions encore supportées.
 
-Bien entendu, vouloir porter seulement certains changements et pas tous signifie potentiellement devoir les adapter pour les faire correspondre au code des anciennes versions.
-C'est un peu la même chose que de réadapter du code pas encore mergé mais à l'envers.
+Bien entendu, vouloir porter seulement certains changements et pas tous signifie qu'il faudra peut-être les adapter pour les faire correspondre au code des anciennes versions.
+C'est un peu la même chose que de réadapter du code pas encore mergé quand la branche de développement évolue, mais à l'envers.
 
 Si besoin la personne en charge de telle ou telle version en maintenance peut demander de l'aide à personne responsable du sous-système correspondant, mais elle n'a pas de garantie de l'obtenir, car tout le monde ne donne pas la même priorité à cette partie du développement.
 
@@ -109,9 +109,24 @@ Ici aussi la capacité du code à pouvoir être compris sans être exécuté est
 
 Le fait d'avoir des versions supportées pendant longtemps amène aussi à ne pas vouloir faire de changements à l'utilisé insuffisante dans le code.
 
-Si les refactoring nécessaires sont réguliers quand une API change ou qu'une nouvelle approche est choisie, les personnes qui développent ont appris à ne pas faire de renommages de variables qui apporte peu de choses ou de changement de formatage du code, car chaque changement peut rendre plus complexe le portage de code entre les versions.
+Si les refactoring nécessaires sont réguliers quand une API change ou qu'une nouvelle approche est choisie, les choses comme des reformatage de code ou des renommages de variables mineurs sont proscrites pour ne pas rendre inutlilement complexe le portage de code.
 
 == Des PR sur plusieurs années
+
+Incorporer du code dans le {nL} peut être long, voir très long.
+Par exemple certaines fonctionnalités nécessaire pour du temps réel ont été mergées link:https://lwn.net/Articles/867919/[cet été] alors qu'elles avaient été proposées pour la première fois link:https://lwn.net/Articles/106010/[en 2004].
+Pendant 27 ans, les personnes qui ont travaillé sur cette partie du projet on investi du temps et de l'énergie pour convaincre les responsables de différentes parties du {nL} de merger une à une les modifications nécessaires.
+
+Cela signifie que pendant 27 ans, il a fallu maintenir ce fork et l'adapter aux différents changement amonts, et notamment à ceux qui étaient demandés dans les composants temps réels pour qu'ils soient acceptés.
+
+Si c'est le seul chantier de cet ampleur par sa durée, et le fait qu'link:https://www.linuxfoundation.org/blog/linux-kernel-developer-thomas-gleixner/[une seule personne] le dirige depuis le début.
+
+Une situation plus classique est qu'une personne propose une modification, se décourage, et qu'une autre reprenne le chantier quelques temps plus tard.
+Soit que les circonstances aient changées et soit désormais plus favorables à la modification en question, par exemple si le besoin qui la sous-tendait est devenu plus légitime, ou simplement parce qu'elle pense que c'est la chose à faire et qu'elle a sa chance.
+
+Par exemple link:https://lwn.net/Articles/730531/[ce changement de 2017 visant à améliorer le comportement quand des données sont indisponibles en mémoire] est basé sur link:https://lwn.net/Articles/369511/[un travail démarré en 2009] et qui a connu plusieurs reprises.
+
+
 
 == Conclusion
 
