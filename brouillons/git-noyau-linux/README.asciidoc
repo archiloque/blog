@@ -78,6 +78,8 @@ La phase de merge passée, il arrive régulièrement que les personnes tentent d
 Le média privilégié pour les discussions d'évolution de code du {nL} est l'email.
 Cela tient aux habitudes, mais aussi au fait que de nombreux outils ont été conçus autour des échanges par mail, par exemple pour déterminer à qui une pull request doit être envoyée, ou pour savoir qui a validé un changement.
 
+Git contient des fonctionnalités facilitant ce type d'approche, par exemple link:https://git-scm.com/docs/git-format-patch[``git format-patch``].
+
 Cela signifie que les revues de code se font par email.
 Même si les personnes peuvent importer les changements à discuter dans leur éditeur de code, les discussions se font par mails.
 
@@ -121,17 +123,18 @@ Cela signifie que pendant 27 ans, il a fallu maintenir ce fork et l'adapter aux 
 
 Si c'est le seul chantier de cet ampleur par sa durée, et le fait qu'link:https://www.linuxfoundation.org/blog/linux-kernel-developer-thomas-gleixner/[une seule personne] le dirige depuis le début.
 
-Une situation plus classique est qu'une personne propose une modification, se décourage, et qu'une autre reprenne le chantier quelques temps plus tard.
-Soit que les circonstances aient changées et soit désormais plus favorables à la modification en question, par exemple si le besoin qui la sous-tendait est devenu plus légitime, ou simplement parce qu'elle pense que c'est la chose à faire et qu'elle a sa chance.
+Une situation plus classique est qu'une personne propose une modification, se décourage, et qu'une autre reprenne le chantier quelques temps plus tard parce qu'elle-même en a besoin.
 
 Par exemple link:https://lwn.net/Articles/730531/[ce changement de 2017 visant à améliorer le comportement quand des données sont indisponibles en mémoire] est basé sur link:https://lwn.net/Articles/369511/[un travail démarré en 2009] et qui a connu plusieurs reprises.
 
-
+Parfois cela finit par passer, d'autres patchs reviennent encore et encore, souvent parce que l'approche proposée n'est pas jugée satisfaisante, mais qu'il n'en existe pas de meilleure.
 
 == Conclusion
 
-Accorder de l'importance aux commits individuels et à l'historique car c'est quelque chose qui est nécessaire pour leur modèle de développement.
+Le modèle de développement du {nL} accorde une grande importance aux commits individuels et à l'historique du code.
+Être capable de faire merger du code dans le {nL} est ainsi une compétence très recherchée par certaines organisations.
 
-Pour revenir sur mon avertissement, je pense que ce modèle est probablement inadapté à un projet web classique.
+Ce fonctionnement quelque chose qui répond aux enjeux du projet (un système d'exploitation supportant des versions sur le long terme) et qui est inscrit dans les habitudes et l'organisation du projet.
 
-Je comprends qu'on ai envie de 
+Face à ces raisons, je vous invite à vous interroger sur vos propres pratiques.
+Cela ne veut pas dire que prendre le contre-pied du {nL} est la bonne solution, mais qu'en réfléchissant à vos besoins vous pourriez trouver des amélioration dans votre manière de travailler et en particulier d'utiliser Git.
