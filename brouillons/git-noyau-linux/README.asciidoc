@@ -4,6 +4,8 @@ v0.1, 2021-07-01
 :article_lang: fr
 :nL: noyau Linux
 :LT: Linus Torvald
+:article_image: accrobranche.jpeg
+:article_description: Accorchez-vous aux branches
 
 Git est un outil très maléable qui s'adapte à de nombreuses manières de travailler.
 
@@ -43,7 +45,7 @@ Le reste provient d'autre personnes.
 
 Pour voir leur code inclus dans le {nL}, ces autres personnes doivent convaincre au moins un responsable du domaine en question de le merger.
 
-En effet {LT} ne prend pas proposition de code "`en direct`" mais se repose sur les responsables qu'il nommé.
+En effet {LT} en principe ne prend pas de proposition de code "`en direct`" mais se repose sur les responsables qu'il nommé.
 
 Ce qui signifie que ces personnes ont droit de vie ou de mort sur votre code.
 Quand vous voulez proposer une évolution, vous avez besoin de la "`vendre`" pour que les personnes acceptent d'y prêter attention, et potentiellement acceptent de la merger.
@@ -86,7 +88,7 @@ Même si les personnes peuvent importer les changements à discuter dans leur é
 Pour rendre ces échanges gérables, les pulls request sont donc découpées en suite de changement aussi courts que possibles et s'appuyant les uns sur les autres.
 link:https://lore.kernel.org/lkml/06d75fcb-ce8b-30a5-db36-b6c108460d3d@deltatee.com/T/[Voici par exemple une pull request en 21 commits].
 
-Parvenir à parvenir à découper son changement demande des compétences bien spécifiques.
+Parvenir à découper son changement demande des compétences bien spécifiques.
 
 Lorsque des changements sont demandés dans une revue (le patch ci-dessus en est à sa troisième version), cela demande de reprendre les différents commits, parfois d'en ajouter d'intermédiaires ou d'en supprimer, tout en s'assurant que tout fonctionne bien à chaque étape.
 
@@ -116,12 +118,10 @@ Si les refactoring nécessaires sont réguliers quand une API change ou qu'une n
 == Des PR sur plusieurs années
 
 Incorporer du code dans le {nL} peut être long, voir très long.
-Par exemple certaines fonctionnalités nécessaire pour du temps réel ont été mergées link:https://lwn.net/Articles/867919/[cet été] alors qu'elles avaient été proposées pour la première fois link:https://lwn.net/Articles/106010/[en 2004].
+Par exemple certaines fonctionnalités nécessaires pour du temps réel ont été mergées link:https://lwn.net/Articles/867919/[cet été] alors qu'elles avaient été proposées pour la première fois link:https://lwn.net/Articles/106010/[en 2004].
 Pendant 17 ans, les personnes qui ont travaillé sur cette partie du projet on investi du temps et de l'énergie pour convaincre les responsables de différentes parties du {nL} de merger une à une les modifications nécessaires.
 
-Cela signifie que pendant 17 ans, il a fallu maintenir ce fork et l'adapter aux différents changement amonts, et notamment à ceux qui étaient demandés dans les composants temps réels pour qu'ils soient acceptés.
-
-Si c'est le seul chantier de cet ampleur par sa durée, et le fait qu'link:https://www.linuxfoundation.org/blog/linux-kernel-developer-thomas-gleixner/[une seule personne] le dirige depuis le début.
+Et qu'en parallèle, il a fallu pendant 17 ans maintenir ce fork et l'adapter aux différents changement amonts, et notamment à ceux qui étaient demandés dans les composants temps réels pour qu'ils soient acceptésfootnote:[Fait remarquable{nbsp}: link:https://www.linuxfoundation.org/blog/linux-kernel-developer-thomas-gleixner/[une seule personne] le dirige depuis le début].
 
 Une situation plus classique est qu'une personne propose une modification, se décourage, et qu'une autre reprenne le chantier quelques temps plus tard parce qu'elle-même en a besoin.
 
