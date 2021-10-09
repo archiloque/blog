@@ -129,12 +129,17 @@ Par exemple link:https://lwn.net/Articles/730531/[ce changement de 2017 visant �
 
 Parfois cela finit par passer, d'autres patchs reviennent encore et encore, souvent parce que l'approche proposée n'est pas jugée satisfaisante, mais qu'il n'en existe pas de meilleure.
 
-== Conclusion
+== Conclusion 
 
 Le modèle de développement du {nL} accorde une grande importance aux commits individuels et à l'historique du code.
 Être capable de faire merger du code dans le {nL} est ainsi une compétence très recherchée par certaines organisations.
 
 Ce fonctionnement quelque chose qui répond aux enjeux du projet (un système d'exploitation supportant des versions sur le long terme) et qui est inscrit dans les habitudes et l'organisation du projet.
 
-Face à ces raisons, je vous invite à vous interroger sur vos propres pratiques.
-Cela ne veut pas dire que prendre le contre-pied du {nL} est la bonne solution, mais qu'en réfléchissant à vos besoins vous pourriez trouver des amélioration dans votre manière de travailler et en particulier d'utiliser Git.
+J'espère que vous ne travaillez pas sur une branche mise à jour pendant 17 ans pour enfin espérer la merger, et que vous n'avez pas besoin de valider du code sans pouvoir le tester.
+
+Si vous travaillez (et je vous je souhaite) dans un environnement qui n'a pas ces besoins, je vous invite à vous interroger sur vos propres pratiques.
+
+Il est normal que quand on développe on soit attaché au produit de son travail, et vouloir faire les choses proprement est louable, mais j'ai l'impression qu'on a parfois tendance à porter une attention excessive aux commits et à l'historique git.
+
+Cela ne veut pas dire systématiquement prendre le contre-pied du {nL}, mais qu'il faut savoir investir son énergie là où elle est le plus utile.
