@@ -1,0 +1,40 @@
+= Links - 10^th^ October 2021
+Julien Kirch
+v1.0, 2021-10-10
+:article_lang: en
+:figure-caption!:
+:article_description: Distributed collaboration, no Scrum in big tech orgs, ISO-C for OS development
+
+== link:https://xahteiwi.eu/resources/presentations/no-we-wont-have-a-video-call-for-that/[No, we won’t have a video call for that!]
+
+[quote]
+____
+Effective distributed collaboration is _not_ pretending to be in an office while staring into a webcam all day.
+____
+
+== link:https://newsletter.pragmaticengineer.com/p/project-management-in-tech[How big tech runs tech projects and the curious absence of Scrum]
+
+[quote]
+____
+Project management approaches that do not work well share a few characteristics, according to respondents who left a rating of a 1 or a 2:
+
+* _Engineers not involved in estimations_ that the team then committed to, is a frequent pain point. In my view, it’s one of the easiest ways to demotivate engineers -- to the point of some leaving -- and also to get a false sense of what a team can achieve.
+* _Requirements changing, even with dedicated project managers_, sits poorly with engineers. While there are teams where requirements change a lot, on these teams it’s typically the engineers who run the projects, and can deal with them. However, when a dedicated project manager is unable to shield the team from requirements changing, respondents rated this approach as poor.
+* _Teams with no autonomy to change a failing project management approach also recorded low satisfaction_. These kinds of responses were pronounced at companies where all teams were expected to follow the same methodology. It’s an example of directive leadership and while this approach can work well for roles where there is little creativity needed, it is usually a poor way to build high-performing software engineering teams. When teams can iterate together and change their processes on their own terms, satisfaction and productivity go up.
+____
+
+[quote]
+____
+A few situations where Scrum can be a good alternative:
+
+"`Kitchen sink teams`" which have everything thrown at them, typically find that managing stakeholders with a heavyweight process like Scrum is a win. Stakeholders are educated to understand that an ongoing sprint cannot be interrupted and that new feature requests need to be groomed. Teams with conflicting priorities get to execute with fewer interruptions, thanks to the sprint structure giving space for the team to ignore these interruptions.
+
+"`Kitchen sink teams`" are typical within non-tech companies, where the business has no understanding of how engineering works. Scrum helps rein in the stakeholders and educates them on software development processes, while giving the engineering team breathing room to execute. They are also common in early-stage startups, where there is one engineering team to build everything.
+____
+
+== link:https://www.yodaiken.com/2021/10/06/plos-2021-paper-how-iso-c-became-unusable-for-operating-system-development/[How ISO-C became unusable for operating system development]
+
+[quote]
+____
+Operating system programmers in Linux discovered this issue around 2007 when they found C code of the form `if(indew+length < index){…}` was being silently deleted by the compiler (since it has to be false axiomatically), causing security and logical failuresfootnote:[Felix-gcc. 2007.  Bug 30475 - assert(int+100 > int) optimized away. link:https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475[https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475]]. Eventually, the operating system (and other projects such as the Postgres database)resorted to a compiler-specific flag to force "`wrapping se-mantics`" outside of ISO C.
+____

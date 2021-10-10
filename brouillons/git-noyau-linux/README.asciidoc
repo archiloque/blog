@@ -1,6 +1,6 @@
 = Git et le modèle de développement du {nL}
 Julien Kirch
-v0.1, 2021-07-01
+v0.1, 2021-10-10
 :article_lang: fr
 :nL: noyau Linux
 :LT: Linus Torvald
@@ -14,7 +14,7 @@ Je pense qu'à cause de cela, et de l'aura du {nL} dans le monde du logiciel, le
 
 Or le {nL} a un modèle de développement assez spécifique, notamment quand on le compare à celui de la majorité des projets web.
 
-Ces spécificités proviennent à la fois du type de logiciel qu'est le {nL} (le noyau d'un système d'exploitation), de son organisation (hiérarchique et répartie entre plusieurs organisations) et d'autres enfin sont des choix historiques ou des préférences.
+Certaines de spécificités proviennent du type de logiciel qu'est le {nL} (le noyau d'un système d'exploitation) d'autres de l'organisation du projet (hiérarchique et répartie entre plusieurs organisations) et d'autres encore sont des choix historiques ou des préférences personnelles des personnes qui y contribuent.
 
 Je pense que comprendre ces aspects du développement du {nL} est intéressant pour prendre du recul sur ses habitudes de développement, par exemple pour se rendre compte que des choses qu'on prend pour acquises ne le sont pas forcément.
 
@@ -29,12 +29,12 @@ Si le {nL} n'est pas la propriété d'une entreprise ou d'une organisation, son 
 En haut de la pyramide {LT} est responsable de la branche de développement principale, c'est-à-dire que c'est lui qui fait les merges depuis les autres branches.
 
 Différents sous-ensembles du {nl} appelés _subsystem_ sont sous la responsabilité chacun d'au moins une personne appelée _maintainer_.
-Dans le code ces sous-ensembles correspondent à des répertoires ou à des fichiers.
+Dans le code, ces sous-ensembles correspondent à des répertoires ou à des fichiers.
 link:https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/MAINTAINERS[Un fichier] définit les périmètres des différentes personnes.
 
 Dans un sous-ensemble, le ou les responsables ont une certaine autonomie tant que les règles générales du fonctionnement du noyau sont respectées.
 
-C'est {LT} qui nomme ces responsable, et il peut à tout moment leur retirer leur rôle ou revenir sur leurs décisions.
+C'est {LT} qui nomme ces responsables, et il peut à tout moment leur retirer leur rôle ou revenir sur leurs décisions.
 
 Le développement de la branche principale du {nL} se fait de manière itérative, avec une nouvelle version approximativement tous les 2 mois.
 
@@ -45,31 +45,31 @@ Le reste provient d'autre personnes.
 
 Pour voir leur code inclus dans le {nL}, ces autres personnes doivent convaincre au moins un responsable du domaine en question de le merger.
 
-En effet {LT} en principe ne prend pas de proposition de code "`en direct`" mais se repose sur les responsables qu'il nommé.
+En effet {LT} en principe ne prend pas de proposition de code "`en direct`" mais se repose sur les responsables qu'il nomme.
 
 Ce qui signifie que ces personnes ont droit de vie ou de mort sur votre code.
 Quand vous voulez proposer une évolution, vous avez besoin de la "`vendre`" pour que les personnes acceptent d'y prêter attention, et potentiellement acceptent de la merger.
 
-Cela signifie aussi que les revues peuvent être fastidieuses à cause du rapport de force très déséquilibrés.
-L'équivalent des pull requests sont ainsi parfois réécris 10 ou 20 fois jusqu'à être validées, ou jusqu'à ce que la personne qui propose la modification se lasse ou change de job.
+Cela signifie aussi que les revues peuvent être fastidieuses à cause du rapport de force très déséquilibré.
+L'équivalent des pull requests sont ainsi parfois réécris 10 ou 20 fois jusqu'à être validés, ou jusqu'à ce que la personne qui propose la modification se lasse ou change de job.
 
-Le {nL} continuant à être modifié pendant ce temps, qui peut prendre plusieurs mois ou années, il faut aussi réadapter votre code à ces évolutions et donc le rebaser régulièrement, car les pull request ne doivent pas contenir de commits de merge.
+Le {nL} continuant à être modifié pendant ce temps, qui peut aller de plusieurs mois à plusieurs années, il faut aussi réadapter votre code à ces évolutions et donc le rebaser régulièrement, car les pull request ne doivent pas contenir de commits de merge.
 
 Par rapport à un projet développé dans une organisation unique, où des mécanismes de régulation peuvent aider à débloquer des choses, les personnes qui travaillent sur le {nL} font parties de structures différentes (et une partie continue à le faire de manière indépendante sur ton temps de loisir).
-Il est toujours possible de s'adresser à {LT} directement, mais c'est l'équivalent dans ne organisation de contacter votre N+2 quand vous avez un problème avec votre N+1{nbsp}: vous pouvez le faire mais ça peut avoir des conséquences, surtout si vous avez l'intention ensuite de continuer à travailler sur cette partie du code.
+Il est toujours possible de s'adresser à {LT} directement, mais c'est l'équivalent dans une organisation de contacter votre N+2 quand vous avez un problème avec votre N+1{nbsp}: vous pouvez le faire mais ça peut avoir des conséquences, surtout si vous avez l'intention ensuite de continuer à travailler sur cette partie du code.
 
 == Valider du code sans pouvoir tester
 
-Une partie conséquente du {nL} est composé des pilotes qui sont les liens entre les périphériques matériels et le noyau, fournissant les implémentations de différentes API en fonction du matériel en question (générer du son ou de la vidéo, réagir à l'appui d'une touche sur un clavier ou une souris…).
+Une partie conséquente du {nL} est composée des pilotes qui sont les liens entre les périphériques matériels et le noyau, fournissant les implémentations de différentes API en fonction du matériel en question (générer du son ou de la vidéo, réagir à l'appui d'une touche sur un clavier ou une souris…).
 
-Une personne responsable d'un sous-système couvrant de pilotes possède en principe quelques périphériques du domaine correspondant (comme quelques modèles de souris ou de cartes graphiques).
+Une personne responsable d'un sous-système couvrant des pilotes possède en principe quelques périphériques du domaine correspondant (comme quelques modèles de souris ou de cartes graphiques).
 Si on lui propose une évolution du code d'un pilote et qu'elle possède le matériel en question, elle pourra alors le tester.
 
 Mais si on lui propose un changement et qu'elle ne possède pas le matériel, elle va devoir faire une revue du code sans pouvoir le tester en condition réelle.
 
-Les tests automatisés peuvent permettre de détecter des changements de comportements entre des versions en mockant le matériel, mais ne sont pas forcément suffisant pour valider que le code va véritablement fonctionner .
+Les tests automatisés peuvent permettre de détecter des changements de comportements entre des versions en mockant le matériel, mais ne sont pas forcément suffisants pour valider que le code va véritablement fonctionner .
 
-En effet les périphériques ont la mauvaises habitudes de ne pas suivre exactement leurs spécifications, et certains vendeurs fournissent des spécifications insuffisantes voire pas de spécification du tout, le développement doit alors se faire par essai et erreur.
+En effet les périphériques ont la mauvaise habitude de ne pas suivre exactement leurs spécifications, et certains vendeurs fournissent des spécifications insuffisantes voire pas de spécification du tout, le développement doit alors se faire par essai et erreur.
 
 Il faut alors documenter de manière précise ce qui se passe, le code n'étant souvent pas assez explicite en lui-même, pour qu'une personne qui n'a pas le matériel puisse suivre ce qui se passe et éventuellement faire des retours.
 
@@ -85,7 +85,7 @@ Git contient des fonctionnalités facilitant ce type d'approche, par exemple lin
 Cela signifie que les revues de code se font par email.
 Même si les personnes peuvent importer les changements à discuter dans leur éditeur de code, les discussions se font par mails.
 
-Pour rendre ces échanges gérables, les pulls request sont donc découpées en suite de changement aussi courts que possibles et s'appuyant les uns sur les autres.
+Pour rendre ces échanges gérables, les pulls request sont donc découpées en une suite de changements aussi courts que possibles et s'appuyant les uns sur les autres.
 link:https://lore.kernel.org/lkml/06d75fcb-ce8b-30a5-db36-b6c108460d3d@deltatee.com/T/[Voici par exemple une pull request en 21 commits].
 
 Parvenir à découper son changement demande des compétences bien spécifiques.
@@ -105,23 +105,23 @@ Concrètement il va s'agir d'identifier les changements pertinents quand ils son
 Bien entendu, vouloir porter seulement certains changements et pas tous signifie qu'il faudra peut-être les adapter pour les faire correspondre au code des anciennes versions.
 C'est un peu la même chose que de réadapter du code pas encore mergé quand la branche de développement évolue, mais à l'envers.
 
-Si besoin la personne en charge de telle ou telle version en maintenance peut demander de l'aide à personne responsable du sous-système correspondant, mais elle n'a pas de garantie de l'obtenir, car tout le monde ne donne pas la même priorité à cette partie du développement.
+Si besoin la personne en charge de telle ou telle version en maintenance peut demander de l'aide à la personne responsable du sous-système correspondant, mais elle n'a pas de garantie de l'obtenir, car tout le monde ne donne pas la même priorité à cette partie du développement.
 
-Et pour revenir sur la partie précédente, parfois ni la personne en charge de la version ni la personne responsable du sous-système n'a le moyen de tester que le changement fonctionne bien.
+Et pour revenir sur la partie précédente, parfois ni la personne en charge de la version ni la personne responsable du sous-système, n'a le moyen de tester que le changement fonctionne bien.
 
 Ici aussi la capacité du code à pouvoir être compris sans être exécuté est importante.
 
-Le fait d'avoir des versions supportées pendant longtemps amène aussi à ne pas vouloir faire de changements à l'utilisé insuffisante dans le code.
+Le fait d'avoir des versions supportées pendant longtemps amène aussi à ne pas vouloir faire de changements à l'utilité insuffisante dans le code.
 
-Si les refactoring nécessaires sont réguliers quand une API change ou qu'une nouvelle approche est choisie, les choses comme des reformatage de code ou des renommages de variables mineurs sont proscrites pour ne pas rendre inutlilement complexe le portage de code.
+Si les refactoring nécessaires sont réguliers quand une API change ou qu'une nouvelle approche est choisie, les choses comme des reformatages de code ou des renommages de variables sont proscrites pour ne pas rendre inutilement complexe le portage de code.
 
-== Des PR sur plusieurs années
+== Des pull reques sur plusieurs années
 
 Incorporer du code dans le {nL} peut être long, voir très long.
 Par exemple certaines fonctionnalités nécessaires pour du temps réel ont été mergées link:https://lwn.net/Articles/867919/[cet été] alors qu'elles avaient été proposées pour la première fois link:https://lwn.net/Articles/106010/[en 2004].
-Pendant 17 ans, les personnes qui ont travaillé sur cette partie du projet on investi du temps et de l'énergie pour convaincre les responsables de différentes parties du {nL} de merger une à une les modifications nécessaires.
+Pendant 17 ans, les personnes qui ont travaillé sur cette partie du projet ont investi du temps et de l'énergie pour convaincre les responsables de différentes parties du {nL} de merger une à une les modifications nécessaires.
 
-Et qu'en parallèle, il a fallu pendant 17 ans maintenir ce fork et l'adapter aux différents changement amonts, et notamment à ceux qui étaient demandés dans les composants temps réels pour qu'ils soient acceptésfootnote:[Fait remarquable{nbsp}: link:https://www.linuxfoundation.org/blog/linux-kernel-developer-thomas-gleixner/[une seule personne] le dirige depuis le début].
+Et qu'en parallèle, il a fallu, pendant 17 ans, maintenir ce fork et l'adapter aux différents changement amont, et notamment à ceux qui étaient demandés dans les composants temps réels pour qu'ils soient acceptésfootnote:[Fait remarquable{nbsp}: link:https://www.linuxfoundation.org/blog/linux-kernel-developer-thomas-gleixner/[une seule personne] le dirige depuis le début].
 
 Une situation plus classique est qu'une personne propose une modification, se décourage, et qu'une autre reprenne le chantier quelques temps plus tard parce qu'elle-même en a besoin.
 
@@ -134,7 +134,7 @@ Parfois cela finit par passer, d'autres patchs reviennent encore et encore, souv
 Le modèle de développement du {nL} accorde une grande importance aux commits individuels et à l'historique du code.
 Être capable de faire merger du code dans le {nL} est ainsi une compétence très recherchée par certaines organisations.
 
-Ce fonctionnement quelque chose qui répond aux enjeux du projet (un système d'exploitation supportant des versions sur le long terme) et qui est inscrit dans les habitudes et l'organisation du projet.
+Ce fonctionnement est quelque chose qui répond aux enjeux du projet (un système d'exploitation supportant des versions sur le long terme) et qui est inscrit dans les habitudes et l'organisation du projet.
 
 J'espère que vous ne travaillez pas sur une branche mise à jour pendant 17 ans pour enfin espérer la merger, et que vous n'avez pas besoin de valider du code sans pouvoir le tester.
 
