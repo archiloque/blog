@@ -1,0 +1,1 @@
+asciidoctor-pdf README.asciidoc -a optimize -a pdf-theme=./theme.yml -a pdf-fontsdir="/Users/julien.kirch/Documents/PERSONNEL/blog/brouillons/you-are-haunted-jam" --trace
