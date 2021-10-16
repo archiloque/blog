@@ -1,0 +1,1 @@
+asciidoctor-pdf README.asciidoc -o haunted-by-the-video-games-i-didn-t-play.pdf -a optimize -a pdf-theme=./theme.yml -a pdf-fontsdir="." --trace
