@@ -30,3 +30,31 @@ But that's totally conditional on the speed of everything else! If you could cod
 
 The best part is that you can improve your coding speed a lot by improving simple mechanical skills which are easy to measure, practice and improve. It's a lot easier to get faster at coding then it is to get better at choosing the right idea!
 ____
+
+== link:https://ronjeffries.com/articles/021-01ff/jira-blades/[Jira: razor blades?]
+
+[quote]
+____
+Within the team, Jira is a way of communicating without talking with each other. As such, it is inferior to any of the usual forms of person-to-person communication, such as being together, getting together over Zoom, or even talking on the phone. It is impersonal, and the written word offers only a fraction of the understanding we get from talking with each other human to human.
+
+One might argue that Jira can contain more information, that might be forgotten during conversation. This is true, but working as a team isn’t really about information, it is about common understanding, which is hardly based in information at all. That said, _if_ a team wanted to keep some useful information in Jira, that would seem acceptable, but the danger is that Jira will begin to be used as a communication hub, rather than an information library.
+
+Jira almost always interferes with teamwork, even as it helps in a small way.
+____
+
+== link:https://github.com/ivanreese/visual-programming-codex/blob/main/impressions/app-store-illustration.md[Impressions: some random app store illustration]
+
+[quote]
+____
+I'm a strong believer that wires are the most underdeveloped part of visual programming tools.
+
+* In most VPLs, when you disconnect a wire from a node and then let go of the wire, the wire is immediately deleted. So there's only 2 valid states for a wire -- either connected to a node on both ends, or connected to a node on one end and the mouse cursor on the other end. I think this is a mistake. I think the wire should continue to exist until you explicitly delete it. If you want to draw a wire freely in space, not connected to any nodes, good! If you want to unplug a wire from a node, and then put the wire down for a moment while you go get a different node ready, good! You should be able to think of wires the way you think of physical cables in the real world, except that they can be whatever length you want, never get tangled, and can show you what's going on inside them.
+* Wires tend to be straight lines, S-curves, or some other shape that is completely outside the control of the programmer. I think this is a mistake. Rare is the VPL that lets you choose what path the wire should take. Rarer still is the VPL that lets you work with wires using a robust set of tools -- braiding multiple wires together, choosing the color or texture of wires, offering different kinds of wires that are specialized for specific tasks, drawing elegantly curving wires with an inkpen tool, manipulating individual vertices or bezier curves, adding "hints" to help an autolayout system route your wires intelligently.
+____
+
+== link:https://danluu.com/learn-what/[What to learn]
+
+[quote]
+____
+If you watch an anime or a TV series "`about`" fighting, people often improve by increasing the number of techniques they know because that's an easy thing to depict but, in real life, getting better at techniques you already know is often more effective than having a portfolio of hundreds of "`moves`".
+____

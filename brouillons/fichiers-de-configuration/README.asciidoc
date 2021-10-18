@@ -7,9 +7,11 @@ v0.1, 2021-05-25
 
 Vous écrivez un programme, et vous décidez de mettre en place un système basé sur un fichier de configuration pour le paramétrer.
 
-== Jusqu'ici tout va bien
+Si vous ajoutez des fonctionnalités à votre programme, la configuration va se complexifier peu à peu, mais partons du début.
 
-La première étape est de définir une série de clé-valeur, c'est-à-dire l'équivalent de ce qu'on pourrait trouver dans des paramètres ou des variables d'environnements.
+== Le début
+
+La première étape est en général de définir une série de clé-valeur, pour remplacer une trop longue série de variables d'environnement ou de paramètres en ligne de commandes.
 
 [source,ini]
 ----
@@ -19,7 +21,7 @@ property_2=value_2
 
 Jusque là tout va bien.
 
-Il peut être nécessaire de pouvoir utiliser des `=` ou des `"` dans les valeurs, il est nécessaire de pouvoir gérer les échappements.
+Il peut être nécessaire de pouvoir utiliser des `=` dans les valeurs, ce qui signifie permettre des échappements.
 
 [source,ini]
 ----
@@ -27,7 +29,7 @@ property_1="val=ue1"
 property_2="va=lu\"e_2"
 ----
 
-Ensuite, on peut vouloir que certaines valeurs ne soient pas seulement des chaînes de caractères, mais aussi parfois des listes ou des dictionnaires.
+Ensuite, on peut vouloir que certaines valeurs ne soient pas seulement des chaînes de caractères, mais aussi parfois des listes ou des dictionnaires (c'est-à-dire que les valeurs puissent elles-mêmes un ensemble clé-valeur).
 
 [source,ini]
 ----
@@ -35,26 +37,29 @@ property_1=["val=ue1", "val=ue11"]
 property_2={"va=lu\"e_2": "a", "va=lu\"e_22": "b"}
 ----
 
-Et pour finir on peut vouloir organiser le contenu du fichier en définissant des sections pour faciliter le fait de grouper des propriété qui vont ensemble.
+Quand le nombre d'entrées devient trop grand, et pour pouvoir réutiliser les noms de clés, on peut vouloir organiser le contenu du fichier en définissant des sections.
 
 [source,ini]
 ----
 [section 1]
 property_1=["val=ue1", "val=ue11"]
+property_2=value3
+
 [section 2]
+property_1=🐰
 property_2={"va=lu\"e_2": "a", "va=lu\"e_22": "b"}
 ----
 
+== La limite
 
-On a ici dépassé ce qu'on peut faire directement avec des paramètres ou des variables d'environnements (s'il reste possible de passer des listes dans des chaînes de caractères et d'utiliser des préfixes pour simuler les sections, cela reste des contournements qui n'offrent pas le même niveau de lisibilité).
+On a ici dépassé ce qu'on peut faire confortablement avec des paramètres ou des variables d'environnements.
+Il reste possible de passer des listes dans des chaînes de caractères et d'utiliser des préfixes pour simuler les sections, le résultat est moins lisible, surtout s'il y a de nombreuses entrées.
 
-Cette étape correspond pour moi au point d'utilité maximale des fichiers de configuration : on est capable de saisir du contenu avec une certaine expressivité et aucun traitement n'est apporté ensuite au contenu, ce qui fait que le contenu visible est exactement celui qui sera utilisé.
-
-(En réalité ce n'est pas exactement le cas à cause des échappements, mais je pense que sauf en de très rare situations il n'est pas possible de s'en passer.)
+Cette étape correspond pour moi au point d'utilité maximale des fichiers de configuration{nbsp}: on est capable de saisir du contenu avec une certaine expressivité et aucun traitement n'est apporté ensuite au contenu, ce qui fait que le contenu visible est exactement celui qui sera utiliséfootnote:[En réalité il ne s'agit pas exactement du contenu visible à cause des échappements, mais je pense que sauf dans de très rare situations il n'est pas possible de s'en passer.].
 
 == Ça commence à ne plus aller
 
-Quand le fichier de configuration s'allonge et se répète, le réflexe quand on travaille dans le développement est de vouloir factoriser le contenu.
+Quand le fichier de configuration s'allonge et que le contenu se répète, le réflexe quand on travaille dans le développement est de vouloir faire de la factorisation.
 Par exemple en attribuant un nom à un certain contenu, et en utilisant ce nom pour inclure ce contenu ailleurs dans le fichier
 
 [source,ini]
@@ -65,16 +70,18 @@ property_1=*🐱
 property_2=*🐱
 ----
 
-Dans ce cas le contenu que vous éditez n'est plus celui qui sera utilisé car le fichier va subir un traitement qui va modifier son contenu.
-Il peut devenir intéressant de pouvoir avoir accès au contenu traité tel qu'il sera visible depuis le programme qui va l'utiliser.
+Dans ce cas le contenu que vous éditez n'est plus celui qui sera utilisé par le programme car le fichier va subir un traitement qui va modifier son contenu, qui ressemble grosso-modo à une phase de compilation.
 
-Dans l'exemple ci-dessus, cela signifie être en mesure d'obtenir ce contenu :
+Pour comprendre ce qui se passe, il peut devenir intéressant de pouvoir avoir accès au contenu traité tel qu'il sera visible depuis le programme qui va l'utiliser.
+
+Dans l'exemple ci-dessus, cela signifie être en mesure d'obtenir ce contenu{nbsp}:
 
 [source,ini]
 ----
 property_1=nya
 property_2=nya
 ----
+
 
 Cela signifie s'appuyer sur un programme externe s'il s'agit d'une syntaxe normalisée et que de tels outils existent, ou de fournir cette capacité via ce programme.
 
