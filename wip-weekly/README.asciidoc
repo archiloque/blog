@@ -19,3 +19,10 @@ The _shaman_’s job, then, is to:
 . Update shared mental models over time to reflect the changing environment and evolving needs of the tribe
 . When _spooky shit_ starts happening that falls outside of the "`shared reality operating system`", it is the shaman’s role to _debug_.
 ____
+
+== link:https://scattered-thoughts.net/writing/moving-faster/[Moving faster]
+
+[quote]
+____
+I used to spend a lot of time thinking about how to split code up into files and directories based on what code 'belongs' together. But that's a completely vague criteria and also doesn't have any obvious connection to my actual goals. There are also usually multiple different axes along which things could be grouped eg a compiler could be split by pass, or by language features. So now I tend to put everything into one file until I start to notice difficulty navigating, and then I split out things that I've noticed I tend to read or edit at the same time. Unlike the previous criteria this is easy to evaluate by just remembering what I did and is easy to connect to my goals - it means less jumping around in future edits which will make coding and debugging slightly faster.
+____
