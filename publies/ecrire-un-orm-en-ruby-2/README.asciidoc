@@ -59,10 +59,10 @@ Ce jeu de construction est composé des différents types de briques (`Brick`), 
 Des modèles à construire (`Kit`) sont constitués d'un ensemble de types de briques, chacun contient un certain nombre de briques (tant de briques d'une sorte, tant de briques d'une autre sorte), la relation modèle - type de brique étant modélisée par un `KitBrick`.
 
 ifeval::["{doctype}" == "book"]
-image:schema_dark.svg[]
+image::schema_dark.svg[]
 endif::[]
 ifeval::["{doctype}" != "book"]
-image:schema.svg[]
+image::schema.svg[]
 endif::[]
 
 Voici la structure SQL{nbsp} correspondante avec la syntaxe SQLite{nbsp}:
