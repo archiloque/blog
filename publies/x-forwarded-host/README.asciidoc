@@ -14,7 +14,7 @@ Understanding why the problem happens requires to know a few things about enterp
 
 In many organizations, application servers like web servers are not directly exposed on the internet but are isolated through a layer of firewalls:
 
-image:firewall1.svg[]
+image::firewall1.svg[]
 
 From a browser, the requests first goes through the firewall then reach the server behind them (if the firewalls decide they should let the request pass).
 
