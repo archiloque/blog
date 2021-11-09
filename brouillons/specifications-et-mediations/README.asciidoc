@@ -5,26 +5,37 @@ v0.1, 2021-11-01
 :article_image: 
 :article_description: 
 
-Spécification{nbsp}: un document pérenne écrit dans un langage non informatique documentant une partie non triviale d'un logiciel informatique avec un niveau de détail suffisant pour permettre de répondre suffisamment souvent à des question sur le fonctionnement de cette partie du logiciel sans avoir à consulter le code.
+Dans cet article, une spécification est{nbsp}:
 
-La spécification n'a pas forcément exactement le même niveau de détail que le code (elle peut se permettre de ne pas être exhaustive alors que le code doit nécessairement l'être), mais elle doit avoir un niveau de détail permettant d'être un substitut acceptable.
+[quote]
+____
+Un document pérenne écrit dans un langage non informatique documentant une partie non triviale d'un logiciel informatique avec un niveau de détail permettant de répondre suffisamment souvent à des question sur le fonctionnement de cette partie du logiciel sans avoir à consulter le code.
+____
+
+Je ne prétends pas que cette définition est meilleure qu'une autre, mais elle me permet de mettre en lumière l'aspect des spécifications qui m'intéresse ici.
+
+Une spécification n'a pas forcément exactement le même niveau de détail que le code (elle peut se permettre de ne pas être exhaustive alors que le code doit nécessairement l'être), mais elle doit avoir un niveau de détail permettant d'être un substitut acceptable.
 
 Dans les discussions sur la valeur des spécifications et par extension sur le fait d'en avoir ou pas, 
-on parle beaucoup du temps passé à rédiger et à les maintenir en cohérence avec le code dont elles décrivent le comportement.
+on parle beaucoup du temps passé à les rédiger et à les mettre à jour, et de la difficulté de maintenir leur cohérence avec le code dont elles décrivent le comportement.
 
-J'ai l'impression qu'un sujet dont on parle moi c'est l'accès à l'information.
+J'ai l'impression qu'en revanche on parle moins de la question de l'accès à l'information.
+
 Une spécification est lisible par des personnes qui ne savent pas lire de code.
 Quand une discussion a pour support une spécification, cela signifie que les personnes qui développent et celles qui ne développent pas ont un accès égal à l'information.
 
 Si une partie d'un logiciel n'est pas documenté par une spécification et que comprendre son comportement nécessite de lire le code correspondant, l'accès à l'information est alors inégal.
 
-En pratique, cela peut ne pas poser de problème, si un logiciel a peu de comportements complexes, et si les personnes qui développent sont suffisamment disponibles pour répondre aux questions et/ou suffisamment efficaces pour retranscrire telle ou telle partie du code pour servir de support à une discussion.
+En pratique, cela peut ne pas poser de problème. Par exemple si les personnes qui développent sont disponibles pour répondre aux questions et/ou pour retranscrire telle ou telle partie du code sous une forme qui n'est pas du code afin qu'elle puisse servir de support à une discussion.
 
 Mais même dans ces situations favorables, l'inégalité de l'accès à l'information peut être problématique pour des raisons de statut.
-Car -- même si il a peu de conséquence tangible -- le ressenti produit par le fait de dépendre de quelqu'un peut être très fort.
+Car&#8201;—{nbsp}même si il a peu de conséquence tangible{nbsp}—&#8201;le ressenti produit par le fait de dépendre de quelqu'un peut être très fort.
 
-Même s'il est de bon ton de ne pas en parler, dans certaines organisation le rapport de force entre les personnes qui développent et leurs autres reste un sujet de tension, et ce rapport de force se manifeste souvent dans la volonté de réduire les personnes qui développent à un rôle d'exécution.
+Même s'il est de bon ton de ne pas en parler, dans certaines organisation le rapport de force entre les personnes qui développent et les autres reste un sujet de tension, et ce rapport de force se manifeste souvent dans la volonté de réduire les personnes qui développent à un rôle d'exécution.
 
-Même si de fait les spécifications sont très souvent incomplètes de sorte qu'une certaine dépendance envers les personnes qui développent existent souvent de fait, ce n'est pas la même chose que d'affirmer officiellement qu'elle est souhaitable.
+Dans la pratique quand des spécifications existent, elles sont très souvent incomplètes ou obsolète, de sorte qu'une certaine dépendance envers les personnes qui développent existent souvent de fait.
+Mais on peut alors faire comme si c'était un accident et ne pas s'en préoccuper outre mesure.
 
-Cela ne signifie pas qu'il ne faut pas interroger les fonctionnements dans ce domaine ni essayer de les changer, mais que cet axe peut avoir son importance et qu'il faut le prendre en compte.
+Ce n'est pas la même chose que d'affirmer officiellement que cette dépendance est souhaitable et va devenir la norme, car les personnes seront alors forcées de s'interroger sur le changement de statut qui en découle.
+
+Cela ne signifie pas qu'il ne faut pas interroger les fonctionnements dans ce domaine ni essayer de les changer, mais que cet axe peut avoir son importance et qu'il faut donc le prendre en compte.
