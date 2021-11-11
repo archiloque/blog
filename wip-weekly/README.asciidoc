@@ -29,3 +29,30 @@ That's the opposite of what I've seen at two of the three big tech companies I'v
 
 A side effect of big company tech culture is that someone who wants to actually do the right thing can easily do very high (positive) impact work by just going around and fixing problems that any intern could solve, if they're willing to ignore organizational processes and incentives.
 ____
+
+== link:https://martinfowler.com/bliki/DefaultTrialRetire.html[DefaultTrialRetire]
+
+[quote]
+____
+Within each normal-sized team, limit the choice of alternatives for any class of technology to three. These are: the current sensible default, the one we're experimenting with as a trial, and the one that we hate and want to retire.
+____
+
+== link:https://martinfowler.com/articles/strong-weak-arch.html[]
+
+[quote]
+____
+[Attributes]
+|===
+|Domain (strong force)|Vertical (weakened force)|Whole of org (weak force)
+
+|Systems that are owned within a single domain are relatively easy to change in a closely co-ordinated way. For example this means (slightly) less effort needs to be burned on maintaining backwards-compatibility of interfaces.
+
+Even "`forbidden`" approaches like database-level integration will have less impact within the systems in a single domain. Although we shouldn’t build a system that way deliberately, if it exists then we can contain the impact within a single domain.
+
+|Changes that must be co-ordinated across multiple domains within a vertical should be rare, but can be managed when absolutely necessary. link:https://www.thoughtworks.com/radar/techniques/api-expand-contract[Expand-contract changes to API contracts] is quite effective where the impacts are contained within the vertical.
+
+|APIs and interfaces (e.g. events) that are published to the whole of MYOB must have the highest attention to published schemas, versioning, backwards compatibility, contracts, and deprecation strategy.
+
+The impact of highly-coupled integration (e.g. ETLs, database integration) is very high, and should be absolutely avoided.
+|===
+____
