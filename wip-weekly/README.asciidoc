@@ -85,7 +85,7 @@ To that end, Rusty proposed his "`Rusty Scale`" in decreasing order of this impo
 
 The following list attempts to generalize the Rusty Scale beyond the Linux kernel:
 
-. It is impossible to get wrong. Although this is the standard to which all API designers should strive, only the mythical `dwim()`{empty}footnote:[The `dwim()` function is an acronym that expands to "`dowhatImean`".] command manages to come close.
+. It is impossible to get wrong. Although this is the standard to which all API designers should strive, only the mythical `dwim()`{empty}footnote:[The `dwim()` function is an acronym that expands to "`do what I mean`".] command manages to come close.
 . The compiler or linker won't let you get it wrong.
 . The compiler or linker will warn you if you get it wrong. `BUILD_BUG_ON()` is your users' friend.
 . The simplest use is the correct one.
