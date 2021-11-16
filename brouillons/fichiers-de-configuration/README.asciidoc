@@ -99,9 +99,55 @@ Dans mon expérience, deux choses sont à prendre en compte pour cela{nbsp}:
 . le fait d'avoir une syntaxe régulière avec un nombre d'exceptions limitées{nbsp};
 . le fait d'utiliser des règles d'échappement standard.
 
-La deuxième règle étant bien plus importante que la première cet implémenter une gestion des échappements demande du code assez minutieux et bien testé.
+La deuxième règle étant bien plus importante que la première car implémenter une gestion des échappements demande du code assez minutieux et bien testé, c'est-à-dire quelque chose qu'on préfère en général éviter quand on le peut.
 
-== 
+== La factorisation{nbsp}: nécessaire ou pas alors{nbsp}?
+
+Si proposer une capacité de factorisation dans une syntaxe de configuration est utile, je suis partagé sur le fait de savoir si le jeu en vaut la chandelle à cause de la complexité que cela ajoute.
+
+Je suis probablement partial en tant que développeur et du fait qu'utiliser du templating est facile pour moi, mais d'un autre côté je soupçonne que beaucoup des personnes qui utilisent la factorisation seraient aussi en mesure d'utiliser du templating.
+
+== Les comportements dynamiques
+
+La dernière étape dans la complexité d'un fichier de configuration est d'avoir des comportements dynamiques, c'est à dire qui dépendent de l'exécution du programme.
+
+Par exemple avoir des conditions{nbsp}:
+
+[source,ini]
+----
+if animal == cat
+then nya
+----
+
+Par rapport à la factorisation, les comportements dynamiques ne sont pas une optimisation d'écriture des fichiers mais permettent des comportements qui sinon sont impossibles.
+
+Si on peut continuer à voir cela comme un fichier de configuration, le comportement s'apparente véritablement à du code.
+
+De même que la factorisation rend utile d'avoir accès à une version développée du fichier, avoir un comportement dynamique rend utile de pouvoir observer d'une manière ou d'une autre le fonctionnement du logiciel (par exemple via des logs détaillés), et même idéalement de pouvoir le débugger.
+
+Il y a quelques années, il y avait une certaine logique à développer son propre système pour cela, soit à inventer sa propre syntaxe à ajouter à un format de fichier existant.
+
+Par exemple avec link:https://ant.apache.org[ce genre de choses]{nbsp}:
+
+[source,xml]
+----
+<if>
+    <equals arg1="${condition}" arg2="true"/>
+    <then>
+        <copy file="${some.dir}/file" todir="${another.dir}"/>
+    </then>
+    <elseif>
+        <equals arg1="${condition}" arg2="false"/>
+        <then>
+            <copy file="${some.dir}/differentFile" todir="${another.dir}"/>
+        </then>
+    </elseif>
+    <else>
+        <echo message="Condition was neither true nor false"/>
+    </else>
+</if>
+----
+
 
 ''''
 
