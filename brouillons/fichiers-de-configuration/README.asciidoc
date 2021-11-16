@@ -50,14 +50,12 @@ property_1=🐰
 property_2={"va=lu\"e_2": "a", "va=lu\"e_22": "b"}
 ----
 
-== La limite
+== La limite sans fichier de configuration
 
 On a ici dépassé ce qu'on peut faire confortablement avec des paramètres ou des variables d'environnements.
 Il reste possible de passer des listes dans des chaînes de caractères et d'utiliser des préfixes pour simuler les sections, le résultat est moins lisible, surtout s'il y a de nombreuses entrées.
 
-Cette étape correspond pour moi au point d'utilité maximale des fichiers de configuration{nbsp}: on est capable de saisir du contenu avec une certaine expressivité et aucun traitement n'est apporté ensuite au contenu, ce qui fait que le contenu visible est exactement celui qui sera utiliséfootnote:[En réalité il ne s'agit pas exactement du contenu visible à cause des échappements, mais je pense que sauf dans de très rare situations il n'est pas possible de s'en passer.].
-
-== Ça commence à ne plus aller
+== La factorisation ou la compilation pour les fichiers de configuration
 
 Quand le fichier de configuration s'allonge et que le contenu se répète, le réflexe quand on travaille dans le développement est de vouloir faire de la factorisation.
 Par exemple en attribuant un nom à un certain contenu, et en utilisant ce nom pour inclure ce contenu ailleurs dans le fichier
@@ -71,7 +69,7 @@ property_2=*🐱
 ----
 
 Dans ce cas le contenu que vous éditez n'est plus directement celui qui sera utilisé par le programme car le fichier va subir un traitement qui va modifier son contenu.
-Cela ressemble grosso-modo à une phase de compilation.
+Cela ressemble grosso-modo à une phase de compilation (ou de transpilation).
 
 Pour certaines investigation, il peut devenir utile de pouvoir avoir accès au contenu traité tel qu'il sera visible depuis le programme.
 
@@ -90,7 +88,8 @@ Si votre format de fichier de configuration ne permet pas ce genre de factorisat
 
 == En passant{nbsp}: le templating
 
-Même si votre format de configuration fournit des fonctionnalités avancées de factorisation, les personnes vont vouloir générer ces fichiers à partir d'un autre outil.
+Mais en fait, même si votre format de configuration fournit des fonctionnalités avancées de factorisation, il est assez probable que des personnes vont vouloir générer ces fichiers à partir d'un autre outil.
+
 Pour un outil utilisé par des serveurs, cela peut être pour des raisons d'industrialisation de déploiement, mais le besoin se fera probablement sentir même pour un outil réservés aux postes de travail.
 
 Cela signifie que plus votre format de fichier sera facile à templatiser, plus vous simplifierez ces cas d'utilisation.
@@ -100,7 +99,9 @@ Dans mon expérience, deux choses sont à prendre en compte pour cela{nbsp}:
 . le fait d'avoir une syntaxe régulière avec un nombre d'exceptions limitées{nbsp};
 . le fait d'utiliser des règles d'échappement standard.
 
-La deuxième règle étant bien plus importante que la première cet implémenter une gestion des échappements demande du code assez minutieux et bien testé, alors qu'en 
+La deuxième règle étant bien plus importante que la première cet implémenter une gestion des échappements demande du code assez minutieux et bien testé.
+
+== 
 
 ''''
 
