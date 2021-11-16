@@ -70,9 +70,10 @@ property_1=*🐱
 property_2=*🐱
 ----
 
-Dans ce cas le contenu que vous éditez n'est plus celui qui sera utilisé par le programme car le fichier va subir un traitement qui va modifier son contenu, qui ressemble grosso-modo à une phase de compilation.
+Dans ce cas le contenu que vous éditez n'est plus directement celui qui sera utilisé par le programme car le fichier va subir un traitement qui va modifier son contenu.
+Cela ressemble grosso-modo à une phase de compilation.
 
-Pour comprendre ce qui se passe, il peut devenir intéressant de pouvoir avoir accès au contenu traité tel qu'il sera visible depuis le programme qui va l'utiliser.
+Pour certaines investigation, il peut devenir utile de pouvoir avoir accès au contenu traité tel qu'il sera visible depuis le programme.
 
 Dans l'exemple ci-dessus, cela signifie être en mesure d'obtenir ce contenu{nbsp}:
 
@@ -82,12 +83,24 @@ property_1=nya
 property_2=nya
 ----
 
-Cela signifie s'appuyer sur un programme externe s'il s'agit d'une syntaxe normalisée et que de tels outils existent, ou de fournir cette capacité via ce programme.
+Si votre fichier de configuration utilise une syntaxe normalisée, les personnes éditant le fichier peuvent peut-être s'appuyer sur des outils existants.
+Dans le cas contraire c'est à vous de le fournir.
 
-Si votre format de fichier de configuration ne permet pas ce genre de construction, il est possible que les personnes se retrouvent à devoir générer vos fichiers de configuration pour atteindre le même résultat.
+Si votre format de fichier de configuration ne permet pas ce genre de factorisation, il est possible que les personnes se retrouvent à répondre à leur besoin dans ce domaine en générant leurs fichiers de configuration à partir d'un outil de templating.
 
+== En passant{nbsp}: le templating
 
+Même si votre format de configuration fournit des fonctionnalités avancées de factorisation, les personnes vont vouloir générer ces fichiers à partir d'un autre outil.
+Pour un outil utilisé par des serveurs, cela peut être pour des raisons d'industrialisation de déploiement, mais le besoin se fera probablement sentir même pour un outil réservés aux postes de travail.
 
+Cela signifie que plus votre format de fichier sera facile à templatiser, plus vous simplifierez ces cas d'utilisation.
+
+Dans mon expérience, deux choses sont à prendre en compte pour cela{nbsp}:
+
+. le fait d'avoir une syntaxe régulière avec un nombre d'exceptions limitées{nbsp};
+. le fait d'utiliser des règles d'échappement standard.
+
+La deuxième règle étant bien plus importante que la première cet implémenter une gestion des échappements demande du code assez minutieux et bien testé, alors qu'en 
 
 ''''
 
