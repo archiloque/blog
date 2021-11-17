@@ -203,7 +203,7 @@ Pour pouvoir tirer partie d'un Itanium, un compilateur doit donc déduire des in
 À l'inverse, le langage Rust est pensé pour le parallélisme.
 Dans le code Rust, la gestion d'accès aux données doit être indiquée explicitement.
 La conséquence souvent mise en avant est que cela évite les bugs lorsque plusieurs threads accèdent à la même donnée et créent des incohérences.
-L'autre conséquence, que vous avez peut-être déjà déduite, c'est qu'elle rend plus facile de générer du code efficace pour un processeur moderne en partant de code Rust, par exemple en comparant avec du code C équivalent.footnote:[Pour être tout à fait précis Rust utilise le compilateur link:https://fr.wikipedia.org/wiki/LLVM[LLVM] qui est aussi et surtout un compilateur C et {cpp} et je ne sais pas si pour le moment il intègre des optimisations spécifique à Rust.]
+L'autre conséquence, que vous avez peut-être déjà déduite, c'est qu'elle rend plus facile de générer du code efficace pour un processeur moderne en partant de code Rust, par exemple en comparant avec du code C équivalent{empty}footnote:[Pour être tout à fait précis Rust utilise le compilateur link:https://fr.wikipedia.org/wiki/LLVM[LLVM] qui est aussi et surtout un compilateur C et {cpp} et je ne sais pas si pour le moment il intègre des optimisations spécifique à Rust.].
 
 Cela correspond donc à un retour vers des optimisations explicites où le lien entre le code écrit et sa performance est moins indirect.
 
