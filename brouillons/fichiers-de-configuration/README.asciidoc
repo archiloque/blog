@@ -125,8 +125,8 @@ Si on peut continuer à voir cela comme un fichier de configuration, le comporte
 
 De même que la factorisation rend utile d'avoir accès à une version développée du fichier, avoir un comportement dynamique rend utile de pouvoir observer d'une manière ou d'une autre le fonctionnement du logiciel (par exemple via des logs détaillés), et même idéalement de pouvoir le débugger.
 
-Il y a quelques années il était difficile
-Il y avait donc une certaine logique à développer son propre système pour cela, soit à inventer sa propre syntaxe à ajouter à un format de fichier existant.
+Il y a quelques années embarquer un intepréteur dans un programme exécutable n'était pas chose facile.
+Dans ces conditions, développer son propre format ou étendre un format de existant pour cela avait du sens.
 
 Par exemple avec link:https://ant.apache.org[ce genre de choses]{nbsp}:
 
@@ -149,23 +149,28 @@ Par exemple avec link:https://ant.apache.org[ce genre de choses]{nbsp}:
 </if>
 ----
 
+Mais de nos jours, embarquer un interpréteur comme link:https://www.lua.org/about.html[Lua] est relativement facile et assez commun.
 
-''''
+Ce qui signifie que les personnes peuvent utiliser leurs outils de développement pour écrire leurs fichiers de configuration et peuvent même les débuger en cas de besoin.
 
-À rédiger :
+Certes passer de fichier de configuration à des fichiers de code représente un changement qu'on n'imaginait pas forcément faire.
+Mais de fait quand un fichier de configuration contient du code déguisé en configuration, il est déjà un fichier de code sans oser l'assumer, et sans permettre d'utiliser les outils prévu pour ça.
 
-Quand on a factorisation en cascade, on se retrouve à avoir du mal à suivre ce qui se passe, parfois on a ajoute l'équivalent de logs en écrivant des contenus intermédiaires pour pouvoir suivre ce qui se passe, et on aimerait bien pouvoir débugger dans les cas extrême.
+Ma suggestion est donc de sauter le pas.
 
-On a un traitement => c'est un programme qu'on execute.
+Si vous pensez que ce conseil est inutile car cela n'arrive plus (et notamment par ce que seules des personnes faisant du XML et du Java pourraient avoir ce genre d'idées), malheureusement c'est toujours le cas, seulement link:https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html[avec du YAML au lieu de XML].
 
-Suite : les conditions, et les boucles.
+[source,yaml]
+----
+tasks:
+  - name: Shut down CentOS 6 and Debian 7 systems
+    ansible.builtin.command: /sbin/shutdown -t now
+    when: (ansible_facts['distrib'] == "CentOS" and ansible_facts['distrib_mv'] == "6") or
+          (ansible_facts['distrib'] == "Debian" and ansible_facts['distrib_mv'] == "7")
+----
 
-Dans ce cas on a clairement un comportement dynamique.
+== En résumé
 
-Souvent on a du mal à se dire qu'on veut du code car on voit ça comme de la configuration, mais ce n'est pas différent d'une phase de compilation.
-
-Il y a quelques années c'était difficile d'utiliser un langage de programmation pour ça mais ça n'est plus le cas.
-
-Je pense même qu'il est souhaitable d'avoir un langage de programmation statique, qui permette de faire de la vérification de format et le typage sur le contenu. L'équivalent des validation de schéma en XML.
-
-On peut le faire depuis le code qui utilise la configuration, mais l'avoir dans le langage de configuration permet d'avoir de la validation dans l'éditeur.
+* Dès qu'un fichier de configuration passe par une phase de transformation, il faut pouvoir observer ce qui se passe.
+* Si vous inventez votre syntaxe, pensez bien aux personnes qui voudront générer des fichiers.
+* Lorsque la configuration d'un programme nécessite des comportements dynamiques, utilisez un langage de programmation.
