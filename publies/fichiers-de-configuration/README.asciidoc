@@ -1,6 +1,6 @@
 = Fichiers de configuration
 Julien Kirch
-v0.1, 2021-05-25
+v0.1, 2021-11-24
 :article_lang: fr
 :source-highlighter: pygments
 :pygments-style: friendly
@@ -13,7 +13,7 @@ Si vous ajoutez des fonctionnalités à votre programme, la configuration va se 
 
 == Le début
 
-La première étape est en général de définir une série de clé-valeur, pour remplacer une trop longue série de variables d'environnement ou de paramètres en ligne de commandes.
+La première étape est en général de définir une série de clés-valeurs, pour remplacer une trop longue série de variables d'environnement ou de paramètres en ligne de commandes.
 
 [source,ini]
 ----
@@ -31,7 +31,7 @@ property_1="val=ue1"
 property_2="va=lu\"e_2"
 ----
 
-Ensuite, on peut vouloir que certaines valeurs ne soient pas seulement des chaînes de caractères, mais aussi parfois des listes ou des dictionnaires (c'est-à-dire que les valeurs puissent elles-mêmes un ensemble clé-valeur).
+Ensuite, on peut vouloir que certaines valeurs ne soient pas seulement des chaînes de caractères, mais aussi parfois des listes ou des dictionnaires (c'est-à-dire que les valeurs puissent elles-mêmes contenir un ensemble de clés-valeurs).
 
 [source,ini]
 ----
@@ -73,7 +73,7 @@ property_2=*🐱
 Dans ce cas le contenu que vous éditez n'est plus directement celui qui sera utilisé par le programme car le fichier va subir un traitement qui va modifier son contenu.
 Cela ressemble grosso-modo à une phase de compilation (ou de transpilation).
 
-Pour certaines investigation, il peut devenir utile de pouvoir avoir accès au contenu traité tel qu'il sera visible depuis le programme.
+Pour certaines investigation, il peut être bien pratique d'avoir accès au contenu traité tel qu'il sera visible depuis le programme.
 
 Dans l'exemple ci-dessus, cela signifie être en mesure d'obtenir ce contenu{nbsp}:
 
@@ -108,7 +108,7 @@ La deuxième règle étant bien plus importante que la première car implémente
 
 Si proposer une capacité de factorisation dans une syntaxe de configuration est utile, je suis partagé sur le fait de savoir si le jeu en vaut la chandelle à cause de la complexité que cela ajoute.
 
-Je suis probablement partial en tant que développeur et du fait qu'écrire des scripts pour générer des fichiers est facile pour moi, mais d'un autre côté je soupçonne que beaucoup des personnes qui utilisent la factorisation seraient aussi en mesure de générer les fichiers.
+Je suis probablement partial car écrire des scripts pour générer des fichiers est facile pour moi, mais d'un autre côté je soupçonne que beaucoup des personnes qui utilisent la factorisation seraient aussi en mesure de générer les fichiers.
 
 == Les comportements dynamiques
 
@@ -126,7 +126,7 @@ Par rapport à la factorisation, les comportements dynamiques ne sont pas une op
 
 Si on peut continuer à voir cela comme un fichier de configuration, le comportement s'apparente véritablement à du code.
 
-De même que la factorisation rend utile d'avoir accès à une version développée du fichier, avoir un comportement dynamique rend utile de pouvoir observer d'une manière ou d'une autre le fonctionnement du logiciel (par exemple via des logs détaillés), et même idéalement de pouvoir le débugger.
+De même que la factorisation rend nécessaire d'avoir accès à une version développée du fichier, avoir un comportement dynamique rend nécessaire4 de pouvoir observer d'une manière ou d'une autre le fonctionnement du logiciel (par exemple via des logs détaillés), et même idéalement de pouvoir le débugger.
 
 Il y a quelques années embarquer un intepréteur dans un programme exécutable n'était pas chose facile.
 Dans ces conditions, développer son propre format ou étendre un format de existant pour cela avait du sens.
