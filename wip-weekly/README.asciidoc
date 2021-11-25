@@ -22,3 +22,76 @@ What I've seen happen instead is, when work starts on the projects, people will 
 
 Another place the non-fungability of people causes predictable problems is with how managers operate teams. Managers who want to create effective teams end up fighting the system in order to do so. Non-engineering orgs mostly treat people as fungible, and the finance org at a number of companies I've worked for forces the engineering org to treat people as fungible by requiring the org to budget in terms of headcount. The company, of course, spends money and not "`heads`", but internal bookkeeping is done in terms of "`heads`", so $X of budget will be, for some team, translated into something like "`three staff-level heads`". There's no way to convert that into "`two more effective and better-paid staff level heads`". If you hire two staff engineers and not a third, the "`head`" and the associated budget will eventually get moved somewhere else.
 ____
+
+== link:https://danluu.com/tests-v-reason/[Testing v. informal reasoning]
+
+[quote]
+____
+It's possible to make a simple CPU, but not one that's fast and simple. This doesn't only apply to CPUs -- performance complexity leaks all the way up the stack.
+____
+
+== link:http://danluu.com/wat/[Normalization of deviance]
+
+[quote]
+____
+People seem to think I'm joking here. I can understand why, but try Googling mongodb message queue. You'll find statements like "`replica sets in MongoDB work extremely well to allow automatic failover and redundancy`". Basically every company I know of that's done this and has anything resembling scale finds this to be non-optimal, to say the least, but you can't actually find blog posts or talks that discuss that. All you see are the posts and talks from when they first tried it and are in the honeymoon period. This is common with many technologies. You'll mostly find glowing recommendations in public even when, in private, people will tell you about all the problems. Today, if you do the search mentioned above, you'll get a ton of posts talking about how amazing it is to build a message queue on top of Mongo, this footnote, and a maybe couple of blog posts by Kyle Kingsbury depending on your exact search terms.
+
+If there were an acute failure, you might see a postmortem, but while we'll do postmortems for "`the site was down for 30 seconds`", we rarely do postmortems for "`this takes 10x as much ops effort as the alternative and it's a death by a thousand papercuts`", "`we architected this thing poorly and now it's very difficult to make changes that ought to be trivial`", or "`a competitor of ours was able to accomplish the same thing with an order of magnitude less effort`". I'll sometimes do informal postmortems by asking everyone involved oblique questions about what happened, but more for my own benefit than anything else, because I'm not sure people really want to hear the whole truth. This is especially sensitive if the effort has generated a round of promotions, which seems to be more common the more screwed up the project. The larger the project, the more visibility and promotions, even if the project could have been done with much less effort.
+____
+
+== link:https://danluu.com/google-sre-book/[Google SRE book]
+
+[quote]
+____
+The fact that everyone knows you’re supposed to be blameless seems to make it harder to call out blamefulness, not easier.
+____
+
+== link:https://danluu.com/learning-to-program/[How I learned to program]
+
+[quote]
+____
+I've never seen an environment go from "`bad`" to "`good`" and I'd be curious to know what that looks like and how it happens. Yossi Kreinin's thesis is that link:http://yosefk.com/blog/people-can-read-their-managers-mind.html[only management can fix broken situations]. That might be true, but I'm not quite ready to believe it just yet, even though I don't have any evidence to the contrary.
+
+____
+
+== link:http://danluu.com/hiring-lemons/[Hiring and the market for lemons]
+
+[quote]
+____
+I know one hiring manager who complains about how hard it is to hire. What he doesn't realize is that literally everyone on his team is bitterly unhappy and a significant fraction of his team gives anti-referrals to friends and tells them to stay away.
+
+That's an extreme case, but it's quite common to see a VP or founder baffled by why hiring is so hard when employees consider the place to be mediocre or even bad.
+____
+
+== link:https://news.ycombinator.com/item?id=5541517["`Put down the crack pipes`" doesn't go so well]
+
+[quote]
+____
+In a highly political environment there are two ways to create change, one is through overt manipulation, which is to collect political power to yourself and then exert it to enact change, and the other is covert manipulation, which is to enact change subtly enough that the political organism doesn't react. (sometimes called "`triggering the antibodies`").
+
+The problem with the latter is that if you help make positive change while keeping everyone not pissed off, no one attributes it to you (which is good for the change agent because if they knew the anti-bodies would react, but bad if your manager doesn't recognize it). I asked my manager what change he wanted to be 'true' yet he (or others) had been unsuccessful making true, he gave me one, and 18 months later that change was in place. He didn't believe that I was the one who had made the change. I suggested he pick a change he wanted to happen and not tell me, then in 18 months we could see if that one happened :-). But he also didn't understand enough about organizational dynamics to know that making change without having the source of that change point back at you was even possible.
+____
+
+== link:https://danluu.com/filesystem-errors/[Filesystem error handling]
+
+[quote]
+____
+Just as an aside, one of the great wonders of doing open work for free is that the more free work you do, the more people complain that you didn't do enough free work.
+____
+
+== link:https://danluu.com/ui-compatibility/[UI backwards compatibility]
+
+[quote]
+____
+The case for UI backwards compatability is arguably stronger than the case for API backwards compatability because breaking API changes can be mechanically fixed and, link:https://danluu.com/monorepo/[with the proper environment], all callers can be fixed at the same time as the API changes. There's no equivalent way to reach into people's brains and change user habits, so a breaking UI change inevitably results in pain for some users.
+
+____
+
+== link:http://danluu.com/corp-eng-blogs/[How (some) good corporate engineering blogs are written]
+
+[quote]
+____
+My opinion is that the natural state of a corp eng blog where people link:http://danluu.com/p95-skill/[get a bit of feedback] is a pretty interesting blog. There's link:https://twitter.com/rakyll/status/1043952902157459456[a dearth of real, in-depth, technical writing], which makes any half decent, honest, public writing about technical work interesting.
+
+In order to have a boring blog, the corporation has to actively stop engineers from putting interesting content out there. Unfortunately, it appears that the natural state of large corporations tends towards risk aversion and blocking people from writing, just in case it causes a legal or PR or other problem. Individual contributors (ICs) might have the opinion that it's ridiculous to block engineers from writing low-risk technical posts while, simultaneously, C-level execs and VPs regularly make public comments that turn into PR disasters, but ICs in large companies don't have the authority or don't feel like they have the authority to do something just because it makes sense. And none of the fourteen stakeholders who'd have to sign off on approving a streamlined process care about streamlining the process since that would be good for the company in a way that doesn't really impact them, not when that would mean seemingly taking responsibility for the risk a streamlined process would add, however small. An exec or a senior VP willing to take a risk can take responsibility for the fallout and, if they're interested in engineering recruiting or morale, they may see a reason to do so.
+____
