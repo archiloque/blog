@@ -3,7 +3,7 @@ Julien Kirch
 v1.0, 2021-01-01
 :article_lang: en
 :figure-caption!:
-:article_description: 
+:article_description: Groups behavior, individuals matter, copying decisions, hiring, creating change, UI backwards compatibility, corporate engineering blogs, people can read their manager's mind
 
 == link:https://www.gwern.net/docs/technology/2005-shirky-agroupisitsownworstenemy.pdf[A group is its own worst enemy]
 
@@ -34,7 +34,7 @@ ____
 
 [quote]
 ____
-People seem to think I'm joking here. I can understand why, but try Googling mongodb message queue. You'll find statements like "`replica sets in MongoDB work extremely well to allow automatic failover and redundancy`". Basically every company I know of that's done this and has anything resembling scale finds this to be non-optimal, to say the least, but you can't actually find blog posts or talks that discuss that. All you see are the posts and talks from when they first tried it and are in the honeymoon period. This is common with many technologies. You'll mostly find glowing recommendations in public even when, in private, people will tell you about all the problems. Today, if you do the search mentioned above, you'll get a ton of posts talking about how amazing it is to build a message queue on top of Mongo, this footnote, and a maybe couple of blog posts by Kyle Kingsbury depending on your exact search terms.
+People seem to think I'm joking here. I can understand why, but try Googling MongoDB message queue. You'll find statements like "`replica sets in MongoDB work extremely well to allow automatic failover and redundancy`". Basically every company I know of that's done this and has anything resembling scale finds this to be non-optimal, to say the least, but you can't actually find blog posts or talks that discuss that. All you see are the posts and talks from when they first tried it and are in the honeymoon period. This is common with many technologies. You'll mostly find glowing recommendations in public even when, in private, people will tell you about all the problems. Today, if you do the search mentioned above, you'll get a ton of posts talking about how amazing it is to build a message queue on top of Mongo, this footnote, and a maybe couple of blog posts by Kyle Kingsbury depending on your exact search terms.
 
 If there were an acute failure, you might see a postmortem, but while we'll do postmortems for "`the site was down for 30 seconds`", we rarely do postmortems for "`this takes 10x as much ops effort as the alternative and it's a death by a thousand papercuts`", "`we architected this thing poorly and now it's very difficult to make changes that ought to be trivial`", or "`a competitor of ours was able to accomplish the same thing with an order of magnitude less effort`". I'll sometimes do informal postmortems by asking everyone involved oblique questions about what happened, but more for my own benefit than anything else, because I'm not sure people really want to hear the whole truth. This is especially sensitive if the effort has generated a round of promotions, which seems to be more common the more screwed up the project. The larger the project, the more visibility and promotions, even if the project could have been done with much less effort.
 ____
