@@ -1,0 +1,46 @@
+= A new CSS framework: miraculous CSS
+Julien Kirch
+v0.1, 2021-01-01
+:article_lang: en
+:article_image: miraculous.jpg
+:article_description: Probably a breakthrough, or maybe not
+
+There's no end to the treadmill of new CSS frameworks.
+
+But all of them have at least one of these problems, and sometimes all of them:
+
+- Tied to a specific CSS approach
+- Tied to a JavaScript framework
+- Add bloat to your CSS
+- Require to adapt your development workflow
+
+Miraculous CSS is a breakthrough approach to CSS that has none of these limitation :
+
+- 👍 Work with kind of CSS
+- 👍 Not linked to a JavaScript framework
+- 👍 No bloat
+- 👍 No change in development workflow
+
+As an added bonus, it's self contained in a single file and highly customizable !
+
+As with many other framework, it uses a declarative approach.
+
+To add a specific CSS attribute to an element, annotate it with the attributes you want, using this easy to grasp syntax (the default `M_` prefix stands for miraculous, but it's configurable):
+
+[source,html]
+----
+<div class="M_display_flex">
+    <!-- bla bla bla -->
+</div>
+----
+
+When the page is loaded, a very short JavaScript snippet will generate the relevant CSS and add it to the page.
+
+This means the CSS is always up to date with the HTML, and for each page only the required CSS is generated.
+
+Here's a more complex example that include the miraculous snippet, so you can paste it in your project and start hacking right away !
+
+[source,html]
+----
+include::miraculous.html[]
+----

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Miraculous</title>
+    <script>
+      /**
+       * Miraculous CSS
+       * Copyright © 2021 Julien Kirch
+       * Released under MIT license
+       */
+      const miraculousPrefix = "M_"
+
+      function onLoadAsync(callback) {
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", callback);
+        } else {
+          callback();
+        }
+      }
+
+      onLoadAsync(function () {
+          const knownClasses = [];
+          let styleContent = "";
+          const processElement = function (element) {
+            for (const className of element.classList) {
+              if (className.startsWith(miraculousPrefix)) {
+                if (knownClasses.indexOf(className) === -1) {
+                  knownClasses.push(className)
+
+                  const trimmedClassName = className.substr(
+                    miraculousPrefix.length, 
+                    className.length - miraculousPrefix.length
+                    );
+                  const splittedClassName = trimmedClassName.split('_');
+                  const attributeName = splittedClassName[0];
+                  const attributeValue = splittedClassName[1];
+                  styleContent += `.${className} {${attributeName}:${attributeValue};}\n`
+                }
+              }
+            }
+          };
+          processElement(document.querySelector("body"));
+          const elements = document.querySelectorAll("body *");
+          for (const element of elements) {
+            processElement(element);
+          }
+          const styleSheet = document.createElement("style");
+          styleSheet.innerHTML = styleContent;
+          document.body.appendChild(styleSheet);
+        }
+      )
+    </script>
+</head>
+<body class="M_font-family_sans-serif">
+<h1 class="M_font-size_5em M_position_sticky M_top_0 M_text-align_center">Header</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Dapibus ultrices in iaculis nunc sed. Pellentesque adipiscing commodo elit at. Mauris ultrices eros in
+    cursus turpis massa. Nisl condimentum id venenatis a condimentum vitae sapien. Et tortor at risus viverra adipiscing
+    at in tellus. Nibh ipsum consequat nisl vel pretium lectus. Placerat vestibulum lectus mauris ultrices. Sit amet
+    massa vitae tortor condimentum lacinia quis vel. Ac tortor dignissim convallis aenean et tortor at. Non blandit
+    massa enim nec dui. Fermentum posuere urna nec tincidunt praesent semper feugiat nibh.</p>
+</body>
+</html>
