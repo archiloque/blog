@@ -16,10 +16,10 @@ But all of them have at least one of these problems, and sometimes all of them:
 
 Miraculous CSS is a breakthrough approach to CSS that has none of these limitation :
 
-- 👍 Work with kind of CSS
-- 👍 Not linked to a JavaScript framework
-- 👍 No bloat
-- 👍 No change in development workflow
+- ✓ Work with kind of CSS
+- ✓ Not linked to a JavaScript framework
+- ✓ No bloat
+- ✓ No change in development workflow
 
 As an added bonus, it's self contained in a single file and highly customizable !
 
@@ -34,7 +34,14 @@ To add a specific CSS attribute to an element, annotate it with the attributes y
 </div>
 ----
 
-When the page is loaded, a very short JavaScript snippet will generate the relevant CSS and add it to the page.
+When the page is loaded, a very short JavaScript snippet will generate the relevant CSS and adds it to the page:
+
+[source,css]
+----
+.M_display_flex {
+    display: flex;
+}
+----
 
 This means the CSS is always up to date with the HTML, and for each page only the required CSS is generated.
 
