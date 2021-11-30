@@ -19,25 +19,30 @@
         }
       }
 
+      function processClass(className) {
+        if (className.startsWith(miraculousPrefix)) {
+          if (knownClasses.indexOf(className) === -1) {
+            knownClasses.push(className)
+
+            const shortClassName = className.substr(
+              miraculousPrefix.length, 
+              className.length - miraculousPrefix.length
+              );
+            const splittedClassName = shortClassName.split('_');
+            const attributeName = splittedClassName[0];
+            const attributeValue = splittedClassName[1];
+            styleContent += 
+              `.${className} {${attributeName}:${attributeValue};}`;
+          }
+        }
+      }
+
       onLoadAsync(function () {
           const knownClasses = [];
           let styleContent = "";
           const processElement = function (element) {
             for (const className of element.classList) {
-              if (className.startsWith(miraculousPrefix)) {
-                if (knownClasses.indexOf(className) === -1) {
-                  knownClasses.push(className)
-
-                  const trimmedClassName = className.substr(
-                    miraculousPrefix.length, 
-                    className.length - miraculousPrefix.length
-                    );
-                  const splittedClassName = trimmedClassName.split('_');
-                  const attributeName = splittedClassName[0];
-                  const attributeValue = splittedClassName[1];
-                  styleContent += `.${className} {${attributeName}:${attributeValue};}`;
-                }
-              }
+              processClass(className);
             }
           };
           processElement(document.querySelector("body"));
@@ -53,7 +58,9 @@
     </script>
 </head>
 <body class="M_font-family_sans-serif">
-<h1 class="M_font-size_5em M_position_sticky M_top_0 M_text-align_center">Header</h1>
+<h1 
+  class="M_font-size_5em M_position_sticky M_top_0 M_text-align_center"
+  >Header</h1>
 <p>Lorem ipsum dolor sit amet.</p>
 </body>
 </html>
