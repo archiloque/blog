@@ -32,7 +32,7 @@ To add a specific CSS attribute to an element, annotate it with the attributes y
 [source,html]
 ----
 <div class="M_display_flex">
-    <!-- bla bla bla -->
+  <!-- bla bla bla -->
 </div>
 ----
 
@@ -41,7 +41,7 @@ When the page is loaded, a very short JavaScript snippet generates the relevant 
 [source,css]
 ----
 .M_display_flex {
-    display: flex;
+  display: flex;
 }
 ----
 
