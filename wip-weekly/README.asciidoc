@@ -35,3 +35,28 @@ ____
 ____
 For this reason, in the past I have believed the right approach is to just let programmers ignore (bypass) low-confidence checks; for example, you could decide that some lint check is purely a guess and that you should feel free to commit code even when it fires. I have since come around to seeing this is a bad idea, because it means that the next person who edits the code will need to reevaluate the same question, and a system where you regularly need to disregard warnings leads to warning blindness. Instead, I think a better mechanism for responding to checks is for programmers to annotate code directly.
 ____
+
+
+== link:https://skamille.medium.com/structural-lessons-in-engineering-management-f32b5ffaa1aa[Structural lessons in engineering management]
+
+[quote]
+____
+Another failure mode happens when leaders get enamored of applying engineering analogies to define team interactions. APIs are a fine concept but the idea that team interactions can be strictly defined by an API is as laughable as the idea that programmers won’t figure out a way to exploit every undocumented feature you provide in one. In this case, link:https://www.hyrumslaw.com/[Hyrum’s Law] applies as much to engineering organizations as it does to software. Humans will and must talk to each other, trade favors, and negotiate based on changing circumstances. When you are in the thick of trying to get things done, you will use what you can find, whether it’s an undocumented API or an engineer on another team who is willing to lend a hand.
+
+Ironically, a lot of software engineers turned managers believe that they are taking humans into account with these rigid structures. When you see the world in systems, interactions, and efficiencies, you can trick yourself into believing that the humans inside of these systems will be happier if the system is well-organized. While I agree that there is value to organizing your teams effectively, the marginal value that the teams might experience is likely to be offset by the unintentional friction that happens for the people who don’t fit perfectly into your structure.
+____
+
+== link:https://bellmar.medium.com/work-somewhere-dysfunctional-54fe5793b7a5[Work somewhere dysfunctional]
+
+[quote]
+____
+People who are purely altruistic get too wound up trying to force the system to change. It becomes a sunk costs problem. The more they give up to do good, the harder a negative outcome is to accept, the more they continue to give up to salvage their legacy. They tend to burnout and when they burnout they get destructive and abusive.
+On the other hand, people who have pragmatic and slightly selfish goals in addition to wanting the do good are more resilient. If the system change they envision doesn’t work out, they still have something to show for all their efforts. That keeps them grounded and calm for much longer in the same environment.
+____
+
+[quote]
+____
+Of course, you can’t get done what you need to get done on your own either. An important caveat to my advice about goal setting and boundary defining is that you are more likely to succeed with other people on your side and the best way to get other people on your side is by dedicating a certain amount of your time and energy to helping them solve some of the problems on _their_ goal list.
+
+If their goals are your goals that’s ideal, but realistically speaking that won’t always be the case. I refer to this process of helping others advance their goals in order to get better support for mine as paying rent and as a general rule I always _pay rent_ first (at least some of it.)
+____
