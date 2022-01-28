@@ -56,7 +56,7 @@ Mais si le nombre de bug est mesuré, l'utiliser pour quelque chose qui n'est pa
 Car en mesurant quelque chose qui s'appelle "`le nombre de bugs`", il y a pas mal de chance qu'on veuille mesurer les bugs (dans le sens de "`comportement fautif`"), pas le nombre de fois où on a appliqué le processus plus courts de traitement de bugs.
 
 Même si l'objectif n'est pas directement de réduire le nombre de bugs mesurés, utiliser le processus plus court pour autre chose qu'un bug va alors fausser cette mesure.
-Cela peut ne pas poser problème tant que la proportion d'exceptions reste faible par rapport au nombres de cas standards, mais cela signifie qu'il faut maintenant surveiller cela pour faire en sorte que la métrique reste pertinentefootnote:[Une autre solution possible serait de distinguer de renommer le processus en "`processus court`" et de distinguer entre les bugs et les non-bugs, ce qui permet d'avoir une métrique juste en échange d'une augmentation de la complexité de la gestion du projet.
+Cela peut ne pas poser problème tant que la proportion d'exceptions reste faible par rapport au nombres de cas standards, mais cela signifie qu'il faut maintenant surveiller cela pour faire en sorte que la métrique reste pertinente{empty}footnote:[Une autre solution possible serait de distinguer de renommer le processus en "`processus court`" et de distinguer entre les bugs et les non-bugs, ce qui permet d'avoir une métrique juste en échange d'une augmentation de la complexité de la gestion du projet.
 ].
 
 Par ailleurs si on veut faire évoluer un processus qui fait l'objet d'une métrique, l'historique de la métrique risque d'être perdu, cela peut ne pas être grave, mais cela signifie qu'il faut se poser la question, ou alors risquer de passer du temps plus tard à investiguer pourquoi les valeurs mesurées ont changé à un certain moment.
@@ -79,7 +79,7 @@ Cela signifie que lorsque vous communiquez une métrique, et même dès qu'elle 
 Mon expérience est que quand une personne a lu une métrique est qu'elle en a tiré une conclusion fausse par rapport à ce qu'elle a cru comprendre, il peut être difficile de rattraper le coup.
 Par exemple un N+2 ou +3 qui a parcouru en diagonale les slides d'un comité de suivi qu'on lui a fait suivre.
 
-Cela ne signifie pas que cela soit forcément grave, mais qu'il faut le prendre en comptefootnote:[Et même sans métrique, le même risque s'applique aussi link:../cacher-management-visuel/[au management visuel].].
+Cela ne signifie pas que cela soit forcément grave, mais qu'il faut le prendre en compte{empty}footnote:[Et même sans métrique, le même risque s'applique aussi link:../cacher-management-visuel/[au management visuel].].
 
 Je pense qu'il n'est pas possible d'empêcher toute mauvaise interprétation, mais il est possible d'essayer de diminuer le risque, par exemple{nbsp}:
 
@@ -94,7 +94,7 @@ Certaines métriques peuvent être utiles, voire nécessaires au fonctionnement 
 
 Mais cela ne signifie pas qu'elles n'ont pas d'effets secondaires.
 
-Mon message n'est donc pas "`non aux métriques`" mais "`portez attention aux effets des métriques`", et surtout de celles qui portent sur les pratiques des équipesfootnote:[Il peut être utile de faire une différence entre les métriques mesurant un système uniquement non-humain (comme le nombre de requêtes par secondes traitées par un serveur) et celles qui mesurent celles d'un système ou des personnes sont impliquées. Mêmes si les premières ne sont pas sans risques, par exemple de fausse interprétation, je pense qu'elles le sont beaucoup moins que les secondes.].
+Mon message n'est donc pas "`non aux métriques`" mais "`portez attention aux effets des métriques`", et surtout de celles qui portent sur les pratiques des équipes{empty}footnote:[Il peut être utile de faire une différence entre les métriques mesurant un système uniquement non-humain (comme le nombre de requêtes par secondes traitées par un serveur) et celles qui mesurent celles d'un système ou des personnes sont impliquées. Mêmes si les premières ne sont pas sans risques, par exemple de fausse interprétation, je pense qu'elles le sont beaucoup moins que les secondes.].
 
 Mon conseil final est de faire attention à l'envie de mesurer des choses à priori, par exemple car le coût de la mesure est faible, sans se poser de question.
 Je préfère prendre le risque de perdre du temps si une métrique n'est pas disponible au moment même où on en a besoin, plutôt que celui d'une mauvaise interprétation.

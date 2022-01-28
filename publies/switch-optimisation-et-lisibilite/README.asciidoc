@@ -51,7 +51,7 @@ si valeur vaut 4, sauter au début du bloc de code 4
 début du bloc de code par défaut
 ----
 
-cela signifie que chaque `case` utilise deux seul instructions (la comparaison et et le saut conditionnel), et qu'un seul registrefootnote:[un peu l'équivalent de variable locales dans le processeur, mais qui sont en nombre limité] est utilisé.
+cela signifie que chaque `case` utilise deux seul instructions (la comparaison et et le saut conditionnel), et qu'un seul registre{empty}footnote:[un peu l'équivalent de variable locales dans le processeur, mais qui sont en nombre limité] est utilisé.
 
 À condition que les cas des différents `case` soient suffisamment rapprochés (par exemple s'ils se suivent) un compilateur avancé pourra générer du code qui ressemble à{nbsp}:
 
@@ -208,7 +208,7 @@ L'autre conséquence, que vous avez peut-être déjà déduite, c'est qu'elle re
 Cela correspond donc à un retour vers des optimisations explicites où le lien entre le code écrit et sa performance est moins indirect.
 
 Même avec un processeur non-Itanium, le code peut s'exécuter plus rapidement car le compilateur du processeur peut produire du code plus efficace depuis du code machine issu du Rust que depuis du code machine provenant de C.
-C'est encore plus vrai sur les processeurs comme ARM qui permettent d'avoir des garanties de consistance plus faibles sur certaines opérations et donc d'éviter des efforts de synchronisation quand cela n'est pas nécessairefootnote:[Pour en savoir plus, voir par exemple link:https://lwn.net/Articles/718628/[cet article].].
+C'est encore plus vrai sur les processeurs comme ARM qui permettent d'avoir des garanties de consistance plus faibles sur certaines opérations et donc d'éviter des efforts de synchronisation quand cela n'est pas nécessaire{empty}footnote:[Pour en savoir plus, voir par exemple link:https://lwn.net/Articles/718628/[cet article].].
 
 Swift développé par Apple répond à des enjeux similaires à Rust et répond à l'objectif de disposer d'un langage qui lui permette de tirer le maximum de bénéfice des processeurs ARM équipant leurs téléphones, leurs tablettes et depuis peu leurs ordinateurs.
 

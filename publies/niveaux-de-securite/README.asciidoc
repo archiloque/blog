@@ -18,7 +18,7 @@ Si une classe `Chat` a une variable d'instance `poids`, `chat.instance_variable_
 
 L'idée est de ne pas bloquer la possibilité de faire ce type d'appel quand il est nécessaire, mais de faire en sorte qu'il soit délibéré, pour éviter les accidents.
 
-L'approche de Python, qui est de définir les variables d'instances privées uniquement par une convention de nommagefootnote:[le nom d'une variable d'instance privée doit commencer par deux tirets bas] est encore plus libérale.
+L'approche de Python, qui est de définir les variables d'instances privées uniquement par une convention de nommage{empty}footnote:[le nom d'une variable d'instance privée doit commencer par deux tirets bas] est encore plus libérale.
 
 En Java, au contraire, l'accès à une variable d'instance privée passe par le fait link:https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/AccessibleObject.html#setAccessible-boolean-[de la rendre accessible]. La spécification indique que cette opération peut être refusée pour des raisons de sécurité.
 
