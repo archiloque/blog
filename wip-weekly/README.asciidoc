@@ -55,3 +55,10 @@ With wicked planning problems, however, _every_ implemented solution is conseque
 
 Whenever actions are effectively irreversible and whenever the half-lives of the consequences are long, _every trial counts_. And every attempt to reverse a decision or to correct for the undesired consequences poses another set of wicked problems, which are in turn subject to the same dilemmas.
 ____
+
+== link:https://hirrolot.github.io/posts/why-static-languages-suffer-from-complexity[Why static languages suffer from complexity]
+
+[quote]
+____
+In addition to this inconsistency, we have the feature _biformity_. In such languages as C{plus}{plus}, Haskell, and Rust, this biformity amounts to the most perverse forms; you can think of any so-called "`expressive`" programming language as of two or more smaller languages put together: C{plus}{plus} the language and C{plus}{plus} templates/macros, Rust the language and type-level Rust + declarative macros, etc. With this approach, each time you write something at a meta-level, you cannot reuse it in the host language and vice versa, thus violating the link:https://en.wikipedia.org/wiki/Don%27t_repeat_yourself[DRY principle] (as we shall see in a minute). Additionally, biformity increases the learning curve, hardens language evolution, and finally ends up in such a feature bloat that only the initiated can figure out what is happening in the code.
+____
