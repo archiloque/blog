@@ -62,3 +62,17 @@ ____
 ____
 In addition to this inconsistency, we have the feature _biformity_. In such languages as C{plus}{plus}, Haskell, and Rust, this biformity amounts to the most perverse forms; you can think of any so-called "`expressive`" programming language as of two or more smaller languages put together: C{plus}{plus} the language and C{plus}{plus} templates/macros, Rust the language and type-level Rust + declarative macros, etc. With this approach, each time you write something at a meta-level, you cannot reuse it in the host language and vice versa, thus violating the link:https://en.wikipedia.org/wiki/Don%27t_repeat_yourself[DRY principle] (as we shall see in a minute). Additionally, biformity increases the learning curve, hardens language evolution, and finally ends up in such a feature bloat that only the initiated can figure out what is happening in the code.
 ____
+
+link:https://cate.blog/2022/02/28/low-process-culture-high-process-culture/[Low process culture, high process culture]
+
+[quote]
+____
+In Thanks for the Feedback, one of the frameworks is the difference between "`evaluative`" and "`developmental`" feedback. Evaluative feedback tells someone where they stand (and whether or not someone gets promoted is inherently evaluative). Developmental feedback tells someone how they can improve. If someone only gets developmental feedback with the evaluation, the evaluative feedback will override everything else. Being great at performance reviews (if there is such a thing), requires consistent developmental feedback the rest of the time -- a product of accepting that people are unlikely to fully process the developmental feedback in the review.
+____
+
+[quote]
+____
+We have checklists for onboarding. We’ve worked hard on improving them. But I knew our onboarding process was better when the checklists failed, and people stepped in anyway to ensure the outcome -- the success of the new person. The mindset of the team was one of collective responsibility, the checklist was just adequacy.
+
+I believe the judicious application of process is a super power. But I also believe that process is necessary, but insufficient. Process as a super power makes the unclear, clear, and supports a mindset shift that leads to something more.
+____
