@@ -103,3 +103,18 @@ ____
 ____
 Second, the effects of bureaucratic psychosis proliferate because people have a predilection to solve problems with addition. In one of my link:https://www.nature.com/articles/s41586-021-03380-y[favorite recent papers], people in all sorts of predicaments preferred to introduce something new rather than take something away, even when removal was optimal. Put people in charge of rules, meetings, and forms, and their first inkling will be "`there should be more rules, meetings, and forms`". We can easily mistake prolific workers for good workers and reward their pointless abundance by making them indispensable -- once we have all these rules, meetings, and forms, someone’s gotta manage them!
 ____
+
+== link:https://ferd.ca/plato-s-dashboards.html[Plato's Dashboards]
+
+[quote]
+____
+It's one thing to deal with performance indicators at the service level like response times or status codes. These tend to retain a semantic sense because they measure something discrete, regardless of what they're a surrogate variable for and how much distance they have from the variable of greater interest. The information they carry makes sense to the engineer and can be useful.
+
+Things get funkier when we have to deal with far more vague variables with less obvious causal relationships, and a stronger emotional component attached to them.
+
+MTBF and MTTR are probably the best recent examples there, with good take-downs posted in link:https://www.verica.io/blog/mttr-is-a-misleading-metric-now-what/[the VOID Report] and link:https://sre.google/resources/practices-and-processes/incident-metrics-in-sre/[Incident Metrics in SRE]. One of the interesting aspects of these values is that they especially made sense in the context of mechanical failures for specific components, due to wear and tear, with standard replacement procedures. Outside of that context, they lose all predictive ability because the types of failures and faults are much more varied, for causes often not related to mechanical wear and tear, and for which no standard replacement procedures apply.
+
+It is, in short, a rather bullshit metric. It is popular, a sort of link:https://mediaspace.gatech.edu/media/David+Woods+-+How+to+Kill+Zombie+IdeasA+Why+do+people+tenaciously+believe+myths+about+the+relationship+between+people+%26+technologyF/1_jlw859ib/51501371[Zombie idea] that refuses to die, and one that is easy to measure rather than meaningful.
+
+Incident response and post-incident investigations tend to invite a lot of similar kneejerk reactions. Can we track any sort of progress to make sure we aren't shamed for our incidents in the future? link:https://deming.org/myth-if-you-cant-measure-it-you-cant-manage-it/[It must be measured!] Maybe, but to me it feels like a lot of time is spent collecting boilerplate and easily measurable metrics rather than determining if they are meaningful. The more interesting question is whether the easy metrics are an effective approach to track and find things to improve compared to other ones. Put another way, I don't really care if your medicine is more effective than placebos when there already exists some effective stuff out there.
+____
