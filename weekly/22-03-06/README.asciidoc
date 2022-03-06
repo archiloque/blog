@@ -1,0 +1,120 @@
+= Links - 6^th^ March 2022
+Julien Kirch
+v1.0, 2022-03-06
+:article_lang: en
+:figure-caption!:
+:article_description: Programming languages features, AI research, web development & despair, projects planning, static languages, feedbacks, mental model, bureaucratic psychosis, performance indicators
+
+== link:https://gankra.github.io/blah/deinitialize-me-maybe/[Destroy all values: designing deinitialization in programming languages]
+
+[quote]
+____
+The nasty thing with programming languages is that good design is often a _holistic_ property. Certain features only make sense in the presence (or absence!) of other features. We're going to be exploring a lot of different concepts in this post, and it's important to keep in mind that they don't work in a vacuum. They solve specific problems caused by solutions to _other_ specific problems, caused by solutions to **other other** problems.
+____
+
+== link:https://logicmag.io/beacons/[Holding to account: Safiya Umoja Noble and Meredith Whittaker on duties of care and resistance to big tech]
+
+[quote]
+____
+One thing we rarely discuss is how AI research and development's dependence on corporate resources worked -- and continues to work -- to shape and in some cases co-opt knowledge production. In other words, to "`do AI`" as defined in the current "`bigger is better`" paradigm, you increasingly need resources that are controlled by these handful of companies. You need access to really expensive cloud compute, you need access to data that is hard and sometimes impossible to get. You can't just go to the data market and buy it -- you often need to get access from the data's creators or collectors, who are often the tech companies. It's fair to say that academic computer science disciplines underwent a kind of soft-capture, in which as a condition of doing "`cutting edge`" AI research, over the last decade they became increasingly dependent on corporate resources, and corporate largesse.
+
+This dynamic led to practices like dual affiliation, where professors work at a tech company but have a professorial title and produce research under their university affiliation. It's led to tech companies moving whole corporate labs into the middle of universities -- like Amazon's machine vision lab at Caltech. We have a structural imbrication between a massive, consolidated industry and knowledge production about what that industry does. And this compromised entanglement has bled into the fairness and ethics space, in many cases without anyone commenting on it. There are many forces working against our recognition of how captured the technical disciplines are at this time, and how easy it is for them to extend this capture into fairness, ethics, and other disciplinary pursuits focused on the consequences and politics of tech.
+____
+
+== link:https://www.baldurbjarnason.com/2022/i-cant-keep-up-with-web-dev/[How to keep up with web development without falling into despair]
+
+[quote]
+____
+People say that web development is unique because of the fast pace and volume of changes in the field. And, since most of us have at least a tangential awareness of other fields through our friends and families (and, in my case, former fields of study), we know that web development seems unique in invoking this feeling of _helplessness_.
+____
+
+== link:https://urbanpolicy.net/wp-content/uploads/2015/06/Rittel-Webber_1973_DilemmasInAGeneralTheoryOfPlanning.pdf[Dilemmas in a general theory of planning]
+
+[quote]
+____
+During the industrial age, the idea of planning, in common with the idea of professionalism, was dominated by the pervasive idea of _efficiency_. Drawn from 18th century physics, classical economics and the principle of least-means, efficiency was seen as a condition in which a specified task could be performed with low inputs of resources. That has been a powerful idea. It has long been the guiding concept of operations research; and it still pervades modern government and industry. When attached to the idea of planning, it became dominating there too. Planning was then seen as a process of designing problem-solutions that might be installed and operated cheaply. Because it was fairly easy to get consensus on the nature of problems during the early industrial period, the task could be assigned to the technically skilled, who in turn could be trusted to accomplish the simplified end-in-view.
+____
+
+[quote]
+____
+For any given tame problem, an exhaustive formulation can be stated containing all the information the problem-solver needs for understanding and solving the problem -- provided he knows his "`art`", of course.
+
+This is not possible with wicked-problems. The information needed to _understand_ the problem depends upon one's idea for _solving_ it. That is to say: in order to _describe_ a wicked-problem in sufficient detail, one has to develop an exhaustive inventory of all conceivable _solutions_ ahead of time. The reason is that every question asking for additional information depends upon the understanding of the problem -- and its resolutions -- at the same time. Problem understanding and problem resolution are concomitant to each other. Therefore, in order to anticipate all questions (in order to anticipate all information required for resolution ahead of time), knowledge of all conceivable solutions is required.
+____
+
+[quote]
+____
+The classical systems-approach of the military and the space programs is based on the assumption that a planning project can be organized into distinct phases. Every textbook of systems engineering starts with an enumeration of these phases "`understand the problems or the mission`", "`gather information`", "`analyze information`", "`synthesize information and wait for the creative leap`", "`work out solution`", or the like. For wicked problems, however, this type of scheme does not work. One cannot understand the problem without knowing about its context, one cannot meaningfully search for information without the orientation of a solution concept, one cannot first understand, then solve. The systems-approach "`of the first generation`" is inadequate for dealing with wicked problems. Approaches of the "`second generation`" should be based on a model of planning as an argumentative process in the course of which an image of the problem and of the solution emerges gradually among the participants, as a product of incessant judgment, subjected to critical argument. The methods of Operations Research play a prominent role in the systems-approach of the first generation, they become operational, however, only _after_ the most important decisions have been made, i.e. after the problem has already been tamed.
+____
+
+[quote]
+____
+In the sciences and in fields like mathematics, chess, puzzle-solving or mechanical engineering design, the problem-solver can try various runs without penalty. Whatever his outcome on these individual experimental runs, it doesn't matter much to the subject-system or to the course of societal affairs. A lost chess game is seldom consequential for other chess games or for non-chess-players.
+
+With wicked planning problems, however, _every_ implemented solution is consequential. It leaves "`traces`" that cannot be undone. One cannot build a freeway to see how it works, and then easily correct it after unsatisfactory performance. Large public-works are effectively irreversible, and the consequences they generate have long half-lives. Many people's lives will have been irreversibly influenced, and large amounts of money will have been spent -- another irreversible act. The same happens with virtually all public-service programs. The effects of an experimental curriculum will follow the pupils into their adult lives.
+
+Whenever actions are effectively irreversible and whenever the half-lives of the consequences are long, _every trial counts_. And every attempt to reverse a decision or to correct for the undesired consequences poses another set of wicked problems, which are in turn subject to the same dilemmas.
+____
+
+== link:https://hirrolot.github.io/posts/why-static-languages-suffer-from-complexity[Why static languages suffer from complexity]
+
+[quote]
+____
+In addition to this inconsistency, we have the feature _biformity_. In such languages as C{plus}{plus}, Haskell, and Rust, this biformity amounts to the most perverse forms; you can think of any so-called "`expressive`" programming language as of two or more smaller languages put together: C{plus}{plus} the language and C{plus}{plus} templates/macros, Rust the language and type-level Rust + declarative macros, etc. With this approach, each time you write something at a meta-level, you cannot reuse it in the host language and vice versa, thus violating the link:https://en.wikipedia.org/wiki/Don%27t_repeat_yourself[DRY principle] (as we shall see in a minute). Additionally, biformity increases the learning curve, hardens language evolution, and finally ends up in such a feature bloat that only the initiated can figure out what is happening in the code.
+____
+
+== link:https://cate.blog/2022/02/28/low-process-culture-high-process-culture/[Low process culture, high process culture]
+
+[quote]
+____
+In Thanks for the Feedback, one of the frameworks is the difference between "`evaluative`" and "`developmental`" feedback. Evaluative feedback tells someone where they stand (and whether or not someone gets promoted is inherently evaluative). Developmental feedback tells someone how they can improve. If someone only gets developmental feedback with the evaluation, the evaluative feedback will override everything else. Being great at performance reviews (if there is such a thing), requires consistent developmental feedback the rest of the time -- a product of accepting that people are unlikely to fully process the developmental feedback in the review.
+____
+
+[quote]
+____
+We have checklists for onboarding. We've worked hard on improving them. But I knew our onboarding process was better when the checklists failed, and people stepped in anyway to ensure the outcome -- the success of the new person. The mindset of the team was one of collective responsibility, the checklist was just adequacy.
+
+I believe the judicious application of process is a super power. But I also believe that process is necessary, but insufficient. Process as a super power makes the unclear, clear, and supports a mindset shift that leads to something more.
+____
+
+== link:https://commoncog.com/blog/the-mental-model-fallacy/[The mental model fallacy]
+
+[quote]
+____
+The central conceit of mental model education is the following:
+
+Successful, effective people make good decisions and achieve successful outcomes in life because they have better mental models. Therefore, the secret to achieving successful outcomes in business and in life is to distill their mental models into written principles, and _then learn them_. This exercise can be done by a teacher who aggregates and summarises the mental models of the best practitioners in the world.
+
+The first half of this assertion is true: successful, effective people _do_ have better mental models that bring them success in their respective fields. They build such models through a lifetime of practice.
+
+The second half of this assertion is false: you _cannot_ learn the mental models that are responsible for success through reading and thinking. The reason for this is the same reason that attempting to learn how to ride a bicycle by reading a book is stupid. The most valuable mental models _do not survive codification_. They cannot be expressed through words alone.
+____
+
+== link:https://experimentalhistory.substack.com/p/bureaucratic-psychosis?s=r[Bureaucratic psychosis]
+
+[quote]
+____
+The desire to do a good job is normally a good thing, but it is easily exploited by bad incentives. If your job is to wow the client, you're going to spend all night polishing your PowerPoint slides, not fretting about whether the information contained in them is, strictly speaking, true. You want to ace the meeting, win business for your company, and impress your boss -- all fine motivations! -- and so you "`correct`" the slides to make the evidence look better.
+
+Importantly, people suffering from bureaucratic psychosis obey bad incentives not out of cynicism or self-interest, but because they've been deluded into thinking that obeying bad incentives is good. If you're conflicted about lying to a client, you're at least still connected to reality. Organizations can sever that connection by surrounding you with people who act like it's good to do wrong. Watching your coworkers spin half-truths as whole-truths and get rewarded for it can easily lead a good-hearted person to conclude that fudging the numbers isn't _really_ lying -- it's just standard operating procedure.
+____
+
+[quote]
+____
+Second, the effects of bureaucratic psychosis proliferate because people have a predilection to solve problems with addition. In one of my link:https://www.nature.com/articles/s41586-021-03380-y[favorite recent papers], people in all sorts of predicaments preferred to introduce something new rather than take something away, even when removal was optimal. Put people in charge of rules, meetings, and forms, and their first inkling will be "`there should be more rules, meetings, and forms`". We can easily mistake prolific workers for good workers and reward their pointless abundance by making them indispensable -- once we have all these rules, meetings, and forms, someone's gotta manage them!
+____
+
+== link:https://ferd.ca/plato-s-dashboards.html[Plato's Dashboards]
+
+[quote]
+____
+It's one thing to deal with performance indicators at the service level like response times or status codes. These tend to retain a semantic sense because they measure something discrete, regardless of what they're a surrogate variable for and how much distance they have from the variable of greater interest. The information they carry makes sense to the engineer and can be useful.
+
+Things get funkier when we have to deal with far more vague variables with less obvious causal relationships, and a stronger emotional component attached to them.
+
+MTBF and MTTR are probably the best recent examples there, with good take-downs posted in link:https://www.verica.io/blog/mttr-is-a-misleading-metric-now-what/[the VOID Report] and link:https://sre.google/resources/practices-and-processes/incident-metrics-in-sre/[Incident Metrics in SRE]. One of the interesting aspects of these values is that they especially made sense in the context of mechanical failures for specific components, due to wear and tear, with standard replacement procedures. Outside of that context, they lose all predictive ability because the types of failures and faults are much more varied, for causes often not related to mechanical wear and tear, and for which no standard replacement procedures apply.
+
+It is, in short, a rather bullshit metric. It is popular, a sort of link:https://mediaspace.gatech.edu/media/David+Woods+-+How+to+Kill+Zombie+IdeasA+Why+do+people+tenaciously+believe+myths+about+the+relationship+between+people+%26+technologyF/1_jlw859ib/51501371[Zombie idea] that refuses to die, and one that is easy to measure rather than meaningful.
+
+Incident response and post-incident investigations tend to invite a lot of similar kneejerk reactions. Can we track any sort of progress to make sure we aren't shamed for our incidents in the future? link:https://deming.org/myth-if-you-cant-measure-it-you-cant-manage-it/[It must be measured!] Maybe, but to me it feels like a lot of time is spent collecting boilerplate and easily measurable metrics rather than determining if they are meaningful. The more interesting question is whether the easy metrics are an effective approach to track and find things to improve compared to other ones. Put another way, I don't really care if your medicine is more effective than placebos when there already exists some effective stuff out there.
+____
