@@ -4,3 +4,40 @@ v1.0, 2022-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://github.com/ligurio/unreliablefs[UnreliableFS]
+
+[quote]
+____
+UnreliableFS is a FUSE-based fault injection filesystem that allows to change fault-injections in runtime using simple configuration file.
+
+Supported fault injections are:
+
+* `errinj_errno` - return error value and set random errno.
+* `errinj_kill_caller` - send SIGKILL to a process that invoked file operation.
+* `errinj_noop` - replace file operation with no operation (similar to link:https://github.com/stewartsmith/libeatmydata[libeatmydata], but applicable to any file operation).
+* `errinj_slowdown` - slowdown invoked file operation.
+____
+
+== link:https://queue.acm.org/detail.cfm?id=3526211[Middleware 101]
+
+[quote]
+____
+In recent literature multiple definitions have been used, depending on the field of research. On the one hand, both a software and a DevOps engineer would describe middleware as the layer that "`glues`" together software by different system components; on the other hand, a network engineer would state that middleware is the fault-tolerant and error-checking integration of network connections. In other words, they would define middleware as communication management software. A data engineer, meanwhile, would view middleware as the technology responsible for coordinating, triggering, and orchestrating actions to process and publish data from various sources, harnessing big data and the IoT (Internet of Things). Given that there is no uniform definition of middleware, it is best to adopt a field-specific approach.
+
+The main categories of middleware are as follows:
+
+* Transactional. Processing of multiple synchronous/asynchronous transactions, serving as a cluster of associated requests from distributed systems such as bank transactions or credit card payments.
+* Message-oriented. _Message queue_ and _message passing_ architectures, which support synchronous/asynchronous communication. The first operates based on the principle that a queue is used to process information, whereas the second typically operates on a publish/subscribe pattern where an intermediate broker facilitates the communication.
+* Procedural. _Remote_ and _local_ architectures to connect, pass, and retrieve software responses of asynchronous communications such as a call operation. Specifically, the first architecture calls a predetermined service of another computer in a network, while the second interacts solely with a local software component.
+* Object-oriented. Similar to procedural middleware, however, this type of middleware incorporates object-oriented programming design principles. Analytically, its software component encompasses object references, exceptions, and inheritance of properties via distributed object requests. It is typically used synchronously, because it needs to receive a response from a server object to address a client action. Importantly, this type of middleware can also support asynchronous communication via the use of (multi) threads and generally concurrent programming.
+____
+
+== link:[Hard to work with]
+
+[quote]
+____
+Overworking is an interesting vice because it’s socially acceptable and some view it as a necessary precondition to outsized success. The category of "`socially-acceptable professional vices`" is an interesting one because these vices will hamper your career progress in non-obvious ways, and this is indeed my segue to the actual topic I want to dig into: individual who have higher standards for those around them than their organization supports.
+
+It’s a truism that you always want to hire folks with very high standards, but I’ve seen a staggering number of folks fail in an organization primarily because they want to hold others to a higher standard than their organization’s management is willing to enforce.
+____
