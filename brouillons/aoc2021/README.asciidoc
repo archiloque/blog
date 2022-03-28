@@ -1,0 +1,465 @@
+= Advent of code 2021 in Python
+Julien Kirch
+v0.1, 2022-03-28
+:article_lang: en
+:article_image: win.png
+:article_description: Code, lots of it
+:ignore_files: 01/day_01_1.py, 01/day_01_2.py02/day_02_1.py, 02/day_02_2.py03/day_03_1.py, 03/day_03_2.py04/day_04_1.py, 04/day_04_2.py05/day_05_1.py, 05/day_05_2.py06/day_06_1.py, 06/day_06_2.py07/day_07_1.py, 07/day_07_2.py08/day_08_1.py, 08/day_08_2.py09/day_09_1.py, 09/day_09_2.py10/day_10_1.py, 10/day_10_2.py11/day_11_1.py, 11/day_11_2.py12/day_12_1.py, 12/day_12_2.py13/day_13_1.py, 13/day_13_2.py14/day_14_1.py, 14/day_14_2.py15/day_15_1.py, 15/day_15_2.py16/day_16_1.py, 16/day_16_2.py17/day_17_1.py, 17/day_17_2.py18/day_18_1.py, 18/day_18_2.py19/day_19_1.py, 19/day_19_2.py20/day_20_1.py, 20/day_20_2.py21/day_21_1.py, 21/day_21_2.py22/day_22_1.py, 22/day_22_2.py23/day_23_1.py, 23/day_23_2.py24/day_24_1.py, 24/day_24_2.py25/day_25_1.py, 25/day_25_2.py
+
+For a link:../aoc2020/[fourth year] I did some link:https://adventofcode.com[advent of code].
+
+== This year's advent of code
+
+Compared to link:../aoc2020/[last year], the problems was OKish but I didn't really have fun.
+Maybe I'm now a bit too used to some types of problems (map exploration, interpreter), and the fun of discovery is not here any more, even when learning a new programming language.
+
+Some exercices really fel tedious to me (but maybe it's because I failed to find a better solution).
+I even skipped exercices from the 24^th^ because I didn't have enough spoon to analyse the code to find the pattern that is probably here (so this day's code is only generating a somehow optimized Python code).
+
+== Python
+
+I wanted to learn some Python because I want to play with link:https://docs.blender.org/api/current/info_quickstart.html[Blender's Python API].
+As I'm experienced in Java and Ruby the Python syntax is not particulary alien to me, but I wanted some training before using it for a real project, to avoid dealing with too many unknown things at the same time.
+
+As several of my coworkers are Python developers I'll avoid to post publicly my opinion about Python 😬.
+
+Disclaimers:
+
+. The bellow code is the first code I've written in Python, so it's probably more an exemple of Python written by a Ruby dev who spent too much type coding in Java than an example of good Python code.
+. Code is provided as is, blablabla.
+
+== The code
+
+=== Day 1
+
+==== Part one
+
+[source,python]
+.01/day_01_1.py
+----
+include::01/day_01_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.01/day_01_2.py
+----
+include::01/day_01_2.py[]
+----
+
+=== Day 2
+
+==== Part one
+
+[source,python]
+.02/day_02_1.py
+----
+include::02/day_02_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.02/day_02_2.py
+----
+include::02/day_02_2.py[]
+----
+
+=== Day 3
+
+==== Part one
+
+[source,python]
+.03/day_03_1.py
+----
+include::03/day_03_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.03/day_03_2.py
+----
+include::03/day_03_2.py[]
+----
+
+=== Day 4
+
+==== Part one
+
+[source,python]
+.04/day_04_1.py
+----
+include::04/day_04_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.04/day_04_2.py
+----
+include::04/day_04_2.py[]
+----
+
+=== Day 5
+
+==== Part one
+
+[source,python]
+.05/day_05_1.py
+----
+include::05/day_05_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.05/day_05_2.py
+----
+include::05/day_05_2.py[]
+----
+
+=== Day 6
+
+==== Part one
+
+[source,python]
+.06/day_06_1.py
+----
+include::06/day_06_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.06/day_06_2.py
+----
+include::06/day_06_2.py[]
+----
+
+=== Day 7
+
+==== Part one
+
+[source,python]
+.07/day_07_1.py
+----
+include::07/day_07_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.07/day_07_2.py
+----
+include::07/day_07_2.py[]
+----
+
+=== Day 8
+
+==== Part one
+
+[source,python]
+.08/day_08_1.py
+----
+include::08/day_08_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.08/day_08_2.py
+----
+include::08/day_08_2.py[]
+----
+
+=== Day 9
+
+==== Part one
+
+[source,python]
+.09/day_09_1.py
+----
+include::09/day_09_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.09/day_09_2.py
+----
+include::09/day_09_2.py[]
+----
+
+=== Day 10
+
+==== Part one
+
+[source,python]
+.10/day_10_1.py
+----
+include::10/day_10_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.10/day_10_2.py
+----
+include::10/day_10_2.py[]
+----
+
+=== Day 11
+
+==== Part one
+
+[source,python]
+.11/day_11_1.py
+----
+include::11/day_11_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.11/day_11_2.py
+----
+include::11/day_11_2.py[]
+----
+
+=== Day 12
+
+==== Part one
+
+[source,python]
+.12/day_12_1.py
+----
+include::12/day_12_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.12/day_12_2.py
+----
+include::12/day_12_2.py[]
+----
+
+=== Day 13
+
+==== Part one
+
+[source,python]
+.13/day_13_1.py
+----
+include::13/day_13_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.13/day_13_2.py
+----
+include::13/day_13_2.py[]
+----
+
+=== Day 14
+
+==== Part one
+
+[source,python]
+.14/day_14_1.py
+----
+include::14/day_14_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.14/day_14_2.py
+----
+include::14/day_14_2.py[]
+----
+
+=== Day 15
+
+==== Part one
+
+[source,python]
+.15/day_15_1.py
+----
+include::15/day_15_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.15/day_15_2.py
+----
+include::15/day_15_2.py[]
+----
+
+=== Day 16
+
+==== Part one
+
+[source,python]
+.16/day_16_1.py
+----
+include::16/day_16_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.16/day_16_2.py
+----
+include::16/day_16_2.py[]
+----
+
+=== Day 17
+
+==== Part one
+
+[source,python]
+.17/day_17_1.py
+----
+include::17/day_17_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.17/day_17_2.py
+----
+include::17/day_17_2.py[]
+----
+
+=== Day 18
+
+==== Part one
+
+[source,python]
+.18/day_18_1.py
+----
+include::18/day_18_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.18/day_18_2.py
+----
+include::18/day_18_2.py[]
+----
+
+=== Day 19
+
+==== Part one
+
+[source,python]
+.19/day_19_1.py
+----
+include::19/day_19_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.19/day_19_2.py
+----
+include::19/day_19_2.py[]
+----
+
+=== Day 20
+
+==== Part one
+
+[source,python]
+.20/day_20_1.py
+----
+include::20/day_20_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.20/day_20_2.py
+----
+include::20/day_20_2.py[]
+----
+
+=== Day 21
+
+==== Part one
+
+[source,python]
+.21/day_21_1.py
+----
+include::21/day_21_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.21/day_21_2.py
+----
+include::21/day_21_2.py[]
+----
+
+=== Day 22
+
+==== Part one
+
+[source,python]
+.22/day_22_1.py
+----
+include::22/day_22_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.22/day_22_2.py
+----
+include::22/day_22_2.py[]
+----
+
+=== Day 23
+
+==== Part one
+
+[source,python]
+.23/day_23_1.py
+----
+include::23/day_23_1.py[]
+----
+
+==== Part two
+
+[source,python]
+.23/day_23_2.py
+----
+include::23/day_23_2.py[]
+----
+
+=== Day 24
+
+==== Part one
+
+[source,python]
+.24/day_24_1.py
+----
+include::24/day_24_1.py[]
+----
+
+=== Day 25
+
+==== Part one
+
+[source,python]
+.25/day_25_1.py
+----
+include::25/day_25_1.py[]
+----
