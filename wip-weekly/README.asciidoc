@@ -41,3 +41,25 @@ Overworking is an interesting vice because it’s socially acceptable and some v
 
 It’s a truism that you always want to hire folks with very high standards, but I’ve seen a staggering number of folks fail in an organization primarily because they want to hold others to a higher standard than their organization’s management is willing to enforce.
 ____
+
+
+== link:https://www.scattered-thoughts.net/writing/pain-we-forgot/[Pain we forgot]
+
+[quote]
+____
+Much of the pain in programming is taken for granted. After years of repetition it fades into the background and is forgotten. The first step in making programming easier is to be concious of what makes it hard. 
+____
+
+[quote]
+____
+A lot of the problems we will encounter seem unavoidable -- they are forced on us by outside constraints. Most of these constraints though are the product not of deliberate choices but of historical accident. We still program like it's 1960 because there are powerful path dependencies that incentivise pretending your space age computing machine is actually an 80 character tty. We are trapped in a local maximum.
+
+One might also argue that these tools are simple enough once you learn to use them. I would only point out that, emperically, that bar is too high. Despite the clear benefits, the vast majority of the world was chosen to remain illiterate. Even tools for which there is a clear need (eg version control) have largely failed to make a dent. Clearly there is a need for a less hostile programming environment.
+____
+
+[quote]
+____
+Even for experts, programming is an exploratory process. We experiment with libraries, run through examples and iteratively build up features. One of the most painful lessons beginners have to learn is just how often everyone is wrong about everything. Tightening the feedback loop between writing code and seeing the results reduces the damage caused by wrong assumptions, lightens the cognitive load of tracking what should be happening and helps build accurate mental models of the system. The latter is especially important for beginners who often suffer from miscomprehensions about even the basic semantics of the language. Unfortunately, the most you are likely get is automatically refreshing your browser. Maybe a REPL if you are lucky.
+
+Imagine a spreadsheet where every time you change something you must open a terminal, run the compiler and scan through the cell / value pairs in the printout to see the effects of your change. We wouldn't put up with UX that appalling in any other tool but somehow that is still the state of the art for programming tools.
+____
