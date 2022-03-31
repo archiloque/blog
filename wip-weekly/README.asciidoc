@@ -63,3 +63,56 @@ Even for experts, programming is an exploratory process. We experiment with libr
 
 Imagine a spreadsheet where every time you change something you must open a terminal, run the compiler and scan through the cell / value pairs in the printout to see the effects of your change. We wouldn't put up with UX that appalling in any other tool but somehow that is still the state of the art for programming tools.
 ____
+
+
+== link:https://desystemize.substack.com/p/desystemize-9[Desystemize #9: What do revolutionary new Sudoku techniques teach us about real-world problem solving?]
+
+[quote]
+____
+This is the hallmark of problems solved by ontological remodeling. You don’t want to say they’re tricky, exactly, because the new framework makes them feel pretty approachable. But without the new framework, they’re basically impossible. Trying to describe the difficulty of these problems is something of a trap, because so much of the difficulty depends on the description. Instead, you need to play around with new forms of expression and see which patterns are easy to describe with those forms.
+____
+
+
+== link:https://jhalabi.com/blog/carousels-no-one-likes-you[Carousels: no one likes you]
+
+[quote, attribution, cite title]
+____
+No one wants to see your f-ing carousel
+
+I’m serious. The only person who wants a carousel on your site is you. That’s it. It’s a self-serving vanity project so that you can showcase all of your babies at the same time without telling the world which one is your favorite.
+
+If you would like a succinct source telling you why carousels are awful, there is an entire website dedicated to link:https://shouldiuseacarousel.com/åwhy you shouldn’t use carousels].
+
+There have been numerous studies of the efficacy of carousels over the years. All of them concluded that carousels are terrible.
+____
+
+[quote]
+____
+No one interacts with carousels
+
+From the study, link:https://www.cheapwebdesign.co.uk/blog/how-effective-are-interactive-carousels-on-websites-in-2018-the-stats/[How effective are interactive carousels on websites in 2018 – The Stats], via Cheap Web Design, almost no one is clicking on the links inside carousels. This particular study showed that only 1% of users clicked on the feature and, of those users, an overwhelming majority - 84% - clicked on the first slide.
+
+So, pretty much everyone is ignoring your carousel and those few who noticed it only see the first slide anyway.
+____
+
+== link:https://www.joshwcomeau.com/css/understanding-layout-algorithms/[Understanding layout algorithms]
+
+[quote]
+____
+A few years ago, I had a _Eureka!_ moment with CSS.
+
+Up until that moment, I had been learning CSS by focusing on the properties and values we write, things like `z-index: 10`` or `justify-content: center`. I figured that if I understood broadly what each property did, I'd have a deep understanding of the language as a whole.
+
+The key realization I had is that CSS is _so much more_ than a collection of properties. It's a constellation of inter-connected layout algorithms. Each algorithm is a complex system with its own rules and secret mechanisms.
+
+It's not enough to learn what specific properties do. We need to learn how the layout algorithms work, and how they use the properties we provide to them.
+____
+
+[quote]
+____
+So, here's the point: If you were focusing exclusively on studying what specific CSS properties do, you'd never understand where this mysterious space is coming from. It isn't explained in the MDN pages for `display` or `line-height`.
+
+As we've learned in this post, "`inline magic space`" isn't really magic at all. It's caused by a rule within the Flow layout algorithm that inline elements should be affected by `line-height`. But it seemed magical to me, for many years, because I had this big hole in my mental model.
+
+There are a lot of layout algorithms in CSS, and they all have their own quirks and hidden mechanisms. When we focus on CSS properties, we're only seeing the tip of the iceberg. We never learn about really important concepts like stacking contexts or containing blocks or cascade origins!
+____
