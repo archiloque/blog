@@ -1,0 +1,2 @@
+asciidoctor -b docbook README.asciidoc                                                      
+pandoc -f docbook -o invisibles-networks-2022.pdf README.xml --pdf-engine=xelatex -V mainfont="Futura" -V geometry:margin=3cm  -V geometry=a4paper -V linestretch=1.2 -V metadata=lang:"en-US" --template "../../../eisvogel/eisvogel.tex" --listings -V titlepage=true -V titlepage-color="000000" -V titlepage-text-color="FFFFFF" -V titlepage-rule-height=0 -V disable-header-and-footer=true -V footnotes-pretty=true
