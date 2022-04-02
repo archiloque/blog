@@ -1,0 +1,117 @@
+html {
+    font-family: Didot, serif;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 140%;
+    color: rgb(212, 212, 212);
+    background-color: rgb(30, 30, 30);
+}
+
+@page {
+    background-color: rgb(30, 30, 30);
+}
+
+a {
+    color: rgb(156, 220, 254);
+}
+
+p {
+    margin: 1em 0;
+    text-align: justify;
+    hyphens: auto;
+}
+
+li p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+li {
+    margin-bottom: 0.3em;
+}
+
+.listingblock {
+    break-inside: avoid;
+}
+
+#header {
+    break-after: always;
+    text-align: center;
+}
+
+#toc {
+    break-before: always;
+    text-align: left;
+}
+
+#toc ul {
+    list-style: none;
+}
+
+#toc a {
+    text-decoration: none;
+    color: rgb(212, 212, 212);
+}
+
+#toc a::before {
+    content: target-counter(attr(href), page) ": ";
+    padding-right: 0.1cm;
+}
+
+#toc li {
+    margin-bottom: 0.5em;
+}
+
+#header h1 {
+    font-size: 60px;
+    line-height: 60px;
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 15%;
+}
+
+#header .details {
+    font-size: 24px;
+    line-height: 36px;
+    padding-top: 70%;
+}
+
+#revnumber {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Copperplate;
+}
+
+h2 {
+    break-before: always;
+    string-set: heading content();
+}
+
+#footer-text {
+    display: none;
+}
+
+@page {
+    padding-top: 1cm;
+
+    @top-left {
+        content: counter(page);
+        font-size: 10pt;
+        height: 1cm;
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    @top-right {
+        content: string(heading);
+        font-size: 10pt;
+        height: 1cm;
+        vertical-align: middle;
+        width: 100%;
+    }
+}
+
+@page :nth(1) { @top-left { content: ''; }}
+@page :nth(2) { @top-left { content: ''; }}
