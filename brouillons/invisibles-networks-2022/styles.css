@@ -3,12 +3,12 @@ html {
     font-weight: bold;
     font-size: 16px;
     line-height: 140%;
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(240, 240, 240);
     color: rgb(30, 30, 30);
 }
 
 @page {
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(240, 240, 240);
 }
 
 a {
@@ -53,8 +53,8 @@ li {
     color: rgb(30, 30, 30);
 }
 
-#toc a::before {
-    content: target-counter(attr(href), page) " — ";
+#toc a::after {
+    content: " — " target-counter(attr(href), page);
 }
 
 #toc li {
@@ -108,7 +108,7 @@ sup {
     }
 
     @top-right {
-        content: string(heading);
+        /* content: string(heading); */
         font-size: 10pt;
         height: 1cm;
         vertical-align: middle;
@@ -117,12 +117,6 @@ sup {
 }
 
 @page :nth(1) {
-    @top-left {
-        content: '';
-    }
-}
-
-@page :nth(2) {
     @top-left {
         content: '';
     }
