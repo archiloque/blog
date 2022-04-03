@@ -1,0 +1,128 @@
+= Links - 3^rd^ April 2022
+Julien Kirch
+v1.0, 2022-04-03
+:article_lang: en
+:figure-caption!:
+:article_description: UnreliableFS, middlewares, work standards,forgotten pain, ontological remodeling, c, layout algorithms, CSS layout algorithms, trust
+
+== link:https://github.com/ligurio/unreliablefs[UnreliableFS]
+
+[quote]
+____
+UnreliableFS is a FUSE-based fault injection filesystem that allows to change fault-injections in runtime using simple configuration file.
+
+Supported fault injections are:
+
+* `errinj_errno` - return error value and set random errno.
+* `errinj_kill_caller` - send SIGKILL to a process that invoked file operation.
+* `errinj_noop` - replace file operation with no operation (similar to link:https://github.com/stewartsmith/libeatmydata[libeatmydata], but applicable to any file operation).
+* `errinj_slowdown` - slowdown invoked file operation.
+____
+
+== link:https://queue.acm.org/detail.cfm?id=3526211[Middleware 101]
+
+[quote]
+____
+In recent literature multiple definitions have been used, depending on the field of research. On the one hand, both a software and a DevOps engineer would describe middleware as the layer that "`glues`" together software by different system components; on the other hand, a network engineer would state that middleware is the fault-tolerant and error-checking integration of network connections. In other words, they would define middleware as communication management software. A data engineer, meanwhile, would view middleware as the technology responsible for coordinating, triggering, and orchestrating actions to process and publish data from various sources, harnessing big data and the IoT (Internet of Things). Given that there is no uniform definition of middleware, it is best to adopt a field-specific approach.
+
+The main categories of middleware are as follows:
+
+* Transactional. Processing of multiple synchronous/asynchronous transactions, serving as a cluster of associated requests from distributed systems such as bank transactions or credit card payments.
+* Message-oriented. _Message queue_ and _message passing_ architectures, which support synchronous/asynchronous communication. The first operates based on the principle that a queue is used to process information, whereas the second typically operates on a publish/subscribe pattern where an intermediate broker facilitates the communication.
+* Procedural. _Remote_ and _local_ architectures to connect, pass, and retrieve software responses of asynchronous communications such as a call operation. Specifically, the first architecture calls a predetermined service of another computer in a network, while the second interacts solely with a local software component.
+* Object-oriented. Similar to procedural middleware, however, this type of middleware incorporates object-oriented programming design principles. Analytically, its software component encompasses object references, exceptions, and inheritance of properties via distributed object requests. It is typically used synchronously, because it needs to receive a response from a server object to address a client action. Importantly, this type of middleware can also support asynchronous communication via the use of (multi) threads and generally concurrent programming.
+____
+
+== link:https://lethain.com/hard-to-work-with/[Hard to work with]
+
+[quote]
+____
+Overworking is an interesting vice because it's socially acceptable and some view it as a necessary precondition to outsized success. The category of "`socially-acceptable professional vices`" is an interesting one because these vices will hamper your career progress in non-obvious ways, and this is indeed my segue to the actual topic I want to dig into: individual who have higher standards for those around them than their organization supports.
+
+It's a truism that you always want to hire folks with very high standards, but I've seen a staggering number of folks fail in an organization primarily because they want to hold others to a higher standard than their organization's management is willing to enforce.
+____
+
+
+== link:https://www.scattered-thoughts.net/writing/pain-we-forgot/[Pain we forgot]
+
+[quote]
+____
+Much of the pain in programming is taken for granted. After years of repetition it fades into the background and is forgotten. The first step in making programming easier is to be concious of what makes it hard. 
+____
+
+[quote]
+____
+A lot of the problems we will encounter seem unavoidable -- they are forced on us by outside constraints. Most of these constraints though are the product not of deliberate choices but of historical accident. We still program like it's 1960 because there are powerful path dependencies that incentivise pretending your space age computing machine is actually an 80 character tty. We are trapped in a local maximum.
+
+One might also argue that these tools are simple enough once you learn to use them. I would only point out that, emperically, that bar is too high. Despite the clear benefits, the vast majority of the world was chosen to remain illiterate. Even tools for which there is a clear need (eg version control) have largely failed to make a dent. Clearly there is a need for a less hostile programming environment.
+____
+
+[quote]
+____
+Even for experts, programming is an exploratory process. We experiment with libraries, run through examples and iteratively build up features. One of the most painful lessons beginners have to learn is just how often everyone is wrong about everything. Tightening the feedback loop between writing code and seeing the results reduces the damage caused by wrong assumptions, lightens the cognitive load of tracking what should be happening and helps build accurate mental models of the system. The latter is especially important for beginners who often suffer from miscomprehensions about even the basic semantics of the language. Unfortunately, the most you are likely get is automatically refreshing your browser. Maybe a REPL if you are lucky.
+
+Imagine a spreadsheet where every time you change something you must open a terminal, run the compiler and scan through the cell / value pairs in the printout to see the effects of your change. We wouldn't put up with UX that appalling in any other tool but somehow that is still the state of the art for programming tools.
+____
+
+
+== link:https://desystemize.substack.com/p/desystemize-9[Desystemize #9: What do revolutionary new Sudoku techniques teach us about real-world problem solving?]
+
+[quote]
+____
+This is the hallmark of problems solved by ontological remodeling. You don't want to say they're tricky, exactly, because the new framework makes them feel pretty approachable. But without the new framework, they're basically impossible. Trying to describe the difficulty of these problems is something of a trap, because so much of the difficulty depends on the description. Instead, you need to play around with new forms of expression and see which patterns are easy to describe with those forms.
+____
+
+
+== link:https://jhalabi.com/blog/carousels-no-one-likes-you[Carousels: no one likes you]
+
+[quote]
+____
+No one wants to see your f-ing carousel
+
+I'm serious. The only person who wants a carousel on your site is you. That's it. It's a self-serving vanity project so that you can showcase all of your babies at the same time without telling the world which one is your favorite.
+
+If you would like a succinct source telling you why carousels are awful, there is an entire website dedicated to link:https://shouldiuseacarousel.com/[why] you shouldn't use carousels].
+
+There have been numerous studies of the efficacy of carousels over the years. All of them concluded that carousels are terrible.
+____
+
+[quote]
+____
+No one interacts with carousels
+
+From the study, link:https://www.cheapwebdesign.co.uk/blog/how-effective-are-interactive-carousels-on-websites-in-2018-the-stats/[How effective are interactive carousels on websites in 2018 – The Stats], via Cheap Web Design, almost no one is clicking on the links inside carousels. This particular study showed that only 1% of users clicked on the feature and, of those users, an overwhelming majority - 84% - clicked on the first slide.
+
+So, pretty much everyone is ignoring your carousel and those few who noticed it only see the first slide anyway.
+____
+
+== link:https://www.joshwcomeau.com/css/understanding-layout-algorithms/[Understanding layout algorithms]
+
+[quote]
+____
+A few years ago, I had a _Eureka!_ moment with CSS.
+
+Up until that moment, I had been learning CSS by focusing on the properties and values we write, things like `z-index: 10`` or `justify-content: center`. I figured that if I understood broadly what each property did, I'd have a deep understanding of the language as a whole.
+
+The key realization I had is that CSS is _so much more_ than a collection of properties. It's a constellation of inter-connected layout algorithms. Each algorithm is a complex system with its own rules and secret mechanisms.
+
+It's not enough to learn what specific properties do. We need to learn how the layout algorithms work, and how they use the properties we provide to them.
+____
+
+[quote]
+____
+So, here's the point: If you were focusing exclusively on studying what specific CSS properties do, you'd never understand where this mysterious space is coming from. It isn't explained in the MDN pages for `display` or `line-height`.
+
+As we've learned in this post, "`inline magic space`" isn't really magic at all. It's caused by a rule within the Flow layout algorithm that inline elements should be affected by `line-height`. But it seemed magical to me, for many years, because I had this big hole in my mental model.
+
+There are a lot of layout algorithms in CSS, and they all have their own quirks and hidden mechanisms. When we focus on CSS properties, we're only seeing the tip of the iceberg. We never learn about really important concepts like stacking contexts or containing blocks or cascade origins!
+____
+
+
+== link:https://lethain.com/inspection/[Inspection and the limits of trust]
+
+[quote]
+____
+Trust on its own isn't much of a management technique. Trust cannot distinguish good errors (good process, good decision, bad outcome) from bad errors (bad process, bad decision, bad outcome), nor can it detect bad successes (bad process, bad decision, good outcome). If you rely too heavily on trust, randomness will have an outsized influence on who you consider to be an effective leader.
+
+However, trust is a powerful component of effective management. In particular, it's the foundation of an approach that I call inspected trust. When someone brings a problem or a concern to you, trust them that there is a problem, but give yourself space to independently verify their interpretation of the problem.
+____
