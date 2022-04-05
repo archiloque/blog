@@ -54,7 +54,7 @@ li {
 }
 
 #toc a::after {
-    content: " — " target-counter(attr(href), page);
+    /* content: " — " target-counter(attr(href), page); */
 }
 
 #toc li {
