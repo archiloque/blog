@@ -5,3 +5,39 @@ v1.0, 2022-01-01
 :figure-caption!:
 :article_description: 
 
+== link:https://gankra.github.io/blah/tower-of-weakenings/[The tower of weakenings: memory models for everyone]
+
+[quote]
+____
+Just to have it upfront, I will start with what The Tower Of Weakenings _is_, and then go back to the motivation and ideas behind it. The Tower Of Weakenings is simply the idea that having One True Memory Model is a frustrating and futile endeavour that leaves no one satisfied. Instead, we should have a _tower_ of Memory Models, with the ones at the top being "`what users should think about and try to write their code against`". As you descend the tower, the memory models become increasingly complex or vague but _critically_ always more permissive than the ones above it. At the bottom of the tower is "`whatever the compiler actually does`" (and arguably "`whatever the hardware actually does`" in the basement, if you care about that).
+
+Here is a sketch of what the tower looks like under my proposal:
+
+. The "`Clean`" Memory Model: a painfully strict and simple model that you can teach and check.
+. The "`Real`" Memory Model: similar to the "`Clean`" one, but messier to allow for Useful Crimes.
+. The Compiler's Semantics: whatever random primitives compilers expose, and optimizations they do.
+
+In some sense the bottom of the tower is the one that "`matters`" because that's the thing that (mis)compiles your code, but it's also a shifting target, and link:https://gankra.github.io/blah/initialize-me-maybe/[trying to expose its semantics leads to sadness]. Unfortunately, this is also basically true of "`real`" memory models. link:http://www.open-std.org/jtc1/sc22/wg14/www/docs/n2676.pdf[We're still trying to figure out what on earth C's memory model is], and every language infamously defers to "`the C11 memory model`" on hard questions. So as an educator, I eventually have to bottom out on sending you a shrug-emoji if you keep asking for what the real rules are. No one really knows!
+____
+
+[quote]
+____
+Ok yes get your jokes out about solving all problems with another layer of abstraction, but this is _painfully_ needed. And really, what I'm doing here isn't _adding_ a layer but cleaving a bloated and messy layer into two much more manageable parts. No offense to all the people doing great work on memory models, but as far as I'm concerned they've been given an impossible task. There are simply too many competing concerns and stakeholders to produce a _truly_ satisfying design for all of them. Here are some of the many stakeholders:
+
+* Millions of lines of ancient code that are doing whatever because we can't explain the rules
+* Random programmers who barely read the docs and are just doing The Idiomatic Thing
+* Hardcore performance junkies who insist the fucked up thing they made should be legal
+* Hardcore safety junkies who insist they should be able to validate the correctness of their code
+* Compiler developers who want to know what optimizations they can or can't do
+* Library developers who want to know what interfaces/idioms to design around
+* Tooling developers who want to build sanitizers that reliably detect UB when it happens
+* Teachers who want to help everyone else understand the PhD thesis on their desk.
+* Memory model people who just want this all to be coherent and formalized and validated
+
+And all of these people are working _together_ so they all agree that whatever the other person claims they need to do their job should definitely be allowed, because they want to all mutually benefit. And definitely make sure not to break all that code or even make it run slower! kthxbai!
+____
+
+[quote]
+____
+Critically, the fact this lie is part of The Tower Of Weakenings means that if you follow its rules, then whatever the "`real`" model is _doesn't matter anymore_. We will absolutely guarantee that your code works, because you followed the really strict and simple rules that _everyone_ can agree _obviously_ have to work. Just as you're not supposed to worry about the compiler backend you're using, you shouldn't have to worry about the fiddly details of what the current working memory model is.
+____
