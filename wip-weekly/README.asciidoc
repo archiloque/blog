@@ -70,3 +70,98 @@ ____
 ____
 Anti-management, maybe, but not anti-corporate, not really. It’s tempting to see the archetypal Agile developer as a revival of the long-haired countercultural weirdo who lurked around the punch card machines of the late 1960s. But the two personas differ in important respects. The eccentrics of computing’s early years wanted to program for the sheer thrill of putting this new technology to work. The coder of Agile’s imagination is committed, above all, to _the project_. He hates administrative intrusion because it gets in the way of his greatest aspiration, which is to do his job at the highest level of professional performance. Like the developers in Aaron Sorkin’s _The Social Network_, he wants most of all to be in "`the zone`": headphones on, distractions eliminated, in a state of pure communion with his labor.
 ____
+
+== link:https://ferd.ca/errors-are-constructed-not-discovered.html[Errors are constructed, not discovered]
+
+[quote]
+____
+link:https://en.wikipedia.org/wiki/Hindsight_bias[Hindsight bias] is
+something somewhat similar to
+link:https://en.wikipedia.org/wiki/Outcome_bias[outcome bias], which
+essentially says that because we know there was a failure, every
+decision we look at that has taken place before the incident will seem
+to us like it should obviously have appeared as risky and wrong. That's
+because we know the result, it affects our judgment. But when people
+were going down that path and deciding what to do, they were trying to
+do a good job; they were making the best calls they could to the extent
+of their abilities and the information available at the time.
+
+We can't really avoid hindsight bias, but we can be aware of it. One tip there is to look at what was available at the time, and consider the signals that were available to people. If they made a decision that looks weird, then look for what made it look better than the alternatives back then.
+____
+
+[quote]
+____
+Another one also came from a previous job where an engineer kept
+accidentally deleting production databases and triggering a whole
+disaster recovery response. They were initially trying to delete a
+staging database that was dynamically generated for test cases, but kept
+fat-fingering the removal of production instances in the AWS console.
+Other engineers were getting mad and felt that person was being
+incompetent, and were planning to remove all of their AWS console
+permissions because there also existed an admin tool that did the same
+thing safely by segmenting environments.
+
+I ended up asking the engineer if there was anything that made them
+choose the AWS console more than the admin tool given the difference in
+safety, and they said, quite simply, that the AWS console has an
+autocomplete and they never remembered the exact table name, so it was
+just much faster to delete that table often there than the admin. This
+was an interesting one because instead of blaming the engineer for being
+incompetent, it opened the door to questioning the gap in tooling rather
+than adding more blockers and procedures.
+____
+
+[quote]
+____
+I reached out to the engineers in question and asked about what made
+them feel like they had enough tests. I said that we often write tests
+up until the point we feel they're not adding much anymore, and that I
+was wondering what they were looking at, what made them feel like they
+had reached the points where they had enough tests. They just told me
+directly that they knew they didn't have enough tests. In fact, they
+knew that the code was buggy. But they felt in general that it was safer
+to be on-time with a broken project than late with a working one. They
+were afraid that being late would put them in trouble and have someone
+yell at them for not doing a good job.
+
+And so that revealed a much larger pattern within the organization and
+its culture. When I went up to upper management, they absolutely
+believed that engineers were empowered and should feel safe pressing a
+big red button that stopped feature work if they thought their code
+wasn't ready. The engineers on that team felt that while this is what
+they were being told, in practice they'd still get in trouble.
+
+There's no amount of test training that would fix this sort of issue.
+The engineers knew they didn't have enough tests and they were making
+that tradeoff willingly.
+____
+
+== link:https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction[The wrong abstraction]
+
+[quote]
+____
+I've seen problems where folks were trying valiantly to move forward
+with the wrong abstraction, but having very little success. Adding new
+features was incredibly hard, and each success further complicated the
+code, which made adding the next feature even harder. When they altered
+their point of view from "`I must preserve our investment in this code`"
+to "`This code made sense for a while, but perhaps we've learned all we
+can from it`", and gave themselves permission to re-think their
+abstractions in light of current requirements, everything got easier.
+Once they inlined the code, the path forward became obvious, and adding
+new features become faster and easier.
+
+The moral of this story? Don't get trapped by the sunk cost fallacy. If
+you find yourself passing parameters and adding conditional paths
+through shared code, the abstraction is incorrect. It may have been
+right to begin with, but that day has passed. Once an abstraction is
+proved wrong the best strategy is to re-introduce duplication and let it
+show you what's right. Although it occasionally makes sense to
+accumulate a few conditionals to gain insight into what's going on,
+you'll suffer less pain if you abandon the wrong abstraction sooner
+rather than later.
+
+When the abstraction is wrong, the fastest way forward is back. This is
+not retreat, it's advance in a better direction. Do it. You'll improve
+your own life, and the lives of all who follow.
+____
