@@ -26,7 +26,7 @@ Deux éléments mis en lumière par le texte et qui m'ont particulièrement parl
 
 Il est très difficile de maîtriser toutes les adhérences entre un composant qui n'a pas été conçu pour ça&#8201;—{nbsp}comme c'est le cas de l'essentiel des briques logicielles Linux{nbsp}—&#8201;et l'environnement où il a été construit.
 
-Cela peut porter par exemple par des informations intégrées dans le composant (des chemins de fichiers, variables d'environnements …) ou des dépendances mal identifiées à des bibliothèques installées sur les systèmes servant à la construction mais pas celles qui serviront au déploiement.
+Cela peut porter par exemple par des informations intégrées dans le composant (des chemins de fichiers, variables d'environnements…) ou des dépendances mal identifiées à des bibliothèques installées sur les systèmes servant à la construction mais pas celles qui serviront au déploiement.
 
 Toutes ces inconnues augmentent le risques ou la complexité du déploiement, en plus de link:https://reproducible-builds.org[rendre certains audits de sécurité plus difficiles].
 

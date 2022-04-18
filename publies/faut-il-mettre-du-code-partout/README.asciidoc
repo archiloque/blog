@@ -53,7 +53,7 @@ D'un autre côté cela peut bloquer l'usage de ces outils dans des organisations
 Dans mon expérience c'est l'accumulation qui fait vraiment mal{nbsp}: un langage mal maîtrisé, pas de tests automatisé et une recette minimaliste et vous vous retrouvez avec du code que personne ne veut toucher.
 
 La dernière limite est l'impact sur l'outil en cas de problème{nbsp}: par exemple une base de donnée est en général réputée fiable et on sait qu'on peut compter dessus, en cas de problème au pire elle ralentira.
-Une base de données avec du code cela signifie que des requêtes peuvent planter, qu'on peut potentiellement avoir des fuite de mémoire … bref toutes les caractéristique d'une brique applicative. Est ce que pour répondre plus rapidement à certaines requêtes, on est prêt à potentiellement planter le proxy http et ne plus répondre à rien{nbsp}?
+Une base de données avec du code cela signifie que des requêtes peuvent planter, qu'on peut potentiellement avoir des fuite de mémoire… bref toutes les caractéristique d'une brique applicative. Est ce que pour répondre plus rapidement à certaines requêtes, on est prêt à potentiellement planter le proxy http et ne plus répondre à rien{nbsp}?
 
 == Et donc{nbsp}?
 

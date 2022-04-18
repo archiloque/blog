@@ -104,7 +104,7 @@ Et au final, serai-je en mesure d'exposer le résultat sous forme d'une frontiè
 Par exemple : bâtir un système synchrone sur un système asynchrone.
 L'approche naïve est simple à mettre en œuvre : simuler un appel synchrone en appelant régulièrement le système asynchrone jusqu'à avoir une réponse.
 Mais comment faire pour pouvoir interrompre le traitement en cours de route, ce qu'on s'attend à pouvoir faire dans le cas d'un « vrai » système synchrone ?
-Faut-il dans ce cas demander une annulation ? Mais que se passe-t-il si le traitement s'est terminé pendant ce temps ? …
+Faut-il dans ce cas demander une annulation ? Mais que se passe-t-il si le traitement s'est terminé pendant ce temps{nbsp}? …
 
 On atteint alors la limite de la solution naïve.
 
