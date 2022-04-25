@@ -12,32 +12,33 @@ Pour obtenir un système performant, il faut maîtriser cette complexité.
 
 Pour acquérir cette connaissance, Richard L. Sites propose de{nbsp}:
 
-* Décrire le fonctionnement général des quatre composants d'un système ayant la plus forte influence sur la performance (processeur, mémoire, disque, et réseau),
-* Pour chacun d'eux détailler les métriques qui permettent de mesurer son comportement et la manière de les obtenir,
-* Expliquer comment évaluer l'ordre de grandeur de la performance attendue d'un système,
-* Montrer comment se servir des différentes métriques pour identifier les sources d'écarts entre performance attendue et performance constatée dans des cas de plus en plus complexes, d'abord pour chaque composant isolément puis ensemble.
+* Décrire le fonctionnement général des quatre composants d'un système ayant la plus forte influence sur la performance (processeur, mémoire, disque et réseau),
+* Pour chacun de ces composants détailler les métriques qui permettent de mesurer son comportement et la manière de les obtenir,
+* Expliquer comment évaluer l'ordre de grandeur de la performance attendue d'un système pour pouvoir aiguiller les investigations en cas de lenteur,
+* Montrer comment se servir des différentes métriques pour identifier les sources d'écarts entre performance attendue et performance constatée, en allant de cas très simple jusqu'à des des situations plus complexes complexes, d'abord pour chaque composant isolément puis en les combinants.
 
-L'auteur propose ainsi une méthode à appliquer et fournit les outils pour être en mesure de le faire.
+L'auteur propose ainsi une méthode à suivre et fournit les outils pour être en mesure de l'appliquer.
 
 Une des hantise de l'auteur est de perdre du temps en analysant un système en fonction de la manière dont on pense qu'il fonctionne, plutôt que de mesurer et d'observer la manière dont il fonctionne réellement.
 
-Avec plusieurs dizaines d'années d'expériences sur le sujet, il sait très bien mettre les choses en perspectives ou trouver des exemples parlant.
+Avec plusieurs dizaines d'années d'expériences sur le sujet, il sait très bien mettre les choses en perspectives et trouver des exemples parlant, le tout sans trop se mettre en avant.
 
 Le livre ne descend pas trop dans les détail de tel ou tel processeur ou disque dur, mais permet de comprendre le fonctionnement général des composants modernes.
 Ainsi pour les processeurs, l'auteur explique les différents types de cache mais pas la performance individuel de chaque instruction.
 
 Dans mon travail, je suis peu confronté à des problèmes requérant ce niveau de connaissance sur ces composants de bas niveau.
 
-Par contre, les deux composantes du livre m'ont semblé utiles{nbsp}:
+Par contre, les deux constituants du livre m'ont semblé utiles{nbsp}:
 
 * la méthode proposée par l'auteur s'adapte facilement à d'autres sujets de performance,
 * la description générale des composants me permet de mieux comprendre la conceptions d'outils de plus haut niveau auxquels j'ai à faire et donc de mieux les utiliser.
 
-Je me suis donc permis de survoler certaines des parties les plus spécifiques, ce qui ne nuit pas à la compréhension globale.
+Je me suis donc permis de survoler certaines des parties les plus spécifiques, ce qui n'interfère pas avec la compréhension globale.
 
-Pour des personnes ayant peu d'expérience avec les sujets de performance ou de parallélisme et voulant s'y frotter, je pense que le livre fait une bonne introduction au sujet, expliquant comment fonctionnent les verrous, comment plusieurs composants s'exécutant en parallèle peuvent se gêner…
+Pour des personnes ayant peu d'expérience avec les sujets de performance ou de parallélisme et voulant s'y frotter je pense que le livre fait une bonne introduction au sujet, expliquant comment fonctionnent les verrous, comment plusieurs composants s'exécutant en parallèle peuvent se gêner…
+Attention cependant à ne pas de perdre de vue les périmètres où ces sujets sont importants{nbsp}: on peut vite se prendre au jeu et passer du temps à se préoccuper de questions de performances dans des cas où elles ne sont peu importantes.
 
-Un avertissement{nbsp}: pour visualiser les comportements, l'auteur utilise de nombreux graphiques, générés par un outil décrit dans le livre.
+Un avertissement{nbsp}: pour visualiser les comportements décris, l'auteur utilise de nombreux graphiques, générés par un outil décrit dans le livre.
 
 Malheureusement, sur un appareil de petite taille, les graphiques sont parfois difficiles à déchiffrer, voir quasiment illisibles.
 
