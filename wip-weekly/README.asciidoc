@@ -47,14 +47,14 @@ ____
 
 [quote]
 ____
-I have been a big fan of the link:https://www.brandons.me/blog/libraries-not-frameworks[write libraries, not frameworks] argument for a while now. Lately, I’ve come to ponder that there might be a fruitful expansion to this argument, that we should start to value principles over patterns, patterns over libraries, and libraries over frameworks.
+I have been a big fan of the link:https://www.brandons.me/blog/libraries-not-frameworks[write libraries, not frameworks] argument for a while now. Lately, I've come to ponder that there might be a fruitful expansion to this argument, that we should start to value principles over patterns, patterns over libraries, and libraries over frameworks.
 
-Let’s clarify some terminology:
+Let's clarify some terminology:
 
-* _Framework_: This is (usually) someone else’s code that calls your code. In order for this to work your code will need to conform to constraints set down by the framework. These constraints are often firm boundaries that’s hard to code around. On the flipside by coding within the framework’s conventions and constraints you tend to get a lot of useful functionality out of the box making coding quicker.
-* _Library_: This is (usually) someone else’s code that _you call_ from your code. A library tends to be some code that imposes fewer constraints on your code as compared to frameworks. By using one or more libraries you’re able to reuse someone else’s code to solve your problems. Libraries are easier to combine and interchange, while putting frameworks on top of frameworks can lead to a bad time.
+* _Framework_: This is (usually) someone else's code that calls your code. In order for this to work your code will need to conform to constraints set down by the framework. These constraints are often firm boundaries that's hard to code around. On the flipside by coding within the framework's conventions and constraints you tend to get a lot of useful functionality out of the box making coding quicker.
+* _Library_: This is (usually) someone else's code that _you call_ from your code. A library tends to be some code that imposes fewer constraints on your code as compared to frameworks. By using one or more libraries you're able to reuse someone else's code to solve your problems. Libraries are easier to combine and interchange, while putting frameworks on top of frameworks can lead to a bad time.
 * _Pattern_: This is a descriptive, reusable _approach_ to writing your code (see: link:https://en.wikipedia.org/wiki/Software_design_pattern[software design pattern]). Patterns range in their vaguenes, applicability and prescriptiveness. Examples of programming patterns include link:https://www.itamarweiss.com/personal/2018/02/28/return-early-pattern.html[early-return pattern], link:https://en.wikipedia.org/wiki/Builder_pattern[builder-pattern], link:https://en.wikipedia.org/wiki/Actor_model[actor model], link:https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller[model-view-controller], link:https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/[onion architecture], link:https://en.wikipedia.org/wiki/Microservices[microservices], link:https://m.signalvnoise.com/the-majestic-monolith/[majestic monolith], link:https://en.wikipedia.org/wiki/Monorepo[monorepos], and link:https://en.wikipedia.org/wiki/React_(JavaScript_library)#Unidirectional_data_flow[flux architecture]. These are just some patterns that I can think off from the top of my head, but there are many books that cover programming patterns.
-* _Principle_: This is some general guidance or philosophy expressed as rules (like a rule of thumb) that helps you write good code. Although programming is a very young field — for instance compare this to the field of carpentry who have been building houses for thousands of years — developers have managed to distill some useful principles to aid themselves in their work. Examples of principles include link:https://simple.wikipedia.org/wiki/SOLID_(object-oriented_design)[SOLID principles], link:https://en.wikipedia.org/wiki/Don%27t_repeat_yourself[Don’t repeat yourself (DRY)], link:https://en.wikipedia.org/wiki/Don%27t_repeat_yourself[You Aren’t Gonna Need It (YAGNI)], link:https://agilemanifesto.org/[Agile manifesto], link:https://en.wikipedia.org/wiki/Law_of_Demeter[Law of Demeter], link:https://www.hyrumslaw.com/[Hyrum’s law]. There are many more to be found out there, and as I write this I just discovered link:http://principles-wiki.net[this site that collects programming principles], nice!
+* _Principle_: This is some general guidance or philosophy expressed as rules (like a rule of thumb) that helps you write good code. Although programming is a very young field — for instance compare this to the field of carpentry who have been building houses for thousands of years — developers have managed to distill some useful principles to aid themselves in their work. Examples of principles include link:https://simple.wikipedia.org/wiki/SOLID_(object-oriented_design)[SOLID principles], link:https://en.wikipedia.org/wiki/Don%27t_repeat_yourself[Don't repeat yourself (DRY)], link:https://en.wikipedia.org/wiki/Don%27t_repeat_yourself[You Aren't Gonna Need It (YAGNI)], link:https://agilemanifesto.org/[Agile manifesto], link:https://en.wikipedia.org/wiki/Law_of_Demeter[Law of Demeter], link:https://www.hyrumslaw.com/[Hyrum's law]. There are many more to be found out there, and as I write this I just discovered link:http://principles-wiki.net[this site that collects programming principles], nice!
 ____
 
 == link:https://logicmag.io/clouds/very-like-a-whale/[Very like a whale]
@@ -68,7 +68,7 @@ ____
 
 [quote]
 ____
-Anti-management, maybe, but not anti-corporate, not really. It’s tempting to see the archetypal Agile developer as a revival of the long-haired countercultural weirdo who lurked around the punch card machines of the late 1960s. But the two personas differ in important respects. The eccentrics of computing’s early years wanted to program for the sheer thrill of putting this new technology to work. The coder of Agile’s imagination is committed, above all, to _the project_. He hates administrative intrusion because it gets in the way of his greatest aspiration, which is to do his job at the highest level of professional performance. Like the developers in Aaron Sorkin’s _The Social Network_, he wants most of all to be in "`the zone`": headphones on, distractions eliminated, in a state of pure communion with his labor.
+Anti-management, maybe, but not anti-corporate, not really. It's tempting to see the archetypal Agile developer as a revival of the long-haired countercultural weirdo who lurked around the punch card machines of the late 1960s. But the two personas differ in important respects. The eccentrics of computing's early years wanted to program for the sheer thrill of putting this new technology to work. The coder of Agile's imagination is committed, above all, to _the project_. He hates administrative intrusion because it gets in the way of his greatest aspiration, which is to do his job at the highest level of professional performance. Like the developers in Aaron Sorkin's _The Social Network_, he wants most of all to be in "`the zone`": headphones on, distractions eliminated, in a state of pure communion with his labor.
 ____
 
 == link:https://ferd.ca/errors-are-constructed-not-discovered.html[Errors are constructed, not discovered]
@@ -164,4 +164,75 @@ rather than later.
 When the abstraction is wrong, the fastest way forward is back. This is
 not retreat, it's advance in a better direction. Do it. You'll improve
 your own life, and the lives of all who follow.
+____
+
+== link:https://pganalyze.com/blog/how-postgres-chooses-index[How Postgres chooses which index to use for a query]
+
+[quote]
+____
+As you can see a lot revolves around determining how many index tuples
+will be matched by the scan -- as that's the main expensive portion of
+querying a B-tree index.
+
+The first step is determining the boundaries of the index scan, as it
+relates to the data stored in the index. In particular this is relevant
+for multi-column B-tree indexes, where only a subset of the columns
+might match the query.
+
+You may have heard before about the best practice of ordering B-tree
+columns so the columns that are queried by an equality comparison ("`=`"
+operator) are put first, followed by one optional inequality comparison
+("`<>`" operator), followed by any other columns. This recommendation is
+based on the physical structure of the B-tree index, and the cost model
+also reflects this constraint.
+
+Put differently: The more specific you are with matching equality
+comparisons, the less parts of the index have to be scanned. This is
+represented here by the calculation of "`btreeSelectivity`". If this
+number is small, the cost of the index scan will be less, as determined
+by "`genericcostestimate`" based on the estimated number of index tuples
+being scanned.
+
+We could go on and on about this, as there are many other factors
+involved. But the key is thi
+
+For creating the ideal B-tree index, you would:
+
+* Focus on indexing columns used in equality comparisons
+* Index the columns with the best selectivity (i.e. being most
+specific), so that only a small portion of the index has to be scanned
+* Involve a small number of columns (possibly only one), to keep the
+index size small -- and thus reduce the total number of pages in the
+index
+
+If you follow these steps, you will create a B-tree index that has a low
+cost, and that Postgres should choose.
+____
+
+
+== link:https://noidea.dog/glue[Being glue]
+
+[quote]
+____
+Your job title says "`software engineer`", but you seem to spend most of
+your time in meetings. You'd like to have time to code, but nobody else
+is onboarding the junior engineers, updating the roadmap, talking to the
+users, noticing the things that got dropped, asking questions on design
+documents, and making sure that everyone's going roughly in the same
+direction. If you stop doing those things, the team won't be as
+successful. But now someone's suggesting that you might be happier in a
+less technical role. If this describes you, congratulations: you're the
+glue. If it's not, have you thought about who is filling this role on
+your team?
+
+Every senior person in an organisation should be aware of the less
+glamorous -- and often less-promotable -- work that needs to happen to
+make a team successful. Managed deliberately, glue work demonstrates and
+builds strong technical leadership skills. Left unconscious, it can be
+career limiting. It can push people into less technical roles and even
+out of the industry.
+
+Let's talk about how to allocate glue work deliberately, frame it
+usefully and make sure that everyone is choosing a career path they
+actually want to be on.
 ____
