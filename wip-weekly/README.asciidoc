@@ -268,3 +268,86 @@ picking up of small things does not make your team more effective --
 noticing the patterns and improving the processes, or the projects
 themselves does that.
 ____
+
+== link:https://www.nngroup.com/articles/best-font-for-online-reading/[Best font for online reading: no single answer]
+
+[quote]
+____
+A second interesting age-related finding from the new study is that
+*different fonts performed differently for young and old readers*. The
+authors set their dividing line between young and old at 35 years, which
+is a lower number than I usually employ, but possibly quite realistic
+given the age-related performance deterioration they measured.
+
+3 fonts were actually better for older users than for younger users:
+Garamond, Montserrat, and Poynter Gothic. The remaining 13 fonts were
+better for younger users than for older users, which is to be expected,
+given that younger users generally performed better in the study.
+
+The takeaway is that, if your designers are younger than 35 years but
+many of your users are older than 35, then you can't expect that the
+fonts that are the best for the designers will also be best for the
+users.
+
+Also, the differences in reading speed between the different fonts
+weren't very big for the young users. Sure, some fonts were better, but
+they weren't _much_ better. On the other hand, there were dramatic
+differences between the fastest font for older users (Garamond) and
+their slowest font (Open Sans). In other words**, picking the wrong font
+penalizes older users more than young ones**. The same takeaway applies:
+if the designers are young, they may not experience much reading-speed
+differences between different fonts, leading them to make design
+decisions based on mainly aesthetic criteria and assuming legibility to
+be less important. But those fonts that seem pretty much equally legible
+to young people can have vastly different legibility for older people.
+(And remember that "`old`" was defined as 35 years or above in this
+study.)
+____
+
+== link:https://www.percona.com/blog/working-with-large-postgresql-databases/[Working with large postgresql databases]
+
+[quote]
+____
+I've come to differentiate a small database from a large one using the
+following caveats. And while it is true that some of the caveats for a
+large database can be applied to a small one, and vice-versa, the fact
+of the matter is that most of the setups out there in the wild follow
+these observations:
+
+. Small databases are often administered by a single person
+. Small databases can be managed manually.
+. Small databases are minimally tuned.
+. Small databases can typically tolerate production inefficiencies more
+than large ones.
+. Large databases are managed using automated tools.
+. Large databases must be constantly monitored and go through an active
+tuning life cycle.
+. Large databases require rapid response to imminent and ongoing
+production issues to maintain optimal performance.
+. Large databases are particularly sensitive to technical debt.
+
+Large databases often bring up the following questions and issues:
+
+* Is the system performance especially sensitive to changes in
+production load?
+* Is the system performance especially sensitive to minor tuning
+effects?
+* Are there large amounts of data churn?
+* Does the database load system saturate your hardware's capabilities?
+* Do the maintenance activities, such as logical backups and repacking
+tables, take several days or even more than a week?
+* Does your Disaster Recovery Protocol require having a very small
+Recovery Point Objective (RPO) or Recovery Time Objective (RTO)?
+
+The key difference between a small vs large database is how they are
+administered:
+
+. Whereas it is common that small databases are manually administered,
+albeit it's not best practice, using automation is the industry default
+mode of operation in many of these situations for large databases.
+. Because circumstances can change quickly, large databases are
+particularly sensitive to production issues.
+. Tuning is constantly evolving; while it is true that newly installed
+architectures are often well-tuned, circumstances change as they age and
+large databases are especially vulnerable.
+____
