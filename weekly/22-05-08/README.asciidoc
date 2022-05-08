@@ -180,21 +180,18 @@ for multi-column B-tree indexes, where only a subset of the columns
 might match the query.
 
 You may have heard before about the best practice of ordering B-tree
-columns so the columns that are queried by an equality comparison ("`=`"
+columns so the columns that are queried by an equality comparison (`=`
 operator) are put first, followed by one optional inequality comparison
-("`<>`" operator), followed by any other columns. This recommendation is
+(`<>` operator), followed by any other columns. This recommendation is
 based on the physical structure of the B-tree index, and the cost model
 also reflects this constraint.
 
-Put differently: The more specific you are with matching equality
+Put differently: the more specific you are with matching equality
 comparisons, the less parts of the index have to be scanned. This is
-represented here by the calculation of "`btreeSelectivity`". If this
+represented here by the calculation of `btreeSelectivity`. If this
 number is small, the cost of the index scan will be less, as determined
-by "`genericcostestimate`" based on the estimated number of index tuples
+by `genericcostestimate` based on the estimated number of index tuples
 being scanned.
-
-We could go on and on about this, as there are many other factors
-involved. But the key is thi
 
 For creating the ideal B-tree index, you would:
 
