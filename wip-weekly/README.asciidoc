@@ -4,3 +4,43 @@ v1.0, 2022-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://lethain.com/magnitudes-of-exploration/[Magnitudes of exploration]
+
+[quote]
+____
+
+I've struggled for some time to articulate the right trade off here, but
+in a recent conversation with my coworker Qi Jin, he suggested a rule of
+thumb that resonates deeply.
+
+Standardization is so powerful that we should default to consolidating
+on few platforms, and invest heavily into their success. However, we
+should pursue explorations that offers at _least one order of magnitude
+improvement_ over the existing technology.
+
+This improvement shouldn't improve on a single dimension with meaningful
+regressions across other aspects, but instead it should approximately as
+strong on all dimensions and _at least_ one dimension must show _at
+least_ one order of magnitude improvement.
+
+A few possible examples, although they'd all require significant
+evidence to prove the improvement:
+
+. moving to a storage engine that is about as fast and as expressive,
+but is ten times cheaper to operate,
+. changing from a batch compute model like Hadoop to use a streaming
+computation model like Flink, enabling the move from a daily cadence of
+data to a real-time cadence (assuming you can keep the operational
+complexity and costs relatively constant),
+. moving from engineers developing on their laptops and spending days
+debugging issues to working on VMs which they can instantly reprovision
+from scratch when the encounter an environment problem.
+
+The most valuable—and unsurprisingly the hardest—part is quantifying the
+improvement, and agreeing about that the baselines haven't degraded.
+It's quite challenging to compare the perfect vision of something
+non-existent with the reality of something flawed but real, which is why
+explorations are essential to pull both into reality for a measured
+evaluation.
+____
