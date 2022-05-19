@@ -7,15 +7,15 @@ v0.1, 2022-05-18
 
 At work, the business intelligence system (BI) is fetching data from our Rails application by connecting to our PostgreSQL database.
 
-It's not an ideal solution because it means our database schema is used as an API, but in practice the coupling is manageable and it keeps things simple for the data team in charge of the BI.
+It means our database schema is used as an API so it's an ideal solution, but in practice the coupling is manageable and it keeps things simple for the data team in charge of the BI.
 
-One of my current point of interest is reducing the databases accesses to protect against accidents and malevolent moves.
+One of my current point of interest is reducing the databases accesses to protect against accidents and malevolent actions.
 
-For the BI it means a read-only account, but also that they should only be allowed to access the data they need which means granting access on a per-column basis.
+For the BI it means connecting to the database with a read-only account, but also preventing them from accessing the table and columns they don't need.
 
 PostgreSQL provide link:https://www.postgresql.org/docs/current/sql-grant.html[the required] link:https://www.postgresql.org/docs/current/sql-revoke.html[capabilities], so the problem is to find a way to manage them.
 
-A possible solution is to create a new configuration file with an ad-hoc syntax that list the tables and columns that should be accessible, put it somewhere in the project then write a script that read the file's content and run the right queries.
+A possible solution is to create a new configuration file with an ad-hoc syntax that list the tables and columns that should be accessible, to put it somewhere in the project then write a script that read the file's content and run the right queries.
 
 Something like:
 
@@ -34,9 +34,9 @@ Something like:
 }
 ----
 
-It should work, but I dislike having a separate source of information for this: people must learn where it is stored, must understand the structure, and think to update it when the schema change, for example when a column is renamed.
+It should work, but I dislike having a separate source of information for this: people must learn where it is stored, must understand the structure (even if it's obvious), and remember to update it when the schema change, for example when a column is renamed.
 
-Meanwhile, Rails has already all the database information in the `db/schema.rb` file:
+Meanwhile, Rails has already lots of database information in the `db/schema.rb` file:
 
 [source,ruby]
 .db/schema.rb
@@ -56,9 +56,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_01_102734) do
 end
 ----
 
-If I could put the access rights data in this file, people would know how to find it, and as a bonus when creating a new columns, I could use the migrations system to add the access right info.
+If I could put the access rights data in this file, devs would know how to find it, and as a bonus when creating a new columns, I could use the migrations system to add the access right info.
 
-But there's no out of the box mechanism to add custom fields to the columns description.
+As far as I know there's no out of the box mechanism to add custom fields to the columns description.
 But there is an existing field that we don't use: the comment field.
 
 Many SQL database systems provide a way to add a string comment to a column and to other objects.
@@ -201,5 +201,5 @@ Then we can run it:
 
 It's currently just an idea so it hasn't been used on a real application, but at least it _seems_ to work.
 
-I've kept the code the simplest I can so you can adapt it to your use case.
+I've kept the code the simplest I can so you can adapt it to your use cases.
 I hope you enjoyed the idea and that maybe it will inspire you to try other nefarious things with this approach.
