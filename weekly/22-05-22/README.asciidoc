@@ -1,0 +1,143 @@
+= Links - 22^nd^ May 2022
+Julien Kirch
+v1.0, 2022-05-22
+:article_lang: en
+:figure-caption!:
+:article_description: Standardization & exploration, writing style, different kinds of notes, believability
+
+== link:https://lethain.com/magnitudes-of-exploration/[Magnitudes of exploration]
+
+[quote]
+____
+
+I've struggled for some time to articulate the right trade off here, but
+in a recent conversation with my coworker Qi Jin, he suggested a rule of
+thumb that resonates deeply.
+
+Standardization is so powerful that we should default to consolidating
+on few platforms, and invest heavily into their success. However, we
+should pursue explorations that offers at _least one order of magnitude
+improvement_ over the existing technology.
+
+This improvement shouldn't improve on a single dimension with meaningful
+regressions across other aspects, but instead it should approximately as
+strong on all dimensions and _at least_ one dimension must show _at
+least_ one order of magnitude improvement.
+
+A few possible examples, although they'd all require significant
+evidence to prove the improvement:
+
+. moving to a storage engine that is about as fast and as expressive,
+but is ten times cheaper to operate,
+. changing from a batch compute model like Hadoop to use a streaming
+computation model like Flink, enabling the move from a daily cadence of
+data to a real-time cadence (assuming you can keep the operational
+complexity and costs relatively constant),
+. moving from engineers developing on their laptops and spending days
+debugging issues to working on VMs which they can instantly reprovision
+from scratch when the encounter an environment problem.
+
+The most valuable—and unsurprisingly the hardest—part is quantifying the
+improvement, and agreeing about that the baselines haven't degraded.
+It's quite challenging to compare the perfect vision of something
+non-existent with the reality of something flawed but real, which is why
+explorations are essential to pull both into reality for a measured
+evaluation.
+____
+
+== link:https://commoncog.com/blog/range-book-summary/[Range]
+
+[quote]
+____
+There's this writing style in popular non-fiction that I'll call the
+"`Malcolm Gladwell method of shoving-a-story-in-your-face`". It
+substitutes argumentation for storytelling and anecdote, and in so doing
+sidesteps the difficulty of making a case, since the reader is too
+distracted by narrative to comprehend the point the author is actually
+attempting to make.
+
+Whenever this happens, I take care to pay special attention, because
+often the point is banal, or flawed, or too inconsequential to stand on
+its own. (I happen to know this because I've used this technique a few
+times on this very blog, and I know from reader feedback how effective
+it is).
+____
+
+== link:https://www.baldurbjarnason.com/2022/the-different-kinds-of-notes/[The different kinds of notes]
+
+[quote]
+____
+So, when I step back, squint a bit, and stare at my blackboard and my
+notes, it strikes me that most of the notetaking methods the
+interviewees described are trying to answer at least one of the three
+following questions:
+
+. How do I manage my creativity?
+. How do I manage my knowledge?
+. How do I manage my understanding?
+
+Or, more to the point, the notetaking methods are a way for the writer
+to continuously ask themselves these questions and adjust their tactics
+as needed. None of the methods are prescriptive or rigid; they are all
+constantly being adapted.
+
+The job of _notes for creativity_ is to:
+
+* Generate ideas in a structured way through research and sketching.
+* Preserve those ideas.
+* Explore the ideas until they have gelled into a cohesive plan or
+solved a problem.
+
+The job of _notes for knowledge_ is to:
+
+* Extend your memory to help you keep track of useful information
+(client data, meeting notes, references).
+* Connect that information to your current tasks or projects so that you
+can find it when you need it.
+
+The job of _notes for understanding_ is to:
+
+* Break apart, reframe, and contextualise information and ideas so that
+they become a part of your own thought process.
+* Turn learning into something you can outline in your own words.
+____
+
+[quote]
+____
+The purpose of the various journalling tactics as well as some of the
+mapping tactics (like the evidence board) is to get you into the habit
+of reframing and contextualising your thoughts, your reading, and your
+ideas. By reframing them in words (or sketches) you integrate them which
+makes them available to your thinking and decision-making processes. If
+you don't integrate what you collect, are just building an ever more
+intimidating database of opaque words and alien ideas.
+____
+
+== link:https://commoncog.com/blog/believability/[Believability]
+
+[quote]
+____
+_Technique Goal_: An efficient heuristic for evaluating who to ask
+feedback from. Also worth using during decision-making: i.e.
+"`believability weighted opinions`". The example here being a) you need to
+make a decision, b) you approach a variety of people to get advice, c)
+you incorporate their views and weight their advice according to their
+believability.
+
+_*Technique summary_: believable people are people who have 1) a record of at least three
+relevant successes and 2) have great explanations of their approach when
+probed.
+
+You may evaluate a person's believability on the subject matter at hand
+by applying this heuristic. When interacting with them:
+
+. If you're talking to a more believable person, suppress your instinct
+to debate and instead ask questions to understand their approach. This
+is far more effective in getting to the truth than wasting time
+debating.
+. You're only allowed to debate someone who has roughly equal
+believability compared to you.
+. If you're dealing with someone with lower believability, spend the
+minimum amount of time to see if they have objections that you'd not
+considered before. Otherwise, don't spend that much time on them.
+____
