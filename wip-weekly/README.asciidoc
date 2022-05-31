@@ -40,3 +40,31 @@ ____
 ____
 In the thrall of overconfidence bias, project planners and decision makers underestimate risk by overrating their level of knowledge and ignoring or underrating the role of chance events in deciding the fate of projects. Hiring experts will generally not help, because experts are just as susceptible to overconfidence bias as laypeople and therefore tend to underestimate risk, too. There is even evidence that the experts who are most in demand are the most overconfident. I.e., people are attracted to, and willing to pay for, confidence, more than expertise. Risk underestimation feeds the Iron Law of project management and is the most common cause of project downfall. Good project leaders must know how to avoid this.
 ____
+
+== link:https://raw.githubusercontent.com/jdjakub/papers/master/prog-2022/prog22-master.pdf[Technical dimensions of programming systems]
+
+[quote]
+____
+Both Lisp and Smalltalk worked, to some extent, as operating systems. The user started their machine directly in the Lisp or Smalltalk environment and was able to do everything they needed from within the system. This explains why it is worth considering (especially programmer-oriented) operating systems as programming systems too. A prime example of this is UNIX, a 1970s operating system for time-sharing computers.
+____
+
+[quote]
+____
+In using a system, one first has some idea and attempts to make it exist in the software; the gap between the user’s goal and the means to execute the goal is known as the _gulf of execution_. Then, one compares the result actually achieved to the original goal in mind; this crosses the _gulf of evaluation_. These two activities comprise the _feedback loop_ through which a user gradually realises their desires in the imagination, or refines those desires to find out "`what they actually want`".
+
+A system must contain at least one such feedback loop, but may contain several at different levels or specialized to certain domains. For each of them, we can separate the gulf of execution and evaluation as independent legs of the journey, with possibly different manners and speeds of crossing them.
+____
+
+[quote]
+____
+Programmers often think about design details and calculations on a whiteboard or notebook, even before writing code. This _supplementary medium_ has its own feedback loop, even though this is often not automatic.
+____
+
+[quote]
+____
+Composability without convenience is a set of atoms or gears; theoretically, anything one wants could be built out of them, but one must do that work. This situation has been criticized as the _Lisp Curse_.
+
+Composability with convenience is a set of convenient specific tools along with enough components to construct new ones. The specific tools themselves could be transparently composed of these building blocks, but this is not essential. They save users the time and effort it would take to "`roll their own`" solutions to common tasks.
+
+For example, let us turn to a convenience factor of UNIX shell commands, having already discussed their composability above. Observe that it would be possible, in principle, to pass all information to a program via standard input. Yet in actual practice, for convenience, there is a standard interface of _command-line arguments_ instead, separate from anything the program takes through standard input. Most programming systems similarly exhibit both composability and convenience, providing templates, standard libraries, or otherwise pre-packaged solutions, which can nevertheless be used programmatially as part of larger operations.
+____
