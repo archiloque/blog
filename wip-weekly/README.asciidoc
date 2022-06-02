@@ -66,5 +66,26 @@ Composability without convenience is a set of atoms or gears; theoretically, any
 
 Composability with convenience is a set of convenient specific tools along with enough components to construct new ones. The specific tools themselves could be transparently composed of these building blocks, but this is not essential. They save users the time and effort it would take to "`roll their own`" solutions to common tasks.
 
-For example, let us turn to a convenience factor of UNIX shell commands, having already discussed their composability above. Observe that it would be possible, in principle, to pass all information to a program via standard input. Yet in actual practice, for convenience, there is a standard interface of _command-line arguments_ instead, separate from anything the program takes through standard input. Most programming systems similarly exhibit both composability and convenience, providing templates, standard libraries, or otherwise pre-packaged solutions, which can nevertheless be used programmatially as part of larger operations.
+For example, let us turn to a convenience factor of UNIX shell commands, having already discussed their composability above. Observe that it would be possible, in principle, to pass all information to a program via standard input. Yet in actual practice, for convenience, there is a standard interface of _command-line arguments_ instead, separate from anything the program takes through standard input. Most programming systems similarly exhibit both composability and convenience, providing templates, standard libraries, or otherwise pre-packaged solutions, which can nevertheless be used programmatically as part of larger operations.
+____
+
+== link:http://canonical.org/~kragen/memory-models/[The memory models that underlie programming languages]
+
+[quote]
+____
+Typically, in a hierarchical filesystem, to represent the attributes of an entity, you serialize them into a regular file, along with many other entities! But that’s mostly because the system-call interfaces are so slow and clumsy, and because the per-node overhead is typically on the order of hundreds of bytes. You can certainly, instead, use a directory for each entity, storing the value of its attribute "`x`" in a file called "`x`" within it. This is what Unix does for storing information about users, for example, or different versions of a software package, or how to compile different software packages.
+____
+
+== link:https://github.com/mxgmn/MarkovJunior[MarkovJunior]
+
+[quote]
+____
+MarkovJunior is a probabilistic programming language where programs are
+combinations of rewrite rules and inference is performed via constraint
+propagation. MarkovJunior is named after mathematician
+https://en.wikipedia.org/wiki/Andrey_Markov,_Jr.[Andrey Andreyevich
+Markov], who defined and studied what is now called
+https://en.wikipedia.org/wiki/Markov_algorithm[Markov algorithms].
+
+image::top-mv.gif[]
 ____
