@@ -1,0 +1,193 @@
+= Links - 5^th^ June 2022
+Julien Kirch
+v1.0, 2022-06-05
+:article_lang: en
+:figure-caption!:
+:article_description: Behavioral biases, technical dimensions of programming systems, memory models, probabilistic programming language, online collaboration, fairness in video games & meritocracy
+
+== link:https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3979164[Top ten behavioral biases in project management: an overview]
+
+[quote]
+____
+When Kahneman and I compared notes again, we agreed the balanced position regarding real-world decision-making is that both cognitive and political bias influence outcomes. Sometimes one dominates, sometimes the other, depending on what the stakes are and the degree of political-organizational pressures on individuals. If the stakes are low and political-organizational pressures absent, which is typical for lab experiments in behavioral science, then cognitive bias will dominate and such bias will be what you find. But if the stakes and pressures are high -- for instance, when deciding whether to spend billions of dollars on a new subway line in Manhattan -- political bias and strategic misrepresentation are likely to dominate and will be what you uncover, together with cognitive bias, which is hardwired and therefore present in most, if not all, situations.
+
+Imagine a scale for measuring political-organizational pressures, from weak to strong. At the lower end of the scale, one would expect optimism bias to have more explanatory power of outcomes relative to strategic misrepresentation. But with more political-organizational pressures, outcomes would increasingly be explained in terms of strategic misrepresentation. Optimism bias would not be absent when political-organizational pressures increase, but optimism bias would be supplemented and reinforced by bias caused by strategic misrepresentation. Finally, at the upper end of the scale, with strong political-organizational pressures -- e.g., the situation where a CEO or minister _must_ have a certain project -- one would expect strategic misrepresentation to have more explanatory power relative to optimism bias, again without optimism bias being absent. Big projects, whether in business or government, are typically at the upper end of the scale, with high political-organizational pressures and strategic misrepresentation. The typical project in the typical organization is somewhere in the middle of the scale, exposed to a mix of strategic misrepresentation and optimism bias, where it is not always clear which one is stronger.
+____
+
+
+[quote]
+____
+Strategic misrepresentation is the tendency to deliberately and systematically distort or misstate information for strategic purposes. This bias is sometimes also called political bias, strategic bias, power bias, or the Machiavelli factor. The bias is a rationalization where the ends justify the means. The strategy (e.g., achieve funding) dictates the bias (e.g., make projects look good on paper). Strategic misrepresentation can be traced to agency problems and political-organizational pressures, for instance competition for scarce funds or jockeying for position. Strategic misrepresentation is deliberate deception, and as such it is lying, per definition.
+____
+
+[quote]
+____
+
+Finally, recent research has found that not only do political and cognitive biases compound each other in the manner described above. Experimental psychologists have shown that political bias directly amplifies cognitive bias in the sense that people who are powerful are affected more strongly by various cognitive biases -- e.g., availability bias and recency bias -- than people who are not. A heightened sense of power also increases individuals' optimism in viewing risks and their propensity to engage in risky behavior. This is because people in power tend to disregard the rigors of deliberate rationality, which are too slow and cumbersome for their purposes. They prefer -- consciously or not -- subjective experience and intuitive judgment as the basis for their decisions, as documented by Flyvbjerg, who found that people in power will deliberately exclude experts from meetings when much is at stake, in order to avoid clashes in high-level negotiations between power's intuitive decisions and experts' deliberative rationality.
+____
+
+[quote]
+____
+Above we saw that strategic project planners and managers sometimes underestimate cost and overestimate benefit to achieve approval for their projects. Optimistic planners and managers also do this, albeit non-intentionally. The result is the same, however, namely cost overruns and benefit shortfalls. Thus optimism bias and strategic misrepresentation reinforce each other, when both are present in a project. An interviewee in our research described this strategy as "`showing the project at its best`". It results in an inverted Darwinism, i.e., "`survival of the unfittest`". It is not the best projects that get implemented like this, but the projects that look best on paper. And the projects that look best on paper are the projects with the largest cost underestimates and benefit overestimates, other things being equal. But the larger the cost underestimate on paper, the greater the cost overrun in reality. And the larger the overestimate of benefits, the greater the benefit shortfall. Therefore, the projects that have been made to look best on paper become the worst, or unfittest, projects in reality.
+____
+
+[quote]
+____
+Uniqueness bias tends to impede managers' learning, because they think they have little to learn from other projects as their own project is unique. Uniqueness bias may also feed overconfidence bias and optimism bias, because planners subject to uniqueness bias tend to underestimate risks. This interpretation is supported by research on IT project management reported in Flyvbjerg and Budzier (2011), Budzier and Flyvbjerg (2013), and Budzier (2014). The research found that managers who see their projects as unique perform significantly worse than other managers. If you are a project leader and you overhear team members speak of your project as unique, you therefore need to react.
+____
+
+[quote]
+____
+In the thrall of overconfidence bias, project planners and decision makers underestimate risk by overrating their level of knowledge and ignoring or underrating the role of chance events in deciding the fate of projects. Hiring experts will generally not help, because experts are just as susceptible to overconfidence bias as laypeople and therefore tend to underestimate risk, too. There is even evidence that the experts who are most in demand are the most overconfident. I.e., people are attracted to, and willing to pay for, confidence, more than expertise. Risk underestimation feeds the Iron Law of project management and is the most common cause of project downfall. Good project leaders must know how to avoid this.
+____
+
+== link:https://raw.githubusercontent.com/jdjakub/papers/master/prog-2022/prog22-master.pdf[Technical dimensions of programming systems]
+
+[quote]
+____
+Both Lisp and Smalltalk worked, to some extent, as operating systems. The user started their machine directly in the Lisp or Smalltalk environment and was able to do everything they needed from within the system. This explains why it is worth considering (especially programmer-oriented) operating systems as programming systems too. A prime example of this is UNIX, a 1970s operating system for time-sharing computers.
+____
+
+[quote]
+____
+In using a system, one first has some idea and attempts to make it exist in the software; the gap between the user's goal and the means to execute the goal is known as the _gulf of execution_. Then, one compares the result actually achieved to the original goal in mind; this crosses the _gulf of evaluation_. These two activities comprise the _feedback loop_ through which a user gradually realises their desires in the imagination, or refines those desires to find out "`what they actually want`".
+
+A system must contain at least one such feedback loop, but may contain several at different levels or specialized to certain domains. For each of them, we can separate the gulf of execution and evaluation as independent legs of the journey, with possibly different manners and speeds of crossing them.
+____
+
+[quote]
+____
+Programmers often think about design details and calculations on a whiteboard or notebook, even before writing code. This _supplementary medium_ has its own feedback loop, even though this is often not automatic.
+____
+
+[quote]
+____
+Composability without convenience is a set of atoms or gears; theoretically, anything one wants could be built out of them, but one must do that work. This situation has been criticized as the _Lisp Curse_.
+
+Composability with convenience is a set of convenient specific tools along with enough components to construct new ones. The specific tools themselves could be transparently composed of these building blocks, but this is not essential. They save users the time and effort it would take to "`roll their own`" solutions to common tasks.
+
+For example, let us turn to a convenience factor of UNIX shell commands, having already discussed their composability above. Observe that it would be possible, in principle, to pass all information to a program via standard input. Yet in actual practice, for convenience, there is a standard interface of _command-line arguments_ instead, separate from anything the program takes through standard input. Most programming systems similarly exhibit both composability and convenience, providing templates, standard libraries, or otherwise pre-packaged solutions, which can nevertheless be used programmatically as part of larger operations.
+____
+
+== link:http://canonical.org/~kragen/memory-models/[The memory models that underlie programming languages]
+
+[quote]
+____
+Typically, in a hierarchical filesystem, to represent the attributes of an entity, you serialize them into a regular file, along with many other entities! But that's mostly because the system-call interfaces are so slow and clumsy, and because the per-node overhead is typically on the order of hundreds of bytes. You can certainly, instead, use a directory for each entity, storing the value of its attribute "`x`" in a file called "`x`" within it. This is what Unix does for storing information about users, for example, or different versions of a software package, or how to compile different software packages.
+____
+
+== link:https://github.com/mxgmn/MarkovJunior[MarkovJunior]
+
+[quote]
+____
+MarkovJunior is a probabilistic programming language where programs are
+combinations of rewrite rules and inference is performed via constraint
+propagation. MarkovJunior is named after mathematician
+https://en.wikipedia.org/wiki/Andrey_Markov,_Jr.[Andrey Andreyevich
+Markov], who defined and studied what is now called
+https://en.wikipedia.org/wiki/Markov_algorithm[Markov algorithms].
+
+image::top-mv.gif[]
+____
+
+== link:https://www.baldurbjarnason.com/2022/on-online-collaboration/[On online collaboration and our obligations as makers of software]
+
+[quote]
+____
+The point of most meetings, brainstorming sessions, and workplace
+discussions isn't to generate ideas, make decisions, or understand the
+situation. The point is to build consensus. The ideas or decisions are
+the most straightforward part of the process. Without consensus, they
+are all meaningless.
+
+Constructive examples from the interviews include:
+
+- Meeting minutes in Google Docs or Hack.md to make sure that they
+reflect the group's consensus on what was said and decided.
+- Plan of action proposals that needed to be approved by several people
+to happen.
+
+For consensus-building, you need everybody to have an overview of what
+everybody has said, who has participated, and what the overall argument
+has been.
+
+Any time you have a group of people together where everybody is aware of
+everybody else's presence and status, you tend to automatically end up
+with a group consensus, even if that wasn't what you wanted. We are a
+link:https://en.wikipedia.org/wiki/In-group_favoritism[social species], and
+we are really good at
+link:https://en.wikipedia.org/wiki/Bandwagon_effect[adjusting our own
+opinions] to match that
+link:https://en.wikipedia.org/wiki/Communal_reinforcement[of the crowd].
+____
+
+
+[quote]
+____
+Another common scenario is to get feedback or a review of an idea,
+proposal, or piece of work. You have a thing. You would like to improve
+said thing. So, you ask a bunch of people what they think, giving more
+weight to those with relevant expertise. It's a time-tested strategy.
+
+The pitfall here is that if the participants are aware of each other's
+contributions, they will almost always automatically switch to
+consensus-building instead of providing their honest feedback. Worst
+case scenario: the bandwagon effect gathers steam and drives you toward
+a crap decision.
+
+These kinds of disasters are a routine occurrence today. You see them in
+corporations, small and large, in movie studios, at publishing houses,
+and in governments. A product or project is released and all of a sudden
+you have a bunch of people in your inbox pointing out glaring, obvious,
+and fatal flaws that everybody involved had missed.
+
+To get the best feedback possible from the participants, you need to
+avoid the mechanisms of consensus-building. You need to ensure that
+everybody's responses are kept separate and only visible to those
+responsible for integrating all of the feedback, something that's
+surprisingly difficult to accomplish in modern collaborative software.
+____
+
+== link:https://medium.com/@betterthemask/game-design-in-the-imperial-mode-cgsa-2022-e5a9a6a57859[Game design in the imperial mode]
+
+[quote]
+____
+I've talked in the past about the "`fairness fantasy`" in terms of player
+expectations, or at least, our idea as designers of player expectations.
+I've always argued that unfair isn't a bad thing for a game to be, drama
+often comes out of unfairness. But there is a phenomenon amongst our
+players that I've always struggled to understand, until I looked at it
+through the lens of the "`white player`" -- and that's the backlash from
+certain vocal segments of our players against easy mode, auto-play, and
+a whole host of accommodations that serve to make games accessible for a
+broader range of players without in any way impacting anyone who does
+not choose these modes or features. Why, then, the anger, betrayal,
+upset that seems entirely out of proportion to the impact? Clearly the
+answer does not lie in the game's systems, which still operate for this
+player in the same way, but in the context and metanarratives of play.
+
+I think we can understand this backlash in the context of a challenge to
+the idea of meritocracy, which is part of the propaganda of whiteness.
+The gamer who is winning in the game which presents itself as
+meritocratic, sees any accommodations made for other players as unfairly
+advantaging them and devaluing their own achievement. But the reality is
+the so-called meritocratic system was rigged for exactly the kind of
+person who can succeed within it. Broadening a game's ability to "`read`"
+and reward a broader range of play styles, capabilities and players, is
+deeply threatening to the myth of meritocracy which relies on the idea
+that only one type of play, or a certain set of abilities -- that just
+happen to accrue to a certain type of player, say young white middle
+class able-bodied Anglo-American men -- are the only legitimate types of
+play within the system. The objectivity of the rules cannot be
+questioned, because the white player's ego is enmeshed with the idea
+that they are objectively better and uniquely deserving. The game is
+thus a forum for the white player to "`prove`" "`objectively`" the innate
+superiority of whiteness, that is part of the metanarrative of play that
+the white player brings with them. To challenge or broaden the
+definition of success is a challenge to the idea that the white player
+is uniquely suited to protagonism, and so is read as an unsettling
+challenge to deep-rooted ideas of white entitlement. As such, I would
+say this is a worthwhile player entitlement for us to challenge and
+design against, while accepting and anticipating regressive racist
+backlash disguised as player critique.
+____
