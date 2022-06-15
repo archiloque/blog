@@ -4,3 +4,56 @@ v1.0, 2022-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://keunwoo.com/notes/accelerate-devops/[A review of Accelerate: the science of lean software and DevOps]
+
+[quote]
+____
+I have criticized the _Accelerate_ research and its presentation
+extensively, so I should reiterate up front that I believe in most of
+the practices advanced under the "`devops`" banner (by the _Accelerate_
+authors and many others). I mean, like, "`version control`"? Yes, you
+should use it! And continuous integration, and trunk-based development,
+and so forth, I believe all that stuff is good, and we do it at my day
+job.
+
+But I don't believe in it _because of this research_. There are too many
+issues with the methodology and presentation to be fully credible.
+
+Admittedly, the _Accelerate_ research is evidence of something — at a
+minimum, evidence of how engineers might verbally describe their
+practices in a broad sample of software development teams. But I claim
+that it is not _convincing evidence of the superiority of the exact
+software development methods studied_.
+
+A. Tabarrok has coined the aphorism
+link:https://marginalrevolution.com/marginalrevolution/2021/12/why-the-new-pollution-literature-is-credible.html["`trust
+literatures not papers`"], and that applies here. Of the original book's
+extensive claims, only a small subset, which appeared in just two papers
+by Forsgren et al., were formally peer reviewed at all. Some of the
+authors' subsequent work has also been peer reviewed, but all of it
+constitutes essentially a single line of research, using methods that I
+find dubious. This does not add up to a literature, let alone a
+convincing one.
+____
+
+[quote]
+____
+Second, stop citing _Accelerate_ and the "`State of DevOps`" reports
+uncritically. Until the literature is shored up considerably, it's
+misleading to your readers to cite these results as settled questions
+with hard evidence behind them. I promise you that it is possible to
+make the case for your preferred set of software development practices
+some other way.
+
+Third, stop giving credence to other people who cite _Accelerate_ and
+the "`State of DevOps`" reports with more certainty than the work
+warrants. I recently watched a terrible video by a Youtube personality
+(not one of the _Accelerate_ authors) who dogmatically and arrogantly
+insisted that it was not "`scientific`" or "`rational`" to dispute any
+aspect of their preferred development style, citing these sources as
+proof. As I hope this review makes clear, anybody who talks this way is
+ironically revealing their own deficient skills in close reading and
+critical thinking. I suggest you stop paying attention to people like
+that.
+____
