@@ -18,7 +18,7 @@ Donc certain·e·s devs ont des préférences, et dans le cadre de mon travail, 
 Mes besoins et contraintes sont les suivants{nbsp}:
 
 * Dans la mesure où cela n'est pas une gène significative je voudrais que les personnes soient aussi libres que possible dans le choix de leurs outils, cela peut ainsi vouloir signifier utiliser un formateur standard raisonnablement efficace disponible sur de nombreux outils plutôt que le formateur intégré à un outil particulier même s'il est plus puissant.
-* Pour les personnes n'ayant pas d'avis, je pense qu'il est souhaitable qu'il y ait un choix par défaut à leur proposer, avec l'engagement que si elles choisissent cet outil elles peuvent compter sur un certain niveau de support de la part des autres membres de l'équipe.
+* Je pense qu'il est souhaitable qu'il y ait un choix par défaut à proposer aux personne n'ayant pas d'avis, avec l'engagement que si elles choisissent cet outil elles peuvent compter sur un certain niveau de support de la part des autres membres de l'équipe (il ne s'agit pas de ne pas aider les personnes utilisant d'autres outils, mais il une personne est seule à utiliser un certain outil elle ne pourra compter sur personne).
 * Si les personnes ne sont pas efficaces à cause d'un outil qu'elles utilisent parce que je l'ai proposé alors c'est de ma faute, par contre la productivité des personnes qui choisissent leur propre outil est de leur responsabilité.
 * En dehors de la productivité en régime de croisière, il faut prendre en compte le temps d'apprendre à maîtriser l'outil.
 
@@ -42,6 +42,7 @@ Voici ce que j'ai choisi :
 ** Aucun des fonctionnalités de RubyMine qui rendraient plus difficile d'utiliser d'autres outils ne sont utilisées, par exemple son formatteur ou l'utilisation de projets.
 * Les personnes sont libres d'utiliser un autre outil de leur choix, sous réserve que{nbsp}:
 ** Leur productivité de développement soit comparable dans les cas standards, par exemple si un outil ne permet pas facile de débugguer facilement du code et que cela ralentit la personne lorsqu'elle développe alors cela n'est pas acceptable.
+*** Cela comprend l'intégration avec les outils tiers, par exemple RuboCop pour le formattage
 ** Le temps pris en plus par l'utilisation en dehors du développement de l'outil soit faible, ainsi par exemple si une personne a envie de changer d'outil pour en apprendre qui nécessite un temps de prise en main assez long comparé à RubyMine, par exemple Vim ou Emacs, ce temps ne doit pas être pris sur le temps de travail dans la mesure où le changement d'outil n'apporte pas de bénéfice à l'entreprise par rapport au temps passé.
 
 Je sais que le choix de RubyMine n'est pas complètement objectif car c'est mon outil de prédilection, mais je l'assume.
