@@ -1,8 +1,9 @@
 = Quelles règles pour les outils de développement{nbsp}?
 Julien Kirch
-v0.1, 2022-06-23
+v0.1, 2022-06-27
 :article_lang: fr
 :article_image: image.jpeg
+:article_description: Gouverner c'est choisir, si difficiles que soient les choix
 
 Une proportion importante des devs sont attaché·e·s à leurs outils de développement, leurs outils de développement qu'iels ont choisi.
 
@@ -10,7 +11,7 @@ Une proportion importante des devs sont attaché·e·s à leurs outils de dével
 
 Même si ça n'est pas mon sujet aujourd'hui, je dis "`une proportion significative`", car même si cela est assez courant et même link:../pris-au-serieux[valorisé], ce n'est pas le cas de tous les devs.
 
-D'ailleurs, contrairement à ce qu'on entend parfois, je pense que se préoccuper de ses outils n'est pas un indicateur de compétence technique ni dans un sens (se préoccuper de ses outils est un signe de compétence) ni dans l'autre (ne pas se préoccuper de ses outils est un signe d'incompétence){nbsp}: j'ai rencontré suffisamment de contre-exemples des deux types pour m'en convaincre.
+D'ailleurs, contrairement à ce qu'on entend parfois, je pense que se préoccuper de ses outils n'est pas un indicateur de compétence technique ni dans un sens (se préoccuper de ses outils est un signe de compétence) ni dans l'autre (ne pas se préoccuper de ses outils est un signe d'incompétence){nbsp}: j'ai rencontré suffisamment de contre-exemples des deux types pour en être convaincu.
 
 == Quels critères ?
 
@@ -19,8 +20,8 @@ Donc certain·e·s devs ont des préférences, et dans le cadre de mon travail, 
 Mes besoins et contraintes sont les suivants{nbsp}:
 
 * Dans la mesure où cela n'est pas une gène significative je voudrais que les personnes soient aussi libres que possible dans le choix de leurs outils, cela peut ainsi vouloir signifier utiliser un formateur standard raisonnablement efficace disponible sur de nombreux outils plutôt que le formateur intégré à un outil particulier même s'il est plus puissant.
-* Je pense qu'il est souhaitable qu'il y ait un choix par défaut à proposer aux personne n'ayant pas d'avis, avec l'engagement que si elles choisissent cet outil elles peuvent compter sur un certain niveau de support de la part des autres membres de l'équipe (il ne s'agit pas de ne pas aider les personnes utilisant d'autres outils, mais il une personne est seule à utiliser un certain outil elle ne pourra compter sur personne).
-* Si les personnes ne sont pas efficaces à cause d'un outil qu'elles utilisent parce que je l'ai proposé alors c'est de ma faute, par contre la productivité des personnes qui choisissent leur propre outil est de leur responsabilité.
+* Je pense qu'il est souhaitable qu'il y ait un choix par défaut à proposer aux personnes n'ayant pas d'avis, avec l'engagement que si elles choisissent cet outil elles peuvent compter sur un certain niveau de support de la part des autres membres de l'équipe (il ne s'agit pas de ne pas aider les personnes utilisant d'autres outils, mais si une personne est seule à utiliser un certain outil elle ne pourra compter que sur elle).
+* Si les personnes ne sont pas efficaces à cause d'un outil qu'elles utilisent parce que je l'ai proposé alors c'est de ma faute. Par contre la productivité des personnes qui choisissent leur propre outil est de leur responsabilité.
 * En dehors de la productivité en régime de croisière, il faut prendre en compte le temps d'apprendre à maîtriser l'outil.
 
 Le fait d'avoir un outil par défaut a aussi l'avantage de définir un étalon en terme de fonctionnalités et de productivité.
@@ -39,12 +40,12 @@ Mais actuellement je travaille sur un projet Web en Ruby où les choses sont plu
 
 Voici ce que j'ai choisi :
 
-* L'outil de référence est RubyMine, je pense qu'il est assez facile à prendre en main et que ses fonctionnalités par défaut répondent confortablement aux besoins "`moyens`" d'une personne qui développe, notamment sur la navigation dans le code et le debugging.
-** Aucun des fonctionnalités de RubyMine qui rendraient plus difficile d'utiliser d'autres outils ne sont utilisées, par exemple son formatteur ou l'utilisation de projets.
-* Les personnes sont libres d'utiliser un autre outil de leur choix, sous réserve que{nbsp}:
-** Leur productivité de développement soit comparable dans les cas standards, par exemple si un outil ne permet pas facile de débugguer facilement du code et que cela ralentit la personne lorsqu'elle développe alors cela n'est pas acceptable.
-*** Cela comprend l'intégration avec les outils tiers, par exemple RuboCop pour le formattage
-** Le temps pris en plus par l'utilisation en dehors du développement de l'outil soit faible, ainsi par exemple si une personne a envie de changer d'outil pour en apprendre qui nécessite un temps de prise en main assez long comparé à RubyMine, par exemple Vim ou Emacs, ce temps ne doit pas être pris sur le temps de travail dans la mesure où le changement d'outil n'apporte pas de bénéfice à l'entreprise par rapport au temps passé.
+* L'outil de référence est RubyMine. Je pense qu'il est assez facile à prendre en main et que ses fonctionnalités par défaut répondent confortablement aux besoins "`moyens`" d'une personne qui développe, notamment sur la navigation dans le code et le debugging.
+** Aucune des fonctionnalités de RubyMine qui rendrait plus difficile d'utiliser d'autres outils n'est utilisée, par exemple son formateur ou l'utilisation de projets.
+* Les personnes sont libres d'utiliser un autre outil de leur choix, sous réserve {nbsp}:
+** Que leur productivité de développement soit comparable, par exemple si un outil ne permet pas de débugguer facilement du code et que cela ralentit la personne lorsqu'elle développe alors cela n'est pas acceptable.
+*** Cela comprend l'intégration avec les outils tiers, par exemple RuboCop pour le formatage
+** Que le temps pris en plus par l'utilisation en dehors du développement de l'outil soit faible, par exemple si une personne a envie de changer d'outil pour en apprendre un qui nécessite un temps de prise en main assez long comparé à RubyMine, par exemple Vim ou Emacs, ce temps ne doit pas être pris sur le temps de travail dans la mesure où le changement d'outil n'apporte pas de bénéfice à l'entreprise par rapport au temps passé.
 
 Je sais que le choix de RubyMine n'est pas complètement objectif car c'est mon outil de prédilection, mais je l'assume.
 
