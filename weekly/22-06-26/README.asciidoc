@@ -1,0 +1,187 @@
+= Links - 26^th^ June 2022
+Julien Kirch
+v1.0, 2022-06-26
+:article_lang: en
+:figure-caption!:
+:article_description: Accelerate, coding interviews, feature factory, systems thinking, organisational change
+
+== link:https://keunwoo.com/notes/accelerate-devops/[A review of Accelerate: the science of lean software and DevOps]
+
+[quote]
+____
+I have criticized the _Accelerate_ research and its presentation
+extensively, so I should reiterate up front that I believe in most of
+the practices advanced under the "`devops`" banner (by the _Accelerate_
+authors and many others). I mean, like, "`version control`"? Yes, you
+should use it! And continuous integration, and trunk-based development,
+and so forth, I believe all that stuff is good, and we do it at my day
+job.
+
+But I don't believe in it _because of this research_. There are too many
+issues with the methodology and presentation to be fully credible.
+
+Admittedly, the _Accelerate_ research is evidence of something — at a
+minimum, evidence of how engineers might verbally describe their
+practices in a broad sample of software development teams. But I claim
+that it is not _convincing evidence of the superiority of the exact
+software development methods studied_.
+
++A.+ Tabarrok has coined the aphorism "`link:https://marginalrevolution.com/marginalrevolution/2021/12/why-the-new-pollution-literature-is-credible.html[trust
+literatures not papers]`", and that applies here. Of the original book's
+extensive claims, only a small subset, which appeared in just two papers
+by Forsgren et al., were formally peer reviewed at all. Some of the
+authors' subsequent work has also been peer reviewed, but all of it
+constitutes essentially a single line of research, using methods that I
+find dubious. This does not add up to a literature, let alone a
+convincing one.
+____
+
+[quote]
+____
+Second, stop citing _Accelerate_ and the "`State of DevOps`" reports
+uncritically. Until the literature is shored up considerably, it's
+misleading to your readers to cite these results as settled questions
+with hard evidence behind them. I promise you that it is possible to
+make the case for your preferred set of software development practices
+some other way.
+
+Third, stop giving credence to other people who cite _Accelerate_ and
+the "`State of DevOps`" reports with more certainty than the work
+warrants. I recently watched a terrible video by a Youtube personality
+(not one of the _Accelerate_ authors) who dogmatically and arrogantly
+insisted that it was not "`scientific`" or "`rational`" to dispute any
+aspect of their preferred development style, citing these sources as
+proof. As I hope this review makes clear, anybody who talks this way is
+ironically revealing their own deficient skills in close reading and
+critical thinking. I suggest you stop paying attention to people like
+that.
+____
+
+== link:https://www.3jane.co.uk/posts/coding-interview-tips/[Get better at coding interviews]
+
+[quote]
+____
+First, let's talk about the misconceptions about _why_ we interview.
+People think that a coding interview is an impartial test of their
+software engineering skills and worth, likely due to similarity to
+university exams. It isn't. If anything, an interview is a test of
+_communication_ skills.
+
+_Your primary task during an interview is to help the interviewer make a
+decision._ Solving the puzzle is incidental. It is entirely possible for
+you to solve the coding puzzle in a way that leaves the interviewer
+unconvinced. You could say that a coding interview is like a game demo
+(and you are the game).
+____
+
+== link:https://cutle.fish/blog/12-signs-youre-working-in-a-feature-factory[12 signs you're working in a feature factory]
+
+[quote]
+____
+Mismatch between prioritization rigor (deciding what gets worked on) and validation rigor (deciding if it was, in fact, the right thing to work on). Prioritization rigor is designed exclusively to temper internal agendas so that people “feel confident”. Lots of work goes into determining which ideas to work on, leaving little leeway for adjustments and improvisation based on data. Roadmaps show a list of features, not areas of focus and/or outcomes
+____
+
+== link:https://thecynefin.co/learning-an-anthro-complexity-perspective/[Learning: an anthro-complexity perspective]
+
+[quote]
+____
+If
+you go back in time then two books could be considered to have laid the
+foundation for what I have termed the "`systems thinking`" era which runs
+from the 1990s and is now (hopefully) starting to run out of steam while
+leaving much of value. They are Hammer & Champy's 1993 _Reengineering
+the Corporation: A Manifesto for Business Revolution_ and Peter Senge's
+1990 _The Fifth Discipline, the Art and Practice of the Learning
+Organisation_.  Hammer had previously published an HBR article in 1990
+and there is some argument that Tom Davenport also originated the term
+in the same year. Whatever those two books change things fundamentally
+and they represent two aspects of an all too common dichotomy that has
+perpetuated itself in management thinking ever since. There is a Yin
+and Yang aspect to the two.
+
+Business Process Re-engineering (BPR) had a very strong focus on
+efficiency but after a promising start seemed to end up with a focus on
+cost reduction with staff layoffs being its greatest characteristic. It
+grew quickly because its launch coincided with the first ERP system in
+SAP which in turn generated a requirement for large teams of
+consultants, that resulted in massive growth in a manufacturing model of
+consultancy which also drove the formation and rapid rise of business
+schools & MBAs although that move was already underway as the idea of
+management as a profession was growing. I got my MBA after three years
+of part-time study in 1986, back in the early days of that movement.
+What you had was a sort of perfect storm in which a whole set of things
+came together and then amplified each other. There were of course
+linked dependencies, the growth of cheap computing was essential to the
+information requirements of BPR to take one example.
+
+In partial contrast, the idea of a _Learning Organisation_ appealed to a
+more human approach to work, in contrast with the hardness of BPR which
+saw humans as readily disposable widgets in a wider manufacturing
+process. The whole organisational development movement started here,
+driven by the need to align individuals with wider goals set by leaders.
+My general view is that more people were inspired by Senge's work, and
+we had the Society of Organisational Learning set up (SOL) although that
+seems to have declined somewhat since the Vienna congress at which I
+was, thanks to the Australian's, a disruptive keynote.To be clear here
+(before too many people jump on me) I do know that Senge represents a
+popularised form of system dynamics not the whole of systems thinking
+but he uses the wider phrase as his fifth discipline so for the purpose
+of this post I am running with it.
+
+That goal of _alignment_ is common to both, as is the pattern of
+consultancy-driven adoption in organisations. In a very real sense, the
+pair of them started the whole fad cycle that has been with us ever
+since. The whole scale, company-wide adoption of a new "`thing`" with the
+promise of transformation. Nearly always a context-free solution in a
+context-specific world. Of the two, BPR which morphed dangerously into
+what Gary Klein has called Sick Stigma, had the bigger long-term impact
+as the changes induced were substantial. You were re-engineered, staff
+were laid off, automation dominated and information became a mechanism
+of increasingly centralised control. With LO, adoption of the language
+and many of the practices was easy but also more ephemeral in nature.
+Other approaches could mimic much of the LO approach but with different
+labels and different hype. The dependency on behavioural shifts by
+individuals for its implementation meant that it was fairly easy to
+game, to use the new language but continue with the old practices.
+Mission and value statements ended up being determined top-down, and
+then were propagated often with religious fervor, to an audience that
+became increasingly sophisticated at giving lip service to the new
+"`thing`". The pattern of a best-selling book, offering a desirable
+future, requiring transformation change, easily gamed to be replaced a
+few years later by the next bright shiny idea was established.
+____
+
+
+== link:https://thecynefin.co/on-organisational-change/[On organisational change]
+
+[quote]
+____
+Sin in organisational design
+
+. […] A key
+aspect of understanding a complex system is that there is always past
+dependency. Unless you are a start-up your change architecture should
+always assume a brownfield, and even in a start-up you and the people,
+you are employing come with history. _Dissent is dismissed as holding
+onto the past, or Luddism_.
+. If the staff don't get it, or worse if we think they may not, then we
+assume they need _therapy_. I have long expressed grave concern
+about techniques legitimately developed in the context of individual or
+small group therapy being brought sideways into organisational design.
+It denies your employee's cognitive sovereignty and privileges the
+therapist/consultant. This can lead to the senior Executives being
+caught up in a
+link:https://www.cognitive-edge.com/stockholm-syndrome-in-strategy/[Stockholm
+syndrome relationship with their OD department] and/or the consultants
+involved. _Dissent is treated as being the result of some hidden
+motivation on behalf of the dissenter_.
+. Seeking the fervor of conversion, otherwise known as the _Billy
+Graham syndrome_. This is a hearts and minds propaganda approach and I
+have seen organisations take all their staff through off-site change
+sessions that resemble a revival meeting in nature and also in the form
+of manipulation. Once you have a critical mass of converts others can
+be shamed into conformance, they are brought to the mercy seat. This is
+probably the most grievous of the three and most likely to cause lasting
+harm. _Dissent is treated as heresy, with only full confession allowing
+redemption_.
+____
