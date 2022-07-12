@@ -5,178 +5,32 @@ v1.0, 2022-01-01
 :figure-caption!:
 :article_description: 
 
-== link:https://drmaciver.substack.com/p/learning-and-teaching-practical-wisdom[Learning and teaching practical wisdom]
+== link:https://leaddev.com/career-paths-progression-promotion/secret-getting-staff-level-leverage[The secret to getting to the Staff+ level? Leverage.]
 
 [quote]
 ____
-One of the big problems with the guru algorithm (go ask your local guru
-what to do when you're stuck) is that one of the best ways to develop
-your practical wisdom is to help other people figure out what to do.
-It's a _much_ better feedback loop for developing your wisdom than
-merely doing the thing (although hard to do well without at least some
-practical experience), because
-link:https://www.drmaciver.com/2018/10/how-to-explain-anything-to-anyone/[explaining
-things to people] deepens your understanding of them. Additionally, it's
-a much tighter feedback loop than merely acting, because you get to skip
-link:https://drmaciver.substack.com/p/difficult-problems-and-hard-weeks[the
-slow and hard bits of actually doing the work], and focus on the
-interesting bits of what to do. Someone who regularly gives advice is
-spending a much larger fraction of their time figuring out what to do
-than someone who spends most of their time actually doing things.
+Can you get big things done? Do people involve you in complex projects
+because they trust you to make those projects successful?
 
-This creates a problem: If you automatically go to the wisest person
-around and ask them what to do, you are creating a feedback loop which
-only widens the gap between them and others. If someone has a slight
-wisdom advantage which leads to people going to them for questions, they
-get good at answering those questions, and as a result get transformed
-into the local guru, and soon everyone relies on them as the question
-answerer.
+The basic skill needed for execution leverage is project management.
+Everyone needs to know how to do this at some level, and being extremely
+good at it paired with strong technical skills can make you a powerhouse
+individual contributor.
 
-I've seen this most at work (both happening to me and to others), where
-someone gets enshrined as the local expert that everyone can go to for
-answers. This is usually frustrating for them because it gets in the way
-of their own work that they'd acquired all this wisdom to be able to do
-in the first place.
+Beyond the nuts and bolts process stuff, the leverage you're developing
+here is understanding how to organize the work to unearth risks early,
+how to identify different possible approaches, and how to remain
+flexible so that you can pull out a win from the project even if the
+final outcome is quite different from the initial proposal. If you can
+break a complex problem down into pieces that can be understood and
+shared across people or teams, and turn an impossible project into a
+concrete roadmap, you can show the kind of broad impact that drives
+senior promotions.
 
-In general, being an actual guru who acts as a source of wisdom mostly
-sucks. Don't get me wrong, many gurus seem to have a great time, but
-this is mostly for bad reasons of enjoying the power over others it
-gives them. If you _actually_ want to help people, being this sort of
-guru is mostly thankless labour, because there's no capability building
--- people just keep relying on you, and as your influence grows so does
-the number of people coming to you with the same sorts of questions over
-and over again.
-
-It's also a problem because it infantilises the people coming to the
-guru for help. If you rely constantly on external sources of wisdom, you
-never develop your own.
-
-The solution from the guru's point of view is to try to teach people
-wisdom. Rather than just handing people the answers, show them how to
-arrive at them themselves.
-
-The problem is, many people hate it when you do that. They wouldn't be
-coming to you if they wanted to develop wisdom. They'd like the answers
-handed to them on a plate. It's particularly hard if you've been giving
-them wisdom and then one day start trying to teach it to them --
-yesterday's favour has become today's obligation, and people get upset
-when you ask them to work for something that they were previously
-getting for free.
-____
-
-== link:https://marijnhaverbeke.nl/blog/extensibility.html[Extensible extension mechanisms]
-
-[quote]
-____
-What do we want from an extensible system? Firstly, of course, it has to
-allow external code to extend its behavior.
-
-But that is hardly enough. Let me illustrate with an anecdote about a
-stupid thing I did at some point. I work on editor software. An early
-version of a link:https://codemirror.net[code editor] allowed client code to
-_set_ the style of a given line. This was great—now you can selectively
-style a line.
-
-Except that, as soon as two independent pieces of code try to style a
-line, they will step on each other's toes. The second extension to touch
-the line will override the first extension's style. Or, when the first
-one tries to remove its styling at some later point, it will instead
-clear the second one's style.
-
-The solution was to make it possible to _add_ (and remove) styling,
-instead of setting it, so that two extensions can interact with the same
-line without sabotaging each other.
-
-More generally, you have to make sure that extensions can be _combined_,
-even if they are entirely unaware of each other's existence, without
-causing problematic interactions.
-
-To do this, each extension point must support being acted on by any
-number of actors. How multiple effects are handled differs by use case.
-Some strategies that may make sense are:
-
-* They all take effect. For example when adding a CSS class to element
-or show a widget at a given position in the text, you can just do all of
-them. Some kind of ordering is still often needed, though: The widgets
-need to be shown in a predictable, well-defined order.
-* They form a pipeline. An example of this would be a handler that can
-filter changes to the document before they are applied. Each handler
-gets fed the change the handler before it produces, and can further
-modify it. Ordering is not essential here, but can be relevant.
-* A first come, first served approach can be applied to, for example,
-event handlers. Each handler gets a chance to handle the event, until
-one of them declares that they have handled it, at which point the ones
-behind it in line don't get asked anymore.
-* Sometimes you really need to pick a single value, such as to determine
-the value of a specific configuration parameter. Here it may make sense
-to use some operator (say, logical _or_, logical _and_, minimum, or
-maximum) to reduce the inputs to a single value. For example an editor
-might enter uneditable mode if _any_ extension tells it to, or the
-maximum document length might be the minimum of the values provided for
-that option.
-
-With many of these, ordering is significant. That means that the
-precedence with effects are applied should be controllable and
-predictable.
-
-This is one of the places where imperative, side-effect based extension
-systems tend to fall short. For example, the browser DOM's
-link:https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener[`addEventListener`]
-operation will cause event handlers to be called in the order in which
-they were registered. This is fine if a single system controls all the
-calls, or if the ordering happens to be irrelevant, but when you have
-multiple pieces of software independently adding handlers, it can become
-very hard to predict which ones will be called first.
-____
-
-[quote]
-____
-All these aspects have been designed to work with an ordered array of
-configuration values, using one of the strategies outlined in the
-previous section. For example, when you specify multiple key maps, the
-ordering in which you specify the instances of the keymap plugin
-determines their precedence. The first keymap that knows how to handle a
-given key gets it.
-
-This is usually powerful enough, and people have been making good use of
-it. But at a certain level of extension complexity it becomes awkward.
-
-* If a plugin has multiple effects, you have to either hope that they
-all need the same precedence relative to other plugins, or you have to
-split it into smaller plugins to be able to arrange the precedences
-correctly.
-* Ordering plugins becomes very finnicky in general, because it's not
-always clear to end users which plugins interfere with which other
-plugins when given a higher precedence. Mistakes tend to only manifest
-themselves at run-time, when using specific functionality, making them
-easy to miss.
-* Plugins that build on other plugins have to document that fact, and
-hope that users will remember to include their dependencies (in the
-right place in the ordering).
-____
-
-[quote]
-____
-As I mentioned before, once you start heavily relying on extensions you
-might have some extensions making use of other extensions. Manual
-dependency management doesn't scale very well, so it would be nice if
-you could pull in a group of extensions at once.
-
-But, besides making the ordering problem even more pressing, this
-introduces another issue: Multiple extensions might depend on a given
-extension, and if extensions are represented as values, you can easily
-end up loading the same extension multiple times. For some types of
-extensions, such as keymaps or event handlers, this is okay. For others,
-like an undo history or a tooltip library, this would be wasteful or
-even break things.
-
-Thus, it seems that allowing extensions to be composed forces some of
-the complexity of dependency management onto your extension system.
-You'll need to be able to recognize extensions that shouldn't be
-duplicated, and load only one instance of them.
-
-But since, in most cases, extensions can be configured, and thus not all
-instances of a given extension are the same, we can't just pick one
-instance and use that—we have to somehow merge those instances in a
-meaningful way (or report an error when this isn't possible).
+Long-tenured engineers have some natural execution leverage because they
+know where bodies are buried, but this is a slow path to career growth.
+People discount the impact of long-tenured employees who can't explain
+how their depth of understanding of the systems allows them to do things
+that others can't, and are likely to think that the system needs to be
+fixed instead of promoting the rare people who can work with it.
 ____
