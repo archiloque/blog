@@ -2,6 +2,7 @@
 Julien Kirch
 v1.0, 2017-11-05
 :article_lang: en
+:article_description: Software design, cost center trap
 
 == link:https://ramcloud.atlassian.net/wiki/spaces/RAM/pages/6848550/Software+Design+Philosophy[John Ousterhout's software design philosophy]
 
@@ -9,7 +10,6 @@ v1.0, 2017-11-05
 ____
 Avoid "`thin`" classes. Ideally, a class should have a very simple interface that hides a lot of functionality and internal complexity; said another way, its ratio of volume/(surface area) should be large. I call such classes "`sweet`"; in general I use the term "`sweet`" to refer to software systems that have a high ratio of power/complexity. A thin class is the opposite of this: in the worst case, the interface is just about as complex as the implementation (i.e. I could have rewritten the class in the same time it took me to learn how to use it). The classic example of a thin class is one that implements a linked list. There's no interesting functionality being hidden here, so there's almost no advantage in having such a class; it just adds to the system's complexity.
 ____
-
 
 [quote]
 ____
@@ -22,5 +22,5 @@ ____
 ____
 Many people in the Agile movement preach that teams should have responsibility for the outcomes they produce and the impact of those outcomes. But responsibility starts at the top and is passed down to teams. When IT is managed as a cost center with cost objectives passed down through the hierarchy, it is almost impossible for team members from IT to assume responsibility for the business outcomes of their work. When IT metrics focus on cost control, digital transformations tend to stall.
 
-Every ‘full stack team' working on a digital problem should have ‘full stack responsibility' for results, and that responsibility should percolate up to the highest managers of every person on the team.  Business results, not cost, should receive the focused attention of every member of the team, and every incentive that matters should be aimed at reinforcing this focus.
+Every "`full stack team`" working on a digital problem should have "`full stack responsibility`" for results, and that responsibility should percolate up to the highest managers of every person on the team.  Business results, not cost, should receive the focused attention of every member of the team, and every incentive that matters should be aimed at reinforcing this focus.
 ____
