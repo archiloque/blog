@@ -1,0 +1,226 @@
+= Links - 24^th^ July 2022
+Julien Kirch
+v1.0, 2022-07-24
+:article_lang: en
+:figure-caption!:
+:article_description: Estimations, badly scaling algorithms, overfed middlemen, internal writing, educator authorial stance, strategy and PowerPoint
+
+== link:https://drmaciver.substack.com/p/task-estimation-101[How to think about task estimation]
+
+[quote]
+____
+So the first answer to "`How long will this take?`" is really "`Why do you
+want to know?`", and depending on what the answer to that question is,
+you'll give a very different answer to the the first question.
+
+Most of the time when you're using estimates, you're trying to answer
+questions like the following:
+
+* How long do we expect this task to take?
+* Will we get this work done by this deadline?
+
+Many of these sound like _almost_ the same question, but they're
+actually very different, because all of them respond to uncertainty, and
+to changes in the task, differently.
+
+For example, if we want to know how long we expect the task to take,
+what we're really asking is "`how much on average does this task cost?`".
+This allows us to decide whether the task is worth doing. If you do
+things that on average make you more revenue than they cost, you make a
+profit. That's business, that is.
+
+For personal projects it's less formally about profit, but there's still
+that same sort of underlying cost-benefit analysis - e.g. a home
+renovation project might be clearly worth it if you expect it to take a
+couple of days, and clearly not worth it if you expect it to take a
+couple of months.
+
+In particular, you can often ignore or discount unlikely events for
+this. If there's an outside chance that the task will blow up and prove
+much harder than you expect, and you'll only find this out a day or two
+into the project, that's probably OK -- you can just abandon the project
+at that point! Rare but recoverable risks don't typically factor into
+cost planning all that much.
+
+Whether something is going to get done by a deadline on the other hand,
+you've already decided it's worth doing, and what you're interested is
+instead mostly about uncertainty, and this is what's often ignored (to
+everyone's detriment).
+
+People assume that if you estimate that a task will take ten days, and
+the deadline is 12 days away, that means everything is fine and you
+don't need to worry about it, but this isn't true at all. A task might
+_typically_ take 10 days, but if something unlikely but not terribly
+rare comes up in the middle of it it might blow up and take twice that.
+What you are interested in here is not how long the task will
+_typically_ take, but something approaching a worst case scenario for
+the task.
+____
+
+== link:https://twitter.com/BruceDawson0xB/status/1120381406700429312[Dawson’s First Law of Computing]
+
+[quote]
+____
+O(n^2) is the sweet spot of badly scaling algorithms: fast enough to make it into production, but slow enough to make things fall down once it gets there
+____
+
+
+== link:https://mattstoller.substack.com/p/a-moat-trajectory[An economy of overfed middlemen]
+
+[quote]
+____
+Today, this middleman model is so pervasive that venture capitalists are
+now promoting investment models based on explicit violation of antitrust
+laws. Take a seed fund called Equal Ventures, launched a few years ago
+with a specific thesis of looking for middlemen monopolist. In a Medium
+post, one of the founders noted that his venture invests in
+link:https://medium.com/@EqualVentures/what-matters-most-how-we-develop-conviction-at-seed-d970d1632394[monopolization],
+which, though it feels quaint to say this, is literally outlawed by the
+Sherman Antitrust Act. I've bolded the relevant parts because it's just
+so stark.
+
+[quote]
+_____
+A big part of our belief in transforming legacy markets is understanding
+the economics of those industries and determining the opportunity for
+the company to carve out
+a link:https://twitter.com/Rick_Zullo/status/1498332324164952066?s=20&t=FS5l_IAFb7iZSnvd7FYLtw["`moat`"] in
+that industry's value chain. While companies never have a moat on Day
+One, we try to evaluate their "`moat trajectory`", which is the long-term
+sustainable advantage they can have over competitors IF everything goes
+according to plan. Generally this means the company _has the ability to
+monopolize a segment of the value chain_ and sustain it given a flywheel
+inherent in their business model.
+
+Generally speaking, we want to see the _ability to monopolize a $1b+
+segment of a total addressable market (margin, not revenue)_. We can get
+comfortable with smaller TAM segments provided that 1) there is a
+near-term path to achieving that (will discuss this shortly) and 2) _we
+believe the segment lends itself well to monopolization, rather than
+many players_.
+
+Ultimately, we want companies capable of generating long term FCF, and
+that requires a _defensible moat position in the market_, not a
+link:https://www.clv-calculator.com/customer-retention/crm-clv/leaky-bucket-theory/[leaky
+bucket] with lots of revenue.
+_____
+____
+
+== link:https://rambling.malignat.us/2022-07-22/on-internal-writing[On internal writing]
+
+[quote]
+____
+Writing, in general, is the process of taking something vague, a thought
+construct, an idea, a model of how something might work, and turning it
+into linear words. This process itself is necessarily lossy, we can't
+represent the vague idea in our heads into words, words are not a
+sufficient medium for this. If you are sufficiently skilled at the craft
+of writing, you may guide the reader to gradually reconstruct the idea
+in their own heads, similar to what it was at the time you thought to
+write it down. This turns written word into a data structure for ideas,
+something other ideas use as a more transmittable proxy representation.
+____
+
+[quote]
+____
+But what if we make the goal slightly easier, in that we reduce the
+audience for such writing to oneself? After all, "`serialising an idea to
+a format it can be retrieved from at any time so desired`" is a highly
+valuable concept, even if our audience is one person, and nobody else
+will read it. It is valuable because our minds are fickle and
+fleeting, and refuse to hold on to one idea for long. Being
+able to recall ideas, plans, and events without being beholden to the
+whims of memory cooperating is quite useful indeed.
+
+In fact, writing for an audience of one has advantages to it, if we are
+purely consider the objective of "`serialising ideas`": You can use
+tricks, styles, and references that would be unworkable when trying to
+communicate with a large audience. You know how the person in question
+thinks and works. You know which references and shorthand they will
+understand, and which is unknown. You can create the most
+objectively-bad categorisations and use them to great success.
+
+I've dubbed the writing aimed at solely your past and future self to be
+"`internal writing`", and with it, all the relative lack of constraints
+and more narrow goals that come with it.
+____
+
+== link:https://martinfowler.com/articles/authorial-stance.html[Advocate, educator, and authorial stance]
+
+[quote]
+____
+This naturally leads to many authors adopting an _advocate stance_.
+They'll stress all the positive things they've gained from using the
+technique. In addition they'll spend time detailing the problems of the
+alternatives, stressing why their preferred option is better.
+
+I'm wary of this stance. I'm the kind of person who gets suspicious
+whenever someone advocates a simple solution to a complex problem. In
+these situations it's too easy to debate a straw man version of the
+alternative technique.
+
+This leads me to a different stance to take as an author, one that I'll
+call the _trade-off stance_. In this I assume that this promising
+technique has advantages compared with the alternatives, but also some
+weaknesses. My aim as an author is to ensure the reader takes into
+account all of these factors when deciding whether they want to use the
+technique themselves. Anything we write has lots of readers (we hope),
+who each have their own particular context. It's up to them to evaluate
+whether a technique that worked well for us will transplant effectively
+to their context. By priming them with all the factors we know about, we
+increase the chances of them making a wise decision.
+
+I see this as part of the difference between an advocate and an
+educator. The advocate wants the reader to agree with them, they succeed
+when the reader uses the technique that's being advocated. I prefer the
+role of an educator, I succeed if the reader makes a well-informed
+decision, even if the reader chooses a different path to the one that I
+would choose in their situation. (This also means that if the reader
+does the exact same thing I would have done, but does it just because
+"`Martin said so`", not understanding the trade-offs properly - then I've
+failed.)
+
+Authors often make straw men of the alternatives in good faith because
+they have encountered them link:https://martinfowler.com/bliki/BoiledCarrot.html[done poorly or
+in the wrong context]. Such advocacy can often undermine its own
+position by not fully considering the advantages of the alternative
+technique. If a reader spots this, then they start to judge the article
+by the weakness of the arguments against the alternative, rather than
+focusing on the genuine capabilities of the new technique.
+
+When writing with a trade-offs stance I like to start with the
+assumption that folks using a poor technique are doing so for sensible
+reasons, and my job as an author is to understand and explain those
+reasons. Even if the alternative is genuinely poor in most contexts,
+it's valuable to understand what leads people to adopt it. That empathy
+is a vital foundation to properly communicating the trade-offs that
+could lead the reader to a better technique.
+
+A common reason to use a technique inappropriately is when it worked
+well at one time, but the context altered without the user fully
+understanding the change. The recent article series on
+link:https://martinfowler.com/articles/bottlenecks-of-scaleups/[bottlenecks of scaleups] are an
+example of exploring this phenomenon. Many people use techniques that
+work well in early stages of a product, but these techniques break down
+as they scale. It's tricky to navigate changes in context like this,
+particularly if you haven't been through it before.
+____
+
+== link:https://sci-hub.ru/https://doi.org/10.1287/orsc.1100.0531[Strategy and PowerPoint: an inquiry into the epistemic culture and machinery of strategy making]
+
+[quote]
+____
+PowerPoint was not just the enabling technology for strategy making but the object of the process. Instead of being asked to do a new analysis, a team member would be asked to provide a slide on the topic; instead of disagreeing about an idea, participants disagreed with "`charts`"; deliverables were described in terms of "`chart decks`" or "`packs`" rather than in terms of strategies or decisions. In a similar vein, the strategy-making process was thought about in terms of the number of charts produced. Participants calibrated progress in a meeting in terms of number of charts reviewed rather than clock time, as when one director complained about "`a couple of discussions which could fall under bad meeting management, allowing people to go eight slides deep in detail on a particular topic just because it is interesting to them, not because it is useful for the end goal of the meeting`" [Chris, Director, Economic Analysis].
+
+Thus, we see that in the CommCorp organization, PowerPoint was a dominant communication genre in the discursive practice of strategy making. Moreover, PowerPoint did not serve simply as a vehicle for communication but rather played a central part in the machinery of knowledge production. Progress was measured in slides. Time was measured in slides. Strategic discussions could not take place if the slides to support them were not available or correctly formatted.
+____
+
+[quote]
+____
+PowerPoint has several affordances that shaped these two practices. First, PowerPoint offers materiality to strategic ideas. During strategy formulation, the ideas are not real in the sense that implementation has not yet taken place: no technologies have yet been developed, no acquisitions made, no resources reallocated. PowerPoint can display ideas that are not yet real, and such corporeality is consequential because it makes knowledge tangible. Yet, because the PowerPoint documents and presentations are incomplete realizations of the proposed strategies, they are also mutable. Users can change the documents and the ideas represented within them. In addition, PowerPoint documents are modular. Each slide is a separate entity that can be moved within or across documents or cut without affecting the other slides. 
+____
+
+[quote]
+____
+When particular claims were contested, PowerPoint documents provided a means to make compelling arguments for why one view should predominate over another. This occurred through the selective inclusion of information and actors. The embodiment of particular information in charts naturalized it such that it became established as reality. Review Board approval of a project, and therefore of the PowerPoint document representing the project, was an especially potent force for the legitimation of those data included and delegitimation of data that were excluded. Similarly, the owners of a PowerPoint document -- those responsible for developing and presenting it -- had the ability to include certain actors and exclude others simply by their choice of which slides to include and whom to consult.
+____
