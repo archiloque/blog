@@ -1,6 +1,6 @@
 = Entraînement délibéré et développement
 Julien Kirch
-v0.1, 2020-10-13
+v0.1, 2022-08-18
 :article_lang: fr
 :article_image: image.jpeg
 
@@ -13,10 +13,14 @@ Cela m'a fait réfléchir aux pratiques que je connais dans le développement.
 
 (Je vous préviens{nbsp}: je n'ai d'idée magistrale à vous proposer, plutôt des insatisfactions et des pistes.)
 
-== Un équivalent à l'entraînement délibéré
+== Trouver un équivalent
 
 Les exercice que j'ai l'impression de croiser le plus souvent dans le développement sont les katas qui sont des exercices courts.
 link:../kata-mais-pas-trop[J'ai déjà décris mes frustrations avec cet outil]. Dans ce que j'ai décris plus haut les katas permettent une introduction à une pratique, mais je ne pense pas qu'ils permettent de progresser très loin (en tous cas ceux que je connais).
+
+Les problèmes qui n'existent que pour les entretiens d'embauche (comme link:https://www.educative.io/blog/google-coding-interview[ceux-ci]) sont un cas particulier{nbsp}: certains couvrent des sujets fondamentaux d'algorithmique (écrire un arbre binaire…), d'autres sont plutôt des puzzles où la connaissance nécessaire pour les résoudre n'est utile qu'à la résolution de ce type de problème.
+
+== Apprendre par la répétition en développement{nbsp}?
 
 En développement, je ne sais même pas un si un équivalent direct de l'entraînement délibéré est possible.
 L'idée de l'entraînement délibéré est de progresser en répétant un même geste, alors que dans le développement où l'activité principale est la conception, il est difficile pour une même personne de concevoir deux fois la même chose, car la deuxième fois va probablement beaucoup s'appuyer sur la première car la personne saura déjà comment s'y prendre.
@@ -28,10 +32,10 @@ Et au delà d'une ou deux répétition, je pense qu'il est probable que l'exerci
 
 En dehors des katas, une manière répandue mais j'ai l'impression souvent peu structurée est de faire des mini-projet, par exemple en réimplémentant des version simplifiées outils qu'on a l'habitude d'utiliser (comme link:../ecrire-un-orm-en-ruby-1[un ORM] ou link:../task-engine-ruby[un moteur de tâches]).
 
-Les exercices en questions sont assez long (plusieurs heures au minimum), donc on n'est plus du tout dans le même cadre.
+Les exercices en questions sont assez long (plusieurs heures au minimum), le cadre n'est donc plus le même.
 À l'inverse, la durée permet de pratiquer de manière plus longue qu'un kata un sujet en particulier si le projet s'y prête.
 
-On a complètement perdu la partie répétition, mais on a une manière de creuser un sujet.
+L'aspect répétition est perdu, mais on a une manière de creuser un sujet.
 
 Mais à l'inverse du sport où les exercices sont répertoriés, ce qui serait peut-être utile serait de savoir à l'avance quelle compétence chaque type de projet permet de faire progresser.
 
