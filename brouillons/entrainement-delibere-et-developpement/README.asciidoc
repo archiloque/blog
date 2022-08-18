@@ -11,40 +11,45 @@ link:https://andymatuschak.org/sight-reading/[Cet article] parle de l'absence d'
 
 Cela m'a fait réfléchir aux pratiques que je connais dans le développement.
 
-(Je vous préviens{nbsp}: je n'ai d'idée magistrale à vous proposer, plutôt des insatisfactions et des pistes.)
+Je vous préviens{nbsp}: je n'ai d'idée magistrale à vous proposer, plutôt des insatisfactions et des pistes.
 
 == Trouver un équivalent
 
-Les exercice que j'ai l'impression de croiser le plus souvent dans le développement sont les katas qui sont des exercices courts.
-link:../kata-mais-pas-trop[J'ai déjà décris mes frustrations avec cet outil]. Dans ce que j'ai décris plus haut les katas permettent une introduction à une pratique, mais je ne pense pas qu'ils permettent de progresser très loin (en tous cas ceux que je connais).
+Les exercices que je croise le plus souvent dans le développement sont les katas et les problèmes spécifiques aux entretiens d'embauche.
 
-Les problèmes qui n'existent que pour les entretiens d'embauche (comme link:https://www.educative.io/blog/google-coding-interview[ceux-ci]) sont un cas particulier{nbsp}: certains couvrent des sujets fondamentaux d'algorithmique (écrire un arbre binaire…), d'autres sont plutôt des puzzles où la connaissance nécessaire pour les résoudre n'est utile qu'à la résolution de ce type de problème.
+link:../kata-mais-pas-trop[J'ai déjà décris mes frustrations avec les premiers.] Ils sont pensé pour permettre d'introduire une idée ou pratique bien précise, mais je ne pense pas qu'ils permettent de progresser très loin (en tous cas ceux que je connais).
+
+Les seconds (comme link:https://www.educative.io/blog/google-coding-interview[ceux-ci]) sont un autre cas{nbsp}: certains couvrent des sujets fondamentaux d'algorithmique (écrire un arbre binaire…), d'autres sont plutôt des puzzles où la connaissance nécessaire pour les résoudre n'est utile qu'à la résolution de ce type de problème. Je classerai Les exercices de link:https://adventofcode.com[l'advent of code] dans ce même groupe.
 
 == Apprendre par la répétition en développement{nbsp}?
 
 En développement, je ne sais même pas un si un équivalent direct de l'entraînement délibéré est possible.
-L'idée de l'entraînement délibéré est de progresser en répétant un même geste, alors que dans le développement où l'activité principale est la conception, il est difficile pour une même personne de concevoir deux fois la même chose, car la deuxième fois va probablement beaucoup s'appuyer sur la première car la personne saura déjà comment s'y prendre.
+L'idée de l'entraînement délibéré est de progresser en répétant un même geste, alors que dans le développement, où l'activité principale est la conception, il est difficile pour une même personne de concevoir deux fois la même chose{nbsp}: lorsqu'on répète l'exercice une seconde fois on va probablement beaucoup s'appuyer sur la première car on sait déjà comment s'y prendre.
 
-Je ne pense pas que la répétition sera probablement inutile, elle pourrait ainsi permettre d'explorer d'autres approches, mais toute une partie du travail ne sera pas à refaire.
+Je ne pense pas que la répétition serait totalement inutile, elle pourrait ainsi permettre d'explorer d'autres approches, mais une partie de la réflexion et de l'exploration ne sera pas faite en double.
+
 Et au delà d'une ou deux répétition, je pense qu'il est probable que l'exercice ne permette plus d'apprendre grand chose.
+
+Si on ne peut pas avoir d'équivalent direct, qu'est-il possible de faire{nbsp}?
 
 == Au moins un entraînement plus réfléchi{nbsp}?
 
-En dehors des katas, une manière répandue mais j'ai l'impression souvent peu structurée est de faire des mini-projet, par exemple en réimplémentant des version simplifiées outils qu'on a l'habitude d'utiliser (comme link:../ecrire-un-orm-en-ruby-1[un ORM] ou link:../task-engine-ruby[un moteur de tâches]).
+Une manière de s'entraîner, mais j'ai l'impression souvent peu structurée, est de faire des mini-projet, par exemple en réimplémentant des version simplifiées outils qu'on a l'habitude d'utiliser (comme link:../ecrire-un-orm-en-ruby-1[un ORM] ou link:../task-engine-ruby[un moteur de tâches]).
 
 Les exercices en questions sont assez long (plusieurs heures au minimum), le cadre n'est donc plus le même.
-À l'inverse, la durée permet de pratiquer de manière plus longue qu'un kata un sujet en particulier si le projet s'y prête.
+À l'inverse, la durée permet de pratiquer un ou des sujets de manière plus longue qu'un kata.
 
-L'aspect répétition est perdu, mais on a une manière de creuser un sujet.
+L'aspect répétition est perdu, mais au moins cela fournit une manière de progresser sur un sujet.
 
-Mais à l'inverse du sport où les exercices sont répertoriés, ce qui serait peut-être utile serait de savoir à l'avance quelle compétence chaque type de projet permet de faire progresser.
+Mais à l'inverse du sport où les exercices sont répertoriés, ce n'est pas le cas pour les mini-projets.
 
-Une certaine expérience du domaine du projet permet de se faire une idée, par exemple qu'un moteur d'expression régulière devrait permettre de s'exercer au parsing.
-Cela peut permettre des trouver des idées, mais peut-être pas forcément les mieux adaptées.
+Une certaine expérience du domaine du projet permet de se faire une idée de quel domaine il va mettre en jeu, par exemple qu'un moteur d'expression régulière devrait permettre de s'exercer au parsing.
+
+Cela nécessite de connaître un peu le domaine, et même dans ce cas cela ne garantit pas que tel problème est le mieux adapté.
 
 L'autre élément difficile à savoir est quelles sont les parties du projet qui fournissent le meilleur apprentissage pour un temps et un sujet donné.
 
-Par exemple certains projets permettent d'apprendre plein de choses dans leur phase initiale, et le reste est juste du code, alors que pour d'autre les phases les plus intéressantes se passent plus tard lors de l'implémentation de fonctionnalités plus avancées.
+Par exemple certains projets permettent d'apprendre beaucoup dans leur phase initiale, et le reste est "`juste du code`", alors que pour d'autre les phases les plus intéressantes se passent plus tard lors de l'implémentation de fonctionnalités plus avancées.
 Avoir cette information au début permet d'éviter le risque de s'arrêter trop tôt ou trop tard.
 
 Ma suggestion, pour les personnes qui développent des minis-projets et qui veulent en parler, serait donc de documenter ces éléments (durée du projet, domaines couverts, moments où on apprend le plus de choses) pour que d'autres puissent en profiter.
