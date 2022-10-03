@@ -43,3 +43,137 @@ ____
 ____
 If you want to learn about the hardware powering titles such as Street Fighter II, Ghouls’n Ghosts, or Final Fight, then "`The Book of CP-System`" is for you. Inside you will find the "`Capcom System`" (a.k.a CPS-1) explained in excruciating details, along more than one hundred explanatory drawings. The software is also covered with the description of the historical way of doing things and as well as a modern toolchain (link:https://fabiensanglard.net/ccps/[CCPS]).
 ____
+
+
+== link:https://buttondown.email/hillelwayne/archive/mystery-knowledge-worskshop-discount/[Mystery knowledge]
+
+[quote]
+____
+With two examples we should DRY things up. The abstract concept here is
+knowledge or skills that
+
+. You are unlikely to discover on your own, neither through practice and
+reflection nor by observing others apply it.
+. Once somebody tells you about it, you can easily learn and apply it.
+. Once you can use it, it immediately gives you significant benefits,
+possibly to the point of raising your expertise level.
+
+This might be a studied topic, but if it is I don't know even what
+_field of knowledge_ it belongs to, much less what it's called. In the
+meantime I call it *mystery knowledge*. Thinking less "`whodunit`" mystery
+and more "`Greco-Roman mystery cults`" mystery.
+____
+
+
+== link:https://buttondown.email/hillelwayne/archive/new-post-blub-studies-and-theorycrafting/[Theorycrafting]
+
+[quote]
+____
+Another type of writing I've been thinking a lot about:
+"`Theorycrafting`". This is informative content caveated with "`not based
+on experience`". You just thought really hard about something, came up
+with ideas, and wrote them down. One example would be
+https://www.hillelwayne.com/post/decision-table-patterns/[Decision Table
+Patterns]. A lot of the techniques there aren't things I've used in
+practice. I was just writing down techniques I _thought_ could help in
+these cases. Pure theory.
+
+I've always been a bit torn about theorycrafting. There's an obvious
+problem that I don't actually know if it works or not. Lots of things
+sound good in theory but fail in practice. Not only do I not know if it
+works, I have _no information_ on whether it works. It's just an idea I
+had. Is that worth sharing with people?
+
+I guess it's okay if I make it very, _very_ clear it's theorycrafting.
+Then people can read it and go "`oh, this is purely an idea, he's not
+advising it, just proposing it.`" In return, I get a chance to talk about
+ideas, because ideas are _interesting_. There's a lot more ideas I want
+to share than I can reasonably flesh out and test in practice. At least
+the idea gets to be out there. If other people find it interesting, they
+can explore it themselves.
+____
+
+== link:https://buttondown.email/hillelwayne/archive/reject-simplicity-embrace-complexity/[Reject simplicity, embrace complexity]
+
+[quote]
+____
+Simplicity is good. We should write simple code. But complexity is
+_unavoidable_. We do a disservice to ourselves by pretending that any
+software can be simple _if we just try hard enough_. Instead, we should
+study the factors that lead to complex software. That way we can learn
+how to recognize, predict, and manage complexity in our systems. And
+then we can seek simplicity within that context. It won't give us simple
+software, but it will help us write _simpler_ software. Nuance is better
+than mantras.
+____
+
+== link:https://buttondown.email/hillelwayne/archive/the-myth-of-self-documenting-code/[The myth of self-documenting code]
+
+[quote]
+____
+Our discipline has developed a large body of theory on how to write
+better code, but not write better comments.
+____
+
+== link:https://jacobian.org/2021/apr/7/embrace-the-grind/[Embrace the grind]
+
+[quote]
+____
+I often have people newer to the tech industry ask me for secrets to
+success. There aren't many, really, but this secret — being willing to
+do something so terrifically tedious that it appears to be magic — works
+in tech too.
+
+We're an industry obsessed with automation, with streamlining, with
+efficiency. One of the foundational texts of our engineering culture,
+Larry Wall's
+link:https://web.archive.org/web/20210311050133/https://www.threevirtues.com/[virtues
+of the programmer], includes laziness:
+
+[quote]
+_____
+*Laziness*: The quality that makes you go to great effort to reduce
+overall energy expenditure. It makes you write labor-saving programs
+that other people will find useful and document what you wrote so you
+don't have to answer so many questions about it.
+_____
+
+I don't disagree: being able to offload repetitive tasks to a program is
+one of the best things about knowing how to code. However, sometimes
+problems can't be solved by automation. If you're willing to embrace the
+grind you'll look like a magician.
+
+For example, I once joined a team maintaining a system that was drowning
+in bugs. There were something like two thousand open bug reports.
+Nothing was tagged, categorized, or prioritized. The team couldn't agree
+on which issues to tackle. They were stuck essentially pulling bugs at
+random, but it was never clear if that issue was important.. New bug
+reports couldn't be triaged effectively because finding duplicates was
+nearly impossible. So the open ticket count continued to climb. The team
+had been stalled for months. I was tasked with solving the problem: get
+the team unstuck, get reverse the trend in the open ticket count, come
+up with a way to eventually drive it down to zero.
+
+So I used the same trick as the magician, which is no trick at all: I
+did the work. I printed out all the issues - one page of paper for each
+issue. I read each page. I took over a huge room and started making
+piles on the floor. I wrote tags on sticky notes and stuck them to
+piles. I shuffled pages from one stack to another. I wrote ticket
+numbers on whiteboards in long columns; I imagined I was
+link:https://www.nytimes.com/video/movies/100000004719216/anatomy-of-a-scene-the-accountant.html[Ben
+Affleck in The Accountant]. I spent almost three weeks in that room, and
+emerged with every bug report reviewed, tagged, categorized, and
+prioritized.
+
+The trend reversed immediately after that: we were able to close several
+hundred tickets immediately as duplicates, and triaging new issues now
+took minutes instead of a day. It took I think a year or more to drive
+the count to zero, but it was all fairly smooth sailing. People said I
+did the impossible, but that's wrong: I merely did something so boring
+that nobody else had been willing to do it.
+
+Sometimes, programming feels like magic: you chant some arcane
+incantation and a fleet of robots do your bidding. But sometimes, magic
+is mundane. If you're willing to embrace the grind, you can pull off the
+impossible.
+____
