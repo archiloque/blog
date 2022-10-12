@@ -1,0 +1,1 @@
+asciidoctor-pdf README.asciidoc -o a-machine-for-gods-jam.pdf -a optimize -a pdf-theme=./theme.yml -a pdf-fontsdir="." --trace

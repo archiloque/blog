@@ -1,0 +1,43 @@
+extends: default
+font:
+  catalog:
+    JetBrainsMonoNL:
+      normal: JetBrainsMonoNL-Medium.ttf
+      bold: JetBrainsMonoNL-Bold.ttf
+      italic: JetBrainsMonoNL-Italic.ttf
+      bold_italic: JetBrainsMonoNL-BoldItalic.ttf
+base:
+  font-family: JetBrainsMonoNL
+  font-color: #000000
+  font-size: 12
+  line-height: 1.25
+  align: justify
+heading:
+  font-family: $base-font-family
+  font-color: #75140C
+  chapter_break_before: auto
+link:
+  font-color: #0021F5
+  text-decoration: underline
+abstract:
+  title:
+    font-family: $heading-font-family
+sidebar:
+  title:
+    font-family: $heading-font-family
+page:
+  margin: [0.5in, 0.5in, 1in, 0.5in]
+title-page:
+  title:
+    font-color: #75140C
+    font-style: bold
+  subtitle:
+    display: true
+    font-color: #75140C
+    font-style: bold
+  authors:
+    font-color: #0021F5
+  revision:
+    display: none
+footer:
+  border-width: 0
