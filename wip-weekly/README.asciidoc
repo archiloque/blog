@@ -5,3 +5,59 @@ v1.0, 2022-01-01
 :figure-caption!:
 :article_description: 
 
+== link:https://www.crunchydata.com/blog/postgres-databases-and-schemas[Postgres databases and schemas]
+
+[quote]
+____
+So we've told you a bunch of information about clusters, databases, and
+schemas, but you're wondering how it fits in practically.
+
+* _Clusters_ are the full instance that is running Postgres itself. You're
+not getting away from this one, but know that base backups and WAL from
+a cluster is all grouped together. Thus if you're needing to do
+something with smaller sets of backups and querying you'll want to dig
+into how you separate things in to separate databases or schemas. As a
+broad rule 90% of applications have a cluster with a single database and
+single schema within them.
+
+* _Databases_ are useful when entirely isolated. If you have multiple
+different applications, but a small number of them so you're not worried
+about scaling connections to each of them, then they're a great method
+of separating your data access. For example, you could have a database
+for your blog, one for your events calendar, and one for your CRM
+application. All these are quite distinct and don't interact with each
+other.
+
+* _Schemas_ can be useful for separating data that may otherwise follow
+the same table structure. In most cases you may not want to query across
+the full set of schemas, but for out of band reporting it could be
+useful. One of the most common practical applications of schemas is
+multi-tenant applications where you want to create a schema for user1,
+user2, user3. All the tables within those could look the same, but if
+you want analytical queries across your users you can easily do that.
+
+____
+
+
+== link:https://www.crunchydata.com/blog/challenging-postgres-terminology[Postgres insider terminology]
+
+[quote]
+____
+The funny thing about jargon is how quickly we get used to it, and
+forget we are even using it. It becomes part of the secret handshake,
+the way we signal to other members of our tribe that we're part of the
+group.
+
+When I first started going to Postgres conferences and listening to
+talks by Postgres core developers I suddenly found myself at sea. What
+were these strange words and phrases they were using?
+
+It turns out that a lot of them are taken from the Postgres code base,
+which in turn naturally uses them because they are part of
+link:https://twobithistory.org/2017/12/29/codd-relational-model.html[Codd's
+relational model], the theoretical information architecture that
+underpins all relational databases.
+
+Here's an unofficial, incomplete glossary of weird terms that come out
+of developers mouths when talking about Postgres.
+____
