@@ -35,9 +35,7 @@ useful. One of the most common practical applications of schemas is
 multi-tenant applications where you want to create a schema for user1,
 user2, user3. All the tables within those could look the same, but if
 you want analytical queries across your users you can easily do that.
-
 ____
-
 
 == link:https://www.crunchydata.com/blog/challenging-postgres-terminology[Postgres insider terminology]
 
@@ -88,7 +86,7 @@ Its intended audience is everyone from performance engineers and
 practical algorithm researchers to undergraduate computer science
 students who have just finished an advanced algorithms course and want
 to learn more practical ways to speed up a program than by going from
-`(n \log n)` to `(n \log \log n)`.
+`(_n_ log _n_)` to `(_n_ log log _n_)`.
 ____
 
 == link:https://pages.cs.wisc.edu/%7Eremzi/OSTEP/[Operating systems: three Easy Pieces]
