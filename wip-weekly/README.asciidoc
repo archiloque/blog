@@ -4,3 +4,44 @@ v1.0, 2022-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://cohost.org/tef/post/298638-sure-it-didn-t-work[Sure, it didn't work for Email, XMPP, or even Diaspora, but maybe it'll work for us!]
+
+[quote]
+____
+Federation isn't about giving users freedom, it's about giving nerds a sense of control.
+
+Which is funny, because when you use a federation protocol, that dictates how your software works and functions. You don't get to control how your social network functions, the people writing the software do, and even then they don't always have that much control either. If a big instance changes the way things work, the rest of the network has to fall in line or risk isolation.
+
+A federated model loves to assume that everyone's on a level playing field. That you can just fork the software, run your own service, and do what you like, casually brushing over the reality that the biggest players dictate policy, and that if you don't play along, you won't be part of the network.
+
+This is why so many federated die hards are terrified that Google, Meta, or another giant of industry will join in.
+
+They fear that things will turn out like email, where there's a cartel that controls spam blacklists and smaller email servers routinely get null-routed. They fear things will turn out like XMPP, where a large player captures most of the users, only to turn around and drop compatibility. They fear that a large firm adopts ActivityPub, builds incompatible features atop to lock users in, and shut competitors out.
+____
+
+[quote]
+____
+You can release new features but you might end up breaking old clients.
+On the other hand, when you control the server, the client, and the
+protocol, it's a lot easier to build out your product and release new
+features. Twitter discovered the same thing with third party clients.
+Images in tweets? Polls? Video? Bad news if a huge chunk of your
+userbase are on an third party client.
+
+In other words: The problem about using a protocol is that you cede
+control to it.
+
+Galloway's book
+link:https://mitpress.mit.edu/9780262572330/protocol/["`protocol`"] is a dry
+and terse academic treatise that covers this in detail, but the lazy
+among us can just look at cryptocurrencies, with forks and mining
+cartels, to see this in practice. With a protocol, you can't release new
+features, you can't change how things work without getting buy-in from
+the rest of the network.
+
+When a large player breaks away from a federated network, they're
+labeled as a bad actor. Sometimes people point to capitalism as being
+the root cause, but i'm more inclined to believe that fragmentation is a
+natural consequence of the federated model.
+____
