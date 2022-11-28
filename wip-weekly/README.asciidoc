@@ -23,3 +23,41 @@ ago, except that now it seems everybody secretly hated that.
 For starters, I think that `git stash` is cool. Maybe outdated by
 multiple working trees, but still cool.
 ____
+
+== link:https://socket3.wordpress.com/2018/02/03/designing-windows-95s-user-interface/[Designing Windows 95's User Interface]
+
+[quote]
+____
+The development of the user interface for a large commercial software
+product like Microsoft® Windows 95 involves many people, broad design
+goals, and an aggressive work schedule. This design briefing describes
+how the usability engineering principles of iterative design and problem
+tracking were successfully applied to make the development of the UI
+more manageable. Specific design problems and their solutions are also
+discussed.
+____
+
+== link:https://westling.dev/b/extremely-linear-git[Extremely linear Git history]
+
+[quote]
+____
+One of the things that I like to do in my projects, is to make the git
+history as linear as possible.
+
+Usually this means to rebase commits onto the main branch, but it can
+also mean to only allow merges in one direction, from feature branches
+into main, never the other way around. It kind of depends on the
+project.
+
+Today I'm taking this one step further, and I'm introducing a new
+concept: _extremely linear git history_.
+
+With our extremely linear history, the first commit in a repo hash a
+hash that starts with `0000000`, the second commit is `0000001`, the
+third is `0000002`, and so on!
+
+Incremental version numbers makes it easy to talk about revisions. You
+immediately know that version 230 comes after 200, and if you create 10
+new versions per day, it's easy to have an intuition for how old a
+commit is based on your current latest version.
+____
