@@ -4,3 +4,22 @@ v1.0, 2022-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://github.polettix.it/ETOOBUSY/2022/11/22/git-worktree/[Git worktree]
+
+[quote]
+____
+So… link:https://git-scm.com/docs/git-worktree[git worktree]. Much like
+sliced bread.
+
+The main selling point is: keep multiple working directories out of a
+single repository, so that we can work on them in parallel.
+
+Many people praise this for being able to quickly work on a critical fix
+in a branch without having to mess with their current working directory.
+The stuff that was mainly addressed with `git stash` up to some time
+ago, except that now it seems everybody secretly hated that.
+
+For starters, I think that `git stash` is cool. Maybe outdated by
+multiple working trees, but still cool.
+____
