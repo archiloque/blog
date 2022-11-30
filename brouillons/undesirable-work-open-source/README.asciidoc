@@ -1,16 +1,99 @@
-= Undesirable work & linux distributions
+= Undesirable work & {ld}
 Julien Kirch
 v0.1, 2022-11-28
 :article_lang: en
+:ld: volunteer-driven linux distributions
 
 Each time I worked in a team or organization where a level of self-organization was possible, the most complicated question was often "`Who do we deal with the undesirable work?`".
 
 Unsurprisingly, it's an important topic of anarchist discussions, there have been practical answers and link:https://theanarchistlibrary.org/library/lee-shevek-who-has-to-do-it[more long-term theoretical ones].
 
-I was thinking about how this question applies to open source in general, and specifically to Linux distributions.
+I was thinking about how this question applies to open source in general, and specifically to {ld}.
 
-Linux distributions, in most cases, have much more users than people providing work.
+By {ld} I mean the Linux distributions where the bulk of the work is provided by volunteers that freely choose what to work on (like Debian and Arch Linux), as opposed to Linux distributions where the bulk of the work is done by people directly or indirectly paid by customers (like Red Hat Enterprise Linux or SUSE Linux Enterprise), which means they have less leeway when choosing what to work on.
 
-Without even thinking about undesirable work, it means that from the beginning there is a strong imbalance.
-Many Linux distributions makes efforts to transform users into contributors, but even a very successful program o this kind could not change the skewness.
+It's not a clear cut for all Linux distributions, but my point here is not about being able to precisely categorize all of them but about the relations between users and contributors.
 
+== Work, so much work to be done
+
+Most {ld}, have much more users than people providing work.
+Efforts are made to transform users into contributors, but even if these efforts are successful, the imbalance will probably keep existing because of the specialized skills that is required for some of the tasks like development or user interface design.
+
+So you have lots of people using a software component, and a lower number of volunteers working on it.
+
+== All work and no play makes jack a dull boy
+
+Some of this work to be done is fun, or more precisely some of the work is seen as desirable by a significant proportion of the volunteers being able to contribute on it.
+The precision is important, because not everybody enjoy the same things, and even a single person don't always want to do the same kind of work all the time.
+
+But some parts tend to attract less people than other ones, which means there is undesirable work to be done, and it can even be a bottleneck for the project.
+Two common examples I have seen is bug triaging and investigating problems that happens on uncommon hardware.
+
+The part that fascinate me is how to deal with the demands of the users that are not contributors that requires undesirable work, in a setup where people choose freely what to contribute on.
+
+A sad element of volunteering for open source is that even if users are not customers and know that the work of volunteer is done on their free time, they can act like paying clients with a for-profit company.
+
+It can be even worse because sometimes users can try to use guilt or other emotional tricks to manipulate the volunteers into doing what they ask, or to punish them when they can't have what they want, for example lamenting angrily that they are forced to use a proprietary solution unless their demands are met.
+
+== From reasonable, to not reasonable at all
+
+And all demands are not equals.
+
+=== Visible changes
+
+For example a crash that is preventing the default web browser to start would probably be seen as important so contributors would probably fix it as quick as they can, even if investigating bugs can be seen as undesirable.
+
+Asking for new feature to be developed for a specific case would probably be seen as less important, specially is the features is seen as a corner case and if lots of work is required.
+
+But in these two cases, the require change is making a visible difference for the users.
+
+== And the other ones
+
+And then there are the other situations, for example when the user want a change is ideologically based.
+I don't think that ideological criteria are irrelevant: ideology is one of the big reasons that people contribute or use open source. I'm using this term to be able to be able to differentiate the two types of changes.
+
+The first example, which I already wrote about link:https://archiloque.net/blog/systemd-linux-open-source/[here] in French, is systemd, which is a family of components that you can use to manage lots of the grunt work required to run Linux on a machine, like dealing starting and stoping other components.
+
+Systemd's approach is disliked by many Linux developers.
+On the other hand, Systemd provide a standardized way to do things that before it tended to be different between Linux distributions.
+
+Without systemd, the people in charge of integrating software components into a Linux distribution (which are called "`packagers`") often needed to write or customize some scripts to make it work.
+This script were often very similar but not identical. And when a new version of the software was released, updating the scripts was sometimes needed.
+It means it is a good example of undesirable task.
+
+With systemd, the software developer can provide scripts that should work as is for all distributions that use  systemd.
+Which means all this part of the packager work would disappear.
+
+The discussions about systemd were heated.
+Some of them were ideological and other involved real technical problems or limitations of systemd.
+But I was really surprised how few of them mentioned the "`it can reduce undesirable work done by packagers, which is a bottleneck for our project`" argument.
+
+I don't mean that maintainers workload should be the only and single criteria -- because there are probably case where following it would be the wrong choice -- but I think it should be heavily taken into account.
+
+And asking for someone for more free contributions should not be asked lightly: I can't imagine how it felt for maintainers to be pressured like that.
+
+But at least in this case, there was an alternative available.
+
+The more extreme option is when it's not the case, for example link:https://lwn.net/Articles/912202/[when you want to use a tool because there is no adequate alternative available].
+Again the discussions has technical aspects that must be addressed.
+But I'm surprised that people can say no to a proposition when there is no alternative.
+
+What should the contributors do in this case, write a new tool that match the requirement decided by others?
+Again I can't imagine how they feel in this situation.
+
+== What is to be done?
+
+The solution is obvious, but of course it's not a single bullet: the effort provided by maintainers should be taken into account in a better way, in the way choices are made but also in the way choices are discussed.
+
+Again I don't think that it should be the single criteria to use, but it should probably be used more.
+
+More precisely, it should be used more explicitly.
+Because from what I understand, even if it's not explicitly mentioned, it's often taken into account implicitly, because when a decision is taken that frustrate the contributors, contributors can -- voluntarily or not -- not do the work that is asked to them.
+
+So it should be used more because it may increase the odds that the decisions are applied.
+
+But also it should be used more because it would be the right thing to do:
+people volunteer to work without being paid.
+Their effort should be treated with respect.
+
+Because if open source software can be created without respecting the people who work on it, it wouldn't have the high moral ground it's supposed to have.
