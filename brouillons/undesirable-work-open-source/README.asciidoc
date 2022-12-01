@@ -3,6 +3,7 @@ Julien Kirch
 v0.1, 2022-11-28
 :article_lang: en
 :ld: volunteer-driven Linux distributions
+:s: Systemd
 :article_image: moloch.jpg
 :article_description: How to treat volunteers?
 
@@ -54,20 +55,20 @@ But in these two cases, the required change is making a visible difference for t
 And then there are the other situations, for example when the user wants a change is ideologically based.
 I don't think that ideological criteria are irrelevant: ideology is one of the big reasons that people contribute or use open source. I'm using this term to be able to differentiate the two types of changes.
 
-The first example, which I already wrote about link:https://archiloque.net/blog/systemd-linux-open-source/[here] in French, is systemd, which is a family of components that you can use to manage lots of the grunt work required to run Linux on a machine, like dealing with starting and stopping other components.
+The first example, which I already wrote about link:https://archiloque.net/blog/systemd-linux-open-source/[here] in French, is {s}, which is a family of components that you can use to manage lots of the grunt work required to run Linux on a machine, like dealing with starting and stopping other components.
 
-Systemd's approach is disliked by many Linux developers.
-On the other hand, Systemd provides a standardized way to do things that before it tended to be different between Linux distributions.
+{s}'s approach is disliked by many Linux developers.
+On the other hand, {s} provides a standardized way to do things that before it tended to be different between Linux distributions.
 
-Without systemd, the people in charge of integrating software components into a Linux distribution (which are called "`packagers`") often needed to write or customize some scripts to make it work.
+Without {s}, the people in charge of integrating software components into a Linux distribution (which are called "`packagers`") often needed to write or customize some scripts to make it work.
 These scripts were often very similar but not identical. And when a new version of the software was released, updating the scripts was sometimes needed.
 It means it is a good example of an undesirable task.
 
-With systemd, the software developer can provide scripts that should work as is for all distributions that use  systemd.
+With {s}, the software developer can provide scripts that should work as is for all distributions that use {s}.
 Which means all this part of the packager work would disappear.
 
-The discussions about systemd were heated.
-Some of them were ideological and others involved real technical problems or limitations of systemd.
+The discussions about {s} were heated.
+Some of them were ideological and others involved real technical problems or limitations of {s}.
 But I was really surprised how few of them mentioned the "`it can reduce undesirable work done by packagers, which is a bottleneck for our project`" argument.
 
 I don't mean that maintainers workload should be the only and single criteria -- because there are probably case where following it would be the wrong choice -- but I think it should be heavily taken into account.
