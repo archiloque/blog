@@ -1,0 +1,134 @@
+= Links - 4^th^ December 2022
+Julien Kirch
+v1.0, 2022-12-03
+:article_lang: en
+:figure-caption!:
+:article_description: Git worktree, Windows 95's User Interface, playing with Git commits ids, Fungal font, Barnacle Goose Experiment, Git for trunk-based development, a garbage can model of organizational choice
+
+== link:https://github.polettix.it/ETOOBUSY/2022/11/22/git-worktree/[Git worktree]
+
+[quote]
+____
+So… link:https://git-scm.com/docs/git-worktree[git worktree]. Much like
+sliced bread.
+
+The main selling point is: keep multiple working directories out of a
+single repository, so that we can work on them in parallel.
+
+Many people praise this for being able to quickly work on a critical fix
+in a branch without having to mess with their current working directory.
+The stuff that was mainly addressed with `git stash` up to some time
+ago, except that now it seems everybody secretly hated that.
+
+For starters, I think that `git stash` is cool. Maybe outdated by
+multiple working trees, but still cool.
+____
+
+== link:https://socket3.wordpress.com/2018/02/03/designing-windows-95s-user-interface/[Designing Windows 95's user interface]
+
+[quote]
+____
+The development of the user interface for a large commercial software
+product like Microsoft® Windows 95 involves many people, broad design
+goals, and an aggressive work schedule. This design briefing describes
+how the usability engineering principles of iterative design and problem
+tracking were successfully applied to make the development of the UI
+more manageable. Specific design problems and their solutions are also
+discussed.
+____
+
+== link:https://westling.dev/b/extremely-linear-git[Extremely linear Git history]
+
+[quote]
+____
+One of the things that I like to do in my projects, is to make the git
+history as linear as possible.
+
+Usually this means to rebase commits onto the main branch, but it can
+also mean to only allow merges in one direction, from feature branches
+into main, never the other way around. It kind of depends on the
+project.
+
+Today I'm taking this one step further, and I'm introducing a new
+concept: _extremely linear git history_.
+
+With our extremely linear history, the first commit in a repo hash a
+hash that starts with `0000000`, the second commit is `0000001`, the
+third is `0000002`, and so on!
+
+Incremental version numbers makes it easy to talk about revisions. You
+immediately know that version 230 comes after 200, and if you create 10
+new versions per day, it's easy to have an intuition for how old a
+commit is based on your current latest version.
+____
+
+== link:https://velvetyne.fr/fonts/fungal/[Fungal]
+
+[quote]
+____
+In 2022, link:https://hato.store/[Hato press] invited
+link:https://velvetyne.fr/authors/raphael-bastide/[Raphaël Bastide] to do a
+publication part of the zine series. In a wish to revive the "`fan`" part
+of fanzine, Raphaël Bastide decided to pay tribute to Wikipedia, a
+surviving, precious, unequaled place on the open WWW. The 16 pages riso
+print zine shows the encyclopedia's interface as a post-human vestige,
+an artifact invaded by biomorphic figures and spreading typography.
+Through the pages of the zine, the reader discovers how the graphic
+elements are spreading like mycelium, creating an ornamental graphic
+network. A live web version of this page exist and
+link:https://fungal.page/[you can visit it here].
+
+Raphaël Bastide approached his longtime friend and Velvetyne
+collaborator link:https://velvetyne.fr/authors/jjjlllnnn/[Jérémy Landes] to
+give life to his idea of a molding typeface. They designed the
+characters of the zine so they can grow and spread thanks to their
+variable design. Fungal is a fork of
+link:https://github.com/dejavu-fonts/dejavu-fonts/[DejaVu Sans], a libre
+font, popular on Linux systems. To view all authors involved in the
+creation of Deja Vu Sans, head
+link:https://github.com/dejavu-fonts/dejavu-fonts/blob/master/AUTHORS[here].
+
+The hyphæ of the mycelium growing from each glyphs can be controlled in
+their length (the Grow axis) and in their thickness (the Thickness axis)
+allowing to fine tune the density of the rhizome growing on the page and
+the legibility of the text in the same move.
+____
+
+== link:https://everest-pipkin.com/barnacle-goose/[The Barnacle Goose Experiment]
+
+[quote]
+____
+The Barnacle Goose Experiment
+is an abiogensis body horror idle clicker where you play as a researcher in a biodome tasked with generating a world out of their own body.
+____
+
+== link:https://blog.trunk.io/minimum-viable-git-for-trunk-based-development-81a5da7a77a7[Minimum viable Git for trunk-based development]
+
+[quote]
+____
+Many of us know that one developer who’s studied the Git refspec and the underlying Merkle tree it’s based on, but being a Git savant is probably not in your job description. I can drive a car perfectly fine without understanding how the transmission actually works, and at the end of the day, Git is just a means to an end.
+
+To get the most out of Git, you must use it the least amount possible when it comes to trunk-based development. Limit the commands you use, keep your feature branch up to date properly, and standardize usage as a team. Individually, you may enjoy the freedom to do whatever you want. But as a team, the price for freedom is paid for in friction.
+____
+
+== https://academic.oup.com/edited-volume/27993/chapter-abstract/211708747[Michael D. Cohen, James G. March, and Johan P. Olsen, "`A Garbage Can Model of Organizational Choice`"]
+
+[quote]
+____
+The basic observation and the main conceptual argument is that decision-making in organizations quite often can be characterized by three main properties (link:https://www.jstor.org/stable/2392088[Cohen et al. 1972]), by
+
+. problematic preferences, i.e. goals are either vague, inconsistent, contested, or unstable;
+. unclear technologies, i.e. the connection between means and ends is not well understood; and
+. fluid participation, i.e. the attention and involvement of decision makers is unstable or uncertain.
+
+Organizations in which these properties can be observed are called "`organized anarchies`", they discover their preferences through action and interaction more than they act on the basis of clear goals, and these organizations can therefore, "`for some purposes`", be described as "`collections of choices looking for problems, issues and feelings looking for decision situations in which they might be aired, solutions looking for issues to which they might be an answer, and decision makers looking for work`".
+
+The main point is that the classical view of decision-making, where "`choice opportunities lead first to the generation of decision alternatives, then to an examination of their consequences, then to an evaluation of those consequences in terms of objectives, and finally to a decision`" is quite often a poor description of what actually happens. Instead, in the garbage can model a decision is an outcome of several "`relatively independent streams`" and their interrelations:
+
+. problems–concerns inside and outside the organizations which require attention; 
+. solutions–answers actively looking for problems to which they may be applied;
+. participants–actors which want to participate in choices and decisions; and
+. choice opportunities–occasions when an organization is expected to produce behavior that can be called a decision, some of these arise regularly (budgets have to be passed, contracts must be signed, etc.), while others are more unpredictable (crises within or outside the organization).
+
+The garbage cans of the model are thus the choice opportunities into which various kinds of problems and solutions are dumped by various participants. The mix of garbage in a single can, i.e. a specific choice opportunity, depends on the mix of cans or opportunities available, on the labels attached to the alternative cans or opportunities, on what garbage, i.e. solutions and problems, are currently being produced, and on the speed with which these are collected and removed from the scene.
+____
