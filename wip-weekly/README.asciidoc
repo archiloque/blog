@@ -36,3 +36,103 @@ more than 1% of the market share. There was one bite at the hook, and
 the raspi took it. The problem is that the Pi bit at the _wrong_ hook.
 It's a terrible SBC, because it's not meant to be one.
 ____
+
+== link:https://cutlefish.substack.com/p/20-things-ive-learned-as-a-systems[20 things i've learned as a systems (over) thinker]
+
+[quote]
+____
+. Your default description of (almost) any problem will be too
+threatening/overwhelming.
+. Do your deepest thinking with co-conspirators (not the people you're
+trying to influence).
+. The people you're trying to influence spend 98% of their day
+overwhelmed by business as usual.
+. You'll need a support network. And not just a venting network. Real
+support.
+____
+
+== link:https://www.compileralchemy.com/books/sqlite-internals/[SQLite Internals: How The World's Most Used Database Works]
+
+== link:https://www.phlex.fun[Phlex]
+
+[quote]
+____
+Phlex is a framework for building fast, reusable, testable views in pure Ruby.
+
+[source,ruby]
+----
+class Nav < Phlex::HTML
+	def template
+		nav(class: "main-nav") {
+			ul {
+				li { a(href: "/") { "Home" } }
+				li { a(href: "/about") { "About" } }
+				li { a(href: "/contact") { "Contact" } }
+			}
+		}
+	end
+end
+----
+
+____
+
+== link:https://www.plai.org[Programming languages: application and interpretation]
+
+[quote]
+____
+This is the Web site for _Programming Languages: Application and
+Interpretation_, often referred to by its initials as PLAI (pronounce it
+like "`play`"). Over the years well over fifty academic institutions (that
+I know of) have used PLAI.
+
+PLAI is designed for upper-level courses that introduce the main ideas
+of programming languages. In the US, it is designed for students in
+their second- through fourth-years of college, as well as starting
+graduate students. However, PLAI has been used with students much
+younger, including in a few select high school classes.
+____
+
+== link:https://devblogs.microsoft.com/oldnewthing/20221226-00/?p=107615[The worst-selling Microsoft software product of all time: OS/2 for the Mach 20]
+
+[quote]
+____
+During this era, technology was advancing far faster than the accounting industry could keep up. Computers were classified as office equipment, which at the time had a seven-year depreciation schedule. But computers were improving so rapidly that a seven-year-old computer was beyond obsolete. Companies needed to upgrade their computers, but their accountants wouldn’t let them just throw out the old ones since they still had several years of depreciation left and consequently had no budget for buying new computers. "`The government says that these have to last seven years, so by golly, you’re going to make them last seven years!`"
+____
+
+== link:https://systemstack.dev/2022/12/new-old-computer/[A new old idea]
+
+[quote]
+____
+The intricacy of
+design and manufacture here isn't what I'm after, it's the feeling you
+get from using an old hammer, or of starting an old truck: the feeling
+that this tool has been used for a long time and is nowhere near the end
+of its usefulness. The problem, setting aside for the moment whether
+this is a real problem or merely one of perception, is that as computers
+age, our sense is that they actually _do_ reach the end of their
+usefulness, well before they actually stop doing the things they could
+do when they were brand new.
+
+What I want is a computer that functions in the same way as a
+typewriter. What I mean is _not_ that it's an expensive Alphasmart with
+an e-Ink screen and an Ernest Hemingway endorsement to sell to Nanowrimo
+enthusiasts with too much disposable income. What I mean is that it
+doesn't very many things, but what it does do is help me write, organize
+my thoughts, create things, correspond with people, and it will do those
+things for a very long time.
+____
+
+[quote]
+____
+Small systems have their place, but
+an ideal permacomputer is _comprehensible_ without being _artificially
+limited._ The line between those two things can probably only be found
+through experimentation.
+____
+
+== link:https://maggieappleton.com/garden-history[A brief history & ethos of the digital garden]
+
+[quote]
+____
+A newly revived philosophy for publishing personal knowledge on the web
+____
