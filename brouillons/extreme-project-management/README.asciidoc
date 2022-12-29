@@ -2,7 +2,7 @@
 Julien Kirch
 v0.1, 2022-12-27
 :article_lang: en
-:article_image: arrows.png
+:article_image: diagram.png
 :article_description: Have the courage to admit what you really want
 
 I've spend several years doing audits and other missions and I noticed that many organizations seem to care more about the planning and reporting of projects than about the content of the project (i.e. what the project is supposed to deliver).
@@ -21,8 +21,8 @@ The same two tasks are recreated for each iteration.
 Each project iteration is composed of four parts :
 
 . A backlog grooming where you review the project's backlog, which is composed of the two aforementioned tasks.
-. A poker planning, where you estimate the two tasks.
-. A steering committee, where you share the project's reports with the stakeholders.
+. A poker planning, where you estimate how long the two tasks should take.
+. A steering committee, where you share the project's reports with the stakeholders and you can decide of the next steps.
 . A retrospective where you can gather feedbacks from the team and try to find improvements for the next iteration.
 
 A typical XP management team should be composed of two person:
@@ -30,10 +30,19 @@ A typical XP management team should be composed of two person:
 . A project owner, in charge of creating and updating the project tasks
 . A scrum master, in charge of managing the Jira workflow and permissions
 
-With an experienced team, an XP management iteration should typically take no more than 2 hours:
+With an experienced team, an XP management iteration should typically take no more than 3 hours:
 
-. Backlog grooming: 5 minutes
-. Poker planning: 10 minutes
+. Backlog grooming: 15 minutes
+. Poker planning: 15 minutes
 . Steering committee preparation: 30 minutes
-. Steering committee: 1 hour
-. Retrospective: 15 minutes
+. Steering committee: 60 minutes
+. Retrospective: 60 minutes (including an ice-breaker)
+
+It means that 10 iterations per weeks should be a lower-bound.
+
+As each iteration contains the two same exact tasks, the project should be perfect to apply project management best practices: velocity measurement, burn-down chart analysis, and estimations vs time spend comparisons.
+
+Once an XP management project has been established in an organization, it could be used to challenge other projects.
+The goal would not be to antagonize the other teams, but to inspire them so they improve themselves.
+
+Unfortunately I've stopped doing consulting so I'm not available to help you implement this idea in your org, but if you try to do it I'm curious of any lessons learned you can share.
