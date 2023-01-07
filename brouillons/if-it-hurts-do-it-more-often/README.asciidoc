@@ -1,4 +1,31 @@
-= "`If it hurts, do it more often`"
+= "`If it hurts, do it more often`": improvement or trauma?
 Julien Kirch
 v0.1, 2023-01-06
+:article_image: noise.jpg
 :article_lang: en
+
+"`If it hurts, do it more often`" is a motto associated with process management I used to hear often when I worked in consulting.
+
+The idea is that when a task's execution is painful (for example long, tedious or error prone) and the task is only done time to times, the pressure is not high enough to improve it.
+
+If the task is executed more often, the inconvenience is increased, and this should trigger the decision to do something about it.
+A typical improvement is to invest in automation, which hopefully should makes it faster and more robust, for example to script a manual deployment or to write automated non-regressions tests.
+
+"`If it hurts, do it more often`" is catchy: the contradiction triggers people who hear about it for the first time to question it so you have an occasion to explain the intended mechanism.
+
+But the mechanism has a blind area, which I think is common in this type of approaches:
+it only works if the people that suffer from the non-optimal process have the mean to fix it.
+For example if the team that is doing manual testing because do it they don't have the leeway or budget to decide to invest in automated test, telling them that increasing the pain should trigger a solution is being oblivious.
+
+My personal experience is that, when a team is continuously using a process that seem non-optimal from outside, it's often the case that the process is the best possible process _when you take the various constraints applied to the team into account_.
+And the people are doing their best to make the thing running.
+
+The solution, as often, is not to increase the pressure on a local system that can't do anything, but to change the global system.
+
+Inflicting more pain on a system that can't solve the issue is how you create trauma, and it makes you sound like an abuser.
+
+A way to do it is by creating a feedback loop so that the pain caused by the problem is felt by the part(s) of the global system that can trigger a change.
+
+The difficult part is that the ability to isolate the parts of the system that could change the constraints from the parts that feel them is often one of the more important rules of the system, and changing it is nearly impossible.
+
+Remember the Hippocratic oath: "`I will do no harm`".
