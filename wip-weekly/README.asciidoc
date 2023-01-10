@@ -4,3 +4,85 @@ v1.0, 2023-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://nolanlawson.com/2017/03/05/what-it-feels-like-to-be-an-open-source-maintainer/[What it feels like to be an open-source maintainer]
+
+[quote]
+____
+You're reluctant to create new projects, because you know it will just
+increase your maintenance burden. In fact, there's a perverse effect
+where, the more successful you are, the more you get "`punished`" with
+GitHub notifications.
+
+You can still recall the thrill of creation, the joy of writing a new
+project from scratch and solving a previously-unsolved problem. But now
+you weigh that joy against the knowledge that any new project will
+necessarily steal time from old projects. You wonder if it it's time to
+formally deprecate one of your old repos, or to
+link:http://unmaintained.tech/[mark it as unmaintained].
+
+You wonder how much longer this can go on before you just burn out.
+You've considered doing open source as your day job, but from talking
+with folks who actually do open source for a living, you know that this
+usually means permission to work on a _specific_ open-source project as
+your day job. That doesn't help you much, because you have
+link:https://www.npmjs.com/~nolanlawson[dozens of projects] across various
+domains, which are all vying for your time.
+
+What you want most of all is to have more projects that maintain
+themselves. You try to follow all the
+link:https://medium.freecodecamp.com/how-to-attract-new-contributors-to-your-open-source-project-46f8b791d787[best practices]: you have a `CONTRIBUTING.md` and a code of conduct, you
+enthusiastically hand out owner privileges to anyone who submits a
+high-quality PR. It's exhausting to do this for every project, though,
+so you're not as diligent as you wish you could be.
+
+You feel guilty about that too, since you know open source is frequently
+regarded as an exclusive club for privileged white males, like yourself.
+So you worry that you're not doing enough to help fix that problem.
+
+More than anything, you feel the guilt: the guilt of knowing that you
+_could_ have helped someone solve their problem, but instead you let
+their issue rot for months before closing it. Or the guilt of knowing
+that someone opened their first pull request _ever_ on your repo, but
+you didn't have time to respond to it, and because of that, you may have
+permanently discouraged them from open source. You feel guilty for the
+work that you do, for the work that you didn't do, and for not
+recruiting more people to share in your unhappy guilt-ridden experience.
+____
+
+[quote]
+____
+One reason this situation is so frustrating is that, increasingly, I
+find that issue triage takes time away from the actual _maintenance_ of
+a project. In other words, I often only have enough time to read through
+an issue and say, "`Sorry, I don't have time to look at this right now.`"
+Just the mere act of responding can take up a majority of the time I've
+set aside for open source.
+____
+
+== link:https://www.jamesshore.com/v2/blog/2023/the-problem-with-dependency-injection-frameworks[The problem with dependency injection frameworks]
+
+[quote]
+____
+I get it. Good design is hard, and sometimes we're stuck with code
+that's, um, Not So Great. Engineering is tradeoffs, and there's no one
+right answer when it comes to design. DI frameworks solve design
+problems at the cost of increased maintenance costs and lower-quality
+design. Manual dependency injection solves those problems, but at the
+cost of spending more time passing around variables and thinking about
+how to structure your dependencies.
+
+Look, I'm a professional. I _get the job done_. Pretty much every client
+I work with uses a DI framework. I'm not going to do that
+passive-aggressive programmer thing where I sniff dismissively and
+refuse to work on any code that involves a DI framework. I know how to
+work with DI frameworks, I do it, and I'll even admit they make life
+easier. The
+link:/v2/projects/testing-without-mocks/testing-without-mocks[Testing Without Mocks patterns] are designed to let you _not_ have a DI
+framework, but they work just as well if you _do_.
+
+But I also think they're a crutch. Next time you start a new codebase
+from scratch, try it without a DI framework. You'll have to spend a lot
+more time thinking about good design, and that's a good thing. You might
+be surprised where it takes you.
+____
