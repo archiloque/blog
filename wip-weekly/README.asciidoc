@@ -4,3 +4,22 @@ v1.0, 2023-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://www.devever.net/~hl/stringtemplates[Producing HTML using string templates has always been the wrong solution]
+
+[quote]
+____
+There are broadly two approaches used to generate (X)HTML in web
+applications today:
+
+* string templating systems;
+* AST-based representation, transformation and serialization;
+
+Historically, the majority of server-side web applications have tended
+to produce HTML output using string templating systems. String template
+approaches remain vastly more popular than AST-based approaches.
+
+This is unfortunate, as I've come to the conclusion for some years now
+that the use of string templating systems to generate HTML is
+fundamentally the wrong approach.
+____
