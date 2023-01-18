@@ -64,3 +64,33 @@ ____
 ____
 This will be relevant in the story I'm about to tell. _You can't just enter a VRChat space._ Even events _intended to be public_ involve misdirection, Discords pointing to other Discords, and fliers with coded language and implied access mechanisms. I think of the elaborate rituals gay subcultures used in link:https://everything2.com/title/Gay+subcultures+in+eighteenth+century+Europe[eighteenth-century cruising routes] to ensure the person they were propositioning was a fellow queer and not a police informant, except instead of trying to solicit gay sex, they are trying to have a normal human interaction. Maybe some of them have gay sex afterward, I don't know. It doesn't seem to be the focus.
 ____
+
+== link:https://buttondown.email/hillelwayne/archive/use-the-wrong-tool-for-the-job/[Use the wrong tool for the job]
+
+[quote]
+____
+I'm inclined to think that the benefits of familiar tooling is
+_enormous_, such that you're often better using a wrong-but-familiar
+tool than a right-but-exotic tool. And there's a problem with that. What
+you're familiar with is highly circumstantial. If a team wants to make a
+slick web app, but all they know is Fortran, then they have a good
+argument for writing the app backend in Fortran.
+
+…And then, if they need a yaml parser or a pdf generator or a job queue,
+then those should be in Fortran too. Over time, all language ecosystems
+will develop all possible language tooling, even if the tooling is for a
+purpose the language is completely unsuited to. Because
+no matter how wrong a tool is for the job, proper familiarity can turn
+it into the right tool.
+
+(Obviously there's a limit to this, which is why some webtech companies
+have migrated their Ruby and Python codebases to things like Go or
+TypeScript.)
+
+This also _changes_ what the right tool for the job is. If you ask me,
+Python isn't that good _as a language_ for scientific computing, both
+due to performance impedance and because of how hard it is to pipeline
+data. But because it has the large data ecosystem, it's more appropriate
+now for that kind of work. Other languages now have more impedance
+because you'd need to reproduce those libraries.
+____
