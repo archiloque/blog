@@ -94,3 +94,30 @@ data. But because it has the large data ecosystem, it's more appropriate
 now for that kind of work. Other languages now have more impedance
 because you'd need to reproduce those libraries.
 ____
+
+
+== link:https://patrickbrosset.com/articles/2023-01-17-web-storage/[(Almost) everything about storing data on the web]
+
+[quote]
+____
+Imagine you're building a web application and you want to store some
+data locally on the user's device. This could be because this data is
+only needed on the client-side, or it could be because you want to offer
+some kind of offline access to the your app's content.
+
+To do this, you'll need to store data on the device that's running your
+app. You might be asking yourself:
+
+. Can I actually store all the data I need?
+. Can I trust the browser to really persist it?
+. How much space do I have?
+
+The answers are better than you might think:
+
+. Can I actually store all the data I need? _Sure, you can store all kinds of data, and a lot of it too._
+. Can I trust the browser to really persist it? _Yes you can._
+. How much space do I have? _A lot, in most cases!_
+
+But as always, the devil is in the details! Let's try to dive into these
+details.
+____
