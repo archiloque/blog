@@ -13,24 +13,28 @@ ____
 Suárez Miranda, Viajes de varones prudentes, Libro IV, Cap. XLV, Lérida, 1658
 ____
 
-From this story, I use "`doing a 1:1 map`" to mean "`manually copying a non-trivial quantity of data from an media with a high information density to another media`".
+From this story, I use "`doing a 1:1 map`" to mean "`manually copying a non-trivial quantity of data from a media with a high information density to another media`".
 
-Doing a 1:1 map can done for a one-shot need, or it can be kept updated with the source territory (or intended to be kept up to date).
+Doing a 1:1 map can be done for a one-shot need, or it can be kept updated with the source territory (or intended to be kept up to date).
 
 Doing a 1:1 map is not wrong per se, sometimes it's the right choice, but it must be carefully chosen by evaluating the associated cost and benefits.
 
 Unfortunately, what often happens is that you intend to copy some information with a limited scope and a limited level of details, and little by little you expand the scope and the level of details because it would mean being able to answer more questions without accessing the source.
 
-And <bam>, you're doing a 1:1 map without having decided, and the associated cost are much higher than expected.
+And <bam>, you're doing a 1:1 map without having decided, and the associated costs are much higher than expected.
 It's the 1:1 map trap.
 
-Two common examples in software projects :
+Two common cases in software projects :
 
 . Detailed specification of a working application
 . Detailed schema of a software piece
 
 It can even make the resulting 1:1 map unusable because the target media may not be suitable for so much data.
-For example trying to rewrite intricate code in human language on a slide deck often ends poorly.
+For example, trying to rewrite intricate code in human language on a slide deck often ends poorly.
 
-So, when you're replicating information, or intend to do so, try to ask yourself times to times "`Am I doing a 1:1 map?`".
+A possible solution is to work on how you represent things, like grouping things differently, or doing several sub-maps instead of a single one.
+Each of these will probably involve trade-offs and trial and errors, but it's better than a total mess.
+
+So, when you're replicating information, or intend to do so, try to ask yourself time to time "`Am I doing a 1:1 map?`".
+
 And if the answer is yes, stop and be sure that if it's what you want, what you really really want.
