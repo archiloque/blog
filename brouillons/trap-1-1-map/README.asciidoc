@@ -32,8 +32,12 @@ Two common cases in software projects :
 It can even make the resulting 1:1 map unusable because the target media may not be suitable for so much data.
 For example, trying to rewrite intricate code in human language on a slide deck often ends poorly.
 
-A possible solution is to work on how you represent things, like grouping things differently, or doing several sub-maps instead of a single one.
-Each of these will probably involve trade-offs and trial and errors, but it's better than a total mess.
+A possible solution is to work on how you represent things, like organizing the data differently, or doing several sub-maps instead of a single one.
+This would probably involve trade-offs and trial and errors, but it's better than a total mess.
+
+Another approach is to replace the manual mapping by the creation of a tool that creates the map or that makes the source data queryable.
+It can work if the source is structured in an appropriate way and if the cost of development can be amortized (for example if the source data change but not in a way that would require to update the tool).
+But resist the urge to replace one hour of manual work by a week of writing a script.
 
 So, when you're replicating information, or intend to do so, try to ask yourself time to time "`Am I doing a 1:1 map?`".
 
