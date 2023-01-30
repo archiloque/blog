@@ -4,3 +4,74 @@ v1.0, 2023-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://lethain.com/internal-comms-execs/[Internal comms for executives.]
+
+[quote]
+____
+Over time, I've developed a theory of organizational communication that
+I call, "`information herd immunity.`" It's simply impossible to ensure
+every member of a two thousand person engineering organization knows
+_anything_. Even if you personally tell each member of the organization
+that performance reviews are starting next week, and send them an email
+the day before, some fraction will still be utterly confident that no
+one told them about performance reviews starting.
+____
+
+== link:https://laughingmeme.org//2023/01/23/software-and-its-discontents-part-2-complexity.html[Software and its discontents, part 2: an explosion of complexity]
+
+[quote]
+____
+As an engineering leader raising the quality of technical decision
+making is arguably your most important job after building the team
+itself. Eight years after I left Etsy I'm still getting new notes from
+people telling me that, no matter how frustrated they were with me at
+the time, in subsequent jobs they've come to appreciate and desperately
+miss how well defined the "`Etsy Way`" of building software was.
+
+Today any team that has been around for more than a minute not only has
+chosen a unique combination of technologies, they've changed their mind
+about it a couple of times, often in logically inconsistent ways. With
+so many great technologies out there, and so many of them backed by well
+funded marketing teams (see: cheap money and marketing), it's never been
+harder to keep your stack simple, and logically consistent. Many teams
+have given up entirely and are leaning into developer empowerment and
+polyglot infrastructures. We've collectively taken on the complexity of
+targeting multiple stacks, their idiosyncrasies, their need for
+training, and their upgrade cycles due to raising standards, while we're
+simultaneously splitting our resources for managing that complexity by
+taking on the needed training, upgraded cycles, and idiosyncrasies of
+these complex polyglot stacks. Not to mention the unique interactions of
+these technologies, with our previous technology choices, which are
+still lingering in the stack. The real horror stories these days in
+infrastructure aren't the load spikes of days of yore ("`getting
+Slashdotted!`") but those complex interactions: how PHP's GRPC library
+interacts with Envoy, how Scala's JSON library tickles Varnish caching
+issues, how MySQL's weird implementation of utf8mb4 is incompatible with
+storing your data literally anywhere else. There is a reason that tech
+debt has become the favorite bugbear of teams everywhere.
+
+Without standardization in your company, without a small number of well
+known tools in which you're developing expertise as a team, the hope
+that you can grow your team logarithmically but see exponential results
+is a fantasy. That discipline is harder than ever to enforce.
+____
+
+== link:https://build-your-own.org/blog/20230127_byor/[The "`Build Your Own Redis`" Book is Completed]
+
+[quote]
+____
+Needless to say, the Redis project is quite a success. It's an important
+component in backend applications.
+
+Redis could be considered one of the _building blocks_ of modern
+computing. There are not many projects that fit the such role and stood
+the test of time. Here are some examples that meet my criteria of the
+"`building block`": NGINX, SQLite, PostgreSQL, Kafka, Linux kernel, etc.
+
+Most of us are not working on projects of such a level, but it is still
+worthwhile to learn from those projects. It takes higher skill and
+deeper knowledge to build such projects, thus learning from those
+projects could be a path to the next level as a software developer. The
+book is the result of my own learning.
+____
