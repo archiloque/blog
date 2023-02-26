@@ -5,12 +5,16 @@ v0.1, 2022-11-01
 :article_image: platonic_solids.jpg
 :article_description: 
 
-Among programming languages and software types, there are different types of ideal coding.
+Among programming languages, software types and papers, there are different types of ideal coding styles.
 
-By this I 
+Calling them ideal means that they don't always match what programs looks like but they can be models people want to approach as much as possible.
 
-"`ideal types`" way of coding.
-They come from constraints or requirements, or simply to some developers tastes:
+A few examples :
 
 - Programs where everything is computed at compile-time or booting time
-- Programs that 
+- Programs where no call are direct and where they all go through an indirection
+- Programs that are so dynamics that looks like elaborates `eval(string)`
+- Programs using link:https://en.wikipedia.org/wiki/Entity_component_system[entity component system]
+- Programs where all the behaviors is managed and stored as data
+
+Note: a model I find particularly intriguing is 
