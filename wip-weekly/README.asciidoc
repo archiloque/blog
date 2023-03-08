@@ -4,3 +4,10 @@ v1.0, 2023-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://without.boats/blog/the-registers-of-rust/[The registers of Rust]
+
+[quote]
+____
+When language designers talk about there being "`one way to do it`", I think what they mean is that the language strives to have only one register. Of course, having multiple registers introduces cognitive burden to the user in selecting the appropriate register, and there should be a "`safe default`" register that users can use when a question is beyond their concern, shifting register only when they know they benefit from it. This is not always the case, unfortunately.
+____
