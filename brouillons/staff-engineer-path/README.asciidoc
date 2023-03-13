@@ -3,6 +3,75 @@ Julien Kirch
 v0.1, 2023-03-03
 :article_lang: en
 
+link:https://www.oreilly.com/library/view/the-staff-engineers/9781098118723/[Ce livre] est un peu le pendant du link:../manager-path[__manager's path__] : à la place des personnes technique qui managent d'autres personnes, il s'adresse en priorité aux "`staff engineer`", c'est-à-dire aux personnes techniques ayant dépassé le stade de senior mais qui ne managent personne.
+
+== Pour les staff engineer mais pas seulement
+
+Ce type de poste, même s'il est plus rare que celui de manager, serait en développement.
+
+D'après le livre il permet deux choses :
+
+- de proposer une progression aux personnes que le management n'intéresse pas,
+- que des gens ayant l'expérience leur permettant de porter des chanties techniques complexes aient le temps nécessaire pour le faire correctement, leur agenda n'étant pas accaparé par les tâches de management.
+
+Une partie du livre s'adresse spécifiquement à ce public et à la particularité de ce rôle, en discutant par exemple la difficulté de se faire une place dans une organisation où on occupe un type de poste un peu à part.
+
+Mais la plus grande partie du livre traite de sujets plus généraux qui devraient intéresser les personnes ayant en charge des sujets techniques transverse à plusieurs équipes, même si elles font aussi du management, mais aussi ceux et celles ayant des responsabilités techniques à l'intérieur d'une équipe.
+
+Trois sujets m'ont particulièrement intéressé
+
+== Qu'est ce qu'on fait maintenant{nbsp}?
+
+Quand une personne technique gagne en séniorité, on peut attendre d'elle qu'elle réalise correctement des tâches mais aussi qu'elle suive des chantiers techniques qu'on lui confie et même qu'elle les identifie elle-même.
+
+Par ailleurs avec l'expertise croissante vient souvent une augmentation des sujets sur lesquelles elle peut donner un coup de main, par exemple donner son avis sur du code, une proposition de design, ou participer à une groupe de travail.
+
+Comme il n'y a pas le temps pour tout faire, cela signifie que les personnes doivent choisir sur quoi travailler et de quelle manière (quel niveau d'implication{nbsp}? combien de temps investir{nbsp}? que laisser tomber quand il y a une urgence ou un changement de stratégie{nbsp}?).
+
+C'est d'autant plus difficile que sur les projets plus gros les attentes sont plus floues (par exemple s'assurer qu'une migration "`se passe bien`") et que les interlocutrices et interlocuteurs ne sont pas forcément d'accord sur les objectifs et les priorités.
+
+== Besoin de convaincre
+
+Quand une personne est responsable d'un chantier au delà d'une certaine taille, il est rare qu'elle puisse tout faire du sol au plafond.
+Cela signifie qu'il est nécessaire de demander à d'autres personnes de contribuer, même si elles n'y ont pas forcément un intérêt direct et si elles n'ont pas que ça à faire.
+
+C'est d'autant plus vrai quand il s'agit d'un chantier que la personne aura elle-même identifiée, surtout s'il faut convaincre des personnes hiérarchiquement au dessus d'elle d'y investir un peu de leur capital politique.
+
+Cela signifie savoir convaincre.
+On peut avoir besoin d'arguments techniques, d'identifier à quelle objectif du chantier la personne sera sensible (voir modifier le chantier pour cela) ou d'influence personnelle et politique.
+
+Cela passe par des échanges officiels lors d'ateliers, mais aussi d'échanges plus informels autour d'un café ou en se croisant dans un couloir.
+
+Cela ne veut pas dire que tous les moyens sont bons ou qu'on attend des personnes qu'elles deviennent des politiciennes retorses, mais on peut exiger qu'elles obtiennent un certain niveau de résultat dans ce domaine.
+
+Il y a des personnes que ce genre de choses n'intéresse pas, voire qui les jugent dégradantes.
+Sans porter de jugement, la conséquence est qu'il est probablement difficile pour ces personnes d'occuper ce type de postes dans des organisations normales.
+
+== Donner l'exemple
+
+Le dernier est le fait de donner l'exemple.
+
+Une personne expérimentée peut avoir une influence volontaire sur les autres, en travaillant ensemble ou en les coachants.
+Mais une partie de l'influence est aussi moins visible, et passe par le fait de donner l'exemple.
+
+En effet quand une personne a des responsabilité dans une organisation, les autres vont l'observer et s'inspirer d'elle, sans qu'il s'agisse forcément d'un acte conscient.
+
+Cela signifie, que tous les gestes de la personne&#8201;—{nbsp}qu'elle le veuille ou non{nbsp}—&#8201;sont observés et ont des effets chez les autres.
+
+Cette forme de responsabilité, qu'on ne choisit pas, peut déstabiliser voir être oppressante{nbsp}: une personne peut très bien se sentir sûre d'elle dans la partie réalisation de son travail mais ne pas être à l'aise avec l'idée que son comportement ait une telle importance.
+
+== Au final
+
+La lecture ne m'a rien appris de totalement nouveau mais m'a permis d'expliciter des choses que j'avais observé mais pas forcément formulées.
+
+Il se lit facilement mais je ne l'ai pas trouvé très enthousiasmant.
+J'ai même été agacé par les nombreuses fois où l'auteure cite des _staff enginneer_ d'entreprises prestigieuses alors que l'intérêt de la citation n'est pas toujours évident.
+
+Je recommanderait de le lire après le _manager's path_, même pour les personnes plus intéressée par le rôle de _staff enginneer_ sauf si les sujets de management les rebutent vraiment.
+
+== Quelques extraits qui m'ont attiré l'œil
+
+
 [quote]
 ____
 Early in your career, if you do a great job on something that turns out to be unnecessary, you've still done a great job. At the staff engineer level, though, everything you do has a high opportunity cost, so your work needs to be _important_.
@@ -21,7 +90,7 @@ It is fascinating to watch how information and opinions flow through a company a
 
 Some decisions seem to emerge from conversations without anyone really declaring that they've decided. Others happen more formally, but in rooms you're not in. If you have a lot of ideas, it can be frustrating when you see other initiatives take root but not yours. Why aren't they listening to your proposals? The truth is something that a lot of us struggle to make peace with: being technically correct about a direction is only the beginning. You need to convince other people too -- and you need to convince the _right_ people.
 
-If you don't understand how decisions are made in your organization or company, you'll find yourself unable to anticipate or influence them. You might also find that you think you hold the same opinions as everyone else about what should happen next, and then find that suddenly everyone is advocating for a dif ferent path. If you consistently feel out of the loop, that's a sign that you don't understand how decisions are made and who influences them.
+If you don't understand how decisions are made in your organization or company, you'll find yourself unable to anticipate or influence them. You might also find that you think you hold the same opinions as everyone else about what should happen next, and then find that suddenly everyone is advocating for a different path. If you consistently feel out of the loop, that's a sign that you don't understand how decisions are made and who influences them.
 ____
 
 [quote]
