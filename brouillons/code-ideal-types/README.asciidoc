@@ -1,0 +1,35 @@
+= Code ideal types
+Julien Kirch
+v0.1, 2022-11-01
+:article_lang: en
+:article_image: platonic_solids.jpg
+:article_description: 
+
+Among programming languages, software types and papers, there are different types of ideal coding styles.
+
+Calling them "`ideal`" means that they don't always match what standard programs looks like (as opposed to toy programs or programs or programs with a specific scope that are suited to the style) but they can be models people want to approach as much as possible.
+
+A few examples :
+
+- Programs where everything is computed at compile-time or startup time
+- Programs where all code blocs aren't longer that 5 lines
+- Programs where no call are direct because they all go through an indirection
+- Programs that are so dynamics that looks like elaborates `eval(string)`
+- Programs fully using a link:https://en.wikipedia.org/wiki/Entity_component_system[entity component system]
+- Programs where all the behaviors are managed and stored as data (in a database or in a database-like storage like link:../fichiers-de-configuration/[a configuration file]), and where all can even run in the database
+
+These models have an intellectual appeal because they are diehard.
+This means they can trap developers' imagination, specially the developers who are frustrated by how baroque and mixed some systems are.
+
+It can be easy to dismiss these models, specially when we're exposed to them by overzealous propagandists who tout their model of choice as the one true way to software.
+
+On the other hand, I think that spending some time learning them from a good source can improve your coding and code design skills.
+
+"`You should learn programming languages of different types`" is a common advice to increase the width a developper's knowledge, because even if you don't use these languages, having been exposed to them means you can still incorporate some of their ideas{empty}footnote:[And sometimes create horrible mess and fight with your coworkers].
+
+But focusing on the programming languages means that{nbsp}:
+
+* It can be hard to separate the particular syntax from the idea,
+* Some programming styles can be 
+
+Trying to learn about programming style instead of or in addition to programming languages 
