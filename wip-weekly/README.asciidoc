@@ -4,3 +4,24 @@ v1.0, 2023-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://snarfed.org/2023-03-24_49619-2[Content negotiation considered harmful]
+
+[quote]
+____
+* Most web developers are not aware that conneg exists. This is usually
+fine, since it's uncommon, but can be an unpleasant surprise when they
+first hit it and don't understand it.
+* The `Accept` header is notoriously complicated to parse, generate, and
+fully comply with. Imo much of that complexity is unneeded in practice.
+* It often breaks caching when it's first introduced. Internal and
+external caches generally ignore Content-Type and Accept (etc) by
+default, so when conneg is first introduced, clients often get the wrong
+response type. Developers learn the hard way that they need to add
+Accept to Vary and to their framework's cache.
+* URLs leak across contexts. They may start out within a single service
+or API, but they gradually proliferate into user-visible links, object
+identifiers in other systems, add-on services, third party tools, etc.
+These generally don't know the original conneg requirements, which
+causes unpleasant surprises.
+____
