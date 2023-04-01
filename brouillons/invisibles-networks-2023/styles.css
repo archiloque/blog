@@ -1,0 +1,123 @@
+html {
+    font-family: Cochin, serif;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 140%;
+    background-color: rgb(240, 240, 240);
+    color: rgb(30, 30, 30);
+}
+
+@page {
+    background-color: rgb(240, 240, 240);
+}
+
+a {
+    color: rgb(73, 139, 167);
+}
+
+p {
+    margin: 1em 0;
+    text-align: justify;
+    hyphens: auto;
+}
+
+li p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+li {
+    margin-bottom: 0.3em;
+}
+
+.listingblock {
+    break-inside: avoid;
+}
+
+#header {
+    break-after: always;
+    text-align: center;
+}
+
+#toc {
+    break-before: always;
+    text-align: left;
+}
+
+#toc ul {
+    list-style: none;
+}
+
+#toc a {
+    text-decoration: none;
+    color: rgb(30, 30, 30);
+}
+
+#toc a::after {
+    /* content: " — " target-counter(attr(href), page); */
+}
+
+#toc li {
+    margin-bottom: 0.5em;
+}
+
+#header h1 {
+    font-size: 60px;
+    line-height: 60px;
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 15%;
+}
+
+#header .details {
+    line-height: 36px;
+    padding-top: 90%;
+}
+
+#revnumber {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+h2 {
+    break-before: always;
+    string-set: heading content();
+    font-size: 30px;
+}
+
+#footer-text {
+    display: none;
+}
+
+sup {
+    font-size: 0.5em;
+}
+
+@page {
+    padding-top: 1cm;
+
+    @top-left {
+        content: counter(page);
+        font-size: 10pt;
+        height: 1cm;
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    @top-right {
+        /* content: string(heading); */
+        font-size: 10pt;
+        height: 1cm;
+        vertical-align: middle;
+        width: 100%;
+    }
+}
+
+@page :nth(1) {
+    @top-left {
+        content: '';
+    }
+}
