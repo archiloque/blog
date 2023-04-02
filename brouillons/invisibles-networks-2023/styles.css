@@ -9,6 +9,7 @@ html {
 code {
     font-family: 'JetBrains Mono', monospace;
     white-space: nowrap;
+    font-size: 80%;
 }
 
 @page {
@@ -62,8 +63,8 @@ li {
     color: rgb(30, 30, 30);
 }
 
-#toc a::after {
-    content: " — " target-counter(attr(href), page);
+#toc a::before {
+    content: target-counter(attr(href), page, decimal-leading-zero) " — ";
 }
 
 #toc li {
