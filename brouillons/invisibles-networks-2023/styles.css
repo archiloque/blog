@@ -64,7 +64,7 @@ li {
 }
 
 #toc a::before {
-    content: target-counter(attr(href), page, decimal-leading-zero) " — ";
+    /* content: target-counter(attr(href), page, decimal-leading-zero) " — "; */
 }
 
 #toc li {
