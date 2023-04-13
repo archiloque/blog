@@ -4,3 +4,83 @@ v1.0, 2023-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://lethain.com/planning/[How to plan as an engineering executive.]
+
+[quote]
+____
+Planning is an infinite game
+
+James Carse's
+link:https://www.amazon.com/Finite-Infinite-Games-James-Carse/dp/1476731713[Finite and Infinite Games] proposes that you can view most things in life from
+two different perspectives. The first is seeing life as a series of
+finite games, with clear rules, a way to win, and many ways to lose. The
+second is seeing life as an infinite game, whose rules are evolved over
+time by its players, and where the goal is continuing to play. I've
+found this simple distinction life changing in general, and particularly
+applicable to planning.
+
+Although planning is often presented as a finite, rules heavy process, I
+believe that planning is actually an infinite, ongoing game with dynamic
+rules. Before my realization, I would rigidly follow each planning rule,
+and then get frustrated when the resulting plan wasn't very good. Worse,
+the plans I spent so much time on would routinely get thrown away a
+month or two after the process finished. It was only when I was able to
+look past the stated rules that I was able to become an effective
+planner.
+____
+
+== link:https://kellanem.com/notes/how-to-plan[How to plan?]
+
+[quote]
+____
+Most organizations have a formal period of time annually (or quarterly
+or every 13 weeks) when they "`Do Planning`". This period is usually
+called Planning. The implicit or explicit ask of Planning is often,
+_"`Tell us about all your exciting new ideas. We need your creativity to
+achieve our goals. Swing for the fences! Throw big rocks!`"_ This is a
+mistake.
+
+Look at that list of goals from earlier in the post that we are already
+trying to solve with Planning. Does this look like a good time to also
+get creative? Similarly leadership often feels like Planning is their
+opportunity to introduce the new direction they'd like to see the
+company move in. All this does is create a scramble, shallow thinking,
+and low quality plans.
+
+In most companies and organizations doing something new and meaningful
+requires us to coordinate with people across the organization. To pick the canonical example, if
+we build and launch a new product without planning how it's going to be
+sold and marketed, and what infrastructure will be needed to support it,
+and without doing the research to understand how many times previously
+our company tried to launch this exact product then we'll fail. Which is
+something we see tech companies do over and over. This kind of
+coordination is hard at the best of times. Planning is not the best of
+times. Planning is when everyone is too busy to have these
+conversations. (and too emotionally keyed up as they contemplate their
+budget for the coming year and what that means for their team.)
+____
+
+== link:https://wimvanderbauwhede.codeberg.page/articles/funktal/[Funktal: a frugal functional programming language]
+
+[quote]
+____
+link:https://codeberg.org/wimvanderbauwhede/funktal[`Funktal`] is a
+functional programming language for the
+link:https://wiki.xxiivv.com/site/uxn.html[Uxn] virtual machine, a tiny VM
+with 8-bit opcodes and 64 kB of memory. I have written about
+implementing functional constructs in Uxn's native stack based assembly
+language link:https://wiki.xxiivv.com/site/uxntal.html[Uxntal] in
+link:https://wimvanderbauwhede.codeberg.page/articles/uxntal-quoting/[a
+previous post].
+
+The main reason for creating Funktal was to see if it was possible to
+create a statically typed functional language with
+link:https://wimvanderbauwhede.codeberg.page/articles/roles-as-adts-in-raku/[algebraic data types] and
+link:https://wimvanderbauwhede.codeberg.page/articles/function-types/[function types] that could run on the Uxn VM, with a compiler that could be
+implemented in Uxntal. This is motivated by the observation that most
+modern languages are very resource-intensive: typical projects take a
+lot of disk space, compilers are large and require a lot of CPU cycles
+and memory to compile code, and the programs themselves are also very
+often CPU- and memory-intensive.
+____
