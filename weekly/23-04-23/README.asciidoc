@@ -1,0 +1,74 @@
+= Links - 23^rd^ April 2023
+Julien Kirch
+v1.0, 23-04-23
+:article_lang: en
+:figure-caption!:
+:article_description: VendorOps, technological antisolution, booting modern Intel CPUs, how complex systems fail, Windows file paths
+
+== link:https://rachelbythebay.com/w/2020/08/14/jobs/[We are a spectrum of jobs, not just one]
+
+[quote]
+____
+This has become excruciatingly clear in the realm of reliability. Jobs are posted, people sign up, and then they find out that it's not actually based around what they think of as "engineering". It's actually just scurrying around, tidying up after vendor stuff.
+
+I realize now that we need to label this properly. It's "`managed vendor stuff ops`", as a friend called it. When I read that off the window of my chat client a few minutes ago, it was like a bomb went off in my head. This is it! This explains so much!
+
+It's VendorOps. You are hired to tend the vendor's stuff.
+
+The mess we've all gotten into is thinking these are all the same job. They aren't! If you see them as different jobs, then you quickly realize that comparing the abilities of people in one vs. the other is folly. It's an apples and oranges situation: they aren't based around the same things.
+
+The problem is that people think it's the same job. It's not!
+____
+
+== link:https://theluddite.org/#!post/technological-antisolutions[Technological Antisolutions: the difference between public transit and self-driving cars]
+
+[quote]
+____
+link:https://theluddite.org/#!post/tech-climate-change[I have written before] on why I think tech solutions to climate change are a con. It is a political problem that we know how to solve, and yet NPR is clearly waiting with bated breath for that tech that will finally save us. I propose we name these kinds of technology _Technological Antisolutions_.
+
+A Technological Antisolution is a product that attempts to replace boring but solvable political or social problems with a much sexier technological one that probably won’t work. This does not mean that we should stop doing R&D. Much like the fusion example, a technology that is worth pursuing can become a technological antisolution depending on its social and political context. The physicists have done nothing wrong and should be congratulated on their achievement; NPR, on the other hand, has devalued their work by placing it in an inappropriate context.
+
+Technological Antisolutions are everywhere because they allow us to continue living an untenable status quo. Their true product is not the technology itself, but the outsourcing of our social problems. They alleviate our anxiety and guilt about not being active participants in political change, and for their trouble, founders and investors are richly rewarded.
+____
+
+== link:https://mjg59.dreamwidth.org/66109.html[Booting modern Intel CPUs]
+
+[quote]
+____
+Except, well, doesn't this seem like an awfully complicated bunch of code to implement in real mode? And yes, doing all of this modern crypto with only 16-bit registers does sound like a pain. So, it doesn't. All of this is happening in a perfectly sensible 32 bit mode, and the CPU actually switches back to the awful segmented configuration afterwards so it's still compatible with an 80386 from 1986. The "`good`" news is that at least firmware can detect that the CPU has already configured the cache as RAM and can skip doing that itself.
+____
+
+== link:https://how.complexsystems.fail/[How complex systems fail]
+
+[quote]
+____
+Because overt failure requires multiple faults, there is no isolated
+"`cause`" of an accident. There are multiple contributors to accidents.
+Each of these is necessarily insufficient in itself to create an
+accident. Only jointly are these causes sufficient to create an
+accident. Indeed, it is the linking of these causes together that
+creates the circumstances required for the accident. Thus, no isolation
+of the "`root cause`" of an accident is possible. The evaluations based on
+such reasoning as "`root cause`" do not reflect a technical understanding
+of the nature of failure but rather the social, cultural need to blame
+specific, localized forces or events for outcomes.
+____
+
+[quote]
+____
+Organizations are ambiguous, often intentionally, about the relationship
+between production targets, efficient use of resources, economy and
+costs of operations, and acceptable risks of low and high consequence
+accidents. All ambiguity is resolved by actions of practitioners at the
+sharp end of the system. After an accident, practitioner actions may be
+regarded as "`errors`" or "`violations`" but these evaluations are heavily
+biased by hindsight and ignore the other driving forces, especially
+production pressure.
+____
+
+== link:https://www.fileside.app/blog/2023-03-17_windows-file-paths/[The weird world of Windows file paths]
+
+[quote]
+____
+File system paths on Windows are stranger than you might think. On any Unix-derived system, a path is an admirably simple thing: if it starts with a /, it’s a path. Not so on Windows, which serves up a bewildering variety of schemes for composing a path.
+____
