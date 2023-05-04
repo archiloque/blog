@@ -3,4 +3,133 @@ Julien Kirch
 v1.0, 2023-01-01
 :article_lang: en
 :figure-caption!:
-:article_description: 
+:article_description: Build Your Own Database, Abstract Machine Models, 
+
+
+== link:https://build-your-own.org/blog/20230420_byodb_done/[The "`Build Your Own Database`" book is finished]
+
+[quote]
+____
+Databases are a fascinating topic. They are a foundation of modern
+computing. Learning how they work should be an important part of
+software engineering education.
+
+As many of today's (2023+) coders do not have a formal CS/SE education,
+basic things such as databases, compilers, operating systems, etc. are
+often seen as magical black boxes. That's why I started the "`_Build Your
+Own X_`" book series. To learn and teach the basics in a "`_from scratch_`"
+approach, through _succinct_ & condensed books.
+
+There are some important topics that we can learn from database systems:
+
+. _Persistence_. How not to lose or corrupt your data. Recovering from a
+crash.
+. _Indexing_. Efficiently querying and manipulating your data. (B-tree).
+. _Concurrency_. How to handle multiple (large number of) clients. And
+transactions.
+____
+
+== link:https://dr-knz.net/abstract-machine-models.html[Abstract Machine Models - Also: what Rust got particularly right]
+
+[quote]
+____
+Ever since 2010, I have studied the "`meta`" of software, by studying (and
+thinking about) the continued dialogue between programming language
+designers, computer designers, and programmers.
+
+The following constitutes a snapshot of my current thinking.
+____
+
+[quote]
+____
+From there, I focused on the following: "`what's in the mind of
+programmers, when they choose one way of doing things over another
+that's functionally equivalent?`"
+
+The one thing that was clear from the start, is that most programmers
+"`simulate`" the behavior of their program in their mind, to predict how
+the program will behave at run-time.
+
+As we've determined above, that simulation does not happen in the
+_functional_ model of the programming language.
+
+Meanwhile, I knew from my teaching practice that nobody really
+understands hardware computers, and so this mental simulation was also
+not happening with a model of a _hardware_ platform. In fact, I've found
+that folk would rather not think about hardware at all, and thankfully
+so: this made it possible, over and over, to _port software_ from one
+hardware platform to another, without rewriting the software.
+
+This meant that all programmers are able to construct a somewhat
+_abstract_ model of their computer in their mind, but not so abstract
+that it becomes _purely functional_.
+
+That is when I coined the phrase _abstract machine model_, and it became the anchor of my subsequent study.
+____
+
+[quote]
+____
+One thing that bothered me much early on was whether AMMs were truly
+distinct from programming languages or the computers that we use.
+
+The question was really: _when a programmer thinks about the run-time behavior of their program, are they only able to formulate their thoughts within the confines of the language they're using to write the program or the computer they're working with?_
+____
+
+[quote]
+____
+In summary, I incrementally developed an understanding that:
+
+* Programmers use AMMs to write software.
+* AMMs exist separately from programming languages, and separately from
+hardware platforms.
+* There is more than one AMM, and AMMs differ in prediction
+rules and expressivity.
+* An AMM can sometimes be used to program effectively across
+multiple languages, but not all.
+* An AMM can sometimes be used to program effectively across
+multiple hardware computers, but not all.
+____
+
+[quote]
+____
+And so it was interesting to me to wonder: "`when do AMMs appear? When does a programming language designer push for a new AMM, and when can they slip into the shoes of an existing community?`"
+
+While building the table above and studying PL history, I
+discovered that language designers come in three groups:
+
+. _machine-first designers_, who start with one or more hardware
+platform that's sufficiently different from everything that was done
+before that it needs a new AMM, and often a new programming
+language to program it.
+. _second-language designers_, who assume the existence of some
+machine/language ecosystem, adopts it and simply adds new abstractions /
+expressivity on top.
+. _AMM-first designers_, who are interested to control the way
+programmers think first (usually, due to some idea about how this will
+result in better software quality), and who merely think about hardware
+diversity as an inconvenience that needs to be hidden from programmers.
+____
+
+[quote]
+____
+I am now able to explain that what makes certain
+programming problems "`hard`" or "`interesting`" is not related to oddities
+in hardware or programming languages, but rather to the way programmers
+think about machines, i.e. the properties of their AMMs.
+
+This makes me able to connect related software challenges across
+programming language boundaries, or to recognize when similar-looking
+programs in different languages have, in fact, extremely
+different semantics.
+
+It also makes me able to estimate how much time or effort it will take
+me to learn a new technology stack or programming language: if I can
+track its ancestry and design principles, I can estimate its conceptual
+distance to AMMs I already know.
+
+It also makes me able to estimate whether an already-written program
+will work well on a new computer, with or without translation to a
+different language or machine instruction set (ISA), depending
+on what I know of the AMM that its programmer likely had in
+mind when the program was written.
+____
