@@ -4,3 +4,144 @@ v1.0, 2023-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://erinkissane.com/blue-skies-over-mastodon[Blue skies over Mastodon]
+
+[quote]
+____
+I haven't mentioned the simplest and IMO#best critique of
+Bluesky and most other big platforms, which is that they emerged out of
+venture-capital galaxy brain, which has the moral sense of an
+AI chatbot. After the past decade or so on
+Twitter, "`I won't touch anything Jack
+Dorsey has touched`" is a reasonable reaction.
+"`I will only put my social labor into platforms that
+can never benefit billionaires`" is fair.
+
+But the missing step, to me, is when people with principled objections
+to other platforms are unwilling or unable to make the alternatives of
+their choosing more welcoming to more people. And there are absolutely
+people trying to do the work, but they're dependent on the choke-point
+of what Mastodon-the-company decides is valuable. (Almost like
+something… centralized?)
+____
+
+== link:https://crookedtimber.org/2023/05/06/the-cult-of-the-founders/[The cult of the founders]
+
+[quote]
+____
+Since I'm on the topic of Max Weber, religion and technology already,
+here's a half-developed theory of Elon Musk that I've been nurturing for
+a while. I've trotted it out informally at a couple of meetings, and I'm
+not completely convinced it is right, but it's prima facie plausible,
+and I've gotten some entertainment from it. My argument is that Musk is
+doing such a _terrible_ job as Twitter CEO because he is a cult leader
+trying to manage a church hierarchy. Relatedly -- one of SV's culture
+problems right now is that it has a _lot_ of cult leaders who hate the
+dull routinization of everyday life, and desperately want to return to
+the age of charisma.
+
+The underlying idea is straightforward, and is stolen directly from Max
+Weber -- see this handy
+link:https://www2.kenyon.edu/Depts/Religion/Fac/Suydam/Reln310/Priest%20and%20prophet.htm[Weber on religion listicle]
+for the background. Weber thinks that many of the
+stresses and strains of religion come from the vexed relationship
+between the prophet and the priest.
+
+Prophets look to found religions, or radically reform them, root and
+branch. They rely on charismatic authority. They inspire the belief that
+they have a divine mandate. Prophets are something more than human, so
+that some spiritual quality infuses every word and every action. To
+judge them as you judge ordinary human beings is to commit a category
+error. Prophets inspire cults -- groups of zealous followers who commit
+themselves, body and soul to the cause. Prophets who are good, lucky, or
+both can reshape the world.
+
+The problem with prophecy is that ecstatic cults don't scale. If you
+want your divine revelation to do more than rage through the population
+like a rapid viral contagion and die out just as quickly, you need all
+the dull stuff. Organization. Rules. All the excitement -- the
+arbitrariness; the sense that reality itself is yielding to your will --
+drains into abstruse theological debates, fights over who gets the
+bishopric, and endless, arid arguments over how best to raise the tithes
+that the organization needs to survive.
+____
+
+== link:http://www.zephoria.org/thoughts/archives/2023/04/21/deskilling-on-the-job.html[Deskilling on the job]
+
+[quote]
+____
+Years ago, Madeleine Elish decided to make sense of the history of
+automation in flying. In the 1970s, technical experts had built a tool
+that made flying safer, a tool that we now know as autopilot. The
+question on the table for the Federal Aviation Administration and
+Congress was: should we allow self-flying planes? In short, folks
+decided that a navigator didn't need to be in the cockpit, but that all
+planes should be flown by a pilot and copilot who should be equipped to
+step in and take over from the machine if all went wrong. Humans in the
+loop.
+
+Think about that for a second. It sounds reasonable. We trust humans to
+be more thoughtful. But what human is capable of taking over and helping
+a machine in a fail mode during a high-stakes situation? In practice,
+most humans took over and couldn't help the plane recover. The planes
+crashed and the humans got blamed for not picking up the pieces left
+behind by the machine. This is what Madeleine calls
+the link:https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2757236["`moral
+crumple zone.`"] Humans were placed into the loop in the worst possible
+ways.
+
+This position for the pilots and copilots gets even dicier when we think
+about their skilling. Pilots train extensively to fly a plane. And then
+they get those jobs, where their "`real`" job is to babysit a machine.
+What does that mean in practice? It means that they're deskilled on the
+job. It means that those pilots who are at the front of every commercial
+plane are less skilled, less capable of taking over from the machine as
+the years go by. We depend structurally on autopilot more and more.
+Boeing took this to the next level by overriding the pilots with their
+737 MAX, to their detriment.
+
+To appreciate this in full force, consider what happened when Charles
+"`Sully`" Sullenberger III landed a plane in the Hudson River in 2009.
+Sully wasn't just any pilot. In his off-time, he retrained commercial
+pilots how to fly if their equipment failed. Sully was perhaps the best
+positioned pilot out there to take over from a failing system. But he
+didn't just have to override his equipment -- he had to override the air
+traffic controllers. They wanted him to go to Teterboro. Their models
+suggested he could make it. He concluded he couldn't. He chose to land
+the plane in the Hudson instead.
+
+Had Sully died, he would've been blamed for insubordination and "`pilot
+error.`" But he lived. And so he became an American hero. He also became
+a case study because his decision to override air traffic control turned
+out to be justified. He wouldn't have made it. Moreover, computer
+systems that he couldn't override prevented him from a softer impact.
+
+Sully is an anomaly. He's a pilot who hasn't been deskilled on the job.
+Not even a little bit. But that's not the case for most pilots.
+
+And so here's my question for our AI futures: How are we going to
+prepare for deskilling on the job?
+____
+
+== link:https://testing.googleblog.com/2023/04/sensenmann-code-deletion-at-scale.html[Sensenmann: code deletion at scale]
+
+[quote]
+____
+Automatically deleting code may sound like a strange idea: code is
+expensive to write, and is generally considered to be an asset. However,
+unused code costs time and effort, whether in maintaining it, or
+cleaning it up. Once a code base reaches a certain size, it starts to
+make real sense to invest engineering time in automating the clean-up
+process. At Google's scale, it is estimated that automatic code deletion
+has paid for itself tens of times over, in saved maintenance costs.
+
+The implementation requires solutions to problems both technical and
+social in nature. While a lot of progress has been made in both these
+areas, they are not entirely solved yet. As improvements are made,
+though, the rate of acceptance of the deletions increases and automatic
+deletion becomes more and more impactful. This kind of investment will
+not make sense everywhere, but if you have a huge mono-repository, maybe
+it'd make sense for you too. At least at Google, reducing the C++
+maintenance burden by 5% is a huge win.
+____
