@@ -5,7 +5,7 @@ v0.1, 2022-11-01
 :article_image: platonic_solids.jpg
 :article_description: 
 
-Among programming languages, software types and papers, there are different types of ideal coding styles.
+Among programming languages, software types and texts about develoments, there are different types of ideal coding styles.
 
 Calling them "`ideal`" means that they don't always match what standard programs looks like (as opposed to toy programs or programs or programs with a specific scope that are suited to the style) but they can be models people want to approach as much as possible.
 
@@ -18,18 +18,20 @@ A few examples :
 - Programs fully using a link:https://en.wikipedia.org/wiki/Entity_component_system[entity component system]
 - Programs where all the behaviors are managed and stored as data (in a database or in a database-like storage like link:../fichiers-de-configuration/[a configuration file]), and where all can even run in the database
 
-These models have an intellectual appeal because they are diehard.
-This means they can trap developers' imagination, specially the developers who are frustrated by how baroque and mixed some systems are.
+These models often have an intellectual appeal because they are diehard: they provide a single solution to the complex topic of how to write your software.
+This means they can trap developers' imagination, especially the developers who are frustrated by how baroque and mixed some systems are.
 
-It can be easy to dismiss these models, specially when we're exposed to them by overzealous propagandists who tout their model of choice as the one true way to software.
+It can be easy to dismiss these models, 
+specially when you work on a domain where they don't really work,
+and when we're exposed to them by overzealous propagandists who tout their model of choice as the one true way to software.
 
-On the other hand, I think that spending some time learning them from a good source can improve your coding and code design skills.
+On the other hand, I think that spending some time learning them from a good source can improve your code writing and design skills.
 
-"`You should learn programming languages of different types`" is a common advice to increase the width a developper's knowledge, because even if you don't use these languages, having been exposed to them means you can still incorporate some of their ideas{empty}footnote:[And sometimes create horrible mess and fight with your coworkers].
+"`You should learn programming languages of different types`" is a common advice to increase the width a developper's knowledge, in theory because even if you don't use these languages, having been exposed to them means you can still incorporate some of their ideas{empty}footnote:[And sometimes create horrible mess and fight with your coworkers].
 
-But focusing on the programming languages means that{nbsp}:
+But focusing on programming languages means that{nbsp}:
 
-* It can be hard to separate the particular syntax from the idea,
-* Some programming styles can be 
+* The unfamiliar syntax can makes understanding the ideas more difficult,
+* It can be hard to isolate the ideas from the particular syntax,
 
 Trying to learn about programming style instead of or in addition to programming languages 
