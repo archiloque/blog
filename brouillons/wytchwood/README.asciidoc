@@ -3,23 +3,18 @@ Julien Kirch
 v0.1, 2022-05-06
 :article_lang: en
 
-My work involves writing software code.
-When writing code, repeating tasks are supposed to be rare: a piece of code is written once,
-then can be called as many times as needed, then you can adapt it to deal with other cases by making more general or by copying and tweaking it.
+My job is about software development.
+When writing code, you're not supposed to repeat yourself: a piece of code is written once, then can be called as many times as needed.
 
-On the other hand, some kind of games love to make the player to do repeating tasks, like killing enemies for experience or doing simple fetch quests.
+In games I love some types of repeating menial grinding tasks.
 
-Some repeating tasks are fun to me, and I think it's primary when I can lose myself in the meniality, like "`run in a circle until it triggers an encouter, kill the monsters with two attckes, repeat`".
+Wytchwood's gameplay is centered about crafting magic recipes, which need ingredients.
+Starting recipes' ingredients can be gathered, like herbs.
 
-I'm playing Wytchwood, whose gameplay is centered about crafting.
+The result of starting recipes are the ingredients of more complex ones, and so on on several levels.
+The game shows your inventory and the recipes' ingredients, but you can't track a recipe's dependencies on several levels.
 
-As often the crafting requires materials.
-Starting recipes requires components that can be gathered.
-More advanced recipes' component can comes from simpler recipes, and so on on several levels.
-
-The game shows your inventory and the different recipes, but don't provide a way to track the dependencies of a recipe (and even make a joke about having no on-screen map).
-
-At the beginning it was fun to track what you need, as I was still exploring the locations so I didn't know yet exactly where to go to find specific items.
+First it was fun to remember what I needed, especially as I was still exploring the locations.
 
 [source]
 ----
@@ -31,17 +26,11 @@ Skeeter Snoot = 1 Smoke Pellet
 Smoke Pellet = 3 Clay + 1 Forest Herb + 2 Frog Slime
 ----
 
-After a while, there are several recipes to deal with a the same time, each with its own depencencies.
+After a while, there are several recipes to fulfill at the same time.
+It meant trying to keep track of the ingredients in my head while optimizing my travelings.
 
-It meant I try to track the components in my head, trying to optimize my travels to batch the gathering to avoid going back and forthing.
-
-The movements and craft are not exactly slow and they match the tone of the game,
-but when your checklist becomes longer, it's becoming tedious.
-I didn't provide the fun I have with repetitive tasks in other games probably because the game is too slow and the tasks require too much tracking effort.
-
-Some games simplify complex crafting, for exemple by lifting the requirement to gather a ressource once you reach a milestone.
-This way the game can add more interesting recipes without increasing the efforts to be done by the players.
-Like in programming, where repetitive tasks can be automated, and the automated version can be leveradged to do more complex things.
+And I couldn't reach my "`grind zone`" because there are too many tasks and the complexity is imposed by the game.
+Some games with crafting provide a mechanic to simplify the gatherings of components, so they can add advanced recipes without increasing the efforts to be done.
 
 [source]
 ----
@@ -73,12 +62,8 @@ Jar of Water = 1 Empty Jar
 Empty Jar = 1 Campfire Ember + 3 Clay
 ----
 
-But Wytchwood doesn't.
-
-After a while when the dependencies has increase too much to remember them.
-I started to ponder if it's better to have some inefisciencies or if I should start using some paper to track them, or even a spreadheet.
-
-Both of these would break the immersion, require some efforts, and still wouldn't have an impact on the time to be spend on the actual gathering.
+Then there was too many things to remember them all. I started to ponder if I should start to use paper or even a spreadsheet.
+Both of these would break the immersion, and the actual gathering would still takes more and more time.
 
 [source]
 ----
@@ -96,14 +81,9 @@ Key to my Heart
 = 10 Algae + 6 Barnacle + 5 Black Rose + 3 Campfire Ember + 9 Clay + 3 Cobblestone + 6 Embalming Salts + 3 Firefly + 1 Forest Herb + 2 Frog Slime + 3 Grave Bone + 4 Hagshroom + 6 Impeye Nut + 2 Lethe Cap + 7 Reedy Twine + 4 Seeker Vine + 2 Toxic Thistle + 16 Twig
 ----
 
-Than I realized it didn't felt like fun but like work, or even worse than work: I have the opportunity to have a job where I don't have to deal with this kind of tasks, where not dealing with this kind of tasks is the essence of the job.
+Then I realized it didn't felt like fun but like work, or even worse than work: my work is about finding ways to not do complex repetitive tasks and I like this.
+And I'm playing a video game where I should do the opposite.
 
-And I bought a video game where most of the gameplay is something I would prefer not to do at work even if I was paid to do.
+Such a nice world that can only be explored through worse than work feel sad.
 
-I guess it's time to stop playing.
-
-The idea of this colorful world that has been created and that can only be explored through work makes me so sad.
-
-I often read how difficulty can be a barrier for some players, but what about grind?
-
-image::recipes.svg[alt]
+image::recipes.svg[The game's recipes]
