@@ -1,0 +1,67 @@
+= Gossip Glomers
+Julien Kirch
+v0.1, 2023-05-14
+:article_lang: en
+:article_image: gossipers.png
+:article_description: Distributed systems challenges
+
+link:https://fly.io/dist-sys/[Gossip glomers] is "`A series of distributed systems challenges brought to you by Fly.io`" with the participation of link:https://aphyr.com/about[Kyle Kingsbury].
+
+These exercises are about implementing some standard distributed systems components, like a key-value store broadcast system.
+In each case you create a terminal-run server run by a tool called link:https://github.com/jepsen-io/maelstrom[Maelstrom]: the exercise tells you which command line to run locally, and depending on it Maelstrom sends commands and listens to the results of your server.
+
+The communication is done with STDIN and STDOUT using a JSON format, which means there a few restrictions on the programming languages you choose.
+
+I like that the challenges provides practical experience on topics link:https://archiloque.net/blog/database-internals/[I've read about] but never implemented myself.
+
+But they have two issues:
+
+The first is the focus on Go.
+The API you have to implement is documented on the JSON level.
+But some examples ask you to use some external services, like a minimal key-value store.
+And on the exercises pages these services are only documented via link:https://pkg.go.dev/github.com/jepsen-io/maelstrom/demo/go[the API of a Go library] instead of the JSON one.
+Depending on your languages of choice, there are link:https://github.com/jepsen-io/maelstrom/tree/main/demo[demo scripts] you can have a look, if you can avoid spoilering yourself and can deal with possibly outdated examples (the Ruby code is in this situation), or you go and read the Go library code and retro-engineer the APIs.
+
+The second is the fact that Maelstrom's outputs are not intuitive: when a behavior is incorrect you get a list of errors as a serialized Closure structure and must understand what went wrong.
+For example Maelstrom won't tell you exactly which one of your responses has a problem.
+In some cases Maelstrom can also crash or fail to analyze the results, which means scrutinizing the logs until you can figure out what to do.
+
+These issues were painful but surmountable, consider yourself warned.
+
+You can find links to my scripts for all the challenges below.
+Caveat emptor: the code is not commented and can be sometimes be write-only.
+
+== Challenge #1: Echo
+
+* link:01_echo-main.rb[main.rb]
+
+== Challenge #2: Unique ID generation
+
+* link:02_unique_id_generation-main.rb[main.rb]
+
+== Challenge #3: Broadcast
+
+* link:03_broadcast-main.rb[main.rb]
+
+== Challenge #4:Grow-only counter
+
+* link:04_grow_only_counter-logging.rb[logging.rb]
+* link:04_grow_only_counter-loop.rb[loop.rb]
+* link:04_grow_only_counter-main.rb[main.rb]
+* link:04_grow_only_counter-message.rb[message.rb]
+* link:04_grow_only_counter-seq-kv.rb[seq-kv.rb]
+
+== Challenge #5: Kafka-style log
+
+* link:05_kafka_style_log-lin-kv.rb[lin-kv.rb]
+* link:05_kafka_style_log-logging.rb[logging.rb]
+* link:05_kafka_style_log-loop.rb[loop.rb]
+* link:05_kafka_style_log-main.rb[main.rb]
+* link:05_kafka_style_log-message.rb[message.rb]
+
+== Challenge #6: Totally-available transactions
+
+* link:06_totally_available_transactions-logging.rb[logging.rb]
+* link:06_totally_available_transactions-loop.rb[loop.rb]
+* link:06_totally_available_transactions-main.rb[main.rb]
+* link:06_totally_available_transactions-message.rb[message.rb]
