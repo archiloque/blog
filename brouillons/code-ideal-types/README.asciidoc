@@ -1,37 +1,55 @@
-= Code ideal types
+= Coding models
 Julien Kirch
-v0.1, 2022-11-01
+v0.1, 2023-05-19
 :article_lang: en
 :article_image: platonic_solids.jpg
 :article_description: 
 
-Among programming languages, software types and texts about develoments, there are different types of ideal coding styles.
+Among programming languages, software types and texts about development, there are different types of ideal coding models.
 
-Calling them "`ideal`" means that they don't always match what standard programs looks like (as opposed to toy programs or programs or programs with a specific scope that are suited to the style) but they can be models people want to approach as much as possible.
+Calling them "`ideal`" means that they don't always match what standard programs look like (as opposed to toy programs or programs or programs with a specific scope that are suited to the style) but they can be models people want to approach as much as possible.
 
-A few examples :
+For example:
 
 - Programs where everything is computed at compile-time or startup time
-- Programs where all code blocs aren't longer that 5 lines
+- Programs where all code blocks aren't longer than 5 lines
 - Programs where no call are direct because they all go through an indirection
 - Programs that are so dynamics that looks like elaborates `eval(string)`
 - Programs fully using a link:https://en.wikipedia.org/wiki/Entity_component_system[entity component system]
-- Programs where all the behaviors are managed and stored as data (in a database or in a database-like storage like link:../fichiers-de-configuration/[a configuration file]), and where all can even run in the database
+- Programs where all the behaviors are managed and stored as data (in a database or in a database-like storage like link:../fichiers-de-configuration/[a configuration file]), and where the database run everything
 
-These models often have an intellectual appeal because they are diehard: they provide a single solution to the complex topic of how to write your software.
-This means they can trap developers' imagination, especially the developers who are frustrated by how baroque and mixed some systems are.
+These models often (but not always) have an intellectual appeal because they are absolutes: they provide a single solution to the complex topic of how to design your software.
+This means they can trap developers' imagination, especially developers who are frustrated by how large systems can be a mix of several styles.
 
 It can be easy to dismiss these models, 
-specially when you work on a domain where they don't really work,
-and when we're exposed to them by overzealous propagandists who tout their model of choice as the one true way to software.
+especially when you work on a domain where they don't really work.
+and even more when we're exposed to them through overzealous people who tout their model of choice as the one true way to design.
 
-On the other hand, I think that spending some time learning them from a good source can improve your code writing and design skills.
+On the other hand, I think that spending some time learning them _from an appropriate source_ can improve your code writing and design skills.
 
-"`You should learn programming languages of different types`" is a common advice to increase the width a developper's knowledge, in theory because even if you don't use these languages, having been exposed to them means you can still incorporate some of their ideas{empty}footnote:[And sometimes create horrible mess and fight with your coworkers].
+Often these models are attached to a specific or a specific group of programming languages, and learning programming languages of different types is common advice because -- even if you don't use them -- having been exposed to them means you can still incorporate some of their ideas{empty}footnote:[And sometimes create horrible mess and fight with your coworkers].
 
-But focusing on programming languages means that{nbsp}:
+But with other programming languages come other syntaxes, which has drawbacks:
 
 * The unfamiliar syntax can makes understanding the ideas more difficult,
-* It can be hard to isolate the ideas from the particular syntax,
+* It can be hard to isolate the models from the particular syntax.
 
-Trying to learn about programming style instead of or in addition to programming languages 
+Learning new syntaxes can also be a good thing, but it can be beneficial to separate learning models and learning syntaxes.
+I wish there were more people adapting models that are well known in a language to other ones, like rewriting Java's design patterns book to other languages.
+
+Also when a developer works in a language A and learns a model in a language B to use it in when writing code in A, they need to do the same adaptation.
+This adaptation would probably be better when it's done by someone who is experienced with the model and the source and target languages than when it's done when someone who is only experienced with the target language.
+
+My hope is that adapting a model outside of its standard language could help avoid the "`it's the only way`" tone I've mentioned above.
+
+It can mean that some features of a model may need to be changed or removed (like some design patterns are Java-specific and can't be translated to Javascript).
+But I think that it should be done when possible.
+
+There are probably cases where it's really difficult or even not possible, because the model requires a specific syntax to work, but it doesn't mean it should not be done in other cases.
+
+It means that less people will be exposed to unusual programming languages and it saddens me, but I think that it's a price worth paying.
+
+In a nutshell:
+
+- I think we are overly focused on learning programming languages instead of programming models,
+- We should try to make the coding models learnable in the programming languages people use.

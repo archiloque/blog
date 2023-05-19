@@ -11,3 +11,199 @@ v1.0, 2023-01-01
 ____
 Now I actually have one "`normal`" keyboard and a 99 buttons mouse.
 ____
+
+== link:https://sillycross.github.io/2023/05/12/2023-05-12/[Building a baseline JIT for Lua automatically]
+
+[quote]
+____
+Building a good VM for a dynamic language takes a ton of engineering.
+The best-performing VMs (e.g.,
+https://github.com/WebKit/WebKit/tree/main/Source/JavaScriptCore[JavaScriptCore],
+https://v8.dev/[V8],
+https://firefox-source-docs.mozilla.org/js/index.html[SpiderMonkey])
+employ at least 3 VM tiers (interpreter, baseline JIT
+and optimizing JIT), and pervasively use hand-coded assembly in every VM
+tier. Optimizations such as inline caching and type
+speculation are required to get high performance, but they require high
+expertise and introduce additional engineering complexity.
+
+_Deegen_ is my research meta-compiler to make high-performance VMs
+easier to write. Deegen takes in a semantic description of the VM
+bytecodes in {cpp}, and use it as the single source of truth to
+_automatically generate_ a high-performance VM at build time,
+____
+
+== link:https://taeric.github.io/reflecting-on-engineers-path.html[Reflecting on The Staff Engineer's Path.]
+
+[quote]
+____
+By the end of the book, I think I have come to an understanding that "`staff`" level positions are viewed heavily as public performance positions. Not in a negative way, but the role seems easiest to summarize as "people that are willing to do things publicly, have had successes, and are generally able to get teams to work together."
+____
+
+== link:https://commoncog.com/operational-rigour-is-the-pursuit-of-knowledge/[Operational Excellence is the Pursuit of "`Knowledge`"]
+
+[quote]
+____
+The first idea is something we've
+link:https://commoncog.com/how-to-become-data-driven/#process-behaviour-charts[covered before]: SPC practitioners believe that "`management is prediction`".
+The underlying argument is that in order to run your business properly,
+you need to be able to _predict_ — within limits — the effects your
+actions have on business outcomes. You need to know things like "`oh, so
+if I run such-and-such marketing campaign, my leads should go up by
+around X% over the next quarter`", and "`if we launch this feature, we
+should expect to see higher engagement from our core users, which may be
+measured using the metrics A, B and C`" … plus you need to be correct
+about those things.
+
+You're never really sure if your actions or your predictions are as good
+or as causal as they can be
+
+I am painfully aware that this is easy to say, but difficult to do. It
+is rare in the vast majority of businesses I've been involved in. Hell,
+if I'm being honest, my growth decisions around _this very blog_ are
+more gut-driven than rigorously tested, which is a little embarrassing
+to say out loud. And perhaps you can relate: how many of your business
+decisions are driven by feel, made on loosely correct beliefs about your
+business — which is a more polite way of saying "`you manage by
+superstition`"? In most cases, though, the things you do somehow work
+out, and perhaps the business is able to grow -- but you're never really
+sure if your actions or your predictions are as good or as causal as
+they can be.
+
+SPC practitioners take this observation to its logical conclusion.
+Deming argues that if management is prediction, then what you need to
+seek as a business operator is not truth -- _for truth does not really
+exist in business_ -- but instead what you should seek is _knowledge_,
+where knowledge is defined as "`beliefs or theories that enable you to
+make better predictions`".
+____
+
+== link:https://blog.koehntopp.info/2023/05/05/50-years-in-filesystems-1974.html[50 years in filesystems: 1974]
+
+[quote]
+____
+Progress is sometimes hard to see, especially when you have been part of it or otherwise lived through it. Often, it is easier to see if you compare modern educational material, and the problems discussed with older material. And then look for the research papers and sources that fueled the change.
+____
+
+== link:https://www.activision.com/cdn/research/hallucinations[Reversing anti-cheat's detection-generation cycle with configurable hallucinations]
+
+[quote]
+____
+Hallucinations may reverse the cycle. Hallucinations are in-game entities that seem like human enemies to cheating players but are imperceptible to non-cheating players. For example, only a cheating player will react to a hallucination hidden inside a wall.
+____
+
+== link:https://third-bit.com/sdxjs/introduction[Software design by example]
+
+[quote]
+____
+In the early 2000s, the University of Toronto asked
+link:https://third-bit.com/[Greg Wilson] to teach an
+undergraduate course on software architecture. After delivering the
+course three times he told the university they should cancel it: between
+them, the dozen textbooks he had purchased with the phrase "`software
+architecture`" in their titles devoted a total of less than 30 pages to
+describing the designs of actual systems.
+
+Frustrated by that, he and link:http://www.praxagora.com/[Andy Oram] persuaded some well-known programmers to contribute a chapter
+each to a collection called _Beautiful Code_, which went on to
+win the Jolt Award in 2007. Entries in the book described everything
+from figuring out whether three points are on a line to core components
+of Linux and the software for the Mars Rover, but the breadth that made
+them fun to read also meant they weren't particularly useful for
+teaching.
+
+To fix that, Greg Wilson, link:https://www.amyrhodabrown.com/[Amy Brown],
+link:http://tavisharmstrong.com/[Tavish Armstrong], and
+link:https://mikedebo.com/[Mike DiBernardo] edited a four-book
+series between 2011 and 2016 called 
+link:https://aosabook.org/[__The Architecture of Open Source Applications__].
+In the first two volumes,
+the creators of fifty open source projects described their systems'
+designs; the third book explored the performance of those systems, while
+in the fourth volume contributors built scale models of common tools as
+a way of demonstrating how those tools worked. These books were closer
+to what an instructor would need for an undergraduate class on software
+design, but still not quite right: the intended audience would probably
+not be familiar with many of the problem domains, and since each author
+used the programming language of their choice, much of the code would be
+hard to understand.
+
+_Software Tools in JavaScript_ is meant to address these shortcomings:
+all of the code is written in one language, and the examples are all
+tools that programmers use daily. Most of the programs are less than 60
+lines long and the longest is less than 200; we believe each chapter can
+be covered in class in 1-2 hours, while the exercises range in
+difficulty from a few minutes to a couple of days.
+____
+
+== link:https://github.com/arxanas/git-branchless/wiki/Workflow:-divergent-development[Workflow: divergent development]
+
+[quote]
+____
+
+"`Divergent development`" is what I call a certain workflow which involves making frequent speculative commits and often backtracking and trying a different approach. In this sense, development "`diverges`" frequently.
+
+Divergent development is especially useful when a problem is still vague and you don't know exactly what changes you want to make and commit. You may make several prototypes and throw away most of them.
+
+It has fewer benefits when you know ahead of time what you intend to do. In those cases, a rigorous approach like writing your commit messages first or practicing Test-Driven Development may be more appropriate.
+____
+
+== link:https://people.eecs.berkeley.edu/~wkahan/ieee754status/754story.html[An interview with the old man of floating-point]
+
+[quote]
+____
+If you were a programmer of floating-point computations on different
+computers in the 1960's and 1970's, you had to cope with a wide variety
+of floating-point hardware. Each line of computers supported its own
+range and precision for its floating point numbers, and rounded off
+arithmetic operations in its own peculiar way. While these differences
+posed annoying problems, a more challenging problem arose from
+perplexities that a particular arithmetic could throw up. Some of one
+fast computer's numbers behaved as non-zeros during comparison and
+addition but as zeros during multiplication and division; before a
+variable could be used safely as a divisor it had to be multiplied by
+1.0 and then compared with zero. But another fast computer would trap on
+overflow if certain of its numbers were multiplied by 1.0 although they
+were not yet so big that they could not grow bigger by addition. ( This
+computer also had nonzero numbers so tiny that dividing them by
+themselves would overflow.) On another computer, multiplying a number by
+1.0 could lop off its last four bits. Most computers could get zero from
+X - Y although X and Y were different; a few computers could get zero
+even though X and Y were huge and different.
+
+Arithmetic aberrations like these were not derided as bugs; they were
+"`features`" of computers too important commercially for programmers to
+ignore. Programmers coped by inventing bizarre tricks like inserting an
+assignment `X = (X + X) - X` into critical spots in a program that
+would otherwise have delivered grossly inaccurate results on a few
+aberrant computers. And then there were aberrant compilers … .
+____
+
+== link:https://scribe.rip/the-industrial-hammer-complex-d9785886ee59[The industrial hammer complex]
+
+[quote]
+____
+It turns out, it's the same old thing. Vendors peddling their wares.
+When Facebook introduced React, that act transformed the font-end space
+into a hype-driven, cult-of-personality disaster zone where folks could
+profit from creating the right image and narrative. I observed that _it
+particularly preyed on the massive influx of young web developers._
+Facebook had finally found the silver bullet of Web Development, or so
+they claimed! Just adopt our tech, no questions asked, and you too can
+be a rock star making six figures!
+link:https://infrequently.org/2023/02/the-market-for-lemons/[We've been living through this mess for ten years now].
+
+_ASIDE_: You may wonder what Facebook had to really gain from this. I
+was deeply connected into the valley culture, watching what was
+happening from the Google side when it all started. It wasn't money
+Facebook was looking for, it was talent and mindshare (i.e., power and
+control). The introduction of React turned out to be a powerful weapon
+in an all-out talent war between Google and Facebook. I'm not saying
+this was the original intent or even that the React team realized this.
+But the clear strategic reason for FB leadership continuing to fund and
+promote React was to gain developer mindshare and enable Facebook to
+pull talent away from Google and any other competitor. I kid you not, I
+could see the fear in Googler eyes. This was a classic play right out of
+the big tech engineering brand manual, and perfectly timed. How many
+people and businesses have been caught up in this now?
+____
