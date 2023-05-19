@@ -34,20 +34,27 @@ But with other programming languages come other syntaxes, which has drawbacks:
 * The unfamiliar syntax can makes understanding the ideas more difficult,
 * It can be hard to isolate the models from the particular syntax.
 
-Learning new syntaxes can also be a good thing, but it can be beneficial to separate learning models and learning syntaxes.
+Learning new syntaxes can also be a good thing, but it can be beneficial to split teaching models and teaching syntaxes when possible.
 I wish there were more people adapting models that are well known in a language to other ones, like rewriting Java's design patterns book to other languages.
 
-Also when a developer works in a language A and learns a model in a language B to use it in when writing code in A, they need to do the same adaptation.
-This adaptation would probably be better when it's done by someone who is experienced with the model and the source and target languages than when it's done when someone who is only experienced with the target language.
+Also when a developer works in a language and learns a model in another language, they will have to adapt the model to the language their use.
 
-My hope is that adapting a model outside of its standard language could help avoid the "`it's the only way`" tone I've mentioned above.
+So the same adaptation can be done by:
 
-It can mean that some features of a model may need to be changed or removed (like some design patterns are Java-specific and can't be translated to Javascript).
-But I think that it should be done when possible.
+. someone who only knows the target language and who tries to learn the model,
+. someone who knows both languages and the model.
 
-There are probably cases where it's really difficult or even not possible, because the model requires a specific syntax to work, but it doesn't mean it should not be done in other cases.
+The second choice probably leads to better results.
 
-It means that less people will be exposed to unusual programming languages and it saddens me, but I think that it's a price worth paying.
+My hope is that adapting a model outside of its standard language could help avoid the "`it's the only way`" tone I've mentioned above, because to make the adaptation require to appreciate several ecosystems ("`I love Ruby and Lisp, and I'll explain how some Lisp ideas I appreciate can be used in Ruby so we'll have the best of both worlds`").
+
+Adapting a model to another language can mean that some of the features need to be changed or even removed, like some design patterns are Java-specific and can't be translated to Javascript.
+But if it means that the code of the model can still be understood, it be may be an valid tradeoff.
+
+There are probably cases where the model is so strongly linked to the language that this approach can't work, but it doesn't mean it should not be done in other cases.
+
+The downside would that less people will be exposed to unusual programming languages and it saddens me, but I think that it's a price worth paying,
+especially since "`we push you to learn some parts of a language X to understand the model Y because we hope that you'll end up using X`" is a bit dishonest.
 
 In a nutshell:
 
