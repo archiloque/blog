@@ -39,11 +39,11 @@ But maybe not for a general tool intended for a large audience.
 So try to think about it when you provide a feature.
 
 The two projects I mentioned at the beginning, PostgreSQL and the Linux kernel, have a strong stance toward the 3 and 2 approches because they want the best out of box experience possible for as many users as possible.
-link:https://wiki.postgresql.org/wiki/OptimizerHintsDiscussion[PostgreSQL is even explicit about it: "`Interfering with improving the query planner: people who use hints seldom report the query problem to the project.`"].
+link:https://wiki.postgresql.org/wiki/OptimizerHintsDiscussion[PostgreSQL is even explicit about it]: "`Interfering with improving the query planner: people who use hints seldom report the query problem to the project.`".
 
 It also shows that you don't need to have a single approach, but you probably need an easy to understand policy.
 
-== Side topic: feedback loop between projects
+== Related topic: feedback loop between projects in an organization
 
 There is a similar topic in organisations that develop several projects.
 
