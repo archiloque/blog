@@ -1,7 +1,9 @@
-= Configuration stance and pressure for improvement
+= Dealing with defaults and pressure for improvement
 Julien Kirch
-v0.1, 2023-05-23
+v0.1, 2023-05-24
 :article_lang: en
+:article_image: configuration.png
+:article_description: No feedback loop no gain
 
 There's an approach I've seen explicitly mentioned in some software projects like PostgreSQL and the Linux kernel and that maybe it should be discussed more often.
 
@@ -9,7 +11,7 @@ Imagine you develop a new feature in a software project for your needs, and the 
 As you develop the feature, you are able to know what configuration should be applied in your use case, which may or may not be a typical use of the tool.
 Several approaches are possible to deal with the configuration, among them:
 
-. You create a way to configure the feature and put an example value which that may or may be adapter to real usages, people that use the system must pick a value that is suited to their particular needs.
+. You create a way to configure the feature and put an example value which may or may not be adapted for a real use case, people that use the system must pick a value that is suited to their particular needs.
 . You try to develop the feature in a way that the default value works for the typical case, and you provide a way to configure it so people with a specific need can override it.
 . You try to develop the feature in the way that the default behavior is good for as many cases as possible (which can require things like an automatic configuration, even with a dynamic tuning), you don't provide a way to configure the behavior.
 
@@ -18,40 +20,39 @@ These choices can require an increasing amount of work from the people developin
 When you pick the third approach, any users not satisfied with the behavior can rightfully complain.
 You can choose to not alter the behavior because you consider that a specific use case is out of scope but in this case you must explain it (and the user will probably won't be happy about it).
 On the other hand if the use case is typical there is probably something you should fix.
-It means that there is a strong feedback loop to make the thing work out of the box.
+It means that there is a strong feedback loop to make the thing works out of the box.
 
 Dismissing a typical use case as atypical because it annoys you is also a possible solution, but it requires a kind of dishonesty.
 
-In the second approach, deciding that a case is atypical is less harsh for the users: they can try to learn about how the thing work, maybe do some trials or errors and they may be able to find a solution (but they still probably won't be happy about having to do this).
+In the second approach, deciding that a case is atypical is less harsh for the users: they can try to learn about how the thing works, maybe do some trials or errors and they may be able to find a solution (but they still probably won't be happy about having to do this).
 It means that the pressure to make it work for as many users as possible can still be here but is less strong.
 I also have a suspicion that in this case, it will be much more tempting to classify a use case as atypical.
 
-In the first approach, the pressure on the developers can be very low or even non-existant, or it can be focused on the documentations and other things provided to the users so they are able to choose the configuration.
-But any user complaining than the default configuration doesn't work for them can rightfully be told that it's not your problem.
+In the first approach, the pressure on the developers can be very low or even non-existent, or it can be focused on the documentations and other things provided to the users so they are able to choose the configuration.
+But a user complaining that the default configuration doesn't work for them can rightfully be told that it's not your problem.
 
 I don't mean that the different approach are increasingly better.
-My point is that choosing your stance regarding configuration can mean choosing what feedback loop you create to make the project work out of the box for users.
+My point is that choosing your stance regarding configuration can mean choosing what feedback loop you create to make the project works out of the box for users.
 
-I won't provide a general guidance, but a thing to consider is the requirements needed to pick the right configuration.
+I don't have a suggestion on what the best stance is for your project, instead my suggestion is to think about it, and to think about the requirements needed to pick the right configuration.
 For an extreme case, imagine asking final users to configure a per-CPU core cache for a kind of data that depends on their workload and hardware.
-It could be possible for some users to do it, and if your tool is very specialized it can be the good approach.
+It could be possible for some users to do it, and if your tool is very specialized it can be the right approach.
 But maybe not for a general tool intended for a large audience.
-So try to think about it when you provide a feature.
 
-The two projects I mentioned at the beginning, PostgreSQL and the Linux kernel, have a strong stance toward the 3 and 2 approches because they want the best out of box experience possible for as many users as possible.
+The two projects I mentioned at the beginning, PostgreSQL and the Linux kernel, have a strong stance toward the 3 and 2 approaches because they want the best out of box experience possible for as many users as possible.
 link:https://wiki.postgresql.org/wiki/OptimizerHintsDiscussion[PostgreSQL is even explicit about it]: "`Interfering with improving the query planner: people who use hints seldom report the query problem to the project.`".
 
 It also shows that you don't need to have a single approach, but you probably need an easy to understand policy.
 
 == Related topic: feedback loop between projects in an organization
 
-There is a similar topic in organisations that develop several projects.
+There is a similar topic in organizations that develop several projects.
 
-Imagine there is a central project A that is use by several other projects B C D and E, and an issue I in A affects them.
+Imagine there is a central project A that is used by several other projects B C D and E, and an issue I in A affects them.
 
-A possible approach for impacted project is to try to create a ticket in A's issue tracking, and meanwhile to write a workaround for I .
+A possible approach for project impacted by the bug is to try to create a ticket in A's issue tracking, and meanwhile to write a workaround for I .
 
-My experience is that if a good enough workaround is developed for I by B, the probability of I being fixed in A decrease dramatically because the feedback loop is strengthless.
+My experience is that if a good enough workaround is developed for I by B, the probability of I being fixed in A dramatically decreases because the feedback loop is weakened.
 
 Which could mean that C could have to develop the same workaround (or maybe B will help them), then D then E.
 At the end, more effort can be spent writing workarounds for I than it would have taken for A to fix I.
@@ -60,4 +61,4 @@ The policy I tried to push on several project is that if a bug in A is annoying 
 You can also adapt this policy by comparing the bug consequences with the workaround cost.
 It can mean increasing the annoyances for the impacted project(s), but it can be the price to pay to improve A, and decrease the duplicated efforts.
 
-It's a less that ideal approach, but unfortunately it can work.
+It's a less than ideal approach, but unfortunately it can work.
