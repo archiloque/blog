@@ -4,3 +4,15 @@ v1.0, 2023-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://xeiaso.net/blog/anything-message-queue[Anything can be a message queue if you use it wrongly enough]
+
+[quote]
+____
+In theory, all you'd need to do to save money on your network bills would be to read packets from the kernel, write them to S3, and then have another loop read packets from S3 and write those packets back into the kernel. All you'd need to do is wire things up in the right way.
+____
+
+[quote]
+____
+Hoshino is a system for putting outgoing IPv6 packets into S3 and then reading incoming IPv6 packets out of S3 in order to avoid the absolute dreaded scourge of Managed NAT Gateway. It is a travesty of a tool that does work, if only barely.
+____
