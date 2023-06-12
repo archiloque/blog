@@ -16,3 +16,68 @@ ____
 ____
 Hoshino is a system for putting outgoing IPv6 packets into S3 and then reading incoming IPv6 packets out of S3 in order to avoid the absolute dreaded scourge of Managed NAT Gateway. It is a travesty of a tool that does work, if only barely.
 ____
+
+== link:https://softwarecrisis.dev/letters/ai-and-software-quality/[Modern software quality, or why I think using language models for programming is a bad idea]
+
+[quote]
+____
+Bugs, shoddy UX, poor accessibility—even when accessibility is required by law—are non-factors in modern software management, especially at larger software companies.
+
+The rest of us in the industry then copy their practices, and we mostly get away with it. Our margins may not be as enormous as Google’s, but they are still quite good compared to non-software industries.
+
+We have an industry that’s largely disconnected from the consequences of making bad products, which means that we have a lot of successful but bad products.
+____
+
+
+== link:https://faultlore.com/blah/c-isnt-a-language/[C isn't a programming language anymore]
+
+[quote]
+____
+_My_ problem is that C was elevated to a role of prestige and power, its
+reign so absolute and eternal that it has completely distorted the way
+we speak to each other. Rust and Swift cannot simply speak their native
+and comfortable tongues -- they must instead wrap themselves in a
+grotesque simulacra of C's skin and make their flesh undulate in the
+same ways it does.
+
+C is the _lingua franca_ of programming. We must all speak C, and
+therefore C is not just a programming language anymore -- it's a protocol
+that every general-purpose programming language needs to speak.
+
+So actually this kinda _is_ about the whole "`C is an inscrutable
+implementation-defined mess`" thing. But only insofar as it makes this
+protocol we all have to use an even bigger nightmare!
+____
+
+== link:https://lukeplant.me.uk/blog/posts/the-curse-of-scalable-technology/[The curse of scalable technology]
+
+[quote]
+____
+Trying to work out how much advice can be generalised is extremely hard.
+This is compounded by the fact that people who have experience in a lot
+of different projects often do not have _in depth_ knowledge, or
+knowledge spanning a really long time period. I know from experience
+that conclusions I've come to after 2 or 3 years on a project are
+different to after 1 year, and they might change again after 5 or 10
+years. So it may be that the most experienced people (judging by
+breadth) are actually the least qualified to advise others, due to lack
+of depth -- but also the least aware of that!
+
+And then you have the problem that many people with a lot of experience
+are pretty silent about it, and you have no idea how many they are
+(because they are not vocal about their existence either!) Further, the
+most vocal might not be the best qualified to help with your situation.
+For example, I know from at least 2 data points that it's entirely
+possible to run a multi-million dollar business that has a main database
+containing much less than 100 Mb of data. But I don't know how common
+that is, and I suspect you will probably hear a lot more from companies
+that have a massively different profit-to-data ratio.
+
+When I think too much about this, I feel I am stuck between two
+extremes: wild and unjustified extrapolations from the tiny bit of
+experience I have gained so far on the one hand, and failing to learn
+from anything on the other. The latter seems much worse -- none of us
+would be alive today if we reasoned "`well just because a lion ate my
+friend, it would be unscientific and unjustified to jump to the
+conclusion that this lion might eat me`".
+____
