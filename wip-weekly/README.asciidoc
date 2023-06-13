@@ -81,3 +81,10 @@ would be alive today if we reasoned "`well just because a lion ate my
 friend, it would be unscientific and unjustified to jump to the
 conclusion that this lion might eat me`".
 ____
+
+== link:https://railsatscale.com/2023-06-12-rewriting-the-ruby-parser/[Rewriting the Ruby parser]
+
+[quote]
+____
+The tree redesign has ended up being one of the most important parts of the project. It has delivered something that Ruby has never had before: a standardized syntax tree. With a standard in place, the community can start to build a collective knowledge and language around how we discuss Ruby structure, and we can start to build tooling that can be used across all Ruby implementations. Going forward this can mean more cross-collaboration between tools (like Rubocop and Syntax Tree), maintainers, and contributors.
+____
