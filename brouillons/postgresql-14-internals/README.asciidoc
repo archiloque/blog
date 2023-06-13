@@ -16,17 +16,17 @@ it goes into the details I needed so I could grasp how PostgreSQL works.
 
 Sometimes Egor Rogov goes pretty deep into things like internal memory structures, but each time the details are warranted because they shed light on externally-visible behaviors.
 
-The book covers the isolations mechanisms, vacuuming, caching, locking, query executions (including all the steps mentioned when you analyze a query) and index types.
+The book covers isolations mechanisms, vacuuming, caching, locking, query executions (including all the steps mentioned when you analyze a query) and index types.
 
-More advanced topics like sharding or replication are not covered, but as the book is already more than 600 pages long I can't really blame the author for not including them.
+More advanced topics like sharding or replication are not covered, but as the book is already more than 600 pages long I can't really blame the author.
 
-The text is very straightforward and easy to read (Liudmila Mantrova did an impressive translation job) without being dry (or resorting to not really funny jokes as it's too often the case).
+The text is very straightforward and easy to read (Liudmila Mantrova did an impressive translation job) without being dry or resorting to not really funny jokes as it's too often the case.
 The book is designed to be read from the beginning to the start, but you can skip some details without feeling lost.
 
-Implementation explanations provide links to the corresponding source code, it makes the book grounded: the author did his research and doesn't act like the information came to him by magic.
+Implementation explanations provide links to the corresponding source code which makes the book feel grounded: the author did his research and doesn't act like the information came to him by magic.
 
-Another thing I appreciated is that the author is not afraid of forward references, when a topic is mentioned but detailed later.
+Another thing I liked is that the author is not afraid of forward references, when a topic is mentioned but detailed later.
 Many books try to avoid this by layering their explanations in a spiral-like structure, and it often frustrates me because I feel like I learnt a patchwork of insights on each topic and don't of a complete overview.
 On the other hand, the forward references could be frustrating for other people, so YMMV.
 
-So the book contained the info I was looking for, in a form I enjoyed, and it was free. What more could you ask for?
+So the book contained the info I was looking for in a form I enjoyed and it was free.
