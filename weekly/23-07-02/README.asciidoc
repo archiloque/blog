@@ -1,0 +1,103 @@
+= Links - 2^nd^ July 2023
+Julien Kirch
+v1.0, 2023-07-02
+:article_lang: en
+:figure-caption!:
+:article_description: Dead languages, humans and systems, elements of programming, InfluxDB 3.0, writing a pipeline, dependencies in JavaScript
+
+== https://adam-mcdaniel-blog.github.io/compilers-for-the-future[Compilers for the future]
+
+[quote]
+____
+A language is truly mortal when it is too difficult to resuscitate from the dead. Similarly, a language is immortal when it is easy to resuscitate from the dead.
+____
+
+[quote]
+____
+For a language to be useful, it must at least be able to implement any algorithm in the smallest possible time complexity (and ideally space complexity, but this might be less important).
+____
+
+== https://erinkissane.com/qualities-of-life[Qualities of life]
+
+[quote]
+____
+Alexander, like Marie Kondo, builds his theoretical apparatus on the principle that given the right prompts, humans can reliably and accurately feel the difference between things that are alive and things that aren't. If Alexander's work were emerging into the world now, instead of in the 1970s, I suspect that it would be both conceived and received in terms of traditional/anti-colonial/anti-imperialist forms of knowledge.
+____
+
+[quote]
+____
+I think it's obvious that it's always both, systems and people: People and systems can synchronize and strengthen each other (for good or evil); good personalities can patch bad systems, or sabotage them in service of good; good systems can reduce the harm destructive personalities inflict. But unless you work in therapy or social services, I think systems-level work offers the only practical place to put your lever if you want to move the world.
+____
+
+== link:http://elementsofprogramming.com[Elements of programming]
+
+[quote]
+____
+After ten years in print, our publisher decided against further printings and has reverted the rights to us. We have published Elements of Programming in two forms: a free PDF and a no-markup paperback.
+____
+
+== link:https://www.influxdata.com/blog/influxdb-3-0-system-architecture[InfluxDB 3.0: system architecture]
+
+[quote]
+____
+InfluxDB 3.0 (previously known as InfluxDB IOx) is a (cloud) scalable database that offers high performance for both data loading and querying, and focuses on time series use cases. This article describes the system architecture of the database.
+____
+
+
+== link:https://cohost.org/tef/post/1764930-how-not-to-write-a[how (not) to write a pipeline]
+
+[quote]
+____
+let me boldly assert that there are two types of programmer (at least as far as this post is concerned):
+
+. a programmer who builds something out of message queues and calls it a pipeline
+. a programmer who has had to maintain and operate a type-1 made pipeline
+
+although both types of programmer are kept awake by thoughts of code at night, only one of them is on the pager rota. every programmer gets to fuck around, but only a handful are blessed/cursed with finding out.
+
+this essay is for programmers of the second variety. i'm not sure what anyone else will get, but hopefully the people who have already suffered will receive validation, and maybe a few lucky people will pick up some useful framing and vocabulary to fight the good fight later.
+____
+
+[quote]
+____
+you open a dm, it's best to avoid an audience. people get touchy about their code.
+
+[quote]
+_____
+This is great work, it's good to prototype these things out
+_____
+
+Remember: Don't be a dick about it. Don't squeal and wail, not matter how much you want to. People really don't like being told "`You can't do it that way. You do not understand why.`" It's a bad look all round, even if it's true.
+
+Establish common ground, reframe problem, work towards common goals. Then you can be a dick about it, later. Remember: It's only a little bit less of a dick to be Socratic about it, and ask questions you already know the answer to, so try and be nice where you can.
+
+[quote]
+_____
+I don't see a lot of error handling.
+_____
+
+There's never _any error_ handling. The message broker is always running, the queue always exists, and the workers never make a mistake, either. 
+____
+
+[quote]
+____
+there's just one problem: someone has suggested splitting up the thumbnailer into separate processes. that same someone suggests tying the parts back together with a message broker. the pipeline is back, and the same problems are back too.
+
+not just head of line blocking, but the whole "`have you tried reading the logs`" school of state management.
+
+it's at this point that you start to ask "`why does everyone keep doing it this way?`" and it doesn't take too long to realise that the answer is unix. when people think about batch processing, they think about being at the command line, and chaining up steps together in a unix pipeline
+____
+
+[quote]
+____
+your coworker, now fully baptised in the church of state tracking, decides to step in. they're saying stuff like "`it's not a background job system, it's a series of persistent state machines executed in parallel across a shared worker pool`", so you know they've got this.
+____
+
+== link:https://frantic.im/javascript-gom-jabbar/[JavaScript Gom Jabbar]
+
+[quote]
+____
+Every time you modify dependency list, some of the dependencies print out screens-worth of messages to your console, asking for donations, warning about breaking changes. You gave up trying to understand these. You only hope none of them are malicious enough to steal your secrets or ruin your computer. The threat of potential pain of that magnitute is frighting.
+
+There's also moment.js. You love that library, it has a really pleasent API. But the internet decided it's too "`mutable`", too fat, it doesn't support treeshaking and now you have to migrate to date-fns. You haven't started yet, but you already feel the painful refactoring in your bones.
+____
