@@ -69,3 +69,10 @@ ____
 ____
 If you find yourself writing constraints that don’t actually constrain choice, it’s useful to check if you’re dancing around an unstated goal that’s limiting your options.
 ____
+
+== link:https://sqlfordevs.com/concurrent-updates-locking[Prevent locking issues for updates on counters]
+
+[quote]
+____
+When your application frequently updates counters, e.g. page views or comment likes, you will encounter performance problems and even deadlocks. Every time a row is updated, it is locked until the query or transaction finishes. Therefore, no parallel updates are possible and each query has to wait until all the prior ones are finished. But you can workaround this concurrency limitation by randomly spreading the counter to as many rows as you want to reduce the locking probability.
+____
