@@ -29,3 +29,14 @@ ____
 ____
 Here we discuss, with the aid of a set of Venn diagrams, possible relationships between these kinds of side effects on the system induced by the proof, on the one hand, and _those that improve the system’s security by stopping real-world attacks_, on the other. At first glance one might reasonably expect the set of effects on the system induced by the proof to _necessarily_ improve the system’s resilience to real-world attacks. As we will argue, this position is far from clear.
 ____
+
+[quote]
+____
+The area of P that doesn’t intersect A accounts for changes made for the sake of the proof that do not stop real-world attacks. These changes are side effects of the proof that don’t actually lead to a real-world improvement of security. Instead they might impose performance penalties, or restrict functionality. If the number of such changes required for a proof is large, one might reasonably question the additional cost imposed on the system _by the proof process itself_.
+____
+
+
+[quote]
+____
+As noted, a common form of side effect of formal verifi- cation is _deployment constraints_ imposed on a system, e.g., to reflect environmental assumptions encoded in the formal proofs or the model over which they are carried out. Often these restrictions are sensible and arguably enhance security in many scenarios. Yet for other reasonable threat models the restrictions might be overkill.
+____
