@@ -138,3 +138,33 @@ ____
 ____
 I've been playing a work in progress game by some friends recently that's very difficult. I'm looking inward on this experience of playing it. This game is a really good choke machine.  Games can make you start to tilt and become self-conscious and to choke. _Getting Over It_ is an excellent choke machine. You can take somebody who's normally very calm and very clutch. If they practice something then they can reproduce it perfectly. But there are certain ways that you can create an experience that brings people more to that level of like, "`Am I actually gonna be able to do this? Now I'm starting to tilt -- Oh, fuck, now I'm tilted. Now I can't do it at all.`" 
 ____
+
+== link:https://justinjaffray.com/query-engines-push-vs.-pull/[Query engines: push vs. pull]
+
+[quote]
+____
+Overwhelmingly introductory database materials focus on the iterator model, but modern systems, especially analytic ones, are starting to explore the push model more. As noted in the Shaikhha paper, it’s hard to find apples-to-apples comparisons, since a lot of the migration to push models are motivated by a desire to compile queries to lower level code and the benefits that come from that cloud the results.
+____
+
+== link:http://castledb.org[CastleDB]
+
+[quote]
+____
+CastleDB is used to input structured static data.
+
+Everything that is usually stored in XML or JSON files can be stored and modified with CastleDB instead.
+
+For instance, when you are making a game, you can have all of your items and monsters including their names, description, logic effects, etc. stored in CastleDB.
+
+CastleDB looks like any spreadsheet editor, except that each sheet has a data model.
+
+The model allows the editor to validate data and eases user input.
+
+For example, when a given column references another sheet row, you will be able to select it directly.
+
+CastleDB stores both its data model and the data contained in the rows into an easily readable JSON file.
+
+It can then easily be loaded and used by any program.
+
+It makes the handling of item and monster data that you are using in you video game much easier.
+____
