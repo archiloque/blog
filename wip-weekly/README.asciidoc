@@ -13,7 +13,7 @@ It made me think of the different kinds of software I use and how I am willing t
 
 For example, booking a flight. If there is only one flight in and out of a specific area with a specific airline, and that flight will save me time and energy and headache, I will do whatever it takes to buy that flight, no matter how crappy the website.
 
-Or, as another example, sometimes I’ll look for something very specific online and I’ll search and search and search until I finally find it from some obscure website run by a ma and pa shop whose fulfillment system happens through individual email correspondence. Convenience falls by the wayside in contexts of scarcity.
+Or, as another example, sometimes I'll look for something very specific online and I'll search and search and search until I finally find it from some obscure website run by a ma and pa shop whose fulfillment system happens through individual email correspondence. Convenience falls by the wayside in contexts of scarcity.
 
 And this idea was reiterated to us through our users. It allowed us the opportunity to rethink the kinds of projects we took on, to ask ourselves: "`Is our time really best spent making this GUI wizard one step shorter? Or would we be better off doing something else for our users? Perhaps even something not software related?`" It was often the latter.
 ____
@@ -27,12 +27,12 @@ ____
 
 [quote]
 ____
-Here we discuss, with the aid of a set of Venn diagrams, possible relationships between these kinds of side effects on the system induced by the proof, on the one hand, and _those that improve the system’s security by stopping real-world attacks_, on the other. At first glance one might reasonably expect the set of effects on the system induced by the proof to _necessarily_ improve the system’s resilience to real-world attacks. As we will argue, this position is far from clear.
+Here we discuss, with the aid of a set of Venn diagrams, possible relationships between these kinds of side effects on the system induced by the proof, on the one hand, and _those that improve the system's security by stopping real-world attacks_, on the other. At first glance one might reasonably expect the set of effects on the system induced by the proof to _necessarily_ improve the system's resilience to real-world attacks. As we will argue, this position is far from clear.
 ____
 
 [quote]
 ____
-The area of P that doesn’t intersect A accounts for changes made for the sake of the proof that do not stop real-world attacks. These changes are side effects of the proof that don’t actually lead to a real-world improvement of security. Instead they might impose performance penalties, or restrict functionality. If the number of such changes required for a proof is large, one might reasonably question the additional cost imposed on the system _by the proof process itself_.
+The area of P that doesn't intersect A accounts for changes made for the sake of the proof that do not stop real-world attacks. These changes are side effects of the proof that don't actually lead to a real-world improvement of security. Instead they might impose performance penalties, or restrict functionality. If the number of such changes required for a proof is large, one might reasonably question the additional cost imposed on the system _by the proof process itself_.
 ____
 
 [quote]
@@ -44,12 +44,12 @@ ____
 
 [quote]
 ____
-However, the more I followed the "`company, team, self`" approach, the more I appreciated its biggest downside. The most valuable work at a company is rarely the most interesting nor—oddly enough–what the company itself particularly values. I frequently noticed cases where engineers did the best thing for the company, solving an urgent problem with little staffing, but weren’t recognized or promoted for their work. Those engineers would slowly become deenergized and frustrated. As this pattern got clearer, it became increasingly clear to me that always prioritizing the company’s needs was too literal a solution, and a durable approach would require balancing the company’s priorities with remaining personally energized for the long-haul.
+However, the more I followed the "`company, team, self`" approach, the more I appreciated its biggest downside. The most valuable work at a company is rarely the most interesting nor—oddly enough–what the company itself particularly values. I frequently noticed cases where engineers did the best thing for the company, solving an urgent problem with little staffing, but weren't recognized or promoted for their work. Those engineers would slowly become deenergized and frustrated. As this pattern got clearer, it became increasingly clear to me that always prioritizing the company's needs was too literal a solution, and a durable approach would require balancing the company's priorities with remaining personally energized for the long-haul.
 ____
 
 [quote]
 ____
-There are, of course, rules to breaking the rules. The most important being that your energizing work needs to avoid creating problems for other teams. If your fun project is prototyping a throwaway service in a new programming language, then hmm, maybe that’s fine. But if you put it into production, then your energizing detour is going to be net negative on energy generation after other teams are pulled in to figure out how to support it.
+There are, of course, rules to breaking the rules. The most important being that your energizing work needs to avoid creating problems for other teams. If your fun project is prototyping a throwaway service in a new programming language, then hmm, maybe that's fine. But if you put it into production, then your energizing detour is going to be net negative on energy generation after other teams are pulled in to figure out how to support it.
 ____
 
 [quote]
@@ -57,8 +57,8 @@ ____
 The core framework is:
 
 . Generally, prioritize company and team priorities over my own
-. If I’m getting deenergized, artificially prioritize some energizing work. Increase the quantity until equilibrium is restored
-. If the long-term balance between energy and proper priorities can’t be balanced for more than a year, stop everything else and work on solving this (e.g. change your role or link:https://lethain.com/leaving-the-executive-job/[quit])
+. If I'm getting deenergized, artificially prioritize some energizing work. Increase the quantity until equilibrium is restored
+. If the long-term balance between energy and proper priorities can't be balanced for more than a year, stop everything else and work on solving this (e.g. change your role or link:https://lethain.com/leaving-the-executive-job/[quit])
 ____
 
 
@@ -87,7 +87,7 @@ ____
 
 [quote]
 ____
-Overwhelmingly introductory database materials focus on the iterator model, but modern systems, especially analytic ones, are starting to explore the push model more. As noted in the Shaikhha paper, it’s hard to find apples-to-apples comparisons, since a lot of the migration to push models are motivated by a desire to compile queries to lower level code and the benefits that come from that cloud the results.
+Overwhelmingly introductory database materials focus on the iterator model, but modern systems, especially analytic ones, are starting to explore the push model more. As noted in the Shaikhha paper, it's hard to find apples-to-apples comparisons, since a lot of the migration to push models are motivated by a desire to compile queries to lower level code and the benefits that come from that cloud the results.
 ____
 
 == link:http://castledb.org[CastleDB]
@@ -111,4 +111,12 @@ CastleDB stores both its data model and the data contained in the rows into an e
 It can then easily be loaded and used by any program.
 
 It makes the handling of item and monster data that you are using in you video game much easier.
+____
+
+== link:https://ldtk.io[LDtk: level designer toolkit]
+
+[quote]
+____
+A modern 2D level editor from the creator of Dead Cells,
+with a strong focus on user-friendliness.
 ____
