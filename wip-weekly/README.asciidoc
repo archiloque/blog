@@ -4,3 +4,15 @@ v1.0, 2023-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://www.tedinski.com/2019/02/27/end-to-end-principle.html[The end-to-end principle in distributed systems]
+
+[quote]
+____
+In the figure above, we have a typical "`accidental database`" scenario. The trouble is that the system (consisting of a server and its backing database, together) has effectively become a database on its own.
+____
+
+[quote]
+____
+Everybody just loves to accidentally start implementing a database, and it’s always just queues isn’t it?
+____
