@@ -14,12 +14,26 @@ ____
 
 [quote]
 ____
-Everybody just loves to accidentally start implementing a database, and it’s always just queues isn’t it?
+Everybody just loves to accidentally start implementing a database, and it's always just queues isn't it?
 ____
 
 == link:https://www.tedinski.com/2018/10/02/two-sides-to-every-coin.html[The insides and outsides of abstractions]
 
 [quote]
 ____
-There’s a long tradition of believing that you can bring non-programmers in to do programming if only X wasn’t standing in the way, whatever X is. This has never worked. The one place it has ever had the appearance of working is spreadsheets. But spreadsheets are really just _also programming_, and we just don’t really give them the credit they deserve. Spreadsheets are a friendly way to dip your toe into (yes, real) programming. But a lot of these other kinds of tools seem to think it’s syntax that’s the problem, and it’s not. You have to think abstractly and be able to write, test, and debug code. Programming is programming, regardless of syntax.
+There's a long tradition of believing that you can bring non-programmers in to do programming if only X wasn't standing in the way, whatever X is. This has never worked. The one place it has ever had the appearance of working is spreadsheets. But spreadsheets are really just _also programming_, and we just don't really give them the credit they deserve. Spreadsheets are a friendly way to dip your toe into (yes, real) programming. But a lot of these other kinds of tools seem to think it's syntax that's the problem, and it's not. You have to think abstractly and be able to write, test, and debug code. Programming is programming, regardless of syntax.
+____
+
+
+== link:https://www.tedinski.com/2018/03/13/how-compilers-are-designed.html[What can we learn from how compilers are designed?]
+
+[quote]
+____
+The traditional object-oriented design aesthetic involves a lot of emphasis on encapsulation to achieve loose coupling. The actual designs of data are to be hidden away, so that they can change. Interfaces necessarily hide data members, because you don't know what actual implementation of that interface you might get. Hiding away data representation often gets sold as the key thing that makes OO good at breaking down large problems into smaller pieces.
+
+But here we are, looking at how compilers are designed, and we're achieving loose coupling between components by exposing a data schema, publicly committing to all its representational details. Nothing is encapsulated at all.
+
+"`But what if we need to change that representation?`" one might ask. But this is no real objection. You can make breaking changes to interfaces, too. If it looks like you want to make a breaking change to an interface, you either make the breaking change, or you define a new version of the interface next to it. Likewise with data like this. Data can be an interface.
+
+The fact that data can be an interface should be kind of obvious (file formats? DB schemas? protocols?) but this fact seems to get lost in some OO ideology. It's a natural tool to use between systems, but it often seems to get lost when we're design a single program in an OO language. Instead of passing data from one part of the system to another, we often end up passing references to objects, which ends up creating a dependency between those parts.
 ____
