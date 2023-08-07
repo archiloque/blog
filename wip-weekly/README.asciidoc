@@ -37,3 +37,11 @@ But here we are, looking at how compilers are designed, and we're achieving loos
 
 The fact that data can be an interface should be kind of obvious (file formats? DB schemas? protocols?) but this fact seems to get lost in some OO ideology. It's a natural tool to use between systems, but it often seems to get lost when we're design a single program in an OO language. Instead of passing data from one part of the system to another, we often end up passing references to objects, which ends up creating a dependency between those parts.
 ____
+
+
+== link:https://clojure-goes-fast.com/blog/clojures-deadly-sin/[Clojure's deadly sin]
+
+[quote]
+____
+Regardless of how functionally pure a programming language is, every function will always have at least one side effect -- the time spent to execute it (also, memory allocations, disk I/O, and any other resource usage). By deferring the execution to another point in time, the language makes it harder for the programmer to understand where those CPU cycles are spent
+____
