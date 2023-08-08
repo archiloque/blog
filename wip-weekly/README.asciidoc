@@ -38,10 +38,31 @@ But here we are, looking at how compilers are designed, and we're achieving loos
 The fact that data can be an interface should be kind of obvious (file formats? DB schemas? protocols?) but this fact seems to get lost in some OO ideology. It's a natural tool to use between systems, but it often seems to get lost when we're design a single program in an OO language. Instead of passing data from one part of the system to another, we often end up passing references to objects, which ends up creating a dependency between those parts.
 ____
 
-
 == link:https://clojure-goes-fast.com/blog/clojures-deadly-sin/[Clojure's deadly sin]
 
 [quote]
 ____
 Regardless of how functionally pure a programming language is, every function will always have at least one side effect -- the time spent to execute it (also, memory allocations, disk I/O, and any other resource usage). By deferring the execution to another point in time, the language makes it harder for the programmer to understand where those CPU cycles are spent
+____
+
+== link:https://john.colagioia.net/blog/2023/08/06/code-haunting.html[Software as a Haunting (SaaH?)]
+
+[quote]
+____
+For example, to me, programming strongly resembles anthropology, in that (among other disciplines) we study how people can best make use of artifacts and how our predecessors worked with and understood problems. We call those ideas "`user experience`" and "`debugging`", but they run at least parallel to anthropological ideas. Or we can talk about programming as storytelling, or any number of other fields.
+____
+
+[quote]
+____
+We often keep objects around past their usefulness, if its imperfections trigger happy memories, and we might want to get rid of a useful thing if those same imperfections trigger unpleasant memories.
+____
+
+[quote]
+____
+We have, in other words, our hauntings. The presences that come along with software make an end-user’s work more difficult or less, concealed under a more unified presentation, in a way that resembles a hypothetical normal-looking house that happens to have presences left over from prior inhabitants.
+____
+
+[quote]
+____
+Likewise, making software "`professional`" often involves a long process of tracking down and exterminating those idiosyncrasies, to replace them with—in effect—the ghost of the corporation that owns and sells the software. In that context, the software needs to "`speak`" with a single voice, not many distinctive voices.
 ____
