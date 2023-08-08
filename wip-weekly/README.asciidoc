@@ -66,3 +66,10 @@ ____
 ____
 Likewise, making software "`professional`" often involves a long process of tracking down and exterminating those idiosyncrasies, to replace them with—in effect—the ghost of the corporation that owns and sells the software. In that context, the software needs to "`speak`" with a single voice, not many distinctive voices.
 ____
+
+== link:https://mjg59.dreamwidth.org/67126.html[Updating Fedora the unsupported way]
+
+[quote]
+____
+You should not do this. I should not do this. This was a terrible idea. Any situation where you're binary patching your package manager to get it to let you do something is obviously a bad situation. And with hindsight performing 5 independent upgrades might have been faster. But that would have just involved me typing the same thing 5 times, while this way I learned something. And what I learned is "`Terrible ideas sometimes work and so you should definitely act upon them rather than doing the sensible thing`", so like I said, you should not do this in case you learn the same lesson.
+____
