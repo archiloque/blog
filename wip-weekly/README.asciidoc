@@ -13,3 +13,10 @@ What I’m trying to say here is reiterating that Automattic has effectively sto
 
 Indeed, the vast majority of those Semi-Pro bloggers appear to have migrated, over the past fifteen years, to Medium at first, and to Substack more recently. And while the latter still allows you to read the content over RSS feeds (unless paywalled), it also shows what other of these semi-pros blogger have started doing: owning the relationship with the readers, in form of newsletters that you need to explicitly subscribe to. Even Jetpack tries to upsell you on paid newsletters as you post your blog!
 ____
+
+== link:https://kellanclark.github.io/2023/09/18/armfuck/[ARMfuck: Turing completeness from two RISC instructions]
+
+[quote]
+____
+Thanks to making the program counter a general purpose register (henceforth referred to as `pc` or `r15`) and showing its actual (i.e. pipelined) value instead of the address of the current instruction, the ARM architecture has many rather “fun” edge cases. The `LDM` and `STM` instructions in particular are so bad that they’ve become a meme on the emudev Discord server. A couple of us have realized and joked about how they’re even turing complete, but that never went beyond a funny thought experiment until now.
+____
