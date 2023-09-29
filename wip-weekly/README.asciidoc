@@ -20,3 +20,10 @@ ____
 ____
 Thanks to making the program counter a general purpose register (henceforth referred to as `pc` or `r15`) and showing its actual (i.e. pipelined) value instead of the address of the current instruction, the ARM architecture has many rather “fun” edge cases. The `LDM` and `STM` instructions in particular are so bad that they’ve become a meme on the emudev Discord server. A couple of us have realized and joked about how they’re even turing complete, but that never went beyond a funny thought experiment until now.
 ____
+
+== link:https://cutlefish.substack.com/p/tbm-244-we-just-need-to-align-incentives[TBM 244: We JUST Need to Align Incentives]
+
+[quote]
+____
+A simplistic take on this might be that you can use incentives to "`design`" a system. "`Get the incentives right, and the rest takes care of itself!`" A more nuanced take is that while incentives can be designed and implemented (we certainly can decide on a benefits package or "`reward good behavior`"), more often than not, incentives _emerge, clash, interact, and morph_.
+____
