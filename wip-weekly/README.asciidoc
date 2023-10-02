@@ -14,3 +14,14 @@ In online games, _the source of truth_ of the state of the world _is the in-memo
 ____
 
 == link:https://www.scattered-thoughts.net/writing/a-shallow-survey-of-olap-and-htap-query-engines[A shallow survey of OLAP and HTAP query engines]
+
+== link:https://dl.gi.de/server/api/core/bitstreams/9c8435ee-d478-4b0e-9e3f-94f39a9e7090/content[Seamless integration of Parquet files into data processing]
+
+[quote]
+____
+Relational database systems are still the most powerful tool for data analysis. However, the steps necessary to bring existing data into the database make them unattractive for data exploration, especially when the data is stored in data lakes where users often use Parquet files, a binary column-oriented file format.
+
+This paper presents a fast Parquet framework that tackles these problems without costly ETL steps. We incrementally collect information during query execution. We create statistics that enhance future queries. In addition, we split the file into chunks for which we store the data ranges. We call these _synopses_. They allow us to skip entire sections in future queries.
+
+We show that these techniques only add a minor overhead to the first query and are of benefit for future requests. Our evaluation demonstrates that our implementation can achieve comparable results to database relations and that we can outperform existing systems by up to an order of magnitude.
+____
