@@ -25,3 +25,10 @@ This paper presents a fast Parquet framework that tackles these problems without
 
 We show that these techniques only add a minor overhead to the first query and are of benefit for future requests. Our evaluation demonstrates that our implementation can achieve comparable results to database relations and that we can outperform existing systems by up to an order of magnitude.
 ____
+
+== link:https://csswizardry.com/2023/10/clear-cache-on-customer-device/[How to clear cache and cookies on a customer’s device]
+
+[quote]
+____
+link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data[A relatively new HTTP header], available in most modern browsers, allows developers to declaratively clear data associated with a given origin via one simple response header: `+clear-site-data+`.
+____
