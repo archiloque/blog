@@ -15,6 +15,13 @@ ____
 
 == link:https://www.scattered-thoughts.net/writing/a-shallow-survey-of-olap-and-htap-query-engines[A shallow survey of OLAP and HTAP query engines]
 
+[quote]
+____
+Focused mostly on data layout and query execution. Query planning seems more or less the same as OLTP systems, and I'm ignoring distribution and transactions for now. Also see my full notes here.
+
+It was hard to figure out what systems are even worth studying. There is so much money in this space. Search results are polluted with barely concealed advertising (eg "How to choose between FooDB and BarDB" hosted on foodb.com) and benchmarketing. Third-party benchmarks are crippled by that fact that most databases TOS prohibit publishing benchmarks. Besides which, benchmarking databases is notoriously error-prone.
+____
+
 == link:https://dl.gi.de/server/api/core/bitstreams/9c8435ee-d478-4b0e-9e3f-94f39a9e7090/content[Seamless integration of Parquet files into data processing]
 
 [quote]
@@ -31,4 +38,13 @@ ____
 [quote]
 ____
 link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data[A relatively new HTTP header], available in most modern browsers, allows developers to declaratively clear data associated with a given origin via one simple response header: `+clear-site-data+`.
+____
+
+== link:https://cutlefish.substack.com/p/tbm-246-why-didnt-they-say-no[TBM 246: why didn't they say no?]
+
+[quote]
+____
+When they said no in the past, it felt like they were being hauled into the courthouse and put on the defendant's stand. Saying no involves a deep test of wills, being doubted, and being questioned over every minute detail. It gets tiring, so they just say yes to make people disappear.
+
+Someone has told them that saying No is not an option, probably because it would be too painful and politically damaging to have to defend the team's decision. It is better to say yes and let everything slip a bit than to say No.
 ____
