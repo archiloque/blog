@@ -4,3 +4,12 @@ v1.0, 2023-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://alexis.bernard.io/blog/2023-10-15-background-job-queues-and-priorities-may-be-the-wrong-path.html[Background job queues and priorities may be the wrong path]
+
+[quote]
+____
+Indeed, defining latency queues (`+latency_15s+`, `+latency_15m+`, `+latency_8h+`) is much better. Because if the high priority queue is always busy, others will never start. However, with the idea of SLO latency, we could totally get rid of queues.
+
+A job needs two attributes to define when it should be started: run_at and max_latency. That means the job worker only needs to order them by `+run_at + max_latency+`, and takes the first. It seems both flexible and simple.
+____
