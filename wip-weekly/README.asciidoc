@@ -13,3 +13,10 @@ Indeed, defining latency queues (`+latency_15s+`, `+latency_15m+`, `+latency_8h+
 
 A job needs two attributes to define when it should be started: run_at and max_latency. That means the job worker only needs to order them by `+run_at + max_latency+`, and takes the first. It seems both flexible and simple.
 ____
+
+== link:https://cohost.org/amydentata/post/3187171-there-s-an-unspoken[preventing terminology misuse]
+
+[quote]
+____
+there's an unspoken belief in some circles that, if you carefully craft terminology and use it in just the right way, it will be immune to misuse or dishonesty. problem is, there is literally nothing you can do to stop people from misusing words or misunderstanding them. there is nothing you can do to categorically stop people from twisting words against you, either. the search for bulletproof terminology is, at root, an exercise in magical thinking. we arrive at greater understanding via the conversation itself, not through a meta game that rests on top of the conversation
+____
