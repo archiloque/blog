@@ -54,3 +54,10 @@ In short, this is what Microsoft did:
 - Now you have to use the closed form of VSCode to have the best experience by quite a bit.
 Everyone else using VSCode as a platform can't keep up because Microsoft fractured their community -- and your VSCode product is now just an ad for a similar Microsoft product that doesn't have all the papercuts.
 ____
+
+== https://lwn.net/SubscriberLink/946870/4d9c821fac87aea9/[Improving C-library scalability with restartable sequences]
+
+[quote]
+____
+There are a number of locks within glibc, he said, that could be optimized with either RSEQ or RCU; these include the dynamic loader lock, the dynamic loader stack cache lock, the default pthread attribute lock, gettext locks, and the timezone lock. The last one is acquired frequently, since it is needed by functions like `+localtime()+`, but the time zone changes infrequently (if at all). An RSEQ-based update mechanism could help here, he said.
+____
