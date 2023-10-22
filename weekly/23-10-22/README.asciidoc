@@ -1,0 +1,63 @@
+= Links - 23^rd^ October 2023
+Julien Kirch
+v1.0, 23-10-22
+:article_lang: en
+:figure-caption!:
+:article_description: Backgroubnd jobs, terminology missuse, libraries churn, improving things, zip file format, timezones
+
+== link:https://alexis.bernard.io/blog/2023-10-15-background-job-queues-and-priorities-may-be-the-wrong-path.html[Background job queues and priorities may be the wrong path]
+
+[quote]
+____
+Indeed, defining latency queues (`+latency_15s+`, `+latency_15m+`, `+latency_8h+`) is much better. Because if the high priority queue is always busy, others will never start. However, with the idea of SLO latency, we could totally get rid of queues.
+
+A job needs two attributes to define when it should be started: run_at and max_latency. That means the job worker only needs to order them by `+run_at + max_latency+`, and takes the first. It seems both flexible and simple.
+____
+
+== link:https://cohost.org/amydentata/post/3187171-there-s-an-unspoken[Preventing terminology misuse]
+
+[quote]
+____
+there's an unspoken belief in some circles that, if you carefully craft terminology and use it in just the right way, it will be immune to misuse or dishonesty. problem is, there is literally nothing you can do to stop people from misusing words or misunderstanding them. there is nothing you can do to categorically stop people from twisting words against you, either. the search for bulletproof terminology is, at root, an exercise in magical thinking. we arrive at greater understanding via the conversation itself, not through a meta game that rests on top of the conversation
+____
+
+== link:https://htmx.org/essays/no-build-step/[Why htmx does not have a build step]
+
+[quote]
+____
+Of course, most people's experience with JavaScript is that it ages like milk. Reopen a node repository after 3 months and you'll find that your project is mired in a flurry of security warnings, backwards-incompatible library "`upgrades`", and a frontend framework whose cultural peak was the exact moment you started the project and is now widely considered tech debt.
+____
+
+== link:https://ludic.mataroa.blog/blog/your-organization-probably-doesnt-want-to-improve-things/[Your organization probably doesn't want to improve things]
+
+[quote]
+____
+I work on a platform that cost my organization an eye-watering sum of money to produce, over the span of two years, and the engineers responsible for it elected to use spreadsheets to control the infrastructure, so we now have a spreadsheet with 400 separate worksheets that powers but one part of this whole shambling mess.
+____
+
+== link:https://games.greggman.com/game/zip-rant/[Zip -- How not to design a file format.]
+
+[quote]
+____
+The Zip file format is now 32 years old. You'd think being 32 years old the format would be well documented. Unfortunately it's not.
+____
+
+== link:https://ghuntley.com/fracture/[Visual Studio Code is designed to fracture]
+
+[quote]
+____
+In short, this is what Microsoft did:
+
+- Created VSCode and made it the best and open-source IDE that everyone would jump to first.
+- Make a proprietary free distribution of it, along with proprietary free extensions for the various languages.
+- Make those extensions the best version possible and slow down focus on open source ones, often deprecating them.
+- Now you have to use the closed form of VSCode to have the best experience by quite a bit.
+Everyone else using VSCode as a platform can't keep up because Microsoft fractured their community -- and your VSCode product is now just an ad for a similar Microsoft product that doesn't have all the papercuts.
+____
+
+== https://lwn.net/SubscriberLink/946870/4d9c821fac87aea9/[Improving C-library scalability with restartable sequences]
+
+[quote]
+____
+There are a number of locks within glibc, he said, that could be optimized with either RSEQ or RCU; these include the dynamic loader lock, the dynamic loader stack cache lock, the default pthread attribute lock, gettext locks, and the timezone lock. The last one is acquired frequently, since it is needed by functions like `+localtime()+`, but the time zone changes infrequently (if at all). An RSEQ-based update mechanism could help here, he said.
+____
