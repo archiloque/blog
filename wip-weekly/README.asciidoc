@@ -28,3 +28,23 @@ ____
 * Architectural decisions involve the fundamental concepts the system uses because the code implications of the choices are scattered throughout the software rather than being localized. 
 * Teams who need to record significant decisions should create a separate Significant Decision Record to avoid overburdening their ADR with other decisions. 
 ____
+
+[quote]
+____
+To illustrate, a decision to select a database management system is usually regarded as architectural because many systems will use it for their lifetime, but if this decision is easily reversed without having to change code throughout the system, it’s generally not architecturally significant. Modern RDBMS technology is quite stable and relatively interchangeable between vendor products, so replacing a commercial product with an open-source product, and vice versa, is relatively easy so long as the interfaces with the database have been isolated. The _architectural_ decision is the one to localize database dependencies and abstract vendor-specific interfaces, not the choice of the database itself.
+____
+
+== link:https://mastodon.social/@mhoye/111295537103529138[Solving problems]
+
+[quote]
+____
+"`How do I solve this problem?`"
+
+"`You do not. You avoid having that problem in the first place.`"
+
+"`That isn't helpful.`"
+
+"`In fact, it could be.`"
+
+One of the challenges of experience is navigating communications of this general shape. The experience that tells you it's true doesn't necessarily give you a way to communicate how obviously true it is to people who haven't gone through the same.
+____
