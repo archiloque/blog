@@ -7,82 +7,82 @@ v0.1, 2020-07-03
 
 == Le maintien en condition opérationnelle
 
-Dans les grandes organisations pour lesquelles j'ai travaillé j'ai souvent croisé le terme de "`Maintien en condition opérationnelle`" ou MCO.
+Dans les grandes organisations pour lesquelles j`'ai travaillé j`'ai souvent croisé le terme de "`Maintien en condition opérationnelle`" ou MCO.
 
-Pour un outil, le MCO c'est le fait de maintenir un fonctionnement satisfaisant, hors des évolutions qu'on lui fait subir, et par extension l'effort que cela demande.
+Pour un outil, le MCO c`'est le fait de maintenir un fonctionnement satisfaisant, hors des évolutions qu`'on lui fait subir, et par extension l`'effort que cela demande.
 
-Pour un logiciel, cela correspond au fait de corriger des bugs et de faire les mises à jour d'outils permettant de bénéficier de mises à jour de sécurité.
+Pour un logiciel, cela correspond au fait de corriger des bugs et de faire les mises à jour d`'outils permettant de bénéficier de mises à jour de sécurité.
 
 == Le prix de la MCO
 
-Si on parle beaucoup des problèmes pour développer de nouveaux logiciels, et que certains produits continuent à évoluer tout au long de leur vie, il n'en reste pas moins que pour d'autres la phase de développement actif est suivie d'une phase de maintenance, où les évolutions se font de-ci de-là, avec parfois des périodes longues entre chacune d'entre-elles.
+Si on parle beaucoup des problèmes pour développer de nouveaux logiciels, et que certains produits continuent à évoluer tout au long de leur vie, il n`'en reste pas moins que pour d`'autres la phase de développement actif est suivie d`'une phase de maintenance, où les évolutions se font de-ci de-là, avec parfois des périodes longues entre chacune d`'entre-elles.
 
-Quand un logiciel utilise des outils qui évoluent rapidement, cela peut signifier que même sans avoir à développer de nouvelles fonctionnalités, du temps doit être dépensé régulièrement pour le maintenir en l'état.
+Quand un logiciel utilise des outils qui évoluent rapidement, cela peut signifier que même sans avoir à développer de nouvelles fonctionnalités, du temps doit être dépensé régulièrement pour le maintenir en l`'état.
 
-À l'inverse, s'appuyer sur des outils stables et pérennes permet de limiter ce temps.
+À l`'inverse, s`'appuyer sur des outils stables et pérennes permet de limiter ce temps.
 
-On peut se moquer de ce genre d'outils pour ne pas être toujours au goût du jour, par exemple Java, Debian ou même RedHat, mais pour des logiciels qui sont destinés à durer, s'appuyer sur ce type d'infrastructure peut faire une différence importante sur le montant de la facture chaque année.
+On peut se moquer de ce genre d`'outils pour ne pas être toujours au goût du jour, par exemple Java, Debian ou même RedHat, mais pour des logiciels qui sont destinés à durer, s`'appuyer sur ce type d`'infrastructure peut faire une différence importante sur le montant de la facture chaque année.
 
-== Si une dépendance s'arrête{nbsp}?
+== Si une dépendance s`'arrête{nbsp}?
 
-Si des dépendances peuvent évoluer, et donc demander des adaptations régulières, d'autres peuvent s'arrêter, par exemple parce qu'un projet open source n'a plus personne pour le maintenir.
+Si des dépendances peuvent évoluer, et donc demander des adaptations régulières, d`'autres peuvent s`'arrêter, par exemple parce qu`'un projet open source n`'a plus personne pour le maintenir.
 
-Si le code en question n'est pas exposé à l'extérieur et que ses propres dépendances sont stables cela peut avoir peu ou pas de conséquences.
-Cela peut même être une bonne nouvelle car si des mises à jours ne sont plus publiées cela signifie qu'il n'est plus nécessaire de faire le travail de les intégrer.
+Si le code en question n`'est pas exposé à l`'extérieur et que ses propres dépendances sont stables cela peut avoir peu ou pas de conséquences.
+Cela peut même être une bonne nouvelle car si des mises à jours ne sont plus publiées cela signifie qu`'il n`'est plus nécessaire de faire le travail de les intégrer.
 
-Dans le cas contraire cela signifie généralement des arbitrages compliqués{nbsp}: faut-il accepter le risque de failles de sécurité non corrigées, monter en compétence sur l'outil pour internaliser sa maintenance, se décider à migrer sur un autre outil…{nbsp}?
+Dans le cas contraire cela signifie généralement des arbitrages compliqués{nbsp}: faut-il accepter le risque de failles de sécurité non corrigées, monter en compétence sur l`'outil pour internaliser sa maintenance, se décider à migrer sur un autre outil…{nbsp}?
 
 == Comment décider{nbsp}?
 
-Il n'y a pas de formule simple, car comme disait Yogi Berra "`Faire des prévisions est difficile, et encore plus quand elles concernent le futur`".
+Il n`'y a pas de formule simple, car comme disait Yogi Berra "`Faire des prévisions est difficile, et encore plus quand elles concernent le futur`".
 
 link:https://hal.archives-ouvertes.fr/hal-02117588/document[Cet article] propose une approche intéressante qui prend en compte la durée de vie du projet par rapport à la stabilité des dépendances.
 
-Sauf que bien entendu il peut être assez difficile de prévoir la durée de vie d'un projet, sachant qu'elle peut dépendre elle-même du niveau de sa MCO, car plus un projet coûte cher ou plus il pose de risque, plus l'incitation à le décomissionner est forte.
+Sauf que bien entendu il peut être assez difficile de prévoir la durée de vie d`'un projet, sachant qu`'elle peut dépendre elle-même du niveau de sa MCO, car plus un projet coûte cher ou plus il pose de risque, plus l`'incitation à le décomissionner est forte.
 
-Si être pessimiste permet de limiter les risques, cela limite aussi ce qu'il est possible de faire, si les solutions qui ont le plus de fonctionnalités ne sont pas encore stabilisées, comme certains frameworks JavaScript actuels.
+Si être pessimiste permet de limiter les risques, cela limite aussi ce qu`'il est possible de faire, si les solutions qui ont le plus de fonctionnalités ne sont pas encore stabilisées, comme certains frameworks JavaScript actuels.
 
-Pour les projets d'une certaine taille, il peut être intéressant de faire des choix différents en fonction des parties, par exemple d'avoir des solutions pérennes pour la partie serveur, qui devrait vivre plus longtemps, et des choix plus libres sur la partie front.
+Pour les projets d`'une certaine taille, il peut être intéressant de faire des choix différents en fonction des parties, par exemple d`'avoir des solutions pérennes pour la partie serveur, qui devrait vivre plus longtemps, et des choix plus libres sur la partie front.
 Dans ce cas on rend le système un peu plus complexe en échange de plus de liberté technologique.
 
-À l'inverse, une solution qui peut être tentante, mais qui n'en vaut souvent pas la peine, et d'ajouter une couche d'indirection entre le code métier et le code du framework.
-Dans mon expérience, la couche d'indirection ainsi obtenue ajoute du travail sans généralement apporter le découplage qu'on espère{nbsp}: les changements de frameworks s'accompagnent le plus souvent d'un changement d'API, et il est rare qu'une couche d'indirection développée ainsi soit en mesure de compenser proprement ces modifications d'API.
+À l`'inverse, une solution qui peut être tentante, mais qui n`'en vaut souvent pas la peine, et d`'ajouter une couche d`'indirection entre le code métier et le code du framework.
+Dans mon expérience, la couche d`'indirection ainsi obtenue ajoute du travail sans généralement apporter le découplage qu`'on espère{nbsp}: les changements de frameworks s`'accompagnent le plus souvent d`'un changement d`'API, et il est rare qu`'une couche d`'indirection développée ainsi soit en mesure de compenser proprement ces modifications d`'API.
 Les personnes ayant développé en Java dans les années 2000 devraient très bien voir de quoi je parle.
 
 == Sans framework, ou le framework masqué
 
 On trouve des mouvements comme celui du link:https://www.frameworklessmovement.org[frameworkless movement] qui proposent de ne pas du tout utiliser de frameworks externes, ou au moins de limiter drastiquement leur usage.
 
-L'idée est qu'une solution maison (même s'il s'agit toujours d'un framework même s'il ne dit pas son nom) qui répond uniquement aux besoins avérés sera d'une taille bien plus faible qu'une solution sur l'étagère.
+L`'idée est qu`'une solution maison (même s`'il s`'agit toujours d`'un framework même s`'il ne dit pas son nom) qui répond uniquement aux besoins avérés sera d`'une taille bien plus faible qu`'une solution sur l`'étagère.
 
-Si la question qu'ils posent est légitime, le fait de vouloir développer plus de choses en interne signifie porter seul le coût de développement et de maintenance.
-Il s'agit de choisir de payer dès maintenant un certain prix dont on espère qu'il sera moins élevé que celui qu'on aurait payé plus tard.
+Si la question qu`'ils posent est légitime, le fait de vouloir développer plus de choses en interne signifie porter seul le coût de développement et de maintenance.
+Il s`'agit de choisir de payer dès maintenant un certain prix dont on espère qu`'il sera moins élevé que celui qu`'on aurait payé plus tard.
 
-L'autre grand risque est celui d'aboutir à un "`framework maison`" qui soit un frein à la productivité (car moins complet fonctionnellement, moins ergonomique et qui contient plus de bugs), et qui&#8201;—{nbsp}n'étant pas standard{nbsp}—&#8201;augmente les coûts de formation et dissuade les personnes de travailler sur le projet.
+L`'autre grand risque est celui d`'aboutir à un "`framework maison`" qui soit un frein à la productivité (car moins complet fonctionnellement, moins ergonomique et qui contient plus de bugs), et qui&#8201;—{nbsp}n`'étant pas standard{nbsp}—&#8201;augmente les coûts de formation et dissuade les personnes de travailler sur le projet.
 
-Une autre réponse possible à cette question, c'est de choisir des outils qui intègrent plus de choses dans leur bibliothèque standard, car ces briques devraient être maintenues sur un temps plus long.
-Ainsi Python se veut un langage « piles incluses », c'est-à-dire que sa bibliothèque standard devrait être suffisante pour répondre à un certain nombre de besoins.
+Une autre réponse possible à cette question, c`'est de choisir des outils qui intègrent plus de choses dans leur bibliothèque standard, car ces briques devraient être maintenues sur un temps plus long.
+Ainsi Python se veut un langage « piles incluses », c`'est-à-dire que sa bibliothèque standard devrait être suffisante pour répondre à un certain nombre de besoins.
 
-(Ça ne veut pas dire que JEE soit un bon choix, seulement que ça part d'une bonne idée.)
+(Ça ne veut pas dire que JEE soit un bon choix, seulement que ça part d`'une bonne idée.)
 
 == Les projets personnels
 
 Sur les projets personnels le MCO peut vraiment être usant.
 
-Par exemple, sur un projet sur lequel vous vous remettez de temps en temps pour explorer une idée, si à chaque fois que vous ouvrez votre code vous devez passer du temps à mettre à jour les dépendances et à comprendre pourquoi quelque chose s'est cassé, vous risquez de vous démotiver et de vous arrêter.
+Par exemple, sur un projet sur lequel vous vous remettez de temps en temps pour explorer une idée, si à chaque fois que vous ouvrez votre code vous devez passer du temps à mettre à jour les dépendances et à comprendre pourquoi quelque chose s`'est cassé, vous risquez de vous démotiver et de vous arrêter.
 
 Cela signifie que les outils que vous utilisez pour vos projets au travail ne sont pas forcément adaptés à vo projets personnels.
 
 == Ne pas en faire une obsession
 
-La MCO peut être importante, mais elle ne doit pas être l'unique critère de choix.
-Tous les projets ne sont pas faits pour durer des dizaines d'années.
+La MCO peut être importante, mais elle ne doit pas être l`'unique critère de choix.
+Tous les projets ne sont pas faits pour durer des dizaines d`'années.
 
-À trop vouloir limiter le risque et capitaliser sur l'existant, on arrête de changer et d'apprendre, et on oublie même comment le faire.
+À trop vouloir limiter le risque et capitaliser sur l`'existant, on arrête de changer et d`'apprendre, et on oublie même comment le faire.
 
-À trop vouloir faire des économies d'échelle, on perd la capacité de faire des choix opportunistes.
+À trop vouloir faire des économies d`'échelle, on perd la capacité de faire des choix opportunistes.
 
-Le risque avec la MCO c'est de vouloir mettre le curseur trop d'un côté ou de l'autre.
+Le risque avec la MCO c`'est de vouloir mettre le curseur trop d`'un côté ou de l`'autre.
 Cela simplifie la prise de décisions, et donne le sentiment de gouverner, mais en général cela ne produit pas les meilleures choses.
 
 Il faut prendre soin de laisser des marges de manœuvres pour tester de nouvelles technologies, et accepter de prendre une certaine dose de risque à long terme pour gagner en productivité.

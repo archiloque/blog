@@ -1,8 +1,8 @@
-INPUT = IO.read('input.txt')
+INPUT = IO.read(`'input.txt`')
 LAYER_SIZE = 25 * 6
 NUMBER_OF_LAYERS = INPUT.length / LAYER_SIZE
 
-TRANSPARENT_COLOR = '2'
+TRANSPARENT_COLOR = `'2`'
 def calculate_pixel(position)
   current_layer_index = 0
   while current_layer_index < NUMBER_OF_LAYERS
@@ -21,5 +21,5 @@ result = []
 end
 
 0.upto(5) do |line_index|
-  STDOUT << "#{result[(line_index * 25), 25].join('').gsub('0', ' ').gsub('1', '#')}\n"
+  STDOUT << "#{result[(line_index * 25), 25].join(`'`').gsub(`'0`', `' `').gsub(`'1`', `'#`')}\n"
 end

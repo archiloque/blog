@@ -7,36 +7,36 @@ v0.1, 2019-05-03
 
 Il y a quelques temps, link:https://twitter.com/mountain_ghosts[James Coglan] a pris un congé sabbatique et a cherché un nouveau projet permettant de lui changer les idées.
 
-Son choix s'est porté sur link:https://git-scm.com/[Git], et il a commencé à en creuser le fonctionnement interne dans l'idée d'en réécrire une version simplifiée, cela a donné link:https://blog.jcoglan.com/2017/02/12/the-myers-diff-algorithm-part-1/[des] link:https://blog.jcoglan.com/2017/02/15/the-myers-diff-algorithm-part-2/[articles], puis l'idée d'en faire un livre assez court.
+Son choix s`'est porté sur link:https://git-scm.com/[Git], et il a commencé à en creuser le fonctionnement interne dans l`'idée d`'en réécrire une version simplifiée, cela a donné link:https://blog.jcoglan.com/2017/02/12/the-myers-diff-algorithm-part-1/[des] link:https://blog.jcoglan.com/2017/02/15/the-myers-diff-algorithm-part-2/[articles], puis l`'idée d`'en faire un livre assez court.
 
 Plusieurs mois plus tard, link:https://shop.jcoglan.com/building-git/[le livre est sorti] et fait 700 pages.
 
-L'objet du livre est de réécrire les fonctions centrales de Git de manière incrémentale.
-L'implémentation ne couvre pas toutes les options, mais tous les concepts sont là et la version finale est une version alternative de Git suffisante pour les cas d'usages simples.
+L`'objet du livre est de réécrire les fonctions centrales de Git de manière incrémentale.
+L`'implémentation ne couvre pas toutes les options, mais tous les concepts sont là et la version finale est une version alternative de Git suffisante pour les cas d`'usages simples.
 
-L'auteur montre comment on peut s'y prendre pour créer un logiciel complexe par petits morceaux à taille humaine{nbsp}: à chaque fois quelques lignes de code permettent d'ajouter un nouveau comportement presque immédiatement utilisable.
+L`'auteur montre comment on peut s`'y prendre pour créer un logiciel complexe par petits morceaux à taille humaine{nbsp}: à chaque fois quelques lignes de code permettent d`'ajouter un nouveau comportement presque immédiatement utilisable.
 
-Cela mène à de nombreux exemples de refactoring, qui sont l'occasion d'introduire de manière naturelle des link:https://en.wikipedia.org/wiki/Software_design_pattern[design patterns].
+Cela mène à de nombreux exemples de refactoring, qui sont l`'occasion d`'introduire de manière naturelle des link:https://en.wikipedia.org/wiki/Software_design_pattern[design patterns].
 
-Le modèle de données de Git étant assez riche, avec de nombreux objets et états, le livre est également une bonne leçon de modélisation et d'utilisation de structures de données.
+Le modèle de données de Git étant assez riche, avec de nombreux objets et états, le livre est également une bonne leçon de modélisation et d`'utilisation de structures de données.
 
-Pour fonctionner, Git a besoin de lire et d'écrire de la configuration, d'utiliser du réseau, d'accéder à des fichiers de manière concurrente, de comprendre des paramètres complexes utilisant un mini link:https://en.wikipedia.org/wiki/Domain-specific_language[DSL], d'exécuter des processus externes…
+Pour fonctionner, Git a besoin de lire et d`'écrire de la configuration, d`'utiliser du réseau, d`'accéder à des fichiers de manière concurrente, de comprendre des paramètres complexes utilisant un mini link:https://en.wikipedia.org/wiki/Domain-specific_language[DSL], d`'exécuter des processus externes…
 
-Le code est souvent accompagné d'un minimum de théorie permettant d'expliquer et de donner du contexte aux choix qui sont fait.
+Le code est souvent accompagné d`'un minimum de théorie permettant d`'expliquer et de donner du contexte aux choix qui sont fait.
 
-On ressort donc du livre avec une boite à outils assez complète, il pourrait quasiment servir de base à un cours d'introduction à l'informatique, y compris dans sa manière d'introduire les tests automatisés et du TDD.
+On ressort donc du livre avec une boite à outils assez complète, il pourrait quasiment servir de base à un cours d`'introduction à l`'informatique, y compris dans sa manière d`'introduire les tests automatisés et du TDD.
 
-Le texte est très lisible et très pédagogique, et l'auteur prend soin de ne jamais étaler sa science, même quand il introduit des mécanismes complexes.
+Le texte est très lisible et très pédagogique, et l`'auteur prend soin de ne jamais étaler sa science, même quand il introduit des mécanismes complexes.
 
 Pour chaque étape James Coglan examine le comportement de Git ou la documentation, puis explique le cheminement pour aboutir à une implémentation.
 
-En tant qu'utilisateur ça m'a permis de démystifier et de mieux comprendre comment Git a été pensé et fonctionne.
-Cela m'aidera probablement à mieux l'utiliser dans les cas compliqués.
+En tant qu`'utilisateur ça m`'a permis de démystifier et de mieux comprendre comment Git a été pensé et fonctionne.
+Cela m`'aidera probablement à mieux l`'utiliser dans les cas compliqués.
 
-Le code est en Ruby, en se limitant à des usages simples, ne pas connaître Ruby ou ne pas l'apprécier particulièrement ne devrait donc pas être un obstacle (et l'ouvrage inclut une courte documentation permettant de s'en sortir).
+Le code est en Ruby, en se limitant à des usages simples, ne pas connaître Ruby ou ne pas l`'apprécier particulièrement ne devrait donc pas être un obstacle (et l`'ouvrage inclut une courte documentation permettant de s`'en sortir).
 
-Au moment de le commander j'avais quelques doutes ("`Tu connais déjà pas mal Git, penses-tu _vraiment_ qu'acheter un livre de 700 pages sur ce sujet pour 40€ est une bonne idée{nbsp}?`") mais j'en ressors conquis.
+Au moment de le commander j`'avais quelques doutes ("`Tu connais déjà pas mal Git, penses-tu _vraiment_ qu`'acheter un livre de 700 pages sur ce sujet pour 40€ est une bonne idée{nbsp}?`") mais j`'en ressors conquis.
 
-Si la taille du livre vous effraie, je précise que l'approche incrémentale permet de sauter ou de survoler les parties qui pourraient vous sembler moins intéressantes sans perdre le fil.
+Si la taille du livre vous effraie, je précise que l`'approche incrémentale permet de sauter ou de survoler les parties qui pourraient vous sembler moins intéressantes sans perdre le fil.
 
 Pour finir un avertissement{nbsp}: une partie des lecteurs et lectrices ont décidé de réimplémenter à leur tour Git dans le langage de leur choix, à vous de voir si vous êtes prêt ou prête à prendre ce risque en ouvrant le livre.

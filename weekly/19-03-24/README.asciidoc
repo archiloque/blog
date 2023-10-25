@@ -18,30 +18,30 @@ If you did so, that would look a lot like link:https://en.wikipedia.org/wiki/ZFS
 
 To explain what is going on with ZFS, Anderson introduced the idea of a "`sympathetic abstraction`". It can be thought of as an "`intentional leakiness`" where layers are sympathetic to those above and below. For example, ZFS is sympathetic to whether the block device it runs on is spinning rust or an SSD. ZFS is also sympathetic to errors that can occur on the raw block device, while ext4 and other traditional filesystems are not: they leave that kind of error handling to some other layer below.
 
-These kinds of sympathetic abstractions happen all the time, he said. For example, SSH sets the `TCP_NODELAY` option (to disable link:https://en.wikipedia.org/wiki/Nagle%27s_algorithm[Nagle's algorithm]) for interactive sessions. But SSH should not care what transport it is running on; it should be able to run on top of UDP tunneled inside DNS packets. The link:http://cassandra.apache.org/[Apache Cassandra database] wants to know if it is running on spinning rust or SSD; shouldn't that be the concern of layers below it?
+These kinds of sympathetic abstractions happen all the time, he said. For example, SSH sets the `TCP_NODELAY` option (to disable link:https://en.wikipedia.org/wiki/Nagle%27s_algorithm[Nagle`'s algorithm]) for interactive sessions. But SSH should not care what transport it is running on; it should be able to run on top of UDP tunneled inside DNS packets. The link:http://cassandra.apache.org/[Apache Cassandra database] wants to know if it is running on spinning rust or SSD; shouldn`'t that be the concern of layers below it?
 
-He introduced "`Kyle's Abstraction Law`", which he has come up with, though it is "`not canon`", he cautioned. It says that over time, layers tend toward becoming more sympathetic (or merged) in the pursuit of performance. We start off with "`beautiful layers`", each with a single purpose; over time, we realize the picture is not quite so clear cut, so we squash the layers some.
+He introduced "`Kyle`'s Abstraction Law`", which he has come up with, though it is "`not canon`", he cautioned. It says that over time, layers tend toward becoming more sympathetic (or merged) in the pursuit of performance. We start off with "`beautiful layers`", each with a single purpose; over time, we realize the picture is not quite so clear cut, so we squash the layers some.
 ____
 
 == link:https://increment.com/on-call/on-call-at-any-size/[On-call at any size]
 
 [quote]
 ____
-However, being scrappy is not without its disadvantages. Hardening alert configurations and expanding them to detect a wide array of potential outages is labor intensive work, and it's an ongoing challenge to prioritize better monitoring over feature development. The consequences of a small team expand beyond prioritization, and providing 24/7 coverage with only two or three engineers can be a punishing experience.
+However, being scrappy is not without its disadvantages. Hardening alert configurations and expanding them to detect a wide array of potential outages is labor intensive work, and it`'s an ongoing challenge to prioritize better monitoring over feature development. The consequences of a small team expand beyond prioritization, and providing 24/7 coverage with only two or three engineers can be a punishing experience.
 ____
 
 [quote]
 ____
 Large companies (1,000-10,000 employees)
 
-At this scale a company has become truly massive, moving from a handful of on-call rotations to dozens of them. Outages are immensely expensive, and when one does occur, prioritize recovery over understanding, as it's too expensive to debug in production.
+At this scale a company has become truly massive, moving from a handful of on-call rotations to dozens of them. Outages are immensely expensive, and when one does occur, prioritize recovery over understanding, as it`'s too expensive to debug in production.
 ____
 
 == link:https://gist.github.com/mkremins/cb0707180dd8653e3fc6560f6dda63d3[Stop building static worlds]
 
 [quote]
 ____
-Facebook and twitter are trying to be third places but they are the shopping malls of social media you are not allowed to take action to customize or improve them at a structural level they're owned by mega corporations that decide what you need FOR YOU, without ASKING YOU and games have the potential to be an alternative to that!
+Facebook and twitter are trying to be third places but they are the shopping malls of social media you are not allowed to take action to customize or improve them at a structural level they`'re owned by mega corporations that decide what you need FOR YOU, without ASKING YOU and games have the potential to be an alternative to that!
 
 so games -- social games like minecraft and fortnite -- are becoming our NEW DIGITAL THIRD PLACES they are the community gathering spaces for a whole generation of kids who are growing up online and critically, these games work as third places in part because they enable players to change their environment!
 ____

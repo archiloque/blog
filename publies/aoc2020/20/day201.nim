@@ -66,9 +66,9 @@ for tileIndex in countup(0, tilesNumber - 1):
       let line = input[tileIndex * 12 + lineIndex + 1]
       for pixelIndex, pixel in line:
         case pixel:
-        of '#':
+        of `'#`':
           pixels.incl(lineIndex * 10 + pixelIndex)
-        of '.':
+        of `'.`':
           discard
         else:
           raise newException(ValueError, "Unknown value [" & pixel & "]")
@@ -125,7 +125,7 @@ proc printResult(tiles: seq[Tile]) =
         1)].map(proc (t: Tile): string = $t.id & " (" & $t.position & ")").join(" "))
   var resultDisplay: seq[string] = @[]
   for i in countup(0, (11 * photoLength) - 1):
-    resultDisplay.add(' '.repeat((11 * photoLength) - 1))
+    resultDisplay.add(`' `'.repeat((11 * photoLength) - 1))
 
   for lineGroup in countup(0, photoLength - 1):
     for columnGroup in countup(0, photoLength - 1):

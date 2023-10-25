@@ -7,27 +7,27 @@ v0.1, 2023-05-21
 
 Among programming languages, software types and texts about development, there are different types of ideal coding models.
 
-Calling them "`ideal`" means that they don't always match what standard programs look like (as opposed to toy programs or programs or programs with a specific scope that are suited to the style) but they can be models people want to approach as much as possible.
+Calling them "`ideal`" means that they don`'t always match what standard programs look like (as opposed to toy programs or programs or programs with a specific scope that are suited to the style) but they can be models people want to approach as much as possible.
 
 For example:
 
 - Programs where everything is computed at compile-time or startup time
-- Programs where all code blocks aren't longer than 5 lines
+- Programs where all code blocks aren`'t longer than 5 lines
 - Programs where no call are direct because they all go through an indirection
 - Programs that are so dynamics that looks like elaborates `eval(string)`
 - Programs fully using a link:https://en.wikipedia.org/wiki/Entity_component_system[entity component system]
 - Programs where all the behaviors are managed and stored as data (in a database or in a database-like storage like link:../fichiers-de-configuration/[a configuration file]), and where the database run everything
 
 These models often (but not always) have an intellectual appeal because they are absolutes: they provide a single solution to the complex topic of how to design your software.
-This means they can trap developers' imagination, especially developers who are frustrated by how large systems can be a mix of several styles.
+This means they can trap developers`' imagination, especially developers who are frustrated by how large systems can be a mix of several styles.
 
 It can be easy to dismiss these models, 
-especially when you work on a domain where they don't really work.
-and even more when we're exposed to them through overzealous people who tout their model of choice as the one true way to design.
+especially when you work on a domain where they don`'t really work.
+and even more when we`'re exposed to them through overzealous people who tout their model of choice as the one true way to design.
 
 On the other hand, I think that spending some time learning them _from an appropriate source_ can improve your code writing and design skills.
 
-Often these models are attached to a specific or a specific group of programming languages, and learning programming languages of different types is common advice because -- even if you don't use them -- having been exposed to them means you can still incorporate some of their ideas{empty}footnote:[And sometimes create horrible mess and fight with your coworkers.].
+Often these models are attached to a specific or a specific group of programming languages, and learning programming languages of different types is common advice because -- even if you don`'t use them -- having been exposed to them means you can still incorporate some of their ideas{empty}footnote:[And sometimes create horrible mess and fight with your coworkers.].
 
 But with other programming languages come other syntaxes, which has drawbacks:
 
@@ -35,7 +35,7 @@ But with other programming languages come other syntaxes, which has drawbacks:
 * It can be hard to isolate the models from the particular syntax.
 
 Learning new syntaxes can also be a good thing, but it can be beneficial to split teaching models and teaching syntaxes when possible.
-I wish there were more people adapting models that are well known in a language to other ones, like rewriting Java's design patterns book to other languages{empty}footnote:[And I think than working on this kind of adaptation can also be a good learning experience, once you've mastered the different tools enough.].
+I wish there were more people adapting models that are well known in a language to other ones, like rewriting Java`'s design patterns book to other languages{empty}footnote:[And I think than working on this kind of adaptation can also be a good learning experience, once you`'ve mastered the different tools enough.].
 
 Also when a developer works in a language and learns a model in another language, they will have to adapt the model to the language their use.
 
@@ -46,15 +46,15 @@ So the same adaptation can be done by:
 
 The second choice probably leads to better results.
 
-My hope is that adapting a model outside of its standard language could help avoid the "`it's the only way`" tone I've mentioned above, because to make the adaptation require to appreciate several ecosystems ("`I love Ruby and Lisp, and I'll explain how some Lisp ideas I appreciate can be used in Ruby so we'll have the best of both worlds`").
+My hope is that adapting a model outside of its standard language could help avoid the "`it`'s the only way`" tone I`'ve mentioned above, because to make the adaptation require to appreciate several ecosystems ("`I love Ruby and Lisp, and I`'ll explain how some Lisp ideas I appreciate can be used in Ruby so we`'ll have the best of both worlds`").
 
-Adapting a model to another language can mean that some of the features need to be changed or even removed, like some design patterns are Java-specific and can't be translated to Javascript.
+Adapting a model to another language can mean that some of the features need to be changed or even removed, like some design patterns are Java-specific and can`'t be translated to Javascript.
 But if it means that the code of the model can still be understood, it be may be an valid tradeoff.
 
-There are probably cases where the model is so strongly linked to the language that this approach can't work, but it doesn't mean it should not be done in other cases.
+There are probably cases where the model is so strongly linked to the language that this approach can`'t work, but it doesn`'t mean it should not be done in other cases.
 
-The downside would that less people will be exposed to unusual programming languages and it saddens me but I think that it's a price worth paying,
-especially since "`we push you to learn some parts of a language X to understand the model Y because we hope that you'll end up using X`" is a bit dishonest.
+The downside would that less people will be exposed to unusual programming languages and it saddens me but I think that it`'s a price worth paying,
+especially since "`we push you to learn some parts of a language X to understand the model Y because we hope that you`'ll end up using X`" is a bit dishonest.
 
 In a nutshell:
 

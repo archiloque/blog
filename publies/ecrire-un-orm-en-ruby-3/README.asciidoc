@@ -17,43 +17,43 @@ ifndef::source-highlighter[]
 endif::[]
 
 ifeval::["{doctype}" == "book"]
-Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir introduit le sujet>> puis <<../ecrire-un-orm-en-ruby-2/README.adoc#ORM-2,avoir posé les bases de l'outil>>, je vais ici ajouter ce qu'il manque pour faire les premières requêtes.
+Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir introduit le sujet>> puis <<../ecrire-un-orm-en-ruby-2/README.adoc#ORM-2,avoir posé les bases de l`'outil>>, je vais ici ajouter ce qu`'il manque pour faire les premières requêtes.
 endif::[]
 ifeval::["{doctype}" != "book"]
-Ceci est le troisème article d'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
+Ceci est le troisème article d`'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 
-Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet] puis link:../ecrire-un-orm-en-ruby-2/[avoir posé les bases de l'outil], je vais ici ajouter ce qu'il manque pour faire les premières requêtes.
+Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet] puis link:../ecrire-un-orm-en-ruby-2/[avoir posé les bases de l`'outil], je vais ici ajouter ce qu`'il manque pour faire les premières requêtes.
 endif::[]
 
 == Des modèles avec des champs
 
-La première étape va s'intéresser aux champs des modèles.
+La première étape va s`'intéresser aux champs des modèles.
 
-Il serait possible de les paramétrer via le fichier de configuration de schéma `schema.rb`, mais je vais plutôt utiliser les métadonnées de la base de données, car c'est une bonne occasion de donner un aperçu de leur fonctionnement.
+Il serait possible de les paramétrer via le fichier de configuration de schéma `schema.rb`, mais je vais plutôt utiliser les métadonnées de la base de données, car c`'est une bonne occasion de donner un aperçu de leur fonctionnement.
 
-En effet, même si tous les ORMs n'utilisent pas les métadonnées, beaucoup le font il est donc important de comprendre comment cela fonctionne et de réaliser que ça n'est pas si compliqué.
+En effet, même si tous les ORMs n`'utilisent pas les métadonnées, beaucoup le font il est donc important de comprendre comment cela fonctionne et de réaliser que ça n`'est pas si compliqué.
 
-Même si cela ne fait pas partie du standard SQL, la majorité des bases de données de ce type fournissent des moyens d'accéder aux métadonnées comme les tables, les index…
+Même si cela ne fait pas partie du standard SQL, la majorité des bases de données de ce type fournissent des moyens d`'accéder aux métadonnées comme les tables, les index…
 
 Suivant les systèmes on pourra utiliser du SQL&#8201;—{nbsp}en interrogeant des tables particulières{nbsp}—&#8201;ou des commandes spécifiques.
 
-Avec SQLite, l'accès aux métadonnées se fait via link:https://www.sqlite.org/pragma.html[des commandes PRAGMA].
+Avec SQLite, l`'accès aux métadonnées se fait via link:https://www.sqlite.org/pragma.html[des commandes PRAGMA].
 
 
 [source]
 ----
 $ sqlite3 orm-ruby.sqlite
 sqlite> .header on -- Affiche les noms de colonnes
-sqlite> pragma table_info('color'); -- Infos sur la table `color`
+sqlite> pragma table_info(`'color`'); -- Infos sur la table `color`
 
 cid|name|type|notnull|dflt_value|pk
 0|id|INTEGER|1||1
 1|name|TEXT|1||0
 ----
 
-Pour chaque colonne `table_info` nous donne son identifiant, son nom, son type, si elle est nullable, son éventuelle valeur par défaut et si il s'agit de la clé primaire de la table.
+Pour chaque colonne `table_info` nous donne son identifiant, son nom, son type, si elle est nullable, son éventuelle valeur par défaut et si il s`'agit de la clé primaire de la table.
 
-Avec la gem sqlite3, la méthode `SQLite3::Database#table_info` fait l'appel à la pragma et renvoie le résultat sous une forme accessible.
+Avec la gem sqlite3, la méthode `SQLite3::Database#table_info` fait l`'appel à la pragma et renvoie le résultat sous une forme accessible.
 
 Pour ajouter les colonnes disponibles dans chaque table, commençons par définir une classe `ColumnDefinition` qui contiendra les informations qui nous intéressent, à savoir le nom et le type de la colonne.
 
@@ -75,7 +75,7 @@ end
 ----
 
 Ensuite, je dois récupérer les colonnes de chaque table.
-L'endroit le plus simple est de le faire juste avant de créer les classes de modèles, alors qu'on est déjà en train d'itérer sur chaque modèle, on pourra alors passer la liste des colonnes au template.
+L`'endroit le plus simple est de le faire juste avant de créer les classes de modèles, alors qu`'on est déjà en train d`'itérer sur chaque modèle, on pourra alors passer la liste des colonnes au template.
 
 Mais pour commencer, il faut se connecter à la base de données.
 Je vais utiliser une base en local avec un fichier stocké dans le répertoire du projet{nbsp}:
@@ -83,7 +83,7 @@ Je vais utiliser une base en local avec un fichier stocké dans le répertoire d
 .generator.rb
 [source,ruby]
 ----
-DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
+DATABASE = SQLite3::Database.new(`'orm-ruby.sqlite`')
 ----
 
 puis{nbsp}:
@@ -94,17 +94,17 @@ puis{nbsp}:
 models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
   # Liste les colonnes de la table correspondante
   columns_definitions = DATABASE.table_info(model.table_name).collect do |column_info|
-    column_name = column_info['name']
-    column_type = column_info['type']
+    column_name = column_info[`'name`']
+    column_type = column_info[`'type`']
     ColumnDefinition.new(column_name, column_type)
   end
   erb.result_with_hash(model: model, columns_definitions: columns_definitions)
 end
 ----
 
-Dans le template, `columns_definitions` contient alors la liste des `ColumnDefinition` prête à l'emploi.
+Dans le template, `columns_definitions` contient alors la liste des `ColumnDefinition` prête à l`'emploi.
 
-Presque prêt à l'emploi car il reste une subtilité{nbsp}: `table_info` renvoie les types SQL des colonnes (ou plus précisément le type SQLite) comme `TEXT`, pour pouvoir l'utiliser dans le code je dois le transformer en types Ruby comme `String`.
+Presque prêt à l`'emploi car il reste une subtilité{nbsp}: `table_info` renvoie les types SQL des colonnes (ou plus précisément le type SQLite) comme `TEXT`, pour pouvoir l`'utiliser dans le code je dois le transformer en types Ruby comme `String`.
 
 Pour se faire, nous allons utiliser une `Hash` pour faire la conversion entre les deux.
 
@@ -112,12 +112,12 @@ Pour se faire, nous allons utiliser une `Hash` pour faire la conversion entre le
 [source,ruby]
 ----
 SQLITE_TYPE_TO_RUBY_CLASS = {
-    'INTEGER' => 'Integer',
-    'TEXT' => 'String'
+    `'INTEGER`' => `'Integer`',
+    `'TEXT`' => `'String`'
 }
 ----
 
-Elle ne contient que les types que l'on va rencontrer dans notre exemple, il sera ensuite possible de l'enrichir en fonction des besoins.
+Elle ne contient que les types que l`'on va rencontrer dans notre exemple, il sera ensuite possible de l`'enrichir en fonction des besoins.
 
 En modifiant le code pour utiliser `SQLITE_TYPE_TO_RUBY_CLASS`, cela donne :
 
@@ -127,8 +127,8 @@ En modifiant le code pour utiliser `SQLITE_TYPE_TO_RUBY_CLASS`, cela donne :
 models_code = ModelDefinition::MODELS_DEFINITIONS.map do |model|
   # Liste les colonnes de la table correspondante
   columns_definitions = DATABASE.table_info(model.table_name).collect do |column_info|
-    column_name = column_info['name']
-    sql_type = column_info['type']
+    column_name = column_info[`'name`']
+    sql_type = column_info[`'type`']
     # Transforme le type SQL en type Ruby
     ruby_type = SQLITE_TYPE_TO_RUBY_CLASS[sql_type]
     ColumnDefinition.new(column_name, ruby_type)
@@ -194,26 +194,26 @@ end
 # …
 ----
 
-Ce qui permet d'écrire{nbsp}:
+Ce qui permet d`'écrire{nbsp}:
 
 [source,ruby]
 ----
-require_relative 'models'
+require_relative `'models`'
 
 black = Color.new
-black.name = 'Black'
+black.name = `'Black`'
 ----
 
-On peut voir ici l'intérêt de la génération de code à froid{nbsp}: on peut facilement consulter les méthodes disponibles avec leurs informations de type.
-Avec un IDE on peut même disposer de l'autocomplétion.
+On peut voir ici l`'intérêt de la génération de code à froid{nbsp}: on peut facilement consulter les méthodes disponibles avec leurs informations de type.
+Avec un IDE on peut même disposer de l`'autocomplétion.
 
-En cas d'évolution d'un modèle, l'évolution sera visible dans les classes générées.
+En cas d`'évolution d`'un modèle, l`'évolution sera visible dans les classes générées.
 
-Je ne l'utilise pas dans mon exemple, mais l'information de nullabilité des colonnes peut servir pour renseigner la nullabilité des paramètres ou des retours des méthodes.
+Je ne l`'utilise pas dans mon exemple, mais l`'information de nullabilité des colonnes peut servir pour renseigner la nullabilité des paramètres ou des retours des méthodes.
 
-== L'insertion
+== L`'insertion
 
-Une fois qu'on a la liste des champs et qu'il est possible de leur attribuer des valeurs, il est temps de pouvoir insérer ces données dans la base, en ajoutant une méthode `insert` aux modèles.
+Une fois qu`'on a la liste des champs et qu`'il est possible de leur attribuer des valeurs, il est temps de pouvoir insérer ces données dans la base, en ajoutant une méthode `insert` aux modèles.
 
 Pour cela il faut générer ce type de requêtes{nbsp}:
 
@@ -234,9 +234,9 @@ class Model
 end
 ----
 
-Je la marque comme abstraite avec `@abstract` pour indiquer qu'elle n'est pas utilisable directement mais qu'on doit passer par les classes dérivées.
+Je la marque comme abstraite avec `@abstract` pour indiquer qu`'elle n`'est pas utilisable directement mais qu`'on doit passer par les classes dérivées.
 
-Pour générer les requêtes d'insertion, je vais avoir besoin du nom de la table et de la liste des colonnes de chaque modèle.
+Pour générer les requêtes d`'insertion, je vais avoir besoin du nom de la table et de la liste des colonnes de chaque modèle.
 Pour cela je vais ajouter des méthodes de classes pour récupérer les valeurs.
 
 Je les déclare dans la classe parente{nbsp}:
@@ -263,7 +263,7 @@ class Model
 end
 ----
 
-Puis je les ajoute au template de modèle, avec la déclaration de l'héritage{nbsp}:
+Puis je les ajoute au template de modèle, avec la déclaration de l`'héritage{nbsp}:
 
 .models.erb.rb
 [source]
@@ -271,7 +271,7 @@ Puis je les ajoute au template de modèle, avec la déclaration de l'héritage{n
 class <%= model.name %> < Model
   # @return [String]
   def self.table_name
-      '<%= model.table_name %>'
+      `'<%= model.table_name %>`'
   end
 
   # @return [Array<String>]
@@ -292,7 +292,7 @@ class Color < Model
 
   # @return [String]
   def self.table_name
-      'color'
+      `'color`'
   end
 
   # @return [Array<String>]
@@ -304,49 +304,49 @@ class Color < Model
 end
 ----
 
-Avec ces méthodes je peux générer la requête, en ajoutant une connexion à la base pour pouvoir l'exécuter.
+Avec ces méthodes je peux générer la requête, en ajoutant une connexion à la base pour pouvoir l`'exécuter.
 
-Pour la requête je vais utiliser la méthode `SQLite3::Database#execute`, qui permet de passer les valeurs des colonnes en paramètre plutôt que de les mettre dans le corps de la requête, ce qui donnera ce genre d'appel{nbsp}:
+Pour la requête je vais utiliser la méthode `SQLite3::Database#execute`, qui permet de passer les valeurs des colonnes en paramètre plutôt que de les mettre dans le corps de la requête, ce qui donnera ce genre d`'appel{nbsp}:
 
 [source,ruby]
 ----
-DATABASE.execute('INSERT INTO color (name) values (?)', ['Black'])
+DATABASE.execute(`'INSERT INTO color (name) values (?)`', [`'Black`'])
 ----
 
-Cette syntaxe permet d'éviter d'avoir à se préoccuper du format à utiliser pour passer les valeurs à la base, cela simplifie le code et évite d'introduire des risques de sécurité en cas de problème d'échappement.
+Cette syntaxe permet d`'éviter d`'avoir à se préoccuper du format à utiliser pour passer les valeurs à la base, cela simplifie le code et évite d`'introduire des risques de sécurité en cas de problème d`'échappement.
 
-Dans notre cas les valeurs des `id` des modèles ne doivent pas être insérées car elles sont gérées par la base, c'est pour cela que les colonnes `id` sont déclarées en `AUTOINCREMENT`.
-Cela simplifie le code et fournit une garantie d'unicité dans le cas d'une base SQL standard.
+Dans notre cas les valeurs des `id` des modèles ne doivent pas être insérées car elles sont gérées par la base, c`'est pour cela que les colonnes `id` sont déclarées en `AUTOINCREMENT`.
+Cela simplifie le code et fournit une garantie d`'unicité dans le cas d`'une base SQL standard.
 
-La manière de s'y prendre n'est pas standardisée et dépend donc de la base de données.
-Il y a deux grandes approches{nbsp}: soit les valeurs sont retournées par la requête d'insertion, ou une requête spécifique permet de récupérer les `id` des valeurs qu'on vient d'insérer.
+La manière de s`'y prendre n`'est pas standardisée et dépend donc de la base de données.
+Il y a deux grandes approches{nbsp}: soit les valeurs sont retournées par la requête d`'insertion, ou une requête spécifique permet de récupérer les `id` des valeurs qu`'on vient d`'insérer.
 
 SQLite utilise la deuxième solution via link:https://www.sqlite.org/lang_corefunc.html#last_insert_rowid[`last_insert_rowid()`].
 
 .model.rb
 [source,ruby]
 ----
-require 'sqlite3'
+require `'sqlite3`'
 
 # @abstract
 class Model
 
   # Connection à la base pour executer les requêtes
-  DATABASE = SQLite3::Database.new('orm-ruby.sqlite')
+  DATABASE = SQLite3::Database.new(`'orm-ruby.sqlite`')
 
   # @return [void]
   def insert
     # Liste des noms de colonnes sans la colonne id
     # car les valeurs des ids sont gérées par la base
     columns_names_except_id = self.class.columns.
-        select { |column| column != 'id' }
+        select { |column| column != `'id`' }
 
     # Noms des colonnes échappées pour éviter 
-    # les problèmes avec des guillemets et d'autres symboles
+    # les problèmes avec des guillemets et d`'autres symboles
     quoted_columns_names_except_id = columns_names_except_id.
         map { |column_name| SQLite3::Database.quote(column_name) }
 
-    # Valeurs des colonnes à part la colonne 'id'
+    # Valeurs des colonnes à part la colonne `'id`'
     columns_values_except_id = columns_names_except_id.
         map { |column_name| self.send(column_name) }
 
@@ -356,8 +356,8 @@ class Model
     #   VALUES (?, ?)
     DATABASE.execute(
         "INSERT INTO #{SQLite3::Database.quote(self.class.table_name)} " +
-            "(#{quoted_columns_names_except_id.join(', ')}) " +
-            "VALUES (#{Array.new(columns_names_except_id.length, '?').join(', ')})",
+            "(#{quoted_columns_names_except_id.join(`', `')}) " +
+            "VALUES (#{Array.new(columns_names_except_id.length, `'?`').join(`', `')})",
         columns_values_except_id
     )
 
@@ -375,21 +375,21 @@ Avec ce code, on peut enfin insérer les données{nbsp}:
 .script.rb
 [source,ruby]
 ----
-require_relative 'model'
-require_relative 'models'
+require_relative `'model`'
+require_relative `'models`'
 
 black = Color.new
-black.name = 'Black'
+black.name = `'Black`'
 black.insert
 
 brick = Brick.new
 brick.color_id = black.id
-brick.name = 'Awesome brick'
-brick.description = 'This brick is awesome'
+brick.name = `'Awesome brick`'
+brick.description = `'This brick is awesome`'
 brick.insert
 ----
 
-On peut vérifier dans la base que tout s'est bien passé{nbsp}:
+On peut vérifier dans la base que tout s`'est bien passé{nbsp}:
 
 [source,bash]
 ----
@@ -407,9 +407,9 @@ sqlite> select * from brick;
 
 == La récupération
 
-Maintenant que je peux insérer des données, je vais pouvoir m'intéresser à leur récupération.
+Maintenant que je peux insérer des données, je vais pouvoir m`'intéresser à leur récupération.
 
-Je commence par m'occuper de la récupération de l'intégralité des données d'une table en ajoutant une méthode de classe `all` aux modèles.
+Je commence par m`'occuper de la récupération de l`'intégralité des données d`'une table en ajoutant une méthode de classe `all` aux modèles.
 
 Cela permettra des appels du type{nbsp}:
 
@@ -430,9 +430,9 @@ Les noms de la table et des colonnes sont à disposition pour construire la requ
 
 Une fois les valeurs récupérées, pour chaque ligne trouvée il faut créer une instance de la classe du modèle et attribuer leurs valeurs aux différents champs.
 
-Les noms des attributs étant les mêmes que ceux des colonnes, pour chaque colonne `nom_de_colonne`, j'appellerait le setter `nom_de_colonne=` via la méthode `send` qui permet d'appeler une méthode dynamiquement à partir de son nom.
+Les noms des attributs étant les mêmes que ceux des colonnes, pour chaque colonne `nom_de_colonne`, j`'appellerait le setter `nom_de_colonne=` via la méthode `send` qui permet d`'appeler une méthode dynamiquement à partir de son nom.
 
-À l'inverse du cas précédent, il nous faudra également récupérer la valeur de la colonne `id`.
+À l`'inverse du cas précédent, il nous faudra également récupérer la valeur de la colonne `id`.
 
 .model.rb
 [source,ruby]
@@ -447,16 +447,16 @@ class Model
     # SELECT column_name_1, column_name_2
     #   FROM table_name
     DATABASE.execute(
-        "SELECT #{quoted_columns_names.join(', ')} " +
+        "SELECT #{quoted_columns_names.join(`', `')} " +
             "FROM #{SQLite3::Database.quote(table_name)}"
     ).map do |result_row|
-      # Instancie l'objet de la classe du modèle
+      # Instancie l`'objet de la classe du modèle
       model_instance = self.new
       # Pour chaque colonne
       columns.each_with_index do |column, column_index|
         # On récupère la valeur
         column_value = result_row[column_index]
-        # On stocke la valeur dans l'attribue correspondant
+        # On stocke la valeur dans l`'attribue correspondant
         model_instance.send("#{column}=", colonne_value)
       end
       model_instance
@@ -470,25 +470,25 @@ Je peux alors récupérer des données{nbsp}:
 .script.rb
 [source,ruby]
 ----
-require_relative 'model'
-require_relative 'models'
+require_relative `'model`'
+require_relative `'models`'
 
 black = Color.new
-black.name = 'Black'
+black.name = `'Black`'
 black.insert
 
-puts 'Les couleurs'
+puts `'Les couleurs`'
 Color.all.each do |color|
   puts "  #{color.id} : #{color.name}"
 end
 
 brick = Brick.new
 brick.color_id = black.id
-brick.name = 'Awesome brick'
-brick.description = 'This brick is awesome'
+brick.name = `'Awesome brick`'
+brick.description = `'This brick is awesome`'
 brick.insert
 
-puts 'Les briques'
+puts `'Les briques`'
 Brick.all.each do |brick|
   puts "  #{brick.id} : #{brick.name}, #{brick.description}, #{brick.color_id}"
   puts brick.id
@@ -509,23 +509,23 @@ Les briques
 
 == Et la suppression
 
-Pour terminer, après l'insertion et la récupération il est temps de supprimer des données.
+Pour terminer, après l`'insertion et la récupération il est temps de supprimer des données.
 
-Dans le standard SQL, il existe une commande `TRUNCATE table_name` qui supprime le contenu d'une table.
+Dans le standard SQL, il existe une commande `TRUNCATE table_name` qui supprime le contenu d`'une table.
 
-Malheureusement elle n'est pas disponible dans SQLite, je vais donc devoir utiliser la requête SQL{nbsp}:
+Malheureusement elle n`'est pas disponible dans SQLite, je vais donc devoir utiliser la requête SQL{nbsp}:
 
 [source,sql]
 ----
 DELETE FROM table_name
 ----
 
-Je vais tout de même nommer ma méthode `truncate` pour qu'elle corresponde à la commande SQL standard, même si l'implémentation SQLite utilise pas cette commande.
+Je vais tout de même nommer ma méthode `truncate` pour qu`'elle corresponde à la commande SQL standard, même si l`'implémentation SQLite utilise pas cette commande.
 
-On a ici un exemple où l'ORM doit assurer la compatibilité entre les systèmes de bases de données.
+On a ici un exemple où l`'ORM doit assurer la compatibilité entre les systèmes de bases de données.
 Si ce cas est assez simple, il permet de comprendre la manière dont les choses pourraient être mises en œuvre{nbsp}: une méthode de base qui utiliserait la commande `truncate` et une classe spécifique à SQLite qui utiliserait la requête `delete`.
 
-Le code résultant est assez court et s'inspire des méthodes existantes{nbsp}:
+Le code résultant est assez court et s`'inspire des méthodes existantes{nbsp}:
 
 .model.rb
 [source,ruby]
@@ -543,18 +543,18 @@ On peut alors la tester
 .script.rb
 [source,ruby]
 ----
-require_relative 'model'
-require_relative 'models'
+require_relative `'model`'
+require_relative `'models`'
 
 Brick.truncate
 Color.truncate
 
-puts '# Les couleurs'
+puts `'# Les couleurs`'
 Color.all.each do |color|
   puts "  #{color.id} : #{color.name}"
 end
 
-puts 'Les briques'
+puts `'Les briques`'
 Brick.all.each do |brick|
   puts "  #{brick.id} : #{brick.name}, #{brick.description}, #{brick.color_id}"
   puts brick.id
@@ -571,14 +571,14 @@ Les couleurs
 Les briques
 ----
 
-Je ne vais pas les détailler ici mais pour les suppressions de données il faut générer des requêtes `DELETE FROM table_name WHERE ID = ?` et leurs passer l'id de l'instance à supprimer et pour les mises à jour s'inspirer des requêtes d'insertion pour obtenir des requêtes du type `UPDATE table_name SET column_name_1 = ?, column_name_2 = ? WHERE id = ?`.
+Je ne vais pas les détailler ici mais pour les suppressions de données il faut générer des requêtes `DELETE FROM table_name WHERE ID = ?` et leurs passer l`'id de l`'instance à supprimer et pour les mises à jour s`'inspirer des requêtes d`'insertion pour obtenir des requêtes du type `UPDATE table_name SET column_name_1 = ?, column_name_2 = ? WHERE id = ?`.
 
-Toutes les requêtes vues ici s'appuient sur l'hypothèse d'un identifiant technique présent dans toutes les tables, ce qui est la pratique généralement conseillée en SQL.
-Prendre en compte les autres types d'identifiants demande de rendre paramétrable cette partie des requêtes.
+Toutes les requêtes vues ici s`'appuient sur l`'hypothèse d`'un identifiant technique présent dans toutes les tables, ce qui est la pratique généralement conseillée en SQL.
+Prendre en compte les autres types d`'identifiants demande de rendre paramétrable cette partie des requêtes.
 
 ifeval::["{doctype}" == "book"]
-C'est tout pour le moment, dans la partie suivante je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
+C`'est tout pour le moment, dans la partie suivante je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
 endif::[]
 ifeval::["{doctype}" != "book"]
-C'est tout pour le moment, link:../ecrire-un-orm-en-ruby-4/[dans l'article suivant] je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
+C`'est tout pour le moment, link:../ecrire-un-orm-en-ruby-4/[dans l`'article suivant] je vais enrichir les méthodes de récupération pour pouvoir ajouter des filtres et trier les données.
 endif::[]

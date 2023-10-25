@@ -49,7 +49,7 @@ while input[inputLineIndex] != "":
         singleChar: false)
     rulesById[ruleIndex] = rule
   else:
-    raise newException(ValueError, "Can't parse [" & currentLine & "]")
+    raise newException(ValueError, "Can`'t parse [" & currentLine & "]")
   inputLineIndex += 1
 
 var regex = "(?(DEFINE)"

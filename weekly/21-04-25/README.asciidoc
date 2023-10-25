@@ -22,14 +22,14 @@ ____
 
 [quote]
 ____
-Modern computing frameworks (not just programming, but computing technologies in general) are often focused on efficiencies, logics, and choices that are typically not as valued in Indigenous cultures. Similarly, activities the computer does have evolved from notions of time and behaviors that don't always reflect Indigenous concepts of "`natural`" orders. So an Indigenous computing framework puts into practice Indigenous concepts and knowledge. It may not necessarily change or alter the way the computer handles instructions, but it changes the philosophies used in construction and development of software and hardware such as my Cree programming language; and a syllabic keyboard that does not conform to the horizontal rowed keyboards that are ubiquitous to modern computing practices.
+Modern computing frameworks (not just programming, but computing technologies in general) are often focused on efficiencies, logics, and choices that are typically not as valued in Indigenous cultures. Similarly, activities the computer does have evolved from notions of time and behaviors that don`'t always reflect Indigenous concepts of "`natural`" orders. So an Indigenous computing framework puts into practice Indigenous concepts and knowledge. It may not necessarily change or alter the way the computer handles instructions, but it changes the philosophies used in construction and development of software and hardware such as my Cree programming language; and a syllabic keyboard that does not conform to the horizontal rowed keyboards that are ubiquitous to modern computing practices.
 
-Additionally, this framework introduces axiological (i.e. ethical and spiritual) considerations into the computer's systemic process, something that does not exist (as far as I know) in the traditional development of computing materials. There does exist some research on "`spirituality AND technology`" but nothing to my knowledge that treats technology as an integral component of a human's spiritual being or existence. (Science fiction and cyborgism dabble in these kinds of things, but what I propose is kind of different? I think? lol)
+Additionally, this framework introduces axiological (i.e. ethical and spiritual) considerations into the computer`'s systemic process, something that does not exist (as far as I know) in the traditional development of computing materials. There does exist some research on "`spirituality AND technology`" but nothing to my knowledge that treats technology as an integral component of a human`'s spiritual being or existence. (Science fiction and cyborgism dabble in these kinds of things, but what I propose is kind of different? I think? lol)
 ____
 
 [quote]
 ____
-There are a number of concepts that as a programmer I have come to just accept. Things like "`data types`", "`variables`", "`looping`", "`conditionals`", and "`linear/sequential instructions`". Simply translating these into Cree is not that simple because some of these concepts don't necessarily exist. Take for example English as a collection of 26 letters that form an alphabet, and is often taught as "`ABC's`". We are taught to read and learn these letters in a left to right sequential fashion, and is very much an algorithmic methodology. But Cree is often taught in a very heuristic and organic way, and is difficult to describe in an "`alphabetic ordering`", this system of organization won't always work.
+There are a number of concepts that as a programmer I have come to just accept. Things like "`data types`", "`variables`", "`looping`", "`conditionals`", and "`linear/sequential instructions`". Simply translating these into Cree is not that simple because some of these concepts don`'t necessarily exist. Take for example English as a collection of 26 letters that form an alphabet, and is often taught as "`ABC`'s`". We are taught to read and learn these letters in a left to right sequential fashion, and is very much an algorithmic methodology. But Cree is often taught in a very heuristic and organic way, and is difficult to describe in an "`alphabetic ordering`", this system of organization won`'t always work.
 
 So Cree is more of a lateral/parallel thinking form of language (as opposed to serial/sequential per se), so creating a language that relies on a linear (ie line by line process) is one of those "`accidentals`". In designing a programming language for Cree, my challenge is to figure out answers to:
 
@@ -45,7 +45,7 @@ ____
 ____
 Implicit vs. explicit joins in PostgreSQL
 
-Many people keep asking about explicit versus implicit joins. Basically, both variants are the same. Let's check out two queries and see what we are actually talking about in the context of PostgreSQL:
+Many people keep asking about explicit versus implicit joins. Basically, both variants are the same. Let`'s check out two queries and see what we are actually talking about in the context of PostgreSQL:
 
 [source,SQL]
 ----
@@ -79,7 +79,7 @@ ____
 ____
 EXISTS and anti-joins
 
-There is also a quite common thing you will see everywhere in the code within SQL EXISTS. Here's an example:
+There is also a quite common thing you will see everywhere in the code within SQL EXISTS. Here`'s an example:
 
 [source,SQL]
 ----
@@ -110,18 +110,18 @@ Here is a thesis I have about really good graphical interfaces, especially in th
 
 In a good graphical interface, you not only can use the mouse, you want to.
 
-There are a good number of graphical interfaces that are ordinary and decent and good enough. They make effective use of the mouse and graphics, they're nice, and they by and large fail to fill me with any particular actual enthusiasm for those graphical features. They're just sort of there, in an ordinary and perfectly acceptable way.
+There are a good number of graphical interfaces that are ordinary and decent and good enough. They make effective use of the mouse and graphics, they`'re nice, and they by and large fail to fill me with any particular actual enthusiasm for those graphical features. They`'re just sort of there, in an ordinary and perfectly acceptable way.
 ____
 
 == link:https://gregoryszorc.com/blog/2021/04/07/modern-ci-is-too-complex-and-misdirected/[Modern CI is too complex and misdirected]
 
 [quote]
 ____
-I posit that _a sufficiently complex CI system becomes indistinguishable from a build system_. I challenge you: try to convince me or yourself that GitHub Actions, GitLab CI, and other CI systems aren't build systems. The basic primitives are all there. GitHub Actions Workflows comprised of jobs comprised of steps are little different from say Makefiles comprised of rules comprised of commands to execute for that rule, with dependencies gluing everything together. The main difference is the _form factor_ and the execution model (build systems are traditionally local and single machine but CI systems are remote/distributed).
+I posit that _a sufficiently complex CI system becomes indistinguishable from a build system_. I challenge you: try to convince me or yourself that GitHub Actions, GitLab CI, and other CI systems aren`'t build systems. The basic primitives are all there. GitHub Actions Workflows comprised of jobs comprised of steps are little different from say Makefiles comprised of rules comprised of commands to execute for that rule, with dependencies gluing everything together. The main difference is the _form factor_ and the execution model (build systems are traditionally local and single machine but CI systems are remote/distributed).
 
-Then we have a similar conjecture: _a sufficiently complex build system becomes indistinguishable from a CI system_. Earlier I said that CI systems are _remote code execution as a service_. While build systems are historically things that run locally (and therefore not a service), modern build systems like Bazel (or Buck or Gradle) are completely different animals. For example, Bazel has link:https://docs.bazel.build/versions/master/remote-execution.html[remote execution] and link:https://docs.bazel.build/versions/master/remote-caching.html[remote caching] as built-in features. Hey - those are built-in features of modern CI systems too! _So here's a thought experiment: if I define a build system in Bazel and then define a server-side Git push hook so the remote server triggers Bazel to build, run tests, and post the results somewhere, is that a CI system? I think it is!_ A crude one. But I think that qualifies as a CI system.
+Then we have a similar conjecture: _a sufficiently complex build system becomes indistinguishable from a CI system_. Earlier I said that CI systems are _remote code execution as a service_. While build systems are historically things that run locally (and therefore not a service), modern build systems like Bazel (or Buck or Gradle) are completely different animals. For example, Bazel has link:https://docs.bazel.build/versions/master/remote-execution.html[remote execution] and link:https://docs.bazel.build/versions/master/remote-caching.html[remote caching] as built-in features. Hey - those are built-in features of modern CI systems too! _So here`'s a thought experiment: if I define a build system in Bazel and then define a server-side Git push hook so the remote server triggers Bazel to build, run tests, and post the results somewhere, is that a CI system? I think it is!_ A crude one. But I think that qualifies as a CI system.
 
 _If you squint hard enough, sufficiently complex CI systems and sufficiently complex build systems start to look like the same thing to me._ At a very high level, both are providing a pool of servers offering general compute/execute functionality with specialized features in the domain of building/shipping software, like inter-task artifact exchange, caching, dependencies, and a frontend language to define how everything works.
 
-(If you squint really hard you can start to see a value proposition of Kubernetes for even more general compute scheduling, but I'm not going to go that far in this post because it is a much harder point to make and I don't necessarily believe in it myself. But I thought I'd mention it as an interesting thought experiment. But an easier leap to make is to throw batch job execution (as is often found in data warehouses) in with build and CI systems as belonging in the same bucket: batch job execution also tends to have dependencies, exchange of artifacts between jobs, and I think can strongly resemble a CI system and therefore a build system.)
+(If you squint really hard you can start to see a value proposition of Kubernetes for even more general compute scheduling, but I`'m not going to go that far in this post because it is a much harder point to make and I don`'t necessarily believe in it myself. But I thought I`'d mention it as an interesting thought experiment. But an easier leap to make is to throw batch job execution (as is often found in data warehouses) in with build and CI systems as belonging in the same bucket: batch job execution also tends to have dependencies, exchange of artifacts between jobs, and I think can strongly resemble a CI system and therefore a build system.)
 ____

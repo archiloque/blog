@@ -7,7 +7,7 @@ html {
 }
 
 code {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: `'JetBrains Mono`', monospace;
     white-space: nowrap;
     font-size: 80%;
 }
@@ -129,6 +129,6 @@ sup {
 
 @page :nth(1) {
     @top-left {
-        content: '';
+        content: `'`';
     }
 }

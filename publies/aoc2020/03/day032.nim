@@ -30,7 +30,7 @@ for slope in slopes:
     currentColumn = (currentColumn + slope.slopeColumn).mod(boardWidth)
     let currentPositionContent = input[currentLine][currentColumn]
     echo("(", currentLine, ",", currentColumn, ") ", currentPositionContent)
-    if currentPositionContent == '#':
+    if currentPositionContent == `'#`':
       treesNumberCurrentSlope += 1
   totalTreesNumber *= treesNumberCurrentSlope
 

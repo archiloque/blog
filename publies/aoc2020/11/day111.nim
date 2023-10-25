@@ -7,9 +7,9 @@ import tables
 var currentLayout: seq[seq[char]] = readFile(paramStr(1)).splitLines().map(proc(
     s: string): seq[char] = toSeq(s.items))
 
-const EMPTY_SEAT = 'L'
-const OCCUPIED_SEAT = '#'
-const FLOOR = '.'
+const EMPTY_SEAT = `'L`'
+const OCCUPIED_SEAT = `'#`'
+const FLOOR = `'.`'
 
 let height = currentLayout.len()
 let width = currentLayout[0].len()

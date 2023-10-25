@@ -10,13 +10,13 @@ v1.0, 2022-07-10
 [quote]
 ____
 One of the big problems with the guru algorithm (go ask your local guru
-what to do when you're stuck) is that one of the best ways to develop
+what to do when you`'re stuck) is that one of the best ways to develop
 your practical wisdom is to help other people figure out what to do.
-It's a _much_ better feedback loop for developing your wisdom than
+It`'s a _much_ better feedback loop for developing your wisdom than
 merely doing the thing (although hard to do well without at least some
 practical experience), because
 link:https://www.drmaciver.com/2018/10/how-to-explain-anything-to-anyone/[explaining
-things to people] deepens your understanding of them. Additionally, it's
+things to people] deepens your understanding of them. Additionally, it`'s
 a much tighter feedback loop than merely acting, because you get to skip
 link:https://drmaciver.substack.com/p/difficult-problems-and-hard-weeks[the
 slow and hard bits of actually doing the work], and focus on the
@@ -32,34 +32,34 @@ get good at answering those questions, and as a result get transformed
 into the local guru, and soon everyone relies on them as the question
 answerer.
 
-I've seen this most at work (both happening to me and to others), where
+I`'ve seen this most at work (both happening to me and to others), where
 someone gets enshrined as the local expert that everyone can go to for
 answers. This is usually frustrating for them because it gets in the way
-of their own work that they'd acquired all this wisdom to be able to do
+of their own work that they`'d acquired all this wisdom to be able to do
 in the first place.
 
 In general, being an actual guru who acts as a source of wisdom mostly
-sucks. Don't get me wrong, many gurus seem to have a great time, but
+sucks. Don`'t get me wrong, many gurus seem to have a great time, but
 this is mostly for bad reasons of enjoying the power over others it
 gives them. If you _actually_ want to help people, being this sort of
-guru is mostly thankless labour, because there's no capability building
+guru is mostly thankless labour, because there`'s no capability building
 -- people just keep relying on you, and as your influence grows so does
 the number of people coming to you with the same sorts of questions over
 and over again.
 
-It's also a problem because it infantilises the people coming to the
+It`'s also a problem because it infantilises the people coming to the
 guru for help. If you rely constantly on external sources of wisdom, you
 never develop your own.
 
-The solution from the guru's point of view is to try to teach people
+The solution from the guru`'s point of view is to try to teach people
 wisdom. Rather than just handing people the answers, show them how to
 arrive at them themselves.
 
-The problem is, many people hate it when you do that. They wouldn't be
-coming to you if they wanted to develop wisdom. They'd like the answers
-handed to them on a plate. It's particularly hard if you've been giving
+The problem is, many people hate it when you do that. They wouldn`'t be
+coming to you if they wanted to develop wisdom. They`'d like the answers
+handed to them on a plate. It`'s particularly hard if you`'ve been giving
 them wisdom and then one day start trying to teach it to them --
-yesterday's favour has become today's obligation, and people get upset
+yesterday`'s favour has become today`'s obligation, and people get upset
 when you ask them to work for something that they were previously
 getting for free.
 ____
@@ -78,17 +78,17 @@ _set_ the style of a given line. This was great—now you can selectively
 style a line.
 
 Except that, as soon as two independent pieces of code try to style a
-line, they will step on each other's toes. The second extension to touch
-the line will override the first extension's style. Or, when the first
+line, they will step on each other`'s toes. The second extension to touch
+the line will override the first extension`'s style. Or, when the first
 one tries to remove its styling at some later point, it will instead
-clear the second one's style.
+clear the second one`'s style.
 
 The solution was to make it possible to _add_ (and remove) styling,
 instead of setting it, so that two extensions can interact with the same
 line without sabotaging each other.
 
 More generally, you have to make sure that extensions can be _combined_,
-even if they are entirely unaware of each other's existence, without
+even if they are entirely unaware of each other`'s existence, without
 causing problematic interactions.
 
 To do this, each extension point must support being acted on by any
@@ -106,7 +106,7 @@ modify it. Ordering is not essential here, but can be relevant.
 * A first come, first served approach can be applied to, for example,
 event handlers. Each handler gets a chance to handle the event, until
 one of them declares that they have handled it, at which point the ones
-behind it in line don't get asked anymore.
+behind it in line don`'t get asked anymore.
 * Sometimes you really need to pick a single value, such as to determine
 the value of a specific configuration parameter. Here it may make sense
 to use some operator (say, logical _or_, logical _and_, minimum, or
@@ -120,7 +120,7 @@ precedence with effects are applied should be controllable and
 predictable.
 
 This is one of the places where imperative, side-effect based extension
-systems tend to fall short. For example, the browser DOM's
+systems tend to fall short. For example, the browser DOM`'s
 link:https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener[`addEventListener`]
 operation will cause event handlers to be called in the order in which
 they were registered. This is fine if a single system controls all the
@@ -145,7 +145,7 @@ it. But at a certain level of extension complexity it becomes awkward.
 all need the same precedence relative to other plugins, or you have to
 split it into smaller plugins to be able to arrange the precedences
 correctly.
-* Ordering plugins becomes very finnicky in general, because it's not
+* Ordering plugins becomes very finnicky in general, because it`'s not
 always clear to end users which plugins interfere with which other
 plugins when given a higher precedence. Mistakes tend to only manifest
 themselves at run-time, when using specific functionality, making them
@@ -159,7 +159,7 @@ ____
 ____
 As I mentioned before, once you start heavily relying on extensions you
 might have some extensions making use of other extensions. Manual
-dependency management doesn't scale very well, so it would be nice if
+dependency management doesn`'t scale very well, so it would be nice if
 you could pull in a group of extensions at once.
 
 But, besides making the ordering problem even more pressing, this
@@ -172,29 +172,29 @@ even break things.
 
 Thus, it seems that allowing extensions to be composed forces some of
 the complexity of dependency management onto your extension system.
-You'll need to be able to recognize extensions that shouldn't be
+You`'ll need to be able to recognize extensions that shouldn`'t be
 duplicated, and load only one instance of them.
 
 But since, in most cases, extensions can be configured, and thus not all
-instances of a given extension are the same, we can't just pick one
+instances of a given extension are the same, we can`'t just pick one
 instance and use that—we have to somehow merge those instances in a
-meaningful way (or report an error when this isn't possible).
+meaningful way (or report an error when this isn`'t possible).
 ____
 
 == link:https://chriskiehl.com/article/the-tyranny-of-what-if-it-changes[The mindless tyranny of "`what if it changes?`" as a software design principle]
 
 [quote]
 ____
-"`What if it changes?`" isn't just a question. It's a powerful heuristic
+"`What if it changes?`" isn`'t just a question. It`'s a powerful heuristic
 for software design that can be used to justify almost anything.
-Everyone should use it more. It's great _precisely_ because it's rooted
-in pure speculation. Once you've freed yourself from the baggage of
-reality, there's nothing easier than inventing scenarios where your
+Everyone should use it more. It`'s great _precisely_ because it`'s rooted
+in pure speculation. Once you`'ve freed yourself from the baggage of
+reality, there`'s nothing easier than inventing scenarios where your
 special code will be useful under the new imaginary future conditions.
 If you encounter any pushback against your defensive layer cake of
-abstraction, interfaces, or ham-fisted design patterns, don't fret --
-they can't actually _prove_ that the future you predict _won't_ happen.
-That's the magic of the design rationale: the only way to fight
-speculation is with further speculation. You're both making the same
+abstraction, interfaces, or ham-fisted design patterns, don`'t fret --
+they can`'t actually _prove_ that the future you predict _won`'t_ happen.
+That`'s the magic of the design rationale: the only way to fight
+speculation is with further speculation. You`'re both making the same
 gamble.
 ____

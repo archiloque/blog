@@ -5,33 +5,33 @@ v0.1, 2021-09-03
 :article_image: iu.jpg
 :article_description: Quand ça demande trop de travail
 
-Le web est basé sur des standard ouverts : HTML5, JavaScript, HTTP, DNS ainsi que de nombreux formats d'images, de sons et de vidéos{empty}footnote:[Excepté par exemple ceux qui sont utilisés sur les sites de streaming comme Netflix pour leur permettre de contrôler l'utilisation de leurs contenus].
+Le web est basé sur des standard ouverts : HTML5, JavaScript, HTTP, DNS ainsi que de nombreux formats d`'images, de sons et de vidéos{empty}footnote:[Excepté par exemple ceux qui sont utilisés sur les sites de streaming comme Netflix pour leur permettre de contrôler l`'utilisation de leurs contenus].
 Leur documentation est accessible gratuitement et tout le monde peut implémenter sans contrainte technique ou financière.
 
-Mais il n'existe à l'heure actuelle que trois moteurs de navigateurs web compatibles avec la grande majorité des sites : Chrome, Firefox et Safari{empty}footnote:[Chrome étant lui-même un ancien fork de Safari].
+Mais il n`'existe à l`'heure actuelle que trois moteurs de navigateurs web compatibles avec la grande majorité des sites : Chrome, Firefox et Safari{empty}footnote:[Chrome étant lui-même un ancien fork de Safari].
 
 Comme le disait un tweet effacé depuis{nbsp}: 
 
 [quote]
 ____
-que veut dire que le web est "`ouvert`" si personne n'est en mesure de créer un nouveau moteur de navigateur, il s'agit d'une illusion d'ouverture.
+que veut dire que le web est "`ouvert`" si personne n`'est en mesure de créer un nouveau moteur de navigateur, il s`'agit d`'une illusion d`'ouverture.
 ____
 
-En effet l'écriture et la mise à jour d'un navigateur web demande un travail énorme, même en tenant compte des nombreux outils open-source sur lesquels on peut s'appuyer, de sorte que seule une grande organisation peut se le permettre.
+En effet l`'écriture et la mise à jour d`'un navigateur web demande un travail énorme, même en tenant compte des nombreux outils open-source sur lesquels on peut s`'appuyer, de sorte que seule une grande organisation peut se le permettre.
 
-Dans la mythologie de l'informatique, si un outil nous manque, il devrait suffire de quelques heures, par exemple pendant un week-end, pour en développer un, même minimaliste, en partant de la spécification.
+Dans la mythologie de l`'informatique, si un outil nous manque, il devrait suffire de quelques heures, par exemple pendant un week-end, pour en développer un, même minimaliste, en partant de la spécification.
 
-C'est vrai pour certain type d'outils{empty}footnote:[Et c'est une des raisons pour lesquelles les nouveaux langages de programmations peuvent être attirants], mais ce n'est pas le cas pour d'autres{nbsp}: lecteurs de PDF, outils de téléchargement, éditeurs de texte…
+C`'est vrai pour certain type d`'outils{empty}footnote:[Et c`'est une des raisons pour lesquelles les nouveaux langages de programmations peuvent être attirants], mais ce n`'est pas le cas pour d`'autres{nbsp}: lecteurs de PDF, outils de téléchargement, éditeurs de texte…
 
-Sur les discussions techniques, je vois souvent des gens proposer de repartir sur des outils plus simples, par exemple un navigateur web qui n'implémenterait pas toutes les fonctionnalités des standard contemporains mais seulement celles qui sont strictement nécessaires.
+Sur les discussions techniques, je vois souvent des gens proposer de repartir sur des outils plus simples, par exemple un navigateur web qui n`'implémenterait pas toutes les fonctionnalités des standard contemporains mais seulement celles qui sont strictement nécessaires.
 
-La théorie sous-jacente étant que la majorité de la complexité viendrait d'une minorité de fonctions dont on pourrait se passer, et qu'en ne les implémentant la taille du projet deviendrait raisonnable.
+La théorie sous-jacente étant que la majorité de la complexité viendrait d`'une minorité de fonctions dont on pourrait se passer, et qu`'en ne les implémentant la taille du projet deviendrait raisonnable.
 
-L'idée est séduisante, et résonne avec une certain idéal rustique de l'informatique, mais j'ai peur qu'en pratique{nbsp}:
+L`'idée est séduisante, et résonne avec une certain idéal rustique de l`'informatique, mais j`'ai peur qu`'en pratique{nbsp}:
 
 - la répartition de complexité entre les fonctions dont on peut se passer et les autres ne soit pas aussi favorable que ça{nbsp};
 - un outil qui ne soit pas à la hauteur "`du marché`" ne soit utilisé que par des militant·e·s prêt·e·s à faire les compromis nécessaires.
 
-Cela ne veut pas dire que l'outil en question serait inutile, mais qu'il a de très grande chance d'être un outil de niche.
+Cela ne veut pas dire que l`'outil en question serait inutile, mais qu`'il a de très grande chance d`'être un outil de niche.
 
-Cela ne signifie pas que les standards ouverts ne sont pas utiles, car implémenter un outil en s'appuyant sur un standard demande moins de travail que de le faire en rétro-ingénierant une implémentation, mais que les standards ouverts ne sont pas suffisant pour qu'écrire un outil soit facile, ni pour qu'un écosystème riche existe.
+Cela ne signifie pas que les standards ouverts ne sont pas utiles, car implémenter un outil en s`'appuyant sur un standard demande moins de travail que de le faire en rétro-ingénierant une implémentation, mais que les standards ouverts ne sont pas suffisant pour qu`'écrire un outil soit facile, ni pour qu`'un écosystème riche existe.

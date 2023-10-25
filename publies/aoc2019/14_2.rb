@@ -3,13 +3,13 @@ ELEMENT_REGEX = /\A\s*(?<quantity>\d+) (?<element>[A-Z]+)\s*\z/
 def parse_element(s)
   m = ELEMENT_REGEX.match(s)
   {
-      element: m['element'],
-      quantity: m['quantity'].to_i
+      element: m[`'element`'],
+      quantity: m[`'quantity`'].to_i
   }
 end
 
-FUEL = 'FUEL'
-ORE = 'ORE'
+FUEL = `'FUEL`'
+ORE = `'ORE`'
 
 def find_rank(element, recipes)
   recipe = recipes[element]
@@ -26,9 +26,9 @@ end
 def prepare_recipes(input_recipes)
   recipes = {}
   input_recipes.split("\n").each do |input_recipe|
-    parts = input_recipe.split('=>')
+    parts = input_recipe.split(`'=>`')
     result = parse_element(parts[1])
-    requirements_array = parts[0].split(',').collect { |e| parse_element(e) }
+    requirements_array = parts[0].split(`',`').collect { |e| parse_element(e) }
     requirements_hash = {}
     requirements_array.each do |r|
       requirements_hash[r[:element]] = r[:quantity]
@@ -83,7 +83,7 @@ def process2(input_recipes)
     current_max = current_max * 2
   end
 
-  p '!'
+  p `'!`'
   p current_max
 
   while current_max != (current_min + 1)

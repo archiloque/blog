@@ -1,59 +1,59 @@
-= Le cloud et l'avenir des vendeurs d'outils indépendants
+= Le cloud et l`'avenir des vendeurs d`'outils indépendants
 Julien Kirch
 v0.1, 2019-01-15
 :article_lang: fr
 :article_image: cloud.png
 :article_description: Ça eut payé
 
-== Un peu d'histoire
+== Un peu d`'histoire
 
 === Il y a 25 ans{nbsp}: la préhistoire
 
-Il y a 25 ans, si vous étiez une organisation grande ou petite et que vous vouliez créer un système informatique, il fallait acheter des outils, des tas d'outils{nbsp}: un système de base de données, un bus de messages, un système d'exploitation, un compilateur C, des outils de monitoring…
+Il y a 25 ans, si vous étiez une organisation grande ou petite et que vous vouliez créer un système informatique, il fallait acheter des outils, des tas d`'outils{nbsp}: un système de base de données, un bus de messages, un système d`'exploitation, un compilateur C, des outils de monitoring…
 
 À cette époque, la très grande majorité des outils étaient propriétaires et payants.
 
-Les développements internes étaient souvent lents et hasardeux, il était donc souvent préférable d'acheter un logiciel, même si son utilité était faible, plutôt qu'essayer de le redévelopper soi-même.
+Les développements internes étaient souvent lents et hasardeux, il était donc souvent préférable d`'acheter un logiciel, même si son utilité était faible, plutôt qu`'essayer de le redévelopper soi-même.
 
-=== Il y a 15 ans{nbsp}: l'open source
+=== Il y a 15 ans{nbsp}: l`'open source
 
-L'open source s'est fait une place dans le paysage.
+L`'open source s`'est fait une place dans le paysage.
 
 Les grosses organisations, habituées aux fonctionnalités très spécifiques de produits propriétaires, continuent souvent à en utiliser.
 
-Cependant pour certains besoins, l'open source a commencé à les remplacer ou à les compléter{nbsp}:
-Hudson (désormais Jenkins) s'installe et à la place d'Oracle il devient possible d'utiliser PostgreSQL ou MySQL (même si c'est plutôt pour pour les projets périphériques).
-Les usages critiques de l'open source sont généralement couverts par un support payant, fourni par l'éditeur ou une entreprise tierce.
+Cependant pour certains besoins, l`'open source a commencé à les remplacer ou à les compléter{nbsp}:
+Hudson (désormais Jenkins) s`'installe et à la place d`'Oracle il devient possible d`'utiliser PostgreSQL ou MySQL (même si c`'est plutôt pour pour les projets périphériques).
+Les usages critiques de l`'open source sont généralement couverts par un support payant, fourni par l`'éditeur ou une entreprise tierce.
 
-Dans les organisations plus petites, l'open source est la norme{nbsp}: Linux, Apache, php…
+Dans les organisations plus petites, l`'open source est la norme{nbsp}: Linux, Apache, php…
 Quand les besoins se complexifient, on pourra préférer aménager sa manière de travailler ou faire des développements maison plutôt que de migrer vers des outil propriétaires à mauvaise réputation.
 Quand la criticité des systèmes augmente, on pourra acheter du support mais sans changer de technologie.
 
-Dis autrement{nbsp}: je pense que beaucoup d'entreprises fondées après 2005 ne deviendront jamais client d'un vendeur comme IBM ou Oracle, en tous cas en l'état actuel des choses.
+Dis autrement{nbsp}: je pense que beaucoup d`'entreprises fondées après 2005 ne deviendront jamais client d`'un vendeur comme IBM ou Oracle, en tous cas en l`'état actuel des choses.
 
 Les besoins plus spécifiques à valeur ajoutée sont toujours achetés, mais leur pré carré diminue.
 
-=== Aujourd'hui{nbsp}: le cloud
+=== Aujourd`'hui{nbsp}: le cloud
 
-Une startup qui démarre aujourd'hui le fera probablement sur le cloud, tous ses outils seront soit fournis par son hébergeur de cloud soit gratuits.
+Une startup qui démarre aujourd`'hui le fera probablement sur le cloud, tous ses outils seront soit fournis par son hébergeur de cloud soit gratuits.
 
-Les outils des hébergeurs sont souvent peu chers et d'une couverture fonctionnelle équivalente voire supérieures aux solutions d'éditeurs classiques.
+Les outils des hébergeurs sont souvent peu chers et d`'une couverture fonctionnelle équivalente voire supérieures aux solutions d`'éditeurs classiques.
 
 Ils sont souvent assez bien intégrés avec le reste de leur écosystème, par exemple pour la gestion des droits ou le monitoring.
 
-S'appuyant sur des capacités techniques et financières importantes, ils sont capables d'évoluer rapidement quand un nouveau besoin émerge.
+S`'appuyant sur des capacités techniques et financières importantes, ils sont capables d`'évoluer rapidement quand un nouveau besoin émerge.
 
-La situation classique _buy vs. build_ se transforme en _buy from cloud provider vs buy from another vendor vs build_{nbsp}: qu'une solution soit fournie ou pas par le fournisseur de cloud devient important dans le choix.
+La situation classique _buy vs. build_ se transforme en _buy from cloud provider vs buy from another vendor vs build_{nbsp}: qu`'une solution soit fournie ou pas par le fournisseur de cloud devient important dans le choix.
 
-Les services sont de plus managés, limitant les besoins d'expertise.
+Les services sont de plus managés, limitant les besoins d`'expertise.
 
-En résumé{nbsp}:  ces organisations n'achètent que très peu de logiciels directement, et ne le feront peut-être pas plus, ou pas beaucoup plus à l'avenir.
+En résumé{nbsp}:  ces organisations n`'achètent que très peu de logiciels directement, et ne le feront peut-être pas plus, ou pas beaucoup plus à l`'avenir.
 
 Les organisations existantes qui migrent sur le cloud sont attirées par ce modèle, la capacité à avoir une excuse pour échapper à certains éditeurs est parfois un argument puissant pour sauter le pas.
 
 == Et les éditeurs{nbsp}?
 
-Pour un éditeur d'outils, comme une base de données ou un link:https://fr.wikipedia.org/wiki/Middleware[middleware] la situation est préoccupante{nbsp}: les clients historiques ont envie de partir, et les organisations pas encore clientes ne le deviendront probablement pas.
+Pour un éditeur d`'outils, comme une base de données ou un link:https://fr.wikipedia.org/wiki/Middleware[middleware] la situation est préoccupante{nbsp}: les clients historiques ont envie de partir, et les organisations pas encore clientes ne le deviendront probablement pas.
 
 Pour les éditeurs de solutions plus ou moins open source, la mode est de link:https://www.zdnet.com/article/its-mongodbs-turn-to-change-its-open-source-license/[changer de licence] pour éviter que les vendeurs de solutions ne se mettent à vous concurrencer directement en vendant une version hébergée de votre solution, mais cela ne fera que les ralentir.
 
@@ -65,81 +65,81 @@ Il reste quelques approches possibles.
 
 === Les niches
 
-Il est possible de trouver une niche à valeur ajoutée pour laquelle l'éditeur sera tranquille.
+Il est possible de trouver une niche à valeur ajoutée pour laquelle l`'éditeur sera tranquille.
 
-Le problème{nbsp}: il s'agit d'une niche, et donc d'un marché structurellement limité.
+Le problème{nbsp}: il s`'agit d`'une niche, et donc d`'un marché structurellement limité.
 
-Et si, coup de chance, la niche s'élargit trop, le risque est d'attirer la concurrence d'un fournisseur de cloud, profitant de sa capacité de développement supérieure et de son positionnement comme "`guichet unique`" pour les clients.
+Et si, coup de chance, la niche s`'élargit trop, le risque est d`'attirer la concurrence d`'un fournisseur de cloud, profitant de sa capacité de développement supérieure et de son positionnement comme "`guichet unique`" pour les clients.
 
 Le plan de sortie est alors de se faire racheter par un autre vendeur qui ne veut pas rester à la traîne et qui est prêt à payer pour cela.
 
 ==== Le legacy{nbsp}?
 
-Le marché du legacy, c'est-à-dire de vendre des produits spécialement adaptés aux clients qui ont des anciens systèmes est lui aussi en risque.
+Le marché du legacy, c`'est-à-dire de vendre des produits spécialement adaptés aux clients qui ont des anciens systèmes est lui aussi en risque.
 Historiquement il était très rentable, car un client bloqué sur de vieilles applications irremplaçables est souvent prêt à payer cher pour pouvoir continuer à les utiliser.
 
 Malheureusement, comme ces systèmes legacy sont un frein pour migrer sur le cloud, les fournisseurs ont commencé à adresser ce marché pour attirer ces clients potentiels.
 
-Par exemple link:https://aws.amazon.com/fr/blogs/aws/new-aws-transfer-for-sftp-fully-managed-sftp-service-for-amazon-s3/[l'accès SFTP pour Amazon S3] ou link:https://www.theregister.co.uk/2018/07/18/aws_launches_on_premises_ec2_instances/[les serveurs __on premise__].
+Par exemple link:https://aws.amazon.com/fr/blogs/aws/new-aws-transfer-for-sftp-fully-managed-sftp-service-for-amazon-s3/[l`'accès SFTP pour Amazon S3] ou link:https://www.theregister.co.uk/2018/07/18/aws_launches_on_premises_ec2_instances/[les serveurs __on premise__].
 
 Certaines zones, par exemples celles liées à des logiciels propriétaires, resteront probablement intéressantes, mais attention à bien les choisir.
 
-==== L'avenir c'est le métier
+==== L`'avenir c`'est le métier
 
 Pour éviter ça, le mieux est de trouver un domaine éloigné de la pure technologie, comme par exemple se positionner sur un métier.
 Le marché est alors possiblement plus étroit, mais le risque est plus faible.
 
-=== L'accompagnement
+=== L`'accompagnement
 
-C'est l'approche de beaucoup d'éditeurs de solutions open source{nbsp}: distribuer sa solution gratuitement et gagner de l'argent sur l'accompagnement.
+C`'est l`'approche de beaucoup d`'éditeurs de solutions open source{nbsp}: distribuer sa solution gratuitement et gagner de l`'argent sur l`'accompagnement.
 Cela porte souvent le nom de link:https://en.wikipedia.org/wiki/Professional_services[Professional Services].
 
-L'entreprise était souvent alors une société de services qui se servait du produit comme point d'accroche.
+L`'entreprise était souvent alors une société de services qui se servait du produit comme point d`'accroche.
 
-C'est un marché qui n'intéresse pas directement les vendeurs de cloud car il n'offre pas d'effet de levier{nbsp}: pour augmenter le chiffre d'affaire il faut embaucher plus de personnes.
+C`'est un marché qui n`'intéresse pas directement les vendeurs de cloud car il n`'offre pas d`'effet de levier{nbsp}: pour augmenter le chiffre d`'affaire il faut embaucher plus de personnes.
 
 Par contre ils peuvent copiner avec des entreprises sur ce modèle{nbsp}:
-eux fournissent la technologie, l'entreprise la force de travail.
-Cette situation peut être intéressante car le fournisseur de cloud peut agir comme un apporteur d'affaire.
-Le risque est que le fournisseur vous remplace par une autre entreprise ou décide de faire lui-même s'il décide que finalement le jeu en vaut la chandelle.
+eux fournissent la technologie, l`'entreprise la force de travail.
+Cette situation peut être intéressante car le fournisseur de cloud peut agir comme un apporteur d`'affaire.
+Le risque est que le fournisseur vous remplace par une autre entreprise ou décide de faire lui-même s`'il décide que finalement le jeu en vaut la chandelle.
 
-L'autre danger, c'est le niveau de développement moyen des clients qui m'a l'air de monter, et qui pourraient préférer faire eux-même pour limiter leur dépendance, plutôt que de payer et de dépendre d'une entreprise tierce.
+L`'autre danger, c`'est le niveau de développement moyen des clients qui m`'a l`'air de monter, et qui pourraient préférer faire eux-même pour limiter leur dépendance, plutôt que de payer et de dépendre d`'une entreprise tierce.
 
 === Le multi-cloud
 
-D'après ce que je lis dans des white papers, c'est le nouveau hype des éditeurs depuis quelques temps{nbsp}:
+D`'après ce que je lis dans des white papers, c`'est le nouveau hype des éditeurs depuis quelques temps{nbsp}:
 jouer sur la peur du lock-in avec un éditeur de cloud pour vendre des solutions multi-cloud.
 
-Ce qu'en autre temps on appelait le link:https://fr.wikipedia.org/wiki/Fear,_uncertainty_and_doubt[FUD].
+Ce qu`'en autre temps on appelait le link:https://fr.wikipedia.org/wiki/Fear,_uncertainty_and_doubt[FUD].
 Cela donne ce genre de discours{nbsp}:
 
 [quote]
 ____
 Vous ne pouvez pas avoir confiance en Amazon, si demain ils devenaient méchants{nbsp}? Ou si après-demain Azure devenait mieux adapté à vos besoin{nbsp}?
-Nous vous vendons une solution qui vous isole du vendeur et vous permet de passer de l'un à l'autre ou même les deux en même temps.
+Nous vous vendons une solution qui vous isole du vendeur et vous permet de passer de l`'un à l`'autre ou même les deux en même temps.
 ____
 
 Bien entendu, cela passe souvent par un lock-in avec la solution en question.
 
-Il y a quelques années, des vendeurs de solutions proposaient la même chose pour s'isoler des bases de données{nbsp}: et si demain vous vouliez passer d'Oracle à PostgreSQL{nbsp}?
+Il y a quelques années, des vendeurs de solutions proposaient la même chose pour s`'isoler des bases de données{nbsp}: et si demain vous vouliez passer d`'Oracle à PostgreSQL{nbsp}?
 
-Les cas dont j'ai entendu parler montrent que c'était en règle générale une très mauvaise idée{nbsp}:
+Les cas dont j`'ai entendu parler montrent que c`'était en règle générale une très mauvaise idée{nbsp}:
 
-- les solutions ajoutaient de la complexité, par exemple en cas d'erreur{nbsp};
-- les solutions ne permettaient d'utiliser que les fonctionnalités communes aux différents vendeurs, ou celle dans laquelle une couche de compatibilité avait été écrite, cela évitait l'adhérence mais pouvait être gênant, parfois cela signifiait devoir refaire des développements spécifiques pour combler le manque, ou alors renoncer à l'isolation tout en gardant la complexité supplémentaire pour ne pas revenir en arrière{nbsp};
-- même quand le besoin finissait par se manifester, on préférait souvent ne pas changer de solution de BDD pendant la vie de l'application pour limiter les risques{nbsp};
-- en général l'entreprise qui laissait le plus à désirer était celle qui vendait la solution intermédiaire, et pas celui de la base de données (quand on connaît les réputations d'Oracle ou d'IBM je vous laisse imaginer…).
+- les solutions ajoutaient de la complexité, par exemple en cas d`'erreur{nbsp};
+- les solutions ne permettaient d`'utiliser que les fonctionnalités communes aux différents vendeurs, ou celle dans laquelle une couche de compatibilité avait été écrite, cela évitait l`'adhérence mais pouvait être gênant, parfois cela signifiait devoir refaire des développements spécifiques pour combler le manque, ou alors renoncer à l`'isolation tout en gardant la complexité supplémentaire pour ne pas revenir en arrière{nbsp};
+- même quand le besoin finissait par se manifester, on préférait souvent ne pas changer de solution de BDD pendant la vie de l`'application pour limiter les risques{nbsp};
+- en général l`'entreprise qui laissait le plus à désirer était celle qui vendait la solution intermédiaire, et pas celui de la base de données (quand on connaît les réputations d`'Oracle ou d`'IBM je vous laisse imaginer…).
 
-Je ne sais pas si l'histoire se répétera, mais quand je vois le peu d'alternatives possibles aux éditeurs, je me dis que beaucoup vont pousser cette solution autant qu'ils le peuvent.
+Je ne sais pas si l`'histoire se répétera, mais quand je vois le peu d`'alternatives possibles aux éditeurs, je me dis que beaucoup vont pousser cette solution autant qu`'ils le peuvent.
 
 == En conclusion
 
-Pour les éditeurs d'outils généralistes l'avenir me parait sombre, et les solutions pour s'en sortir pas toutes honorables{nbsp}: sauf à se lancer dans des marchés de niches, cela passera probablement par un deal avec un plus gros qu'eux, ou à jouer sur la peur pour créer leur marché.
+Pour les éditeurs d`'outils généralistes l`'avenir me parait sombre, et les solutions pour s`'en sortir pas toutes honorables{nbsp}: sauf à se lancer dans des marchés de niches, cela passera probablement par un deal avec un plus gros qu`'eux, ou à jouer sur la peur pour créer leur marché.
 
-Pour tous les éditeurs qui vont se retrouver dos au mur face à des VC exigeant d'en avoir pour leur argent après avoir beaucoup investi, cela va devenir difficile.
+Pour tous les éditeurs qui vont se retrouver dos au mur face à des VC exigeant d`'en avoir pour leur argent après avoir beaucoup investi, cela va devenir difficile.
 
 Je crains le pire pour leurs clients captifs.
 
-Une surprise est toujours possible, mais j'ai l'impression que leur marché va structurellement diminuer, et qu'ils n'auront plus jamais l'influence qu'ils ont eu un jour{nbsp}: leur temps est probablement passé.
+Une surprise est toujours possible, mais j`'ai l`'impression que leur marché va structurellement diminuer, et qu`'ils n`'auront plus jamais l`'influence qu`'ils ont eu un jour{nbsp}: leur temps est probablement passé.
 
 Si vous avez envie de lancer un produit, choisissez bien votre domaine.

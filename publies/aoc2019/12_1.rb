@@ -4,7 +4,7 @@ def process(content, steps)
   moons = content.split("\n").collect do |l|
     m = MOON_REGEX.match(l)
     {
-        pos: [m['x'].to_i, m['y'].to_i, m['z'].to_i],
+        pos: [m[`'x`'].to_i, m[`'y`'].to_i, m[`'z`'].to_i],
         vel: [0, 0, 0]
     }
   end

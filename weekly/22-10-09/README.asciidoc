@@ -12,15 +12,15 @@ ____
 The first confusion is that a lot of the time what they call "`reasoning
 from first principles`" is more accurately "`being a fast learning
 autodidact`". Going from zero to expertise in six months is not in any
-real way discovering a field by reasoning from first principles. They've
+real way discovering a field by reasoning from first principles. They`'ve
 just speedrun a field from a logical starting point. This is a major
 accomplishment, one that is enormously useful in the right context, as
 long as you are _aware_ that this is what you did.
 
 Anybody can reason from first principles or _basic truths_ (if you are a
 regressive Aristotelian intent on ignoring all progress in human thought
-over the past two millennia). It's generally useless because for any
-given field you just end up running into a series of ‘turkey' problems
+over the past two millennia). It`'s generally useless because for any
+given field you just end up running into a series of ‘turkey`' problems
 on a compressed timeline without the benefit of history.
 ____
 
@@ -41,7 +41,7 @@ ____
 
 [quote]
 ____
-If you want to learn about the hardware powering titles such as Street Fighter II, Ghouls'n Ghosts, or Final Fight, then "`The Book of CP-System`" is for you. Inside you will find the "`Capcom System`" (a.k.a CPS-1) explained in excruciating details, along more than one hundred explanatory drawings. The software is also covered with the description of the historical way of doing things and as well as a modern toolchain (link:https://fabiensanglard.net/ccps/[CCPS]).
+If you want to learn about the hardware powering titles such as Street Fighter II, Ghouls`'n Ghosts, or Final Fight, then "`The Book of CP-System`" is for you. Inside you will find the "`Capcom System`" (a.k.a CPS-1) explained in excruciating details, along more than one hundred explanatory drawings. The software is also covered with the description of the historical way of doing things and as well as a modern toolchain (link:https://fabiensanglard.net/ccps/[CCPS]).
 ____
 
 
@@ -50,34 +50,34 @@ ____
 [quote]
 ____
 Now you can argue that the original model is wrong. After all, it
-doesn't handle any of the edge cases! There are two "`unfortunates`" with
-this argument. First, it's not necessarily true that
+doesn`'t handle any of the edge cases! There are two "`unfortunates`" with
+this argument. First, it`'s not necessarily true that
 the client will encounter any of these edge cases. Consider this model
 as part of a recipe API, where multiple groups are calling it for their
 own purposes. Alice needs recipes with inedibles, Barry needs recipes
 with optionals, and everybody else needs neither. Alice is "`punishing`"
 everybody else with her edge case. They have a more complicated API
-because of her. In turn, she's "`punished`" by Barry's edge case. While
-she needs an API that handles inedibles, she doesn't need one that
+because of her. In turn, she`'s "`punished`" by Barry`'s edge case. While
+she needs an API that handles inedibles, she doesn`'t need one that
 handles optionals, so her model is overcomplicated too.
 
-Second, while the original model isn't totally correct, it's
+Second, while the original model isn`'t totally correct, it`'s
 _philosophically_ correct. It represents the most common case in a much
 more understandable way. Someone looking at the code base for the first
-time will more easily be able to understand what's going on. If they
+time will more easily be able to understand what`'s going on. If they
 then see an edge case, they can mentally model it as "`the happy path
 _except_…`", a perturbation of the base model. If you instead present
-them with the final model, they'll struggle much more to see the core
+them with the final model, they`'ll struggle much more to see the core
 idea in the forest of edge case handling.
 
-I call this *edge case poisoning*. It's almost impossible to avoid
+I call this *edge case poisoning*. It`'s almost impossible to avoid
 because anything dealing with the real world is going to have tons and
 tons of edge cases. You think handling time zones is hard? Time zones
 are only notorious because they are a real-world domain that we all have
 to deal with. A software engineer in Turkey who works in shipping
-_probably_ doesn't have to deal with the intricacies of confectionery
-recipes. But they will have to deal with time zones. Doesn't matter if
-you're dealing with time zones or recipes or logistics or art
+_probably_ doesn`'t have to deal with the intricacies of confectionery
+recipes. But they will have to deal with time zones. Doesn`'t matter if
+you`'re dealing with time zones or recipes or logistics or art
 collectors, you will have edge cases, meaning you will be forced to take
 on the essential complexity.
 ____
@@ -96,8 +96,8 @@ reflection nor by observing others apply it.
 . Once you can use it, it immediately gives you significant benefits,
 possibly to the point of raising your expertise level.
 
-This might be a studied topic, but if it is I don't know even what
-_field of knowledge_ it belongs to, much less what it's called. In the
+This might be a studied topic, but if it is I don`'t know even what
+_field of knowledge_ it belongs to, much less what it`'s called. In the
 meantime I call it *mystery knowledge*. Thinking less "`whodunit`" mystery
 and more "`Greco-Roman mystery cults`" mystery.
 ____
@@ -107,25 +107,25 @@ ____
 
 [quote]
 ____
-Another type of writing I've been thinking a lot about:
+Another type of writing I`'ve been thinking a lot about:
 "`Theorycrafting`". This is informative content caveated with "`not based
 on experience`". You just thought really hard about something, came up
 with ideas, and wrote them down. One example would be
 https://www.hillelwayne.com/post/decision-table-patterns/[Decision Table
-Patterns]. A lot of the techniques there aren't things I've used in
+Patterns]. A lot of the techniques there aren`'t things I`'ve used in
 practice. I was just writing down techniques I _thought_ could help in
 these cases. Pure theory.
 
-I've always been a bit torn about theorycrafting. There's an obvious
-problem that I don't actually know if it works or not. Lots of things
+I`'ve always been a bit torn about theorycrafting. There`'s an obvious
+problem that I don`'t actually know if it works or not. Lots of things
 sound good in theory but fail in practice. Not only do I not know if it
-works, I have _no information_ on whether it works. It's just an idea I
+works, I have _no information_ on whether it works. It`'s just an idea I
 had. Is that worth sharing with people?
 
-I guess it's okay if I make it very, _very_ clear it's theorycrafting.
-Then people can read it and go "`oh, this is purely an idea, he's not
+I guess it`'s okay if I make it very, _very_ clear it`'s theorycrafting.
+Then people can read it and go "`oh, this is purely an idea, he`'s not
 advising it, just proposing it.`" In return, I get a chance to talk about
-ideas, because ideas are _interesting_. There's a lot more ideas I want
+ideas, because ideas are _interesting_. There`'s a lot more ideas I want
 to share than I can reasonably flesh out and test in practice. At least
 the idea gets to be out there. If other people find it interesting, they
 can explore it themselves.
@@ -140,7 +140,7 @@ _unavoidable_. We do a disservice to ourselves by pretending that any
 software can be simple _if we just try hard enough_. Instead, we should
 study the factors that lead to complex software. That way we can learn
 how to recognize, predict, and manage complexity in our systems. And
-then we can seek simplicity within that context. It won't give us simple
+then we can seek simplicity within that context. It won`'t give us simple
 software, but it will help us write _simpler_ software. Nuance is better
 than mantras.
 ____
@@ -158,13 +158,13 @@ ____
 [quote]
 ____
 I often have people newer to the tech industry ask me for secrets to
-success. There aren't many, really, but this secret — being willing to
+success. There aren`'t many, really, but this secret — being willing to
 do something so terrifically tedious that it appears to be magic — works
 in tech too.
 
-We're an industry obsessed with automation, with streamlining, with
+We`'re an industry obsessed with automation, with streamlining, with
 efficiency. One of the foundational texts of our engineering culture,
-Larry Wall's
+Larry Wall`'s
 link:https://web.archive.org/web/20210311050133/https://www.threevirtues.com/[virtues
 of the programmer], includes laziness:
 
@@ -173,20 +173,20 @@ _____
 *Laziness*: The quality that makes you go to great effort to reduce
 overall energy expenditure. It makes you write labor-saving programs
 that other people will find useful and document what you wrote so you
-don't have to answer so many questions about it.
+don`'t have to answer so many questions about it.
 _____
 
-I don't disagree: being able to offload repetitive tasks to a program is
+I don`'t disagree: being able to offload repetitive tasks to a program is
 one of the best things about knowing how to code. However, sometimes
-problems can't be solved by automation. If you're willing to embrace the
-grind you'll look like a magician.
+problems can`'t be solved by automation. If you`'re willing to embrace the
+grind you`'ll look like a magician.
 
 For example, I once joined a team maintaining a system that was drowning
 in bugs. There were something like two thousand open bug reports.
-Nothing was tagged, categorized, or prioritized. The team couldn't agree
+Nothing was tagged, categorized, or prioritized. The team couldn`'t agree
 on which issues to tackle. They were stuck essentially pulling bugs at
 random, but it was never clear if that issue was important.. New bug
-reports couldn't be triaged effectively because finding duplicates was
+reports couldn`'t be triaged effectively because finding duplicates was
 nearly impossible. So the open ticket count continued to climb. The team
 had been stalled for months. I was tasked with solving the problem: get
 the team unstuck, get reverse the trend in the open ticket count, come
@@ -207,12 +207,12 @@ The trend reversed immediately after that: we were able to close several
 hundred tickets immediately as duplicates, and triaging new issues now
 took minutes instead of a day. It took I think a year or more to drive
 the count to zero, but it was all fairly smooth sailing. People said I
-did the impossible, but that's wrong: I merely did something so boring
+did the impossible, but that`'s wrong: I merely did something so boring
 that nobody else had been willing to do it.
 
 Sometimes, programming feels like magic: you chant some arcane
 incantation and a fleet of robots do your bidding. But sometimes, magic
-is mundane. If you're willing to embrace the grind, you can pull off the
+is mundane. If you`'re willing to embrace the grind, you can pull off the
 impossible.
 ____
 
@@ -230,7 +230,7 @@ unarguable to me is that such a vision was deeply unsuited to any
 standardisation process. QVT is the most succinct example of trying to
 standardise what was, at best, early-stages research, with failure
 inevitably resulting. However, while the standardisation overreach
-inherent in QVT stayed largely within OMG's confines, MDA's failure was
+inherent in QVT stayed largely within OMG`'s confines, MDA`'s failure was
 widely noted. Not only was MDA seen to fail, but by association it
 undermined the success of UML as a sketching language, turning it into
 the butt of jokes that it has largely remained to as these days.
@@ -242,8 +242,8 @@ highlighting.
 First and foremost, group dynamics can develop in such a way that
 reasonable optimism turns into blind optimism and expressing doubts
 becomes a taboo. When that happens, it is easy for the group to drift
-towards extreme positions that guarantee the group's failure. The UML
-standardisation community became ever more invested in UML 2's success:
+towards extreme positions that guarantee the group`'s failure. The UML
+standardisation community became ever more invested in UML 2`'s success:
 at first, doubting views were dismissed as referencing trivial problems;
 eventually such views stopped being expressed at all. The community only
 talked about success, even when there was significant evidence that
@@ -252,7 +252,7 @@ Similarly, QVT was the wrong idea at the wrong time, but people were so
 desperate for success that they chose to ignore fundamental problems.
 
 Second, when standardisation moves from "`standardise what already
-exists`" to "`standardise things that we think would be good but don't yet
+exists`" to "`standardise things that we think would be good but don`'t yet
 exist`" it enters dangerous territory. I rather like research, but
 standards committees are about the worst possible place to do research.
 At best an unsatisfying lowest common denominator ends up being chosen,

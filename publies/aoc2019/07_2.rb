@@ -54,8 +54,8 @@ class Amplifier
     instruction = sprintf("%05d", @memory[@instruction_pointer])
     opcode = instruction[-2..-1]
     case opcode
-    when '01' # add
-      print_instruction(instruction, 'add', 3)
+    when `'01`' # add
+      print_instruction(instruction, `'add`', 3)
       a = value(instruction, 0)
       b = value(instruction, 1)
       c = @memory[@instruction_pointer + 3]
@@ -63,8 +63,8 @@ class Amplifier
       @memory[c] = a + b
       @instruction_pointer += 4
       STATUS_CAN_CONTINUE
-    when '02' # multiply
-      print_instruction(instruction, 'multiply', 3)
+    when `'02`' # multiply
+      print_instruction(instruction, `'multiply`', 3)
       a = value(instruction, 0)
       b = value(instruction, 1)
       c = @memory[@instruction_pointer + 3]
@@ -72,8 +72,8 @@ class Amplifier
       @memory[c] = a * b
       @instruction_pointer += 4
       STATUS_CAN_CONTINUE
-    when '03' # input
-      print_instruction(instruction, 'input', 1)
+    when `'03`' # input
+      print_instruction(instruction, `'input`', 1)
       if @io_in.empty?
         return STATUS_NEED_INPUT
       end
@@ -82,15 +82,15 @@ class Amplifier
       @memory[a] = @io_in.shift
       @instruction_pointer += 2
       STATUS_CAN_CONTINUE
-    when '04' # output
-      print_instruction(instruction, 'output', 1)
+    when `'04`' # output
+      print_instruction(instruction, `'output`', 1)
       a = value(instruction, 0)
       log_instruction("Output #{a}")
       io_out << a
       @instruction_pointer += 2
       STATUS_CAN_CONTINUE
-    when '05' # jump-if-true
-      print_instruction(instruction, 'jump-if-true', 2)
+    when `'05`' # jump-if-true
+      print_instruction(instruction, `'jump-if-true`', 2)
       a = value(instruction, 0)
       b = value(instruction, 1)
       if a != 0
@@ -101,8 +101,8 @@ class Amplifier
         @instruction_pointer += 3
       end
       STATUS_CAN_CONTINUE
-    when '06' # jump-if-false
-      print_instruction(instruction, 'jump-if-false', 2)
+    when `'06`' # jump-if-false
+      print_instruction(instruction, `'jump-if-false`', 2)
       a = value(instruction, 0)
       b = value(instruction, 1)
       if a == 0
@@ -113,8 +113,8 @@ class Amplifier
         @instruction_pointer += 3
       end
       STATUS_CAN_CONTINUE
-    when '07' # less-than
-      print_instruction(instruction, 'less-than', 3)
+    when `'07`' # less-than
+      print_instruction(instruction, `'less-than`', 3)
       a = value(instruction, 0)
       b = value(instruction, 1)
       c = @memory[@instruction_pointer + 3]
@@ -123,8 +123,8 @@ class Amplifier
       @memory[c] = value
       @instruction_pointer += 4
       STATUS_CAN_CONTINUE
-    when '08' # equals
-      print_instruction(instruction, 'equals', 3)
+    when `'08`' # equals
+      print_instruction(instruction, `'equals`', 3)
       a = value(instruction, 0)
       b = value(instruction, 1)
       c = @memory[@instruction_pointer + 3]
@@ -133,8 +133,8 @@ class Amplifier
       @memory[c] = value
       @instruction_pointer += 4
       STATUS_CAN_CONTINUE
-    when '99'
-      print_instruction(instruction, 'exit', 0)
+    when `'99`'
+      print_instruction(instruction, `'exit`', 0)
       log_instruction("Exit")
       STATUS_EXIT
     else
@@ -149,9 +149,9 @@ class Amplifier
     instruction_mode = instruction[-(3 + parameter_index)]
     parameter_value = @memory[@instruction_pointer + parameter_index + 1]
     case instruction_mode
-    when '0' # position
+    when `'0`' # position
       @memory[parameter_value]
-    when '1' # immediate
+    when `'1`' # immediate
       parameter_value
     else
       raise instruction_mode
@@ -163,7 +163,7 @@ class Amplifier
       opcode,
       number_of_params)
     if LOG_INFO
-      STDOUT << "#{opcode} #{instruction} #{@memory[@instruction_pointer + 1, number_of_params].join(', ')}".ljust(40)
+      STDOUT << "#{opcode} #{instruction} #{@memory[@instruction_pointer + 1, number_of_params].join(`', `')}".ljust(40)
     end
   end
 

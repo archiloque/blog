@@ -8,14 +8,14 @@ from typing import NewType, Tuple
 #   #8#0#2#4#
 #   #########
 
-ItemType = NewType('ItemType', int)
+ItemType = NewType(`'ItemType`', int)
 ITEM_AMBER = ItemType(0)
 ITEM_BRONZE = ItemType(1)
 ITEM_COPPER = ItemType(2)
 ITEM_DESERT = ItemType(3)
 ITEM_EMPTY = ItemType(4)
 
-Position = NewType('Position', int)
+Position = NewType(`'Position`', int)
 Move = Tuple[
     ItemType, ItemType, ItemType, ItemType, ItemType, ItemType, ItemType, ItemType, ItemType, ItemType, ItemType, ItemType, ItemType, ItemType]
 
@@ -39,11 +39,11 @@ ITEM_TYPE_TO_ENERGY: dict[ItemType, int] = {
 }
 
 CHAR_TO_ITEM_TYPE: dict[str, ItemType] = {
-    'A': ITEM_AMBER,
-    'B': ITEM_BRONZE,
-    'C': ITEM_COPPER,
-    'D': ITEM_DESERT,
-    '.': ITEM_EMPTY,
+    `'A`': ITEM_AMBER,
+    `'B`': ITEM_BRONZE,
+    `'C`': ITEM_COPPER,
+    `'D`': ITEM_DESERT,
+    `'.`': ITEM_EMPTY,
 }
 
 puzzle = open(sys.argv[1]).readlines()

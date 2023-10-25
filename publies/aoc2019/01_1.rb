@@ -9,7 +9,7 @@ assert_equal(654, fuel(1969))
 assert_equal(33583, fuel(100756))
 
 result = 0
-File.foreach('input.txt') do |line|
+File.foreach(`'input.txt`') do |line|
   result += fuel(line.strip.to_i)
 end
 p result

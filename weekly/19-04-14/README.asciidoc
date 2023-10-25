@@ -8,7 +8,7 @@ v1.0, 2019-04-14
 
 [quote]
 ____
-This article attempts to dive beneath the hype, examining how XML web services differ from existing architectures, and how they might help build customer solutions. Let's begin by describing features of XML web services, which:
+This article attempts to dive beneath the hype, examining how XML web services differ from existing architectures, and how they might help build customer solutions. Let`'s begin by describing features of XML web services, which:
 
 * _Are not remote procedure calls._ Now to stir the pot a little: good web services are not modeled as remote procedure calls (RPCs). Section 7 of the SOAP 1.1 specification describes how to express a remote procedure call in the Body element of a SOAP message. This is a useful mechanism for tunneling RPCs between systems, but SOAP-RPC is a poor approach to designing an interoperable web service. RPC is primarily designed to support object invocation between tightly bound but topologically distributed systems. Yes, you can still achieve interoperability while using "`RPC/Encoded`" SOAP messages, but the focus on objects and method invocation is fundamentally contrary to the document-centric philosophy of web services. SOAP messages can be in two styles, "`RPC`" and "`Document`", and can use two serialization formats, "`Encoded`" and "`Literal`". In practice, SOAP-RPC uses "`RPC/Encoded`", while document-centric web services use "`Document/Literal`". By failing to focus on the service contract, you provide for brittle integration. Minor changes to a method signature automatically get propagated to the service, causing current clients to break. Great toolkits exist for doing tightly-bound RPC over SOAP from various vendors. If this is what you are looking for, find the one that works best for your platform. But if you are trying to design for interoperability, design your messages first and then write your methods to support them, not the other way around.
 
@@ -19,7 +19,7 @@ ____
 
 [quote]
 ____
-When faced with a technical problem it's often better to use an existing tool than jump into writing one yourself. Having benchmarked Postgres clusters before, I was already familiar with a tool called link:https://github.com/laurenz/pgreplay[pgreplay] that I thought could do the job.
+When faced with a technical problem it`'s often better to use an existing tool than jump into writing one yourself. Having benchmarked Postgres clusters before, I was already familiar with a tool called link:https://github.com/laurenz/pgreplay[pgreplay] that I thought could do the job.
 
 My benchmarking strategy with pgreplay is pretty simple: first capture logs from your production cluster that contain all executed queries then feed this to pgreplay which will replay those queries against the new cluster. Post-processing logs from the new cluster will show how the machines performed under production load, helping determine if changes are going to degrade performance.
 
@@ -27,7 +27,7 @@ This process had worked well before but broke as soon as I applied it to this mi
 
 The new cluster was sufficiently different that several queries were now much slower than they had been in the original log capture. pgreplay will ensure queries execute in their original order- any queries that take longer to execute in the replay will block subsequent queries. The graph shows how several badly degraded queries caused pgreplay to stall, leading to the periods of inactivity.
 
-Benchmarks can take several hours to execute and having the replay stall for problematic queries adds more time to an already slow process. The inactivity also impacts the realism of your tests- users don't respond to a system under load by forming a queue and politely waiting for their first query to finish!
+Benchmarks can take several hours to execute and having the replay stall for problematic queries adds more time to an already slow process. The inactivity also impacts the realism of your tests- users don`'t respond to a system under load by forming a queue and politely waiting for their first query to finish!
 ____
 
 == link:https://queue.acm.org/detail.cfm?id=864078[A conversation with Jim Gray]
@@ -36,23 +36,23 @@ ____
 ____
 There is this really elegant theory about transactions, having to do with concurrency and recovery. A lot of people had implemented these ideas implicitly. I wrote a mathematical theory around it and explained it and did a fairly crisp implementation of the ideas. The Turing Award committee likes crisp results. The embarrassing thing is that I did it with a whole bunch of other people. But I wrote the papers, and my name was often first on the list of authors. So, I got the credit.
 
-But to return to your question, the fundamental premise of transactions is that we needed exception handling in distributed computations. Transactions are the computer equivalent of contract law. If anything goes wrong, we'll just blow away the whole computation. Absent some better model, that's a real simple model that everybody can understand. There's actually a mathematical theory lying underneath it.
+But to return to your question, the fundamental premise of transactions is that we needed exception handling in distributed computations. Transactions are the computer equivalent of contract law. If anything goes wrong, we`'ll just blow away the whole computation. Absent some better model, that`'s a real simple model that everybody can understand. There`'s actually a mathematical theory lying underneath it.
 
-In addition, there is a great deal of logic about keeping a log of changes so that you can undo things, and keeping a list of updates, called locks, so that others do not see your uncommitted changes.The theory says: "`If that's what you want to do, this is what you have to do to get it
+In addition, there is a great deal of logic about keeping a log of changes so that you can undo things, and keeping a list of updates, called locks, so that others do not see your uncommitted changes.The theory says: "`If that`'s what you want to do, this is what you have to do to get it
 
-The algorithms are simple enough so most implementers can understand them, and they are complicated enough so most people who can't understand them will want somebody else to figure it out for them.
+The algorithms are simple enough so most implementers can understand them, and they are complicated enough so most people who can`'t understand them will want somebody else to figure it out for them.
 ____
 
 == link:https://summitroute.com/downloads/aws_security_maturity_roadmap-Summit_Route_2019.pdf[AWS security maturity roadmap]
 
 [quote]
 ____
-Planning for Disaster Recovery involves a trade-off between how quickly you need to recover and how much money you're willing to spend
+Planning for Disaster Recovery involves a trade-off between how quickly you need to recover and how much money you`'re willing to spend
 ____
 
 [quote]
 ____
-Not all of the public AMIs (Amazon Machine Images) used to create EC2s are vetted by AWS, and there is not an easy way to identify the trust-worthiness of the source account ID that an AMI comes from. There have been issues27 in the past of public AMIs with malware in them. You should identify what AMIs you want to be allowed to run in your environment. You should also document guidelines around the instance types to be used and the OS's, so you don't end up with a a dozen flavors of Linux running in your accounts without good reason.
+Not all of the public AMIs (Amazon Machine Images) used to create EC2s are vetted by AWS, and there is not an easy way to identify the trust-worthiness of the source account ID that an AMI comes from. There have been issues27 in the past of public AMIs with malware in them. You should identify what AMIs you want to be allowed to run in your environment. You should also document guidelines around the instance types to be used and the OS`'s, so you don`'t end up with a a dozen flavors of Linux running in your accounts without good reason.
 ____
 
 == link:https://arxiv.org/pdf/1902.00546v1.pdf[Separating use and reuse to improve both]
@@ -106,23 +106,23 @@ ____
 
 [quote]
 ____
-I love languages because, of everything I've encountered in computing, languages are by far the weirdest. They combine the brain-bending rigor of abstract math, the crushing pressures of capitalistic industry, and the irrational anxiety of a high school prom. The decision to adopt or avoid a language is always a mix of their perceived formal power ("`Does this language even have this particular feature?`"), employability ("`Will this language get me a job?`"), and popularity ("`Does anyone important use this language anymore?`"). I can't think of another engineering tool that demands similar quasi-religious devotion from its users. Programming languages ask us to reshape our minds, and that makes them deeply personal and subjective.
+I love languages because, of everything I`'ve encountered in computing, languages are by far the weirdest. They combine the brain-bending rigor of abstract math, the crushing pressures of capitalistic industry, and the irrational anxiety of a high school prom. The decision to adopt or avoid a language is always a mix of their perceived formal power ("`Does this language even have this particular feature?`"), employability ("`Will this language get me a job?`"), and popularity ("`Does anyone important use this language anymore?`"). I can`'t think of another engineering tool that demands similar quasi-religious devotion from its users. Programming languages ask us to reshape our minds, and that makes them deeply personal and subjective.
 ____
 
 == link:https://deorbital.media/efficiency-machines-621e154ad1fb[Efficiency machines: the operating system recontextualized]
 
 [quote]
 ____
-Operating Systems are boring, monotonous spaces. Ever since the personal computer was popularized, function has been the standard priority. Attempts to personalize the OS, such as Microsoft Bob and Packard Bell Navigator, never really caught on. Their ideas didn't translate well to the tech available at the time, and were regarded as failures since they were slower and clunkier to use when compared to the desktop interface. As commercial OS design evolved, interfaces became more branded and conventional. Creative expression was relegated to decoration with wallpapers, themes and widgets.
+Operating Systems are boring, monotonous spaces. Ever since the personal computer was popularized, function has been the standard priority. Attempts to personalize the OS, such as Microsoft Bob and Packard Bell Navigator, never really caught on. Their ideas didn`'t translate well to the tech available at the time, and were regarded as failures since they were slower and clunkier to use when compared to the desktop interface. As commercial OS design evolved, interfaces became more branded and conventional. Creative expression was relegated to decoration with wallpapers, themes and widgets.
 
-Treating operating systems as mere productivity tools dismisses how personal they are. We don't use computers just to work. We play, communicate and create with them. It ends up being a environment filled with our memories and art, which means there is a lot of potential to be explored.
+Treating operating systems as mere productivity tools dismisses how personal they are. We don`'t use computers just to work. We play, communicate and create with them. It ends up being a environment filled with our memories and art, which means there is a lot of potential to be explored.
 ____
 
 [quote]
 ____
-The relentless optimism often present in our lives is a tool of oppression, one that aims to shame those who aren't as productive as society wants to. When we reach out for help, the most common answers are: "`You must try harder.`", "`You're exaggerating.`" and, of course, "`Everything is going to be OK.`" Instead of learning how to heal from pain, we are taught to hide it and to fight through it. Because no trauma is harsh enough for capitalism to stop milking all the labor it can get.
+The relentless optimism often present in our lives is a tool of oppression, one that aims to shame those who aren`'t as productive as society wants to. When we reach out for help, the most common answers are: "`You must try harder.`", "`You`'re exaggerating.`" and, of course, "`Everything is going to be OK.`" Instead of learning how to heal from pain, we are taught to hide it and to fight through it. Because no trauma is harsh enough for capitalism to stop milking all the labor it can get.
 
-There's a parallel here with the design philosophy of operating systems. An illusion of freedom is sold to the user, one where they can do whatever they want inside the OS. While ad campaigns and mission statements attempt to convince us that these systems aim to empower us, their real goal is to increase the amount of labor they can exploit. Cleaner interfaces and faster startup times are sold as main selling points of systems that are also tracking our data, limiting what software we can use and even slowing down themselves down to force us to buy a new version.
+There`'s a parallel here with the design philosophy of operating systems. An illusion of freedom is sold to the user, one where they can do whatever they want inside the OS. While ad campaigns and mission statements attempt to convince us that these systems aim to empower us, their real goal is to increase the amount of labor they can exploit. Cleaner interfaces and faster startup times are sold as main selling points of systems that are also tracking our data, limiting what software we can use and even slowing down themselves down to force us to buy a new version.
 
-This allows them to distract us from who is really controlling these environments, much like neoliberalism champions individuality to divert us from questioning it. If the only thing stopping us from having better lives is our own decisions, we don't have anyone else to blame but ourselves. An OS who actively gets in your way, then, forces you to see beyond this illusion of control.
+This allows them to distract us from who is really controlling these environments, much like neoliberalism champions individuality to divert us from questioning it. If the only thing stopping us from having better lives is our own decisions, we don`'t have anyone else to blame but ourselves. An OS who actively gets in your way, then, forces you to see beyond this illusion of control.
 ____

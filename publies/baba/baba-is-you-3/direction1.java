@@ -6,6 +6,6 @@ interface Direction {
   byte RIGHT = 3;
 
   char[] VISUAL = new char[]{
-      '↑', '↓', '←', '→'
+      `'↑`', `'↓`', `'←`', `'→`'
   };
 }

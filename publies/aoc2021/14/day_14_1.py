@@ -12,8 +12,8 @@ rules = {}
 
 for rule in instructions[2:(len(instructions))]:
     match = rule_regex.search(rule)
-    from_rule = match.group('from')
-    to_rule = match.group('to')
+    from_rule = match.group(`'from`')
+    to_rule = match.group(`'to`')
     rules[from_rule] = to_rule
     possible_elements.update(from_rule)
     possible_elements.update(to_rule)
@@ -23,7 +23,7 @@ print(current_value)
 for step in range(0,2):
     next_value = []
     for char_index in range(0, len(current_value) - 1):
-        current_pair = ''.join(current_value[char_index:char_index+2])
+        current_pair = `'`'.join(current_value[char_index:char_index+2])
         next_value.append(current_value[char_index])
         applied_rule = rules[current_pair]
         if applied_rule is not None:

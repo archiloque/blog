@@ -1,6 +1,6 @@
 import sys
 
-positions_list = list(map(int, open(sys.argv[1]).readlines()[0].split(',')))
+positions_list = list(map(int, open(sys.argv[1]).readlines()[0].split(`',`')))
 print(positions_list)
 min_pos = min(positions_list)
 max_pos = max(positions_list)

@@ -24,7 +24,7 @@ void processRules() {
 private void checkRule(
     int beforeCellIndex,
     int afterCellIndex) {
-  // validate it's a rule
+  // validate it`'s a rule
   int subject = content[beforeCellIndex] &
       Tiles.SUBJECT_MASKS;
   if (subject == Tiles.EMPTY) {

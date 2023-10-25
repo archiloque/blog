@@ -1,4 +1,4 @@
-= Pair-programming{nbsp}: ce n'est pas comme de coder seul mais à deux
+= Pair-programming{nbsp}: ce n`'est pas comme de coder seul mais à deux
 Julien Kirch
 v0.1, 2022-03-01
 :article_lang: fr
@@ -6,45 +6,45 @@ v0.1, 2022-03-01
 :article_description: 
 :pp: pair-programming
 
-Lorsqu'on s'exerce à faire un link:../kata-mais-pas-trop/[kata] informatique, on parvient parfois à suivre une forme d'idéal-type du développement{nbsp}: le sujet à traiter est d'un périmètre réduit et les explications couvrent bien les différents cas.
+Lorsqu`'on s`'exerce à faire un link:../kata-mais-pas-trop/[kata] informatique, on parvient parfois à suivre une forme d`'idéal-type du développement{nbsp}: le sujet à traiter est d`'un périmètre réduit et les explications couvrent bien les différents cas.
 
-Cela signifie qu'on est capable de concevoir la solution, d'écrire l'ensemble des tests, puis le code fournissant le bon résultat en rédigeant plus ou moins "`de haut en bas`" sans avoir beaucoup à naviguer dans le code.
+Cela signifie qu`'on est capable de concevoir la solution, d`'écrire l`'ensemble des tests, puis le code fournissant le bon résultat en rédigeant plus ou moins "`de haut en bas`" sans avoir beaucoup à naviguer dans le code.
 
-Cela signifie que le lorsque le kata est fait à plusieurs, il est assez facile à la personne qui code d'expliquer ce qu'elle fait, et pour les autres de suivre ce qui se passe.
+Cela signifie que le lorsque le kata est fait à plusieurs, il est assez facile à la personne qui code d`'expliquer ce qu`'elle fait, et pour les autres de suivre ce qui se passe.
 
 Actuellement je travaille essentiellement sur un projet web full-stack.
-Les évolutions d'une certaine taille vont avoir tendance à toucher toutes les couches des applications{nbsp}: de l'accès aux données, du traitement des données et de l'affichage avec de la mise en forme.
+Les évolutions d`'une certaine taille vont avoir tendance à toucher toutes les couches des applications{nbsp}: de l`'accès aux données, du traitement des données et de l`'affichage avec de la mise en forme.
 Les différentes couches étant séparées dans différents fichiers.
 
-Quand je développe seul, j'ai tendance à travailler "`en spirale`"{nbsp}: je commence par un morceau de code à un endroit, puis je passe à une autre couche, je reviens à l'endroit de départ car j'ai eu une idée de renommage, je travaille un peu la mise en page des données que je viens de récupérer…
+Quand je développe seul, j`'ai tendance à travailler "`en spirale`"{nbsp}: je commence par un morceau de code à un endroit, puis je passe à une autre couche, je reviens à l`'endroit de départ car j`'ai eu une idée de renommage, je travaille un peu la mise en page des données que je viens de récupérer…
 
-Tant que je m'y retrouve je n'ai pas besoin d'avoir un plan de travail pré-établi, et je n'ai pas besoin que ma manière de travailler soit compréhensible par une autre personne, tant que le résultat final l'est.
+Tant que je m`'y retrouve je n`'ai pas besoin d`'avoir un plan de travail pré-établi, et je n`'ai pas besoin que ma manière de travailler soit compréhensible par une autre personne, tant que le résultat final l`'est.
 
-Je ne sais pas si tout le monde développe ainsi, mais c'est mon cas et j'ai déjà rencontré d'autres personnes qui ont les mêmes habitudes.
+Je ne sais pas si tout le monde développe ainsi, mais c`'est mon cas et j`'ai déjà rencontré d`'autres personnes qui ont les mêmes habitudes.
 
 Quand je fais du {pp}, cela ne fonctionne pas.
 Je ne prétends pas développer particulièrement vite, ou être un virtuose de mon environnement de développement, mais il est très difficile voire impossible pour une autre personne de suivre ce que je fais quand je travaille de manière "`naturelle`".
 
-Cela signifie que lorsque je fais du {pp} et que c'est mon tour d'avoir le clavier, je dois profondément modifier ma manière de développer pour qu'elle soit plus linéaire (plus proche de celle d'un kata), et donc plus lisible pour l'autre personne.
+Cela signifie que lorsque je fais du {pp} et que c`'est mon tour d`'avoir le clavier, je dois profondément modifier ma manière de développer pour qu`'elle soit plus linéaire (plus proche de celle d`'un kata), et donc plus lisible pour l`'autre personne.
 
-Pour que le {pp} soit productif, je dois aussi expliquer au fur et à mesure ce que je fais à l'autre personne, porter attention à ses réactions et y répondre.
+Pour que le {pp} soit productif, je dois aussi expliquer au fur et à mesure ce que je fais à l`'autre personne, porter attention à ses réactions et y répondre.
 
 Développer en {pp} a donc deux conséquences pour moi{nbsp}:
 
-- une consommation d'énergie plus importante, pour me forcer à développer d'une manière lisible et pour collaborer avec l'autre personne{nbsp};
-- le sentiment de travailler beaucoup moins vite que si j'étais seul, ce qui créé de la frustration, même si elle tempérée par l'idée qu'au final le résultat obtenu devrait être de meilleure qualité.
+- une consommation d`'énergie plus importante, pour me forcer à développer d`'une manière lisible et pour collaborer avec l`'autre personne{nbsp};
+- le sentiment de travailler beaucoup moins vite que si j`'étais seul, ce qui créé de la frustration, même si elle tempérée par l`'idée qu`'au final le résultat obtenu devrait être de meilleure qualité.
 
-Note : en discutant de cet article, une personne m'a expliqué qu'elle a noté deux style de développement{nbsp}: des personnes développent link:https://fr.wikipedia.org/wiki/Pile_(informatique)["`en pile`"], en interompant ce qu'elles font pour traiter les nouvelles idées d'abord pour revenir ensuite là où elles en étaient, et d'autres link:https://fr.wikipedia.org/wiki/File_(structure_de_données)["`en file`"] ou elles terminent d'abord leur idée en cours avant d'entamer la suivante. Et ma méthode de travail se rapproche donc de celle en file.
-Son intuition est qu'il est plus facile pour deux personnes de pair-programmer ensemble si elles ont le même style.
+Note : en discutant de cet article, une personne m`'a expliqué qu`'elle a noté deux style de développement{nbsp}: des personnes développent link:https://fr.wikipedia.org/wiki/Pile_(informatique)["`en pile`"], en interompant ce qu`'elles font pour traiter les nouvelles idées d`'abord pour revenir ensuite là où elles en étaient, et d`'autres link:https://fr.wikipedia.org/wiki/File_(structure_de_données)["`en file`"] ou elles terminent d`'abord leur idée en cours avant d`'entamer la suivante. Et ma méthode de travail se rapproche donc de celle en file.
+Son intuition est qu`'il est plus facile pour deux personnes de pair-programmer ensemble si elles ont le même style.
 
 Dans mon équipe actuelle, le {pp} est une activité régulière mais qui ne représente pas une part significative du temps de développement.
-Dans une équipe qui ferait beaucoup de {pp}, je pense que cela me poserait des difficultés, d'autant que je ne pense pas qu'il s'agisse de choses qui peuvent s'améliorer avec la pratique.
+Dans une équipe qui ferait beaucoup de {pp}, je pense que cela me poserait des difficultés, d`'autant que je ne pense pas qu`'il s`'agisse de choses qui peuvent s`'améliorer avec la pratique.
 
-Une solution possible serait que j'essaie de changer ma manière de travailler, pour qu'elle soit "`par défaut`" plus proche de ce qui est nécessaire pour le {pp}, mais je ne sais pas si c'est quelque chose que je serais prêt à faire, car je crains que cela ne me ralentisse et me rende le développement moins agréable.
+Une solution possible serait que j`'essaie de changer ma manière de travailler, pour qu`'elle soit "`par défaut`" plus proche de ce qui est nécessaire pour le {pp}, mais je ne sais pas si c`'est quelque chose que je serais prêt à faire, car je crains que cela ne me ralentisse et me rende le développement moins agréable.
 
-Dans les discussions sur le {pp}, j'ai déjà croisé des remarques sur le fait que la communication demande de l'énergie, mais je n'ai pas souvenir d'avoir vu traiter les deux autres sujets, et donc je ne sais pas si mon cas est isolé ou pas.
+Dans les discussions sur le {pp}, j`'ai déjà croisé des remarques sur le fait que la communication demande de l`'énergie, mais je n`'ai pas souvenir d`'avoir vu traiter les deux autres sujets, et donc je ne sais pas si mon cas est isolé ou pas.
 
 Pour conclure, deux avertissements{nbsp}:
 
-- Tout d'abord les difficultés dont je parle ici sont valables pour moi, dans les projets où j'ai pratiqué le {pp}. Je ne prétends pas qu'elles s'appliquent à tout le monde ni même que j'aurais forcément les mêmes sur d'autres projets.
-- Ensuite ces difficultés ne signifient pas que je pense que le {pp} est une mauvaise pratique. Si c'était le cas je n'en ferai pas. Je veux simplement relater mon expérience, en espérant qu'elle résonne avec celle d'autres personnes.
+- Tout d`'abord les difficultés dont je parle ici sont valables pour moi, dans les projets où j`'ai pratiqué le {pp}. Je ne prétends pas qu`'elles s`'appliquent à tout le monde ni même que j`'aurais forcément les mêmes sur d`'autres projets.
+- Ensuite ces difficultés ne signifient pas que je pense que le {pp} est une mauvaise pratique. Si c`'était le cas je n`'en ferai pas. Je veux simplement relater mon expérience, en espérant qu`'elle résonne avec celle d`'autres personnes.

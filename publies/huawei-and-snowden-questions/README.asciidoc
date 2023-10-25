@@ -3,37 +3,37 @@ Julien Kirch
 v0.1, 2020-01-10
 :article_lang: fr
 :article_image: cover.jpg
-:article_description: L'informatique sans la confiance
+:article_description: L`'informatique sans la confiance
 
-Que peut-on faire quand on n'a pas confiance dans les organisations qui nous fournissent notre matériel et nos logiciels ?
+Que peut-on faire quand on n`'a pas confiance dans les organisations qui nous fournissent notre matériel et nos logiciels ?
 
-Il y a quelques années il s'agissait d'une question de niche, mais depuis les révélations d'Edward Snowden sur la NSA qui modifiait du matériel Cisco avant qu'il ne soit transmis à ses client·e·s, et les soupçons contre Huawei de fournir des backdoors à l'État chinois les personnes qui s'intéressent à ces sujets sont de plus en plus en nombreuses, même si c'est seulement pour leur culture.
+Il y a quelques années il s`'agissait d`'une question de niche, mais depuis les révélations d`'Edward Snowden sur la NSA qui modifiait du matériel Cisco avant qu`'il ne soit transmis à ses client·e·s, et les soupçons contre Huawei de fournir des backdoors à l`'État chinois les personnes qui s`'intéressent à ces sujets sont de plus en plus en nombreuses, même si c`'est seulement pour leur culture.
 
-Dans ce livre, link:https://www.springer.com/gp/book/9783319749495[en libre accès dans sa version électronique], Olav Lysne s'adresse justement à ces personnes qui ont des connaissances très générales en informatique et qui cherchent à acquérir un vernis sur ce sujet.
+Dans ce livre, link:https://www.springer.com/gp/book/9783319749495[en libre accès dans sa version électronique], Olav Lysne s`'adresse justement à ces personnes qui ont des connaissances très générales en informatique et qui cherchent à acquérir un vernis sur ce sujet.
 
-Le livre est court et didactique et propose ce qui semble être une bonne synthèse de l'état de l'art sur le sujet de la confiance dans l'informatique.
+Le livre est court et didactique et propose ce qui semble être une bonne synthèse de l`'état de l`'art sur le sujet de la confiance dans l`'informatique.
 
-Le sous-titre du livre est "`L'équipement électronique de vendeurs qui ne sont pas de confiance peut-il être vérifié{nbsp}? Les vendeurs qui ne sont pas de confiance peuvent-ils introduire de la confiance dans un équipement électronique{nbsp}?`" et le livre va décliner ces deux axes sur les différentes approches qui pourraient permettre de créer de la confiance dans un composant électronique{nbsp}: méthodes formelles, gestion de la qualité…
+Le sous-titre du livre est "`L`'équipement électronique de vendeurs qui ne sont pas de confiance peut-il être vérifié{nbsp}? Les vendeurs qui ne sont pas de confiance peuvent-ils introduire de la confiance dans un équipement électronique{nbsp}?`" et le livre va décliner ces deux axes sur les différentes approches qui pourraient permettre de créer de la confiance dans un composant électronique{nbsp}: méthodes formelles, gestion de la qualité…
 
-Deux choses m'ont frappé.
+Deux choses m`'ont frappé.
 
-La première c'est la différence entre la sécurisation classique, par exemple pour se protéger contre un virus venu infester un système, et celui où le système est compromis dès le début.
+La première c`'est la différence entre la sécurisation classique, par exemple pour se protéger contre un virus venu infester un système, et celui où le système est compromis dès le début.
 
-En effet la plupart des manières dont on sait, ou du moins dont on tente de, sécuriser un système se basent sur des comparaisons avec un système "`sain`"{nbsp} de confiance: est ce que les comportements qu'on observe sont standards, est-ce qu'ils correspondent à ce que nous dit le vendeur du produit…
+En effet la plupart des manières dont on sait, ou du moins dont on tente de, sécuriser un système se basent sur des comparaisons avec un système "`sain`"{nbsp} de confiance: est ce que les comportements qu`'on observe sont standards, est-ce qu`'ils correspondent à ce que nous dit le vendeur du produit…
 
-Mais sans point de comparaison "`sain`" connu, et avec des vendeurs potentiellement malhonnêtes, beaucoup d'outils bien utiles dans d'autres situations ne peuvent pas être mis en œuvre, ou leur efficacité est au moins sérieusement diminuée.
+Mais sans point de comparaison "`sain`" connu, et avec des vendeurs potentiellement malhonnêtes, beaucoup d`'outils bien utiles dans d`'autres situations ne peuvent pas être mis en œuvre, ou leur efficacité est au moins sérieusement diminuée.
 
-La seconde c'est qu'avec les approches qui restent applicables, il n'est pas possible d'aller très loin, en tout cas pour le moment.
-Le problème principal est la complexité des systèmes actuels par rapport à la capacité d'analyse des outils.
+La seconde c`'est qu`'avec les approches qui restent applicables, il n`'est pas possible d`'aller très loin, en tout cas pour le moment.
+Le problème principal est la complexité des systèmes actuels par rapport à la capacité d`'analyse des outils.
 
-Par exemple les approches formelles permettent de prouver que des programmes font ce qu'ils décrivent et uniquement cela, par exemple des link:https://sel4.systems[systèmes d'exploitations]. Mais les contraintes techniques et de coût font qu'elles ne sont applicables qu'à des programmes bien spécifiques et de taille souvent très limitée.
+Par exemple les approches formelles permettent de prouver que des programmes font ce qu`'ils décrivent et uniquement cela, par exemple des link:https://sel4.systems[systèmes d`'exploitations]. Mais les contraintes techniques et de coût font qu`'elles ne sont applicables qu`'à des programmes bien spécifiques et de taille souvent très limitée.
 
-L'espoir de l'auteur c'est qu'avec la nouvelle importance donnée à ces questions, de nouvelles approches vont émerger et permettre de combler certains des manques actuels.
-C'est par exemple le cas de la link:https://reproducible-builds.org[compilation reproductible], même si elle n'est qu'un maillon d'une chaîne qui reste à construire.
+L`'espoir de l`'auteur c`'est qu`'avec la nouvelle importance donnée à ces questions, de nouvelles approches vont émerger et permettre de combler certains des manques actuels.
+C`'est par exemple le cas de la link:https://reproducible-builds.org[compilation reproductible], même si elle n`'est qu`'un maillon d`'une chaîne qui reste à construire.
 
-Pour les autres il faudra peut-être choisir de sacrifier certaines fonctionnalités ou un certain niveau de performance pour avoir un système de confiance en s'interdisant d'acheter certains composants ou d'utiliser certains outils.
+Pour les autres il faudra peut-être choisir de sacrifier certaines fonctionnalités ou un certain niveau de performance pour avoir un système de confiance en s`'interdisant d`'acheter certains composants ou d`'utiliser certains outils.
 
-Même si une intrusion de la NSA n'est un risque qui ne concerne qu'un petit nombre d'acteurs, toucher du doigt l'incapacité de maîtriser réellement la majorité des systèmes qu'on utilise est assez vertigineux et vaut d'ouvrir ce livre.
+Même si une intrusion de la NSA n`'est un risque qui ne concerne qu`'un petit nombre d`'acteurs, toucher du doigt l`'incapacité de maîtriser réellement la majorité des systèmes qu`'on utilise est assez vertigineux et vaut d`'ouvrir ce livre.
 
-On voit bien qu'une nouvelle boite de pandore a été ouverte, et je suis persuadé que d'ici quelque temps de multiples vendeurs viendront nous proposer des solutions _magiques_ à ce problème.
+On voit bien qu`'une nouvelle boite de pandore a été ouverte, et je suis persuadé que d`'ici quelque temps de multiples vendeurs viendront nous proposer des solutions _magiques_ à ce problème.
 Connaître un peu ce sujet deviendra alors essentiel pour avoir une chance de leur échapper.

@@ -25,7 +25,7 @@ ifeval::["{doctype}" != "book"]
 In link:../baba-is-you-1/[the previous part]
 endif::[]
 I wrote the code to read the levels.
-While I'd love to jump straight to the solving logic, I need to establish the game loop first. It's plumbing time!
+While I`'d love to jump straight to the solving logic, I need to establish the game loop first. It`'s plumbing time!
 
 This is fairly generic code, and I was able to port most of it from my previous link:https://github.com/archiloque/rgbexpress[efforts].
 
@@ -33,9 +33,9 @@ include::graph1.asciidoc[]
 
 == The level
 
-I'll use a `Level` class to hold all the data related to a game level.
+I`'ll use a `Level` class to hold all the data related to a game level.
 For now it will just contain the level data we read from disk.
-I know from experience that I'll add other data to simplify and speed up the calculations.
+I know from experience that I`'ll add other data to simplify and speed up the calculations.
 
 .Level.java
 [source,java]
@@ -45,7 +45,7 @@ include::level1.java[]
 
 My next class, the `State`, represents a state of the game being solved.
 Just as the `Level`, it starts out as a small class with few attributes (the current status of the game and a reference to the `Level`) and it will become larger as I add features.
-For instance, this is where I'll handle Baba's dynamically changing rules.
+For instance, this is where I`'ll handle Baba`'s dynamically changing rules.
 
 .State.java
 [source,java]
@@ -59,14 +59,14 @@ I could represent my list of game states as a link:https://en.wikipedia.org/wiki
 
 A FIFO may find a solution faster but the solution may be not be the shortest, a stack will find the solution that requires the lowest number of move, but requires more time and memory since it tends explore more possibilities before finding a solution.
 
-Which works best depends on the game I'm solving.
+Which works best depends on the game I`'m solving.
 Rather than choose by a fixed criterion, I just start from something that makes sense and tweak it as I go. 
 
-I used a FIFO queue for my last project, let's use that again.
+I used a FIFO queue for my last project, let`'s use that again.
 
 Rather than depend on an existing FIFO implementation, I just roll my own.
 The code is short and it does exactly what I need and nothing more.
-It's another thing to tweak when a solver hit a speed limit, in my last games this code was the faster.
+It`'s another thing to tweak when a solver hit a speed limit, in my last games this code was the faster.
 
 .FiFoQueue.java
 [source,java]
@@ -101,4 +101,4 @@ With the workflow completed, I can now run the program run and watch it solve it
 include::log1.txt[]
 ----
 
-In the next part I'll put all the plumbing to good use and add some logic to the code.
+In the next part I`'ll put all the plumbing to good use and add some logic to the code.

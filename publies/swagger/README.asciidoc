@@ -33,8 +33,8 @@ In this case, it means the swagger content should be coherent with your code.
 The best way to do it is to make your services unit tests swagger-aware:
 
 - Read your swagger info at the beginning of your tests.
-- Each time you call a service in a test, validate that the parameters and results match the swagger's content.
-- If it doesn't, fail the test.
+- Each time you call a service in a test, validate that the parameters and results match the swagger`'s content.
+- If it doesn`'t, fail the test.
 
 Example:
 
@@ -50,46 +50,46 @@ include::petstore_1.rb[]
 include::test_petstore.rb[]
 ----
 
-There's existing tool for several frameworks doing it for you; and if it doesn't you can hack one in a few hours (I've done it link:https://github.com/archiloque/sinatra-swagger-exposer[myself]).
+There`'s existing tool for several frameworks doing it for you; and if it doesn`'t you can hack one in a few hours (I`'ve done it link:https://github.com/archiloque/sinatra-swagger-exposer[myself]).
 
 === The generated swagger case
 
 If you use a statically-typed language like java that use link:https://spring.io/guides/gs/rest-service/[annotation-like metadata to define your REST endpoints], you probably generate the swagger content from your code instead of writing it.
 
-As the swagger is generated from your code, you may think you don't need this kind of tests because the compiler and/or your framework validate everything for you.
+As the swagger is generated from your code, you may think you don`'t need this kind of tests because the compiler and/or your framework validate everything for you.
 
-But I have a bad news for you, there's two reasons why you still should do it:
+But I have a bad news for you, there`'s two reasons why you still should do it:
 
 ==== All metadata are not checked
 
-All the metadata information is not checked, for example if you specify the minimum number for the value of the max length of a string, it won't be checked automatically.
+All the metadata information is not checked, for example if you specify the minimum number for the value of the max length of a string, it won`'t be checked automatically.
 
-==== Don't break the API
+==== Don`'t break the API
 
 When you publish an API the last thing you want is to break it unknowingly: you should version your API and carefully manage the incompatible changes.
 
-When the swagger is manually written, validating your services against it ensure that you don't introduce any change in your API. But if you generate the swagger, a bad "`rename attribute`" in your code can break your API.
+When the swagger is manually written, validating your services against it ensure that you don`'t introduce any change in your API. But if you generate the swagger, a bad "`rename attribute`" in your code can break your API.
 
-Even if code reviews should prevent this kind of things, it's better to rely on an automatic validation:
+Even if code reviews should prevent this kind of things, it`'s better to rely on an automatic validation:
 
-- Each time you publish a new API version, export the generated swagger content, and store it with your code and don't touch it.
+- Each time you publish a new API version, export the generated swagger content, and store it with your code and don`'t touch it.
 - Apply the testing approach described before with the archived swagger.
 - When you want to add a change:
 ** export the new swagger,
 ** compare it with the archived one,
 ** if the change is ok for you, you can replace the archived version.
 
-This way you'll be sure that you won't break your API.
+This way you`'ll be sure that you won`'t break your API.
 
 == The best thing about a specification is when you can leverage it in your runtime code
 
 After adding the test validation I just described, you decide to add another endpoint:
 
-- You first add the description to the swagger, specifying that a person's name should be `maxlength: 400` characters (because the CRAM can't process longer names).
+- You first add the description to the swagger, specifying that a person`'s name should be `maxlength: 400` characters (because the CRAM can`'t process longer names).
 - You write the service code, the first line being `ensureLength(person.name, 400);`
 - You just wrote the same exact thing two times: something is wrong.
 
-You probably guessed what I'm going to say: you should also rely on the swagger information at runtime to act like a link:https://en.wikipedia.org/wiki/Application_firewall[application firewall]: each query should be matched by a technical layer with the swagger content before reaching your application code.
+You probably guessed what I`'m going to say: you should also rely on the swagger information at runtime to act like a link:https://en.wikipedia.org/wiki/Application_firewall[application firewall]: each query should be matched by a technical layer with the swagger content before reaching your application code.
 
 Example:
 
@@ -101,7 +101,7 @@ include::petstore_2.rb[]
 
 If you hacked a tool for the testing case, updating it to manage this case should be a simple task since all the complicated stuff is already done.
 
-(In my opinion this should be a perfect use case for API management solutions. I hope they'll add this feature soon and talk about it so people will hear about it.)
+(In my opinion this should be a perfect use case for API management solutions. I hope they`'ll add this feature soon and talk about it so people will hear about it.)
 
 Again, if you use a statically-typed language, your framework should already cover parts of the validations but not all of them, so you still should do it for the missing ones.
 

@@ -2,15 +2,15 @@
 Julien Kirch
 v1.0, 2016-02-14
 :article_lang: en
-:article_description: Code sample for when you want to access the instance variables of the Sinatra application you're testing
+:article_description: Code sample for when you want to access the instance variables of the Sinatra application you`'re testing
 :ignore_files: app.rb, config.ru, index.html.erb, Rakefile.rb, test_app.rb
 
 link:http://www.sinatrarb.com[Sinatra] is my framework of choice when writing simple Ruby applications for my personal needs.
 
-link:https://github.com/brynary/rack-test[Rack:Test] is nice to test Sinatra applications in black box so it's enough when the application is an JSON API.
-But when you write a classical web application that serves html pages it's easier to do some white box testing, and in Sinatra this means accessing the instance variables of the application.
+link:https://github.com/brynary/rack-test[Rack:Test] is nice to test Sinatra applications in black box so it`'s enough when the application is an JSON API.
+But when you write a classical web application that serves html pages it`'s easier to do some white box testing, and in Sinatra this means accessing the instance variables of the application.
 
-The nice thing with Ruby is that it's so dynamic that when you use a framework easy to debug and you have a little patience, it's easy to transform a black box into a white one.
+The nice thing with Ruby is that it`'s so dynamic that when you use a framework easy to debug and you have a little patience, it`'s easy to transform a black box into a white one.
 
 As other may find this trick useful, this is a code sample to access your Sinatra app instance variables from your tests.
 

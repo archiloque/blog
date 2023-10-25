@@ -1,6 +1,6 @@
 import sys
 
-input = list(map(lambda l: int(l.strip().split(' ')[-1]), open(sys.argv[1]).readlines()))
+input = list(map(lambda l: int(l.strip().split(`' `')[-1]), open(sys.argv[1]).readlines()))
 
 player_positions = [input[0], input[1]]
 player_scores = [0, 0]

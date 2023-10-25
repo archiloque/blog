@@ -11,12 +11,12 @@ def iterate_cycle(connection, type, elements)
         end
         STDOUT << " #{type} #{element[:name]} dropped\n"
       rescue PG::DependentObjectsStillExist
-        STDOUT << " #{type} #{element[:name]} has a dependency and can't be dropped\n"
+        STDOUT << " #{type} #{element[:name]} has a dependency and can`'t be dropped\n"
         not_deleted_elements << element
       end
     end
     if elements.length == not_deleted_elements.length
-      raise "Blocked: #{elements.length} #{type}(s) are left: #{elements.join(',')}"
+      raise "Blocked: #{elements.length} #{type}(s) are left: #{elements.join(`',`')}"
     end
     elements = not_deleted_elements
   end
@@ -27,15 +27,15 @@ end
 def drop_triggers(connection)
   triggers = []
   connection.exec(
-    'SELECT tgname, relname
+    `'SELECT tgname, relname
     FROM pg_trigger, pg_class
-    WHERE tgrelid=pg_class.oid and tgisinternal = false'
+    WHERE tgrelid=pg_class.oid and tgisinternal = false`'
   ) do |result|
     result.each_row do |row|
       triggers << {:name => row[0], :table => row[1]}
     end
   end
-  iterate_cycle(connection, 'trigger', triggers) do |trigger|
+  iterate_cycle(connection, `'trigger`', triggers) do |trigger|
     "drop trigger #{trigger[:name]} on #{trigger[:table]}"
   end
 end
@@ -44,17 +44,17 @@ end
 def drop_functions(connection)
   functions = []
   connection.exec_params(
-    'select proname, p.oid, pg_get_function_identity_arguments(p.oid)
+    `'select proname, p.oid, pg_get_function_identity_arguments(p.oid)
     from pg_proc p
     join pg_namespace ns on ns.oid = p.pronamespace
-    where ns.nspname = $1',
-    ['public']
+    where ns.nspname = $1`',
+    [`'public`']
   ) do |result|
     result.each_row do |row|
       functions << {:name => row[0], :oid => row[1], :args => row[2]}
     end
   end
-  iterate_cycle(connection, 'function', functions) do |function|
+  iterate_cycle(connection, `'function`', functions) do |function|
     "drop function #{function[:name]}(#{function[:args]})"
   end
 end
@@ -63,21 +63,21 @@ end
 def drop_tables(connection)
   tables = []
   connection.exec_params(
-    'select tablename from pg_catalog.pg_tables where schemaname = $1',
-    ['public']
+    `'select tablename from pg_catalog.pg_tables where schemaname = $1`',
+    [`'public`']
   ) do |result|
     result.each_row do |row|
       tables << {:name => row[0]}
     end
   end
-  iterate_cycle(connection, 'table', tables) do |table|
+  iterate_cycle(connection, `'table`', tables) do |table|
     "drop table #{table[:name]}"
   end
 end
 
 # Clear everything from the database
 def clear_database(host, port, user, password, database)
-  require 'pg'
+  require `'pg`'
   connection = PG::Connection.new(
     {
       :host => host,

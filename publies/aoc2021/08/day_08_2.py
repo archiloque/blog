@@ -9,11 +9,11 @@ uniques_number_of_segments_to_numbers = {
 
 
 def process_line(line: str) -> int:
-    splitted_lines = line.split('|')
+    splitted_lines = line.split(`'|`')
     signal_patterns = list(
-        map(lambda s: ''.join(sorted(s)), splitted_lines[0].strip().split(' ')))
+        map(lambda s: `'`'.join(sorted(s)), splitted_lines[0].strip().split(`' `')))
     output_values = list(
-        map(lambda s: ''.join(sorted(s)), splitted_lines[1].strip().split(' ')))
+        map(lambda s: `'`'.join(sorted(s)), splitted_lines[1].strip().split(`' `')))
     values = signal_patterns + output_values
 
     length_to_values = {}
@@ -77,7 +77,7 @@ def process_line(line: str) -> int:
                 known_numbers[2] = candidate_set
                 length_to_values[5].remove(candidate)
 
-    known_numbers_reverse = dict((''.join(sorted(v)), k) for k, v in known_numbers.items())
+    known_numbers_reverse = dict((`'`'.join(sorted(v)), k) for k, v in known_numbers.items())
 
     result = known_numbers_reverse[output_values[0]] * 1000 + \
              known_numbers_reverse[output_values[1]] * 100 + \

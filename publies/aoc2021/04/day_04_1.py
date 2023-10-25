@@ -60,7 +60,7 @@ boards = []
 for board_index in range(0, number_of_boards):
     boards.append(Board(lines[(2 + (board_index * 6)):(7 + (board_index * 6))]))
 
-for move in map(int, lines[0].split(',')):
+for move in map(int, lines[0].split(`',`')):
     for board in boards:
         board.draw_number(move)
         if board.win():

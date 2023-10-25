@@ -8,24 +8,24 @@ v1.0, 2020-02-16
 
 [quote]
 ____
-I keep talking about this, but I think it's really fascinating how computer art tools typically are restricted to trying to simulate the art tools that happen in real life. We get very little expression that's unique to the digital format. You actually have to work pretty hard in Photoshop to simulate glitch art. Even pixel art isn't very directly supported (you kind of have to work a little to get that).
+I keep talking about this, but I think it`'s really fascinating how computer art tools typically are restricted to trying to simulate the art tools that happen in real life. We get very little expression that`'s unique to the digital format. You actually have to work pretty hard in Photoshop to simulate glitch art. Even pixel art isn`'t very directly supported (you kind of have to work a little to get that).
 
-So when you're approaching an art tool and the specific goal is to be unique to digital art… designing that is really fascinating. Even just coming up with concepts of "`Ok, how do you even support glitch art?`" "`How should someone draw with a glitch?`" is an interesting problem to approach. There's not defined design language for how you would enable "`brokenness`" in an art tool.
+So when you`'re approaching an art tool and the specific goal is to be unique to digital art… designing that is really fascinating. Even just coming up with concepts of "`Ok, how do you even support glitch art?`" "`How should someone draw with a glitch?`" is an interesting problem to approach. There`'s not defined design language for how you would enable "`brokenness`" in an art tool.
 
 Brokenness aside, what is unique to computers and how would you properly enable that in an art tool?
 
-Tool design is weirdly a lot like game design. When the tools are very new (unique, and no practical "`art language`" exists for their purpose), you also have to teach people how to use them. They have to be _approachable_ enough for people to feel comfortable to mess around in them. You can't have any sense of failure or judgement on part of the tool. If things were presented in such a way as there were "`stakes`" involved, or some kind of urgency for efficiency looming over experimental tools, then I think people would be too intimidated to explore them.
+Tool design is weirdly a lot like game design. When the tools are very new (unique, and no practical "`art language`" exists for their purpose), you also have to teach people how to use them. They have to be _approachable_ enough for people to feel comfortable to mess around in them. You can`'t have any sense of failure or judgement on part of the tool. If things were presented in such a way as there were "`stakes`" involved, or some kind of urgency for efficiency looming over experimental tools, then I think people would be too intimidated to explore them.
 
 Like surrealism, abstraction, or a humorous presentation (environment) for them helps a lot.
 
 The tone a program sets is how people will feel inclined to use it.
 ____
 
-== link:http://joeduffyblog.com/2016/02/07/the-error-model/[The (Midori's) error model]
+== link:http://joeduffyblog.com/2016/02/07/the-error-model/[The (Midori`'s) error model]
 
 [quote]
 ____
-My conclusion is that's why many people in the industry think unchecked exceptions are "`good enough`". They stay out of your way for the common success paths and, because most people don't write robust error handling code in non-systems programs, throwing an exception _usually_ gets you out of a pickle fast. Catching and then proceeding often works too. No harm, no foul. Statistically speaking, programs "`work`".
+My conclusion is that`'s why many people in the industry think unchecked exceptions are "`good enough`". They stay out of your way for the common success paths and, because most people don`'t write robust error handling code in non-systems programs, throwing an exception _usually_ gets you out of a pickle fast. Catching and then proceeding often works too. No harm, no foul. Statistically speaking, programs "`work`".
 
 ____
 
@@ -35,7 +35,7 @@ ____
 ____
 Weird machines -- the computational models accessible by exploiting security vulnerabilities -- arise from the difference between the model a programmer has in her head of how her program should run and the implementation that actually executes. Previous attempts to reason about or identify weird machines have viewed these models through the lens of formal computational structures such as state machines and Turing machines. But because programmers rarely think about programs in this way, it is difficult to effectively apply insights about weird machines to improve security.
 
-We present a new view of weird machines based on techniques from programming languages theory and secure compilation. Instead of an underspecified model drawn from a programmers' head, we start with a program written in a high-level source language that enforces security properties by design. Instead of state machines to describe computation, we use the well-defined semantics of this source language and a target language, into which the source program will be compiled. Weird machines are the sets of behaviors that can be achieved by a compiled source program in the target language that cannot be achieved in the source language directly. That is, exploits are witnesses to insecure compilation.
+We present a new view of weird machines based on techniques from programming languages theory and secure compilation. Instead of an underspecified model drawn from a programmers`' head, we start with a program written in a high-level source language that enforces security properties by design. Instead of state machines to describe computation, we use the well-defined semantics of this source language and a target language, into which the source program will be compiled. Weird machines are the sets of behaviors that can be achieved by a compiled source program in the target language that cannot be achieved in the source language directly. That is, exploits are witnesses to insecure compilation.
 ____
 
 [quote]
@@ -49,9 +49,9 @@ ____
 ____
 * 3. The severity of an incident is measured by the number of rules broken in resolving it.
 * 10. Your infrastructure uses a lot more self-signed certificates than you think. A lot more. In places that make you weep.
-* 26) Your network team has a way into the network that your security team doesn't know about.
-* 37) Nobody knows how git works; everybody simply ``rm -fr && git checkout``'s periodically.
-* 38) There are very few network restrictions creative and determined use of `ssh(1)` port forwarding can't overcome.
+* 26) Your network team has a way into the network that your security team doesn`'t know about.
+* 37) Nobody knows how git works; everybody simply ``rm -fr && git checkout```'s periodically.
+* 38) There are very few network restrictions creative and determined use of `ssh(1)` port forwarding can`'t overcome.
 * 45) Some of your most critical services are kept alive by a handful of people whose job description does not mention those services at all.
 ____
 
@@ -63,11 +63,11 @@ I first got into web design/development in the late 90s, and only as I type this
 
 And boy, it was horrendous. I mean, being able to make stuff and put it online where other people could see it was pretty slick, but we did not have very much to work with.
 
-I've been taking for granted that _most_ folks doing web stuff still remember those days, or at least the decade that followed, but I think that assumption might be a wee bit out of date. Some time ago I encountered a link:https://twitter.com/keinegurke_/status/1162309192855822339[tweet] marvelling at what we had to do without `border-radius`. I still remember waiting with bated breath for it to be unprefixed!
+I`'ve been taking for granted that _most_ folks doing web stuff still remember those days, or at least the decade that followed, but I think that assumption might be a wee bit out of date. Some time ago I encountered a link:https://twitter.com/keinegurke_/status/1162309192855822339[tweet] marvelling at what we had to do without `border-radius`. I still remember waiting with bated breath for it to be unprefixed!
 
 But then, I suspect I also know a number of folks who only tried web design in the old days, and assume nothing about it has changed since.
 
-I'm here to tell "`all`" of you to get off my lawn. Here's a history of CSS and web design, as I remember it.
+I`'m here to tell "`all`" of you to get off my lawn. Here`'s a history of CSS and web design, as I remember it.
 ____
 
 == link:https://www.manifestno.com[Feminist data manifest-no]
@@ -102,7 +102,7 @@ ____
 ____
 Performance changes how users use software
 
-It's probably fairly intuitive that users prefer faster software, and will have a better experience performing a given task if the tools are faster rather than slower.
+It`'s probably fairly intuitive that users prefer faster software, and will have a better experience performing a given task if the tools are faster rather than slower.
 
-What is perhaps less apparent is that having faster tools _changes how users use a tool or perform a task_. Users almost always have multiple strategies available to pursue a goal -- including deciding to work on something else entirely -- and they will choose to use faster tools more and more frequently. Fast tools don't just allow users to accomplish tasks faster; they allow users to accomplish entirely new types of tasks, in entirely new ways.
+What is perhaps less apparent is that having faster tools _changes how users use a tool or perform a task_. Users almost always have multiple strategies available to pursue a goal -- including deciding to work on something else entirely -- and they will choose to use faster tools more and more frequently. Fast tools don`'t just allow users to accomplish tasks faster; they allow users to accomplish entirely new types of tasks, in entirely new ways.
 ____

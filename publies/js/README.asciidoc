@@ -6,7 +6,7 @@ v1.0, 2017-09-07
 :article_lang: en
 
 . Recent JavaScript has link:https://babeljs.io/learn-es2015/[many new features] that improves developers experience and makes easier to write clean code.
-. Unfortunately, link:https://kangax.github.io/compat-table/es6/[all browsers don't support all new features], specially old versions.
+. Unfortunately, link:https://kangax.github.io/compat-table/es6/[all browsers don`'t support all new features], specially old versions.
 . To still be able to use the new features, developers use link:https://babeljs.io["`transpilers`"] than transform modern JavaScript into old JavaScript so old browsers can understand it.
 . As a consequence, most of newly written JavaScript is deployed as old JavaScript.
 . Developers working on browsers want to make them fast.

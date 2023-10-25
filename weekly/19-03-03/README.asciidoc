@@ -8,7 +8,7 @@ v1.0, 2019-03-10
 
 [quote]
 ____
-The fascinating thing about identifiers is that while they identify the same "`thing`" over time, that referenced thing may slide around in its meaning. Product descriptions, reviews, and inventory balance all change, while the product ID does not. Reservations, orders, and bookings all have identifiers that don't change, while the stuff they identify may subtly change over time.
+The fascinating thing about identifiers is that while they identify the same "`thing`" over time, that referenced thing may slide around in its meaning. Product descriptions, reviews, and inventory balance all change, while the product ID does not. Reservations, orders, and bookings all have identifiers that don`'t change, while the stuff they identify may subtly change over time.
 
 Identity and identifiers provide the immutable linkage. Both sides of this linkage may change, but they provide a semantic consistency needed by the business operation. No matter what you call it, identity is the glue that makes things stick and lubricates cooperative work.
 ____
@@ -39,7 +39,7 @@ ____
 
 [quote]
 ____
-Identities must be scoped in space and time so that they don't cause ambiguities. This is, on the one hand, an obvious and silly thing to say. On the other hand, it is a liberating concept.
+Identities must be scoped in space and time so that they don`'t cause ambiguities. This is, on the one hand, an obvious and silly thing to say. On the other hand, it is a liberating concept.
 
 Identifiers may have permanent unique IDs like those offered by UUIDs. These are powerful and useful. Identifiers may have a centralized or hierarchical authority that assigns their IDs, and that, by itself, offers challenges: Does this authority scale? Is it broad enough in its role to encompass the many different pieces of the solution?
 
@@ -71,7 +71,7 @@ to produce nondeterministic results, which complicates testing and debugging.
 For programs that replicate state, this nondeterminism can lead to replica divergence and other consistency anomalies.
 Exerting control over delivery order to ensure that sequential programs are executed in lock-step can incur unacceptable performance penalties in a distributed execution.
 
-At the other end of the spectrum, purely "`declarative`" languages like SQL -- which shift the programmer's focus from _computation_ to _data_ -- are set-based and lack the ability to even express ordered operations.
+At the other end of the spectrum, purely "`declarative`" languages like SQL -- which shift the programmer`'s focus from _computation_ to _data_ -- are set-based and lack the ability to even express ordered operations.
 In exchange for this limited expressivity, statements in such languages can besafely evaluated in a data-parallel, coordination-free manner.
 
 Disorderly programming -- a theme that we explore in this thesis through language design -- extends the declarative programming paradigm with a minimal set of ordering constructs.
@@ -84,12 +84,12 @@ ____
 
 [quote]
 ____
-Sadly, the lack of foundations for the people at most of the booths mirrored the lack of a solid foundation for the products. There are some good, useful products and services present on the market. But the vast majority are intended to apply bandaids (or another layer of virtualization) on top of broken software and hardware that was never adequately designed for security. Each time one of those bandaids fails, another company springs up to slap another on over the top. That then leads to acquisition and integration into security suites. No one is really attacking the poor underlying assumptions and broken architectures. This is related to why I don't submit proposals to talk at the conference -- I tried a few years ago and the message conveyed to me was that it was out of step with what the sponsors wanted presented. The industry is primarily based on selling the illusion that vendors' products can -- in the right combination and with enough money spent -- completely protect target systems. Someone pointing out that this is fundamentally flawed is not a welcome addition. I get that a lot -- it is probably why I don't get asked to be a company advisor, either.
+Sadly, the lack of foundations for the people at most of the booths mirrored the lack of a solid foundation for the products. There are some good, useful products and services present on the market. But the vast majority are intended to apply bandaids (or another layer of virtualization) on top of broken software and hardware that was never adequately designed for security. Each time one of those bandaids fails, another company springs up to slap another on over the top. That then leads to acquisition and integration into security suites. No one is really attacking the poor underlying assumptions and broken architectures. This is related to why I don`'t submit proposals to talk at the conference -- I tried a few years ago and the message conveyed to me was that it was out of step with what the sponsors wanted presented. The industry is primarily based on selling the illusion that vendors`' products can -- in the right combination and with enough money spent -- completely protect target systems. Someone pointing out that this is fundamentally flawed is not a welcome addition. I get that a lot -- it is probably why I don`'t get asked to be a company advisor, either.
 ____
 
 == link:https://news.ycombinator.com/item?id=19351639[Single-file cross-platform C/{cpp} headers implementing self-contained libraries]
 
 [quote]
 ____
-Besides, descriptive variable names violate the principle of "`don't repeat yourself`". It is better to describe the variable only once, in a comment next to its declaration, instead of several times
+Besides, descriptive variable names violate the principle of "`don`'t repeat yourself`". It is better to describe the variable only once, in a comment next to its declaration, instead of several times
 ____

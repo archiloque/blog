@@ -2,9 +2,9 @@
 Julien Kirch
 v1.0, 2015-01-15
 :article_image: graphe0.png
-:article_description: Si vous avez déjà assisté à une présentation sur l'organisation de projet, on vous a certainement présenté un slide sur les méfaits du multi-tâche pour les développeurs. Malheureusement cette démonstration ne repose sur rien.
+:article_description: Si vous avez déjà assisté à une présentation sur l`'organisation de projet, on vous a certainement présenté un slide sur les méfaits du multi-tâche pour les développeurs. Malheureusement cette démonstration ne repose sur rien.
 :ignore_files: multi-tache.xlsx
-Si vous avez déjà assisté à une présentation sur l'organisation de projet, on vous a certainement présenté un slide sur les méfaits du multi-tâche pour les développeurs. Malheureusement cette démonstration ne repose sur rien.
+Si vous avez déjà assisté à une présentation sur l`'organisation de projet, on vous a certainement présenté un slide sur les méfaits du multi-tâche pour les développeurs. Malheureusement cette démonstration ne repose sur rien.
 :figure-caption!:
 
 Ce slide le voici{nbsp}:
@@ -15,27 +15,27 @@ Par exemple link:http://availagility.co.uk/2008/10/28/kanban-flow-and-cadence/[i
 
 Ce graphique est très efficace{nbsp}:
 
-- sa forme est frappante{nbsp}: on comprend immédiatement qu'il faut bannir complètement le multi-tâche.
+- sa forme est frappante{nbsp}: on comprend immédiatement qu`'il faut bannir complètement le multi-tâche.
 - la source donnée est un gage de sérieux{nbsp}: Gerald Weinberg est un nom connu, et le titre du livre (_Quality Software Management: Vol. 1 System Thinking_) impressionne.
 
 Mais ce graphe a deux défauts{nbsp}:
 
 - il est toujours présenté de façon identique{nbsp}: le même aspect avec la même manière de citer la source
-- la manière dont les valeurs ont été déterminées n'est jamais précisée
+- la manière dont les valeurs ont été déterminées n`'est jamais précisée
 
-Cela laisse présager qu'on se trouve devant un anti-pattern classique{nbsp}: un même schéma est recopié par tout le monde, sans que personne ne consulte la source originale, surtout qu'ici le livre est ancien et n'existe pas sous forme électronique. Et ce qui arrive malheureusement souvent c'est que le schéma que tout le monde copie prend des liberté avec sa source{empty}footnote:[Lire link:https://leanpub.com/leprechauns[_The Leprechauns of Software Engineering_] de link:https://twitter.com/morendil[Laurent Bossavit] où il donne plusieurs exemples de ce pattern qui permettent ensuite de l'identifier facilement].
+Cela laisse présager qu`'on se trouve devant un anti-pattern classique{nbsp}: un même schéma est recopié par tout le monde, sans que personne ne consulte la source originale, surtout qu`'ici le livre est ancien et n`'existe pas sous forme électronique. Et ce qui arrive malheureusement souvent c`'est que le schéma que tout le monde copie prend des liberté avec sa source{empty}footnote:[Lire link:https://leanpub.com/leprechauns[_The Leprechauns of Software Engineering_] de link:https://twitter.com/morendil[Laurent Bossavit] où il donne plusieurs exemples de ce pattern qui permettent ensuite de l`'identifier facilement].
 
-Bref il est temps d'enquêter. Le livre étant ancien link:http://www.amazon.com/exec/obidos/ASIN/0932633226[un peu de patience et quelques euros] permettent de se le procurer.
+Bref il est temps d`'enquêter. Le livre étant ancien link:http://www.amazon.com/exec/obidos/ASIN/0932633226[un peu de patience et quelques euros] permettent de se le procurer.
 
-Dans le livre, pas de trace du graphique. Au chapitre 17, l'auteur explique les dangers d'une gestion primaire des tâches{nbsp}: un développeur qui s'occupe de plusieurs tâches en même temps va voir une partie de son effort gaspillé par le changement de tâche. Lorsqu'on fait un planning, il ne faut donc pas se dire "`un développeur sur 2 tâches équivaut à 50% d'un développeur sur chacune des tâches`".
+Dans le livre, pas de trace du graphique. Au chapitre 17, l`'auteur explique les dangers d`'une gestion primaire des tâches{nbsp}: un développeur qui s`'occupe de plusieurs tâches en même temps va voir une partie de son effort gaspillé par le changement de tâche. Lorsqu`'on fait un planning, il ne faut donc pas se dire "`un développeur sur 2 tâches équivaut à 50% d`'un développeur sur chacune des tâches`".
 
-En fin de chapitre, on trouve enfin ce qu'on est venu chercher{nbsp}:
+En fin de chapitre, on trouve enfin ce qu`'on est venu chercher{nbsp}:
 
 image::source.png[]
 
-Dans une liste de tips, il donne des chiffres comme aide à la planification. Ils permettent de savoir à peu près de combien il est possible de budgéter d'avancement sur les projets en fonction de leur nombre.
+Dans une liste de tips, il donne des chiffres comme aide à la planification. Ils permettent de savoir à peu près de combien il est possible de budgéter d`'avancement sur les projets en fonction de leur nombre.
 
-Ces chiffres sont sortis du chapeau, mais ils conviennent car ici seul l'ordre de grandeur est important. Par exemple, si on passe la valeur de perte de 20% à 15% le tableau change peu, cette valeur conviendrait tout aussi bien pour le calcul d'avancement{nbsp}:
+Ces chiffres sont sortis du chapeau, mais ils conviennent car ici seul l`'ordre de grandeur est important. Par exemple, si on passe la valeur de perte de 20% à 15% le tableau change peu, cette valeur conviendrait tout aussi bien pour le calcul d`'avancement{nbsp}:
 
 [cols="2*", options="header"]
 |===
@@ -61,20 +61,20 @@ Ces chiffres sont sortis du chapeau, mais ils conviennent car ici seul l'ordre d
 
 Quand on retourne au schéma de départ, on se rend compte que les valeurs présentées ne sont pas tout à fait les mêmes{nbsp}: au temps passé sur chaque tâche on a ajouté le temps perdu. Disposer de la source permet de se rendre compte que ce choix est très orienté{nbsp}: le graphe compare le temps passé _sur chaque tâche_ au temps perdu _en tout_.
 
-Ainsi si on reprend le graphique original d'une manière un peu plus objective, voici ce qu'on obtient{nbsp}:
+Ainsi si on reprend le graphique original d`'une manière un peu plus objective, voici ce qu`'on obtient{nbsp}:
 
 image::graphe1.png[]
 
-L'impression n'est plus la même{nbsp}: travailler sur deux projets à la fois ne pose plus tellement de problème. Ma démonstration de départ ne tient plus.
+L`'impression n`'est plus la même{nbsp}: travailler sur deux projets à la fois ne pose plus tellement de problème. Ma démonstration de départ ne tient plus.
 
-Si on veut démonter le méchanisme jusqu'au bout, il faut se souvenir que dans le tableau original, seul l'ordre de valeur était important. Voici le graphique repris mais avec une perte de 15%{nbsp}:
+Si on veut démonter le méchanisme jusqu`'au bout, il faut se souvenir que dans le tableau original, seul l`'ordre de valeur était important. Voici le graphique repris mais avec une perte de 15%{nbsp}:
 
 image::graphe2.png[]
 
 Ici travailler sur trois projets à la fois devient presque envisageable{nbsp}: la conclusion du graphique a changé alors que pour le besoin initial les deux séries de chiffres sont équivalentes.
 
-La conclusion s'impose{nbsp}: en les sortant de leur contexte d'origine, on veut faire dire à des chiffres quelque chose qu'il ne disent pas, en leur donnant une apparence pseudo-scientifique.
+La conclusion s`'impose{nbsp}: en les sortant de leur contexte d`'origine, on veut faire dire à des chiffres quelque chose qu`'il ne disent pas, en leur donnant une apparence pseudo-scientifique.
 
-Si je suis convaincu qu'il faut éviter d'avoir plusieurs tâches en parallèle, s'appuyer sur cette slide pour le justifier est une manipulation. Vous êtes prévenus{nbsp}!
+Si je suis convaincu qu`'il faut éviter d`'avoir plusieurs tâches en parallèle, s`'appuyer sur cette slide pour le justifier est une manipulation. Vous êtes prévenus{nbsp}!
 
-Pour finir{nbsp}: s'il est un peu daté sur certains aspects, le livre de Weinberg a bien plus de valeur que l'usage détourné qui en est fait ici, je vous conseille de le parcourir.
+Pour finir{nbsp}: s`'il est un peu daté sur certains aspects, le livre de Weinberg a bien plus de valeur que l`'usage détourné qui en est fait ici, je vous conseille de le parcourir.

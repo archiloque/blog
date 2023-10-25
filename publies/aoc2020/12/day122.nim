@@ -3,13 +3,13 @@ import os
 import re
 import math
 
-const NORTH = 'N'
-const SOUTH = 'S'
-const EAST = 'E'
-const WEST = 'W'
-const RIGHT = 'R'
-const LEFT = 'L'
-const FORWARD = 'F'
+const NORTH = `'N`'
+const SOUTH = `'S`'
+const EAST = `'E`'
+const WEST = `'W`'
+const RIGHT = `'R`'
+const LEFT = `'L`'
+const FORWARD = `'F`'
 
 let input: seq[string] = readFile(paramStr(1)).splitLines()
 
@@ -64,7 +64,7 @@ for line in input:
       else:
         raise newException(ValueError, "Unknown action [" & action & "]")
   else:
-    raise newException(ValueError, "Can't parse [" & line & "]")
+    raise newException(ValueError, "Can`'t parse [" & line & "]")
   echo("Boat: (", boatLine, ", ", boatColumn, ") waypoint (", waypointLine,
       ", ", waypointColumn, ")")
 echo(boatLine.abs() + boatColumn.abs())

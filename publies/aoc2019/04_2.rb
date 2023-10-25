@@ -28,5 +28,5 @@ next_digit(0, 0, 0) do |candidate|
     end
   end
 end
-p ''
+p `'`'
 p result

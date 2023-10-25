@@ -21,21 +21,21 @@ for line in program:
     var writeMatch: array[2, string]
     if line.match(WRITE_INSTRUCTION_REGEX, writeMatch):
       let valueParameter = writeMatch[1].parseInt().toBin(MEMORY_SIZE)
-      var result: string = '0'.repeat(MEMORY_SIZE)
+      var result: string = `'0`'.repeat(MEMORY_SIZE)
       for i in countup(0, MEMORY_SIZE - 1):
         case currentMask[i]:
-        of '0':
-          result[i] = '0'
-        of '1':
-          result[i] = '1'
-        of 'X':
+        of `'0`':
+          result[i] = `'0`'
+        of `'1`':
+          result[i] = `'1`'
+        of `'X`':
           result[i] = valueParameter[i]
         else:
           raise newException(ValueError, "Unknown action [" & currentMask[i] & "]")
       let resultAsInteger = fromBin[BiggestInt](result)
       memory[writeMatch[0].parseInt()] = resultAsInteger
     else:
-      raise newException(ValueError, "Can't parse [" & line & "]")
+      raise newException(ValueError, "Can`'t parse [" & line & "]")
 echo(memory)
 
 var sum: BiggestInt = 0

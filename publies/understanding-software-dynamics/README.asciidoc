@@ -6,39 +6,39 @@ v0.1, 2022-04-25
 
 Comment faire pour obtenir un système performant{nbsp}?
 
-Les systèmes informatiques sont très complexes{nbsp}: chacun de leurs composants individuels est complexe, et la manière dont ils interagissent l'est encore plus. 
+Les systèmes informatiques sont très complexes{nbsp}: chacun de leurs composants individuels est complexe, et la manière dont ils interagissent l`'est encore plus. 
 
 Pour obtenir un système performant, il faut maîtriser cette complexité.
 
 Pour acquérir cette connaissance, Richard L. Sites propose de{nbsp}:
 
-* Décrire le fonctionnement général des quatre composants d'un système ayant la plus forte influence sur la performance (processeur, mémoire, disque et réseau),
+* Décrire le fonctionnement général des quatre composants d`'un système ayant la plus forte influence sur la performance (processeur, mémoire, disque et réseau),
 * Pour chacun de ces composants détailler les métriques qui permettent de mesurer son comportement et la manière de les obtenir,
-* Expliquer comment évaluer l'ordre de grandeur de la performance attendue d'un système pour pouvoir aiguiller les investigations en cas de lenteur,
-* Montrer comment se servir des différentes métriques pour identifier les sources d'écarts entre performance attendue et performance constatée, en allant de cas très simple jusqu'à des des situations plus complexes complexes, d'abord pour chaque composant isolément puis en les combinants.
+* Expliquer comment évaluer l`'ordre de grandeur de la performance attendue d`'un système pour pouvoir aiguiller les investigations en cas de lenteur,
+* Montrer comment se servir des différentes métriques pour identifier les sources d`'écarts entre performance attendue et performance constatée, en allant de cas très simple jusqu`'à des des situations plus complexes complexes, d`'abord pour chaque composant isolément puis en les combinants.
 
-L'auteur propose ainsi une méthode à suivre et fournit les outils pour être en mesure de l'appliquer.
+L`'auteur propose ainsi une méthode à suivre et fournit les outils pour être en mesure de l`'appliquer.
 
-Une des hantise de l'auteur est de perdre du temps en analysant un système en fonction de la manière dont on pense qu'il fonctionne, plutôt que de mesurer et d'observer la manière dont il fonctionne réellement.
+Une des hantise de l`'auteur est de perdre du temps en analysant un système en fonction de la manière dont on pense qu`'il fonctionne, plutôt que de mesurer et d`'observer la manière dont il fonctionne réellement.
 
-Avec plusieurs dizaines d'années d'expériences sur le sujet, il sait très bien mettre les choses en perspectives et trouver des exemples parlant, le tout sans trop se mettre en avant.
+Avec plusieurs dizaines d`'années d`'expériences sur le sujet, il sait très bien mettre les choses en perspectives et trouver des exemples parlant, le tout sans trop se mettre en avant.
 
 Le livre ne descend pas trop dans les détail de tel ou tel processeur ou disque dur, mais permet de comprendre le fonctionnement général des composants modernes.
-Ainsi pour les processeurs, l'auteur explique les différents types de cache mais pas la performance individuel de chaque instruction.
+Ainsi pour les processeurs, l`'auteur explique les différents types de cache mais pas la performance individuel de chaque instruction.
 
 Dans mon travail, je suis peu confronté à des problèmes requérant ce niveau de connaissance sur ces composants de bas niveau.
 
-Par contre, les deux constituants du livre m'ont semblé utiles{nbsp}:
+Par contre, les deux constituants du livre m`'ont semblé utiles{nbsp}:
 
-* la méthode proposée par l'auteur s'adapte facilement à d'autres sujets de performance,
-* la description générale des composants me permet de mieux comprendre la conceptions d'outils de plus haut niveau auxquels j'ai à faire et donc de mieux les utiliser.
+* la méthode proposée par l`'auteur s`'adapte facilement à d`'autres sujets de performance,
+* la description générale des composants me permet de mieux comprendre la conceptions d`'outils de plus haut niveau auxquels j`'ai à faire et donc de mieux les utiliser.
 
-Je me suis donc permis de survoler certaines des parties les plus spécifiques, ce qui n'interfère pas avec la compréhension globale.
+Je me suis donc permis de survoler certaines des parties les plus spécifiques, ce qui n`'interfère pas avec la compréhension globale.
 
-Pour des personnes ayant peu d'expérience avec les sujets de performance ou de parallélisme et voulant s'y frotter je pense que le livre fait une bonne introduction au sujet, expliquant comment fonctionnent les verrous, comment plusieurs composants s'exécutant en parallèle peuvent se gêner…
+Pour des personnes ayant peu d`'expérience avec les sujets de performance ou de parallélisme et voulant s`'y frotter je pense que le livre fait une bonne introduction au sujet, expliquant comment fonctionnent les verrous, comment plusieurs composants s`'exécutant en parallèle peuvent se gêner…
 Attention cependant à ne pas perdre de vue les périmètres où ces sujets sont importants{nbsp}: on peut vite se prendre au jeu et passer du temps à se préoccuper de questions de performances dans des cas où elles ne sont peu importantes.
 
-Un avertissement{nbsp}: pour visualiser les comportements décris, l'auteur utilise de nombreux graphiques, générés par un outil décrit dans le livre.
+Un avertissement{nbsp}: pour visualiser les comportements décris, l`'auteur utilise de nombreux graphiques, générés par un outil décrit dans le livre.
 
 Malheureusement, sur un appareil de petite taille, les graphiques sont parfois difficiles à déchiffrer, voir quasiment illisibles.
 
@@ -50,7 +50,7 @@ Prenez-le en compte si vous pensez acheter le livre en version électronique.
 
 [quote]
 ____
-The hard part of performance analysis is observing what programs are actually doing rather than the simpler imagined picture in the readers (or original designer's) head of what the programs are expected to be doing.
+The hard part of performance analysis is observing what programs are actually doing rather than the simpler imagined picture in the readers (or original designer`'s) head of what the programs are expected to be doing.
 ____
 
 [quote]
@@ -77,13 +77,13 @@ Along the way, you also learned more about the dynamic execution of request-driv
 
 In Part III, "`Kernel-User Trace`", you learned how to construct kernel hooks to capture the fundamental transition events between kernel-mode execution, user-mode execution, scheduler execution, context switches, and idle. You learned how to keep the overhead of these hooks incredibly low -- less than 1% CPU and memory overhead for 200,000 events per second per CPU core. This part also taught how to construct a loadable module to do most of the work underlying the kernel hooks and how to construct a simple user-mode library to control tracing. These hooks are available as open-source code for Linux on common x86 and ARM processors.
 
-You learned the value of recording a little extra information: the first argument and return value of system calls: wakeup events that make a blocked thread runnable again; instructions per cycle to reveal execution interference from related threads, unrelated other programs, and the operating system itself; low-power idle states that can cause delays restarting execution; PC samples to give insight into long execution paths either within kernel code or user code; CPU clock frequency to avoid looking for other explanations of 5x slower than normal execution speed; and simple network stack packet timestamping to disambiguate whether a long delay from machine A user code to machine B user code occurred before A's kernel code sent a message or after B's kernel code received it, or in the network itself.
+You learned the value of recording a little extra information: the first argument and return value of system calls: wakeup events that make a blocked thread runnable again; instructions per cycle to reveal execution interference from related threads, unrelated other programs, and the operating system itself; low-power idle states that can cause delays restarting execution; PC samples to give insight into long execution paths either within kernel code or user code; CPU clock frequency to avoid looking for other explanations of 5x slower than normal execution speed; and simple network stack packet timestamping to disambiguate whether a long delay from machine A user code to machine B user code occurred before A`'s kernel code sent a message or after B`'s kernel code received it, or in the network itself.
 
 Starting with raw traces and postprocessing them, you learned how to extend small timestamps to full-size ones and how to turn first-use event names into running human-readable names for every trace item.
 
 From the expanded events, you learned how to turn transition timestamps into execution spans that cover 100% of the time on every CPU core in a trace and to produce readable JSON files that can be further modified, embellished, and searched. Finally, you learned how to turn the JSON files into dynamic HTML files that the user can pan and zoom, for examining execution dynamics at any desired level of detail. Several side programs can be used to trim traces, add kernel routine names, add user routine names, and add timestamped tcpdump packet information.
 
-With traces from two or more communicating machines, you learned how to align the timestamps via postprocessing software even when the original machines' time-of-day clocks are out of sync by tens of milliseconds, all without requiring fancy high-precision hardware. The last portion of this part explained how to use the existing HTML user interface in a browser to find and display the events, execution dynamics, and interactions that lead to slow performance. Observing exactly where all the time went in an instance of a slow time-constrained request leads directly to an understanding of the root cause(s) that make it slow—not just the what but the why.
+With traces from two or more communicating machines, you learned how to align the timestamps via postprocessing software even when the original machines`' time-of-day clocks are out of sync by tens of milliseconds, all without requiring fancy high-precision hardware. The last portion of this part explained how to use the existing HTML user interface in a browser to find and display the events, execution dynamics, and interactions that lead to slow performance. Observing exactly where all the time went in an instance of a slow time-constrained request leads directly to an understanding of the root cause(s) that make it slow—not just the what but the why.
 
 In Part IV, "`Reasoning`", we went through several case studies, learning how to reason about instances of the nine common mechanisms that can slow down time-constrained software. Throughout these examples, you also learned more about what to look for as you approach a performance mystery. The examples draw upon most of the concepts covered in the first three parts of the book, giving you the opportunity to practice using them and to consolidate your learning from those chapters.
 ____

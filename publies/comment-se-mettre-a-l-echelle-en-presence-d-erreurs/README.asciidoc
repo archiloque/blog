@@ -1,4 +1,4 @@
-= Comment se mettre à l'échelle en présence d'erreurs -- ne les ignorez pas
+= Comment se mettre à l`'échelle en présence d`'erreurs -- ne les ignorez pas
 tef
 v0.1, 2020-07-01
 :article_lang: fr
@@ -9,267 +9,267 @@ v0.1, 2020-07-01
 :jr: journal répliqué
 :article_description: Vous ne pouvez pas ignorer les erreurs
 
-Ceci est une traduction d'link:https://programmingisterrible.com/post/188942142748/scaling-in-the-presence-of-errorsdont-ignore[un article] de link:http://twitter.com/tef_ebooks[tef].
+Ceci est une traduction d`'link:https://programmingisterrible.com/post/188942142748/scaling-in-the-presence-of-errorsdont-ignore[un article] de link:http://twitter.com/tef_ebooks[tef].
 
-''''
+`'`'`'`'
 
 Construire un service fiable et robuste signifie souvent construire quelque chose qui peut continuer à fonctionner quand certaines parties sont défaillantes.
-Un site web où certaines des fonctionnalités sont indisponibles vaut souvent mieux qu'un site complètement planté.
-La bonne manière de s'y prendre n'est pas évidente.
+Un site web où certaines des fonctionnalités sont indisponibles vaut souvent mieux qu`'un site complètement planté.
+La bonne manière de s`'y prendre n`'est pas évidente.
 
-La réponse habituelle est d'embaucher plus d'administrateurs de base de données, plus de link:../sre/[SREs], et encore plus de personnes pour s'occuper du support.
-Gérer les erreurs, autrement dit concevoir des logiciels qui peuvent faire de la reprise après une défaillance, semble souvent l'option en dernier recours, et encore faut-il qu'elle soit envisagée.
+La réponse habituelle est d`'embaucher plus d`'administrateurs de base de données, plus de link:../sre/[SREs], et encore plus de personnes pour s`'occuper du support.
+Gérer les erreurs, autrement dit concevoir des logiciels qui peuvent faire de la reprise après une défaillance, semble souvent l`'option en dernier recours, et encore faut-il qu`'elle soit envisagée.
 
-La manière habituelle de faire de la gestion d'erreur est l'optimisme.
+La manière habituelle de faire de la gestion d`'erreur est l`'optimisme.
 Malheureusement, les autres possibilités ne sont pas forcément claires, et faire son choix est souvent difficile.
-Si vous avez deux services, que faites-vous quand l'un des deux est indisponible{nbsp}: Réessayer plus tard{nbsp}? Abandonner complètement{nbsp}? Ou juste l'ignorer et espérer que le problème s'en aille{nbsp}?
+Si vous avez deux services, que faites-vous quand l`'un des deux est indisponible{nbsp}: Réessayer plus tard{nbsp}? Abandonner complètement{nbsp}? Ou juste l`'ignorer et espérer que le problème s`'en aille{nbsp}?
 
 Étonnamment, toutes ces approches peuvent être raisonnables.
 Même ignorer les problèmes peut fonctionner pour certain systèmes.
 Plus ou moins.
-Vous ne pouvez pas ignorer les erreurs, mais parfois la reprise après une erreur peut ressembler beaucoup au fait de l'ignorer.
+Vous ne pouvez pas ignorer les erreurs, mais parfois la reprise après une erreur peut ressembler beaucoup au fait de l`'ignorer.
 
-''''
+`'`'`'`'
 
-Imaginez un verger rempli de capteurs mesurant la chaleur, la lumière et l'humidité.
-Cela n'aurait pas beaucoup de sens d'essayer de renvoyer des températures passées en cas d'erreur.
-Ce n'est pas le rôle du capteur de s'assurer que le système fonctionne, et le capteur n'y peut pas grand chose non plus.
-Par conséquent il est raisonnable pour un capteur d'envoyer des messages sans se compliquer la vie, autrement dit en mode _{faf}_ ("`tire et oublie`" où le système qui envoie les message ne se préoccupe pas de savoir ce qui leur arrive).
+Imaginez un verger rempli de capteurs mesurant la chaleur, la lumière et l`'humidité.
+Cela n`'aurait pas beaucoup de sens d`'essayer de renvoyer des températures passées en cas d`'erreur.
+Ce n`'est pas le rôle du capteur de s`'assurer que le système fonctionne, et le capteur n`'y peut pas grand chose non plus.
+Par conséquent il est raisonnable pour un capteur d`'envoyer des messages sans se compliquer la vie, autrement dit en mode _{faf}_ ("`tire et oublie`" où le système qui envoie les message ne se préoccupe pas de savoir ce qui leur arrive).
 
-L'idée derrière le _{faf}_ c'est que vous n'avez pas besoin de sauvegarder les anciens messages quand le prochain message est disponible, ou qu'un message manquant ne va pas causer de problème.
-Dans cette situation chaque message est traité comme s'il était le premier message envoyé, en oubliant toute tentative qui aurait eu lieu plus tôt.
+L`'idée derrière le _{faf}_ c`'est que vous n`'avez pas besoin de sauvegarder les anciens messages quand le prochain message est disponible, ou qu`'un message manquant ne va pas causer de problème.
+Dans cette situation chaque message est traité comme s`'il était le premier message envoyé, en oubliant toute tentative qui aurait eu lieu plus tôt.
 
-Bien mis en œuvre, le _{faf}_ est comme la réunion journalière (_daily meeting_){nbsp}: si une personne manque la réunion, elle peut participer à celle qui se tiendra le jour d'après.
-Mal mis en œuvre, le _{faf}_ est comme de hurler dans le bureau au lieu d'envoyer un mail, en espérant que quelqu'un prendra des notes.
+Bien mis en œuvre, le _{faf}_ est comme la réunion journalière (_daily meeting_){nbsp}: si une personne manque la réunion, elle peut participer à celle qui se tiendra le jour d`'après.
+Mal mis en œuvre, le _{faf}_ est comme de hurler dans le bureau au lieu d`'envoyer un mail, en espérant que quelqu`'un prendra des notes.
 
-Ce n'est pas qu'il n'y a pas de gestion d'erreur côté client _{faf}_, mais que de simplement continuer est la meilleur méthode de reprise sur erreur.
-Malheureusement, _{faf}_ est souvent interprété à tort comme signifiant "`passons-nous de toute gestion d'erreur et espérons que tout se passe au mieux`".
+Ce n`'est pas qu`'il n`'y a pas de gestion d`'erreur côté client _{faf}_, mais que de simplement continuer est la meilleur méthode de reprise sur erreur.
+Malheureusement, _{faf}_ est souvent interprété à tort comme signifiant "`passons-nous de toute gestion d`'erreur et espérons que tout se passe au mieux`".
 
 Vous ne pouvez pas ignorer les erreurs.
 
-Quand vous ignorez les erreurs, tout ce que vous faites c'est retarder le moment où vous les découvrez{nbsp}: c'est seulement lorsqu'un autre problème est causé par le premier que quelqu'un réalise que quelque chose s'est mal passé.
+Quand vous ignorez les erreurs, tout ce que vous faites c`'est retarder le moment où vous les découvrez{nbsp}: c`'est seulement lorsqu`'un autre problème est causé par le premier que quelqu`'un réalise que quelque chose s`'est mal passé.
 Quand vous ignorez les erreurs, vous gaspillez du temps qui pourrait être utilisé pour restaurer la situation.
 
-C'est pour cela que, malgré quelques contre-exemples, la meilleur chose à faire quand vous rencontrez une erreur est d'abandonner.
-Arrêtez avant de faire empirer les chose, et laissez quelque chose d'autre s'en occuper.
+C`'est pour cela que, malgré quelques contre-exemples, la meilleur chose à faire quand vous rencontrez une erreur est d`'abandonner.
+Arrêtez avant de faire empirer les chose, et laissez quelque chose d`'autre s`'en occuper.
 
-''''
+`'`'`'`'
 
-Abandonner est une approche surprenamment raisonnable de la gestion d'erreur, en supposant que quelque chose d'autre essaiera de s'occuper de la reprise, de redémarrer ou de faire continuer le programme.
-C'est pour cela que presque tous les services réseaux s'exécutent dans une boucle qui les fait redémarrer immédiatement en cas de plantage, en espérant que la défaillance est temporaire.
-Elle l'est souvent.
+Abandonner est une approche surprenamment raisonnable de la gestion d`'erreur, en supposant que quelque chose d`'autre essaiera de s`'occuper de la reprise, de redémarrer ou de faire continuer le programme.
+C`'est pour cela que presque tous les services réseaux s`'exécutent dans une boucle qui les fait redémarrer immédiatement en cas de plantage, en espérant que la défaillance est temporaire.
+Elle l`'est souvent.
 
-Cela ne sert pas à grand chose d'essayer de se reconnecter plusieurs fois à une base de données quand l'utilisateur·rice est déjà en train d'essayer de cliquer en boucle sur le bouton "`rafraîchir`" de son navigateur.
-Un pipeline Unix pourrait gérer tous les cas d'erreurs possibles, mais le plus souvent relancer le programme suffit à tout faire fonctionner.
+Cela ne sert pas à grand chose d`'essayer de se reconnecter plusieurs fois à une base de données quand l`'utilisateur·rice est déjà en train d`'essayer de cliquer en boucle sur le bouton "`rafraîchir`" de son navigateur.
+Un pipeline Unix pourrait gérer tous les cas d`'erreurs possibles, mais le plus souvent relancer le programme suffit à tout faire fonctionner.
 
-Bien qu'abandonner soit une bonne manière de gérer les erreurs, redémarrer de zéro n'est pas toujours la meilleure manière de faire de la reprise.
+Bien qu`'abandonner soit une bonne manière de gérer les erreurs, redémarrer de zéro n`'est pas toujours la meilleure manière de faire de la reprise.
 
-Certains pipelines fonctionnent sur des gros volumes de données, ou font des tas de traitements numériques compliqués, et personne n'est jamais content de devoir recommencer des jours ou des semaines de travail.
-En théorie, vous pourriez ajouter de la gestion d'erreur, réduire le risque que le programme se plante, et éviter un redémarrage coûteux, mais en pratique il est souvent plus facile de réorganiser votre code pour qu'il continue là où il s'est arrêté.
+Certains pipelines fonctionnent sur des gros volumes de données, ou font des tas de traitements numériques compliqués, et personne n`'est jamais content de devoir recommencer des jours ou des semaines de travail.
+En théorie, vous pourriez ajouter de la gestion d`'erreur, réduire le risque que le programme se plante, et éviter un redémarrage coûteux, mais en pratique il est souvent plus facile de réorganiser votre code pour qu`'il continue là où il s`'est arrêté.
 
-En d'autres termes{nbsp}: abandonnez, mais sauvegardez votre progression pour que le redémarrage prenne moins de temps.
+En d`'autres termes{nbsp}: abandonnez, mais sauvegardez votre progression pour que le redémarrage prenne moins de temps.
 
-Pour un pipeline, cela signifie généralement un horrible tas de fichiers temporaires pour sauvegarder le résultat de l'exécution de chaque sous-commande, et le résultat du découpage des données d'entrée en lots plus petits.
+Pour un pipeline, cela signifie généralement un horrible tas de fichiers temporaires pour sauvegarder le résultat de l`'exécution de chaque sous-commande, et le résultat du découpage des données d`'entrée en lots plus petits.
 Vous pouvez même mettre en place des réessais automatiques, mais pour de nombreux pipelines, une reprise manuelle reste relativement peu coûteuse.
 
-Pour d'autres tâches à durée de vie longue, cela signifie habituellement quelque chose comme des points de contrôles ou des sagas.
-En d'autres termes, transformer un traitement long en un traitement court qui s'exécute constamment, en écrivant les progrès effectués dans un fichier ou une base de données quelque part.
+Pour d`'autres tâches à durée de vie longue, cela signifie habituellement quelque chose comme des points de contrôles ou des sagas.
+En d`'autres termes, transformer un traitement long en un traitement court qui s`'exécute constamment, en écrivant les progrès effectués dans un fichier ou une base de données quelque part.
 
 Avec le temps, tous les traitements longs sont découpés en parties plus petites, quand le coût de les redémarrer de zéro devient prohibitif.
-Un traitement long a beaucoup plus de chances de tomber sur une erreur impossible&#8201;—{nbsp}des  disques pleins, plus de mémoir disponible, des rayons cosmiques{nbsp}—&#8201;et être forcé d'abandonner.
+Un traitement long a beaucoup plus de chances de tomber sur une erreur impossible&#8201;—{nbsp}des  disques pleins, plus de mémoir disponible, des rayons cosmiques{nbsp}—&#8201;et être forcé d`'abandonner.
 
-Parfois la seule manière de gérer une erreur est d'abandonner.
+Parfois la seule manière de gérer une erreur est d`'abandonner.
 
-Par conséquent, la meilleure manière de gérer les erreurs est d'organiser vos programmes de façon à rendre les reprises faciles.
-La reprise c'est toute la différence entre "`__{faf}__`" et "`ignorer-toutes-les-erreurs`", même si les deux partagent le même optimisme.
+Par conséquent, la meilleure manière de gérer les erreurs est d`'organiser vos programmes de façon à rendre les reprises faciles.
+La reprise c`'est toute la différence entre "`__{faf}__`" et "`ignorer-toutes-les-erreurs`", même si les deux partagent le même optimisme.
 
-Vous pouvez faire des choses qui ressemblent au fait d'ignorer des erreurs, ou même laisser quelque chose d'autre s'en occuper, tant qu'il y a un plan pour pouvoir faire une reprise.
-Même si c'est de recommencer de zéro, même si c'est de réveiller quelqu'un pendant la nuit, tant qu'il y a un plan cela signifie que vous n'ignorez pas le problème.
+Vous pouvez faire des choses qui ressemblent au fait d`'ignorer des erreurs, ou même laisser quelque chose d`'autre s`'en occuper, tant qu`'il y a un plan pour pouvoir faire une reprise.
+Même si c`'est de recommencer de zéro, même si c`'est de réveiller quelqu`'un pendant la nuit, tant qu`'il y a un plan cela signifie que vous n`'ignorez pas le problème.
 En supposant bien entendu que le plan fonctionne.
 
 Vous ne pouvez pas ignorer les erreurs.
-Elles sont inévitablement le problème _de quelqu'un_.
-Si une personne vous dit qu'elle peut ignorer les erreurs, en fait elle vous dit que c'est quelqu'un d'autre qui est d'astreinte pour leur logiciel.
+Elles sont inévitablement le problème _de quelqu`'un_.
+Si une personne vous dit qu`'elle peut ignorer les erreurs, en fait elle vous dit que c`'est quelqu`'un d`'autre qui est d`'astreinte pour leur logiciel.
 
-Ça, ou alors qu'elle utilise un {bus}.
+Ça, ou alors qu`'elle utilise un {bus}.
 
-''''
+`'`'`'`'
 
-Un {bus}, si vous n'en êtes pas sûr·e, est un service réseau qui propose un ensemble de queues avec lesquelles d'autres ordinateurs sur le réseau peuvent interagir.
-Généralement des clients ajoutent des messages, et d'autres l'interrogent pour récupérer le prochain message non lu, mais on peut les utiliser d'un tas d'autres manières.
+Un {bus}, si vous n`'en êtes pas sûr·e, est un service réseau qui propose un ensemble de queues avec lesquelles d`'autres ordinateurs sur le réseau peuvent interagir.
+Généralement des clients ajoutent des messages, et d`'autres l`'interrogent pour récupérer le prochain message non lu, mais on peut les utiliser d`'un tas d`'autres manières.
 
 Comme un _pipe_ Unix, les {bus} sont utilisés pour démarrer des projets.
-De la même manière que les fichiers temporaires, les bus permettent à différentes parties du pipeline de consommer et de produire des contenus à des vitesses différentes, mais ne permettent pas facilement de faire des rejeux ou de redémarrer en cas d'erreur.
+De la même manière que les fichiers temporaires, les bus permettent à différentes parties du pipeline de consommer et de produire des contenus à des vitesses différentes, mais ne permettent pas facilement de faire des rejeux ou de redémarrer en cas d`'erreur.
 
-Comme un _pipe_ Unix, les {bus} sont utilisés d'une manière très optimiste{nbsp}:
+Comme un _pipe_ Unix, les {bus} sont utilisés d`'une manière très optimiste{nbsp}:
 envoyer des messages dans la queue et passer à la suite.
 
 À peu près comme un pipeline Unix, mais avec des différences notables.
-Un pipeline Unix se bloque quand il est plein, mettant en pause le producteur jusqu'à ce que le consommateur comble son retard.
-Un pipeline Unix s'arrête si une des sous-commandes s'arrête, et retourne une erreur si la dernière sous-commande échoue.
+Un pipeline Unix se bloque quand il est plein, mettant en pause le producteur jusqu`'à ce que le consommateur comble son retard.
+Un pipeline Unix s`'arrête si une des sous-commandes s`'arrête, et retourne une erreur si la dernière sous-commande échoue.
 
-Un {bus} ne bloque pas le producteur jusqu'à ce que le consommateur comble son retard.
+Un {bus} ne bloque pas le producteur jusqu`'à ce que le consommateur comble son retard.
 En théorie, cela signifie que les erreurs temporaires ou les défaillances réseau entre les composants ne plantent pas tout le système.
-En pratique, plus vous avez de queues dans un pipeline, plus il faut de temps pour déterminer s'il y a un problème.
+En pratique, plus vous avez de queues dans un pipeline, plus il faut de temps pour déterminer s`'il y a un problème.
 
 Parfois ça fonctionne.
-Quand il n'y a pas de croissance, les {bus} agissent comme des tampons entre les parties du système, gérant les variations de charges.
-Ils fonctionnent bien pour ralentir les clients qui fonctionnent en rafale, et peuvent fournir un point central pour l'audit ou le contrôle d'accès.
+Quand il n`'y a pas de croissance, les {bus} agissent comme des tampons entre les parties du système, gérant les variations de charges.
+Ils fonctionnent bien pour ralentir les clients qui fonctionnent en rafale, et peuvent fournir un point central pour l`'audit ou le contrôle d`'accès.
 
-Quand il y a de la croissance, les queues explosent régulièrement jusqu'à ce qu'une forme de limite de débit apparaisse.
+Quand il y a de la croissance, les queues explosent régulièrement jusqu`'à ce qu`'une forme de limite de débit apparaisse.
 Quand plus de charge arrive, les queues sont partitionnées, et ensuite repartitionnées.
-Mettre à l'échelle un {bus} mène inévitablement à limiter la taille de la queue ou à même à la rendre éphémère.
+Mettre à l`'échelle un {bus} mène inévitablement à limiter la taille de la queue ou à même à la rendre éphémère.
 
-Le problème avec l'optimisme est que quand les choses se passent mal, non seulement vous n'avez aucune idée de la manière de corriger, mais vous ne savez même pas ce qui s'est mal passé.
-Dans une certaine limite, un {bus} cache les erreurs&#8201;—{nbsp}les programmes peuvent venir et s'en aller comme ils le veulent, et il n'y aucun moyen de savoir si l'autre partie du système est toujours en train de lire vos messages{nbsp}—&#8201;, mais il peut seulement cacher les erreurs pendant un certain temps.
+Le problème avec l`'optimisme est que quand les choses se passent mal, non seulement vous n`'avez aucune idée de la manière de corriger, mais vous ne savez même pas ce qui s`'est mal passé.
+Dans une certaine limite, un {bus} cache les erreurs&#8201;—{nbsp}les programmes peuvent venir et s`'en aller comme ils le veulent, et il n`'y aucun moyen de savoir si l`'autre partie du système est toujours en train de lire vos messages{nbsp}—&#8201;, mais il peut seulement cacher les erreurs pendant un certain temps.
 
-En d'autres termes, _fire-and-regret_ ("`tire et regrette`").
+En d`'autres termes, _fire-and-regret_ ("`tire et regrette`").
 
-Bien qu'une queue sans limite de taille soit une abstraction tentante, elle réalise rarement le fantasme de vous libérer du besoin de gérer les erreurs.
-À l'inverse d'un pipeline Unix, un {bus} remplira toujours votre disque avant d'abandonner, et modifier les choses pour rendre la reprise est moins facile que d'ajouter plus de fichiers temporaires.
+Bien qu`'une queue sans limite de taille soit une abstraction tentante, elle réalise rarement le fantasme de vous libérer du besoin de gérer les erreurs.
+À l`'inverse d`'un pipeline Unix, un {bus} remplira toujours votre disque avant d`'abandonner, et modifier les choses pour rendre la reprise est moins facile que d`'ajouter plus de fichiers temporaires.
 
-Les {bus} peuvent se remettre d'une seule erreur&#8201;—{nbsp}une défaillance réseau temporaire{nbsp}—&#8201;alors il faut ajouter d'autre mécanisme pour compenser.
-Durées d'expirations, rééssais, et parfois une deuxième queue "`prioritaire`", parce que le blocage en tête de file est quelque chose de réellement horrible à gérer.
+Les {bus} peuvent se remettre d`'une seule erreur&#8201;—{nbsp}une défaillance réseau temporaire{nbsp}—&#8201;alors il faut ajouter d`'autre mécanisme pour compenser.
+Durées d`'expirations, rééssais, et parfois une deuxième queue "`prioritaire`", parce que le blocage en tête de file est quelque chose de réellement horrible à gérer.
 En plus, si un traitement se plante, des messages peuvent être perdus.
 
 Les queue aident rarement à la reprise.
 Elles la gênent fréquemment.
 
 Imaginez un pipeline de build, ou un système de tâches en arrière-plan qui balance des requêtes dans une queue sans se poser de questions.
-Quand quelque chose casse, ou ne fonctionne pas comme cela devrait, vous n'avez aucune idée de l'endroit où commencer la reprise.
+Quand quelque chose casse, ou ne fonctionne pas comme cela devrait, vous n`'avez aucune idée de l`'endroit où commencer la reprise.
 
-Avec une queue en arrière-plan, vous ne savez pas quelles sont les tâches qui sont en train d'être exécutées en ce moment.
-Vous ne pouvez pas dire si quelque chose est en train d'être réessayé, ou a échoué, mais peut-être que vous avez des fichiers de log que vous pouvez fouiller.
-Avec des logs, vous pouvez voir ce que le système faisait quelques minutes plus tôt, mais vous n'avez toujours aucune idée de ce qu'il est en train de faire en ce moment.
+Avec une queue en arrière-plan, vous ne savez pas quelles sont les tâches qui sont en train d`'être exécutées en ce moment.
+Vous ne pouvez pas dire si quelque chose est en train d`'être réessayé, ou a échoué, mais peut-être que vous avez des fichiers de log que vous pouvez fouiller.
+Avec des logs, vous pouvez voir ce que le système faisait quelques minutes plus tôt, mais vous n`'avez toujours aucune idée de ce qu`'il est en train de faire en ce moment.
 
-Même si vous connaissez la taille d'une queue, vous allez devoir regarder le tableau de bord quelques minutes plus tard&#8201;—{nbsp}pour voir si la ligne a bougé{nbsp}—&#8201;avant d'être certain·e que les choses fonctionnent probablement. Avec un peu de chance.
+Même si vous connaissez la taille d`'une queue, vous allez devoir regarder le tableau de bord quelques minutes plus tard&#8201;—{nbsp}pour voir si la ligne a bougé{nbsp}—&#8201;avant d`'être certain·e que les choses fonctionnent probablement. Avec un peu de chance.
 
 Créer un pipeline de build avec des queues est relativement facilement, mais en construire un où les utilisateur·rice·s peuvent annuler des tâches ou surveiller ce qui se passe demande beaucoup plus de travail.
 Dès que vous voulez annuler ou inspecter une tâche, vous devez garder des choses ailleurs que dans une queue.
 
-Savoir ce qu'un programme est en train de faire, signifie suivre les éléments intermédiaires, et même pour quelque chose d'aussi simple que d'exécuter une tâche en arrière-plan, cela peut nécessiter de nombreux états&#8201;—{nbsp}créé, dans la queue, en cours de traitement, terminé, en échec, et pas seulement dans la queue{nbsp}—&#8201;et un {bus} gère seulement ce dernier cas.
+Savoir ce qu`'un programme est en train de faire, signifie suivre les éléments intermédiaires, et même pour quelque chose d`'aussi simple que d`'exécuter une tâche en arrière-plan, cela peut nécessiter de nombreux états&#8201;—{nbsp}créé, dans la queue, en cours de traitement, terminé, en échec, et pas seulement dans la queue{nbsp}—&#8201;et un {bus} gère seulement ce dernier cas.
 
 Et ensuite les chose se gâtent.
-Dès qu'une queue en remplit une autre, une unité de travail peut se trouver dans plusieurs queues différentes.
-Si un élément n'est pas dans la queue, vous savez qu'il a été supprimé ou traité, si un élément est dans la queue, vous ne savez pas s'il est en train d'être traité, mais vous savez qu'il le sera.
+Dès qu`'une queue en remplit une autre, une unité de travail peut se trouver dans plusieurs queues différentes.
+Si un élément n`'est pas dans la queue, vous savez qu`'il a été supprimé ou traité, si un élément est dans la queue, vous ne savez pas s`'il est en train d`'être traité, mais vous savez qu`'il le sera.
 Une queue ne se contente pas de cacher les erreur, elle cache aussi les états.
 
-Pour pouvoir faire une reprise il faut savoir dans quel état était le programme avant que les choses ne se passent mal, et quand vous utilisez le _{faf}_ dans une queue, vous abandonnez l'idée de savoir ce qui se passe ensuite.
+Pour pouvoir faire une reprise il faut savoir dans quel état était le programme avant que les choses ne se passent mal, et quand vous utilisez le _{faf}_ dans une queue, vous abandonnez l`'idée de savoir ce qui se passe ensuite.
 Gérer des erreur, faire une reprise après des erreurs, signifie construire des logiciels qui peuvent savoir quel est leur état.
 Cela signifie aussi structurer les choses pour que la reprise soit possible.
 
-C'est ça ou abandonner presque toutes les possibilités de reprise automatique.
-D'une certaine manière, je n'argumente pas contre le _{faf}_, ou contre l'optimisme, mais contre l'optimisme qui empêche la reprise.
+C`'est ça ou abandonner presque toutes les possibilités de reprise automatique.
+D`'une certaine manière, je n`'argumente pas contre le _{faf}_, ou contre l`'optimisme, mais contre l`'optimisme qui empêche la reprise.
 Pas contre les queues mais contre la manière dont les queues sont inévitablement utilisées.
 
 Malheureusement, la reprise est facile à imaginer mais pas nécessairement aussi facile à mettre en œuvre.
 
-C'est pour cela certains personnes préfèrent utiliser un {jr} plutôt qu'un {bus}.
+C`'est pour cela certains personnes préfèrent utiliser un {jr} plutôt qu`'un {bus}.
 
-''''
+`'`'`'`'
 
-Si vous n'avez jamais utilisé un {jr}, imaginez une table sans clé primaire d'une base de donnée qui permette seulement d'ajouter des données, ou un fichier texte avec des sauvegardes, et vous ne serez pas loin.
-Ou imaginer un {bus}, mais au lieu d'ajouter et de supprimer des éléments dans une queue vous pouvez ajouter du contenu au journal ou lire depuis le journal.
+Si vous n`'avez jamais utilisé un {jr}, imaginez une table sans clé primaire d`'une base de donnée qui permette seulement d`'ajouter des données, ou un fichier texte avec des sauvegardes, et vous ne serez pas loin.
+Ou imaginer un {bus}, mais au lieu d`'ajouter et de supprimer des éléments dans une queue vous pouvez ajouter du contenu au journal ou lire depuis le journal.
 
-De la même manière qu'une queue, un {jr} peut être utilisé pour du _{faf}_ même si cela n'a pas grand intérêt.
-Comme avant, le chaos s'ensuivra le temps que les concepts comme la limitation de débit, le blocage en tête de file et le principe de bout en bout soient lentement implémentés.
+De la même manière qu`'une queue, un {jr} peut être utilisé pour du _{faf}_ même si cela n`'a pas grand intérêt.
+Comme avant, le chaos s`'ensuivra le temps que les concepts comme la limitation de débit, le blocage en tête de file et le principe de bout en bout soient lentement implémentés.
 Si vous utilisez un {jr} comme une queue, il échouera comme une queue.
 
-À l'inverse d'une queue, un {jr} peut aider à la reprise.
+À l`'inverse d`'une queue, un {jr} peut aider à la reprise.
 
 Chaque consommateur voit les même enregistrements du journal, dans le même ordre, il est donc possible de faire une reprise en rejouant le journal, ou de combler son retard sur les vieux enregistrements.
-D'une certaine manière, cela ressemble à connecter les éléments avec des fichiers temporaires plutôt qu'un pipeline, et les stratégies de reprises ressemblent aussi à celles qu'on utilise pour les fichiers temporaires, comme le fait de partitionner le journal pour que les redémarrages ne soient pas aussi coûteux.
+D`'une certaine manière, cela ressemble à connecter les éléments avec des fichiers temporaires plutôt qu`'un pipeline, et les stratégies de reprises ressemblent aussi à celles qu`'on utilise pour les fichiers temporaires, comme le fait de partitionner le journal pour que les redémarrages ne soient pas aussi coûteux.
 
-Comme des fichiers temporaires, un {jr} peut aider à la reprise, mais seulement jusqu'à un certain point.
-Chaque consommateur verra les mêmes enregistrements, dans le même ordre, mais s'il arrive quelque chose à un enregistrement avant qu'il atteigne le journal, ou si les enregistrements arrivent dans le mauvais ordre, cela peut avoir des conséquences néfastes ou même catastrophiques.
+Comme des fichiers temporaires, un {jr} peut aider à la reprise, mais seulement jusqu`'à un certain point.
+Chaque consommateur verra les mêmes enregistrements, dans le même ordre, mais s`'il arrive quelque chose à un enregistrement avant qu`'il atteigne le journal, ou si les enregistrements arrivent dans le mauvais ordre, cela peut avoir des conséquences néfastes ou même catastrophiques.
 
 Vous ne pouvez pas simplement utiliser le _{faf}_ dans un {jr}, ou à travers le réseau.
-Même si un {jr} est ordonné, il préservera l'ordre des enregistrements qu'on lui donne, quel qu'il soit.
+Même si un {jr} est ordonné, il préservera l`'ordre des enregistrements qu`'on lui donne, quel qu`'il soit.
 
-Ce n'est pas toujours un problème.
-Certains journaux répliqués sont utilisés pour enregistrer des données analytiques ou pour alimenter des agrégateurs, dans ces cas les conséquences de quelques entrées qui manquent ou qui sont dans le désordre sont relativement faibles, on peut tout aussi bien dire que quelques entrées manquantes correspondent à un échantillonnage aléatoire et considérer que ça n'est pas un problème.
+Ce n`'est pas toujours un problème.
+Certains journaux répliqués sont utilisés pour enregistrer des données analytiques ou pour alimenter des agrégateurs, dans ces cas les conséquences de quelques entrées qui manquent ou qui sont dans le désordre sont relativement faibles, on peut tout aussi bien dire que quelques entrées manquantes correspondent à un échantillonnage aléatoire et considérer que ça n`'est pas un problème.
 
-Pour d'autres journaux répliqués, des entrées manquantes peuvent causer une misère indicible.
-Faire une reprise quand il manque des entrées signifie reconstruire l'intégralité du {jr} à partir de zéro.
-Si vous utilisez un {jr} pour la réplication, vous accordez probablement une grande importance à l'ordre des entrées du journal.
+Pour d`'autres journaux répliqués, des entrées manquantes peuvent causer une misère indicible.
+Faire une reprise quand il manque des entrées signifie reconstruire l`'intégralité du {jr} à partir de zéro.
+Si vous utilisez un {jr} pour la réplication, vous accordez probablement une grande importance à l`'ordre des entrées du journal.
 
 Comme auparavant, vous ne pouvez pas ignorer les erreurs, vous pouvez seulement rendre la reprise moins compliquée.
 
-Prendre en compte les erreurs comme des entrées de journal dans le mauvais ordre ou manquantes signifie être capable de s'en sortir quand elles se produisent.
+Prendre en compte les erreurs comme des entrées de journal dans le mauvais ordre ou manquantes signifie être capable de s`'en sortir quand elles se produisent.
 
-C'est plus difficile que ce que vous pouvez imaginer.
+C`'est plus difficile que ce que vous pouvez imaginer.
 
-''''
+`'`'`'`'
 
-Prenez deux services, un primaire et un secondaire, tous les deux avec des bases de données, et imaginez utiliser un {jr} pour copier les modifications de l'un à l'autre.
+Prenez deux services, un primaire et un secondaire, tous les deux avec des bases de données, et imaginez utiliser un {jr} pour copier les modifications de l`'un à l`'autre.
 
 Au premier abord cela ne semble pas si difficile.
 Chaque fois que le service primaire modifie la base, il écrit dans le journal.
 Le service secondaire lit depuis le journal, et met à jour sa base.
-Si le service primaire est un processus unique, il est plutôt facile de s'assurer que chaque message est envoyé dans le bon ordre.
-Quand il y plus d'un processus qui écrit, les choses peuvent devenir compliquées.
+Si le service primaire est un processus unique, il est plutôt facile de s`'assurer que chaque message est envoyé dans le bon ordre.
+Quand il y plus d`'un processus qui écrit, les choses peuvent devenir compliquées.
 
-Sinon, vous pouvez inverser les choses en écrivant d'abord dans le journal puis en appliquant les modifications dans la base de données, ou utiliser directement le journal de la base et éviter complètement le problème, mais ces choix ne sont pas toujours possibles.
-Parfois vous êtes forcé·e de vous occuper vous-même de gérer l'ordre des entrées.
+Sinon, vous pouvez inverser les choses en écrivant d`'abord dans le journal puis en appliquant les modifications dans la base de données, ou utiliser directement le journal de la base et éviter complètement le problème, mais ces choix ne sont pas toujours possibles.
+Parfois vous êtes forcé·e de vous occuper vous-même de gérer l`'ordre des entrées.
 
-En d'autres termes, vous allez devoir trier les messages avant de les écrire dans le journal.
+En d`'autres termes, vous allez devoir trier les messages avant de les écrire dans le journal.
 
-Vous pouvez laissez quelque chose d'autre déterminer l'ordre, mais vous vous trompez si vous pensez qu'un horodatage peut vous aider.
-Les horloges se déplacent dans un sens et dans l'autre et cela peut causer des tas de problèmes.
+Vous pouvez laissez quelque chose d`'autre déterminer l`'ordre, mais vous vous trompez si vous pensez qu`'un horodatage peut vous aider.
+Les horloges se déplacent dans un sens et dans l`'autre et cela peut causer des tas de problèmes.
 
-L'un des problèmes les plus frustrants avec l'horodatage est celui des "`pierre tombales`"{nbsp}: quand un service supprime une clé, mais a une horloge détraquée qui indique une heure très éloignée dans le futur, et qui crée un évènement avec un horodatage similaire.
-Toutes les opérations sont silencieusement supprimées jusqu'à ce que l'évènement de suppression soit traité.
-L'autre problème avec l'horodatage est que si vous avez deux entrées, une après l'autre, vous ne pouvez pas savoir s'il existe des entrées entre les deux.
+L`'un des problèmes les plus frustrants avec l`'horodatage est celui des "`pierre tombales`"{nbsp}: quand un service supprime une clé, mais a une horloge détraquée qui indique une heure très éloignée dans le futur, et qui crée un évènement avec un horodatage similaire.
+Toutes les opérations sont silencieusement supprimées jusqu`'à ce que l`'évènement de suppression soit traité.
+L`'autre problème avec l`'horodatage est que si vous avez deux entrées, une après l`'autre, vous ne pouvez pas savoir s`'il existe des entrées entre les deux.
 
 Des choses comme les "`horloges logiques hybrides`" ou même des horloges atomiques peuvent réduire la dérive des horloges, mais seulement dans une certaine mesure.
-Vous pouvez seulement réduire la fenêtre d'incertitude, il reste toujours _un peu_ de décalage entre les horloges.
-Encore une fois, les horloges peuvent se déplacer dans un sens et dans l'autre, l'horodatage est une très mauvaise idée pour avoir un ordre précis.
+Vous pouvez seulement réduire la fenêtre d`'incertitude, il reste toujours _un peu_ de décalage entre les horloges.
+Encore une fois, les horloges peuvent se déplacer dans un sens et dans l`'autre, l`'horodatage est une très mauvaise idée pour avoir un ordre précis.
 
-En pratique vous avez besoin de numéros de versions explicites, 1,2,3… , ou d'un identifiant unique pour chaque version de chaque entrée, et d'un lien vers l'enregistrement qui est mis à jour, pour que les messages aient un ordre.
+En pratique vous avez besoin de numéros de versions explicites, 1,2,3… , ou d`'un identifiant unique pour chaque version de chaque entrée, et d`'un lien vers l`'enregistrement qui est mis à jour, pour que les messages aient un ordre.
 
-Avec un numéro de version, les messages peuvent être remis dans le bon ordre, les messages manquants peuvent être détectés, et dans les deux cas il est possible de faire une reprise, bien qu'en pratique il doit difficile de gérer et d'attribuer ces numéros de version.
-L'horodatage est toujours utile, ne serait-ce que pour donner aux choses une perspective humaine, mais sans numéro de version il est impossible de savoir dans quel ordre précis les choses se sont passées, et pas non plus qu'aucune étape n'est manquante.
+Avec un numéro de version, les messages peuvent être remis dans le bon ordre, les messages manquants peuvent être détectés, et dans les deux cas il est possible de faire une reprise, bien qu`'en pratique il doit difficile de gérer et d`'attribuer ces numéros de version.
+L`'horodatage est toujours utile, ne serait-ce que pour donner aux choses une perspective humaine, mais sans numéro de version il est impossible de savoir dans quel ordre précis les choses se sont passées, et pas non plus qu`'aucune étape n`'est manquante.
 
-Vous ne pouvez pas ignorer les erreurs, mais parfois le code de gestion d'erreur n'est pas si simple.
+Vous ne pouvez pas ignorer les erreurs, mais parfois le code de gestion d`'erreur n`'est pas si simple.
 
-Utiliser des numéros de version ou même de l'horodatage signifie dans les deux cas construire un plan pour faire une reprise.
-Construire quelque chose qui peut continuer à opérer en cas d'erreur.
-Malheureusement, construire quelque chose qui fonctionne même quand d'autres parties se plantent, est l'une des choses les plus difficile de l'ingénierie logicielle.
+Utiliser des numéros de version ou même de l`'horodatage signifie dans les deux cas construire un plan pour faire une reprise.
+Construire quelque chose qui peut continuer à opérer en cas d`'erreur.
+Malheureusement, construire quelque chose qui fonctionne même quand d`'autres parties se plantent, est l`'une des choses les plus difficile de l`'ingénierie logicielle.
 
-Faire les mêmes choses dans le même ordre est si difficile que des personnes utilisent des mots comme causalité ou déterminisme pour faire passer le message, et ça n'aide pas.
+Faire les mêmes choses dans le même ordre est si difficile que des personnes utilisent des mots comme causalité ou déterminisme pour faire passer le message, et ça n`'aide pas.
 
-Vous ne pouvez pas ignorer les erreurs, mais personne n'a dit que ce serait simple.
+Vous ne pouvez pas ignorer les erreurs, mais personne n`'a dit que ce serait simple.
 
-''''
+`'`'`'`'
 
-Bien qu'utiliser des choses comme des journaux répliqués, des {bus}, ou même des _pipe_ Unix peuvent vous aider à construire des prototypes, montrant clairement comment votre logiciel fonctionne, elles ne vous libèrent pas du fardeau de la gestion d'erreur.
+Bien qu`'utiliser des choses comme des journaux répliqués, des {bus}, ou même des _pipe_ Unix peuvent vous aider à construire des prototypes, montrant clairement comment votre logiciel fonctionne, elles ne vous libèrent pas du fardeau de la gestion d`'erreur.
 
-Vous ne pouvez pas ignorer le code de gestion d'erreur, pas à grande échelle.
+Vous ne pouvez pas ignorer le code de gestion d`'erreur, pas à grande échelle.
 
-Le secret de la gestion d'erreur à l'échelle n'est pas d'abandonner, d'ignorer le problème, ou même d'essayer encore, c'est de structurer un programme pour la reprise, faire en sorte que les erreurs soient visibles, et permettre aux autres parties du programme de prendre des décisions.
+Le secret de la gestion d`'erreur à l`'échelle n`'est pas d`'abandonner, d`'ignorer le problème, ou même d`'essayer encore, c`'est de structurer un programme pour la reprise, faire en sorte que les erreurs soient visibles, et permettre aux autres parties du programme de prendre des décisions.
 
-Les techniques comme la défaillance rapide, les programmes qui se redémarrent en cas d'erreur, la supervision de processus, mais aussi des choses comme l'usage ingénieux des numéros de versions, et parfois un peu de traitements sans états ou d'idempotence{nbsp}: ce que ces choses ont toutes en commun est qu'elles sont des méthodes de reprises.
+Les techniques comme la défaillance rapide, les programmes qui se redémarrent en cas d`'erreur, la supervision de processus, mais aussi des choses comme l`'usage ingénieux des numéros de versions, et parfois un peu de traitements sans états ou d`'idempotence{nbsp}: ce que ces choses ont toutes en commun est qu`'elles sont des méthodes de reprises.
 
-La reprise est le secret de la gestion d'erreur. Surtout à grande échelle.
+La reprise est le secret de la gestion d`'erreur. Surtout à grande échelle.
 
-Abandonner tôt pour laisser leur chance à d'autres choses, continuer pour que d'autres puissent vous rattraper, redémarrer d'un état correct, sauvegarder votre progression pour que les choses n'aient pas besoin d'être répétées.
+Abandonner tôt pour laisser leur chance à d`'autres choses, continuer pour que d`'autres puissent vous rattraper, redémarrer d`'un état correct, sauvegarder votre progression pour que les choses n`'aient pas besoin d`'être répétées.
 
 Ça, ou laisser les choses traîner un moment. Acheter un tas de disques, embaucher quelques SREs, et ajouter un autre graphique au tableau de bord.
 
 Le problème avec les choses à grande échelles et que vous ne pouvez pas avoir une approche optimiste.
-Quand le système grandit, il a besoin de redondance, ou d'être capable de fonctionner en cas d'erreurs partielles ou de pannes intermittentes.
-Les humains ne peuvent combler qu'un certain nombre de lacunes.
+Quand le système grandit, il a besoin de redondance, ou d`'être capable de fonctionner en cas d`'erreurs partielles ou de pannes intermittentes.
+Les humains ne peuvent combler qu`'un certain nombre de lacunes.
 
 Le renouvellement des personnes est la pire forme de dette technique.
 
-Écrire des logiciels robuste signifie construire des systèmes qui peuvent exister dans un état de panne partielle (comme un résultat incomplet), et écrire des logiciels résilients signifie construire des systèmes qui sont toujours en capacité de faire des reprises (comme redémarrer), et aucun des deux ne s'appuie sur la manière dont vous concevez le scénario nominal de votre logiciel.
+Écrire des logiciels robuste signifie construire des systèmes qui peuvent exister dans un état de panne partielle (comme un résultat incomplet), et écrire des logiciels résilients signifie construire des systèmes qui sont toujours en capacité de faire des reprises (comme redémarrer), et aucun des deux ne s`'appuie sur la manière dont vous concevez le scénario nominal de votre logiciel.
 
 Quand vous ignorez les erreurs, vous les transformez en mystères à résoudre.
-Quelque chose ou quelqu'un d'autre devra s'en occuper, et ensuite faire une reprise, généralement à la main, et presque toujours à grand coût.
+Quelque chose ou quelqu`'un d`'autre devra s`'en occuper, et ensuite faire une reprise, généralement à la main, et presque toujours à grand coût.
 
-Le problème avec le fait d'éviter la gestion d'erreur dans le code, est que vous évitez seulement de l'automatiser.
+Le problème avec le fait d`'éviter la gestion d`'erreur dans le code, est que vous évitez seulement de l`'automatiser.
 
-En d'autres termes, l'astuce pour se mettre à l'échelle en présence d'erreurs est de construire vos logiciels autour de la notion de reprise.
+En d`'autres termes, l`'astuce pour se mettre à l`'échelle en présence d`'erreurs est de construire vos logiciels autour de la notion de reprise.
 De reprise automatique.
 
 Ça ou le burnout.

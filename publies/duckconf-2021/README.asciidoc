@@ -5,150 +5,150 @@ v0.1, 2021-04-07
 :article_image: logo.png
 :article_description: Plateforme, plateforme, plateforme
 
-link:https://www.laduckconf.com[La DuckConf] est une conférence sur l'architecture des systèmes d'information organisée par link:http://octo.com[Octo Technology] et qui cette année s'est tenue du 9 au 11 mars.
+link:https://www.laduckconf.com[La DuckConf] est une conférence sur l`'architecture des systèmes d`'information organisée par link:http://octo.com[Octo Technology] et qui cette année s`'est tenue du 9 au 11 mars.
 
-Par rapport à link:../duckconf-2020/[l'an dernier], j'ai été agréablement surpris{nbsp}: avoir des talks donnés par speakeuses et des talks à la finition plus aboutie m'ont fait bien meilleure impression.
+Par rapport à link:../duckconf-2020/[l`'an dernier], j`'ai été agréablement surpris{nbsp}: avoir des talks donnés par speakeuses et des talks à la finition plus aboutie m`'ont fait bien meilleure impression.
 
-Le fait d'assister à une conférence en visio et avec des présentations pré-enregistrées est un peu bizarre, on y gagne en confort mais la perte de spontanéité coupe un peu le lien.
+Le fait d`'assister à une conférence en visio et avec des présentations pré-enregistrées est un peu bizarre, on y gagne en confort mais la perte de spontanéité coupe un peu le lien.
 
 Principal regret, les talks et les slides étaient uniquement au masculin. Après deux ans chez Enercoop, link:https://www.enercoop.fr[où le langage inclusif est la norme], ces pratiques me sautent aux yeux.
 
-Si vous ne voulez pas lire tous les détail, deux talks m'ont plus particulièrement intéressés{nbsp}:
+Si vous ne voulez pas lire tous les détail, deux talks m`'ont plus particulièrement intéressés{nbsp}:
 
 - <<chaos>>
 - <<plateforme>>
 
 == Jour 1{nbsp}: Architectures & architectes
 
-=== Le rôle de l'architect(ur)e dans un contexte agile par Thomas Brien
+=== Le rôle de l`'architect(ur)e dans un contexte agile par Thomas Brien
 
 link:https://www.youtube.com/watch?v=_S7ySqrBQz4[Lien vers la vidéo]
 
-Ce talk présente deux exemples de fonctionnement de l'architecture dans des contextes d'agile à l'échelle{nbsp}: un fonctionnement avec le modèle team topologies, et un fonctionnement avec le modèle SAFe 5.
+Ce talk présente deux exemples de fonctionnement de l`'architecture dans des contextes d`'agile à l`'échelle{nbsp}: un fonctionnement avec le modèle team topologies, et un fonctionnement avec le modèle SAFe 5.
 
-Dans les deux cas, les architectes sont placés dans une équipe transverse, avec le périmètre qui correspond à celui d'une cellule d'architecture classique (donner de la cohérence, faire des cadrages, porter de l'expertise…).
+Dans les deux cas, les architectes sont placés dans une équipe transverse, avec le périmètre qui correspond à celui d`'une cellule d`'architecture classique (donner de la cohérence, faire des cadrages, porter de l`'expertise…).
 
-Les pratiques se rapprochent de celles qui évitent le pattern de la tour d'ivoire, par exemple de rester au plus proche des projets ou d'essayer de ne pas être dans une posture trop confrontante.
+Les pratiques se rapprochent de celles qui évitent le pattern de la tour d`'ivoire, par exemple de rester au plus proche des projets ou d`'essayer de ne pas être dans une posture trop confrontante.
 
-J'ai repéré deux éléments spécifiques à l'agile{nbsp}:
+J`'ai repéré deux éléments spécifiques à l`'agile{nbsp}:
 
-- Le fait que les décisions d'architecture doivent s'inscrire dans les itérations des équipes métier.
-- La capacité à avoir des retours rapidement sur les propositions d'architecture, ce qui permet d'affiner les choses graduellement, mais attention à ne pas changer de cap trop souvent car les projets ont une capacité à s'adapter de manière limitée.
+- Le fait que les décisions d`'architecture doivent s`'inscrire dans les itérations des équipes métier.
+- La capacité à avoir des retours rapidement sur les propositions d`'architecture, ce qui permet d`'affiner les choses graduellement, mais attention à ne pas changer de cap trop souvent car les projets ont une capacité à s`'adapter de manière limitée.
 
 === Passons au niveau supérieur dans la qualité des données référentielles par Ekaterina Simonenko & Selima Masmoudi
 
 link:https://www.youtube.com/watch?v=SzHeIIG0p4c[Lien vers la vidéo]
 
-Il s'agit d'une présentation des fonctions de master data management (MDM), c'est-à-dire de gestion des données de référence dans un SI, et des outils qui existent sur ce créneau.
+Il s`'agit d`'une présentation des fonctions de master data management (MDM), c`'est-à-dire de gestion des données de référence dans un SI, et des outils qui existent sur ce créneau.
 
-Ces outils sont des composants spécifiques en charge de gérer la qualité des données, et qui servent de point d'accès aux données.
+Ces outils sont des composants spécifiques en charge de gérer la qualité des données, et qui servent de point d`'accès aux données.
 
-J'ai trouvé intéressant l'idée de s'appuyer sur les besoins métier, par exemple des critères de qualité correspondant à des nécessités opérationnels, pour travailler les données, plutôt que de viser une qualité parfaite.
+J`'ai trouvé intéressant l`'idée de s`'appuyer sur les besoins métier, par exemple des critères de qualité correspondant à des nécessités opérationnels, pour travailler les données, plutôt que de viser une qualité parfaite.
 
-Quand j'ai travaillé à Octo, les produits de MDMs "`sur l'étagère`" étaient sévèrement jugés par rapport à des développements custom car ils était considérés comme lourds à gérer et pas à la hauteur de leurs promesses.
+Quand j`'ai travaillé à Octo, les produits de MDMs "`sur l`'étagère`" étaient sévèrement jugés par rapport à des développements custom car ils était considérés comme lourds à gérer et pas à la hauteur de leurs promesses.
 
-J'aurais bien aimé savoir sur quoi s'appuie ce changement de discours, les deux speakeases accompagnant les client·e·s sur la mise en place de ces logiciels.
+J`'aurais bien aimé savoir sur quoi s`'appuie ce changement de discours, les deux speakeases accompagnant les client·e·s sur la mise en place de ces logiciels.
 
-L'autre question que je me pose c'est le positionnement de ces solutions vis-à-vis de l'approche microservices qui pousse à ce que chaque application soit maître de ses données.
+L`'autre question que je me pose c`'est le positionnement de ces solutions vis-à-vis de l`'approche microservices qui pousse à ce que chaque application soit maître de ses données.
 
-Pour moi, les MDM peuvent avoir les mêmes problèmes que les "`puits de données`" dont link:https://blog.octo.com/superbe-maison-darchitecte-avec-vue-sur-le-lac-compte-rendu-du-talk-de-thomas-vial-a-la-duck-conf-2018/[Thomas Vial avait parlé dans le cas du DataLake], il serait donc intéressant de savoir pourquoi ce n'est pas le cas.
+Pour moi, les MDM peuvent avoir les mêmes problèmes que les "`puits de données`" dont link:https://blog.octo.com/superbe-maison-darchitecte-avec-vue-sur-le-lac-compte-rendu-du-talk-de-thomas-vial-a-la-duck-conf-2018/[Thomas Vial avait parlé dans le cas du DataLake], il serait donc intéressant de savoir pourquoi ce n`'est pas le cas.
 
-En résumé, la partie sur les besoins était intéressante mais je n'ai pas été convaincu par le fait d'utiliser une solution.
+En résumé, la partie sur les besoins était intéressante mais je n`'ai pas été convaincu par le fait d`'utiliser une solution.
 
 [#chaos]
 === Qui maîtrise mieux le chaos de votre SI{nbsp}: Mozart ou Béjart{nbsp}? par Safa Mabrouk
 
 link:https://www.youtube.com/watch?v=0zgDpZ0JOr0[Lien vers la vidéo]
 
-Ce talk commence par un historique des patterns d'intégrations dans les SI{nbsp}: partant d'une brique unique, on a souvent commencé par découper le système en plusieurs éléments qu'on va vouloir "`orchestrer`" (c'est-à-dire en utilisant une application unique pour organiser les échanges entre toutes les autres) pour ensuite basculer vers de la "`chorégraphie`" (où les applications se coordonnent entre elles).
+Ce talk commence par un historique des patterns d`'intégrations dans les SI{nbsp}: partant d`'une brique unique, on a souvent commencé par découper le système en plusieurs éléments qu`'on va vouloir "`orchestrer`" (c`'est-à-dire en utilisant une application unique pour organiser les échanges entre toutes les autres) pour ensuite basculer vers de la "`chorégraphie`" (où les applications se coordonnent entre elles).
 
-L'orchestration a atteint ses limites dans les grands systèmes car l'application cheffe d'orchestre a tendance à concentrer beaucoup de logique, ce qui ne monte pas à l'échelle.
+L`'orchestration a atteint ses limites dans les grands systèmes car l`'application cheffe d`'orchestre a tendance à concentrer beaucoup de logique, ce qui ne monte pas à l`'échelle.
 
-À l'inverse, le modèle décentralisé de chorégraphie peut être compliqué à gérer, par exemple pour la gestion de versions.
+À l`'inverse, le modèle décentralisé de chorégraphie peut être compliqué à gérer, par exemple pour la gestion de versions.
 
-C'est d'autant plus compliqué que les API exposées sont unitaires et techniques (de type ressource par exemple), car alors les consommateurs ont besoin d'implémenter plus de métier de leur côté, ce qui augmente le couplage.
+C`'est d`'autant plus compliqué que les API exposées sont unitaires et techniques (de type ressource par exemple), car alors les consommateurs ont besoin d`'implémenter plus de métier de leur côté, ce qui augmente le couplage.
 
-Même avec du monitoring de bout en bout de bonne qualité, on ne s'en sort pas.
+Même avec du monitoring de bout en bout de bonne qualité, on ne s`'en sort pas.
 
-L'approche qui se dégage est d'avoir un modèle de chorégraphie mais avec des application qui exposent des fonctionnalités plus riches.
-La synchronisation s'en trouve alors simplifiée et le couplage diminué.
+L`'approche qui se dégage est d`'avoir un modèle de chorégraphie mais avec des application qui exposent des fonctionnalités plus riches.
+La synchronisation s`'en trouve alors simplifiée et le couplage diminué.
 
 === DevOps & fataviz, un amour impossible{nbsp}? par Jérôme Lambert & Mohamed Nidhal Safta
 
 link:https://www.youtube.com/watch?v=RcnvtlWo-Ns[Lien vers la vidéo]
 
-L'idée de ce talk est de présenter comment mettre en place trois pratiques "`DevOps`" dans un projet de dataviz{nbsp}: la gestion de version, les tests automatisés, et l'automatisation des déploiements.
+L`'idée de ce talk est de présenter comment mettre en place trois pratiques "`DevOps`" dans un projet de dataviz{nbsp}: la gestion de version, les tests automatisés, et l`'automatisation des déploiements.
 
 La difficulté est que sur le projet en question, la dataviz est réalisée par un outil tout intégrée en SAAS et qui ne fournit pas ces fonctionnalités de manière native.
-La solution est d'utiliser des outils périphériques, et s'appuyer sur l'API de l'outil de dataviz pour les piloter.
+La solution est d`'utiliser des outils périphériques, et s`'appuyer sur l`'API de l`'outil de dataviz pour les piloter.
 
-Le résultat n'est pas parfait (par exemple ce sont des fichiers binaires qui sont versionnés), mais semble acceptable.
+Le résultat n`'est pas parfait (par exemple ce sont des fichiers binaires qui sont versionnés), mais semble acceptable.
 
-Il m'a rappelé ce qu'on faisait il y a quelques années avant link:https://blog.octo.com/middlewares-et-autres-outils-ce-quil-faut-verifier-avant-dacheter/[quand il s'agissait de faire la même chose avec des outils d'intégration comme les ESB].
+Il m`'a rappelé ce qu`'on faisait il y a quelques années avant link:https://blog.octo.com/middlewares-et-autres-outils-ce-quil-faut-verifier-avant-dacheter/[quand il s`'agissait de faire la même chose avec des outils d`'intégration comme les ESB].
 
-En passant, j'ai été amusé d'entendre que les tests automatisés et la gestion de version sont une invention du DevOps, le temps passe et link:https://blog.octo.com/larrivee-de-lagile-a-octo-introduction/[l'histoire s'oublie].
+En passant, j`'ai été amusé d`'entendre que les tests automatisés et la gestion de version sont une invention du DevOps, le temps passe et link:https://blog.octo.com/larrivee-de-lagile-a-octo-introduction/[l`'histoire s`'oublie].
 
 === Je suis architecte et je me soigne par Borémi Toch & Laurent Sollier
 
 link:https://www.youtube.com/watch?v=G1jpSsogYyU[Lien vers la vidéo]
 
-Ce talk parle de la place de l'architecte dans les organisations modernes, alors qu'elles sont très centrées sur les équipes projets et laissent donc moins de place aux rôles transverses comme ceux des architectes.
+Ce talk parle de la place de l`'architecte dans les organisations modernes, alors qu`'elles sont très centrées sur les équipes projets et laissent donc moins de place aux rôles transverses comme ceux des architectes.
 
-(Autopromo{nbsp}: link:https://blog.octo.com/avec-le-cloud-et-lagile-il-ny-a-plus-besoin-darchitectes/[j'avais déjà un peu parlé de ce sujet ici]).
+(Autopromo{nbsp}: link:https://blog.octo.com/avec-le-cloud-et-lagile-il-ny-a-plus-besoin-darchitectes/[j`'avais déjà un peu parlé de ce sujet ici]).
 
 Il font donc trouver ce que les architecte peuvent apporter dans ce type de structure, et quelles sont les postures à adopter pour y parvenir{nbsp}:
 
-- l'architecte vigie qui fait de la veille et identifie les risques
-- l'architecte ambassadeur·rice qui traite les questions de frontières entre systèmes informatiques et équipes, et qui sait vulgariser
-- l'architecte coach·e du SI qui travaille à ce qu'il évolue dans le bon sens
+- l`'architecte vigie qui fait de la veille et identifie les risques
+- l`'architecte ambassadeur·rice qui traite les questions de frontières entre systèmes informatiques et équipes, et qui sait vulgariser
+- l`'architecte coach·e du SI qui travaille à ce qu`'il évolue dans le bon sens
 
-Le portrait m'a paru assez parlant, même si je suis un peu plus optimiste que les speakers sur la capacité d'un·e un architecte à soutenir des solutions, même quand les équipes n'en veulent pas forcément (du moins s'iel a l'appui de sa hiérarchie).
+Le portrait m`'a paru assez parlant, même si je suis un peu plus optimiste que les speakers sur la capacité d`'un·e un architecte à soutenir des solutions, même quand les équipes n`'en veulent pas forcément (du moins s`'iel a l`'appui de sa hiérarchie).
 
 == Jour 2{nbsp}: Architecture & cloud
 
-Note{nbsp}: contrairement au titre, les présentations du jour n'avaient pas toutes un rapport évident avec le cloud.
+Note{nbsp}: contrairement au titre, les présentations du jour n`'avaient pas toutes un rapport évident avec le cloud.
 
 [#plateforme]
 === Une équipe plateforme qui délivre{nbsp}! par François-Xavier Vende
 
 link:https://i.ytimg.com/an_webp/CwclZThS3wc/mqdefault_6s.webp?du=3000&sqp=CMOzvIIG&rs=AOn4CLAbTIB6DKlOCwBJ-Nhd9TZKjYrR0g[Lien vers la vidéo]
 
-Cette présentation décrit la construction d'un système d'information en partant de rien, l'infrastructure ayant été construite en même temps que les projets.
+Cette présentation décrit la construction d`'un système d`'information en partant de rien, l`'infrastructure ayant été construite en même temps que les projets.
 
 La plateforme est prise en charge par une équipe dédiée spécialisée, avec des relais identifiés dans les différentes équipes projets.
 
-Par rapport aux échanges de la veille sur la nécessité pour les architectes SI de se réinventer et à ne plus jouer les démiurges entre eux, j'ai parfois l'impression que les Ops des équipes plateforme ont repris une partie de leurs anciennes attributions.
+Par rapport aux échanges de la veille sur la nécessité pour les architectes SI de se réinventer et à ne plus jouer les démiurges entre eux, j`'ai parfois l`'impression que les Ops des équipes plateforme ont repris une partie de leurs anciennes attributions.
 
-J'ai trouvé intéressant l'accent mis sur le temps que prends l'industrialisation, dans une organisation où la plateforme technique avance en même temps que les projets, cela signifie parfois accepter de faire du manuel et de la dette technique Ops pour ne pas bloquer les projets.
+J`'ai trouvé intéressant l`'accent mis sur le temps que prends l`'industrialisation, dans une organisation où la plateforme technique avance en même temps que les projets, cela signifie parfois accepter de faire du manuel et de la dette technique Ops pour ne pas bloquer les projets.
 
 === Pour être "`data-centric`", faut-il centraliser{nbsp}? par Julien Assémat & Renaud Andrieux
 
 link:https://www.youtube.com/watch?v=2EFTeX9jVPo[Lien vers la vidéo]
 
 Cette présentation couvre les très grandes organisations avec de multiples entités où une plateforme de données unique ne suffit plus{nbsp}:
-trop de types de données, qui n'ont pas toujours vocation à être partagées par tout le monde, trop de besoins différents, trop de plans projets et de budgets à synchroniser.
-La solution ressemble à celle appliquée côté SI classique{nbsp}: avoir une équipe transverse qui définit des cadres, et qui se concentre sur les questions d'interopérabilité plutôt que d'essayer de tout piloter.
+trop de types de données, qui n`'ont pas toujours vocation à être partagées par tout le monde, trop de besoins différents, trop de plans projets et de budgets à synchroniser.
+La solution ressemble à celle appliquée côté SI classique{nbsp}: avoir une équipe transverse qui définit des cadres, et qui se concentre sur les questions d`'interopérabilité plutôt que d`'essayer de tout piloter.
 
-Le talk s'inspire largement de deux longs articles de Zhamak Dehghani publiés sur le blog de Martin Fowler{nbsp}: link:https://martinfowler.com/articles/data-monolith-to-mesh.html[How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh] et link:https://martinfowler.com/articles/data-mesh-principles.html[Data Mesh Principles and Logical Architecture], si le sujet vous intéresse, je vous invite à les lire.
+Le talk s`'inspire largement de deux longs articles de Zhamak Dehghani publiés sur le blog de Martin Fowler{nbsp}: link:https://martinfowler.com/articles/data-monolith-to-mesh.html[How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh] et link:https://martinfowler.com/articles/data-mesh-principles.html[Data Mesh Principles and Logical Architecture], si le sujet vous intéresse, je vous invite à les lire.
 
-=== Architecture émergente dans l'intelligence artificielle par Emmanuel-Lin Toulemonde
+=== Architecture émergente dans l`'intelligence artificielle par Emmanuel-Lin Toulemonde
 
 link:https://www.youtube.com/watch?v=qj3lVoaAe3Q[Lien vers la vidéo]
 
-Après la présentation d'hier sur "`on peut faire de l'agile avec de la DataViz`", voici un exemple de "`on peut faire de l'agile avec de l'IA`"{nbsp}: après s'être lancé au départ dans un plan d'architecture à l'ancienne nécessitant d'avoir une plateforme complète dès le départ, l'équipe a opté pour une approche itérative et à pu ainsi délivrer rapidement de la valeur après une lutte qui a semblé acharné avec l'équipe d'architecture centrale.
+Après la présentation d`'hier sur "`on peut faire de l`'agile avec de la DataViz`", voici un exemple de "`on peut faire de l`'agile avec de l`'IA`"{nbsp}: après s`'être lancé au départ dans un plan d`'architecture à l`'ancienne nécessitant d`'avoir une plateforme complète dès le départ, l`'équipe a opté pour une approche itérative et à pu ainsi délivrer rapidement de la valeur après une lutte qui a semblé acharné avec l`'équipe d`'architecture centrale.
 
-20 ans après le manifeste agile et même si ça fait toujours plaisir, j'ai une forte impression de déjà vu devant ce type de talks.
+20 ans après le manifeste agile et même si ça fait toujours plaisir, j`'ai une forte impression de déjà vu devant ce type de talks.
 
 === CQRS à notre secours par Florent Jaby
 
 link:https://www.youtube.com/watch?v=RHUsQui8moc[Lien vers la vidéo]
 
-Cette présentation décrit la mise en place d'une architecture link:https://www.martinfowler.com/bliki/CQRS.html[CQRS].
+Cette présentation décrit la mise en place d`'une architecture link:https://www.martinfowler.com/bliki/CQRS.html[CQRS].
 
-J'ai particulièrement apprécié deux choses{nbsp}:
+J`'ai particulièrement apprécié deux choses{nbsp}:
 
-- l'approche légère, sans le bus Kafka et le reste de l'outillage qui sont souvent présenté comme l'architecture-type CQRS
-- le CQRS ajouté pendant la vie de l'application et pas dès le début, ce qui permet d'avoir plus d'informations pour faire son choix.
+- l`'approche légère, sans le bus Kafka et le reste de l`'outillage qui sont souvent présenté comme l`'architecture-type CQRS
+- le CQRS ajouté pendant la vie de l`'application et pas dès le début, ce qui permet d`'avoir plus d`'informations pour faire son choix.
 
 === Table ronde{nbsp}: les coûts dans le Cloud
 
@@ -156,29 +156,29 @@ Les offres cloud des gros fournisseurs (Amazon, Microsoft et Google) sont devenu
 
 Cela donne plus de flexibilité et permet de déployer des architectures auparavant réservées au _on premise_, mais cela rend aussi plus difficile de pouvoir prévoir les coûts que cela engendre.
 
-Pour des entreprises migrant vers le cloud, la structure de prix n'est pas forcément la même que celle à laquelle elles sont habituées (par exemple pour les coûts réseaux), et il faut donc monter en compétence et refaire ses calculs.
+Pour des entreprises migrant vers le cloud, la structure de prix n`'est pas forcément la même que celle à laquelle elles sont habituées (par exemple pour les coûts réseaux), et il faut donc monter en compétence et refaire ses calculs.
 Cela signifie que si une application a été conçue pour être adaptée une structure de coût _on premise_, elle pourra se révéler bien plus chère une fois déployée dans le cloud.
 Dans certains cas, une migration de plateforme peut alors nécessiter une adaptation du système.
 
 Même si un des avantages du cloud est de pouvoir payer à la demande, il est tout de même souhaitable de pouvoir anticiper le budget dont on va avoir besoin.
-Cela permet de bénéficier de prix plus bas en réservant des ressources à l'avance et d'éviter les mauvaises surprises.
+Cela permet de bénéficier de prix plus bas en réservant des ressources à l`'avance et d`'éviter les mauvaises surprises.
 
-J'ai l'impression que ce sujet et donc l'expertise dans ce domaine se retrouve souvent dans le périmètre de l'équipe plateforme, toujours dans l'idée que cette équipe a un air de famille avec les architectes à l'ancienne.
+J`'ai l`'impression que ce sujet et donc l`'expertise dans ce domaine se retrouve souvent dans le périmètre de l`'équipe plateforme, toujours dans l`'idée que cette équipe a un air de famille avec les architectes à l`'ancienne.
 
-La capacité à pouvoir mesurer le coût d'hébergement application par application, et donc à pouvoir donc faire prendre des décisions au plus juste (est ce qu'une application coûte plus qu'elle ne rapporte{nbsp}?) peut se révéler intéressante, par exemple pour responsabiliser les architectes et les personnes qui développent.
+La capacité à pouvoir mesurer le coût d`'hébergement application par application, et donc à pouvoir donc faire prendre des décisions au plus juste (est ce qu`'une application coûte plus qu`'elle ne rapporte{nbsp}?) peut se révéler intéressante, par exemple pour responsabiliser les architectes et les personnes qui développent.
 
-À l'inverse, je me méfie un peu des effets pervers que peut entraîner la capacité à faire des arbitrages trop fins dans ce domaine, par exemple quand on parle de refacturation entre applications.
+À l`'inverse, je me méfie un peu des effets pervers que peut entraîner la capacité à faire des arbitrages trop fins dans ce domaine, par exemple quand on parle de refacturation entre applications.
 
 == Jour 3{nbsp}: Architecture & changement
 
-=== REX Bilan Carbone d'une ESN par Alexis Nicolas
+=== REX Bilan Carbone d`'une ESN par Alexis Nicolas
 
 link:https://www.youtube.com/watch?v=JMUCotczHR0[Lien vers la vidéo]
 
-Alexis Nicolas décrit la manière dont Octo a fait son bilan carbone et les questions qui se posent pour arriver à réduire l'empreinte carbone de l'entreprise.
+Alexis Nicolas décrit la manière dont Octo a fait son bilan carbone et les questions qui se posent pour arriver à réduire l`'empreinte carbone de l`'entreprise.
 
-La conclusion du talk est qu'une entreprise de service numérique n'a pas beaucoup de leviers à sa disposition dans ce domaine.
-Le plus important est le niveau élevé de croissance (20% par an) qui est demandé à l'entreprise, et qui devrait permettre d'amortir certains coûts fixes comme les locaux en les répartissant sur un nombre de personnes plus importants.
+La conclusion du talk est qu`'une entreprise de service numérique n`'a pas beaucoup de leviers à sa disposition dans ce domaine.
+Le plus important est le niveau élevé de croissance (20% par an) qui est demandé à l`'entreprise, et qui devrait permettre d`'amortir certains coûts fixes comme les locaux en les répartissant sur un nombre de personnes plus importants.
 
 Si le sujet du développement durable et soutenable vous intéresse, link:https://enercoop.fr[on recrute]{nbsp}!
 
@@ -186,61 +186,61 @@ Si le sujet du développement durable et soutenable vous intéresse, link:https:
 
 link:https://www.youtube.com/watch?v=C2COBA4EFrM[Lien vers la vidéo]
 
-Ce talk présente une vision de la dette technique, des raisons qui font qu'elle apparaît et des solutions pour en sortir.
+Ce talk présente une vision de la dette technique, des raisons qui font qu`'elle apparaît et des solutions pour en sortir.
 
-Même s'il contient des idées intéressantes, j'ai été gêné par deux choses{nbsp}:
+Même s`'il contient des idées intéressantes, j`'ai été gêné par deux choses{nbsp}:
 
-. L'idée que la dette technique est une conséquence de choix fait consciemment en connaissance de cause (et en particulier de raccourcis pris en fin d'itération pour pouvoir tenir le périmètre), alors que dans mon expérience elle est le plus souvent involontaire.
-. L'autre est que l'analyse des problèmes et les solutions proposées sont très proches du discours de link:https://fr.wikipedia.org/wiki/Architecture_hexagonale_(logiciel)[l'architecture hexagonale] alors qu'elle est mentionnée seulement vers la fin.
-J'aurais préféré que cela le soit dès le début et de manière plus directe pour mieux permettre de placer le talk dans son contexte, d'autant que je ne suis pas convaincu par l'approche très systématique qu'elle propose.
+. L`'idée que la dette technique est une conséquence de choix fait consciemment en connaissance de cause (et en particulier de raccourcis pris en fin d`'itération pour pouvoir tenir le périmètre), alors que dans mon expérience elle est le plus souvent involontaire.
+. L`'autre est que l`'analyse des problèmes et les solutions proposées sont très proches du discours de link:https://fr.wikipedia.org/wiki/Architecture_hexagonale_(logiciel)[l`'architecture hexagonale] alors qu`'elle est mentionnée seulement vers la fin.
+J`'aurais préféré que cela le soit dès le début et de manière plus directe pour mieux permettre de placer le talk dans son contexte, d`'autant que je ne suis pas convaincu par l`'approche très systématique qu`'elle propose.
 
 === Les Fake News du Low-Code par Sylvain Fagnent & Alain Fauré
 
 link:https://www.youtube.com/watch?v=sQZqyB-EZro[Lien vers la vidéo]
 
 Le talk vise à démystifier les plateforme low-code.
-Les auteurs précisent bien qu'il ne faut pas confondre les outils low-code et les outils no-code.
+Les auteurs précisent bien qu`'il ne faut pas confondre les outils low-code et les outils no-code.
 
-Les outils no-code visent des personnes n'ayant aucune compétence informatique, et sont plutôt limités à des applications très simples.
-À l'inverse les outils low-code nécessitent une certaine connaissance en programmation, et leur objectif est de permettre d'accélérer le développement en fournissant des outils complets intégrant de nombreuses fonctionnalités (monitoring, sécurité…) ce qui permet d'accélérer le travail.
+Les outils no-code visent des personnes n`'ayant aucune compétence informatique, et sont plutôt limités à des applications très simples.
+À l`'inverse les outils low-code nécessitent une certaine connaissance en programmation, et leur objectif est de permettre d`'accélérer le développement en fournissant des outils complets intégrant de nombreuses fonctionnalités (monitoring, sécurité…) ce qui permet d`'accélérer le travail.
 
-Depuis le temps qu'on en parle, ces plateformes ont bien progressé et il est désormais possible d'y faire du développement en mettant en œuvre un certain nombre de bonnes pratiques (tests unitaires, réutilisation de code, gestion de source…), l'enjeu étant désormais plus que les personnes utilisatrices ne sont pas forcément sensibilisées à ces aspects.
+Depuis le temps qu`'on en parle, ces plateformes ont bien progressé et il est désormais possible d`'y faire du développement en mettant en œuvre un certain nombre de bonnes pratiques (tests unitaires, réutilisation de code, gestion de source…), l`'enjeu étant désormais plus que les personnes utilisatrices ne sont pas forcément sensibilisées à ces aspects.
 
-Par contre ces plateformes sont adaptées à certains usages et ne vont donc pas remplacer l'ensemble des développements, par exemple des applications mobiles ou des sites intranet avec une complexité limitée.
-Lors du cadrage d'un projet il faut donc être vigilant à bien vérifier s'il est compatible avec le domaine de pertinence de l'outil.
+Par contre ces plateformes sont adaptées à certains usages et ne vont donc pas remplacer l`'ensemble des développements, par exemple des applications mobiles ou des sites intranet avec une complexité limitée.
+Lors du cadrage d`'un projet il faut donc être vigilant à bien vérifier s`'il est compatible avec le domaine de pertinence de l`'outil.
 
-Un point noir pour moi sur le talk{nbsp}:les opposants au low-code sont représentés par des caricatures de Donald Trump, et cela m'a mis physiquement mal à l'aise.
-Je pense qu'on peut critiquer des technologies, même en étant de mauvaise foi, sans être assimilé à une personne raciste et misogyne.
+Un point noir pour moi sur le talk{nbsp}:les opposants au low-code sont représentés par des caricatures de Donald Trump, et cela m`'a mis physiquement mal à l`'aise.
+Je pense qu`'on peut critiquer des technologies, même en étant de mauvaise foi, sans être assimilé à une personne raciste et misogyne.
 
 === Réussir une "Conway Inversée" par Romain Vailleux
 
 link:https://www.youtube.com/watch?v=zmJknCVQ3Tc[Lien vers la vidéo]
 
-L'idée du talk est que si les organisations ont tendance à construire des produits qui sont le reflets de leur structure de communication, il est devient nécessaire d'organiser l'entreprise en fonction des produit qu'elle veut construire.
+L`'idée du talk est que si les organisations ont tendance à construire des produits qui sont le reflets de leur structure de communication, il est devient nécessaire d`'organiser l`'entreprise en fonction des produit qu`'elle veut construire.
 
-L'idée étant notamment de gagner en efficacité en limitant le nombre de sujets sur lesquels une personne doit travailler, et de rassembler dans des équipes les personnes qui sont nécessaires à un projet.
+L`'idée étant notamment de gagner en efficacité en limitant le nombre de sujets sur lesquels une personne doit travailler, et de rassembler dans des équipes les personnes qui sont nécessaires à un projet.
 
-L'approche proposée est celle du livre link:https://teamtopologies.com[team topologies], donc le vocabulaire et les modèles ont déjà beaucoup irrigué le reste de la conférence.
+L`'approche proposée est celle du livre link:https://teamtopologies.com[team topologies], donc le vocabulaire et les modèles ont déjà beaucoup irrigué le reste de la conférence.
 
 === CovidTracker{nbsp}: la data au service de tous{nbsp}! par Guillaume Rozier
 
 link:https://www.youtube.com/watch?v=K7DuqLOGy4c[Lien vers la vidéo]
 
-Guillaume Rozier, créateur du site link:https://covidtracker.fr[CovidTracker] décrit comment le site s'est construit petit à petit, en fonction des besoins et des pics de charges successifs.
+Guillaume Rozier, créateur du site link:https://covidtracker.fr[CovidTracker] décrit comment le site s`'est construit petit à petit, en fonction des besoins et des pics de charges successifs.
 
-C'est un bon cas d'usage de l'approche agile et lean start-up qui montre qu'on peut faire un site très visité sans plateforme DevOps ni Digital Factory, même si les messages forts sont peut-être un peu trop répétés à mon goût.
+C`'est un bon cas d`'usage de l`'approche agile et lean start-up qui montre qu`'on peut faire un site très visité sans plateforme DevOps ni Digital Factory, même si les messages forts sont peut-être un peu trop répétés à mon goût.
 
-=== Table ronde{nbsp}: tour d'horizon des impacts architecturaux de la COVID
+=== Table ronde{nbsp}: tour d`'horizon des impacts architecturaux de la COVID
 
 La table ronde brassait beaucoup de domaines{nbsp}: problèmes de montée en charge de VPN, migration précipitées sur le Cloud et difficulté à organiser des ateliers en remote.
 
-Même si ce qui était discuté recoupait mes constats, après trois jours de conférences j'ai vraiment eu du mal à suivre et à en tirer des éléments exploitables.
+Même si ce qui était discuté recoupait mes constats, après trois jours de conférences j`'ai vraiment eu du mal à suivre et à en tirer des éléments exploitables.
 
 == Pour conclure
 
-Trois jours de talks en visioconférence c'est éprouvant, surtout quand il faut ensuite basculer sur le travail "`normal`".
-Même avec des présentations bien ficelées, au final je ne sais pas si c'est un format qui me convient même s'il permet de garantir d'avoir du temps pour regarder tous les talks.
+Trois jours de talks en visioconférence c`'est éprouvant, surtout quand il faut ensuite basculer sur le travail "`normal`".
+Même avec des présentations bien ficelées, au final je ne sais pas si c`'est un format qui me convient même s`'il permet de garantir d`'avoir du temps pour regarder tous les talks.
 
-J'en ressors avec quelques nouvelles idées, et il va me falloir travailler pour voir comment certaines s'adaptent au contexte plus petit d'Enercoop.
+J`'en ressors avec quelques nouvelles idées, et il va me falloir travailler pour voir comment certaines s`'adaptent au contexte plus petit d`'Enercoop.
 
-Et vivement l'année prochaine, en espérant qu'on puisse se revoir en physique{nbsp}!
+Et vivement l`'année prochaine, en espérant qu`'on puisse se revoir en physique{nbsp}!

@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 
-require 'net/http'
-require 'fileutils'
+require `'net/http`'
+require `'fileutils`'
 
-require 'addressable'
+require `'addressable`'
 
-INITIAL_URL = 'https://queue.acm.org'
-TARGET_DIRECTORY = 'download'
+INITIAL_URL = `'https://queue.acm.org`'
+TARGET_DIRECTORY = `'download`'
 
-# Supprime le répertoire de destination s'il existe et le recréé
+# Supprime le répertoire de destination s`'il existe et le recréé
 if File.exists?(TARGET_DIRECTORY)
   puts "Supprime [#{TARGET_DIRECTORY}]"
   FileUtils.remove_entry_secure(TARGET_DIRECTORY)
@@ -20,4 +20,4 @@ puts "Télécharge [#{INITIAL_URL}]"
 parsed_url = Addressable::URI.parse(INITIAL_URL)
 response = Net::HTTP.get(parsed_url)
 
-IO.write(File.join(TARGET_DIRECTORY, 'index.html'), response)
+IO.write(File.join(TARGET_DIRECTORY, `'index.html`'), response)

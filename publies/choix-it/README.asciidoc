@@ -1,4 +1,4 @@
-= Un modèle pour comprendre les choix dans l'IT
+= Un modèle pour comprendre les choix dans l`'IT
 Julien Kirch
 v0.1, 2020-05-01
 :article_lang: fr
@@ -9,34 +9,34 @@ v0.1, 2020-05-01
 Quel langage ou framework utiliser{nbsp}? Microservices ou monolithe{nbsp}? Rénover une base de code existante ou la réécrire{nbsp}?
 Beaucoup de choses ont été écrites sur les aspects techniques et organisationnels de ce type de décisions.
 
-Mais j'ai l'impression qu'un autre aspect est moins décrit{nbsp}: celui des intérêts des personnes qui sont impliquées.
+Mais j`'ai l`'impression qu`'un autre aspect est moins décrit{nbsp}: celui des intérêts des personnes qui sont impliquées.
 Car quand une décision implique plusieurs parties prenantes, il est normal que leurs intérêts ne soient pas forcément les mêmes.
-Par exemple que les intérêts des personnes qui développent soient différents de l'intérêt de l'organisation pour laquelle elles travaillent.
+Par exemple que les intérêts des personnes qui développent soient différents de l`'intérêt de l`'organisation pour laquelle elles travaillent.
 
-Si parfois ce sujet est évoqué ouvertement, j'ai croisé beaucoup d'organisations où en parler est considéré comme un faux pas un peu vulgaire.
+Si parfois ce sujet est évoqué ouvertement, j`'ai croisé beaucoup d`'organisations où en parler est considéré comme un faux pas un peu vulgaire.
 
-Cela signifie que des décisions prises sont parfois inadaptées car on préfère ne pas prendre en compte ces éléments, ou parce que les personnes qui n'ont pas une conscience claire de ces sujets peuvent passer à côté d'une partie des enjeux.
+Cela signifie que des décisions prises sont parfois inadaptées car on préfère ne pas prendre en compte ces éléments, ou parce que les personnes qui n`'ont pas une conscience claire de ces sujets peuvent passer à côté d`'une partie des enjeux.
 
-Je ne prétends pas qu'il soit possible de toujours trouver des solutions qui soient satisfaisantes pour tout le monde.
+Je ne prétends pas qu`'il soit possible de toujours trouver des solutions qui soient satisfaisantes pour tout le monde.
 Mon objectif est plutôt de permettre de comprendre ce qui se passe, et de permettre aux personnes de pouvoir défendre leurs intérêts.
 
-Avec le temps j'avais accumulé certaines idées sur ce sujet et j'ai cherché un moyen de les synthétiser d'une manière lisible.
+Avec le temps j`'avais accumulé certaines idées sur ce sujet et j`'ai cherché un moyen de les synthétiser d`'une manière lisible.
 
-J'ai construit le modèle en ayant en tête le type de choix dont je parle au début de l'article{nbsp}: choix de technologie, ou modèle de développement.
-Il peut probablement s'appliquer à d'autres situations, mais je vais me concentrer sur ceux-là dans mes exemples.
+J`'ai construit le modèle en ayant en tête le type de choix dont je parle au début de l`'article{nbsp}: choix de technologie, ou modèle de développement.
+Il peut probablement s`'appliquer à d`'autres situations, mais je vais me concentrer sur ceux-là dans mes exemples.
 
 == Les zones
 
-Dans le modèle, j'ai identifié cinq zones d'intérêt qui s'appliquent lorsqu'une décision est prise.
+Dans le modèle, j`'ai identifié cinq zones d`'intérêt qui s`'appliquent lorsqu`'une décision est prise.
 
-Le modèle présente le point d'une vue d'une personne impliquée dans la décision.
-Certaines des zones sont communes aux différentes personnes impliquées, d'autres dépendent de chaque personne.
+Le modèle présente le point d`'une vue d`'une personne impliquée dans la décision.
+Certaines des zones sont communes aux différentes personnes impliquées, d`'autres dépendent de chaque personne.
 
 === Ce que la personne a envie de faire.
 
 image::envie.svg[]
 
-Il s'agit des choix qui correspondent aux envies de la personne.
+Il s`'agit des choix qui correspondent aux envies de la personne.
 
 Par exemple choisir une technologies exotique, une approche en rupture non prouvée, mais qui ont attisé sa curiosité.
 
@@ -44,39 +44,39 @@ Par exemple choisir une technologies exotique, une approche en rupture non prouv
 
 image::carriere.svg[]
 
-Il s'agit des choix qui sont favorables à la carrière de la personne.
+Il s`'agit des choix qui sont favorables à la carrière de la personne.
 
-Par exemple le fait d'utiliser une technologie très demandée ailleurs, et qui se valoriserait donc très bien sur un CV.
+Par exemple le fait d`'utiliser une technologie très demandée ailleurs, et qui se valoriserait donc très bien sur un CV.
 
 Si cette technologie semble ennuyeuse à la personne, elle ne fera pas partie de la première zone.
 
-=== Ce qui est bon pour l'organisation
+=== Ce qui est bon pour l`'organisation
 
 image::bon.svg[]
 
-Il s'agit des choix qui correspondent aux besoins de l'organisation dans laquelle travaille la personne.
+Il s`'agit des choix qui correspondent aux besoins de l`'organisation dans laquelle travaille la personne.
 
-Dans une grande organisation c'est une notion qui peut être assez floue, on peut quand même avoir une certaine idée de là où elle se trouve.
+Dans une grande organisation c`'est une notion qui peut être assez floue, on peut quand même avoir une certaine idée de là où elle se trouve.
 
-=== Ce qui est valorisé par l'organisation
+=== Ce qui est valorisé par l`'organisation
 
 image::recompense.svg[]
 
-Il s'agit des choix possibles qui seront récompensés par l'organisation dans laquelle travaille la personne.
+Il s`'agit des choix possibles qui seront récompensés par l`'organisation dans laquelle travaille la personne.
 
-Par exemple ceux qui pourront être utilisés pour demander une augmentation, ou qui vaudront d'être favorablement remarqué.
+Par exemple ceux qui pourront être utilisés pour demander une augmentation, ou qui vaudront d`'être favorablement remarqué.
 
 === Ce que le·a consultant·e conseille
 
 image::conseille.svg[]
 
-Il s'agit de ce que pourra conseiller une personne extérieure à la décision, qui donne son avis mais qui ne sera pas partie prenante dans la mise en œuvre.
+Il s`'agit de ce que pourra conseiller une personne extérieure à la décision, qui donne son avis mais qui ne sera pas partie prenante dans la mise en œuvre.
 
-Il peut s'agir d'un·e consultant·e d'une entreprise extérieure, mais aussi d'un·e consultant·e interne, par exemple un·e architecte intervenant dans le processus.
+Il peut s`'agir d`'un·e consultant·e d`'une entreprise extérieure, mais aussi d`'un·e consultant·e interne, par exemple un·e architecte intervenant dans le processus.
 
 Dans ce cas cette personne ne subit pas les mêmes influences que les personnes faisant partie du projet.
 
-Dans la suite de l'article, je vais parler des contraintes et des biais inhérents à cette situation.
+Dans la suite de l`'article, je vais parler des contraintes et des biais inhérents à cette situation.
 
 === Les 5 zones
 
@@ -84,87 +84,87 @@ image::complet.svg[]
 
 Voici le diagramme complet.
 
-Dans mon idée, toutes les situations de recouvrement ou de non-recouvrement sont possibles, même si ça n'est pas forcément le cas dans toutes les décisions.
+Dans mon idée, toutes les situations de recouvrement ou de non-recouvrement sont possibles, même si ça n`'est pas forcément le cas dans toutes les décisions.
 
-Encore une fois, l'objectif n'est pas forcément de toujours viser la zone centrale où tout les intérêt sont satisfaits, mais de comprendre les dynamiques à l'œuvre et de bien faire ses choix.
+Encore une fois, l`'objectif n`'est pas forcément de toujours viser la zone centrale où tout les intérêt sont satisfaits, mais de comprendre les dynamiques à l`'œuvre et de bien faire ses choix.
 
 image::milieu.svg[]
 
 == Quelques endroits intéressants
 
-=== Ce qu'on a envie de faire mais qui n'est pas bon pour sa carrière
+=== Ce qu`'on a envie de faire mais qui n`'est pas bon pour sa carrière
 
 image::envie-pas-carriere.svg[]
 
-Une zone que les personnes qui sont passionnées de technique connaissent bien{nbsp}: que faire quand ce qu'on a envie de faire n'est pas valorisé dans les entreprises{nbsp}?
+Une zone que les personnes qui sont passionnées de technique connaissent bien{nbsp}: que faire quand ce qu`'on a envie de faire n`'est pas valorisé dans les entreprises{nbsp}?
 
-Je n'ai pas de réponse simple, mais une première étape possible est d'admettre que cette situation existe et d'essayer de trouver une position pas trop inconfortable.
+Je n`'ai pas de réponse simple, mais une première étape possible est d`'admettre que cette situation existe et d`'essayer de trouver une position pas trop inconfortable.
 
-Une autre réponse possible est de s'organiser pour essayer de faire bouger les zones en convainquant les entreprises que ce qu'on a envie de faire leur est utile.
+Une autre réponse possible est de s`'organiser pour essayer de faire bouger les zones en convainquant les entreprises que ce qu`'on a envie de faire leur est utile.
 
 Le mouvement DevSecOps peut ainsi se voir comme une manière pour des personnes, travaillant ou ayant envie de travailler dans la sécurité, de se faire une place au soleil.
 
-== Ce qui est valorisé par l'organisation ne donne pas envie et n'est pas bon pour sa carrière
+== Ce qui est valorisé par l`'organisation ne donne pas envie et n`'est pas bon pour sa carrière
 
 image::bon-pas-envie-ni-carriere.svg[]
 
-C'est ce qui peut arriver quand une organisation utilise des outils développés en interne, ou même simplement pas au goût du jour{nbsp}: l'intérêt de l'organisation et celle des personnes qui y travaillent sont en décalage.
+C`'est ce qui peut arriver quand une organisation utilise des outils développés en interne, ou même simplement pas au goût du jour{nbsp}: l`'intérêt de l`'organisation et celle des personnes qui y travaillent sont en décalage.
 
-Recruter peut alors devenir compliqué car pourquoi venir travailler dans une structure en sachant que ce qu'on y fera ne sera ni amusant ni utile{nbsp}?
+Recruter peut alors devenir compliqué car pourquoi venir travailler dans une structure en sachant que ce qu`'on y fera ne sera ni amusant ni utile{nbsp}?
 
-À nouveau il n'y a pas forcément de solution évidente{nbsp}: parfois maintenir un existant dans un langage obscur et en fin de vie est la meilleure solution.
+À nouveau il n`'y a pas forcément de solution évidente{nbsp}: parfois maintenir un existant dans un langage obscur et en fin de vie est la meilleure solution.
 Mais il faut accepter les conséquences de ce type de choix.
 
-J'ai ainsi croisé certaines organisations faisant obstinément semblant de ne pas comprendre pourquoi personne ne postulait à certaines de leurs offres d'emploi.
+J`'ai ainsi croisé certaines organisations faisant obstinément semblant de ne pas comprendre pourquoi personne ne postulait à certaines de leurs offres d`'emploi.
 
-=== Ce qui est bon pour l'organisation mais pas valorisé
+=== Ce qui est bon pour l`'organisation mais pas valorisé
 
 image::bon-pas-recompense.svg[]
 
-Un grand classique des organisations dysfonctionnelles, où certaines des activités nécessaires ou au moins utiles à l'organisations ne sont pas valorisées.
+Un grand classique des organisations dysfonctionnelles, où certaines des activités nécessaires ou au moins utiles à l`'organisations ne sont pas valorisées.
 
-Cela signifie que des personnes de bonne volonté feront peut-être ce type de choix, mais qu'on ne peut pas compter dessus.
+Cela signifie que des personnes de bonne volonté feront peut-être ce type de choix, mais qu`'on ne peut pas compter dessus.
 
-Si vous avez de l'influence dans une organisation, une des manières d'être utile est d'essayer de faire diminuer cette zone pour aligner l'intérêt de l'organisation avec celle des personnes qui y travaillent.
+Si vous avez de l`'influence dans une organisation, une des manières d`'être utile est d`'essayer de faire diminuer cette zone pour aligner l`'intérêt de l`'organisation avec celle des personnes qui y travaillent.
 
-Par contre ce qui me pose problème c'est le fait d'essayer de convaincre les personnes de faire les choses comme il faut, en faisant appel à leur amour-propre et donc à leur zone "`envie`" même si cela les dessert personnellement.
+Par contre ce qui me pose problème c`'est le fait d`'essayer de convaincre les personnes de faire les choses comme il faut, en faisant appel à leur amour-propre et donc à leur zone "`envie`" même si cela les dessert personnellement.
 
-Il y a aussi des organisations où cette zone est utilisée volontairement sous forme d'une sorte d'injonction contradictoire{nbsp}: on incite les personnes à faire des choses utiles tout en ne les récompensant pas pour cela.
+Il y a aussi des organisations où cette zone est utilisée volontairement sous forme d`'une sorte d`'injonction contradictoire{nbsp}: on incite les personnes à faire des choses utiles tout en ne les récompensant pas pour cela.
 Cela peut être une excellente manière de limiter les augmentations de salaire.
 
-=== Ce qui est valorisé par l'organisation mais pas bon pour elle
+=== Ce qui est valorisé par l`'organisation mais pas bon pour elle
 
 image::recompense-pas-bon.svg[]
 
-Là on touche une zone vraiment dangereuse, surtout si en plus la zone valorisée rejoint les zones "`envie`" ou "`carrière`", car alors les personnes auront plusieurs raisons de faire des choix qui ne seront pas utiles à l'organisation, voire qui la desservent.
+Là on touche une zone vraiment dangereuse, surtout si en plus la zone valorisée rejoint les zones "`envie`" ou "`carrière`", car alors les personnes auront plusieurs raisons de faire des choix qui ne seront pas utiles à l`'organisation, voire qui la desservent.
 
-Dans cette situation je ne pense pas qu'on puisse en vouloir à une personne de faire le choix qui est le plus intéressant pour elle, c'est-à-dire d'opter pour la solution la mieux valorisée.
+Dans cette situation je ne pense pas qu`'on puisse en vouloir à une personne de faire le choix qui est le plus intéressant pour elle, c`'est-à-dire d`'opter pour la solution la mieux valorisée.
 
-Pour les personnes qui ont à cœur de bien faire les choses, le fait d'avoir à choisir entre leur intérêt et celui de l'organisation où elles travaillent peut être déchirant.
+Pour les personnes qui ont à cœur de bien faire les choses, le fait d`'avoir à choisir entre leur intérêt et celui de l`'organisation où elles travaillent peut être déchirant.
 
 Ici encore on a un bon candidat pour faire bouger les lignes.
 
-=== Ce qui est conseillé et bon, mais rien d'autre
+=== Ce qui est conseillé et bon, mais rien d`'autre
 
 image::conseille-bon-mais.svg[]
 
-Je n'avais pas encore reparlé de la zone conseil.
+Je n`'avais pas encore reparlé de la zone conseil.
 
-Quand j'ai travaillé dans le conseil c'est une zone dont je discutais beaucoup avec certain·e·s ami·e·s{nbsp}:que faire quand la proposition qu'on pense la meilleure pour une organisation ne fait pas envie ni n'est utile aux personnes qui y travaillent, voire va à l'encontre de leurs intérêts{nbsp}?
+Quand j`'ai travaillé dans le conseil c`'est une zone dont je discutais beaucoup avec certain·e·s ami·e·s{nbsp}:que faire quand la proposition qu`'on pense la meilleure pour une organisation ne fait pas envie ni n`'est utile aux personnes qui y travaillent, voire va à l`'encontre de leurs intérêts{nbsp}?
 
-Par exemple si on vous consulte sur "`faut-il mettre à jour le legacy ou réécrire{nbsp}?`", les personnes qui auraient à travailler sur le legacy n'ont peut-être ni envie ni intérêt de le faire.
-Et peut-être qu'en interne, ces personnes obtiendraient plus facilement des augmentations en sortant une nouvelle application avec des technologies nouvelles.
+Par exemple si on vous consulte sur "`faut-il mettre à jour le legacy ou réécrire{nbsp}?`", les personnes qui auraient à travailler sur le legacy n`'ont peut-être ni envie ni intérêt de le faire.
+Et peut-être qu`'en interne, ces personnes obtiendraient plus facilement des augmentations en sortant une nouvelle application avec des technologies nouvelles.
 
 Cela signifie que même si elle semble être acceptée, ce genre de proposition a de grande chance de mal finir.
 
 Sans compter la question éthique de proposer quelque chose qui sert une organisation plutôt que les personnes qui y travaillent.
 
-Je me demande si dans certains cas, les organisations qui savent qu'elles sont dans ce type de situation choisissent justement de faire appel à un avis extérieur pour faire passer un choix en évitant d'en prendre la responsabilité.
+Je me demande si dans certains cas, les organisations qui savent qu`'elles sont dans ce type de situation choisissent justement de faire appel à un avis extérieur pour faire passer un choix en évitant d`'en prendre la responsabilité.
 
-À nouveau il n'y a pas de solution magique, une des seules possibilité est de faire du lobbying pour que la bonne solution soit valorisée pour qu'au moins les personnes aient une raison de vous suivre.
+À nouveau il n`'y a pas de solution magique, une des seules possibilité est de faire du lobbying pour que la bonne solution soit valorisée pour qu`'au moins les personnes aient une raison de vous suivre.
 
 == Pour conclure
 
-J'espère que l'article vous aura donné quelques idées, voir même vous aura donné envie de réfléchir à vos dernières décisions pour voir où elles se trouvent sur le schéma.
+J`'espère que l`'article vous aura donné quelques idées, voir même vous aura donné envie de réfléchir à vos dernières décisions pour voir où elles se trouvent sur le schéma.
 
-Qu'une décision se trouve à un certain endroit ne signifie pas qu'elle est bonne ou mauvaise, seulement qu'elle a certains avantages et inconvénients, et qu'il ne faut pas se mentir quand une décision va à l'encontre de certains intérêts.
+Qu`'une décision se trouve à un certain endroit ne signifie pas qu`'elle est bonne ou mauvaise, seulement qu`'elle a certains avantages et inconvénients, et qu`'il ne faut pas se mentir quand une décision va à l`'encontre de certains intérêts.

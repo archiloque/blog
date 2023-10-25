@@ -14,7 +14,7 @@ image::DLJe3MjXcAEB31v.jpg[]
 ____
 This is a talk on hardcore Linux tracing tools and how they can be used with JVM applications
 
-You'll learn:
+You`'ll learn:
 
 * Which production-ready tracing tools can be used with JVM apps 
 * How BPF changes the picture of Linux tracing 
@@ -26,7 +26,7 @@ ____
 
 [quote]
 ____
-Hazelcast is a distributed in-memory data grid, providing shared data structures for distributed systems. We show that many of Hazelcast's distributed data structures are unsafe in the presence of network partitions: updates to maps can be lost, unique IDs may not be unique, atomic objects are not atomic, locks aren't exclusive, and queues can forget about enqueued elements. Stale and dirty reads are also possible in most types. We do identify a way to build CRDTs on top of Hazelcast, which prevents the loss of acknowledged updates so long as operations do not depend on order. Despite documentation alluding to these risks, Hazelcast users rely on Hazelcast in risky ways.
+Hazelcast is a distributed in-memory data grid, providing shared data structures for distributed systems. We show that many of Hazelcast`'s distributed data structures are unsafe in the presence of network partitions: updates to maps can be lost, unique IDs may not be unique, atomic objects are not atomic, locks aren`'t exclusive, and queues can forget about enqueued elements. Stale and dirty reads are also possible in most types. We do identify a way to build CRDTs on top of Hazelcast, which prevents the loss of acknowledged updates so long as operations do not depend on order. Despite documentation alluding to these risks, Hazelcast users rely on Hazelcast in risky ways.
 ____
 
 
@@ -34,6 +34,6 @@ ____
 
 [quote]
 ____
-I think it's a great testament to the power of good tools, and the value of investing deeply in tool development. We should probably stop using colossal wikis for coordinating and sharing knowledge within design teams -- that's a last resort for systems that don't have clear spatial metaphors. Meanwhile, in video game land, we're building huge spatial metaphors all the time, so why not use it? It's easier to literally "`construct`" and annotate that knowledge within the game world itself, as game data.
+I think it`'s a great testament to the power of good tools, and the value of investing deeply in tool development. We should probably stop using colossal wikis for coordinating and sharing knowledge within design teams -- that`'s a last resort for systems that don`'t have clear spatial metaphors. Meanwhile, in video game land, we`'re building huge spatial metaphors all the time, so why not use it? It`'s easier to literally "`construct`" and annotate that knowledge within the game world itself, as game data.
 ____
 

@@ -1,8 +1,8 @@
-require 'set'
+require `'set`'
 
 # @param [String] map
 def process(map)
-  number_of_keys = map.count('a-z')
+  number_of_keys = map.count(`'a-z`')
   all_keys_mask = 0
   1.upto(number_of_keys) do |key_number|
     all_keys_mask += (1 << (key_number - 1))
@@ -13,9 +13,9 @@ def process(map)
   # All positions already visited
   # each contain a Set with the list of key combinations
   visited_positions = Hash.new { |hash, key| hash[key] = Set.new }
-  entrance_line = map.index { |l| l.include?('@') }
-  entrance_column = map[entrance_line].index('@')
-  map[entrance_line][entrance_column] = '.'
+  entrance_line = map.index { |l| l.include?(`'@`') }
+  entrance_column = map[entrance_line].index(`'@`')
+  map[entrance_line][entrance_column] = `'.`'
   positions_to_explore = []
   positions_to_explore << {
       line: entrance_line,
@@ -34,7 +34,7 @@ def process(map)
       target_keys = position_to_explore[:keys]
       target_map_item = map[target_line][target_column]
       # p "Trying (#{target_line}, #{target_column}) with content [#{target_map_item}] and keys [#{target_keys}]"
-      if target_map_item == '#'
+      if target_map_item == `'#`'
         # p "Wall"
         next
       end

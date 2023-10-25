@@ -8,7 +8,7 @@ v1.0, 2017-09-10
 
 [quote]
 ____
-In the last few years, I've had the pleasure of kicking off lots of new reporting relationships with both engineers and engineering managers. Over time, I've learned that getting some particular data during an initial 1:1 can be really helpful, as I can refer back to the answers as I need to give a person feedback, recognize them, and find creative ways to support them. Most of these I've stolen from some really amazing Etsy coworkers.
+In the last few years, I`'ve had the pleasure of kicking off lots of new reporting relationships with both engineers and engineering managers. Over time, I`'ve learned that getting some particular data during an initial 1:1 can be really helpful, as I can refer back to the answers as I need to give a person feedback, recognize them, and find creative ways to support them. Most of these I`'ve stolen from some really amazing Etsy coworkers.
 ____
 
 == link:https://www.confluent.io/blog/publishing-apache-kafka-new-york-times/[Publishing with Apache Kafka at the New York Times]
@@ -36,12 +36,12 @@ software), but also _why_ particular trade-offs win out in
 particular cases -- including why people use C. There
 is much valuable work to be done in idealised terms,
 on designs, or in clean-slate fashion, or atop theoretical
-rather than practical substrates. But the balloonist's view
+rather than practical substrates. But the balloonist`'s view
 does not seem to explain the endurance of C, given its
 attendant problems; the sea-farers seem to live in some
 other, incommensurable reality. To understand this phenomenon,
 we will have to think differently. Over the
-remainder of the essay, I'll argue the following points
+remainder of the essay, I`'ll argue the following points
 (each in its own section), sharing the theme that we need
 to think less about languages as discrete abstractions,
 less hierarchically in general, and more about the systems
@@ -51,7 +51,7 @@ from contextual details associated with implementation
 concerns and non-portability. Despite this prevailing
 preference for talking and thinking about languages in a
 discrete sense, I will also note certain ways in which we
-have the habit of confusing C's implementations with
+have the habit of confusing C`'s implementations with
 the language itself.
 ____
 
@@ -65,7 +65,7 @@ The software is hard to write in that you spend years patiently writing code, ex
 
 The software then is really simple and easy to understand. The complex ideas are conspicuous in their absence. People can read the code, understand it, and write it again themselves. "`Is that all there is to it?`"
 
-The classic example is perhaps John McCarthy's link:http://ep.yimg.com/ty/cdn/paulgraham/jmc.lisp[Lisp interpreter written in Lisp]. Jonathan Rees and Richard Kelsey also wrote Scheme48 with this link:http://mumble.net/%7Ejar/s48-user-guide.txt[explicit goal]: "`the name derives from our desire to have an implementation that is simple and lucid enough that it looks as if it were written in just 48 hours`".
+The classic example is perhaps John McCarthy`'s link:http://ep.yimg.com/ty/cdn/paulgraham/jmc.lisp[Lisp interpreter written in Lisp]. Jonathan Rees and Richard Kelsey also wrote Scheme48 with this link:http://mumble.net/%7Ejar/s48-user-guide.txt[explicit goal]: "`the name derives from our desire to have an implementation that is simple and lucid enough that it looks as if it were written in just 48 hours`".
 
 link:https://github.com/SnabbCo/snabbswitch[Snabb Switch] aspires to be rewritable software too. We are wrestling with all kinds of complexity: writing device drivers, bypassing operating systems, mapping memories of virtual machines, exploring obscure features of the latest CPUs, and interoperating with many and varied pieces of black-box network equipment.
 

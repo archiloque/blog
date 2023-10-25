@@ -3,7 +3,7 @@ import os
 import sequtils
 import tables
 
-var initialNumbers: seq[int] = readFile(paramStr(1)).split(',').map(parseInt)
+var initialNumbers: seq[int] = readFile(paramStr(1)).split(`',`').map(parseInt)
 
 var game = newTable[int, int]()
 

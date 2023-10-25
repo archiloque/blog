@@ -7,10 +7,10 @@ input = open(sys.argv[1]).readlines()[0].strip()
 line_regex = re.compile(r"^target area: x=(?P<x_min>-?\d+)..(?P<x_max>-?\d+), y=(?P<y_min>-?\d+)..(?P<y_max>-?\d+)$")
 match = line_regex.search(input)
 
-x_min = int(match.group('x_min'))
-x_max = int(match.group('x_max'))
-y_min = int(match.group('y_min'))
-y_max = int(match.group('y_max'))
+x_min = int(match.group(`'x_min`'))
+x_max = int(match.group(`'x_max`'))
+y_min = int(match.group(`'y_min`'))
+y_max = int(match.group(`'y_max`'))
 
 
 class Status(Enum):

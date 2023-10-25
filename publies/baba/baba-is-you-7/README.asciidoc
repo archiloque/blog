@@ -24,11 +24,11 @@ endif::[]
 ifeval::["{doctype}" != "book"]
 Following link:../baba-is-you-6/[the sixth part],
 endif::[]
-where I started dealing with rule changing, I'll add some elements about the "`YOU`" rule.
+where I started dealing with rule changing, I`'ll add some elements about the "`YOU`" rule.
 
 == "`Baba is you`" and nothing else
 
-The second level start with the "`Baba is you`" rule, and doesn't require this rule to be changed.
+The second level start with the "`Baba is you`" rule, and doesn`'t require this rule to be changed.
 This means that preventing that the rule is changed is a way to implement the "`YOU`" that is sufficient to ensure the solution is correct.
 
 .State.java
@@ -48,9 +48,9 @@ include::fail1.txt[]
 
 The problem is that the constraint added by this simple rule is enough to show the limit of the current implementation: storing all the past states fills the memory.
 
-Adding more memory to the problem wouldn't be enough, of even storing the states into an external database: trying to explore all the possible combinations -- link:https://en.wikipedia.org/wiki/Brute-force_search[brute-forcing] the game -- doesn't work here because there's too many possible moves to explore.
+Adding more memory to the problem wouldn`'t be enough, of even storing the states into an external database: trying to explore all the possible combinations -- link:https://en.wikipedia.org/wiki/Brute-force_search[brute-forcing] the game -- doesn`'t work here because there`'s too many possible moves to explore.
 
-To be sure it's not a bug, the code can solve a smaller version of the same level:
+To be sure it`'s not a bug, the code can solve a smaller version of the same level:
 
 .levels/01/content.txt
 [source]
@@ -66,12 +66,12 @@ include::content1.txt[]
 
 Adding the missing elements, like a complete implementation of the "`YOU`" rule, would add event more possibilities.
 
-== Baba says: it's time to start over
+== Baba says: it`'s time to start over
 
 I started with the brute-force approach for two reasons:
 
 . some games with a low number of possibilities can be solved with it, for example link:http://github.com/archiloque/rgbexpress[RGB Express]
-. even if it doesn't work at the end, starting with this approach provides a way to start by focusing on modeling the game
+. even if it doesn`'t work at the end, starting with this approach provides a way to start by focusing on modeling the game
 
-The modeling part worked: I've found a way to use bit fields to manage the game states and the changing rules.
-I'll be able to rely on this knowledge and parts of the code for the next step so I don't restart from scratch.
+The modeling part worked: I`'ve found a way to use bit fields to manage the game states and the changing rules.
+I`'ll be able to rely on this knowledge and parts of the code for the next step so I don`'t restart from scratch.

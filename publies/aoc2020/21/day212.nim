@@ -30,7 +30,7 @@ for currentLine in readFile(paramStr(1)).splitLines():
     recipes.add(Recipe(ingredients: ingredients.toHashSet(),
         allergens: allergens.toHashSet()))
   else:
-    raise newException(ValueError, "Can't parse [" & currentLine & "]")
+    raise newException(ValueError, "Can`'t parse [" & currentLine & "]")
 
 var possibleIngredientsForAllergens = initTable[string, HashSet[string]]()
 

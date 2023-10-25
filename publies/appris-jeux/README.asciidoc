@@ -2,86 +2,86 @@
 Julien Kirch
 v0.1, 2019-01-09
 :article_lang: fr
-:article_description: D'autres manières de faire
+:article_description: D`'autres manières de faire
 :article_image: romero.jpeg
 
-À ne faire que de link:https://fr.wikipedia.org/wiki/Informatique_de_gestion[l'informatique de gestion], c'est-à-dire essentiellement des sites webs et des programmes de traitements pour des entreprises ou équivalent, et à ne travailler qu'avec des personnes qui travaillent dans cette branche de l'informatique, on peut en oublier qu'il en existe d'autres{nbsp}:
+À ne faire que de link:https://fr.wikipedia.org/wiki/Informatique_de_gestion[l`'informatique de gestion], c`'est-à-dire essentiellement des sites webs et des programmes de traitements pour des entreprises ou équivalent, et à ne travailler qu`'avec des personnes qui travaillent dans cette branche de l`'informatique, on peut en oublier qu`'il en existe d`'autres{nbsp}:
 informatique industrielles, informatique scientifique…
 
-D'autres informatiques cela signifie aussi d'autres manières de faire de l'informatique.
+D`'autres informatiques cela signifie aussi d`'autres manières de faire de l`'informatique.
 
-S'intéresser à ces manière de faire permet de prendre du recul sur nos pratiques{nbsp}: découvrir que d'autres font différemment permet de briser l'illusions que nos pratiques sont les seules possibles.
+S`'intéresser à ces manière de faire permet de prendre du recul sur nos pratiques{nbsp}: découvrir que d`'autres font différemment permet de briser l`'illusions que nos pratiques sont les seules possibles.
 Cela peut permettre ensuite de recontextualiser nos habitudes{nbsp}: ne plus faire quelque chose parce que tout le monde fait comme ça, mais le faire pour certaines raisons.
 
-J'ai choisi ici l'exemple du développement du jeu vidéo car c'est un domaine que je connais par des articles, et qu'il s'agit d'un milieu suffisamment grand pour ne pas pouvoir être qualifié d'être "`de niche`", et donc sans valeur.
+J`'ai choisi ici l`'exemple du développement du jeu vidéo car c`'est un domaine que je connais par des articles, et qu`'il s`'agit d`'un milieu suffisamment grand pour ne pas pouvoir être qualifié d`'être "`de niche`", et donc sans valeur.
 
 == Précautions{nbsp}:
 
-* Les pratiques du développement de jeux vidéo sont multiples, j'ai choisis ici des pratiques qui me semblent assez largement répandues mais bien entendu il en existe d'autres{nbsp};
+* Les pratiques du développement de jeux vidéo sont multiples, j`'ai choisis ici des pratiques qui me semblent assez largement répandues mais bien entendu il en existe d`'autres{nbsp};
 * Les jeux vidéos sont particuliers{nbsp}: les logiciels sont en général conçus pour une maintenance courte{nbsp};
-* Je ne dis pas que les pratiques de développement de jeux vidéo pourraient être bénéfique si elles étaient appliquées à l'informatique de gestion{nbsp};
-* Je ne dis pas que les pratiques actuelles du développement de jeux vidéo sont les meilleures possibles ni que certaines des pratiques de l'informatique de gestion ne pourraient pas être bénéfiques au développement de jeux vidéo.
+* Je ne dis pas que les pratiques de développement de jeux vidéo pourraient être bénéfique si elles étaient appliquées à l`'informatique de gestion{nbsp};
+* Je ne dis pas que les pratiques actuelles du développement de jeux vidéo sont les meilleures possibles ni que certaines des pratiques de l`'informatique de gestion ne pourraient pas être bénéfiques au développement de jeux vidéo.
 
-== L'importance d'obtenir un feedback rapide pendant le développement
+== L`'importance d`'obtenir un feedback rapide pendant le développement
 
 Dans le jeu vidéo une part importante du développement se fait de manière exploratoire par essai et erreur pour obtenir un comportement qui convienne.
 
-Dans cette situation la capacité à obtenir un feedback rapide est très importante car c'est elle qui limite la vitesse de travail.
+Dans cette situation la capacité à obtenir un feedback rapide est très importante car c`'est elle qui limite la vitesse de travail.
 
-Pour cela un investissement important se fait sur les process de build, en mesurant les temps passé et en cherchant à l'optimiser, y compris link:http://aras-p.info/blog/2018/12/28/Modern-C-Lamentations/[en adaptant le style de développement].
+Pour cela un investissement important se fait sur les process de build, en mesurant les temps passé et en cherchant à l`'optimiser, y compris link:http://aras-p.info/blog/2018/12/28/Modern-C-Lamentations/[en adaptant le style de développement].
 
 Cela permet de construire des projets de tailles importantes en un temps très court.
 
-Dans l'informatique de gestion j'ai l'impression qu'on a beaucoup travaillé sur les tests automatisés comme manière obtenir des feedbacks rapide en se passant d'avoir à construire l'intégralité du code, mais qu'on néglige parfois le build lui-même.
+Dans l`'informatique de gestion j`'ai l`'impression qu`'on a beaucoup travaillé sur les tests automatisés comme manière obtenir des feedbacks rapide en se passant d`'avoir à construire l`'intégralité du code, mais qu`'on néglige parfois le build lui-même.
 
-== L'objet n'est pas la solution à tout, surtout dans un système dynamique
+== L`'objet n`'est pas la solution à tout, surtout dans un système dynamique
 
-Les jeux vidéo sont en général des systèmes à états, et ont souvent des groupes d'items partageant des caractéristiques communes et se spécialisant.
+Les jeux vidéo sont en général des systèmes à états, et ont souvent des groupes d`'items partageant des caractéristiques communes et se spécialisant.
 
 On pourrait croire que les systèmes objets sont la meilleure réponses à ce type de besoin.
 
-En fait c'est le système link:https://en.wikipedia.org/wiki/Entity–component–system[entité relation] qui semble le plus utilisé car il permet facilement de gérer les équivalents d'héritages multiples (souvent compliqués en objet), et des formes d'héritage dynamiques.
+En fait c`'est le système link:https://en.wikipedia.org/wiki/Entity–component–system[entité relation] qui semble le plus utilisé car il permet facilement de gérer les équivalents d`'héritages multiples (souvent compliqués en objet), et des formes d`'héritage dynamiques.
 
 == Recoder plein de choses
 
-Les abstractions ou les fonctionnalités "`sur l'étagère`" peuvent avoir un coût ou des limitations qu'on oublie quand on est dans les situations où ça n'est pas un problème.
+Les abstractions ou les fonctionnalités "`sur l`'étagère`" peuvent avoir un coût ou des limitations qu`'on oublie quand on est dans les situations où ça n`'est pas un problème.
 
-Dans les jeux vidéo ces cas limites sont souvent la normes{nbsp}: par exemple pour avoir 50 images par secondes sans trop d'à-coups, ou pour s'exécuter sur des consoles aux limites mémoires intransigeantes.
+Dans les jeux vidéo ces cas limites sont souvent la normes{nbsp}: par exemple pour avoir 50 images par secondes sans trop d`'à-coups, ou pour s`'exécuter sur des consoles aux limites mémoires intransigeantes.
 
 Dans ce cas recoder une link:https://github.com/electronicarts/EASTL[bibliothèque standard], ou link:http://gameprogrammingpatterns.com/object-pool.html[gérer la mémoire de manière très précise] peut être la meilleure solution.
 
 == Le développement comme une usine
 
-Comme link:../lean-chaine-d-assemblage[déjà expliqué ailleurs] le développement de jeux vidéo peut fonctionner comme une usine d'assemblage où de nombreuses personnes effectuent des tâches limitées et répétitives.
+Comme link:../lean-chaine-d-assemblage[déjà expliqué ailleurs] le développement de jeux vidéo peut fonctionner comme une usine d`'assemblage où de nombreuses personnes effectuent des tâches limitées et répétitives.
 
 == Le _low code_ fonctionne
 
 En informatique de gestion on se moque beaucoup des plateformes de _low-code_
  sensées être utilisées par les gens "`du métier`" et qui au final sont utilisées par les dévs tout en étant moins bien que des outils de développement standard.
 
-Dans le jeux vidéo cela fonctionne{nbsp}: par exemple la gestion des quêtes, qui sont des comportements assimilés à du code, sont écrit par des personnes dont c'est le métier.
+Dans le jeux vidéo cela fonctionne{nbsp}: par exemple la gestion des quêtes, qui sont des comportements assimilés à du code, sont écrit par des personnes dont c`'est le métier.
 
-Le secret c'est que les plateformes de low code sont souvent développées en fonction du jeu, et sont raffinées au fur et à mesure, comme un produit à part entière.
+Le secret c`'est que les plateformes de low code sont souvent développées en fonction du jeu, et sont raffinées au fur et à mesure, comme un produit à part entière.
 
-L'équation économique (profils qui développement coûteux + beaucoup de contenu à produire) rend cette approche rentable.
+L`'équation économique (profils qui développement coûteux + beaucoup de contenu à produire) rend cette approche rentable.
 
 == Faire de gros horaires peut fonctionner
 
 La durée de travail pour une personne qui développe est un sujet récurent, notamment avec des situations limites qui arrivent dans des startups.
 
-La conclusion est souvent qu'un travail créatif, comme le développement, ne peut se faire de manière productive qu'un nombre limité d'heures dans la semaine.
+La conclusion est souvent qu`'un travail créatif, comme le développement, ne peut se faire de manière productive qu`'un nombre limité d`'heures dans la semaine.
 
 Dans le jeu vidéo, la norme est celle de gros horaires en régime normal, et de période de _crunch_ en fin de projets.
-Ces phases qui peuvent durer des mois peuvent consister en des semaines de 70 heures, soit une douzaine d'heures de travail pendant 6 jours sur 7.
+Ces phases qui peuvent durer des mois peuvent consister en des semaines de 70 heures, soit une douzaine d`'heures de travail pendant 6 jours sur 7.
 
-Ce rythme est destructif pour la santé de la plupart des personnes, mais force est de constater que, sur le moyen terme, beaucoup de personnes peuvent suivent le rythme, en tous cas beaucoup plus que ce que l'on pourrait croire.
+Ce rythme est destructif pour la santé de la plupart des personnes, mais force est de constater que, sur le moyen terme, beaucoup de personnes peuvent suivent le rythme, en tous cas beaucoup plus que ce que l`'on pourrait croire.
 
-Encore une fois il ne s'agit pas d'un modèle à suivre, mais cela me fait me poser des questions sur nos pré-conceptions.
+Encore une fois il ne s`'agit pas d`'un modèle à suivre, mais cela me fait me poser des questions sur nos pré-conceptions.
 
 == Pour conclure
 
-J'espère que la lecture de cet article vous aura fait vous poser des questions.
+J`'espère que la lecture de cet article vous aura fait vous poser des questions.
 
 Si le thème du développement du jeu vidéo vous intéresse, vous pouvez commencer par lire link:https://gamasutra.com/[Gamasutra] qui publie des articles de tous niveaux sur ce sujet.
 
-Je suis preneur d'autres idées sur ce thème (sur le jeu vidéo ou sur d'autres informatiques à explorer).
+Je suis preneur d`'autres idées sur ce thème (sur le jeu vidéo ou sur d`'autres informatiques à explorer).

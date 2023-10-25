@@ -3,7 +3,7 @@ Julien Kirch
 v1.0, 2022-12-03
 :article_lang: en
 :figure-caption!:
-:article_description: Git worktree, Windows 95's User Interface, playing with Git commits ids, Fungal font, Barnacle Goose Experiment, Git for trunk-based development, a garbage can model of organizational choice
+:article_description: Git worktree, Windows 95`'s User Interface, playing with Git commits ids, Fungal font, Barnacle Goose Experiment, Git for trunk-based development, a garbage can model of organizational choice
 
 == link:https://github.polettix.it/ETOOBUSY/2022/11/22/git-worktree/[Git worktree]
 
@@ -24,7 +24,7 @@ For starters, I think that `git stash` is cool. Maybe outdated by
 multiple working trees, but still cool.
 ____
 
-== link:https://socket3.wordpress.com/2018/02/03/designing-windows-95s-user-interface/[Designing Windows 95's user interface]
+== link:https://socket3.wordpress.com/2018/02/03/designing-windows-95s-user-interface/[Designing Windows 95`'s user interface]
 
 [quote]
 ____
@@ -49,7 +49,7 @@ also mean to only allow merges in one direction, from feature branches
 into main, never the other way around. It kind of depends on the
 project.
 
-Today I'm taking this one step further, and I'm introducing a new
+Today I`'m taking this one step further, and I`'m introducing a new
 concept: _extremely linear git history_.
 
 With our extremely linear history, the first commit in a repo hash a
@@ -58,7 +58,7 @@ third is `0000002`, and so on!
 
 Incremental version numbers makes it easy to talk about revisions. You
 immediately know that version 230 comes after 200, and if you create 10
-new versions per day, it's easy to have an intuition for how old a
+new versions per day, it`'s easy to have an intuition for how old a
 commit is based on your current latest version.
 ____
 
@@ -71,7 +71,7 @@ link:https://velvetyne.fr/authors/raphael-bastide/[Raphaël Bastide] to do a
 publication part of the zine series. In a wish to revive the "`fan`" part
 of fanzine, Raphaël Bastide decided to pay tribute to Wikipedia, a
 surviving, precious, unequaled place on the open WWW. The 16 pages riso
-print zine shows the encyclopedia's interface as a post-human vestige,
+print zine shows the encyclopedia`'s interface as a post-human vestige,
 an artifact invaded by biomorphic figures and spreading typography.
 Through the pages of the zine, the reader discovers how the graphic
 elements are spreading like mycelium, creating an ornamental graphic
@@ -106,7 +106,7 @@ ____
 
 [quote]
 ____
-Many of us know that one developer who's studied the Git refspec and the underlying Merkle tree it's based on, but being a Git savant is probably not in your job description. I can drive a car perfectly fine without understanding how the transmission actually works, and at the end of the day, Git is just a means to an end.
+Many of us know that one developer who`'s studied the Git refspec and the underlying Merkle tree it`'s based on, but being a Git savant is probably not in your job description. I can drive a car perfectly fine without understanding how the transmission actually works, and at the end of the day, Git is just a means to an end.
 
 To get the most out of Git, you must use it the least amount possible when it comes to trunk-based development. Limit the commands you use, keep your feature branch up to date properly, and standardize usage as a team. Individually, you may enjoy the freedom to do whatever you want. But as a team, the price for freedom is paid for in friction.
 ____

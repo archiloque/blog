@@ -30,7 +30,7 @@
               miraculousPrefix.length, 
               className.length - miraculousPrefix.length
               );
-            const splittedClassName = shortClassName.split('_');
+            const splittedClassName = shortClassName.split(`'_`');
             const attributeName = splittedClassName[0];
             const attributeValue = splittedClassName[1];
             styleContent += 

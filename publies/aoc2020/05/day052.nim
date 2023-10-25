@@ -7,9 +7,9 @@ proc calculateSeatId(boardingPass: string): int =
   var value: int = 0
   for index, c in boardingPass:
     case c:
-      of 'F', 'L':
+      of `'F`', `'L`':
         discard
-      of 'B', 'R':
+      of `'B`', `'R`':
         value += 2 ^ (9 - index)
       else:
         raise newException(ValueError, "Unknown value [" & c & "]")

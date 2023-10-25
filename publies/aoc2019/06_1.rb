@@ -11,12 +11,12 @@ end
 def calculate(file)
   parents = {}
   File.foreach(file) do |line|
-    orbit = line.strip.split(')')
+    orbit = line.strip.split(`')`')
     parents[orbit[1]] = orbit[0]
   end
 
   total = 0
-  distance_to_center = {'COM' => 0}
+  distance_to_center = {`'COM`' => 0}
   parents.keys.each do |element|
     total += distance_to_com(parents, distance_to_center, element)
   end

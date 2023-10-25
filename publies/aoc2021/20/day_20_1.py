@@ -2,7 +2,7 @@ import sys
 
 input = open(sys.argv[1]).readlines()
 
-algorithm = list(map(lambda c: False if (c == '#') else True, input[0].strip()))
+algorithm = list(map(lambda c: False if (c == `'#`') else True, input[0].strip()))
 
 data = dict()
 
@@ -11,7 +11,7 @@ initial_columns = len(input[2].strip())
 initial_lines = len(input) - 2
 for c in range(0, initial_columns):
     for l in range(0, initial_lines):
-        data[(0, l, c)] = True if (input[2 + l][c] == '#') else False
+        data[(0, l, c)] = True if (input[2 + l][c] == `'#`') else False
 
 
 def calculate_point(generation: int, line: int, column: int):

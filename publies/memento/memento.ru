@@ -1,8 +1,8 @@
-unless ENV.key? 'PATH_TO_GIT_REPO'
-  raise 'Need a PATH_TO_GIT_REPO env parameter'
+unless ENV.key? `'PATH_TO_GIT_REPO`'
+  raise `'Need a PATH_TO_GIT_REPO env parameter`'
 end
 
-PATH_TO_GIT_REPO = ENV['PATH_TO_GIT_REPO']
+PATH_TO_GIT_REPO = ENV[`'PATH_TO_GIT_REPO`']
 STDOUT << "Specified git repo dir is [#{PATH_TO_GIT_REPO}]\n"
 STDOUT << "Full git repo dir is [#{File.expand_path(PATH_TO_GIT_REPO)}]\n"
 
@@ -11,7 +11,7 @@ unless File.directory?(PATH_TO_GIT_REPO)
 end
 
 check_git_repo = `git rev-parse --is-inside-work-tree --git-dir=\"#{PATH_TO_GIT_REPO}\"`
-unless check_git_repo.split("\n")[0] == 'true'
+unless check_git_repo.split("\n")[0] == `'true`'
     raise "Path [#{PATH_TO_GIT_REPO}] does not seem to be a git repo"
 end
 STDOUT << "Dir is a git directory \\o/\n"
@@ -21,7 +21,7 @@ Dir.chdir PATH_TO_GIT_REPO
 # Identify lines that looks like a git line deletion
 LINE_FILTERING_REGEX = /\A\-([^-])(.*)\z/
 
-require 'time'
+require `'time`'
 
 class Memento
 
@@ -36,7 +36,7 @@ class Memento
       return nil
     end
     line_index = rand(interesting_lines.length)
-    # Remove the '-' at the beginning of the line
+    # Remove the `'-`' at the beginning of the line
     content = interesting_lines[line_index][1..-1]
     # Fetch the commit date
     date_string = 
@@ -77,7 +77,7 @@ formatted_result = <<-HTML
   </head>
   <body>
     <div id="gitContent">&#x1f56f;<br>#{result[:content]}<br>&#x1f56f;</div>
-    <div id="gitDate">Deteted on #{result[:date].strftime('%A %B %e %Y %H:%M:%S')}</div>
+    <div id="gitDate">Deteted on #{result[:date].strftime(`'%A %B %e %Y %H:%M:%S`')}</div>
   </body>
 </html>
 HTML

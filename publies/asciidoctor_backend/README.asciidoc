@@ -11,7 +11,7 @@ Several export formats are available out of the box, and when you want to export
 
 When writing your own templates, you must create a specific file for each element type so the engine can convert it, see for example the link:https://github.com/asciidoctor/asciidoctor-backends/tree/master/erb/html5[html5 backend].
 
-Unfortunately there's no documentation on what attributes are available for each element type. The simplest way to find it is to peek on several examples until you can figure it out. Here's a small script to make things easier:
+Unfortunately there`'s no documentation on what attributes are available for each element type. The simplest way to find it is to peek on several examples until you can figure it out. Here`'s a small script to make things easier:
 
 - Create a new directory called `template_hack`
 - Save this file as `helpers.rb` in the `template_hack` directory

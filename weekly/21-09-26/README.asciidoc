@@ -9,9 +9,9 @@ v1.0, 2021-09-26
 
 [quote]
 ____
-Generally, the delta between a mediocre Single-Page-App and a mediocre Multi-Page-App (i.e. a traditional server-rendered site) is usually massive, especially if you are targeting mobile devices. Given the same end goal and resources, most teams and managers will do a much better job of reaching their goals if they use a Multi-Page-App instead of a Single-Page-App. You can blame the tools, the browser landscape, developer training, or management, but that's just how it tends to pan out in practice.
+Generally, the delta between a mediocre Single-Page-App and a mediocre Multi-Page-App (i.e. a traditional server-rendered site) is usually massive, especially if you are targeting mobile devices. Given the same end goal and resources, most teams and managers will do a much better job of reaching their goals if they use a Multi-Page-App instead of a Single-Page-App. You can blame the tools, the browser landscape, developer training, or management, but that`'s just how it tends to pan out in practice.
 
-I keep seeing Single-Page-Apps with huge JS files that only, in terms of concrete User Experience (UX) benefits, deliver client-side validation of forms plus analytics. Apps rarely leverage the potential of a Single-Page-App. It's still just the same ‘click, wait for load' navigation cycle. Same as the one you get with Multi-Page-Apps. Except buggier and with a much slower initial loading time.
+I keep seeing Single-Page-Apps with huge JS files that only, in terms of concrete User Experience (UX) benefits, deliver client-side validation of forms plus analytics. Apps rarely leverage the potential of a Single-Page-App. It`'s still just the same ‘click, wait for load`' navigation cycle. Same as the one you get with Multi-Page-Apps. Except buggier and with a much slower initial loading time.
 
 When you look at performance, cross-platform and mobile support, reliability, and accessibility, nearly every Single-Page-App you can find in the wild is a failure on multiple fronts.
 
@@ -27,7 +27,7 @@ ____
 
 [quote]
 ____
-The most important thing Shake got right was adding monadic/dynamic dependencies. Most build systems start with a static graph, and then, realising that can't express the real world, start hacking in an unprincipled manner. The resulting system becomes a bunch of special cases. Shake embraced dynamic dependencies. That makes some things harder (no static cycle detection, less obvious parallelism, must store dependency edges), but all those make Shake itself harder to write, while dynamic dependencies make Shake easier to use. I hope that eventually all build systems gain dynamic dependencies.
+The most important thing Shake got right was adding monadic/dynamic dependencies. Most build systems start with a static graph, and then, realising that can`'t express the real world, start hacking in an unprincipled manner. The resulting system becomes a bunch of special cases. Shake embraced dynamic dependencies. That makes some things harder (no static cycle detection, less obvious parallelism, must store dependency edges), but all those make Shake itself harder to write, while dynamic dependencies make Shake easier to use. I hope that eventually all build systems gain dynamic dependencies.
 ____
 
 == link:https://notes.andymatuschak.org/z66PNF1Wt4AZ4j7TVEenkvPZgvDcHPuSdJC2r[Note-writing practices provide weak feedback]
@@ -36,18 +36,18 @@ ____
 ____
 One reason why link:https://notes.andymatuschak.org/z8V2q398qu89vdJ73N2BEYCgevMqux3yxQUAC[note-writing practices are generally ineffective] may be that note systems generally offer poor feedback.
 
-If one starts a spaced repetition practice, they'll get strong feedback every day: if they write a bad question, it'll bother them immediately and regularly thereafter; they'll feel (to some extent) their growing retention of a given topic.
+If one starts a spaced repetition practice, they`'ll get strong feedback every day: if they write a bad question, it`'ll bother them immediately and regularly thereafter; they`'ll feel (to some extent) their growing retention of a given topic.
 
-By contrast, in note-taking the feedback is very delayed: in typical practice, when you write a note, you may not see it again for weeks. The feedback is also ambiguous: if a note helps you distill some insight (or fail to), that usually won't be especially evident.
+By contrast, in note-taking the feedback is very delayed: in typical practice, when you write a note, you may not see it again for weeks. The feedback is also ambiguous: if a note helps you distill some insight (or fail to), that usually won`'t be especially evident.
 ____
 
 == link:https://notes.andymatuschak.org/zs5uUEv9iJH7JuAmsCChxBEMP2zW6CRbiAWE[Tool-makers usually lack connection to a serious context of use]
 
 [quote]
 ____
-People making link:https://notes.andymatuschak.org/z5YhNc8HVKxjg9a3h3SeCyKqnNDFgiY6WGrM[tools for thought] often say they're trying to help people do math, or make art, or whatever. But in reality, the people making these tools are rarely connected very deeply with the actual creative practices they're trying to amplify. The work is often more of a tech demo or a toy or a "`sandbox`". As we wrote in How can we develop transformative tools for thought?: "`Tools for writing that aren't used by actual writers. Tools for mathematics that aren't used by actual mathematicians`". Deep down, such system designers are generally developing a system for its own sake—not because there's some creative problem they're desperately trying to solve.
+People making link:https://notes.andymatuschak.org/z5YhNc8HVKxjg9a3h3SeCyKqnNDFgiY6WGrM[tools for thought] often say they`'re trying to help people do math, or make art, or whatever. But in reality, the people making these tools are rarely connected very deeply with the actual creative practices they`'re trying to amplify. The work is often more of a tech demo or a toy or a "`sandbox`". As we wrote in How can we develop transformative tools for thought?: "`Tools for writing that aren`'t used by actual writers. Tools for mathematics that aren`'t used by actual mathematicians`". Deep down, such system designers are generally developing a system for its own sake—not because there`'s some creative problem they`'re desperately trying to solve.
 
-Such tools might look mathematical (or whatever) on their surface, but they're not seriously trying to answer hard problems in those domains—often because the creators don't actually know what those problems are or understand how to solve them. link:https://notes.andymatuschak.org/z3H98n8DGZmu8XArqHZVsckyWvbTe8wK4kAt2[Effective system design requires insights drawn from serious contexts of use].
+Such tools might look mathematical (or whatever) on their surface, but they`'re not seriously trying to answer hard problems in those domains—often because the creators don`'t actually know what those problems are or understand how to solve them. link:https://notes.andymatuschak.org/z3H98n8DGZmu8XArqHZVsckyWvbTe8wK4kAt2[Effective system design requires insights drawn from serious contexts of use].
 ____
 
 == link:https://twitter.com/imightbemary/status/1440380210445049863[Katie Bauer!]
@@ -56,27 +56,27 @@ ____
 ____
 Every so often I see a Twitter thread where a new manager asks for advice, and inevitably, someone in the comments below says something to the effect of, "`hire awesome people, listen to them and get out of their way`".
 
-Let me tell ya, this is not advice. It's wishful thinking.
+Let me tell ya, this is not advice. It`'s wishful thinking.
 
-I'm not sure how it got introduced to the tech world, but I suspect it is in large part a reaction to the fact that tech leaders often have no idea what they're doing.
+I`'m not sure how it got introduced to the tech world, but I suspect it is in large part a reaction to the fact that tech leaders often have no idea what they`'re doing.
 
-And to be clear, I generally like this philosophy and find it rewarding to manage this way. But it's not the whole story of people management, and IMO this advice so frequently given because people wish it was how things worked.
+And to be clear, I generally like this philosophy and find it rewarding to manage this way. But it`'s not the whole story of people management, and IMO this advice so frequently given because people wish it was how things worked.
 
-The advice that you need to simply stay out of people's way assumes those people always have the skills, maturity and organizational context to make the right choice for themselves and the company. This is a BIG assumption.
+The advice that you need to simply stay out of people`'s way assumes those people always have the skills, maturity and organizational context to make the right choice for themselves and the company. This is a BIG assumption.
 
-It is your job as a manager to help them get there, but that sometimes means telling them no -- that a project they're excited about is a deadend, that their ideas need more work before they're ready for primetime, that they actually don't know better than some coworker they resent.
+It is your job as a manager to help them get there, but that sometimes means telling them no -- that a project they`'re excited about is a deadend, that their ideas need more work before they`'re ready for primetime, that they actually don`'t know better than some coworker they resent.
 
-There are times when you need DO need to get in your direct's way. It may not come naturally to you, but telling people what to do is part of being a manager. It may even be in the IC's best interest, even if it means siding with the company or a stakeholder over them.
+There are times when you need DO need to get in your direct`'s way. It may not come naturally to you, but telling people what to do is part of being a manager. It may even be in the IC`'s best interest, even if it means siding with the company or a stakeholder over them.
 
 Teams and companies are more than the sum of their parts, and managers need to learn to think about how the people they manage fit together and into the company as a whole. This sometimes requires prioritizing the group over the individual, and this can be uncomfortable.
 
-It is especially uncomfortable as a new manager, because the experience of being an ICfootnote:[Individual Contributor] is still fresh in your mind, visceral. You don't know how to assess your own managerial ability, so you fall back to easiest measurement proxy -- how do much do my ICs like me?
+It is especially uncomfortable as a new manager, because the experience of being an ICfootnote:[Individual Contributor] is still fresh in your mind, visceral. You don`'t know how to assess your own managerial ability, so you fall back to easiest measurement proxy -- how do much do my ICs like me?
 
-Part of what makes people management such a difficult and emotionally draining experience is that you have to stop caring about this. It'd be a lot more fun if all you had to do was cheer on great people, but even great people will lose their way on occasion.
+Part of what makes people management such a difficult and emotionally draining experience is that you have to stop caring about this. It`'d be a lot more fun if all you had to do was cheer on great people, but even great people will lose their way on occasion.
 
-When that happens, it's your job to get them back on track. The empathetic mindset of servant leadership helps you build the trust you need to tell them things they might be resistant to, but it doesn't change the fact that you still need to be honest with them.
+When that happens, it`'s your job to get them back on track. The empathetic mindset of servant leadership helps you build the trust you need to tell them things they might be resistant to, but it doesn`'t change the fact that you still need to be honest with them.
 
-If you manage people long enough, you WILL find yourself in this situation. You'll go through it many times, in fact, and you will get better at it the more you deal with it.
+If you manage people long enough, you WILL find yourself in this situation. You`'ll go through it many times, in fact, and you will get better at it the more you deal with it.
 
 So yes, listen to your people and be their advocates. But also be prepared to act like an authority figure sometimes, because you are one.
 ____
@@ -85,5 +85,5 @@ ____
 
 [quote]
 ____
-I'm convinced that every field has "`senior shibboleths`": ideas that sound contrarian to the uninitiated, but are, among people with more experience, pretty conventional. These ideas, which are sometimes wise, sometimes trite, and sometimes dangerously wrong, might start as novel theories, but they eventually become secret handshakes for sorting who's in the club and who's not. When someone shares one of them, we signal our membership by nodding along knowingly. The fastest way to be taken seriously by people who take themselves seriously isn't coming up with your own ideas, but knowing when to quote-tweet "`^ this`".
+I`'m convinced that every field has "`senior shibboleths`": ideas that sound contrarian to the uninitiated, but are, among people with more experience, pretty conventional. These ideas, which are sometimes wise, sometimes trite, and sometimes dangerously wrong, might start as novel theories, but they eventually become secret handshakes for sorting who`'s in the club and who`'s not. When someone shares one of them, we signal our membership by nodding along knowingly. The fastest way to be taken seriously by people who take themselves seriously isn`'t coming up with your own ideas, but knowing when to quote-tweet "`^ this`".
 ____

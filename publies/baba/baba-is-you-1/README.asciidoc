@@ -18,20 +18,20 @@ endif::[]
 :article_description: It was a while since the last time I took a questionable decision
 :figure-caption!:
 
-link:https://hempuli.com/baba/[Baba Is You] is a great puzzle game with a gameplay that's more complex than usual since manipulating the game's rules is part of the game.
+link:https://hempuli.com/baba/[Baba Is You] is a great puzzle game with a gameplay that`'s more complex than usual since manipulating the game`'s rules is part of the game.
 
-I think it's a good candidate to write a solver for, and to document how I'm doing it.
+I think it`'s a good candidate to write a solver for, and to document how I`'m doing it.
 
-I'm writing while coding the solver and not as a post-mortem, so expect some bad design and implementation decisions along the way.
+I`'m writing while coding the solver and not as a post-mortem, so expect some bad design and implementation decisions along the way.
 
-A general knowledge of the game (if you don't want to play it you can try watching a "`let's play`" video like link:https://www.youtube.com/watch?v=SshgrQdt9lY[this one]) and of Java is required.
+A general knowledge of the game (if you don`'t want to play it you can try watching a "`let`'s play`" video like link:https://www.youtube.com/watch?v=SshgrQdt9lY[this one]) and of Java is required.
 
 A solver often has complex data types, and you end up refactoring the code a lot when trying new ideas.
-When refactoring, I've found it very helpful to have a language with static types.
+When refactoring, I`'ve found it very helpful to have a language with static types.
 My tool of choice for this kind of situation is Java.
 As a nice bonus, the language is fast so less time is spent waiting for the calculations to end.
 
-As I've explained link:../solveurs/[in a previous article] (in French), a puzzle solver solver iterates through a loop until it finds a solution.
+As I`'ve explained link:../solveurs/[in a previous article] (in French), a puzzle solver solver iterates through a loop until it finds a solution.
 
 include::graph1.asciidoc[]
 
@@ -54,16 +54,16 @@ Then add the required files (`LICENSE.txt` …) and push it to link:https://gith
 
 In my previous solvers, I represent levels using link:https://github.com/archiloque/rgbexpress/blob/master/src/main/java/net/archiloque/rgbexpress/MapElement.java#L12[a fixed list of elements, each represented by a fixed character].
 
-Judging from the levels I've played in Baba so far, there seems to be an uncommonly large number of possible tiles. For that reason, I'm considering an alternate strategy:
+Judging from the levels I`'ve played in Baba so far, there seems to be an uncommonly large number of possible tiles. For that reason, I`'m considering an alternate strategy:
 
-. Define a list of all the possible tiles, but don't tie them to a specific character
+. Define a list of all the possible tiles, but don`'t tie them to a specific character
 . For each level, declare a mapping that assigns a character to each of the tiles used in this specific level
 
 The levels are laid out in a square grid. In the starting position, each cell contains at most one item.
 
 image::../baba-is-you-1/first-level1.png[title="The first level",align="center",width=293,height=342]
 
-Let's represent this level as the following two files:
+Let`'s represent this level as the following two files:
 
 .levels/00/tiles.txt
 [source]
@@ -77,9 +77,9 @@ include::tiles1.txt[]
 include::content1.txt[]
 ----
 
-Note: I'd love to represent the objects as emojis rather than plain letters, to make the level files more visually appealing. Unfortunately, the way macOS handles emojis is not monospace friendly. It breaks the vertical alignment between elements in a level file, making them a pain to edit. That's why I'm sticking with latin characters for now.
+Note: I`'d love to represent the objects as emojis rather than plain letters, to make the level files more visually appealing. Unfortunately, the way macOS handles emojis is not monospace friendly. It breaks the vertical alignment between elements in a level file, making them a pain to edit. That`'s why I`'m sticking with latin characters for now.
 
-Let's declare the tiles needed for the first level.
+Let`'s declare the tiles needed for the first level.
 Each tile has two representations: one as a `String` to be referenced by the level description, the other one as an `int` to be referenced by the game:
 
 .Tiles.java
@@ -95,9 +95,9 @@ You might be surprised at my use of ``int``s rather than enum types for this kin
 * They use less memory. When you have to store many levels, this makes a big difference.
 * You can use the `int` as an index into an array to retrieve data. This is much faster than using a `Hash`.
 
-Using ``int``s also has its downsides. You lose some type checking, and the code becomes a little harder to read. For me, it's an acceptable tradeoff.
+Using ``int``s also has its downsides. You lose some type checking, and the code becomes a little harder to read. For me, it`'s an acceptable tradeoff.
  
-Let's now draft the interface for reading level files:
+Let`'s now draft the interface for reading level files:
 
 .LevelReader1.java
 [source,java]
@@ -105,11 +105,11 @@ Let's now draft the interface for reading level files:
 include::levelreader1.java[]
 ----
 
-Calling `LevelReader#readLevel` will return a struct-like `LevelReader.LevelReaderResult` containing the data in a ready to use format, I'll keep `Level` for the real object.
+Calling `LevelReader#readLevel` will return a struct-like `LevelReader.LevelReaderResult` containing the data in a ready to use format, I`'ll keep `Level` for the real object.
 
 I represent two dimensional data as flat arrays rather than arrays of arrays: they are simpler to copy and faster to access.
 
-It's natural to represent a position in such an array as a single integer.
+It`'s natural to represent a position in such an array as a single integer.
 Compared to a more traditional representation as a pair of coordinates, this saves having to create an object each time I want to return a position from a function or pass one as an argument, specially in Java were there are no struct and only full-fledged classes.
 
 The code to convert between a line/column representation and a position in a flat array is straightforward:
@@ -122,11 +122,11 @@ int indexLine = position / levelWidth;
 int indexColumn = position % levelWidth;
 ----
 
-One final note of interest: to make up for Java's lacking native handling of nullability, I make extensive use of link:https://www.jetbrains.com/help/idea/annotating-source-code.html[JetBrains's annotations]. I find them to be an acceptable substitute as long as I use link:https://www.jetbrains.com/idea/[Idea].
+One final note of interest: to make up for Java`'s lacking native handling of nullability, I make extensive use of link:https://www.jetbrains.com/help/idea/annotating-source-code.html[JetBrains`'s annotations]. I find them to be an acceptable substitute as long as I use link:https://www.jetbrains.com/idea/[Idea].
 
 == Just add code
 
-Let's write a few test cases (function bodies elided for brevity since the code is rather boring):
+Let`'s write a few test cases (function bodies elided for brevity since the code is rather boring):
 
 .LevelReaderTest.java
 [source,java]
@@ -135,8 +135,8 @@ include::levelreadertest1.java[]
 ----
 
 There are a lot tests covering error cases.
-That's because I hate having to wade through my code with a debugger to find out what's wrong with a level file.
-I'd rather take the time to generate error messages that are as explicit as possible.
+That`'s because I hate having to wade through my code with a debugger to find out what`'s wrong with a level file.
+I`'d rather take the time to generate error messages that are as explicit as possible.
 
 Then fill the content of the reader:
 
@@ -147,4 +147,4 @@ include::levelreader2.java[]
 ----
 
 Now I have all the code I need to read a level from disk.
-In the next part I'll start implementing the solving logic.
+In the next part I`'ll start implementing the solving logic.

@@ -46,17 +46,17 @@ known_cuboids = []
 
 for instruction in open(sys.argv[1]).readlines():
     parsed_instruction = instruction_regex.search(instruction)
-    status = parsed_instruction.group('status')
-    x_min = int(parsed_instruction.group('x_min'))
-    x_max = int(parsed_instruction.group('x_max'))
+    status = parsed_instruction.group(`'status`')
+    x_min = int(parsed_instruction.group(`'x_min`'))
+    x_max = int(parsed_instruction.group(`'x_max`'))
 
-    y_min = int(parsed_instruction.group('y_min'))
-    y_max = int(parsed_instruction.group('y_max'))
+    y_min = int(parsed_instruction.group(`'y_min`'))
+    y_max = int(parsed_instruction.group(`'y_max`'))
 
-    z_min = int(parsed_instruction.group('z_min'))
-    z_max = int(parsed_instruction.group('z_max'))
+    z_min = int(parsed_instruction.group(`'z_min`'))
+    z_max = int(parsed_instruction.group(`'z_max`'))
 
-    current_cuboid = Cuboid(x_min, x_max, y_min, y_max, z_min, z_max, status == 'on')
+    current_cuboid = Cuboid(x_min, x_max, y_min, y_max, z_min, z_max, status == `'on`')
     current_intersections = []
 
     for cuboid in known_cuboids:
@@ -65,7 +65,7 @@ for instruction in open(sys.argv[1]).readlines():
             current_intersections.append(intersection)
 
     known_cuboids += current_intersections
-    if status == 'on':
+    if status == `'on`':
         known_cuboids.append(current_cuboid)
 
 result = 0

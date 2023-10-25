@@ -78,7 +78,7 @@ public class TilesGenerator {
       String fieldConstantName =
           field.
               toUpperCase().
-              replace(' ', '_');
+              replace(`' `', `'_`');
       fieldsNames.add(fieldConstantName);
       addField(
           String.class,

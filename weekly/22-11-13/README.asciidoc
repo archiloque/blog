@@ -9,23 +9,23 @@ v1.0, 2022-11-13
 
 [quote]
 ____
-So we've told you a bunch of information about clusters, databases, and
-schemas, but you're wondering how it fits in practically.
+So we`'ve told you a bunch of information about clusters, databases, and
+schemas, but you`'re wondering how it fits in practically.
 
-* _Clusters_ are the full instance that is running Postgres itself. You're
+* _Clusters_ are the full instance that is running Postgres itself. You`'re
 not getting away from this one, but know that base backups and WAL from
-a cluster is all grouped together. Thus if you're needing to do
-something with smaller sets of backups and querying you'll want to dig
+a cluster is all grouped together. Thus if you`'re needing to do
+something with smaller sets of backups and querying you`'ll want to dig
 into how you separate things in to separate databases or schemas. As a
 broad rule 90% of applications have a cluster with a single database and
 single schema within them.
 
 * _Databases_ are useful when entirely isolated. If you have multiple
-different applications, but a small number of them so you're not worried
-about scaling connections to each of them, then they're a great method
+different applications, but a small number of them so you`'re not worried
+about scaling connections to each of them, then they`'re a great method
 of separating your data access. For example, you could have a database
 for your blog, one for your events calendar, and one for your CRM
-application. All these are quite distinct and don't interact with each
+application. All these are quite distinct and don`'t interact with each
 other.
 
 * _Schemas_ can be useful for separating data that may otherwise follow
@@ -43,7 +43,7 @@ ____
 ____
 The funny thing about jargon is how quickly we get used to it, and
 forget we are even using it. It becomes part of the secret handshake,
-the way we signal to other members of our tribe that we're part of the
+the way we signal to other members of our tribe that we`'re part of the
 group.
 
 When I first started going to Postgres conferences and listening to
@@ -52,10 +52,10 @@ were these strange words and phrases they were using?
 
 It turns out that a lot of them are taken from the Postgres code base,
 which in turn naturally uses them because they are part of
-link:https://twobithistory.org/2017/12/29/codd-relational-model.html[Codd's relational model], the theoretical information architecture that
+link:https://twobithistory.org/2017/12/29/codd-relational-model.html[Codd`'s relational model], the theoretical information architecture that
 underpins all relational databases.
 
-Here's an unofficial, incomplete glossary of weird terms that come out
+Here`'s an unofficial, incomplete glossary of weird terms that come out
 of developers mouths when talking about Postgres.
 ____
 
@@ -63,15 +63,15 @@ ____
 
 [quote]
 ____
-I think often what's going on with prompted agency is that it gives you
-permission to act, and many people aren't good at acting without
+I think often what`'s going on with prompted agency is that it gives you
+permission to act, and many people aren`'t good at acting without
 permission.
 
 We grow up in very low agency environments. Between home and school,
-generally you _aren't_ able to exercise much agency without explicit
+generally you _aren`'t_ able to exercise much agency without explicit
 permission to do so.As adults, we have much more
 permission to act autonomously, but we first have to unlearn the habits
-and emotional responses that we acquired when we didn't.
+and emotional responses that we acquired when we didn`'t.
 ____
 
 == link:https://en.algorithmica.org/hpc/[Algorithms for modern hardware]
@@ -99,7 +99,7 @@ ____
 
 [quote]
 ____
-This is a quick view of incident models, as taken from various sources. I found this useful to go over a long while ago and then forgot what I did with my notes, so here's new ones.
+This is a quick view of incident models, as taken from various sources. I found this useful to go over a long while ago and then forgot what I did with my notes, so here`'s new ones.
 
 Do note that not all models are in precise orders. Some models have lived and evolved for decades and been influenced or borrowed from other models. The ordering here is arbitrary and as close to "`first appearance`" as possible, but not necessarily to "`last time it was useful`".
 ____

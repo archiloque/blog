@@ -36,11 +36,11 @@ class LiteralValuePacket(Packet):
 
         self.last_position = starting_position + Packet.PACKET_HEADER_SIZE
         value_bits = []
-        while sequence[self.last_position] == '1':
+        while sequence[self.last_position] == `'1`':
             value_bits.extend(sequence[(self.last_position + 1):(self.last_position + 5)])
             self.last_position += 5
         value_bits.extend(sequence[(self.last_position + 1):(self.last_position + 5)])
-        self.value = int(''.join(value_bits), 2)
+        self.value = int(`'`'.join(value_bits), 2)
         self.last_position += 5
         print(self.total())
 

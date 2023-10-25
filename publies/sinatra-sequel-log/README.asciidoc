@@ -2,19 +2,19 @@
 Julien Kirch
 v1.0, 2016-02-11
 :article_lang: en
-:article_description: SQL is an incredible tool but it's easy to do bad things ORM are handy but dangerous, for both of them the best strategy is to watch what is happening
+:article_description: SQL is an incredible tool but it`'s easy to do bad things ORM are handy but dangerous, for both of them the best strategy is to watch what is happening
 :ignore_files: app.rb
 
 == SQL: a fine tool of the trade
 
-For structured data I love SQL: it's link:http://www.dbdebunk.com/2012/07/null-confusion.html[not perfect] but good enough: the model is easy yet expressive and the syntax is plain.
+For structured data I love SQL: it`'s link:http://www.dbdebunk.com/2012/07/null-confusion.html[not perfect] but good enough: the model is easy yet expressive and the syntax is plain.
 
 == A good ORM is a nice thing
 
 My criteria to choose an ORM are:
 
 - It should provide a good API to code simple queries with a readable syntax.
-- It shouldn't prevent me from writing my own SQL when I need it, because sometimes it's the best solution (2 lines of SQL vs. 5 lines of "`SQL-masqueraded as chained method invocations`" horrors). Bonus point if it provides some help to read the query result.
+- It shouldn`'t prevent me from writing my own SQL when I need it, because sometimes it`'s the best solution (2 lines of SQL vs. 5 lines of "`SQL-masqueraded as chained method invocations`" horrors). Bonus point if it provides some help to read the query result.
 
 In Ruby link:http://sequel.jeremyevans.net[Sequel] is my tool of choice:
 
@@ -22,27 +22,27 @@ In Ruby link:http://sequel.jeremyevans.net[Sequel] is my tool of choice:
 - The documentation is good enough for most cases.
 - The code is clear enough for other cases.
 
-== But you can't trust any of them
+== But you can`'t trust any of them
 
-- With SQL it's really easy to write a query with a bad join and have results that scan too much data.
-- With an ORM it's easy to hit the link:http://www.realsolve.co.uk/site/tech/hib-tip-pitfall.php?name=why-lazy[N + 1 select problem].
+- With SQL it`'s really easy to write a query with a bad join and have results that scan too much data.
+- With an ORM it`'s easy to hit the link:http://www.realsolve.co.uk/site/tech/hib-tip-pitfall.php?name=why-lazy[N + 1 select problem].
 
 == So I watch them carefully
 
 The bad thing is that both problems are unfit for unit tests:
 
-- You can't easily test that a query is using the right index.
+- You can`'t easily test that a query is using the right index.
 - Testing that some code is performing the correct number of queries takes too much work and maintenance.
 
 So an acceptable solution is to enable metrics for both of them, and then to use those metrics as much as you can.
 
-== Just a small hack and we're there
+== Just a small hack and we`'re there
 
 The best way to enable metrics is to provide them bundled with the operation they measure.
 
 For a start, you can use custom HTTP headers.
 
-It's done in two steps:
+It`'s done in two steps:
 
 - Count the queries and execution time in the ORM.
 - Send the data back in the service result.
@@ -89,6 +89,6 @@ Warning: you may want to hide the metrics in production environments.
 
 Now that we have the basic structure, you can do plenty of things:
 
-- Obviously you can have a look at them when an HTTP request takes too long, it's a great help for testers and developers of client applications.
+- Obviously you can have a look at them when an HTTP request takes too long, it`'s a great help for testers and developers of client applications.
 - You can add triggers alerts when thresholds are exceeded, like making the call fail so somebody will notice it.
 - …

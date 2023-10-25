@@ -14,16 +14,16 @@ while True:
         for column in range(0, puzzle_width - 1):
             current_cell_content = puzzle[line][column]
             target_cell_content = puzzle[line][column + 1]
-            if (current_cell_content == '>') and (target_cell_content == '.'):
-                new_puzzle[line][column] = '.'
-                new_puzzle[line][column + 1] = '>'
+            if (current_cell_content == `'>`') and (target_cell_content == `'.`'):
+                new_puzzle[line][column] = `'.`'
+                new_puzzle[line][column + 1] = `'>`'
                 number_of_moves += 1
         
         current_cell_content = puzzle[line][puzzle_width - 1]
         target_cell_content = puzzle[line][0]
-        if (current_cell_content == '>') and (target_cell_content == '.'):
-            new_puzzle[line][puzzle_width - 1] = '.'
-            new_puzzle[line][0] = '>'
+        if (current_cell_content == `'>`') and (target_cell_content == `'.`'):
+            new_puzzle[line][puzzle_width - 1] = `'.`'
+            new_puzzle[line][0] = `'>`'
             number_of_moves += 1
 
     puzzle = new_puzzle
@@ -33,17 +33,17 @@ while True:
         for column in range(0, puzzle_width):
             current_cell_content = puzzle[line][column]
             target_cell_content = puzzle[line + 1][column]
-            if (current_cell_content == 'v') and (target_cell_content == '.'):
-                new_puzzle[line][column] = '.'
-                new_puzzle[line + 1][column] = 'v'
+            if (current_cell_content == `'v`') and (target_cell_content == `'.`'):
+                new_puzzle[line][column] = `'.`'
+                new_puzzle[line + 1][column] = `'v`'
                 number_of_moves += 1
                 
     for column in range(0, puzzle_width):
         current_cell_content = puzzle[puzzle_height - 1][column]
         target_cell_content = puzzle[0][column]
-        if (current_cell_content == 'v') and (target_cell_content == '.'):
-            new_puzzle[puzzle_height - 1][column] = '.'
-            new_puzzle[0][column] = 'v'
+        if (current_cell_content == `'v`') and (target_cell_content == `'.`'):
+            new_puzzle[puzzle_height - 1][column] = `'.`'
+            new_puzzle[0][column] = `'v`'
             number_of_moves += 1
 
     if number_of_moves == 0:

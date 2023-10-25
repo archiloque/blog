@@ -12,19 +12,19 @@ CHAMBER_SIZE = len(puzzle) - 3
 #   #8#0#2#4#
 #   #########
 
-ItemType = NewType('ItemType', int)
+ItemType = NewType(`'ItemType`', int)
 ITEM_AMBER = ItemType(0)
 ITEM_BRONZE = ItemType(1)
 ITEM_COPPER = ItemType(2)
 ITEM_DESERT = ItemType(3)
 ITEM_EMPTY = ItemType(4)
 
-Position = NewType('Position', int)
+Position = NewType(`'Position`', int)
 Move: list[ItemType] = []
 
 
 def move_to_key(move: Move) -> str:
-    return ''.join(map(str, move))
+    return `'`'.join(map(str, move))
 
 
 def slice_move(current_move: Move, min_position: Position, max_position: Position) -> Move:
@@ -43,11 +43,11 @@ ITEM_TYPE_TO_ENERGY: dict[ItemType, int] = {
 }
 
 CHAR_TO_ITEM_TYPE: dict[str, ItemType] = {
-    'A': ITEM_AMBER,
-    'B': ITEM_BRONZE,
-    'C': ITEM_COPPER,
-    'D': ITEM_DESERT,
-    '.': ITEM_EMPTY,
+    `'A`': ITEM_AMBER,
+    `'B`': ITEM_BRONZE,
+    `'C`': ITEM_COPPER,
+    `'D`': ITEM_DESERT,
+    `'.`': ITEM_EMPTY,
 }
 
 initial_position_string = [

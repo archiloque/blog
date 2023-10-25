@@ -10,18 +10,18 @@ v1.0, 2017-10-29
 ____
 Staging is where you validate the known-unknowns of your systems. These known-unknowns are the dependencies, interactions, and edge cases foreseeable by the humans in your company and the machines they tend. Staging is where you gain confidence in your systems by consensus.
 
-You can't replicate unknown-unknowns, such as user behavior and traffic loads, in staging. But you can replicate everything else. And that matters.
+You can`'t replicate unknown-unknowns, such as user behavior and traffic loads, in staging. But you can replicate everything else. And that matters.
 ____
 
 == link:https://www.wired.com/story/the-way-the-world-ends-not-with-a-bang-but-a-paperclip/[A viral game about paperclips teaches you to be a world-killing AI]
 
 [quote]
 ____
-So that's good, right? A paperclip maximizer! Maximize a goal! That's what an AI's creators want, right? "`As it improves, they lose control of what goal it is carrying out,`" Yudkowsky says. "`The utility function changes from whatever they originally had in mind. The weird, random thing that best fulfills this utility function is little molecular shapes that happen to look like paperclips.`"
+So that`'s good, right? A paperclip maximizer! Maximize a goal! That`'s what an AI`'s creators want, right? "`As it improves, they lose control of what goal it is carrying out,`" Yudkowsky says. "`The utility function changes from whatever they originally had in mind. The weird, random thing that best fulfills this utility function is little molecular shapes that happen to look like paperclips.`"
 
-So … bad, because as the AI dedicates more and more intelligence and resources to making paperclips against all other possible outcomes … well, maybe at first it does stuff that looks helpful to humanity, but in the end, it's just going to turn us into paperclips. And then all the matter on Earth. And then everything else. Everything. Is. Paperclips.
+So … bad, because as the AI dedicates more and more intelligence and resources to making paperclips against all other possible outcomes … well, maybe at first it does stuff that looks helpful to humanity, but in the end, it`'s just going to turn us into paperclips. And then all the matter on Earth. And then everything else. Everything. Is. Paperclips.
 
-"`It's not that the AI is doing something you can't understand`", Yudkowsky says. "`You have a genuine disagreement on values.`"
+"`It`'s not that the AI is doing something you can`'t understand`", Yudkowsky says. "`You have a genuine disagreement on values.`"
 ____
 
 
@@ -29,11 +29,11 @@ ____
 
 [quote]
 ____
-The result is that the kernel has a web of trust that, one might fairly conclude, is not really protecting much. It's nice to have the verification on pull requests that do carry signatures but, since those signatures seem to be almost entirely optional at present, they offer little protection against a malicious pull request.
+The result is that the kernel has a web of trust that, one might fairly conclude, is not really protecting much. It`'s nice to have the verification on pull requests that do carry signatures but, since those signatures seem to be almost entirely optional at present, they offer little protection against a malicious pull request.
 
-If the intent of signed tags is limited to to enabling developers to host repositories on untrusted services, then perhaps signature checking as it is practiced now is sufficient. Perhaps the threat model need not include more sophisticated attackers trying to sneak vulnerabilities into the kernel via some developer's tree on a well-run site. After all, kernel.org itself seems relatively well protected these days, and kernel developers have demonstrated that, like developers of most other projects, they are entirely capable of introducing security bugs at a sufficient rate without external assistance.
+If the intent of signed tags is limited to to enabling developers to host repositories on untrusted services, then perhaps signature checking as it is practiced now is sufficient. Perhaps the threat model need not include more sophisticated attackers trying to sneak vulnerabilities into the kernel via some developer`'s tree on a well-run site. After all, kernel.org itself seems relatively well protected these days, and kernel developers have demonstrated that, like developers of most other projects, they are entirely capable of introducing security bugs at a sufficient rate without external assistance.
 
-But if the intent is to make the kernel development process resilient against attacks on developers' machines or kernel.org, then there is some work yet to be done. It is worth remembering that the web of trust came about as a response to a compromise of kernel.org, after all. If we want to prepare for a recurrence of that sort of incident, the actual threat model needs to be defined, and the use of protective techniques like signed tags should probably not be optional. Partially implemented security mechanisms have a distressing tendency to fail when put to the test.
+But if the intent is to make the kernel development process resilient against attacks on developers`' machines or kernel.org, then there is some work yet to be done. It is worth remembering that the web of trust came about as a response to a compromise of kernel.org, after all. If we want to prepare for a recurrence of that sort of incident, the actual threat model needs to be defined, and the use of protective techniques like signed tags should probably not be optional. Partially implemented security mechanisms have a distressing tendency to fail when put to the test.
 ____
 
 == link:https://lwn.net/Articles/736534/[A block layer introduction part 1: the bio layer]

@@ -12,8 +12,8 @@ rules = {}
 
 for rule in instructions[2:(len(instructions))]:
     match = rule_regex.search(rule)
-    from_rule = match.group('from')
-    to_rule = match.group('to')
+    from_rule = match.group(`'from`')
+    to_rule = match.group(`'to`')
     rules[from_rule] = to_rule
     possible_elements.update(from_rule)
     possible_elements.update(to_rule)

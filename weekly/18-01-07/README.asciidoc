@@ -8,19 +8,19 @@ v1.0, 2018-01-07
 
 [quote]
 ____
-I've barely scratched the surface of Prolog and logic programming here, but hopefully this gives you a flavour of how different it is, and how to solve simple problems with it. It's a lot like pure functional programming as found in languages like Haskell, but without any distinction between function inputs and outputs. It's a really good discipline to learn as it forces you to formalise your understanding of a problem and prove things about it. And, it goes to show how trying to study one topic can lead you to learn all sorts of other things by accident, just by seeing them in an unexpected context.
+I`'ve barely scratched the surface of Prolog and logic programming here, but hopefully this gives you a flavour of how different it is, and how to solve simple problems with it. It`'s a lot like pure functional programming as found in languages like Haskell, but without any distinction between function inputs and outputs. It`'s a really good discipline to learn as it forces you to formalise your understanding of a problem and prove things about it. And, it goes to show how trying to study one topic can lead you to learn all sorts of other things by accident, just by seeing them in an unexpected context.
 ____
 
 == link:http://cr.openjdk.java.net/~briangoetz/amber/datum.html[Data classes for Java]
 
 [quote]
 ____
-Just like the story of the blind men and the elephant, different developers are likely to bring very different assumptions about the "`obvious`" semantics of a data class. To bring these implicit assumptions into the open, let's name the various positions.
+Just like the story of the blind men and the elephant, different developers are likely to bring very different assumptions about the "`obvious`" semantics of a data class. To bring these implicit assumptions into the open, let`'s name the various positions.
 ____
 
 [quote]
 ____
-If we could say that a class was a _plain data carrier_ for a given state vector, then we could provide sensible and correct defaults for state-related members like constructors, accessors, and `Object` methods. Since there's currently no way to say what we really mean, our only alternative is to get out our imperative hammer and start bashing. But "`plain`" domain classes are so common that it would be nice to capture this design decision directly in the code – where readers and compilers alike could take advantage of it – rather than simulating it imperatively (and thereby obfuscating our design intent). So while boilerplate may be the symptom, the disease is that our code cannot directly capture our design intent, and if we cure the disease, the boilerplate goes away.
+If we could say that a class was a _plain data carrier_ for a given state vector, then we could provide sensible and correct defaults for state-related members like constructors, accessors, and `Object` methods. Since there`'s currently no way to say what we really mean, our only alternative is to get out our imperative hammer and start bashing. But "`plain`" domain classes are so common that it would be nice to capture this design decision directly in the code – where readers and compilers alike could take advantage of it – rather than simulating it imperatively (and thereby obfuscating our design intent). So while boilerplate may be the symptom, the disease is that our code cannot directly capture our design intent, and if we cure the disease, the boilerplate goes away.
 ____
 
 == link:https://steveperkins.com/using-java-9-modularization-to-ship-zero-dependency-native-apps/[Using Java 9 modularization to ship zero-dependency native apps]
@@ -41,13 +41,13 @@ ____
 
 [quote]
 ____
-The PCID (Processor-Context ID) feature on x86-64 works much like the more generic ASID (Address Space IDs) available on many hardware platforms for decades. Simplistically, it allows TLB-cached page table contents to be tagged with a context identifier, and limits the lookups in the TLB to only match within the currently allowed context. TLB cached entires with a different PCID will be ignored. Without this feature, a context switch that would involve switching to a different page table (e.g. a process-to-process context switch) would require a flush of the entire TLB. With the feature, it only requires a change to the context id designated as "`currently allowed`". The benefit of this comes up when a back-and-forth set of context switches (e.g. from process 1 to process 2 and back to process 1) occurs "`quickly enough`" that TLB entries of the newly-switched-into context still reside in the TLB cache. With modern x86 CPUs holding >1K entries in their L2 TLB caches (sometimes referred to as STLB), and each entry mapping 2MB or 4KB virtual regions to physical pages, the possibility of such reuse becomes interesting on heavily loaded systems that do a lot of process-to-process context switching. It's important to note that in virtually all modern operating systems, thread-to-thread context switches do not require TLB flushing, and remain within the same PCID because they do not require switching the page table. In addition, UNTIL NOW, most modern operating systems implemented user-to-kernel and kernel-to-user context switching without switching page tables, so no TLB flushing or switching or ASID/PCID was required in system calls or interrupts.
+The PCID (Processor-Context ID) feature on x86-64 works much like the more generic ASID (Address Space IDs) available on many hardware platforms for decades. Simplistically, it allows TLB-cached page table contents to be tagged with a context identifier, and limits the lookups in the TLB to only match within the currently allowed context. TLB cached entires with a different PCID will be ignored. Without this feature, a context switch that would involve switching to a different page table (e.g. a process-to-process context switch) would require a flush of the entire TLB. With the feature, it only requires a change to the context id designated as "`currently allowed`". The benefit of this comes up when a back-and-forth set of context switches (e.g. from process 1 to process 2 and back to process 1) occurs "`quickly enough`" that TLB entries of the newly-switched-into context still reside in the TLB cache. With modern x86 CPUs holding >1K entries in their L2 TLB caches (sometimes referred to as STLB), and each entry mapping 2MB or 4KB virtual regions to physical pages, the possibility of such reuse becomes interesting on heavily loaded systems that do a lot of process-to-process context switching. It`'s important to note that in virtually all modern operating systems, thread-to-thread context switches do not require TLB flushing, and remain within the same PCID because they do not require switching the page table. In addition, UNTIL NOW, most modern operating systems implemented user-to-kernel and kernel-to-user context switching without switching page tables, so no TLB flushing or switching or ASID/PCID was required in system calls or interrupts.
 
 […]
 
 So, why would youI not have PCID?
 
-It turns out that because PCID was so boring and non-exciting, and Linux didn't even use it until a couple of months ago, it's been withheld from many guest-OS instances when running on modern hardware and modern hypervisors. In my quick and informal polling I so far found that:
+It turns out that because PCID was so boring and non-exciting, and Linux didn`'t even use it until a couple of months ago, it`'s been withheld from many guest-OS instances when running on modern hardware and modern hypervisors. In my quick and informal polling I so far found that:
 
 - Most of the KVM guests I personally looked in did NOT have pcid
 - All the VMWare guests I personally looked in had pcid

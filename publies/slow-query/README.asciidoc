@@ -6,14 +6,14 @@ v1.0, 2016-08-12
 :ignore_files: app.rb, .ruby-version, config.ru, Gemfile, Gemfile.lock
 
 Good ORMs are handy: they avoid boilerplate without dictating what is possible and what is not.
-In most case you don't even need to have a look at the SQL they generate (as long as you test your code).
+In most case you don`'t even need to have a look at the SQL they generate (as long as you test your code).
 
 But sometimes things goes wrong: during a stress test -- or even in production --
 a bad query happen that takes a long time to execute.
 
-You get the culprit in your slow query log, but here's the catch:
-sometimes you can't figure what part of the code is generating the query,
-or there's several candidates and you don't want to loose to much time figuring how's the troublemaker.
+You get the culprit in your slow query log, but here`'s the catch:
+sometimes you can`'t figure what part of the code is generating the query,
+or there`'s several candidates and you don`'t want to loose to much time figuring how`'s the troublemaker.
 
 To make things easier, you need to realize two things:
 
@@ -41,7 +41,7 @@ include::app.rb[]
 In the query log:
 
 ....
-/* This query comes from [/date] */ SELECT date('now') as d
+/* This query comes from [/date] */ SELECT date(`'now`') as d
 ....
 
 If your code is really complicated or messy, you can increase the level of detail:

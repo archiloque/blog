@@ -18,21 +18,21 @@ ifndef::source-highlighter[]
 endif::[]
 
 ifeval::["{doctype}" == "book"]
-Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir introduit le sujet>>, je vais ici poser les bases de l'outil.
+Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir introduit le sujet>>, je vais ici poser les bases de l`'outil.
 endif::[]
 ifeval::["{doctype}" != "book"]
-Ceci est le deuxième article d'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
+Ceci est le deuxième article d`'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 
-Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet], je vais ici poser les bases de l'outil.
+Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet], je vais ici poser les bases de l`'outil.
 endif::[]
 
-Le code (framework et code d'exemple) sera dans un projet unique et ne sera pas packagé sous forme d'une gem.
+Le code (framework et code d`'exemple) sera dans un projet unique et ne sera pas packagé sous forme d`'une gem.
 
 Le faire ajouterait pas mal de code et un peu de complexité sans que cela apporte quelque chose.
 
 == Les dépendances
 
-Tout d'abord il faut fixer la version de Ruby, je vais prendre la dernière disponible au moment d'écrire l'article.
+Tout d`'abord il faut fixer la version de Ruby, je vais prendre la dernière disponible au moment d`'écrire l`'article.
 
 .ruby-version 
 [source]
@@ -40,7 +40,7 @@ Tout d'abord il faut fixer la version de Ruby, je vais prendre la dernière disp
 2.7.1
 ----
 
-Ensuite pour les bibliothèques, en plus de la gem permettant d'utiliser SQLite je vais me servir de Rake pour définir la tâche de génération de code.
+Ensuite pour les bibliothèques, en plus de la gem permettant d`'utiliser SQLite je vais me servir de Rake pour définir la tâche de génération de code.
 
 .Gemfile
 [source]
@@ -55,8 +55,8 @@ gem "sqlite3", "~> 1.4"
 
 Dans la suite, je vais prendre comme exemple un jeu de construction.
 
-Ce jeu de construction est composé des différents types de briques (`Brick`), qui sont chacun d'une certaine couleur (`Color`).
-Des modèles à construire (`Kit`) sont constitués d'un ensemble de types de briques, chacun contient un certain nombre de briques (tant de briques d'une sorte, tant de briques d'une autre sorte), la relation modèle - type de brique étant modélisée par un `KitBrick`.
+Ce jeu de construction est composé des différents types de briques (`Brick`), qui sont chacun d`'une certaine couleur (`Color`).
+Des modèles à construire (`Kit`) sont constitués d`'un ensemble de types de briques, chacun contient un certain nombre de briques (tant de briques d`'une sorte, tant de briques d`'une autre sorte), la relation modèle - type de brique étant modélisée par un `KitBrick`.
 
 ifeval::["{doctype}" == "book"]
 image::schema_dark.svg[]
@@ -71,47 +71,47 @@ Voici la structure SQL{nbsp} correspondante avec la syntaxe SQLite{nbsp}:
 [source,sql]
 ----
 -- Table color
-CREATE TABLE 'color' (
-  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+CREATE TABLE `'color`' (
+  `'id`' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 
-  'name' TEXT NOT NULL
+  `'name`' TEXT NOT NULL
 );
 
 CREATE UNIQUE INDEX idx_color_unique 
-  ON color('name');
+  ON color(`'name`');
 
 -- Table brick
-CREATE TABLE 'brick' (
-  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+CREATE TABLE `'brick`' (
+  `'id`' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 
-  'name' TEXT NOT NULL,
-  'description' TEXT NOT NULL,
-  'color_id' INTEGER NOT NULL,
+  `'name`' TEXT NOT NULL,
+  `'description`' TEXT NOT NULL,
+  `'color_id`' INTEGER NOT NULL,
 
-  FOREIGN KEY('color_id') REFERENCES 'color'('id')
+  FOREIGN KEY(`'color_id`') REFERENCES `'color`'(`'id`')
 );
 
 -- Table kit
-CREATE TABLE 'kit' (
-  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+CREATE TABLE `'kit`' (
+  `'id`' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 
-  'name' TEXT NOT NULL,
-  'description' TEXT NOT NULL
+  `'name`' TEXT NOT NULL,
+  `'description`' TEXT NOT NULL
 );
 
 -- Table kit_brick
-CREATE TABLE 'kit_brick' (
-  'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+CREATE TABLE `'kit_brick`' (
+  `'id`' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 
-  'kit_id' INTEGER NOT NULL,
-  'brick_id' INTEGER NOT NULL,
-  'quantity' INTEGER NOT NULL,
+  `'kit_id`' INTEGER NOT NULL,
+  `'brick_id`' INTEGER NOT NULL,
+  `'quantity`' INTEGER NOT NULL,
 
-  FOREIGN KEY('kit_id') REFERENCES 'kit'('id'),
-  FOREIGN KEY('brick_id') REFERENCES 'brick'('id')
+  FOREIGN KEY(`'kit_id`') REFERENCES `'kit`'(`'id`'),
+  FOREIGN KEY(`'brick_id`') REFERENCES `'brick`'(`'id`')
 );
-CREATE UNIQUE INDEX 'idx_kit_brick_uniqu' 
-  ON 'kit_brick'('kit_id', 'brick_id');
+CREATE UNIQUE INDEX `'idx_kit_brick_uniqu`' 
+  ON `'kit_brick`'(`'kit_id`', `'brick_id`');
 ----
 
 Pour créer une base avec la bonne structure, vous pouvez lancer la commande{nbsp}:
@@ -133,38 +133,38 @@ sqlite>
 ----
 
 Certains ORMs comme Rails et Sequel fournissent des outils pour gérer les modifications de schéma de la base.
-J'ai fait le choix ici de ne pas implémenter cette fonctionnalité car&#8201;—{nbsp}même si elle peut partager du code avec le reste de l'ORM {nbsp}—&#8201;elle est largement séparée et n'influe donc pas sur le noyau de l'outil.
+J`'ai fait le choix ici de ne pas implémenter cette fonctionnalité car&#8201;—{nbsp}même si elle peut partager du code avec le reste de l`'ORM {nbsp}—&#8201;elle est largement séparée et n`'influe donc pas sur le noyau de l`'outil.
 
-Dans le monde Java, link:https://hibernate.org/orm/[l'ORM hibernate] qui est très utilisé ne fournit ainsi pas d'outil de migration.
+Dans le monde Java, link:https://hibernate.org/orm/[l`'ORM hibernate] qui est très utilisé ne fournit ainsi pas d`'outil de migration.
 
 == Un DSL pour configurer les modèles
 
 Pour générer les classes de modèle, je vais utiliser un fichier de configuration qui sera lu par un script.
 Au début le fichier de configuration contiendra seulement les noms des modèles et les noms des tables correspondantes.
 
-La syntaxe s'inspire des DSL de configuration qu'on trouve dans Rails{nbsp}:
+La syntaxe s`'inspire des DSL de configuration qu`'on trouve dans Rails{nbsp}:
 
 .schema.rb
 [source,ruby]
 ----
-define_model 'Color' do |model_definition|
-  model_definition.table 'color'
+define_model `'Color`' do |model_definition|
+  model_definition.table `'color`'
 end
 
-define_model 'Brick' do |model_definition|
-  model_definition.table 'brick'
+define_model `'Brick`' do |model_definition|
+  model_definition.table `'brick`'
 end
 
-define_model 'Kit' do |model_definition|
-  model_definition.table 'kit'
+define_model `'Kit`' do |model_definition|
+  model_definition.table `'kit`'
 end
 
-define_model 'KitBrick' do |model_definition|
-  model_definition.table 'kit_brick'
+define_model `'KitBrick`' do |model_definition|
+  model_definition.table `'kit_brick`'
 end
 ----
 
-La capacité d'utiliser des noms de table par défaut en les déduisant des noms des classes demanderait un peu plus de code sans changer le fonctionnement d'ensemble, du coup je ne vais pas l'intégrer.
+La capacité d`'utiliser des noms de table par défaut en les déduisant des noms des classes demanderait un peu plus de code sans changer le fonctionnement d`'ensemble, du coup je ne vais pas l`'intégrer.
 
 Pour générer les modèles je dois commencer par lire le contenu de fichier.
 
@@ -190,7 +190,7 @@ class ModelDefinition
 end
 ----
 
-Comme le script de génération `generator.rb` des modèles sera lancé de manière indépendante du reste du code, je peux définir la méthode `define_model` de manière globale (dans un script indépendant elle ne risque pas de polluer l'espace de noms), puis de faire un `require_relative` sur le fichier de configuration.
+Comme le script de génération `generator.rb` des modèles sera lancé de manière indépendante du reste du code, je peux définir la méthode `define_model` de manière globale (dans un script indépendant elle ne risque pas de polluer l`'espace de noms), puis de faire un `require_relative` sur le fichier de configuration.
 
 Lorsque le fichier sera chargé, la méthode `define_model` sera ainsi appelée pour chaque bloc du fichier `schema.rb`.
 
@@ -209,7 +209,7 @@ def define_model(model_name, &block)
   block.yield(model_definition)
 end
 
-require_relative 'schema'
+require_relative `'schema`'
 ----
 
 Pour pouvoir utiliser ensuite ces `ModelDefinition`, le constructeurs les stockera dans un tableau au fur et à mesure.
@@ -237,9 +237,9 @@ Après le chargement du fichier de configuration, `ModelDefinition::MODELS_DEFIN
 
 == Un template pour générer le fichier
 
-Une fois la configuration chargée je vais m'intéresser à la génération du code.
+Une fois la configuration chargée je vais m`'intéresser à la génération du code.
 
-Comme à l'étape précédente, la première étape est de définir la syntaxe cible qui m'intéresse{nbsp}:
+Comme à l`'étape précédente, la première étape est de définir la syntaxe cible qui m`'intéresse{nbsp}:
 
 .models.rb
 [source,ruby]
@@ -248,14 +248,14 @@ class Color
 
   # @return [String]
   def self.table_name
-      'color'
+      `'color`'
   end
 end
 ----
 
 Chaque modèle est dans une classe, exposant une méthode de classe pour récupérer le nom de la table.
 
-Comme expliqué plus haut, je me sers d'erb pour la génération, voici donc le template de classe correspondant{nbsp}:
+Comme expliqué plus haut, je me sers d`'erb pour la génération, voici donc le template de classe correspondant{nbsp}:
 
 .models.rb.erb
 [source]
@@ -264,22 +264,22 @@ class <%= model.name %>
 
   # @return [String]
   def self.table_name
-      '<%= model.table_name %>'
+      `'<%= model.table_name %>`'
   end
 end
 ----
 
-Pour générer le fichier, il faut alors charger ce template, l'appliquer à chacun des définitions qui sont disponibles dans `ModelDefinition::MODELS_DEFINITIONS` et stocker le résultat dans un fichier.
+Pour générer le fichier, il faut alors charger ce template, l`'appliquer à chacun des définitions qui sont disponibles dans `ModelDefinition::MODELS_DEFINITIONS` et stocker le résultat dans un fichier.
 
 .generator.rb
 [source,ruby]
 ----
 # …
 
-require 'erb'
+require `'erb`'
 
 # Récupère le template
-erb = ERB.new(IO.read('models.rb.erb'))
+erb = ERB.new(IO.read(`'models.rb.erb`'))
 
 # Applique le template aux modèles
 models_code = ModelDefinition::MODELS_DEFINITIONS.
@@ -289,23 +289,23 @@ models_code = ModelDefinition::MODELS_DEFINITIONS.
   erb.result_with_hash(model: model)
 end
 
-# Concatène le code des modèles et l'écrit dans un fichier
+# Concatène le code des modèles et l`'écrit dans un fichier
 IO.write(
-    'models.rb',
+    `'models.rb`',
     models_code.
         join("\n\n")
 )
 ----
 
-Le code est alors terminé, il me manque seulement une tâche Rake pour pouvoir l'invoquer.
-Comme les chemins des fichiers sont tous en dur dans le code, il n'y a pas besoin de le rendre paramétrable{nbsp}:
+Le code est alors terminé, il me manque seulement une tâche Rake pour pouvoir l`'invoquer.
+Comme les chemins des fichiers sont tous en dur dans le code, il n`'y a pas besoin de le rendre paramétrable{nbsp}:
 
 .Rakefile
 [source,ruby]
 ----
-desc 'Génère les modèles à partir du fichier schema.rb'
+desc `'Génère les modèles à partir du fichier schema.rb`'
 task :generate_models do
-  require_relative 'generator'
+  require_relative `'generator`'
 end
 ----
 
@@ -329,7 +329,7 @@ class Color
 
   # @return [String]
   def self.table_name
-      'color'
+      `'color`'
   end
 end
 
@@ -337,7 +337,7 @@ class Brick
 
   # @return [String]
   def self.table_name
-      'brick'
+      `'brick`'
   end
 end
 
@@ -345,7 +345,7 @@ class Kit
 
   # @return [String]
   def self.table_name
-      'kit'
+      `'kit`'
   end
 end
 
@@ -353,22 +353,22 @@ class KitBrick
 
   # @return [String]
   def self.table_name
-      'kit_brick'
+      `'kit_brick`'
   end
 end
 ----
 
-Pour le moment, tout ce que je peux faire c'est d'instancier les différentes classes{nbsp}:
+Pour le moment, tout ce que je peux faire c`'est d`'instancier les différentes classes{nbsp}:
 
 [source,ruby]
 ----
-require_relative 'models'
+require_relative `'models`'
 black = Color.new
 ----
 
 ifeval::["{doctype}" == "book"]
-Mais la structure est en place et dans la partie suivante je vais pouvoir m'en servir pour faire mes premières requêtes.
+Mais la structure est en place et dans la partie suivante je vais pouvoir m`'en servir pour faire mes premières requêtes.
 endif::[]
 ifeval::["{doctype}" != "book"]
-Mais la structure est en place et link:../ecrire-un-orm-en-ruby-3/[dans l'article suivant] je vais pouvoir m'en servir pour faire mes premières requêtes.
+Mais la structure est en place et link:../ecrire-un-orm-en-ruby-3/[dans l`'article suivant] je vais pouvoir m`'en servir pour faire mes premières requêtes.
 endif::[]

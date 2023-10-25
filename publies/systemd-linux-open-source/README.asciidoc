@@ -7,35 +7,35 @@ v0.1, 2019-12-17
 :article_image: systemd.png
 :article_description: Du sang, des larmes, et des fichiers de configuration
 
-L'histoire de {s} et de Debian est une saga qui agite le monde de l'open-source depuis quelques années, et qui durera encore probablement quelque temps, même si les choses commencent à se calmer.
+L`'histoire de {s} et de Debian est une saga qui agite le monde de l`'open-source depuis quelques années, et qui durera encore probablement quelque temps, même si les choses commencent à se calmer.
 
-S'y intéresser permet de comprendre beaucoup de choses sur l'architecture logicielle, le fonctionnement des communautés et la manière dont les technologies sont adoptées.
+S`'y intéresser permet de comprendre beaucoup de choses sur l`'architecture logicielle, le fonctionnement des communautés et la manière dont les technologies sont adoptées.
 
 == Debian
 
-link:https://www.debian.org[Debian] est une système d'exploitation libre qui se veut "`universel`", c'est-à-dire qu'il s'agit d'un assemblage de logiciels qui se veut adapté à tous les usages.
+link:https://www.debian.org[Debian] est une système d`'exploitation libre qui se veut "`universel`", c`'est-à-dire qu`'il s`'agit d`'un assemblage de logiciels qui se veut adapté à tous les usages.
 
 Il suit un fonctionnement communautaire où les décisions sont prises démocratiquement et où le travail est quasi-exclusivement effectué par des personnes volontaires.
 
-Cela signifie que les personnes travaillent sur les tâches de leur choix, et qu'il n'y a jamais assez de monde pour faire tout le travail nécessaire.
+Cela signifie que les personnes travaillent sur les tâches de leur choix, et qu`'il n`'y a jamais assez de monde pour faire tout le travail nécessaire.
 
 === OS universel
 
-Au croisement de sa mission de "`système d'exploitation universel`" et de son fonctionnement communautaire, Debian se veut très accueillant vis-à-vis des logiciels (tant qu'ils sont libres).
+Au croisement de sa mission de "`système d`'exploitation universel`" et de son fonctionnement communautaire, Debian se veut très accueillant vis-à-vis des logiciels (tant qu`'ils sont libres).
 
-Cela signifie essayer de limiter les contraintes techniques qui pourraient bloquer le fait d'inclure de nouveaux programmes, et permettre d'avoir plusieurs manières de faire la même chose, tant que cela ne met pas en cause le fonctionnement du système (à la fois le système technique et l'organisation).
+Cela signifie essayer de limiter les contraintes techniques qui pourraient bloquer le fait d`'inclure de nouveaux programmes, et permettre d`'avoir plusieurs manières de faire la même chose, tant que cela ne met pas en cause le fonctionnement du système (à la fois le système technique et l`'organisation).
 
 Ainsi, bien que Debian soit essentiellement connue comme une distribution Linux, elle peut fonctionner également avec des noyaux link:https://www.debian.org/ports/hurd/[GNU Hurd] ou link:https://www.debian.org/ports/kfreebsd-gnu/[FreeBSD].
 
 === Packaging
 
-La majorité du travail à fournir pour faire vivre Debian est un travail de packaging, c'est-à-dire d'inclure des logiciels dans l'écosystème Debian pour qu'ils puissent être installés et fonctionner ensemble.
+La majorité du travail à fournir pour faire vivre Debian est un travail de packaging, c`'est-à-dire d`'inclure des logiciels dans l`'écosystème Debian pour qu`'ils puissent être installés et fonctionner ensemble.
 
-Cela peut signifier de simplement copier une application sur un serveur pour la rendre disponible, mais peut aussi nécessiter d'avoir à modifier le logiciel pour le rendre compatible, qu'il s'agisse de son code source ou de fichiers de configuration.
+Cela peut signifier de simplement copier une application sur un serveur pour la rendre disponible, mais peut aussi nécessiter d`'avoir à modifier le logiciel pour le rendre compatible, qu`'il s`'agisse de son code source ou de fichiers de configuration.
 
 === Assembler et pas créer
 
-Par rapport à d'autres distributions comme link:https://linuxmint.com[Linux Mint], l'objectif de Debian est de développer le moins possible de logiciels spécifiques pour elle seule mais de se concentrer sur le packaging de choses existantes.
+Par rapport à d`'autres distributions comme link:https://linuxmint.com[Linux Mint], l`'objectif de Debian est de développer le moins possible de logiciels spécifiques pour elle seule mais de se concentrer sur le packaging de choses existantes.
 
 Cela signifie que les personnes utilisant Debian et qui voudraient créer de nouveaux composants sont encouragées à participer à des projets existants, ou à créer de nouveaux projets mais qui ne soient pas spécifiques à Debian.
 
@@ -43,22 +43,22 @@ Cela signifie que les personnes utilisant Debian et qui voudraient créer de nou
 
 === Gérer des programmes
 
-Les systèmes d'exploitations comme les distributions ont besoin de gérer les programmes.
-Par exemple quand vous démarrez votre ordinateur, il va lancer des programmes permettant de se connecter à internet, peut-être d'imprimer des documents, de lancer des mises à jour. Ensuite vous allez peut-être lancer un navigateur internet, ou un traitement de texte.
+Les systèmes d`'exploitations comme les distributions ont besoin de gérer les programmes.
+Par exemple quand vous démarrez votre ordinateur, il va lancer des programmes permettant de se connecter à internet, peut-être d`'imprimer des documents, de lancer des mises à jour. Ensuite vous allez peut-être lancer un navigateur internet, ou un traitement de texte.
 
 Tout cela peut sembler simple mais, en fonction des perfectionnements dont on a besoin cela peut devenir très complexe.
 
-Un programme peut avoir besoin d'en démarrer un autre pour pouvoir s'exécuter, il peut écrire des fichiers de logs qu'il faut purger, il peut vouloir utiliser une gestion de droits d'accès pour limiter les dégâts possibles en cas de problèmes…
+Un programme peut avoir besoin d`'en démarrer un autre pour pouvoir s`'exécuter, il peut écrire des fichiers de logs qu`'il faut purger, il peut vouloir utiliser une gestion de droits d`'accès pour limiter les dégâts possibles en cas de problèmes…
 
 === System V init
 
-Historiquement les systèmes Unix et Linux utilisent pour cela un système appelé "`{syi}`" parce qu'il tire son origine de link:https://fr.wikipedia.org/wiki/UNIX_System_V[la version 5 d'Unix] datant de 1983.
+Historiquement les systèmes Unix et Linux utilisent pour cela un système appelé "`{syi}`" parce qu`'il tire son origine de link:https://fr.wikipedia.org/wiki/UNIX_System_V[la version 5 d`'Unix] datant de 1983.
 
-La version utilisée par la majorité des systèmes Linux est une réimplémentation de l'original (pour des raisons de licence) mais qui lui reste largement compatible.
+La version utilisée par la majorité des systèmes Linux est une réimplémentation de l`'original (pour des raisons de licence) mais qui lui reste largement compatible.
 
 (Certaines distributions Linux utilisent des systèmes différents, par exemple link:https://www.gentoo.org[Gentoo] utilise link:https://wiki.gentoo.org/wiki/OpenRC[OpenRC].)
 
-Avec ce système la gestion des programmes se fait avec des scripts "`standards`" utilisant les fonctionnalités proposées par la distribution utilisée, c'est-à-dire l'ensemble des programmes disponibles.
+Avec ce système la gestion des programmes se fait avec des scripts "`standards`" utilisant les fonctionnalités proposées par la distribution utilisée, c`'est-à-dire l`'ensemble des programmes disponibles.
 
 Il est donc possible de tout faire, mais il faut tout faire à la main.
 
@@ -135,7 +135,7 @@ do
 		fi
 	    else
 		echo "$0 $ARG: configuration broken, ignoring restart"
-		echo "$0 $ARG: (run 'apachectl configtest' for details)"
+		echo "$0 $ARG: (run `'apachectl configtest`' for details)"
 		ERROR=6
 	    fi
 	fi
@@ -159,13 +159,13 @@ do
 		fi
 	    else
 		echo "$0 $ARG: configuration broken, ignoring restart"
-		echo "$0 $ARG: (run 'apachectl configtest' for details)"
+		echo "$0 $ARG: (run `'apachectl configtest`' for details)"
 		ERROR=7
 	    fi
 	fi
 	;;
     status)
-	$LYNX $STATUSURL | awk ' /process$/ { print; exit } { print } '
+	$LYNX $STATUSURL | awk `' /process$/ { print; exit } { print } `'
 	;;
     fullstatus)
 	$LYNX $STATUSURL
@@ -202,26 +202,26 @@ done
 exit $ERROR
 ----
 
-Du fait de la standardisation de {syi}, ces scripts peuvent être compatibles avec un nombre très important de systèmes ayant chacun leur implémentation{nbsp}: UNIX, Linux, et d'autres.
+Du fait de la standardisation de {syi}, ces scripts peuvent être compatibles avec un nombre très important de systèmes ayant chacun leur implémentation{nbsp}: UNIX, Linux, et d`'autres.
 
-Cela signifie qu'un logiciel utilisant ce système peut fonctionner théoriquement tel quel sous Debian même s'il n'a pas été pensé pour fonctionner sous Debian et donc que le travail de packaging demandera très peu d'effort.
+Cela signifie qu`'un logiciel utilisant ce système peut fonctionner théoriquement tel quel sous Debian même s`'il n`'a pas été pensé pour fonctionner sous Debian et donc que le travail de packaging demandera très peu d`'effort.
 
-Ce système représente grosso-modo l'état de l'art de 1983, et est une sorte de plus petit multiple de ce qu'il est possible de faire aujourd'hui.
+Ce système représente grosso-modo l`'état de l`'art de 1983, et est une sorte de plus petit multiple de ce qu`'il est possible de faire aujourd`'hui.
 Du fait des limites de ce système, certaines distributions modifient ces scripts pour utiliser des fonctionnalités plus avancées, par exemple pour améliorer la fiabilité du système ou améliorer la compatibilité entre les différents composants.
 
-Bien entendu, un niveau de customisation plus élevé signifie plus de bénéfices, mais aussi plus d'efforts de packaging à fournir de la part des personnes qui participent à la distribution.
+Bien entendu, un niveau de customisation plus élevé signifie plus de bénéfices, mais aussi plus d`'efforts de packaging à fournir de la part des personnes qui participent à la distribution.
 
 === {s}
 
-{s} est un remplacement de {syi} qui propose une approche très différente{nbsp}: celle de fournir l'ensemble des fonctionnalités nécessaires à l'exécution des logiciels sous une forme intégrée et configurable.
+{s} est un remplacement de {syi} qui propose une approche très différente{nbsp}: celle de fournir l`'ensemble des fonctionnalités nécessaires à l`'exécution des logiciels sous une forme intégrée et configurable.
 
-Cela signifie non seulement la gestion du lancement et de l'arrêt comme {syi} mais aussi la gestion des logs, la restriction des accès…
+Cela signifie non seulement la gestion du lancement et de l`'arrêt comme {syi} mais aussi la gestion des logs, la restriction des accès…
 
-Il s'agit d'une redéfinition du rôle du système d'initialisation.
+Il s`'agit d`'une redéfinition du rôle du système d`'initialisation.
 
-L'idée sous-jacente est qu'une approche intégrée, c'est-à-dire un ensemble de logiciels développés ensemble vaut mieux qu'une composition de briques plus indépendantes, car cela simplifie le développement, et donc l'ajout de nouvelles fonctionnalités, et permet d'avoir une configuration unique plutôt que des morceaux à droite et à gauche et donc plus lisible, et d'éviter les bugs causés par des incohérences entre composants.
+L`'idée sous-jacente est qu`'une approche intégrée, c`'est-à-dire un ensemble de logiciels développés ensemble vaut mieux qu`'une composition de briques plus indépendantes, car cela simplifie le développement, et donc l`'ajout de nouvelles fonctionnalités, et permet d`'avoir une configuration unique plutôt que des morceaux à droite et à gauche et donc plus lisible, et d`'éviter les bugs causés par des incohérences entre composants.
 
-Le fait d'utiliser des fichiers de configuration permet de factoriser les comportements par défaut correspondant aux bonnes pratiques, et donc à ne devoir préciser que ce qui est spécifique à chaque programme.
+Le fait d`'utiliser des fichiers de configuration permet de factoriser les comportements par défaut correspondant aux bonnes pratiques, et donc à ne devoir préciser que ce qui est spécifique à chaque programme.
 
 Un exemple de fichier de configuration {s} du link:https://httpd.apache.org[serveur HTTP Apache].
 
@@ -251,52 +251,52 @@ WantedBy=http-daemon.target
 
 === Les avantages de {s}
 
-{s} a donc deux avantages, suivant le rôle qu'on occupe{nbsp}:
+{s} a donc deux avantages, suivant le rôle qu`'on occupe{nbsp}:
 
 * pour les personnes qui développent des logiciels et qui veulent fournir des scripts permettant de les exécuter, {s} permet de faire plus facilement certaines choses basiques, et de rendre abordables les choses complexes{nbsp};
-* pour les personnes qui contribuent à des distributions Linux, {s} propose un standard "`sur étagère`", qui permet de baisser fortement les chances qu'il y ait besoin d'adapter un logiciel à leur distribution, réduisant la quantité de travail à fournir.
+* pour les personnes qui contribuent à des distributions Linux, {s} propose un standard "`sur étagère`", qui permet de baisser fortement les chances qu`'il y ait besoin d`'adapter un logiciel à leur distribution, réduisant la quantité de travail à fournir.
 
 === Les critiques
 
-Là où les choses se corsent, c'est que {s} ne fait pas l'unanimité mais au contraire fait l'objet de nombreuses critiques.
+Là où les choses se corsent, c`'est que {s} ne fait pas l`'unanimité mais au contraire fait l`'objet de nombreuses critiques.
 
-==== C'est différent
+==== C`'est différent
 
-La première est de changer les choses alors qu'on avait une solution qui fonctionnait acceptablement bien et qui était connue.
+La première est de changer les choses alors qu`'on avait une solution qui fonctionnait acceptablement bien et qui était connue.
 
-Il ne s'agit pas (seulement) de râler par principe parce que les choses changent{nbsp}: modifier la manière dont les programmes sont gérés demande du temps (pour apprendre à utiliser le nouveau système, et pour migrer les scripts existants), et est facteur de risque (même si la nouvelle approche devrait aboutir à des résultats plus fiables).
+Il ne s`'agit pas (seulement) de râler par principe parce que les choses changent{nbsp}: modifier la manière dont les programmes sont gérés demande du temps (pour apprendre à utiliser le nouveau système, et pour migrer les scripts existants), et est facteur de risque (même si la nouvelle approche devrait aboutir à des résultats plus fiables).
 
-Pour les personnes pour qui l'approche historique donnait satisfaction ce changement n'est donc pas le bienvenu.
+Pour les personnes pour qui l`'approche historique donnait satisfaction ce changement n`'est donc pas le bienvenu.
 
-Il faut noter que la complexité des scripts {syi} demandait un certain niveau d'expertise et donc un certain temps d'apprentissage et cette compétence était reconnue.
+Il faut noter que la complexité des scripts {syi} demandait un certain niveau d`'expertise et donc un certain temps d`'apprentissage et cette compétence était reconnue.
 Remplacer ces scripts par des fichiers de configuration souvent beaucoup plus simples fait perdre de la valeur à cette compétence, et donc diminue le statut des personnes qui la maîtrisent.
 
-==== La philosophie d'Unix
+==== La philosophie d`'Unix
 
-La seconde critique est que son approche ne correspond pas à la link:https://fr.wikipedia.org/wiki/Philosophie_d%27Unix[philosophie d'Unix], qui préconise d'avoir plutôt des "`programmes qui effectuent une seule chose et qui le font bien``".
+La seconde critique est que son approche ne correspond pas à la link:https://fr.wikipedia.org/wiki/Philosophie_d%27Unix[philosophie d`'Unix], qui préconise d`'avoir plutôt des "`programmes qui effectuent une seule chose et qui le font bien``".
 
-Au-delà de l'aspect philosophique, cette approche permet en théorie de pouvoir facilement remplacer un composant par un autre tant que les deux sont compatibles, ou de tenter une nouvelle approche car le coût du changement sera faible, et donc de pouvoir permettre une forme de concurrence ou de sélection naturelle.
-Des composants plus petits devraient plus facilement être remplacés, et donc avoir un écosystème qui évolue plus rapidement, il s'agit d'un modèle favorisant le couplage faible.
+Au-delà de l`'aspect philosophique, cette approche permet en théorie de pouvoir facilement remplacer un composant par un autre tant que les deux sont compatibles, ou de tenter une nouvelle approche car le coût du changement sera faible, et donc de pouvoir permettre une forme de concurrence ou de sélection naturelle.
+Des composants plus petits devraient plus facilement être remplacés, et donc avoir un écosystème qui évolue plus rapidement, il s`'agit d`'un modèle favorisant le couplage faible.
 
-L'avis des personnes qui ont créé {s} est que&#8201;—{nbsp}si la philosophie d'Unix peut être pertinente pour la conception de certains types d'applications{nbsp}—&#8201;elle ne l'est pas pour tous les types de programmes, et notamment pour les systèmes en charge de gérer d'autres programmes.
+L`'avis des personnes qui ont créé {s} est que&#8201;—{nbsp}si la philosophie d`'Unix peut être pertinente pour la conception de certains types d`'applications{nbsp}—&#8201;elle ne l`'est pas pour tous les types de programmes, et notamment pour les systèmes en charge de gérer d`'autres programmes.
 
-Les applications qui se prêtent bien à une approche à la Unix, sont celles pour lesquelles les frontières sont limitées, bien délimitées, et assez fixes. L'exemple type est celui de nombreux outils en ligne de commande qui communiquent par des flux de textes séparés par des sauts de lignes et qu'on peut chaîner les uns avec les autres pour mettre en place des flux de traitements.
+Les applications qui se prêtent bien à une approche à la Unix, sont celles pour lesquelles les frontières sont limitées, bien délimitées, et assez fixes. L`'exemple type est celui de nombreux outils en ligne de commande qui communiquent par des flux de textes séparés par des sauts de lignes et qu`'on peut chaîner les uns avec les autres pour mettre en place des flux de traitements.
 
-Ce modèle trouve ses limites lorsque les échanges entre les composants deviennent plus complexes ou que l'exigence en termes de service rendu augmente, car cela signifie devoir dépenser plus d'effort pour faire fonctionner les différentes briques comme un tout cohérent.
+Ce modèle trouve ses limites lorsque les échanges entre les composants deviennent plus complexes ou que l`'exigence en termes de service rendu augmente, car cela signifie devoir dépenser plus d`'effort pour faire fonctionner les différentes briques comme un tout cohérent.
 
 Dans ce cas un système intégré permet de faciliter la cohérence du tout.
-Il permet aussi de simplifier les évolutions lorsqu'elles touchent plusieurs éléments à la fois car le système est développé en un bloc, plutôt que d'avoir à synchroniser plusieurs projets.
+Il permet aussi de simplifier les évolutions lorsqu`'elles touchent plusieurs éléments à la fois car le système est développé en un bloc, plutôt que d`'avoir à synchroniser plusieurs projets.
 
-==== Linux et rien d'autre
+==== Linux et rien d`'autre
 
 Ensuite, pour limiter la taille et la complexité du projet, {s} fonctionne uniquement avec le noyau Linux.
 
 Ce choix permet deux choses{nbsp}:
 
-* pouvoir utiliser toutes les fonctionnalités fournies par ce système alors que d'autres ne sont pas forcément aussi riches (ce qui évite soit de ne pas pouvoir faire certaines choses, soit de devoir les réimplémenter){nbsp};
+* pouvoir utiliser toutes les fonctionnalités fournies par ce système alors que d`'autres ne sont pas forcément aussi riches (ce qui évite soit de ne pas pouvoir faire certaines choses, soit de devoir les réimplémenter){nbsp};
 * avoir à gérer la compatibilité avec plusieurs soubassements différents.
 
-Cela signifie que si une application veut fournir des outils permettant de la piloter et qu'elle vise d'autres systèmes que Linux, elle peut avoir à les fournir en version {s} et en version {syi}.
+Cela signifie que si une application veut fournir des outils permettant de la piloter et qu`'elle vise d`'autres systèmes que Linux, elle peut avoir à les fournir en version {s} et en version {syi}.
 
 De même pour les OS comme Debian qui veulent être compatibles avec plusieurs noyaux.
 
@@ -306,90 +306,90 @@ Trois choix sont possibles{nbsp}:
 . Se passer des systèmes hors Linux
 . Augmenter la quantité de travail de maintenance
 
-Suivant les cas le meilleur choix n'est pas toujours le même, par exemple pour certains programmes {s} peut avoir une valeur ajoutée plus faible, d'autres peuvent de toutes façons ne pas être compatibles avec autre chose que Linux.
+Suivant les cas le meilleur choix n`'est pas toujours le même, par exemple pour certains programmes {s} peut avoir une valeur ajoutée plus faible, d`'autres peuvent de toutes façons ne pas être compatibles avec autre chose que Linux.
 
-Il y a eu et il y a encore des discussions sur le fait de rendre les autres systèmes, par exemples les BSD compatibles avec {s}. L'ampleur du travail à fournir, et le fait que le projet {s} continue à évoluer, et donc présente une cible mouvante a, pour le moment en tout cas, découragé les initiatives.
+Il y a eu et il y a encore des discussions sur le fait de rendre les autres systèmes, par exemples les BSD compatibles avec {s}. L`'ampleur du travail à fournir, et le fait que le projet {s} continue à évoluer, et donc présente une cible mouvante a, pour le moment en tout cas, découragé les initiatives.
 
 ==== Les choix faits
 
 La quatrième critique porte sur les choix faits par {s}.
 
 Pour rendre les fichiers de configuration le plus simple possible, {s} a fait des choix sur la manière dont les composants devraient se comporter par défaut.
-Du coup, même s'il est possible de faire différemment, le chemin de moindre résistance proposé par la configuration par défaut fait que les systèmes ont tendance à l'utiliser.
+Du coup, même s`'il est possible de faire différemment, le chemin de moindre résistance proposé par la configuration par défaut fait que les systèmes ont tendance à l`'utiliser.
 
 Cette uniformisation de configuration peut être vue comme un avantage car elle signifie une uniformisation des comportements, et donc des systèmes plus simples à comprendre.
 
-Mais pour les personnes qui avaient l'habitude d'autres choix, cela peut être un inconvénient, surtout si par rapport aux scripts initiaux, {s} rend plus difficile de customiser les choses à leur manière.
+Mais pour les personnes qui avaient l`'habitude d`'autres choix, cela peut être un inconvénient, surtout si par rapport aux scripts initiaux, {s} rend plus difficile de customiser les choses à leur manière.
 
 ==== Lennart Poettering
 
 La figure de proue de {s} laisse peu de monde indifférent dans le monde Linux.
 
-Je pense qu'il possède quatre caractéristiques qui ensemble sont assez explosives{nbsp}:
+Je pense qu`'il possède quatre caractéristiques qui ensemble sont assez explosives{nbsp}:
 
-. Il a beaucoup d'opinions sur un tas de sujets et il aime s'exprimer, il a par exemple la conviction que la philosophie Unix n'est pas adaptée à tous les outils.
+. Il a beaucoup d`'opinions sur un tas de sujets et il aime s`'exprimer, il a par exemple la conviction que la philosophie Unix n`'est pas adaptée à tous les outils.
 . Il a un bon niveau technique.
-. Il sait identifier dans un projet ce qui est nécessaire et ce qu'il ne l'est pas et se tenir à ses choix pour ne pas se disperser.
-. Il a de l'énergie à revendre quand il s'agit de convaincre les bonnes personnes d'utiliser ses projets, c'est-à-dire les personnes qui peuvent faire en sorte que ses projets réussissent.
+. Il sait identifier dans un projet ce qui est nécessaire et ce qu`'il ne l`'est pas et se tenir à ses choix pour ne pas se disperser.
+. Il a de l`'énergie à revendre quand il s`'agit de convaincre les bonnes personnes d`'utiliser ses projets, c`'est-à-dire les personnes qui peuvent faire en sorte que ses projets réussissent.
 
-Il s'agit d'une approche qui a fait ses preuves, mais qui fâche des gens car elle n'est pas consensuelle{nbsp}: il ne vise pas à satisfaire tout le monde ou tous les besoins.
+Il s`'agit d`'une approche qui a fait ses preuves, mais qui fâche des gens car elle n`'est pas consensuelle{nbsp}: il ne vise pas à satisfaire tout le monde ou tous les besoins.
 
 link:https://fr.wikipedia.org/wiki/PulseAudio[PulseAudio], son principal projet avant {s} était dans ce modèle, et il est devenu un quasi-standard sur Linux.
 
-Du coup dès que les personnes ont commencé à entendre parler de {s}, sa personne a cristallisé des mécontentements même s'il n'était pas la seule personne à travailler sur le projet.
+Du coup dès que les personnes ont commencé à entendre parler de {s}, sa personne a cristallisé des mécontentements même s`'il n`'était pas la seule personne à travailler sur le projet.
 
-Dans les fils d'échanges sur {s}, au milieu des arguments décris plus haut, on trouve souvent une ou deux phrases du genre "`Lennart Poettering est l'antéchrist incarné et cela devrait suffire à disqualifier {s}`".
+Dans les fils d`'échanges sur {s}, au milieu des arguments décris plus haut, on trouve souvent une ou deux phrases du genre "`Lennart Poettering est l`'antéchrist incarné et cela devrait suffire à disqualifier {s}`".
 
-image::poettering.png[caption="", title="Accuser Poettering d'appliquer les recettes de Microsoft, la grande classe"]
+image::poettering.png[caption="", title="Accuser Poettering d`'appliquer les recettes de Microsoft, la grande classe"]
 
-Mon humble avis c'est que, dès qu'elles l'ont vu arriver en connaissant sa réputation et ses capacités, et ayant compris qu'effectivement sur ce type d'outil il y avait une place à prendre, une partie des personnes a dû réaliser que la partie était probablement perdue d'avance et que son projet allait faire place nette.
+Mon humble avis c`'est que, dès qu`'elles l`'ont vu arriver en connaissant sa réputation et ses capacités, et ayant compris qu`'effectivement sur ce type d`'outil il y avait une place à prendre, une partie des personnes a dû réaliser que la partie était probablement perdue d`'avance et que son projet allait faire place nette.
 Je pense que cela a pu créer de la rage chez certain·e·s.
 
 === Les alternatives
 
-Même avant {s} d'autres systèmes alternatifs avaient été développés pour répondre à certaines critiques de {syi}, par exemple link:https://wiki.gentoo.org/wiki/OpenRC[OpenRC].
+Même avant {s} d`'autres systèmes alternatifs avaient été développés pour répondre à certaines critiques de {syi}, par exemple link:https://wiki.gentoo.org/wiki/OpenRC[OpenRC].
 
 Malheureusement ces alternatives avaient deux inconvénients{nbsp}:
 
-. Elles ne supportaient pas les choses les plus avancées qui sont dans {s}, du coup l'incitation à migrer n'étaient pas aussi forte.
-. Les personnes qui les développaient ou qui les promouvaient n'avaient pas l'énergie (et/ou la mégalomanie) de l'équipe de {s}, ce qui fait que même si certaines distributions Linux avaient adoptées l'une ou l'autre de ces alternatives, aucune équipe ne s'était lancé sérieusement dans le chantier de devenir LA solution Linux.
+. Elles ne supportaient pas les choses les plus avancées qui sont dans {s}, du coup l`'incitation à migrer n`'étaient pas aussi forte.
+. Les personnes qui les développaient ou qui les promouvaient n`'avaient pas l`'énergie (et/ou la mégalomanie) de l`'équipe de {s}, ce qui fait que même si certaines distributions Linux avaient adoptées l`'une ou l`'autre de ces alternatives, aucune équipe ne s`'était lancé sérieusement dans le chantier de devenir LA solution Linux.
 
-Quand {s} est arrivé, il y a eu des discussions pour savoir s'il ne valait pas mieux utiliser plutôt tel ou tel autre outil, potentiellement déjà plus mature et plus utilisé.
-Malheureusement par manque d'énergie, et dispersion des forces entre les alternatives, ces approches n'ont pas abouti.
+Quand {s} est arrivé, il y a eu des discussions pour savoir s`'il ne valait pas mieux utiliser plutôt tel ou tel autre outil, potentiellement déjà plus mature et plus utilisé.
+Malheureusement par manque d`'énergie, et dispersion des forces entre les alternatives, ces approches n`'ont pas abouti.
 
-Même si la généralisation de {s} n'a pas signé la fin de ces autres projets, il y a de grandes chances qu'une partie d'entre eux s'arrêtent à moyen terme, {s} ayant répondu à une partie des douleurs qui justifient leur existence.
+Même si la généralisation de {s} n`'a pas signé la fin de ces autres projets, il y a de grandes chances qu`'une partie d`'entre eux s`'arrêtent à moyen terme, {s} ayant répondu à une partie des douleurs qui justifient leur existence.
 Il en restera forcément quelques-unes, pour des besoins spécifiques, ou simplement par esprit de contradiction pour pouvoir utiliser autre chose que {s}.
 
-== Comment ça s'est passé chez Debian
+== Comment ça s`'est passé chez Debian
 
 {s} est un exemple parfait du type de question que les organisations comme Debian ont du mal à traiter{nbsp}: un sous-groupe basé sur le consensus qui doit faire face à une décision clivante prise par le groupe plus large dont il fait partie (celui de la communauté Linux).
 
-En effet en 2013, plusieurs distributions Linux d'importance avaient choisi {s}.
+En effet en 2013, plusieurs distributions Linux d`'importance avaient choisi {s}.
 Pour Debian était venu le moment de faire un choix pour sa prochaine version{nbsp}: fallait-il passer sur {s}, rester sur {syi}, permettre une coexistence entre les deux, voir choisir un système tiers{nbsp}?
 
-Le débat a été houleux, avec son lot d'insultes et de personnes qui claquent la porte.
-Cela a été le cas avec d'autres distributions, mais l'organisation de Debian a rendu le sujet encore plus compliqué qu'ailleurs.
+Le débat a été houleux, avec son lot d`'insultes et de personnes qui claquent la porte.
+Cela a été le cas avec d`'autres distributions, mais l`'organisation de Debian a rendu le sujet encore plus compliqué qu`'ailleurs.
 
-En effet le fonctionnement démocratique permet que toute la communauté s'exprime, alors que les conséquences du choix ne sont pas les mêmes pour tout le monde.
+En effet le fonctionnement démocratique permet que toute la communauté s`'exprime, alors que les conséquences du choix ne sont pas les mêmes pour tout le monde.
 
 Ainsi, rester sur {syi} aurait permis à Debian de conserver un très grande compatibilité, par exemple avec des noyaux non Linux, ce qui plaisait aux personnes qui participent à Debian pour expérimenter avec ce type de constructions exotiques.
-Mais par ailleurs, rester sur {syi} aurait pu augmenter la quantité des travail des bénévoles qui s'occupent du packaging de programmes et qui permettent que Debian soient utilisée et utile.
+Mais par ailleurs, rester sur {syi} aurait pu augmenter la quantité des travail des bénévoles qui s`'occupent du packaging de programmes et qui permettent que Debian soient utilisée et utile.
 
-Cette opposition entre les demandes d'une partie d'une communauté et les volontaires qui produisent le logiciel utilisé par cette communauté est une situation classique dans l'open-source, même si souvent on préfère ne pas en parler de cette manière, mais la taille de Debian lui a donné une ampleur inédite.
+Cette opposition entre les demandes d`'une partie d`'une communauté et les volontaires qui produisent le logiciel utilisé par cette communauté est une situation classique dans l`'open-source, même si souvent on préfère ne pas en parler de cette manière, mais la taille de Debian lui a donné une ampleur inédite.
 
-link:https://lwn.net/Articles/585319/[Au final], c'est {s} qui a été choisi comme système officiel, mais tout en permettant aux autres systèmes, dont {syi}, d'être toujours utilisé.
-Cela a permis de ne pas couper les ponts avec les personnes qui voulaient utiliser des systèmes alternatifs et qui n'étaient pas frontalement opposées à {s}
+link:https://lwn.net/Articles/585319/[Au final], c`'est {s} qui a été choisi comme système officiel, mais tout en permettant aux autres systèmes, dont {syi}, d`'être toujours utilisé.
+Cela a permis de ne pas couper les ponts avec les personnes qui voulaient utiliser des systèmes alternatifs et qui n`'étaient pas frontalement opposées à {s}
 
 Certaines des personnes pour qui {s} est une question de principe ont monté un projet concurrent appelé link:https://devuan.org[Devuan].
 
-La décision de coexistence est parfaitement en ligne avec la vision du monde Debian, mais elle a l'inconvénient d'être sujette à interprétation.
-En effet certaines personnes expliquent que, pour qu'il soit réellement possible d'avoir des systèmes alternatifs, il faut interdire d'utiliser les fonctions de {s} qui ne sont pas disponibles dans les autres systèmes, alors que ce sont ces mêmes fonctions qui lui donnent sa valeur.
+La décision de coexistence est parfaitement en ligne avec la vision du monde Debian, mais elle a l`'inconvénient d`'être sujette à interprétation.
+En effet certaines personnes expliquent que, pour qu`'il soit réellement possible d`'avoir des systèmes alternatifs, il faut interdire d`'utiliser les fonctions de {s} qui ne sont pas disponibles dans les autres systèmes, alors que ce sont ces mêmes fonctions qui lui donnent sa valeur.
 
-Pendant quelques années, la communauté a choisi de ne pas officiellement ouvrir cette question, alors qu'elle se remettait du débat précédent.
+Pendant quelques années, la communauté a choisi de ne pas officiellement ouvrir cette question, alors qu`'elle se remettait du débat précédent.
 
-Mais, comme de plus en plus d'applications fournissent des configurations {s} prêtes à l'emploi, et qui de fait cassent la compatibilité avec les autres systèmes, l'ambiguïté devient intenable.
+Mais, comme de plus en plus d`'applications fournissent des configurations {s} prêtes à l`'emploi, et qui de fait cassent la compatibilité avec les autres systèmes, l`'ambiguïté devient intenable.
 
-Près de six ans plus tard, link:https://lwn.net/Articles/804254/[un nouveau vote est en préparation] pour clarifier la situation, on n'en est donc pas encore sorti.
+Près de six ans plus tard, link:https://lwn.net/Articles/804254/[un nouveau vote est en préparation] pour clarifier la situation, on n`'en est donc pas encore sorti.
 
 == Conclusion
 
@@ -397,6 +397,6 @@ Depuis bientôt dix ans {s} sème la discorde dans le monde Linux.
 
 Il a donné lieu à des discussions techniques passionnantes et a aussi permis de mettre en lumière beaucoup de non-dits sur le fonctionnement de cette communauté{nbsp}: quels sont les arguments valides, comment les décisions sont prises, et comment se faire entendre quand on est minoritaire dans une organisation mais que tout repose sur vous.
 
-Même si l'écosystème Linux et l'open-source en général a ses particularités, je pense que les leçons à en tirer peuvent s'appliquer dans bien d'autres contextes IT, y compris celui des entreprises.
+Même si l`'écosystème Linux et l`'open-source en général a ses particularités, je pense que les leçons à en tirer peuvent s`'appliquer dans bien d`'autres contextes IT, y compris celui des entreprises.
 
-Si ce genre de discussions vous intéresse, link:https://lwn.net[LWN.net] est selon moi le site de référence auquel il faut s'abonner.
+Si ce genre de discussions vous intéresse, link:https://lwn.net[LWN.net] est selon moi le site de référence auquel il faut s`'abonner.

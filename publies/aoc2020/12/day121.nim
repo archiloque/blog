@@ -3,13 +3,13 @@ import os
 import tables
 import re
 
-const NORTH = 'N'
-const SOUTH = 'S'
-const EAST = 'E'
-const WEST = 'W'
-const RIGHT = 'R'
-const LEFT = 'L'
-const FORWARD = 'F'
+const NORTH = `'N`'
+const SOUTH = `'S`'
+const EAST = `'E`'
+const WEST = `'W`'
+const RIGHT = `'R`'
+const LEFT = `'L`'
+const FORWARD = `'F`'
 
 const TURN_RIGHT = {
   NORTH: WEST,
@@ -73,5 +73,5 @@ for line in input:
       else:
         raise newException(ValueError, "Unknown action [" & action & "]")
   else:
-    raise newException(ValueError, "Can't parse [" & line & "]")
+    raise newException(ValueError, "Can`'t parse [" & line & "]")
 echo(linePosition.abs() + columnPosition.abs())

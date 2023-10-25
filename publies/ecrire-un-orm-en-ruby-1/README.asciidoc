@@ -20,80 +20,80 @@ ifeval::["{doctype}" == "book"]
 Dans ce texte je vais décrire pas à pas comment écrire un ORM SQL minimal en Ruby.
 endif::[]
 ifeval::["{doctype}" != "book"]
-Ceci est le premier article d'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
+Ceci est le premier article d`'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 
-Vous pouvez les lire en ligne ou sous forme d'un ebook, vous trouverez link:../ecrire-un-orm-en-ruby-5/all.epub[ici la version EPUB] et link:../ecrire-un-orm-en-ruby-5/all.pdf[là la version PDF].
+Vous pouvez les lire en ligne ou sous forme d`'un ebook, vous trouverez link:../ecrire-un-orm-en-ruby-5/all.epub[ici la version EPUB] et link:../ecrire-un-orm-en-ruby-5/all.pdf[là la version PDF].
 
 Le code correspondant se trouve à link:https://github.com/archiloque/orm-ruby[https://github.com/archiloque/orm-ruby].
 endif::[]
 
-Avant de plonger dans le code, je vais ici introduire le sujet et expliquer certains des choix que j'ai fait.
+Avant de plonger dans le code, je vais ici introduire le sujet et expliquer certains des choix que j`'ai fait.
 
 == Pourquoi un ORM{nbsp}?
 
 Un ORM est une couche qui fait le lien (un mapping) entre une base de données et la représentation des données dans un programme.
-Elle permet d'automatiser ou de simplifier certaines actions, notamment la génération de requêtes et enrobe les appels à la base dans une API dans le style du langage de programmation utilisé.
+Elle permet d`'automatiser ou de simplifier certaines actions, notamment la génération de requêtes et enrobe les appels à la base dans une API dans le style du langage de programmation utilisé.
 
 Elle peut aussi fournir une compatibilité entre plusieurs systèmes de bases de données et un système de cache.
 
 Les ORMs sont probablement les outils les plus complexes auxquels on a affaire quand on commence à développer des applications web.
 
-De ce fait, on peut avoir du mal à imaginer comment ils peuvent bien fonctionner et peuvent donner l'impression d'être presque magiques.
+De ce fait, on peut avoir du mal à imaginer comment ils peuvent bien fonctionner et peuvent donner l`'impression d`'être presque magiques.
 
 Impression souvent renforcée quand on lit le code de ces outils.
 Il est souvent assez dense et utilise des constructions différentes de celles du code applicatif auquel on est habitué.
 
-J'ai pu observer deux conséquences à cette situation{nbsp}:
+J`'ai pu observer deux conséquences à cette situation{nbsp}:
 
-- les personnes ne se sentent pas à l'aise quand elles utilisent des ORMs{nbsp}, même longtemps après{nbsp};
-- les personnes ont un avis négatif des ORMs basé essentiellement sur ce ressenti au moment de leur première rencontre (qu'on ait un avis négatif sur les ORMs basés sur des éléments objectifs ne me pose pas de problèmes).
+- les personnes ne se sentent pas à l`'aise quand elles utilisent des ORMs{nbsp}, même longtemps après{nbsp};
+- les personnes ont un avis négatif des ORMs basé essentiellement sur ce ressenti au moment de leur première rencontre (qu`'on ait un avis négatif sur les ORMs basés sur des éléments objectifs ne me pose pas de problèmes).
 
 Cela peut gêner les personnes dans leur travail, ou biaiser leur jugement.
 
-Pour lutter contre cela, je vous propose une série d'articles décrivant pas à pas comment écrire un ORM SQL minimal en Ruby, par minimal j'entends un ORM capable de faire de l'insertion, du requêtage simple et gérer des relations entre objets.
+Pour lutter contre cela, je vous propose une série d`'articles décrivant pas à pas comment écrire un ORM SQL minimal en Ruby, par minimal j`'entends un ORM capable de faire de l`'insertion, du requêtage simple et gérer des relations entre objets.
 
-Mon objectif est qu'après avoir lu ces articles, vous compreniez comment ils fonctionnent et que vous vous soyez approprié ce type d'outils.
+Mon objectif est qu`'après avoir lu ces articles, vous compreniez comment ils fonctionnent et que vous vous soyez approprié ce type d`'outils.
 
 == Un exemple mono-base
 
 La plupart des ORMs SQL sont compatibles avec de nombreuses bases de données.
-Cette compatibilité s'implémente généralement en permettant que toutes les méthodes de l'ORM soient surchargeables en fonction des spécificités de chaque base.
+Cette compatibilité s`'implémente généralement en permettant que toutes les méthodes de l`'ORM soient surchargeables en fonction des spécificités de chaque base.
 
 Par exemple pour une classe de génération de requêtes `QueryBuilder`, on aura ainsi un `SQLiteQueryBuilder`, un `PostgreSQLQueryBuilder`…
 
 La difficulté est de parvenir à structurer le code pour pouvoir prendre en compte les spécificités de chaque base sans que cela tourne au plat de spaghetti, sachant que, suivant les bases, ces particularités ne sont pas toutes aux mêmes endroits.
 
-Mais cela ne porte pas à conséquence sur le fonctionnement général de l'outil.
-Mon exemple sera donc mono-base et ciblera SQLite car elle fournit tout ce dont j'ai besoin et qu'elle est facile à installer.
+Mais cela ne porte pas à conséquence sur le fonctionnement général de l`'outil.
+Mon exemple sera donc mono-base et ciblera SQLite car elle fournit tout ce dont j`'ai besoin et qu`'elle est facile à installer.
 
-== Génération de code à froid plutôt qu'à chaud
+== Génération de code à froid plutôt qu`'à chaud
 
-Contrairement à des ORMs comme link:https://guides.rubyonrails.org/active_record_basics.html[Active Record] ou link:http://sequel.jeremyevans.net[Sequel], l'ORM que je vais implémenter utilisera de la génération de code à froid&#8201;—{nbsp}c'est-à-dire sous forme de fichiers{nbsp}—&#8201;plutôt qu'à chaud sous forme de code généré à l'exécution.
+Contrairement à des ORMs comme link:https://guides.rubyonrails.org/active_record_basics.html[Active Record] ou link:http://sequel.jeremyevans.net[Sequel], l`'ORM que je vais implémenter utilisera de la génération de code à froid&#8201;—{nbsp}c`'est-à-dire sous forme de fichiers{nbsp}—&#8201;plutôt qu`'à chaud sous forme de code généré à l`'exécution.
 
-Générer du code dans des fichiers permet d'examiner les comportements sans avoir à débuguer et permet un meilleur support de la part des outils comme de l'auto-complétion.
+Générer du code dans des fichiers permet d`'examiner les comportements sans avoir à débuguer et permet un meilleur support de la part des outils comme de l`'auto-complétion.
 
-Lorsque le modèle de donnée change, il faut relancer le script de génération de code, et on peut ainsi suivre les évolutions dans le code généré en même temps que celles du code qui l'utilise.
+Lorsque le modèle de donnée change, il faut relancer le script de génération de code, et on peut ainsi suivre les évolutions dans le code généré en même temps que celles du code qui l`'utilise.
 
 Le code généré ainsi ne doit pas être modifié manuellement pour éviter les conflits en cas de mise à jour.
 Pour ajouter des méthodes aux classes générées, il vaut mieux utiliser le monkey-patching.
 Par exemple si les modèles sont générés dans un fichier `models.rb`, on peut utiliser un fichier `models-extension.rb` pour ajouter du code aux différentes classes des modèles.
 
-Mon avis est que ce type d'approche est préférable à la génération de code à chaud sauf très bonne raison.
+Mon avis est que ce type d`'approche est préférable à la génération de code à chaud sauf très bonne raison.
 
-Quand j'utilise Active Record et que j'ai besoin de poser des breakpoints et d'examiner les objets en mémoire pour connaître les méthodes disponibles sur un modèle, ça me rend triste.
+Quand j`'utilise Active Record et que j`'ai besoin de poser des breakpoints et d`'examiner les objets en mémoire pour connaître les méthodes disponibles sur un modèle, ça me rend triste.
 
 Travailler ainsi demande un plus gros effort de mémorisation.
 
-En Ruby, générer du code à l'exécution est facile, ce qui est très bien quand c'est la bonne solution.
-Mais je pense que la communauté a tendance à trop l'utiliser.
+En Ruby, générer du code à l`'exécution est facile, ce qui est très bien quand c`'est la bonne solution.
+Mais je pense que la communauté a tendance à trop l`'utiliser.
 Surtout que par ailleurs le rechargement de code fonctionne très bien, par exemple dans Ruby on Rails.
 
 Pour la génération, je vais utiliser link:https://ruby-doc.org/stdlib-2.7.1/libdoc/erb/rdoc/ERB.html[erb].
-Si elle est souvent utilisée pour générer du HTML, la syntaxe erb n'est pas du tout spécifique au HTML (comme peut l'être link:http://slim-lang.com[Slim]) et peut donc servir à générer du Ruby.
+Si elle est souvent utilisée pour générer du HTML, la syntaxe erb n`'est pas du tout spécifique au HTML (comme peut l`'être link:http://slim-lang.com[Slim]) et peut donc servir à générer du Ruby.
 
 ifeval::["{doctype}" == "book"]
-Voila pour l'introduction, dans la partie suivante je vais m'occuper de la structure du projet.
+Voila pour l`'introduction, dans la partie suivante je vais m`'occuper de la structure du projet.
 endif::[]
 ifeval::["{doctype}" != "book"]
-Voila pour l'introduction, link:../ecrire-un-orm-en-ruby-2/[dans l'article suivant] je vais m'occuper de la structure du projet.
+Voila pour l`'introduction, link:../ecrire-un-orm-en-ruby-2/[dans l`'article suivant] je vais m`'occuper de la structure du projet.
 endif::[]

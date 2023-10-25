@@ -6,34 +6,34 @@ v0.1, 2021-09-01
 :ignore_files: venn.xcf
 :article_description: Ma synthèse personnelle
 
-Voici où j'en suis actuellement de mes réflexions sur la manière de faire des tests automatisés.
+Voici où j`'en suis actuellement de mes réflexions sur la manière de faire des tests automatisés.
 
 Pour ma position générale sur les tests, voir link:../professionnalisme/[ici].
 
 Beaucoup des éléments décrits ici sont probablement des évidences, mais les avoir rédigé permet de voir si mes idées tiennent debout.
 
-Pour les tests automatisés je pense que beaucoup de choses dépendent du projet, de la technologie et de l'équipe, donc cet article contiendra peu de vérités absolues mais plutôt des tendances.
+Pour les tests automatisés je pense que beaucoup de choses dépendent du projet, de la technologie et de l`'équipe, donc cet article contiendra peu de vérités absolues mais plutôt des tendances.
 
-== L'écriture des tests doit être rapides
+== L`'écriture des tests doit être rapides
 
-Le temps est rare, et s'il est nécessaire d'avoir des tests automatisés, je veux que l'écriture des tests soit la plus rapide possible pour un certain niveau de couverture.
+Le temps est rare, et s`'il est nécessaire d`'avoir des tests automatisés, je veux que l`'écriture des tests soit la plus rapide possible pour un certain niveau de couverture.
 
-== L'exécution des tests doit être suffisamment rapide
+== L`'exécution des tests doit être suffisamment rapide
 
-Au delà d'une certaine durée, attendre que les tests s'exécutent a des effets secondaires indésirables (on va passer sur une autre tache en attendant, on ne va pas lancer les tests alors qu'on aurait envie de le faire).
+Au delà d`'une certaine durée, attendre que les tests s`'exécutent a des effets secondaires indésirables (on va passer sur une autre tache en attendant, on ne va pas lancer les tests alors qu`'on aurait envie de le faire).
 
-Il est donc important que les tests soient suffisamment rapides pour que ça n'arrive pas.
+Il est donc important que les tests soient suffisamment rapides pour que ça n`'arrive pas.
 
-Je pense qu'il est acceptable que de lancer l'ensemble des tests d'un système prenne un certain temps (par exemple plusieurs minutes), si le lancement des tests de la partie du code touchée par une modification normale est facile et rapide (de l'ordre de quelques secondes).
+Je pense qu`'il est acceptable que de lancer l`'ensemble des tests d`'un système prenne un certain temps (par exemple plusieurs minutes), si le lancement des tests de la partie du code touchée par une modification normale est facile et rapide (de l`'ordre de quelques secondes).
 Organiser les tests en modules ou en packages le permet assez facilement, surtout quand votre IDE le prend en compte.
 
-L'idée est que pendant le développement on peut lancer les tests dont on pense qu'ils sont touchés par la modification, et d'attendre ensuite la fin du développement pour que le build continu lance l'ensemble des tests.
+L`'idée est que pendant le développement on peut lancer les tests dont on pense qu`'ils sont touchés par la modification, et d`'attendre ensuite la fin du développement pour que le build continu lance l`'ensemble des tests.
 
-Je pense que de pouvoir exécuter rapidement l'ensemble des tests est encore mieux quand c'est possible, mais quand ça n'est pas le cas je peux tout à faire vivre avec.
+Je pense que de pouvoir exécuter rapidement l`'ensemble des tests est encore mieux quand c`'est possible, mais quand ça n`'est pas le cas je peux tout à faire vivre avec.
 
 == Le diagnostique des tests doit être facile
 
-Quand un test ne passe pas il doit être facile d'en comprendre la cause et de la corriger (que ça soit une correction du code testé ou une correction du test).
+Quand un test ne passe pas il doit être facile d`'en comprendre la cause et de la corriger (que ça soit une correction du code testé ou une correction du test).
 
 Mon expérience est que si dans une base de code il est facile de diagnostiquer la raison de tests qui ne passent pas, il est souvent facile de diagnostiquer les erreurs en production.
 
@@ -41,48 +41,48 @@ Cela signifie que quand vous avez des difficulté à diagnostiquer ce qui ne va 
 
 == Les tests ne doivent pas trop être intrusifs
 
-Il est très souvent nécessaire d'aménager le code à tester pour le rendre plus facile à tester.
+Il est très souvent nécessaire d`'aménager le code à tester pour le rendre plus facile à tester.
 
 Mais ces aménagement ont tendance à rendre plus difficile à suivre ce qui se passe dans le code.
 
 Par exemple quand il faut ajouter des indirections pour pouvoir modifier des comportements lors des tests.
-Car chaque indirection a un coût, même si unitairement il est faible, et même si l'habitude fait qu'on peut l'oublier (par exemple si vous utilisez un outil d'injection de dépendance).
+Car chaque indirection a un coût, même si unitairement il est faible, et même si l`'habitude fait qu`'on peut l`'oublier (par exemple si vous utilisez un outil d`'injection de dépendance).
 
-Cela ne signifie pas qu'il ne fait pas faire ces modifications, mais que toutes choses égales par ailleurs, je préfère quand elles sont limitées.
+Cela ne signifie pas qu`'il ne fait pas faire ces modifications, mais que toutes choses égales par ailleurs, je préfère quand elles sont limitées.
 
 == Pas trop de choses à savoir en plus pour écrire des test
 
-Travailler sur une application web standard demande de manipuler de nombreuses APIs et types d'outils (requêtes en base de données, appels de services, parfois front…).
+Travailler sur une application web standard demande de manipuler de nombreuses APIs et types d`'outils (requêtes en base de données, appels de services, parfois front…).
 
-Chacune et chacun a un coût{nbsp}: coût d'apprentissage mais aussi effort pour mobiliser telle ou telle connaissance quand on passe de l'un à l'autre.
+Chacune et chacun a un coût{nbsp}: coût d`'apprentissage mais aussi effort pour mobiliser telle ou telle connaissance quand on passe de l`'un à l`'autre.
 
-Comme je veux éviter que ce coût n'augmente trop, je préfère que les style de code des tests ne s'écarte pas trop du code à tester.
+Comme je veux éviter que ce coût n`'augmente trop, je préfère que les style de code des tests ne s`'écarte pas trop du code à tester.
 
-Ainsi, je me méfie de l'utilisation de DSLs pour les tests comme link:https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md[factory_bot] ou link:https://cucumber.io/docs/gherkin/reference/[Gherkin], qui sont attirants quand ils sont présentés, mais dont l'utilisation et le débuggage peut demander beaucoup d'efforts.
+Ainsi, je me méfie de l`'utilisation de DSLs pour les tests comme link:https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md[factory_bot] ou link:https://cucumber.io/docs/gherkin/reference/[Gherkin], qui sont attirants quand ils sont présentés, mais dont l`'utilisation et le débuggage peut demander beaucoup d`'efforts.
 
 
 == Plutôt plus de couches que moins
 
-Toutes choses égales par ailleurs, je préfère quand du code de test touche plus de code à la fois que moins, car cela a tendance à intercepter plus d'erreurs.
+Toutes choses égales par ailleurs, je préfère quand du code de test touche plus de code à la fois que moins, car cela a tendance à intercepter plus d`'erreurs.
 
-Tester des couches de code en isolation peut répondre à un certain nombre de besoins (rendre plus rapide d'écrire de tests, accélérer l'exécution des tests de manière qui fasse une différence…) mais n'est pas pour moi une fin en soi.
+Tester des couches de code en isolation peut répondre à un certain nombre de besoins (rendre plus rapide d`'écrire de tests, accélérer l`'exécution des tests de manière qui fasse une différence…) mais n`'est pas pour moi une fin en soi.
 
-Dit autrement : si des tests en isolation peuvent permettre de passer significativement moins de temps à écrire certains tests alors c'est ce que je vais choisir, mais si je n'ai pas ce genre d'incitation je préfère les tests couvrant plusieurs couches.
+Dit autrement : si des tests en isolation peuvent permettre de passer significativement moins de temps à écrire certains tests alors c`'est ce que je vais choisir, mais si je n`'ai pas ce genre d`'incitation je préfère les tests couvrant plusieurs couches.
 
 Dans le vocabulaire de Martin Fowler, je préfère link:https://www.martinfowler.com/bliki/UnitTest.html[les tests sociables].
 
-Et comme dit plus haut, il ne faut pas oublier que l'écriture de mocks ou l'ajout et la maintenance des indirections a un coût.
+Et comme dit plus haut, il ne faut pas oublier que l`'écriture de mocks ou l`'ajout et la maintenance des indirections a un coût.
 
-De même qu'une même partie de code soit exécutée dans plusieurs tests ne me gène pas en soi, cela n'est un soucis que si cela a des conséquences sur l'écriture ou l'exécution des tests.
+De même qu`'une même partie de code soit exécutée dans plusieurs tests ne me gène pas en soi, cela n`'est un soucis que si cela a des conséquences sur l`'écriture ou l`'exécution des tests.
 
 == Pas de répartition-type pour les différents types de tests
 
-Je pense qu'il peut être utile de discuter des avantages et des inconvénients des différents types de tests dans différents contextes, sans essayer d'en faire des vérités universelles.
+Je pense qu`'il peut être utile de discuter des avantages et des inconvénients des différents types de tests dans différents contextes, sans essayer d`'en faire des vérités universelles.
 
-Mais je ne pense pas qu'il existe une répartition-type universelle qui soit applicable clé en main (déjà que chacun a ses définitions sur ce que sont les différents types de tests).
+Mais je ne pense pas qu`'il existe une répartition-type universelle qui soit applicable clé en main (déjà que chacun a ses définitions sur ce que sont les différents types de tests).
 
-Par exemple des tests d'intégration utilisant des navigateur ne ressemblent pas du tout au tests d'intégrations avec des appels de services
+Par exemple des tests d`'intégration utilisant des navigateur ne ressemblent pas du tout au tests d`'intégrations avec des appels de services
 
-Et j'aimerai que les personnes écrivent plus sur leur contextes tout en se préoccupant moins d'essayer d'en généraliser des modèles.
+Et j`'aimerai que les personnes écrivent plus sur leur contextes tout en se préoccupant moins d`'essayer d`'en généraliser des modèles.
 
 image::venn.png[caption="", title="Mon cerveau quand je regarde une image de pyramide de test"]

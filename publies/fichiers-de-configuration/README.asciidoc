@@ -5,7 +5,7 @@ v0.1, 2021-11-24
 :source-highlighter: pygments
 :pygments-style: friendly
 :article_image: xml.png
-:article_description: Jusqu'où aller dans la complexité{nbsp}?
+:article_description: Jusqu`'où aller dans la complexité{nbsp}?
 
 Vous écrivez un programme, et vous décidez de mettre en place un système basé sur un fichier de configuration pour le paramétrer.
 
@@ -13,7 +13,7 @@ Si vous ajoutez des fonctionnalités à votre programme, la configuration va se 
 
 == Le début
 
-La première étape est en général de définir une série de clés-valeurs, pour remplacer une trop longue série de variables d'environnement ou de paramètres en ligne de commandes.
+La première étape est en général de définir une série de clés-valeurs, pour remplacer une trop longue série de variables d`'environnement ou de paramètres en ligne de commandes.
 
 [source,ini]
 ----
@@ -31,7 +31,7 @@ property_1="val=ue1"
 property_2="va=lu\"e_2"
 ----
 
-Ensuite, on peut vouloir que certaines valeurs ne soient pas seulement des chaînes de caractères, mais aussi parfois des listes ou des dictionnaires (c'est-à-dire que les valeurs puissent elles-mêmes contenir un ensemble de clés-valeurs).
+Ensuite, on peut vouloir que certaines valeurs ne soient pas seulement des chaînes de caractères, mais aussi parfois des listes ou des dictionnaires (c`'est-à-dire que les valeurs puissent elles-mêmes contenir un ensemble de clés-valeurs).
 
 [source,ini]
 ----
@@ -39,7 +39,7 @@ property_1=["val=ue1", "val=ue11"]
 property_2={"va=lu\"e_2": "a", "va=lu\"e_22": "b"}
 ----
 
-Quand le nombre d'entrées devient trop grand, et pour pouvoir réutiliser les noms de clés, on peut vouloir organiser le contenu du fichier en définissant des sections.
+Quand le nombre d`'entrées devient trop grand, et pour pouvoir réutiliser les noms de clés, on peut vouloir organiser le contenu du fichier en définissant des sections.
 
 [source,ini]
 ----
@@ -54,12 +54,12 @@ property_2={"va=lu\"e_2": "a", "va=lu\"e_22": "b"}
 
 == La limite sans fichier de configuration
 
-On a ici dépassé ce qu'on peut faire confortablement avec des paramètres ou des variables d'environnements.
-Il reste possible de passer des listes dans des chaînes de caractères et d'utiliser des préfixes pour simuler les sections, le résultat est moins lisible, surtout s'il y a de nombreuses entrées.
+On a ici dépassé ce qu`'on peut faire confortablement avec des paramètres ou des variables d`'environnements.
+Il reste possible de passer des listes dans des chaînes de caractères et d`'utiliser des préfixes pour simuler les sections, le résultat est moins lisible, surtout s`'il y a de nombreuses entrées.
 
 == La factorisation ou la compilation pour les fichiers de configuration
 
-Quand le fichier de configuration s'allonge et que le contenu se répète, le réflexe quand on travaille dans le développement est de vouloir faire de la factorisation.
+Quand le fichier de configuration s`'allonge et que le contenu se répète, le réflexe quand on travaille dans le développement est de vouloir faire de la factorisation.
 Par exemple en attribuant un nom à un certain contenu, et en utilisant ce nom pour inclure ce contenu ailleurs dans le fichier{nbsp}:
 
 [source,ini]
@@ -70,12 +70,12 @@ property_1=*🐱
 property_2=*🐱
 ----
 
-Dans ce cas le contenu que vous éditez n'est plus directement celui qui sera utilisé par le programme car le fichier va subir un traitement qui va modifier son contenu.
+Dans ce cas le contenu que vous éditez n`'est plus directement celui qui sera utilisé par le programme car le fichier va subir un traitement qui va modifier son contenu.
 Cela ressemble grosso-modo à une phase de compilation (ou de transpilation).
 
-Pour certaines investigation, il peut être bien pratique d'avoir accès au contenu traité tel qu'il sera visible depuis le programme.
+Pour certaines investigation, il peut être bien pratique d`'avoir accès au contenu traité tel qu`'il sera visible depuis le programme.
 
-Dans l'exemple ci-dessus, cela signifie être en mesure d'obtenir ce contenu{nbsp}:
+Dans l`'exemple ci-dessus, cela signifie être en mesure d`'obtenir ce contenu{nbsp}:
 
 [source,ini]
 ----
@@ -83,36 +83,36 @@ property_1=nya
 property_2=nya
 ----
 
-Si votre fichier de configuration utilise une syntaxe normalisée, les personnes éditant le fichier peuvent s'appuyer sur des outils existants pour générer eux-même le résultat.
+Si votre fichier de configuration utilise une syntaxe normalisée, les personnes éditant le fichier peuvent s`'appuyer sur des outils existants pour générer eux-même le résultat.
 
-Dans le cas contraire c'est à vous de le fournir.
+Dans le cas contraire c`'est à vous de le fournir.
 
 == La génération de fichiers
 
-Si votre format de fichier de configuration ne permet pas ce genre de factorisation, il est possible que les personnes se retrouvent à répondre ce type de besoin en générant leurs fichiers de configuration à l'aide d'un autre outil.
+Si votre format de fichier de configuration ne permet pas ce genre de factorisation, il est possible que les personnes se retrouvent à répondre ce type de besoin en générant leurs fichiers de configuration à l`'aide d`'un autre outil.
 
-Mais en fait, même si votre format de configuration fournit des fonctionnalités avancées de factorisation, il est assez probable que des personnes vont vouloir générer ces fichiers à partir d'un autre outil.
+Mais en fait, même si votre format de configuration fournit des fonctionnalités avancées de factorisation, il est assez probable que des personnes vont vouloir générer ces fichiers à partir d`'un autre outil.
 
 Pour un outil utilisé par des serveurs, cela peut être pour industrialiser le déploiement, mais le besoin se fera probablement sentir même pour un outil réservés aux postes de travail.
 
-Cela signifie que plus votre format de fichier sera facile à générer, plus vous simplifierez ces cas d'utilisation.
+Cela signifie que plus votre format de fichier sera facile à générer, plus vous simplifierez ces cas d`'utilisation.
 
 Dans mon expérience, deux choses sont à prendre en compte pour cela{nbsp}:
 
-. le fait d'avoir une syntaxe régulière avec un nombre d'exceptions limitées{nbsp};
-. le fait d'utiliser des règles d'échappement standard.
+. le fait d`'avoir une syntaxe régulière avec un nombre d`'exceptions limitées{nbsp};
+. le fait d`'utiliser des règles d`'échappement standard.
 
-La deuxième règle étant bien plus importante que la première car implémenter une gestion des échappements demande du code assez minutieux et bien testé, c'est-à-dire quelque chose qu'on préfère en général éviter quand on le peut.
+La deuxième règle étant bien plus importante que la première car implémenter une gestion des échappements demande du code assez minutieux et bien testé, c`'est-à-dire quelque chose qu`'on préfère en général éviter quand on le peut.
 
 == La factorisation{nbsp}: nécessaire ou pas alors{nbsp}?
 
 Si proposer une capacité de factorisation dans une syntaxe de configuration est utile, je suis partagé sur le fait de savoir si le jeu en vaut la chandelle à cause de la complexité que cela ajoute.
 
-Je suis probablement partial car écrire des scripts pour générer des fichiers est facile pour moi, mais d'un autre côté je soupçonne que beaucoup des personnes qui utilisent la factorisation seraient aussi en mesure de générer les fichiers.
+Je suis probablement partial car écrire des scripts pour générer des fichiers est facile pour moi, mais d`'un autre côté je soupçonne que beaucoup des personnes qui utilisent la factorisation seraient aussi en mesure de générer les fichiers.
 
 == Les comportements dynamiques
 
-La dernière étape dans la complexité d'un fichier de configuration est d'avoir des comportements dynamiques, c'est à dire qui dépendent de l'exécution du programme.
+La dernière étape dans la complexité d`'un fichier de configuration est d`'avoir des comportements dynamiques, c`'est à dire qui dépendent de l`'exécution du programme.
 
 Par exemple avoir des conditions{nbsp}:
 
@@ -122,13 +122,13 @@ if animal == cat
 then nya
 ----
 
-Par rapport à la factorisation, les comportements dynamiques ne sont pas une optimisation d'écriture des fichiers mais permettent des comportements qui sinon sont impossibles.
+Par rapport à la factorisation, les comportements dynamiques ne sont pas une optimisation d`'écriture des fichiers mais permettent des comportements qui sinon sont impossibles.
 
-Si on peut continuer à voir cela comme un fichier de configuration, le comportement s'apparente véritablement à du code.
+Si on peut continuer à voir cela comme un fichier de configuration, le comportement s`'apparente véritablement à du code.
 
-De même que la factorisation rend nécessaire d'avoir accès à une version développée du fichier, avoir un comportement dynamique rend nécessaire4 de pouvoir observer d'une manière ou d'une autre le fonctionnement du logiciel (par exemple via des logs détaillés), et même idéalement de pouvoir le débugger.
+De même que la factorisation rend nécessaire d`'avoir accès à une version développée du fichier, avoir un comportement dynamique rend nécessaire4 de pouvoir observer d`'une manière ou d`'une autre le fonctionnement du logiciel (par exemple via des logs détaillés), et même idéalement de pouvoir le débugger.
 
-Il y a quelques années embarquer un intepréteur dans un programme exécutable n'était pas chose facile.
+Il y a quelques années embarquer un intepréteur dans un programme exécutable n`'était pas chose facile.
 Dans ces conditions, développer son propre format ou étendre un format de existant pour cela avait du sens.
 
 Par exemple avec link:https://ant.apache.org[ce genre de choses]{nbsp}:
@@ -156,24 +156,24 @@ Mais de nos jours, embarquer un interpréteur comme link:https://www.lua.org/abo
 
 Ce qui signifie que les personnes peuvent utiliser leurs outils de développement pour écrire leurs fichiers de configuration et peuvent même les débuger en cas de besoin.
 
-Certes passer de fichier de configuration à des fichiers de code représente un changement qu'on n'imaginait pas forcément faire.
-Mais de fait quand un fichier de configuration contient du code déguisé en configuration, il est déjà un fichier de code sans oser l'assumer, et sans permettre d'utiliser les outils prévu pour ça.
+Certes passer de fichier de configuration à des fichiers de code représente un changement qu`'on n`'imaginait pas forcément faire.
+Mais de fait quand un fichier de configuration contient du code déguisé en configuration, il est déjà un fichier de code sans oser l`'assumer, et sans permettre d`'utiliser les outils prévu pour ça.
 
 Ma suggestion est donc de sauter le pas.
 
-Si vous pensez que ce conseil est inutile car cela n'arrive plus (et notamment par ce que seules des personnes faisant du XML et du Java pourraient avoir ce genre d'idées), malheureusement c'est toujours le cas, seulement link:https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html[avec du YAML au lieu de XML].
+Si vous pensez que ce conseil est inutile car cela n`'arrive plus (et notamment par ce que seules des personnes faisant du XML et du Java pourraient avoir ce genre d`'idées), malheureusement c`'est toujours le cas, seulement link:https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html[avec du YAML au lieu de XML].
 
 [source,yaml]
 ----
 tasks:
   - name: Shut down CentOS 6 and Debian 7 systems
     ansible.builtin.command: /sbin/shutdown -t now
-    when: (ansible_facts['distrib'] == "CentOS" and ansible_facts['distrib_mv'] == "6") or
-          (ansible_facts['distrib'] == "Debian" and ansible_facts['distrib_mv'] == "7")
+    when: (ansible_facts[`'distrib`'] == "CentOS" and ansible_facts[`'distrib_mv`'] == "6") or
+          (ansible_facts[`'distrib`'] == "Debian" and ansible_facts[`'distrib_mv`'] == "7")
 ----
 
 == En résumé
 
-* Dès qu'un fichier de configuration passe par une phase de transformation, il faut pouvoir observer ce qui se passe.
+* Dès qu`'un fichier de configuration passe par une phase de transformation, il faut pouvoir observer ce qui se passe.
 * Si vous inventez votre syntaxe, pensez bien aux personnes qui voudront générer des fichiers.
-* Lorsque la configuration d'un programme nécessite des comportements dynamiques, utilisez un langage de programmation.
+* Lorsque la configuration d`'un programme nécessite des comportements dynamiques, utilisez un langage de programmation.

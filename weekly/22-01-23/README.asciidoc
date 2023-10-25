@@ -12,23 +12,23 @@ ____
 Invariants, and inform versus block
 How we maintain invariants is more interesting. What do you do when a check finds a problem? There are two basic options: either inform the programmer and move on, or block forward progress.
 
-Here's a warm up to make this more concrete. In most statically typed languages, a type error stops compilation, so you could say that for a type problem the compiler must block at build time. But even something as apparently fundamental as this is not fixed! For one counterexample, TypeScript can be configured to generate code regardless in the presence of type errors (which link:http://neugierig.org/software/blog/2016/04/typescript-types.html[never affect runtime behavior anyway]).
+Here`'s a warm up to make this more concrete. In most statically typed languages, a type error stops compilation, so you could say that for a type problem the compiler must block at build time. But even something as apparently fundamental as this is not fixed! For one counterexample, TypeScript can be configured to generate code regardless in the presence of type errors (which link:http://neugierig.org/software/blog/2016/04/typescript-types.html[never affect runtime behavior anyway]).
 
-You could imagine even a C compiler could choose "`inform`" on a type problem and generate a runtime failure in its place, to allow you to run the resulting program. (I've heard some tools in the Java ecosystem can already do this, perhaps?) This behavior is plausibly useful when developing, where you want to iterate on module A of a program while you ignore type problems in irrelevant module B that you know you won't execute while you are working on A.
+You could imagine even a C compiler could choose "`inform`" on a type problem and generate a runtime failure in its place, to allow you to run the resulting program. (I`'ve heard some tools in the Java ecosystem can already do this, perhaps?) This behavior is plausibly useful when developing, where you want to iterate on module A of a program while you ignore type problems in irrelevant module B that you know you won`'t execute while you are working on A.
 
-In principle then at least, for any problem you could choose between blocking and informing, and informing lets the programmer choose whether to stop rather than forcing it. At any given moment there are surely hundreds of different ways the code could be improved, some of them not even detectable by your tools; in my experience there's never a shortage of known flaws in a given codebase, and the hard problem is instead how to prioritize these problems. When we block on one problem what we're effectively saying is that of all the different things that could be worked on, the problem you just identified is absolutely the highest priority to fix, so much so that you cannot be allowed to work anything else before fixing it.
+In principle then at least, for any problem you could choose between blocking and informing, and informing lets the programmer choose whether to stop rather than forcing it. At any given moment there are surely hundreds of different ways the code could be improved, some of them not even detectable by your tools; in my experience there`'s never a shortage of known flaws in a given codebase, and the hard problem is instead how to prioritize these problems. When we block on one problem what we`'re effectively saying is that of all the different things that could be worked on, the problem you just identified is absolutely the highest priority to fix, so much so that you cannot be allowed to work anything else before fixing it.
 ____
 
 [quote]
 ____
-But importantly, it's also useful to be able to relax an invariant. While developing, you might wanna sprinkle in some printfs while debugging something and you don't want to worry about appeasing the XSS checker as you do it. It's valuable both to be able to sprinkle those prints (not blocking on error at the run phase) while also guaranteeing that you never deploy such code (blocking at the commit or deploy phase).
+But importantly, it`'s also useful to be able to relax an invariant. While developing, you might wanna sprinkle in some printfs while debugging something and you don`'t want to worry about appeasing the XSS checker as you do it. It`'s valuable both to be able to sprinkle those prints (not blocking on error at the run phase) while also guaranteeing that you never deploy such code (blocking at the commit or deploy phase).
 
 The pattern of informing in one phase followed by blocking in a later one is a nice way to softly introduce an invariant while still giving the programmer some wiggle room while developing. For example, most problems that block at a later phase (such as a blocking build problem) can usefully be informed during the editing phase (as a highlight in the editor) as a way of shortening the development loop. Another example of this pattern in practice is in projects that provide a warning-only linter during development, but then require code to be lint-clean before submitting it.
 ____
 
 [quote]
 ____
-One objection you might have at this point is something about how compilers typically check "`important`" problems and linters check "`unimportant`" problems. This is true to an extent but it's also often kind of a historical accident; there's plenty of unimportant things a compiler can complain about, and there are plenty of lint-like tools that link:https://errorprone.info/bugpatterns[discover real problems]. And this also explains why different compilers might treat different problems as either a warning (inform) or error (block) kind of problem.
+One objection you might have at this point is something about how compilers typically check "`important`" problems and linters check "`unimportant`" problems. This is true to an extent but it`'s also often kind of a historical accident; there`'s plenty of unimportant things a compiler can complain about, and there are plenty of lint-like tools that link:https://errorprone.info/bugpatterns[discover real problems]. And this also explains why different compilers might treat different problems as either a warning (inform) or error (block) kind of problem.
 ____
 
 [quote]
@@ -40,9 +40,9 @@ ____
 
 [quote]
 ____
-Another failure mode happens when leaders get enamored of applying engineering analogies to define team interactions. APIs are a fine concept but the idea that team interactions can be strictly defined by an API is as laughable as the idea that programmers won't figure out a way to exploit every undocumented feature you provide in one. In this case, link:https://www.hyrumslaw.com/[Hyrum's Law] applies as much to engineering organizations as it does to software. Humans will and must talk to each other, trade favors, and negotiate based on changing circumstances. When you are in the thick of trying to get things done, you will use what you can find, whether it's an undocumented API or an engineer on another team who is willing to lend a hand.
+Another failure mode happens when leaders get enamored of applying engineering analogies to define team interactions. APIs are a fine concept but the idea that team interactions can be strictly defined by an API is as laughable as the idea that programmers won`'t figure out a way to exploit every undocumented feature you provide in one. In this case, link:https://www.hyrumslaw.com/[Hyrum`'s Law] applies as much to engineering organizations as it does to software. Humans will and must talk to each other, trade favors, and negotiate based on changing circumstances. When you are in the thick of trying to get things done, you will use what you can find, whether it`'s an undocumented API or an engineer on another team who is willing to lend a hand.
 
-Ironically, a lot of software engineers turned managers believe that they are taking humans into account with these rigid structures. When you see the world in systems, interactions, and efficiencies, you can trick yourself into believing that the humans inside of these systems will be happier if the system is well-organized. While I agree that there is value to organizing your teams effectively, the marginal value that the teams might experience is likely to be offset by the unintentional friction that happens for the people who don't fit perfectly into your structure.
+Ironically, a lot of software engineers turned managers believe that they are taking humans into account with these rigid structures. When you see the world in systems, interactions, and efficiencies, you can trick yourself into believing that the humans inside of these systems will be happier if the system is well-organized. While I agree that there is value to organizing your teams effectively, the marginal value that the teams might experience is likely to be offset by the unintentional friction that happens for the people who don`'t fit perfectly into your structure.
 ____
 
 == link:https://bellmar.medium.com/work-somewhere-dysfunctional-54fe5793b7a5[Work somewhere dysfunctional]
@@ -50,14 +50,14 @@ ____
 [quote]
 ____
 People who are purely altruistic get too wound up trying to force the system to change. It becomes a sunk costs problem. The more they give up to do good, the harder a negative outcome is to accept, the more they continue to give up to salvage their legacy. They tend to burnout and when they burnout they get destructive and abusive.
-On the other hand, people who have pragmatic and slightly selfish goals in addition to wanting the do good are more resilient. If the system change they envision doesn't work out, they still have something to show for all their efforts. That keeps them grounded and calm for much longer in the same environment.
+On the other hand, people who have pragmatic and slightly selfish goals in addition to wanting the do good are more resilient. If the system change they envision doesn`'t work out, they still have something to show for all their efforts. That keeps them grounded and calm for much longer in the same environment.
 ____
 
 [quote]
 ____
-Of course, you can't get done what you need to get done on your own either. An important caveat to my advice about goal setting and boundary defining is that you are more likely to succeed with other people on your side and the best way to get other people on your side is by dedicating a certain amount of your time and energy to helping them solve some of the problems on _their_ goal list.
+Of course, you can`'t get done what you need to get done on your own either. An important caveat to my advice about goal setting and boundary defining is that you are more likely to succeed with other people on your side and the best way to get other people on your side is by dedicating a certain amount of your time and energy to helping them solve some of the problems on _their_ goal list.
 
-If their goals are your goals that's ideal, but realistically speaking that won't always be the case. I refer to this process of helping others advance their goals in order to get better support for mine as paying rent and as a general rule I always _pay rent_ first (at least some of it.)
+If their goals are your goals that`'s ideal, but realistically speaking that won`'t always be the case. I refer to this process of helping others advance their goals in order to get better support for mine as paying rent and as a general rule I always _pay rent_ first (at least some of it.)
 ____
 
 == link:https://punctumbooks.com/titles/warez-the-infrastructure-and-aesthetics-of-piracy/[Warez: the infrastructure and aesthetics of piracy]

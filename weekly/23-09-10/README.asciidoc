@@ -17,34 +17,34 @@ ____
 
 [quote]
 ____
-When I read Stack Overflow questions involving time zones, there's almost always someone giving the advice to only ever store UTC. Convert to UTC as soon as you can, and convert back to a target time zone as late as you can, for display purposes, and you'll never have a time zone issue again, they say.
+When I read Stack Overflow questions involving time zones, there`'s almost always someone giving the advice to only ever store UTC. Convert to UTC as soon as you can, and convert back to a target time zone as late as you can, for display purposes, and you`'ll never have a time zone issue again, they say.
 
-This blog post is intended to provide a counterpoint to that advice. I'm certainly not saying storing UTC is _always_ the wrong thing to do, but it's not always the right thing to do either.
+This blog post is intended to provide a counterpoint to that advice. I`'m certainly not saying storing UTC is _always_ the wrong thing to do, but it`'s not always the right thing to do either.
 ____
 
 [quote]
 ____
-For me, the key difference between the options is that in option 3, we store and never change _what the conference organizer entered_. The organizer told us that the event would start at the given address in Amsterdam, at 9am on July 10th 2022. That's what we stored, and that information never needs to change (unless the organizer wants to change it, of course). The UTC value is derived from that "`golden`" information, but can be re-derived if the context changes -- such as when time zone rules change.
+For me, the key difference between the options is that in option 3, we store and never change _what the conference organizer entered_. The organizer told us that the event would start at the given address in Amsterdam, at 9am on July 10th 2022. That`'s what we stored, and that information never needs to change (unless the organizer wants to change it, of course). The UTC value is derived from that "`golden`" information, but can be re-derived if the context changes -- such as when time zone rules change.
 ____
 
 == link:https://ferd.ca/embrace-complexity-tighten-your-feedback-loops.html[Embrace complexity; tighten your feedback loops]
 
 [quote]
 ____
-They just told me directly that they knew they didn't have enough tests. In fact, they knew that the code was buggy. But they felt in general that it was safer to be on-time with a broken project than late with a working one. They were afraid that being late would put them in trouble and have someone yell at them for not doing a good job.
+They just told me directly that they knew they didn`'t have enough tests. In fact, they knew that the code was buggy. But they felt in general that it was safer to be on-time with a broken project than late with a working one. They were afraid that being late would put them in trouble and have someone yell at them for not doing a good job.
 
-When I went up to upper management, they absolutely believed that engineers were empowered and should feel safe pressing a big red button that stopped feature work if they thought their code wasn't ready. The engineers on that team felt that while this is what they were being told, in practice they'd still get in trouble.
+When I went up to upper management, they absolutely believed that engineers were empowered and should feel safe pressing a big red button that stopped feature work if they thought their code wasn`'t ready. The engineers on that team felt that while this is what they were being told, in practice they`'d still get in trouble.
 
-There's no amount of test training that would fix this sort of issue. The engineers knew they didn't have enough tests and they were making that tradeoff willingly.
+There`'s no amount of test training that would fix this sort of issue. The engineers knew they didn`'t have enough tests and they were making that tradeoff willingly.
 ____
 
 == link:https://ferd.ca/complexity-has-to-live-somewhere.html[Complexity has to live somewhere]
 
 [quote]
 ____
-Complexity has to live _somewhere_. If you are lucky, it lives in well-defined places. In code where you decided a bit of complexity should go, in documentation that supports the code, in training sessions for your engineers. You give it a place without trying to hide all of it. You create ways to manage it. You know where to go to meet it when you need it. If you're unlucky and you just tried to pretend complexity could be avoided altogether, it has no place to go in this world. But it still doesn't stop existing.
+Complexity has to live _somewhere_. If you are lucky, it lives in well-defined places. In code where you decided a bit of complexity should go, in documentation that supports the code, in training sessions for your engineers. You give it a place without trying to hide all of it. You create ways to manage it. You know where to go to meet it when you need it. If you`'re unlucky and you just tried to pretend complexity could be avoided altogether, it has no place to go in this world. But it still doesn`'t stop existing.
 
-With nowhere to go, it has to roam everywhere in your system, both in your code and in people's heads. And as people shift around and leave, our understanding of it erodes.
+With nowhere to go, it has to roam everywhere in your system, both in your code and in people`'s heads. And as people shift around and leave, our understanding of it erodes.
 
 _Complexity has to live somewhere_. If you embrace it, give it the place it deserves, design your system and organisation knowing it exists, and focus on adapting, it might just become a strength.
 ____
@@ -53,14 +53,14 @@ ____
 
 [quote]
 ____
-Markup languages are well-suited for typesetting of structured documents. By separating content from presentation, they are more automatable and flexible than their visual (Wysiwyg) counterparts. TEX-based systems, which trace back to the 1970s, are still the state of the art in this domain. Due to TEX's arcane macro system and poor error messages, these are hard to learn and use. More lightweight alternatives like Markdown and AsciiDoc fall short for complex typesetting while XML-based languages are too verbose for manual editing. This situation is unsatisfactory from a user experience perspective. For this reason, we present Typst, a new markup language with more expressive syntax and stronger computational foundations. By building on a type system with pure functions instead of macros, Typst eliminates many typical problems TEX suffers from. We show that Typst is highly automatable while being much easier to learn and use than current alternatives.
+Markup languages are well-suited for typesetting of structured documents. By separating content from presentation, they are more automatable and flexible than their visual (Wysiwyg) counterparts. TEX-based systems, which trace back to the 1970s, are still the state of the art in this domain. Due to TEX`'s arcane macro system and poor error messages, these are hard to learn and use. More lightweight alternatives like Markdown and AsciiDoc fall short for complex typesetting while XML-based languages are too verbose for manual editing. This situation is unsatisfactory from a user experience perspective. For this reason, we present Typst, a new markup language with more expressive syntax and stronger computational foundations. By building on a type system with pure functions instead of macros, Typst eliminates many typical problems TEX suffers from. We show that Typst is highly automatable while being much easier to learn and use than current alternatives.
 ____
 
 == link:https://blog.jasony.me/system/cache/2023/08/01/s3fifo[FIFO queues are all you need for cache eviction]
 
 [quote]
 ____
-In this blog, I will describe a Simple, Scalable eviction algorithm with three Static FIFO queues (S3-FIFO). Evaluated on 6594 cache traces from 14 companies, we show that S3-FIFO has lower miss ratios than 12 state-of-the-art algorithms designed in the past decades. Moreover, S3-FIFO's efficiency is robust -- it has the lowest mean miss ratio on 10 of the 14 datasets. The use of FIFO queues enables S3-FIFO to achieve good scalability with 6× higher throughput compared to optimized LRU in cachelib at 16 threads.
+In this blog, I will describe a Simple, Scalable eviction algorithm with three Static FIFO queues (S3-FIFO). Evaluated on 6594 cache traces from 14 companies, we show that S3-FIFO has lower miss ratios than 12 state-of-the-art algorithms designed in the past decades. Moreover, S3-FIFO`'s efficiency is robust -- it has the lowest mean miss ratio on 10 of the 14 datasets. The use of FIFO queues enables S3-FIFO to achieve good scalability with 6× higher throughput compared to optimized LRU in cachelib at 16 threads.
 
 Our insight is that most objects in skewed cache workloads will only be accessed once in a short time window, so it is critical to evict them early. And the key of S3-FIFO is a small FIFO queue that filters out most objects from entering the main cache.
 ____

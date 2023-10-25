@@ -1,6 +1,6 @@
-require 'set'
+require `'set`'
 
-ASTEROID_CHAR = '#'
+ASTEROID_CHAR = `'#`'
 # @param [String] field
 # @return [Array]
 def process(field, station_column, station_line)

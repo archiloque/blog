@@ -3,39 +3,39 @@ Julien Kirch
 v0.1, 2021-09-26
 :article_lang: fr
 :article_image: cover.jpg
-:article_description: Je n'y ai pas trouvé ce que je cherchais
+:article_description: Je n`'y ai pas trouvé ce que je cherchais
 
 Ce livre de 600 pages est constitué de 15 interviews avec des personnes reconnues dans le monde du développement{nbsp}: Jamie Zawinski, Brad Fitzpatrick, Douglas Crockford, Brendan Eich, Joshua Bloch, Joe Armstrong, Simon Peyton Jones, Peter Norvig, Guy Steele, Dan Ingalls, L Peter Deutsch, Ken Thompson, Fran Allen, Bernie Cosell & Donald Knuth.
 
-Le panel de personnes choisi par Peter Seibel se veut assez varié{nbsp}: certains travaillent sur des langages de programmation, d'autres sur des applications, il y a Donald Knuth{empty}footnote:[link:https://fr.wikipedia.org/wiki/Donald_Knuth[Donald Knuth] est un informaticien influent et assez connu même s'il est, je pense, de moins en moins lu, en savoir un peu sur lui vous est un bon moyen d'être pris au sérieux dans le milieu.] et une femme (Fran Allen).
+Le panel de personnes choisi par Peter Seibel se veut assez varié{nbsp}: certains travaillent sur des langages de programmation, d`'autres sur des applications, il y a Donald Knuth{empty}footnote:[link:https://fr.wikipedia.org/wiki/Donald_Knuth[Donald Knuth] est un informaticien influent et assez connu même s`'il est, je pense, de moins en moins lu, en savoir un peu sur lui vous est un bon moyen d`'être pris au sérieux dans le milieu.] et une femme (Fran Allen).
 
 Chaque interview est un mélange de questions standards sur les pratiques et les approches préférées de la personne, qui permet de comparer les réponses et de questions spécifiques à son parcours.
 
-J'ai entamé ce livre en me disant que&#8201;—{nbsp}sans vouloir me prendre pour Donald Knuth{nbsp}—&#8201;dans le lot il y aurait des idées dont je pourrais modestement m'inspirer dans mon propre travail.
+J`'ai entamé ce livre en me disant que&#8201;—{nbsp}sans vouloir me prendre pour Donald Knuth{nbsp}—&#8201;dans le lot il y aurait des idées dont je pourrais modestement m`'inspirer dans mon propre travail.
 
 Ça a été une assez grosse déception.
 
-Les interviews m'ont fait penser à celles de célébrités dans des magazines people{nbsp}: il y a un côté glamour qui peut rendre la lecture agréable, mais ces personnes ne semblent pas vraiment vivre dans le même monde que moi.
+Les interviews m`'ont fait penser à celles de célébrités dans des magazines people{nbsp}: il y a un côté glamour qui peut rendre la lecture agréable, mais ces personnes ne semblent pas vraiment vivre dans le même monde que moi.
 Par conséquent&#8201;—{nbsp}sauf par accident{nbsp}—&#8201;leurs idées ne sont pas vraiment réutilisables telles quelles.
 
-Tout d'abord une partie significative de ces personnes a commencé à travailler avec des cartes perforées à une époque où les ordinateurs étaient rares.
+Tout d`'abord une partie significative de ces personnes a commencé à travailler avec des cartes perforées à une époque où les ordinateurs étaient rares.
 
-S'inspirer de leur parcours signifierait donc se trouver dans une des rares école où, par chance, un ordinateur est à disposition, ou avoir un parent cadre dans une entreprise d'informatique, de façon à avoir une machine à la maison.
+S`'inspirer de leur parcours signifierait donc se trouver dans une des rares école où, par chance, un ordinateur est à disposition, ou avoir un parent cadre dans une entreprise d`'informatique, de façon à avoir une machine à la maison.
 
 Les questions sur leurs pratiques ne sont pas non plus très éclairantes, ainsi la majorité explique utiliser des logs pour débuguer leurs programmes.
 
 Ensuite seul Brad Fitzpatrick (créateur de LiveJournal) a travaillé dans un environnement qui semble proche du mien.
-Par contraste, dans beaucoup d'interviews les personnes travaillent sur des sujets de bas niveau (systèmes d'exploitations ou langage de programmation) et semblent être très libres dans l'organisation de leur travail, choisissant par exemple sur quoi elles passent leurs journées et n'ayant pas vraiment de compte à rendre.
+Par contraste, dans beaucoup d`'interviews les personnes travaillent sur des sujets de bas niveau (systèmes d`'exploitations ou langage de programmation) et semblent être très libres dans l`'organisation de leur travail, choisissant par exemple sur quoi elles passent leurs journées et n`'ayant pas vraiment de compte à rendre.
 
-Si cela correspond à un archétype du développement informatique, je pense que peu d'entre nous travaillent dans ces conditions.
+Si cela correspond à un archétype du développement informatique, je pense que peu d`'entre nous travaillent dans ces conditions.
 Le milieu socio-économique et la chance semblent jouer un grand rôle dans leur parcours.
 
-Pour finir, le point commun principal entre les personnes est leur détermination et la quantité de travail qu'elles fournissent, ou au moins qu'elle fournissaient lorsqu'elles travaillaient sur le projet qui les a rendues célèbres.
+Pour finir, le point commun principal entre les personnes est leur détermination et la quantité de travail qu`'elles fournissent, ou au moins qu`'elle fournissaient lorsqu`'elles travaillaient sur le projet qui les a rendues célèbres.
 Plusieurs mentionnent le fait de dormir au travail et de négliger leur famille pour pouvoir se consacrer pleinement à leurs projets.
 
-Cela me fait me questionner sur les raisons du succès de ces personnes{nbsp}: si certaines d'entre elles ont indéniablement une certaine dose de talent, je me demande si leur capacité à mettre leurs réalisation en avant et à les défendre avec énergie ne joue pas aussi un grand rôle.
+Cela me fait me questionner sur les raisons du succès de ces personnes{nbsp}: si certaines d`'entre elles ont indéniablement une certaine dose de talent, je me demande si leur capacité à mettre leurs réalisation en avant et à les défendre avec énergie ne joue pas aussi un grand rôle.
 
-Un point positif qui m'a étonné{nbsp}: la prise de recul de la majorité des personnes sur leur parcours, par exemple quand elles admettent qu'elles ne se sentiraient pas forcément à leur place dans d'autres environnements techniques que celui dont elles ont l'habitude.
-À l'inverse, Ken Thomson{empty}footnote:[Inventeur d'UNIX et du langage Go.] fait preuve d'une arrogance presque rafraichissante.
+Un point positif qui m`'a étonné{nbsp}: la prise de recul de la majorité des personnes sur leur parcours, par exemple quand elles admettent qu`'elles ne se sentiraient pas forcément à leur place dans d`'autres environnements techniques que celui dont elles ont l`'habitude.
+À l`'inverse, Ken Thomson{empty}footnote:[Inventeur d`'UNIX et du langage Go.] fait preuve d`'une arrogance presque rafraichissante.
 
-Au final si ma lecture n'a pas été entièrement négative, je suis resté sur ma faim quand à ce que je m'attendais à trouver.
+Au final si ma lecture n`'a pas été entièrement négative, je suis resté sur ma faim quand à ce que je m`'attendais à trouver.

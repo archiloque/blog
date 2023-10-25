@@ -4,9 +4,9 @@ def process(content)
   moons = content.split("\n").collect do |l|
     m = MOON_REGEX.match(l)
     [
-        m['x'].to_i, 0,
-        m['y'].to_i, 0,
-        m['z'].to_i, 0
+        m[`'x`'].to_i, 0,
+        m[`'y`'].to_i, 0,
+        m[`'z`'].to_i, 0
     ]
   end
   steps = [
@@ -14,9 +14,9 @@ def process(content)
       {},
       {}
   ]
-  steps[0][moons.collect { |m| [m[0], m[1]] }.join('|')] = true
-  steps[1][moons.collect { |m| [m[2], m[3]] }.join('|')] = true
-  steps[2][moons.collect { |m| [m[4], m[5]] }.join('|')] = true
+  steps[0][moons.collect { |m| [m[0], m[1]] }.join(`'|`')] = true
+  steps[1][moons.collect { |m| [m[2], m[3]] }.join(`'|`')] = true
+  steps[2][moons.collect { |m| [m[4], m[5]] }.join(`'|`')] = true
   cycles = [nil, nil, nil]
   while cycles.include?(nil) do
     moons = moons.collect { |m| m.dup }
@@ -39,7 +39,7 @@ def process(content)
     end
     0.upto(2) do |coordinate_index|
       unless cycles[coordinate_index]
-        snapshot = moons.collect { |m| [m[2 * coordinate_index], m[(2 * coordinate_index) + 1]] }.join('|')
+        snapshot = moons.collect { |m| [m[2 * coordinate_index], m[(2 * coordinate_index) + 1]] }.join(`'|`')
         if steps[coordinate_index].key?(snapshot)
           p "Cycle detected for #{coordinate_index}"
           cycles[coordinate_index] = steps[coordinate_index].length

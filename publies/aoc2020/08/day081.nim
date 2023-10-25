@@ -24,7 +24,7 @@ for line in input:
         operand: instructionMatch[1].parseInt())
     program.add(instruction)
   else:
-    raise newException(ValueError, "Can't parse [" & line & "]")
+    raise newException(ValueError, "Can`'t parse [" & line & "]")
 
 var currentInstructionIndex: int = 0
 var accumulator: int = 0

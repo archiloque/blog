@@ -8,18 +8,18 @@ v1.0, 2017-12-31
 
 [quote]
 ____
-In many of the above cases, what I am doing is deliberately opting out of abstractions in favor of concrete knowledge of what _my program is actually doing_. Abstractions can enable powerful behavior, but abstractions can also obscure the simple features of what a program is doing, and all else being equal, I'd rather communicate to a reader, "`I am appending two lists`", instead of the more generic, "`I am combining two values of a type that implements `Monoid``".
+In many of the above cases, what I am doing is deliberately opting out of abstractions in favor of concrete knowledge of what _my program is actually doing_. Abstractions can enable powerful behavior, but abstractions can also obscure the simple features of what a program is doing, and all else being equal, I`'d rather communicate to a reader, "`I am appending two lists`", instead of the more generic, "`I am combining two values of a type that implements `Monoid``".
 ____
 
 [quote]
 ____
-External dependencies in general have a cost: it's not a huge one, but a cost nonetheless, and I think it's worth weighing that cost against the benefit pretty actively.
+External dependencies in general have a cost: it`'s not a huge one, but a cost nonetheless, and I think it`'s worth weighing that cost against the benefit pretty actively.
 
-A minor cost -- one that matters, but not all that much -- is total source size. Haskell programs tend to pull in a lot of dependencies, which means compiling all of them can take a very long time and produce a lot of intermediate stuff, even if a comparatively small amount makes it in to the final program. This isn't a dealbreaker -- if I need something, I need it! -- but it's something to be cognizant of. If my from-scratch build time triples because I imported a single helper function, then maybe that dependency isn't pulling its weight.
+A minor cost -- one that matters, but not all that much -- is total source size. Haskell programs tend to pull in a lot of dependencies, which means compiling all of them can take a very long time and produce a lot of intermediate stuff, even if a comparatively small amount makes it in to the final program. This isn`'t a dealbreaker -- if I need something, I need it! -- but it`'s something to be cognizant of. If my from-scratch build time triples because I imported a single helper function, then maybe that dependency isn`'t pulling its weight.
 
-A bigger cost -- in my mind, anyway -- is breakage and control. It's possible (even likely) my code has a bug, and then I can fix it, run my tests, push it. It's also possible that an external dependency has a bug: fixing _this_ is much more difficult. I would have to find the project and either avail myself of its maintainer (who might be busy or overworked or distracted) or figure it out myself, learn the ins and outs of that project, its abstractions, its style, its contribution structure, put in a PR or discuss it on an email list, and so forth. And I can freeze dependency versions, sure, but the world goes on without me: APIs break, bugs get introduced, functionality changes, all of which is a minor but present liability.
+A bigger cost -- in my mind, anyway -- is breakage and control. It`'s possible (even likely) my code has a bug, and then I can fix it, run my tests, push it. It`'s also possible that an external dependency has a bug: fixing _this_ is much more difficult. I would have to find the project and either avail myself of its maintainer (who might be busy or overworked or distracted) or figure it out myself, learn the ins and outs of that project, its abstractions, its style, its contribution structure, put in a PR or discuss it on an email list, and so forth. And I can freeze dependency versions, sure, but the world goes on without me: APIs break, bugs get introduced, functionality changes, all of which is a minor but present liability.
 
-It's not a dealbreaker, but it's a _cost_, one that I weigh against the value I'm getting from the library. Should I depend on a web server library for my dynamic site? Well, I'm not gonna write a whole web server from scratch, and if I did, it'd take forever and be worse than an existing one, so the benefits far outweigh the costs. But on the other hand, if I'm pulling in a few shallow helper functions, I might consider replicating their functionality inline instead. There's always a cost: is it worth the weight of the dependency?
+It`'s not a dealbreaker, but it`'s a _cost_, one that I weigh against the value I`'m getting from the library. Should I depend on a web server library for my dynamic site? Well, I`'m not gonna write a whole web server from scratch, and if I did, it`'d take forever and be worse than an existing one, so the benefits far outweigh the costs. But on the other hand, if I`'m pulling in a few shallow helper functions, I might consider replicating their functionality inline instead. There`'s always a cost: is it worth the weight of the dependency?
 ____
 
 == link:https://www.cloudatomiclab.com/antisyscall/[Eleven syscalls that suck]
@@ -45,7 +45,7 @@ We can rate software optimizations as low/medium/high in terms of their _impact_
 
 Impact is how much difference the optimization makes when it works; generality is how broadly applicable the optimization is across different situations. Thinking about these factors explicitly can be helpful for predicting how beneficial (or harmful!) an optimization will be in practice.
 
-That's putting it mildly but this blog entry is really a rant: _I hate high-impact medium-generality optimizations_.
+That`'s putting it mildly but this blog entry is really a rant: _I hate high-impact medium-generality optimizations_.
 ____
 
 == link:https://salmanarif.bitbucket.io/visual/index.html[VisUAL - A highly visual ARM emulator]

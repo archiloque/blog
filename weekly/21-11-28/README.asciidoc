@@ -3,79 +3,79 @@ Julien Kirch
 v1.0, 2021-11-28
 :article_lang: en
 :figure-caption!:
-:article_description: Groups behavior, individuals matter, copying decisions, hiring, creating change, UI backwards compatibility, corporate engineering blogs, people can read their manager's mind
+:article_description: Groups behavior, individuals matter, copying decisions, hiring, creating change, UI backwards compatibility, corporate engineering blogs, people can read their manager`'s mind
 
 == link:https://www.gwern.net/docs/technology/2005-shirky-agroupisitsownworstenemy.pdf[A group is its own worst enemy]
 
 [quote]
 ____
-This pattern has happened over and over and over again. Someone built the system; they assumed certain user behaviors. The users came on and exhibited different behaviors. And the people running the system discovered to their horror that the technological and social issues could not in fact be decoupled. This story has been written many times. It's actually frustrating to see how many times it's been written, because although there's a wealth of documentation from the field, people starting similar projects often haven't read these accounts.
+This pattern has happened over and over and over again. Someone built the system; they assumed certain user behaviors. The users came on and exhibited different behaviors. And the people running the system discovered to their horror that the technological and social issues could not in fact be decoupled. This story has been written many times. It`'s actually frustrating to see how many times it`'s been written, because although there`'s a wealth of documentation from the field, people starting similar projects often haven`'t read these accounts.
 
-The most charitable description of this repeated pattern is "`learning from experience`", but learning from experience is the worst possible way to learn something. Learning from experience is one up from remembering -- that's not great. The best way to learn something is when someone else figures it out and tells you: "`Don't go in that swamp. There are alligators in there`".
+The most charitable description of this repeated pattern is "`learning from experience`", but learning from experience is the worst possible way to learn something. Learning from experience is one up from remembering -- that`'s not great. The best way to learn something is when someone else figures it out and tells you: "`Don`'t go in that swamp. There are alligators in there`".
 ____
 
 == link:https://danluu.com/people-matter/[Individuals matter]
 
 [quote]
 ____
-What I've seen happen instead is, when work starts on the projects, people will ask who's working the project and then will make a guess at whether or not the project will be completed on time or in an effective way or even be completed at all based on who ends up working on the project. "`Oh, Joe is taking feature X? He never ships anything reasonable. Looks like we can't depend on it because that's never going to work. Let's do Y instead of Z since that won't require X to actually work`". The roadmap creation and review process maintains the polite fiction that people are interchangeable, but everyone knows this isn't true and teams that are effective and want to ship on time can't play along when the rubber hits the road even if they play along with the managers, directors, and VPs, who create roadmaps as if people can be generically abstracted over.
+What I`'ve seen happen instead is, when work starts on the projects, people will ask who`'s working the project and then will make a guess at whether or not the project will be completed on time or in an effective way or even be completed at all based on who ends up working on the project. "`Oh, Joe is taking feature X? He never ships anything reasonable. Looks like we can`'t depend on it because that`'s never going to work. Let`'s do Y instead of Z since that won`'t require X to actually work`". The roadmap creation and review process maintains the polite fiction that people are interchangeable, but everyone knows this isn`'t true and teams that are effective and want to ship on time can`'t play along when the rubber hits the road even if they play along with the managers, directors, and VPs, who create roadmaps as if people can be generically abstracted over.
 
-Another place the non-fungability of people causes predictable problems is with how managers operate teams. Managers who want to create effective teams end up fighting the system in order to do so. Non-engineering orgs mostly treat people as fungible, and the finance org at a number of companies I've worked for forces the engineering org to treat people as fungible by requiring the org to budget in terms of headcount. The company, of course, spends money and not "`heads`", but internal bookkeeping is done in terms of "`heads`", so $X of budget will be, for some team, translated into something like "`three staff-level heads`". There's no way to convert that into "`two more effective and better-paid staff level heads`". If you hire two staff engineers and not a third, the "`head`" and the associated budget will eventually get moved somewhere else.
+Another place the non-fungability of people causes predictable problems is with how managers operate teams. Managers who want to create effective teams end up fighting the system in order to do so. Non-engineering orgs mostly treat people as fungible, and the finance org at a number of companies I`'ve worked for forces the engineering org to treat people as fungible by requiring the org to budget in terms of headcount. The company, of course, spends money and not "`heads`", but internal bookkeeping is done in terms of "`heads`", so $X of budget will be, for some team, translated into something like "`three staff-level heads`". There`'s no way to convert that into "`two more effective and better-paid staff level heads`". If you hire two staff engineers and not a third, the "`head`" and the associated budget will eventually get moved somewhere else.
 ____
 
 == link:https://danluu.com/tests-v-reason/[Testing v. informal reasoning]
 
 [quote]
 ____
-It's possible to make a simple CPU, but not one that's fast and simple. This doesn't only apply to CPUs -- performance complexity leaks all the way up the stack.
+It`'s possible to make a simple CPU, but not one that`'s fast and simple. This doesn`'t only apply to CPUs -- performance complexity leaks all the way up the stack.
 ____
 
 == link:http://danluu.com/wat/[Normalization of deviance]
 
 [quote]
 ____
-People seem to think I'm joking here. I can understand why, but try Googling MongoDB message queue. You'll find statements like "`replica sets in MongoDB work extremely well to allow automatic failover and redundancy`". Basically every company I know of that's done this and has anything resembling scale finds this to be non-optimal, to say the least, but you can't actually find blog posts or talks that discuss that. All you see are the posts and talks from when they first tried it and are in the honeymoon period. This is common with many technologies. You'll mostly find glowing recommendations in public even when, in private, people will tell you about all the problems. Today, if you do the search mentioned above, you'll get a ton of posts talking about how amazing it is to build a message queue on top of Mongo, this footnote, and a maybe couple of blog posts by Kyle Kingsbury depending on your exact search terms.
+People seem to think I`'m joking here. I can understand why, but try Googling MongoDB message queue. You`'ll find statements like "`replica sets in MongoDB work extremely well to allow automatic failover and redundancy`". Basically every company I know of that`'s done this and has anything resembling scale finds this to be non-optimal, to say the least, but you can`'t actually find blog posts or talks that discuss that. All you see are the posts and talks from when they first tried it and are in the honeymoon period. This is common with many technologies. You`'ll mostly find glowing recommendations in public even when, in private, people will tell you about all the problems. Today, if you do the search mentioned above, you`'ll get a ton of posts talking about how amazing it is to build a message queue on top of Mongo, this footnote, and a maybe couple of blog posts by Kyle Kingsbury depending on your exact search terms.
 
-If there were an acute failure, you might see a postmortem, but while we'll do postmortems for "`the site was down for 30 seconds`", we rarely do postmortems for "`this takes 10x as much ops effort as the alternative and it's a death by a thousand papercuts`", "`we architected this thing poorly and now it's very difficult to make changes that ought to be trivial`", or "`a competitor of ours was able to accomplish the same thing with an order of magnitude less effort`". I'll sometimes do informal postmortems by asking everyone involved oblique questions about what happened, but more for my own benefit than anything else, because I'm not sure people really want to hear the whole truth. This is especially sensitive if the effort has generated a round of promotions, which seems to be more common the more screwed up the project. The larger the project, the more visibility and promotions, even if the project could have been done with much less effort.
+If there were an acute failure, you might see a postmortem, but while we`'ll do postmortems for "`the site was down for 30 seconds`", we rarely do postmortems for "`this takes 10x as much ops effort as the alternative and it`'s a death by a thousand papercuts`", "`we architected this thing poorly and now it`'s very difficult to make changes that ought to be trivial`", or "`a competitor of ours was able to accomplish the same thing with an order of magnitude less effort`". I`'ll sometimes do informal postmortems by asking everyone involved oblique questions about what happened, but more for my own benefit than anything else, because I`'m not sure people really want to hear the whole truth. This is especially sensitive if the effort has generated a round of promotions, which seems to be more common the more screwed up the project. The larger the project, the more visibility and promotions, even if the project could have been done with much less effort.
 ____
 
 == link:https://danluu.com/google-sre-book/[Google SRE book]
 
 [quote]
 ____
-The fact that everyone knows you're supposed to be blameless seems to make it harder to call out blamefulness, not easier.
+The fact that everyone knows you`'re supposed to be blameless seems to make it harder to call out blamefulness, not easier.
 ____
 
 == link:http://danluu.com/hiring-lemons/[Hiring and the market for lemons]
 
 [quote]
 ____
-I know one hiring manager who complains about how hard it is to hire. What he doesn't realize is that literally everyone on his team is bitterly unhappy and a significant fraction of his team gives anti-referrals to friends and tells them to stay away.
+I know one hiring manager who complains about how hard it is to hire. What he doesn`'t realize is that literally everyone on his team is bitterly unhappy and a significant fraction of his team gives anti-referrals to friends and tells them to stay away.
 
-That's an extreme case, but it's quite common to see a VP or founder baffled by why hiring is so hard when employees consider the place to be mediocre or even bad.
+That`'s an extreme case, but it`'s quite common to see a VP or founder baffled by why hiring is so hard when employees consider the place to be mediocre or even bad.
 ____
 
-== link:https://news.ycombinator.com/item?id=5541517["`Put down the crack pipes`" doesn't go so well]
+== link:https://news.ycombinator.com/item?id=5541517["`Put down the crack pipes`" doesn`'t go so well]
 
 [quote]
 ____
-In a highly political environment there are two ways to create change, one is through overt manipulation, which is to collect political power to yourself and then exert it to enact change, and the other is covert manipulation, which is to enact change subtly enough that the political organism doesn't react. (sometimes called "`triggering the antibodies`").
+In a highly political environment there are two ways to create change, one is through overt manipulation, which is to collect political power to yourself and then exert it to enact change, and the other is covert manipulation, which is to enact change subtly enough that the political organism doesn`'t react. (sometimes called "`triggering the antibodies`").
 
-The problem with the latter is that if you help make positive change while keeping everyone not pissed off, no one attributes it to you (which is good for the change agent because if they knew the anti-bodies would react, but bad if your manager doesn't recognize it). I asked my manager what change he wanted to be 'true' yet he (or others) had been unsuccessful making true, he gave me one, and 18 months later that change was in place. He didn't believe that I was the one who had made the change. I suggested he pick a change he wanted to happen and not tell me, then in 18 months we could see if that one happened :-). But he also didn't understand enough about organizational dynamics to know that making change without having the source of that change point back at you was even possible.
+The problem with the latter is that if you help make positive change while keeping everyone not pissed off, no one attributes it to you (which is good for the change agent because if they knew the anti-bodies would react, but bad if your manager doesn`'t recognize it). I asked my manager what change he wanted to be `'true`' yet he (or others) had been unsuccessful making true, he gave me one, and 18 months later that change was in place. He didn`'t believe that I was the one who had made the change. I suggested he pick a change he wanted to happen and not tell me, then in 18 months we could see if that one happened :-). But he also didn`'t understand enough about organizational dynamics to know that making change without having the source of that change point back at you was even possible.
 ____
 
 == link:https://danluu.com/filesystem-errors/[Filesystem error handling]
 
 [quote]
 ____
-Just as an aside, one of the great wonders of doing open work for free is that the more free work you do, the more people complain that you didn't do enough free work.
+Just as an aside, one of the great wonders of doing open work for free is that the more free work you do, the more people complain that you didn`'t do enough free work.
 ____
 
 == link:https://danluu.com/ui-compatibility/[UI backwards compatibility]
 
 [quote]
 ____
-The case for UI backwards compatability is arguably stronger than the case for API backwards compatability because breaking API changes can be mechanically fixed and, link:https://danluu.com/monorepo/[with the proper environment], all callers can be fixed at the same time as the API changes. There's no equivalent way to reach into people's brains and change user habits, so a breaking UI change inevitably results in pain for some users.
+The case for UI backwards compatability is arguably stronger than the case for API backwards compatability because breaking API changes can be mechanically fixed and, link:https://danluu.com/monorepo/[with the proper environment], all callers can be fixed at the same time as the API changes. There`'s no equivalent way to reach into people`'s brains and change user habits, so a breaking UI change inevitably results in pain for some users.
 
 ____
 
@@ -83,23 +83,23 @@ ____
 
 [quote]
 ____
-My opinion is that the natural state of a corp eng blog where people link:http://danluu.com/p95-skill/[get a bit of feedback] is a pretty interesting blog. There's link:https://twitter.com/rakyll/status/1043952902157459456[a dearth of real, in-depth, technical writing], which makes any half decent, honest, public writing about technical work interesting.
+My opinion is that the natural state of a corp eng blog where people link:http://danluu.com/p95-skill/[get a bit of feedback] is a pretty interesting blog. There`'s link:https://twitter.com/rakyll/status/1043952902157459456[a dearth of real, in-depth, technical writing], which makes any half decent, honest, public writing about technical work interesting.
 
-In order to have a boring blog, the corporation has to actively stop engineers from putting interesting content out there. Unfortunately, it appears that the natural state of large corporations tends towards risk aversion and blocking people from writing, just in case it causes a legal or PR or other problem. Individual contributors (ICs) might have the opinion that it's ridiculous to block engineers from writing low-risk technical posts while, simultaneously, C-level execs and VPs regularly make public comments that turn into PR disasters, but ICs in large companies don't have the authority or don't feel like they have the authority to do something just because it makes sense. And none of the fourteen stakeholders who'd have to sign off on approving a streamlined process care about streamlining the process since that would be good for the company in a way that doesn't really impact them, not when that would mean seemingly taking responsibility for the risk a streamlined process would add, however small. An exec or a senior VP willing to take a risk can take responsibility for the fallout and, if they're interested in engineering recruiting or morale, they may see a reason to do so.
+In order to have a boring blog, the corporation has to actively stop engineers from putting interesting content out there. Unfortunately, it appears that the natural state of large corporations tends towards risk aversion and blocking people from writing, just in case it causes a legal or PR or other problem. Individual contributors (ICs) might have the opinion that it`'s ridiculous to block engineers from writing low-risk technical posts while, simultaneously, C-level execs and VPs regularly make public comments that turn into PR disasters, but ICs in large companies don`'t have the authority or don`'t feel like they have the authority to do something just because it makes sense. And none of the fourteen stakeholders who`'d have to sign off on approving a streamlined process care about streamlining the process since that would be good for the company in a way that doesn`'t really impact them, not when that would mean seemingly taking responsibility for the risk a streamlined process would add, however small. An exec or a senior VP willing to take a risk can take responsibility for the fallout and, if they`'re interested in engineering recruiting or morale, they may see a reason to do so.
 ____
 
-== link:http://yosefk.com/blog/people-can-read-their-managers-mind.html[People can read their manager's mind]
+== link:http://yosefk.com/blog/people-can-read-their-managers-mind.html[People can read their manager`'s mind]
 
 [quote]
 ____
-People generally don't do what they're told, but what they expect to be rewarded for. Managers often say they'll reward something –- perhaps they even believe it. But then they proceed to reward different things.
+People generally don`'t do what they`'re told, but what they expect to be rewarded for. Managers often say they`'ll reward something –- perhaps they even believe it. But then they proceed to reward different things.
 
-I think people are fairly good at predicting this discrepancy. The more productive they are, the better they tend to be at predicting it. Consequently, management's stated goals will tend to go unfulfilled whenever _deep down_, management doesn't value the sort of work that goes into achieving these goals.
+I think people are fairly good at predicting this discrepancy. The more productive they are, the better they tend to be at predicting it. Consequently, management`'s stated goals will tend to go unfulfilled whenever _deep down_, management doesn`'t value the sort of work that goes into achieving these goals.
 ____
 
 [quote]
 ____
-Managers who can't make themselves value _all_ important work should at least realize this: their goals do not automatically become their employees' goals. On the contrary, much or most of a manager's job is to align these goals -- and if it were that easy, perhaps they wouldn't pay managers that much, now would they? I find it a blessing to be able to tell a manager, "`you don't really value this work so it won't get done`". In fact, it's a blessing even if they ignore me. That they can hear this sort of thing without exploding means they can be reasoned with. To be considered such a manager is the apex of my ambitions.
+Managers who can`'t make themselves value _all_ important work should at least realize this: their goals do not automatically become their employees`' goals. On the contrary, much or most of a manager`'s job is to align these goals -- and if it were that easy, perhaps they wouldn`'t pay managers that much, now would they? I find it a blessing to be able to tell a manager, "`you don`'t really value this work so it won`'t get done`". In fact, it`'s a blessing even if they ignore me. That they can hear this sort of thing without exploding means they can be reasoned with. To be considered such a manager is the apex of my ambitions.
 ____
 
 [quote]

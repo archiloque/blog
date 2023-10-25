@@ -29,9 +29,9 @@ for line in input:
           else:
             bagsColorToContainers[containedBagColor] = @[containerBagColor]
         else:
-          raise newException(ValueError, "Can't parse [" & contineedBag & "]")
+          raise newException(ValueError, "Can`'t parse [" & contineedBag & "]")
     else:
-      raise newException(ValueError, "Can't parse [" & line & "]")
+      raise newException(ValueError, "Can`'t parse [" & line & "]")
 
 echo(bagsColorToContainers)
 
