@@ -31,6 +31,11 @@ ____
 
 [quote]
 ____
+Many teams, lacking a place to record any sort of significant decision, put any decision they consider significant into an ADR, diluting the architectural aspects and turning an ADR into an "`Any Decision Record`". 
+____
+
+[quote]
+____
 To illustrate, a decision to select a database management system is usually regarded as architectural because many systems will use it for their lifetime, but if this decision is easily reversed without having to change code throughout the system, it’s generally not architecturally significant. Modern RDBMS technology is quite stable and relatively interchangeable between vendor products, so replacing a commercial product with an open-source product, and vice versa, is relatively easy so long as the interfaces with the database have been isolated. The _architectural_ decision is the one to localize database dependencies and abstract vendor-specific interfaces, not the choice of the database itself.
 ____
 
