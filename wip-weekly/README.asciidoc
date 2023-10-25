@@ -16,3 +16,15 @@ ____
 ____
 It’s not micromanagement to know what a team is doing. Nor to question the thinking behind a decision they’re making. It’s reasonable to review their goals, and their progress against those goals. It’s OK to talk to their internal and external customers and hear feedback on how it’s going. Those are all activities that empower your team to do meaningful work. If you ever have someone imply that those activities are micromanagement, then it’s far more likely that the individual is misaligned with you than that you are too deep in the details. Don’t let accusations of micromanagement steer you away from doing your job.
 ____
+
+
+== link:https://www.infoq.com/articles/architectural-decision-record-purpose/[Has your architectural decision record lost its purpose?]
+
+[quote]
+____
+* The boundary between architectural and other significant decisions is often ill-defined.  
+* All architectural decisions are significant (using the cost of change to measure significance) but not all significant decisions are architectural.
+* Just because something is time-consuming to change does not make it architectural.
+* Architectural decisions involve the fundamental concepts the system uses because the code implications of the choices are scattered throughout the software rather than being localized. 
+* Teams who need to record significant decisions should create a separate Significant Decision Record to avoid overburdening their ADR with other decisions. 
+____
