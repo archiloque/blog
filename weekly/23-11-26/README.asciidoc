@@ -1,0 +1,70 @@
+= Links - 26^th^ November 2023
+Julien Kirch
+v1.0, 2023-11-26
+:article_lang: en
+:figure-caption!:
+:article_description: Making tools accessibles, IRL catgirls, computers systems vs medical professionals, writing items descriptions, magic the gathering metagame history, alive systems
+
+== link:http://www.takingnotes.co/blog/2020/07/01/accessibility-engineering/[Accessibility engineering and low end disruption]
+
+[quote]
+____
+what matters here, what sets apple apart, is that they figured out how to go last and contain the risk enough to avoid a revolt from other teams or executive leadership. it costs them a lot to do so, has significant, measurable downsides, and requires a significant rethink of what it means to build good software.
+____
+
+[quote]
+____
+apple has a team whose only job is to make things accessible and they have infrastructure that lets that team mostly avoid people who have a different job saying no to them. put those together and you have the most successful accessibility software team (imho) on planet earth.
+____
+
+== link:https://www.engadget.com/self-proclaimed-gay-furry-hackers-breach-nuclear-lab-152034192.html[Self-proclaimed "`gay furry hackers`" breach nuclear lab]
+
+[quote]
+____
+They demanded research into creating IRL catgirls.
+____
+
+== link:https://ferd.ca/notes/paper-you-want-my-password-or-a-dead-patient.html[Paper: you want my password or a dead patient?]
+
+[quote]
+____
+This week`'s paper is a draft from Ross Koppel, Sean Smith, Jim Blythe, and Vijay Kothari titled link:https://www.cs.dartmouth.edu/~sws/pubs/ksbk15-draft.pdf[Workarounds to Computer Access in Healthcare Organizations: You Want My Password or a Dead Patient?] First of all, great title. This paper is a work of ethnography, where the authors sat and studied how people in medical settings did their work interacting with computers, and denoted all sorts of workarounds they`'d take to bypass security rules that they judge are a hindrance to their work.
+
+The idea behind the paper is that clearly, people behind the computer systems are not working from a realistic understanding of what medical professionals have to contend with to do their job. And maybe, just maybe if they sat and figured out how said professionals do their work, it may be different.
+____
+
+[quote]
+____
+They note endemic circumvention of password-based auth. Hospitals and clinics write down passwords everywhere, sometimes as "sticky notes form sticky stalagmites on medical devices and medication preparation room". They`'ve noted things like:
+
+* entire hospitals sharing a password for a medical device (the password is taped on the device)
+* emergency rooms`' supply rooms with locked doors but the code is written on the door as well
+* vendors that distribute stickers to put your password on your monitor
+* computers with all employees passwords in a word doc shortcut on the desktop
+____
+
+== link:https://cohost.org/bruno/post/3657677-the-ancient-secrets[The ancient secrets of writing item descriptions]
+
+[quote]
+____
+Item descriptions are, to my mind, an underrated vector of video game storytelling. Inventory interaction is so often a major part, if not the heart, of a game’s economy or affordances. You guns in _Destiny_, your crafting materials in _Minecraft_, your medium-sized dry goods in an adventure game like _Grim Fandango_.
+
+I’m often advocating for embracing the particularities and preoccupations of the medium. Video games are often very concerned with _stuff_ in a way that other media rarely are. A movie might feature a macguffin or two, or a few hero props that are prominent in the story. A video game might feature dozens of things that are important to the player at various times.
+____
+
+== link:https://cohost.org/bruno/tagged/compleat%20history%20of%20the%20magic%20the%20gathering%20metagame[A compleat history of the magic the gathering metagame]
+
+21 parts so far
+
+== link:https://www.scattered-thoughts.net/writing/there-are-no-strings-on-me/[There are no strings on me]
+
+[quote]
+____
+Long ago Steve Yegge link:https://steve-yegge.blogspot.com/2007/01/pinocchio-problem.html[wrote] about software that feels alive -- emacs, smalltalk, lisp machines etc -- and lamented that the industry prefers to create dead things. Puppets on strings, not real boys.
+
+I`'m sympathetic. There is a kind of magic to those systems that is worth experiencing. But it`'s also worth examining why we prefer to build puppets.
+
+Because I`'ve had days where I`'ve had to debug my surly emacs boy, and I`'ve quickly discovered that his behaviour has very little to do with the code that I`'m reading. Methods overridden at runtime, traces that end with a call to a closure that no longer exists, event handlers whose execution order depends on side-effects during module loading, stack-traces which contain multiple different versions of the same function. On the worst days I find myself debugging code that doesn`'t even exist on disk but was evaluated in the repl weeks before.
+
+While such systems may be alive, they are only pretending to be a real boy. Lurking inside is something much more hostile to human understanding.
+____
