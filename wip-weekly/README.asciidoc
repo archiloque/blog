@@ -20,3 +20,19 @@ ____
 ____
 This is a gentle step-by-step guide through the abstract and complex universe of Fragment Shaders.
 ____
+
+== 
+
+[quote, attribution, cite title]
+____
+
+== link:https://jacobian.org/2023/dec/1/against-rfcs/[RFC processes are a poor fit for most organizations]
+
+This means that, if engineering organizations naively adopt an RFC process without bolting on some sort of explicit decision-making step, the process quickly breaks down. Without some sort of process to move towards a decision, _the default outcome of an RFC is "`no`"_ -- so you end up with the kind of inaction the person I quoted up top was frustrated about.
+
+In corporate settings, _RFC processes tend to lead to endless discussion_, especially as the organization grows. At one place I worked, the entire 150+ person engineering org was invited (and encouraged!) to comment on RFCs. This means there’s always someone who has another question or another concern, so discussions tend to run long enough that they fully burn out whatever initial energy to get things done was there at first.
+
+_This in turn rewards people who can write to exhaustion_. I know one engineer who bragged that his trick of getting his proposals accepted was that he would write RFCs so incredibly long that nobody would want to spend the time to read the whole thing, thus making sure nobody objected. (He was pretty proud of this "`hack`"; I was horrified.)
+
+Further, _these processes are insensitive to expertise_. Since everyone is invited to participate, they tend to put experts in a domain on even ground with everyone else. That seems really backwards to me: why go to the trouble of hiring or developing domain experts if we don’t give them the power to exercise their expertise?
+____
