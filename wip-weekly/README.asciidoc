@@ -20,3 +20,15 @@ ____
 ____
 The worst thing about Jenkins is that it works. It can meet your needs. With a liiittle more effort, or by adopting sliiiightly lower standards, or with a liiiiitle more tolerance for pain, you can always get Jenkins to do aaaaalmost what you want it to.
 ____
+
+== link:https://blog.verbum.org/2020/08/22/immutable-→-reprovisionable-anti-hysteresis/[“Immutable” → reprovisionable, anti-hysteresis]
+
+[quote]
+____
+I propose that instead of "`immutable`" or "`read-only`" when talking about operating systems (such as Fedora CoreOS, Google COOS, Flatcar etc.), we use these terms:
+
+* "`fully managed`": The system does not have "unmanaged state" – e.g. an admin interactively doing ssh and making changes not recorded declaratively somewhere else
+* "`image based`": Traditional package managers end up with a lot of "hidden state" (related to above); image based updates avoid that
+* "`reprovisionable`" and not a "`pet`": I don’t like the industry "`pets vs cattle`" term, and I think "`reprovisionable`" is both nicer and more descriptive
+* "`Has anti-hysteresis properties`": (Yes I know this is an awkward term) See link:https://en.wikipedia.org/wiki/Hysteresis[https://en.wikipedia.org/wiki/Hysteresis] -- I’ll talk more about this later
+____
