@@ -21,7 +21,7 @@ problems can work out for some systems. Sort-of. You don`'t get to ignore
 errors, but sometimes recovering from an error can look very similar to
 ignoring it.
 
-`'`'`'`'
+''''
 
 Imagine an orchard filled with wireless sensors for heat, light, and
 moisture. It makes little sense to try and resend old temperature
@@ -56,7 +56,7 @@ This is why, despite the occasional counter example, the best thing to
 do when encountering an error is to give up. Stop before you make
 anything worse and let something else handle it.
 
-`'`'`'`'
+''''
 
 Giving up is a surprisingly reasonable approach to error handling,
 assuming something else will try to recover, restart, or resume the
@@ -117,7 +117,7 @@ else is on-call for their software.
 
 That, or they`'re using a message broker.
 
-`'`'`'`'
+''''
 
 A message broker, if you`'re not sure, is a networked service that offers
 a variety of queues that other computers on the network can interact
@@ -225,7 +225,7 @@ necessarily straight forward to implement.
 This is why some people opt to use a replicated log, instead of a
 message broker.
 
-`'`'`'`'
+''''
 
 If you`'ve never used a replicated log, imagine an append only database
 table without a primary key, or a text file with backups, and you`'re
@@ -275,7 +275,7 @@ able to work out when they have occurred.
 
 This is more difficult than you might imagine.
 
-`'`'`'`'
+''''
 
 Take two services, a primary and a secondary, both with databases, and
 imagine using a replicated log to copy changes from one to another.
@@ -339,7 +339,7 @@ the point sink in.
 
 You don`'t get to ignore errors, but no one said it was going to be easy.
 
-`'`'`'`'
+''''
 
 Although using things like replicated logs, message brokers, or even
 using unix pipes can allow you to build prototypes, clear demonstrations

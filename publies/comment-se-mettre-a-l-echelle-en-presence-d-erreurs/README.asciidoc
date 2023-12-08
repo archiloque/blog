@@ -11,7 +11,7 @@ v0.1, 2020-07-01
 
 Ceci est une traduction d`'link:https://programmingisterrible.com/post/188942142748/scaling-in-the-presence-of-errorsdont-ignore[un article] de link:http://twitter.com/tef_ebooks[tef].
 
-`'`'`'`'
+''''
 
 Construire un service fiable et robuste signifie souvent construire quelque chose qui peut continuer à fonctionner quand certaines parties sont défaillantes.
 Un site web où certaines des fonctionnalités sont indisponibles vaut souvent mieux qu`'un site complètement planté.
@@ -29,7 +29,7 @@ Même ignorer les problèmes peut fonctionner pour certain systèmes.
 Plus ou moins.
 Vous ne pouvez pas ignorer les erreurs, mais parfois la reprise après une erreur peut ressembler beaucoup au fait de l`'ignorer.
 
-`'`'`'`'
+''''
 
 Imaginez un verger rempli de capteurs mesurant la chaleur, la lumière et l`'humidité.
 Cela n`'aurait pas beaucoup de sens d`'essayer de renvoyer des températures passées en cas d`'erreur.
@@ -53,7 +53,7 @@ Quand vous ignorez les erreurs, vous gaspillez du temps qui pourrait être utili
 C`'est pour cela que, malgré quelques contre-exemples, la meilleur chose à faire quand vous rencontrez une erreur est d`'abandonner.
 Arrêtez avant de faire empirer les chose, et laissez quelque chose d`'autre s`'en occuper.
 
-`'`'`'`'
+''''
 
 Abandonner est une approche surprenamment raisonnable de la gestion d`'erreur, en supposant que quelque chose d`'autre essaiera de s`'occuper de la reprise, de redémarrer ou de faire continuer le programme.
 C`'est pour cela que presque tous les services réseaux s`'exécutent dans une boucle qui les fait redémarrer immédiatement en cas de plantage, en espérant que la défaillance est temporaire.
@@ -93,7 +93,7 @@ Si une personne vous dit qu`'elle peut ignorer les erreurs, en fait elle vous di
 
 Ça, ou alors qu`'elle utilise un {bus}.
 
-`'`'`'`'
+''''
 
 Un {bus}, si vous n`'en êtes pas sûr·e, est un service réseau qui propose un ensemble de queues avec lesquelles d`'autres ordinateurs sur le réseau peuvent interagir.
 Généralement des clients ajoutent des messages, et d`'autres l`'interrogent pour récupérer le prochain message non lu, mais on peut les utiliser d`'un tas d`'autres manières.
@@ -166,7 +166,7 @@ Malheureusement, la reprise est facile à imaginer mais pas nécessairement auss
 
 C`'est pour cela certains personnes préfèrent utiliser un {jr} plutôt qu`'un {bus}.
 
-`'`'`'`'
+''''
 
 Si vous n`'avez jamais utilisé un {jr}, imaginez une table sans clé primaire d`'une base de donnée qui permette seulement d`'ajouter des données, ou un fichier texte avec des sauvegardes, et vous ne serez pas loin.
 Ou imaginer un {bus}, mais au lieu d`'ajouter et de supprimer des éléments dans une queue vous pouvez ajouter du contenu au journal ou lire depuis le journal.
@@ -199,7 +199,7 @@ Prendre en compte les erreurs comme des entrées de journal dans le mauvais ordr
 
 C`'est plus difficile que ce que vous pouvez imaginer.
 
-`'`'`'`'
+''''
 
 Prenez deux services, un primaire et un secondaire, tous les deux avec des bases de données, et imaginez utiliser un {jr} pour copier les modifications de l`'un à l`'autre.
 
@@ -240,7 +240,7 @@ Faire les mêmes choses dans le même ordre est si difficile que des personnes u
 
 Vous ne pouvez pas ignorer les erreurs, mais personne n`'a dit que ce serait simple.
 
-`'`'`'`'
+''''
 
 Bien qu`'utiliser des choses comme des journaux répliqués, des {bus}, ou même des _pipe_ Unix peuvent vous aider à construire des prototypes, montrant clairement comment votre logiciel fonctionne, elles ne vous libèrent pas du fardeau de la gestion d`'erreur.
 
