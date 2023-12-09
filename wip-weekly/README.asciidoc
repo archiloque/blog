@@ -48,3 +48,22 @@ I propose that instead of "`immutable`" or "`read-only`" when talking about oper
 * "`reprovisionable`" and not a "`pet`": I don`'t like the industry "`pets vs cattle`" term, and I think "`reprovisionable`" is both nicer and more descriptive
 * "`Has anti-hysteresis properties`": (Yes I know this is an awkward term) See link:https://en.wikipedia.org/wiki/Hysteresis[https://en.wikipedia.org/wiki/Hysteresis] -- I`'ll talk more about this later
 ____
+
+== link:https://lethain.com/notes-on-enterprise-architecture-as-strategy/[Notes on enterprise architecture as strategy]
+
+[quote]
+____
+The book proposes four operating models, based on a 2 by 2 grid of two concepts: high and low standardization, and high and low integration. Standardization is running different business units in the same way. Integration is depending on the availability, accuracy and timeliness of other business units’ data.
+
+. Coordination (low standardization, high integration) -- few shared implementations, but highly shared data
+. Unification (high standardization, high integration) -- shared implementation and heavy coupling of data across business units
+. Diversification (low standardization, low integration) -- very little alignment across business units, maybe some shared services
+. Replication (high standardization, low integration) -- shared implementation but little shared data across business units that serve distinct and unshared customers
+____
+
+== link:https://cohost.org/bruno/post/3811943-the-fallen-london-ap[The Fallen London approach to worldbuilding, or: how I learned to stop worrying and love the lore]
+
+[quote]
+____
+First, we’re willing to complicate, contradict, or diverge from past canon if it makes sense for a particular story. Part of this is a luxury of _Fallen London’s_ mode of storytelling; the game is very oblique, and things are rarely stated in unambiguous terms. We try not to do this willy-nilly, because it does have a cost. Most apparent inconsistencies that do make their way into the narrative are intended as unreliable narrators or different lenses into the same underlying truth; most actual contradictions are simply mistakes.
+____
