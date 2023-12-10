@@ -1,0 +1,69 @@
+= Links - 10^th^ December 2023
+Julien Kirch
+v1.0, 2023-12-10
+:article_lang: en
+:figure-caption!:
+:article_description: Insidious mistakes, Jenkins, macroculture vs microculture, replacing immutable, standardization & integration, Fallen London lore
+
+== link:http://twitchard.github.io/posts/2019-06-21-life-is-too-short-for-jenkins.html[Life is too short for Jenkins]
+
+[quote]
+____
+The worst mistakes come in two distinct flavors: catastrophic and insidious.
+
+A catastrophic mistake is like triggering an outage, or deleting production data. The moment you realize what you`'ve done is the worst single moment in your career. Your heart pounds in your chest. Is this a nightmare? Maybe in a second, you will wake up? No, it`'s real. Hopefully, you`'ve got a healthy culture at work, and you desperately describe the situation to your teammates, who rally to your side. Somebody with a cool head thinks of some way to make the best of things, and somehow -- maybe that night, maybe the next day -- you make it through. Things go back to normal. You write a postmortem, count your losses, and go back to work -- a little less innocent, and a little wiser.
+
+An insidious mistake, by contrast, does not reveal itself in a moment. It makes you suffer a little bit here, and a little bit there, until one day you wake up and you realize that there is a gaping hole where your humanity used to be. You are a miserable husk of a man, with cruelty on your lips and bile in your heart. You still greet your colleagues with that jolly smile of yours -- but the sweetness in your smile is the saccharine of cynicism, not the honeyed optimism as it was in the days before, when life was cheerful and your burden was light. The light in your eyes used to be the hope for a better tomorrow. Now it is the glint of madness.
+____
+
+[quote]
+____
+The worst thing about Jenkins is that it works. It can meet your needs. With a liiittle more effort, or by adopting sliiiightly lower standards, or with a liiiiitle more tolerance for pain, you can always get Jenkins to do aaaaalmost what you want it to.
+____
+
+== link:https://www.honest-broker.com/p/in-2024-the-tension-between-macroculture[In 2024, the tension between macroculture and microculture will turn into war]
+
+[quote]
+____
+First and foremost, Silicon Valley is a reluctant home for the microculture. To some extent Alphabet and Facebook are even going to war with microculture creators -- they try to make money with them even while they punish them.
+
+* So Mark Zuckerberg needs creators, but won`'t even let them put a live link on Instagram and limits their visibility on Facebook and Threads.
+* Alphabet needs creators to keep YouTube thriving, but gives better search engine visibility to total garbage that pays for placement.
+* Twitter also claims it wants to support independent journalists -- but if you`'re truly independent from Elon Musk, your links are brutally punished by the algorithm.
+
+This tension won`'t go away, and next year it will get worse. The microculture will increasingly find itself at war with the same platforms they rely on today.
+
+And legacy media and non-profits are even more hostile to emerging media. Go see who wins Pulitzer Prizes, and count how many journalists on alternative platforms get honored.
+____
+
+
+== link:https://blog.verbum.org/2020/08/22/immutable-→-reprovisionable-anti-hysteresis/["`Immutable`" → reprovisionable, anti-hysteresis]
+
+[quote]
+____
+I propose that instead of "`immutable`" or "`read-only`" when talking about operating systems (such as Fedora CoreOS, Google COOS, Flatcar etc.), we use these terms:
+
+* "`fully managed`": The system does not have "unmanaged state" – e.g. an admin interactively doing ssh and making changes not recorded declaratively somewhere else
+* "`image based`": Traditional package managers end up with a lot of "hidden state" (related to above); image based updates avoid that
+* "`reprovisionable`" and not a "`pet`": I don`'t like the industry "`pets vs cattle`" term, and I think "`reprovisionable`" is both nicer and more descriptive
+* "`Has anti-hysteresis properties`": (Yes I know this is an awkward term) See link:https://en.wikipedia.org/wiki/Hysteresis[https://en.wikipedia.org/wiki/Hysteresis] -- I`'ll talk more about this later
+____
+
+== link:https://lethain.com/notes-on-enterprise-architecture-as-strategy/[Notes on enterprise architecture as strategy]
+
+[quote]
+____
+The book proposes four operating models, based on a 2 by 2 grid of two concepts: high and low standardization, and high and low integration. Standardization is running different business units in the same way. Integration is depending on the availability, accuracy and timeliness of other business units`' data.
+
+. Coordination (low standardization, high integration) -- few shared implementations, but highly shared data
+. Unification (high standardization, high integration) -- shared implementation and heavy coupling of data across business units
+. Diversification (low standardization, low integration) -- very little alignment across business units, maybe some shared services
+. Replication (high standardization, low integration) -- shared implementation but little shared data across business units that serve distinct and unshared customers
+____
+
+== link:https://cohost.org/bruno/post/3811943-the-fallen-london-ap[The Fallen London approach to worldbuilding, or: how I learned to stop worrying and love the lore]
+
+[quote]
+____
+First, we`'re willing to complicate, contradict, or diverge from past canon if it makes sense for a particular story. Part of this is a luxury of _Fallen London`'s_ mode of storytelling; the game is very oblique, and things are rarely stated in unambiguous terms. We try not to do this willy-nilly, because it does have a cost. Most apparent inconsistencies that do make their way into the narrative are intended as unreliable narrators or different lenses into the same underlying truth; most actual contradictions are simply mistakes.
+____
