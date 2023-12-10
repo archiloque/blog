@@ -1,7 +1,13 @@
+ifeval::["{doctype}" != "book"]
 = Software development microfictions
 Julien Kirch
 v0.1, 2023-01-15
 :article_lang: en
+endif::[]
+
+ifeval::["{doctype}" == "book"]
+'''
+endif::[]
 
 As Gregor Samsa awoke one morning from uneasy dreams he found himself isekaied into the enterprise wiki.
 

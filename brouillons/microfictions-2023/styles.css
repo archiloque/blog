@@ -1,0 +1,128 @@
+html {
+    font-family: Cochin, serif;
+    font-size: 16px;
+    line-height: 140%;
+    background-color: rgb(250, 250, 250);
+    color: rgb(30, 30, 30);
+}
+
+@page {
+    background-color: rgb(250, 250, 250);
+}
+
+a {
+    color: rgb(73, 139, 167);
+}
+
+p {
+    margin: 1em 0;
+    text-align: justify;
+    hyphens: auto;
+}
+
+ul {
+    margin-top: -1em;
+    margin-bottom: 0;
+}
+
+li p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+li {
+    margin-bottom: 0.3em;
+}
+
+.listingblock {
+    break-inside: avoid;
+}
+
+#header {
+    break-after: always;
+    text-align: center;
+}
+
+#toc {
+    break-before: always;
+    text-align: left;
+}
+
+#toc ul {
+    list-style: none;
+}
+
+#toc a {
+    text-decoration: none;
+    color: rgb(30, 30, 30);
+}
+
+#toc a::before {
+    /* content: target-counter(attr(href), page, decimal-leading-zero) " — "; */
+}
+
+#toc li {
+    margin-bottom: 0.5em;
+}
+
+#header h1 {
+    font-size: 60px;
+    line-height: 60px;
+    padding-right: 30%;
+    padding-left: 30%;
+    padding-top: 30%;
+}
+
+#header .details {
+    line-height: 36px;
+    padding-top: 60%;
+}
+
+#revnumber {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    line-height: 130%;
+}
+
+h2 {
+    break-before: always;
+    string-set: heading content();
+    font-size: 30px;
+}
+
+#footer-text {
+    display: none;
+}
+
+sup {
+    font-size: 0.5em;
+}
+
+@page {
+    padding-top: 1cm;
+
+    @top-left {
+        content: counter(page);
+        font-size: 10pt;
+        height: 1cm;
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    @top-right {
+        /* content: string(heading); */
+        font-size: 10pt;
+        height: 1cm;
+        vertical-align: middle;
+        width: 100%;
+    }
+}
+
+@page :nth(1) {
+    @top-left {
+        content: `'`';
+    }
+}
