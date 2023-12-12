@@ -25,7 +25,7 @@ p {
 }
 
 ul {
-    margin-top: -1em;
+    margin-top: -0.5em;
     margin-bottom: 0;
 }
 
@@ -101,11 +101,11 @@ h1, h2, h3, h4, h5, h6 {
 h2 {
     break-before: always;
     string-set: heading content();
-    font-size: 40px;
+    font-size: 36px;
 }
 
 h3 {
-    font-size: 26px;
+    font-size: 24px;
 }
 
 h4 {
@@ -122,19 +122,19 @@ sup {
 
 @page {
     padding-top: 1cm;
+    margin-bottom: 2.5cm;
 
     @top-left {
         content: counter(page);
         font-size: 10pt;
-        height: 1cm;
+        height: 0.5cm;
         vertical-align: middle;
         width: 100%;
     }
 
     @top-right {
-        /* content: string(heading); */
         font-size: 10pt;
-        height: 1cm;
+        height: 0.5cm;
         vertical-align: middle;
         width: 100%;
     }
