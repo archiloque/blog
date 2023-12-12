@@ -1,6 +1,53 @@
-= Underexplored ideas in programming languages
+= Extreme dogfooding
 Julien Kirch
-v0.1, 2022-12-12
+v0.1, 2023-12-12
 :article_lang: en
-:article_image: 
+:article_image: ouroboros.png
 :article_description: 
+
+In software development, dogfoofing means that people in charge of a software artifact are also users of this same software artifact.
+
+For example if you`'re developing an email client, you should use it as your own email client.
+
+Dogfooding can be a good thing because it`'s supposed to give you insights about the features that are missing or the issues that need fixing that are more difficult to perceive if you are not a regular user.
+
+Thus, dogfooding should improve the ability for people to choose and prioritize the right stuff.
+
+Dogfooding is supposed to be one of the strengths of non-corporate non-commercial open source projects, in this case often called “scratching your own itch”, because the focus on features used by the developers is even stronger.
+
+== All dogs are not the same
+
+One of the risks of dogfooding is the bias it can create, when the way people in charge of the software artifact use it is atypical when you compare it to its external users.
+
+For example for video games: video game creators are often experienced players, and when they work on a game for several months or years, they become experts of it.
+If they only focus the game in a way that makes it fun for them to play, there`'s a risk that the difficulty level would be too high for typical players.
+
+There is a market for difficult games, but there is a difference between creating a game targeted at this market, and wanting to create a game targeted at a more general audience but making it accidentally too difficult because the creators tuned it for their own tastes.
+
+I started to think about this in the case of Git and the Linux kernel: since Git has been created by and for Linux kernel developers, it has a strong bias toward the workflows the Linux kernel use, and toward the tastes of its developer.
+
+I`'d say it also has (or more precisely had, because it`'s something that is actively worked on) a strong bias toward the high tolerance of these users toward software with a steep learning curve, if the perceived productivity for the experienced users is high enough.
+
+== Extreme dogfooding
+
+The topic that currently fascinates me is the extreme case of dogfooding that happens when the software artifact you work on is actively used for its own creation.
+
+Because in this case, there`'s an interesting (at least for me) risk of creating a hyper-specific solution, that only works for this use case, like a spiraling ouroboros.
+
+For example if the people that develop a programming language use it, but mostly to develop the language, instead of creating applications or other tools.
+
+In this case, there`'s a chance that the people will create a programming language that is very good when you want to use it to write a programming language but that sucks at other uses.
+
+Like in the video games example, it can not be a problem if it`'s what the creators want to achieve.
+And indeed programming languages that are mostly good to write programming languages is an existing niche.
+
+But as for video games, it`'s bad when it`'s not what you intended.
+
+So I`'m thinking about other cases where it could happen (some of these may be 
+inspired by existing tools):
+
+- A ticketing system used to manage its own development, and that can only be used to manage its own project
+- An operating system used by people working on it, and that can only be used to work on it
+- A file editor mostly to edit the files it`'s written in
+
+Other suggestions are welcome.
