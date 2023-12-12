@@ -38,6 +38,12 @@ li {
     break-inside: avoid;
 }
 
+code {
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+    font-size: 80%;
+}
+
 #header {
     break-after: always;
     text-align: center;
@@ -58,7 +64,7 @@ li {
 }
 
 #toc a::before {
-    /* content: target-counter(attr(href), page, decimal-leading-zero) " — "; */
+    content: target-counter(attr(href), page, decimal-leading-zero) " — ";
 }
 
 #toc li {
@@ -85,6 +91,7 @@ li {
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     line-height: 120%;
+    page-break-after: avoid;
 }
 
 h2 {
@@ -95,6 +102,10 @@ h2 {
 
 h3 {
     font-size: 26px;
+}
+
+h4 {
+    font-size: 20px;
 }
 
 #footer-text {
@@ -127,6 +138,6 @@ sup {
 
 @page :nth(1) {
     @top-left {
-        content: `'`';
+        content: '';
     }
 }
