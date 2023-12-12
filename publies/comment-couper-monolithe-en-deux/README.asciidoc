@@ -164,7 +164,7 @@ Des décennies de travail ont été passées sur le contrôle de congestion de T
 Si cela excite votre curiosité, l`'histoire de la congestion de TCP est une lecture intéressante.
 Bien que les extrémités d`'une connexion TCP étaient responsables de gérer les défaillances et les rééssais, les routeurs étaient responsables de gérer la congestion, c`'est-à-dire de laisser tomber des choses quand il y en avait trop.
 
-Le problème est que ça a fonctionné jusqu`'à ce que le réseau soit saturé et&#8201;—{nbsp}d`'une manière similaire aux tâches en attente dans des queues{nbsp}—&#8201;quand c`'est arrivé les erreurs se sont produites en cascades.
+Le problème est que ça a fonctionné jusqu`'à ce que le réseau soit saturé et -- d`'une manière similaire aux tâches en attente dans des queues{nbsp}—&#8201;quand c`'est arrivé les erreurs se sont produites en cascades.
 La solution a été similaire{nbsp}: la {bp}.
 De la même manière que le fait d`'attendre deux fois plus longtemps en cas d`'erreur, TCP envoie deux fois moins de paquets, avant d`'augmenter progressivement leurs nombres quand les choses s`'améliorent.
 
@@ -201,11 +201,9 @@ Parfois s`'en occuper signifie écrire des choses dans un journal d`'audit et le
 
 [quote, "`Il me semble l`'avoir fait, Bob`", jrecursive]
 ____
--- Comment est ce que je fais pour souscrire à un sujet du {bus}{nbsp}?
-
--- Ce n`'est pas un {bus}, c`'est un journal répliqué
-
--- OK, comment est ce que je fais pour souscrire au journal répliqué{nbsp}?
+– Comment est ce que je fais pour souscrire à un sujet du {bus}{nbsp}? +
+– Ce n`'est pas un {bus}, c`'est un journal répliqué +
+– OK, comment est ce que je fais pour souscrire au journal répliqué{nbsp}?
 ____
 
 Bien qu`'un journal répliqué soit souvent confondu avec un {bus}, il ne vous immunise pas contre la gestion d`'erreurs.
