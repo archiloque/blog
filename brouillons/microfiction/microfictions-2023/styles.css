@@ -27,6 +27,7 @@ p {
 ul {
     margin-top: -0.5em;
     margin-bottom: 0;
+    padding-left: 1em;
 }
 
 li p {
@@ -78,8 +79,8 @@ code {
 #header h1 {
     font-size: 60px;
     line-height: 60px;
-    padding-right: 30%;
-    padding-left: 30%;
+    padding-right: 20%;
+    padding-left: 20%;
     padding-top: 30%;
 }
 
@@ -99,6 +100,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2 {
+    text-align: center;
     break-before: always;
     string-set: heading content();
     font-size: 36px;
@@ -118,6 +120,15 @@ h4 {
 
 sup {
     font-size: 0.5em;
+}
+
+hr {
+    border: 0;
+    text-align: center;  
+    color: rgb(30, 30, 30);
+}
+hr:before {
+    content: "⤪\00A0\00A0\00A0\00A0\00A0\00A0\00A0⤨";
 }
 
 @page {
