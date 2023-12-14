@@ -36,12 +36,12 @@ proc simplifyParenthesis(formula: string): string =
     return parenthesisMatch[0] & calculateFormulaWithoutParenthesis(
         parenthesisMatch[1]) & parenthesisMatch[2]
   else:
-    raise newException(ValueError, "Can`'t parse [" & formula & "]")
+    raise newException(ValueError, "Can't parse [" & formula & "]")
 
 var total = 0
 for formula in formulas:
   var currentFormula = formula
-  while currentFormula.find(`'(`') != -1:
+  while currentFormula.find('(') != -1:
     currentFormula = simplifyParenthesis(currentFormula)
   var formulaResult = calculateFormulaWithoutParenthesis(
       currentFormula).parseInt

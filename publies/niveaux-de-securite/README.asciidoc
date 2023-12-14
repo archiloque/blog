@@ -5,50 +5,50 @@ v0.1, 2021-03-04
 :article_image: risk.png
 :article_description: Surveiller et punir
 
-Quand on parle de sécurité ou d`'isolation en informatique, pour mieux se comprendre je pense qu`'il serait utile de distinguer deux choses.
+Quand on parle de sécurité ou d'isolation en informatique, pour mieux se comprendre je pense qu'il serait utile de distinguer deux choses.
 
-- Lorsqu`'on veut se protéger contre les accidents
-- Lorsqu`'on veut se protéger contre un acte délibéré
+- Lorsqu'on veut se protéger contre les accidents
+- Lorsqu'on veut se protéger contre un acte délibéré
 
-Prenons le cas des variables d`'instances privées en programmation.
+Prenons le cas des variables d'instances privées en programmation.
 
-En Ruby, les variables d`'instances sont toutes privées, mais il est tout de même facile d`'y accéder en lecture et en écriture.
+En Ruby, les variables d'instances sont toutes privées, mais il est tout de même facile d'y accéder en lecture et en écriture.
 
-Si une classe `Chat` a une variable d`'instance `poids`, `chat.instance_variable_get(:poids)` permet d`'y accéder, et `chat.instance_variable_set(:poids, 5)` de la modifier.
+Si une classe `Chat` a une variable d'instance `poids`, `chat.instance_variable_get(:poids)` permet d'y accéder, et `chat.instance_variable_set(:poids, 5)` de la modifier.
 
-L`'idée est de ne pas bloquer la possibilité de faire ce type d`'appel quand il est nécessaire, mais de faire en sorte qu`'il soit délibéré, pour éviter les accidents.
+L'idée est de ne pas bloquer la possibilité de faire ce type d'appel quand il est nécessaire, mais de faire en sorte qu'il soit délibéré, pour éviter les accidents.
 
-L`'approche de Python, qui est de définir les variables d`'instances privées uniquement par une convention de nommage{empty}footnote:[Le nom d`'une variable d`'instance privée doit commencer par deux tirets bas] est encore plus libérale.
+L'approche de Python, qui est de définir les variables d'instances privées uniquement par une convention de nommage{empty}footnote:[Le nom d'une variable d'instance privée doit commencer par deux tirets bas] est encore plus libérale.
 
-En Java, au contraire, l`'accès à une variable d`'instance privée passe par le fait link:https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/AccessibleObject.html#setAccessible-boolean-[de la rendre accessible]. La spécification indique que cette opération peut être refusée pour des raisons de sécurité.
+En Java, au contraire, l'accès à une variable d'instance privée passe par le fait link:https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/AccessibleObject.html#setAccessible-boolean-[de la rendre accessible]. La spécification indique que cette opération peut être refusée pour des raisons de sécurité.
 
-Dans ce cas, il est donc possible et même relativement facile d`'interdire l`'accès à telle ou telle variable d`'instance, voire à l`'ensemble des variables d`'instances.
+Dans ce cas, il est donc possible et même relativement facile d'interdire l'accès à telle ou telle variable d'instance, voire à l'ensemble des variables d'instances.
 
-Je ne connais pas l`'écosystème Android et je ne sais donc pas si cette fonctionnalité y est utilisée, mais côté serveur elle l`'était pour que les applications de client·e·s ne puissent pas accéder ou modifier des données du serveur.
+Je ne connais pas l'écosystème Android et je ne sais donc pas si cette fonctionnalité y est utilisée, mais côté serveur elle l'était pour que les applications de client·e·s ne puissent pas accéder ou modifier des données du serveur.
 
 Ruby choisit donc de se protéger uniquement des accidents, et Java choisit de permettre de se protéger même contre une action délibérée.
 
-Lorsqu`'on développe en Ruby (et qu`'on vient par exemple du monde Java), on pourrait préférer que Ruby fonctionne comme Java de ce point de vue, ou on pourrait penser que l`'implémentation des variables d`'instances privées en Ruby est incomplète.
-Mais cela est faux{nbsp}: l`'objectif des variables d`'instances privées en Ruby est différent de celles de Java.
+Lorsqu'on développe en Ruby (et qu'on vient par exemple du monde Java), on pourrait préférer que Ruby fonctionne comme Java de ce point de vue, ou on pourrait penser que l'implémentation des variables d'instances privées en Ruby est incomplète.
+Mais cela est faux{nbsp}: l'objectif des variables d'instances privées en Ruby est différent de celles de Java.
 
-Le même genre de chose existe dans les systèmes d`'exploitations, par exemple dans le noyau Linux.
+Le même genre de chose existe dans les systèmes d'exploitations, par exemple dans le noyau Linux.
 
-La volonté d`'avoir des systèmes performants mène au fait de vouloir partager des ressources, par exemple les nombreux caches dont par exemple les contenus des derniers fichiers lus.
+La volonté d'avoir des systèmes performants mène au fait de vouloir partager des ressources, par exemple les nombreux caches dont par exemple les contenus des derniers fichiers lus.
 
 Ces caches ne sont pas tous isolés par processus ou par utilisateur·rice·s car cela diminuerait leur efficacité en limitant le partage tout en augmentant leur coût de gestion.
 
-Cela signifie que quand on veut limiter la consommation mémoire d`'un processus, on peut limiter la mémoire prise par le code du processus et ses traitements, mais pas la mémoire qu`'il occupe dans le cache de fichier via les mécanismes du système d`'exploitation.
+Cela signifie que quand on veut limiter la consommation mémoire d'un processus, on peut limiter la mémoire prise par le code du processus et ses traitements, mais pas la mémoire qu'il occupe dans le cache de fichier via les mécanismes du système d'exploitation.
 
-Même si elle est incomplète, en pratique ce fonctionnement suffit quand il s`'agit d`'éviter qu`'un programme ne sature une machine en consommant toute sa mémoire par accident, par exemple suite à un bug ou à un traitement trop lourd.
+Même si elle est incomplète, en pratique ce fonctionnement suffit quand il s'agit d'éviter qu'un programme ne sature une machine en consommant toute sa mémoire par accident, par exemple suite à un bug ou à un traitement trop lourd.
 À nouveau ici, le système est conçu et bien adapté pour se protéger des accidents. 
 
-Mais à l`'inverse, un processus pourrait tout à fait accaparer ces ressources (par exemple lisant rapidement le contenu de nombreux fichiers) au point de ralentir considérablement les autres processus de la machine sans que qu`'il ne dépasse les quotas qui lui sont alloués.
+Mais à l'inverse, un processus pourrait tout à fait accaparer ces ressources (par exemple lisant rapidement le contenu de nombreux fichiers) au point de ralentir considérablement les autres processus de la machine sans que qu'il ne dépasse les quotas qui lui sont alloués.
 
 La solution actuelle, si on veut éviter ce risque, est de passer par de la virtualisation.
-Mais comme dit plus haut fera perdre les bénéfices qu`'on peut tirer du partage de ressources.
+Mais comme dit plus haut fera perdre les bénéfices qu'on peut tirer du partage de ressources.
 
-Cela ne veut pas dire qu`'il ne serait pas possible de faire évoluer le fonctionnement du système pour prendre ces cas en compte, mais que le système actuel n`'est pas fait pour ça.
+Cela ne veut pas dire qu'il ne serait pas possible de faire évoluer le fonctionnement du système pour prendre ces cas en compte, mais que le système actuel n'est pas fait pour ça.
 
-Donc la prochaine fois que vous prenez connaissance d`'une capacité d`'isolation dans un système, posez-vous la question{nbsp}: de quel type s`'agit-il{nbsp}?
+Donc la prochaine fois que vous prenez connaissance d'une capacité d'isolation dans un système, posez-vous la question{nbsp}: de quel type s'agit-il{nbsp}?
 
-Cela pourrait vous permettre d`'éviter des erreurs de compréhension et de gagner du temps.
+Cela pourrait vous permettre d'éviter des erreurs de compréhension et de gagner du temps.

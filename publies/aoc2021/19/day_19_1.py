@@ -81,12 +81,12 @@ for line in open(sys.argv[1]).readlines():
     line = line.strip()
     scanner_match = scanner_regex.search(line)
     if scanner_match:
-        scanners.append(Scanner(int(scanner_match.group(`'scanner_id`'))))
+        scanners.append(Scanner(int(scanner_match.group('scanner_id'))))
     else:
         beacon_match = beacon_regex.search(line)
         if beacon_match:
             scanners[-1].beacons.append(
-                (int(beacon_match.group(`'x`')), int(beacon_match.group(`'y`')), int(beacon_match.group(`'z`')))
+                (int(beacon_match.group('x')), int(beacon_match.group('y')), int(beacon_match.group('z')))
             )
 for scanner in scanners:
     scanner.compute_distances()

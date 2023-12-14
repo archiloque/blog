@@ -2,33 +2,33 @@
 Julien Kirch
 v0.1, 2020-10-12
 :article_lang: fr
-:article_description: Un petit livre qui détaille comment s`'y prendre
+:article_description: Un petit livre qui détaille comment s'y prendre
 :article_image: steampunk.jpg
 
-Après link:../ecrire-un-orm-en-ruby-1[avoir décrit comment écrire un ORM], j`'ai décidé de faire de même sur un moteur de tâche.
+Après link:../ecrire-un-orm-en-ruby-1[avoir décrit comment écrire un ORM], j'ai décidé de faire de même sur un moteur de tâche.
 
-Voici un extrait de l`'introduction qui explique pourquoi j`'ai choisi ce sujet :
+Voici un extrait de l'introduction qui explique pourquoi j'ai choisi ce sujet :
 
 [quote]
 ____
-En effet un moteur de tâche se doit (en principe) d`'être efficace via du parallélisme, de ne pas perdre de données, de fournir une gestion d`'erreur qui permette d`'investiguer les problèmes et un tas d`'autres choses.
+En effet un moteur de tâche se doit (en principe) d'être efficace via du parallélisme, de ne pas perdre de données, de fournir une gestion d'erreur qui permette d'investiguer les problèmes et un tas d'autres choses.
 
 Ces caractéristiques ne sont pas propres aux moteurs de tâches, au contraire on les retrouve, ou on est sensé les retrouver, dans la majorité des logiciels serveurs.
 
-Aucune d`'entre elle ne requiert de code particulièrement complexe, du moins tant qu`'on choisi de s`'appuyer sur des outils existants comme des moteurs de bases de données.
+Aucune d'entre elle ne requiert de code particulièrement complexe, du moins tant qu'on choisi de s'appuyer sur des outils existants comme des moteurs de bases de données.
 
-Il s`'agit plutôt de s`'appuyer sur des patterns bien choisis et éprouvés.
-link:../comment-se-mettre-a-l-echelle-en-presence-d-erreurs/[Cet article] illustre cette situation dans le domaine de la gestion d`'erreur.
+Il s'agit plutôt de s'appuyer sur des patterns bien choisis et éprouvés.
+link:../comment-se-mettre-a-l-echelle-en-presence-d-erreurs/[Cet article] illustre cette situation dans le domaine de la gestion d'erreur.
 
-Cela signifie que bien comprendre le fonctionnement d`'un moteur de tâche permet de comprendre le fonctionnement d`'autres logiciels qui ont les mêmes caractéristiques.
+Cela signifie que bien comprendre le fonctionnement d'un moteur de tâche permet de comprendre le fonctionnement d'autres logiciels qui ont les mêmes caractéristiques.
 
-Pour cela je vous propose donc de décrire pas à pas la construction de ce type d`'outil.
-À chaque étape, je vais expliquer le besoin auquel répond chaque nouvel élément, et la manière d`'y répondre.
+Pour cela je vous propose donc de décrire pas à pas la construction de ce type d'outil.
+À chaque étape, je vais expliquer le besoin auquel répond chaque nouvel élément, et la manière d'y répondre.
 ____
 
 Le texte fait une soixantaine de pages.
 
-À l`'inverse de l`'ORM, j`'ai choisi de publier directement l`'intégralité du texte dès le début plutôt qu`'une publication par semaine, principalement car je n`'avais pas envie de m`'occuper des 12 publications que ça demandait.
+À l'inverse de l'ORM, j'ai choisi de publier directement l'intégralité du texte dès le début plutôt qu'une publication par semaine, principalement car je n'avais pas envie de m'occuper des 12 publications que ça demandait.
 
 Il est disponible en 3 formats : link:../task-engine-ruby/task-engine-ruby.html[HTML], link:../task-engine-ruby/task-engine-ruby.pdf[PDF] et link:../task-engine-ruby/task-engine-ruby.epub[EPUB].
 

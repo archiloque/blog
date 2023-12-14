@@ -508,7 +508,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_et_un_index">Et un index</a></li>
 </ul>
 </li>
-<li><a href="#_explain_select_from_tasks_where_status_waiting_order_by_created_at_limit_1">explain SELECT * FROM "tasks" WHERE ("status" = `'waiting`') ORDER BY "created_at" LIMIT 1;</a></li>
+<li><a href="#_explain_select_from_tasks_where_status_waiting_order_by_created_at_limit_1">explain SELECT * FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1;</a></li>
 <li><a href="#MDT-09">Partie 9 : la planification</a>
 <ul class="sectlevel2">
 <li><a href="#_les_tâches_à_exécution_régulière">Les tâches à exécution régulière</a></li>
@@ -1383,7 +1383,7 @@ Ainsi en théorie les allocation mémoire ou les entrées/sorties sont interdit
 </div>
 </div>
 <div class="paragraph">
-<p>Ruby vous indiquera que cela ne fonctionnera pas par un &#8220;log writing failed. can`'t be called from trap context&#8221;, car pour éviter le risque que cet appel fasse crasher le programme, la machine virtuelle Ruby le désactive dans ce contexte.</p>
+<p>Ruby vous indiquera que cela ne fonctionnera pas par un &#8220;log writing failed. can't be called from trap context&#8221;, car pour éviter le risque que cet appel fasse crasher le programme, la machine virtuelle Ruby le désactive dans ce contexte.</p>
 </div>
 <div class="paragraph">
 <p>La bonne pratique est donc de limiter au maximum ce que vous mettez dans le bloc de gestion de signal, par exemple d&#8217;uniquement changer la valeur d&#8217;une variable, et de faire en sorte que le vrai traitement se fasse en dehors du bloc.</p>
@@ -1732,7 +1732,7 @@ Cela n&#8217;aurait peut-être aucune conséquence sur l&#8217;exécution de ces
 <p>La mise en œuvre est moins longue que l&#8217;explication.</p>
 </div>
 <div class="paragraph">
-<p>Tout d&#8217;abord il faut ajouter la colonne d`' l&#8217;instance à la table <code>tasks</code>&#160;:</p>
+<p>Tout d&#8217;abord il faut ajouter la colonne d' l&#8217;instance à la table <code>tasks</code>&#160;:</p>
 </div>
 <div class="listingblock">
 <div class="title">migrations/02_add_instance_name.rb</div>
@@ -2342,7 +2342,7 @@ Le comportement le plus intéressant pour un moteur de tâches est que si du cod
 <p>Pour recevoir la notification, je dois créer un nouveau thread car l&#8217;écoute bloque l&#8217;exécution du thread qui attend d&#8217;être notifié.</p>
 </div>
 <div class="paragraph">
-<p>Je vais créer ce thread dans le constructeur de l`'<code>Engine</code>.</p>
+<p>Je vais créer ce thread dans le constructeur de l'<code>Engine</code>.</p>
 </div>
 <div class="paragraph">
 <p>À la réception d&#8217;un message, il utilise la <code>Queue</code> pour réveiller un worker si l&#8217;un d&#8217;eux est disponible.</p>
@@ -2736,13 +2736,13 @@ updated_at | 2020-08-10 16:52:59.09332</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_explain_select_from_tasks_where_status_waiting_order_by_created_at_limit_1">explain SELECT * FROM "tasks" WHERE ("status" = `'waiting`') ORDER BY "created_at" LIMIT 1;</h2>
+<h2 id="_explain_select_from_tasks_where_status_waiting_order_by_created_at_limit_1">explain SELECT * FROM "tasks" WHERE ("status" = 'waiting') ORDER BY "created_at" LIMIT 1;</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre>Limit  (cost=0.14..0.30 rows=1 width=120)
   -&gt;  Index Scan using tasks_status_created_at_index on tasks  (cost=0.14..16.20 rows=100 width=120)
-        Index Cond: (status = `'waiting`'::task_status)</pre>
+        Index Cond: (status = 'waiting'::task_status)</pre>
 </div>
 </div>
 </div>

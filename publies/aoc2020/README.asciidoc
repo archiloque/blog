@@ -12,24 +12,24 @@ The advent of code is a set of not too long (hopefully) coding exercises coverin
 
 They tend to lean heavy on data manipulation algorithms (processing lists of lists, tree traversals…) so they are good to learn or practice standard libraries.
 
-As implied by its name, it`'s supposed to be done during the advent:
-a two-parts problem is published each day so there`'s a pace to follow, and you can even compete on solving them as fast as possible.
+As implied by its name, it's supposed to be done during the advent:
+a two-parts problem is published each day so there's a pace to follow, and you can even compete on solving them as fast as possible.
 This helps some people to keep their motivation all along the 25 days, and people create team for help or to discuss their code.
 
 I hate the soft peer pressure and the idea of self-imposed mandatory homework to do everyday, so as each year I wait at least a few weeks so I can choose my pace to work on them.
 
-== This year`'s advent of code
+== This year's advent of code
 
 Compared to link:../aoc2019/[last year], the problems were much more aligned with my tastes:
 
-- The samples provided were much more comprehensive, so I didn`'t have to look at solutions to be able to figure what was wrong in my code.
+- The samples provided were much more comprehensive, so I didn't have to look at solutions to be able to figure what was wrong in my code.
 - Less problems that required to implement math-heavy solutions, the only one this year was the day 13
 
-As a consequence I`'ve solved all the problems \o/.
+As a consequence I've solved all the problems \o/.
 
 == Nim
 
-This year I`'ve decided to use the advent of code to learn link:https://nim-lang.org[Nim].
+This year I've decided to use the advent of code to learn link:https://nim-lang.org[Nim].
 
 Ruby is still my language of choice, but I needed another tool for specific _personal_ projects I want to try.
 Since a few years I was looking for a programming language with these requirements:
@@ -44,23 +44,23 @@ Since a few years I was looking for a programming language with these requiremen
 
 And so far Nim seem to meet all the requirements, I should have looked at it earlier.
 
-It`'s is an interesting tool, to me it looks like +++<del>+++Python vored C+++</del>+++ a mix of Python and C, where you can have Python expressivity with C-level performance.
+It's is an interesting tool, to me it looks like +++<del>+++Python vored C+++</del>+++ a mix of Python and C, where you can have Python expressivity with C-level performance.
 It means that you have to have a high-level understanding of how the link:http://zevv.nl/nim-memory/[memory models works], which is a kind of thing I never had to deal with with any of languages I used.
 
 I enjoy the mix of minimal OOP and functional style, even if I know that other people hate this kind of multi-paradigm approach.
 
-The advent of code problems didn`'t required me to learn about the link:https://nim-lang.org/docs/macros.html[macros system] but as it looks cool I hope I`'ll be able to use them in a real project.
+The advent of code problems didn't required me to learn about the link:https://nim-lang.org/docs/macros.html[macros system] but as it looks cool I hope I'll be able to use them in a real project.
 
 If you want to have a look at Nim, the link:https://book.picheta.me[Nim in action] was a great resource.
 I specially liked that the text explain not only what is possible to do but also what is idiomatic in Nim.
-When you learn a programming language on your own, there`'s a risk to inadvertently create your own personal style that doesn`'t look like mainstream code and learning what is idiomatic helps to mitigate this.
+When you learn a programming language on your own, there's a risk to inadvertently create your own personal style that doesn't look like mainstream code and learning what is idiomatic helps to mitigate this.
 
-My main gripe so far is the very limited support in IntelliJ, having to use Visual Studio Code is not a deal breaker but it`'s not my preferred editor.
-(As I work with very nice Python people, I won`'t mention my opinion on significant indentation, but 🙄.)
+My main gripe so far is the very limited support in IntelliJ, having to use Visual Studio Code is not a deal breaker but it's not my preferred editor.
+(As I work with very nice Python people, I won't mention my opinion on significant indentation, but 🙄.)
 
 Disclaimers:
 
-. The bellow code is the first code I`'ve written in Nim after reading the book, so it`'s probably not a example of good Nim code.
+. The bellow code is the first code I've written in Nim after reading the book, so it's probably not a example of good Nim code.
 . If you have a look at Nim because of me and you want to use it for your personal or professional projects (I want only to use it for personal ones, at least so far) and it goes badly, in no event shall I be liable for any claim, damages or other liability because of it.
 
 == The code

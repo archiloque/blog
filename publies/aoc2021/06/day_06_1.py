@@ -3,7 +3,7 @@ import sys
 line = open(sys.argv[1]).readlines()[0]
 
 current_fishes = [0] * 9
-for starting_fish in line.split(`',`'):
+for starting_fish in line.split(','):
     starting_fish_int = int(starting_fish)
     current_fishes[starting_fish_int] += 1
 

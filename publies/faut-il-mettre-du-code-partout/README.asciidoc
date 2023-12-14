@@ -9,66 +9,66 @@ En informatique, les logiciels de bureautique sont gouvernés par la loi de link
 
 [quote]
 ____
-Tout logiciel gagne des fonctionnalités jusqu`'à être capable de lire des mails. Ceux qui n`'en sont pas capables sont remplacés par d`'autres qui le sont.
+Tout logiciel gagne des fonctionnalités jusqu'à être capable de lire des mails. Ceux qui n'en sont pas capables sont remplacés par d'autres qui le sont.
 ____
 
-J`'ai l`'impression qu`'une loi semblable s`'applique aux _middlewares_{nbsp}:
+J'ai l'impression qu'une loi semblable s'applique aux _middlewares_{nbsp}:
 
 [quote]
 ____
-Tout logiciel qui fait circuler ou qui stocke de la donnée gagne des fonctionnalités jusqu`'à pouvoir embarquer du code applicatif standard.
+Tout logiciel qui fait circuler ou qui stocke de la donnée gagne des fonctionnalités jusqu'à pouvoir embarquer du code applicatif standard.
 ____
 
 Dans les outils "`historiques`", on peut utiliser link:https://httpd.apache.org/docs/current/fr/howto/ssi.html[SSI] dans les serveurs http Apache, ou les procédures stockées pour les serveurs SQL.
 
-Ensuite sont venus les patterns de link:https://fr.wikipedia.org/wiki/Enterprise_service_bus[bus d`'entreprise] permettant de le faire dans des proxys de services ou de messages.
+Ensuite sont venus les patterns de link:https://fr.wikipedia.org/wiki/Enterprise_service_bus[bus d'entreprise] permettant de le faire dans des proxys de services ou de messages.
 
-Dans les outils actuels, on peut embarquer du code link:https://openresty.org[Nginx], et de nombreux outils NoSQL permettent d`'écrire du code exécuté dans la base, que ça doit du code natif dans un style "`map-reduce`" dans des bases comme Cassandra, ou des choses plus classiques comme dans link:https://redis.io/commands/eval[Redis] ou link:https://docs.mongodb.com/manual/tutorial/store-javascript-function-on-server/[MongoDB]).
+Dans les outils actuels, on peut embarquer du code link:https://openresty.org[Nginx], et de nombreux outils NoSQL permettent d'écrire du code exécuté dans la base, que ça doit du code natif dans un style "`map-reduce`" dans des bases comme Cassandra, ou des choses plus classiques comme dans link:https://redis.io/commands/eval[Redis] ou link:https://docs.mongodb.com/manual/tutorial/store-javascript-function-on-server/[MongoDB]).
 
-L`'idée est simple et le besoin réel{nbsp}: exécuter du code au plus près de sa source (la source de la requêtes pour les _middleware_, la source de la donnée pour les bases de données) permet de gagner en efficacité, par exemple en répondant plus rapidement ou en économisant des traitements.
+L'idée est simple et le besoin réel{nbsp}: exécuter du code au plus près de sa source (la source de la requêtes pour les _middleware_, la source de la donnée pour les bases de données) permet de gagner en efficacité, par exemple en répondant plus rapidement ou en économisant des traitements.
 Cela se rapproche du link:https://fr.wikipedia.org/wiki/Edge_computing[edge computing].
 
 == En faire ou pas{nbsp}?
 
-Face à la possibilité d`'utiliser ces fonctionnalités, je rencontre plutôt trois types d`'attitudes{nbsp}:
+Face à la possibilité d'utiliser ces fonctionnalités, je rencontre plutôt trois types d'attitudes{nbsp}:
 
 . Génial, on peut tout faire avec ça{nbsp}!
 . Oui mais seulement pour un usage limité, par exemple pour des besoins techniques.
-. Nooooon{nbsp}!, c`'est le MAL incarné{nbsp}!
+. Nooooon{nbsp}!, c'est le MAL incarné{nbsp}!
 
-Si les outils existent et que le besoin est pertinent, pourquoi est ce que l`'usage de ce genre de choses n`'est pas généralisé, et que l`'idée même de s`'en servir provoque des réactions presque violentes chez certaines personnes{nbsp}?
+Si les outils existent et que le besoin est pertinent, pourquoi est ce que l'usage de ce genre de choses n'est pas généralisé, et que l'idée même de s'en servir provoque des réactions presque violentes chez certaines personnes{nbsp}?
 
-Il y a tout d`'abord les on-dit{nbsp}: les procédures stockées et équivalent ont mauvaise réputation, et quand on en entend parler c`'est pour des histoires catastrophiques.
+Il y a tout d'abord les on-dit{nbsp}: les procédures stockées et équivalent ont mauvaise réputation, et quand on en entend parler c'est pour des histoires catastrophiques.
 
-Le fait que les technologies soient moins connues car peu utilisées peut peser légitimement dans la balance car ajouter un nouveau langage de programmation n`'est pas anodin, d`'autant plus pour des langages exotiques comme PL/pgSQL.
+Le fait que les technologies soient moins connues car peu utilisées peut peser légitimement dans la balance car ajouter un nouveau langage de programmation n'est pas anodin, d'autant plus pour des langages exotiques comme PL/pgSQL.
 
-Ensuite, même avec des langages standards comme Lua ou JavaScript, l`'outillage pour ce type de développement est souvent inférieur à ce qu`'on attend d`'un environnement de développement moderne.
+Ensuite, même avec des langages standards comme Lua ou JavaScript, l'outillage pour ce type de développement est souvent inférieur à ce qu'on attend d'un environnement de développement moderne.
 
-Par exemple les frameworks peuvent être moins avancés, le support des éditeurs de code moins poussé, il peut être moins facile d`'écrire des tests automatisé ou de faire de l`'intégration continue, de faire de la gestion de version ou du déploiement sans interruption de service, d`'investiguer en cas de problème…
+Par exemple les frameworks peuvent être moins avancés, le support des éditeurs de code moins poussé, il peut être moins facile d'écrire des tests automatisé ou de faire de l'intégration continue, de faire de la gestion de version ou du déploiement sans interruption de service, d'investiguer en cas de problème…
 
-L`'autre problème est que le code déployé dans des outils n`'est pas toujours considéré comme du "`vrai`" code du point de vue de l`'organisation et des process.
-D`'un côté cela peut vouloir dire pas de _peer review_, pas de vraie recette, ou des déploiement à la sauvette, ce qui peut donner lieu à des effets d`'aubaines ("`Chic, on peut déployer quand on veut`"), mais aussi des risques d`'erreurs accrus.
-D`'un autre côté cela peut bloquer l`'usage de ces outils dans des organisations très structurées, par exemple lorsque le process n`'existe pas, ou que la base de données sont le domaine réservé d`'une autre équipe.
+L'autre problème est que le code déployé dans des outils n'est pas toujours considéré comme du "`vrai`" code du point de vue de l'organisation et des process.
+D'un côté cela peut vouloir dire pas de _peer review_, pas de vraie recette, ou des déploiement à la sauvette, ce qui peut donner lieu à des effets d'aubaines ("`Chic, on peut déployer quand on veut`"), mais aussi des risques d'erreurs accrus.
+D'un autre côté cela peut bloquer l'usage de ces outils dans des organisations très structurées, par exemple lorsque le process n'existe pas, ou que la base de données sont le domaine réservé d'une autre équipe.
 
-Dans mon expérience c`'est l`'accumulation qui fait vraiment mal{nbsp}: un langage mal maîtrisé, pas de tests automatisé et une recette minimaliste et vous vous retrouvez avec du code que personne ne veut toucher.
+Dans mon expérience c'est l'accumulation qui fait vraiment mal{nbsp}: un langage mal maîtrisé, pas de tests automatisé et une recette minimaliste et vous vous retrouvez avec du code que personne ne veut toucher.
 
-La dernière limite est l`'impact sur l`'outil en cas de problème{nbsp}: par exemple une base de donnée est en général réputée fiable et on sait qu`'on peut compter dessus, en cas de problème au pire elle ralentira.
-Une base de données avec du code cela signifie que des requêtes peuvent planter, qu`'on peut potentiellement avoir des fuite de mémoire… bref toutes les caractéristique d`'une brique applicative. Est ce que pour répondre plus rapidement à certaines requêtes, on est prêt à potentiellement planter le proxy http et ne plus répondre à rien{nbsp}?
+La dernière limite est l'impact sur l'outil en cas de problème{nbsp}: par exemple une base de donnée est en général réputée fiable et on sait qu'on peut compter dessus, en cas de problème au pire elle ralentira.
+Une base de données avec du code cela signifie que des requêtes peuvent planter, qu'on peut potentiellement avoir des fuite de mémoire… bref toutes les caractéristique d'une brique applicative. Est ce que pour répondre plus rapidement à certaines requêtes, on est prêt à potentiellement planter le proxy http et ne plus répondre à rien{nbsp}?
 
 == Et donc{nbsp}?
 
-Pour moi la source de la réponse est à trouver dans ce dernier élément{nbsp}: ajouter des comportements dans une brique, c`'est transformer cette brique en brique applicative, et qu`'on doit donc la considérer comme tel.
+Pour moi la source de la réponse est à trouver dans ce dernier élément{nbsp}: ajouter des comportements dans une brique, c'est transformer cette brique en brique applicative, et qu'on doit donc la considérer comme tel.
 
-Cela signifie que les mêmes process et les mêmes critères de "`qualité`" doivent s`'appliquer pour ce type de code que pour du code standard.
+Cela signifie que les mêmes process et les mêmes critères de "`qualité`" doivent s'appliquer pour ce type de code que pour du code standard.
 
-Cela signifie que les critères de choix de technologies doivent être les mêmes, en terme de maintenabilité, d`'efficacité de développement…
+Cela signifie que les critères de choix de technologies doivent être les mêmes, en terme de maintenabilité, d'efficacité de développement…
 
 Le choix doit se faire en évaluant les gains attendus face à ces contraintes.
-C`'est cette manière de faire qui permet -- à mon avis{nbsp}—&#8201;d`'éviter les mauvaises surprises, mais aussi de dissiper les fantasmes{nbsp}: il s`'agit d`'un outil de plus qui doit s`'évaluer comme les autres.
+C'est cette manière de faire qui permet -- à mon avis{nbsp}—&#8201;d'éviter les mauvaises surprises, mais aussi de dissiper les fantasmes{nbsp}: il s'agit d'un outil de plus qui doit s'évaluer comme les autres.
 
-Comme souvent, la solution intermédiaire qui est de limiter les usages est la plus tentante{nbsp}: en théorie elle permet d`'avoir les avantages sans les inconvénients.
-En pratique n`'oubliez pas qu`'elle demande de mettre en place de la gouvernance pour piloter les usages, et qu`'une fois qu`'un outil est mis en place et fonctionne de manière satisfaisante il devient très difficile de refuser d`'en augmenter l`'usage.
+Comme souvent, la solution intermédiaire qui est de limiter les usages est la plus tentante{nbsp}: en théorie elle permet d'avoir les avantages sans les inconvénients.
+En pratique n'oubliez pas qu'elle demande de mettre en place de la gouvernance pour piloter les usages, et qu'une fois qu'un outil est mis en place et fonctionne de manière satisfaisante il devient très difficile de refuser d'en augmenter l'usage.
 
-Il n`'y a donc pas de réponse unique, comme toujours réfléchissez à vos besoins et évaluez ce qu`'il est possible de faire.
+Il n'y a donc pas de réponse unique, comme toujours réfléchissez à vos besoins et évaluez ce qu'il est possible de faire.
 
-Les procédures stockées ça n`'est pas le MAL{nbsp}!
+Les procédures stockées ça n'est pas le MAL{nbsp}!

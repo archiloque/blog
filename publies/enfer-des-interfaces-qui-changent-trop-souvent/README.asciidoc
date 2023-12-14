@@ -1,46 +1,46 @@
-= L`'enfer des interfaces qui changent trop souvent
+= L'enfer des interfaces qui changent trop souvent
 Julien Kirch
 v0.1, 2020-06-18
 :article_image: sonic.png
 :article_lang: fr
 :article_description: Et tant pis pour la concentration
 
-Quand on utilise un objet régulièrement, le corps s`'y habitue petit à petit et certaines choses qui au début nécessitaient un effort conscient n`'en ont plus besoin.
+Quand on utilise un objet régulièrement, le corps s'y habitue petit à petit et certaines choses qui au début nécessitaient un effort conscient n'en ont plus besoin.
 
-Par exemple après avoir habité à un endroit un certain temps vous n`'avez plus besoin de chercher où se trouve interrupteur après avoir ouvert la porte mais votre main le trouve tout seule.
+Par exemple après avoir habité à un endroit un certain temps vous n'avez plus besoin de chercher où se trouve interrupteur après avoir ouvert la porte mais votre main le trouve tout seule.
 
-C`'est la même chose avec les outils informatiques{nbsp}: mon corps a appris les raccourcis clavier et l`'emplacement des boutons des applications que j`'utilise régulièrement.
+C'est la même chose avec les outils informatiques{nbsp}: mon corps a appris les raccourcis clavier et l'emplacement des boutons des applications que j'utilise régulièrement.
 
-Ainsi quand je développe dans mon IDE ou que le lis mes fils RSS, je suis plongé dans mon activité et mes interaction avec l`'outil ne me demandent aucune attention.
+Ainsi quand je développe dans mon IDE ou que le lis mes fils RSS, je suis plongé dans mon activité et mes interaction avec l'outil ne me demandent aucune attention.
 
 Mais quand quelque chose change, par exemple une modification visuelle, pendant un certain temps chaque interaction avec ces élément me sort de ma concentration le temps que mon corps se réhabitue.
 
-Dans les temps anciens, avant l`'internet, la stabilité était la norme. Soit les logiciels ne bougeaient pas soient ils le faisaient tous les quelques mois ou quelques années.
+Dans les temps anciens, avant l'internet, la stabilité était la norme. Soit les logiciels ne bougeaient pas soient ils le faisaient tous les quelques mois ou quelques années.
 
-Dans cette situation les périodes d`'apprentissages étaient rare, et elles étaient maîtrisée car on savait quand la mise à jour avait lieu.
+Dans cette situation les périodes d'apprentissages étaient rare, et elles étaient maîtrisée car on savait quand la mise à jour avait lieu.
 
-À l`'heure actuelle, pour certains des outils informatiques que j`'utilise, des changements se produisent presque chaque semaine.
+À l'heure actuelle, pour certains des outils informatiques que j'utilise, des changements se produisent presque chaque semaine.
 
-C`'est par exemple sur des sites comme GitHub ou Twitter.
+C'est par exemple sur des sites comme GitHub ou Twitter.
 
-Il s`'agit parfois de mises à jours d`'une interface qui évolue petit à petit, ou même link:https://fr.wikipedia.org/wiki/Test_A/B[A/B testing] et dans ce cas les évolutions peuvent aller et venir d`'un jour à l`'autre.
+Il s'agit parfois de mises à jours d'une interface qui évolue petit à petit, ou même link:https://fr.wikipedia.org/wiki/Test_A/B[A/B testing] et dans ce cas les évolutions peuvent aller et venir d'un jour à l'autre.
 
 Avec à chaque fois, tant que je ne me suis habitué à la mise à jour, des interruptions de concentrations.
 
-Les changements les plus petits sont parfois les plus déplaisants, quand je me retrouve sorti de mon idée en cours sans remarquer de changement notables{nbsp}: est-ce que ce cadre était légèrement plus à droite la dernière fois que j`'ai ouvert cette page, ou est cette icône qui maintenant des coins arrondis{nbsp}?
+Les changements les plus petits sont parfois les plus déplaisants, quand je me retrouve sorti de mon idée en cours sans remarquer de changement notables{nbsp}: est-ce que ce cadre était légèrement plus à droite la dernière fois que j'ai ouvert cette page, ou est cette icône qui maintenant des coins arrondis{nbsp}?
 
 On en vient à douter de sa perception, et je trouve assez juste la comparaison parfois faite avec le link:https://fr.wikipedia.org/wiki/Gaslighting[gaslighting].
 
-Si la capacité de déployer des nouvelles version de sites web plus facilement et jusqu`'à plusieurs fois par jour est un levier fantastique du côté des personnes qui développent, elle peut être extrêmement usante pour les personnes qui utilisent ces sites si cela signifie des perturbations dans leurs habitudes au même rythme.
+Si la capacité de déployer des nouvelles version de sites web plus facilement et jusqu'à plusieurs fois par jour est un levier fantastique du côté des personnes qui développent, elle peut être extrêmement usante pour les personnes qui utilisent ces sites si cela signifie des perturbations dans leurs habitudes au même rythme.
 
-En informatique on accorde beaucoup d`'attention link:https://blog.octo.com/gerer-les-evolutions-des-services-a-linterieur-de-votre-si/[à la compatibilité des interfaces techniques], on devrait en faire de même pour les interfaces humaines.
+En informatique on accorde beaucoup d'attention link:https://blog.octo.com/gerer-les-evolutions-des-services-a-linterieur-de-votre-si/[à la compatibilité des interfaces techniques], on devrait en faire de même pour les interfaces humaines.
 
-À l`'inverse de ces outils très changeants, j`'ai remarqué que d`'autres au contraire semble donner de l`'importance à ce sujet.
-Par exemple link:https://www.sublimetext.com[Sublime Text] ou link:https://www.jetbrains.com/fr-fr/idea/[Idea] font des mises à jours régulières, mais semble prendre soin de ne modifier leur interface qu`'au compte-goute et je pense que c`'est une des raisons qui fait que je les apprécie.
+À l'inverse de ces outils très changeants, j'ai remarqué que d'autres au contraire semble donner de l'importance à ce sujet.
+Par exemple link:https://www.sublimetext.com[Sublime Text] ou link:https://www.jetbrains.com/fr-fr/idea/[Idea] font des mises à jours régulières, mais semble prendre soin de ne modifier leur interface qu'au compte-goute et je pense que c'est une des raisons qui fait que je les apprécie.
 
-J`'ai l`'intuition qu`'une partie de l`'attrait d`'un certaine nombre d`'outils, comme par exemple les outils en ligne de commande a la même origine.
-En effet si certains de ces outils ont une interface assez complexes et parfois assez baroque, ils link:https://daniel.haxx.se/blog/2020/02/20/the-command-line-options-we-deserve/[prennent souvent soin de rester compatible d`'une version à l`'autre], et pour un outil en ligne de commande cela signifie que tout ce qui a fonctionné un moment donné devrait continuer à fonctionner de la même manière.
+J'ai l'intuition qu'une partie de l'attrait d'un certaine nombre d'outils, comme par exemple les outils en ligne de commande a la même origine.
+En effet si certains de ces outils ont une interface assez complexes et parfois assez baroque, ils link:https://daniel.haxx.se/blog/2020/02/20/the-command-line-options-we-deserve/[prennent souvent soin de rester compatible d'une version à l'autre], et pour un outil en ligne de commande cela signifie que tout ce qui a fonctionné un moment donné devrait continuer à fonctionner de la même manière.
 
-Il ne s`'agit pas de vouloir revenir à un "`bon vieux temps de quand les choses ne bougeaient pas`", mais de prendre conscience que chaque évolution sur l`'interface d`'un outil demande un réaprentissage aux personnes qui ont l`'habitude de l`'utiliser.
+Il ne s'agit pas de vouloir revenir à un "`bon vieux temps de quand les choses ne bougeaient pas`", mais de prendre conscience que chaque évolution sur l'interface d'un outil demande un réaprentissage aux personnes qui ont l'habitude de l'utiliser.
 
-Et même si le réaprentissage grandit avec la taille du changement, aucun changement n`'est "`gratuit`" et chacun demande un peu d`'énergie.
+Et même si le réaprentissage grandit avec la taille du changement, aucun changement n'est "`gratuit`" et chacun demande un peu d'énergie.

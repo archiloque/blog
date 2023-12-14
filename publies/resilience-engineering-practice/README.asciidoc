@@ -6,69 +6,69 @@ v0.1, 2018-10-22
 :article_description: Quelques idées pour fiabiliser votre système
 
 Ce 
-link:https://www.crcpress.com/Resilience-Engineering-in-Practice-A-Guidebook/Paries-Wreathall-Hollnagel/p/book/9781472420749[livre] est un ensemble d`'articles traitant de l`'ingénierie de la résilience.
-Cette discipline s`'intéresse à la manière de rendre des systèmes fiables.
+link:https://www.crcpress.com/Resilience-Engineering-in-Practice-A-Guidebook/Paries-Wreathall-Hollnagel/p/book/9781472420749[livre] est un ensemble d'articles traitant de l'ingénierie de la résilience.
+Cette discipline s'intéresse à la manière de rendre des systèmes fiables.
 
-Si elle contient une dose de théorie, elle ne propose pas d`'approche sur l`'étagère qu`'il suffirait d`'appliquer à la lettre.
-Au contraire, plusieurs chapitres s`'intéressent à la manière de décliner ses idées pour pouvoir les appliquer dans différents domaines comme l`'aviation ou la médecine.
+Si elle contient une dose de théorie, elle ne propose pas d'approche sur l'étagère qu'il suffirait d'appliquer à la lettre.
+Au contraire, plusieurs chapitres s'intéressent à la manière de décliner ses idées pour pouvoir les appliquer dans différents domaines comme l'aviation ou la médecine.
 
-Si ce texte ne parle pas d`'informatique, l`'approche et les exemples données s`'adaptent très bien à cet univers et fournissent des idées intéressantes à reprendre.
+Si ce texte ne parle pas d'informatique, l'approche et les exemples données s'adaptent très bien à cet univers et fournissent des idées intéressantes à reprendre.
 
 == Les trois fonctionnements
 
-Selon l`'une des approches du livre, l`'ingénierie de la résilience définit trois types de fonctionnement d`'un système{nbsp}:
+Selon l'une des approches du livre, l'ingénierie de la résilience définit trois types de fonctionnement d'un système{nbsp}:
 
 * Le fonctionnement normal, où les paramètres se trouvent dans les intervalles prédéfinis et où les procédures de régulations standards suffisent{nbsp};
 * Le fonctionnement anormal, où les paramètres se trouvent en dehors des limites établies et où des procédures spécifiques doivent être mises en œuvre pour maintenir le système opérationnel{nbsp};
-* Le mode d`'urgence, où il n`'est plus possible de compenser les conséquences des problèmes et où il faut faire preuve de capacité d`'adaptation et d`'inventivité.
+* Le mode d'urgence, où il n'est plus possible de compenser les conséquences des problèmes et où il faut faire preuve de capacité d'adaptation et d'inventivité.
 
-Une des bases de la résilience consiste à être capable d`'identifier dans quelle situation un système se trouve et donc d`'être en mesure de changer de mode de fonctionnement au bon moment.
-Au contraire, ne pas être en mesure de percevoir qu`'on a basculé dans un autre mode signifie continuer à appliquer des procédures
+Une des bases de la résilience consiste à être capable d'identifier dans quelle situation un système se trouve et donc d'être en mesure de changer de mode de fonctionnement au bon moment.
+Au contraire, ne pas être en mesure de percevoir qu'on a basculé dans un autre mode signifie continuer à appliquer des procédures
 qui sont potentiellement inadaptées à la situation courante.
 
-Il faut donc à la fois opérer le système et surveiller où on en est et quelles sont les marges de manœuvre à disposition pour éviter d`'être coincé·e dans une situation qu`'on ne maîtrise plus.
+Il faut donc à la fois opérer le système et surveiller où on en est et quelles sont les marges de manœuvre à disposition pour éviter d'être coincé·e dans une situation qu'on ne maîtrise plus.
 
 == Anticiper & être créatif
 
-Pour qu`'un système soit résilient, il doit réunir deux éléments{nbsp}:
+Pour qu'un système soit résilient, il doit réunir deux éléments{nbsp}:
 
 * Être prêt à réagir aux problèmes connus, par exemples en ayant des procédures éprouvées à disposition{nbsp};
 * Avoir une capacité de créativité face aux problèmes nouveaux.
 
-Le premier permet de gérer au mieux le cas du fonctionnement anormal, pour éviter de basculer immédiatement du mode normal au mode urgence, le second d`'éviter la catastrophe quand la zone d`'urgence est atteinte.
+Le premier permet de gérer au mieux le cas du fonctionnement anormal, pour éviter de basculer immédiatement du mode normal au mode urgence, le second d'éviter la catastrophe quand la zone d'urgence est atteinte.
 
-Malheureusement en pratique les deux s`'opposent{nbsp}: les compétences nécessaires à affronter les situations de crises ont tendance à se perdre dans l`'effort continu pour anticiper toutes les situations et à préparer des réponses toutes faites.
-C`'est ce que le livre appelle "`l`'ironie de la résilience`".
+Malheureusement en pratique les deux s'opposent{nbsp}: les compétences nécessaires à affronter les situations de crises ont tendance à se perdre dans l'effort continu pour anticiper toutes les situations et à préparer des réponses toutes faites.
+C'est ce que le livre appelle "`l'ironie de la résilience`".
 
-Dans l`'informatique, cela se traduit par la volonté de fournir des procédures prêtes à l`'emploi aux personnes s`'occupant du support des systèmes, ce qui permet de diminuer les compétences nécessaires pour occuper ces postes, et donc les salaires.
+Dans l'informatique, cela se traduit par la volonté de fournir des procédures prêtes à l'emploi aux personnes s'occupant du support des systèmes, ce qui permet de diminuer les compétences nécessaires pour occuper ces postes, et donc les salaires.
 
-Par ailleurs, plus un système est fiable, moins il fournit d`'éléments permettant sur lesquels s`'appuyer pour l`'améliorer.
+Par ailleurs, plus un système est fiable, moins il fournit d'éléments permettant sur lesquels s'appuyer pour l'améliorer.
 Il faut alors apprendre à utiliser la matière fournis par les problèmes moins graves ou par les situations où un problème aurait pu se poser, pour continuer à progresser.
 
 === Les quatre facteurs
 
 Pour être résilient, un système doit avoir quatre caractéristiques{nbsp}:
 
-* Savoir quoi faire, c`'est-à-dire savoir comment répondre aux évènements habituels et inhabituels{nbsp};
-* Savoir quoi chercher, c`'est-à-dire monitorer les éléments qui permettent d`'identifier ce qui est ou qui pourrait être une menace pour le fonctionnement du système, autant dans le système que dans son environnement{nbsp};
-* Savoir à quoi s`'attendre, c`'est-à-dire être en mesure d`'anticiper les développements et les menaces futurs{nbsp};
-* Savoir ce qui est arrivé, c`'est-à-dire tirer les bonnes leçons du passé, aussi bien des échecs que des réussites.
+* Savoir quoi faire, c'est-à-dire savoir comment répondre aux évènements habituels et inhabituels{nbsp};
+* Savoir quoi chercher, c'est-à-dire monitorer les éléments qui permettent d'identifier ce qui est ou qui pourrait être une menace pour le fonctionnement du système, autant dans le système que dans son environnement{nbsp};
+* Savoir à quoi s'attendre, c'est-à-dire être en mesure d'anticiper les développements et les menaces futurs{nbsp};
+* Savoir ce qui est arrivé, c'est-à-dire tirer les bonnes leçons du passé, aussi bien des échecs que des réussites.
 
 Rendre un système plus fiable supposer de travailler à améliorer les quatre axes à la fois.
 
 == Le local et le global
 
-Dans un système d`'une certaine taille, les choses se compliquent de plusieurs manières.
+Dans un système d'une certaine taille, les choses se compliquent de plusieurs manières.
 
-Tout d`'abord la capacité à anticiper les conséquences des problèmes diminuent{nbsp}: une erreur dans un sous-sytème peut avoir des conséquences inattendues sur un autre à cause de comportements émergents.
-Cela peut aussi être le cas lors d`'une intervention visant à restaurer le fonctionnement{nbsp}: vouloir améliorer la situation dans une partie peut avoir des résultats catastrophiques ailleurs si on ne maîtrise pas suffisamment bien les dépendances entre les différents éléments, et la manières dont elles influent.
+Tout d'abord la capacité à anticiper les conséquences des problèmes diminuent{nbsp}: une erreur dans un sous-sytème peut avoir des conséquences inattendues sur un autre à cause de comportements émergents.
+Cela peut aussi être le cas lors d'une intervention visant à restaurer le fonctionnement{nbsp}: vouloir améliorer la situation dans une partie peut avoir des résultats catastrophiques ailleurs si on ne maîtrise pas suffisamment bien les dépendances entre les différents éléments, et la manières dont elles influent.
 
-Cela rend beaucoup plus difficile d`'établir des procédures prêtes à l`'emploi fiables, car il faut en permanence vérifier qu`'elles restent pertinentes, ce qui passe par le fait de connaître les modifications de dépendances entre systèmes et leurs impacts.
+Cela rend beaucoup plus difficile d'établir des procédures prêtes à l'emploi fiables, car il faut en permanence vérifier qu'elles restent pertinentes, ce qui passe par le fait de connaître les modifications de dépendances entre systèmes et leurs impacts.
 
 == Pour conclure
 
-J`'ai trouvé la lecture du livre très enrichissante{nbsp}: il se lit bien, en alternant théorie et questions pratiques.
+J'ai trouvé la lecture du livre très enrichissante{nbsp}: il se lit bien, en alternant théorie et questions pratiques.
 
-Les questions sur les difficultés à combiner procédures et créativités sont très intéressantes car dans l`'informatique le réflexe  naturel est de s`'appuyer sur des outils au risque de négliger les personnes.
+Les questions sur les difficultés à combiner procédures et créativités sont très intéressantes car dans l'informatique le réflexe  naturel est de s'appuyer sur des outils au risque de négliger les personnes.
 
-Les idées sur la manière de former les personnes sur ces sujets m`'a donné des idées à tenter.
+Les idées sur la manière de former les personnes sur ces sujets m'a donné des idées à tenter.

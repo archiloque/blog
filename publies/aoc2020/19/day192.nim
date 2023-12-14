@@ -49,7 +49,7 @@ while input[inputLineIndex] != "":
         singleChar: false)
     rulesById[ruleIndex] = rule
   else:
-    raise newException(ValueError, "Can`'t parse [" & currentLine & "]")
+    raise newException(ValueError, "Can't parse [" & currentLine & "]")
   inputLineIndex += 1
 
 var regex = "(?(DEFINE)"
@@ -59,5 +59,5 @@ for ruleIndex, rule in rulesById:
 regex &= ")^" & rulesById[0].calculateRule() & "$"
 
 echo(regex)
-# Nim doesn`'t support PCRE Regex so I used perl for the answer :
-# perl -ne `'while(/THE_REX/g){print "$&\n";}`' FILE_NAME | wc -l
+# Nim doesn't support PCRE Regex so I used perl for the answer :
+# perl -ne 'while(/THE_REX/g){print "$&\n";}' FILE_NAME | wc -l

@@ -1,16 +1,16 @@
 def draw_path(grid, path, wire_index)
   current_position = {line: 0, column: 0}
   distance = 0
-  path.split(`',`').each do |path_fragment|
+  path.split(',').each do |path_fragment|
     path_fragment_direction = path_fragment[0]
     case path_fragment_direction
-    when `'R`'
+    when 'R'
       direction = {line: 0, column: 1}
-    when `'L`'
+    when 'L'
       direction = {line: 0, column: -1}
-    when `'U`'
+    when 'U'
       direction = {line: 1, column: 0}
-    when `'D`'
+    when 'D'
       direction = {line: -1, column: 0}
     else
       raise path_fragment_direction

@@ -1,33 +1,33 @@
-= Idée de jeu{nbsp}: simulateur de responsable d`'architecture SI
+= Idée de jeu{nbsp}: simulateur de responsable d'architecture SI
 Julien Kirch
 v0.1, 2017-09-25
 :article_lang: fr
 :article_description: Un jeu dont vous êtes le participant
 
-Après discussion avec Christophe Thibault j`'ai eu une idée de jeu.
-J`'aimerai vos avis / remarques / critiques / suggestions.
+Après discussion avec Christophe Thibault j'ai eu une idée de jeu.
+J'aimerai vos avis / remarques / critiques / suggestions.
 
-Dans le jeu vous incarnez le responsable d`'architecture d`'une grande entreprise.
+Dans le jeu vous incarnez le responsable d'architecture d'une grande entreprise.
 
 == Objectifs du jeu
 
 * Faire comprendre comment fonctionne un SI vu de loin
-* Faire comprendre que le décisions d`'architectures se font entre des critères contradictoires et avec des informations incomplètes
-* Faire comprendre le travail d`'un·e responsable d`'archi
+* Faire comprendre que le décisions d'architectures se font entre des critères contradictoires et avec des informations incomplètes
+* Faire comprendre le travail d'un·e responsable d'archi
 * Être fun, notament en caricaturant les choses
 * 0 prérequis pour la personne qui joue
 * Parties courtes (5 minutes)
-* Pas trop compliqué et long à développer pour une v0, et facile d`'ajouter des items
+* Pas trop compliqué et long à développer pour une v0, et facile d'ajouter des items
 
 == Principes
 
 Le jeu est en tour par tour, chaque tour représente un trimestre, je pense le faire durer 4 ans donc 16 tours.
 
-Après les 16 tours le jeu s`'arrête, on affiche les résultats, et le·a joueur·se peut rejouer.
+Après les 16 tours le jeu s'arrête, on affiche les résultats, et le·a joueur·se peut rejouer.
 
-Le jeu repose beaucoup sur l`'aléatoire.
+Le jeu repose beaucoup sur l'aléatoire.
 
-Les données sont floues{nbsp}: donnés sous formes d `'intervalles et/ou plus ou moins faux. Cela représente la perciption du·de la DSI.
+Les données sont floues{nbsp}: donnés sous formes d 'intervalles et/ou plus ou moins faux. Cela représente la perciption du·de la DSI.
 
 À chaque tour le·a joueur·se choisit comment pendant le trimestre{nbsp}:
 
@@ -35,7 +35,7 @@ Les données sont floues{nbsp}: donnés sous formes d `'intervalles et/ou plus o
 * il investit son temps perso
 * il investit son budget
 
-Pour chaque cas il s`'agit de répartir X points entre plusieurs axes.
+Pour chaque cas il s'agit de répartir X points entre plusieurs axes.
 
 Comme tableau de bord le·a joueur·se a quelques indicateurs, par exemple{nbsp}:
 
@@ -44,7 +44,7 @@ Comme tableau de bord le·a joueur·se a quelques indicateurs, par exemple{nbsp}
 * adaptation aux besoins du SI
 * adaptabilité du SI
 * le coût du SI
-* l`'ambiance
+* l'ambiance
 
 Comme dit plus haut, ces données ne sont que partiellement fiables.
 
@@ -60,7 +60,7 @@ Exemples{nbsp}:
 
 À chaque tour des évènements qui demandent des décisions  surviennent{nbsp}:
 
-* un tech lead veut choisir un nouveau langage qui promet de faire ça, est ce qu`'on accepte{nbsp}?
+* un tech lead veut choisir un nouveau langage qui promet de faire ça, est ce qu'on accepte{nbsp}?
 * un éditeur promet un outil
 * un projet démarre, voila les options possibles
 * un outil arrive en fin de vie, que faire des projets{nbsp}?
@@ -74,8 +74,8 @@ Pour chaque réponse possible on affiche les avantages et les inconvénients, av
 
 Exemple{nbsp}:
 
-L`'éditeur Pythie promet un outil pour harmoniser la création des loutres{nbsp}:
-Il devrait baisser le prix de X% tout en limitant l`'adaptabilité de Y%, les développeur·euse·s n`'aiment pas ce type d`'outil
+L'éditeur Pythie promet un outil pour harmoniser la création des loutres{nbsp}:
+Il devrait baisser le prix de X% tout en limitant l'adaptabilité de Y%, les développeur·euse·s n'aiment pas ce type d'outil
 Oui / Non{nbsp}?
 
 Les évènement sont aléatoires, mais le pool des possibles dépend des variables.
@@ -84,10 +84,10 @@ De même pour les réponses possibles, ainsi que la véracité et la précisions
 Exemples{nbsp}:
 
 * "`une techno est en fin de vie sans prévenir`" arrive plus souvent si le niveau technique est bas
-* en cas de soucis, le niveau de fourberie permet d`'avoir l`'option de dénoncer un bouc-émissaire, au risque de baisser le niveau de confiance (sans que le·a joueur·euse le sache)
-* s`'il n`'a pas la confiance des personnes, les chiffres présentés seront biaisés dans le sens qui les arrangent
+* en cas de soucis, le niveau de fourberie permet d'avoir l'option de dénoncer un bouc-émissaire, au risque de baisser le niveau de confiance (sans que le·a joueur·euse le sache)
+* s'il n'a pas la confiance des personnes, les chiffres présentés seront biaisés dans le sens qui les arrangent
 
-En fonction des variables et du hasard, les décisions vont fonctionner ou pas, et le·a joueur·se en est informé·e de manière macro: "`l`'outil machin fonctionne mieux que prévu`".
+En fonction des variables et du hasard, les décisions vont fonctionner ou pas, et le·a joueur·se en est informé·e de manière macro: "`l'outil machin fonctionne mieux que prévu`".
 
 À chaque tour il est également possible de lancer des actions{nbsp}:
 
@@ -108,6 +108,6 @@ Et en fonction du profil, la manière dont le DSI a été nommé{nbsp}:
 
 * ancien·ne tech lead qui a monté
 * ancien·ne tech lead qui a fait virer son boss
-* a impressionné le patron lors d`'une conférence
+* a impressionné le patron lors d'une conférence
 
 Cela définit en partie la répartition de départ des points.

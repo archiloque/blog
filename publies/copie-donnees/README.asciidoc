@@ -6,11 +6,11 @@ v0.1, 2018-05-28
 
 Une checklist de questions à se poser quand on copie des données entre deux systèmes.
 
-Répondre à ces questions ne vous garantit pas tout se passera bien, mais ne pas y répondre c`'est la quasi-certitude que vous aurez des mauvaises surprises.
+Répondre à ces questions ne vous garantit pas tout se passera bien, mais ne pas y répondre c'est la quasi-certitude que vous aurez des mauvaises surprises.
 
 Voir link:http://archiloque.net/blog/copies-donnee/[ici] pour savoir repérer tous les cas de copies.
 
-* Comment allez-vous monitorer l`'ensemble du système{nbsp}?
+* Comment allez-vous monitorer l'ensemble du système{nbsp}?
 * Qui sera chargé de faire que ça fonctionne{nbsp}?
 * La source peut-elle modifier les données{nbsp}?
 ** Si oui que se passe-t-il quand le renvoi au système source échoue{nbsp}?
@@ -30,8 +30,8 @@ Voir link:http://archiloque.net/blog/copies-donnee/[ici] pour savoir repérer to
 * Que se passe-t-il quand le format de donnée change{nbsp}?
 * Que se passe-t-il quand des données sont supprimées{nbsp}?
 * Le nombre de copies peut-il augmenter{nbsp}?
-** Si oui quel en est l`'impact{nbsp}?
-* Que se passe-t-il en cas d`'indisponibilité de la source{nbsp}?
+** Si oui quel en est l'impact{nbsp}?
+* Que se passe-t-il en cas d'indisponibilité de la source{nbsp}?
 * Le mécanisme de copie est-il compatible avec le système de gestion de disponibilité de la source (bascule actif-passif ou autre){nbsp}?
-* Si des copies proviennent de plusieurs sources comment gérer que les informations n`'arriveront pas dans le bon ordre{nbsp}?
+* Si des copies proviennent de plusieurs sources comment gérer que les informations n'arriveront pas dans le bon ordre{nbsp}?
 * La sécurité des données est-elle du même niveau dans les systèmes copies que dans la source{nbsp}?

@@ -1,11 +1,11 @@
-require `'set`'
+require 'set'
 
 module Asciidoctor
 
   # Fake template
   class DebuggerTemplate
     def render(scope, params)
-      `'`'
+      ''
     end
   end
 

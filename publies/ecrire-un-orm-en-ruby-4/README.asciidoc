@@ -17,43 +17,43 @@ ifndef::source-highlighter[]
 endif::[]
 
 ifeval::["{doctype}" == "book"]
-Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir introduit le sujet>>, <<../ecrire-un-orm-en-ruby-2/README.adoc#ORM-2,avoir posé les bases de l`'outil>> puis <<../ecrire-un-orm-en-ruby-3/README.adoc#ORM-3,avoir ajouté la génération des requêtes>>, je vais m`'occuper ici du filtrage et de l`'ordre des résultats dans les requêtes de sélection.
+Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir introduit le sujet>>, <<../ecrire-un-orm-en-ruby-2/README.adoc#ORM-2,avoir posé les bases de l'outil>> puis <<../ecrire-un-orm-en-ruby-3/README.adoc#ORM-3,avoir ajouté la génération des requêtes>>, je vais m'occuper ici du filtrage et de l'ordre des résultats dans les requêtes de sélection.
 endif::[]
 ifeval::["{doctype}" != "book"]
-Ceci est le troisième article d`'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
+Ceci est le troisième article d'une série de cinq décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 
-Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet], link:../ecrire-un-orm-en-ruby-2/[avoir posé les bases de l`'outil] puis link:../ecrire-un-orm-en-ruby-3/[avoir ajouté la génération des requêtes], je vais m`'occuper ici du filtrage et de l`'ordre des résultats dans les requêtes de sélection.
+Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet], link:../ecrire-un-orm-en-ruby-2/[avoir posé les bases de l'outil] puis link:../ecrire-un-orm-en-ruby-3/[avoir ajouté la génération des requêtes], je vais m'occuper ici du filtrage et de l'ordre des résultats dans les requêtes de sélection.
 endif::[]
 
-À la fin de l`'article, il sera possible d`'utiliser ce genre d`'appels{nbsp}:
+À la fin de l'article, il sera possible d'utiliser ce genre d'appels{nbsp}:
 
 [source,ruby]
 ----
-Color.where(`'name = ?`', `'Black`').first
-Color.where(`'name = ?`', `'b*`').order_by(`'name desc`').all
+Color.where('name = ?', 'Black').first
+Color.where('name = ?', 'b*').order_by('name desc').all
 ----
 
-== L`'approche "`builder`"
+== L'approche "`builder`"
 
-Ce type d`'API utilise souvent le design pattern "`builder`" qui consiste à stocker les différent paramètres d`'une requête dans des objets et les utiliser au moment où la requête est exécutée.
+Ce type d'API utilise souvent le design pattern "`builder`" qui consiste à stocker les différent paramètres d'une requête dans des objets et les utiliser au moment où la requête est exécutée.
 
 Ainsi la commande
 
 [source,ruby]
 ----
-Color.where(`'name = ?`', `'b*`').order_by(`'name desc`').all
+Color.where('name = ?', 'b*').order_by('name desc').all
 ----
 
 peut se décomposer en
 
 [source,ruby]
 ----
-query_parameters_1 = Color.where(`'name = ?`', `'b*`')
-query_parameters_2 = query_parameters_1.order_by(`'name desc`')
+query_parameters_1 = Color.where('name = ?', 'b*')
+query_parameters_2 = query_parameters_1.order_by('name desc')
 result = query_parameters_2.all
 ----
 
-Le premier appel `Color.where` construit un objet qui contient la condition `where`, appeler `order_by` sur cet objet construit un autre objet qui contient la condition `where` ainsi que l`'ordre de tri du `order_by`.
+Le premier appel `Color.where` construit un objet qui contient la condition `where`, appeler `order_by` sur cet objet construit un autre objet qui contient la condition `where` ainsi que l'ordre de tri du `order_by`.
 
 Finalement appeler `all` sur le dernier objet utilise tous les paramètres stockés jusque là pour construire la requête.
 
@@ -61,15 +61,15 @@ Quand on enchaîne plusieurs appels comme dans
 
 [source,ruby]
 ----
-Color.where(`'name = ?`', `'b*`').order_by(`'name desc`').all
+Color.where('name = ?', 'b*').order_by('name desc').all
 ----
 
-le code construit donc une suite d`'objets, un à chaque appel.
+le code construit donc une suite d'objets, un à chaque appel.
 
 == La classe `QueryParameters`
 
-La classe `QueryParameters` va donc contenir les différents types de paramètres qu`'on peut utiliser dans une requêtes.
-Dans notre exemple je vais couvrir le cas des filtres, de l`'ordre et du nombre d`'éléments remontés, mais dans un ORM plus complet il peut s`'agit de l`'ensemble de la grammaire SQL : `group by`, `distinct`, pouvoir choisir quels champs sont remontés…
+La classe `QueryParameters` va donc contenir les différents types de paramètres qu'on peut utiliser dans une requêtes.
+Dans notre exemple je vais couvrir le cas des filtres, de l'ordre et du nombre d'éléments remontés, mais dans un ORM plus complet il peut s'agit de l'ensemble de la grammaire SQL : `group by`, `distinct`, pouvoir choisir quels champs sont remontés…
 
 Voici le début de la classe avec ses attributs{nbsp}:
 
@@ -91,11 +91,11 @@ En plus des paramètres pour les `where` et les `order by`, elle a besoin de con
 
 Comme décrit plus haut, appeler `where` ou `order_by` construit une nouvelle instance de `QueryParameters` en ajoutant le paramètre correspondant et la renvoie.
 
-La méthode `order_by` prend un seul paramètre qui est une chaîne de caractère qui contient l`'information de tri comme ``'name desc`'`.
-Ils sont stockés sous la forme d`'un tableau dans l`'attribut `@order_bys`.
+La méthode `order_by` prend un seul paramètre qui est une chaîne de caractère qui contient l'information de tri comme `'name desc'`.
+Ils sont stockés sous la forme d'un tableau dans l'attribut `@order_bys`.
 
-La méthode `where` prend un nombre variable de paramètres, le premier est une chaîne de caractère qui contient l`'expression SQL comme ``'name = ?`'` et les éventuels paramètres suivants contiennent les valeurs à utiliser comme ``'Black`'` et auront donc des types variés (chaîne de caractères, nombre entier ou à virgule flottante).
-Ils sont stockés sous la forme d`'un tableau de table de hachages (`Hash`) dans l`'attribut `@wheres`, .
+La méthode `where` prend un nombre variable de paramètres, le premier est une chaîne de caractère qui contient l'expression SQL comme `'name = ?'` et les éventuels paramètres suivants contiennent les valeurs à utiliser comme `'Black'` et auront donc des types variés (chaîne de caractères, nombre entier ou à virgule flottante).
+Ils sont stockés sous la forme d'un tableau de table de hachages (`Hash`) dans l'attribut `@wheres`, .
 
 .model.rb
 [source,ruby]
@@ -127,7 +127,7 @@ end
 
 == Les méthodes du modèle
 
-Cela permet de construire un `QueryParameters` à partir d`'un `QueryParameters` existant, mais il faut aussi pouvoir construire le premier `QueryParameters` à partir du modèle, par exemple quand on appelle `Color.where(`'name = ?`', `'Black`')`.
+Cela permet de construire un `QueryParameters` à partir d'un `QueryParameters` existant, mais il faut aussi pouvoir construire le premier `QueryParameters` à partir du modèle, par exemple quand on appelle `Color.where('name = ?', 'Black')`.
 
 Cela signifie ajouter ces mêmes méthodes aux modèles, qui initialisent le `QueryParameters` avec la classe du modèle et appellent les méthodes correspondantes sur le `QueryParameters`.
 
@@ -155,7 +155,7 @@ class Model
 end
 ----
 
-Avec cela je peux appeler `Color.where(`'name = ?`', `'b*`').order_by(`'name desc`')` et récupérer un `QueryParameters` avec les bonnes données, reste ensuite à s`'occuper de la génération de la requête.
+Avec cela je peux appeler `Color.where('name = ?', 'b*').order_by('name desc')` et récupérer un `QueryParameters` avec les bonnes données, reste ensuite à s'occuper de la génération de la requête.
 
 == La requête
 
@@ -177,11 +177,11 @@ SELECT column_name_1, column_name_2
   ORDER BY column_X asc, column_Y desc
 ----
 
-Pour les `where` et `order by` la logique est la même{nbsp}: s`'il existe au moins un paramétre de ce type, ajouter la clause en concaténants les éléments séparés par des `AND` ou des virgules et pour le `where` il faut ensuite passer les valeurs à la requête sous forme d`'un tableau contenant l`'ensemble des éléments dans le bon ordre.
+Pour les `where` et `order by` la logique est la même{nbsp}: s'il existe au moins un paramétre de ce type, ajouter la clause en concaténants les éléments séparés par des `AND` ou des virgules et pour le `where` il faut ensuite passer les valeurs à la requête sous forme d'un tableau contenant l'ensemble des éléments dans le bon ordre.
 
 La partie finale de la méthode qui instancie et renseigne les modèles est reprise de la méthode `Model#all`.
 
-C`'est un peu fastidieux mais pas si long que ça{nbsp}:
+C'est un peu fastidieux mais pas si long que ça{nbsp}:
 
 .model.rb
 [source,ruby]
@@ -195,20 +195,20 @@ class QueryParameters
         map { |column_name| SQLite3::Database.quote(column_name) }
 
     if @wheres.empty?
-      where_clause = `' `'
+      where_clause = ' '
       where_params = []
     else
       where_content = @wheres.map do |where| 
         where[:expression]
-      end.join(`' AND `')
+      end.join(' AND ')
       where_clause = "WHERE #{where_content} "
       where_params = @wheres.map { |where| where[:parameters] }.flatten
     end
 
     if @order_bys.empty?
-      order_by_clause = `'`'
+      order_by_clause = ''
     else
-      order_by_clause = "ORDER BY #{@order_bys.join(`', `')} "
+      order_by_clause = "ORDER BY #{@order_bys.join(', ')} "
     end
 
     # Les requêtes vont ressembler à
@@ -217,7 +217,7 @@ class QueryParameters
     #   WHERE column_A = ? AND column_B < ?
     #   ORDER BY column_X asc, column_Y desc
     DATABASE.execute(
-        "SELECT #{quoted_columns_names.join(`', `')} " +
+        "SELECT #{quoted_columns_names.join(', ')} " +
             "FROM #{@model_class.quoted_table_name} " +
             where_clause +
             order_by_clause,
@@ -235,7 +235,7 @@ class QueryParameters
 end
 ----
 
-Ne me reste plus qu`'à remplacer l`'implémentation de `Model#all` existante par un appel à cette nouvelle méthode, pour pouvoir récupérer tous les éléments d`'un modèle.
+Ne me reste plus qu'à remplacer l'implémentation de `Model#all` existante par un appel à cette nouvelle méthode, pour pouvoir récupérer tous les éléments d'un modèle.
 
 .model.rb
 [source,ruby]
@@ -250,38 +250,38 @@ class Model
 end
 ----
 
-C`'est le moment de tester{nbsp}:
+C'est le moment de tester{nbsp}:
 
 .script.rb
 [source,ruby]
 ----
-require_relative `'model`'
-require_relative `'models`'
+require_relative 'model'
+require_relative 'models'
 
 Brick.truncate
 Color.truncate
 
 black = Color.new
-black.name = `'Black`'
+black.name = 'Black'
 black.insert
 
 yellow = Color.new
-yellow.name = `'Yellow`'
+yellow.name = 'Yellow'
 yellow.insert
 
 brick = Brick.new
 brick.color_id = black.id
-brick.name = `'Awesome brick`'
-brick.description = `'This brick is awesome`'
+brick.name = 'Awesome brick'
+brick.description = 'This brick is awesome'
 brick.insert
 
-puts `'# All colors`'
+puts '# All colors'
 Color.all.each do |color|
   puts color.id
   puts color.name
 end
 
-puts `'# All Bricks`'
+puts '# All Bricks'
 Brick.all.each do |brick|
   puts brick.id
   puts brick.name
@@ -289,14 +289,14 @@ Brick.all.each do |brick|
   puts brick.color_id
 end
 
-puts `'# Black color`'
-Color.where(`'name = ?`', `'Black`').all.each do |color|
+puts '# Black color'
+Color.where('name = ?', 'Black').all.each do |color|
   puts color.id
   puts color.name
 end
 
-puts `'# Colors by name`'
-Color.order_by(`'name desc`').all.each do |color|
+puts '# Colors by name'
+Color.order_by('name desc').all.each do |color|
   puts color.id
   puts color.name
 end
@@ -329,12 +329,12 @@ Black
 
 Pour terminer cet article, je vais encore ajouter un cas, celui de la clause `limit` qui permet de limiter le nombre de résultats à récupérer en spécifiant un entier.
 
-Au lieu de stocker les différentes valeurs comme pour `where` et `order by`, on ne conserve qu`'une valeur.
+Au lieu de stocker les différentes valeurs comme pour `where` et `order by`, on ne conserve qu'une valeur.
 On pourrait aussi envisager de lever une exception si une valeur a déjà été spécifiée plus tôt dans la chaîne des `QueryParameters`.
 
-`limit` est le plus souvent utilisé indirectement quand on veut récupérer une seule valeur, sous la forme d`'une méthode `first` qui spécifie le `limit` à 1, puis renvoie le premier élément du tableau de résultat.
+`limit` est le plus souvent utilisé indirectement quand on veut récupérer une seule valeur, sous la forme d'une méthode `first` qui spécifie le `limit` à 1, puis renvoie le premier élément du tableau de résultat.
 
-Cette méthode me sera utile dans l`'article suivant pour les requêtes de relations.
+Cette méthode me sera utile dans l'article suivant pour les requêtes de relations.
 
 .model.rb
 [source,ruby]
@@ -363,7 +363,7 @@ class QueryParameters
   def all
     # …
     if @limit.nil?
-      limit_clause = `' `'
+      limit_clause = ' '
     else
       limit_clause = "LIMIT #{@limit} "
     end
@@ -375,7 +375,7 @@ class QueryParameters
     #   ORDER BY column_X asc, column_Y desc
     #   LIMIT 10
     DATABASE.execute(
-        "SELECT #{quoted_columns_names.join(`', `')} " +
+        "SELECT #{quoted_columns_names.join(', ')} " +
             "FROM #{@model_class.quoted_table_name} " +
             where_clause +
             order_by_clause +
@@ -411,8 +411,8 @@ end
 ----
 
 ifeval::["{doctype}" == "book"]
-C`'est tout pour le moment, dans l`'article suivant j`'ajouterai une gestion minimale des relations entre objets permettant de parcourir une grappe de dépendances.
+C'est tout pour le moment, dans l'article suivant j'ajouterai une gestion minimale des relations entre objets permettant de parcourir une grappe de dépendances.
 endif::[]
 ifeval::["{doctype}" != "book"]
-C`'est tout pour le moment, link:../ecrire-un-orm-en-ruby-5/[dans l`'article suivant] j`'ajouterai une gestion minimale des relations entre objets permettant de parcourir une grappe de dépendances.
+C'est tout pour le moment, link:../ecrire-un-orm-en-ruby-5/[dans l'article suivant] j'ajouterai une gestion minimale des relations entre objets permettant de parcourir une grappe de dépendances.
 endif::[]

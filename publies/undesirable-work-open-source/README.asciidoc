@@ -27,7 +27,7 @@ So you have lots of people using a software component, and a lower number of vol
 == All work and no play makes jack a dull boy
 
 Some of this work to be done is fun, or more precisely some of the work is seen as desirable by a significant proportion of the volunteers able to contribute to it.
-The precision is important, because not everybody enjoys the same things, and even a single person doesn`'t always want to do the same kind of work all the time.
+The precision is important, because not everybody enjoys the same things, and even a single person doesn't always want to do the same kind of work all the time.
 
 But some parts tend to attract less people than other ones, which means there is undesirable work to be done, and it can even be a bottleneck for the project.
 Two common examples I have seen are bug triaging and investigating problems that happen on uncommon hardware.
@@ -36,7 +36,7 @@ The part that fascinates me is how to deal with the demands of the users that ar
 
 A sad element of volunteering for open source is that even if users are not customers and know that the work of volunteers is done in their free time, they can act like paying clients with a for-profit company.
 
-It can be even worse because sometimes users can try to use guilt or other emotional tricks to manipulate the volunteers into doing what they ask, or to punish them when they can`'t have what they want, for example lamenting angrily that they are forced to use a proprietary solution unless their demands are met.
+It can be even worse because sometimes users can try to use guilt or other emotional tricks to manipulate the volunteers into doing what they ask, or to punish them when they can't have what they want, for example lamenting angrily that they are forced to use a proprietary solution unless their demands are met.
 
 == From reasonable, to not reasonable at all
 
@@ -53,11 +53,11 @@ But in these two cases, the required change is making a visible difference for t
 === And the other ones
 
 And then there are the other situations, for example when the user wants a change is ideologically based.
-I don`'t think that ideological criteria are irrelevant: ideology is one of the big reasons that people contribute or use open source. I`'m using this term to be able to differentiate the two types of changes.
+I don't think that ideological criteria are irrelevant: ideology is one of the big reasons that people contribute or use open source. I'm using this term to be able to differentiate the two types of changes.
 
 The first example, which I already wrote about link:../systemd-linux-open-source/[here] in French, is {s}, which is a family of components that you can use to manage lots of the grunt work required to run Linux on a machine, like dealing with starting and stopping other components.
 
-{s}`'s approach is disliked by many Linux developers.
+{s}'s approach is disliked by many Linux developers.
 On the other hand, {s} provides a standardized way to do things that before it tended to be different between Linux distributions.
 
 Without {s}, the people in charge of integrating software components into a Linux distribution (which are called "`packagers`") often needed to write or customize some scripts to make it work.
@@ -71,29 +71,29 @@ The discussions about {s} were heated.
 Some of them were ideological and others involved real technical problems or limitations of {s}.
 But I was really surprised how few of them mentioned the "`it can reduce undesirable work done by packagers, which is a bottleneck for our project`" argument.
 
-I don`'t mean that maintainers workload should be the only and single criteria -- because there are probably case where following it would be the wrong choice -- but I think it should be heavily taken into account.
+I don't mean that maintainers workload should be the only and single criteria -- because there are probably case where following it would be the wrong choice -- but I think it should be heavily taken into account.
 
-And asking for someone for more free contributions should not be asked lightly: I can`'t imagine how it felt for maintainers to be pressured like that.
+And asking for someone for more free contributions should not be asked lightly: I can't imagine how it felt for maintainers to be pressured like that.
 
 But at least in this case, there was an alternative available.
 
-The more extreme option is when it`'s not the case, for example link:https://lwn.net/Articles/912202/[when you want to use a specific tool, not because you love it, but because there is no adequate alternative available] (in this case, it`'s about a tool written in Rust which is still an open and controversial subject).
+The more extreme option is when it's not the case, for example link:https://lwn.net/Articles/912202/[when you want to use a specific tool, not because you love it, but because there is no adequate alternative available] (in this case, it's about a tool written in Rust which is still an open and controversial subject).
 Again the discussions have technical aspects that must be addressed.
-But I`'m surprised that people can say no to a proposition when there is no alternative.
+But I'm surprised that people can say no to a proposition when there is no alternative.
 
 What should the contributors do in this case, write a new tool that matches the requirements decided by others?
-Again I can`'t imagine how they feel in this situation.
+Again I can't imagine how they feel in this situation.
 
 _Technical note: I wonder if the "`we need to replace an outdated C unmaintained implementation by an up to date and maintained Rust version`" will happen more and more, because on one hand it would help to increase Rust adoption, but on the other hand it could also make some people feel cornered, which has often nasty consequences down the road._
 
-== What is to be done? Don`'t forget that maintainer are people
+== What is to be done? Don't forget that maintainer are people
 
-The solution is obvious, but of course it`'s not a single bullet: the effort provided by maintainers should be taken into account in a better way, in the way choices are made but also in the way choices are discussed.
+The solution is obvious, but of course it's not a single bullet: the effort provided by maintainers should be taken into account in a better way, in the way choices are made but also in the way choices are discussed.
 
-Again I don`'t think that it should be the single criteria to use, but it should probably be used more.
+Again I don't think that it should be the single criteria to use, but it should probably be used more.
 
 More precisely, it should be used more explicitly.
-Because from what I understand, even if it`'s not explicitly mentioned, it`'s often taken into account implicitly, because when a decision is taken that frustrate the contributors, contributors can -- voluntarily or not -- not do the work that is asked to them.
+Because from what I understand, even if it's not explicitly mentioned, it's often taken into account implicitly, because when a decision is taken that frustrate the contributors, contributors can -- voluntarily or not -- not do the work that is asked to them.
 
 So it should be used more because it may increase the odds that the decisions are applied.
 
@@ -101,4 +101,4 @@ But also it should be used more because it would be the right thing to do:
 people volunteer to work without being paid.
 Their effort should be treated with respect.
 
-Because if open source software can be created without respecting the people who work on it, it wouldn`'t have the high moral ground it`'s supposed to have.
+Because if open source software can be created without respecting the people who work on it, it wouldn't have the high moral ground it's supposed to have.

@@ -25,30 +25,30 @@ endif::[]
 ifeval::["{doctype}" != "book"]
 link:../baba-is-you-5/[the fifth part],
 endif::[]
-where I coded missing behaviors, I`'ll work on the second level on being able to modify the rules.
+where I coded missing behaviors, I'll work on the second level on being able to modify the rules.
 
 image::../baba-is-you-6/second-level1.png[title="Hello level two my old friend",align="center",width=352,height=402]
 
-I`'ll follow the same steps than for the first level which means I`'ll first implement the minimal subset of features required to find a solution.
+I'll follow the same steps than for the first level which means I'll first implement the minimal subset of features required to find a solution.
 
 == First: thinking
 
-Before starting the implementation I`'ll need to plan ahead how to deal with the changing rules.
+Before starting the implementation I'll need to plan ahead how to deal with the changing rules.
 
 Looking at the level, the rules are establishing capabilities about game elements: this thing can do this thing, that other thing can do that thing.
 
 By default you can walk through most elements except the tiles that represents rules components.
 
-So I`'ll try scanning for the rules, adding capabilities as I find them, then process the movements.
+So I'll try scanning for the rules, adding capabilities as I find them, then process the movements.
 
 Updating the movement code will rely on generalizing the existing behaviors.
-For example instead of checking if Baba is stopped by walking against a wall, I`'ll check if Baba is walking against something that has the stop capability.
+For example instead of checking if Baba is stopped by walking against a wall, I'll check if Baba is walking against something that has the stop capability.
 
 include::graph1.asciidoc[]
 include::graph2.asciidoc[]
 
-To store the capabilities I`'ll use bit fields again.
-For each capability I`'ll use a bit field to store which kind of elements the capability should be applied to, using the same mask value used to define which elements are on each tile.
+To store the capabilities I'll use bit fields again.
+For each capability I'll use a bit field to store which kind of elements the capability should be applied to, using the same mask value used to define which elements are on each tile.
 
 For example
 
@@ -64,7 +64,7 @@ Will become
 if ((targetPositionContent & stopTilesMask) != Tiles.EMPTY) {
 ----
 
-To scan for the rules I need to be able to identify the corresponding tiles, from what I`'ve seen from the game so far, there are three kind of rule tiles:
+To scan for the rules I need to be able to identify the corresponding tiles, from what I've seen from the game so far, there are three kind of rule tiles:
 
 * the `IS` tile
 * the subject tiles, like `Baba` or `flag`
@@ -76,7 +76,7 @@ A rule -- as a first approximation -- use the `subject IS definition` form, with
 
 So I need to add some info to the `Tile` class to define which tiles are subjects, which tiles are definitions and so on.
 
-I don`'t want to write this code manually since it would be tedious and error-prone but would prefer to declare it and let the machine deal with it.
+I don't want to write this code manually since it would be tedious and error-prone but would prefer to declare it and let the machine deal with it.
 
 So times to do some code generation, which is less scary that it sounds.
 
@@ -123,7 +123,7 @@ pom.xml <6>
 
 I use JSON for declaring the data because they are not complex enough to delve in XML, and because I hate YAML with the burning passion of a thousand suns.
 
-I`'ll implement the generation in two steps: first I`'ll generate an equivalent of the existing file, then I`'ll add the new features.
+I'll implement the generation in two steps: first I'll generate an equivalent of the existing file, then I'll add the new features.
 
 The first version of the JSON file:
 
@@ -135,7 +135,7 @@ include::tiles1.json[]
 
 I use link:https://github.com/square/javapoet[JavaPoet] to generate the code instead of doing it manually.
 
-The resulting code is a bit verbose because of the builder pattern used everywhere, but it`'s easy to write and read.
+The resulting code is a bit verbose because of the builder pattern used everywhere, but it's easy to write and read.
 
 .TilesGenerator.java
 [source,java]
@@ -167,7 +167,7 @@ include::tiles1.java[]
 The link between the text and the entities is done through a switch method instead of an array because the lookup key is not the text id but the text mask.
 For example `ROCK_TEXT_MASK` is equal to 128, which means an array of 128 elements with only four useful values.
 
-I could change the tiles`' order to put these ones first and keep the array short, but I like the alphabetical order that is dislike the switch.
+I could change the tiles' order to put these ones first and keep the array short, but I like the alphabetical order that is dislike the switch.
 
 == Third: coding
 
@@ -194,9 +194,9 @@ include::state2.java[]
 
 The "`YOU`" behavior is more complex to implement because it requires to add new business logic, whereas the other only need small code changes.
 
-So I`'ll implement the other rules first so I`'ll be able to find a solution for the second level and I`'ll deal with it later.
+So I'll implement the other rules first so I'll be able to find a solution for the second level and I'll deal with it later.
 
-I won`'t change all the behaviors at once and I`'ll skip the `YOU` part first.
+I won't change all the behaviors at once and I'll skip the `YOU` part first.
 
 Nearly all the changes are one-liners, were the hardcoded tiles like `Tiles#ROCK_MASK` are replaced by the "`behavior-masks`" like `stopTilesMask`.
 
@@ -228,7 +228,7 @@ include::state3.java[]
 
 == Fourth: solving
 
-After checking that the first level still works, it`'s time to have a look at the second one :
+After checking that the first level still works, it's time to have a look at the second one :
 
 .levels/01/content.txt
 [source]
@@ -244,4 +244,4 @@ And… it works, in a kind of way at least:
 1→ 2↓ 5← 1↑ 5→ 9← 9→ 1↓ 1→ 1↑ 10← 1↓ 1← 1↑ 11→ 1↑ 5← 5→ 2↓ 11← 2↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 8→ 8← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 10→ 1↓ 1→ 1↑ 11← 1↑ 9→ 9← 2↓ 11→ 2↑ 1← 1→ 2↓ 11← 2↑ 10→ 10← 2↓ 11→ 2↑ 11← 1↑ 10→ 1↑ 1← 1→ 2↓ 1→ 2↓ 11← 2↑ 8→ 2↑ 2→ 2↓ 1→ 2↓ 11← 2↑ 6→ 2↑ 5← 1↑ 1← 1↓ 10→ 2↑ 4← 4→ 2↓ 10← 1↓ 10→ 1↓ 1→ 2↓ 11← 3↑ 10→ 2↑ 2← 2→ 2↓ 10← 1↑ 10→ 2↑ 5← 5→ 2↓ 10← 1↑ 9→ 9← 2↓ 10→ 2↑ 10← 1↑ 8→ 8← 2↓ 10→ 2↑ 1← 1→ 2↓ 10← 2↑ 9→ 9← 1↑ 9→ 1↑ 1→ 4↓ 10← 2↓ 10→ 10← 2↑ 10→ 2↓ 10← 2↓ 11→ 1↑ 1← 1→ 2↓ 11← 2↑ 8→ 1↑ 1→ 1↓ 2→ 2↓ 3← 1↑ 2→ 10← 2↓ 11→ 2↑ 11← 2↑ 6→
 ----
 
-The code found a solution -- even if it`'s probably not the shortest --  which means I reached my goal.
+The code found a solution -- even if it's probably not the shortest --  which means I reached my goal.

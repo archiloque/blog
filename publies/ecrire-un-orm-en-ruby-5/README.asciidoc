@@ -18,12 +18,12 @@ ifndef::source-highlighter[]
 endif::[]
 
 ifeval::["{doctype}" == "book"]
-Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir introduit le sujet>>, <<../ecrire-un-orm-en-ruby-2/README.adoc#ORM-2,avoir posé les bases de l`'outil>> puis <<../ecrire-un-orm-en-ruby-3/README.adoc#ORM-3,avoir ajouté la génération des requêtes>> et enfin <<../ecrire-un-orm-en-ruby-4/README.adoc#ORM-4,m`'être occupé du filtrage des requêtes>>, je vais m`'occuper ici des relations entre objets.
+Après <<../ecrire-un-orm-en-ruby-1/README.adoc#ORM-1,avoir introduit le sujet>>, <<../ecrire-un-orm-en-ruby-2/README.adoc#ORM-2,avoir posé les bases de l'outil>> puis <<../ecrire-un-orm-en-ruby-3/README.adoc#ORM-3,avoir ajouté la génération des requêtes>> et enfin <<../ecrire-un-orm-en-ruby-4/README.adoc#ORM-4,m'être occupé du filtrage des requêtes>>, je vais m'occuper ici des relations entre objets.
 endif::[]
 ifeval::["{doctype}" != "book"]
-Ceci est le cinquième et dernier article d`'une série décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
+Ceci est le cinquième et dernier article d'une série décrivant pas à pas comment écrire un ORM SQL minimal en Ruby.
 
-Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet], link:../ecrire-un-orm-en-ruby-2/[avoir posé les bases de l`'outil] puis link:../ecrire-un-orm-en-ruby-3/[avoir ajouté la génération des requêtes] et enfin link:../ecrire-un-orm-en-ruby-4/[m`'être occupé du filtrage des requêtes], je vais m`'occuper ici des relations entre objets.
+Après link:../ecrire-un-orm-en-ruby-1/[avoir introduit le sujet], link:../ecrire-un-orm-en-ruby-2/[avoir posé les bases de l'outil] puis link:../ecrire-un-orm-en-ruby-3/[avoir ajouté la génération des requêtes] et enfin link:../ecrire-un-orm-en-ruby-4/[m'être occupé du filtrage des requêtes], je vais m'occuper ici des relations entre objets.
 endif::[]
 
 Les ORM permettent en général de définir quatre types de relations{nbsp}: `one-to-many`, `many-to-one`, `one-to-one` et `many-to-many`.
@@ -32,10 +32,10 @@ Je vais couvrir les deux premiers (`one-to-many`, `many-to-one`) parce que dans 
 
 == Le modèle
 
-Les articles utilisent le modèle d`'un jeu de construction qui fournit des relations one-to-many et many-to-one.
+Les articles utilisent le modèle d'un jeu de construction qui fournit des relations one-to-many et many-to-one.
 
-Ce jeu de construction est composé des différents types de briques (`Brick`), qui sont chacun d`'une certaine couleur (`Color`).
-Des modèles à construire (`Kit`) sont constitués d`'un ensemble de types de briques chacun présent un certain nombre de briques (tant de briques d`'une sorte, tant de briques d`'une autre sorte), la relation modèle - type de brique étant modélisé par un `KitBrick`.
+Ce jeu de construction est composé des différents types de briques (`Brick`), qui sont chacun d'une certaine couleur (`Color`).
+Des modèles à construire (`Kit`) sont constitués d'un ensemble de types de briques chacun présent un certain nombre de briques (tant de briques d'une sorte, tant de briques d'une autre sorte), la relation modèle - type de brique étant modélisé par un `KitBrick`.
 
 ifeval::["{doctype}" == "book"]
 image::schema_dark.svg[]
@@ -48,42 +48,42 @@ endif::[]
 
 === Extension du DSL
 
-Le DSL que j`'avais défini permettait de définir les noms des tables et des classes de modèles.
-Il est temps de l`'étendre pour y ajouter des informations sur les relations.
+Le DSL que j'avais défini permettait de définir les noms des tables et des classes de modèles.
+Il est temps de l'étendre pour y ajouter des informations sur les relations.
 
-Je vais commencer par le `many-to-one`, en introduisant une méthode `has_one`. Pour définir une relation de ce type j`'ai besoin du nom de la classe à lier, du nom de la colonne qui contient l`'id et du nom de l`'attribut que je veux ajouter à la classe de modèle.
+Je vais commencer par le `many-to-one`, en introduisant une méthode `has_one`. Pour définir une relation de ce type j'ai besoin du nom de la classe à lier, du nom de la colonne qui contient l'id et du nom de l'attribut que je veux ajouter à la classe de modèle.
 
 .schema.rb
 [source,ruby]
 ----
-define_model `'Color`' do |model_definition|
-  model_definition.table `'color`'
+define_model 'Color' do |model_definition|
+  model_definition.table 'color'
 end
 
-define_model `'Brick`' do |model_definition|
-  model_definition.table `'brick`'
+define_model 'Brick' do |model_definition|
+  model_definition.table 'brick'
   model_definition.has_one(
-      attribute_name: `'color`',
-      model_class: `'Color`',
-      column_name: `'color_id`'
+      attribute_name: 'color',
+      model_class: 'Color',
+      column_name: 'color_id'
   )
 end
 
-define_model `'Kit`' do |model_definition|
-  model_definition.table `'kit`'
+define_model 'Kit' do |model_definition|
+  model_definition.table 'kit'
 end
 
-define_model `'KitBricks`' do |model_definition|
-  model_definition.table `'kit_brick`'
+define_model 'KitBricks' do |model_definition|
+  model_definition.table 'kit_brick'
   model_definition.has_one(
-      attribute_name: `'kit`',
-      model_class: `'Kit`',
-      column_name: `'kit_id`'
+      attribute_name: 'kit',
+      model_class: 'Kit',
+      column_name: 'kit_id'
   )
   model_definition.has_one(
-      attribute_name: `'brick`',
-      model_class: `'Brick`',
-      column_name: `'brick_id`'
+      attribute_name: 'brick',
+      model_class: 'Brick',
+      column_name: 'brick_id'
   )
 end
 ----
@@ -96,17 +96,17 @@ Je vais prendre pour exemple la relation entre brique et couleur{nbsp}:
 
 [source, ruby]
 ----
-define_model `'Brick`' do |model_definition|
-  model_definition.table `'brick`'
+define_model 'Brick' do |model_definition|
+  model_definition.table 'brick'
   model_definition.has_one(
-      attribute_name: `'color`',
-      model_class: `'Color`',
-      column_name: `'color_id`'
+      attribute_name: 'color',
+      model_class: 'Color',
+      column_name: 'color_id'
   )
 end
 ----
 
-Quand je veux récupérer la couleur d`'une brique, je dois charger la couleur qui correspond à la valeur de la colonne `color_id`, disponible dans le modèle par la méthode `color_id`. En SQL cela donnerait quelque chose comme{nbsp}:
+Quand je veux récupérer la couleur d'une brique, je dois charger la couleur qui correspond à la valeur de la colonne `color_id`, disponible dans le modèle par la méthode `color_id`. En SQL cela donnerait quelque chose comme{nbsp}:
 
 [source,SQL]
 ----
@@ -115,11 +115,11 @@ SELECT color_column_name_1, color_column_name_1
   WHERE id = ?
 ----
 
-Avec les méthodes définies dans l`'article précédent cela donne
+Avec les méthodes définies dans l'article précédent cela donne
 
 [source,ruby]
 ----
-Color.where(`'id = ?`', brick.color_id).first
+Color.where('id = ?', brick.color_id).first
 ----
 
 Cette couleur doit être accessible à travers un getter nommé `color`{nbsp}:
@@ -129,12 +129,12 @@ Cette couleur doit être accessible à travers un getter nommé `color`{nbsp}:
 class Brick < Model
   # @return [Color]
   def color
-    Color.where(`'id = ?`', color_id).first
+    Color.where('id = ?', color_id).first
   end
 end
 ----
 
-Pour le setter `color=`, il n`'y a pas de besoin de SQL{nbsp}: je peut me contenter de stocker la valeur de l`'attribut `color_id`, la valeur sera alors sauvegardée en même temps que les autres attributs de l`'objet.
+Pour le setter `color=`, il n'y a pas de besoin de SQL{nbsp}: je peut me contenter de stocker la valeur de l'attribut `color_id`, la valeur sera alors sauvegardée en même temps que les autres attributs de l'objet.
 Si juste ensuite je refais un appel à `color`, la requête récupérera la couleur correspond au nouvel `color_id`.
 
 [source,ruby]
@@ -152,7 +152,7 @@ Maintenant je sais quel code je veux obtenir.
 
 === Implémentation
 
-Pour y arriver, je commence par implémenter la méthode `has_one` dans le DSL pour qu`'elle stocke les informations qu`'on lui passe.
+Pour y arriver, je commence par implémenter la méthode `has_one` dans le DSL pour qu'elle stocke les informations qu'on lui passe.
 
 .generator.rb
 [source,ruby]
@@ -186,7 +186,7 @@ class ModelDefinition
 end
 ----
 
-Pour le template je retranscris le code auquel j`'avais abouti plus haut en utilisant les différentes valeurs{nbsp}:
+Pour le template je retranscris le code auquel j'avais abouti plus haut en utilisant les différentes valeurs{nbsp}:
 
 .models.rb.erb
 [source]
@@ -194,7 +194,7 @@ Pour le template je retranscris le code auquel j`'avais abouti plus haut en util
   <% model.has_ones.each do |has_one| %>
   # @return [<%= has_one[:model_class] %>]
   def <%= has_one[:attribute_name] %>
-    <%= has_one[:model_class] %>.where(`'id = ?`', <%= has_one[:column_name] %>).first
+    <%= has_one[:model_class] %>.where('id = ?', <%= has_one[:column_name] %>).first
   end
 
   # @param <%= has_one[:attribute_name] %> [<%= has_one[:model_class] %>]
@@ -210,17 +210,17 @@ On peut alors tester que cela fonctionne{nbsp}:
 .script.rb
 [source,ruby]
 ----
-require_relative `'model`'
-require_relative `'models`'
+require_relative 'model'
+require_relative 'models'
 
 black = Color.new
-black.name = `'Black`'
+black.name = 'Black'
 black.insert
 
 brick = Brick.new
 brick.color = black
-brick.name = `'Awesome brick`'
-brick.description = `'This brick is awesome`'
+brick.name = 'Awesome brick'
+brick.description = 'This brick is awesome'
 brick.insert
 
 puts brick.color.name
@@ -232,7 +232,7 @@ $ bundle exec ruby script.rb
 Black
 ----
 
-L`'exemple d`'ORM que je décris ici ne gère pas de cache, ce qui signifie que chaque appel de `brick.color` va générer une nouvelle requête SQL.
+L'exemple d'ORM que je décris ici ne gère pas de cache, ce qui signifie que chaque appel de `brick.color` va générer une nouvelle requête SQL.
 
 == Le `one-to-many`
 
@@ -243,49 +243,49 @@ Je commence par définir la syntaxe dans le DSL avec une méthode `has_many`.
 .schema.rb
 [source,ruby]
 ----
-define_model `'Color`' do |model_definition|
-  model_definition.table `'color`'
+define_model 'Color' do |model_definition|
+  model_definition.table 'color'
   model_definition.has_many(
-      attribute_name: `'bricks`',
-      model_class: `'Brick`',
-      column_name: `'color_id`'
+      attribute_name: 'bricks',
+      model_class: 'Brick',
+      column_name: 'color_id'
   )
 end
 
-define_model `'Brick`' do |model_definition|
-  model_definition.table `'brick`'
+define_model 'Brick' do |model_definition|
+  model_definition.table 'brick'
   model_definition.has_one(
-      attribute_name: `'color`',
-      model_class: `'Color`',
-      column_name: `'color_id`'
+      attribute_name: 'color',
+      model_class: 'Color',
+      column_name: 'color_id'
   )
   model_definition.has_many(
-      attribute_name: `'kit_brick`',
-      model_class: `'KitBricks`',
-      column_name: `'brick_id`'
+      attribute_name: 'kit_brick',
+      model_class: 'KitBricks',
+      column_name: 'brick_id'
   )
 end
 
-define_model `'Kit`' do |model_definition|
-  model_definition.table `'kit`'
+define_model 'Kit' do |model_definition|
+  model_definition.table 'kit'
   model_definition.has_many(
-      attribute_name: `'kit_brick`',
-      model_class: `'KitBricks`',
-      column_name: `'kit_id`'
+      attribute_name: 'kit_brick',
+      model_class: 'KitBricks',
+      column_name: 'kit_id'
   )
 end
 
-define_model `'KitBricks`' do |model_definition|
-  model_definition.table `'kit_brick`'
+define_model 'KitBricks' do |model_definition|
+  model_definition.table 'kit_brick'
   model_definition.has_one(
-      attribute_name: `'kit`',
-      model_class: `'Kit`',
-      column_name: `'kit_id`'
+      attribute_name: 'kit',
+      model_class: 'Kit',
+      column_name: 'kit_id'
   )
   model_definition.has_one(
-      attribute_name: `'brick`',
-      model_class: `'Brick`',
-      column_name: `'brick_id`'
+      attribute_name: 'brick',
+      model_class: 'Brick',
+      column_name: 'brick_id'
   )
 end
 ----
@@ -299,15 +299,15 @@ class Color < Model
 
   # @return [Array<Brick>]
   def bricks
-    Brick.where(`'color_id = ?`', id).all
+    Brick.where('color_id = ?', id).all
   end
 
 end
 ----
 
-Je ne vais pas définir le setter car il est assez rare, en général ce type de modification se fait plutôt de l`'autre côté de la relation.
+Je ne vais pas définir le setter car il est assez rare, en général ce type de modification se fait plutôt de l'autre côté de la relation.
 
-J`'ajouter la nouvelle méthode `has_many` au DSL{nbsp}:
+J'ajouter la nouvelle méthode `has_many` au DSL{nbsp}:
 
 .generator.rb
 [source,ruby]
@@ -346,7 +346,7 @@ Et pour terminer, le template{nbsp}:
   <% model.has_manys.each do |has_many| %>
   # @return [Array<<%= has_many[:model_class] %>>]
   def <%= has_many[:attribute_name] %>
-    <%= has_many[:model_class] %>.where(`'<%= has_many[:column_name] %> = ?`', id).all
+    <%= has_many[:model_class] %>.where('<%= has_many[:column_name] %> = ?', id).all
   end
   <% end %>
 ----
@@ -356,17 +356,17 @@ Ce qui donne{nbsp}:
 .script.rb
 [source,ruby]
 ----
-require_relative `'model`'
-require_relative `'models`'
+require_relative 'model'
+require_relative 'models'
 
 black = Color.new
-black.name = `'Black`'
+black.name = 'Black'
 black.insert
 
 brick = Brick.new
 brick.color = black
-brick.name = `'Awesome brick`'
-brick.description = `'This brick is awesome`'
+brick.name = 'Awesome brick'
+brick.description = 'This brick is awesome'
 brick.insert
 
 puts black.bricks.length
@@ -383,14 +383,14 @@ Awesome brick
 == Pour finir
 
 Et voila{nbsp}!
-À ce stade j`'ai la base d`'un ORM minimal.
+À ce stade j'ai la base d'un ORM minimal.
 
 Le code se trouve à link:https://github.com/archiloque/orm-ruby[https://github.com/archiloque/orm-ruby].
 
-Il manque quelques éléments pour qu`'il soit vraiment utile, par exemple la gestion des `UPDATE` et de la suppression unitaire (plutôt que de vider toute une table avec `truncate`), mais une implémentation minimale s`'appuierait beaucoup à ce qui a déjà été fait sans introduire de nouvelles idées.
+Il manque quelques éléments pour qu'il soit vraiment utile, par exemple la gestion des `UPDATE` et de la suppression unitaire (plutôt que de vider toute une table avec `truncate`), mais une implémentation minimale s'appuierait beaucoup à ce qui a déjà été fait sans introduire de nouvelles idées.
 
-J`'espère que ces articles ont pu vous donner une aperçu du fonctionnement de ce type d`'outils et les ont rendus moins mystérieux.
+J'espère que ces articles ont pu vous donner une aperçu du fonctionnement de ce type d'outils et les ont rendus moins mystérieux.
 
-S`'ils vous donne des idées pour coder votre propre ORM d`'une manière différente, lancez-vous, tant que vous restez raisonnable dans vos ambitions, notamment celle de l`'utiliser en production.
+S'ils vous donne des idées pour coder votre propre ORM d'une manière différente, lancez-vous, tant que vous restez raisonnable dans vos ambitions, notamment celle de l'utiliser en production.
 
-Si d`'autres éléments vous semblent compliqués, link:http://twitter.com/archiloque[contactez-moi] et j`'ajouterai peut-être ce contenu dans un article supplémentaire.
+Si d'autres éléments vous semblent compliqués, link:http://twitter.com/archiloque[contactez-moi] et j'ajouterai peut-être ce contenu dans un article supplémentaire.

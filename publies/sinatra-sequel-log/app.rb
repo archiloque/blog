@@ -1,9 +1,9 @@
-require `'sinatra/base`'
-require `'sequel`'
-require `'logger`'
+require 'sinatra/base'
+require 'sequel'
+require 'logger'
 
 # Add hooks in sequel logging
-# since it`'s called for each query
+# since it's called for each query
 module Sequel
   class Database
 
@@ -35,7 +35,7 @@ end
 class App < Sinatra::Base
 
   DB = Sequel.sqlite(
-    `'`',
+    '',
     :loggers => [Logger.new(STDOUT)]
   )
 
@@ -50,20 +50,20 @@ class App < Sinatra::Base
   after do
     # Set the headers
     current_thread = Thread.current
-    headers[`'X-QUERIES-COUNT`'] =
+    headers['X-QUERIES-COUNT'] =
       current_thread[:queries_count].to_s
-    headers[`'X-QUERIES-DURATION`'] =
+    headers['X-QUERIES-DURATION'] =
       current_thread[:queries_duration].to_s
     # Clean the thread local variables
     current_thread[:queries_count] = nil
     current_thread[:queries_duration] = nil
   end
 
-  # This is my service, you`'ll be impressed
-  get `'/`' do
-    # Simple query that doesn`'t need any table
-    DB.run "SELECT `'OK`'"
-    `'OK`'
+  # This is my service, you'll be impressed
+  get '/' do
+    # Simple query that doesn't need any table
+    DB.run "SELECT 'OK'"
+    'OK'
   end
 
 end

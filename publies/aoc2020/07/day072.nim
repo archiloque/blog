@@ -60,9 +60,9 @@ for line in input:
           containedBags[].add(ContainedBag(bag: containedBag,
               quantity: containedBagQuantity))
         else:
-          raise newException(ValueError, "Can`'t parse [" & containedBag & "]")
+          raise newException(ValueError, "Can't parse [" & containedBag & "]")
     else:
-      raise newException(ValueError, "Can`'t parse [" & line & "]")
+      raise newException(ValueError, "Can't parse [" & line & "]")
 
 var bagsColorsToExplore: seq[string] = @[targetColor]
 while bagsColorsToExplore.len() != 0:

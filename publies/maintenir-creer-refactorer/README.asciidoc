@@ -5,64 +5,64 @@ v0.1, 2019-03-01
 :article_image: dumezil.jpg
 :article_description: Trois compétences pour le développement
 
-Le développement d`'application n`'est pas une compétence unique mais un ensemble de compétences.
+Le développement d'application n'est pas une compétence unique mais un ensemble de compétences.
 Il existe de nombreuses manières de les regrouper et donc de regrouper les personnes qui travaillent sur le développement.
 
-Je propose ici un regroupement qui à mon avis permet de comprendre certaines situations et permet d`'éviter certains risque.
-Je ne prétends pas qu`'il est meilleur que d`'autres regroupements, seulement qu`'il a une certaine utilité.
+Je propose ici un regroupement qui à mon avis permet de comprendre certaines situations et permet d'éviter certains risque.
+Je ne prétends pas qu'il est meilleur que d'autres regroupements, seulement qu'il a une certaine utilité.
 
 == Trois fonctions
 
-Je propose de découper l`'activité de développement en trois activités{nbsp}:
+Je propose de découper l'activité de développement en trois activités{nbsp}:
 
-* Créer{nbsp}: quand il s`'agit de construire ou concevoir quelque chose à partir de rien, ou à partir de briques existantes, en prenant des décisions sur la manière d`'organiser des choses{nbsp};
-* Maintenir{nbsp}: quand il s`'agit de maintenir un existant en bon état sur une certaine durée tout en le faisant évoluer{nbsp};
-* Refactorer{nbsp}: quand il s`'agit de remanier de manière significative un existant, par exemple pour le remettre d`'aplomb en le désendettant ou le rendre apte à supporter de nouvelles modifications.
+* Créer{nbsp}: quand il s'agit de construire ou concevoir quelque chose à partir de rien, ou à partir de briques existantes, en prenant des décisions sur la manière d'organiser des choses{nbsp};
+* Maintenir{nbsp}: quand il s'agit de maintenir un existant en bon état sur une certaine durée tout en le faisant évoluer{nbsp};
+* Refactorer{nbsp}: quand il s'agit de remanier de manière significative un existant, par exemple pour le remettre d'aplomb en le désendettant ou le rendre apte à supporter de nouvelles modifications.
 
 == Pourquoi ?
 
 Mon expérience est que les trois activités, si elles ne sont pas complètement disjointe, sont assez différentes.
-Les savoir-faires ne sont pas les mêmes, et les personnes sont souvent plus ou moins attirées par l`'une d`'entre elles.
+Les savoir-faires ne sont pas les mêmes, et les personnes sont souvent plus ou moins attirées par l'une d'entre elles.
 
-Ainsi certaines personnes aiment faire du neuf, d`'autre refaire, d`'autre encore aiment travailler sur de l`'existant sans trop remettre en cause de choses.
+Ainsi certaines personnes aiment faire du neuf, d'autre refaire, d'autre encore aiment travailler sur de l'existant sans trop remettre en cause de choses.
 
-D`'autres enfin peuvent être OK sur deux ou même les trois fonctions.
+D'autres enfin peuvent être OK sur deux ou même les trois fonctions.
 
 == À quoi ça sert ?
 
 La première utilité est de pouvoir identifier les personnes adaptées à certains besoins.
 
-Une personne qui a de l`'expérience dans une des fonctions n`'aura pas forcément le même niveau de compétence dans les autres.
+Une personne qui a de l'expérience dans une des fonctions n'aura pas forcément le même niveau de compétence dans les autres.
 
-Ainsi quelqu`'un de pointu pour créer de nouveau projet ne sera pas forcément à même de refactorer un existant.
+Ainsi quelqu'un de pointu pour créer de nouveau projet ne sera pas forcément à même de refactorer un existant.
 
-Une équipe existante qui a l`'habitude de maintenir du code ne sera pas forcément en mesure de lancer des expérimentations sans base de code existante.
-Il faudra alors prendre le temps d`'apprendre sur ces sujets, ou d`'accepter d`'augmenter le niveau de risque d`'échouer.
+Une équipe existante qui a l'habitude de maintenir du code ne sera pas forcément en mesure de lancer des expérimentations sans base de code existante.
+Il faudra alors prendre le temps d'apprendre sur ces sujets, ou d'accepter d'augmenter le niveau de risque d'échouer.
 
-La question se pose aussi lorsqu`'un projet change de mode de fonctionnement.
-Par exemple certains projet ont, après une phase de création et d`'enrichissement, des phases de maturité où ils subissent des petites évolutions pendant un temps assez long.
-Si les personnes présents ont l`'expérience et l`'envie de ne faire que de la création, le risque est de se lancer mal à propos dans des réécritures non pertinentes.
+La question se pose aussi lorsqu'un projet change de mode de fonctionnement.
+Par exemple certains projet ont, après une phase de création et d'enrichissement, des phases de maturité où ils subissent des petites évolutions pendant un temps assez long.
+Si les personnes présents ont l'expérience et l'envie de ne faire que de la création, le risque est de se lancer mal à propos dans des réécritures non pertinentes.
 
 La différence entre maintenir et refactorer peut sembler artificielle tant les deux activités sont ou devraient être liées, mais elle me semble importante pour comprendre certaines dynamiques projets.
-Face à une demande d`'évolution mineures, certaines personnes vont avoir plus tendance à l`'intégrer dans l`'existant avec une modification de deux lignes, d`'autres voudront en profiter pour migrer l`'ensemble d`'un module en architecture pentagonale.
+Face à une demande d'évolution mineures, certaines personnes vont avoir plus tendance à l'intégrer dans l'existant avec une modification de deux lignes, d'autres voudront en profiter pour migrer l'ensemble d'un module en architecture pentagonale.
 
-L`'objectif n`'est pas d`'avoir, pour chaque projet, un seul type de personnes mais d`'avoir un mélange satisfaisant.
+L'objectif n'est pas d'avoir, pour chaque projet, un seul type de personnes mais d'avoir un mélange satisfaisant.
 Cela créé des échanges parfois compliqués mais souvent utiles.
 
-Si vous avez le sentiment qu`'un projet ne fonctionne pas comme il le devrait, cette grille peut vous mettre la puce à l`'oreille.
+Si vous avez le sentiment qu'un projet ne fonctionne pas comme il le devrait, cette grille peut vous mettre la puce à l'oreille.
 
 == À quoi ça ne sert pas ?
 
-Ça ne sert pas à dire qu`'une activité est meilleure ou plus prestigieuse qu`'une autre.
+Ça ne sert pas à dire qu'une activité est meilleure ou plus prestigieuse qu'une autre.
 
-À l`'inverse le fait que la création soit survalorisée par rapport aux deux autres peut être source de problème : maintenir un projet en bon état sur la durée en limitant au bon niveau les investissements est une compétence dont la valeur est souvent sous-estimée.
+À l'inverse le fait que la création soit survalorisée par rapport aux deux autres peut être source de problème : maintenir un projet en bon état sur la durée en limitant au bon niveau les investissements est une compétence dont la valeur est souvent sous-estimée.
 
 Il faut savoir récompenser les personnes utiles, même et surtout si leur travail peut être perçu comme ingrat.
 
 == En conclusion
 
-Gardez en tête ce découpage lors d`'un changement d`'activité d`'une équipe, ou lorsque vous avez impression qu`'un projet ne fonctionne pas comme il le devrait.
+Gardez en tête ce découpage lors d'un changement d'activité d'une équipe, ou lorsque vous avez impression qu'un projet ne fonctionne pas comme il le devrait.
 
 Si les questions de maintenance vous parlent, il existe un groupe pluridisciplinaire appelé link:http://themaintainers.org[the mainteners] qui devrait vous intéresser.
 
-_Merci à link:https://twitter.com/uucidl[Nicolas] pour l`'idée._
+_Merci à link:https://twitter.com/uucidl[Nicolas] pour l'idée._

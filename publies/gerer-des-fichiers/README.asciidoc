@@ -5,52 +5,52 @@ v1.0, 2020-05-20
 :article_lang: fr
 :article_image: puits.jpg
 
-Les systèmes de gestion de fichiers sont comme un puits sans fond{nbsp}: plus on en apprend à leur sujet, plus on se rend compte que les choses sont plus compliquées qu`'il n`'y paraît, et que l`'image mentale qu`'on utilise pour y penser n`'est pas tout à fait adaptée.
+Les systèmes de gestion de fichiers sont comme un puits sans fond{nbsp}: plus on en apprend à leur sujet, plus on se rend compte que les choses sont plus compliquées qu'il n'y paraît, et que l'image mentale qu'on utilise pour y penser n'est pas tout à fait adaptée.
 
-Par système de gestion de fichiers j`'entend la partie du système qui est chargé de faire l`'interface entre des demandes d`'accès et le ou les disques durs qui stockent ces données.
+Par système de gestion de fichiers j'entend la partie du système qui est chargé de faire l'interface entre des demandes d'accès et le ou les disques durs qui stockent ces données.
 
-== Une couche de service sans état au dessus d`'un disque dur
+== Une couche de service sans état au dessus d'un disque dur
 
-Pour une personne qui a eu la chance de n`'avoir jamais eu à s`'intéresser à ce sujet, on peut voir la manipulation de fichiers comme une simple API sans état au dessus d`'un disque dur.
+Pour une personne qui a eu la chance de n'avoir jamais eu à s'intéresser à ce sujet, on peut voir la manipulation de fichiers comme une simple API sans état au dessus d'un disque dur.
 
 [source,sh]
 ----
 cat article.txt
 ----
 
-Dans ce cas, quand on appelle du code pour lire un fichier en lui passant son nom, il va demander au disque dur le contenu correspondant, le stocker dans un espace mémoire, et s`'arrêter.
+Dans ce cas, quand on appelle du code pour lire un fichier en lui passant son nom, il va demander au disque dur le contenu correspondant, le stocker dans un espace mémoire, et s'arrêter.
 
-Et effectivement, c`'est un peu comme cela que fonctionnaient les tous premiers systèmes informatiques, et c`'est le type de fonctionnement que pourrait laisser présager les APIs de fichiers comme celles que fournit le C et de nombreux autres langages de programmation.
+Et effectivement, c'est un peu comme cela que fonctionnaient les tous premiers systèmes informatiques, et c'est le type de fonctionnement que pourrait laisser présager les APIs de fichiers comme celles que fournit le C et de nombreux autres langages de programmation.
 
 Mais les choses ont bien changé.
 
 == Un système à états parallèle
 
-Avec les besoins de performance, on a eu besoin d`'ajouter du cache pour la lecture et l`'écriture.
+Avec les besoins de performance, on a eu besoin d'ajouter du cache pour la lecture et l'écriture.
 
-En lecture, car on s`'est aperçu que les systèmes relisaient souvent les mêmes fichiers, et que garder leur contenu en mémoire accélérait les choses.
+En lecture, car on s'est aperçu que les systèmes relisaient souvent les mêmes fichiers, et que garder leur contenu en mémoire accélérait les choses.
 
-L`'accès aux fichiers est donc devenu un système à états.
+L'accès aux fichiers est donc devenu un système à états.
 
-De même quand du code commence à lire un fichier, il va souvent accéder à la suite et il est donc intéressant de la lire à l`'avance pour qu`'elle soit déjà là quand le code la demande.
+De même quand du code commence à lire un fichier, il va souvent accéder à la suite et il est donc intéressant de la lire à l'avance pour qu'elle soit déjà là quand le code la demande.
 
-En écriture, pour éviter de bloquer le système quand on demande d`'écrire des fichiers sur le disque, on peut préférer rendre la main au code appelant et exécuter les écritures plus tard, quand le disque dur est suffisamment disponible pour le faire.
+En écriture, pour éviter de bloquer le système quand on demande d'écrire des fichiers sur le disque, on peut préférer rendre la main au code appelant et exécuter les écritures plus tard, quand le disque dur est suffisamment disponible pour le faire.
 
-Pour gérer cela, l`'accès aux fichiers devient donc un système parallèle.
+Pour gérer cela, l'accès aux fichiers devient donc un système parallèle.
 
-On en arrive au point où à force d`'ajouter des couches au dessus du disque dur, on ne sait plus  à quoi s`'attendre, et notamment qu`'est ce qui est vraiment écrit sur le disque à quel moment.
+On en arrive au point où à force d'ajouter des couches au dessus du disque dur, on ne sait plus  à quoi s'attendre, et notamment qu'est ce qui est vraiment écrit sur le disque à quel moment.
 
-C`'est par exemple link:https://lwn.net/Articles/799807/[le cas des personnes qui développent des bases de données], car sans garantie sur quelles données sont bien enregistrées, il devient impossible d`'avoir un système fiable.
+C'est par exemple link:https://lwn.net/Articles/799807/[le cas des personnes qui développent des bases de données], car sans garantie sur quelles données sont bien enregistrées, il devient impossible d'avoir un système fiable.
 
 == Un système de base de données
 
-On a parlé jusque là de la lecture et de l`'écriture, mais on fait aussi beaucoup de requêtes pour trouver des fichiers.
+On a parlé jusque là de la lecture et de l'écriture, mais on fait aussi beaucoup de requêtes pour trouver des fichiers.
 
-Car pour accéder à un fichier dans un répertoire, il faut commencer par récupérer des informations sur l`'endroit où il est stocké sur le disque.
+Car pour accéder à un fichier dans un répertoire, il faut commencer par récupérer des informations sur l'endroit où il est stocké sur le disque.
 
-Cela signifie se souvenir quels sont les fichiers qui existent dans un répertoire, mais également link:https://lwn.net/Articles/814535/[se souvenir des fichiers qu`'on a cherchés et qu`'on n`'a pas trouvés].
+Cela signifie se souvenir quels sont les fichiers qui existent dans un répertoire, mais également link:https://lwn.net/Articles/814535/[se souvenir des fichiers qu'on a cherchés et qu'on n'a pas trouvés].
 
-Les systèmes d`'exploitation de bureau ou pour téléphones gèrent aussi de la recherche en indexant le contenu des fichiers et des métadonnées.
+Les systèmes d'exploitation de bureau ou pour téléphones gèrent aussi de la recherche en indexant le contenu des fichiers et des métadonnées.
 
 image::lapin.png[]
 
@@ -60,22 +60,22 @@ Avec ces deux éléments -- requêtage et indexation -- un système de gestion d
 
 La dernière brique est le fait que parcourir un système de fichiers peut être utilisé pour déclencher des évènements.
 
-Si vous utilisez un langage de programmation comme Ruby, Node.js ou Python, il y a des chances qu`'à chaque fois que vous changez de répertoire dans un terminal, votre système cherche des fichiers `.ruby-version` `.nvmrc` ou `.python-version`, indiquant s`'il faut changer la version de l`'interpréteur correspondant à utiliser.
+Si vous utilisez un langage de programmation comme Ruby, Node.js ou Python, il y a des chances qu'à chaque fois que vous changez de répertoire dans un terminal, votre système cherche des fichiers `.ruby-version` `.nvmrc` ou `.python-version`, indiquant s'il faut changer la version de l'interpréteur correspondant à utiliser.
 
-À l`'heure actuelle, cela demande que chaque outil utilise link:https://github.com/rvm/rvm/blob/master/scripts/cd[du code spécifique], mais je me demande si à l`'avenir cette fonctionnalité ne sera pas standardisée.
+À l'heure actuelle, cela demande que chaque outil utilise link:https://github.com/rvm/rvm/blob/master/scripts/cd[du code spécifique], mais je me demande si à l'avenir cette fonctionnalité ne sera pas standardisée.
 
-Du code exécuté ainsi peut bien entendu déclencher d`'autres évènements s`'il modifie lui-même des fichiers.
+Du code exécuté ainsi peut bien entendu déclencher d'autres évènements s'il modifie lui-même des fichiers.
 
-Le parcours de répertoire permet donc de déclencher du code à l`'aide de points d`'entrées spécifiques, comme dans une application gérant des plugins.
+Le parcours de répertoire permet donc de déclencher du code à l'aide de points d'entrées spécifiques, comme dans une application gérant des plugins.
 
 == Conclusion
 
-Un système de gestion de fichiers c`'est donc quoi ? Une abstraction au dessus d`'un disque dur, une base de donnée, ou un moteur à évènement ?
+Un système de gestion de fichiers c'est donc quoi ? Une abstraction au dessus d'un disque dur, une base de donnée, ou un moteur à évènement ?
 
-C`'est un peu les trois, en fonction de ce que vous en faites, cela peut même être également un système en réseau et distribué si vous utilisez un système comme link:https://fr.wikipedia.org/wiki/Samba_(informatique)[Samba] ou link:https://fr.wikipedia.org/wiki/Network_File_System[NFS].
+C'est un peu les trois, en fonction de ce que vous en faites, cela peut même être également un système en réseau et distribué si vous utilisez un système comme link:https://fr.wikipedia.org/wiki/Samba_(informatique)[Samba] ou link:https://fr.wikipedia.org/wiki/Network_File_System[NFS].
 
-Ça montre à quel point des choses qui peuvent sembler simples peuvent être compliquées en informatique  et à quel point stocker des données d`'une manière qui réponde aux besoins actuel est devenu d`'une complexité insondable.
+Ça montre à quel point des choses qui peuvent sembler simples peuvent être compliquées en informatique  et à quel point stocker des données d'une manière qui réponde aux besoins actuel est devenu d'une complexité insondable.
 
-Pour revenir sur link:../abstraction-seniorite/[les abstractions], le cas des fichiers est intéressant car comprendre le fonctionnement interne n`'est pas seulement utile pour être en mesure de répondre à des besoins exotiques mais aussi pour des besoins qu`'on pourrait considérer comme standard, par exemple savoir à quel moment une donnée est stockée sur le disque de manière fiable.
+Pour revenir sur link:../abstraction-seniorite/[les abstractions], le cas des fichiers est intéressant car comprendre le fonctionnement interne n'est pas seulement utile pour être en mesure de répondre à des besoins exotiques mais aussi pour des besoins qu'on pourrait considérer comme standard, par exemple savoir à quel moment une donnée est stockée sur le disque de manière fiable.
 
 Cela signifie que tout système manipulant des fichiers sans faire attention à cela pourrait ne pas être considéré comme fiable, car en cas de crash les données pourraient être corrompues.

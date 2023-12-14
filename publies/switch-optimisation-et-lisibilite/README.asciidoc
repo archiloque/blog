@@ -36,7 +36,7 @@ switch(valeur){
 }
 ----
 
-Dans le monde où C a été inventé, cette construction était intéressante car elle permet de produire du code efficace du point de la taille et de la vitesse d`'exécution.
+Dans le monde où C a été inventé, cette construction était intéressante car elle permet de produire du code efficace du point de la taille et de la vitesse d'exécution.
 
 Avec un compilateur simple, le code compilé donne quelque chose comme{nbsp}:
 
@@ -51,15 +51,15 @@ si valeur vaut 4, sauter au début du bloc de code 4
 début du bloc de code par défaut
 ----
 
-cela signifie que chaque `case` utilise deux seul instructions (la comparaison et et le saut conditionnel), et qu`'un seul registre{empty}footnote:[un peu l`'équivalent de variable locales dans le processeur, mais qui sont en nombre limité] est utilisé.
+cela signifie que chaque `case` utilise deux seul instructions (la comparaison et et le saut conditionnel), et qu'un seul registre{empty}footnote:[un peu l'équivalent de variable locales dans le processeur, mais qui sont en nombre limité] est utilisé.
 
-À condition que les cas des différents `case` soient suffisamment rapprochés (par exemple s`'ils se suivent) un compilateur avancé pourra générer du code qui ressemble à{nbsp}:
+À condition que les cas des différents `case` soient suffisamment rapprochés (par exemple s'ils se suivent) un compilateur avancé pourra générer du code qui ressemble à{nbsp}:
 
 [source]
 ----
 charge valeur dans un registre
 si la valeur est entre 0 et 4, 
-    aller au code placé à l`'index correspond à la valeur
+    aller au code placé à l'index correspond à la valeur
 index du début du code 0 // quand valeur vaut 0
 index du début du code 1 // quand valeur vaut 1
 index du début du code 2 // quand valeur vaut 2
@@ -68,33 +68,33 @@ index du début du code 4 // quand valeur vaut 4
 début du bloc de code par défaut
 ----
 
-Cela s`'appelle link:https://en.wikipedia.org/wiki/Branch_table[une table de saut], et permet de générer du code encore plus efficace, toujours du point de la taille et de la vitesse d`'exécution.
-En fonction des cas, il existe d`'autres optimisations possibles, toutes reposant sur le fait que la valeur à tester est toujours la même.
+Cela s'appelle link:https://en.wikipedia.org/wiki/Branch_table[une table de saut], et permet de générer du code encore plus efficace, toujours du point de la taille et de la vitesse d'exécution.
+En fonction des cas, il existe d'autres optimisations possibles, toutes reposant sur le fait que la valeur à tester est toujours la même.
 
 La construction du `switch` en C correspond donc directement à des optimisation dans le code compilé.
 
-Les personnes qui développent en C sont souvent au courant de cela, et s`'attendent donc à ce que les `switch` soient implémentés de manière efficaces.
+Les personnes qui développent en C sont souvent au courant de cela, et s'attendent donc à ce que les `switch` soient implémentés de manière efficaces.
 
-Le fait qu`'un `switch` soit mis en œuvre de cette manière n`'est pas une obligation de la part d`'un compilateur C.
+Le fait qu'un `switch` soit mis en œuvre de cette manière n'est pas une obligation de la part d'un compilateur C.
 Il pourrait tout à fait transformer le `switch` en une série de `if` / `else if`.
-Un tel compilateur respecterait le standard C car le comportement du code serait le bon, même si son implémentation irait à l`'encontre des attentes d`'une partie des personnes.
+Un tel compilateur respecterait le standard C car le comportement du code serait le bon, même si son implémentation irait à l'encontre des attentes d'une partie des personnes.
 
-== `switch` ailleurs qu`'en C
+== `switch` ailleurs qu'en C
 
-D`'autres langages de programmations fournissent une construction `switch`, plus ou moins calquée sur celle du C.
+D'autres langages de programmations fournissent une construction `switch`, plus ou moins calquée sur celle du C.
 
-En dehors de la performance, cela s`'explique par le fait qu`'un `switch` est plus explicite qu`'une suite de `if` / `else if`{nbsp}: la construction indique que les différentes branches correspondent à des tests différents sur la même variable, sans avoir à vérifier que les différentes branche d`'un `else if` testent bien la même chose.
+En dehors de la performance, cela s'explique par le fait qu'un `switch` est plus explicite qu'une suite de `if` / `else if`{nbsp}: la construction indique que les différentes branches correspondent à des tests différents sur la même variable, sans avoir à vérifier que les différentes branche d'un `else if` testent bien la même chose.
 
-En Ruby, chaque branche d`'un `switch` peut correspondre à un intervalle de valeurs (dans ce cas on vérifie si la valeur est dans l`'intervalle) ou à ou à une expression régulière (dans ce cas on vérifie si la valeur rend l`'expression régulière valide), voire un mélange des deux.
-Dans ce cas il n`'est pas possible d`'utiliser les mêmes astuces d`'implémentations qu`'en C (même si d`'autres sont probablement possibles), l`'intérêt de la construction est donc uniquement sa lisibilité.
+En Ruby, chaque branche d'un `switch` peut correspondre à un intervalle de valeurs (dans ce cas on vérifie si la valeur est dans l'intervalle) ou à ou à une expression régulière (dans ce cas on vérifie si la valeur rend l'expression régulière valide), voire un mélange des deux.
+Dans ce cas il n'est pas possible d'utiliser les mêmes astuces d'implémentations qu'en C (même si d'autres sont probablement possibles), l'intérêt de la construction est donc uniquement sa lisibilité.
 
-De la même manière qu`'avec un compilateur C non optimisé, une telle implémentation peut surprendre certains personnes, par exemple celles qui ont développé en C qui s`'attendent à ce que les constructions `switch` dans les autres langages aient les mêmes caractéristiques de performance.
+De la même manière qu'avec un compilateur C non optimisé, une telle implémentation peut surprendre certains personnes, par exemple celles qui ont développé en C qui s'attendent à ce que les constructions `switch` dans les autres langages aient les mêmes caractéristiques de performance.
 
-Dans ce cas une propriété de certains compilateurs C, qui peut être à tort généralisée comme une caractéristique du C, est étendue à d`'autres langages de programmation, alors même que leur modèle peut être très éloigné du C{nbsp}: cela a créé une attente implicite.
+Dans ce cas une propriété de certains compilateurs C, qui peut être à tort généralisée comme une caractéristique du C, est étendue à d'autres langages de programmation, alors même que leur modèle peut être très éloigné du C{nbsp}: cela a créé une attente implicite.
 
-== L`'optimisation sans le `switch`
+== L'optimisation sans le `switch`
 
-En C, il n`'y aucune raison que les optimisations qu`'on a vu pour le `switch` soient réservées à l`'utilisation de cette construction.
+En C, il n'y aucune raison que les optimisations qu'on a vu pour le `switch` soient réservées à l'utilisation de cette construction.
 
 Ainsi avec ce code{nbsp}:
 
@@ -118,102 +118,102 @@ if (valeur == 0) {
 
 Un compilateur pourrait détecter que ce code est équivalent à un `switch`, et donc utiliser les mêmes optimisations pour les deux cas.
 
-Une autre approche pourrait être de commencer par transformer les `switch` en une série de `if` / `else if`, et lors de la phase d`'optimisation toutes les constructions qui sont équivalentes à des `switchs` pourraient être optimisées de la même manière, qu`'elles soient originellement des `switch` ou pas.
-Cela permettrait de rendre plus performantes d`'autres portions de code en partageant les optimisations.
+Une autre approche pourrait être de commencer par transformer les `switch` en une série de `if` / `else if`, et lors de la phase d'optimisation toutes les constructions qui sont équivalentes à des `switchs` pourraient être optimisées de la même manière, qu'elles soient originellement des `switch` ou pas.
+Cela permettrait de rendre plus performantes d'autres portions de code en partageant les optimisations.
 
-Cette solution pourrait même s`'appliquer à des langages ne fournissant pas de construction `switch` comme Lua, si on juge que cela en vaut la peine.
-En plus de l`'augmentation de complexité à l`'implémentation du langage, son inconvénient majeur est de rendre moins direct le lien entre le code écrit et sa performance.
+Cette solution pourrait même s'appliquer à des langages ne fournissant pas de construction `switch` comme Lua, si on juge que cela en vaut la peine.
+En plus de l'augmentation de complexité à l'implémentation du langage, son inconvénient majeur est de rendre moins direct le lien entre le code écrit et sa performance.
 Ainsi en modifiant un des `else if`, la construction pourrait ne plus être équivalent à un `switch` et donc ne plus rentrer dans les cas optimisés. On gagnerait donc en performance en perdant en prévisibilité.
 
 Le cas peut se produire même avec un `switch` car différentes optimisations sont possibles, par exemple en fonction de la répartition des valeurs.
-Mais en pratique l`'écart de performance est en principe plus faible entre différentes implémentations d`'un `switch` qu`'entre un `switch` un et une série de `if` / `else if` standard.
+Mais en pratique l'écart de performance est en principe plus faible entre différentes implémentations d'un `switch` qu'entre un `switch` un et une série de `if` / `else if` standard.
 
 == Les optimisation implicites sont partout
 
-Si les optimisations implicites peuvent faire un peu peur à cause de l`'imprévisibilité qu`'elles apportent, elles contribuent de façon très importante à la performance des systèmes grand public actuels.
+Si les optimisations implicites peuvent faire un peu peur à cause de l'imprévisibilité qu'elles apportent, elles contribuent de façon très importante à la performance des systèmes grand public actuels.
 
-C`'est le cas par exemple des moteurs JavaScript.
+C'est le cas par exemple des moteurs JavaScript.
 
 JavaScript ne fournit pas de moyen de déclarer les types des variables.
-À l`'inverse, pouvoir déterminer qu`'un paramètre d`'une fonction est toujours un nombre ou une chaîne de caractère peut permettre d`'accélérer son exécution, par exemple savoir à l`'avance si `+` va correspondre à une addition où à une concaténation permet de spécialiser le code de cette fonction.
+À l'inverse, pouvoir déterminer qu'un paramètre d'une fonction est toujours un nombre ou une chaîne de caractère peut permettre d'accélérer son exécution, par exemple savoir à l'avance si `+` va correspondre à une addition où à une concaténation permet de spécialiser le code de cette fonction.
 
-Les moteurs JavaScript avancés comme ceux des navigateurs vont donc analyser le code qu`'on leur demande d`'exécuter pour tenter de déterminer le plus d`'information de type, afin de spécialiser le plus possible le code exécuté.
+Les moteurs JavaScript avancés comme ceux des navigateurs vont donc analyser le code qu'on leur demande d'exécuter pour tenter de déterminer le plus d'information de type, afin de spécialiser le plus possible le code exécuté.
 
-Les personnes qui développent ces moteurs JavaScript vont étudier le code des sites les plus visités, pour identifier des optimisations de ce type et d`'autres types qu`'il est possible d`'ajouter dans les versions suivantes des navigateurs.
+Les personnes qui développent ces moteurs JavaScript vont étudier le code des sites les plus visités, pour identifier des optimisations de ce type et d'autres types qu'il est possible d'ajouter dans les versions suivantes des navigateurs.
 
 Ces optimisations, à part les plus générales, sont parfois peu documentées en dehors du code qui les implémente.
 
 Les personnes qui développent des logiciels en JavaScript dont la performance est importante, par exemple les jeux, ont besoin de connaître ces optimisations.
-Elles vont donc parfois essayer d`'extrapoler le fonctionnement interne des moteurs à partir de leurs observations.
-C`'est l`'équivalent d`'essayer de déterminer quel type de `if` / `else if` est transformé en une table de saut, après s`'être rendu compte que certains `if` / `else if` s`'exécutaient plus rapidement que d`'autres.
+Elles vont donc parfois essayer d'extrapoler le fonctionnement interne des moteurs à partir de leurs observations.
+C'est l'équivalent d'essayer de déterminer quel type de `if` / `else if` est transformé en une table de saut, après s'être rendu compte que certains `if` / `else if` s'exécutaient plus rapidement que d'autres.
 
-C`'est la même chose pour les processeurs d`'ordinateurs.
+C'est la même chose pour les processeurs d'ordinateurs.
 
-Les processeurs vont retransformer à la volée le code qu`'on leur fournit pour pouvoir gagner quelques points de performance.
-Il s`'agit en quelque sorte d`'une nouvelle phase de compilation qui a lieu à l`'intérieur des processeurs.
-Le langage machine qu`'on fournit aux processeurs n`'est donc en réalité pas exécuté directement mais il est retransformé et il correspond donc à une API.
+Les processeurs vont retransformer à la volée le code qu'on leur fournit pour pouvoir gagner quelques points de performance.
+Il s'agit en quelque sorte d'une nouvelle phase de compilation qui a lieu à l'intérieur des processeurs.
+Le langage machine qu'on fournit aux processeurs n'est donc en réalité pas exécuté directement mais il est retransformé et il correspond donc à une API.
 
-En interne, les processeurs peuvent ainsi disposer de plus de registres que ceux qui sont exposés, ou d`'instructions supplémentaires. La phase de compilation peut aussi réordonner le code fournit, si cela n`'entraîne (en principe) pas de conséquences observables et que cela lui permet d`'éviter des étapes intermédiaires dans un traitement ou d`'avoir des choses à faire en attendant qu`'une donnée soit chargée depuis la mémoire.
+En interne, les processeurs peuvent ainsi disposer de plus de registres que ceux qui sont exposés, ou d'instructions supplémentaires. La phase de compilation peut aussi réordonner le code fournit, si cela n'entraîne (en principe) pas de conséquences observables et que cela lui permet d'éviter des étapes intermédiaires dans un traitement ou d'avoir des choses à faire en attendant qu'une donnée soit chargée depuis la mémoire.
 
 Lorsque ce qui se passe sous le capot ne fonctionne pas aussi bien que prévu, cela peut par exemple donner lieu à des bugs ou à link:https://fr.wikipedia.org/wiki/Meltdown_(vulnérabilité)[des failles de sécurité].
 
-Avec le temps le fonctionnement interne de ces processeurs est de plus en plus éloigné du modèle de processeur déterministe qu`'on présente souvent lorsqu`'on apprend le C, alors que leur API externe est restée plus stable.
-D`'une certaine manière, écrire en C correspond à écrire du code avec pour cible un ordinateur qui correspond à l`'état de l`'art de l`'époque où le C a été inventé, et les processeurs modernes font un peu semblant de continuer à fonctionner de cette manière.
+Avec le temps le fonctionnement interne de ces processeurs est de plus en plus éloigné du modèle de processeur déterministe qu'on présente souvent lorsqu'on apprend le C, alors que leur API externe est restée plus stable.
+D'une certaine manière, écrire en C correspond à écrire du code avec pour cible un ordinateur qui correspond à l'état de l'art de l'époque où le C a été inventé, et les processeurs modernes font un peu semblant de continuer à fonctionner de cette manière.
 
 Cela signifie que les performances de ces processeurs sont de plus en plus difficiles à prévoir avec un certain niveau de précision.
-De la même manière qu`'avec un compilateur C, on peut facilement avoir une idée générale de la performance à attendre dans le cas par défaut, qui correspond à la situation non optimisée, mais plus on se penche sur des cas précis moins les choses sont claires.
+De la même manière qu'avec un compilateur C, on peut facilement avoir une idée générale de la performance à attendre dans le cas par défaut, qui correspond à la situation non optimisée, mais plus on se penche sur des cas précis moins les choses sont claires.
 
-=== Itanium{nbsp}: l`'échec de l`'explicite
+=== Itanium{nbsp}: l'échec de l'explicite
 
-L`'idée d`'avoir un deuxième niveau de compilation à l`'intérieur des processeurs peut sembler très étrange{nbsp}: le processeur ne travaille à chaque fois que sur une petite partie du code, et ne dispose que d`'un temps très limité pour faire ses optimisations.
+L'idée d'avoir un deuxième niveau de compilation à l'intérieur des processeurs peut sembler très étrange{nbsp}: le processeur ne travaille à chaque fois que sur une petite partie du code, et ne dispose que d'un temps très limité pour faire ses optimisations.
 
-Pourquoi ne pas plutôt rendre public toute cette tuyauterie interne (ou au moins une partie significative d`'entre elle) pour permettre aux compilateurs de l`'exploiter au mieux{nbsp}?
+Pourquoi ne pas plutôt rendre public toute cette tuyauterie interne (ou au moins une partie significative d'entre elle) pour permettre aux compilateurs de l'exploiter au mieux{nbsp}?
 En effet les compilateurs disposent de tout le code à exécuter et devraient donc pouvoir faire de meilleures optimisations, et peuvent investir plus de temps pour déterminer les optimisations à apporter.
 Cela pourrait aussi permettre de simplifier ces parties des processeurs.
 
-En fait cela a été tenté dans les années 2000 par HP et Intel, sous le nom d`'link:https://en.wikipedia.org/wiki/Itanium[Itanium]
-Leur lancement a été optimiste{nbsp}: on allait voir ce qu`'on allait voir.
+En fait cela a été tenté dans les années 2000 par HP et Intel, sous le nom d'link:https://en.wikipedia.org/wiki/Itanium[Itanium]
+Leur lancement a été optimiste{nbsp}: on allait voir ce qu'on allait voir.
 Dès que les compilateurs pouvant tirer profit de toutes ces nouvelles possibilités seraient sortis, les performances seraient stupéfiantes, notamment pour tout ce qui touchait à la parallélisation.
 
-Intellectuellement l`'idée était séduisante.
+Intellectuellement l'idée était séduisante.
 
-Le problème est que ces compilateurs n`'ont jamais vu le jour.
+Le problème est que ces compilateurs n'ont jamais vu le jour.
 
-En effet, écrire des compilateurs raisonnablement efficaces pour des processeurs classiques est déjà un défi d`'ingénierie.
+En effet, écrire des compilateurs raisonnablement efficaces pour des processeurs classiques est déjà un défi d'ingénierie.
 Mêmes les compilateurs modernes les plus avancés sont loins de couvrir toutes optimisations possibles, en ciblant les plus utilisées.
 
-Écrire des compilateurs tirant parti des possibilités d`'Itanium s`'est révélé hors de portée{nbsp}: l`'API était trop complexe et analyser le code d`'entrée d`'une manière suffisamment fine pour générer du code optimal trop difficile, en tout cas dans les quelques années où Itanium paraissait une solution raisonnable.
+Écrire des compilateurs tirant parti des possibilités d'Itanium s'est révélé hors de portée{nbsp}: l'API était trop complexe et analyser le code d'entrée d'une manière suffisamment fine pour générer du code optimal trop difficile, en tout cas dans les quelques années où Itanium paraissait une solution raisonnable.
 
-Car pendant ce temps, les processeurs classiques continuaient à progresser, ajoutant de nouvelles optimisations, et creusant encore l`'écart. Et au bout d`'un moment les clients se sont lassés d`'attendre et l`'aventure s`'est arrêtée.
+Car pendant ce temps, les processeurs classiques continuaient à progresser, ajoutant de nouvelles optimisations, et creusant encore l'écart. Et au bout d'un moment les clients se sont lassés d'attendre et l'aventure s'est arrêtée.
 
-Si le sujet vous intéresse, je vous recommande link:https://devblogs.microsoft.com/oldnewthing/20150727-00/?p=90821[la série d`'articles de Raymond Chen] sur ce sujet.
+Si le sujet vous intéresse, je vous recommande link:https://devblogs.microsoft.com/oldnewthing/20150727-00/?p=90821[la série d'articles de Raymond Chen] sur ce sujet.
 
 == Rust et le borrow checker
 
-Passer d`'Itanium à Rust peut sembler un peu acrobatique mais vous allez comprendre.
+Passer d'Itanium à Rust peut sembler un peu acrobatique mais vous allez comprendre.
 
-Les compilateurs Itanium avait pour objectif de générer du code qui notamment explicitait les dépendances entres variables pour indiquer ce qu`'il était possible de paralléliser, ou d`'exécuter en avance.
+Les compilateurs Itanium avait pour objectif de générer du code qui notamment explicitait les dépendances entres variables pour indiquer ce qu'il était possible de paralléliser, ou d'exécuter en avance.
 
-Et malheureusement générer ce type d`'information lorsque le code d`'entrée est du C est très difficile, par exemple avec la gestion des pointeurs qu`'il permet, pour creuser le sujet vous pouvez par exemple vous renseigner sur l`'link:https://en.wikipedia.org/wiki/Pointer_aliasing[aliasing].
-En effet les machines qui existaient lorsque le C a été inventé n`'avaient pas besoin de ces informations, car elles étaient beaucoup plus simples, par exemple elles n`'étaient pas capable de parallélisme.
-Des mots-clés comme link:https://en.wikipedia.org/wiki/Restrict[restrict] ont été ajoutés pour pouvoir aider les compilateurs, mais on est loin d`'atteindre la granularité donc sont capables les processeurs modernes.
+Et malheureusement générer ce type d'information lorsque le code d'entrée est du C est très difficile, par exemple avec la gestion des pointeurs qu'il permet, pour creuser le sujet vous pouvez par exemple vous renseigner sur l'link:https://en.wikipedia.org/wiki/Pointer_aliasing[aliasing].
+En effet les machines qui existaient lorsque le C a été inventé n'avaient pas besoin de ces informations, car elles étaient beaucoup plus simples, par exemple elles n'étaient pas capable de parallélisme.
+Des mots-clés comme link:https://en.wikipedia.org/wiki/Restrict[restrict] ont été ajoutés pour pouvoir aider les compilateurs, mais on est loin d'atteindre la granularité donc sont capables les processeurs modernes.
 
-Pour pouvoir tirer partie d`'un Itanium, un compilateur doit donc déduire des informations qui ne sont pas dans le code source d`'origine, comme c`'est le cas pour les moteurs JavaScript pour le typage.
+Pour pouvoir tirer partie d'un Itanium, un compilateur doit donc déduire des informations qui ne sont pas dans le code source d'origine, comme c'est le cas pour les moteurs JavaScript pour le typage.
 
-À l`'inverse, le langage Rust est pensé pour le parallélisme.
-Dans le code Rust, la gestion d`'accès aux données doit être indiquée explicitement.
+À l'inverse, le langage Rust est pensé pour le parallélisme.
+Dans le code Rust, la gestion d'accès aux données doit être indiquée explicitement.
 La conséquence souvent mise en avant est que cela évite les bugs lorsque plusieurs threads accèdent à la même donnée et créent des incohérences.
-L`'autre conséquence, que vous avez peut-être déjà déduite, c`'est qu`'elle rend plus facile de générer du code efficace pour un processeur moderne en partant de code Rust, par exemple en comparant avec du code C équivalent{empty}footnote:[Pour être tout à fait précis Rust utilise le compilateur link:https://fr.wikipedia.org/wiki/LLVM[LLVM] qui est aussi et surtout un compilateur C et {cpp} et je ne sais pas si pour le moment il intègre des optimisations spécifique à Rust.].
+L'autre conséquence, que vous avez peut-être déjà déduite, c'est qu'elle rend plus facile de générer du code efficace pour un processeur moderne en partant de code Rust, par exemple en comparant avec du code C équivalent{empty}footnote:[Pour être tout à fait précis Rust utilise le compilateur link:https://fr.wikipedia.org/wiki/LLVM[LLVM] qui est aussi et surtout un compilateur C et {cpp} et je ne sais pas si pour le moment il intègre des optimisations spécifique à Rust.].
 
 Cela correspond donc à un retour vers des optimisations explicites où le lien entre le code écrit et sa performance est moins indirect.
 
-Même avec un processeur non-Itanium, le code peut s`'exécuter plus rapidement car le compilateur du processeur peut produire du code plus efficace depuis du code machine issu du Rust que depuis du code machine provenant de C.
-C`'est encore plus vrai sur les processeurs comme ARM qui permettent d`'avoir des garanties de consistance plus faibles sur certaines opérations et donc d`'éviter des efforts de synchronisation quand cela n`'est pas nécessaire{empty}footnote:[Pour en savoir plus, voir par exemple link:https://lwn.net/Articles/718628/[cet article].].
+Même avec un processeur non-Itanium, le code peut s'exécuter plus rapidement car le compilateur du processeur peut produire du code plus efficace depuis du code machine issu du Rust que depuis du code machine provenant de C.
+C'est encore plus vrai sur les processeurs comme ARM qui permettent d'avoir des garanties de consistance plus faibles sur certaines opérations et donc d'éviter des efforts de synchronisation quand cela n'est pas nécessaire{empty}footnote:[Pour en savoir plus, voir par exemple link:https://lwn.net/Articles/718628/[cet article].].
 
-Swift développé par Apple répond à des enjeux similaires à Rust et répond à l`'objectif de disposer d`'un langage qui lui permette de tirer le maximum de bénéfice des processeurs ARM équipant leurs téléphones, leurs tablettes et depuis peu leurs ordinateurs.
+Swift développé par Apple répond à des enjeux similaires à Rust et répond à l'objectif de disposer d'un langage qui lui permette de tirer le maximum de bénéfice des processeurs ARM équipant leurs téléphones, leurs tablettes et depuis peu leurs ordinateurs.
 
 == Conclusion
 
-J`'espère que ce long article vous aura donné envie d`'en apprendre plus sur un au moins des sujets dont il parle, sans trop vous rendre anxieux sur le fonctionnement de votre ordinateur ou de votre smartphone.
+J'espère que ce long article vous aura donné envie d'en apprendre plus sur un au moins des sujets dont il parle, sans trop vous rendre anxieux sur le fonctionnement de votre ordinateur ou de votre smartphone.
 
-Le fonctionnement des ordinateurs modernes est d`'une complexité insondable, mais ma conviction est qu`'en savoir un peu sur leur fonctionnement général contribue à concevoir de meilleur systèmes.
+Le fonctionnement des ordinateurs modernes est d'une complexité insondable, mais ma conviction est qu'en savoir un peu sur leur fonctionnement général contribue à concevoir de meilleur systèmes.

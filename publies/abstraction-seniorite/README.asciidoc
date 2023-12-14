@@ -7,43 +7,43 @@ v0.1, 2019-08-28
 
 [quote]
 ____
-Les link:https://fr.wikipedia.org/wiki/Mapping_objet-relationnel[ORMs] c`'est bon pour les personnes qui ne savent pas faire de SQL.
+Les link:https://fr.wikipedia.org/wiki/Mapping_objet-relationnel[ORMs] c'est bon pour les personnes qui ne savent pas faire de SQL.
 Les requêtes générées ne sont pas optimisées et il y a plein de cas compliqués à gérés.
 
-Les vrais développeurs se passent d`'ORM et écrivent eux-même leurs requêtes SQL.
+Les vrais développeurs se passent d'ORM et écrivent eux-même leurs requêtes SQL.
 ____
 
 Les abstractions sont souvent imparfaites{nbsp}: elles peuvent simplifier certaines choses mais la simplification peut ne pas fonctionner dans tous les cas, par exemple en ne couvrant pas certaines situations spécifiques.
 
-Une abstraction peut aussi introduire des inefficacités{nbsp}: en présentant un modèle simplifié elle peuvent permettre de gagner du temps au détriment d`'une solution fait-main.
+Une abstraction peut aussi introduire des inefficacités{nbsp}: en présentant un modèle simplifié elle peuvent permettre de gagner du temps au détriment d'une solution fait-main.
 
-C`'est par exemple le cas des ORMs{nbsp}: ils peuvent permettre d`'écrire moins du code, ou de mieux organiser ce code que sous forme de requêtes SQL écrites "`à la main`", mais les requêtes générées par ce types d`'outils peuvent être moins efficaces.
+C'est par exemple le cas des ORMs{nbsp}: ils peuvent permettre d'écrire moins du code, ou de mieux organiser ce code que sous forme de requêtes SQL écrites "`à la main`", mais les requêtes générées par ce types d'outils peuvent être moins efficaces.
 
-Plus on a d`'expérience avec les bases de données et le SQL, plus on a conscience des limites ou simplement des imperfections des ORMs, ce qui correspond à l`'écart entre ce que l`'outil fait et ce qu`'on pourrait faire à la place de l`'outil.
+Plus on a d'expérience avec les bases de données et le SQL, plus on a conscience des limites ou simplement des imperfections des ORMs, ce qui correspond à l'écart entre ce que l'outil fait et ce qu'on pourrait faire à la place de l'outil.
 
 Dans une situation où cela nous gène, on a les dents qui grincent.
-Parfois cette gène est légitime car elle a des conséquences mesurables, mais parfois il s`'agit simplement d`'une frustration causée par l`'écart entre le fonctionnement observé et la situation idéale, même si cet écart n`'a aucune importance.
+Parfois cette gène est légitime car elle a des conséquences mesurables, mais parfois il s'agit simplement d'une frustration causée par l'écart entre le fonctionnement observé et la situation idéale, même si cet écart n'a aucune importance.
 
-La citation qui ouvre l`'article est un classique{nbsp}: celui des personnes obsédées par l`'inefficacité des ORMs au point d`'en faire leur bête noire.
-Dans mon expérience personnelle, ces mêmes personnes -- souvent des personnes ayant de l`'expérience et donc un certain type d`'influence{nbsp}—&#8201;ont du mal à concevoir qu`'on puisse ne pas partager leur avis{nbsp}: si on n`'est pas d`'accord avec elles c`'est par ignorance.
-Partager leur avis est un signe de compétence qui montre qu`'on en sait assez pour comprendre.
+La citation qui ouvre l'article est un classique{nbsp}: celui des personnes obsédées par l'inefficacité des ORMs au point d'en faire leur bête noire.
+Dans mon expérience personnelle, ces mêmes personnes -- souvent des personnes ayant de l'expérience et donc un certain type d'influence{nbsp}—&#8201;ont du mal à concevoir qu'on puisse ne pas partager leur avis{nbsp}: si on n'est pas d'accord avec elles c'est par ignorance.
+Partager leur avis est un signe de compétence qui montre qu'on en sait assez pour comprendre.
 
 Il peut être tentant de partager leur avis pour faire partie du club.
 
-Mais il ne s`'agit pas de la seule attitude possible{nbsp}:
+Mais il ne s'agit pas de la seule attitude possible{nbsp}:
 si mieux comprendre le fonctionnement interne des systèmes fait mieux comprendre les imperfections des abstractions, il peut aussi permettre de mieux percevoir les avantages conférés par les abstractions, par exemple la capacité à garder la complexité sous contrôle, ou un usage simplifié pour les cas nominaux.
 
-Ainsi connaître de fond en comble une base de données et un ORM peut permettre de percevoir que l`'inefficacité des requêtes qu`'il produit peut être acceptable et de savoir comment s`'en sortir dans les cas limites sans remettre en cause tout le modèle.
+Ainsi connaître de fond en comble une base de données et un ORM peut permettre de percevoir que l'inefficacité des requêtes qu'il produit peut être acceptable et de savoir comment s'en sortir dans les cas limites sans remettre en cause tout le modèle.
 
 On peut donc être expérimenté·e, très bien savoir de quoi on parle et apprécier les abstractions.
-Quand on voit un requête pas super, on a toujours les dents qui grincent, mais on sait qu`'il s`'agit de la moins mauvaise solution.
-Et en cas de besoin, on sait faire en sorte d`'inciter l`'outil à générer la bonne requête sans casser tout le modèle et en vouloir à la terre entière.
+Quand on voit un requête pas super, on a toujours les dents qui grincent, mais on sait qu'il s'agit de la moins mauvaise solution.
+Et en cas de besoin, on sait faire en sorte d'inciter l'outil à générer la bonne requête sans casser tout le modèle et en vouloir à la terre entière.
 
-Il est toujours tentant de rejeter une solution existante mais imparfaite pour quelque chose qu`'on pense savoir mieux faire soi-même.
-Il est aussi tentant de mettre en avant ce qu`'on sait et (qu`'on pense) que les autres ne savent pas.
+Il est toujours tentant de rejeter une solution existante mais imparfaite pour quelque chose qu'on pense savoir mieux faire soi-même.
+Il est aussi tentant de mettre en avant ce qu'on sait et (qu'on pense) que les autres ne savent pas.
 
-Mais rappelez-vous que ce n`'est pas la seule possibilité.
+Mais rappelez-vous que ce n'est pas la seule possibilité.
 
-Cela ne veut pas dire qu`'une abstraction est toujours une bonne chose, ou qu`'utiliser un ORM est toujours la bonne solution (surtout Hibernate).
+Cela ne veut pas dire qu'une abstraction est toujours une bonne chose, ou qu'utiliser un ORM est toujours la bonne solution (surtout Hibernate).
 
-Mais parfois c`'est le cas, la séniorité c`'est aussi savoir faire des compromis et accepter de ne pas faire partie de certains clubs.
+Mais parfois c'est le cas, la séniorité c'est aussi savoir faire des compromis et accepter de ne pas faire partie de certains clubs.

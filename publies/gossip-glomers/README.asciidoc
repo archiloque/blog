@@ -12,7 +12,7 @@ In each case you create a terminal-run server run by a tool called link:https://
 
 The communication is done with STDIN and STDOUT using a JSON format, which means there a few restrictions on the programming languages you choose.
 
-I like that the challenges provides practical experience on topics link:https://archiloque.net/blog/database-internals/[I`'ve read about] but never implemented myself.
+I like that the challenges provides practical experience on topics link:https://archiloque.net/blog/database-internals/[I've read about] but never implemented myself.
 
 But they have two issues:
 
@@ -22,8 +22,8 @@ But some examples ask you to use some external services, like a minimal key-valu
 And on the exercises pages these services are only documented via link:https://pkg.go.dev/github.com/jepsen-io/maelstrom/demo/go[the API of a Go library] instead of the JSON one.
 Depending on your languages of choice, there are link:https://github.com/jepsen-io/maelstrom/tree/main/demo[demo scripts] you can have a look, if you can avoid spoilering yourself and can deal with possibly outdated examples (the Ruby code is in this situation), or you go and read the Go library code and retro-engineer the APIs.
 
-The second is the fact that Maelstrom`'s outputs are not intuitive: when a behavior is incorrect you get a list of errors as a serialized Closure structure and must understand what went wrong.
-For example Maelstrom won`'t tell you exactly which one of your responses has a problem.
+The second is the fact that Maelstrom's outputs are not intuitive: when a behavior is incorrect you get a list of errors as a serialized Closure structure and must understand what went wrong.
+For example Maelstrom won't tell you exactly which one of your responses has a problem.
 In some cases Maelstrom can also crash or fail to analyze the results, which means scrutinizing the logs until you can figure out what to do.
 
 These issues were painful but surmountable, consider yourself warned.

@@ -7,55 +7,55 @@ v0.1, 2017-12-04
 
 == Des architectures émergentes aux architectures évolutionnaires
 
-link:https://www.amazon.fr/gp/product/B075RR1XVG[Le dernier livre d`'architecture de Thoughtworks] parle des architectures évolutionnaires.
+link:https://www.amazon.fr/gp/product/B075RR1XVG[Le dernier livre d'architecture de Thoughtworks] parle des architectures évolutionnaires.
 
-Le paradigme précédent, "`les architectures émergentes`" structurait l`'apport de l`'agile en expliquant que les décisions d`'architecture doivent être prises le plus tard possible.
+Le paradigme précédent, "`les architectures émergentes`" structurait l'apport de l'agile en expliquant que les décisions d'architecture doivent être prises le plus tard possible.
 En effet, plus on prend une décision tard, meilleures sont les informations dont on dispose quand on la prend.
-L`'architecture doit donc se construire petit à petit plutôt que de tout décider lors du lancement d`'un projet.
+L'architecture doit donc se construire petit à petit plutôt que de tout décider lors du lancement d'un projet.
 
 "`Les architectures évolutionnaires`" correspond à la bascule du mode projet au mode produit. 
 
 En mode projet, les développements logiciels avaient pour but de répondre à un besoin cadré et figé.
-La phase de développement avait un début et une fin, suivi d`'une phase de maintenance pendant laquelle le code évoluait mais pas d`'une manière significative.
+La phase de développement avait un début et une fin, suivi d'une phase de maintenance pendant laquelle le code évoluait mais pas d'une manière significative.
 
-Dans beaucoup de cas, les besoins évoluent désormais de manière continue et la phase de développement ne s`'arrête donc jamais, c`'est ce qu`'on appelle "`le mode produit`".
-Cela nécessite d`'avoir des architectures qu`'on peut faire évoluer pour s`'adapter aux nouveaux besoins.
+Dans beaucoup de cas, les besoins évoluent désormais de manière continue et la phase de développement ne s'arrête donc jamais, c'est ce qu'on appelle "`le mode produit`".
+Cela nécessite d'avoir des architectures qu'on peut faire évoluer pour s'adapter aux nouveaux besoins.
 
-Les auteur·e·s ont choisi d`'appeler ces architectures _évolutionnaires_ pour signifier le fait que les adaptations qu`'on va leur demander ne sont pas prévues.
+Les auteur·e·s ont choisi d'appeler ces architectures _évolutionnaires_ pour signifier le fait que les adaptations qu'on va leur demander ne sont pas prévues.
 
-La métaphore me semble suffisamment intéressante pour s`'en servir.
+La métaphore me semble suffisamment intéressante pour s'en servir.
 
-Pour obtenir une de ces architectures, Thoughtworks n`'a pas de recette magique{nbsp}: il faut une architecture qui soit découplée aux bons endroits, et qui soit adaptée à vos besoins.
+Pour obtenir une de ces architectures, Thoughtworks n'a pas de recette magique{nbsp}: il faut une architecture qui soit découplée aux bons endroits, et qui soit adaptée à vos besoins.
 
 == _Fitness functions_ architecturaux
 
-Quand une architecture évolue, le risque est qu`'elle dérive jusqu`'à ne plus répondre à ses objectifs fondamentaux.
+Quand une architecture évolue, le risque est qu'elle dérive jusqu'à ne plus répondre à ses objectifs fondamentaux.
 Pour cela le livre propose une solution en trois étapes{nbsp}:
 
-. Lors de la définition initiale de l`'architecture, bien choisir quels sont ses objectifs fondamentaux{nbsp}: sécurité, scalabilité, performance, vitesse de développement… Dans l`'idéal une architecture devrait répondre à tous, mais pour être capable de définir une architecture, il faut choisir les-quelques uns qui sont les plus importants.
-. Pour chacun d`'entre eux, définir des critères, appelés _fitness functions_ architecturaux, qui permettent de valider que cet objectif est atteint. Idéalement ces _fitness functions_ devraient pouvoir être vérifiés automatiquement et être inclus dans l`'usine de déploiement via des tests unitaires ou d`'intégration, mais il est possible que d`'autres doivent l`'être de manière manuelle, par exemple via des audits. Cela signifie que l`'architecture doit à la fois être conçue pour atteindre des objectifs, mais aussi pour permettre de mettre en œuvre les _fitness functions_ pouvant les valider.
-. À intervalle régulier, réévaluer les objectifs de l`'architectures, et les _fitness functions_ architecturaux qui en découlent{nbsp}: sont-ils toujours adaptés, faut-il en supprimer ou en ajouter d`'autres{nbsp}?
+. Lors de la définition initiale de l'architecture, bien choisir quels sont ses objectifs fondamentaux{nbsp}: sécurité, scalabilité, performance, vitesse de développement… Dans l'idéal une architecture devrait répondre à tous, mais pour être capable de définir une architecture, il faut choisir les-quelques uns qui sont les plus importants.
+. Pour chacun d'entre eux, définir des critères, appelés _fitness functions_ architecturaux, qui permettent de valider que cet objectif est atteint. Idéalement ces _fitness functions_ devraient pouvoir être vérifiés automatiquement et être inclus dans l'usine de déploiement via des tests unitaires ou d'intégration, mais il est possible que d'autres doivent l'être de manière manuelle, par exemple via des audits. Cela signifie que l'architecture doit à la fois être conçue pour atteindre des objectifs, mais aussi pour permettre de mettre en œuvre les _fitness functions_ pouvant les valider.
+. À intervalle régulier, réévaluer les objectifs de l'architectures, et les _fitness functions_ architecturaux qui en découlent{nbsp}: sont-ils toujours adaptés, faut-il en supprimer ou en ajouter d'autres{nbsp}?
 
-Par exemple si une architecture doit être élastique, des tests d`'élasticités réguliers sont nécessaires.
+Par exemple si une architecture doit être élastique, des tests d'élasticités réguliers sont nécessaires.
 Au mieux à chaque build, sinon régulièrement, et si possible automatisés.
 Sinon votre architecture ne sera pas élastique.
 
-L`'idée est intéressante.
-Elle serait à creuser en donnant des exemples pour différents objectifs et différents types d`'architectures ou en regardant ce qu`'il est possible de faire sur des architectures existantes.
+L'idée est intéressante.
+Elle serait à creuser en donnant des exemples pour différents objectifs et différents types d'architectures ou en regardant ce qu'il est possible de faire sur des architectures existantes.
 
-== Comparaison d`'architectures
+== Comparaison d'architectures
 
-La deuxième partie du texte est une comparaison de différents types d`'architectures{nbsp}: SOA à l`'ancienne, bus de services, microservices…
+La deuxième partie du texte est une comparaison de différents types d'architectures{nbsp}: SOA à l'ancienne, bus de services, microservices…
 Pour chacun sont détaillés leurs avantages, leurs inconvénients, et les cas où ils sont les mieux adaptés.
-Loin d`'un _microservices rules the waves_, les comparaisons sont très pragmatiques et remettent en perspectives les modèles historiques en face des nouveaux besoins et des nouvelles approches comme le DDD.
-Un long passage est ainsi consacré à déconseiller les microservices pour les entreprises où le domaine métier n`'est pas adapté.
+Loin d'un _microservices rules the waves_, les comparaisons sont très pragmatiques et remettent en perspectives les modèles historiques en face des nouveaux besoins et des nouvelles approches comme le DDD.
+Un long passage est ainsi consacré à déconseiller les microservices pour les entreprises où le domaine métier n'est pas adapté.
 
 Le ton est pédagogique et ce panorama devrait intéresser les architectes en apprentissage.
 
-Par contre, une fois l`'architecture choisie, pas grand chose sur la manière de s`'adapter ou le type de découplage qui est le plus adapté en fonction des cas.
+Par contre, une fois l'architecture choisie, pas grand chose sur la manière de s'adapter ou le type de découplage qui est le plus adapté en fonction des cas.
 
 La loi de Conway est bien sûr mentionnée ainsi que la link:https://www.thoughtworks.com/radar/techniques/inverse-conway-maneuver[manœuvre de Conway inversée].
-Je m`'attendais à des indications sur la manière d`'avoir une organisation évolutive qui est en mesure de s`'adapter en même temps que l`'architecture mais ce sujet n`'est pas abordé.
+Je m'attendais à des indications sur la manière d'avoir une organisation évolutive qui est en mesure de s'adapter en même temps que l'architecture mais ce sujet n'est pas abordé.
 
 == En résumé
 

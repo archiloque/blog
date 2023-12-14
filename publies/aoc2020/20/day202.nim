@@ -14,7 +14,7 @@ for pictureLineIndex in countup(0, photoLength - 1):
     else:
       sourceLine = (pictureLineIndex * 11) + 1 + lineIndex
 
-    var currentLine = `' `'.repeat(8 * photoLength)
+    var currentLine = ' '.repeat(8 * photoLength)
 
     for pictureColumnIndex in countup(0, photoLength - 1):
       for columnIndex in countup(0, 7):
@@ -37,17 +37,17 @@ proc paintSeaMonster(picture: var seq[string], pictureLineIndex: int,
     pictureColumnIndex: int) =
   for monsterLineIndex in countup(0, seaMonster.len() - 1):
     for monsterColumnIndex in countup(0, seaMonster[0].len() - 1):
-      if (seaMonster[monsterLineIndex][monsterColumnIndex] == `'#`'):
+      if (seaMonster[monsterLineIndex][monsterColumnIndex] == '#'):
         picture[pictureLineIndex + monsterLineIndex][pictureColumnIndex +
-          monsterColumnIndex] = `'O`'
+          monsterColumnIndex] = 'O'
 
 proc checkSeaMonster(picture: seq[string], pictureLineIndex: int,
     pictureColumnIndex: int): bool =
   for monsterLineIndex in countup(0, seaMonster.len() - 1):
     for monsterColumnIndex in countup(0, seaMonster[0].len() - 1):
-      if (seaMonster[monsterLineIndex][monsterColumnIndex] == `'#`') and (
+      if (seaMonster[monsterLineIndex][monsterColumnIndex] == '#') and (
           picture[pictureLineIndex + monsterLineIndex][pictureColumnIndex +
-          monsterColumnIndex] == `'.`'):
+          monsterColumnIndex] == '.'):
         return false
   return true
 
@@ -76,7 +76,7 @@ proc tileContentAt(picture: seq[string], line: int, column: int,
 for position in countup(0, 7):
   var positionedPicture: seq[string] = @[]
   for lineIndex in countup(0, picture.len() - 1):
-    var positionedPictureLine = `' `'.repeat(picture.len())
+    var positionedPictureLine = ' '.repeat(picture.len())
     for columnIndex in countup(0, picture.len() - 1):
       positionedPictureLine[columnIndex] = tileContentAt(picture, lineIndex,
           columnIndex, position)
@@ -93,6 +93,6 @@ for position in countup(0, 7):
   if monsterFound:
     echo(positionedPicture.join("\n"))
     var hashes = positionedPicture.map(proc (l: string): int = l.count(
-        `'#`')).foldl(a + b)
+        '#')).foldl(a + b)
     echo(hashes)
     quit()

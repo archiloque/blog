@@ -7,25 +7,25 @@ v0.1, 2019-05-04
 :article_description: Instructif et fun
 :figure-caption!:
 
-Amateur de link:http://rgbexpress.com[jeux] de link:https://cosmicexpressgame.com[puzzle] et de code, je pense que les solveurs de jeux -- c`'est-à-dire de coder un outil qui résoud les niveaux du jeu automatiquement{nbsp}—&#8201;sont des bons exercices d`'entraînement au code, et qu`'ils mériteraient d`'être plus utilisés.
+Amateur de link:http://rgbexpress.com[jeux] de link:https://cosmicexpressgame.com[puzzle] et de code, je pense que les solveurs de jeux -- c'est-à-dire de coder un outil qui résoud les niveaux du jeu automatiquement{nbsp}—&#8201;sont des bons exercices d'entraînement au code, et qu'ils mériteraient d'être plus utilisés.
 
 == Comment ça marche un solveur{nbsp}?
 
-Le principe permettant résoudre un jeu de puzzle est très simple, et repose sur l`'utilisation d`'une liste sur laquelle on itère, jusqu`'à résoudre le puzzle, ou jusqu`'à échouer (en cas d`'erreur){nbsp}:
+Le principe permettant résoudre un jeu de puzzle est très simple, et repose sur l'utilisation d'une liste sur laquelle on itère, jusqu'à résoudre le puzzle, ou jusqu'à échouer (en cas d'erreur){nbsp}:
 
 image::graph.svg[width=731,height=513]
 
-La mise en œuvre d`'un cas simple ne prend ainsi que quelques ligne.
+La mise en œuvre d'un cas simple ne prend ainsi que quelques ligne.
 
 == Pourquoi est-ce un bon exercices{nbsp}?
 
-Plusieurs caractéristiques font que -- à mon avis{nbsp}—&#8201;il s`'agit d`'un bon exercice d`'apprentissage ou de perfectionnement, par exemple pour découvrir un nouveau langage de programmation.
+Plusieurs caractéristiques font que -- à mon avis{nbsp}—&#8201;il s'agit d'un bon exercice d'apprentissage ou de perfectionnement, par exemple pour découvrir un nouveau langage de programmation.
 
 === Domaine facile à comprendre
 
-Le domaine est facile à comprendre et les règles peuvent souvent se déduire rapidement de l`'observation du jeu.
+Le domaine est facile à comprendre et les règles peuvent souvent se déduire rapidement de l'observation du jeu.
 
-Dans les cas où les règles sont un peu plus difficiles, le fait de tester une solution proposée par le solveur pour se rendre compte qu`'elle ne fonctionne pas, puis tâtonner pour trouver une solution, est un bon exercice d`'investigation.
+Dans les cas où les règles sont un peu plus difficiles, le fait de tester une solution proposée par le solveur pour se rendre compte qu'elle ne fonctionne pas, puis tâtonner pour trouver une solution, est un bon exercice d'investigation.
 
 === Démarrage rapide
 
@@ -33,26 +33,26 @@ Modéliser le cas le plus simple, par exemple le premier niveau du jeu, peut se 
 
 image::niveau.png[]
 
-En quelques minutes quelque chose on peut obtenir quelque chose qui fonctionne de bout en bout et sur lequel s`'appuyer.
+En quelques minutes quelque chose on peut obtenir quelque chose qui fonctionne de bout en bout et sur lequel s'appuyer.
 
 === Modélisation
 
-Si les règles des jeux sont faciles à comprendre, trouver la bonne structure de données et d`'organisation de code pour les implémenter de manière lisible -- pour éviter que link:../gameplay-emergent/[la complexité du gameplay émergent ne se retrouve dans votre code]{nbsp}—&#8201;demande souvent un vrai effort{nbsp}: les solveurs sont remplis de listes, de tableaux associatif, de grappes d`'objets…
+Si les règles des jeux sont faciles à comprendre, trouver la bonne structure de données et d'organisation de code pour les implémenter de manière lisible -- pour éviter que link:../gameplay-emergent/[la complexité du gameplay émergent ne se retrouve dans votre code]{nbsp}—&#8201;demande souvent un vrai effort{nbsp}: les solveurs sont remplis de listes, de tableaux associatif, de grappes d'objets…
 
-Ils sont donc parfaits pour explorer la bibliothèque standard d`'un langage.
+Ils sont donc parfaits pour explorer la bibliothèque standard d'un langage.
 
 === Refactoring refactoring refactoring
 
 Dans un jeu de puzzle, chaque groupe de niveaux apportera son lot de nouveaux comportements, et donc le besoin de refactorer le code pour les y ajouter.
 
-L`'occasion de refactorer le code de manière naturelle.
+L'occasion de refactorer le code de manière naturelle.
 
-=== C`'est long d`'attendre
+=== C'est long d'attendre
 
 Les niveaux avancés des jeux permettent souvent de nombreuses possibilités.
-Dans ces situations, les solveurs "`naïfs`" arrivent rapidement à leur limites{nbsp}: quand même une nuit de calcul ne permet plus de calculer une solutions, il est temps de réfléchir, de mesurer, et d`'optimiser.
+Dans ces situations, les solveurs "`naïfs`" arrivent rapidement à leur limites{nbsp}: quand même une nuit de calcul ne permet plus de calculer une solutions, il est temps de réfléchir, de mesurer, et d'optimiser.
 
-Cela permet de s`'intéresser aux performance du langage et d`'explorer comment accélérer les choses, voir d`'aller fouiller dans des algorithmes un peu théoriques et d`'élargir ainsi sa culture générale.
+Cela permet de s'intéresser aux performance du langage et d'explorer comment accélérer les choses, voir d'aller fouiller dans des algorithmes un peu théoriques et d'élargir ainsi sa culture générale.
 
 Si vous cherchiez une raison pour utiliser de la manipulation de bits{nbsp}:
 [source,java]
@@ -90,26 +90,26 @@ final boolean enoughTrucksForPackages(
 
 == Quelques conseils
 
-Ayant tenté l`'expérience avec plusieurs jeux, j`'ai quelques conseils pour vous.
+Ayant tenté l'expérience avec plusieurs jeux, j'ai quelques conseils pour vous.
 
 === Commencez simple
 
 Si vous avez déjà beaucoup joué à un jeu, il peut être tentant de coder un maximum de comportements dès le début, pour éviter de fastidieux refactorings.
 
-Mais apporte un risque d`'aboutir à un code très complexe, et de retarder le moment de voir votre programmer aboutir, et donc de vous décourager.
+Mais apporte un risque d'aboutir à un code très complexe, et de retarder le moment de voir votre programmer aboutir, et donc de vous décourager.
 
-=== Jouez un peu d`'abord
+=== Jouez un peu d'abord
 
-Si -- comme vu plus haut{nbsp}—&#8201;il ne faut pas trop anticiper, mieux va avoir un peu exploré le jeu pour savoir à quoi s`'attendre.
+Si -- comme vu plus haut{nbsp}—&#8201;il ne faut pas trop anticiper, mieux va avoir un peu exploré le jeu pour savoir à quoi s'attendre.
 
-Cela aide à structurer les données d`'une manière qui vous facilitera la vie lorsqu`'il faudra refactorer, et évite la frustration d`'avoir à jeter trop de code.
+Cela aide à structurer les données d'une manière qui vous facilitera la vie lorsqu'il faudra refactorer, et évite la frustration d'avoir à jeter trop de code.
 
-== Réfléchissez au format d`'entrée
+== Réfléchissez au format d'entrée
 
-Pour résoudre les niveaux il faut d`'abord les saisir.
-S`'ils sont complexes et/ou nombreux, des mécanismes de saisies mal adaptés peuvent rendre la tâche pénible et donc démotivante.
+Pour résoudre les niveaux il faut d'abord les saisir.
+S'ils sont complexes et/ou nombreux, des mécanismes de saisies mal adaptés peuvent rendre la tâche pénible et donc démotivante.
 
-Je vous conseille donc de passer un peu de temps sur ce sujet en réfléchissant bien votre format d`'entrée et votre manière de saisir les données.
+Je vous conseille donc de passer un peu de temps sur ce sujet en réfléchissant bien votre format d'entrée et votre manière de saisir les données.
 
 Un exemple de niveau utilisant link:https://en.wikipedia.org/wiki/Box-drawing_character[les symboles permettant de dessiner des tableaux]{nbsp}:
 ```
@@ -142,11 +142,11 @@ Un exemple de niveau utilisant link:https://en.wikipedia.org/wiki/Box-drawing_ch
 
 Après quelques dizaines de niveaux, ou quand arrive un nouveau comportement qui rentre difficilement dans votre modèle, il peut être tentant de passer à autre chose.
 
-Dans ce cas écoutez-vous, et rappelez-vous qu`'il s`'agit seulement d`'un exercice{nbsp}:
-pas la peine de vous obstiner pour arriver jusqu`'au bout si cela vous apporte de la frustration.
+Dans ce cas écoutez-vous, et rappelez-vous qu'il s'agit seulement d'un exercice{nbsp}:
+pas la peine de vous obstiner pour arriver jusqu'au bout si cela vous apporte de la frustration.
 
-== Y`'a plus qu`'à
+== Y'a plus qu'à
 
-Il n`'y a plus qu`'à se lancer, en commençant par un jeu pas trop compliqué ou qui vous motive assez pour être prêt à y investir du temps.
+Il n'y a plus qu'à se lancer, en commençant par un jeu pas trop compliqué ou qui vous motive assez pour être prêt à y investir du temps.
 
 Pour aller plus loin, je vous conseille la lecture du livre link:https://mitpress.mit.edu/books/building-problem-solvers[Building Problem Solvers] trouvé grâce à link:http://blog.fogus.me/2019/02/22/a-city-is-not-a-tree/[Fogus].

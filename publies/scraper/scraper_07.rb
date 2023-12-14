@@ -1,16 +1,16 @@
 #!/usr/bin/env ruby
 
-require `'fileutils`'
+require 'fileutils'
 
-require `'addressable`'
-require `'nokogiri`'
-require `'curl`'
-require `'mime/types`'
+require 'addressable'
+require 'nokogiri'
+require 'curl'
+require 'mime/types'
 
-INITIAL_URL = `'https://queue.acm.org`'
-TARGET_DIRECTORY = `'download`'
+INITIAL_URL = 'https://queue.acm.org'
+TARGET_DIRECTORY = 'download'
 
-# Supprime le répertoire de destination s`'il existe et le recréé
+# Supprime le répertoire de destination s'il existe et le recréé
 if File.exists?(TARGET_DIRECTORY)
   puts "Supprime [#{TARGET_DIRECTORY}]"
   FileUtils.remove_entry_secure(TARGET_DIRECTORY)
@@ -23,8 +23,8 @@ Dir.mkdir(TARGET_DIRECTORY)
 def fetch_content(url)
   response = Curl.get(url) do |http|
     # Je suis un navigateur web !
-    http.headers[`'User-Agent`'] =
-      `'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0`'
+    http.headers['User-Agent'] =
+      'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0'
   end
   extension = MIME::Types[response.content_type].first.preferred_extension
   {
@@ -47,7 +47,7 @@ KNOWN_URLS = {}
 # @param [String] resource_url
 # @return [String] le nom du fichier
 def scrape_resource(html_page_url, resource_url)
-  # Assure d`'avoir une URL absolue en combinant l`'adresse de la resource
+  # Assure d'avoir une URL absolue en combinant l'adresse de la resource
   # avec celle de la page
   absolute_url = html_page_url.join(resource_url).normalize
   puts "Vérifie la ressource [#{absolute_url}]"
@@ -78,7 +78,7 @@ end
 # end::scrape_resource[]
 
 # tag::scrape_link[]
-require `'set`'
+require 'set'
 PAGES_TO_PROCESS = Set.new
 
 # @param [String] current_page_url
@@ -86,16 +86,16 @@ PAGES_TO_PROCESS = Set.new
 # @return [String]
 def scrape_link(current_page_url, resource_url)
   absolute_url = current_page_url.join(resource_url).normalize
-  # Traite seulement les liens qui sont sur le même nom d`'hôte
+  # Traite seulement les liens qui sont sur le même nom d'hôte
   # On peut également filtrer les adresses des pages
-  # dont on sait qu`'elles ne nous intéressent pas
+  # dont on sait qu'elles ne nous intéressent pas
   if PARSED_INITIAL_URL.host == absolute_url.host
     puts "Lien interne trouvé [#{absolute_url}]"
     unless KNOWN_URLS.key?(absolute_url.to_s)
       puts "Nouveau lien interne [#{absolute_url}]"
       content = fetch_content(absolute_url)
       save_content(absolute_url, content[:extension], content[:body])
-      if content[:extension] == `'html`'
+      if content[:extension] == 'html'
         puts "Nouvelle page à traiter [#{absolute_url}]"
         PAGES_TO_PROCESS.add(absolute_url)
       end
@@ -125,24 +125,24 @@ until PAGES_TO_PROCESS.empty?
   puts "Traite [#{current_page_url}] [#{current_file_path}]"
   doc = Nokogiri::HTML(IO.read(current_file_path))
 
-  images = doc.css(`'img[src]`')
+  images = doc.css('img[src]')
   images.each.with_index do |image|
-    image[`'src`'] = scrape_resource(current_page_url, image[`'src`'])
+    image['src'] = scrape_resource(current_page_url, image['src'])
   end
 
-  css = doc.css(`'link[rel=stylesheet][href]`')
+  css = doc.css('link[rel=stylesheet][href]')
   css.each.with_index do |link|
-    link[`'href`'] = scrape_resource(current_page_url, link[`'href`'])
+    link['href'] = scrape_resource(current_page_url, link['href'])
   end
 
-  scripts = doc.css(`'script[src]`')
+  scripts = doc.css('script[src]')
   scripts.each.with_index do |script|
-    script[`'src`'] = scrape_resource(current_page_url, script[`'src`'])
+    script['src'] = scrape_resource(current_page_url, script['src'])
   end
 
-  as = doc.css(`'a[href]`')
+  as = doc.css('a[href]')
   as.each.with_index do |a|
-    a[`'href`'] = scrape_link(current_page_url, a[`'href`'])
+    a['href'] = scrape_link(current_page_url, a['href'])
   end
 
   IO.write(current_file_path, doc.to_html)

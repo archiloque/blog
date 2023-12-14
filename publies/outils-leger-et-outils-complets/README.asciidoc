@@ -10,30 +10,30 @@ La plupart des éléments sont évidents, mais les noter permet de ne pas les ou
 
 Ici, un outil léger est quelque chose comme Sinatra en Ruby ou Dropwizard en Java, un outil complet est quelque chose comme Rails pour Ruby ou Spring en Java.
 
-Je ne pense pas qu`'une définition plus précise apporte quelque chose.
+Je ne pense pas qu'une définition plus précise apporte quelque chose.
 
-Ce n`'est pas limité au développement web, on peut mettre Lua dans la case des outils léger, et Java dans les outils complets.
+Ce n'est pas limité au développement web, on peut mettre Lua dans la case des outils léger, et Java dans les outils complets.
 
-. Les outils complets sont en général adaptés aux projets d`'une certaine taille, que ça soit en quantité de fonctionnalités qu`'en taille d`'équipe.
-. Il est est parfois possible d`'avoir des outils complets qui sont facile à prendre en main pour les cas simples et qui s`'adaptent au niveau de besoin, mais je pense que cela dépend du domaine. Par exemple pour les outils web cela peut bien fonctionner, dans le domaine de la génération de PDF par contre je pense que cela serait difficile.
-. Les outils plus complets ont en général un coût d`'entrée plus élevé en terme de connaissance à maîtriser. Mais cela ne doit pas suffire en soi à l`'éliminer des choix possibles pour un projet, sur un projet plus gros le prix de l`'apprentissage peut s`'amortir.
+. Les outils complets sont en général adaptés aux projets d'une certaine taille, que ça soit en quantité de fonctionnalités qu'en taille d'équipe.
+. Il est est parfois possible d'avoir des outils complets qui sont facile à prendre en main pour les cas simples et qui s'adaptent au niveau de besoin, mais je pense que cela dépend du domaine. Par exemple pour les outils web cela peut bien fonctionner, dans le domaine de la génération de PDF par contre je pense que cela serait difficile.
+. Les outils plus complets ont en général un coût d'entrée plus élevé en terme de connaissance à maîtriser. Mais cela ne doit pas suffire en soi à l'éliminer des choix possibles pour un projet, sur un projet plus gros le prix de l'apprentissage peut s'amortir.
 . Les outils légers sont souvent plus adaptés pour faire des expérimentation ou des link:../kata-mais-pas-trop/[exercices], de ce fait connaître des outils léger peut être avantageux pour ces situations.
-. Quand on a utilisé un outil léger pour des besoins simples, il est normal d`'avoir envie de l`'utiliser pour des besoins plus complexes, mais ça ne doit pas suffire à ce qu`'il soit choisi.
+. Quand on a utilisé un outil léger pour des besoins simples, il est normal d'avoir envie de l'utiliser pour des besoins plus complexes, mais ça ne doit pas suffire à ce qu'il soit choisi.
 . Il est possible de faire des gros projets avec des outils simples.
 . Il est possible de faire des petits projets avec des outils complets.
-. Je pense que quand c`'est le cas, on aura redéveloppé l`'équivalent (au moins partiel) d`'un outil complet et donc investi le temps nécessaire à cela, et il faudra ensuite maintenir ces développements. Je pense que c`'est parfois le bon choix, mais je ne pense pas que ça soit toujours le cas.
-. Enrichir un produit simple n`'est pas qu`'une question de technique, assembler des briques différentes et bâtir une API cohérente au dessus est un travail difficile.
-. Certaines personnes apprécient ce travail d`'adaptation nécessaire pour utiliser un outil simple pour un projet d`'une certain taille, et cela peut biaiser leur choix.
-. Une partie des bénéfices possibles des outils complets est le fait d`'avoir déjà fait un certain nombres de choix (par exemple la manière dont le code doit être organisé), ce qui peut faire gagner du temps.
-. Certaines personnes apprécient ce travail d`'adaptation nécessaire pour utiliser un outil simple pour un projet d`'une certain taille, et cela peut biaiser leur choix.
-. Certaines personnes attachent beaucoup d`'importance à pouvoir faire ces choix eux-mêmes, et n`'aiment pas les outils complets à cause de cela, mais pas tout le monde.
+. Je pense que quand c'est le cas, on aura redéveloppé l'équivalent (au moins partiel) d'un outil complet et donc investi le temps nécessaire à cela, et il faudra ensuite maintenir ces développements. Je pense que c'est parfois le bon choix, mais je ne pense pas que ça soit toujours le cas.
+. Enrichir un produit simple n'est pas qu'une question de technique, assembler des briques différentes et bâtir une API cohérente au dessus est un travail difficile.
+. Certaines personnes apprécient ce travail d'adaptation nécessaire pour utiliser un outil simple pour un projet d'une certain taille, et cela peut biaiser leur choix.
+. Une partie des bénéfices possibles des outils complets est le fait d'avoir déjà fait un certain nombres de choix (par exemple la manière dont le code doit être organisé), ce qui peut faire gagner du temps.
+. Certaines personnes apprécient ce travail d'adaptation nécessaire pour utiliser un outil simple pour un projet d'une certain taille, et cela peut biaiser leur choix.
+. Certaines personnes attachent beaucoup d'importance à pouvoir faire ces choix eux-mêmes, et n'aiment pas les outils complets à cause de cela, mais pas tout le monde.
 . Dans une organisation cela peut avoir du sens de standardiser les outils (cela rend plus facile pour les personnes de changer de projet, le travail de mis à jour est facilité, il est plus facile de partager du code entre projets…).
-. Dans une organisation choisir d`'utiliser un outil complet même pour les petits projets peut avoir du sens.
-. Dans une organisation choisir d`'utiliser un outil simple même pour les projets d`'une certaines taille n`'est probablement pas une bonne idée, pour un gros projet ça dépend.
+. Dans une organisation choisir d'utiliser un outil complet même pour les petits projets peut avoir du sens.
+. Dans une organisation choisir d'utiliser un outil simple même pour les projets d'une certaines taille n'est probablement pas une bonne idée, pour un gros projet ça dépend.
 . Une personne qui a uniquement travaillé sur des petits projets avec des outils simples peut ne pas comprendre les limites des outils légers et les avantages des outils complets pour les gros projets.
-. Avoir travaillé sur des gros projets n`'est pas forcément suffisant pour comprendre les avantages des outils complets pour les gros projets.
-. Avoir travaillé sur des gros projets n`'est pas forcément suffisant pour comprendre les avantages des outils simples pour les petits projets.
-. Les outils complets n`'ont pas tous les mêmes avantages et les mêmes inconvénients, et pareil pour les outils simples.
-. L`'apport des avantages et la pénibilité des inconvénients des outils complets n`'est pas toujours la même suivants les projets, et pareil pour les outils simples.
-. Sur un gros projet, il peut être difficile de différencier la pénibilité induite par un outil complet de celle induite par la taille du projet. Faire un gros projet avec un outil simple peut changer certaines choses et pas d`'autres.
-. Un des inconvénients habituels des outils complets est la lenteur de démarrage, mais elle provient parfois du manque d`'entraînement, car on démarre moins souvent des gros projets.
+. Avoir travaillé sur des gros projets n'est pas forcément suffisant pour comprendre les avantages des outils complets pour les gros projets.
+. Avoir travaillé sur des gros projets n'est pas forcément suffisant pour comprendre les avantages des outils simples pour les petits projets.
+. Les outils complets n'ont pas tous les mêmes avantages et les mêmes inconvénients, et pareil pour les outils simples.
+. L'apport des avantages et la pénibilité des inconvénients des outils complets n'est pas toujours la même suivants les projets, et pareil pour les outils simples.
+. Sur un gros projet, il peut être difficile de différencier la pénibilité induite par un outil complet de celle induite par la taille du projet. Faire un gros projet avec un outil simple peut changer certaines choses et pas d'autres.
+. Un des inconvénients habituels des outils complets est la lenteur de démarrage, mais elle provient parfois du manque d'entraînement, car on démarre moins souvent des gros projets.

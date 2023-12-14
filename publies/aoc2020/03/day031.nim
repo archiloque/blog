@@ -17,7 +17,7 @@ while(currentLine < (boardHeight - 1)):
   currentColumn = (currentColumn + slopeColumn).mod(boardWidth)
   let currentPositionContent = input[currentLine][currentColumn]
   echo("(", currentLine, ",", currentColumn, ") ", currentPositionContent)
-  if currentPositionContent == `'#`':
+  if currentPositionContent == '#':
     treesNumber += 1
 
 echo(treesNumber)

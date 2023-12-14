@@ -43,7 +43,7 @@ for line in input:
   var cursorIndex = 0
   while cursorIndex < line.len():
     var currentDirection: string
-    if (line[cursorIndex] == `'n`') or (line[cursorIndex] == `'s`'):
+    if (line[cursorIndex] == 'n') or (line[cursorIndex] == 's'):
       currentDirection = line[cursorIndex .. cursorIndex + 1]
       cursorIndex += 2
     else:

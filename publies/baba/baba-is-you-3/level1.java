@@ -1,7 +1,7 @@
 /**
  * This set will be able to handle duplication of {@link State}
  * The custom {@link Comparator} is required to avoid
- * only comparing the arrays`' addresses
+ * only comparing the arrays' addresses
  */
 private final Set<int[]> pastStates =
   new TreeSet<>(new Comparator<>() {

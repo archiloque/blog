@@ -1,10 +1,10 @@
 import sys
 
 matching_symbols = {
-    `')`': `'(`',
-    `']`': `'[`',
-    `'}`': `'{`',
-    `'>`': `'<`',
+    ')': '(',
+    ']': '[',
+    '}': '{',
+    '>': '<',
 }
 
 opening_symbols = list(matching_symbols.values())
@@ -35,10 +35,10 @@ def process_line(line: str):
 
 
 symbol_to_value = {
-    `')`': 3,
-    `']`': 57,
-    `'}`': 1197,
-    `'>`': 25137,
+    ')': 3,
+    ']': 57,
+    '}': 1197,
+    '>': 25137,
 }
 
 result = 0

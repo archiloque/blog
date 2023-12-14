@@ -7,15 +7,15 @@ v0.1, 2022-05-19
 
 At work, the business intelligence system (BI) is fetching data from our Rails application by connecting to our PostgreSQL database.
 
-It means our database schema is used as an API so it`'s not an ideal solution, but in practice the coupling is manageable and it keeps things simple for the data team in charge of the BI.
+It means our database schema is used as an API so it's not an ideal solution, but in practice the coupling is manageable and it keeps things simple for the data team in charge of the BI.
 
 One of my current point of interest is reducing the databases accesses to protect against accidents and malevolent actions.
 
-For the BI it means connecting to the database with a read-only account, but also preventing them from accessing the table and columns they don`'t need.
+For the BI it means connecting to the database with a read-only account, but also preventing them from accessing the table and columns they don't need.
 
 PostgreSQL provide link:https://www.postgresql.org/docs/current/sql-grant.html[the required] link:https://www.postgresql.org/docs/current/sql-revoke.html[capabilities], so the problem is to find a way to manage them.
 
-A possible solution is to create a new configuration file with an ad-hoc syntax that list the tables and columns that should be accessible, to put it somewhere in the project then write a script that read the file`'s content and run the right queries.
+A possible solution is to create a new configuration file with an ad-hoc syntax that list the tables and columns that should be accessible, to put it somewhere in the project then write a script that read the file's content and run the right queries.
 
 Something like:
 
@@ -34,7 +34,7 @@ Something like:
 }
 ----
 
-It should work, but I dislike having a separate source of information for this: people must learn where it is stored, must understand the structure (even if it`'s obvious), and remember to update it when the schema change, for example when a column is renamed.
+It should work, but I dislike having a separate source of information for this: people must learn where it is stored, must understand the structure (even if it's obvious), and remember to update it when the schema change, for example when a column is renamed.
 
 Meanwhile, Rails has already lots of database information in the `db/schema.rb` file:
 
@@ -58,15 +58,15 @@ end
 
 If I could put the access rights data in this file, devs would know how to find it, and as a bonus when creating a new columns, I could use the migrations system to add the access right info.
 
-As far as I know there`'s no out of the box mechanism to add custom fields to the columns description.
-But there is an existing field that we don`'t use: the comment field.
+As far as I know there's no out of the box mechanism to add custom fields to the columns description.
+But there is an existing field that we don't use: the comment field.
 
 Many SQL database systems provide a way to add a string comment to a column and to other objects.
-I`'ve seen it used by DBAs to store documentation about the stored data, since they often lack a better tool for it, and using the comments enable the info to be read by the developers who use the database.
+I've seen it used by DBAs to store documentation about the stored data, since they often lack a better tool for it, and using the comments enable the info to be read by the developers who use the database.
 
-It`'s a bit hackish, but it enable us to leverage the existing tool which is strong win for me.
+It's a bit hackish, but it enable us to leverage the existing tool which is strong win for me.
 
-Let`'s say that the comment of a column should contain a comma-separated list of used that should access the column.
+Let's say that the comment of a column should contain a comma-separated list of used that should access the column.
 
 
 [source,ruby]
@@ -106,27 +106,27 @@ end
 
 In a single file I have all the information related to the database structure: nice.
 
-Now it`'s time to rely to manage the access right.
+Now it's time to rely to manage the access right.
 
-I`'ll do it with a rake task that will be run after the code is deployed on the server.
+I'll do it with a rake task that will be run after the code is deployed on the server.
 This way it will be run just after the schema update which means any new columns will be made available (or unavailable) ASAP.
 
 [source,ruby]
 .lib/tasks/access_rights.rake
 ----
-require `'set`'
+require 'set'
 
 namespace :access_rights do
 
   MANAGED_USERS = [
-    `'data`'
+    'data'
   ]
 
   # @param [ConnectionAdapters::Column] column
   # @return [Array<String>]
   def allowed_users(column)
     comment = column.comment
-    comment.blank? ? [] : comment.split(`', `').map { |e| e.strip }
+    comment.blank? ? [] : comment.split(', ').map { |e| e.strip }
   end
 
   # @param [String] sql
@@ -137,7 +137,7 @@ namespace :access_rights do
   task update: :environment do
     ActiveRecord::Base.connection.tables.each do |table_name|
       # Ignore the schema migration table and tables without models 
-      if (table_name != `'schema_migrations`') &&
+      if (table_name != 'schema_migrations') &&
         ActiveRecord.const_defined?(table_name.classify)
         pp "Processing table [#{table_name}]"
         users_allowed_for_table = Set.new
@@ -185,7 +185,7 @@ namespace :access_rights do
 end
 ----
 
-Note : with `grant` and `revoke` queries variable binding doesn`'t seem to work, if you know how to do it please tell me.
+Note : with `grant` and `revoke` queries variable binding doesn't seem to work, if you know how to do it please tell me.
 
 Then we can run it:
 
@@ -199,8 +199,8 @@ Then we can run it:
 …
 ----
 
-It`'s currently just an idea so it hasn`'t been used on a real application, but at least it _seems_ to work.
+It's currently just an idea so it hasn't been used on a real application, but at least it _seems_ to work.
 
-I`'ve kept the code the simplest I can so you can adapt it to your use cases (but if you begin to store JSON or YAML data in the comment field, please check ).
+I've kept the code the simplest I can so you can adapt it to your use cases (but if you begin to store JSON or YAML data in the comment field, please check ).
 
 I hope you enjoyed the idea and that maybe it will inspire you to try other nefarious things with this approach.

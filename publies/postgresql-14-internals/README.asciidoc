@@ -5,11 +5,11 @@ v0.1, 2023-06-13
 :article_image: internals.png
 :article_description: The book I needed
 
-I`'m a PostgreSQL user since a long time.
+I'm a PostgreSQL user since a long time.
 Its link:https://www.postgresql.org/docs/current/index.html[documentation] is really good when you need information about available querying features and other SQL stuff.
 If you know SQL, the explain features enable you to troubleshoot surprising complex queries without any specific knowledge ("`an index scan probably involves using an index`").
 
-But from time to time I hit the limit of what I knew, and the reference documentation didn`'t cover it, so I was looking for another source.
+But from time to time I hit the limit of what I knew, and the reference documentation didn't cover it, so I was looking for another source.
 
 link:https://postgrespro.com/community/books/internals[PostgreSQL 14 internals] is the perfect book I needed:
 it goes into the details I needed so I could grasp how PostgreSQL works.
@@ -18,12 +18,12 @@ Sometimes Egor Rogov goes pretty deep into things like internal memory structure
 
 The book covers isolations mechanisms, vacuuming, caching, locking, query executions (including all the steps mentioned when you analyze a query) and index types.
 
-More advanced topics like sharding or replication are not covered, but as the book is already more than 600 pages long I can`'t really blame the author.
+More advanced topics like sharding or replication are not covered, but as the book is already more than 600 pages long I can't really blame the author.
 
-The text is very straightforward and easy to read (Liudmila Mantrova did an impressive translation job) without being dry or resorting to not really funny jokes as it`'s too often the case.
+The text is very straightforward and easy to read (Liudmila Mantrova did an impressive translation job) without being dry or resorting to not really funny jokes as it's too often the case.
 The book is designed to be read from the beginning to the start, but you can skip some details without feeling lost.
 
-Implementation explanations provide links to the corresponding source code which makes the book feel grounded: the author did his research and doesn`'t act like the information came to him by magic.
+Implementation explanations provide links to the corresponding source code which makes the book feel grounded: the author did his research and doesn't act like the information came to him by magic.
 
 Another thing I liked is that the author is not afraid of forward references, when a topic is mentioned but detailed later.
 Many books try to avoid this by layering their explanations in a spiral-like structure, and it often frustrates me because I feel like I learnt a patchwork of insights on each topic instead of a complete picture.

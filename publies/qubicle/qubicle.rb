@@ -1,10 +1,10 @@
-require `'logger`'
+require 'logger'
 
-require_relative `'bloc`'
+require_relative 'bloc'
 
 class Qubicle
 
-  MATRIX_NAME = `'all blocks`'
+  MATRIX_NAME = 'all blocks'
 
   LOGGER = Logger.new(STDOUT)
 
@@ -15,7 +15,7 @@ class Qubicle
     LOGGER << "Will write #{blocs.length} blocks\n"
 
     if blocs.empty?
-      raise `'Blocks list should not be empty`'
+      raise 'Blocks list should not be empty'
     end
     
     add_header(io)
@@ -82,7 +82,7 @@ class Qubicle
 
     # Write empty matrix
     (x_size * y_size * z_size).times do
-      io << [0, 0, 0, 0].pack(`'C*`')
+      io << [0, 0, 0, 0].pack('C*')
     end
 
     blocs.each do |bloc|
@@ -137,14 +137,14 @@ class Qubicle
   # @param [String] io
   # @return [void]
   def add_4_byte_int(content, io)
-    io << [content].pack(`'L*`')
+    io << [content].pack('L*')
   end
 
   # @param [Integer] content
   # @param [String] io
   # @return [void]
   def add_1_byte_int(content, io)
-    io << [content].pack(`'C*`')
+    io << [content].pack('C*')
   end
 
 

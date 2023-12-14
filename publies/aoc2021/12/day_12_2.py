@@ -3,7 +3,7 @@ import sys
 caves_map = {}
 
 for path in open(sys.argv[1]).readlines():
-    caves = path.strip().split(`'-`')
+    caves = path.strip().split('-')
     from_cave = caves[0]
     to_cave = caves[1]
     if from_cave in caves_map:
@@ -22,15 +22,15 @@ class Path:
 
 
 pathes_reaching_the_end = 0
-pathes_to_visit = [Path([`'start`'], None)]
+pathes_to_visit = [Path(['start'], None)]
 
 while len(pathes_to_visit) != 0:
     next_pathes_to_visit = []
     for current_path in pathes_to_visit:
         for target in caves_map[current_path.path[-1]]:
-            if target == `'end`':
+            if target == 'end':
                 pathes_reaching_the_end += 1
-            elif target == `'start`':
+            elif target == 'start':
                 pass
             elif target.islower():
                 if target not in current_path.path:

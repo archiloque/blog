@@ -23,9 +23,9 @@ proc contains(elements: HashSet[string], x: int, y: int, z: int, w: int): bool =
 
 proc cubeElementAsChar(c: bool): char =
   if c:
-    `'#`'
+    '#'
   else:
-    `'.`'
+    '.'
 
 proc countAround(elements: HashSet[string], x: int, y: int, z: int, w: int): int =
   var count = 0
@@ -55,7 +55,7 @@ var initElements = initHashSet[string]()
 
 for lineIndex, line in setup:
   for columnIndex, columnValue in line:
-    if columnValue == `'#`':
+    if columnValue == '#':
       initElements.incl(toCoordinates(lineIndex, columnIndex, 0, 0))
 echo(initElements)
 

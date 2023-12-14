@@ -18,10 +18,10 @@ def process_value(x: int, y: int, checked_values):
 
 for line in lines:
     match = line_regex.search(line)
-    x1 = int(match.group(`'x1`'))
-    y1 = int(match.group(`'y1`'))
-    x2 = int(match.group(`'x2`'))
-    y2 = int(match.group(`'y2`'))
+    x1 = int(match.group('x1'))
+    y1 = int(match.group('y1'))
+    x2 = int(match.group('x2'))
+    y2 = int(match.group('y2'))
     if x1 == x2:
         r = range(y1, y2 + 1) if y2 > y1 else range(y2, y1 + 1)
         for y in r:

@@ -15,7 +15,7 @@ proc validPassword(line: string): bool =
     ((password[first - 1] == c) and (password[second - 1] != c)) or ((password[
         first - 1] != c) and (password[second - 1] == c))
   else:
-    raise newException(ValueError, "Can`'t parse [" & line & "]")
+    raise newException(ValueError, "Can't parse [" & line & "]")
 
 let count = readFile(paramStr(1)).splitLines().filter(validPassword).len()
 echo(count)

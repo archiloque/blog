@@ -7,43 +7,43 @@ v0.1, 2020-11-30
 :article_image: 2794.jpg
 :ignore_files: Gemfile, Gemfile.lock, header.xml, scraper_01.rb, scraper_02.rb, scraper_03.rb, scraper_04.rb, scraper_05.rb, scraper_06.rb, scraper_07.rb, scraper_08.rb, scraper_09.rb, scraper_10.rb
 
-Pour mon usage personnel, par exemple télécharger des sites ou des BDs pour les lire hors ligne sur une liseuse, ou pour rendre services à des amis en extrayant des données structurées, j`'ai souvent besoin d`'écrire des scraper pour des sites web.
+Pour mon usage personnel, par exemple télécharger des sites ou des BDs pour les lire hors ligne sur une liseuse, ou pour rendre services à des amis en extrayant des données structurées, j'ai souvent besoin d'écrire des scraper pour des sites web.
 
-Il serait généralement possible d`'utiliser un outil de scraping générique et de le paramétrer, ou de télécharger l`'intégralité du site avec un outil comme link:https://www.httrack.com[HTTrack] puis de traiter les fichiers en local, mais un scraper maison est souvent plus efficace car on peut facilement ne télécharger que les contenu qui nous intéressent, et extraire à la volée les données dont on a besoin.
+Il serait généralement possible d'utiliser un outil de scraping générique et de le paramétrer, ou de télécharger l'intégralité du site avec un outil comme link:https://www.httrack.com[HTTrack] puis de traiter les fichiers en local, mais un scraper maison est souvent plus efficace car on peut facilement ne télécharger que les contenu qui nous intéressent, et extraire à la volée les données dont on a besoin.
 
-Une fois qu`'on a une base de code qui fonctionne et qu`'on maîtrise bien, le modifier pour un nouveau usage se fait facilement.
-C`'est un des cas où copier / coller un existant et le rééditer pour chaque nouveau besoin est plus efficace que d`'essayer d`'avoir une solution générique qu`'on aurait "`seulement`" à configurer.
+Une fois qu'on a une base de code qui fonctionne et qu'on maîtrise bien, le modifier pour un nouveau usage se fait facilement.
+C'est un des cas où copier / coller un existant et le rééditer pour chaque nouveau besoin est plus efficace que d'essayer d'avoir une solution générique qu'on aurait "`seulement`" à configurer.
 
-Cet article se propose de vous guider pas à pas jusqu`'à avoir une première version complète, dans l`'idée de vous rendre autonome.
+Cet article se propose de vous guider pas à pas jusqu'à avoir une première version complète, dans l'idée de vous rendre autonome.
 
-Par ailleurs, la conception d`'un scraper permet de creuser quelques sujets intéressantes, naturellement un peu de HTML et de HTTP mais aussi de stockage de données.
+Par ailleurs, la conception d'un scraper permet de creuser quelques sujets intéressantes, naturellement un peu de HTML et de HTTP mais aussi de stockage de données.
 
-Avertissement{nbsp}: de nombreux sites indiquent dans leur conditions d`'utilisation qu`'il n`'est pas autorisé de les scraper.
-Je ne sais pas si ces messages ont une valeur légale, mais cet article n`'est pas un encouragement à scraper ces sites.
+Avertissement{nbsp}: de nombreux sites indiquent dans leur conditions d'utilisation qu'il n'est pas autorisé de les scraper.
+Je ne sais pas si ces messages ont une valeur légale, mais cet article n'est pas un encouragement à scraper ces sites.
 
 == Le scraper à développer
 
-Je vais ici développer un scraper qui fait de l`'archivage de site web.
-Son objectif est d`'obtenir une copie locale d`'un site qui soit navigable en ouvrant les fichiers dans un navigateur.
+Je vais ici développer un scraper qui fait de l'archivage de site web.
+Son objectif est d'obtenir une copie locale d'un site qui soit navigable en ouvrant les fichiers dans un navigateur.
 
 Pour les fichiers et le parcours du site, le scraper parcourra le HTML généré côté serveur sans exécuter le JavaScript, et ne sera donc pas compatible avec des sites générés côté client.
 
-Il est possible d`'écrire en Ruby des scraper qui savent exécuter du JavaScript, par exemple avec des outils comme link:https://github.com/YusukeIwaki/puppeteer-ruby[Puppeteer Ruby] qui peut piloter une instance de Chrome, mais cela demande plus de travail et j`'en ai rarement eu besoin quand j`'ai fais du scraping, je ne traiterai donc pas ce sujet ici.
+Il est possible d'écrire en Ruby des scraper qui savent exécuter du JavaScript, par exemple avec des outils comme link:https://github.com/YusukeIwaki/puppeteer-ruby[Puppeteer Ruby] qui peut piloter une instance de Chrome, mais cela demande plus de travail et j'en ai rarement eu besoin quand j'ai fais du scraping, je ne traiterai donc pas ce sujet ici.
 
-Comme l`'objectif est d`'obtenir un code facile à modifier plutôt que facile à étendre, le code sera placé dans un fichier unique est dans un style procédural, c`'est-à-dire en évitant de structurer le code à l`'aide de classe mais en utilisant uniquement des méthodes.
+Comme l'objectif est d'obtenir un code facile à modifier plutôt que facile à étendre, le code sera placé dans un fichier unique est dans un style procédural, c'est-à-dire en évitant de structurer le code à l'aide de classe mais en utilisant uniquement des méthodes.
 
 == Télécharger une seule page
 
-Pour commencer je vais télécharger uniquement le contenu HTML d`'une page dont l`'adresse est spécifiée dans le code.
+Pour commencer je vais télécharger uniquement le contenu HTML d'une page dont l'adresse est spécifiée dans le code.
 
-Pour le téléchargement j`'utilise la classe `Net::HTTP` fournie par la bibliothèque standard Ruby.
+Pour le téléchargement j'utilise la classe `Net::HTTP` fournie par la bibliothèque standard Ruby.
 Certes il existe de nombreuses librairies externes fournissant des fonctionnalités plus évoluées et/ou des API plus simple, mais pour les besoins de scraping `Net::HTTP` suffit généralement, et il intéressant de la connaître un peu car elle est utilisée par défaut par de nombreuses librairies.
-Pour un scraper minimal, la seule méthode à connaître est `Net::HTTP#get` qui fait une requête `GET` à partir d`'une URL et qui renvoie le contenu.
+Pour un scraper minimal, la seule méthode à connaître est `Net::HTTP#get` qui fait une requête `GET` à partir d'une URL et qui renvoie le contenu.
 
 La classe `URI::HTTP` de la bibliothèque standard Ruby implémente les différents standards mais elle est assez stricte.
-Cela signifie qu`'elle n`'apprécie pas toujours qu`'on prenne des liberté avec les standard.
+Cela signifie qu'elle n'apprécie pas toujours qu'on prenne des liberté avec les standard.
 Les navigateurs sont eux plutôt tolérants, et par conséquent les sites  ne sont pas incités à suivre les standard au pied de la lettre.
-Cela signifie que pour du scraper, mieux un parser d`'URL tolérant, et pour cela je vais utiliser la bibliothèque link:https://github.com/sporkmonger/addressable[Addressable].
+Cela signifie que pour du scraper, mieux un parser d'URL tolérant, et pour cela je vais utiliser la bibliothèque link:https://github.com/sporkmonger/addressable[Addressable].
 
 Voici donc le code{nbsp}:
 
@@ -52,25 +52,25 @@ Voici donc le code{nbsp}:
 include::scraper_01.rb[]
 ----
 
-L`'exécution du script devrait créer en local un fichier `index.html` qui contient le source de la page.
-La page téléchargée à link:http://example.com[example.com] n`'utilisant ni image ni CSS externe, la version locale est auto-portante (en tous cas au moment où j`'écris cet article).
+L'exécution du script devrait créer en local un fichier `index.html` qui contient le source de la page.
+La page téléchargée à link:http://example.com[example.com] n'utilisant ni image ni CSS externe, la version locale est auto-portante (en tous cas au moment où j'écris cet article).
 
 == Configurabilité{nbsp}? Non, merci{nbsp}!
 
-Pour un outil classique, la deuxième étape serait de rendre le script configurable, en permettant par exemple de lui passer l`'URL d`'entrée du site ou le répertoire cible en paramètre.
+Pour un outil classique, la deuxième étape serait de rendre le script configurable, en permettant par exemple de lui passer l'URL d'entrée du site ou le répertoire cible en paramètre.
 
-Mais rappelez vous que mon objectif n`'est pas d`'avoir un script configurable mais un script facilement éditable.
-Avoir une URL en dur dans une constante en début de fichier fait donc très bien l`'affaire.
+Mais rappelez vous que mon objectif n'est pas d'avoir un script configurable mais un script facilement éditable.
+Avoir une URL en dur dans une constante en début de fichier fait donc très bien l'affaire.
 
 == Télécharger une page et ses dépendances
 
 À la place, la deuxième étape va consister à télécharger une page et ses dépendances externes{nbsp}: images, feuilles de style et fichiers JavaScript.
 
-Je vais prendre pour cible le site du magazine link:https://queue.acm.org[ACM Queue] qui est un magazine publiant des articles d`'ingénierie logicielle.
+Je vais prendre pour cible le site du magazine link:https://queue.acm.org[ACM Queue] qui est un magazine publiant des articles d'ingénierie logicielle.
 
 == URLS et noms de fichiers
 
-Mais d`'abord il me faut parler des URLs et des noms de fichiers.
+Mais d'abord il me faut parler des URLs et des noms de fichiers.
 
 link:http://www.faqs.org/rfcs/rfc1738.html[Il y a très longtemps], les URLs ne pouvaient quasiment utiliser que des caractères alphanumériques.
 Les dinosaures régnaient sur le monde et la vie était simple.
@@ -82,46 +82,46 @@ Si cette sauvegarde est faite dans une base de données classique, comme par exe
 
 Si la base de donnée utilisée par le stockage est un système de fichier, les choses peuvent être moins simple.
 
-Les systèmes d`'exploitation peuvent être peu contraignants sur les formats de noms de fichiers (par exemple avec le système de fichiers ext4 souvent utilisé sous Linux tous les caractères sont autorisés à part `NULL` et `/`).
+Les systèmes d'exploitation peuvent être peu contraignants sur les formats de noms de fichiers (par exemple avec le système de fichiers ext4 souvent utilisé sous Linux tous les caractères sont autorisés à part `NULL` et `/`).
 
-Mais en pratique vous n`'avez peut-être pas envie d`'avoir sur votre disque dur ü͉̞͖͇̥̫̊͞n̢̟͖̺̗̥̱̬̅̾̿ͅ ̬̑̀ f͆ͧ҉̺̪͚̩̭̭̙i̵̤̟͚̳̠̟̣̬̽̊̑c͎̳̘̟̼͊ͤ͠h̫̫̎̒ͯͪ͘ͅi̦͉̞̩̠̫̲̅ͥ̀͠e̵͚̘̒r̹̝͔̪͉̙̒͑ͦ͞ ͉̲͓̘͌͢ͅq̶͈̺͈̫̜͎͉͉̌͊̍̚u̫̤͖̼̮̝͐ͤ͢ḭ̱͕͔̮̗̲̂͂̇̽̕ ̈́͌҉̭͎̪ͅṣ̨͕͇͕̯̗̗̭͙̭̳̼̖̄̐͋͂͡`'̴̩̥̭̤̫̖̈̐a̳̙͍̯ͩ̆̽͛́p̝̮̦̹͇̥ͪ͗̂͟p͈͙͓̻ͤͭ͟e̪͆ͬ̆ͭ̕ͅl͈̩̜̓ͫ̕l̴̞̟̼͕͙̮̤̺̊̓ͣe̷͇̰͙͒̔͛̚ ̭̻̰͇̖̆͡c̨̬̖̥̖̽ͪ̈́o̢͈̲̭͈̟̫̭̒̂̾ͤm̭͉̩͔͎̼̳͖ͧ͡m̴͎̙̳̟̖͆̔ę͇̲̻̠͎̊͂ͬ̊ͅ ̨͕͔͕̹̼̓̒̃�̛͎̜͇̹̻̰͚̹ͧͩ�̭̗͓͖̤̖̬ͫ̆̑͞a̡̪͍̪̍
+Mais en pratique vous n'avez peut-être pas envie d'avoir sur votre disque dur ü͉̞͖͇̥̫̊͞n̢̟͖̺̗̥̱̬̅̾̿ͅ ̬̑̀ f͆ͧ҉̺̪͚̩̭̭̙i̵̤̟͚̳̠̟̣̬̽̊̑c͎̳̘̟̼͊ͤ͠h̫̫̎̒ͯͪ͘ͅi̦͉̞̩̠̫̲̅ͥ̀͠e̵͚̘̒r̹̝͔̪͉̙̒͑ͦ͞ ͉̲͓̘͌͢ͅq̶͈̺͈̫̜͎͉͉̌͊̍̚u̫̤͖̼̮̝͐ͤ͢ḭ̱͕͔̮̗̲̂͂̇̽̕ ̈́͌҉̭͎̪ͅṣ̨͕͇͕̯̗̗̭͙̭̳̼̖̄̐͋͂͡'̴̩̥̭̤̫̖̈̐a̳̙͍̯ͩ̆̽͛́p̝̮̦̹͇̥ͪ͗̂͟p͈͙͓̻ͤͭ͟e̪͆ͬ̆ͭ̕ͅl͈̩̜̓ͫ̕l̴̞̟̼͕͙̮̤̺̊̓ͣe̷͇̰͙͒̔͛̚ ̭̻̰͇̖̆͡c̨̬̖̥̖̽ͪ̈́o̢͈̲̭͈̟̫̭̒̂̾ͤm̭͉̩͔͎̼̳͖ͧ͡m̴͎̙̳̟̖͆̔ę͇̲̻̠͎̊͂ͬ̊ͅ ̨͕͔͕̹̼̓̒̃�̛͎̜͇̹̻̰͚̹ͧͩ�̭̗͓͖̤̖̬ͫ̆̑͞a̡̪͍̪̍
 
-Cela signifie qu`'il faut trouver une opération permettant de transformer les URLs en nom de fichier acceptables.
+Cela signifie qu'il faut trouver une opération permettant de transformer les URLs en nom de fichier acceptables.
 
-On pourrait vouloir supprimer les caractères qu`'on veut éviter en ne conservant que les caractères compatibles.
-C`'est ce qui est est fait dans certains CMS pour transformer des noms de fichiers en URLs.
+On pourrait vouloir supprimer les caractères qu'on veut éviter en ne conservant que les caractères compatibles.
+C'est ce qui est est fait dans certains CMS pour transformer des noms de fichiers en URLs.
 
-L`'inconvénient de cette méthode est qu`'elle supprime des informations (les caractères non acceptables), et qu`'en faisait ça deux URLs différentes peuvent être transformées en un nom de fichier identique.
+L'inconvénient de cette méthode est qu'elle supprime des informations (les caractères non acceptables), et qu'en faisait ça deux URLs différentes peuvent être transformées en un nom de fichier identique.
 
 `https://emojipedia.org/emoji/🐰/` et `https://emojipedia.org/emoji/🐈/` auraient ainsi le même nom de fichier.
 
-L`'opération de transformation doit donc avoir les caractéristiques suivantes{nbsp}:
+L'opération de transformation doit donc avoir les caractéristiques suivantes{nbsp}:
 
-- une même URL doit toujours about au même nom de fichier (pour éviter d`'avoir des doublons)
+- une même URL doit toujours about au même nom de fichier (pour éviter d'avoir des doublons)
 - un nom de fichier doit correspondre à une seule URL (pour éviter le cas décrit plus haut)
 
 En mathématique, ce type de transformation est appelé link:https://fr.wikipedia.org/wiki/Bijection[bijection].
 
-Une méthode pour transformer une URL en nom de fichier serait d`'utiliser les numéros des caractères composant l`'URL (dont le nom officiel est link:https://fr.wikipedia.org/wiki/Point_de_code[point de code]).
-Comme il s`'agit d`'une suite de valeurs numériques cela convient bien à des noms de fichiers. Malheureusement les noms de fichiers résultants sont plutôt longs (`https://emojipedia.org/emoji/🐰/` est transformé en `68-74-74-70-73-3a-2f-2f-65-6d-6f-6a-69-70-65-64-69-61-2e-6f-72-67-2f-65-6d-6f-6a-69-2f-1f430-2f`) ce qui n`'est pas compatible avec tous les systèmes de fichiers.
+Une méthode pour transformer une URL en nom de fichier serait d'utiliser les numéros des caractères composant l'URL (dont le nom officiel est link:https://fr.wikipedia.org/wiki/Point_de_code[point de code]).
+Comme il s'agit d'une suite de valeurs numériques cela convient bien à des noms de fichiers. Malheureusement les noms de fichiers résultants sont plutôt longs (`https://emojipedia.org/emoji/🐰/` est transformé en `68-74-74-70-73-3a-2f-2f-65-6d-6f-6a-69-70-65-64-69-61-2e-6f-72-67-2f-65-6d-6f-6a-69-2f-1f430-2f`) ce qui n'est pas compatible avec tous les systèmes de fichiers.
 
 Si vous voulez suivre cette approche une solution possible est de séparer la chaîne ainsi calculée en plusieurs tronçons, par exemple par blocs de 10 valeurs, et que chaque tronçon intermédiaire corresponde à un niveau de répertoire (dans notre exemple `68-74-74-70-73-3a-2f-2f-65-6d/6f-6a-69-70-65-64-69-61-2e-6f/72-67-2f-65-6d-6f-6a-69-2f-1f430/2f`).
-L`'avantage de cette approche est que la transformation entre l`'URL et le nom de fichier dépend uniquement de l`'URL, mais sa mise en œuvre commence à être compliquée.
+L'avantage de cette approche est que la transformation entre l'URL et le nom de fichier dépend uniquement de l'URL, mais sa mise en œuvre commence à être compliquée.
 
-Une autre manière de mettre en place cette transformation est d`'utiliser un dictionnaire, c`'est-à-dire une source de données qui permette de stocker la correspondance entre URL en nom de fichier.
-C`'est un des usages des bases de données SQL{nbsp}:
-on peut ainsi créer une table `URL` avec une colonne qui contient l`'URL originale avec une clé d`'unicité, et une colonne contenant un incrément automatique (aussi appelé séquence).
-Lorsqu`'on veut récupérer le nom de fichier correspondant à une URL, on commence par vérifier si cette URL est déjà dans la table, et sinon on l`'insère.
-La valeur de la colonne contenant l`'incrément automatique fournit alors des identifiant adaptés à des fichiers, on aurait ainsi des fichiers `1`, `2`…
-C`'est comme si le nom de fichier était une clé étrangère vis-à-vis de cette table.
+Une autre manière de mettre en place cette transformation est d'utiliser un dictionnaire, c'est-à-dire une source de données qui permette de stocker la correspondance entre URL en nom de fichier.
+C'est un des usages des bases de données SQL{nbsp}:
+on peut ainsi créer une table `URL` avec une colonne qui contient l'URL originale avec une clé d'unicité, et une colonne contenant un incrément automatique (aussi appelé séquence).
+Lorsqu'on veut récupérer le nom de fichier correspondant à une URL, on commence par vérifier si cette URL est déjà dans la table, et sinon on l'insère.
+La valeur de la colonne contenant l'incrément automatique fournit alors des identifiant adaptés à des fichiers, on aurait ainsi des fichiers `1`, `2`…
+C'est comme si le nom de fichier était une clé étrangère vis-à-vis de cette table.
 
-Sans utiliser de système de base de donnée externe, on peut utiliser une structure en mémoire, par exemple un `Hash` dont les clés seraient les URLs, ce qui assure l`'unicité. Pour générer les valeurs de noms de fichiers, on peut utiliser le nombres d`'entrées dans ce `Hash`, il s`'agit d`'une sorte d`'incrément naturel{nbsp}:
+Sans utiliser de système de base de donnée externe, on peut utiliser une structure en mémoire, par exemple un `Hash` dont les clés seraient les URLs, ce qui assure l'unicité. Pour générer les valeurs de noms de fichiers, on peut utiliser le nombres d'entrées dans ce `Hash`, il s'agit d'une sorte d'incrément naturel{nbsp}:
 
 [source, ruby]
 ----
 KNOWN_URLS = {}
 
-url = `'https://emojipedia.org/emoji/🐰/`'
+url = 'https://emojipedia.org/emoji/🐰/'
 
 if KNOWN_URLS.key?(url)
   file_name = KNOWN_URLS[absolute_url]
@@ -131,43 +131,43 @@ else
 end
 ----
 
-Utiliser une structure en mémoire convient très bien tant que le site à scraper ne contient pas des millions de pages, au delà il serait peut-être intéressant d`'utiliser une base de donnée externe.
+Utiliser une structure en mémoire convient très bien tant que le site à scraper ne contient pas des millions de pages, au delà il serait peut-être intéressant d'utiliser une base de donnée externe.
 
 == Télécharger une page et ses dépendances (pour de vrai)
 
-Maintenant qu`'on sait comment transformer une URL en nom de fichier, on peut s`'intéresser au téléchargement proprement dit.
+Maintenant qu'on sait comment transformer une URL en nom de fichier, on peut s'intéresser au téléchargement proprement dit.
 
-Pour télécharger les dépendances externes d`'une page, le mécanisme est le suivant{nbsp}:
+Pour télécharger les dépendances externes d'une page, le mécanisme est le suivant{nbsp}:
 
 . Identifier la liste des dépendances
 . Pour chaque dépendance
-.. Si elle n`'a pas déjà été téléchargée, la télécharger et la stocker sous le nom calculé en utilisant la méthode décrite plus haut
-.. Modifier le HTML de la page pour remplacer l`'URL de la dépendance par le chemin du fichier
+.. Si elle n'a pas déjà été téléchargée, la télécharger et la stocker sous le nom calculé en utilisant la méthode décrite plus haut
+.. Modifier le HTML de la page pour remplacer l'URL de la dépendance par le chemin du fichier
 
 Pour identifier la liste des dépendances, il faut parcourir le HTML.
 Pour cela la bibliothèque Ruby la plus utilisée est link:https://nokogiri.org[Nokogiri], elle sait parser du HTML et du XML et fournit ensuite une interface permettant de requêter et de modifier le contenu.
 
-La première étape est de parser le contenu du HTML que l`'on reçoit, et de préparer le fait que la sauvegarde va se faire dans un sous-répertoire pour éviter de mélanger le site avec le scraper.
+La première étape est de parser le contenu du HTML que l'on reçoit, et de préparer le fait que la sauvegarde va se faire dans un sous-répertoire pour éviter de mélanger le site avec le scraper.
 
-Comme l`'objectif est de scraper le magazine ACM Queue, j`'ai aussi remplacé l`'URL.
+Comme l'objectif est de scraper le magazine ACM Queue, j'ai aussi remplacé l'URL.
 
 [source, ruby]
 ----
 include::scraper_02.rb[]
 ----
 
-Mais, quand on essaie d`'ouvrir le fichier `download/index.html` résultant{nbsp}:
+Mais, quand on essaie d'ouvrir le fichier `download/index.html` résultant{nbsp}:
 
 image::blocked.png[]
 
-Pas de panique{nbsp}: il s`'agit d`'un mécanisme rudimentaire pour bloquer les robots.
+Pas de panique{nbsp}: il s'agit d'un mécanisme rudimentaire pour bloquer les robots.
 
 Quand ce genre de choses arrive, il vaut mieux faire deux choses{nbsp}:
 
 - utiliser une bibliothèque HTTP qui a un comportement plus proche de celui des navigateurs
 - fournir une en-tête link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent[User-Agent] pour accentuer la ressemblance avec un navigateur.
 
-Si vous avez l`'habitude d`'utiliser une des bibliothèques HTTP qui est faite pour des appels REST, elle risque d`'avoir le même problème, car une API REST n`'a pas vocation à bloquer les clients qui ne sont pas des navigateurs.
+Si vous avez l'habitude d'utiliser une des bibliothèques HTTP qui est faite pour des appels REST, elle risque d'avoir le même problème, car une API REST n'a pas vocation à bloquer les clients qui ne sont pas des navigateurs.
 
 Je vais passer de `Net::HTTP` à la bibliothèque link:https://github.com/taf2/curb[Curb] qui fournit une API Ruby au dessus de la bibliothèque libcurl, que vous connaissez peut-être à travers la commande `curl` utilisée pour faire des téléchargement depuis la ligne de commande.
 
@@ -189,12 +189,12 @@ Si vous allez jeter un œil au fichier HTML, une petite surprise vous attend{nbs
 include::header.xml[]
 ----
 
-En effet le contenu n`'est pas au format HTML mais au format XHTML.
-Il s`'agit à peu près d`'une version XML de HTML4, créé par le W3C à l`'époque où le XML était à la monde.
-Les deux avantages de cette approche étaient de pouvoir utiliser des outils XML pour pouvoir publier des sites (ce qui permettait notamment d`'avoir la même chaîne de publication pour les livres que pour le contenu web) et de pouvoir utiliser des parsers XML, plus performants que les parsers HTML (cela prend son sens quand on se souvient des téléphones mobiles disponibles dans les années 2000).
-La vague du XML sur le web a été stoppée lorsqu`'Apple, Mozilla et Opera ont décidé de monter un putsch contre le W3C en créant leur propre instance et leur propre format qui a abouti au HTML5.
+En effet le contenu n'est pas au format HTML mais au format XHTML.
+Il s'agit à peu près d'une version XML de HTML4, créé par le W3C à l'époque où le XML était à la monde.
+Les deux avantages de cette approche étaient de pouvoir utiliser des outils XML pour pouvoir publier des sites (ce qui permettait notamment d'avoir la même chaîne de publication pour les livres que pour le contenu web) et de pouvoir utiliser des parsers XML, plus performants que les parsers HTML (cela prend son sens quand on se souvient des téléphones mobiles disponibles dans les années 2000).
+La vague du XML sur le web a été stoppée lorsqu'Apple, Mozilla et Opera ont décidé de monter un putsch contre le W3C en créant leur propre instance et leur propre format qui a abouti au HTML5.
 
-Pour le scraper cela n`'a aucune conséquence car Nokogiri traite le HTML et le XHTML de la même manière.
+Pour le scraper cela n'a aucune conséquence car Nokogiri traite le HTML et le XHTML de la même manière.
 
 Je commence par déplacer le code de téléchargement dans une méthode séparée, car je vais en avoir besoin pour les ressources externes{nbsp}:
 
@@ -207,7 +207,7 @@ Ensuite je vais commencer par récupérer les images.
 
 Le code suit exactement les étapes décrites plus haut, pour commencer je ne vais pas tenter de factoriser de code.
 
-Pour la recherche dans le HTML, Nokogiri propose une méthode `.css` qui link:https://nokogiri.org/tutorials/searching_a_xml_html_document.html[permet d`'utiliser la syntaxe CSS]{nbsp}:
+Pour la recherche dans le HTML, Nokogiri propose une méthode `.css` qui link:https://nokogiri.org/tutorials/searching_a_xml_html_document.html[permet d'utiliser la syntaxe CSS]{nbsp}:
 
 [source, ruby, indent=0]
 ----
@@ -227,25 +227,25 @@ Elles sont bien remplacées dans le HTML{nbsp}:
 <a href="whyjoinacm.cfm"><img src="1" border="0" style="clear:both;"></a>
 ----
 
-Et quand on visualise le fichier, les images s`'affichent bien{nbsp}:
+Et quand on visualise le fichier, les images s'affichent bien{nbsp}:
 
 image::images_display.png[]
 
-Par contre stocker les images dans des fichiers sans extension rend moins pratique l`'exploration des résultats si on veut par exemple parcourir les fichiers.
+Par contre stocker les images dans des fichiers sans extension rend moins pratique l'exploration des résultats si on veut par exemple parcourir les fichiers.
 
 Il est possible de récupérer les extension depuis les URLs et cela fonctionne plutôt bien pour les images.
-Malheureusement ça n`'est pas toujours le cas pour les fichiers générés dynamiquement comme les documents HTML ou XML.
-Par conséquent il vaut mieux s`'appuyer sur la déclaration de `Content-Type` qu`'on trouve dans les entête de réponse.
-La bibliothèque link:https://github.com/mime-types/ruby-mime-types[mime-types] permet de déduire l`'extension qui correspond à un certain type de contenu.
+Malheureusement ça n'est pas toujours le cas pour les fichiers générés dynamiquement comme les documents HTML ou XML.
+Par conséquent il vaut mieux s'appuyer sur la déclaration de `Content-Type` qu'on trouve dans les entête de réponse.
+La bibliothèque link:https://github.com/mime-types/ruby-mime-types[mime-types] permet de déduire l'extension qui correspond à un certain type de contenu.
 
-Je vais modifier la méthode `fetch_content` pour qu`'elle renvoie l`'extension à utiliser en même temps que le contenu téléchargé.
+Je vais modifier la méthode `fetch_content` pour qu'elle renvoie l'extension à utiliser en même temps que le contenu téléchargé.
 
 [source, ruby, indent=0, highlight=2;9..13]
 ----
 include::scraper_05.rb[tag=fetch_content]
 ----
 
-Et je vais m`'en servir pour le nom des fichiers.
+Et je vais m'en servir pour le nom des fichiers.
 
 [source, ruby, indent=0, highlight=2..9]
 ----
@@ -256,9 +256,9 @@ Les fichiers avec extension sont du coup bien reconnu par le système qui affich
 
 image::images_list_with_extension.png[]
 
-Reste à faire de même pour les feuilles CSS et le JavaScript. Ce qui donne l`'occasion de factoriser un peu le code en extrayant le code de traitement d`'une ressource dans une méthode `scrape_resource`.
+Reste à faire de même pour les feuilles CSS et le JavaScript. Ce qui donne l'occasion de factoriser un peu le code en extrayant le code de traitement d'une ressource dans une méthode `scrape_resource`.
 
-Par courtoisie pour éviter de trop solliciter le serveur et potentiellement de se faire bloquer, je vais mettre une seconde d`'attente après chaque téléchargement.
+Par courtoisie pour éviter de trop solliciter le serveur et potentiellement de se faire bloquer, je vais mettre une seconde d'attente après chaque téléchargement.
 
 [source, ruby, indent=0, highlight=25..26;36..42]
 ----
@@ -271,48 +271,48 @@ image::first_page_with_resources.png[]
 
 == Télécharger le reste du site
 
-Pour récupérer l`'ensemble du site, il va s`'agir d`'étendre le comportement actuel en l`'étendant aux pages.
+Pour récupérer l'ensemble du site, il va s'agir d'étendre le comportement actuel en l'étendant aux pages.
 
-Lors du traitement d`'une page, en plus des images, des feuilles de styles et des scripts, il va falloir chercher les liens.
-Si la cible du lien n`'est pas encore connu, il faut le télécharger, et s`'il s`'agit d`'une page HTML, il faut la traiter à son tour.
+Lors du traitement d'une page, en plus des images, des feuilles de styles et des scripts, il va falloir chercher les liens.
+Si la cible du lien n'est pas encore connu, il faut le télécharger, et s'il s'agit d'une page HTML, il faut la traiter à son tour.
 
-Ainsi de lien en lien, on devrait petit à petit parcourir l`'ensemble du contenu du site.
+Ainsi de lien en lien, on devrait petit à petit parcourir l'ensemble du contenu du site.
 
 La conception du parcours des liens est intéressante.
 Pour traiter une image il suffit de la télécharger et de la stocker sur disque en sauvegardant la relation entre son URL et le chemin du fichier où elle est stockée.
 
-Mais lorsqu`'un lien pointe vers une page HTML, cette page doit elle-même être traitée en remplaçant les URLs qu`'elle contient vers les chemins des fichiers, après éventuellement les avoir sauvegardé.
+Mais lorsqu'un lien pointe vers une page HTML, cette page doit elle-même être traitée en remplaçant les URLs qu'elle contient vers les chemins des fichiers, après éventuellement les avoir sauvegardé.
 
-Si une page HTML A référence une page HTML B, pour traiter la page A j`'ai besoin d`'avoir le nom du fichier où B sera sauvegardée.
-Si pour sauvegarder B je dois la traiter et donc parcourir ses liens, et que B a un lien vers une page C, j`'ai besoin d`'avoir le nom du fichier où C sera sauvegardée.
+Si une page HTML A référence une page HTML B, pour traiter la page A j'ai besoin d'avoir le nom du fichier où B sera sauvegardée.
+Si pour sauvegarder B je dois la traiter et donc parcourir ses liens, et que B a un lien vers une page C, j'ai besoin d'avoir le nom du fichier où C sera sauvegardée.
 Si pour sauvegarder C je dois la traiter…
 
-Bref on se retrouve avec un genre de fonctionnement récursif, où on aurait besoin de parcourir l`'ensemble du site une page après l`'autre pour pouvoir ensuite à rebours sauvegarder les différentes pages{nbsp}: quand j`'ai terminé de traiter C je peux la sauvegarder, et donc terminer de traiter B et la sauvegarder, et donc traiter A et la sauvegarder.
+Bref on se retrouve avec un genre de fonctionnement récursif, où on aurait besoin de parcourir l'ensemble du site une page après l'autre pour pouvoir ensuite à rebours sauvegarder les différentes pages{nbsp}: quand j'ai terminé de traiter C je peux la sauvegarder, et donc terminer de traiter B et la sauvegarder, et donc traiter A et la sauvegarder.
 
 Les choses sont en fait plus compliquées que cela car les liens entre pages forment souvent des cycles.
 Par exemple si la page A est la page de sommaire du site, il y a des chances que toutes les pages vers lesquelles A pointe pointent à leur tour vers elle.
-Donc pour traiter A il y a besoin d`'avoir traité B mais pour traiter B il y a besoin d`'avoir traité A.
+Donc pour traiter A il y a besoin d'avoir traité B mais pour traiter B il y a besoin d'avoir traité A.
 
 (╯°□°)╯︵ ┻━┻
 
-La solution est une approche en deux passes en séparant d`'une part ce qu`'il est nécessaire de faire pour transformer les URLs des pages en lien vers des fichiers locaux, et d`'autre part le fait de traiter ces pages{nbsp}:
+La solution est une approche en deux passes en séparant d'une part ce qu'il est nécessaire de faire pour transformer les URLs des pages en lien vers des fichiers locaux, et d'autre part le fait de traiter ces pages{nbsp}:
 
-. On commence par télécharger et sauvegarder les cible des différents liens _sans les traiter_, afin de vérifier si leur contenu est au format HTML et d`'obtenir les chemins des fichiers correspondant, ce qui permet de finir de traiter A.
-. Ensuite pour chaque cible de lien non encore traité, on relit le contenu qui a été sauvegardé sur disque, on le traite (en téléchargeant possiblement les autres pages vers lesquelles il pointe), puis on écrase le fichier avec la version traitée, c`'est-à-dire avec les URLs des images, script, feuilles de styles et des liens qui pointent désormais vers leurs fichiers.
+. On commence par télécharger et sauvegarder les cible des différents liens _sans les traiter_, afin de vérifier si leur contenu est au format HTML et d'obtenir les chemins des fichiers correspondant, ce qui permet de finir de traiter A.
+. Ensuite pour chaque cible de lien non encore traité, on relit le contenu qui a été sauvegardé sur disque, on le traite (en téléchargeant possiblement les autres pages vers lesquelles il pointe), puis on écrase le fichier avec la version traitée, c'est-à-dire avec les URLs des images, script, feuilles de styles et des liens qui pointent désormais vers leurs fichiers.
 
 En parcourant le site, le script conservera une liste de page HTML déjà sauvegardées mais pas encore traitées.
-Lors du traitement d`'une page, on pourra découvrir de nouveaux liens vers d`'autres pages qui seront à traiter à leur tour et ainsi de suite.
+Lors du traitement d'une page, on pourra découvrir de nouveaux liens vers d'autres pages qui seront à traiter à leur tour et ainsi de suite.
 
 Lorsque cette liste sera vide et donc toutes les pages traitées, cela signifiera que tout le site aura été parcouru.
 
-La première étape est d`'extraire la partie de `scrape_resource` qui s`'occupe de sauvegarder un contenu dans un fichier dans une méthode séparée, afin de pouvoir l`'utiliser directement.
+La première étape est d'extraire la partie de `scrape_resource` qui s'occupe de sauvegarder un contenu dans un fichier dans une méthode séparée, afin de pouvoir l'utiliser directement.
 
 [source, ruby, indent=0, highlight=15;19..32]
 ----
 include::scraper_07.rb[tag=scrape_resource]
 ----
 
-Ensuite la méthode `scrape_link`, va me permettre de traiter les liens de la même manière que `scrape_resource` pour les autres types d`'URL. `PAGES_TO_PROCESS` va contenir les pages qui restent à traiter, j`'en fait un `Set` pour avoir un dedoublonnage.
+Ensuite la méthode `scrape_link`, va me permettre de traiter les liens de la même manière que `scrape_resource` pour les autres types d'URL. `PAGES_TO_PROCESS` va contenir les pages qui restent à traiter, j'en fait un `Set` pour avoir un dedoublonnage.
 
 [source, ruby, indent=0]
 ----
@@ -362,7 +362,7 @@ Vérifie la ressource [https://queue.acm.org/confimg/Kode_Vicious2.jpg]
 Vérifie la ressource [https://queue.acm.org/confimg/2020VirtualWinterSummit125x125(002).png]
 ----
 
-Si vous laissez le script tourner suffisamment longtemps, il devrait parcourir tout le site et l`'archiver, et vous aurez sur votre disque dur une version navigable complète.
+Si vous laissez le script tourner suffisamment longtemps, il devrait parcourir tout le site et l'archiver, et vous aurez sur votre disque dur une version navigable complète.
 
 == Les fragments
 
@@ -375,7 +375,7 @@ Pour le moment, on vérifie si une page est déjà connue en vérifiant si son U
 La conséquence est que si une URL contient un fragment, par exemple `https://queue.acm.org/detail.cfm?id=2000516#content-comments`, elle est considérée comme une URL différente de `https://queue.acm.org/detail.cfm?id=2000516`, et sera donc archivée comme une page à part. Suivant que les autres pages ont un lien avec ou sans fragment le lien aboutira donc à des pages différentes.
 
 La solution est donc de retirer les éventuels fragments des URLs avant de consulter le contenu de `KNOWN_URLS`.
-Pour calculer une URL cible, il faut donc chercher le nom du fichier dans `KNOWN_URLS` en utilisant l`'URL sans fragment, et ajouter le fragment au nom du fichier.
+Pour calculer une URL cible, il faut donc chercher le nom du fichier dans `KNOWN_URLS` en utilisant l'URL sans fragment, et ajouter le fragment au nom du fichier.
 La modification concerne seulement la méthode `scrape_link`{nbsp}:
 
 [source, ruby, indent=0, highlight=11..26]
@@ -383,24 +383,24 @@ La modification concerne seulement la méthode `scrape_link`{nbsp}:
 include::scraper_08.rb[tag=scrape_link]
 ----
 
-== Reprise en cas d`'erreur
+== Reprise en cas d'erreur
 
-La dernière choses à modifier est de mettre en place une capacité de reprise en cas d`'erreur.
+La dernière choses à modifier est de mettre en place une capacité de reprise en cas d'erreur.
 
-Il arrive qu`'un site ait des erreurs, ou que votre connexion internet plante, ou vous aurez peut-être envie d`'interrompre le process.
+Il arrive qu'un site ait des erreurs, ou que votre connexion internet plante, ou vous aurez peut-être envie d'interrompre le process.
 
-Et quand cela arrive, il serait dommage d`'avoir à recommencer le scraping depuis le début.
+Et quand cela arrive, il serait dommage d'avoir à recommencer le scraping depuis le début.
 
-Pour éviter cela, il faut sauvegarder l`'état du scraping après chaque étape, et lors du démarrage du script vérifier s`'il existe un état sauvegardé, et dans ce cas le charger et repartir de ce point.
+Pour éviter cela, il faut sauvegarder l'état du scraping après chaque étape, et lors du démarrage du script vérifier s'il existe un état sauvegardé, et dans ce cas le charger et repartir de ce point.
 
-L`'état du scraping correspond à deux ensemble de données{nbsp}:
+L'état du scraping correspond à deux ensemble de données{nbsp}:
 
 - `KNOWN_URLS` qui est le dictionnaire qui fournit les noms de fichiers correspondant aux URLs
 - `PAGES_TO_PROCESS` qui est la liste des pages qui restent à traiter
 
-À chaque fois qu`'on modifie l`'une de ces deux données il faut donc la sauvegarder.
+À chaque fois qu'on modifie l'une de ces deux données il faut donc la sauvegarder.
 
-Je vais sauvegarder `KNOWN_URLS` dans un fichier `known_urls.txt`, en utilisant une ligne par entrée en séparant l`'URL et le nom de fichier par un espace{nbsp}:
+Je vais sauvegarder `KNOWN_URLS` dans un fichier `known_urls.txt`, en utilisant une ligne par entrée en séparant l'URL et le nom de fichier par un espace{nbsp}:
 
 [source]
 ----
@@ -441,20 +441,20 @@ https://queue.acm.org/app/2020_09-10_lrg.png 5.png
 include::scraper_09.rb[tag=save_pages]
 ----
 
-Et voici le code qui gère le chargement au démarrage si le fichier est présent, s`'il en l`'est pas on initialise le contenu avec le contenu du l`'URL d`'entrée du site{nbsp}:
+Et voici le code qui gère le chargement au démarrage si le fichier est présent, s'il en l'est pas on initialise le contenu avec le contenu du l'URL d'entrée du site{nbsp}:
 
 [source, ruby, indent=0]
 ----
 include::scraper_09.rb[tag=load_pages]
 ----
 
-J`'ai choisi de ne pas mettre de gestion d`'erreur dans le script, par exemple une reconnexion automatique en cas d`'erreur.
-Si un site est particulièrement instable il peut être nécessaire d`'en ajouter, mais par défaut je préfère laisser remonter les exception et donc laisser le scraper s`'arrêter pour me permettre de faire le choix moi-même.
+J'ai choisi de ne pas mettre de gestion d'erreur dans le script, par exemple une reconnexion automatique en cas d'erreur.
+Si un site est particulièrement instable il peut être nécessaire d'en ajouter, mais par défaut je préfère laisser remonter les exception et donc laisser le scraper s'arrêter pour me permettre de faire le choix moi-même.
 
 == Conclusion
 
 Et voilà{nbsp}: le scraper est terminé{nbsp}!
-J`'espère qu`'il vous sera utile, si vous avez des questions vous pouvez me contacter et j`'essaierai de vous aider.
+J'espère qu'il vous sera utile, si vous avez des questions vous pouvez me contacter et j'essaierai de vous aider.
 
 Ci-dessous la version finale du script pour vous servir de base.
 

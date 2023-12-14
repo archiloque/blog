@@ -1,10 +1,10 @@
-require `'minitest/autorun`'
-require `'minitest/spec`'
+require 'minitest/autorun'
+require 'minitest/spec'
 
-require `'rack`'
-require `'rack/test`'
+require 'rack'
+require 'rack/test'
 
-require_relative `'app`'
+require_relative 'app'
 
 class AppForTest < App
 
@@ -35,7 +35,7 @@ end
 
 class TestApp < Minitest::Test
 
-  describe `'app`' do
+  describe 'app' do
 
     # Make rack test methods like get available
     include Rack::Test::Methods
@@ -69,7 +69,7 @@ class TestApp < Minitest::Test
     # @return [String]
     def html_body(template, status = 200)
       check_last_code(status)
-      last_response.content_type.must_equal `'text/html;charset=utf-8`'
+      last_response.content_type.must_equal 'text/html;charset=utf-8'
       AppForTest.last_template.must_equal(template.to_sym)
       last_response.body
     end
@@ -80,7 +80,7 @@ class TestApp < Minitest::Test
     # @return [Object]
     def json_body(status = 200)
       check_last_code(status)
-      last_response.content_type.must_equal `'application/json`'
+      last_response.content_type.must_equal 'application/json'
       JSON.parse(last_response.body)
     end
 
@@ -90,22 +90,22 @@ class TestApp < Minitest::Test
     end
 
     # Test a json answer
-    it `'responds to status`' do
-      get(`'/status`')
+    it 'responds to status' do
+      get('/status')
       json_body(200).must_equal(
         {
-          `'status`' => `'OK`'
+          'status' => 'OK'
         }
       )
     end
 
     # Test an html rendering
-    it `'renders the main page`' do
-      get(`'/`')
+    it 'renders the main page' do
+      get('/')
       # Test the html content
-      html_body(`'index.html`').must_include `'OK`'
+      html_body('index.html').must_include 'OK'
       # Test an attribute
-      last_app_attribute(`'content`').must_equal `'OK`'
+      last_app_attribute('content').must_equal 'OK'
     end
 
   end

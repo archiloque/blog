@@ -1,17 +1,17 @@
 #!/usr/bin/env ruby
 
-require `'net/http`'
-require `'fileutils`'
+require 'net/http'
+require 'fileutils'
 
-require `'addressable`'
-require `'nokogiri`'
-require `'curl`'
-require `'mime/types`'
+require 'addressable'
+require 'nokogiri'
+require 'curl'
+require 'mime/types'
 
-INITIAL_URL = `'https://queue.acm.org`'
-TARGET_DIRECTORY = `'download`'
+INITIAL_URL = 'https://queue.acm.org'
+TARGET_DIRECTORY = 'download'
 
-# Supprime le répertoire de destination s`'il existe et le recréé
+# Supprime le répertoire de destination s'il existe et le recréé
 if File.exists?(TARGET_DIRECTORY)
   puts "Supprime [#{TARGET_DIRECTORY}]"
   FileUtils.remove_entry_secure(TARGET_DIRECTORY)
@@ -24,8 +24,8 @@ Dir.mkdir(TARGET_DIRECTORY)
 def fetch_content(url)
   response = Curl.get(url) do |http|
     # Je suis un navigateur web !
-    http.headers[`'User-Agent`'] =
-      `'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0`'
+    http.headers['User-Agent'] =
+      'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0'
   end
   extension = MIME::Types[response.content_type].first.preferred_extension
   {
@@ -44,7 +44,7 @@ KNOWN_URLS = {}
 # @param [String] resource_url
 # @return [String]
 def scrape_resource(html_page_url, resource_url)
-  # Assure d`'avoir une URL absolue en combinant l`'adresse de la resource
+  # Assure d'avoir une URL absolue en combinant l'adresse de la resource
   # avec celle de la page
   absolute_url = html_page_url.join(resource_url).normalize
   puts "Vérifie la ressource [#{absolute_url}]"
@@ -66,17 +66,17 @@ def scrape_resource(html_page_url, resource_url)
   end
 end
 
-doc.css(`'img[src]`').each do |image|
-  image[`'src`'] = scrape_resource(parsed_initial_url, image[`'src`'])
+doc.css('img[src]').each do |image|
+  image['src'] = scrape_resource(parsed_initial_url, image['src'])
 end
 
-doc.css(`'link[rel=stylesheet][href]`').each do |link|
-  link[`'href`'] = scrape_resource(parsed_initial_url, link[`'href`'])
+doc.css('link[rel=stylesheet][href]').each do |link|
+  link['href'] = scrape_resource(parsed_initial_url, link['href'])
 end
 
-doc.css(`'script[src]`').each do |script|
-  script[`'src`'] = scrape_resource(parsed_initial_url, script[`'src`'])
+doc.css('script[src]').each do |script|
+  script['src'] = scrape_resource(parsed_initial_url, script['src'])
 end
 
-IO.write(File.join(TARGET_DIRECTORY, `'index.html`'), doc.to_html)
+IO.write(File.join(TARGET_DIRECTORY, 'index.html'), doc.to_html)
 # end::extract[]

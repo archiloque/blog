@@ -3,7 +3,7 @@ Julien Kirch
 v0.1, 2020-02-28
 :article_lang: fr
 :article_image: cut.png
-:article_description: C`'est bien d`'avoir des principes, mais pas trop quand même
+:article_description: C'est bien d'avoir des principes, mais pas trop quand même
 
 Cet article est un peu la suite de link:https://blog.octo.com/decouplage-decouplage-decouplage/[celui-ci]. Mon objectif est de mettre au clair quelques idées, sans avoir de thèse précise à défendre.
 
@@ -26,7 +26,7 @@ def fait_quelque_chose(param1, param2)
   # …
   # …
 
-  # S`'occupe du bidule
+  # S'occupe du bidule
   yada yad yada
   while blu
     yada yada
@@ -44,13 +44,13 @@ def fait_quelque_chose(param1, param2)
 end
 ----
 
-Dans cette méthode il y a plusieurs blocs de code qui font des choses différentes dans le but de rendre un service unique, sans qu`'il soit possible de factoriser de code entre les blocs.
+Dans cette méthode il y a plusieurs blocs de code qui font des choses différentes dans le but de rendre un service unique, sans qu'il soit possible de factoriser de code entre les blocs.
 
-Les blocs de code sont chacun accompagnés d`'un commentaire indiquant ce qu`'ils font.
+Les blocs de code sont chacun accompagnés d'un commentaire indiquant ce qu'ils font.
 
-Quand on regarde le code de la méthode, j`'ai l`'impression qu`'il est facile de suivre ce qui se passe d`'après la structure du code. Pour moi il est facile de passer d`'un niveau macro où on regarde les commentaires à un niveau micro où on regarde le contenu de chaque bloc.
+Quand on regarde le code de la méthode, j'ai l'impression qu'il est facile de suivre ce qui se passe d'après la structure du code. Pour moi il est facile de passer d'un niveau macro où on regarde les commentaires à un niveau micro où on regarde le contenu de chaque bloc.
 
-Certains langages comme C, C++, Java ou JavaScript fournissent même un moyen syntaxique d`'isoler des blocs de code, par exemple pour limiter la portée des variables locales{nbsp}:
+Certains langages comme C, C++, Java ou JavaScript fournissent même un moyen syntaxique d'isoler des blocs de code, par exemple pour limiter la portée des variables locales{nbsp}:
 
 [source,javascript]
 ----
@@ -59,7 +59,7 @@ fait_quelque_chose(param1, param2) {
     // Fait le truc machin
   }
   {
-    // S`'occupe du bidule
+    // S'occupe du bidule
   }
   {
     // On termine par le truc
@@ -129,33 +129,33 @@ def termine_par_truc(plop, bah)
 end
 ----
 
-Par rapport à la première version, les blocs de codes sont encore plus visibles, et les contrats d`'interfaces sont devenus plus visibles.
+Par rapport à la première version, les blocs de codes sont encore plus visibles, et les contrats d'interfaces sont devenus plus visibles.
 
-Par contre il est devenu plus difficile d`'avoir une vue d`'ensemble du comportement, par exemple l`'ensemble des usages fait de telle ou telle valeur{nbsp}, pour moi la navigation est devenue un peu plus pénible car il faut d`'avantage scroller entre les différents blocs.
+Par contre il est devenu plus difficile d'avoir une vue d'ensemble du comportement, par exemple l'ensemble des usages fait de telle ou telle valeur{nbsp}, pour moi la navigation est devenue un peu plus pénible car il faut d'avantage scroller entre les différents blocs.
 
 La lisibilité dépend aussi des signatures de méthodes.
 Si les sous-méthodes ont besoin de beaucoup de paramètres, et retournent plusieurs valeurs nécessitant des destructurations, cela va devenir beaucoup moins intéressant.
 
-Transformé ainsi, le code n`'est pas mieux découpé ni découplé car l`'interface n`'a pas changé, elle est juste plus visible.
-Si dans certains évolutions ultérieures on pourrait n`'avoir à modifier qu`'une seule sous-méthode plutôt qu`'un bloc de code dans la méthode principale, cela ne change rien au changement à mettre en œuvre.
+Transformé ainsi, le code n'est pas mieux découpé ni découplé car l'interface n'a pas changé, elle est juste plus visible.
+Si dans certains évolutions ultérieures on pourrait n'avoir à modifier qu'une seule sous-méthode plutôt qu'un bloc de code dans la méthode principale, cela ne change rien au changement à mettre en œuvre.
 
-Je connais des personnes pour qui les commentaires dans le code sont à bannir sauf cas très particulier, mais pour moi dans l`'exemple remplacer les commentaires par des signature de méthodes est plutôt une affaire de goût car le contenu est le même.
+Je connais des personnes pour qui les commentaires dans le code sont à bannir sauf cas très particulier, mais pour moi dans l'exemple remplacer les commentaires par des signature de méthodes est plutôt une affaire de goût car le contenu est le même.
 
-L`'utilisation de sous-méthodes peut aussi être justifiée par le principe de link:https://fr.wikipedia.org/wiki/Principe_de_responsabilité_unique[responsabilité unique], par exemple dans l`'approche link:https://fr.wikipedia.org/wiki/SOLID_(informatique)[SOLID].
-Mais ce n`'est pas parce qu`'il est possible d`'extraire du code dans une sous-méthode qu`'il faut obligatoirement le faire.
-Décider qu`'un bloc de code correspond une responsabilité différente est un choix.
-Pour moi la première méthode a bien une responsabilité unique qu`'elle met en œuvre en utilisant plusieurs blocs de codes.
+L'utilisation de sous-méthodes peut aussi être justifiée par le principe de link:https://fr.wikipedia.org/wiki/Principe_de_responsabilité_unique[responsabilité unique], par exemple dans l'approche link:https://fr.wikipedia.org/wiki/SOLID_(informatique)[SOLID].
+Mais ce n'est pas parce qu'il est possible d'extraire du code dans une sous-méthode qu'il faut obligatoirement le faire.
+Décider qu'un bloc de code correspond une responsabilité différente est un choix.
+Pour moi la première méthode a bien une responsabilité unique qu'elle met en œuvre en utilisant plusieurs blocs de codes.
 
-Vouloir appliquer le principe de responsabilité unique de manière systématique pourrait justifier d`'extraire chaque ligne ou fragment de ligne de code dans une méthode différent.
-Je préfère conserver ce principe et l`'appliquer de manière raisonnée plutôt que de le rejeter en entier.
+Vouloir appliquer le principe de responsabilité unique de manière systématique pourrait justifier d'extraire chaque ligne ou fragment de ligne de code dans une méthode différent.
+Je préfère conserver ce principe et l'appliquer de manière raisonnée plutôt que de le rejeter en entier.
 
-Un avantage possible de l`'extraction de sous-méthode est de pouvoir faire des tests à un niveau plus fin.
-Si ce refactoring est fait pour écrire un test qui est rendu plus facile ainsi il s`'agit d`'une bonne raison, par contre ce n`'est pas le cas si c`'est pour qu`'un jour on puisse le faire si le besoin s`'en fait sentir.
+Un avantage possible de l'extraction de sous-méthode est de pouvoir faire des tests à un niveau plus fin.
+Si ce refactoring est fait pour écrire un test qui est rendu plus facile ainsi il s'agit d'une bonne raison, par contre ce n'est pas le cas si c'est pour qu'un jour on puisse le faire si le besoin s'en fait sentir.
 
 En résumé{nbsp}: je ne pense pas que ce code soit strictement préférable au premier, il a des inconvénients et des avantages.
-Ma pratique personnelle est de le faire de manière opportuniste quand la méthode principale devient vraiment trop longue et/ou qu`'un bloc de code s`'y prête particulièrement bien.
+Ma pratique personnelle est de le faire de manière opportuniste quand la méthode principale devient vraiment trop longue et/ou qu'un bloc de code s'y prête particulièrement bien.
 
-Je comprends l`'idée de faire attention à la longueur des méthodes pour garder l`'œil ouvert afin de détecter les problèmes, mais selon moi encourager trop fortement la création de sous-méthodes ne rend pas forcément le code plus lisible et par contre peut rendre la navigation bien plus pénible.
+Je comprends l'idée de faire attention à la longueur des méthodes pour garder l'œil ouvert afin de détecter les problèmes, mais selon moi encourager trop fortement la création de sous-méthodes ne rend pas forcément le code plus lisible et par contre peut rendre la navigation bien plus pénible.
 
 == Un module
 
@@ -217,27 +217,27 @@ module FaitDesTrucs
 end
 ----
 
-C`'est une étape suivante possible après la séparation en sous-méthodes{nbsp}: on a désormais quatre méthodes qui traitent un domaine spécifique, pourquoi ne pas les isoler dans un module pour mieux isoler les choses{nbsp}?
+C'est une étape suivante possible après la séparation en sous-méthodes{nbsp}: on a désormais quatre méthodes qui traitent un domaine spécifique, pourquoi ne pas les isoler dans un module pour mieux isoler les choses{nbsp}?
 
-À nouveau cette approche n`'augmente pas le découplage{nbsp}: ce n`'est pas parce que la méthode qu`'on appelle est dans un autre fichier que le contrat d`'interface qu`'elle expose sera plus stable.
+À nouveau cette approche n'augmente pas le découplage{nbsp}: ce n'est pas parce que la méthode qu'on appelle est dans un autre fichier que le contrat d'interface qu'elle expose sera plus stable.
 
-Ce qu`'on a fait s`'apparent à un renommage (on change la manière d`'appeler le code et donc son nom).
+Ce qu'on a fait s'apparent à un renommage (on change la manière d'appeler le code et donc son nom).
 
 À nouveau, le principal changement est la navigation{nbsp}: on peut préférer naviguer dans plusieurs fichiers courts plutôt que dans un seul plus long.
-Cela peut dépendre en partie des outils utilisés, par exemple s`'ils permettent facilement de suivre des méthodes ou s`'il faut naviguer "`à la main`".
+Cela peut dépendre en partie des outils utilisés, par exemple s'ils permettent facilement de suivre des méthodes ou s'il faut naviguer "`à la main`".
 
-Il est intéressant de noter que cette étape n`'est possible qu`'à cause de la précédente{nbsp}: parce qu`'on a beaucoup découpé et qu`'on a maintenant plusieurs sous-méthodes, il peut devenir intéressant de déplacer ces méthodes ailleurs.
-Petit à petit le code peut ainsi s`'étaler en suivant des principes.
+Il est intéressant de noter que cette étape n'est possible qu'à cause de la précédente{nbsp}: parce qu'on a beaucoup découpé et qu'on a maintenant plusieurs sous-méthodes, il peut devenir intéressant de déplacer ces méthodes ailleurs.
+Petit à petit le code peut ainsi s'étaler en suivant des principes.
 
 Le mot étaler est important car à chaque fois la proportion de code opérant diminue en ajoutant au profit de code servant à gérer de la logistique.
 
 === En conclusion
 
-En appliquant à la chaîne certaines pratiques, on peut avoir le sentiment d`'améliorer les choses alors que tout ce qu`'on est parvenu à faire est d`'ajouter des indirections et de diluer le code.
+En appliquant à la chaîne certaines pratiques, on peut avoir le sentiment d'améliorer les choses alors que tout ce qu'on est parvenu à faire est d'ajouter des indirections et de diluer le code.
 
 Les pratiques dont je parle ici sont souvent mises en avant dans un contexte où il faut partager du code, et dans ce cas elles sont bien plus utiles.
-Mon intuition est que leur utilité quand il s`'agit d`'un besoin de partage peut mener à surestimer leur utilité lorsque ce n`'est pas le cas.
+Mon intuition est que leur utilité quand il s'agit d'un besoin de partage peut mener à surestimer leur utilité lorsque ce n'est pas le cas.
 
-Il est facile de s`'arbitrer derrière l`'autorité de principes, mais il faut garder en tête que beaucoup d`'entre eux ne doivent pas s`'appliquer systématiquement mais seulement quand on en fait le choix.
+Il est facile de s'arbitrer derrière l'autorité de principes, mais il faut garder en tête que beaucoup d'entre eux ne doivent pas s'appliquer systématiquement mais seulement quand on en fait le choix.
 
-On peut choisir où placer la limite qui décide de refactorer ou de fractionner le code, mais il faut toujours garder en tête qu`'il s`'agit d`'un jugement que l`'on porte.
+On peut choisir où placer la limite qui décide de refactorer ou de fractionner le code, mais il faut toujours garder en tête qu'il s'agit d'un jugement que l'on porte.

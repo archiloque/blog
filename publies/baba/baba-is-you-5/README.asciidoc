@@ -24,7 +24,7 @@ endif::[]
 ifeval::["{doctype}" != "book"]
 Following link:../baba-is-you-4/[the fourth part],
 endif::[]
-where I coded what was missing to display a solution, I`'ll now improve the behavior of the solver to make it closer to the game.
+where I coded what was missing to display a solution, I'll now improve the behavior of the solver to make it closer to the game.
 
 == Two elements on one cell
 
@@ -38,7 +38,7 @@ Instead of an `int` I could use an array of `int` for cell, `State#content` woul
 
 Several elements can be on one cell, but at most one element of each type.
 In this case using link:https://en.wikipedia.org/wiki/Bit_field[bit fields] is a common pattern.
-It`'s a bit like an array of boolean of a fixed size packed as a primitive value.
+It's a bit like an array of boolean of a fixed size packed as a primitive value.
 
 Each kind of element will be represented by an index, and the presence of a bit with an index indicates that the corresponding element is on the cell.
 
@@ -53,10 +53,10 @@ Example, if 8 bit are used to store the data, rock at index 3 and flag on index 
 00**1**0**1**000 cell with a rock and a flag 
 ----
 
-In Java `int` use link:https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html[32 bits], so it`'s enough to store 32 types of elements.
-It`'s enough for now, and I`'ll be able to come back to it later if it`'s required.
+In Java `int` use link:https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html[32 bits], so it's enough to store 32 types of elements.
+It's enough for now, and I'll be able to come back to it later if it's required.
 
-This means `State#content` will still be an `int[]`, so signatures won`'t change but the code will have to be updated.
+This means `State#content` will still be an `int[]`, so signatures won't change but the code will have to be updated.
 
 The bit manipulation syntax link:https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op3.html[is described here].
 
@@ -105,7 +105,7 @@ include::state1.java[]
 ----
 
 Then the _pièce de résistance_: `State#tryToGo`.
-Here it`'s not only about migrating the data representation but also the behavior.
+Here it's not only about migrating the data representation but also the behavior.
 
 include::graph1.asciidoc[]
 
@@ -115,7 +115,7 @@ Dealing with the new case add a depencency between the rock case and the flag ca
 
 include::graph2.asciidoc[]
 
-This ensure a flag can`'t be reached if it`'s on the same cell that a rock that can`'t be moved.
+This ensure a flag can't be reached if it's on the same cell that a rock that can't be moved.
 
 So the code must be rewritten as several `if`.
 
@@ -125,7 +125,7 @@ So the code must be rewritten as several `if`.
 include::state2.java[]
 ----
 
-Now it`'s time to migrate existing tests and to add new ones to ensure I didn`'t miss any case:
+Now it's time to migrate existing tests and to add new ones to ensure I didn't miss any case:
 
 .StateTryToGoTest.java
 [source,java]
@@ -133,7 +133,7 @@ Now it`'s time to migrate existing tests and to add new ones to ensure I didn`'t
 include::statetrytogotest1.java[]
 ----
 
-The code used to check if a position has already been reached don`'t need to be updated since it relies on the values of the content: the inner values changed but comparing them is still the right thing to do.
+The code used to check if a position has already been reached don't need to be updated since it relies on the values of the content: the inner values changed but comparing them is still the right thing to do.
 
 Running the program show the new capability being used, making the solution shorter:
 
@@ -155,7 +155,7 @@ When baba tries to move a rock, the code need to iterate until it finds either:
 * a wall
 * the border of the level
 
-This time there is no signature change but only some code to add, which means it`'s easier to start with the tests:
+This time there is no signature change but only some code to add, which means it's easier to start with the tests:
 
 .StateTryToGoTest.java
 [source,java]
@@ -172,4 +172,4 @@ include::state3.java[]
 ----
 
 Now all visible behaviors of the first level are implemented.
-In the next part I`'ll start working on the second level, where it will be possible to change the rules.
+In the next part I'll start working on the second level, where it will be possible to change the rules.

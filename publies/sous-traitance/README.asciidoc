@@ -3,32 +3,32 @@ Julien Kirch
 v0.1, 2020-10-09
 :article_lang: fr
 :article_image: iu.png
-:article_description: … c`'est parfois plus compliqué qu`'on ne le croit
-:sous: `'entreprise sous-traitante
-:ordre: `'organisation donneuse d`'ordre
-:ordres: `'organisations donneuses d`'ordres
+:article_description: … c'est parfois plus compliqué qu'on ne le croit
+:sous: 'entreprise sous-traitante
+:ordre: 'organisation donneuse d'ordre
+:ordres: 'organisations donneuses d'ordres
 
-link:https://www.semanticscholar.org/paper/BOEING-PROPRIETARY-BOEING-PROPRIETARY-1-OUTSOURCED-PROPRIETARY/e9daf5cc1c94c6e34e29095ca168e8fa2d750df9?p2df[Cette analyse] de l`'échec commercial de l`'avion link:https://en.wikipedia.org/wiki/McDonnell_Douglas_DC-10[McDonnell Douglas DC-10] décrit les conséquences néfastes d`'une sous-traitance mal maîtrisée.
+link:https://www.semanticscholar.org/paper/BOEING-PROPRIETARY-BOEING-PROPRIETARY-1-OUTSOURCED-PROPRIETARY/e9daf5cc1c94c6e34e29095ca168e8fa2d750df9?p2df[Cette analyse] de l'échec commercial de l'avion link:https://en.wikipedia.org/wiki/McDonnell_Douglas_DC-10[McDonnell Douglas DC-10] décrit les conséquences néfastes d'une sous-traitance mal maîtrisée.
 On peut y voir ce qui se passe quand on applique des principes à la lettre sans se demander si ils sont bien adaptés à un certain contexte.
 
-Si certaines des caractéristiques de l`'étude sont spécifiques à l`'industrie aéronautique, par exemple la très longue période (plusieurs dizaines d`'années) pendant laquelle il faut garantir l`'approvisionnement en pièces détachées, j`'y ai retrouvé de nombreux points communs avec des projets que j`'ai pu croiser et il m`'a permis de mettre des mots sur certaines intuitions.
+Si certaines des caractéristiques de l'étude sont spécifiques à l'industrie aéronautique, par exemple la très longue période (plusieurs dizaines d'années) pendant laquelle il faut garantir l'approvisionnement en pièces détachées, j'y ai retrouvé de nombreux points communs avec des projets que j'ai pu croiser et il m'a permis de mettre des mots sur certaines intuitions.
 
-Si dans les achats en informatique, je lis beaucoup de réflexions de fond sur "`Build versus buy`" à propos d`'achat de logiciel tout fait, j`'ai l`'impression que les publications sur la sous-traitance pour développer des logiciels, typiquement le fait de faire appel à des ESN (ex-SSII) sont plus rares.
+Si dans les achats en informatique, je lis beaucoup de réflexions de fond sur "`Build versus buy`" à propos d'achat de logiciel tout fait, j'ai l'impression que les publications sur la sous-traitance pour développer des logiciels, typiquement le fait de faire appel à des ESN (ex-SSII) sont plus rares.
 
 En plus, ceux que je vois passer sont plutôt des récits de projets qui ont tourné au désastre, toujours amusants (ou tristes) à lire, mais pauvres en analyses.
 
-Je vais parler ici du cas où l{sous} est payée, de manière directe ou indirecte, en fonction de la quantité du temps qu`'elle  passe.
-Par exemple lorsque l{sous} réalise des lots dont la taille et donc le prix sont négociés en fonction d`'une estimation du temps de travail qu`'ils demandent.
-J`'exclus donc le cas du projet entièrement au forfait, et le cas de la régie où les employé·e·s de l{sous} travaillent directement pour l{ordre}, comme s`'iels étaient directement ses employé·e·s.
+Je vais parler ici du cas où l{sous} est payée, de manière directe ou indirecte, en fonction de la quantité du temps qu'elle  passe.
+Par exemple lorsque l{sous} réalise des lots dont la taille et donc le prix sont négociés en fonction d'une estimation du temps de travail qu'ils demandent.
+J'exclus donc le cas du projet entièrement au forfait, et le cas de la régie où les employé·e·s de l{sous} travaillent directement pour l{ordre}, comme s'iels étaient directement ses employé·e·s.
 
-== L{sous} n`'est pas ton amie
+== L{sous} n'est pas ton amie
 
-Souvent, quand une partie conséquente d`'un projet (voir l`'ensemble du développement) est déléguée à une entreprise tierce, on appelle l{sous} "`partenaire`".
-On ne m`'a jamais expliqué l`'usage de ce terme dans cette situation, mais ma compréhension est qu`'il est sensé indiquer que les deux structures ont dans le projet un même objectif et que par conséquent leurs intérêts sont les mêmes.
+Souvent, quand une partie conséquente d'un projet (voir l'ensemble du développement) est déléguée à une entreprise tierce, on appelle l{sous} "`partenaire`".
+On ne m'a jamais expliqué l'usage de ce terme dans cette situation, mais ma compréhension est qu'il est sensé indiquer que les deux structures ont dans le projet un même objectif et que par conséquent leurs intérêts sont les mêmes.
 
-En général c`'est assez loin de la réalité, s`'ils ne sont pas totalement contraires, les objectifs du client et du sous-traitant s`'opposent sur un certains nombre de points.
+En général c'est assez loin de la réalité, s'ils ne sont pas totalement contraires, les objectifs du client et du sous-traitant s'opposent sur un certains nombre de points.
 
-Il est vrai qu`'aucune des deux parties n`'a (en général) intérêt à ce que le projet échoue de manière trop visible, au risque que le sous-traitant perde une source de revenu (ce qui n`'est jamais agréable, surtout sur un gros projet prévu pour durer longtemps), et gagne une mauvaise réputation (quoique souvent ils n`'en sont pas à une casserole près) et/ou un procès (mais les choses en arrivent rarement jusque là, les torts étant souvent partagés et les contrats mal ficelés).
+Il est vrai qu'aucune des deux parties n'a (en général) intérêt à ce que le projet échoue de manière trop visible, au risque que le sous-traitant perde une source de revenu (ce qui n'est jamais agréable, surtout sur un gros projet prévu pour durer longtemps), et gagne une mauvaise réputation (quoique souvent ils n'en sont pas à une casserole près) et/ou un procès (mais les choses en arrivent rarement jusque là, les torts étant souvent partagés et les contrats mal ficelés).
 
 Mais pour chacune unité de travail sous-traitée, il y a une opposition frontale sur le prix{nbsp}: l{ordre} veut payer le moins cher possible, et l{sous} veut être payée le plus cher possible.
 
@@ -37,90 +37,90 @@ Après tout est affaire de patience, de rapport de force, et de savoir bien réd
 La négociation consiste souvent pour l{sous} à essayer de déterminer le prix maximum que l{ordre} est prête à payer.
 En se rappelant que pour beaucoup de développements, évaluer le temps à passer sur un développement est un art incertain.
 
-Le DC-10 est un parfait exemple de cette opposition car il décrit comment les sous-traitants ont encaissé tous les profits alors que l`'entreprise donneuse d`'ordre a absorbé tous les surcoûts.
+Le DC-10 est un parfait exemple de cette opposition car il décrit comment les sous-traitants ont encaissé tous les profits alors que l'entreprise donneuse d'ordre a absorbé tous les surcoûts.
 
-Je ne dis pas que l{sous} va nécessairement se conduire d`'une manière extrême -- par exemple en surévaluant les tâches qui lui sont confiées{nbsp}—&#8201;mais que son intérêt objectif peut l`'amener à le faire.
+Je ne dis pas que l{sous} va nécessairement se conduire d'une manière extrême -- par exemple en surévaluant les tâches qui lui sont confiées{nbsp}—&#8201;mais que son intérêt objectif peut l'amener à le faire.
 
-== L`'automatisation
+== L'automatisation
 
-Comme link:../lean-chaine-d-assemblage/[je l`'ai déjà écrit ailleurs], une des caractéristiques du développement logiciel est la capacité à s’outiller pour créer des effets de levier{nbsp}: plutôt que de faire les choses à la main on peut les automatiser, et quand on a automatisé une chose et qu`'on a besoin d`'une autre chose semblable on peut la réutiliser ou la généraliser.
+Comme link:../lean-chaine-d-assemblage/[je l'ai déjà écrit ailleurs], une des caractéristiques du développement logiciel est la capacité à s’outiller pour créer des effets de levier{nbsp}: plutôt que de faire les choses à la main on peut les automatiser, et quand on a automatisé une chose et qu'on a besoin d'une autre chose semblable on peut la réutiliser ou la généraliser.
 
-Cet effet de levier permet d`'accélérer les développements, et de rendre les outils plus évolutifs en limitant le nombre de choses à modifier lorsqu`'on veut changer un comportement.
+Cet effet de levier permet d'accélérer les développements, et de rendre les outils plus évolutifs en limitant le nombre de choses à modifier lorsqu'on veut changer un comportement.
 
-Malheureusement, quand on est payé au temps passé, on ne voit pas forcément d`'un bon œil cette automatisation.
+Malheureusement, quand on est payé au temps passé, on ne voit pas forcément d'un bon œil cette automatisation.
 
-Pour un sous-traitant, réutiliser un bout de code plutôt que de le développer une deuxième fois (et donc être payé une deuxième fois) n`'est pas forcément une bonne idée, ou même simplement automatiser une opération manuelle qui prend du temps.
+Pour un sous-traitant, réutiliser un bout de code plutôt que de le développer une deuxième fois (et donc être payé une deuxième fois) n'est pas forcément une bonne idée, ou même simplement automatiser une opération manuelle qui prend du temps.
 
-J`'ai ainsi croisé plusieurs projet où les tests automatisés étaient absents ou presque inexistants et où l{sous} se débrouillait pour ne pas en écrire malgré les demandes régulières.
-L{ordre} payait à chaque fois l{sous} pour une campagne de test manuels à chaque nouvelle version, et en général finançait également une partie des corrections, qu`'on faisait semblant de considérer comme des évolutions (car les vrais bugs sont en principe corrigés sans coût supplémentaire car ils sont considérés comme des erreurs de l{sous}).
+J'ai ainsi croisé plusieurs projet où les tests automatisés étaient absents ou presque inexistants et où l{sous} se débrouillait pour ne pas en écrire malgré les demandes régulières.
+L{ordre} payait à chaque fois l{sous} pour une campagne de test manuels à chaque nouvelle version, et en général finançait également une partie des corrections, qu'on faisait semblant de considérer comme des évolutions (car les vrais bugs sont en principe corrigés sans coût supplémentaire car ils sont considérés comme des erreurs de l{sous}).
 
-En dehors du coût, cela signifie que -- dans certains cas{nbsp}—&#8201;l`'intérêt financier de l{sous} peut mener à des logiciels moins fiables et moins faciles à faire évoluer.
+En dehors du coût, cela signifie que -- dans certains cas{nbsp}—&#8201;l'intérêt financier de l{sous} peut mener à des logiciels moins fiables et moins faciles à faire évoluer.
 
 La non-réutilisation peut même être tentante pour l{ordre}, car elle peut simplifier les négociations sur le prix des évolutions.
-Par exemple si les deux structures se mettent d`'accord sur le temps à passer et donc le tarif pour développer un écran standard avec 5 boutons.
-Pour chaque nouvel écran, la question va donc se poser pour savoir si l{ordre} accepte de payer le plein tarif, ou si elle va investir du temps et de l`'énergie pour tenter de négocier une réduction en justifiant de la possibilité de réutiliser un écran existant.
+Par exemple si les deux structures se mettent d'accord sur le temps à passer et donc le tarif pour développer un écran standard avec 5 boutons.
+Pour chaque nouvel écran, la question va donc se poser pour savoir si l{ordre} accepte de payer le plein tarif, ou si elle va investir du temps et de l'énergie pour tenter de négocier une réduction en justifiant de la possibilité de réutiliser un écran existant.
 
 == L{sous} en sait souvent plus que toi
 
-Pour pouvoir évaluer en amont la taille d`'une tâche et donc son prix et en aval si l{sous} fait du bon travail, il faut une certaine connaissance du sujet que vous sous-traitez.
+Pour pouvoir évaluer en amont la taille d'une tâche et donc son prix et en aval si l{sous} fait du bon travail, il faut une certaine connaissance du sujet que vous sous-traitez.
 
-De la même manière que vous tentez d`'évaluer le devis ou le travail d`'un·e plombier·ère ou d`'un·e garagiste.
-Moi quand ça m`'arrive je suis comme une poule devant un couteau.
+De la même manière que vous tentez d'évaluer le devis ou le travail d'un·e plombier·ère ou d'un·e garagiste.
+Moi quand ça m'arrive je suis comme une poule devant un couteau.
 
-Lorsque l`'activité à sous-traiter est spécialisée, il peut être assez difficile de disposer de cette compétence.
+Lorsque l'activité à sous-traiter est spécialisée, il peut être assez difficile de disposer de cette compétence.
 Dans ce cas là il est malheureusement nécessaire de se reposer sur la confiance.
 
-Mais lorsque l`'activité n`'est pas spécialisée, par exemple quand le projet à sous-traiter est un site web destiné à un intranet, on n`'est pas dans cette situation{nbsp}: il est possible d`'acquérir et d`'entretenir cette compétence, même si ça n`'est pas forcément simple.
+Mais lorsque l'activité n'est pas spécialisée, par exemple quand le projet à sous-traiter est un site web destiné à un intranet, on n'est pas dans cette situation{nbsp}: il est possible d'acquérir et d'entretenir cette compétence, même si ça n'est pas forcément simple.
 
-Sur des projets qui coûtent des centaines de milliers d`'euros ou plus, le coût pour disposer de personnes capables d`'évaluer le travail de l{sous} est très faible par rapport au coût total du contrat.
+Sur des projets qui coûtent des centaines de milliers d'euros ou plus, le coût pour disposer de personnes capables d'évaluer le travail de l{sous} est très faible par rapport au coût total du contrat.
 
-Ne pas disposer de ces compétences signifie que, pour évaluer le travail de l{sous}, l{ordre} ne dispose que d`'indicateur indirects, comme le nombre de bugs identifié, ou le sentiment que les choses mettent de plus en plus de temps pour avancer.
+Ne pas disposer de ces compétences signifie que, pour évaluer le travail de l{sous}, l{ordre} ne dispose que d'indicateur indirects, comme le nombre de bugs identifié, ou le sentiment que les choses mettent de plus en plus de temps pour avancer.
 
-Et en cas de désaccord avec l{sous}, il est difficile d`'argumenter sans disposer d`'éléments concrets.
+Et en cas de désaccord avec l{sous}, il est difficile d'argumenter sans disposer d'éléments concrets.
 
-Ce n`'est pas forcément simple, car il s`'agit d`'entretenir la capacité à encadrer ou à mesurer ce qui est fait sans faire soi-même, en sachant que les personnes qui savent faire ne sont pas forcément intéressées par le fait de passer du temps à faire-faire plutôt qu`'à faire.
+Ce n'est pas forcément simple, car il s'agit d'entretenir la capacité à encadrer ou à mesurer ce qui est fait sans faire soi-même, en sachant que les personnes qui savent faire ne sont pas forcément intéressées par le fait de passer du temps à faire-faire plutôt qu'à faire.
 
-Dans l`'analyse du DC-10, l`'auteur conseille d`'entretenir une quantité suffisante de projets interne pour que des personnes puissent alterner entre faire et faire-faire pour pouvoir rester compétentes.
+Dans l'analyse du DC-10, l'auteur conseille d'entretenir une quantité suffisante de projets interne pour que des personnes puissent alterner entre faire et faire-faire pour pouvoir rester compétentes.
 
-Personnellement même si j`'en ai régulièrement entendu parler, je n`'ai jamais vu cette solution mise en pratique.
+Personnellement même si j'en ai régulièrement entendu parler, je n'ai jamais vu cette solution mise en pratique.
 
-En revanche, une approche que j`'ai plusieurs fois croisée est d`'également sous-traiter cette partie, en délégant la gestion du projet et le contrôle du résultat à une autre entreprise.
+En revanche, une approche que j'ai plusieurs fois croisée est d'également sous-traiter cette partie, en délégant la gestion du projet et le contrôle du résultat à une autre entreprise.
 
 Cela peut fonctionner, mais le risque est toujours le même{nbsp}: déléguer sans maîtriser un sujet demande de faire confiance.
-D`'autant que si les deux entreprises ne sont pas d`'accord, c`'est à l{ordre} de trancher.
+D'autant que si les deux entreprises ne sont pas d'accord, c'est à l{ordre} de trancher.
 
-Dans ce cas je suppose qu`'il peut toujours faire appel à une troisième entreprise, en ainsi de suite…
+Dans ce cas je suppose qu'il peut toujours faire appel à une troisième entreprise, en ainsi de suite…
 
 == L{sous} et les externalités négatives
 
 Le dernier point saillant de la sous-traitance en informatique est celui des externalités négatives.
 
-En économie une externalité est le fait pour un agent d’avoir un effet sur un autre agent sans contrepartie. Un externalité négative survient lorsqu`'un agent a un effet négatif sur un autre agent.
+En économie une externalité est le fait pour un agent d’avoir un effet sur un autre agent sans contrepartie. Un externalité négative survient lorsqu'un agent a un effet négatif sur un autre agent.
 
-Ainsi une entreprise dont l`'activité crée de la pollution environnementale crée une externalité négative pour l`'écosystème où elle est installée.
+Ainsi une entreprise dont l'activité crée de la pollution environnementale crée une externalité négative pour l'écosystème où elle est installée.
 
-La sous-traitance d`'un projet est souvent porteuse d`'externalités négatives sur les autres projets de la même organisation, et principalement en rendant plus complexes les interactions avec ce projet.
+La sous-traitance d'un projet est souvent porteuse d'externalités négatives sur les autres projets de la même organisation, et principalement en rendant plus complexes les interactions avec ce projet.
 
-Ainsi si un projet A a besoin d`'une évolution dans un projet B qui est sous-traité, cela signifie qu`'il faut échanger avec l{sous} au travers des personnes internes du projet B.
+Ainsi si un projet A a besoin d'une évolution dans un projet B qui est sous-traité, cela signifie qu'il faut échanger avec l{sous} au travers des personnes internes du projet B.
 
-Ou si un certain niveau de formalisme est nécessaire entre l{ordre} et l{sous} du projet B, ce formalisme s`'impose au projet A.
+Ou si un certain niveau de formalisme est nécessaire entre l{ordre} et l{sous} du projet B, ce formalisme s'impose au projet A.
 
 Dans le cas du DC-10, le gros point noir a été la gestion des tolérances, ce qui correspond aux écarts acceptables sur la taille des pièces.
-Par exemple si deux pièces doivent s`'emboiter, il faut que leurs tailles respectives correspondent, et pour cela des ajustements réguliers sont nécessaires, et parfois des pièces déjà fabriquées doivent être retouchées.
-L`'audit montre bien la difficulté que la sous-traitance peut ajouter sur ces modifications qui sont à faire au fil de l`'eau, et qui correspondent à ce qu`'on peut trouver lorsque plusieurs projets informatiques doivent communiquer.
+Par exemple si deux pièces doivent s'emboiter, il faut que leurs tailles respectives correspondent, et pour cela des ajustements réguliers sont nécessaires, et parfois des pièces déjà fabriquées doivent être retouchées.
+L'audit montre bien la difficulté que la sous-traitance peut ajouter sur ces modifications qui sont à faire au fil de l'eau, et qui correspondent à ce qu'on peut trouver lorsque plusieurs projets informatiques doivent communiquer.
 
 Le choix de sous-traiter pour un projet a donc des conséquences pour les projets avec qui il est en lien.
-Le plus pénible, c`'est que souvent ces conséquences ne sont pas prises en compte lors de l`'évaluation du projet B, par exemple si on évalue la rentabilité de la sous-traitance.
+Le plus pénible, c'est que souvent ces conséquences ne sont pas prises en compte lors de l'évaluation du projet B, par exemple si on évalue la rentabilité de la sous-traitance.
 
-Cela peut être un peu les mêmes contraintes que si les projets A et B étaient dans deux entités différentes d`'une même organisation dont les intérêts et les fonctionnements sont différents, mais dans ce cas là les contraintes sont souvent connues et acceptées (même sans l`'avouer), alors que ça n`'est pas toujours le cas pour la sous-traitance.
+Cela peut être un peu les mêmes contraintes que si les projets A et B étaient dans deux entités différentes d'une même organisation dont les intérêts et les fonctionnements sont différents, mais dans ce cas là les contraintes sont souvent connues et acceptées (même sans l'avouer), alors que ça n'est pas toujours le cas pour la sous-traitance.
 
 == Pour conclure
 
-Les projets informatiques sont souvent compliqués{nbsp}: les choses ne se passent généralement pas comme on le croyait, les idées murissent pendant les développements, et la cohésion d`'ensemble n`'est jamais gagnée d`'avance.
+Les projets informatiques sont souvent compliqués{nbsp}: les choses ne se passent généralement pas comme on le croyait, les idées murissent pendant les développements, et la cohésion d'ensemble n'est jamais gagnée d'avance.
 
-Sous-traiter a certains avantages, et principalement celui de la flexibilité de la force de travail, mais a l`'inconvénient de tout rendre encore un peu plus compliqué.
-C`'est un parfait exemple où les optimisations locales peuvent aller à l`'encontre de l`'optimum global d`'une organisation, et les conséquences d`'un mauvais choix peuvent être importantes.
+Sous-traiter a certains avantages, et principalement celui de la flexibilité de la force de travail, mais a l'inconvénient de tout rendre encore un peu plus compliqué.
+C'est un parfait exemple où les optimisations locales peuvent aller à l'encontre de l'optimum global d'une organisation, et les conséquences d'un mauvais choix peuvent être importantes.
 
-Si mon article vous a plus, je vous engage à lire link:https://www.semanticscholar.org/paper/BOEING-PROPRIETARY-BOEING-PROPRIETARY-1-OUTSOURCED-PROPRIETARY/e9daf5cc1c94c6e34e29095ca168e8fa2d750df9?p2df[l`'audit] en question.
+Si mon article vous a plus, je vous engage à lire link:https://www.semanticscholar.org/paper/BOEING-PROPRIETARY-BOEING-PROPRIETARY-1-OUTSOURCED-PROPRIETARY/e9daf5cc1c94c6e34e29095ca168e8fa2d750df9?p2df[l'audit] en question.
 
-En plus de fournir des détails intéressants sur le fonctionnement du projet, il discute la partie budget que je n`'ai pas traitée ici, et là encore la sous-traitance semble d`'autant plus intéressante qu`'on applique des recommandations générales, comme l`'amélioration à tous prix de la link:https://fr.wikipedia.org/wiki/Rentabilité_des_actifs[rentabilité des actifs], en  perdant de vue le contexte global de l`'organisation et du domaine dans lequel on opère.
+En plus de fournir des détails intéressants sur le fonctionnement du projet, il discute la partie budget que je n'ai pas traitée ici, et là encore la sous-traitance semble d'autant plus intéressante qu'on applique des recommandations générales, comme l'amélioration à tous prix de la link:https://fr.wikipedia.org/wiki/Rentabilité_des_actifs[rentabilité des actifs], en  perdant de vue le contexte global de l'organisation et du domaine dans lequel on opère.

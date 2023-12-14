@@ -233,7 +233,7 @@ class Main
         previous_reached_nodes.each do |previous_reached_node|
           @topology[previous_reached_node].each do |new_node|
             if all_reached_nodes.add?(new_node)
-              # It`'s a new node
+              # It's a new node
               current_reached_nodes << new_node
             end
           end
@@ -252,7 +252,7 @@ class Main
         previous_reached_nodes.each do |previous_reached_node|
           @topology[previous_reached_node].each do |new_node|
             if all_reached_nodes.add?(new_node)
-              # It`'s a new node
+              # It's a new node
               current_reached_nodes << new_node
               if previous_reached_node == @node_id
                 nodes_to_target << new_node

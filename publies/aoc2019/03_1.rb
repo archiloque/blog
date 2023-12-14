@@ -1,15 +1,15 @@
 def draw_path(grid, path, wire)
   current_position = {line: 0, column: 0}
-  path.split(`',`').each do |path_fragment|
+  path.split(',').each do |path_fragment|
     path_fragment_direction = path_fragment[0]
     case path_fragment_direction
-    when `'R`'
+    when 'R'
       direction = {line: 0, column: 1}
-    when `'L`'
+    when 'L'
       direction = {line: 0, column: -1}
-    when `'U`'
+    when 'U'
       direction = {line: 1, column: 0}
-    when `'D`'
+    when 'D'
       direction = {line: -1, column: 0}
     else
       raise path_fragment_direction
@@ -25,8 +25,8 @@ end
 
 def process_graph(pathes)
   grid = Hash.new { |h1, k1| h1[k1] = Hash.new { |h2, k2| h2[k2] = [] } }
-  draw_path(grid, pathes[0], `'A`')
-  draw_path(grid, pathes[1], `'B`')
+  draw_path(grid, pathes[0], 'A')
+  draw_path(grid, pathes[1], 'B')
   distance = 1
   while true
     distance.downto(0) do |line|

@@ -2,10 +2,10 @@
 Julien Kirch
 v0.1, 2017-01-23
 :article_lang: en
-:article_description: I hope I won`'t try to implement it
+:article_description: I hope I won't try to implement it
 
-As always when I`'m coding, I`'m unsatisfied by the currently available choices.
-But for a change I`'m taking the time to write about it.
+As always when I'm coding, I'm unsatisfied by the currently available choices.
+But for a change I'm taking the time to write about it.
 
 == Principles
 
@@ -19,12 +19,12 @@ Features for my dream languages:
 
 == Rationale
 
-I mostly write code in an IDE: I don`'t like to look for things like signatures, precise names… but I want my tools to find them for me.
+I mostly write code in an IDE: I don't like to look for things like signatures, precise names… but I want my tools to find them for me.
 
 My current tool of choice is Ruby, I like it because code is concise yet readable, and the OO design is very flexible.
 On the other hand I love the capabilities provided by static typing: impact analysis, refactoring, and helpful IDE support.
 
-In a nutshell, I`'d like to have the benefits of Ruby with the level of tooling you can have in Java when you code with Intellij.
+In a nutshell, I'd like to have the benefits of Ruby with the level of tooling you can have in Java when you code with Intellij.
 
 == General syntax
 
@@ -91,7 +91,7 @@ class MyOtherOtherClass
     # Call the setter
     my_class_instance.attribute = 12
 
-    # Doesn`'t compile: no setter
+    # Doesn't compile: no setter
     my_class_instance.another_attribute = 12
 
   end
@@ -116,7 +116,7 @@ Dictionary<Integer, String> dictionnary = {1: "YOLO", 2: "YULU"}
 
 == Modules
 
-Multi-inheritrance is a mess, so let`'s have modules.
+Multi-inheritrance is a mess, so let's have modules.
 Encapsulation is a nice principle, but the language should help you to do it and not force it.
 
 ```
@@ -147,8 +147,8 @@ end
 
 == Static duck-typing
 
-The duck typing idea is nice: sometimes you don`'t care that an object implements a specific class, but only that it implements a specific set of methods.
-In static typing languages like java, you can use interfaces, but interfaces must be predesigned, and can`'t be retrofited in the stdlib or in external code.
+The duck typing idea is nice: sometimes you don't care that an object implements a specific class, but only that it implements a specific set of methods.
+In static typing languages like java, you can use interfaces, but interfaces must be predesigned, and can't be retrofited in the stdlib or in external code.
 
 But you could use another approach
 
@@ -174,7 +174,7 @@ class MyOtherClass
   end
 
   def nil my_other_method(MyClass my_class_object)
-    # work because even it MyClass doesn`'t
+    # work because even it MyClass doesn't
     # explicitly implements MyInterface
     # the declaration are matching
     this.my_interface(my_class_object)

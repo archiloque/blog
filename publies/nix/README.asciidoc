@@ -5,28 +5,28 @@ v0.1, 2019-03-21
 :article_image: nix.png
 :article_description: Une bonne lecture pour comprendre les problèmes de build et de déploiement
 
-link:https://nixos.org/nix/[Nix] est un gestionnaire de composant pour Linux permettant d`'obtenir des déploiements fiables et reproductibles, il est à la base d`'une distribution de Linux appelée link:https://nixos.org[NixOS].
+link:https://nixos.org/nix/[Nix] est un gestionnaire de composant pour Linux permettant d'obtenir des déploiements fiables et reproductibles, il est à la base d'une distribution de Linux appelée link:https://nixos.org[NixOS].
 
 Le document de référence sur Nix est link:https://nixos.org/~eelco/pubs/phd-thesis.pdf[la thèse de doctorat] de son créateur auteur : link:https://twitter.com/n1ksnut?lang=en[Eelco Dolstra].
 
-La thèse n`'est pas uniquement centrée sur l`'outil mais surtout une présentation des différents problèmes qui se posent lorsqu`'on veut construire et déployer des composants qui dépendent les uns des autres.
+La thèse n'est pas uniquement centrée sur l'outil mais surtout une présentation des différents problèmes qui se posent lorsqu'on veut construire et déployer des composants qui dépendent les uns des autres.
 
-Si le cas étudié est principalement celui de bibliothèques ou d`'application Linux, il est tout aussi adapté à d`'autres types de composants, comme des services dans un SI.
+Si le cas étudié est principalement celui de bibliothèques ou d'application Linux, il est tout aussi adapté à d'autres types de composants, comme des services dans un SI.
 
-À l`'inverse des solutions de type conteneurs qui visent à des installations isolées, l`'idée de Nix est de permettre de faire des installations et des mises à jour sur un système partagé mais sans interférence, ce qui permet le partage efficace de ressource.
+À l'inverse des solutions de type conteneurs qui visent à des installations isolées, l'idée de Nix est de permettre de faire des installations et des mises à jour sur un système partagé mais sans interférence, ce qui permet le partage efficace de ressource.
 
-L`'idée principale est de faire des installations parallèles des différentes versions des composants dans des répertoires séparés, et d`'utiliser différents mécanismes -- comme la gestion du `PATH`{nbsp}—&#8201;pour faire en sorte que chaque élément ne puisse accéder qu`'aux bonnes versions de ses dépendances.
+L'idée principale est de faire des installations parallèles des différentes versions des composants dans des répertoires séparés, et d'utiliser différents mécanismes -- comme la gestion du `PATH`{nbsp}—&#8201;pour faire en sorte que chaque élément ne puisse accéder qu'aux bonnes versions de ses dépendances.
 
-L`'ambition de Nix est de pouvoir fonctionner avec des briques applicatives existantes, l`'écosystème Linux, en ayant un minimum d`'impact sur ces briques.
+L'ambition de Nix est de pouvoir fonctionner avec des briques applicatives existantes, l'écosystème Linux, en ayant un minimum d'impact sur ces briques.
 Elle prend donc en compte les questions de gestion du _legacy_.
 
-Deux éléments mis en lumière par le texte et qui m`'ont particulièrement parlé :
+Deux éléments mis en lumière par le texte et qui m'ont particulièrement parlé :
 
-== L`'adhérence masquée
+== L'adhérence masquée
 
-Il est très difficile de maîtriser toutes les adhérences entre un composant qui n`'a pas été conçu pour ça -- comme c`'est le cas de l`'essentiel des briques logicielles Linux{nbsp}—&#8201;et l`'environnement où il a été construit.
+Il est très difficile de maîtriser toutes les adhérences entre un composant qui n'a pas été conçu pour ça -- comme c'est le cas de l'essentiel des briques logicielles Linux{nbsp}—&#8201;et l'environnement où il a été construit.
 
-Cela peut porter par exemple par des informations intégrées dans le composant (des chemins de fichiers, variables d`'environnements…) ou des dépendances mal identifiées à des bibliothèques installées sur les systèmes servant à la construction mais pas celles qui serviront au déploiement.
+Cela peut porter par exemple par des informations intégrées dans le composant (des chemins de fichiers, variables d'environnements…) ou des dépendances mal identifiées à des bibliothèques installées sur les systèmes servant à la construction mais pas celles qui serviront au déploiement.
 
 Toutes ces inconnues augmentent le risques ou la complexité du déploiement, en plus de link:https://reproducible-builds.org[rendre certains audits de sécurité plus difficiles].
 
@@ -34,25 +34,25 @@ Nix a participé à donner de la visibilité à ce sujet, qui a depuis été pri
 
 == La compatibilité
 
-Tester la compatibilité entre versions de composants est souvent plus difficile qu`'on ne le croit, surtout lorsqu`'on ne dispose pas des tests automatisés adéquats.
+Tester la compatibilité entre versions de composants est souvent plus difficile qu'on ne le croit, surtout lorsqu'on ne dispose pas des tests automatisés adéquats.
 
 Les personnes qui ont goûté au link:https://en.wikipedia.org/wiki/DLL_Hell[DLL Hell] en ont probablement gardé de mauvais souvenirs.
 
 Mettre à jour des bibliothèque partagées lorsque les chaînes de dépendances sont longues est un exercice risqué.
 
-Nix propose une approche de mise à jour transactionnelle, avec gestion du retour en arrière, qui s`'approche beaucoup de ce qu`'on peut faire dans certains SI.
+Nix propose une approche de mise à jour transactionnelle, avec gestion du retour en arrière, qui s'approche beaucoup de ce qu'on peut faire dans certains SI.
 
 == Conclusion
 
 La thèse se lit très bien et les solutions proposées, dans leurs forces et leurs faiblesses, sont convaincantes.
 
-C`'est un très bon tour d`'horizon aux questions de build et de déploiement.
+C'est un très bon tour d'horizon aux questions de build et de déploiement.
 
-Je la conseillerai aux personnes, qu`'elles soient du côté architecture, développement ou administration système, qui s`'intéressent à ces sujets.
+Je la conseillerai aux personnes, qu'elles soient du côté architecture, développement ou administration système, qui s'intéressent à ces sujets.
 
-Cela m`'a donné envie que Nix soit un succès, même si je n`'en ai pas l`'usage personnellement.
+Cela m'a donné envie que Nix soit un succès, même si je n'en ai pas l'usage personnellement.
 
-Enfin l`'utilisation d`'un langage de description purement fonctionnel pour les descriptifs des composants donne un cas d`'usage où ce type d`'outil semble très bien adapté, assez éloigné de ce que j`'ai l`'impression de voir d`'habitude.
+Enfin l'utilisation d'un langage de description purement fonctionnel pour les descriptifs des composants donne un cas d'usage où ce type d'outil semble très bien adapté, assez éloigné de ce que j'ai l'impression de voir d'habitude.
 
 == Quelques citations
 
@@ -73,7 +73,7 @@ This should be a simple problem. For instance, if the software consists of a set
 
 *Environment issues* The first category is essentially about correctness. The software might make all sorts of demands about the _environment_ in which it executes: that certain other software components are present in the system, that certain configuration files exist, that certain modifications were made to the Windows registry, and so on. If any of those environmental characteristics does not hold, then there is a possibility that the software does not work the same as it did on the developer machine. Some concrete issues are the following:
 
-* A software component is almost never self-contained; rather, it depends on other components to do some work on its behalf. These are its _dependencies_. For correct deployment, it is necessary that all dependencies are identified. This identification is quite hard, however, as it is often difficult to test whether the dependency specification is complete. After all, if we forget to specify a dependency, we don`'t discover that fact if the machine on which we are testing already happens to have the dependency installed.
+* A software component is almost never self-contained; rather, it depends on other components to do some work on its behalf. These are its _dependencies_. For correct deployment, it is necessary that all dependencies are identified. This identification is quite hard, however, as it is often difficult to test whether the dependency specification is complete. After all, if we forget to specify a dependency, we don't discover that fact if the machine on which we are testing already happens to have the dependency installed.
 * Dependencies are not just a runtime issue. To _build_ a component in the first place we need certain dependencies (such as compilers), and these need not be the same as the runtime dependencies, although there may be some overlap. In general, deployment of the build-time dependencies is not an end-user issue, but it might be in _source-based_ deployment scenarios; that is, when a component is deployed in source form. This is common in the open source world.
 * Dependencies also need to be _compatible_ with what is expected by the referring component. In general, not all versions of a component will work. This is the case even in the presence of type-checked interfaces, since interfaces never give a full specification of the observable behaviour of a component. Also, components often exhibit build-time _variability_, meaning that they can be built with or without certain optional features, or with other parameters selected at build time. Even worse, the component might be dependent on a specific compiler, or on specific compilation options being used for its dependencies (e.g., for Application Binary Interface (ABI) compatibility).
 * Even if all required dependencies are present, our component still has to _find_ them, in order to actually establish a concrete composition of components. This is often a rather labour-intensive part of the deployment process. Examples include setting up the dynamic linker search path on Unix systems, or the CLASSPATH in the Java environment.
@@ -81,7 +81,7 @@ This should be a simple problem. For instance, if the software consists of a set
 * Components can require certain hardware characteristics, such as a specific processor type or a video card. These are somewhat outside the scope of software deployment, since we can at most _check_ for such properties, not _realise_ them if they are missing.
 * Finally, deployment can be a _distributed_ problem. A component can depend on other components running on remote machines or as separate processes on the same machine. For instance, a typical multi-tier web service consists of an HTTP server, a server implementing the business logic, and a database server, possibly all running on different machines.
 
-So we have two problems in deployment: we must _identify_ what our component`'s requirements on the environment are, and we must somehow _realise_ those requirements in the target environment. Realisation might consist of installing dependencies, creating or modifying configuration files, starting remote processes, and so on.
+So we have two problems in deployment: we must _identify_ what our component's requirements on the environment are, and we must somehow _realise_ those requirements in the target environment. Realisation might consist of installing dependencies, creating or modifying configuration files, starting remote processes, and so on.
 
 *Manageability issues* The second category is about our ability to properly manage the deployment process. There are all kinds of operations that we need to be able to perform, such as packaging, transferring, installing, upgrading, uninstalling, and answering various queries; i.e., we have to be able to support the _evolution_ of a software system. All these operations require various bits of information, can be time-consuming, and if not done properly can lead to incorrect deployment. For example:
 
@@ -98,7 +98,7 @@ ____
 
 [quote]
 ____
-Package management is a perennial problem in the Unix community. In fact, entire operating system distributions rise and fall on the basis of their deployment qualities. It can be argued that Gentoo Linux`'s quick adoption in the Linux community was entirely due to the perceived strengths of its package management system over those used by other distributions. This interest in deployment can be traced to Unix`'s early adoption in large, advanced and often academic installations (in contrast to the single PC, single user focus in the PC industry in a bygone era).
+Package management is a perennial problem in the Unix community. In fact, entire operating system distributions rise and fall on the basis of their deployment qualities. It can be argued that Gentoo Linux's quick adoption in the Linux community was entirely due to the perceived strengths of its package management system over those used by other distributions. This interest in deployment can be traced to Unix's early adoption in large, advanced and often academic installations (in contrast to the single PC, single user focus in the PC industry in a bygone era).
 
 Also, for better or for worse, Unix systems have traditionally insisted on storing components in global namespaces in the file system such as the `/usr/bin` directory. This makes management tools indispensable. But more importantly, modern Unix components have fine-grained reuse, often having dozens of dependencies on other components. Since it is not desirable to use monolithic distribution (as is generally done in Windows and Mac OS X, as discussed below), a package management tool is absolutely required to support the resulting deployment complexity. Therefore Unix (and specifically, Linux) package management is what we will look at first.
 ____

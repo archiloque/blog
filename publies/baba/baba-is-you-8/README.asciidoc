@@ -24,17 +24,17 @@ endif::[]
 ifeval::["{doctype}" != "book"]
 link:../baba-is-you-7/[the seventh part],
 endif::[]
-where I hit the wall of complexity, it`'s time to restart afresh.
+where I hit the wall of complexity, it's time to restart afresh.
 
-The system I worked until now didn`'t really know how to play:
+The system I worked until now didn't really know how to play:
 it knew the rules of the game, and tried to play all possible moves one after another until it found a solution.
 
-This approach is easy to code, but doesn`'t work when the game has many possible moves.
+This approach is easy to code, but doesn't work when the game has many possible moves.
 
 In some games, a naive approach like this can be optimized by trying to eliminate some possibilities without exploring all the possible moves.
-For example if it`'s possible to detect that a move makes the level`'s exit unreachable.
+For example if it's possible to detect that a move makes the level's exit unreachable.
 
-Unfortunately it`'s not the case for Baba is you, so the solution is learn the program how to play.
+Unfortunately it's not the case for Baba is you, so the solution is learn the program how to play.
 
 == Teach a machine to play
 
@@ -42,7 +42,7 @@ Learning the program to play means to implement a goal-oriented solver.
 
 When a human play the game, they check the resources available on the board, then try to find an idea for a solution ("`Maybe I move this rock here so I can reach the flag there?`"), then try to find the mean to implement this idea.
 
-If the idea can`'t be implemented, they look for another idea.
+If the idea can't be implemented, they look for another idea.
 
 Sometimes solving the a requires sub-goals: if reaching the flag is not possible as is because a wall is blocking the path, is it possible to change the rule first so Baba can move across the wall?
 
