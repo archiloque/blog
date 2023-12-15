@@ -95,9 +95,9 @@ Ainsi, chaque fois qu'on corrige quelque chose qu'on voit comme un bug dans du c
 En allant jusqu'au bout de ce raisonnement, chaque correction introduit une forme d'incompatibilité.
 
 link:https://semver.org/lang/fr/[La gestion sémantique de version], qui propose une manière de nommer les versions de logiciels en fonction du type de changement utilisé par de nombreux projets
-et qui parle de "`corrections d’anomalies rétrocompatibles`" est -- de ce point de vue{nbsp}—&#8201;inapplicable.
+et qui parle de "`corrections d'anomalies rétrocompatibles`" est -- de ce point de vue{nbsp}—&#8201;inapplicable.
 
-En revenant sur ce qu'on a dit plus haut, une correction d’anomalie ne peut être rétrocompatible que si on ne prend en compte que la zone d'engagement explicite, la compatibilité des bugs étant un engagement implicite.
+En revenant sur ce qu'on a dit plus haut, une correction d'anomalie ne peut être rétrocompatible que si on ne prend en compte que la zone d'engagement explicite, la compatibilité des bugs étant un engagement implicite.
 
 Je ne veux pas dire que la gestion sémantique de version ne sert à rien, mais qu'il ne faut pas se tromper sur son utilité et sur ses limites.
 
