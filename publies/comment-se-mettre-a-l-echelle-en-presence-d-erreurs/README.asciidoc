@@ -76,7 +76,7 @@ Pour d'autres tâches à durée de vie longue, cela signifie habituellement quel
 En d'autres termes, transformer un traitement long en un traitement court qui s'exécute constamment, en écrivant les progrès effectués dans un fichier ou une base de données quelque part.
 
 Avec le temps, tous les traitements longs sont découpés en parties plus petites, quand le coût de les redémarrer de zéro devient prohibitif.
-Un traitement long a beaucoup plus de chances de tomber sur une erreur impossible -- des  disques pleins, plus de mémoir disponible, des rayons cosmiques{nbsp}—&#8201;et être forcé d'abandonner.
+Un traitement long a beaucoup plus de chances de tomber sur une erreur impossible -- des  disques pleins, plus de mémoir disponible, des rayons cosmiques -- et être forcé d'abandonner.
 
 Parfois la seule manière de gérer une erreur est d'abandonner.
 
@@ -121,14 +121,14 @@ Quand plus de charge arrive, les queues sont partitionnées, et ensuite repartit
 Mettre à l'échelle un {bus} mène inévitablement à limiter la taille de la queue ou à même à la rendre éphémère.
 
 Le problème avec l'optimisme est que quand les choses se passent mal, non seulement vous n'avez aucune idée de la manière de corriger, mais vous ne savez même pas ce qui s'est mal passé.
-Dans une certaine limite, un {bus} cache les erreurs -- les programmes peuvent venir et s'en aller comme ils le veulent, et il n'y aucun moyen de savoir si l'autre partie du système est toujours en train de lire vos messages{nbsp}—&#8201;, mais il peut seulement cacher les erreurs pendant un certain temps.
+Dans une certaine limite, un {bus} cache les erreurs -- les programmes peuvent venir et s'en aller comme ils le veulent, et il n'y aucun moyen de savoir si l'autre partie du système est toujours en train de lire vos messages -- , mais il peut seulement cacher les erreurs pendant un certain temps.
 
 En d'autres termes, _fire-and-regret_ ("`tire et regrette`").
 
 Bien qu'une queue sans limite de taille soit une abstraction tentante, elle réalise rarement le fantasme de vous libérer du besoin de gérer les erreurs.
 À l'inverse d'un pipeline Unix, un {bus} remplira toujours votre disque avant d'abandonner, et modifier les choses pour rendre la reprise est moins facile que d'ajouter plus de fichiers temporaires.
 
-Les {bus} peuvent se remettre d'une seule erreur -- une défaillance réseau temporaire{nbsp}—&#8201;alors il faut ajouter d'autre mécanisme pour compenser.
+Les {bus} peuvent se remettre d'une seule erreur -- une défaillance réseau temporaire -- alors il faut ajouter d'autre mécanisme pour compenser.
 Durées d'expirations, rééssais, et parfois une deuxième queue "`prioritaire`", parce que le blocage en tête de file est quelque chose de réellement horrible à gérer.
 En plus, si un traitement se plante, des messages peuvent être perdus.
 
@@ -142,12 +142,12 @@ Avec une queue en arrière-plan, vous ne savez pas quelles sont les tâches qui 
 Vous ne pouvez pas dire si quelque chose est en train d'être réessayé, ou a échoué, mais peut-être que vous avez des fichiers de log que vous pouvez fouiller.
 Avec des logs, vous pouvez voir ce que le système faisait quelques minutes plus tôt, mais vous n'avez toujours aucune idée de ce qu'il est en train de faire en ce moment.
 
-Même si vous connaissez la taille d'une queue, vous allez devoir regarder le tableau de bord quelques minutes plus tard -- pour voir si la ligne a bougé{nbsp}—&#8201;avant d'être certain·e que les choses fonctionnent probablement. Avec un peu de chance.
+Même si vous connaissez la taille d'une queue, vous allez devoir regarder le tableau de bord quelques minutes plus tard -- pour voir si la ligne a bougé -- avant d'être certain·e que les choses fonctionnent probablement. Avec un peu de chance.
 
 Créer un pipeline de build avec des queues est relativement facilement, mais en construire un où les utilisateur·rice·s peuvent annuler des tâches ou surveiller ce qui se passe demande beaucoup plus de travail.
 Dès que vous voulez annuler ou inspecter une tâche, vous devez garder des choses ailleurs que dans une queue.
 
-Savoir ce qu'un programme est en train de faire, signifie suivre les éléments intermédiaires, et même pour quelque chose d'aussi simple que d'exécuter une tâche en arrière-plan, cela peut nécessiter de nombreux états -- créé, dans la queue, en cours de traitement, terminé, en échec, et pas seulement dans la queue{nbsp}—&#8201;et un {bus} gère seulement ce dernier cas.
+Savoir ce qu'un programme est en train de faire, signifie suivre les éléments intermédiaires, et même pour quelque chose d'aussi simple que d'exécuter une tâche en arrière-plan, cela peut nécessiter de nombreux états -- créé, dans la queue, en cours de traitement, terminé, en échec, et pas seulement dans la queue -- et un {bus} gère seulement ce dernier cas.
 
 Et ensuite les chose se gâtent.
 Dès qu'une queue en remplit une autre, une unité de travail peut se trouver dans plusieurs queues différentes.

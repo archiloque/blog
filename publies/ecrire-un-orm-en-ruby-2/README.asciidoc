@@ -133,7 +133,7 @@ sqlite>
 ----
 
 Certains ORMs comme Rails et Sequel fournissent des outils pour gérer les modifications de schéma de la base.
-J'ai fait le choix ici de ne pas implémenter cette fonctionnalité car -- même si elle peut partager du code avec le reste de l'ORM {nbsp}—&#8201;elle est largement séparée et n'influe donc pas sur le noyau de l'outil.
+J'ai fait le choix ici de ne pas implémenter cette fonctionnalité car -- même si elle peut partager du code avec le reste de l'ORM  -- elle est largement séparée et n'influe donc pas sur le noyau de l'outil.
 
 Dans le monde Java, link:https://hibernate.org/orm/[l'ORM hibernate] qui est très utilisé ne fournit ainsi pas d'outil de migration.
 

@@ -15,7 +15,7 @@ Si le cas étudié est principalement celui de bibliothèques ou d'application L
 
 À l'inverse des solutions de type conteneurs qui visent à des installations isolées, l'idée de Nix est de permettre de faire des installations et des mises à jour sur un système partagé mais sans interférence, ce qui permet le partage efficace de ressource.
 
-L'idée principale est de faire des installations parallèles des différentes versions des composants dans des répertoires séparés, et d'utiliser différents mécanismes -- comme la gestion du `PATH`{nbsp}—&#8201;pour faire en sorte que chaque élément ne puisse accéder qu'aux bonnes versions de ses dépendances.
+L'idée principale est de faire des installations parallèles des différentes versions des composants dans des répertoires séparés, et d'utiliser différents mécanismes -- comme la gestion du `PATH` -- pour faire en sorte que chaque élément ne puisse accéder qu'aux bonnes versions de ses dépendances.
 
 L'ambition de Nix est de pouvoir fonctionner avec des briques applicatives existantes, l'écosystème Linux, en ayant un minimum d'impact sur ces briques.
 Elle prend donc en compte les questions de gestion du _legacy_.
@@ -24,7 +24,7 @@ Deux éléments mis en lumière par le texte et qui m'ont particulièrement parl
 
 == L'adhérence masquée
 
-Il est très difficile de maîtriser toutes les adhérences entre un composant qui n'a pas été conçu pour ça -- comme c'est le cas de l'essentiel des briques logicielles Linux{nbsp}—&#8201;et l'environnement où il a été construit.
+Il est très difficile de maîtriser toutes les adhérences entre un composant qui n'a pas été conçu pour ça -- comme c'est le cas de l'essentiel des briques logicielles Linux -- et l'environnement où il a été construit.
 
 Cela peut porter par exemple par des informations intégrées dans le composant (des chemins de fichiers, variables d'environnements…) ou des dépendances mal identifiées à des bibliothèques installées sur les systèmes servant à la construction mais pas celles qui serviront au déploiement.
 

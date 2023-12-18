@@ -148,7 +148,7 @@ Pour cela il faut sélectionner la tâche la plus ancienne, et changer son statu
 
 Mais comme plusieurs workers travaillent en parallèle, il faut faire en sorte que la même tâche ne soit pas prise en compte deux fois par deux workers.
 
-Une chose importante dans le design des tâches{nbsp}: il est souhaitable -- tant que cela est possible{nbsp}—&#8201;qu'une même tâche puisse être exécutée plusieurs fois de suite sans que cela soit gênant.
+Une chose importante dans le design des tâches{nbsp}: il est souhaitable -- tant que cela est possible -- qu'une même tâche puisse être exécutée plusieurs fois de suite sans que cela soit gênant.
 
 Par exemple si une tâche est chargée d'envoyer un mail, si on l'exécute de nouveau il faudrait que le même mail ne soit pas envoyé une deuxième fois.
 

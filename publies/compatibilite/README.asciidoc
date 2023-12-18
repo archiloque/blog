@@ -30,7 +30,7 @@ Plus cette stabilité perdure, plus le sentiment qu'une forme d'engagement exist
 
 == Windows et le C
 
-Deux exemples opposés -- et qui ont chacun une influence importante sur le monde de l'informatique{nbsp}—&#8201;illustrent la manière dont il est possible de prendre en compte l'implicite et l'explicite dans les contrats.
+Deux exemples opposés -- et qui ont chacun une influence importante sur le monde de l'informatique -- illustrent la manière dont il est possible de prendre en compte l'implicite et l'explicite dans les contrats.
 
 Le premier est Windows, lors du développement de nouvelles versions, Microsoft dépense une énergie importante pour assurer la compatibilité des programmes existants.
 Leur objectif n'est pas seulement de continuer à faire fonctionner les programmes qui respectent les règles officielles, mais que cela soit aussi le cas pour les programmes qui ne les respectent pas.
@@ -90,12 +90,12 @@ Ainsi quand un paramètre devrait être un nombre, plutôt que d'être arrangean
 
 On l'a vu, la compatibilité est quelque chose de délicat parfois soumis à interprétation.
 
-Ainsi, chaque fois qu'on corrige quelque chose qu'on voit comme un bug dans du code exposant une API, on prend le risque de casser du code qui -- volontairement ou involontairement{nbsp}—&#8201;s'appuyait sur l'existence de ce bug.
+Ainsi, chaque fois qu'on corrige quelque chose qu'on voit comme un bug dans du code exposant une API, on prend le risque de casser du code qui -- volontairement ou involontairement -- s'appuyait sur l'existence de ce bug.
 
 En allant jusqu'au bout de ce raisonnement, chaque correction introduit une forme d'incompatibilité.
 
 link:https://semver.org/lang/fr/[La gestion sémantique de version], qui propose une manière de nommer les versions de logiciels en fonction du type de changement utilisé par de nombreux projets
-et qui parle de "`corrections d'anomalies rétrocompatibles`" est -- de ce point de vue{nbsp}—&#8201;inapplicable.
+et qui parle de "`corrections d'anomalies rétrocompatibles`" est -- de ce point de vue -- inapplicable.
 
 En revenant sur ce qu'on a dit plus haut, une correction d'anomalie ne peut être rétrocompatible que si on ne prend en compte que la zone d'engagement explicite, la compatibilité des bugs étant un engagement implicite.
 

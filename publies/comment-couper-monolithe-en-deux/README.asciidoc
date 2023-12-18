@@ -164,7 +164,7 @@ Des décennies de travail ont été passées sur le contrôle de congestion de T
 Si cela excite votre curiosité, l'histoire de la congestion de TCP est une lecture intéressante.
 Bien que les extrémités d'une connexion TCP étaient responsables de gérer les défaillances et les rééssais, les routeurs étaient responsables de gérer la congestion, c'est-à-dire de laisser tomber des choses quand il y en avait trop.
 
-Le problème est que ça a fonctionné jusqu'à ce que le réseau soit saturé et -- d'une manière similaire aux tâches en attente dans des queues{nbsp}—&#8201;quand c'est arrivé les erreurs se sont produites en cascades.
+Le problème est que ça a fonctionné jusqu'à ce que le réseau soit saturé et -- d'une manière similaire aux tâches en attente dans des queues -- quand c'est arrivé les erreurs se sont produites en cascades.
 La solution a été similaire{nbsp}: la {bp}.
 De la même manière que le fait d'attendre deux fois plus longtemps en cas d'erreur, TCP envoie deux fois moins de paquets, avant d'augmenter progressivement leurs nombres quand les choses s'améliorent.
 
