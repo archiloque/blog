@@ -80,9 +80,28 @@ code {
     text-align: center;
 }
 
+#header h1 {
+    string-set: title content();
+    font-size: 60px;
+    line-height: 60px;
+    padding-right: 20%;
+    padding-left: 20%;
+    padding-top: 40%;
+}
+
+#header .details {
+    font-size: 30px;
+    padding-top: 70%;
+}
+
+#revnumber, #revdate {
+    display: none;
+}
+
 #toc {
     break-before: always;
     text-align: left;
+    font-size: 150%;
 }
 
 #toc ul {
@@ -99,25 +118,7 @@ code {
 }
 
 #toc li {
-    margin-bottom: 0.5em;
-}
-
-#header h1 {
-    string-set: title content();
-    font-size: 60px;
-    line-height: 60px;
-    padding-right: 20%;
-    padding-left: 20%;
-    padding-top: 30%;
-}
-
-#header .details {
-    line-height: 36px;
-    padding-top: 60%;
-}
-
-#revnumber {
-    display: none;
+    margin-bottom: 0.8em;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -138,7 +139,10 @@ h3 {
 }
 
 h4 {
-    font-size: 110%;
+    font-size: 125%;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
 }
 
 #footer-text {
