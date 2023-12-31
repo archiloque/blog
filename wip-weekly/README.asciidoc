@@ -18,3 +18,10 @@ ____
 ____
 What else do you expect your code to smell like
 ____
+
+== link:https://www.plover.com/~mjd/misc/hbaker-archive/CritLisp.html[Critique of DIN Kernel Lisp Definition Version 1.2]
+
+[quote]
+____
+Presumably, a _kernel_ language is a _minimal_ language on top of which a larger language can be built. _Since its primary function is being an implementation language for function libraries and a target language for macros_, a Kernel language need not be particularly "`user-friendly`" or provide a lot of flexibility in its interface. Although it is desirable, a Kernel language does not have to be a strict _subset_ of the full language, since some of its features may not be visible in the full language. A Kernel language should be simpler and more efficient to implement than the full language, however, to avoid an _abstraction inversion_,in which a simpler notion is defined in terms of more complex notions.
+____
