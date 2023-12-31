@@ -41,3 +41,43 @@ A cold-blooded project is like the baby painted turtle. You can freeze it for a 
 
 A cold-blooded project uses link:https://mcfunley.com/choose-boring-technology[boring technology]. The build and test scripts don't depend on external services that might change, break, or disappear entirely. It uses link:https://go.dev/ref/mod#vendoring[vendored dependencies].
 ____
+
+
+== link:https://cutlefish.substack.com/p/tbm-261-dependencies-in-faster-growing[TBM 261: Dependencies In Fast(er) Growing Companies (Part 1)]
+
+[quote]
+____
+Meanwhile, as information travels longer distances, you get all the normal information loss problems coupled with the biases at each hop. "`I don't want it to seem like we're raising too much of a fuss`", says the middle manager. "`I think we need to be more pragmatic`", says the VP (who doesn't need to do any of that pragmatic work). When leaders finally get frustrated enough to dig into the details, they are horrified to see how hard it is to get actual work done and quickly close up that box ("`Come on, we need to simplify! It can't be this hard!`"). 
+____
+
+[quote]
+____
+The folks on the front lines will do anything at this point to spend less time in soul-sucking meetings. So they often just throw up their hands and say "`Yes`" without knowing what they've said yes to and knowing that the details will almost certainly change, and timelines outside their control will slip so that they will be off the hook anyway.
+____
+
+[quote]
+____
+Big enterprises pondering a "`transformation`" are fine doing SaFE because they have nothing to lose. The rapidly growing company wants to hold on to the illusion that it is nimble and people are independent, sentient beings instead of cogs.
+
+[…]
+
+In high-growth companies, you tend to observe far more dependencies than you expect when you get into the details, but the "`cost`" of those dependencies tends to be muted and opaque.
+____
+
+
+
+== link:https://cutlefish.substack.com/p/tbm-262-dependencies-in-faster-growing[TBM 262: Dependencies In Fast(er) Growing Companies (Part 2)]
+
+[quote]
+____
+When the number of dependencies in your company increases, you will need:
+
+. An increasingly formalized mechanism for making "`tie-breaking`" decisions. Should team A help team B or team C? This mechanism can be a system—an apples-to-apples prioritization heuristic, for example—or it can be a person or group of people (or both).
+. To start thinking about limiting work in progress across an increasingly larger boundary of teams, groups, and departments. An independent team can focus locally on its work-in-progress limits and utilization rates. When things go wrong, the impact is local. As teams become increasingly dependent, you must think about flow and utilization at the team-of-teams or organization-wide level; otherwise, things can get out of control very quickly. In effect, you have one big team.
+. To start thinking about capacity allocation and return on investment on an org-wide level. Imagine you have 100 independent teams. With 100 independent teams, you can ask questions like "How much do we pay team X, and how much money did they make us?" Even with a moderate number of dependencies, limits on flow, throughput, and impact start to take on a more global flavor. An uncomfortable high % of all money spent on salaries is going to context switching, handoffs, teams being blocked, and meetings about surfacing, advocating for, coordinating, and re-coordination dependencies.
+____
+
+[quote]
+____
+There's a lot of nuance in this example. Still, the big takeaway is that many of the pains related to dependencies again have less to do with dependencies and more with the surrounding situation. If an org incentivizes extremely high WIP, it doesn't matter how you try to approach dependencies. If things are going slow and trust is low, you'll just propagate that into any work you attempt. If teams are already burning 50% of their time around debt, adding dependencies will crush their productivity. If teams can't say "no, " they'll keep starting without finishing their dependency work. 
+____
