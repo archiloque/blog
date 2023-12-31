@@ -25,3 +25,19 @@ ____
 ____
 Presumably, a _kernel_ language is a _minimal_ language on top of which a larger language can be built. _Since its primary function is being an implementation language for function libraries and a target language for macros_, a Kernel language need not be particularly "`user-friendly`" or provide a lot of flexibility in its interface. Although it is desirable, a Kernel language does not have to be a strict _subset_ of the full language, since some of its features may not be visible in the full language. A Kernel language should be simpler and more efficient to implement than the full language, however, to avoid an _abstraction inversion_,in which a simpler notion is defined in terms of more complex notions.
 ____
+
+== link:https://dubroy.com/blog/cold-blooded-software/[Cold-blooded software]
+
+[quote]
+____
+
+I see a similar dichotomy with software projects. Certain technology decisions lead to projects that are warm-blooded: everything is great when there's constant motion on the project, generating heat. But put warm-blooded software in the freezer, and you'll pull out a corpse six months later.
+
+Maybe your CI isn't working because one of the services you depend on got bought or ran out of money. You add a new dependency and find yourself needing to upgrade your compiler. Another package you depend on is deprecated, and doesn't work with the latest version of the compiler.
+
+Some projects are different. You work alone, make some changes when you're inspired, and then don't touch it again for another year, or two, or three. You can't run something like that as a warm-blooded project. There's not enough activity to keep the temperature up.
+
+A cold-blooded project is like the baby painted turtle. You can freeze it for a year and then pick it back up right where you left off.
+
+A cold-blooded project uses link:https://mcfunley.com/choose-boring-technology[boring technology]. The build and test scripts don't depend on external services that might change, break, or disappear entirely. It uses link:https://go.dev/ref/mod#vendoring[vendored dependencies].
+____
