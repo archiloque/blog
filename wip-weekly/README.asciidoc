@@ -81,3 +81,12 @@ ____
 ____
 There's a lot of nuance in this example. Still, the big takeaway is that many of the pains related to dependencies again have less to do with dependencies and more with the surrounding situation. If an org incentivizes extremely high WIP, it doesn't matter how you try to approach dependencies. If things are going slow and trust is low, you'll just propagate that into any work you attempt. If teams are already burning 50% of their time around debt, adding dependencies will crush their productivity. If teams can't say "no, " they'll keep starting without finishing their dependency work. 
 ____
+
+== link:https://blog.aaronballman.com/2023/12/musings-on-the-c-charter/[Musings on the C charter]
+
+[quote]
+____
+Changing the standard a code base compiles against is a new agreement between the programmer and the implementer; it is akin to changing your code (as is changing your compiler), and there should be no expectation that everything remains identical to how it was before. Older functionality will be deprecated, newer functionality will be added, bugs will be fixed, etc. New standard == new treaty.
+
+I think we should be careful about blind adherence to this principle. It's obviously true that there's a lot of economic value tied up in existing C code bases and that rewriting that code is both expensive and error-prone. However, C has undergone multiple revisions in its long history. A good idea in 1978 is not necessarily even acceptable practice in 2024. I would love to see this principle updated to set a time limit, along the lines of: existing code that has been maintained to not use features marked deprecated, obsolescent, or removed in the past ten years is important; unmaintained code and existing implementations are not. If you cannot update your code to stop relying on deprecated functionality, your code is not actually economically important -- people spend time and money maintaining things that are economically important.
+____
