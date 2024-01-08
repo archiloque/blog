@@ -5,7 +5,30 @@ v1.0, 2024-01-01
 :figure-caption!:
 :article_description: 
 
-== link:https://brandur.org/text[Postgres: Boundless `text` and Back Again]
+== link:https://brandur.org/text[Postgres: boundless `text` and back again]
 
-== link:https://brandur.org/sortsupport-inet[Doubling the Sorting Speed of Postgres Network Types with Abbreviated Keys]
+[quote]
+____
+Another idea I've been experimenting with is encoding a standard set of text tiers as link:https://www.postgresql.org/docs/current/sql-createdomain.html[domains], which defines a new data type with more constraints:
 
+[source,sql]
+----
+CREATE DOMAIN text_standard AS varchar(200) COLLATE "C";
+CREATE DOMAIN text_long AS varchar(2000) COLLATE "C";
+CREATE DOMAIN text_huge AS varchar(20000) COLLATE "C";
+----
+____
+
+== link:https://brandur.org/sortsupport-inet[Doubling the sorting speed of postgres network types with abbreviated keys]
+
+[quote]
+____
+In Postgres, `inet`/`cidr` sort according to these rules:
+
+. IPv4 always appears before IPv6.
+. The bits in the network are compared (`1.2.3.`).
+. Netmask size is compared (`/24`).
+. All bits are compared. Having made it here, we know that the network bits are equal, so we're in effect just comparing the subnet (`.4`).
+
+These rules combined with the fact that we're working at the bit level produces ordering that in cases may not be intuitive. For example, `192.0.0.0/1` sorts _before_ `128.0.0.0/2` despite 192 being the larger number -- when comparing them, we start by looking at the common bits available in both networks, which comes out to just one bit (`min(/1, /2)`). That bit is the same in the networks of both values (remember, 192 = `1100 0000` and 128 = `1000 0000`), so we fall through to comparing netmask size. `/2` is the larger of the two, so `128.0.0.0/2` is the larger value.
+____
