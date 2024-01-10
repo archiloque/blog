@@ -32,3 +32,24 @@ In Postgres, `inet`/`cidr` sort according to these rules:
 
 These rules combined with the fact that we're working at the bit level produces ordering that in cases may not be intuitive. For example, `192.0.0.0/1` sorts _before_ `128.0.0.0/2` despite 192 being the larger number -- when comparing them, we start by looking at the common bits available in both networks, which comes out to just one bit (`min(/1, /2)`). That bit is the same in the networks of both values (remember, 192 = `1100 0000` and 128 = `1000 0000`), so we fall through to comparing netmask size. `/2` is the larger of the two, so `128.0.0.0/2` is the larger value.
 ____
+
+== link:https://newsletter.danhon.com/archive/s16e20-qualified-endorsements-happiness-writing/[s16e20: Qualified endorsements; happiness; writing]
+
+[quote]
+____
+What I did realize I could say, as a sort of ha-ha-distancing-myself-making-myself-very-small joke was that "`of course yes, I have several unfinished novels`" because this is both true and depressing, as opposed to true and evidence of progress and attempts at writing a novel.
+____
+
+[quote]
+____
+Like I said, I have found it very easy to not finish writing a novel.
+____
+
+[quote]
+____
+All of this is to say that there is one rule I must accept if I want to be the kind of person who has finished writing a novel:
+
+* you have to write
+* frequently and often
+* until it is finished
+____
