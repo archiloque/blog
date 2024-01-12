@@ -71,3 +71,14 @@ Let us revisit the topic of microservices. The issue I often see (and have exper
 
 Composability doesn't have to be between programs, if for example you are building a game or end user program, composability may mean that individual libraries or components of the overall program fit together nicely. A single program can be UNIX-like, if the various individual pieces of its internals fit together well.
 ____
+
+== link:https://cutlefish.substack.com/p/tbm-266-human-load-balancers-renegades[TBM 266: Human load balancers, renegades, insiders, and platform saviors (part 4)]
+
+[quote]
+____
+The next thing that mutes the impact of a growing dependency problem is that humans are extremely creative at working around dependencies. Or at least some humans are.
+
+If just enough people in an organization can move quickly, no matter what it takes, that is the reference point for what is possible. So you'll start to see leadership teams say things like, "`Well, if that team can move so quickly, why can't the other teams move so quickly?`" If, when faced with a dependency, a team opts instead to build their way around the problem, they can move quickly. Of course, the proliferation of all these workarounds makes other people's lives very difficult. Still, many companies reward people who effectively circumvent the system when it comes to promo season.
+
+It doesn't take many Renegades -- especially if they focus on high-profile initiatives -- to mute the growing impact of dependencies. When Renegades ascend the organization because of their successes, this reinforces the perception that things aren't bad. It can also stigmatize talking about stuff like debt and dependencies overall. If they aren't complaining, is it even okay to mention the problem?
+____
