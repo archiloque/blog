@@ -53,3 +53,21 @@ All of this is to say that there is one rule I must accept if I want to be the k
 * frequently and often
 * until it is finished
 ____
+
+== link:https://mazzo.li/posts/stopping-linux-threads.html[How to stop Linux threads cleanly]
+
+[quote]
+____
+It's quite frustrating that there's no agreed upon way to interrupt and stack unwind a Linux thread and to protect critical sections from such unwinding. There are no technical obstacles to such facilities existing, but clean teardown is often a neglected part of software.
+____
+
+== link:https://posixcafe.org/blogs/2024/01/05/0/[Misconceptions about the UNIX Philosophy]
+
+[quote]
+____
+So what happens when we abstract out those pesky operating system specific terms like "`program`" and "`process`", what we find here is that the UNIX philosophy is about composability. I'd argue the size and purpose of a program matters less so then its ability to be used with others. What feels nice about using an operating system like UNIX is that you can put code together in ways not intended, the pieces fit together like LEGO bricks.
+
+Let us revisit the topic of microservices. The issue I often see (and have experienced) is that information flows between them in a complicated manner. Data flows through UNIX pipes linearly, from one to the next and the entire chain is present in the command, in a distributed system with a microservice design data flow often time looks more like a complicated graph with multiple edges between nodes. We can see clearly that in accordance to Rob and Brian's definition of UNIX design, microservices fail because they compose poorly. Every new edge to a node on the graph brings with it complicated dependency and overhead.
+
+Composability doesn't have to be between programs, if for example you are building a game or end user program, composability may mean that individual libraries or components of the overall program fit together nicely. A single program can be UNIX-like, if the various individual pieces of its internals fit together well.
+____
