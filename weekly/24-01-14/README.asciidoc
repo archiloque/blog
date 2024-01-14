@@ -3,7 +3,7 @@ Julien Kirch
 v1.0, 2024-01-14
 :article_lang: en
 :figure-caption!:
-:article_description: Text in PostgreSQL, IP adresses in PostgreSQL, not writing, stopping threads, UNIX Philosophy, insider & renegades
+:article_description: Text in PostgreSQL, IP adresses in PostgreSQL, not writing, stopping threads, UNIX philosophy, insider & renegades
 
 == link:https://brandur.org/text[Postgres: boundless `text` and back again]
 
@@ -61,7 +61,7 @@ ____
 It's quite frustrating that there's no agreed upon way to interrupt and stack unwind a Linux thread and to protect critical sections from such unwinding. There are no technical obstacles to such facilities existing, but clean teardown is often a neglected part of software.
 ____
 
-== link:https://posixcafe.org/blogs/2024/01/05/0/[Misconceptions about the UNIX Philosophy]
+== link:https://posixcafe.org/blogs/2024/01/05/0/[Misconceptions about the UNIX philosophy]
 
 [quote]
 ____
