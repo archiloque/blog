@@ -1,0 +1,89 @@
+= Links - 14^th^ January 2024
+Julien Kirch
+v1.0, 2024-01-14
+:article_lang: en
+:figure-caption!:
+:article_description: Text in PostgreSQL, IP adresses in PostgreSQL, not writing, stopping threads, UNIX Philosophy, insider & renegades
+
+== link:https://brandur.org/text[Postgres: boundless `text` and back again]
+
+[quote]
+____
+Another idea I've been experimenting with is encoding a standard set of text tiers as link:https://www.postgresql.org/docs/current/sql-createdomain.html[domains], which defines a new data type with more constraints:
+
+[source,sql]
+----
+CREATE DOMAIN text_standard AS varchar(200) COLLATE "C";
+CREATE DOMAIN text_long AS varchar(2000) COLLATE "C";
+CREATE DOMAIN text_huge AS varchar(20000) COLLATE "C";
+----
+____
+
+== link:https://brandur.org/sortsupport-inet[Doubling the sorting speed of Postgres network types with abbreviated keys]
+
+[quote]
+____
+In Postgres, `inet`/`cidr` sort according to these rules:
+
+. IPv4 always appears before IPv6.
+. The bits in the network are compared (`1.2.3.`).
+. Netmask size is compared (`/24`).
+. All bits are compared. Having made it here, we know that the network bits are equal, so we're in effect just comparing the subnet (`.4`).
+
+These rules combined with the fact that we're working at the bit level produces ordering that in cases may not be intuitive. For example, `192.0.0.0/1` sorts _before_ `128.0.0.0/2` despite 192 being the larger number -- when comparing them, we start by looking at the common bits available in both networks, which comes out to just one bit (`min(/1, /2)`). That bit is the same in the networks of both values (remember, 192 = `1100 0000` and 128 = `1000 0000`), so we fall through to comparing netmask size. `/2` is the larger of the two, so `128.0.0.0/2` is the larger value.
+____
+
+== link:https://newsletter.danhon.com/archive/s16e20-qualified-endorsements-happiness-writing/[s16e20: Qualified endorsements; happiness; writing]
+
+[quote]
+____
+What I did realize I could say, as a sort of ha-ha-distancing-myself-making-myself-very-small joke was that "`of course yes, I have several unfinished novels`" because this is both true and depressing, as opposed to true and evidence of progress and attempts at writing a novel.
+____
+
+[quote]
+____
+It is very easy, I have found, to not write a book.
+____
+
+[quote]
+____
+All of this is to say that there is one rule I must accept if I want to be the kind of person who has finished writing a novel:
+
+* you have to write
+* frequently and often
+* until it is finished
+____
+
+== link:https://mazzo.li/posts/stopping-linux-threads.html[How to stop Linux threads cleanly]
+
+[quote]
+____
+It's quite frustrating that there's no agreed upon way to interrupt and stack unwind a Linux thread and to protect critical sections from such unwinding. There are no technical obstacles to such facilities existing, but clean teardown is often a neglected part of software.
+____
+
+== link:https://posixcafe.org/blogs/2024/01/05/0/[Misconceptions about the UNIX Philosophy]
+
+[quote]
+____
+So what happens when we abstract out those pesky operating system specific terms like "`program`" and "`process`", what we find here is that the UNIX philosophy is about composability. I'd argue the size and purpose of a program matters less so then its ability to be used with others. What feels nice about using an operating system like UNIX is that you can put code together in ways not intended, the pieces fit together like LEGO bricks.
+
+Let us revisit the topic of microservices. The issue I often see (and have experienced) is that information flows between them in a complicated manner. Data flows through UNIX pipes linearly, from one to the next and the entire chain is present in the command, in a distributed system with a microservice design data flow often time looks more like a complicated graph with multiple edges between nodes. We can see clearly that in accordance to Rob and Brian's definition of UNIX design, microservices fail because they compose poorly. Every new edge to a node on the graph brings with it complicated dependency and overhead.
+
+Composability doesn't have to be between programs, if for example you are building a game or end user program, composability may mean that individual libraries or components of the overall program fit together nicely. A single program can be UNIX-like, if the various individual pieces of its internals fit together well.
+____
+
+== link:https://cutlefish.substack.com/p/tbm-266-human-load-balancers-renegades[TBM 266: Human load balancers, renegades, insiders, and platform saviors (part 4)]
+
+[quote]
+____
+The next thing that mutes the impact of a growing dependency problem is that humans are extremely creative at working around dependencies. Or at least some humans are.
+
+If just enough people in an organization can move quickly, no matter what it takes, that is the reference point for what is possible. So you'll start to see leadership teams say things like, "`Well, if that team can move so quickly, why can't the other teams move so quickly?`" If, when faced with a dependency, a team opts instead to build their way around the problem, they can move quickly. Of course, the proliferation of all these workarounds makes other people's lives very difficult. Still, many companies reward people who effectively circumvent the system when it comes to promo season.
+
+It doesn't take many Renegades -- especially if they focus on high-profile initiatives -- to mute the growing impact of dependencies. When Renegades ascend the organization because of their successes, this reinforces the perception that things aren't bad. It can also stigmatize talking about stuff like debt and dependencies overall. If they aren't complaining, is it even okay to mention the problem?
+____
+
+[quote]
+____
+People who understand the architecture, who influence who, and who can barter favors with other groups can remain effective for much longer. They also tend to have more influence in the organization overall, so their perspective of the situation often carries much weight. These are people who don't need to file a ticket ("`we didn't do that back in the day when people just got stuff done!`"). They're valuable due to their contextual understanding, so they build a fair amount of social capital (though sometimes they can dismiss newcomers.) They simply don't know or understand the experience of arriving as a fresh set of eyes and trying to make sense of the organization, its architecture, and how things get done.
+____
