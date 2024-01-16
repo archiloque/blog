@@ -4,3 +4,32 @@ v1.0, 2024-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://soupault.app/[Soupault: a static website management tool]
+
+[quote]
+____
+Soupault (soup-oh) is a static website generator/framework that works with HTML element trees and can automatically manipulate them. It can be described as a robotic webmaster that can edit HTML pages according to your rules, but doesn't get tired of editing them. 
+____
+
+[quote]
+____
+Soupault is not like other static site generators -- it works on the HTML element tree level. Most SSGs treat HTML as an opaque format that can be generated with templates but cannot be read or manipulated.
+
+Soupault treats HTML as a first-class format and that enables many use cases and features that are impossible for other SSGs.
+____
+
+== link:https://medium.com/nttlabs/elfconv-an-experimental-aot-compiler-that-translates-linux-aarch64-elf-binary-to-webassembly-0d47b1b2d50b[elfconv: an experimental AOT compiler that translates Linux/AArch64 ELF binary to WebAssembly.]
+
+[quote]
+____
+WebAssembly (WASM) is a binary format having a virtual instruction set and has been created to make up for the performance overhead of Javascript on browsers, WASM has been expected for the usage of sandbox environments and portable distribution of applications. Now, many programming languages support WASM (e.g. C, {cpp}, Rust, Go), and therefore we can easily make WASM applications.
+
+However, it is difficult for us to make WASM applications in the following case.
+
+. The programming language doesn't support WASM.
+. The source code is not available (e.g. the source code is not public under license).
+. It takes time and effort to build the source code for reasons such as the versions of the libraries to build are old.
+
+Considering such facts, we have implemented "`elfconv`", an experimental AOT compiler that translates Linux/AArch64 ELF binary to WebAssembly. Using this tool, we can easily make a WASM application from only the Linux/AArch64 ELF binary.
+____
