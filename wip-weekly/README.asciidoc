@@ -49,3 +49,20 @@ ____
 ____
 Put them in your networks and they will alert if your networks leak. Beacons try to connect to their Home over IPv4, IPv6, TCP, UDP, ICMP, DNS, Ethernet Broadcast and IP Payload. If they succeed, Home alerts you via Syslog, Slack or HTTP-API.
 ____
+
+== link:https://www.oreilly.com/content/generic-mitigations/[]
+
+[quote]
+____
+The most important characteristic of a generic mitigation is this: _You don't need to fully understand your outage to use it_.
+
+I mean, don't we want to understand our outages?
+No.
+
+Okay, let me expand on that: you want to understand your outage _after it is mitigated_.
+____
+
+[quote]
+____
+The goal of building good generic mitigations is to have a weapon ready to wield as early in the timeline as possible. If the only mitigations available to you are problem-specific, then you will be unable to help your users until you understand the problem in detail. It is very difficult to decrease the time it takes to understand a problem
+____
