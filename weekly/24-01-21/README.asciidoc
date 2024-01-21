@@ -1,0 +1,91 @@
+= Links - 21^st^ January 2024
+Julien Kirch
+v1.0, 2024-01-21
+:article_lang: en
+:figure-caption!:
+:article_description: Static site generator, Linux binary to WebAssembly compiler, cost of supporting languages, testing network leaks, generic mitigations, database performance, ambiguous problems
+
+== link:https://soupault.app/[Soupault: a static website management tool]
+
+[quote]
+____
+Soupault (soup-oh) is a static website generator/framework that works with HTML element trees and can automatically manipulate them. It can be described as a robotic webmaster that can edit HTML pages according to your rules, but doesn't get tired of editing them. 
+____
+
+[quote]
+____
+Soupault is not like other static site generators -- it works on the HTML element tree level. Most SSGs treat HTML as an opaque format that can be generated with templates but cannot be read or manipulated.
+
+Soupault treats HTML as a first-class format and that enables many use cases and features that are impossible for other SSGs.
+____
+
+== link:https://medium.com/nttlabs/elfconv-an-experimental-aot-compiler-that-translates-linux-aarch64-elf-binary-to-webassembly-0d47b1b2d50b[elfconv: an experimental AOT compiler that translates Linux/AArch64 ELF binary to WebAssembly.]
+
+[quote]
+____
+WebAssembly (WASM) is a binary format having a virtual instruction set and has been created to make up for the performance overhead of Javascript on browsers, WASM has been expected for the usage of sandbox environments and portable distribution of applications. Now, many programming languages support WASM (e.g. C, {cpp}, Rust, Go), and therefore we can easily make WASM applications.
+
+However, it is difficult for us to make WASM applications in the following case.
+
+. The programming language doesn't support WASM.
+. The source code is not available (e.g. the source code is not public under license).
+. It takes time and effort to build the source code for reasons such as the versions of the libraries to build are old.
+
+Considering such facts, we have implemented "`elfconv`", an experimental AOT compiler that translates Linux/AArch64 ELF binary to WebAssembly. Using this tool, we can easily make a WASM application from only the Linux/AArch64 ELF binary.
+____
+
+== link:https://lethain.com/layers-of-context/[Layers of context.]
+
+[quote]
+____
+* There's a fixed amount of budget to support the entire engineering organization
+* Each additional programming language reduces the investment into the more frequently used programming languages across the organization. This makes the organization view the Infrastructure organization as less efficient each time it supports a new programming language, because on average it is less efficient
+* The team is telling Infrastructure that they'll take responsibility for all atypical work created by introducing Erlang. However, the Infrastructure team has heard this promise before, and frequently ends up owning tools in new languages after those teams are reorganized. At this point, they believe that any project in a new programming language will become their problem, no matter how vigorously the team says that it won't
+____
+
+== link:https://sensorfu.com/[SensorFu Beacon]
+
+[quote]
+____
+Put them in your networks and they will alert if your networks leak. Beacons try to connect to their Home over IPv4, IPv6, TCP, UDP, ICMP, DNS, Ethernet Broadcast and IP Payload. If they succeed, Home alerts you via Syslog, Slack or HTTP-API.
+____
+
+== link:https://www.oreilly.com/content/generic-mitigations/[Generic mitigations]
+
+[quote]
+____
+The most important characteristic of a generic mitigation is this: _You don't need to fully understand your outage to use it_.
+
+I mean, don't we want to understand our outages?
+No.
+
+Okay, let me expand on that: you want to understand your outage _after it is mitigated_.
+____
+
+[quote]
+____
+The goal of building good generic mitigations is to have a weapon ready to wield as early in the timeline as possible. If the only mitigations available to you are problem-specific, then you will be unable to help your users until you understand the problem in detail. It is very difficult to decrease the time it takes to understand a problem
+____
+
+== link:https://www.johnnunemaker.com/database-performance-simplified/[Database performance simplified]
+
+[quote]
+____
+Most of the database performance articles I have read involve hardware specs, configuration changes, or are too specific about a data set and access patterns to build an overall model to live by. I guess it is best said that they are really focused on a specific problem, which is good if you have that specific problem, but if you just want to learn in general, you have to gather together a lot of scraps.
+
+My hope for this post is to provide a general model or guidelines to live by that won't solve all your problems, but will keep you from getting into trouble overly quickly.
+____
+
+== link:https://lethain.com/navigating-ambiguity/[Navigating ambiguity]
+
+[quote]
+____
+Maybe you're reading my advice to escalate up the leadership chain and thinking to yourself, "`Yeah, I _wish_ I had someone to escalate this to!`" To be explicit: that's a bad sign! If you can't find an executive committed to solving an ambiguous problem, then you're unlikely to solve it. Yes, there are some exceptions when it comes to very small companies or when you yourself are a quasi-executive with significant organizational resources, but those are _exceptions_.
+
+My general advice is that you should only take on deeply ambiguous problems when an executive tells you to, and ensure that the executive is committed to being your sponsor. If not, the timing might be good, but you're still extremely likely to fail. Flag the issue to your management chain, and then let them decide when they're willing to provide the necessary support to make progress.
+____
+
+[quote]
+____
+My biggest advice on solving deeply ambiguous problems is pretty simple: don't overreact when you get stuck. If you can't make progress, then escalate. If escalating doesn't clarify the path forward, then slow down until circumstances evolve. Failing to solve an ambiguous problem is often the only reasonable outcome. The only true failure is if feeling stuck leads you to push so hard that you alienate those working on the problem with you.
+____
