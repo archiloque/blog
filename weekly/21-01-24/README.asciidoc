@@ -8,12 +8,12 @@ v1.0, 2021-01-24
 
 [quote]
 ____
-I personally don`'t envy the life of a data platform engineer. They need to consume data from teams who have no incentive in providing meaningful, truthful and correct data. They have very little understanding of the source domains that generate the data and lack the domain expertise in their teams. They need to provide data for a diverse set of needs, operational or analytical, without a clear understanding of the application of the data and access to the consuming domain`'s experts.
+I personally don't envy the life of a data platform engineer. They need to consume data from teams who have no incentive in providing meaningful, truthful and correct data. They have very little understanding of the source domains that generate the data and lack the domain expertise in their teams. They need to provide data for a diverse set of needs, operational or analytical, without a clear understanding of the application of the data and access to the consuming domain's experts.
 ____
 
 [quote]
 ____
-In a mature and ideal situation, an operational system and it`'s team or organizational unit, are not only responsible for providing business capabilities but also responsible for providing the _truths of their business domain_ as source domain datasets. At enterprise scale there is never a one to one mapping between a domain concept and a source system. There are often many systems that can serve parts of the data that belongs to a domain, some legacy and some easy to change. Hence there might be many _source aligned datasets_ aka _reality datasets_ that ultimately need to be aggregated to a cohesive domain aligned dataset.
+In a mature and ideal situation, an operational system and it's team or organizational unit, are not only responsible for providing business capabilities but also responsible for providing the _truths of their business domain_ as source domain datasets. At enterprise scale there is never a one to one mapping between a domain concept and a source system. There are often many systems that can serve parts of the data that belongs to a domain, some legacy and some easy to change. Hence there might be many _source aligned datasets_ aka _reality datasets_ that ultimately need to be aggregated to a cohesive domain aligned dataset.
 ____
 
 == link:https://www.confluent.io/blog/data-dichotomy-rethinking-the-way-we-treat-data-and-services/[The data dichotomy: rethinking the way we treat data and services]
@@ -22,7 +22,7 @@ ____
 ____
 Service-based approaches may have been around for a while, but they still offer relatively little insight into how to share significant datasets between services.
 
-The underlying issue is that data and services don`'t sing too sweetly together. On one side, encapsulation encourages us to hide data; decoupling services from one another so they can continue to change and grow. This is about planning for the future. But on the other side, we need the freedom to slice and dice shared data like any other dataset. This is about getting on with our job right now, with the same freedoms as any other data system.
+The underlying issue is that data and services don't sing too sweetly together. On one side, encapsulation encourages us to hide data; decoupling services from one another so they can continue to change and grow. This is about planning for the future. But on the other side, we need the freedom to slice and dice shared data like any other dataset. This is about getting on with our job right now, with the same freedoms as any other data system.
 
 But data systems have little to do with encapsulation. In fact, quite the contrary. Databases do everything they can to expose the data they hold. They come with a wonderfully powerful, declarative interface that can contort data into pretty much any shape you might desire. Exactly what you need for exploratory investigation, but not so great for managing the onset of complexity in a burgeoning service estate.
 ____
@@ -35,85 +35,85 @@ The problem here is that our feelings can mislead us, which probably partially e
 
 Some readers -- and presumably Dodd -- would reply, "`But more experienced programmers have more trust-worthy feelings!`"
 
-Maybe. But if we`'re to believe the science on expert judgment and intuition, the impact of experience in helpfully shaping our intuitions here is more limited than we think. Psychologist and behavioral economist Daniel Kahneman won a nobel prize partially because he taught us that expert judgement doesn`'t form simply because we`'ve been doing something for a long time. For that judgment to form, we need specific feedback loopsfootnote:[Daniel Kahneman, Thinking Fast and Slow. Too lazy to find the specific pages. Just read all of it.], loops that are often absent for many programmers who have an average job tenure of 18 months or who use tools and languages that change quickly enough to inspire fatigue or who work for companies that undergo radical changes as they grow from tiny startups to large, proper businesses.
+Maybe. But if we're to believe the science on expert judgment and intuition, the impact of experience in helpfully shaping our intuitions here is more limited than we think. Psychologist and behavioral economist Daniel Kahneman won a nobel prize partially because he taught us that expert judgement doesn't form simply because we've been doing something for a long time. For that judgment to form, we need specific feedback loopsfootnote:[Daniel Kahneman, Thinking Fast and Slow. Too lazy to find the specific pages. Just read all of it.], loops that are often absent for many programmers who have an average job tenure of 18 months or who use tools and languages that change quickly enough to inspire fatigue or who work for companies that undergo radical changes as they grow from tiny startups to large, proper businesses.
 ____
 
 == link:https://bellmar.medium.com/toxic-and-woke-engineering-orgs-8abf20e07de5[Toxic and woke engineering orgs]
 
 [quote]
 ____
-The biggest mistake organizations make with boundaries is over socializing. It`'s good to get people together informally from time to time. It`'s good to have staff parties, happy hours, maybe a company sports team or an outing. All of these things are great for team building and bonding. But the more often you turn the work space into a friend space the more people start to see their colleagues as friends.
+The biggest mistake organizations make with boundaries is over socializing. It's good to get people together informally from time to time. It's good to have staff parties, happy hours, maybe a company sports team or an outing. All of these things are great for team building and bonding. But the more often you turn the work space into a friend space the more people start to see their colleagues as friends.
 
-That`'s problematic because people expect loyalty and conformity from their friends. Nobody really talks about it that way, but it`'s true. You want your friends to agree with you and when they don`'t it bothers you much more than it would if an acquaintance disagreed. The more strongly you feel about a subject, the more difficult it is for you to deal with disagreement from friends.
-People need to be able to disagree at work. Teams can`'t make good decisions if they can`'t disagree. And while some friendships survive or even thrive on debate, people still tend to take dissent much more personally from their friends.
+That's problematic because people expect loyalty and conformity from their friends. Nobody really talks about it that way, but it's true. You want your friends to agree with you and when they don't it bothers you much more than it would if an acquaintance disagreed. The more strongly you feel about a subject, the more difficult it is for you to deal with disagreement from friends.
+People need to be able to disagree at work. Teams can't make good decisions if they can't disagree. And while some friendships survive or even thrive on debate, people still tend to take dissent much more personally from their friends.
 
-People also tend to take more liberties with their friends. You are less embarrassed about showing up late or inconveniencing a friend because you assume that close bond will guarantee you forgiveness. What`'s more, once workplaces start over socializing they tend to get defensive about it and see not engaging as a form of rejection in and of itself. Off hour events slowly become not optional. Not wanting to be BFFs or "`part of the family`" becomes an offense on equal level with missing deadlines and deliverables.
+People also tend to take more liberties with their friends. You are less embarrassed about showing up late or inconveniencing a friend because you assume that close bond will guarantee you forgiveness. What's more, once workplaces start over socializing they tend to get defensive about it and see not engaging as a form of rejection in and of itself. Off hour events slowly become not optional. Not wanting to be BFFs or "`part of the family`" becomes an offense on equal level with missing deadlines and deliverables.
 ____
 
 == link:https://lwn.net/ml/oss-security/192EDE83-5DF6-40A9-8928-1CD1739177A0@dwheeler.com/[CVE-2021-20177 kernel: iptables string match rule could result in kernel panic]
 
 [quote]
 ____
-I suspect in many cases there`'s a simple answer: who takes the *blame* when something goes wrong?
+I suspect in many cases there's a simple answer: who takes the *blame* when something goes wrong?
 
-If someone updates a component when "`they don`'t have to`", and it causes a problem, that person
+If someone updates a component when "`they don't have to`", and it causes a problem, that person
 takes the fall: gets demoted, fired, whatever. If a component is not updated, and the system is
-attacked, the *attacker* is blamed & the admins don`'t get demoted, fired, whatever. So updates are
+attacked, the *attacker* is blamed & the admins don't get demoted, fired, whatever. So updates are
 rare & involve >1 year testing to ensure that the blame is fully distributed away from any one
 person.
 
-Some organizations make an explicit exception: if there`'s a CVE, then you *are* "`required`" to
+Some organizations make an explicit exception: if there's a CVE, then you *are* "`required`" to
 update the component by policy. Then those who updated the component are no longer at serious
 career risk, because when someone tries to blame the person who did the update, they can say "`I was
 required to update by policy`".
 
-In short, I think it`'s all about incentives.
+In short, I think it's all about incentives.
 ____
 
 == link:https://www.hillelwayne.com/post/crossover-project/are-we-really-engineers/[Are we really engineers?]
 
 [quote]
 ____
-Is software engineering "`really`" engineering? A lot of us call ourselves software engineers. Do we deserve that title? Are we mere pretenders to the idea of engineering? This is an important question, and like all important questions, it regularly sparks arguments online. On one hand you have the people who say we are not engineers because we do not live up to "`engineering standards`". These people point to things like link:https://www.theatlantic.com/technology/archive/2017/09/saving-the-world-from-code/540393/[The Coming Software Apocalypse] as evidence that we don`'t have it together. They say that we need things like certification, licensing, and rigorous design if we want to earn the title engineer.
+Is software engineering "`really`" engineering? A lot of us call ourselves software engineers. Do we deserve that title? Are we mere pretenders to the idea of engineering? This is an important question, and like all important questions, it regularly sparks arguments online. On one hand you have the people who say we are not engineers because we do not live up to "`engineering standards`". These people point to things like link:https://www.theatlantic.com/technology/archive/2017/09/saving-the-world-from-code/540393/[The Coming Software Apocalypse] as evidence that we don't have it together. They say that we need things like certification, licensing, and rigorous design if we want to earn the title engineer.
 
 On the other end of the horseshoe, we have people like Pete McBreen and Paul Graham who say that we are not engineers because engineering cannot apply to our domain. Engineers work on predictable projects with a lot of upfront planning and rigorous requirements. Software is dynamic, constantly changing, unpredictable. If we try to apply engineering practice to software then software would be 10 times as expensive and stuck in 1970.
 
-For a long time I refused to call myself a software engineer and thought of other people with that title as poseurs. It was reading a short story against engineering that made me question my core assumptions. It was link:http://thecodelesscode.com/case/154[A Bridge to Nowhere], one of the link:http://thecodelesscode.com/[Codeless Code stories]. The author argues that the techniques of bridge building don`'t apply to software, since software clients can change their requirements and software gravity can sometimes reverse itself.
+For a long time I refused to call myself a software engineer and thought of other people with that title as poseurs. It was reading a short story against engineering that made me question my core assumptions. It was link:http://thecodelesscode.com/case/154[A Bridge to Nowhere], one of the link:http://thecodelesscode.com/[Codeless Code stories]. The author argues that the techniques of bridge building don't apply to software, since software clients can change their requirements and software gravity can sometimes reverse itself.
 
-"`The predictability of a true engineer`'s world is an enviable thing. But ours is a world always in flux, where the laws of physics change weekly. If we did not quickly adapt to the unforeseen, the only foreseeable event would be our own destruction.`"
+"`The predictability of a true engineer's world is an enviable thing. But ours is a world always in flux, where the laws of physics change weekly. If we did not quickly adapt to the unforeseen, the only foreseeable event would be our own destruction.`"
 
-That`'s when I realized something about everybody involved in all of these arguments.
+That's when I realized something about everybody involved in all of these arguments.
 
-They`'ve never built a bridge.
+They've never built a bridge.
 ____
 
 == link:https://latacora.singles/2019/07/16/the-pgp-problem.html[The PGP problem]
 
 [quote]
 ____
-If you`'re stranded in the woods and, I don`'t know, need to repair your jean cuffs, it`'s handy if your utility knife has a pair of scissors. But nobody who does serious work uses their multitool scissors regularly.
+If you're stranded in the woods and, I don't know, need to repair your jean cuffs, it's handy if your utility knife has a pair of scissors. But nobody who does serious work uses their multitool scissors regularly.
 
-A Swiss Army knife does a bunch of things, all of them poorly. PGP does a mediocre job of signing things, a relatively poor job of encrypting them with passwords, and a pretty bad job of encrypting them with public keys. PGP is not an especially good way to securely transfer a file. It`'s a clunky way to sign packages. It`'s not great at protecting backups. It`'s a downright dangerous way to converse in secure messages.
+A Swiss Army knife does a bunch of things, all of them poorly. PGP does a mediocre job of signing things, a relatively poor job of encrypting them with passwords, and a pretty bad job of encrypting them with public keys. PGP is not an especially good way to securely transfer a file. It's a clunky way to sign packages. It's not great at protecting backups. It's a downright dangerous way to converse in secure messages.
 
-Back in the MC Hammer era from which PGP originates, "`encryption`" was its own special thing; there was one tool to send a file, or to back up a directory, and another tool to encrypt and sign a file. Modern cryptography doesn`'t work like this; it`'s purpose built. Secure messaging wants crypto that is different from secure backups or package signing.
+Back in the MC Hammer era from which PGP originates, "`encryption`" was its own special thing; there was one tool to send a file, or to back up a directory, and another tool to encrypt and sign a file. Modern cryptography doesn't work like this; it's purpose built. Secure messaging wants crypto that is different from secure backups or package signing.
 ____
 
 [quote]
 ____
 PGP supports ElGamal. PGP supports RSA. PGP supports the NIST P-Curves. PGP supports Brainpool. PGP supports Curve25519. PGP supports SHA-1. PGP supports SHA-2. PGP supports RIPEMD160. PGP supports IDEA. PGP supports 3DES. PGP supports CAST5. PGP supports AES. There is no way this is a complete list of what PGP supports.
 
-If we`'ve learned 3 important things about cryptography design in the last 20 years, at least 2 of them are that negotiation and compatibility are evil. The flaws in cryptosystems tend to appear in the joinery, not the lumber, and expansive crypto compatibility increases the amount of joinery. Modern protocols like TLS 1.3 are jettisoning backwards compatibility with things like RSA, not adding it. New systems support _just a single suite of primitives_, and a simple version number. If one of those primitives fails, you bump the version and chuck the old protocol all at once.
+If we've learned 3 important things about cryptography design in the last 20 years, at least 2 of them are that negotiation and compatibility are evil. The flaws in cryptosystems tend to appear in the joinery, not the lumber, and expansive crypto compatibility increases the amount of joinery. Modern protocols like TLS 1.3 are jettisoning backwards compatibility with things like RSA, not adding it. New systems support _just a single suite of primitives_, and a simple version number. If one of those primitives fails, you bump the version and chuck the old protocol all at once.
 
-If we`'re unlucky, and people are still using PGP 20 years from now, PGP will be the only reason any code anywhere includes CAST5. We can`'t say this more clearly or often enough: you can have backwards compatibility with the 1990s or you can have sound cryptography; you can`'t have both.
-____
-
-[quote]
-____
-One of the rhetorical challenges of persuading people to stop using PGP is that there`'s no one thing you can replace it with, _nor should there be_. What you should use instead depends on what you`'re doing.
+If we're unlucky, and people are still using PGP 20 years from now, PGP will be the only reason any code anywhere includes CAST5. We can't say this more clearly or often enough: you can have backwards compatibility with the 1990s or you can have sound cryptography; you can't have both.
 ____
 
 [quote]
 ____
-Encrypting email is asking for a calamity. Recommending email encryption to at-risk users is malpractice. Anyone who tells you it`'s secure to communicate over PGP-encrypted email is putting their weird preferences ahead of your safety.
+One of the rhetorical challenges of persuading people to stop using PGP is that there's no one thing you can replace it with, _nor should there be_. What you should use instead depends on what you're doing.
+____
+
+[quote]
+____
+Encrypting email is asking for a calamity. Recommending email encryption to at-risk users is malpractice. Anyone who tells you it's secure to communicate over PGP-encrypted email is putting their weird preferences ahead of your safety.
 ____
 

@@ -13,12 +13,12 @@ I wrote once link:https://www.bloomberg.com/opinion/articles/2023-01-05/coindeal
 
 [quote]
 _____
-In general, the chief compliance officer at any company has a dial in front of her that she can turn to get More Crime or Less Crime, and at a normal company — a bank, for instance — her job consists of (1) turning it most of the way toward Less Crime, but (2) not all the way, and (3) acting very contrite when politicians and regulators yell at her about the residual crime. "`We have a zero-tolerance policy for crime`", she will say, and almost mean.
+In general, the chief compliance officer at any company has a dial in front of her that she can turn to get More Crime or Less Crime, and at a normal company -- a bank, for instance -- her job consists of (1) turning it most of the way toward Less Crime, but (2) not all the way, and (3) acting very contrite when politicians and regulators yell at her about the residual crime. "`We have a zero-tolerance policy for crime`", she will say, and almost mean.
 _____
 
-Now, in practice, every day, a bank`'s compliance officer will face the choice of (1) leaving the dial alone, (2) turning it a touch toward More Crime or (3) turning it a touch toward Less Crime. Presumably most days she will mostly leave it alone and focus on other things. Some days, she will adjust it a scooch one way or the other, in ways that don`'t really get noticed much outside of the bank. Occasionally the dial will have drifted too far toward More Crime, the bank will have a huge scandal, she will be fired, and her successor will make a big show of cranking the dial a long way toward Less Crime. "`We had too much crime`", the new compliance officer will say, "`but from now on we will have a zero-tolerance policy toward crime`". This still won`'t be true, but it will (1) still almost be true and (2) be a bit more true than it was before the scandal.
+Now, in practice, every day, a bank's compliance officer will face the choice of (1) leaving the dial alone, (2) turning it a touch toward More Crime or (3) turning it a touch toward Less Crime. Presumably most days she will mostly leave it alone and focus on other things. Some days, she will adjust it a scooch one way or the other, in ways that don't really get noticed much outside of the bank. Occasionally the dial will have drifted too far toward More Crime, the bank will have a huge scandal, she will be fired, and her successor will make a big show of cranking the dial a long way toward Less Crime. "`We had too much crime`", the new compliance officer will say, "`but from now on we will have a zero-tolerance policy toward crime`". This still won't be true, but it will (1) still almost be true and (2) be a bit more true than it was before the scandal.
 
-This problem is not wholly symmetrical: It is rarer for the bank to run into huge problems because the dial has drifted too far toward Less Crime, and to then make a big show of cranking the dial a long way toward More Crime. "`We had too little crime`", a bank`'s compliance officer will pretty much never say, "`but from now on we will have a much more tolerant policy toward crime`".
+This problem is not wholly symmetrical: It is rarer for the bank to run into huge problems because the dial has drifted too far toward Less Crime, and to then make a big show of cranking the dial a long way toward More Crime. "`We had too little crime`", a bank's compliance officer will pretty much never say, "`but from now on we will have a much more tolerant policy toward crime`".
 
 Still! The problem is a little symmetrical. One way to ensure that you never do any illegal business is to never do any business, and that probably goes too far.
 ____
@@ -33,7 +33,7 @@ ____
 . Accrete useful functionality.
 . Build wide, not tall.
 . Rationalize continuously.
-. Don`'t get too greedy.
+. Don't get too greedy.
 . Surf through the opportunities.
 ____
 
@@ -43,8 +43,8 @@ ____
 ____
 * DNS is an always available, highly resilient, incredibly fast, fundamental part of the internet.
 * … so of course people have done some interesting things with it.
-* "`Questions`" are sent to resolvers, which return "answers" - the records you`'re looking for. These are normally domains.
-*  It`'s often called the "`phone book of the internet`" -- you look up a domain and get records back about it (not just IPs, but TXT records, MX records, etc.)
+* "`Questions`" are sent to resolvers, which return "answers" - the records you're looking for. These are normally domains.
+*  It's often called the "`phone book of the internet`" -- you look up a domain and get records back about it (not just IPs, but TXT records, MX records, etc.)
 *  This makes it a general records system.
 ____
 
@@ -58,12 +58,12 @@ will do". Maybe keep it in memory as an `object`, or read/write simple
 JSON files on disk or to a cloud KV store. You said that "`Postgres is
 overkill`" and "`ORMs create impedance mismatches`", and yet, six months
 later, you have a mountain of application code dedicated to caching,
-updating, and defensively reading your data — breaking every time you
+updating, and defensively reading your data -- breaking every time you
 change your data model. You moved 30% faster for your 1 month MVP but it
 is now slowing you down 30% per team member per month.
 
-Surely, you`'ve read link:https://news.ycombinator.com/item?id=32407873[Reddit has two tables] and Dan Pritchett`'s
-link:https://dl.acm.org/doi/10.1145/1394127.1394128[BASE: An ACID Alternative] and you don`'t mind writing some extra migration and
+Surely, you've read link:https://news.ycombinator.com/item?id=32407873[Reddit has two tables] and Dan Pritchett's
+link:https://dl.acm.org/doi/10.1145/1394127.1394128[BASE: An ACID Alternative] and you don't mind writing some extra migration and
 defensive code in userland to be
 link:https://www.youtube.com/watch?v=HdnDXsqiPYo[web scale]. But after
 working on the app for multiple weeks and hiring more people you are
@@ -80,6 +80,6 @@ through and show up in one feed but not be updated in another,
 especially when multiple users and apps access the same sets of data.
 Your new team members suggest adding a `Pending` state to all the fast
 updates, and then waiting for success on the slow/error-prone updates to
-then do a second update to `Complete`. _We`'re moving fast, and we`'re
+then do a second update to `Complete`. _We're moving fast, and we're
 ensuring consistency in userland while keeping things simple._
 ____

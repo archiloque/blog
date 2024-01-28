@@ -8,7 +8,7 @@ v1.0, 2018-02-25
 
 [quote]
 ____
-Postgres provides an extension called auto_explain. When enabled, `auto_explain` automatically logs the query plan and execution information for every query as it`'s run. It`'s exactly like `EXPLAIN ANALYZE`, but automatically records the information for every query as it happens. Depending on how auto_explain is configured, you can obtain some or all of the following information:
+Postgres provides an extension called auto_explain. When enabled, `auto_explain` automatically logs the query plan and execution information for every query as it's run. It's exactly like `EXPLAIN ANALYZE`, but automatically records the information for every query as it happens. Depending on how auto_explain is configured, you can obtain some or all of the following information:
 
 * How the query was executed.
 * How long it took to execute each part of the query.
@@ -28,6 +28,6 @@ Along with these performance tools, shadow prod allows us to perform a direct co
 
 * *Are the query plans that occur on the control machine the same as the ones we get in production?* If not, that means the control machine is different from production in an important way, which we need to resolve before continuing.
 * *Do the query plans we collect on the experimental machine have the changes we expected when compared to the control machine?* If not, that means our optimization is not working as intended.
-* *Did the query plans we collect on the experimental machine have any unexpected changes?* If there are changes in the query plans beyond what we expect, that means either the change does things we didn`'t expect or there is some flaw in the design of our experiment.
+* *Did the query plans we collect on the experimental machine have any unexpected changes?* If there are changes in the query plans beyond what we expect, that means either the change does things we didn't expect or there is some flaw in the design of our experiment.
 * *Did the queries we expected to improve actually improve? Did the queries we expected not to improve stay the same?* Like the checks above, this helps us to make sure changes in performance are attributable to the change we made, and not to an external factor.
 ____

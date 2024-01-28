@@ -35,5 +35,5 @@ Transactions across stateless calls are usually not supported in microservice so
 
 Finally, different applications demand different behaviors from durable state. Do you want it _right_ or do you want it _right now_? Human beings usually want an answer _right now_ rather than _right_. Many application solutions based on object identity may be tolerant of stale versions. Immutable objects can provide the best of both worlds by being both right and right now.
 
-Consider your application`'s requirements carefully. If you aren`'t careful, you will have problems with your state that you will definitely mind.
+Consider your application's requirements carefully. If you aren't careful, you will have problems with your state that you will definitely mind.
 ____

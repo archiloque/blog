@@ -8,14 +8,14 @@ v1.0, 2019-05-19
 
 [quote]
 ____
-When you put many algorithms together into a tightly coupled system, constraints imposed by the various algorithms will clash. It takes a certain experience and wisdom to choose or discover algorithms that can be combined into a harmonious whole. When game engines fail, it`'s often because they don`'t achieve that harmony.
+When you put many algorithms together into a tightly coupled system, constraints imposed by the various algorithms will clash. It takes a certain experience and wisdom to choose or discover algorithms that can be combined into a harmonious whole. When game engines fail, it's often because they don't achieve that harmony.
 ____
 
 [quote]
 ____
-We then need to worry about tunneling, which happens when we integrate across a timestep that`'s too long, causing us to miss a significant world event. The term "`tunneling`" comes from collision detection, where we move entities essentially by teleporting them small distances through space; if we move an entity too quickly, it may pass through a solid object like a wall, unless we take extra steps to detect that situation. These extra steps comprise an approximation to "`what really should have happened`", which may result in consistency problems.
+We then need to worry about tunneling, which happens when we integrate across a timestep that's too long, causing us to miss a significant world event. The term "`tunneling`" comes from collision detection, where we move entities essentially by teleporting them small distances through space; if we move an entity too quickly, it may pass through a solid object like a wall, unless we take extra steps to detect that situation. These extra steps comprise an approximation to "`what really should have happened`", which may result in consistency problems.
 
-Interesting simulations inherently involve subtle interactions between many different entities, an n2 problem that doesn`'t really want to be solved in real time. To work around this issue, we need to be good at culling negligible interactions to pare down the size of the problem. But such culling tends to involve black-art heuristics and can go wrong in strange and subtle ways.
+Interesting simulations inherently involve subtle interactions between many different entities, an n2 problem that doesn't really want to be solved in real time. To work around this issue, we need to be good at culling negligible interactions to pare down the size of the problem. But such culling tends to involve black-art heuristics and can go wrong in strange and subtle ways.
 ____
 
 
@@ -30,16 +30,16 @@ ____
 
 [quote]
 ____
-One might wonder: why is there so much commotion about 2D? It seriously can`'t be that much harder than 3D, right? 3D is a whole other dimension! Real-time raytracing is around the corner, with accurate lighting and and yet we can`'t manage dinky 2D graphics with solid colors?
+One might wonder: why is there so much commotion about 2D? It seriously can't be that much harder than 3D, right? 3D is a whole other dimension! Real-time raytracing is around the corner, with accurate lighting and and yet we can't manage dinky 2D graphics with solid colors?
 
-To those not well-versed in the details of the modern GPU, it`'s a very surprising conclusion! But 2D graphics has plenty of unique constraints that make it a difficult problem to solve, and one that doesn`'t lend itself well to parallel approaches. Let`'s take a stroll down history lane and trace the path that led us here in the first place, shall we?
+To those not well-versed in the details of the modern GPU, it's a very surprising conclusion! But 2D graphics has plenty of unique constraints that make it a difficult problem to solve, and one that doesn't lend itself well to parallel approaches. Let's take a stroll down history lane and trace the path that led us here in the first place, shall we?
 ____
 
 == link:https://queue.acm.org/detail.cfm?id=984495[Death by UML Fever]
 
 [quote]
 ____
-At the root of most UML fevers is a lack of practical experience in those individuals responsible for selecting and applying the technologies and processes underlying a program`'s software-development efforts. This lack of experience translates into both unrealistic expectation and misapplication of technology, often aggravated by nonexistent or bad software-development processes, a perfect breeding ground for UML fever. If a software organization`'s battle against UML fever is to be successful, it is absolutely critical that people with practical experience are in place driving the selection of technologies, as well as developing the processes for their associated usage.
+At the root of most UML fevers is a lack of practical experience in those individuals responsible for selecting and applying the technologies and processes underlying a program's software-development efforts. This lack of experience translates into both unrealistic expectation and misapplication of technology, often aggravated by nonexistent or bad software-development processes, a perfect breeding ground for UML fever. If a software organization's battle against UML fever is to be successful, it is absolutely critical that people with practical experience are in place driving the selection of technologies, as well as developing the processes for their associated usage.
 
 The battle against UML fever is even further complicated by the difficulties some software organizations have in self-diagnosing their affliction. As previously suggested in the characterization of the delusional metafevers, some organizations can become so completely absorbed with UML that they lose sight of their primary objective, developing software, in favor of building gigantic models. In such cases, independent and expert help from outside of the organization may be the only option for initiating the UML fever recovery process. Program management must regularly evaluate staff in influential positions for UML fever because its onset is sometimes gradual. Failure to promptly diagnose UML fever may result in its spread at epidemic proportion with devastating impact.
 ____
@@ -59,7 +59,7 @@ image::thomasson.jpg[align="center",width=450,height=600]
 
 [quote]
 ____
-Keeping a side-project going for this long requires momentum. When I started the project, I decided that I would try as hard as possible to prevent refactors. Refactoring code kills momentum. You do not want to write more code that will be changed by the refactor, so you stop all your progress while you get it done, and of course, as you change the code for this new idea you have, you encounter resistance and difficulty. You also have to change this. Or maybe you found your new idea doesn`'t fit as well in all cases, so the resulting code is still as ugly as when you started. And you get discouraged and it`'s not fun any more, so you decide not to work on it for a bit. And then "`a bit`" slowly becomes a year, and you get less guilty about not touching it ever again. It`'s a story that`'s happened to me before.
+Keeping a side-project going for this long requires momentum. When I started the project, I decided that I would try as hard as possible to prevent refactors. Refactoring code kills momentum. You do not want to write more code that will be changed by the refactor, so you stop all your progress while you get it done, and of course, as you change the code for this new idea you have, you encounter resistance and difficulty. You also have to change this. Or maybe you found your new idea doesn't fit as well in all cases, so the resulting code is still as ugly as when you started. And you get discouraged and it's not fun any more, so you decide not to work on it for a bit. And then "`a bit`" slowly becomes a year, and you get less guilty about not touching it ever again. It's a story that's happened to me before.
 ____
 
 [quote]
@@ -71,7 +71,7 @@ ____
 
 [quote]
 ____
-Existing code exerts a powerful influence. Its very presence argues that it is both correct and necessary. We know that code represents effort expended, and we are very motivated to preserve the value of this effort. And, unfortunately, the sad truth is that the more complicated and incomprehensible the code, i.e. the deeper the investment in creating it, the more we feel pressure to retain it (the "`link:https://en.wikipedia.org/wiki/Sunk_costs#Loss_aversion_and_the_sunk_cost_fallacy[sunk cost fallacy]`"). It`'s as if our unconscious tell us "`Goodness, that`'s so confusing, it must have taken ages to get right. Surely it`'s really, really important. It would be a sin to let all that effort go to waste.`"
+Existing code exerts a powerful influence. Its very presence argues that it is both correct and necessary. We know that code represents effort expended, and we are very motivated to preserve the value of this effort. And, unfortunately, the sad truth is that the more complicated and incomprehensible the code, i.e. the deeper the investment in creating it, the more we feel pressure to retain it (the "`link:https://en.wikipedia.org/wiki/Sunk_costs#Loss_aversion_and_the_sunk_cost_fallacy[sunk cost fallacy]`"). It's as if our unconscious tell us "`Goodness, that's so confusing, it must have taken ages to get right. Surely it's really, really important. It would be a sin to let all that effort go to waste.`"
 ____
 
 == link:https://anvilventures.com/blog/looking-inside-the-box.html[Looking inside the box]
@@ -89,30 +89,30 @@ So if we have an operation that would have _undefined behavior_ in a context tha
 
 We have another great tool at our service and that is link:https://godbolt.org/[godbolt also known as Compiler Explorer]. Compiler Explorer is an interactive compiler, we can use it to obtain diagnostics for small code quickly. If you make a modifications it updates immediately allowing one to iterate quickly over small changes.
 
-Compiler Explorer, combined with the fact that undefined behavior is ill-formed in a constant expressions, allows us to explore what is and what is not undefined behavior in an interactive and quick manner. Now I know what you are thinking, "`Shafik, this sounds too much like having your cake and eating it too`", ok so there are some caveats here. I mentioned before that not everything is allowed in a constant expression. For example heap allocation, reinterpret_cast etc. so there are classes of undefined behavior we cannot explore e.g. use after free and strict aliasing violations. Will also learned about a couple of exceptions, (_this wouldn`'t be {cpp} if there weren`'t exceptions_). There are still plenty of interesting cases to explore and learn from.
+Compiler Explorer, combined with the fact that undefined behavior is ill-formed in a constant expressions, allows us to explore what is and what is not undefined behavior in an interactive and quick manner. Now I know what you are thinking, "`Shafik, this sounds too much like having your cake and eating it too`", ok so there are some caveats here. I mentioned before that not everything is allowed in a constant expression. For example heap allocation, reinterpret_cast etc. so there are classes of undefined behavior we cannot explore e.g. use after free and strict aliasing violations. Will also learned about a couple of exceptions, (_this wouldn't be {cpp} if there weren't exceptions_). There are still plenty of interesting cases to explore and learn from.
 ____
 
-== link:http://tasvideos.org/6347S.html[Submission #6347: Chef Stef`'s NES Arkanoid "`warpless`" in 11:11.18]
+== link:http://tasvideos.org/6347S.html[Submission #6347: Chef Stef's NES Arkanoid "`warpless`" in 11:11.18]
 
 [quote]
 ____
 The concept behind this TAS
-I`'ve always been intrigued by brute forcing as an optimization strategy and tried to find a game where it might be possible without spending multiple lifetimes finishing it. After some research, I decided that NES Arkanoid was a good candidate.
-At first glance, brute-forcing an 11-minute TAS might seem to be completely impossible, having 2^8^(60 * 60 * 11) possibilities to evaluate. But that assumes we actually want to try every combination of inputs; if we encode the rules of the game into the bot and don`'t bother looking for things like glitches or ACE exploits, we can actually get this into the realm of possibility. The input surface of the game is actually quite small: you only have to press left, right, and A, and never any of those at the same time. There also aren`'t all that many ways to bounce the ball around.
+I've always been intrigued by brute forcing as an optimization strategy and tried to find a game where it might be possible without spending multiple lifetimes finishing it. After some research, I decided that NES Arkanoid was a good candidate.
+At first glance, brute-forcing an 11-minute TAS might seem to be completely impossible, having 2^8^(60 * 60 * 11) possibilities to evaluate. But that assumes we actually want to try every combination of inputs; if we encode the rules of the game into the bot and don't bother looking for things like glitches or ACE exploits, we can actually get this into the realm of possibility. The input surface of the game is actually quite small: you only have to press left, right, and A, and never any of those at the same time. There also aren't all that many ways to bounce the ball around.
 
-I started with about 1500 lines of Lua scripting on top of Bizhawk. This was useful and proved out a lot of my ideas, but the execution time wasn`'t where it needed to be. Evaluations were maxing out at thousands of paths per hour, when I needed it to be billions per hour to make any kind of headway.
+I started with about 1500 lines of Lua scripting on top of Bizhawk. This was useful and proved out a lot of my ideas, but the execution time wasn't where it needed to be. Evaluations were maxing out at thousands of paths per hour, when I needed it to be billions per hour to make any kind of headway.
 
 The bottleneck was emulation speed. Could I improve performance within the emulator? I found a few settings (like disabling the display) that gave marginal improvements. But I was still a long way from the goal.
 
-And then I realized something - what if I could simulate the game state instead of emulating it? There`'s a lot of overhead in running BizHawk, running the Lua engine, and emulating the NES internals that isn`'t necessary if we`'re just trying to make a ball bounce around. Could I instead write an optimized, bare-bones program that mimicked Arkanoid`'s mechanics and then run my brute force bot on that?
+And then I realized something - what if I could simulate the game state instead of emulating it? There's a lot of overhead in running BizHawk, running the Lua engine, and emulating the NES internals that isn't necessary if we're just trying to make a ball bounce around. Could I instead write an optimized, bare-bones program that mimicked Arkanoid's mechanics and then run my brute force bot on that?
 
-So I went back to the drawing board. I disassembled the game, analyzed its logic, pulled out the routines that mattered for gameplay, and rewrote them all in {cpp}. Logic for graphics, sound, and such could be omitted since they don`'t affect the physics or any outcomes in the game.
+So I went back to the drawing board. I disassembled the game, analyzed its logic, pulled out the routines that mattered for gameplay, and rewrote them all in {cpp}. Logic for graphics, sound, and such could be omitted since they don't affect the physics or any outcomes in the game.
 
-With the replicated game engine in hand, the next step was proving it was equivalent to the original. I constructed a test harness that fed Baxter`'s TAS inputs into the engine and compared memory values against what BizHawk showed for any divergence. This uncovered many small issues and inconsistencies that I painstakingly fixed. Eventually I`'d resolved everything and could "`play back`" Baxter`'s TAS perfectly.
+With the replicated game engine in hand, the next step was proving it was equivalent to the original. I constructed a test harness that fed Baxter's TAS inputs into the engine and compared memory values against what BizHawk showed for any divergence. This uncovered many small issues and inconsistencies that I painstakingly fixed. Eventually I'd resolved everything and could "`play back`" Baxter's TAS perfectly.
 
-Now I could finally move on to brute-forcing the game. I wrote an evaluation engine with a bunch of rules (discussed later) to go through levels and output BizHawk movies with their solutions. After about a year of execution time on six CPU cores, I`'d finally evaluated everything to a satisfactory point to assemble and produce this TAS.
+Now I could finally move on to brute-forcing the game. I wrote an evaluation engine with a bunch of rules (discussed later) to go through levels and output BizHawk movies with their solutions. After about a year of execution time on six CPU cores, I'd finally evaluated everything to a satisfactory point to assemble and produce this TAS.
 
-There`'s a lot of potential in this type of brute-forcing and I`'d love to see this happen for more games. The principles discussed below are game-agnostic; the key is the complexity of the game.
+There's a lot of potential in this type of brute-forcing and I'd love to see this happen for more games. The principles discussed below are game-agnostic; the key is the complexity of the game.
 ____
 
 == link:https://twitter.com/potch/status/1129095107855040513[Voronoi diagram of the CSS color keywords!]

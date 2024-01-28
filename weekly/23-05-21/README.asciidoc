@@ -3,7 +3,7 @@ Julien Kirch
 v1.0, 2023-05-21
 :article_lang: en
 :figure-caption!:
-:article_description: 99 buttons mouse, high-performance Lua VM, Staff Engineer`'s Path, management is prediction, 50 years in filesystems, configurable hallucinations, software design, divergent development workflow, floating-points, industrial hammer complex
+:article_description: 99 buttons mouse, high-performance Lua VM, Staff Engineer's Path, management is prediction, 50 years in filesystems, configurable hallucinations, software design, divergent development workflow, floating-points, industrial hammer complex
 
 == link:https://flameeyes.blog/2006/06/05/my-personal-battle-with-keyboard-and-xorg-7-1-stage/[My personal battle with keyboard and xorg: 7.1 stage]
 
@@ -33,7 +33,7 @@ bytecodes in {cpp}, and use it as the single source of truth to
 _automatically generate_ a high-performance VM at build time,
 ____
 
-== link:https://taeric.github.io/reflecting-on-engineers-path.html[Reflecting on The Staff Engineer`'s Path.]
+== link:https://taeric.github.io/reflecting-on-engineers-path.html[Reflecting on The Staff Engineer's Path.]
 
 [quote]
 ____
@@ -44,10 +44,10 @@ ____
 
 [quote]
 ____
-The first idea is something we`'ve
+The first idea is something we've
 link:https://commoncog.com/how-to-become-data-driven/#process-behaviour-charts[covered before]: SPC practitioners believe that "`management is prediction`".
 The underlying argument is that in order to run your business properly,
-you need to be able to _predict_ — within limits — the effects your
+you need to be able to _predict_ -- within limits -- the effects your
 actions have on business outcomes. You need to know things like "`oh, so
 if I run such-and-such marketing campaign, my leads should go up by
 around X% over the next quarter`", and "`if we launch this feature, we
@@ -55,18 +55,18 @@ should expect to see higher engagement from our core users, which may be
 measured using the metrics A, B and C`" … plus you need to be correct
 about those things.
 
-You`'re never really sure if your actions or your predictions are as good
+You're never really sure if your actions or your predictions are as good
 or as causal as they can be
 
 I am painfully aware that this is easy to say, but difficult to do. It
-is rare in the vast majority of businesses I`'ve been involved in. Hell,
-if I`'m being honest, my growth decisions around _this very blog_ are
+is rare in the vast majority of businesses I've been involved in. Hell,
+if I'm being honest, my growth decisions around _this very blog_ are
 more gut-driven than rigorously tested, which is a little embarrassing
 to say out loud. And perhaps you can relate: how many of your business
 decisions are driven by feel, made on loosely correct beliefs about your
-business — which is a more polite way of saying "`you manage by
+business -- which is a more polite way of saying "`you manage by
 superstition`"? In most cases, though, the things you do somehow work
-out, and perhaps the business is able to grow -- but you`'re never really
+out, and perhaps the business is able to grow -- but you're never really
 sure if your actions or your predictions are as good or as causal as
 they can be.
 
@@ -85,7 +85,7 @@ ____
 Progress is sometimes hard to see, especially when you have been part of it or otherwise lived through it. Often, it is easier to see if you compare modern educational material, and the problems discussed with older material. And then look for the research papers and sources that fueled the change.
 ____
 
-== link:https://www.activision.com/cdn/research/hallucinations[Reversing anti-cheat`'s detection-generation cycle with configurable hallucinations]
+== link:https://www.activision.com/cdn/research/hallucinations[Reversing anti-cheat's detection-generation cycle with configurable hallucinations]
 
 [quote]
 ____
@@ -109,7 +109,7 @@ each to a collection called _Beautiful Code_, which went on to
 win the Jolt Award in 2007. Entries in the book described everything
 from figuring out whether three points are on a line to core components
 of Linux and the software for the Mars Rover, but the breadth that made
-them fun to read also meant they weren`'t particularly useful for
+them fun to read also meant they weren't particularly useful for
 teaching.
 
 To fix that, Greg Wilson, link:https://www.amyrhodabrown.com/[Amy Brown],
@@ -118,7 +118,7 @@ link:https://mikedebo.com/[Mike DiBernardo] edited a four-book
 series between 2011 and 2016 called 
 link:https://aosabook.org/[__The Architecture of Open Source Applications__].
 In the first two volumes,
-the creators of fifty open source projects described their systems`'
+the creators of fifty open source projects described their systems'
 designs; the third book explored the performance of those systems, while
 in the fourth volume contributors built scale models of common tools as
 a way of demonstrating how those tools worked. These books were closer
@@ -143,7 +143,7 @@ ____
 
 "`Divergent development`" is what I call a certain workflow which involves making frequent speculative commits and often backtracking and trying a different approach. In this sense, development "`diverges`" frequently.
 
-Divergent development is especially useful when a problem is still vague and you don`'t know exactly what changes you want to make and commit. You may make several prototypes and throw away most of them.
+Divergent development is especially useful when a problem is still vague and you don't know exactly what changes you want to make and commit. You may make several prototypes and throw away most of them.
 
 It has fewer benefits when you know ahead of time what you intend to do. In those cases, a rigorous approach like writing your commit messages first or practicing Test-Driven Development may be more appropriate.
 ____
@@ -153,13 +153,13 @@ ____
 [quote]
 ____
 If you were a programmer of floating-point computations on different
-computers in the 1960`'s and 1970`'s, you had to cope with a wide variety
+computers in the 1960's and 1970's, you had to cope with a wide variety
 of floating-point hardware. Each line of computers supported its own
 range and precision for its floating point numbers, and rounded off
 arithmetic operations in its own peculiar way. While these differences
 posed annoying problems, a more challenging problem arose from
 perplexities that a particular arithmetic could throw up. Some of one
-fast computer`'s numbers behaved as non-zeros during comparison and
+fast computer's numbers behaved as non-zeros during comparison and
 addition but as zeros during multiplication and division; before a
 variable could be used safely as a divisor it had to be multiplied by
 1.0 and then compared with zero. But another fast computer would trap on
@@ -183,7 +183,7 @@ ____
 
 [quote]
 ____
-It turns out, it`'s the same old thing. Vendors peddling their wares.
+It turns out, it's the same old thing. Vendors peddling their wares.
 When Facebook introduced React, that act transformed the font-end space
 into a hype-driven, cult-of-personality disaster zone where folks could
 profit from creating the right image and narrative. I observed that _it
@@ -191,14 +191,14 @@ particularly preyed on the massive influx of young web developers._
 Facebook had finally found the silver bullet of Web Development, or so
 they claimed! Just adopt our tech, no questions asked, and you too can
 be a rock star making six figures!
-link:https://infrequently.org/2023/02/the-market-for-lemons/[We`'ve been living through this mess for ten years now].
+link:https://infrequently.org/2023/02/the-market-for-lemons/[We've been living through this mess for ten years now].
 
 _ASIDE_: You may wonder what Facebook had to really gain from this. I
 was deeply connected into the valley culture, watching what was
-happening from the Google side when it all started. It wasn`'t money
+happening from the Google side when it all started. It wasn't money
 Facebook was looking for, it was talent and mindshare (i.e., power and
 control). The introduction of React turned out to be a powerful weapon
-in an all-out talent war between Google and Facebook. I`'m not saying
+in an all-out talent war between Google and Facebook. I'm not saying
 this was the original intent or even that the React team realized this.
 But the clear strategic reason for FB leadership continuing to fund and
 promote React was to gain developer mindshare and enable Facebook to

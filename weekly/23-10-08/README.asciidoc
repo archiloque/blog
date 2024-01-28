@@ -16,7 +16,7 @@ ____
 
 [quote]
 ____
-Focused mostly on data layout and query execution. Query planning seems more or less the same as OLTP systems, and I`'m ignoring distribution and transactions for now. Also see my full notes here.
+Focused mostly on data layout and query execution. Query planning seems more or less the same as OLTP systems, and I'm ignoring distribution and transactions for now. Also see my full notes here.
 
 It was hard to figure out what systems are even worth studying. There is so much money in this space. Search results are polluted with barely concealed advertising (eg "`How to choose between FooDB and BarDB`" hosted on foodb.com) and benchmarketing. Third-party benchmarks are crippled by that fact that most databases TOS prohibit publishing benchmarks. Besides which, benchmarking databases is notoriously error-prone.
 ____
@@ -32,27 +32,27 @@ This paper presents a fast Parquet framework that tackles these problems without
 We show that these techniques only add a minor overhead to the first query and are of benefit for future requests. Our evaluation demonstrates that our implementation can achieve comparable results to database relations and that we can outperform existing systems by up to an order of magnitude.
 ____
 
-== link:https://csswizardry.com/2023/10/clear-cache-on-customer-device/[How to clear cache and cookies on a customer`'s device]
+== link:https://csswizardry.com/2023/10/clear-cache-on-customer-device/[How to clear cache and cookies on a customer's device]
 
 [quote]
 ____
 link:https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Clear-Site-Data[A relatively new HTTP header], available in most modern browsers, allows developers to declaratively clear data associated with a given origin via one simple response header: `+clear-site-data+`.
 ____
 
-== link:https://cutlefish.substack.com/p/tbm-246-why-didnt-they-say-no[TBM 246: why didn`'t they say no?]
+== link:https://cutlefish.substack.com/p/tbm-246-why-didnt-they-say-no[TBM 246: why didn't they say no?]
 
 [quote]
 ____
-When they said no in the past, it felt like they were being hauled into the courthouse and put on the defendant`'s stand. Saying no involves a deep test of wills, being doubted, and being questioned over every minute detail. It gets tiring, so they just say yes to make people disappear.
+When they said no in the past, it felt like they were being hauled into the courthouse and put on the defendant's stand. Saying no involves a deep test of wills, being doubted, and being questioned over every minute detail. It gets tiring, so they just say yes to make people disappear.
 
-Someone has told them that saying No is not an option, probably because it would be too painful and politically damaging to have to defend the team`'s decision. It is better to say yes and let everything slip a bit than to say No.
+Someone has told them that saying No is not an option, probably because it would be too painful and politically damaging to have to defend the team's decision. It is better to say yes and let everything slip a bit than to say No.
 ____
 
 == link:https://www.cybertec-postgresql.com/en/pg_stat_io-postgresql-16-performance/[pg_stat_io and PostgreSQL 16 performance]
 
 [quote]
 ____
-Learn about `+pg_stat_io+` `'s debugging power: PostgreSQL 16 blesses users around the world with many features which ensure an even better user experience. One of those features is a system view called `+pg_stat_io+`. It offers deep insights into the I/O behavior of your PostgreSQL database server. From PostgreSQL 16 onward, it will make it far easier to debug and assess performance-related problems.
+Learn about `+pg_stat_io+` 's debugging power: PostgreSQL 16 blesses users around the world with many features which ensure an even better user experience. One of those features is a system view called `+pg_stat_io+`. It offers deep insights into the I/O behavior of your PostgreSQL database server. From PostgreSQL 16 onward, it will make it far easier to debug and assess performance-related problems.
 ____
 
 == link:https://www.infoq.com/presentations/cdc-microservices/[Change data capture for microservices]

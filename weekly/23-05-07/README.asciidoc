@@ -14,9 +14,9 @@ Databases are a fascinating topic. They are a foundation of modern
 computing. Learning how they work should be an important part of
 software engineering education.
 
-As many of today`'s (2023+) coders do not have a formal CS/SE education,
+As many of today's (2023+) coders do not have a formal CS/SE education,
 basic things such as databases, compilers, operating systems, etc. are
-often seen as magical black boxes. That`'s why I started the "`Build Your
+often seen as magical black boxes. That's why I started the "`Build Your
 Own X`" book series. To learn and teach the basics in a "`from scratch`"
 approach, through _succinct_ & condensed books.
 
@@ -42,20 +42,20 @@ ____
 
 [quote]
 ____
-From there, I focused on the following: "`what`'s in the mind of
+From there, I focused on the following: "`what's in the mind of
 programmers, when they choose one way of doing things over another
-that`'s functionally equivalent?`"
+that's functionally equivalent?`"
 
 The one thing that was clear from the start, is that most programmers
 "`simulate`" the behavior of their program in their mind, to predict how
 the program will behave at run-time.
 
-As we`'ve determined above, that simulation does not happen in the
+As we've determined above, that simulation does not happen in the
 _functional_ model of the programming language.
 
 Meanwhile, I knew from my teaching practice that nobody really
 understands hardware computers, and so this mental simulation was also
-not happening with a model of a _hardware_ platform. In fact, I`'ve found
+not happening with a model of a _hardware_ platform. In fact, I've found
 that folk would rather not think about hardware at all, and thankfully
 so: this made it possible, over and over, to _port software_ from one
 hardware platform to another, without rewriting the software.
@@ -72,7 +72,7 @@ ____
 One thing that bothered me much early on was whether AMMs were truly
 distinct from programming languages or the computers that we use.
 
-The question was really: _when a programmer thinks about the run-time behavior of their program, are they only able to formulate their thoughts within the confines of the language they`'re using to write the program or the computer they`'re working with?_
+The question was really: _when a programmer thinks about the run-time behavior of their program, are they only able to formulate their thoughts within the confines of the language they're using to write the program or the computer they're working with?_
 ____
 
 [quote]
@@ -98,7 +98,7 @@ While building the table above and studying PL history, I
 discovered that language designers come in three groups:
 
 . _machine-first designers_, who start with one or more hardware
-platform that`'s sufficiently different from everything that was done
+platform that's sufficiently different from everything that was done
 before that it needs a new AMM, and often a new programming
 language to program it.
 . _second-language designers_, who assume the existence of some
@@ -138,19 +138,19 @@ ____
 
 [quote]
 ____
-The Prodigal Tech Bro is a similar story, about tech executives who experience a sort of religious awakening. They suddenly see their former employers as toxic, and reinvent themselves as experts on taming the tech giants. They were lost and are now found. They are warmly welcomed home to the center of our discourse with invitations to write opeds for major newspapers, for think tank funding, book deals and TED talks. These guys -- and yes, they are all guys -- are generally thoughtful and well-meaning, and I wish them well. But I question why they seize so much attention and are awarded scarce resources, and why they`'re given not just a second chance, but also the mantle of moral and expert authority.
+The Prodigal Tech Bro is a similar story, about tech executives who experience a sort of religious awakening. They suddenly see their former employers as toxic, and reinvent themselves as experts on taming the tech giants. They were lost and are now found. They are warmly welcomed home to the center of our discourse with invitations to write opeds for major newspapers, for think tank funding, book deals and TED talks. These guys -- and yes, they are all guys -- are generally thoughtful and well-meaning, and I wish them well. But I question why they seize so much attention and are awarded scarce resources, and why they're given not just a second chance, but also the mantle of moral and expert authority.
 ____
 
 [quote]
 ____
-Today, when the tide of public opinion on Big Tech is finally turning, the brothers (and sisters) who worked hard in the field all those years aren`'t even invited to the party. No fattened calf for you, my all but unemployable tech activist. The moral hazard is clear; why would anyone do the right thing from the beginning when they can take the money, have their fun, and then, when the wind changes, convert their status and relative wealth into special pleading and a whole new career?
+Today, when the tide of public opinion on Big Tech is finally turning, the brothers (and sisters) who worked hard in the field all those years aren't even invited to the party. No fattened calf for you, my all but unemployable tech activist. The moral hazard is clear; why would anyone do the right thing from the beginning when they can take the money, have their fun, and then, when the wind changes, convert their status and relative wealth into special pleading and a whole new career?
 ____
 
 == link:https://skamille.medium.com/avoiding-the-rewrite-trap-b1283b8dd39e[Avoiding the rewrite trap]
 
 [quote]
 ____
-Someone has to run and modify the old system while you`'re writing the new one. But that job sucks, and they`'re likely to quit before you`'re done.
+Someone has to run and modify the old system while you're writing the new one. But that job sucks, and they're likely to quit before you're done.
 
 You are imagining that your whole team can swarm on the new thing and just knock it out. If you could do the rewrite in a few weeks, maybe. But more likely, you have to keep some people back to keep the old system running, fix bugs, or even add new features to that old system. If those people think that they are on a sinking ship, they are likely to quit, leaving you with a code base that no one wants to support but is still critical to paying the bills. Sure you could rotate the team through supporting the old system, but over time the people who know the old system are likely to leave, and the newcomers will disdain learning the legacy stack.
 ____
@@ -172,7 +172,7 @@ Learning a new language that traces to the same _ur_-language is an easy
 shift. Learning one that traces to an unfamiliar _ur_-language requires
 significant time and effort and new neural pathways.
 
-I am aware of seven _ur_-languages in software today. I`'ll name them for
+I am aware of seven _ur_-languages in software today. I'll name them for
 a _type specimen_, the way a species in paleontology is named for a
 particular fossil that defines it and then other fossils are compared to
 the type specimen to determine their identity. The _ur_-languages are:
@@ -205,8 +205,8 @@ way, way too much middle-range research._
 
 Middle-range research is a deadly combination of interesting to
 researchers and marginally useful for actual product and design work.
-It`'s disproportionately responsible for the worst things people say and
-think about UXR. Doing so much of it just doesn`'t deliver enough
+It's disproportionately responsible for the worst things people say and
+think about UXR. Doing so much of it just doesn't deliver enough
 business value.
 
 So many common forms of research questions live in the middle-range:
@@ -217,16 +217,16 @@ So many common forms of research questions live in the middle-range:
 
 Middle-range findings are usually not specific enough. They tend to be
 too general and descriptive, even when a researcher does an amazing job
-communicating. They`'re hard to turn into specific recommendations and
+communicating. They're hard to turn into specific recommendations and
 thus easy to poke holes in or ignore. They are most likely to trigger
 the post-hoc bias, which invokes the stereotype that researchers work
 for months only to tell us things we already know.
 
 Of course, a talented researcher can mitigate some of these issues. But
-there`'s still the structural disadvantage that comes from asking
+there's still the structural disadvantage that comes from asking
 mid-altitude questions that most cross-functional partners think they
 already have the answers to anyway. All of this erodes the real and
-perceived business value of even the best research. And we haven`'t even
+perceived business value of even the best research. And we haven't even
 gotten to the worst bit yet.
 ____
 

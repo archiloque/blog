@@ -4,44 +4,44 @@ v1.0, 2017-08-20
 :article_lang: en
 :article_description: LaTeX, distributed systems, pain-driven development, microarchitecture, microkernels, SimCities, Lovecraft and Ballard
 
-== link:http://www.danielallington.net/2016/09/the-latex-fetish/[The LaTeX fetish (Or: Don`'t write in LaTeX! It`'s just for typesetting)]
+== link:http://www.danielallington.net/2016/09/the-latex-fetish/[The LaTeX fetish (Or: Don't write in LaTeX! It's just for typesetting)]
 
 [quote]
 ____
-It`'s that time of year when students are signing up for study skills classes. One of the skills that science students are likely to be encouraged to develop is the use of LaTeX. Other people may come to LaTeX for other reasons: people who want to typeset their own books; people who`'ve heard that LaTeX may have something to do with Digital Humanities; etc. I`'ve written this essay as a sort of pre-introduction to LaTeX. It won`'t teach you how to use it (I`'m not qualified!), but it will try to give non-users a clear understanding of what LaTeX is really for, which may help them to make their minds up about whether the effort of learning it (not to mention simply getting it to work) is really going to be worthwhile. Why such a long essay? Because many of those who evangelise for the use of LaTeX fetishise it to the extent of spreading misinformation about its true benefits and I want to clear some of that up.
+It's that time of year when students are signing up for study skills classes. One of the skills that science students are likely to be encouraged to develop is the use of LaTeX. Other people may come to LaTeX for other reasons: people who want to typeset their own books; people who've heard that LaTeX may have something to do with Digital Humanities; etc. I've written this essay as a sort of pre-introduction to LaTeX. It won't teach you how to use it (I'm not qualified!), but it will try to give non-users a clear understanding of what LaTeX is really for, which may help them to make their minds up about whether the effort of learning it (not to mention simply getting it to work) is really going to be worthwhile. Why such a long essay? Because many of those who evangelise for the use of LaTeX fetishise it to the extent of spreading misinformation about its true benefits and I want to clear some of that up.
 ____
 
 == link:https://www.somethingsimilar.com/2013/01/14/notes-on-distributed-systems-for-young-bloods/[Notes on distributed systems for young bloods]
 
 [quote]
 ____
-I`'ve been thinking about the lessons distributed systems engineers learn on the job. A great deal of our instruction is through scars made by mistakes made in production traffic. These scars are useful reminders, sure, but it`'d be better to have more engineers with the full count of their fingers.
+I've been thinking about the lessons distributed systems engineers learn on the job. A great deal of our instruction is through scars made by mistakes made in production traffic. These scars are useful reminders, sure, but it'd be better to have more engineers with the full count of their fingers.
 
-New systems engineers will find the Fallacies of Distributed Computing and the CAP theorem as part of their self-education. But these are abstract pieces without the direct, actionable advice the inexperienced engineer needs to start moving1. It`'s surprising how little context new engineers are given when they start out.
+New systems engineers will find the Fallacies of Distributed Computing and the CAP theorem as part of their self-education. But these are abstract pieces without the direct, actionable advice the inexperienced engineer needs to start moving1. It's surprising how little context new engineers are given when they start out.
 
-Below is a list of some lessons I`'ve learned as a distributed systems engineer that are worth being told to a new engineer. Some are subtle, and some are surprising, but none are controversial. This list is for the new distributed systems engineer to guide their thinking about the field they are taking on. It`'s not comprehensive, but it`'s a good beginning.
+Below is a list of some lessons I've learned as a distributed systems engineer that are worth being told to a new engineer. Some are subtle, and some are surprising, but none are controversial. This list is for the new distributed systems engineer to guide their thinking about the field they are taking on. It's not comprehensive, but it's a good beginning.
 
-The worst characteristic of this list is that it focuses on technical problems with little discussion of social problems an engineer may run into. Since distributed systems require more machines and more capital, their engineers tend to work with more teams and larger organizations. The social stuff is usually the hardest part of any software developer`'s job, and, perhaps, especially so with distributed systems development.
+The worst characteristic of this list is that it focuses on technical problems with little discussion of social problems an engineer may run into. Since distributed systems require more machines and more capital, their engineers tend to work with more teams and larger organizations. The social stuff is usually the hardest part of any software developer's job, and, perhaps, especially so with distributed systems development.
 
-Our background, education, and experience bias us towards a technical solution even when a social solution would be more efficient, and more pleasing. Let`'s try to correct for that. People are less finicky than computers, even if their interface is a little less standardized.
+Our background, education, and experience bias us towards a technical solution even when a social solution would be more efficient, and more pleasing. Let's try to correct for that. People are less finicky than computers, even if their interface is a little less standardized.
 ____
 
 == link:http://bravenewgeek.com/pain-driven-development-why-greedy-algorithms-are-bad-for-engineering-orgs/[Pain-driven development: why greedy algorithms are bad for engineering orgs]
 
 [quote]
 ____
-I recently wrote about the importance of understanding decision impact and why it`'s important for building an empathetic engineering culture. I presented the distinction between pain displacement and pain deferral, and this was something I wanted to expand on a bit.
+I recently wrote about the importance of understanding decision impact and why it's important for building an empathetic engineering culture. I presented the distinction between pain displacement and pain deferral, and this was something I wanted to expand on a bit.
 
-When you distill it down, I think what`'s at the heart of a lot of engineering orgs is this idea of "`pain-driven development`". When a company grows to a certain size, it develops limbs, and each of these limbs has its own pain receptors. This is when empathy becomes important because it becomes harder and less natural. These limbs of course are teams or, more generally speaking, silos. Teams have a natural tendency to operate in a way that minimizes the amount of pain they feel.
+When you distill it down, I think what's at the heart of a lot of engineering orgs is this idea of "`pain-driven development`". When a company grows to a certain size, it develops limbs, and each of these limbs has its own pain receptors. This is when empathy becomes important because it becomes harder and less natural. These limbs of course are teams or, more generally speaking, silos. Teams have a natural tendency to operate in a way that minimizes the amount of pain they feel.
 
-It`'s time for some game theory: pain is a zero-sum game. By always following the path of least resistance, we end up displacing pain instead of feeling it. This is literally just instinct. In other words, by making locally optimal choices, we run the risk of losing out on a globally optimal solution. Sometimes this is an explicit business decision, but many times it`'s not.
+It's time for some game theory: pain is a zero-sum game. By always following the path of least resistance, we end up displacing pain instead of feeling it. This is literally just instinct. In other words, by making locally optimal choices, we run the risk of losing out on a globally optimal solution. Sometimes this is an explicit business decision, but many times it's not.
 ____
 
 == link:http://scholar.harvard.edu/files/mickens/files/thesaddestmoment.pdf[The saddest moment]
 
 [quote]
 ____
-In conclusion, I think that humanity should stop publishing papers about Byzantine fault tolerance. I do not blame my fellow researchers for trying to publish in this area, in the same limited sense that I do not blame crackheads for wanting to acquire and then consume cocaine. The desire to make systems more reliable is a powerful one; unfortunately, this addiction, if left unchecked, will inescapably lead to madness and/or tech reports that contain 167 pages of diagrams and proofs. Even if we break the will of the machines with formalism and cryptography, we will never be able to put Ted inside of an encrypted, nested log, and while the datacenter burns and we frantically call Ted`'s pager, we will realize that Ted has already left for the cafeteria.
+In conclusion, I think that humanity should stop publishing papers about Byzantine fault tolerance. I do not blame my fellow researchers for trying to publish in this area, in the same limited sense that I do not blame crackheads for wanting to acquire and then consume cocaine. The desire to make systems more reliable is a powerful one; unfortunately, this addiction, if left unchecked, will inescapably lead to madness and/or tech reports that contain 167 pages of diagrams and proofs. Even if we break the will of the machines with formalism and cryptography, we will never be able to put Ted inside of an encrypted, nested log, and while the datacenter burns and we frantically call Ted's pager, we will realize that Ted has already left for the cafeteria.
 ____
 
 == link:http://www.agner.org/optimize/microarchitecture.pdf[The microarchitecture of Intel, AMD and VIA CPUs]
@@ -68,14 +68,14 @@ ____
 
 [quote]
 ____
-Today I want to start from SimCity because it`'s the game that forced people to look into the issue of ideology and bias in games for the first time. It wasn`'t a serious game but it was a game that begged to be taken seriously.
+Today I want to start from SimCity because it's the game that forced people to look into the issue of ideology and bias in games for the first time. It wasn't a serious game but it was a game that begged to be taken seriously.
 
-The other reason is that there are many urban planners here and like it or not, SimCity is the most well known representation of your profession so you can`'t quite ignore it. In fact many planners of this generation mention SimCity as their first introduction to the topic.
+The other reason is that there are many urban planners here and like it or not, SimCity is the most well known representation of your profession so you can't quite ignore it. In fact many planners of this generation mention SimCity as their first introduction to the topic.
 ____
 
 == link:https://placesjournal.org/article/the-corner-of-lovecraft-and-ballard/[The corner of Lovecraft and Ballard]
 
 [quote]
 ____
-For H.P. Lovecraft the corner is a gateway to the screaming abyss of the outer cosmos; for J.G. Ballard it is a gateway to our own psyche. In Lovecraft`'s universe, science was making man irrelevant, shunting us into a corner. Ballard takes the corner and turns it inside out, again making us the very center. What Ballard saw, and what he expressed in his novels, was nothing less than the effect that the technological world, including our built environment, was having upon our minds and bodies. We were transforming the world around us into one seamless fiction.
+For H.P. Lovecraft the corner is a gateway to the screaming abyss of the outer cosmos; for J.G. Ballard it is a gateway to our own psyche. In Lovecraft's universe, science was making man irrelevant, shunting us into a corner. Ballard takes the corner and turns it inside out, again making us the very center. What Ballard saw, and what he expressed in his novels, was nothing less than the effect that the technological world, including our built environment, was having upon our minds and bodies. We were transforming the world around us into one seamless fiction.
 ____

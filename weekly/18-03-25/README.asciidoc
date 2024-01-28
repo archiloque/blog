@@ -18,9 +18,9 @@ ____
 ____
 «In practice a company may collect data about customers in one process and use that data in another… This disconnect mirrors a challenge faced by many companies: whereas the individual processes within a company are usually well-understood by the staff undertaking them, including the interfaces to other processes, the global picture of all processes in the company is rarely well understood. But the GDPR requires such a global understanding: data collected in one process may migrate to other processes, and end-user consent is required for all involved processes.»
 
-I take a somewhat different viewpoint here: for many organisations, I contend that an approach requiring a complete, accurate, up-to-date, global understanding of all processes and data flows is probably doomed to failure, as this is an impossible task! And yet we can`'t escape the challenges the authors (and the regulations) place before us. My personal sense is that we need to track the provenance of data as it flows through an organisation, including proof of consent and the purposes for which consent was given, and then match the purpose of a process against that consent record. (Having the provenance flow with the data allows for local decisions, rather than requiring a centralised master plan).
+I take a somewhat different viewpoint here: for many organisations, I contend that an approach requiring a complete, accurate, up-to-date, global understanding of all processes and data flows is probably doomed to failure, as this is an impossible task! And yet we can't escape the challenges the authors (and the regulations) place before us. My personal sense is that we need to track the provenance of data as it flows through an organisation, including proof of consent and the purposes for which consent was given, and then match the purpose of a process against that consent record. (Having the provenance flow with the data allows for local decisions, rather than requiring a centralised master plan).
 
-Regardless of how you do it, you are at some point going to end up with a collection of business processes and a set of data classes. You`'ll need to know which data is collected by which processes, and which data is used by which processes (i.e., for which purposes). The data production (collection) and usage relations can be used to derive the user consents that are needed.
+Regardless of how you do it, you are at some point going to end up with a collection of business processes and a set of data classes. You'll need to know which data is collected by which processes, and which data is used by which processes (i.e., for which purposes). The data production (collection) and usage relations can be used to derive the user consents that are needed.
 ____
 
 == link:http://www.johno.se/book/imgui.html[IMGUI (GUIs in Immediate Mode)]
@@ -29,7 +29,7 @@ ____
 ____
 IMGUI does away with this type of state synchronization by requiring the application to explicitly pass all state required for visualization and interaction with any given "`widget`" in real-time. The user interface only retains the minimal amount of state required to facilitate the functionality required by each type of widget supported by the system.
 
-With IMGUI, a conceptual shift occurs. Widgets are no longer objects at all, and can`'t really be said to "`exist`". They take instead the form of procedural method calls, and the user interface itself goes from being as stateful collection of objects to being a real time sequence of method calls.
+With IMGUI, a conceptual shift occurs. Widgets are no longer objects at all, and can't really be said to "`exist`". They take instead the form of procedural method calls, and the user interface itself goes from being as stateful collection of objects to being a real time sequence of method calls.
 
 Fundamental to this approach is the concept of a real-time application loop, where the application processes logic and draws its display at real-time rates (30 frames per second or more). In the context of games, this is already common practice.
 

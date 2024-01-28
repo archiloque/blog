@@ -19,28 +19,28 @@ ____
 
 [quote]
 ____
-Rendering text, how hard could it be? As it turns out, incredibly hard! To my knowledge, literally no system renders text "`perfectly`". It`'s all best-effort, although some efforts are more important than others.
+Rendering text, how hard could it be? As it turns out, incredibly hard! To my knowledge, literally no system renders text "`perfectly`". It's all best-effort, although some efforts are more important than others.
 
-I`'ll be assuming you want to support arbitrary text provided by users with custom fonts, colors, and styles with line-wrapping and support for text-selection. Basically the minimum required to properly display a simple rich-text document, terminal, webpage, or anything else.
+I'll be assuming you want to support arbitrary text provided by users with custom fonts, colors, and styles with line-wrapping and support for text-selection. Basically the minimum required to properly display a simple rich-text document, terminal, webpage, or anything else.
 
 The overarching theme here will be: there are no consistent right answers, everything is way more important than you think, and everything affects everything else.
 
-The topics I focus on here have no particular rhyme or reason, they`'re just the ones that come to mind after a few years of working on rendering in Firefox. For instance, I don`'t spend much time talking about the challenges of text-segmentation or managing the different platform-specific text libraries, because I don`'t look at that much.
+The topics I focus on here have no particular rhyme or reason, they're just the ones that come to mind after a few years of working on rendering in Firefox. For instance, I don't spend much time talking about the challenges of text-segmentation or managing the different platform-specific text libraries, because I don't look at that much.
 ____
 
-== link:https://devblogs.microsoft.com/oldnewthing/20191009-00/?p=102974[A window can`'t have two timers with the same ID, so how do I assign an ID that nobody else is using?]
+== link:https://devblogs.microsoft.com/oldnewthing/20191009-00/?p=102974[A window can't have two timers with the same ID, so how do I assign an ID that nobody else is using?]
 
 [quote]
 ____
 The Set­Timer function creates a timer associated with a window. Timer IDs need to be unique, but if you have multiple pieces of code that all want to register a timer on the same window, you need to make sure they all come up with different timer IDs.
 
-One way is to carve up the timer ID space so different components are assigned different ranges of timer IDs. But this means that if you add a new component, you`'ll have to assign it a new range of IDs, and you might run into the case where you`'ve link:https://en.wikipedia.org/wiki/IPv4_address_exhaustion[given away all the available values], and there are no more left to hand out.
+One way is to carve up the timer ID space so different components are assigned different ranges of timer IDs. But this means that if you add a new component, you'll have to assign it a new range of IDs, and you might run into the case where you've link:https://en.wikipedia.org/wiki/IPv4_address_exhaustion[given away all the available values], and there are no more left to hand out.
 
-And then there are components which may want to create timers on windows they didn`'t create. For example, you may have a link:https://devblogs.microsoft.com/oldnewthing/20050211-00/?p=36473[windowless controls] framework, and those windowless controls may need a timer, but they don`'t have a window to associate with the timer. They`'ll have to somehow share the timer ID space of the windowed host without explicitly coordinating with each other.
+And then there are components which may want to create timers on windows they didn't create. For example, you may have a link:https://devblogs.microsoft.com/oldnewthing/20050211-00/?p=36473[windowless controls] framework, and those windowless controls may need a timer, but they don't have a window to associate with the timer. They'll have to somehow share the timer ID space of the windowed host without explicitly coordinating with each other.
 
 A common solution is to use a pointer to ensure a unique number.
 
-According to this convention, if you need a unique ID for a timer, just allocate some memory. You don`'t need to allocate memory specifically for this purpose. You probably already allocated some memory, such as memory for your `this` pointer.
+According to this convention, if you need a unique ID for a timer, just allocate some memory. You don't need to allocate memory specifically for this purpose. You probably already allocated some memory, such as memory for your `this` pointer.
 
 For as long as the memory is allocated, that pointer is uniquely yours. No other object can be assigned the same address, and you can use the pointer as the unique ID.
 
@@ -53,13 +53,13 @@ ____
 
 [quote]
 ____
-The noun-verb thing comes up in another context. After I stopped making games for a living I went into programming language research. My main topic was studying how functional programming languages and object-oriented programming languages can be combined. Something I noticed at the time was that the syntax for functional languages tends to be _verb_ then _noun_: `f(x)`, whereas the syntax for object oriented languages tends to be _noun_ then _verb_: `x.f()`. At some level these can be considered equivalent. You can express with one what you can express with the other. There`'s a big difference in usability though: auto-complete.
+The noun-verb thing comes up in another context. After I stopped making games for a living I went into programming language research. My main topic was studying how functional programming languages and object-oriented programming languages can be combined. Something I noticed at the time was that the syntax for functional languages tends to be _verb_ then _noun_: `f(x)`, whereas the syntax for object oriented languages tends to be _noun_ then _verb_: `x.f()`. At some level these can be considered equivalent. You can express with one what you can express with the other. There's a big difference in usability though: auto-complete.
 
-What happens when we auto-complete `f(x)`? First we need to know all possible `f` that are valid in this context. Since the programmer has just started typing in the expression, _any_ function is valid, and that means there`'s a very long list to choose from. It takes many keystrokes to pick one. Second we need to know all possible `x` that are valid in this context. These are usually local names, so there aren`'t that many. Knowing the type of `f` narrows down the list but the list was already small, so there`'s not much to gain.
+What happens when we auto-complete `f(x)`? First we need to know all possible `f` that are valid in this context. Since the programmer has just started typing in the expression, _any_ function is valid, and that means there's a very long list to choose from. It takes many keystrokes to pick one. Second we need to know all possible `x` that are valid in this context. These are usually local names, so there aren't that many. Knowing the type of `f` narrows down the list but the list was already small, so there's not much to gain.
 
-What happens when we auto-complete `x.f()`? First we need to know all possible `x`. The programmer has just started typing, so any local name is valid, but there aren`'t many. Typing just one character can narrow down the list to one or two elements. Second we need to know all possible `f` that are valid in this context. These are methods defined on the type of `x`, so there aren`'t that many compared to all possible functions. Knowing the type of `x` narrows down the list substantially, so there`'s a lot gained.
+What happens when we auto-complete `x.f()`? First we need to know all possible `x`. The programmer has just started typing, so any local name is valid, but there aren't many. Typing just one character can narrow down the list to one or two elements. Second we need to know all possible `f` that are valid in this context. These are methods defined on the type of `x`, so there aren't that many compared to all possible functions. Knowing the type of `x` narrows down the list substantially, so there's a lot gained.
 
-The two syntaxes seem equivalent in theory but they aren`'t in practice. I wonder if people who use regular text editors end up believing the two syntaxes are equivalent, whereas people who use IDEs prefer the object-oriented syntax, even if they`'re not taking advantage of object-oriented programming (inheritance, subtyping, etc.).
+The two syntaxes seem equivalent in theory but they aren't in practice. I wonder if people who use regular text editors end up believing the two syntaxes are equivalent, whereas people who use IDEs prefer the object-oriented syntax, even if they're not taking advantage of object-oriented programming (inheritance, subtyping, etc.).
 
-This asymmetry is orthogonal to whether you`'re using functional or object-oriented programming. It is better for programmers if they can choose from two medium length lists than to have to choose from a very long list (where a lot has to be typed before it`'s useful) and then a very short list (where not much is gained). You see this in other contexts too. Command line interfaces like DOS, VMS, and Unix shell typically specify a verb first and then the noun(s). GUIs such as Mac and Windows typically specify a noun first by clicking an icon, and then the verb by choosing from the right click menu. In text editors, vim`'s commands like d0 are verb then text selection (noun), whereas in more conventional text editors (including Emacs) you`'d first select some text (the noun) and then invoke a verb like delete. link:http://kakoune.org/why-kakoune/why-kakoune.html[Kakoune] is a modal editor that uses noun-verb instead of verb-noun.
+This asymmetry is orthogonal to whether you're using functional or object-oriented programming. It is better for programmers if they can choose from two medium length lists than to have to choose from a very long list (where a lot has to be typed before it's useful) and then a very short list (where not much is gained). You see this in other contexts too. Command line interfaces like DOS, VMS, and Unix shell typically specify a verb first and then the noun(s). GUIs such as Mac and Windows typically specify a noun first by clicking an icon, and then the verb by choosing from the right click menu. In text editors, vim's commands like d0 are verb then text selection (noun), whereas in more conventional text editors (including Emacs) you'd first select some text (the noun) and then invoke a verb like delete. link:http://kakoune.org/why-kakoune/why-kakoune.html[Kakoune] is a modal editor that uses noun-verb instead of verb-noun.
 ____

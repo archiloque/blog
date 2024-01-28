@@ -28,9 +28,9 @@ We can drastically increase the sample size, but this approach has some drawback
 
 With partitioning, we could have the same sample but per partition, which allows us to increase the accuracy.
 
-This would also be useful when we have correlated data between columns. I will take the example of orders. We have a whole year`'s worth of orders: all the orders that are more than one month old are delivered, those of the last month are 90% delivered (10% are in progress).
+This would also be useful when we have correlated data between columns. I will take the example of orders. We have a whole year's worth of orders: all the orders that are more than one month old are delivered, those of the last month are 90% delivered (10% are in progress).
 
-Intuitively, if I look for an order in progress more than 6 months ago, I should not get any result. On the other hand, if I search for orders in progress for the last month, I should get 10% of the table. But postgres doesn`'t know that, for it, the orders in progress are spread over the whole table.
+Intuitively, if I look for an order in progress more than 6 months ago, I should not get any result. On the other hand, if I search for orders in progress for the last month, I should get 10% of the table. But postgres doesn't know that, for it, the orders in progress are spread over the whole table.
 
 With a partitioning by date, it can estimate that there are no orders in progress for deliveries of more than one month. This approach is mainly used to reduce an estimation error in an execution plan.
 ____
@@ -39,7 +39,7 @@ ____
 
 [quote]
 ____
-Hmm, let`'s think. The `DELETE` statement is able to return data to us as if it were a `SELECT` statement via the `RETURNING` clause, however `DELETE` lacks a `LIMIT` clause, nor can we take row locks on it explicitly. That said, we can use the `USING` clause to join to itself and get both limits and row locks.
+Hmm, let's think. The `DELETE` statement is able to return data to us as if it were a `SELECT` statement via the `RETURNING` clause, however `DELETE` lacks a `LIMIT` clause, nor can we take row locks on it explicitly. That said, we can use the `USING` clause to join to itself and get both limits and row locks.
 This gives us a final query as follows:
 
 [source,sql]
@@ -63,10 +63,10 @@ ____
 
 [quote]
 ____
-I feel like the idea that you can write software that`'s so clear, that it doesn`'t need any documentation, hinges upon some delusion about how clean you can make the abstractions. I think you can always fantasize about having an extremely fancy type system which would capture more of the properties. People work on type systems that capture performance characteristics so you could know some upper bound on the asymptotic complexity of the operations, just by the type signature. But that really is a fantasy. There are no realistic type systems that do a good job of this. And any type system that people use in a real language that actually is practical has quite severe limitations on its expressiveness, on how much it can tell you about what`'s actually going on in the code.
+I feel like the idea that you can write software that's so clear, that it doesn't need any documentation, hinges upon some delusion about how clean you can make the abstractions. I think you can always fantasize about having an extremely fancy type system which would capture more of the properties. People work on type systems that capture performance characteristics so you could know some upper bound on the asymptotic complexity of the operations, just by the type signature. But that really is a fantasy. There are no realistic type systems that do a good job of this. And any type system that people use in a real language that actually is practical has quite severe limitations on its expressiveness, on how much it can tell you about what's actually going on in the code.
 ____
 
 [quote]
 ____
-If you write documentation that`'s very full of examples and very detail-driven, it can be a real slog to get through. It can just be long. And there`'s something lovely about documentation that just says the absolute minimal thing that an educated, or at least a particular kind of educated consumer wants in order to understand what`'s going on. I often feel this way when I read the documentation about a new programming language or a new web framework or whatever. And I feel like I understand this space pretty well. If I talked to the right person, they could give me seven sentences and I would suddenly know exactly in what quadrant of the design space this thing was and how they`'re approaching it. And I would immediately get a lot of knowledge very quickly and very efficiently. And it would be great for me, and for other people it would be utterly useless.
+If you write documentation that's very full of examples and very detail-driven, it can be a real slog to get through. It can just be long. And there's something lovely about documentation that just says the absolute minimal thing that an educated, or at least a particular kind of educated consumer wants in order to understand what's going on. I often feel this way when I read the documentation about a new programming language or a new web framework or whatever. And I feel like I understand this space pretty well. If I talked to the right person, they could give me seven sentences and I would suddenly know exactly in what quadrant of the design space this thing was and how they're approaching it. And I would immediately get a lot of knowledge very quickly and very efficiently. And it would be great for me, and for other people it would be utterly useless.
 ____

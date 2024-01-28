@@ -37,9 +37,9 @@ ____
 
 [quote]
 ____
-Overworking is an interesting vice because it`'s socially acceptable and some view it as a necessary precondition to outsized success. The category of "`socially-acceptable professional vices`" is an interesting one because these vices will hamper your career progress in non-obvious ways, and this is indeed my segue to the actual topic I want to dig into: individual who have higher standards for those around them than their organization supports.
+Overworking is an interesting vice because it's socially acceptable and some view it as a necessary precondition to outsized success. The category of "`socially-acceptable professional vices`" is an interesting one because these vices will hamper your career progress in non-obvious ways, and this is indeed my segue to the actual topic I want to dig into: individual who have higher standards for those around them than their organization supports.
 
-It`'s a truism that you always want to hire folks with very high standards, but I`'ve seen a staggering number of folks fail in an organization primarily because they want to hold others to a higher standard than their organization`'s management is willing to enforce.
+It's a truism that you always want to hire folks with very high standards, but I've seen a staggering number of folks fail in an organization primarily because they want to hold others to a higher standard than their organization's management is willing to enforce.
 ____
 
 
@@ -52,7 +52,7 @@ ____
 
 [quote]
 ____
-A lot of the problems we will encounter seem unavoidable -- they are forced on us by outside constraints. Most of these constraints though are the product not of deliberate choices but of historical accident. We still program like it`'s 1960 because there are powerful path dependencies that incentivise pretending your space age computing machine is actually an 80 character tty. We are trapped in a local maximum.
+A lot of the problems we will encounter seem unavoidable -- they are forced on us by outside constraints. Most of these constraints though are the product not of deliberate choices but of historical accident. We still program like it's 1960 because there are powerful path dependencies that incentivise pretending your space age computing machine is actually an 80 character tty. We are trapped in a local maximum.
 
 One might also argue that these tools are simple enough once you learn to use them. I would only point out that, emperically, that bar is too high. Despite the clear benefits, the vast majority of the world was chosen to remain illiterate. Even tools for which there is a clear need (eg version control) have largely failed to make a dent. Clearly there is a need for a less hostile programming environment.
 ____
@@ -61,7 +61,7 @@ ____
 ____
 Even for experts, programming is an exploratory process. We experiment with libraries, run through examples and iteratively build up features. One of the most painful lessons beginners have to learn is just how often everyone is wrong about everything. Tightening the feedback loop between writing code and seeing the results reduces the damage caused by wrong assumptions, lightens the cognitive load of tracking what should be happening and helps build accurate mental models of the system. The latter is especially important for beginners who often suffer from miscomprehensions about even the basic semantics of the language. Unfortunately, the most you are likely get is automatically refreshing your browser. Maybe a REPL if you are lucky.
 
-Imagine a spreadsheet where every time you change something you must open a terminal, run the compiler and scan through the cell / value pairs in the printout to see the effects of your change. We wouldn`'t put up with UX that appalling in any other tool but somehow that is still the state of the art for programming tools.
+Imagine a spreadsheet where every time you change something you must open a terminal, run the compiler and scan through the cell / value pairs in the printout to see the effects of your change. We wouldn't put up with UX that appalling in any other tool but somehow that is still the state of the art for programming tools.
 ____
 
 
@@ -69,7 +69,7 @@ ____
 
 [quote]
 ____
-This is the hallmark of problems solved by ontological remodeling. You don`'t want to say they`'re tricky, exactly, because the new framework makes them feel pretty approachable. But without the new framework, they`'re basically impossible. Trying to describe the difficulty of these problems is something of a trap, because so much of the difficulty depends on the description. Instead, you need to play around with new forms of expression and see which patterns are easy to describe with those forms.
+This is the hallmark of problems solved by ontological remodeling. You don't want to say they're tricky, exactly, because the new framework makes them feel pretty approachable. But without the new framework, they're basically impossible. Trying to describe the difficulty of these problems is something of a trap, because so much of the difficulty depends on the description. Instead, you need to play around with new forms of expression and see which patterns are easy to describe with those forms.
 ____
 
 
@@ -79,9 +79,9 @@ ____
 ____
 No one wants to see your f-ing carousel
 
-I`'m serious. The only person who wants a carousel on your site is you. That`'s it. It`'s a self-serving vanity project so that you can showcase all of your babies at the same time without telling the world which one is your favorite.
+I'm serious. The only person who wants a carousel on your site is you. That's it. It's a self-serving vanity project so that you can showcase all of your babies at the same time without telling the world which one is your favorite.
 
-If you would like a succinct source telling you why carousels are awful, there is an entire website dedicated to link:https://shouldiuseacarousel.com/[why] you shouldn`'t use carousels].
+If you would like a succinct source telling you why carousels are awful, there is an entire website dedicated to link:https://shouldiuseacarousel.com/[why] you shouldn't use carousels].
 
 There have been numerous studies of the efficacy of carousels over the years. All of them concluded that carousels are terrible.
 ____
@@ -101,20 +101,20 @@ ____
 ____
 A few years ago, I had a _Eureka!_ moment with CSS.
 
-Up until that moment, I had been learning CSS by focusing on the properties and values we write, things like `z-index: 10` or `justify-content: center`. I figured that if I understood broadly what each property did, I`'d have a deep understanding of the language as a whole.
+Up until that moment, I had been learning CSS by focusing on the properties and values we write, things like `z-index: 10` or `justify-content: center`. I figured that if I understood broadly what each property did, I'd have a deep understanding of the language as a whole.
 
-The key realization I had is that CSS is _so much more_ than a collection of properties. It`'s a constellation of inter-connected layout algorithms. Each algorithm is a complex system with its own rules and secret mechanisms.
+The key realization I had is that CSS is _so much more_ than a collection of properties. It's a constellation of inter-connected layout algorithms. Each algorithm is a complex system with its own rules and secret mechanisms.
 
-It`'s not enough to learn what specific properties do. We need to learn how the layout algorithms work, and how they use the properties we provide to them.
+It's not enough to learn what specific properties do. We need to learn how the layout algorithms work, and how they use the properties we provide to them.
 ____
 
 [quote]
 ____
-So, here`'s the point: If you were focusing exclusively on studying what specific CSS properties do, you`'d never understand where this mysterious space is coming from. It isn`'t explained in the MDN pages for `display` or `line-height`.
+So, here's the point: If you were focusing exclusively on studying what specific CSS properties do, you'd never understand where this mysterious space is coming from. It isn't explained in the MDN pages for `display` or `line-height`.
 
-As we`'ve learned in this post, "`inline magic space`" isn`'t really magic at all. It`'s caused by a rule within the Flow layout algorithm that inline elements should be affected by `line-height`. But it seemed magical to me, for many years, because I had this big hole in my mental model.
+As we've learned in this post, "`inline magic space`" isn't really magic at all. It's caused by a rule within the Flow layout algorithm that inline elements should be affected by `line-height`. But it seemed magical to me, for many years, because I had this big hole in my mental model.
 
-There are a lot of layout algorithms in CSS, and they all have their own quirks and hidden mechanisms. When we focus on CSS properties, we`'re only seeing the tip of the iceberg. We never learn about really important concepts like stacking contexts or containing blocks or cascade origins!
+There are a lot of layout algorithms in CSS, and they all have their own quirks and hidden mechanisms. When we focus on CSS properties, we're only seeing the tip of the iceberg. We never learn about really important concepts like stacking contexts or containing blocks or cascade origins!
 ____
 
 
@@ -122,7 +122,7 @@ ____
 
 [quote]
 ____
-Trust on its own isn`'t much of a management technique. Trust cannot distinguish good errors (good process, good decision, bad outcome) from bad errors (bad process, bad decision, bad outcome), nor can it detect bad successes (bad process, bad decision, good outcome). If you rely too heavily on trust, randomness will have an outsized influence on who you consider to be an effective leader.
+Trust on its own isn't much of a management technique. Trust cannot distinguish good errors (good process, good decision, bad outcome) from bad errors (bad process, bad decision, bad outcome), nor can it detect bad successes (bad process, bad decision, good outcome). If you rely too heavily on trust, randomness will have an outsized influence on who you consider to be an effective leader.
 
-However, trust is a powerful component of effective management. In particular, it`'s the foundation of an approach that I call inspected trust. When someone brings a problem or a concern to you, trust them that there is a problem, but give yourself space to independently verify their interpretation of the problem.
+However, trust is a powerful component of effective management. In particular, it's the foundation of an approach that I call inspected trust. When someone brings a problem or a concern to you, trust them that there is a problem, but give yourself space to independently verify their interpretation of the problem.
 ____

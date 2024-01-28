@@ -20,19 +20,19 @@ ____
 == link:https://buriti.ca/6-lessons-i-learned-while-implementing-technical-rfcs-as-a-management-tool-34687dbf46cb[6 Lessons I learned while implementing technical RFCs as a management tool]
 [quote]
 ____
-This situation was the result of a process failure, and given that process is what I ship as the VP of Engineering, I was also responsible for improving the process so the team doesn`'t find itself in these positions. We needed a way to make decisions as a team that would allow us to:
+This situation was the result of a process failure, and given that process is what I ship as the VP of Engineering, I was also responsible for improving the process so the team doesn't find itself in these positions. We needed a way to make decisions as a team that would allow us to:
 
-- enable individual contributors to make decisions for systems they`'re responsible for
-allow domain experts to have input in decisions when they`'re not directly involved in building a particular system
+- enable individual contributors to make decisions for systems they're responsible for
+allow domain experts to have input in decisions when they're not directly involved in building a particular system
 - manage the risk of decisions made
 - include team members without it becoming design by committee
 - have a snapshot of context for the future
 - be asynchronous
 - work on multiple projects in parallel
 
-We weren`'t the first people to encounter this problem, so we looked at how open source software projects dealt with these situations, and came to the conclusion that adopting the link:https://www.ietf.org/rfc.html[RFC] process would help us make better decisions together.
+We weren't the first people to encounter this problem, so we looked at how open source software projects dealt with these situations, and came to the conclusion that adopting the link:https://www.ietf.org/rfc.html[RFC] process would help us make better decisions together.
 
-The RFC process has become one of my favorite tools in managing distributed engineering teams. I implemented it shortly after joining Splice and adopted it Elizabeth & Clarke too. I`'m still learning about how it can help the organizations I lead to make decisions. Given my overall positive experience over the past 3 years using RFCs "`in production`", I thought I`'d share some practical lessons in case you want to try it out.
+The RFC process has become one of my favorite tools in managing distributed engineering teams. I implemented it shortly after joining Splice and adopted it Elizabeth & Clarke too. I'm still learning about how it can help the organizations I lead to make decisions. Given my overall positive experience over the past 3 years using RFCs "`in production`", I thought I'd share some practical lessons in case you want to try it out.
 ____
 
 
@@ -40,14 +40,14 @@ ____
 
 [quote]
 ____
-To tolerate faults, the first step is to detect them, but even that is hard. Most systems don`'t have an accurate mechanism of detecting whether a node has failed, so most distributed algorithms rely on timeouts to determine whether a remote node is still available. However, timeouts can`'t distinguish between network and node failures, and variable network delay sometimes causes a node to be falsely suspected of crashing. Moreover, sometimes a node can be in a degraded state: for example, a Gigabit network interface could suddenly drop to 1 Kb/ s throughput due to a driver bug. Such a node that is "`limping`" but not dead can be even more difficult to deal with than a cleanly failed node.
+To tolerate faults, the first step is to detect them, but even that is hard. Most systems don't have an accurate mechanism of detecting whether a node has failed, so most distributed algorithms rely on timeouts to determine whether a remote node is still available. However, timeouts can't distinguish between network and node failures, and variable network delay sometimes causes a node to be falsely suspected of crashing. Moreover, sometimes a node can be in a degraded state: for example, a Gigabit network interface could suddenly drop to 1 Kb/ s throughput due to a driver bug. Such a node that is "`limping`" but not dead can be even more difficult to deal with than a cleanly failed node.
 
-Once a fault is detected, making a system tolerate it is not easy either: there is no global variable, no shared memory, no common knowledge or any other kind of shared state between the machines. Nodes can`'t even agree on what time it is, let alone on anything more profound. The only way information can flow from one node to another is by sending it over the unreliable network. Major decisions cannot be safely made by a single node, so we require protocols that enlist help from other nodes and try to get a quorum to agree. If you`'re used to writing software in the idealized mathematical perfection of a single computer, where the same operation always deterministically returns the same result, then moving to the messy physical reality of distributed systems can be a bit of a shock. Conversely, distributed systems engineers will often regard a problem as trivial if it can be solved on a single computer, and indeed a single computer can do a lot nowadays. If you can avoid opening Pandora`'s box and simply keep things on a single machine, it is generally worth doing so.
+Once a fault is detected, making a system tolerate it is not easy either: there is no global variable, no shared memory, no common knowledge or any other kind of shared state between the machines. Nodes can't even agree on what time it is, let alone on anything more profound. The only way information can flow from one node to another is by sending it over the unreliable network. Major decisions cannot be safely made by a single node, so we require protocols that enlist help from other nodes and try to get a quorum to agree. If you're used to writing software in the idealized mathematical perfection of a single computer, where the same operation always deterministically returns the same result, then moving to the messy physical reality of distributed systems can be a bit of a shock. Conversely, distributed systems engineers will often regard a problem as trivial if it can be solved on a single computer, and indeed a single computer can do a lot nowadays. If you can avoid opening Pandora's box and simply keep things on a single machine, it is generally worth doing so.
 ____
 
 [quote]
 ____
-Eventual consistency is hard for application developers because it is so different from the behavior of variables in a normal single-threaded program. If you assign a value to a variable and then read it shortly afterward, you don`'t expect to read back the old value, or for the read to fail. A database looks superficially like a variable that you can read and write, but in fact it has much more complicated semantics [3]. When working with a database that provides only weak guarantees, you need to be constantly aware of its limitations and not accidentally assume too much. Bugs are often subtle and hard to find by testing, because the application may work well most of the time. The edge cases of eventual consistency only become apparent when there is a fault in the system (e.g., a network interruption) or at high concurrency.
+Eventual consistency is hard for application developers because it is so different from the behavior of variables in a normal single-threaded program. If you assign a value to a variable and then read it shortly afterward, you don't expect to read back the old value, or for the read to fail. A database looks superficially like a variable that you can read and write, but in fact it has much more complicated semantics [3]. When working with a database that provides only weak guarantees, you need to be constantly aware of its limitations and not accidentally assume too much. Bugs are often subtle and hard to find by testing, because the application may work well most of the time. The edge cases of eventual consistency only become apparent when there is a fault in the system (e.g., a network interruption) or at high concurrency.
 ____
 
 [quote]
@@ -56,7 +56,7 @@ We have drawn some comparisons between message brokers and databases. Even thoug
 
 In fact, a replication log (see "`Implementation of Replication Logs`") is a stream of database write events, produced by the leader as it processes transactions. The followers apply that stream of writes to their own copy of the database and thus end up with an accurate copy of the same data. The events in the replication log describe the data changes that occurred.
 
-We also came across the state machine replication principle in "`Total Order Broadcast`", which states: if every event represents a write to the database, and every replica processes the same events in the same order, then the replicas will all end up in the same final state. (Processing an event is assumed to be a deterministic operation.) It`'s just another case of event streams!
+We also came across the state machine replication principle in "`Total Order Broadcast`", which states: if every event represents a write to the database, and every replica processes the same events in the same order, then the replicas will all end up in the same final state. (Processing an event is assumed to be a deterministic operation.) It's just another case of event streams!
 ____
 
 [quote]
@@ -75,7 +75,7 @@ ____
 ____
 I fear that the culture of ACID databases has led us toward developing applications on the basis of blindly trusting technology (such as a transaction mechanism), and neglecting any sort of auditability in the process. Since the technology we trusted worked well enough most of the time, auditing mechanisms were not deemed worth the investment.
 
-But then the database landscape changed: weaker consistency guarantees became the norm under the banner of NoSQL, and less mature storage technologies became widely used. Yet, because the audit mechanisms had not been developed, we continued building applications on the basis of blind trust, even though this approach had now become more dangerous. Let`'s think for a moment about designing for auditability.
+But then the database landscape changed: weaker consistency guarantees became the norm under the banner of NoSQL, and less mature storage technologies became widely used. Yet, because the audit mechanisms had not been developed, we continued building applications on the basis of blind trust, even though this approach had now become more dangerous. Let's think for a moment about designing for auditability.
 ____
 
 == link:https://ephtracy.github.io/[MagicaVoxel @ ephtracy]

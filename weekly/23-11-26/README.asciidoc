@@ -28,17 +28,17 @@ ____
 
 [quote]
 ____
-This week`'s paper is a draft from Ross Koppel, Sean Smith, Jim Blythe, and Vijay Kothari titled link:https://www.cs.dartmouth.edu/~sws/pubs/ksbk15-draft.pdf[Workarounds to Computer Access in Healthcare Organizations: You Want My Password or a Dead Patient?] First of all, great title. This paper is a work of ethnography, where the authors sat and studied how people in medical settings did their work interacting with computers, and denoted all sorts of workarounds they`'d take to bypass security rules that they judge are a hindrance to their work.
+This week's paper is a draft from Ross Koppel, Sean Smith, Jim Blythe, and Vijay Kothari titled link:https://www.cs.dartmouth.edu/~sws/pubs/ksbk15-draft.pdf[Workarounds to Computer Access in Healthcare Organizations: You Want My Password or a Dead Patient?] First of all, great title. This paper is a work of ethnography, where the authors sat and studied how people in medical settings did their work interacting with computers, and denoted all sorts of workarounds they'd take to bypass security rules that they judge are a hindrance to their work.
 
 The idea behind the paper is that clearly, people behind the computer systems are not working from a realistic understanding of what medical professionals have to contend with to do their job. And maybe, just maybe if they sat and figured out how said professionals do their work, it may be different.
 ____
 
 [quote]
 ____
-They note endemic circumvention of password-based auth. Hospitals and clinics write down passwords everywhere, sometimes as "sticky notes form sticky stalagmites on medical devices and medication preparation room". They`'ve noted things like:
+They note endemic circumvention of password-based auth. Hospitals and clinics write down passwords everywhere, sometimes as "sticky notes form sticky stalagmites on medical devices and medication preparation room". They've noted things like:
 
 * entire hospitals sharing a password for a medical device (the password is taped on the device)
-* emergency rooms`' supply rooms with locked doors but the code is written on the door as well
+* emergency rooms' supply rooms with locked doors but the code is written on the door as well
 * vendors that distribute stickers to put your password on your monitor
 * computers with all employees passwords in a word doc shortcut on the desktop
 ____
@@ -62,9 +62,9 @@ ____
 ____
 Long ago Steve Yegge link:https://steve-yegge.blogspot.com/2007/01/pinocchio-problem.html[wrote] about software that feels alive -- emacs, smalltalk, lisp machines etc -- and lamented that the industry prefers to create dead things. Puppets on strings, not real boys.
 
-I`'m sympathetic. There is a kind of magic to those systems that is worth experiencing. But it`'s also worth examining why we prefer to build puppets.
+I'm sympathetic. There is a kind of magic to those systems that is worth experiencing. But it's also worth examining why we prefer to build puppets.
 
-Because I`'ve had days where I`'ve had to debug my surly emacs boy, and I`'ve quickly discovered that his behaviour has very little to do with the code that I`'m reading. Methods overridden at runtime, traces that end with a call to a closure that no longer exists, event handlers whose execution order depends on side-effects during module loading, stack-traces which contain multiple different versions of the same function. On the worst days I find myself debugging code that doesn`'t even exist on disk but was evaluated in the repl weeks before.
+Because I've had days where I've had to debug my surly emacs boy, and I've quickly discovered that his behaviour has very little to do with the code that I'm reading. Methods overridden at runtime, traces that end with a call to a closure that no longer exists, event handlers whose execution order depends on side-effects during module loading, stack-traces which contain multiple different versions of the same function. On the worst days I find myself debugging code that doesn't even exist on disk but was evaluated in the repl weeks before.
 
 While such systems may be alive, they are only pretending to be a real boy. Lurking inside is something much more hostile to human understanding.
 ____

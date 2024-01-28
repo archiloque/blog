@@ -9,19 +9,19 @@ v1.0, 2021-05-16
 
 [quote]
 ____
-Why can`'t we just use the same techniques for streaming queries as we do for batch queries?
+Why can't we just use the same techniques for streaming queries as we do for batch queries?
 
 _Queries are long lived._ The distribution of data might change over time, and we might not even have any data when we first install the query. A plan that was optimal yesterday might be a disaster today.
 
-_Queries are stateful._ A faster plan might also require more memory. Switching to a different plan while running can incur expensive work to build the state required for the new plan. In the worst case, if historical input isn`'t still available then we might not be able to compute the new state at all.
+_Queries are stateful._ A faster plan might also require more memory. Switching to a different plan while running can incur expensive work to build the state required for the new plan. In the worst case, if historical input isn't still available then we might not be able to compute the new state at all.
 
-_Optimization has multiple objectives._ In the classic database model the only thing we are optimizing for is total runtime. In a streaming system we can tradeoff between throughput, latency, memory usage, bandwidth, installation time, failure tolerance etc. In elastic systems this is even more complicated because our resources aren`'t fixed - maybe the faster plan also costs more money.
+_Optimization has multiple objectives._ In the classic database model the only thing we are optimizing for is total runtime. In a streaming system we can tradeoff between throughput, latency, memory usage, bandwidth, installation time, failure tolerance etc. In elastic systems this is even more complicated because our resources aren't fixed - maybe the faster plan also costs more money.
 
 _There are multiple queries._ Queries can contend with each other for resource eg a shuffle-heavy plan might cause delays for other queries on the same network. At the same time, we can also consider sharing resources like indexes or even entire sub-graphs between queries. To best take advantage of this we need to optimize across multiple queries simultaneously. It might sometimes make sense to choose plans that are individually suboptimal if it allows more sharing between them. But this means that the cost estimate is no longer linear - the total cost of two plans is not just the sum of the costs of each plan - which makes the search problem much harder.
 
-_Data statistics are more complicated._ It`'s not enough to just know the distribution of data at any one time. We also need to know how it evolves over time. Eg consider a table that grows continuously vs a table that stays small but has a high rate of change - they may have the same number of incoming updates but we should plan very differently for these cases.
+_Data statistics are more complicated._ It's not enough to just know the distribution of data at any one time. We also need to know how it evolves over time. Eg consider a table that grows continuously vs a table that stays small but has a high rate of change - they may have the same number of incoming updates but we should plan very differently for these cases.
 
-_Plans may get very deep._ It`'s increasingly common to stack views on views on views. Unfortunately combining cost estimates exactly is currently intractable so we rely on simplifying assumptions (eg no correlation between different predicates) that introduce some degree of error. The deeper the plans get, the more these errors multiply.
+_Plans may get very deep._ It's increasingly common to stack views on views on views. Unfortunately combining cost estimates exactly is currently intractable so we rely on simplifying assumptions (eg no correlation between different predicates) that introduce some degree of error. The deeper the plans get, the more these errors multiply.
 ____
 
 == link:https://zverok.github.io/blog/2021-05-06-how-to-spellcheck.html[I forgot how to spellcheck]
@@ -30,9 +30,9 @@ ____
 ____
 The solution to every intellectual problem lies between two opposites: "`with understanding`" and "`with experience`". Most of the time, we use a mix of both, though one can imagine "`pure understanding, no experience`" and "`pure experience, no understanding`" ways of solving.
 
-When implemented in software, understanding-based (analytical) solutions require a developer to understand the domain fully and reflect it in the code; while experience-based solutions can be created by fitting a few heuristics matching most important cases and then iteratively changing these heuristics (or adding new ones) when new cases are uncovered. This iterative fitting can be performed by the developer or by another algorithm—the latter we now call "`machine learning`" (that`'s a criminal oversimplification, but it is enough for the current context).
+When implemented in software, understanding-based (analytical) solutions require a developer to understand the domain fully and reflect it in the code; while experience-based solutions can be created by fitting a few heuristics matching most important cases and then iteratively changing these heuristics (or adding new ones) when new cases are uncovered. This iterative fitting can be performed by the developer or by another algorithm -- the latter we now call "`machine learning`" (that's a criminal oversimplification, but it is enough for the current context).
 
-There is one common confusion related to using the word "`model`" in ML context -- which isn`'t anything near "`models`" of the problem domain in the analytical sense. I`'d really prefer we name those "`experiences`"; it would be much more appropriate ("`download those experiences of image recognition trained on that dataset, or gather custom experiences from a different dataset by running this training script`"), don`'t you think?
+There is one common confusion related to using the word "`model`" in ML context -- which isn't anything near "`models`" of the problem domain in the analytical sense. I'd really prefer we name those "`experiences`"; it would be much more appropriate ("`download those experiences of image recognition trained on that dataset, or gather custom experiences from a different dataset by running this training script`"), don't you think?
 
 Experience works better than understanding in two base cases (which can be seen as one and the same): i) either the full understanding is too complex/unclear for human to model it in code (image recognition), ii) or there is no underlying "`analytical model`" in the target domain, just an infinite list of edge cases (say, bank scoring).
 ____
@@ -41,17 +41,17 @@ ____
 
 [quote]
 ____
-One of the biggest shifts in data analytics over the past decade is the move away from building "`data cubes`", or "`OLAP cubes`", to running OLAPfootnote:[OLAP means online analytical processing, but we`'ll get into what that means in a bit] workloads directly on columnar databases.
+One of the biggest shifts in data analytics over the past decade is the move away from building "`data cubes`", or "`OLAP cubes`", to running OLAPfootnote:[OLAP means online analytical processing, but we'll get into what that means in a bit] workloads directly on columnar databases.
 
-The decline of the OLAP cube is a huge change, especially if you`'ve built your career in data analytics over the past three decades.
-This is a huge change, especially if you`'ve built your career in data analytics over the past three decades. It may seem bizarre to you that OLAP cubes -- which were so dominant over the past 50 years of business intelligence -- are going away. And you might be rightly skeptical of this shift to columnar databases. What are the tradeoffs? What are the costs? Is this move really as good as all the new vendors say that it is? And of course, there`'s that voice at the back of your head, asking: is this just another fad that will go away, like the NoSQL movement before it? Will it even last?
+The decline of the OLAP cube is a huge change, especially if you've built your career in data analytics over the past three decades.
+This is a huge change, especially if you've built your career in data analytics over the past three decades. It may seem bizarre to you that OLAP cubes -- which were so dominant over the past 50 years of business intelligence -- are going away. And you might be rightly skeptical of this shift to columnar databases. What are the tradeoffs? What are the costs? Is this move really as good as all the new vendors say that it is? And of course, there's that voice at the back of your head, asking: is this just another fad that will go away, like the NoSQL movement before it? Will it even last?
 
-This essay seeks to be an exhaustive resource on the history and development of the OLAP cube, and the current shift away from it. We`'ll start with definitions of the terminology (OLAP vs OLTP), cover the emergence of the OLAP cube, and then explore the emergence of columnar data warehouses as an alternative approach to OLAP workloads.
+This essay seeks to be an exhaustive resource on the history and development of the OLAP cube, and the current shift away from it. We'll start with definitions of the terminology (OLAP vs OLTP), cover the emergence of the OLAP cube, and then explore the emergence of columnar data warehouses as an alternative approach to OLAP workloads.
 ____
 
 [quote]
 ____
-"`"So what is OLAP?`" you might ask. The easiest way to explain this is to describe the two types of business application usage. Let`'s say that you run a car dealership. There are two kinds of database-backed operations that you need to do:
+"`"So what is OLAP?`" you might ask. The easiest way to explain this is to describe the two types of business application usage. Let's say that you run a car dealership. There are two kinds of database-backed operations that you need to do:
 
 . You need to use a database as part of some business process. For instance, your salesperson sells the latest Honda Civic to a customer, and you need to record this transaction in a business application. You do this for operational reasons: you need a way to keep track of the deal, you need a way to contact the customer when the car loan or insurance is finally approved, and you need it to calculate sales bonuses for your salesperson at the end of the month.
 . You use a database as part of analysis. Periodically, you will need to collate numbers to understand how your overall business is doing. In his 1993 paper, Codd called this activity ‘"`decision-making-support`". These queries are things like "`how many Honda Civics were sold in London the last 3 months?`" and "`who are the most productive salespeople?`" and "`are sedans or SUVs selling better overall?`" These are questions you ask at the end of a month or a quarter to guide your business planning for the near future.
@@ -69,24 +69,24 @@ ____
 
 [quote]
 ____
-Whilst some people employ lightweight modeling techniques such as link:https://c4model.com/[C4], most diagrams in use today, are what I call, somewhat derogatorily, _masala diagrams_. No hard feelings, I call my own diagrams like this. Why masala? Because they are informal; they cover multiple dimensions at once, they may be both structural and behavioural, logical and physical. They are often a mishmash of the link:https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf[4+1 architectural model`'s] views.
+Whilst some people employ lightweight modeling techniques such as link:https://c4model.com/[C4], most diagrams in use today, are what I call, somewhat derogatorily, _masala diagrams_. No hard feelings, I call my own diagrams like this. Why masala? Because they are informal; they cover multiple dimensions at once, they may be both structural and behavioural, logical and physical. They are often a mishmash of the link:https://www.cs.ubc.ca/~gregor/teaching/papers/4+1view-architecture.pdf[4+1 architectural model's] views.
 
 Multi-million systems, upon which your life and finances depend, are devised, funded and executed entirely on the back of said masala diagrams, with often no more additional collateral than a bunch of epics and user stories.
 
-Ernie, surely my bank`'s mortgage system hasn`'t been architected using one of these dreadful masala models that you describe.
+Ernie, surely my bank's mortgage system hasn't been architected using one of these dreadful masala models that you describe.
 
-That can`'t be right? Yes, if your bank isn`'t running CICS, and the solution was sold last year, it is very likely that it had been entirely conceived using the very same kind of masala diagrams that I am talking about.
+That can't be right? Yes, if your bank isn't running CICS, and the solution was sold last year, it is very likely that it had been entirely conceived using the very same kind of masala diagrams that I am talking about.
 
-Has the world gone mad? No, it`'s just that we have just given up on the _engineering_ side of software. It is just a _coding affair_ for now. I am not saying that those who write software aren`'t engineers themselves; they largely are. The point is that, _at the organizational level, software isn`'t being engineered any longer_, as per the equivalent processes and artifacts found in disciplines such as mechanical engineering. Boeing would never order a jet engine from Rolls Royce on the back of a set of said informal masala diagrams.
+Has the world gone mad? No, it's just that we have just given up on the _engineering_ side of software. It is just a _coding affair_ for now. I am not saying that those who write software aren't engineers themselves; they largely are. The point is that, _at the organizational level, software isn't being engineered any longer_, as per the equivalent processes and artifacts found in disciplines such as mechanical engineering. Boeing would never order a jet engine from Rolls Royce on the back of a set of said informal masala diagrams.
 
-Masala diagrams have a role though. If you take them for what they are, they can be beautiful things. See, _they aren`'t specs_. Their purpose is to evoke emotions. Masala diagrams are valuable when _they spark joy_ in the heart of every stakeholder the diagram is intended for, as per link:https://www.amazon.co.uk/dp/B0186O2N2O/[Marie Kondo`'s] principle.
+Masala diagrams have a role though. If you take them for what they are, they can be beautiful things. See, _they aren't specs_. Their purpose is to evoke emotions. Masala diagrams are valuable when _they spark joy_ in the heart of every stakeholder the diagram is intended for, as per link:https://www.amazon.co.uk/dp/B0186O2N2O/[Marie Kondo's] principle.
 ____
 
 == link:https://leaddev.com/scaling-software-systems/primer-engineering-delivery-metrics[A primer on engineering delivery metrics]
 
 [quote]
 ____
-Unfortunately, metrics have been used to judge individual performance in ways that have negatively impacted employees beyond their actual performance, such as using lines of code. These poor management practices have eroded the trust between management and collaborators, and it`'s normal for engineers to approach metrics with skepticism. 
+Unfortunately, metrics have been used to judge individual performance in ways that have negatively impacted employees beyond their actual performance, such as using lines of code. These poor management practices have eroded the trust between management and collaborators, and it's normal for engineers to approach metrics with skepticism. 
 
 To successfully convince your team to adopt delivery metrics, you must have an obvious purpose for the metrics and solid reasoning for the outcomes you seek. Some questions you should be able to answer to your team members about your intention of measuring the delivery process can be:
 

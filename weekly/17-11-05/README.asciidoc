@@ -4,16 +4,16 @@ v1.0, 2017-11-05
 :article_lang: en
 :article_description: Software design, cost center trap
 
-== link:https://ramcloud.atlassian.net/wiki/spaces/RAM/pages/6848550/Software+Design+Philosophy[John Ousterhout`'s software design philosophy]
+== link:https://ramcloud.atlassian.net/wiki/spaces/RAM/pages/6848550/Software+Design+Philosophy[John Ousterhout's software design philosophy]
 
 [quote]
 ____
-Avoid "`thin`" classes. Ideally, a class should have a very simple interface that hides a lot of functionality and internal complexity; said another way, its ratio of volume/(surface area) should be large. I call such classes "`sweet`"; in general I use the term "`sweet`" to refer to software systems that have a high ratio of power/complexity. A thin class is the opposite of this: in the worst case, the interface is just about as complex as the implementation (i.e. I could have rewritten the class in the same time it took me to learn how to use it). The classic example of a thin class is one that implements a linked list. There`'s no interesting functionality being hidden here, so there`'s almost no advantage in having such a class; it just adds to the system`'s complexity.
+Avoid "`thin`" classes. Ideally, a class should have a very simple interface that hides a lot of functionality and internal complexity; said another way, its ratio of volume/(surface area) should be large. I call such classes "`sweet`"; in general I use the term "`sweet`" to refer to software systems that have a high ratio of power/complexity. A thin class is the opposite of this: in the worst case, the interface is just about as complex as the implementation (i.e. I could have rewritten the class in the same time it took me to learn how to use it). The classic example of a thin class is one that implements a linked list. There's no interesting functionality being hidden here, so there's almost no advantage in having such a class; it just adds to the system's complexity.
 ____
 
 [quote]
 ____
-Think of classes as martyrs. The best classes are those that bring suffering on themselves to make the world a better place for everyone else. It`'s okay if a class is complicated internally, as long as it presents a really simple and powerful interface to the rest of the world. Of course, it`'s even better if you can figure out how to decompose the class internally so it`'s not so complex. But if complexity is inevitable, better to encapsulate it in one class rather than spread the complexity across a large number of callers. Or, said another way, push complexity down, not up.
+Think of classes as martyrs. The best classes are those that bring suffering on themselves to make the world a better place for everyone else. It's okay if a class is complicated internally, as long as it presents a really simple and powerful interface to the rest of the world. Of course, it's even better if you can figure out how to decompose the class internally so it's not so complex. But if complexity is inevitable, better to encapsulate it in one class rather than spread the complexity across a large number of callers. Or, said another way, push complexity down, not up.
 ____
 
 == link:http://www.leanessays.com/2017/11/the-cost-center-trap.html[The cost center trap]

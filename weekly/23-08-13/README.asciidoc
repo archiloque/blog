@@ -14,14 +14,14 @@ ____
 
 [quote]
 ____
-Everybody just loves to accidentally start implementing a database, and it`'s always just queues isn`'t it?
+Everybody just loves to accidentally start implementing a database, and it's always just queues isn't it?
 ____
 
 == link:https://www.tedinski.com/2018/10/02/two-sides-to-every-coin.html[The insides and outsides of abstractions]
 
 [quote]
 ____
-There`'s a long tradition of believing that you can bring non-programmers in to do programming if only X wasn`'t standing in the way, whatever X is. This has never worked. The one place it has ever had the appearance of working is spreadsheets. But spreadsheets are really just _also programming_, and we just don`'t really give them the credit they deserve. Spreadsheets are a friendly way to dip your toe into (yes, real) programming. But a lot of these other kinds of tools seem to think it`'s syntax that`'s the problem, and it`'s not. You have to think abstractly and be able to write, test, and debug code. Programming is programming, regardless of syntax.
+There's a long tradition of believing that you can bring non-programmers in to do programming if only X wasn't standing in the way, whatever X is. This has never worked. The one place it has ever had the appearance of working is spreadsheets. But spreadsheets are really just _also programming_, and we just don't really give them the credit they deserve. Spreadsheets are a friendly way to dip your toe into (yes, real) programming. But a lot of these other kinds of tools seem to think it's syntax that's the problem, and it's not. You have to think abstractly and be able to write, test, and debug code. Programming is programming, regardless of syntax.
 ____
 
 
@@ -29,16 +29,16 @@ ____
 
 [quote]
 ____
-The traditional object-oriented design aesthetic involves a lot of emphasis on encapsulation to achieve loose coupling. The actual designs of data are to be hidden away, so that they can change. Interfaces necessarily hide data members, because you don`'t know what actual implementation of that interface you might get. Hiding away data representation often gets sold as the key thing that makes OO good at breaking down large problems into smaller pieces.
+The traditional object-oriented design aesthetic involves a lot of emphasis on encapsulation to achieve loose coupling. The actual designs of data are to be hidden away, so that they can change. Interfaces necessarily hide data members, because you don't know what actual implementation of that interface you might get. Hiding away data representation often gets sold as the key thing that makes OO good at breaking down large problems into smaller pieces.
 
-But here we are, looking at how compilers are designed, and we`'re achieving loose coupling between components by exposing a data schema, publicly committing to all its representational details. Nothing is encapsulated at all.
+But here we are, looking at how compilers are designed, and we're achieving loose coupling between components by exposing a data schema, publicly committing to all its representational details. Nothing is encapsulated at all.
 
 "`But what if we need to change that representation?`" one might ask. But this is no real objection. You can make breaking changes to interfaces, too. If it looks like you want to make a breaking change to an interface, you either make the breaking change, or you define a new version of the interface next to it. Likewise with data like this. Data can be an interface.
 
-The fact that data can be an interface should be kind of obvious (file formats? DB schemas? protocols?) but this fact seems to get lost in some OO ideology. It`'s a natural tool to use between systems, but it often seems to get lost when we`'re design a single program in an OO language. Instead of passing data from one part of the system to another, we often end up passing references to objects, which ends up creating a dependency between those parts.
+The fact that data can be an interface should be kind of obvious (file formats? DB schemas? protocols?) but this fact seems to get lost in some OO ideology. It's a natural tool to use between systems, but it often seems to get lost when we're design a single program in an OO language. Instead of passing data from one part of the system to another, we often end up passing references to objects, which ends up creating a dependency between those parts.
 ____
 
-== link:https://clojure-goes-fast.com/blog/clojures-deadly-sin/[Clojure`'s deadly sin]
+== link:https://clojure-goes-fast.com/blog/clojures-deadly-sin/[Clojure's deadly sin]
 
 [quote]
 ____
@@ -59,26 +59,26 @@ ____
 
 [quote]
 ____
-We have, in other words, our hauntings. The presences that come along with software make an end-user`'s work more difficult or less, concealed under a more unified presentation, in a way that resembles a hypothetical normal-looking house that happens to have presences left over from prior inhabitants.
+We have, in other words, our hauntings. The presences that come along with software make an end-user's work more difficult or less, concealed under a more unified presentation, in a way that resembles a hypothetical normal-looking house that happens to have presences left over from prior inhabitants.
 ____
 
 [quote]
 ____
-Likewise, making software "`professional`" often involves a long process of tracking down and exterminating those idiosyncrasies, to replace them with—in effect—the ghost of the corporation that owns and sells the software. In that context, the software needs to "`speak`" with a single voice, not many distinctive voices.
+Likewise, making software "`professional`" often involves a long process of tracking down and exterminating those idiosyncrasies, to replace them with -- in effect -- the ghost of the corporation that owns and sells the software. In that context, the software needs to "`speak`" with a single voice, not many distinctive voices.
 ____
 
 == link:https://mjg59.dreamwidth.org/67126.html[Updating Fedora the unsupported way]
 
 [quote]
 ____
-You should not do this. I should not do this. This was a terrible idea. Any situation where you`'re binary patching your package manager to get it to let you do something is obviously a bad situation. And with hindsight performing 5 independent upgrades might have been faster. But that would have just involved me typing the same thing 5 times, while this way I learned something. And what I learned is "`Terrible ideas sometimes work and so you should definitely act upon them rather than doing the sensible thing`", so like I said, you should not do this in case you learn the same lesson.
+You should not do this. I should not do this. This was a terrible idea. Any situation where you're binary patching your package manager to get it to let you do something is obviously a bad situation. And with hindsight performing 5 independent upgrades might have been faster. But that would have just involved me typing the same thing 5 times, while this way I learned something. And what I learned is "`Terrible ideas sometimes work and so you should definitely act upon them rather than doing the sensible thing`", so like I said, you should not do this in case you learn the same lesson.
 ____
 
 == link:https://utcc.utoronto.ca/~cks/space/blog/linux/LongTermSupportNoMoreFree[On the future of free long term support for Linux distributions]
 
 [quote]
 ____
-People using Linux distributions have for years been in the fortunate position that companies with money were willing to fund a lot of painstaking work and then make the result available for free. One of the artifacts of this was free distributions with long support periods. My view is that this supply of corporate money is in the process of drying up, and with it will go that free long term support. This won`'t be a pleasant process.
+People using Linux distributions have for years been in the fortunate position that companies with money were willing to fund a lot of painstaking work and then make the result available for free. One of the artifacts of this was free distributions with long support periods. My view is that this supply of corporate money is in the process of drying up, and with it will go that free long term support. This won't be a pleasant process.
 ____
 
 == link:https://www.atvbt.com/the-carrot-problem/[Carrot problems]
@@ -87,18 +87,18 @@ ____
 ____
 In World War II, the story goes, the British invented a new kind of onboard radar that allowed its pilots to shoot down German planes at night.
 
-They didn`'t want the Germans to know about this technology, but they had to give an explanation for their new, improbable powers.
+They didn't want the Germans to know about this technology, but they had to give an explanation for their new, improbable powers.
 
 So they invented a propaganda campaign that claimed their pilots had developed exceptional eyesight by eating "`an excess of carrots`".
 
-If you`'re going to trick people into doing something pointless, eating excessive carrots seems like one of the better ones. Still, there`'s an issue: people who believed the propaganda and tried to get super-sight would be spending time and effort on something that couldn`'t possibly solve their issue.
+If you're going to trick people into doing something pointless, eating excessive carrots seems like one of the better ones. Still, there's an issue: people who believed the propaganda and tried to get super-sight would be spending time and effort on something that couldn't possibly solve their issue.
 
-I`'ll call this a Carrot Problem.
+I'll call this a Carrot Problem.
 
-Once you look for Carrot Problems, you see them everywhere. Essentially, any time someone achieves success in a way they don`'t want to admit publicly, they have to come up with an excuse for their abilities. And that means misleading a bunch of people into (potentially) wasting their time, or worse.
+Once you look for Carrot Problems, you see them everywhere. Essentially, any time someone achieves success in a way they don't want to admit publicly, they have to come up with an excuse for their abilities. And that means misleading a bunch of people into (potentially) wasting their time, or worse.
 ____
 
 [quote]
 ____
-It`'s impossible to know the scale of Carrot Problems in business: it`'s possible that every successful business got there by doing something ugly, but you`'ll never know that by reading public statements. Most business biographies become useless once you realise that they`'re Carrot Problemmed. For this reason, Carrot Problems greatly increase the value of being an "`insider`".
+It's impossible to know the scale of Carrot Problems in business: it's possible that every successful business got there by doing something ugly, but you'll never know that by reading public statements. Most business biographies become useless once you realise that they're Carrot Problemmed. For this reason, Carrot Problems greatly increase the value of being an "`insider`".
 ____

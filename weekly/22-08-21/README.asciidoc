@@ -3,17 +3,17 @@ Julien Kirch
 v1.0, 2022-08-21
 :article_lang: en
 :figure-caption!:
-:article_description: We don`'t do that here, insidious bugs, implicit practice, TDD, files that change together
+:article_description: We don't do that here, insidious bugs, implicit practice, TDD, files that change together
 
-== link:https://thagomizer.com/blog/2017/09/29/we-don-t-do-that-here.html[We don`'t do that here]
+== link:https://thagomizer.com/blog/2017/09/29/we-don-t-do-that-here.html[We don't do that here]
 
 [quote]
 ____
 If no one has told you yet, as your career in tech progresses you will
 eventually become a "`custodian of culture`". If you run a meetup or a
 team, if you lead an open source project, or if you organize an event
-people will be looking to you to know what is and isn`'t okay in that
-space. You get this responsibility whether you want it or not. You don`'t
+people will be looking to you to know what is and isn't okay in that
+space. You get this responsibility whether you want it or not. You don't
 have to be internet famous to have this responsibility. If there are
 people you work with who have been around for less time than you, then
 you are going to help set the culture for them.
@@ -24,26 +24,26 @@ trying to create an environment that welcomes all types of people.
 Setting boundaries for acceptable behavior can be scary, and it can have
 both personal and professional consequences. Because it is scary, I
 fought my responsibility to set the culture of my groups for a long
-time. I didn`'t want to be the one telling folks to knock it off and
+time. I didn't want to be the one telling folks to knock it off and
 treat others with respect.
 
-This is when I pull out "`we don`'t do that here.`" It is a conversation
+This is when I pull out "`we don't do that here.`" It is a conversation
 ender. If you are the newcomer and someone who has been around a long
-time says "`we don`'t do that here`", it is hard to argue. This sentence
-doesn`'t push my morality on anyone. If they want to do whatever it is
-elsewhere, I`'m not telling them not to. I`'m just cluing them into the
+time says "`we don't do that here`", it is hard to argue. This sentence
+doesn't push my morality on anyone. If they want to do whatever it is
+elsewhere, I'm not telling them not to. I'm just cluing them into the
 local culture and values. If I deliver this sentence well it carries no
 more emotional weight than saying, "`in Japan, people drive on the left.`"
-"`We don`'t do that here`" should be a statement of fact and nothing more.
+"`We don't do that here`" should be a statement of fact and nothing more.
 It clearly and concisely sets a boundary, and also makes it easy to
 disengage with any possible rebuttals.
 
 [quote]
 _____
-Me: "`You are standing in that person`'s personal space. We don`'t do that
+Me: "`You are standing in that person's personal space. We don't do that
 here.`" +
 Them: "`But I was trying to be nice.`" +
-Me: "`Awesome, but we don`'t stand so close to people here.`" +
+Me: "`Awesome, but we don't stand so close to people here.`" +
 _____
 ____
 
@@ -51,19 +51,19 @@ ____
 
 [quote]
 ____
-I`'ve tracked down a bug or two. I haven`'t recorded them all rigorously enough to make a scientific case, but I have noticed something: the longer I spend chasing it, the more likely it becomes that the fix is a one-liner.
+I've tracked down a bug or two. I haven't recorded them all rigorously enough to make a scientific case, but I have noticed something: the longer I spend chasing it, the more likely it becomes that the fix is a one-liner.
 
-By the time I`'ve sunk about four hours, it`'s almost guaranteed to be a one-liner.
+By the time I've sunk about four hours, it's almost guaranteed to be a one-liner.
 
-I used to think this was some kind of psychological bias, the way it only ever seems to rain when you didn`'t pack an umbrella. But now I see why this happens.
+I used to think this was some kind of psychological bias, the way it only ever seems to rain when you didn't pack an umbrella. But now I see why this happens.
 
 _The reason: insidious bugs come from inaccurate assumptions_. This is why I bolded the text "`reflexively assumed`" in the example above.
 
-But it`'s not _just_ that insidious bugs come from inaccurate assumptions. It`'s deeper than that: _insidiousness as a characteristic of bugs comes from inaccurate assumptions_. We`'re looking in the code when the problem is rooted in our understanding. It takes an awfully long time to find something when we`'re looking in the wrong place.
+But it's not _just_ that insidious bugs come from inaccurate assumptions. It's deeper than that: _insidiousness as a characteristic of bugs comes from inaccurate assumptions_. We're looking in the code when the problem is rooted in our understanding. It takes an awfully long time to find something when we're looking in the wrong place.
 
-When we name things, we`'re not just encoding our understanding; we`'re creating our understanding. This is true to a freaky degree. I talked about that more in link:https://chelseatroy.com/2018/09/03/build-graceful-processes-an-approach-to-code-design/[this other post]. How we name things shapes how we understand them. And _also_, how we name things is _influenced_  by how we understand them.
+When we name things, we're not just encoding our understanding; we're creating our understanding. This is true to a freaky degree. I talked about that more in link:https://chelseatroy.com/2018/09/03/build-graceful-processes-an-approach-to-code-design/[this other post]. How we name things shapes how we understand them. And _also_, how we name things is _influenced_  by how we understand them.
 
-It`'s hard for us to detect when our assumptions about a system are wrong because it`'s hard for us to detect when we`'re making assumptions at all. Assumptions, by definition, describe things we`'re taking for granted. They include all the details into which we are _not putting thought_. I talked more about assumption detection in link:https://chelseatroy.com/2019/03/25/pearconf-talk-the-technology-and-psychology-of-refactoring/[this piece on refactoring]. I believe that improving our ability to detect and question our assumptions plays a critical role in solving existing insidious bugs and preventing future ones.
+It's hard for us to detect when our assumptions about a system are wrong because it's hard for us to detect when we're making assumptions at all. Assumptions, by definition, describe things we're taking for granted. They include all the details into which we are _not putting thought_. I talked more about assumption detection in link:https://chelseatroy.com/2019/03/25/pearconf-talk-the-technology-and-psychology-of-refactoring/[this piece on refactoring]. I believe that improving our ability to detect and question our assumptions plays a critical role in solving existing insidious bugs and preventing future ones.
 ____
 
 == link:https://andymatuschak.org/sight-reading/[Implicit practice: a sight reading parable]
@@ -72,11 +72,11 @@ ____
 ____
 Competitive athletes, musicians, and dancers work tirelessly -- often with a stable of coaches -- to assess, develop, and maintain the core skills of their disciplines. They watch tape of themselves. They measure their performance at microtasks intended to isolate specific core skills. Decades into their career, they still practice scales, or perform plyometric exercises, or whatever else they need to do to maintain top performance.
 
-By contrast, knowledge worker friends will sometimes tell me about studying a new programming language, or brushing up on their statistics with a tutor. But I notice that these "`training`" efforts are usually temporary and focused on subject matter, rather than on "`core skills`" analogous to those an athlete or performing artist might refine daily. It`'s rare that a knowledge worker tells me about a diligent ongoing training program to improve their skills at reading difficult texts, or synthesizing insights, or sharpening their research questions.
+By contrast, knowledge worker friends will sometimes tell me about studying a new programming language, or brushing up on their statistics with a tutor. But I notice that these "`training`" efforts are usually temporary and focused on subject matter, rather than on "`core skills`" analogous to those an athlete or performing artist might refine daily. It's rare that a knowledge worker tells me about a diligent ongoing training program to improve their skills at reading difficult texts, or synthesizing insights, or sharpening their research questions.
 
-In his book summarizing a career spent studying deliberate practice and elite performance, K. Anders Ericsson suggests{empty}footnote:[See his book link:https://www.amazon.com/Peak-Secrets-New-Science-Expertise-ebook/dp/B011H56MKS/ref=tmm_kin_swatch_0?_encoding=UTF8&qid=&sr=[Peak] (2016) with Robert Pool, p. 98.] that we shouldn`'t be surprised by the omission. The core skills of tennis and ballet have been systematically characterized; they can be easily and objectively assessed; for each skill, we know practice activities which can can improve performance. The same can`'t be said (yet) for the skills of a scientist, or a startup founder.
+In his book summarizing a career spent studying deliberate practice and elite performance, K. Anders Ericsson suggests{empty}footnote:[See his book link:https://www.amazon.com/Peak-Secrets-New-Science-Expertise-ebook/dp/B011H56MKS/ref=tmm_kin_swatch_0?_encoding=UTF8&qid=&sr=[Peak] (2016) with Robert Pool, p. 98.] that we shouldn't be surprised by the omission. The core skills of tennis and ballet have been systematically characterized; they can be easily and objectively assessed; for each skill, we know practice activities which can can improve performance. The same can't be said (yet) for the skills of a scientist, or a startup founder.
 
-But I don`'t think this is the whole story. When I talk to serious knowledge workers about this disparity between themselves and athletes, I`'ll often hear a response which sounds like: "`I do practice the skills you`'re talking about, every day, as part of my work. I`'m reading memos and synthesizing insights and formulating questions all the time`". The implied belief is that they practice these skills _implicitly_, as part of their routine work -- so they don`'t need the dedicated assessment and development used in these other fields.
+But I don't think this is the whole story. When I talk to serious knowledge workers about this disparity between themselves and athletes, I'll often hear a response which sounds like: "`I do practice the skills you're talking about, every day, as part of my work. I'm reading memos and synthesizing insights and formulating questions all the time`". The implied belief is that they practice these skills _implicitly_, as part of their routine work -- so they don't need the dedicated assessment and development used in these other fields.
 
 Ericsson and co-authors tackle this objection in another paper{empty}footnote:[link:http://andymatuschak.org/files/papers/Ericsson%20et%20al%20-%201993%20-%20The%20role%20of%20deliberate%20practice%20in%20the%20acquisition%20of%20expert%20performance.pdf[Ericsson et al. (1993). The role of deliberate practice in the acquisition of expert performance.] See page 368.]:
 
@@ -85,7 +85,7 @@ _____
 Although work activities offer some opportunities for learning, they are far from optimal. In contrast, deliberate practice would allow for repeated experiences in which the individual can attend to the critical aspects of the situation and incrementally improve her or his performance in response to knowledge of results, feedback, or both from a teacher. … During a 3-hr baseball game, a batter may get only 5-15 pitches (perhaps one or two relevant to a particular weakness), whereas during optimal practice of the same duration, a batter working with a dedicated pitcher has several hundred batting opportunities, where this weakness can be systematically explored … In contrast to play, deliberate practice is a highly structured activity, the explicit goal of which is to improve performance. Specific tasks are invented to overcome weaknesses, and performance is carefully monitored to provide cues for ways to improve it further.
 _____
 
-I`'ve learned (the hard way) this past year that there`'s a type of situation in which implicit practice will often fail -- and fail invisibly. I hope this story might help you spot places where a similar pattern occurs in your life.
+I've learned (the hard way) this past year that there's a type of situation in which implicit practice will often fail -- and fail invisibly. I hope this story might help you spot places where a similar pattern occurs in your life.
 ____
 
 == link:https://buttondown.email/hillelwayne/archive/i-have-complicated-feelings-about-tdd-8403/[I have complicated feelings about TDD]

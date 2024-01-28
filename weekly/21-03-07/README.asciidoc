@@ -11,7 +11,7 @@ v1.0, 2021-03-07
 ____
 Try to avoid the serious mistake of having your data "`architecture`" centered around a single huge table
 
-You`'d be surprised how often we see that… so slice and dice early, or set up some partitioning. Partitioning will also do a lot of good to the long-term health of the database, since it allows multiple autovacuum workers on the same logical table, and it can speed up IO considerably on enterprise storage. If IO indeed becomes a bottleneck at some point, you can employ Postgres native remote partitions, so that some older data lives on another node.
+You'd be surprised how often we see that… so slice and dice early, or set up some partitioning. Partitioning will also do a lot of good to the long-term health of the database, since it allows multiple autovacuum workers on the same logical table, and it can speed up IO considerably on enterprise storage. If IO indeed becomes a bottleneck at some point, you can employ Postgres native remote partitions, so that some older data lives on another node.
 
 Make sure to "`bake in`" a proper sharding key for your tables/databases
 
@@ -56,7 +56,7 @@ ON transactions(cancelled_by_user_id)
 WHERE cancelled_by_user_id IS NOT NULL;
 ----
 
-The full index after we reindexed it was 769MB in size, with more than 99% null values. The partial index that excluded null values was less than 5MB. That`'s more than 99% percent of dead weight shaved off the index!
+The full index after we reindexed it was 769MB in size, with more than 99% null values. The partial index that excluded null values was less than 5MB. That's more than 99% percent of dead weight shaved off the index!
 ____
 
 == link:https://nchammas.com/writing/data-pipeline-materialized-view[A Data Pipeline is a Materialized View]
@@ -85,13 +85,13 @@ The update trigger and granularity are independent. You can have a pipeline that
 
 Typical Examples
 
-Let`'s explore these two properties a bit using our example pipeline that computes the top-selling authors of the month.
+Let's explore these two properties a bit using our example pipeline that computes the top-selling authors of the month.
 
 The Daily Batch Update
 
 Every night at 1 a.m., an automated process looks for a dump of the latest purchases from the previous day. The dump is a compressed CSV file.
 
-The update process uses this dump to recompute the month`'s sales numbers for all authors. It replaces the entire output table with all-new calculations for all authors. Many of the authors`' numbers may not have changed since the last update (because they had no new sales in that time period), but they all get recomputed nonetheless.
+The update process uses this dump to recompute the month's sales numbers for all authors. It replaces the entire output table with all-new calculations for all authors. Many of the authors' numbers may not have changed since the last update (because they had no new sales in that time period), but they all get recomputed nonetheless.
 
 This is a very typical example of a batch pipeline. It has a scheduled update trigger at 1 a.m. every night, and an update granularity of the entire output.
 
@@ -104,11 +104,11 @@ The update process uses each individual purchase to incrementally recompute the 
 This is an example of a precise streaming pipeline. The update trigger is the purchase event that is streamed in, and the update granularity is the sales total for a single author.
 ____
 
-== link:https://blog.yossarian.net/2021/02/28/Weird-architectures-werent-supported-to-begin-with[Weird architectures weren`'t supported to begin with]
+== link:https://blog.yossarian.net/2021/02/28/Weird-architectures-werent-supported-to-begin-with[Weird architectures weren't supported to begin with]
 
 [quote]
 ____
-Program packagers and distributors (frequently separate from project maintainers themselves) are very used to C`'s universal presence. They`'re so used to it that they`'ve built generic mechanisms for putting entire distributions onto new architectures with only a single assumption: the presence of a serviceable C compiler.
+Program packagers and distributors (frequently separate from project maintainers themselves) are very used to C's universal presence. They're so used to it that they've built generic mechanisms for putting entire distributions onto new architectures with only a single assumption: the presence of a serviceable C compiler.
 ____
 
 [quote]
@@ -116,12 +116,12 @@ ____
 A long term solution to the problem of support for platforms not originally considered by project authors is going to be two-pronged:
 
 * Builds need to be _observable_ and _reviewable_: project maintainers should be able to get the exact invocations _and_ dependencies that a build was conducted with and perform automatic triaging of build information. This will require environment and ecosystem-wide changes: object and packaging formats will need to be updated; standards for metadata and sharing information from an arbitrary distributor to a project will need to be devised. Reasonable privacy concerns about the scope of information and its availability will need to be addressed.
-* Reporting needs to be better directed: individual (minimally technical!) end users should be able to figure out _what_ exactly is failing and who to phone when it falls over. That means _rigorously tracking_ the patches that distributors apply (see build observability above) and creating mechanisms that deliver information to the people who need it. Those same mechanisms need to have some mechanism for interaction: there`'s nothing worse than a flood of automated, bug reports with insufficient context.
+* Reporting needs to be better directed: individual (minimally technical!) end users should be able to figure out _what_ exactly is failing and who to phone when it falls over. That means _rigorously tracking_ the patches that distributors apply (see build observability above) and creating mechanisms that deliver information to the people who need it. Those same mechanisms need to have some mechanism for interaction: there's nothing worse than a flood of automated, bug reports with insufficient context.
 ____
 
 [quote]
 ____
-I put this one last because it`'s flippant, but it`'s maybe the most important one: outside of hobbyists playing with weird architectures for fun (and accepting the overwhelming likelihood that most projects won`'t immediately work for them), open source groups should not be unconditionally supporting the ecosystem for a large corporation`'s hardware and/or platforms.
+I put this one last because it's flippant, but it's maybe the most important one: outside of hobbyists playing with weird architectures for fun (and accepting the overwhelming likelihood that most projects won't immediately work for them), open source groups should not be unconditionally supporting the ecosystem for a large corporation's hardware and/or platforms.
 ____
 
 == link:http://saampahlavan.com//saam-blog/2021/02/23/flash-eulogies.html[RIP Flash]
@@ -135,5 +135,5 @@ ____
 
 [quote]
 ____
-When you don`'t give your team the context for the work and just pass on tasks and work items to them, you make it clear that they are simply "`doers`" and your job is the job of the "`decider`". There is a fine line between giving the team focus time and excluding them from meetings where they would get the necessary information and context to feel ownership of the projects. Your growth challenge is to learn the balance of providing information to the team and inviting them along to get that information, while not overwhelming them with meetings.
+When you don't give your team the context for the work and just pass on tasks and work items to them, you make it clear that they are simply "`doers`" and your job is the job of the "`decider`". There is a fine line between giving the team focus time and excluding them from meetings where they would get the necessary information and context to feel ownership of the projects. Your growth challenge is to learn the balance of providing information to the team and inviting them along to get that information, while not overwhelming them with meetings.
 ____

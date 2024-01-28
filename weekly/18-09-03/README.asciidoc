@@ -8,9 +8,9 @@ v1.0, 2018-09-03
 
 [quote]
 ____
-For databases with extremely large tables, partitioning is a wonderful and crafty trick for database designers to improve database performance and make maintenance much easier. The maximum table size allowed in a PostgreSQL database is 32TB, however unless it`'s running on a not-yet-invented computer from the future, performance issues may arise on a table with only a hundredth of that space.
+For databases with extremely large tables, partitioning is a wonderful and crafty trick for database designers to improve database performance and make maintenance much easier. The maximum table size allowed in a PostgreSQL database is 32TB, however unless it's running on a not-yet-invented computer from the future, performance issues may arise on a table with only a hundredth of that space.
 
-Partitioning splits a table into multiple tables, and generally is done in a way that applications accessing the table don`'t notice any difference, other than being faster to access the data that it needs. By splitting the table into multiple tables, the idea is to allow the execution of the queries to have to scan much smaller tables and indexes to find the data needed. Regardless of how efficient an index strategy is, scanning an index for a table that`'s 50GB will always be much faster than an index that`'s for a table at 500GB. This applies to table scans as well, because sometimes table scans are just unavoidable.
+Partitioning splits a table into multiple tables, and generally is done in a way that applications accessing the table don't notice any difference, other than being faster to access the data that it needs. By splitting the table into multiple tables, the idea is to allow the execution of the queries to have to scan much smaller tables and indexes to find the data needed. Regardless of how efficient an index strategy is, scanning an index for a table that's 50GB will always be much faster than an index that's for a table at 500GB. This applies to table scans as well, because sometimes table scans are just unavoidable.
 
 When introducing a partitioned table to the query planner, there are a few things to know and understand about the query planner itself. Before any query is actually executed, the query planner will take the query and plan out the most efficient way it will access the data. By having the data split up across different tables, the planner can decide what tables to access, and what tables to completely ignore, based on what each table contains.
 
@@ -21,9 +21,9 @@ ____
 
 [quote]
 ____
-Let`'s talk about staging.
+Let's talk about staging.
 
-We`'re talking about staging because no one talks about it. It`'s mentioned in passing as the annoying sidekick to production. It`'s the expected and completely necessary part of the deployment cycle barely touched by schools or internships. It`'s considered such an obvious part of architecture that no one mentions it, no one details it, many people do it wrong -- and some don`'t do it at all.
+We're talking about staging because no one talks about it. It's mentioned in passing as the annoying sidekick to production. It's the expected and completely necessary part of the deployment cycle barely touched by schools or internships. It's considered such an obvious part of architecture that no one mentions it, no one details it, many people do it wrong -- and some don't do it at all.
 
-When you have an idea burning a hole in your keyboard, you want to push to master and demo nonstop -- but that can quickly get away from you. First you`'re running off Janice`'s laptop, then Sarah pushes it to AWS, and suddenly people are paying you to deploy buggy code with a Capistrano script. You want the pain to stop but you`'re scared of the cure.
+When you have an idea burning a hole in your keyboard, you want to push to master and demo nonstop -- but that can quickly get away from you. First you're running off Janice's laptop, then Sarah pushes it to AWS, and suddenly people are paying you to deploy buggy code with a Capistrano script. You want the pain to stop but you're scared of the cure.
 ____

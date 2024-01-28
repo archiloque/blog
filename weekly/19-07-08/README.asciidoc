@@ -19,7 +19,7 @@ ____
 ____
 Acts of maintenance sustain and repair people and things, and include the many actions, large and small, that keep our sociotechnical world going, as well as the interfaces we design to function between and among information systems. Maintenance is not the opposite of change, however, and its primary aim and value is not to uphold stasis. We view acts of repurposing and revision or reuse as part of maintenance, and observe that, traditionally, organizations overseeing complex technologies have used moments of maintenance and repair not just to sustain, but to upgrade and re-imagine their systems. Similarly, moments of upgrade and re-imagining can also resource and provide justification for maintenance processes.
 
-Where maintenance-minded approaches do promote continuity, they should not be uncritically conservative of systems of historical or contemporary oppression; nor do we wish to valorize the maintenance of systems that exacerbate other harms, such as those resulting from or contributing to anthropogenically-driven climate change, surveillance and exploitation of people through monetized data capture, or discrimination based on race, class, gender, or other perceived differences. Generally, however, we argue that the value and vitality of practices of maintenance are not adequately recognized in cultures of the new, which prize, reward, and orient themselves toward "`disruptive`" innovation. The devaluation of maintenance in such contexts holds true across fields and can encompass a lack of recognition of traditional or Indigenous knowledge-keeping as well as of the everyday ingenuity of people`'s adaptations to altered circumstances and infrastructure.
+Where maintenance-minded approaches do promote continuity, they should not be uncritically conservative of systems of historical or contemporary oppression; nor do we wish to valorize the maintenance of systems that exacerbate other harms, such as those resulting from or contributing to anthropogenically-driven climate change, surveillance and exploitation of people through monetized data capture, or discrimination based on race, class, gender, or other perceived differences. Generally, however, we argue that the value and vitality of practices of maintenance are not adequately recognized in cultures of the new, which prize, reward, and orient themselves toward "`disruptive`" innovation. The devaluation of maintenance in such contexts holds true across fields and can encompass a lack of recognition of traditional or Indigenous knowledge-keeping as well as of the everyday ingenuity of people's adaptations to altered circumstances and infrastructure.
 ____
 
 == link:http://natpryce.com/articles/000819.html[Mistakes we made adopting event sourcing (and how we recovered)]
@@ -32,18 +32,18 @@ In an event-driven architecture, components perform activity in response to rece
 
 We got confused between the two, and had events recorded in the history by one component triggering activity in others.
 
-We realised we`'d made a mistake when we had to make entities distinguish between reading an event in order to react to it, and reading an event in order to know what happened in the past.
+We realised we'd made a mistake when we had to make entities distinguish between reading an event in order to react to it, and reading an event in order to know what happened in the past.
 
 This also led to us…
 
 *Using the event store as a message bus*
 
-We added notifications to our event store so services could subscribe to updates and keep their projection up to date. Bad idea! Our event store started being used as an event bus for transient communication between components, and our history included technical events that had no clear relationship to the business process. We noticed that we had to filter technical events out of the history displayed to users. For example, we had events in the history about technical things like "`attempt to send email failed with an IOException`", which users didn`'t care about. They wanted to see the history of the business process, not technical jibber-jabber.
+We added notifications to our event store so services could subscribe to updates and keep their projection up to date. Bad idea! Our event store started being used as an event bus for transient communication between components, and our history included technical events that had no clear relationship to the business process. We noticed that we had to filter technical events out of the history displayed to users. For example, we had events in the history about technical things like "`attempt to send email failed with an IOException`", which users didn't care about. They wanted to see the history of the business process, not technical jibber-jabber.
 
 The literature describes event-sourced and event-driven architectures as orthogonal, and that tripped us up. We came to realise that clearly distinguishing between commands that trigger activity and events that represent what happened in the past is even more important than Command/Query Responsibility Segregation, especially at the modest scale and strict consistency requirements of our system. The word "`event`" is such an overused term we had many discussions about how to name different kinds of event to distinguish between those that are part of the event-sourcing history, those that are emitted by our active application monitoring, those that are notifications that should trigger activity, and so on. In our new applications we use the term Business Process Event for events recorded in our event-sourcing history.
 ____
 
-== link:https://lists.llvm.org/pipermail/cfe-dev/2019-July/062799.html[ConstExprPreter — Clang constexpr interpreter]
+== link:https://lists.llvm.org/pipermail/cfe-dev/2019-July/062799.html[ConstExprPreter -- Clang constexpr interpreter]
 
 [quote]
 ____
@@ -74,13 +74,13 @@ code and emit useful diagnostic messages, paving the way for a future fast,
 potentially JIT-ed, interpreter.
 ____
 
-== link:https://medium.com/@copyconstruct/distributed-tracing-weve-been-doing-it-wrong-39fc92a857df[Distributed tracing — we`'ve been doing it wrong]
+== link:https://medium.com/@copyconstruct/distributed-tracing-weve-been-doing-it-wrong-39fc92a857df[Distributed tracing -- we've been doing it wrong]
 
 [quote]
 ____
 The foundational premise of a microservices architecture is that as the business requirements grow more complex, so will the organization structure. Proponents of microservices argue that decomposing different business functionality into standalone services will enable small, autonomous teams to own the end-to-end lifecycle of such services, unlocking the ability to build, test and deploy these services independently. However, since any such decomposition comes at the cost of a loss of visibility into how each service interacts with the others, distributed tracing is purported to be an indispensable tool for _debugging_ the complex interactions between the services in _unison_.
 
-If you truly have a mind-bogglingly complex distributed system, then no one single person can have a complete understanding of the system in their head at any given time. In fact, building tooling under the assumption that this is even possible or desirable seems a bit of an anti-pattern. What`'s ideally required at the time of debugging is a tool that`'ll help _reduce the search_ space, so that engineers can zero in on a subset of dimensions (services/users/hosts etc.) that are of interest to the debugging scenario at hand. Requiring engineers to understand what happened across the _entire service graph_ at the time of _debugging_ an incident seems counter to the ethos of microservices architectures in the first place.
+If you truly have a mind-bogglingly complex distributed system, then no one single person can have a complete understanding of the system in their head at any given time. In fact, building tooling under the assumption that this is even possible or desirable seems a bit of an anti-pattern. What's ideally required at the time of debugging is a tool that'll help _reduce the search_ space, so that engineers can zero in on a subset of dimensions (services/users/hosts etc.) that are of interest to the debugging scenario at hand. Requiring engineers to understand what happened across the _entire service graph_ at the time of _debugging_ an incident seems counter to the ethos of microservices architectures in the first place.
 ____
 
 == link:https://www.gamasutra.com/blogs/TanyaXShort/20180305/315179/Designing_for_Coziness.php[Designing for coziness]
@@ -91,10 +91,10 @@ Dear designer whom I care for,
 
 I wish for you that game-making be a refuge from the storm. I take joy from the games you make, and I hope you feel fulfilled when you make them. As a colleague, I want you to feel safe to express your inner self, to take creative risks in your craft. As a friend, I wish that you can escape the ever-present hurry and pressure of our industry and world, into a restful, healthy practice. 
 
-If you feel comfortable, I invite you to make a game that reflects those moments in your life that were meaningful, where you were content and cared for. I invite you to make a game that offers moments for players to reflect and be at ease. You don`'t have to show it to me; you don`'t have to share it with anyone. But I would like to be a companion in the journey towards cozier games, and I think others would, too, if you would have us. 
+If you feel comfortable, I invite you to make a game that reflects those moments in your life that were meaningful, where you were content and cared for. I invite you to make a game that offers moments for players to reflect and be at ease. You don't have to show it to me; you don't have to share it with anyone. But I would like to be a companion in the journey towards cozier games, and I think others would, too, if you would have us. 
 
-It`'s difficult and slow and I`'m probably asking a lot from you. But if you try and fall short of your expectations, please know that I will still support and celebrate you. I care about you, and your work is but a small part of what makes you wonderful. 
+It's difficult and slow and I'm probably asking a lot from you. But if you try and fall short of your expectations, please know that I will still support and celebrate you. I care about you, and your work is but a small part of what makes you wonderful. 
 
-Good luck, if and when you`'re ready,
+Good luck, if and when you're ready,
 (your name)
 ____

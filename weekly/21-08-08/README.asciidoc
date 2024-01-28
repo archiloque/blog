@@ -9,9 +9,9 @@ v1.0, 2021-08-08
 
 [quote]
 ____
-A common misconception among people picking up distributed systems is that replication and consensus protocols -- Paxos, Raft, and friends -- are the tools used to build the largest and most scalable systems. It`'s obviously true that these protocols are important building blocks. They`'re used to build systems that offer more availability, better durability, and stronger integrity than a single machine. At the most basic level, though, they don`'t make systems scale.
+A common misconception among people picking up distributed systems is that replication and consensus protocols -- Paxos, Raft, and friends -- are the tools used to build the largest and most scalable systems. It's obviously true that these protocols are important building blocks. They're used to build systems that offer more availability, better durability, and stronger integrity than a single machine. At the most basic level, though, they don't make systems scale.
 
-Instead, the fundamental approach used to scale distributed systems is avoiding co-ordination. Finding ways to make progress on work that doesn`'t require messages to pass between machines, between clusters of machines, between datacenters and so on. The fundamental tool of cloud scaling is coordination avoidance.
+Instead, the fundamental approach used to scale distributed systems is avoiding co-ordination. Finding ways to make progress on work that doesn't require messages to pass between machines, between clusters of machines, between datacenters and so on. The fundamental tool of cloud scaling is coordination avoidance.
 ____
 
 == link:http://charap.co/scalable-but-wasteful-or-why-fast-replication-protocols-are-actually-slow/[Scalable but wasteful or why fast replication protocols are actually slow]
@@ -33,52 +33,52 @@ ____
 
 [quote]
 ____
-There`'s also a related fallacy that`'s not universal, but inasmuch as it exists, it seems uniquely endemic to tech: the idea that tech journalism should support the tech industry. This interprets journalism as public relations, which it is not. Journalists are not supposed to cheerlead the industry; they`'re supposed to cover it, and that means writing the good things and the bad with no overriding preference for one over the other. 
+There's also a related fallacy that's not universal, but inasmuch as it exists, it seems uniquely endemic to tech: the idea that tech journalism should support the tech industry. This interprets journalism as public relations, which it is not. Journalists are not supposed to cheerlead the industry; they're supposed to cover it, and that means writing the good things and the bad with no overriding preference for one over the other. 
 
-"`But tech journalism is overwhelmingly negative!`" I hear a self-described empiricist whining somewhere on Twitter. No it is not, my friends. You just don`'t notice it when it isn`'t. This is a cognitive bias: your brain is wired to perceive threats in a way that it does not perceive neutral or positive information. If tech journalism were overwhelmingly negative, tech culture would be very different. Entrepreneurs with mediocre ideas would not be hailed as innovators. The tech industry itself would not be able to claim repeatedly, with a straight face, that everything it does is "`changing the world`". People would not aspire to be the next Mark Zuckerberg, even though Zuckerberg has many disturbing qualities that should not be replicated outside of computer simulations.
+"`But tech journalism is overwhelmingly negative!`" I hear a self-described empiricist whining somewhere on Twitter. No it is not, my friends. You just don't notice it when it isn't. This is a cognitive bias: your brain is wired to perceive threats in a way that it does not perceive neutral or positive information. If tech journalism were overwhelmingly negative, tech culture would be very different. Entrepreneurs with mediocre ideas would not be hailed as innovators. The tech industry itself would not be able to claim repeatedly, with a straight face, that everything it does is "`changing the world`". People would not aspire to be the next Mark Zuckerberg, even though Zuckerberg has many disturbing qualities that should not be replicated outside of computer simulations.
 ____
 
 [quote]
 ____
-This demand for unalloyed positivity is exacerbated by a reactionary grievance culture in some corners of the tech industry that interprets critique as persecution, in part because of a widespread belief that good intentions exculpate bad behavior. Why be critical of people who are just trying to change the world? (Through their casual gaming app that allows people to group digital candy in sets of three, or their gig economy platform that has the effect of driving wages well below standard minimums, or their social network that may be responsible for an active decision to algorithmically distribute disinformation because that`'s what the customer apparently wants?) Why be so negative all the time? Why be negative at all?
+This demand for unalloyed positivity is exacerbated by a reactionary grievance culture in some corners of the tech industry that interprets critique as persecution, in part because of a widespread belief that good intentions exculpate bad behavior. Why be critical of people who are just trying to change the world? (Through their casual gaming app that allows people to group digital candy in sets of three, or their gig economy platform that has the effect of driving wages well below standard minimums, or their social network that may be responsible for an active decision to algorithmically distribute disinformation because that's what the customer apparently wants?) Why be so negative all the time? Why be negative at all?
 ____
 
 == link:https://www.baldurbjarnason.com/2021/the-oss-bubble-and-the-blogging-bubble/[The open-source software bubble that is and the blogging bubble that was]
 
 [quote]
 ____
-People don`'t appreciate just how much web dev is about extracting value from OSS, both on individual and corporate levels.
+People don't appreciate just how much web dev is about extracting value from OSS, both on individual and corporate levels.
 Make a native iOS app, and the only OSS you need to use is directly integrated into the OS, and a lot of it is maintained by Apple itself. Apple may use open-source font rendering libraries or SQLite, but you rarely have to deal with it yourself, as a developer, unless you want to.
 
 Web development? Everything is built or run directly on OSS.
 
 Almost everything we do in web development exists as a thin layer over open-source software.
-Servers, build tools, databases, ORMs, auth, client-side JS, web browser: we are all building on a vast ocean of OSS labour without paying back a fraction of the value we generate. It isn`'t just big, direct dependencies like Babel that are suffering. The stuff your stuff is using -- the infrastructure code everything needs -- is surviving on sheer inertia as well.
+Servers, build tools, databases, ORMs, auth, client-side JS, web browser: we are all building on a vast ocean of OSS labour without paying back a fraction of the value we generate. It isn't just big, direct dependencies like Babel that are suffering. The stuff your stuff is using -- the infrastructure code everything needs -- is surviving on sheer inertia as well.
 
-That`'s value extraction. Strip-mining if you want to hammer home the unsustainability. Looting if you want to emphasise the moral dimension.
+That's value extraction. Strip-mining if you want to hammer home the unsustainability. Looting if you want to emphasise the moral dimension.
 
-We don`'t even know the extent of the problem. Has anybody looked into the sustainability of the npm ecosystem, for example? How much of it is backed by a sustainable business model or even any kind of ongoing revenue?
+We don't even know the extent of the problem. Has anybody looked into the sustainability of the npm ecosystem, for example? How much of it is backed by a sustainable business model or even any kind of ongoing revenue?
 
-I suspect that the sustainable fraction is tiny. At some point, something`'s going to give. Something`'s _already giving_. We keep seeing projects like Babel: used by thousands; running on fumes.
+I suspect that the sustainable fraction is tiny. At some point, something's going to give. Something's _already giving_. We keep seeing projects like Babel: used by thousands; running on fumes.
 ____
 
 [quote]
 ____
-The biggest problem -- and this isn`'t limited to web development -- is how it has baked exploitation into the core worldview of so many people. We use open-source software. We get paid to use open-source software. Our employers benefit, but the money never trickles down—money never trickles down. This is fine when the project in question is directly funded by a tech multinational. Less so when the project is something specialised, a little bit niche, or inventive, and therefore not financed by a gigantic corporation.
+The biggest problem -- and this isn't limited to web development -- is how it has baked exploitation into the core worldview of so many people. We use open-source software. We get paid to use open-source software. Our employers benefit, but the money never trickles down -- money never trickles down. This is fine when the project in question is directly funded by a tech multinational. Less so when the project is something specialised, a little bit niche, or inventive, and therefore not financed by a gigantic corporation.
 
 We train each other with a mindset to treat each other poorly and consider the people -- whose free work we are turning into money -- to be disposable.
 
-We`'re working in an unstable industry, surviving at the whim of callous mega-corporations, and we spend our days treating people like shit.
+We're working in an unstable industry, surviving at the whim of callous mega-corporations, and we spend our days treating people like shit.
 
-I don`'t feel proud when I look around at the web developer community and economy. More the other thing.
+I don't feel proud when I look around at the web developer community and economy. More the other thing.
 
-There are a few bright spots. Interesting companies that build a lot of OSS while flying sustainably under the radar. Turns out you don`'t need that many people to maintain open-source if you set strict boundaries and make sure all of the work is paid for.
+There are a few bright spots. Interesting companies that build a lot of OSS while flying sustainably under the radar. Turns out you don't need that many people to maintain open-source if you set strict boundaries and make sure all of the work is paid for.
 
 Then you have companies like WordPress who have been around forever and form the backbone of the entire web.
 
 Sustainable open-source looks possible if you manage to balance looking uninteresting to big tech but interesting enough to generate revenue. As WordPress shows, you can get pretty big while remaining mostly uninteresting to the tech behemoths.
 
-It`'s a tricky needle to thread but seems to be entirely possible.
+It's a tricky needle to thread but seems to be entirely possible.
 
 The biggest threat, what kills off project after project, is scope creep (a universal problem for software development) and other developers who feel entitled to your time and work.
 ____

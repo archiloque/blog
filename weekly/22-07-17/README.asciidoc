@@ -17,7 +17,7 @@ Everyone needs to know how to do this at some level, and being extremely
 good at it paired with strong technical skills can make you a powerhouse
 individual contributor.
 
-Beyond the nuts and bolts process stuff, the leverage you`'re developing
+Beyond the nuts and bolts process stuff, the leverage you're developing
 here is understanding how to organize the work to unearth risks early,
 how to identify different possible approaches, and how to remain
 flexible so that you can pull out a win from the project even if the
@@ -29,9 +29,9 @@ senior promotions.
 
 Long-tenured engineers have some natural execution leverage because they
 know where bodies are buried, but this is a slow path to career growth.
-People discount the impact of long-tenured employees who can`'t explain
+People discount the impact of long-tenured employees who can't explain
 how their depth of understanding of the systems allows them to do things
-that others can`'t, and are likely to think that the system needs to be
+that others can't, and are likely to think that the system needs to be
 fixed instead of promoting the rare people who can work with it.
 ____
 
@@ -39,11 +39,11 @@ ____
 
 [quote]
 ____
-While learning how to build a Figma plugin, I stumbled upon a few interesting usages of Flexbox and Grid in Figma. When I found them, I just got distracted and couldn`'t resist digging more.
+While learning how to build a Figma plugin, I stumbled upon a few interesting usages of Flexbox and Grid in Figma. When I found them, I just got distracted and couldn't resist digging more.
 
 Flexbox and Grid have been providing us web developers with lots of new capabilities to build new layouts, and what I will show you in this article is just that.
 
-To move along with this article, you don`'t need to have a detailed knowledge of Flexbox or Grid, and I will try to explain most examples from the ground up.
+To move along with this article, you don't need to have a detailed knowledge of Flexbox or Grid, and I will try to explain most examples from the ground up.
 ____
 
 
@@ -57,10 +57,10 @@ Yes, you read it correctly. I was pointed to this
 https://mxstbr.com/thoughts/margin[article] that discusses the concept
 of avoiding margins and to use spacer components instead of them.
 
-Let`'s suppose that a section needs a `24px` margin from the left, with
+Let's suppose that a section needs a `24px` margin from the left, with
 those restrictions in mind:
 
-* Margin can`'t be used directly to the component, because it`'s an
+* Margin can't be used directly to the component, because it's an
 already built design system.
 * It should be flexible. The spacing might be on X page, but not in Y.
 
@@ -72,7 +72,7 @@ React playbook:
 > composing them into pages and scenes. And this is where margin creeps
 > into component code: for spacing compositions of components.
 
-I do agree. For a large design system, it`'s not scalable to keep adding
+I do agree. For a large design system, it's not scalable to keep adding
 margins to components. This will eventually result in a creepy code.
 ____
 
@@ -80,7 +80,7 @@ ____
 
 [quote]
 ____
-This finding emerged inductively through a study of the experiences of employees across five organizations assigned to work on business process redesign (BPR) change teams. During this assignment, some employees had the opportunity to develop a detailed, comprehensive understanding of their organization`'s logic and operations. They see directly how the structure and operation of the organization, which they had perceived as purposively designed, relatively stable, and largely external, is continuously produced and emerges through social interaction. They observed, in an unmediated way, how the organization is far more malleable and changeable than they had imagined and, at the same time, far less centrally coordinated and actively designed. I examine how this knowledge reshapes their interpretation of possibilities for change and their evaluation of where they would be best placed to make change. The knowledge of the organization revealed through the mapping process alienates these employees from their central roles, and they voluntarily move to peripheral organizational change staff roles.
+This finding emerged inductively through a study of the experiences of employees across five organizations assigned to work on business process redesign (BPR) change teams. During this assignment, some employees had the opportunity to develop a detailed, comprehensive understanding of their organization's logic and operations. They see directly how the structure and operation of the organization, which they had perceived as purposively designed, relatively stable, and largely external, is continuously produced and emerges through social interaction. They observed, in an unmediated way, how the organization is far more malleable and changeable than they had imagined and, at the same time, far less centrally coordinated and actively designed. I examine how this knowledge reshapes their interpretation of possibilities for change and their evaluation of where they would be best placed to make change. The knowledge of the organization revealed through the mapping process alienates these employees from their central roles, and they voluntarily move to peripheral organizational change staff roles.
 ____
 
 [quote]
@@ -90,7 +90,7 @@ ____
 
 [quote]
 ____
-The lack of a higher order of design and guiding forces for daily organizing was a realization. The current design and logic was largely disconnected from the way work was performed and coordinated. In another organization, a team member explained that she had been "`assuming that somebody did this on purpose, and it wasn`'t done on purpose; it was just a series of random events that somehow came together`". They could not locate any one person or even a committee of people -- senior executives or senior employees -- who were designing and enforcing bureaucratic plans of action. Although senior employees make strategies and plans, the people putting together the maps saw that the eventual sorting out of how to actually meet these goals and targets via day-in, day-out work occurred in less anticipated ways. There was no central force actively evaluating, reining in, and coordinating actions and decisions across the organization. This explains, for example, the local efforts to improve quality and the creation of local databases and templates.
+The lack of a higher order of design and guiding forces for daily organizing was a realization. The current design and logic was largely disconnected from the way work was performed and coordinated. In another organization, a team member explained that she had been "`assuming that somebody did this on purpose, and it wasn't done on purpose; it was just a series of random events that somehow came together`". They could not locate any one person or even a committee of people -- senior executives or senior employees -- who were designing and enforcing bureaucratic plans of action. Although senior employees make strategies and plans, the people putting together the maps saw that the eventual sorting out of how to actually meet these goals and targets via day-in, day-out work occurred in less anticipated ways. There was no central force actively evaluating, reining in, and coordinating actions and decisions across the organization. This explains, for example, the local efforts to improve quality and the creation of local databases and templates.
 
 Some held out hope that one or two people at the top knew of these design and operation issues; however, they were often disabused of this optimism. For example, a manager walked the CEO through the map, presenting him with a view he had never seen before and illustrating for him the lack of design and the disconnect between strategy and operations. The CEO, after being walked through the map, sat down, put his head on the table, and said, "`This is even more fucked up than I imagined`". The CEO revealed that not only was the operation of his organization out of his control but that his grasp on it was imaginary.
 
@@ -105,7 +105,7 @@ As part of the map-building process, employees were invited to identify their ro
 _____
 devastating for him. He was on the verge of tears … at first, he became very argumentative and was 
 trying to convince people that you go from this Post-it note down here to mine. [Other employees 
-explained] Well no, we don`'t do that. It was a two-hour conversation. And he finally sat down, and he said, 
+explained] Well no, we don't do that. It was a two-hour conversation. And he finally sat down, and he said, 
 so why am I doing this? It was devastating.
 _____
 
@@ -116,16 +116,16 @@ After such analyses, team members could not look at particular roles and people 
 [quote]
 _____
 You really start understanding all of the waste and all of the redundancy and all of the people who are 
-employed as what I call intervention resources. The process doesn`'t work, so you have to bone it up by 
+employed as what I call intervention resources. The process doesn't work, so you have to bone it up by 
 putting people in to intervene in the process to hold it together. So it is like glue. So I would look 
 around [the company] and I would see all these walking glue sticks, and it was just absolutely depressing 
 and frustrating at the same time.
 _____
 
-Reflecting on his job and his reasons for taking a new path, another explained, "`I was the glue that held the broken egg together. I was the workaround guy. I don`'t want to go back to that`". Team members did not want to go back to working as an "`intervention resource`".
+Reflecting on his job and his reasons for taking a new path, another explained, "`I was the glue that held the broken egg together. I was the workaround guy. I don't want to go back to that`". Team members did not want to go back to working as an "`intervention resource`".
 ____
 
 [quote]
 ____
-In my study, employees see how the organization, which they had perceived as purposively designed, relatively stable, and external, is continuously produced and emerges as people interact. As they identify fragmented systems and myriad principles guiding and coordinating this web of interactions, they begin to question the efficacy of their efforts to change the organization from central roles. They recast their central positions as ineffective roles that reproduce the organization`'s inefficiencies.
+In my study, employees see how the organization, which they had perceived as purposively designed, relatively stable, and external, is continuously produced and emerges as people interact. As they identify fragmented systems and myriad principles guiding and coordinating this web of interactions, they begin to question the efficacy of their efforts to change the organization from central roles. They recast their central positions as ineffective roles that reproduce the organization's inefficiencies.
 ____

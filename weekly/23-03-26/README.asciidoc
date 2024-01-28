@@ -16,24 +16,24 @@ ____
 
 [quote]
 ____
-Fast programming is a distinct skill from software engineering. Software engineering principles don`'t totally map over. Things like good organization and clear intent still matter a lot, of course, but a lot of SE theory is geared around how to continuously develop an existing codebase as part of a team. For example, I rarely write tests for my scripts. Setting up tests takes time, and setting up integration tests with fixtures (lots of my scripts are side-effect heavy) takes even more.
+Fast programming is a distinct skill from software engineering. Software engineering principles don't totally map over. Things like good organization and clear intent still matter a lot, of course, but a lot of SE theory is geared around how to continuously develop an existing codebase as part of a team. For example, I rarely write tests for my scripts. Setting up tests takes time, and setting up integration tests with fixtures (lots of my scripts are side-effect heavy) takes even more.
 
 At the same time, rapid feedback is really important, even more important than with regular programming. I set up a small “jig” to quickly set up and exec the script in a small way.
 
-Understandability also doesn`'t matter as much. The programs are so small that if you stop understanding how it works, you can just rewrite it. And if you need to extend it, you can rewrite it "`properly`".
+Understandability also doesn't matter as much. The programs are so small that if you stop understanding how it works, you can just rewrite it. And if you need to extend it, you can rewrite it "`properly`".
 
-I`'m a little torn on how much you should use third-party dependencies in your scripts. Sometimes they`'re really helpful, but they add a lot of project overheard, it`'s another thing to learn, and many of them have horrible documentation. I guess dependencies that shore up flaws in the language itself are good, dependencies that keep you from needing to learn things are bad.
+I'm a little torn on how much you should use third-party dependencies in your scripts. Sometimes they're really helpful, but they add a lot of project overheard, it's another thing to learn, and many of them have horrible documentation. I guess dependencies that shore up flaws in the language itself are good, dependencies that keep you from needing to learn things are bad.
 ____
 
 == link:https://davekarpf.substack.com/p/on-generative-ai-phantom-citations[On Generative AI, phantom citations, and social calluses]
 
 [quote]
 ____
-It has always seemed to me that Negroponte`'s abundant digital optimism
+It has always seemed to me that Negroponte's abundant digital optimism
 was rooted in a naive misunderstanding of _what it means to be living in
 the early times_. There is a habit among tech futurists to imagine that
 the future of a technology will be _like the present, only much
 larger-scale, and with all the bugs worked out_. But instead, it turns
-out that the technology`'s future is _barely like the present, because
+out that the technology's future is _barely like the present, because
 reaching a larger scale creates an entirely separate set of problems_.
 ____
