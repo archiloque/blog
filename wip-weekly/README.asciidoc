@@ -29,3 +29,10 @@ It takes a few minutes to make a wrong decision on a database
 
 And sometimes several months/years to fix it.
 ____
+
+== link:https://lwn.net/SubscriberLink/960913/abc5e28254c219ec/[So you think you understand IP fragmentation?]
+
+[quote]
+____
+Generally speaking, IP fragmentation is bad for performance in just about every dimension: throughput, latency, CPU usage, memory usage, and network congestion. To see why, imagine a typical IPv4 packet of 20 bytes of IP metadata and 1480 bytes of data that has been fragmented into packets that each contain only eight bytes or fewer of data for a total of 1480/8 = 185 packets. (This is possible but unlikely to ever happen in reality; usually packets are only split into two pieces.)
+____
