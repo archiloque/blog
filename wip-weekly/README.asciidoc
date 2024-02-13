@@ -4,3 +4,17 @@ v1.0, 2024-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://blog.jim-nielsen.com/2022/the-case-for-design-engineers/[The case for design engineers]
+
+[quote]
+____
+The problem of innumerable artifacts helps show why design engineers are worth their weight in gold. They can bridge the chasm of design to browser engineering, skipping the need for 60+ artifacts. How? They have an understanding of the constraints of the medium, so from sketches to wireframe to high fidelity mocks, they only have to produce one or two artifacts while simultaneously keeping a picture in their head of how the elements of those designs flex and flow and change across different sizes. They can imagine how it works, so they don't have to articulate it for every iteration. There's no need to explicitly design and document all possible states for whoever is downstream of the designs because _they are the ones downstream of the designs_.
+___
+
+== link:https://blogs.oracle.com/linux/post/whats-inside-a-linux-kernel-core-dump[What's inside a Linux kernel core dump]
+
+[quote]
+____
+But have you ever wondered what's really in a core dump? In this blog, we'll answer that question. We'll start by discussing the different software which can actually _produce_ a vmcore (there are more than you might think). Next, we'll discuss the contents of vmcores, including what important metadata needs to be present in order to make analysis possible. We'll then dive into the details of a few of the most prominent vmcore formats and variations on them, before finishing with a quick overview of some tools that can be used to analyze them.
+____
