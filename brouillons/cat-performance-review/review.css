@@ -9,12 +9,12 @@ body {
     font-family: 'Maow';
     color: #401E1B;
     background-color: #F2F2F2;
-    font-size: 18px;
+    font-size: 12px;
 }
 
 h1 {
     text-align: center;
-    font-size: 250%;
+    font-size: 400%;
     padding-bottom: 0.2em;
 }
 
@@ -49,7 +49,7 @@ li {
 .textField label {
     text-align:right;
     display: inline-block;
-    width: 20%;
+    width: 25%;
     text-align: right;
 }
 legend::after {
@@ -66,12 +66,19 @@ legend.required::after, .textField label.required::after {
 }
 
 .textField input {
+    width: 72%;
+}
+
+input[type=text] {
     border-color: #BFAE9F;
     border-width: 0.1em;
     border-radius: 0.5em;
     border-style: solid;   
-    width: 75%;
 }
+input[type=radio] {
+    margin-right: -0.1em;
+}
+
 
 legend {
     float: left;
@@ -79,11 +86,26 @@ legend {
     width: 25%;
     text-align: right;
 }
-
+.objectiveRadio {
+    text-align: center;
+}
+.objectiveField {
+    padding-bottom: 0;
+}
+.objectiveField input{
+    width: 90%;
+}
 #copy {
     padding-top: 1em;
 text-align: center;
 }
 #copy a {
     text-decoration: none;
+}
+
+@media print {
+    body{
+        width: 21cm;
+        height: 29.7cm;
+   } 
 }

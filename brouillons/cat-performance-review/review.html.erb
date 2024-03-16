@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cat performance review</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="review.css">
+</head>
+
+<body>
+  <h1>Cat performance review</h1>
+  <form>
+    <div id="content">
+      <div class="column">
+        <ul>
+          <%= text('Date') %>
+          <%= text('Cat name') %>
+          <%= text('Nickname 1') %>
+          <%= text('Nickname 2') %>
+          <%= text('Nickname 3') %>
+          <%= text('Nickname 4', nil) %>
+          <%= text('Nickname 5', nil) %>
+          <%= text('Nickname 6', nil) %>
+          <%= text('Reviewer') %>
+        </ul>
+        <h2>Specific objectives</h2>
+        <ul>
+          <%= objective('1') %>
+          <%= objective('2') %>
+          <%= objective('3') %>
+          <%= objective('4') %>
+          <%= objective('5') %>
+        </ul>
+
+      </div>
+      <div class="column">
+        <div>
+          <legend class="required">Career track</legend>
+          <%= radio("track", 'Plush') %>
+          <%= radio("track", 'Landlord') %>
+          <%= radio("track", 'Menace') %>
+        </div>
+        <h2>Core skills</h2>
+        <div>
+          <%= standard_radio("Fluffiness", 'fluffiness') %>
+        </div>
+        <div>
+          <%= standard_radio("Landlord aura", 'landlord') %>
+        </div>
+        <div>
+          <%= standard_radio("Dangerousness", 'dangerousness') %>
+        </div>
+        <div>
+          <%= standard_radio("Strangeness", 'strangeness') %>
+        </div>
+        <div>
+          <%= standard_radio("Internet fame", 'fame') %>
+        </div>
+        <h2>Specialized skills</h2>
+        <div>
+          <%= standard_radio("Purring", 'purr') %>
+        </div>
+        <div>
+          <%= standard_radio("Shedding", 'purr') %>
+        </div>
+        <div>
+          <%= standard_radio("Noisiness", 'noisiness') %>
+        </div>
+        <div>
+          <%= standard_radio("Chewing", 'chewing') %>
+        </div>
+        <div>
+          <%= standard_radio("Teleportation", 'teleportation') %>
+        </div>
+        <div>
+          <legend class="required">Cat council</legend>
+          <%= radio("council", 'Nya') %>
+          <%= radio("council", 'Nyaa') %>
+          <%= radio("council", 'Meow') %>
+          <%= radio("council", 'Meowwwww') %>
+        </div>
+      </div>
+
+    </div>
+  </form>
+  <div id="copy"><a href="https://archiloque.net">By Julien Kirch - https://archiloque.net</a></div>
+</body>
+
+</html>
