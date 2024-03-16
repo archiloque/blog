@@ -1,0 +1,89 @@
+@font-face {
+    font-family: 'Maow';
+    src: url('./maow/maow-regular.otf') format('opentype'), url('./maow/maow-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Maow';
+    color: #401E1B;
+    background-color: #F2F2F2;
+    font-size: 18px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 250%;
+    padding-bottom: 0.2em;
+}
+
+#content {
+    display: flex;
+    border-color: #BFAE9F;
+    border-width: 2px;
+    border-radius: 1em;
+    border-style: solid;
+}
+
+.column {
+    margin: 0.5em;
+}
+.column:first-of-type {
+    flex: 3;
+    border-right-color: #BFAE9F;
+    border-right-width: 2px;
+    border-right-style: solid;
+}
+.column:last-of-type {
+    flex: 4;
+}
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    padding-bottom: 0.5em;
+}
+.textField label {
+    text-align:right;
+    display: inline-block;
+    width: 20%;
+    text-align: right;
+}
+legend::after {
+    content: "* ";
+}
+.textField label::after {
+    content: "*";
+}
+legend::after, .textField label::after {
+    color: #F2F2F2;
+}
+legend.required::after, .textField label.required::after {
+    color: #D9597B;
+}
+
+.textField input {
+    border-color: #BFAE9F;
+    border-width: 0.1em;
+    border-radius: 0.5em;
+    border-style: solid;   
+    width: 75%;
+}
+
+legend {
+    float: left;
+    display: inline-block;
+    width: 25%;
+    text-align: right;
+}
+
+#copy {
+    padding-top: 1em;
+text-align: center;
+}
+#copy a {
+    text-decoration: none;
+}
