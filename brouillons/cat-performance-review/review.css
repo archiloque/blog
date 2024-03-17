@@ -9,13 +9,18 @@ body {
     font-family: 'Maow';
     color: #401E1B;
     background-color: #F2F2F2;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 h1 {
     text-align: center;
     font-size: 400%;
     padding-bottom: 0.2em;
+    margin-top: 0;
+}
+
+h2 {
+    text-align: center;
 }
 
 #content {
@@ -29,83 +34,112 @@ h1 {
 .column {
     margin: 0.5em;
 }
+
 .column:first-of-type {
-    flex: 3;
+    flex: 4;
     border-right-color: #BFAE9F;
     border-right-width: 2px;
     border-right-style: solid;
 }
+
 .column:last-of-type {
-    flex: 4;
+    flex: 5;
 }
+
 ul {
     padding: 0;
+    margin: 0;
 }
 
 li {
     list-style: none;
     padding-bottom: 0.5em;
 }
+
 .textField label {
-    text-align:right;
+    text-align: right;
     display: inline-block;
     width: 25%;
     text-align: right;
 }
+
 legend::after {
     content: "* ";
 }
+
 .textField label::after {
     content: "*";
 }
-legend::after, .textField label::after {
-    color: #F2F2F2;
-}
-legend.required::after, .textField label.required::after {
+
+legend::after,
+.textField label::after {
     color: #D9597B;
+    visibility: hidden;
+}
+
+legend.required::after,
+.textField label.required::after {
+    visibility: visible;
 }
 
 .textField input {
     width: 72%;
 }
 
-input[type=text] {
+input[type=text],
+input[type=textarea] {
     border-color: #BFAE9F;
     border-width: 0.1em;
     border-radius: 0.5em;
-    border-style: solid;   
+    border-style: solid;
 }
+
+input[type=textarea] {
+    width: 100%;
+    height: 12em;
+    margin-bottom: 0.5em;
+}
+
 input[type=radio] {
     margin-right: -0.1em;
 }
 
-
 legend {
     float: left;
     display: inline-block;
-    width: 25%;
+    width: 35%;
     text-align: right;
 }
+
 .objectiveRadio {
     text-align: center;
 }
+
 .objectiveField {
     padding-bottom: 0;
 }
-.objectiveField input{
+
+.objectiveField input {
     width: 90%;
 }
+
 #copy {
     padding-top: 1em;
-text-align: center;
+    text-align: center;
 }
+
+#copy a {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
 #copy a {
     text-decoration: none;
 }
 
 @media print {
-    body{
+    body {
         height: 21cm;
         width: 29.7cm;
-   } 
+    }
 }

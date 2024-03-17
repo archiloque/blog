@@ -41,6 +41,7 @@
           <%= radio("track", 'Plush') %>
           <%= radio("track", 'Landlord') %>
           <%= radio("track", 'Menace') %>
+          <%= radio("track", 'Goblin') %>
         </div>
         <h2>Core skills</h2>
         <div>
@@ -57,6 +58,9 @@
         </div>
         <div>
           <%= standard_radio("Internet fame", 'fame') %>
+        </div>
+        <div>
+          <%= standard_radio("Neighbor watching", 'neighbor') %>
         </div>
         <h2>Specialized skills</h2>
         <div>
@@ -75,17 +79,24 @@
           <%= standard_radio("Teleportation", 'teleportation') %>
         </div>
         <div>
-          <legend class="required">Cat council</legend>
+          <%= standard_radio("Snoring", 'snoring') %>
+        </div>
+        <div>
+          <legend class="required">Cat council rating</legend>
           <%= radio("council", 'Nya') %>
           <%= radio("council", 'Nyaa') %>
           <%= radio("council", 'Meow') %>
           <%= radio("council", 'Meowwwww') %>
         </div>
+      <h2>Comments</h2>
+      <input type="textarea">
       </div>
-
     </div>
   </form>
-  <div id="copy"><a href="https://archiloque.net">By Julien Kirch - https://archiloque.net</a></div>
+  <div id="copy">
+    <a href="https://archiloque.net">By Julien Kirch - archiloque.net</a>
+    <a href="https://www.debbiefong.com">Font by Debbie Fong</a>
+    </div>
 </body>
 
 </html>
