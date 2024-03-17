@@ -4,33 +4,3 @@ v1.0, 2024-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
-
-== link:https://opensource.net/why-single-vendor-is-the-new-proprietary/[Why single vendor is the new proprietary]
-
-[quote]
-____
-The second misconception is that single-vendor Open Source is, somehow, the reasonable and business-conscious way to do Open Source. You should be on board if you want Open Source to win against proprietary software. But those companies are still doing what is, essentially, proprietary software: like the proprietary software companies of the 80s, they very much consider the software being produced as their exclusive property. They still intend to capture all the value that derives from it. And thanks to copyright aggregation or permissive licensing, they still can change the license any time they want. So it's still proprietary: they just choose, for now, to release their software under an Open Source license.
-
-Single vendor isn't a reasonable way to do Open Source and resist evil proprietary software. _It's just another way to do proprietary software_. It's just a relicensing time bomb. And sure enough, a lot of those time bombs exploded over the past year. The proprietary development model is moving back to restrictive licensing, in a predictable attempt to capture incrementally more value. This was predictable if only we had seen single-vendor Open Source as the temporary tactic of proprietary development that it always was.
-____
-
-== link:https://mjg59.dreamwidth.org/69507.html[Digital forgeries are hard]
-
-[quote]
-____
-Our technology chains are complicated. So many moving parts end up influencing the content of the data we generate, and those parts develop over time. It's fantastically difficult to generate an artifact now that precisely corresponds to how it would look in the past, even if we go to the effort of installing an old OS on an old PC and setting the clock appropriately (are you sure you're going to be able to mimic an entirely period appropriate patch level?). Even the version of the font you use in a document may indicate it's anachronistic. I'm pretty good at computers and I no longer have any belief I could fake an old document.
-____
-
-== link:https://willhbr.net/2024/03/15/making-a-compiler-to-prove-tmux-is-turing-complete/[Making a compiler to prove tmux is turing complete]
-
-[quote]
-____
-You can use features of tmux to implement a Turing-complete instruction set, allowing you to compile code that runs in tmux by moving windows.
-____
-
-== link:https://lethain.com/friction-vs-velocity/[Friction isn't velocity.]
-
-[quote]
-____
-Many companies realize that their monolithic codebase is slowing them down. It's easy to decide to migrate from your monolith to services to "`solve`" this problem, but without a clear service architecture, most attempts take a long time without improving on the underlying issues. That's because an effective service migration requires the same skill to operate an effective monolith: good technical design.
-____
