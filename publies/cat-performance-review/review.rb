@@ -1,8 +1,8 @@
 require "erb"
 
 RATE_UNSATISFACTORY = "Bellow exp."
-RATE_MEETS = "Meets Exp."
-RATE_EXCEEDS = "Exceeds Exp."
+RATE_MEETS = "Meets exp."
+RATE_EXCEEDS = "Exceeds exp."
 
 def standard_radio(title, group)
     %Q(
