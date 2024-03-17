@@ -1,6 +1,6 @@
 require "erb"
 
-RATE_UNSATISFACTORY = "Bellow exp."
+RATE_UNSATISFACTORY = "Below exp."
 RATE_MEETS = "Meets exp."
 RATE_EXCEEDS = "Exceeds exp."
 
