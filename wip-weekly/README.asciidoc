@@ -43,3 +43,10 @@ Proponents of pairing/mobbing attribute all sorts of benefits to it: higher qual
 
 And things kind of go in circles from there, because you can't _go anywhere_ from "`it's a problem with the culture`". I've made this same mistake in the past too! "`Company culture`" is the "`wizard did it`" of software techniques: you can explain the success or failure of _anything_ with "`culture`". If you think the only possible problem with your $THING is "bad culture", then you're saying $THING doesn't have any problems, which means it's snake oil.
 ____
+
+== link:https://www.scattered-thoughts.net/writing/unexplanations-sql-is-syntactic-sugar-for-relational-algebra/[Unexplanations: sql is syntactic sugar for relational algebra]
+
+[quote]
+____
+This idea is particularly sticky because it was more or less true 50 years ago, and it's a passable mental model to use when learning sql. But it's an inadequate mental model for building new sql frontends, designing new query languages, or writing tools likes ORMs that abstract over sql.
+____
