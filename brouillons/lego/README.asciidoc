@@ -1,4 +1,4 @@
-= Sorting legos, picking rules and writing software
+= Sorting legos, single objective rule and writing software
 Julien Kirch
 v0.1, 2024-03-18
 :article_lang: en
@@ -74,5 +74,9 @@ In other cases it leaded to a more compact API, because it enabled us to remove 
 
 Of course there were exceptions to the rule, for libraries whose API would have been too complex to create indirection for.
 But the criteria for the exceptions weren't explicitly written, because it would have meant to stopping having the single rule.
+
+I dislike messy things, but sometimes being a bit messy is better than doing work that brings little value except compliance with a rule.
+
+I don't want to write another indirection above a logging library.
 
 So, please, when you feel the appeal to establish a single objective rule, try to resist it and think of the drawbacks.
