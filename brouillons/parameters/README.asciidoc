@@ -1,17 +1,30 @@
-= Parameters
+= Passing parameters to methods and discussion about software design
 Julien Kirch
 v0.1, 2024-01-01
 :article_lang: en
+
+
+I'm fascinated by the fact that passing parameters to methods, or more exactly "`what is the _right_ way to pass parameters to methods ?`" is a recurring discussion, and I think it can gives some insight about what we discuss when we discuss design.
+
+Another rabbit hold that I probably overthought a bit too much.
+
+First let's introduce four ways to write the same-ish code.
+
+First, the "`canonical`" case, nothing fancy:
 
 [source,java]
 ----
 include::example1.java[]
 ----
 
+The the "`class`" approach, where the parameters are packaged in a class:
+
 [source,java]
 ----
 include::example2.java[]
 ----
+
+Then the "`external`"
 
 [source,java]
 ----

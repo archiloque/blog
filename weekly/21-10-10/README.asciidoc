@@ -36,5 +36,5 @@ ____
 
 [quote]
 ____
-Operating system programmers in Linux discovered this issue around 2007 when they found C code of the form `if(indew+length < index){…}` was being silently deleted by the compiler (since it has to be false axiomatically), causing security and logical failuresfootnote:[Felix-gcc. 2007.  Bug 30475 - assert(int+100 > int) optimized away. link:https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475[https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475]]. Eventually, the operating system (and other projects such as the Postgres database)resorted to a compiler-specific flag to force "`wrapping se-mantics`" outside of ISO C.
+Operating system programmers in Linux discovered this issue around 2007 when they found C code of the form `if(indew+length < index){…}` was being silently deleted by the compiler (since it has to be false axiomatically), causing security and logical failures{empty}footnote:[Felix-gcc. 2007.  Bug 30475 - assert(int+100 > int) optimized away. link:https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475[https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475]]. Eventually, the operating system (and other projects such as the Postgres database)resorted to a compiler-specific flag to force "`wrapping se-mantics`" outside of ISO C.
 ____
