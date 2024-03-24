@@ -56,7 +56,7 @@ One of my personal nemesis about designing software is when people _indistinctly
 
 Indistinctly is important, because I don't mean that this rule isn't the right choice in some cases, for example this rule can bring consistency, and consistency can be an incredible tool to increase the usability of a tool.
 
-But my gut feeling is that this rule is employed too often, and it's frustrating because as I've mentioned above, it can be difficult to argue against it, especially when not applying it means makes things messier.
+But my gut feeling is that this rule is employed too often, and it's frustrating because as I've mentioned above, it can be difficult to argue against it, especially when not applying it means making things messier.
 
 Arguing for a messier approach with some software people is not a piece of cake.
 
@@ -74,10 +74,11 @@ In some case, it has helped with testing, when we had to use mocks and the relat
 In other cases, it leaded to a more compact API, because it enabled us to remove some methods parameters we didn't use, until we needed them and had to rework the thing.
 
 Of course, there were exceptions to the rule, for libraries whose API would have been too complex to create indirection for.
-But the criteria for the exceptions weren't explicitly written because it would have meant to stopping having the single rule.
+But the criteria for the exceptions weren't explicitly written because it would have meant stopping having the single official rule.
 
-I dislike messy things, but sometimes being a bit messy is better than doing work that brings little value except compliance with a rule.
+I dislike messy things, and I like to have a single rule to follow when it's appropriate, but sometimes being a bit messy is better than doing work that brings little value except compliance with a rule, or worse, actively makes things worse.
 
 I don't want to write another indirection above a logging library.
 
 So, please, when you feel the appeal to establish a single objective rule, try to resist it and think of the drawbacks.
+We should strive for simplicity, but I think software design should be something else that picking a few absolute rules and applying them relentlessly.
