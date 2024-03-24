@@ -12,13 +12,13 @@ class MyMethodAsClass {
         this.param2 = param2;
     }
 
-    public void call() {
+    public void invoke() {
         // Do something here
     }
 }
 
 class MyOtherClass {
     void myOtherMethod() {
-        new MyMethodAsClass(instanceOfMyClass, 10, "nya").call();
+        new MyMethodAsClass(instanceOfMyClass, 10, "nya").invoke();
     }
 }

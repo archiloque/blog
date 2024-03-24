@@ -1,35 +1,54 @@
-= Passing parameters to methods and discussion about software design
+= Calling code and discussion about software design
 Julien Kirch
 v0.1, 2024-01-01
 :article_lang: en
+:c1: canonical
+:c2: struct
+:c3: external
+:c4: external struct
+:k: invoke
 
+I'm fascinated by the fact that calling code, or more exactly "`what is the _right_ way to call code ?`" is a recurring discussion, and I think that it can gives some insight about what we discuss when we discuss design, especially since this specific topic is at the crossword of several "`best practices`".
 
-I'm fascinated by the fact that passing parameters to methods, or more exactly "`what is the _right_ way to pass parameters to methods ?`" is a recurring discussion, and I think that it can gives some insight about what we discuss when we discuss design, especially since this specific topic is at the crossword of several "`best practices`".
+It's a kind of follow-up of the link:https://archiloque.net/blog/sorting-lego/[Sorting Lego parts, single objective rule and writing software] article.
+
+== The code
 
 First let's introduce four ways to write the same-ish code.
 
-First, the "`canonical`" case, nothing fancy:
+First, the "`{c1}`" case, where the code to be called is in a method, and where the call use several parameters:
 
 [source,java]
 ----
 include::example1.java[]
 ----
 
-The the "`class`" approach, where the parameters are packaged in a class:
+The the "`{c2}`" approach, where the code is still in a method, but the parameters are packaged in a struct-like construction, in Java it's done with a record:
 
 [source,java]
 ----
 include::example2.java[]
 ----
 
-Then the "`external`" approac
+Then the "`{c3}`" approach, where instead of putting the code in a method, it's in an external class, and instead of passing parameters to a method we create an instance of this class and call the `{k}` method.
 
 [source,java]
 ----
 include::example3.java[]
 ----
 
+Finally, the "`{c4}`" approach that combine _{c2}_ and {c3}_:
+
 [source,java]
 ----
 include::example4.java[]
 ----
+
+== Automatic transformation and coupling
+
+The example can be organized in two pairs _{c1}_ / _{c3}_ and _{c2}_ / _{c4}_ where the first item of the pair is a method call, and the second one is a constructor / `{k}` call.
+
+If the code in second part of the pairs seem a bit awkward, I agree with you, but on the other hand compared to the first part it can be praised as being less coupled (even if this example is a bit contrived) and, as coupling is bad, it can be considered better.
+
+Transforming the code from one of the other part of a pair is something that can be done automatically with the right tool, for example link:https://spoon.gforge.inria.fr[Spoon] in Java.
+

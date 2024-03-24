@@ -2,16 +2,7 @@ class MyClass {
 }
 
 class MyMethodAsClass {
-    public static class MyClassConstructorParameters {
-        final int param1;
-        final String param2;
-
-        public MyClassConstructorParameters(int param1, String param2) {
-            this.param1 = param1;
-            this.param2 = param2;
-        }
-
-    }
+    public static record MyClassConstructorParameters(int param1, String param2) {}
 
     private final MyClass myClass;
     private final MyClassConstructorParameters myClassConstructorParameters;
@@ -21,7 +12,7 @@ class MyMethodAsClass {
         this.myClassConstructorParameters = myClassConstructorParameters;
     }
 
-    public void call() {
+    public void invoke() {
         // Do something here
     }
 }
@@ -31,6 +22,6 @@ class MyOtherClass {
         new MyMethodAsClass(
             instanceOfMyClass, 
             new MyMethodAsClass.MyClassConstructorParameters(10, "nya")
-            ).call();
+            ).invoke();
     }
 }
