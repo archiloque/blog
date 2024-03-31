@@ -1,8 +1,8 @@
-The 80's were different when you wanted to be an independent software developer: you could buy a beaten codebase, give it a shady refactoring, and start smuggling features between the frontier worlds.
+The 80s were different when you wanted to be an independent software developer: you could buy a beaten codebase, give it a shady refactoring, and start smuggling features between the frontier worlds.
 
 ''''
 
-To workaround some existing bugs, most scrum masters implementations ignore developers that are T-posing, it can be exploited during daily meetings and retrospectives
+To work around some existing bugs, most scrum masters implementations ignore developers that are T-posing, it can be exploited during daily meetings and retrospectives
 
 ''''
 
@@ -19,3 +19,15 @@ Main feature of a data volcano:
 - Constant temptation to hurl inconvenient people into it.
 
 Availability is location-dependent, contact your local reseller for details.
+
+''''
+
+== Code comments & unreliable narrator
+
+So many developers seem to strongly hate when comments don't match what the code is doing.
+
+But comments not matching the code is a long-established industry best-practice called link:https://en.wikipedia.org/wiki/Unreliable_narrator[unreliable narrator].
+
+It can have several goals so don't assume the authorial intent, but the most common is to make the reader question the objectivity of the code, to remind them that all software code is ultimately a work of fiction, than only have a coincidental relation to what is actually happening on a computer.
+
+So the next time you meet this case, please try to refrain yourself to react negatively to it, and try to understand what the people who wrote what you're reading wanted to achieve.
