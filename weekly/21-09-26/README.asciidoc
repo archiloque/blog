@@ -11,7 +11,7 @@ v1.0, 2021-09-26
 ____
 Generally, the delta between a mediocre Single-Page-App and a mediocre Multi-Page-App (i.e. a traditional server-rendered site) is usually massive, especially if you are targeting mobile devices. Given the same end goal and resources, most teams and managers will do a much better job of reaching their goals if they use a Multi-Page-App instead of a Single-Page-App. You can blame the tools, the browser landscape, developer training, or management, but that's just how it tends to pan out in practice.
 
-I keep seeing Single-Page-Apps with huge JS files that only, in terms of concrete User Experience (UX) benefits, deliver client-side validation of forms plus analytics. Apps rarely leverage the potential of a Single-Page-App. It's still just the same ‘click, wait for load' navigation cycle. Same as the one you get with Multi-Page-Apps. Except buggier and with a much slower initial loading time.
+I keep seeing Single-Page-Apps with huge JS files that only, in terms of concrete User Experience (UX) benefits, deliver client-side validation of forms plus analytics. Apps rarely leverage the potential of a Single-Page-App. It's still just the same "`click, wait for load`" navigation cycle. Same as the one you get with Multi-Page-Apps. Except buggier and with a much slower initial loading time.
 
 When you look at performance, cross-platform and mobile support, reliability, and accessibility, nearly every Single-Page-App you can find in the wild is a failure on multiple fronts.
 
