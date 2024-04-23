@@ -5,7 +5,7 @@ v1.0, 2024-01-01
 :figure-caption!:
 :article_description: 
 
-== link:https://www.patreon.com/posts/97024525?utm_campaign=postshare_fan[LTP #1: Something in the dirt (2022)]
+== link:https://www.patreon.com/posts/97024525[LTP #1: Something in the dirt (2022)]
 
 [quote]
 ____
@@ -15,4 +15,29 @@ ____
 [quote]
 ____
 The more you dig, the more you find, but what you find may distract you from what you were looking for in the first place. If there is anything to learn from this film, it's that you can't let your ego get in the way. It's possible for the things you lack to consume you because mere promise of answers implies that those holes can be filled. The investigator who survives the paranormal is the one who has fun with it. Who can approach the hunt with a sense of playfulness and unpredictability.
+____
+
+== link:https://lwn.net/SubscriberLink/969923/27ae8e4918d19035/[Warning about `WARN_ON()`]
+
+[quote]
+____
+To summarize the situation: over the years, `BUG_ON()` has been seen as so destructive that developers are simply https://docs.kernel.org/process/deprecated.html#bug-and-bug-on[told not to use it at all]. The `WARN_ON()` macro has, instead, taken its place; but in settings where `panic_on_warn` is set, the end result of a `WARN_ON()` call is essentially the same. So, naturally, use of `WARN_ON()` is also now discouraged much of the time.
+____
+
+== link:https://neopragma.com/2024/04/random-musings-on-the-agile-manifesto/[Random musings on the Agile Manifesto]
+
+[quote]
+____
+Today, most people who see a list of the names just see a bunch of letters on a screen or page. They don't connect the names with the individuals. They see the Agile Manifesto as a standalone "`thing`", stripped of its history and context. Stripped of its humanity, one could say. That's not a criticism. I guess it's normal. Maybe it's better that way, as I will suggest in a moment.
+
+Anyway, three of the Manifesto authors (that I know of) take the _individualism_ dimension further than Hofstede himself may have imagined possible. They're in the extreme category that says things like "`taxation is theft`" and who don't believe they owe their fellow countrymen anything at all, or that they have benefited in any way from "`the system`" or "`the collective`". They are self-spawned hero-gods, each a self-sufficient world in a skin-sack.
+____
+
+[quote]
+____
+The incongruity is just this: The hero-gods of Agile don't behave in any way consistently with the values and principles they wrote into the Agile Manifesto. They wouldn't recognize empathy, humility, and curiosity if they drowned in a vat of the stuff. When you pair-program with them, they _dominate_ rather than _collaborate_.
+
+They assume they hold all the Magic Keys and you are an empty vessel waiting to be filled with their wisdom. At times they are so arrogant it's hard to stay in the same room with them for more than five minutes. This observation applies only to a few of the authors, yet the contrast between what they do and what they wrote is striking, if not downright jarring.
+
+In a sense, it's a _good_ thing that time, the bandwagon effect, the greed of big consultancies, the dull gray monotony of certification, and the insistent, debilitating corporate standardization of "`agile`" have blurred the focus on the individual authors. The message is probably clearer if you don't know too much about them, after all. The document speaks for itself, and it has very good things to say.
 ____

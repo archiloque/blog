@@ -1,0 +1,12 @@
+= Priority inversion and processes
+Julien Kirch
+v0.1, 2024-04-20
+:article_lang: en
+
+In computer stuff, a priority inversion is when a high priority task is waiting for a low priority task.
+If the low priority task execution is slow, or if it's execution happens far in the future, as expected from its priority, it means that the high priority task can wait for a long time, which defeats the whole idea of high priority.
+
+A way to solve the problem is to be sure there are not dependencies between those two types of tasks, because then the situation never occurs.
+Unfortunately it's not always possible.
+
+An 
