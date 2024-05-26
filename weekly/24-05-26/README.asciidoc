@@ -1,0 +1,63 @@
+= Links - 26^th^ May 2024
+Julien Kirch
+v1.0, 2024-05-26
+:article_lang: en
+:figure-caption!:
+:article_description: Team priorities, WordPress, nature of software, monorepo tooling
+
+== link:https://cutlefish.substack.com/p/tbm-285-shared-teams-and-apples-to[TBM 285: Shared Teams and Apples-to-Oranges Priorities]
+
+[quote]
+____
+Cage Match. Have their "`customer`" teams fight for their capacity by forcing some kind of sequenced queue or similar (if escalated, this could include a leader being the tie-breaker or prioritizing lists of projects). Pros: great for sequencing. Cons: you're pegged as a "`service`" team because you're hands-off, and the teams resent you for making them fight each other. Leaders resent having to be the tie-breaker. Teams just work around you.
+____
+
+[quote]
+____
+Another interesting thing starts to happen. If a team can't force a shared team to focus on their thing, or if those teams are impossibly slow to help, they often just work around other teams and finish whatever they can get done autonomously. Go Really Rogue. This leads to a dynamic whereby global output doesn't match priorities, and people start second-guessing the whole system. At the same time, everyone points at those teams and says, "`See, why can't you show initiative and ship like Team X? They take matters into their own hands!`"
+____
+
+== link:https://dbushell.com/2024/05/07/modern-wordpress-themes-yikes/[Modern WordPress - Yikes!]
+
+[quote]
+____
+So to recap, the flagship WordPress theme has:
+
+* CSS in front matter
+* CSS in PHP
+* CSS in JSON
+* CSS in _HTML-JSON_
+* CSS in HTML `+<style>+` elements
+* CSS in HTML `+style+` attributes
+* CSS in external stylesheets
+
+No _CSS-in-JS_ for the complete set sadly.
+____
+
+== link:https://tratt.net/laurie/blog/2024/what_factors_explain_the_nature_of_software.html[What factors explain the nature of software?]
+
+[quote]
+____
+* Software occupies a _liminal state_ between the constraints of the physical world and an anything-goes fantasy world. We frequently mistake the constraints that software faces.
+* Our ability to specify what a given piece of software should be is limited by the _circular specification problem_. We nearly always have to fully build the software in order to know precisely what we want it to be.
+* Software is subject to the _observer effect_. The act of seeing the software in action changes what we -- or more often others -- think the software should be, sometimes radically.
+____
+
+[quote]
+____
+Software, in contrast, is subject to relatively few hard constraints. However, if we try and make software deal with every imaginable possibility, it will probably be too complex and too buggy — and we won't be able to deliver it in reasonable time for a reasonable price. We therefore impose a great number of _soft_ constraints upon our software to simplify our lives and that of users. For example, we might make our program only able to take one input file, or assume that people only live at one address at a time, and so on.
+
+The relative merits of soft constraints are hard to quantify or to relate to the real-world. Two reasonable people can easily differ over whether adding (or removing) a given soft constraint is a good or bad idea, because so much of what each side is thinking about resides in a fantasy world that we struggle to explain to others. I might believe from past experience that a certain data-structure, though simpler, will lead to unacceptably bad performance in the long run, but I may struggle to quantify that in any meaningful way until the bad case is actually hit.
+____
+
+[quote]
+____
+However, it seems to me that at the same speed as we make one category of software more easily specifiable, we increase our demands on bespoke software. Unlike civil engineering, there are few hard constraints stopping us increasing our ambitions for software, and so we keep doing so. It seems plausible to me that our ability to specify software -- which I expect will continue improving -- will remain a semi-constant distance behind our ambitions for software.
+____
+
+== link:https://blog.nelhage.com/post/stripe-dev-environment/[Stripe's monorepo developer environment]
+
+[quote]
+____
+I've mentioned that this infrastructure supported a large monorepo with relatively consistent architecture and patterns, both across time and across the codebase. Having that stable target created points of leverage, where the developer productivity team could create shared tooling (like the autoloader, and the devbox service manager) that provided fairly deep integration with the environment and codebase and offered user-friendly features. In an environment that included a much-larger variety of languages, runtimes, patterns, it doesn't make sense to specialize as much for any one, and infrastructure teams need to build more-generic tooling that treats user code as more of a opaque box.
+____
