@@ -1,0 +1,46 @@
+= Links - 9^th^ June 2024
+Julien Kirch
+v1.0, 2024-06-09
+:article_lang: en
+:figure-caption!:
+:article_description: Postman, computers are presumed to be operating correctly, temporary truths, against optimization
+
+== link:https://www.leeholmes.com/security-risks-of-postman/[Security risks of Postman]
+
+[quote]
+____
+This change introduces several major changes to Postman's security risks:
+
+* A user's self-managed Postman account credentials now provide access to any production secrets they may been using. If your organization enforces identity separation when managing production resources, these self-managed Postman accounts now break that.
+* Traditional attacks (phishing, credential stuffing, etc.) against Postman accounts will now likely result in exposure of production secrets.
+* As link:https://krebsonsecurity.com/2023/10/hackers-stole-access-tokens-from-oktas-support-unit/[Okta's recent breach demonstrates], attackers do go after companies that store authentication material to abuse them and replay them against their original targets.
+
+In addition to these kind of issues, Postman is also heading down a path of being a social network for API requests. If you thought people accidentally checking creds into GitHub was a problem, wait until attackers discover the treasure trove that is Postman.
+____
+
+== link:https://www.benthamsgaze.org/wp-content/uploads/2022/06/briefing-presumption-that-computers-are-reliable.pdf[The legal rule that computers are presumed to be operating correctly -- unforeseen and unjust consequences]
+
+[quote]
+____
+In England and Wales, courts consider computers, _as a matter of law_, to have been working correctly unless there is evidence to the contrary. Therefore, evidence produced by computers is treated as reliable unless other evidence suggests otherwise. This way of handling evidence is known as a "`rebuttable presumption`". A court will treat a computer as if it is working perfectly unless someone can show why that is not the case.
+
+This presumption poses a challenge to those who dispute evidence produced by a computer system. Frequently the challenge is insurmountable, particularly where a substantial institution operates the system.
+____
+
+____
+We propose that the presumption that computer evidence is reliable be replaced with a process where if computer evidence is challenged, a party must justify the correctness of the evidence upon which they rely. The proposed process, summarised below, requires the disclosure of documents that would already exist in any well-managed computer system. The procedural and evidential safeguards of the kind we propose would probably have avoided the disastrous repeated miscarriages of justice over the past 20 years.
+____
+
+== link:https://discursiveanomalies.com/2023/12/23/the-cybernetics-of-free-returns/[The cybernetics of free returns]
+
+[quote]
+____
+The usefulness of cybernetics lies not in the conclusions given to us by its authors, but in the method of analysis they outlined. Look not for eternal truths, but where temporary truths are negotiated and processed. Find where the calculations are being made, and you have something to work with.
+____
+
+== link:https://aworkinglibrary.com/writing/against-optimization[Against optimization]
+
+[quote]
+____
+Another way to look at this is that you cannot optimize for resilience. Resilience requires a kind of elasticity, an ability to stretch and reach but then to return, to spring back into a former shape -- or perhaps to shapeshift into something new if the circumstances require it. Resilience is stretchy where optimization is brittle; resilience invites change where optimization demands continuity. 
+____
