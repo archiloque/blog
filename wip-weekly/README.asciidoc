@@ -4,3 +4,33 @@ v1.0, 2024-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://tblm.substack.com/p/as-lovely-as-a-tree[As Lovely as a Tree]
+
+[quote]
+____
+Like a poem, an algorithm can remain inscrutable for one's entire life. For many entire lives across many entire societies. One sees it in use all over the place. One knows it more or less works. One does not know exactly how or why.
+____
+
+[quote]
+____
+Poets are people who program other people to have emotional reactions that they want the person to have.
+____
+
+[quote]
+____
+Nobody outside of a writing class might rewrite literature other people wrote, because it makes no sense to desecrate a finished tale by someone else. Whereas, software practically begs rewrites. It must evolve to stay relevant to demands we place on it. It is _the becoming_ of the Ship of Theseus, not the tale of how it came to be.
+
+In that sense, I don't think software fits the well-established mould of finished literature. It will, however, feel right at home amid the scribbled-over yellow pads and paraphernalia on writerly desks. The waste basket next to it, failing to contain crumpled rejects. And the increasingly agitated unanswered texts from the editor about the many missed deadlines.
+____
+
+== link:https://devblogs.microsoft.com/oldnewthing/20240618-00/?p=109910[The time smart quotes prevented the entire Office division from committing code]
+
+[quote]
+____
+A colleague told a story of how he once broke the entire Office division’s ability to check in code because he accidentally checked in a syntax error to the script that is used to verify that your proposed change has satisfied all the pre-submit requirements such as passing static analysis and unit testing.
+
+Since the script was now failing, all attempts to check in code were being blocked, including the attempts to fix the script itself!
+
+In order to get things working again, they had to find someone who had access to the console of the machine that runs the validation tests and manually edit the script so that the script repair check-in would pass its own validation.
+____
