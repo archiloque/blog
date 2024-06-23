@@ -1,0 +1,135 @@
+= Links - 23^th^ June 2024
+Julien Kirch
+v1.0, 2024-06-23
+:article_lang: en
+:figure-caption!:
+:article_description: Poetry & programming, smart quotes, perverse incentives, safety & liveness properties, optics & outcomes, late bugs, tinkering, frustration & engagement, CSS frameworks, WordPress
+
+== link:https://tblm.substack.com/p/as-lovely-as-a-tree[As lovely as a tree]
+
+[quote]
+____
+Like a poem, an algorithm can remain inscrutable for one's entire life. For many entire lives across many entire societies. One sees it in use all over the place. One knows it more or less works. One does not know exactly how or why.
+____
+
+[quote]
+____
+Poets are people who program other people to have emotional reactions that they want the person to have.
+____
+
+[quote]
+____
+Nobody outside of a writing class might rewrite literature other people wrote, because it makes no sense to desecrate a finished tale by someone else. Whereas, software practically begs rewrites. It must evolve to stay relevant to demands we place on it. It is _the becoming_ of the Ship of Theseus, not the tale of how it came to be.
+
+In that sense, I don't think software fits the well-established mould of finished literature. It will, however, feel right at home amid the scribbled-over yellow pads and paraphernalia on writerly desks. The waste basket next to it, failing to contain crumpled rejects. And the increasingly agitated unanswered texts from the editor about the many missed deadlines.
+____
+
+== link:https://devblogs.microsoft.com/oldnewthing/20240618-00/?p=109910[The time smart quotes prevented the entire Office division from committing code]
+
+[quote]
+____
+A colleague told a story of how he once broke the entire Office division's ability to check in code because he accidentally checked in a syntax error to the script that is used to verify that your proposed change has satisfied all the pre-submit requirements such as passing static analysis and unit testing.
+
+Since the script was now failing, all attempts to check in code were being blocked, including the attempts to fix the script itself!
+
+In order to get things working again, they had to find someone who had access to the console of the machine that runs the validation tests and manually edit the script so that the script repair check-in would pass its own validation.
+____
+
+== link:https://talyarkoni.org/blog/2018/10/02/no-its-not-the-incentives-its-you/[No, it's not The Incentives -- it's you]
+
+[quote]
+____
+There's a narrative I find kind of troubling, but that unfortunately seems to be growing more common in science. The core idea is that the mere existence of perverse incentives is a valid and sufficient reason to knowingly behave in an antisocial way, just as long as one first acknowledges the existence of those perverse incentives.
+____
+
+[quote]
+____
+As best I can tell, the words "`it's the incentives`" are magic. Once they're uttered by someone, natural law demands that everyone else involved in the conversation immediately stop whatever else they were doing, solemnly nod, and mumble something to the effect that, yes, the incentives are very bad, very bad indeed, and it's a real tragedy that so many smart, hard-working people are being crushed under the merciless, gigantic boot of The System. Then there's usually a brief pause, and after that, everyone goes back to discussing whatever they were talking about a moment earlier.
+____
+
+== link:https://without.boats/blog/ownership/[Ownership]
+
+[quote]
+____
+Something Graydon Hoare said to me that I like a lot (though I think he was paraphrasing someone else) is that type systems are the parts of formal methods that we've figured out how to make easy. That is, a type system is a formal (and hopefully sound) static analysis technique which is automatically applied to your program to verify aspects of its behavior. A valuable distinction has been made in formal analysis between two kinds of properties your program could have:
+
+* _Safety properties_, which are guarantees that "`bad things don't happen`" (i.e. your program does not exhibit certain undesirable behavior).
+* _Liveness properties_, which are guarantees that "`good things do happen`" (i.e. your program does exhibit certain desirable behavior).
+____
+
+== link:https://cutlefish.substack.com/p/tbm-294-close-the-loop-stop-the-drift[TBM 294: Close the loop. stop the drift]
+
+[quote]
+____
+When the optics of a process become more important for a company than the outcomes, conversations, and decisions triggered by a process, you're in for a rough time.
+
+I'll always remember chatting with an engineering director obsessed with publishing burndown charts. I asked what decisions had been made based on those burndown charts. What happens if things slip? What happens if the team needs help? What happens if the scope has increased?
+
+The response was not encouraging. In her mind, her job was publishing the burndown chart. I asked if leadership confidence was high in her team, and unsurprisingly, the answer was "`not very high at the moment`". But in her defense, every time the team had raised issues and asked for more support, they had been rejected and denied that help. So, in her mind, publishing the burndown chart showed leaders the results of their actions. You can probably sense the wicked loop that was in play here.
+
+You end up with the burndown chart to hell…
+____
+
+== link:https://lethain.com/quality/[How to create software quality.]
+
+[quote]
+____
+For example, bugs detected after software is nominally complete tend to be fixed locally, even if they reveal a suboptimal approach. 
+____
+
+== link:https://artemis.sh/2024/06/19/do-you-really-want-to-write.html[So, do you actually want to write?]
+
+[quote]
+____
+When I got into making music, I was overwhelmed. I knew that I liked making music on some level, but you wouldn't think it to talk to me about my projects. I hated almost everything I made. None of it sounded like what I wanted. I would spend hours working on a loop, and then quit FL Studio, pissed off and disgruntled, only to be back at it the next day for reasons I could not tell you.
+
+Part of how I tried to cope with this was getting into writing my own synthesizer software. I thought, if I could understand the math behind sound, maybe I could figure out my problems, understand how to make things I liked.
+
+Now I had two problems. It turns out that Digital Signal Processing is one of the hardest fields to break into if you don't have either an academic background, or someone to point you at the right resources for it. So I gave up on writing my own synthesizers for awhile.
+
+I did not consider myself a "`music producer`" for most of that time period. Observably, I was. I have hundreds of little ideas and sketches from that time, some of which I fucking love these days. I wanted desperately to make music, and so I tried to do that, and kept trying to do that even when I didn't live up to my standards.
+
+Now I make music I like, and I write DSP code, and those things are usually not as connected as I trick myself into thinking.
+____
+
+[quote]
+____
+But, perhaps you don't really want to write. Do you like tinkering with site generator tools? Then _fucking tinker to your heart's content_. You don't need to have an end goal where you actually put some thinkpiece or technical writeup on the website. Building it can be its own reward. Play with the styles, create your minimalist heaven, or your maximalist Y2K masterpiece.
+
+Not that this is a dichotomy or anything, you can write and do web design. But _why_ are we doing these things? You truly do not need to have anything to say to make a website. That is one of the best parts. Are you trying to write because you've been convinced that it's a necessary part of having a website? I'm here to tell you: you are free.
+
+If you love it, let it consume you. If you hate every moment you spend with it, why are you trying to do it? Real winners quit.
+____
+
+== link:https://cohost.org/kastel-notebooks/post/6496813-la-mulana-jp-media[La-Mulana (#jp_media Community Backlog #3)]
+
+[quote]
+____
+There are many moments in the game where I just stopped progressing. I didn't know what I was looking at, and I would move on, not realizing that I could have solved the puzzle with my current knowledge. Instead, I would solve other puzzles that I had previously struggled with, or simply read stone tablets to re-evaluate what I know.
+
+This downtime was frustrating. I didn't know how long the game was, and I didn't know if what I was fixating on was an actual solvable puzzle. All I could do was look back at what I'd written.
+
+But I appreciated being stuck because I was clearly engaged with the game. All of these negative emotions that the game evoked were proof that I was being affected by the game. I may have found these sections excruciating in the game, but they allowed me to rethink my approach outside of the game. I began to obsess over the title and the ruins.
+
+This obsession paid off when I started unlocking key items. New weapon upgrades and movement options felt magical to me. Enemies I found problematic go down so easily, and I was able to fix my terrible jumping with a few tricks. The ruins in my imagination expanded the more I discovered new shortcuts and tools. I couldn't stop playing the game because the new puzzle I stumbled upon might contain a needed health upgrade or something else I might find useful.
+____
+
+== link:https://www.thudfactor.com/posts/2024/06/new-hotness/[Uptake of the new CSS seems slow. Why?]
+
+[quote]
+____
+Any large, non-trivial code base shared among developers will have one or more of the following:
+
+. A well-tested, public framework built on native HTML, CSS, and JavaScript. React, Angular, Vue, Bootstrap, Tailwind.
+. A custom-built, internal framework purposely designed for the specific problem space (but not nearly so well-tested). _This includes custom component libraries and style guides_.
+. A tangle of native, bare-metal JavaScript and CSS, written in multiple styles and idioms, spread out across several generations of CSS and ECMAScript. (HTML and SVG are not riding the New Feature Train yet).
+
+That list is ordered from what would make me most happy to most sad to find. If the project uses something like React or Angular, I may not like the framework, or it may have many flaws, but it will most likely be reasonably documented and have a library of conversations online about how to do certain things. Custom-built frameworks, not so much.
+____
+
+== link:https://wpwatercooler.com/wpwatercooler/ep484-whose-wordpress-is-it-anyway/[EP484 - Whose WordPress is it anyway?]
+
+[quote]
+____
+But so much of the web is being controlled, literally controlled, by the whims of one person. And the whims of that one person influence a lot of other people, particularly people who work for his various companies. But when we're, if we wanted to really parse it down we've got three main, four main entities that are involved in the … not leadership, but are the organizational, what are those things … cornerstones, organizational cornerstones of WordPress.
+____
