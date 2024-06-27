@@ -4,3 +4,46 @@ v1.0, 2024-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://lwn.net/ml/all/87sex4s7g8.fsf@hope.eyrie.org/[Re: Summary of the current state of the tag2upload discussion]
+
+[quote]
+____
+The reason why I didn't participate in that discussion, and the reason why
+I didn't try to summarize it, is that I don't believe anything will ever
+come of it.  I don't think these more radical approaches will ever be
+implemented, and if implemented, I don't think Debian will ever deploy
+them.  Or, at least, that none of this will happen in any reasonable time
+frame.
+
+I know this sounds very negative, and I don't mean this to be stop energy
+for people who want to work on this.  I would be absolutely thrilled to be
+proven wrong.  That would make me very happy.  And therefore I stay out of
+the discussion so that I don't just inject negativity.
+
+But I've seen this pattern before.  I remember 3.0 (git).  And I remember
+a lot of other discussions over the years that didn't get as far as 3.0
+(git) got, discussions full of grand ideas and not much implementation
+follow-through.
+
+Debian is full of people who love to design things and love to talk about
+other people's designs and love to look at the big picture.  But it's one
+thing to design something, it's another thing to implement it, and it's
+yet another thing to deploy it, and Debian is passively hostile to change
+of this type to a degree that I don't think people realize until they've
+tried to do it.
+
+Worse, this is frequently used, as I feel is happening to some degree
+here, as a justification for blocking work that has already been done.
+____
+
+[quote]
+____
+Blocking people's work because it's actively dangerous, sure, sometimes we
+have to do that and it sucks but it may make sense.  But blocking people's
+work because it didn't solve a larger problem than they wanted to solve,
+or cared more about backward compatibility than one might wish, or changed
+a security model in a way that's a little better in places and a little
+worse than others… that just feels wrong to me.  Rude.  Dismissive.  And
+self-defeating for Debian as a whole.
+____
