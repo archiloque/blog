@@ -1,0 +1,81 @@
+= Links - 30^th^ June 2024
+Julien Kirch
+v1.0, 2024-06-30
+:article_lang: en
+:figure-caption!:
+:article_description: Negativity toward changes, front-end development, reality & trust, eulogy for DevOps
+
+== link:https://lwn.net/ml/all/87sex4s7g8.fsf@hope.eyrie.org/[Re: Summary of the current state of the tag2upload discussion]
+
+[quote]
+____
+The reason why I didn't participate in that discussion, and the reason why
+I didn't try to summarize it, is that I don't believe anything will ever
+come of it.  I don't think these more radical approaches will ever be
+implemented, and if implemented, I don't think Debian will ever deploy
+them.  Or, at least, that none of this will happen in any reasonable time
+frame.
+
+I know this sounds very negative, and I don't mean this to be stop energy
+for people who want to work on this.  I would be absolutely thrilled to be
+proven wrong.  That would make me very happy.  And therefore I stay out of
+the discussion so that I don't just inject negativity.
+
+But I've seen this pattern before.  I remember 3.0 (git).  And I remember
+a lot of other discussions over the years that didn't get as far as 3.0
+(git) got, discussions full of grand ideas and not much implementation
+follow-through.
+
+Debian is full of people who love to design things and love to talk about
+other people's designs and love to look at the big picture.  But it's one
+thing to design something, it's another thing to implement it, and it's
+yet another thing to deploy it, and Debian is passively hostile to change
+of this type to a degree that I don't think people realize until they've
+tried to do it.
+
+Worse, this is frequently used, as I feel is happening to some degree
+here, as a justification for blocking work that has already been done.
+____
+
+[quote]
+____
+Blocking people's work because it's actively dangerous, sure, sometimes we
+have to do that and it sucks but it may make sense.  But blocking people's
+work because it didn't solve a larger problem than they wanted to solve,
+or cared more about backward compatibility than one might wish, or changed
+a security model in a way that's a little better in places and a little
+worse than others… that just feels wrong to me.  Rude.  Dismissive.  And
+self-defeating for Debian as a whole.
+____
+
+== link:https://blog.frankmtaylor.com/2024/06/20/a-rant-about-front-end-development/[A rant about front-end development]
+
+[quote]
+____
+Do you have any idea how frustrating it is that that in order to explain my sadness to my therapist I must first explain like 5 different technologies and by the time I'm finished _she's sad just hearing it_, the session's over, and I didn't even get to what was making me upset? Technology has made my anger a recursive function.
+____
+
+== link:https://cutlefish.substack.com/p/tbm-296-trust-lets-you-observe-reality[TBM 296: Trust lets you observe reality]
+
+[quote]
+____
+One of the biggest myths is that when trust is low, you can somehow engineer a process that will "`surface reality`". I've fallen for this trap over the years. I imagine that if we "`just`" visualize work, keep tabs on progress, and "`face reality`", somehow magically, reality would emerge.
+____
+
+== link:https://matduggan.com/a-eulogy-for-devops/[A eulogy for DevOps]
+
+[quote]
+____
+Then layoffs started and budget cuts. Suddenly it wasn't acceptable to spend unlimited money with your logging platform and your cloud provider as well as having a full team. Almost instantly I saw the shift as organizations started talking about "`going back to basics`". Among this was a hard turn in the narrative around Kubernetes where it went from an amazing technology that lets you grow to Google-scale to a weight around an organizations neck nobody understood.
+____
+
+[quote]
+____
+We are now seeing a massive contraction of the Infrastructure space. Teams are increasingly looking for simple, less platform specific tooling. In my own personal circles it feels like a real return to basics, as small and medium organizations abandon technology like Kubernetes and adopt much more simple and easy-to-troubleshoot workflows like "`a bash script that pulls a new container`".
+
+In some respects it's a positive change, as organizations stop pretending they needed a "`global scale`" and can focus on actually servicing the users and developers they have. In reality a lot of this technology was adopted by organizations who weren't ready for it and didn't have a great plan for how to use it.
+
+However Platform Engineering is not a magical solution to the problem. It is instead another fabrication of an industry desperate to show monthly growth in cloud providers who know teams lack the expertise to create the kinds of tooling described by such practices. In reality organizations need to be more brutally honest about what they _actually need_ vs what bullshit they've been led to believe they need.
+
+My hope is that we keep the gains from the DevOps approach and focus on simplification and stability over rapid transformation in the Infrastructure space. I think we desperately need a return to basics ideology that encourages teams to stop designing with the expectation that endless growth is the only possible outcome of every product launch.
+____
