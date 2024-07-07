@@ -4,3 +4,24 @@ v1.0, 2024-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://yosefk.com/blog/advantages-of-incompetent-management.html[Advantages of incompetent management]
+
+[quote]
+____
+Well, it's not like they don't care, as much as they don't have a mechanism for caring or even registering it. Correctness is not a goal in itself that management can set for the teams without perverse side-effects. Of course, you have to fix "`showstopper bugs`" or you haven't achieved your goal. Any further bug-fixing takes resources from achieving your nominal goals, and is avoided -- not outright, which would look bad, but through slow-walking and other acceptable forms of sabotage.
+
+It's true that Microsoft Teams (to take one example too many are familiar with) can get away with bugs because it's bundled with Outlook and other stuff, and because whoever pays for it doesn't use it that much, but rather foists it upon helpless internal users. But it's also true that fixing those bugs would be money very well-spent for Microsoft, because it would almost certainly improve their reputation and increase sales at the margins and more than offset the cost of the work. The problem is that it's hard for a well-run place to get people to fix non-showstopper bugs.
+____
+
+[quote]
+____
+Mostly incompetent management which is very bad at setting and achieving goals is perfectly capable and all too likely to cargo-cult effective management by setting up an elaborate bureaucracy for assigning work and tracking its status, thus preventing work from happening spontaneously. This has all the downsides of actually competent management without any of the benefits.
+____
+
+== link:https://buttondown.email/nelhage/archive/performance-engineering-requires-stable-benchmarks/[Performance engineering requires stable benchmarks]
+
+[quote]
+____
+This suggests to me that our very efforts to _improve_ performance at the systems level are actually direct contributors to our struggles to maintain high performance at the application level! All of these innovations improve benchmarks and peak performance figures, and simultaneously making it harder and harder for application developers to do performance engineering, and less and less likely that developers actually do. I definitely don't claim this is at all the full explanation for our slow software, but I think I've convinced myself it's an under-recognized contributor.
+____
