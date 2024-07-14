@@ -11,10 +11,10 @@ v1.0, 2021-04-25
 ____
 Analytical data plane itself has diverged into two main architectures and technology stacks: link:https://martinfowler.com/bliki/DataLake.html[_data lake_ and _data warehouse_]; with data lake supporting data science access patterns, and data warehouse supporting analytical and business intelligence reporting access patterns. For this conversation, I put aside the dance between the two technology stacks: data warehouse attempting to link:https://cloud.google.com/bigquery-ml/docs[onboard data science workflows] and data lake attempting to link:https://databricks.com/blog/2020/01/30/what-is-a-data-lakehouse.html[serve data analysts and business intelligence]. The original writeup on data mesh explores the link:https://martinfowler.com/articles/data-monolith-to-mesh.html#ArchitecturalFailureModes[challenges of the existing analytical data plane architecture].
 
-.Further divide of analytical data - warehouse
+.Further divide of analytical data-warehouse
 image::data-warehouse.png[]
 
-.Further divide of analytical data - lake
+.Further divide of analytical data-lake
 image::data-lake.png[]
 ____
 
@@ -119,7 +119,7 @@ ____
 ____
 I posit that _a sufficiently complex CI system becomes indistinguishable from a build system_. I challenge you: try to convince me or yourself that GitHub Actions, GitLab CI, and other CI systems aren't build systems. The basic primitives are all there. GitHub Actions Workflows comprised of jobs comprised of steps are little different from say Makefiles comprised of rules comprised of commands to execute for that rule, with dependencies gluing everything together. The main difference is the _form factor_ and the execution model (build systems are traditionally local and single machine but CI systems are remote/distributed).
 
-Then we have a similar conjecture: _a sufficiently complex build system becomes indistinguishable from a CI system_. Earlier I said that CI systems are _remote code execution as a service_. While build systems are historically things that run locally (and therefore not a service), modern build systems like Bazel (or Buck or Gradle) are completely different animals. For example, Bazel has link:https://docs.bazel.build/versions/master/remote-execution.html[remote execution] and link:https://docs.bazel.build/versions/master/remote-caching.html[remote caching] as built-in features. Hey - those are built-in features of modern CI systems too! _So here's a thought experiment: if I define a build system in Bazel and then define a server-side Git push hook so the remote server triggers Bazel to build, run tests, and post the results somewhere, is that a CI system? I think it is!_ A crude one. But I think that qualifies as a CI system.
+Then we have a similar conjecture: _a sufficiently complex build system becomes indistinguishable from a CI system_. Earlier I said that CI systems are _remote code execution as a service_. While build systems are historically things that run locally (and therefore not a service), modern build systems like Bazel (or Buck or Gradle) are completely different animals. For example, Bazel has link:https://docs.bazel.build/versions/master/remote-execution.html[remote execution] and link:https://docs.bazel.build/versions/master/remote-caching.html[remote caching] as built-in features. Hey -- those are built-in features of modern CI systems too! _So here's a thought experiment: if I define a build system in Bazel and then define a server-side Git push hook so the remote server triggers Bazel to build, run tests, and post the results somewhere, is that a CI system? I think it is!_ A crude one. But I think that qualifies as a CI system.
 
 _If you squint hard enough, sufficiently complex CI systems and sufficiently complex build systems start to look like the same thing to me._ At a very high level, both are providing a pool of servers offering general compute/execute functionality with specialized features in the domain of building/shipping software, like inter-task artifact exchange, caching, dependencies, and a frontend language to define how everything works.
 

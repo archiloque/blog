@@ -51,7 +51,7 @@ ____
 ____
 The new solution: riot's application and environment model
 
-Given that the previous attempts failed to produce the desired outcome, we decided to eliminate partial state manipulation by creating an opinionated declarative specification that captures the entirety of a distributed product - an _environment_. An environment contains all the declarative metadata required to fully specify, deploy, configure, run, and operate a set of distributed microservices collectively representing a _product_ and is holistically and immutably versioned. For those wondering, we picked  "`environment`" because it was the _least_ overloaded term at Riot. Naming things is hard.
+Given that the previous attempts failed to produce the desired outcome, we decided to eliminate partial state manipulation by creating an opinionated declarative specification that captures the entirety of a distributed product -- an _environment_. An environment contains all the declarative metadata required to fully specify, deploy, configure, run, and operate a set of distributed microservices collectively representing a _product_ and is holistically and immutably versioned. For those wondering, we picked  "`environment`" because it was the _least_ overloaded term at Riot. Naming things is hard.
 
 With the launch of Legends of Runeterra, we proved that we could describe an entire microservice game backend, game servers included, and have it deploy, run, and be operated as a product in Riot regions as well as in partner data centers across the globe. We also demonstrated the ability to achieve this while improving the upsides of the DevOps methods we've grown to love so much.
 ____
