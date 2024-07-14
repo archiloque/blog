@@ -1,0 +1,61 @@
+= Links - 14^th^ July 2024
+Julien Kirch
+v1.0, 2024-07-14
+:article_lang: en
+:figure-caption!:
+:article_description: Incompetent management, benchmarking & stability, files as metadata, more information can leads to worse code
+
+== link:https://yosefk.com/blog/advantages-of-incompetent-management.html[Advantages of incompetent management]
+
+[quote]
+____
+To weed out such do-nothing people, competent management sets up a performance evaluation process, so that we always know what every person has done for us every year, and who should get outsized rewards and who should get fired.
+
+This system leaves people very worried if they don't have clear goals to work towards. However, even a competent organization cannot set actually useful goals for everyone at all times, just like you generally need your legs, but you don't really have a use for them at every moment. And thus, _you have people with spare bandwidth making up their own goals, so that they have something to show in the performance review._
+
+If we now revisit the situation from the employer's point of view, it is no longer _trivially_ wasteful, because everyone is always busy. However, it's likely more wasteful than before, because people are building stuff you didn't really need, and yet you almost certainly need _now,_ because actually productive activities are hopelessly intertwined with this stuff.
+
+This is a big reason why successful software companies end up with mountains of code. The cycle repeats and branches out exponentially, as every team who's built the once-needless and now-necessary thing asks for more headcount, gets it, and inevitably ends up with some of it idle some of the time. Then these new people invent more goals to pursue, persuade everyone that these fake goals are actual sub-goals of the real goals, and entangle existing systems with their new systems.
+
+And now figuring out where the waste is will be much harder than just spotting idle people, since all the needless work was done for no other purpose than looking very important, and people are pretty good at making the right impression when they're trying. And of course when people lie, they lie first and foremost to themselves -- we're all natural-born link:https://en.wikipedia.org/wiki/Method_acting[Method actors] - so if you spot a decoy and try to cancel the work on that system, not only will the people working on it fight this with all their might, but they'll be genuinely heartbroken if you do cancel it. And by the time you've actually dealt with one of these weeds, if you're a weird manager actually trying, two more will have sprouted in another part of the org.
+____
+
+[quote]
+____
+Well, it's not like they don't care, as much as they don't have a mechanism for caring or even registering it. Correctness is not a goal in itself that management can set for the teams without perverse side-effects. Of course, you have to fix "`showstopper bugs`" or you haven't achieved your goal. Any further bug-fixing takes resources from achieving your nominal goals, and is avoided -- not outright, which would look bad, but through slow-walking and other acceptable forms of sabotage.
+
+It's true that Microsoft Teams (to take one example too many are familiar with) can get away with bugs because it's bundled with Outlook and other stuff, and because whoever pays for it doesn't use it that much, but rather foists it upon helpless internal users. But it's also true that fixing those bugs would be money very well-spent for Microsoft, because it would almost certainly improve their reputation and increase sales at the margins and more than offset the cost of the work. The problem is that it's hard for a well-run place to get people to fix non-showstopper bugs.
+____
+
+[quote]
+____
+Mostly incompetent management which is very bad at setting and achieving goals is perfectly capable and all too likely to cargo-cult effective management by setting up an elaborate bureaucracy for assigning work and tracking its status, thus preventing work from happening spontaneously. This has all the downsides of actually competent management without any of the benefits.
+____
+
+== link:https://buttondown.email/nelhage/archive/performance-engineering-requires-stable-benchmarks/[Performance engineering requires stable benchmarks]
+
+[quote]
+____
+This suggests to me that our very efforts to _improve_ performance at the systems level are actually direct contributors to our struggles to maintain high performance at the application level! All of these innovations improve benchmarks and peak performance figures, and simultaneously making it harder and harder for application developers to do performance engineering, and less and less likely that developers actually do. I definitely don't claim this is at all the full explanation for our slow software, but I think I've convinced myself it's an under-recognized contributor.
+____
+
+== link:https://prma.dev/posts/files-as-metadata-format[Files as metadata format]
+
+[quote]
+____
+File As Metadata Format (FAMF) is not anything horribly new. It is an extension of the Unix way of dealing with information.
+
+[quote]
+_____
+Everything is a file.
+_____
+
+Basically, each field of data is its own file; the key is the file name, and the content of the file is the field content. The exception is when the field is another set of information or a list of this information.
+____
+
+== link:https://dl.acm.org/doi/pdf/10.1145/3656404[Refined input, degraded output: the counterintuitive world of compiler behavior]
+
+[quote]
+____
+The inconsistent and unpredictable behavior of compilers can be a major obstacle in compiler research and development. Compiler developers are aware of these issues and rely on bug reports or continuous benchmarking to identify them, but the scope of these efforts is limited. Previous work has focused on automatically identifying missed optimizations. None, however, has systematically studied this inconsistent behavior of compilers, i.e., the phenomenon where _more information_ about a program's semantics causes a compiler to generate _worse_ code. Techniques and tools are necessary for finding such _optimization inconsistencies_, both to help with understanding the unexpected interactions between compiler components, but also to identify these issues and fix the missed optimizations, analysis weaknesses, and unexpected interactions that cause them.
+____
