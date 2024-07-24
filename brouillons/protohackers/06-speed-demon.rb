@@ -428,10 +428,9 @@ loop do
   read, _, _ = IO.select(SOCKETS_TO_THING.keys)
   read.each do |socket|
     if socket == server
-      connection_connection_index = connection_index
       connection_index += 1
       client = server.accept
-      SOCKETS_TO_THING[client] = Unknown.new(connection_connection_index, client)
+      SOCKETS_TO_THING[client] = Unknown.new(connection_index, client)
     else
       SOCKETS_TO_THING[socket].process(socket.recv(1048))
     end
