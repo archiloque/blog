@@ -222,12 +222,6 @@ class Client
   end
 end
 
-unless ARGV.empty?
-  content = ARGV[0].split(', ').map { |c| c.to_i() }.pack('C*')
-  client = Client.new(1, nil)
-  client.process(content)
-end
-
 server = TCPServer.open(nil, 3002)
 SOCKETS_TO_THING[server] = nil
 

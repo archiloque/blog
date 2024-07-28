@@ -1,0 +1,46 @@
+= Links - 28^th^ July 2024
+Julien Kirch
+v1.0, 2024-07-28
+:article_lang: en
+:figure-caption!:
+:article_description: Moral crumple zones, fearless extensibility, values & places, real-time audio programming
+
+== link:https://cohost.org/mononcqc/post/7057192-paper-moral-crumple[Paper: moral crumple zones]
+
+[quote]
+____
+Basically, when technical systems end up having adverse effects, there's no concept of accountability toward the automation; it instead gets focused on human operators, who may only have limited knowledge, capacity, or control. This ends up potentially and indirectly protecting the technical systems even if they were to be unsafe or harmful for its operators or the public.
+____
+
+== link:https://forum.malleable.systems/t/challenge-problem-fearless-extensibility/205[Challenge problem: fearless extensibility]
+
+[quote]
+____
+The theme for the first challenge problem is "`fearless extensibility`". Why "`fearless`"…? Allowing extension authors complete freedom to change all aspects of a system may seem like a malleable path to take, but it carries with it maintenance and security headaches:
+
+* system maintainers (who are likely to be different from users and extension authors) tend to view fully open extension frameworks as a compatibility nightmare, as any future system change has the potential to break extensions
+* malicious actors can take advantage of powerful extension pathways to inject malware, break security mechanisms, and perform various other undesired actions
+* users worry they may break the system as they do not have full context on the impact of changes
+
+Some people may try to dismiss such concerns by pushing those responsibilities to the extension user, but malleability is meant to empower all users of computation. Requiring everyone to become software experts is not a viable path.
+
+How can we achieve powerful extensibility to configure systems to meet our individual needs while also reducing security and maintainability risks?
+____
+
+== link:https://without.boats/blog/pinned-places/[Pinned places]
+
+[quote]
+____
+We are often taught to think of expressions as evaluating to values. For example, the expression `+2 + 2+` evaluates to the same value as the expression `+4+`. But in imperative languages with mutable state, there is a category of expressions which also evaluate to _places_. These places are locations in memory in which values can be stored and later loaded. For example, a variable name is a place; so is a dereference operator and a field access. When you use a place expression in a value context, it evaluates to the value which is currently at that place. Because they are places, these kinds of expressions can also be used in ways values can't, such as by assigning values to them. For example, you can't write `+4 = x+` but you can write `+x = 4+`.
+
+This distinction between places and values is the same as the distinction between what are called "`lvalues`" (places) and "`rvalues`" (values) in other languages like {cpp}. The rvalue/lvalue terminology has its origin in Christopher Strachey's excellent 1967 link:https://www.cs.cmu.edu/~crary/819-f09/Strachey67.pdf[_Fundamental Concepts in Programming Languages_], which gives a very clear and thorough presentation of the conceptual difference between the two kinds of expressions. The Rust project chose to use "`place`" and "`value`" instead of "`lvalue`" and "`rvalue`" because, contrary to Strachey, they believe its clearer and less confusing (I agree with them). The Rust link:https://doc.rust-lang.org/stable/reference/introduction.html[reference] also has a fully enumerated list of the different place expressions and value expressions in Rust.
+
+Properly understood, imperative programming involves code operating over a world of _objects_, these objects have _types_, which enumerate the set of possible _values_ the object could have, and these objects exist at _places_; as a result they also have a notion of _identity_, in that while two different objects at different places may have the same value, they do not have the same identity. Any programmer knows these facts intuitively but we often elide them when we speak about programming and often cannot clearly explain them, in the same way we successfully use our native languages without being able to explain their grammar.
+____
+
+== link:http://www.rossbencina.com/code/real-time-audio-programming-101-time-waits-for-nothing[Real-time audio programming 101: time waits for nothing]
+
+[quote]
+____
+As you may have gathered from the quotes above, writing real-time audio software for general purpose operating systems requires adherence to principles that may not be obvious if you're used to writing "`normal`" non real-time code. Some of these principles apply to all real-time programming, while others are specific to getting stable real-time audio behavior on systems that are not specifically designed or configured for real-time operation (i.e. most general purpose operating systems and kernels).
+____
