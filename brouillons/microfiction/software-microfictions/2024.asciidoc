@@ -31,3 +31,35 @@ But comments not matching the code is a long-established industry best-practice 
 It can have several goals so don't assume the authorial intent, but the most common is to make the reader question the objectivity of the code, to remind them that all software code is ultimately a work of fiction, than only have a coincidental relation to what is actually happening on a computer.
 
 So the next time you meet this case, please try to refrain yourself to react negatively to it, and try to understand what the people who wrote what you're reading wanted to achieve.
+
+''''
+
+== The danger of open sourcing old applications
+
+When new types of software bugs are emerging, developers that collide with them learn how to fix them.
+
+As a new bug type starts to spread, knowledge about how to fix them also spreads, but of course with a delay.
+The delay highly depends on the familiarity between the new bug type and the bugs the developers know how to fix.
+
+After a while, a kind of immunity is reached: the bug type's impact is constrained, and instead of a threat it becomes a general nuisance.
+It's especially true for the nastier bug types, because they trigger a stronger response.
+
+At a later date, some types of bugs reach extinction or near-extinction.
+Not enough contact with the bug type means that the defense against it starts to weaken, for example as new developers are not aware of it, while the experienced ones move to other tasks.
+
+Asking for open sourcing popular abandoned old applications is becoming popular, fueled by the nostalgia for software that actually works.
+
+I understand the idea's appeal, but this kind of move can be an ecological disaster: old application means old code, which means old bug.
+If the application is old enough, it could mean one of those bug types whose immunity against has been lost.
+
+In this case, open sourcing the code could trigger a fast infection, as lots of unprotected developers will make contact with the code, pushed by curiosity.
+
+The consequence is that open sourcing old software must follow a specific protocol, starting a careful study of the code by grizzled developers, and followed by a release in an enclosed space with other code samples to see if any kind of unintended transmission happens.
+
+Luckily, link:https://www.apache.org[some organizations] can help you to publish this kind of very old code. It makes things easier but it will still take at least a few months.
+
+I know it's a nuisance, but safety is not negotiable.
+
+
+
+
