@@ -1,0 +1,138 @@
+= Links - 22^nd^ September 2024
+Julien Kirch
+v1.0, 2024-09-22
+:article_lang: en
+:figure-caption!:
+:article_description: Unix command line conventions, Gnome UI, IT work visibility, ladders in 3D games, disliked tools, commitment to nonexistent code, maintenance and changing APIs, agile
+
+== link:https://blog.liw.fi/posts/2022/05/07/unix-cli/[Unix command line conventions over time]
+
+[quote]
+____
+This blog post documents my understanding of how the conventions for Unix command line syntax have evolved over time. It's not properly sourced, and may well be quite wrong. I've not been using Unix until 1989, so I wasn't there for the early years. Maybe someone has written a proper essay on this, with citations. I'm too lazy to dig them up.
+____
+
+== link:https://www.datagubbe.se/gnomefiles/[Gnome Files: A detailed UI examination]
+
+[quote]
+____
+Note the many distinct-looking icons in the toolbar. From left to right we have three stacked dots, three stacked dots and lines, and three stacked lines. Pretty obvious what they're all about, right? 
+____
+
+== link:https://cutlefish.substack.com/p/tbm-308-boundary-of-safely-challenged[TBM 308: Boundary of safely challenged assumptions]
+
+[quote]
+____
+"`The shop floor (or gemba) is not visible in the same way it is in some other industries`", link:https://www.linkedin.com/feed/update/urn:li:ugcPost:7235679970662961153?commentUrn=urn%3Ali%3Acomment%3A%28ugcPost%3A7235679970662961153%2C7235715144394121216%29&replyUrn=urn%3Ali%3Acomment%3A%28ugcPost%3A7235679970662961153%2C7236022642246316033%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287235715144394121216%2Curn%3Ali%3AugcPost%3A7235679970662961153%29&dashReplyUrn=urn%3Ali%3Afsd_comment%3A%287236022642246316033%2Curn%3Ali%3AugcPost%3A7235679970662961153%29[writes Tiani Jones]. "`An exaggerated way I think about it is that [software development feels like] a magical world where people meet in teams and then go away and code appears.`" Even in the case of synchronous, in-person work, all you see is a group of people sitting at computer screens who occasionally get up and have a conversation (or get a snack or use the restroom). The work and "`tools`" are virtual. The backlog isn't a mountain of parts sitting on the shop floor alongside all the unfinished projects and open threads. To top it off, we do a lot of our best "`work`" while taking a walk or riding a bike -- we're not even in "`the office`" (physical, virtual, or otherwise).
+____
+
+== link:https://auratriolo.com/blog/2024/09/16/tech-animation-on-wanderstop-part-2-tea-making/[Tech animation on Wanderstop, part 2: tea (making)]
+
+[quote]
+____
+Games thrive on the vague and the implicit; the more specific something is, the more you have to spend time on it and the longer it makes development take. In that context, ladder climbing is one of the more painstaking types of basic locomotion. All four limbs generally need to be in specific places, doing specific things, to haul a character up and down a ladder. When it's off, it looks REALLY obvious.
+
+That amount of precision means most games generally lock down the player's movement to reduce the complexity. I'm sure we've all played plenty of games where pressing up or down on a ladder makes you climb "`one rung`" at a time, and it generally doesn't have a great gamefeel. That's fine for most games -- your goal is usually to just get off the ladder as soon as possible, it's not a core element of gameplay.
+
+That super isn't the case for us. And so I was _determined_ to make ladder movement feel nice.
+____
+
+== link:https://buttondown.com/hillelwayne/archive/why-i-prefer-rst-to-markdown/[Why I prefer rST to markdown]
+
+[quote]
+____
+To which I say, are you really going to avoid using a good tool just because it makes you puke? Because looking at it makes your stomach churn? Because it offends every fiber of your being?
+
+…Okay yeah that's actually a pretty good reason not to use it. I can't get into lisps for the same reason. I'm not going to begrudge anybody who avoids a tool because it's ugly.
+____
+
+== link:https://lwn.net/Articles/990393/[Re: The Case for Rust (in any system)]
+
+[quote]
+____
+The people with the idea do not want to waste their time, so they
+want a clear "`Yes, if you write that, we'll take it`" commitment
+from the FOSS project.
+
+FOSS projects do not commit to nonexistent code.
+
+It is a fundamental conflict which can have no solution, because
+both positions are 100% rational and mutually incompatible.
+
+The net result is that many good ideas are never tried out.
+
+(Some FOSS-philosophers have tried to post-rationalize that:  Since
+this is a consequence of the FOSS model, it must therefore be A
+Good Thing. I disagree.)
+
+But as I said, there can be no "`solution`" only compromises and
+workarounds.
+
+The best I can suggest is the following:
+
+The proposers /start/ by writing mockup "`usage documentation`",
+because if they cannot explain how to use it, it's guaranteed not
+a good idea and it is not going anywhere. (Feel free to disagree,
+but I'm not going to entertain any arguments on this point.)
+
+Circulate that mockup-documentation. Don't expect much if any
+feedback, but at least people have a chance to know what you're
+trying to do, and you may get some competent input. Getting the
+bikesheds started early also saves time.
+
+Find a way to partition the implementation into stages, each of which
+provides some amount of positive benefit, so that even if the larger
+project fails to reach the goal-line, you will have made a positive
+contribution along the way.
+
+If there are major negative effects, concentrate them in the final
+stage, which brings benefits to offset them. But even better: Spend
+extra effort (backwards compat syntax etc.) to avoid such major
+negative effects.
+
+And then eat your veggies bite by bite until you get to the desert :-)
+
+Again: This is not "`a solution`", it is merely what my experience shows
+work least bad.
+____
+
+== link:https://utcc.utoronto.ca/~cks/space/blog/programming/LowTimeMaintainersAndChanges[Open source maintainers with little time and changes]
+
+[quote]
+____
+The corollary of this for maintainers is that if you want your project to not require much of your time, you can't depend on APIs that are prone to backward incompatible changes. Unfortunately this may limit the features you can provide or the languages that you want to use (depending not just on the rate of change in the language itself but also in the libraries that the language will force you to use).
+____
+
+== link:https://ludic.mataroa.blog/blog/tossed-salads-and-scrumbled-eggs/[Tossed salads and scrumbled eggs]
+
+[quote]
+____
+Instead I believe that Scrum and the assorted mutations that it has acquired simply reflect a broader lack of understanding of the systems that drive knowledge work, and the industry has simply adopted the methodology that slots most neatly into our most widely-held misconceptions.
+____
+
+[quote]
+____
+the fact that I am demanding large swathes of people attend ceremonies against their will does not make this a cult.
+____
+
+[quote]
+____
+When a project is failing, the typical step is not to pull the plug or take drastic action, it is to gradually raise a series of delays while everyone pretends not to notice the broader trend. By _slowly_ failing, and at no point presenting anyone else in the business with a clear point where they should pull the plug, you can ultimately deliver nothing while tricking other people into implicitly accepting responsibility.
+____
+
+[quote]
+____
+I suspect that the impact of the organization manifesting their anxiety in one person in this way, then giving that person control of meetings and the ability to deliver that anxiety to their teams, is perhaps one of the most counter-productive configurations possible if you assume that the median Scrum Master is not a bastion of self-regulation. 
+____
+
+[quote]
+____
+I have previously joked (I was actually dead serious) that the symbolic representation of the work, the card on the Jira board, is taken to be such a literal manifestation of the work that you can just move the pointless tasks to "`Done`" without actually doing anything and the business will largely not notice. If the card is in "`Done`", then the work is Done. The actual impact of the work is so low that no one notices, in a way that my electrician would never be able to get away with.
+____
+
+[quote]
+____
+As you move past the one month mark, you are approaching the sad probability that it'll take two months, but the likelihood of that is astonishingly low. At each point, the odds are that it's the _next sprint_ where you'll deliver.
+
+The truth is that if you keep missing deadlines (or even miss one deadline), reality is gently, and eventually not-so-gently, informing you that you are _not drawing from the distribution you thought you were_. Instead, which each passing day, it is increasingly likely that you are drawing from some super cursed distribution that will ruin your project forever.
+____
