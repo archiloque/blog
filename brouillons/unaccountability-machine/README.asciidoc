@@ -6,23 +6,72 @@ v0.1, 2024-10-07
 
 The book's title is a bit odd, and the subtitle could make you expect a catastrophic or even messianic tone, but it's not this kind of book.
 
-Dan Davies mention in the book that at first he though he had found a great idea and wanted to write a book about it, but as he worked on it he realized he was wrong and changed his mind.
+Dan Davies mentions that at first he thought he had found a great idea around unaccountability and wanted to write a book about it, but, as he worked on it, he realized he was wrong and changed his mind.
 
-Instead it's a solid book about cybernetics and systemics.
+Instead, it's a solid book about cybernetics and systemics.
 A solid but witty and sad with a dash oh hope, which means it feels strongly related to link:https://en.wikipedia.org/wiki/Systemantics[
 The Systems Bible]{empty}footnote:[Or maybe all books written by people working on systemantics witty and sad with a dash oh hope?.].
 
-The books is about three topics:
+The book is about three topics:
 
 . The work and life of link:https://en.wikipedia.org/wiki/Stafford_Beer[Stafford Beer], involving operational research and management cybernetics
 . How large human systems like companies or organisations works, from a systematic point of view
 . Economy, economic theories and economists
 
 Dan Davies rotate from one topic to another through the chapters, slowly increasing the complexity of the systems he describes.
-The transitions are sometimes a bit stiff at first, but as the book goes the different parts becomes interwinded.
+At first the transitions are sometimes a bit stiff, but as the book goes the different parts becomes intertwined.
 
+== Actually cybernetics is more than a feedback loop
 
-== Some quotes
+Before reading the book, I knew cybernetics involved decision trees and feedback loops and little robots, but I didn't know that some of them worked on management.
+
+Stafford Beer's model of organisation involves 5 "`systems`", one above the other, this is a crude summary
+
+* System 1 is the day-to-day operations
+* System 2 enforces rules
+* System 3 tries to coordinate things toward a purpose
+* System 4 is taking policy decisions
+* System 5 is in charge of defining the identity of the organisation
+
+As I'm spending too much time with software, I'm tempted to see these systems as layer, and indeed they have some parallels with the hierarchical charts of organisations, but they are not identical to them because the same people should be involved in several systems.
+
+The idea of the systems is how to deal with the quantity and variety of information, so _just enough_ of the _right kind_ of information circulate through each system, so the organisation is able to take the decisions it needs without being flooded.
+
+== Black boxes, doing what they do
+
+Stafford Beer coined an expression famous among people working with system: "`The purpose of a system is what it does`", aka POSIWID.
+POSIWID means that the best way to understand a system is to look at what is does.
+
+It can sound trivial or even stupid, but it means that looking at what a system does is a better approach to understand it, and to improve it, than studying the intention of people who operate -- or think they operate -- the system.
+
+An example of this is studying system's components as black boxes, which means that their inner working is not visible, which means focusing that is coming in and out of the box, instead of how things work in the box.
+
+== Accountability sinks
+
+The author define an _accountability sink_ as something (a person or an automated system) in charge of taking decisions plus policy that prevents to appeal these decisions.
+
+These sinks absorb negative emotions triggered by the decisions, and thus break the information flow, preventing feedback loops.
+
+The book's title "`unaccountability machine`" is about the type of thoughts or system design that produce these accountability sinks at large scales.
+
+It's where the author link cybernetics and economists, or at least some kinds of economists, who provided organisations -- for profit companies but also public institutions -- arguments to justify becoming unaccountability machines.
+
+Stafford Beer, on the other end of the spectrum, worked for Salvador Allende's Chile to try to create a public decision system based of his theories.
+Pinochet's coup stopped the experimentation.
+
+== What I'm leaving the book with?
+
+The book provides a set of theoretical tools, but no ready to use model that you can apply to an organisation to make it functional, it would be against the core idea of cybernetics.
+
+The book was not groundbreaking to me, but it provided me with a cohesive framework where I could fit lots of observation and insights. I just hope I won't be insufferable about it. 
+
+For a professional perspective, I was very saddened by discovering Stafford Beer's model only now.
+
+Saddened because I think that the book's model should be easy to taught to software people.
+And on the other hand, what agile people are taught about feedback loop and organisations is nearly always limited to doing a team-sized retrospective after each iteration.
+What a waste.
+
+== Some quotes (actually lots of them)
 
 [quote]
 ____
@@ -65,7 +114,7 @@ ____
 
 [quote]
 ____
-The principle of diminishing accountability: Unless conscious steps are taken to prevent it from doing so, any organisation in a modern industrial society will tend to restructure itself so as to reduce the amount of personal responsibility attributable to its actions. This tendency will continue until crisis results.
+The principle of diminishing accountability: unless conscious steps are taken to prevent it from doing so, any organisation in a modern industrial society will tend to restructure itself so as to reduce the amount of personal responsibility attributable to its actions. This tendency will continue until crisis results.
 ____
 
 [quote]
@@ -90,7 +139,8 @@ ____
 
 [quote]
 ____
-Information only counts if it's being delivered in a form in which it can be translated into action, and this means that it needs to arrive quickly enough.
+* Information only counts if it's being delivered in a form in which it can be translated into action, and this means that it needs to arrive quickly enough.
+* Systems preserve their viability by dealing with problems as much as possible at the same level at which they arrive, but they also need to have communication channels that cross multiple levels of management, to deal with big shocks that require immediate change.
 ____
 
 [quote]
