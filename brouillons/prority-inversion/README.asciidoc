@@ -3,10 +3,29 @@ Julien Kirch
 v0.1, 2024-04-20
 :article_lang: en
 
-In computer stuff, a priority inversion is when a high priority task is waiting for a low priority task.
-If the low priority task execution is slow, or if it's execution happens far in the future, as expected from its priority, it means that the high priority task can wait for a long time, which defeats the whole idea of high priority.
+In computer stuff, a priority inversion is when a task with a high priority is waiting for a task with a low priority.
 
-A way to solve the problem is to be sure there are not dependencies between those two types of tasks, because then the situation never occurs.
-Unfortunately it's not always possible.
+If the low priority task's is run far in the future, because the scheduling decisions rely on the priority, it means that the high priority task can wait for a long time, which defeats the whole idea of high priority.
 
-An 
+A way to solve the problem is to be sure there are not dependencies between those two types of tasks, because then the problems never occurs.
+
+Unfortunately it's not always possible: sometimes the high priority task really needs the end result of a low priority one.
+
+For example when applications wants to write data to a disk, they are usually satisfied with only asking the system for the write to occur somehow.
+This means that the actual writing is being executed asynchronously later, in a low priority context.
+Thus when an application wanting a guarantee that some data has been written to a disk before moving on, it must wait for the whole thing to happen, which can sucks as a user when your application freeze while waiting.
+
+The standard approach in this case is to temporarily switch the low priority task priority to match the high priority task's one until the execution is done, then to change it back.
+
+Organizations that have more than one component (where such a component can be a division, a team, or even a person), often 
+
+slicing
+
+''''
+
+A way to achieve this is to chops low priority tasks between a part that is really needed by the high priority one, that will be run as part of the the high priority task, and who hopefully can be run fast enough to satisfy the high priority tasks speed requirement, and a longer to run part that can be scheduled later.
+
+It may leads to an increase of the total work to be done for the low priority task, because the cutting in parts can lead to inefficiencies, but the tradeoff between increasing the responsiveness and efficiency can worth it.
+
+Unfortunately it's not always possible: sometimes the high priority task really needs the end result of the low priority one.
+
