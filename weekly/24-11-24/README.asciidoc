@@ -3,7 +3,7 @@ Julien Kirch
 v1.0, 2024-11-24
 :article_lang: en
 :figure-caption!:
-:article_description: Traceroute, security at scale, {cpp}, Internet dark forest
+:article_description: Traceroute, misery and results, security at scale, {cpp}, Internet dark forest
 
 == link:https://gekk.info/articles/traceroute.htm[Traceroute isn't real, or: whoops! everyone was wrong forever]
 
@@ -16,7 +16,7 @@ ____
 ____
 So What Does All This Mean
 
-It means that you can't run a traceroute unless you _know what you expect to see._
+It means that you can't run a traceroute unless you _know what you expect to see_.
 
 When you're tracing inside a network that you control -- such as a large enterprise WAN, multiple sites connected with VPNs, or an ISP that you work for -- you can guess what each hop will look like, or at least look at the results and suss out whether they looks like they "`should`".
 
@@ -24,7 +24,7 @@ If you trace from, say, a server at one business location to one at another, you
 
 From this you can guess, pretty reliably, that you made it all the way to the destination, but either had trouble reaching the specific host (investigate the local router/firewall) or that the host is ACLed or doesn't send ICMP responses (do packet captures on the host.)
 
-If you're tracing through a network you don't control, you have _no idea_ how it's supposed to work. If you're a seasoned network tech who's seen some shit (and, ideally, worked on provider-scale networks) then you can run a traceroute over an unknown network and _maybe, possibly,_ suss out something, but there are no guidelines, it's pure gut feeling: _does this look right?
+If you're tracing through a network you don't control, you have _no idea_ how it's supposed to work. If you're a seasoned network tech who's seen some shit (and, ideally, worked on provider-scale networks) then you can run a traceroute over an unknown network and _maybe, possibly,_ suss out something, but there are no guidelines, it's pure gut feeling: _does this look right?_
 ____
 
 == link:https://egoless.engineering[Egoless engineering]
@@ -33,9 +33,9 @@ ____
 ____
 The things we value and reward as leaders trickle down. Leaders can reward our worst or our best impulses.
 
-Most CEO’s I’ve worked for have tried to kill feel-good programs like bootcamps and hack weeks, but I’ve never worked for a CEO that tried to end feel-bad programs like mandatory code review.
+Most CEO's I've worked for have tried to kill feel-good programs like bootcamps and hack weeks, but I've never worked for a CEO that tried to end feel-bad programs like mandatory code review.
 
-None of them would admit this, but I think there’s an industry instinct that misery gets results. I think this is mistaken. Misery is a shitty proxy metric for results.
+None of them would admit this, but I think there's an industry instinct that misery gets results. I think this is mistaken. Misery is a shitty proxy metric for results.
 ____
 
 == link:https://blog.yossarian.net/2024/11/18/Security-means-securing-people-where-they-are[Security means securing people where they are]
