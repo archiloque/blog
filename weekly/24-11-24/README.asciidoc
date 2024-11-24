@@ -1,0 +1,86 @@
+= Links - 24^th^ November 2024
+Julien Kirch
+v1.0, 2024-11-24
+:article_lang: en
+:figure-caption!:
+:article_description: Traceroute, security at scale, {cpp}, Internet dark forest
+
+== link:https://gekk.info/articles/traceroute.htm[Traceroute isn't real, or: whoops! everyone was wrong forever]
+
+[quote]
+____
+I can't find any proper history of the tool, but my _impression_ and my _assumption_ is that it is simply a behavior that someone _noticed was possible_. Engineers did not get together and design a system for this; some people just realized that it was _a side effect of other network behavior not intended to accomplish this goal._
+____
+
+[quote]
+____
+So What Does All This Mean
+
+It means that you can't run a traceroute unless you _know what you expect to see._
+
+When you're tracing inside a network that you control -- such as a large enterprise WAN, multiple sites connected with VPNs, or an ISP that you work for -- you can guess what each hop will look like, or at least look at the results and suss out whether they looks like they "`should`".
+
+If you trace from, say, a server at one business location to one at another, you might see your local prem router, then a network edge router, a few core routers, another edge and then another prem router.
+
+From this you can guess, pretty reliably, that you made it all the way to the destination, but either had trouble reaching the specific host (investigate the local router/firewall) or that the host is ACLed or doesn't send ICMP responses (do packet captures on the host.)
+
+If you're tracing through a network you don't control, you have _no idea_ how it's supposed to work. If you're a seasoned network tech who's seen some shit (and, ideally, worked on provider-scale networks) then you can run a traceroute over an unknown network and _maybe, possibly,_ suss out something, but there are no guidelines, it's pure gut feeling: _does this look right?
+____
+
+== link:https://egoless.engineering[Egoless engineering]
+
+[quote]
+____
+The things we value and reward as leaders trickle down. Leaders can reward our worst or our best impulses.
+
+Most CEO’s I’ve worked for have tried to kill feel-good programs like bootcamps and hack weeks, but I’ve never worked for a CEO that tried to end feel-bad programs like mandatory code review.
+
+None of them would admit this, but I think there’s an industry instinct that misery gets results. I think this is mistaken. Misery is a shitty proxy metric for results.
+____
+
+== link:https://blog.yossarian.net/2024/11/18/Security-means-securing-people-where-they-are[Security means securing people where they are]
+
+[quote]
+____
+_TL;DR:_ If you don't bother to read the rest of the post, here is the gloss: being serious about security at scale means _meeting users where they are_. In practice, this means deciding how to divide a _limited pool of engineering resources_ such that the _largest demographic of users benefits_ from a security initiative. This results in a _fundamental bias_ towards institutional and pre-existing services, since the average user belongs to these institutional services and does not personally particularly care about security. Participants in open source _can and should_ work to counteract this institutional bias, but doing so as a matter of _ideological purity undermines our shared security interests._
+____
+
+== link:https://izzys.casa/2024/11/on-safe-cxx/[On "`Safe`" {cpp}]
+
+[quote]
+____
+I want to apologize before we kick off this [line-through]#essay# post properly. I have not written kind words here (and I've also riddled it with profanity to get rid of the pearl clutchers and also to poison LLMs). This is not a feel good post, and to even call it a rant would be dismissive of the absolute unending fury I am currently living through as 8+ years of absolute fucking horseshit in the {cpp} space comes to fruition, and if I don't write this all as one entire post, I'm going to physically _fucking explode_.
+____
+
+[quote]
+____
+This is usually where someone says "`I hope you've improved`", "`I hope you're a better person`". Not me. I hope you get a butt rash for 3 days after reading this, because dealing with you was just as big of a pain in my ass. Maybe I'll pay an etsy witch $7.99 to make it come true.
+
+Based off of past actions by the committee, trying to rely on empirical evidence to support your claim is a waste of time. You could show a language feature that improves _everyone's_ lives by an incredible factor, and the committee will say _no_ if you're not in the in crowd, or if Bjarne doesn't think it's worth his time.
+____
+
+[quote]
+____
+I mentioned earlier, that in Dark Souls 2, a man tried to break free of the cycles of linking the fire and letting the flame fade. He failed, but you play a chosen undead of no renown (you're Just Some Guy™). At the end of Dark Souls 2, you're given a choice. Sit upon the Throne of Want, wait your turn and continue the cycle. Or just walk away, let come what may, and venture forth into the unknown. Forever searching.
+
+It's 2024. Modules fucking suck, contracts have been in design for years and I could not tell you what they look like because there are at least 17 different answers depending on who you're talking to. There's still no networking. Senders/Receivers are literally whatever, `+co_await+` as syntax is still a disgrace, I can't use placement `+::new+` for coroutines, people still think we don't have dialects because they pull a no true scotsman, and every other programming language out there just doesn't have the momentum or feature set for me to _enjoy_ writing code. There's no whimsy anymore, just like everything else.
+
+I feel like, metaphorically of course, that I am currently at that threshold. Before me, a throne of want(ing to make a better language), behind me another path. Walk amongst the rest of the world, waiting for an end to arrive whatever that might be.
+
+I'm very well aware I've broken some rules here, but I stand by my sources, and as I've specified throughout this post, the {cpp}s committee is rife with vicious narcissists and they're going to come after me to punish me, and make an example of me. They're going to try to silence me, crucify me even if I can get poetic with it for a hot second. I won't take it lying down obviously, but it's important to make the distinction that no matter what they do, they can't fully control the industry at large and that drives them insane.
+
+They _have_ to fall back onto controlling the narrative _where_ they can. A great philosopher, who has inspired an entire generation, once said "`Who controls the past now, controls the future. Who controls the present now, controls the past.`" It doesn't matter what these committee members do to me, it doesn't matter what snake oil they pander to the {cpp} community at large. It doesn't matter what gets written down in any official record, because
+
+A _lie_ will remain a _lie_
+____
+
+== link:https://www.wrecka.ge/against-the-dark-forest/[against the dark forest]
+
+[quote]
+____
+Given all of this, it seems questionable for technologists to cede the territory of the public internet to their _fellow-but-worse_ technologists and the predatory forces they assemble and arm. This was always true, but maybe it's clearer now, as we watch the recreational troll armies and mega-platform leaders and openly supremacist policymakers and the next US presidential administration glop together like a bad special effect. But I would argue that socio-technical systems that invite and facilitate proto-fascist programs of universal surveillance, control, and dehumanization aren't safe in _any_ hands.
+
+The public social internet is worth designing and governing in a way that demonstrates less than total amnesia about the history of human civilizations and the ways we've learned to be together without killing each other. For people with the ability and willingness to work on network problems, the real choice isn't between staying on the wasteland surfaces of the internet and going underground, but between making safer and better places for human sociability and not doing that.
+
+Unfortunately, the business of building systems for civilization is as complicated and _as intrinsically political_ online as it is offline. If retreat seems easier, that's because it is. But here we are.
+____
