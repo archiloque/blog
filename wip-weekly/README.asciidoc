@@ -4,30 +4,3 @@ v1.0, 2024-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
-
-== link:https://moonbase.lgbt/blog/c-mixed-type-arithmetic/[Mixed-type arithmetic in C]
-
-[quote]
-_____
-A lot of people don’t know this one weird trick -- much like JavaScript, C also lets you perform arithmetic with mixed types.
-_____
-
-== link:https://mgx.me/kirby-vs-this-blog-post[kirby vs. this blog post]
-
-== link:https://jenniferplusplus.com/greshams-law-of-programming/[Gresham's law of programming]
-
-[quote]
-____
-Combine this with the reality that software is rarely ever finished, and the result is that over time, code that's easy to understand and modify will continue to be modified until it is no longer easy. The bad code will have driven out the good. Work will move to new code that's easier (and safer) to work on, and the now difficult code has become "`legacy`". It's treated as a black box, and becomes a drag on the team's ability to iterate. If it gets bad enough, it can even become a barrier to what's possible for the team to implement.
-
-This happens because there's incentive to write worse code. For one thing, link:https://jenniferplusplus.com/losing-the-imitation-game/[writing bad code is easier]. It's not as mentally demanding. It doesn't require the same level of familiarity with the system. It may even be faster, in the short term. At least it feels that way, and it's a common assertion. Although I'm not aware of any systematic research to back up that claim. But even if everyone involved displays superhuman discipline in their programming, changes can still degrade quality on accident. Yet code will likely never gain quality by accident. Just like metal coins won't spontaneously become more pure. There's just no mechanism for it.
-
-In this light, you can view practices like linting, unit tests, design documents, and code review as being akin to monetary regulation. They form counter-incentives to introducing bad code, and inhibit its spread.
-____
-
-== link:https://matklad.github.io/2021/09/04/fast-rust-builds.html[Fast Rust builds]
-
-[quote]
-____
-Build times are a fairly easy optimization problem: it's trivial to get direct feedback (just time the build), there are a bunch of tools for profiling, and you don't even need to come up with a representative benchmark. The task is to optimize a particular project's build time, not performance of the compiler in general. That's a nice property of most instances of accidental complexity -- they tend to be well defined engineering problems with well understood solutions.
-____

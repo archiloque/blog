@@ -1,0 +1,57 @@
+= Links - 8^th^ December 2024
+Julien Kirch
+v1.0, 24-12-08
+:article_lang: en
+:figure-caption!:
+:article_description: C arithmetic, bad code, build times, modern productivity, every uuid, enterprise data tables
+
+== link:https://moonbase.lgbt/blog/c-mixed-type-arithmetic/[Mixed-type arithmetic in C]
+
+[quote]
+_____
+A lot of people don’t know this one weird trick -- much like JavaScript, C also lets you perform arithmetic with mixed types.
+_____
+
+== link:https://mgx.me/kirby-vs-this-blog-post[kirby vs. this blog post]
+
+== link:https://jenniferplusplus.com/greshams-law-of-programming/[Gresham's law of programming]
+
+[quote]
+____
+Combine this with the reality that software is rarely ever finished, and the result is that over time, code that's easy to understand and modify will continue to be modified until it is no longer easy. The bad code will have driven out the good. Work will move to new code that's easier (and safer) to work on, and the now difficult code has become "`legacy`". It's treated as a black box, and becomes a drag on the team's ability to iterate. If it gets bad enough, it can even become a barrier to what's possible for the team to implement.
+
+This happens because there's incentive to write worse code. For one thing, link:https://jenniferplusplus.com/losing-the-imitation-game/[writing bad code is easier]. It's not as mentally demanding. It doesn't require the same level of familiarity with the system. It may even be faster, in the short term. At least it feels that way, and it's a common assertion. Although I'm not aware of any systematic research to back up that claim. But even if everyone involved displays superhuman discipline in their programming, changes can still degrade quality on accident. Yet code will likely never gain quality by accident. Just like metal coins won't spontaneously become more pure. There's just no mechanism for it.
+
+In this light, you can view practices like linting, unit tests, design documents, and code review as being akin to monetary regulation. They form counter-incentives to introducing bad code, and inhibit its spread.
+____
+
+== link:https://matklad.github.io/2021/09/04/fast-rust-builds.html[Fast Rust builds]
+
+[quote]
+____
+Build times are a fairly easy optimization problem: it's trivial to get direct feedback (just time the build), there are a bunch of tools for profiling, and you don't even need to come up with a representative benchmark. The task is to optimize a particular project's build time, not performance of the compiler in general. That's a nice property of most instances of accidental complexity -- they tend to be well defined engineering problems with well understood solutions.
+____
+
+== link:https://www.joanwestenberg.com/modern-work-fucking-sucks/[Modern Work Fucking Sucks.]
+
+[quote]
+____
+By the time Friday rolls around, you've done nothing tangible, produced nothing meaningful, and yet you're exhausted -- an entire week spent shuffling bits of information between fifteen different systems, each charging a tidy $15 per month, per user, for the privilege of making you _feel_ productive.
+
+There's an irony in how modern workplace tools sell themselves. Every single one promises to streamline processes, cut through inefficiencies, and give you back more of your precious time. The pitch has a hook: a single platform to manage all your tasks! A centralized hub for collaboration! But the reality is that no single tool ever seems to be enough.
+
+Your company doesn't just use one app; it uses all of them. Slack for chatting, Zoom for meetings, Notion for brainstorming, Trello for project tracking, Asana for workflows, and Jira for… something vaguely technical that no one fully understands. The end result isn't streamlined productivity, it's a Byzantine ecosystem of software where every app exists to talk to every other app while you stand in the middle, trying to make sense of the chaos.
+
+The overwhelming number of tools wouldn't even be the worst part if any of them worked together in a truly cohesive way. But they don't. Sure, you can integrate Slack with Trello, and Trello with Notion, and Notion with your calendar, but these integrations always feel like hastily duct-taped solutions. Each time you move a piece of information from one app to another, something inevitably gets lost in translation.
+
+Tasks duplicate, notifications flood in from every angle, and the amount of energy spent maintaining these integrations starts to rival the energy spent on actual work. Instead of making decisions, solving problems, or creating value, you spend your time figuring out why the fucking Zapier automation you set up last week stopped working.
+____
+
+== link:https://eieio.games/blog/writing-down-every-uuid/[Writing down (and searching through) every uuid]
+
+[quote]
+____
+I've been struggling to remember all of the UUIDs. There are a lot of them. So this week I wrote them all down. You can see my list at link:https://everyuuid.com[everyuuid.com].
+____
+
+== link:https://stephaniewalter.design/blog/essential-resources-design-complex-data-tables/[Enterprise UX: essential resources to design complex data tables]
