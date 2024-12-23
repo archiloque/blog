@@ -4,3 +4,43 @@ v1.0, 2024-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://engineering.fb.com/2024/12/18/android/translating-java-to-kotlin-at-scale/[Translating Java to Kotlin at scale]
+
+[quote]
+____
+Contrary to popular belief, we’ve found it’s often safer to leave the most delicate transformations to bots. There are certain fixes we’ve automated as part of postprocessing, even though they aren’t strictly necessary, because we want to minimize the temptation for human (i.e., error-prone) intervention. One example is condensing long chains of null checks: The resulting Kotlin code isn’t more correct, but it’s less susceptible to a well-meaning developer accidentally dropping a negation.
+____
+
+== link:https://lethain.com/migrations/[Migrations: the sole scalable fix to tech debt.]
+
+[quote]
+____
+As a result you switch tools a lot, and your ability to migrate to new software can easily become the defining constraint for your overall velocity. Given their importance, we don’t talk about running migrations very often; let’s remedy that!
+____
+
+== link:https://www.baldurbjarnason.com/notes/2024/interim-3/[Interim note 3: text-based media in the age of showmanship]
+
+[quote]
+____
+Microblogging creates meaning through showmanship and performance. 
+____
+
+== link:https://martinfowler.com/articles/design-token-based-ui-architecture.html[Design token-based ui architecture]
+
+[quote]
+____
+Design tokens are design decisions as data and serve as a single source of truth for design and engineering. Utilizing deployment pipelines, they enable automated code generation across platforms, allowing for faster updates and improved consistency in design. Organizing tokens in layers -- progressing from available options to tokens that capture how they are applied -- ensures scalability and a better developer experience. Keeping option tokens (e.g. color palettes) private reduces file size and supports non-breaking changes. These benefits make design tokens particularly well-suited for organizations with large-scale projects, multi-platform environments or frequent design changes.
+____
+
+== link:https://aws.amazon.com/fr/blogs/mt/how-stripe-architected-massive-scale-observability-solution-on-aws/[How Stripe architected massive scale observability solution on AWS]
+
+[quote]
+____
+Stripe formulated a four phase approach to this migration:
+
+* Dual-write metrics to the legacy time-series database (TSDB) and AMP
+* Translate assets (alerts and dashboards) from the source language into https://prometheus.io/docs/prometheus/latest/querying/basics/[PromQL] and https://aws.amazon.com/grafana/[Amazon Managed Grafana] Dashboards
+* Validate the results of the translated assets and the dual written metrics in an iterative fashion
+* Migrate users' mental models to a Prometheus compatible mental model
+____
