@@ -26,7 +26,7 @@ ____
 Microblogging creates meaning through showmanship and performance. 
 ____
 
-== link:https://martinfowler.com/articles/design-token-based-ui-architecture.html[Design token-based ui architecture]
+== link:https://martinfowler.com/articles/design-token-based-ui-architecture.html[Design token-based UI architecture]
 
 [quote]
 ____
@@ -43,4 +43,38 @@ Stripe formulated a four phase approach to this migration:
 * Translate assets (alerts and dashboards) from the source language into https://prometheus.io/docs/prometheus/latest/querying/basics/[PromQL] and https://aws.amazon.com/grafana/[Amazon Managed Grafana] Dashboards
 * Validate the results of the translated assets and the dual written metrics in an iterative fashion
 * Migrate users' mental models to a Prometheus compatible mental model
+____
+
+== link:https://jeremymorrell.dev/blog/a-practitioners-guide-to-wide-events/[A practitioner's guide to wide events]
+
+[quote]
+____
+The tl;dr is that for each unit-of-work in your system (usually, but not always an HTTP request / response) you emit one "`event`" with all of the information you can collect about that work. "`Event`" is an over-loaded term in telemetry so replace that with "`log line`" or "`span`" if you like. link:https://jeremymorrell.dev/blog/minimal-js-tracing/[They are all effectively the same thing].
+____
+
+[quote]
+____
+This is where I find a lot of developers get tripped up. The idea sounds good in theory, and we should totally try that one day! But I have this stack of features to ship, that bug that's been keeping me up at night, and 30 new AI tools that came out yesterday to learn about. And like… where do you even start? What data should I add?
+
+Like anything in software, there are a lot of options for how to approach this, but I'll talk through one approach that has worked for me.
+
+We'll cover how to approach this in tooling and code, an _extensive_ list of attributes to add, and I'll respond to some frequent objections that come up when discussing this approach.
+____
+
+== link:https://boehs.org/node/dark-web-security[The fascinating security model of dark web marketplaces]
+
+[quote]
+____
+The boom and bust cycle has triggered a sort of evolution, with each new marketplace learning from the flaws of the previous one. This market is the culmination of this evolution -- at least for now. The intent of this article is to shed light on its security model as a technical curiosity, without romanticizing or otherwise commenting on the products it sells.
+____
+
+== link:https://apenwarr.ca/log/20190318[Programmer migration patterns]
+
+[quote]
+____
+With all that said, now I can finally make a point about python 2 vs 3. They are very similar languages, yet somehow _not_ the same. In my opinion, that's because they occupy totally different spots in this whole programmer migration chart.
+
+Python 2 developers came from a world of C and perl, and wanted to write glue code. Web servers were an afterthought, added later. I mean, the web got popular _after_ python 2 came out, so that's hardly a surprise. And a lot of python 2 developers end up switching to Go, because the kind of "systems glue" code they want to write is something Go is suited for.
+
+Python 3 developers come from a different place. It turns out that python usage has grown a lot since python 3 started, but the new people are different from the old people. A surprisingly large fraction of the new people come from the scientific and numerical processing world, because of modules like SciPy and then Tensorflow. Python is honestly a pretty weird choice for high-throughput numerical processing, but whatever, those libraries exist, so that's where we go. Another triumph of python's easy integration with C modules, I guess. And python 3 is also made with the web in mind, of course.
 ____
