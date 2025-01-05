@@ -3,7 +3,7 @@ Julien Kirch
 v1.0, 24-12-29
 :article_lang: en
 :figure-caption!:
-:article_description: Automated transformations, migrations & technicla debt, microblogging, design token-based UI, observability platform migration, wide events, security model of dark web marketplaces, Python 2 vs 3
+:article_description: Automated transformations, migrations & technical debt, microblogging, design token-based UI, observability platform migration, wide events, security model of dark web marketplaces, Python 2 vs 3
 
 == link:https://engineering.fb.com/2024/12/18/android/translating-java-to-kotlin-at-scale/[Translating Java to Kotlin at scale]
 
@@ -74,7 +74,7 @@ ____
 ____
 With all that said, now I can finally make a point about python 2 vs 3. They are very similar languages, yet somehow _not_ the same. In my opinion, that's because they occupy totally different spots in this whole programmer migration chart.
 
-Python 2 developers came from a world of C and perl, and wanted to write glue code. Web servers were an afterthought, added later. I mean, the web got popular _after_ python 2 came out, so that's hardly a surprise. And a lot of python 2 developers end up switching to Go, because the kind of "systems glue" code they want to write is something Go is suited for.
+Python 2 developers came from a world of C and perl, and wanted to write glue code. Web servers were an afterthought, added later. I mean, the web got popular _after_ python 2 came out, so that's hardly a surprise. And a lot of python 2 developers end up switching to Go, because the kind of "`systems glue`" code they want to write is something Go is suited for.
 
 Python 3 developers come from a different place. It turns out that python usage has grown a lot since python 3 started, but the new people are different from the old people. A surprisingly large fraction of the new people come from the scientific and numerical processing world, because of modules like SciPy and then Tensorflow. Python is honestly a pretty weird choice for high-throughput numerical processing, but whatever, those libraries exist, so that's where we go. Another triumph of python's easy integration with C modules, I guess. And python 3 is also made with the web in mind, of course.
 ____

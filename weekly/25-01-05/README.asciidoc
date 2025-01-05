@@ -1,0 +1,44 @@
+= Links - 5^th^ January 2025
+Julien Kirch
+v1.0, 25-01-05
+:article_lang: en
+:figure-caption!:
+:article_description: Encoding change in git diffs, S3 table buckets, Windows 2, glue work, shipping projects
+
+== link:https://devblogs.microsoft.com/oldnewthing/20241230-00/?p=110692[How various git diff viewers represent file encoding changes in pull requests]
+
+[quote]
+____
+
+In addition to the git command line tool, there are other tools or services that let you view changes in git history. The most interesting cases are those which present changes as part of a pull request, since those are changes you are reviewing and approving. But a common problem is that what they show you might not be what actually changed.
+
+I’ll limit my discussion to services and tools I have experience with, which means that it’s the git command line, Azure DevOps, GitHub, and Visual Studio. You are welcome to share details for other services that you use, particularly those used for code reviews.
+____
+
+== link:https://www.infoq.com/news/2025/01/s3-tables-bucket/[AWS introduces s3 tables bucket: is S3 becoming a data lakehouse?]
+
+[quote]
+____
+AWS has recently link:https://aws.amazon.com/blogs/aws/new-amazon-s3-tables-storage-optimized-for-analytics-workloads/[announced S3 Tables Bucket], managed Apache Iceberg tables optimized for analytics workloads. According to the cloud provider, the new option delivers up to 3x faster query performance and up to 10x higher transaction rates for Apache Iceberg tables compared to standard S3 storage.
+____
+
+== link:https://www.ninakalinina.com/notes/win2/[Windows 2: Final Fantasy of operating systems]
+
+[quote]
+____
+It is common knowledge that Final Fantasy could have been the "`final`" game for the studio, the first and the last in the series. It is far less known that Windows 2, released around the same time, faced a similar fate. If anything, things were more certain: even Microsoft firmly believed that Windows 2 would be the last.
+____
+
+== link:https://www.seangoedecke.com/glue-work-considered-harmful/[Glue work considered harmful]
+
+[quote]
+____
+So why doesn't glue work get you promoted, if it's so crucial to shipping projects? Are companies stupid? Are they deliberately leaving value on the table? No, I don't think so. Companies don't reward glue work _because they don't want you prioritizing it_. And they don't want you prioritizing it because they want you shipping features. Glue work is hard. If you're capable of doing glue work well, they want you to use that ability to deliver projects instead of improving general efficiency.
+____
+
+== link:https://www.seangoedecke.com/how-to-ship/[How I ship projects at big tech companies]
+
+[quote]
+____
+In my experience, projects almost always ship because one single person makes them ship. To be clear, that person doesn't write all the code or do all the work, and I'm not saying the project could ship without an entire team behind it. But it's _really important_ that one person on the project has an end-to-end understanding of the whole thing: how it hangs together technically, and what product or business purpose it serves. Good teams and companies understand this, and make sure every project has a single responsible engineer (typically this position is called a "`technical lead`" or "`DRI`" role). Bad teams and companies don't do this, and projects live and die based on whether an engineer steps up into this role of their own accord.
+____
