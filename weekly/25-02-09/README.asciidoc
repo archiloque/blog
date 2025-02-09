@@ -1,0 +1,124 @@
+= Links - 9^th^ February 2025
+Julien Kirch
+v1.0, 2025-02-09
+:article_lang: en
+:figure-caption!:
+:article_description: What your manager wants, strong engineers, makefile effect, chess engine with regex, dissecting Puma, removing Ruby's global interpreter lock, incremental design, cost of implicit strategy
+
+== link:https://www.seangoedecke.com/cynicism/[Is it cynical to do what your manager wants?]
+
+[quote]
+____
+Doing what your management chain wants is an expression of optimism. It comes from a belief that your company knows what it’s doing, and that the people it chooses to set strategy are basically competent.
+____
+
+[quote]
+____
+Planting your feet and saying "`screw the company, I’m going to do the right thing for my users`" feels good. It feels righteous, particularly when you receive negative pushback for it. For some people, this feeling is enough to carry them through an entire career.
+____
+
+== link:https://www.seangoedecke.com/what-makes-strong-engineers-strong/[What makes strong engineers strong?]
+
+[quote]
+____
+If you pick up a hard task, it makes a big difference whether you immediately tackle the hardest part head-on, or if you put it off and try to work around it. I’ve seen engineers spend weeks avoiding a difficult task that could have been accomplished in a serious day of effort.
+____
+
+== link:https://blog.yossarian.net/2025/01/10/Be-aware-of-the-Makefile-effect[Be aware of the Makefile effect]
+
+[quote]
+____
+You see this effect frequently with engineers of all stripes and skill/experience levels, with https://en.wikipedia.org/wiki/Make_(software)[Make] being a common example:
+
+. A task (one of a common shape) needs completing. A very similar (or even identical) task has been done before.
+. link:https://en.wikipedia.org/wiki/Make_(software)[Make] (or another tool susceptible to this effect) is the correct or "`best`" (given expedience, path dependencies, whatever) tool for the task.
+. Instead of writing a `Makefile`, the engineer copies a previous (sometimes very large and complicated) `Makefile` from a previous instance of the task and tweaks it until it works in the new context.
+____
+
+== link:https://nicholas.carlini.com/writing/2025/regex-chess.html[A 2-ply minimax chess engine in 84,688 regular expressions]
+
+[quote]
+____
+Over the holidays I decided it's been too long since I did something with entirely no purpose. So without further ado, I present to you … _Regex Chess_: sequence of 84,688 regular expressions that, when executed in order, will play a (valid; not _entirely_ terrible) move given a chess board as input. Here, I'll show you.
+____
+
+== link:https://dansvetlov.me/puma-internals/[Dissecting Puma: anatomy of a Ruby web server]
+
+[quote]
+____
+The purpose of this article is to take a deep dive into the internals of a real, battle-tested web server, explore the trade-offs it makes, and highlight curiosities I personally find interesting. If you want a brief overview or condensed practical guidance instead, refer to link:https://github.com/puma/puma/blob/fba741b91780224a1db1c456645335b2dd7f27dd/docs[Puma's documentation].
+____
+
+== link:https://byroot.github.io/ruby/performance/2025/01/29/so-you-want-to-remove-the-gvl.html[So you want to remove the GVL?]
+
+[quote]
+____
+For quite a long time, it has been said that Rails applications are mostly IO-bound, hence Ruby's GVL isn't that big of a deal and that has influenced the design of some cornerstone pieces of Ruby infrastructure like Puma and Sidekiq. As link:https://byroot.github.io/ruby/performance/2025/01/23/the-mythical-io-bound-rails-app.html[I explained in a previous post, I don't think it's quite true for most Rails applications]. Regardless, link:/ruby/performance/2025/01/25/why-does-everyone-hate-fork.html[the existence of the GVL still requires these threaded systems to use `fork(2)`] in order to exploit all the cores of a server: one process per core. To avoid all this, some people have been calling for the GVL to simply be removed.
+
+But is it that simple?
+____
+
+== link:https://explaining.software/archive/the-sudoku-affair/[The sudoku affair]
+
+[quote]
+____
+But Jeffries isn't in the business of starting over. He not only believes in incremental design, but in using the smallest possible increments. In his posts, he regularly returns to GeePaw Hill's maxim of "`many more much smaller steps`". He is only interested in designs that are reachable through a series of small, discrete steps.
+____
+
+[quote]
+____
+The developer needs to hold the entire link:https://explaining.software/archive/glossary/#structure[structure] in their head, and find a simple path that connects its constituent parts. And if they can't find that path, they need to find a better structure.
+
+Jeffries, however, does not believe in bigger pictures; his approach to software design is proudly myopic. He prevents himself from seeing the forest by pressing his face against the trees. And sometimes, as he moves from one tree to the next, he takes a moment to celebrate:
+
+[quote]
+_____
+As I refine and refine and refine, the design moves toward smaller objects, with single responsibilities and simple code. The design improves, bit by bit, almost by itself.
+_____
+
+But it doesn't. Software design is a deliberate process, and requires deliberate effort. Anything less is just a shrug in the face of entropy.
+____
+
+== link:https://yosefk.com/blog/profiling-in-production-with-function-call-traces.html[Profiling in production with function call trace]
+
+[quote]
+____
+We (it's always "`we`" in papers, isn't it?) have presented a comprehensive solution for {cpp} function tracing, ready for production use on x86/Linux and easy to port to many other platforms. We have also used the opportunity to discuss how to use a function tracer in your workflow, how to implement your own function tracer for native code, and which existing tools can help with the heavy lifting. Finally, we've seen how hardware could help making tracing more efficient and usable for both statically and dynamically compiled languages, in a relatively cheap & simple way.
+____
+
+== link:https://lethain.com/is-engineering-strategy-useful/[Is engineering strategy useful?]
+
+[quote]
+____
+We just finished talking about written strategy, and this book spends a lot of time on this topic, including link:https://lethain.com/readable-engineering-strategy-documents/[a chapter on how to structure strategies to maximize readability]. It's not _just_ because of the positives created by written strategy, but also because of the damage unwritten strategy creates.
+
+_Vulnerable to misinterpretation_
+
+Information flow in verbal organizations depends on an individual being in a given room for a decision, and then accurately repeating that information to the others who need it. However, it's common to see those individuals fail to repeat that information elsewhere. Sometimes their interpretation is also faulty to some degree. Both of these create significant problems in operating strategy.
+
+_Two-headed organizations_
+
+Some years ago, I started moving towards a model where most engineering organizations I worked with have two leaders: one who's a manager, and another who is a senior engineer. This was partially to ensure engineering context was included in senior decision making, but it was also to reduce communication errors.
+
+Errors in point-to-point communication are so prevalent when done one-to-one, that the only solution I could find for folks who weren't reading-oriented communicators was ensuring I had communicated strategy (and other updates) to at least two people.
+
+_Inconsistency across teams_
+
+At one company I worked in, promotions to Staff-plus role happened at a much higher rate in the infrastructure engineering organization than the product engineering team. This created a constant drain out of product engineering to work on infrastructure shaped problems, even if those problems weren't particularly valuable to the business.
+
+New leaders had no idea this informal policy existed, and they would routinely run into trouble in link:https://lethain.com/perf-management-system/[calibration discussions]. They _also_ weren't aware they needed to go argue for a better policy. Worse, no one was sure if this was a real policy or not, so it was ultimately random whether this perspective was represented for any given promotion: sometimes good promotions would be blocked, sometimes borderline cases would be approved.
+
+_Inconsistency over time_
+
+Implementing a new policy tends to be a mix of persistent and one-time actions. For example, let's say you wanted to standardize all HTTP operations to use the same library across your codebase. You might add a linter check to reject known alternatives, and you'll probably do a one-time pass across your codebase standardizing on that library.
+
+However, two years later there are another three random HTTP libraries in your codebase, creeping into the cracks surrounding your linting. If the policy is written down, and a few people read it, then there's a number of ways this could be nonetheless prevented. If it's not written down, it's much less likely someone will remember, and much more likely they won't remember the rationale well enough to argue about it.
+
+_Hazard to new leadership_
+
+When a new Staff-plus engineer or executive joins a company, it's common to blame them for failing to understand the existing context behind decisions. That's fair: a big part of senior leadership is uncovering and understanding context. It's also unfair: explicit documentation of prior thinking would have made this much easier for them.
+
+Every particularly bad new-leader onboarding that I've seen has involved a new leader coming into an unfilled role, that the new leader's manager didn't know how to do. In those cases, success is entirely dependent on that new leader's ability and interest in learning.
+
+In most ways, the practice of documenting strategy has a lot in common with link:https://lethain.com/succession-planning/[succession planning], where the full benefits accrue to the organization rather than to the individual doing it. It's possible to maintain things when the original authors are present, appreciating the value requires stepping outside yourself for a moment to value things that will matter most to the organization when you're no longer a member.
+____
