@@ -41,7 +41,7 @@ ____
 ____
 Large-scale Architecture must be Functional and Composable
 
-However, Terraform itself is _functional_. It is a highly stateful, object oriented system, with what amounts to remote procedure calls. Complects structure + behaviour + state. The ansible system is imperative in the small, but functional in the large because it is an _idempotent_ transform of infra -> infra, with UNIX-like composable workflows, dynamic in-process state as a reference (dynamic inventory).
+However, Terraform itself is _not_ functional. It is a highly stateful, object oriented system, with what amounts to remote procedure calls. Complects structure + behaviour + state. The ansible system is imperative in the small, but functional in the large because it is an _idempotent_ transform of infra -> infra, with UNIX-like composable workflows, dynamic in-process state as a reference (dynamic inventory).
 
 Constrain change, not people
 
