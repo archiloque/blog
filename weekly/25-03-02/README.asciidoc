@@ -1,0 +1,95 @@
+= Links - 2^nd^ March 2025
+Julien Kirch
+v1.0, 2025-03-02
+:article_lang: en
+:figure-caption!:
+:article_description: Writing a RegEx engine, US clouds, selling to gullible executives, terraforming a brownfield, init process for multi-process containers, ual, research debt
+
+== link:https://twomorecents.org/writing-regex-engine/index.html[Writing a regular expression engine]
+
+[quote]
+____
+The last 4 months have seen me consumed in my latest side project, https://gitea.twomorecents.org/Rockingcool/kleingrep[kleingrep]. It's a regex engine and command-line tool, written completely from scratch in Go. When I say "`from scratch`", I mean that all the _code_ was written by me; Russ Cox's link:https://swtch.com/~rsc/regexp/[excellent articles] on regular expressions and Ken Thompson's seminal paper on the link:https://doi.org/10.1145/363347.363387[topic] served as the theoretical foundations for my project.
+
+This post accompanies the project. It mostly serves as a walkthrough of my implementation, without any code. If you're already familiar with regular expressions, feel free to skim through. The final section describes some additional features I added to the engine (and their implementation), which provide feature parity with mainstream regex engines.
+____
+
+== link:https://berthub.eu/articles/posts/you-can-no-longer-base-your-government-and-society-on-us-clouds/[It is no longer safe to move our governments and societies to US clouds]
+
+[quote]
+____
+The very short version: it is madness to continue transferring the running of European societies and governments to link:https://apnews.com/article/trump-inauguration-tech-billionaires-zuckerberg-musk-wealth-0896bfc3f50d941d62cebc3074267ecd[American clouds]. Not only is it a terrible idea given the kind of things the "`link:https://www.nbcnews.com/politics/donald-trump/king-trump-rcna192912[King of America]`" keeps saying, the legal sophistry used to justify such transfers, like the link:https://berthub.eu/tkconv/document.html?nummer=2025D07118[nonsense letter the Dutch cabinet sent last week], has now been https://www.lawfaremedia.org/article/trump-s-sacking-of-pclob-members-threatens-data-privacy[invalidated] by Trump himself. And why are we doing this? Convenience. But it is very scary to make yourself 100% dependent on the goodwill of the American government merely because it is convenient. So let's not.
+____
+
+== link:https://ludic.mataroa.blog/blog/brainwash-an-executive-today/[Brainwash an executive today!]
+
+[quote]
+____
+A huge amount of the economy is driven by people who are, simply put, highly suggestible. That is to say that it is very, very easy to get them excited and willing to spend money.
+
+Consider, for example, what it would take to get _you_ to approach your company's lawyer and suggest software to them, totally unprompted, because you saw an advertisement last night. Scratch that, make it _every lawyer at your company_ as each and every one of them goes "`I… have never heard of that`". But you _just keep going_ because the next one might tell you that the Shamwow is an awesome product.
+____
+
+[quote]
+____
+There is a massive industry that is built around gathering people that fit the "`thinks LinkedIn is studying`" profile into rooms, who also have access to organizational money, and then charging sales teams for permission to get into that room. 
+____
+
+== link:https://www.evalapply.org/posts/systems-approach-to-infrastructure-as-code/index.html[Systematically terraforming a brownfield of cloud infrastructure]
+
+[quote]
+____
+Large-scale Architecture must be Functional and Composable
+
+However, Terraform itself is _functional_. It is a highly stateful, object oriented system, with what amounts to remote procedure calls. Complects structure + behaviour + state. The ansible system is imperative in the small, but functional in the large because it is an _idempotent_ transform of infra -> infra, with UNIX-like composable workflows, dynamic in-process state as a reference (dynamic inventory).
+
+Constrain change, not people
+
+As a designer, I strongly prefer to build a system that helps us:
+
+* _Strictly gate-keep, structure, and micro-manage_ changes to live production, at one extreme of the management spectrum.
+* _And_ at the other extreme, enable a fresh engineer to play with infrastructure willy-nilly. On day one of employment, a newcomer should be able to clone the codebase and follow a bunch of instructions to spin up, modify, destroy production-like infrastructure without any supervision whatsoever.
+
+Any infrastructure automation system must limit the "`blast radius`" of changes. The longer a thing lives, the more the odds that _something_ is going to go awry. At the same time, one must make experimentation easy and safe, to ease change management, and to onboard new people through tons of hands-on practice.
+
+If a system has such a capability, it signals to me that it has solved for strategic risk management _as well as_ daily-driver operator safety.
+____
+
+[quote]
+____
+Use a mono-repo for great good
+
+A single repository can contain a directory for each department. It's always possible to split out each department into its own repo later, if some hard constraint dictates it be so. Absent that, it's far better to put it all in one repo. Doing this well is invaluable in helping departments share practices while protecting secrets.
+____
+
+== link:https://ahmet.im/blog/minimal-init-process-for-containers/[Choosing an init process for multi-process containers]
+
+[quote]
+____
+If you are developing containers you must have heard the "`single process per container`" mantra. Inherently, there's nothing wrong with link:https://github.com/just-containers/s6-overlay/tree/fca73dc6d74708554702759ac168e5e3fd68662f#the-docker-way[running multiple processes in a container], as long as your `+ENTRYPOINT+` is a proper link:https://en.wikipedia.org/wiki/Init[init process]. Some use cases are having processes are aiding each other (such as a sidecar proxy process) or porting legacy applications.
+____
+
+== link:https://github.com/ha1tch/ual[ual]
+
+[quote]
+____
+ual is a high-level, stack-based language designed for use on minimal or retro platforms with small virtual machines or embedded hardware. It bridges the gap between low-level hardware control and high-level programming abstractions, making it ideal for resource-constrained environments.
+____
+
+[quote]
+____
+ual draws inspiration from several established languages:
+
+* From Lua: The clean syntax, function definitions, local variables, tables as the primary data structure, and multiple return values.
+* From Forth: The stack-based computational model, direct hardware access, and emphasis on small implementation footprint.
+* From Go: The package system with uppercase/lowercase visibility rules, clear import declarations, and pragmatic approach to language design.
+____
+
+== link:https://distill.pub/2017/research-debt/[Research debt]
+
+[quote]
+____
+It's tempting to think of explaining an idea as just putting a layer of polish on it, but good explanations often involve transforming the idea. This kind of refinement of an idea can take just as much effort and deep understanding as the initial discovery.
+
+This leaves us with no easy way out. We can't solve research debt by having one person write a textbook: their energy is spread too thin to polish every idea from scratch. We can't outsource distillation to less skilled non-experts: refining and explaining ideas requires creativity and deep understanding, just as much as novel research.
+____
