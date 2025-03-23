@@ -1,0 +1,78 @@
+= Links - 23^rd^ March 2025
+Julien Kirch
+v1.0, 2025-03-23
+:article_lang: en
+:figure-caption!:
+:article_description: Postgres plan visualization, software performance, cost of context switching, Horizon Worlds, error models, xlskubectl, FOSS infrastructure & AI companies, Windows 95 setup, DB protocols
+
+== link:https://www.pgmustard.com/blog/postgres-query-plan-visualization-tools[Postgres query plan visualization tools]
+
+[quote]
+____
+When you've got a slow Postgres query, `EXPLAIN` and its parameters are incredibly useful for working out why.
+
+However, the information returned can be difficult and time-consuming to interpret, especially for more complex queries. Over the years, people have built quite a few tools for visualizing Postgres query plans. As one of those people, I'm a little _incredibly_ biased, but as a fan of many of the others, I hope to do them justice.
+____
+
+
+== link:https://neighbourhood.ie/blog/2025/03/04/case-study-10x-couchdb-performance-gains-for-a-aaa-game-launch[Case Study: 10x CouchDB Performance Gains for a AAA Game Launch]
+
+[quote]
+____
+All software benchmarks and claims of performance are _carefully crafted lies_ and this write-up is _no different_. Instead of giving you a quick "`do steps one, two, three for a magic speedup`", we aim to explain _how we arrived_ at the changes we made and how we rigorously tested those changes to make sure we understand their impact.
+
+All this to give _you the tools to follow the process yourself_, at the end of which, you might come to very different conclusions that are valid for your particular situation which is very likely different from what our customer was dealing with.
+____
+
+== link:https://blog.codingconfessions.com/p/context-switching-and-performance[Context switching and performance: what every developer should know]
+
+[quote]
+____
+Context switching is known to be one of the most expensive operations performed by the operating system kernel which can kill the performance of many systems. It is a necessary evil on a busy system to keep it responsive, and to allow all the processes to make progress. But what makes it so expensive? This article decodes the hardware and software dynamics underlying context switching.
+____
+
+== link:https://nwn.blogs.com/nwn/2025/03/horizon-worlds-meta-why-failed.html[What went wrong with Horizon Worlds? Former Meta devs share surprising insights -- and a solution to still save it]
+
+[quote]
+____
+Before I left they were mandating that employees spend a certain number of hours per week in the game actively playing it. So therein started an automation war where all the people with 200 hours a week never actually played the game once. People just had to launch the game with an Android command over USB, then make sure the proximity sensor on the headset was taped to keep it on.
+____
+
+== link:https://typesanitizer.com/blog/errors.html[An epic treatise on error models for systems programming languages]
+
+[quote]
+____
+Target audience: Practitioners interested in programming language design and familiar with representations of errors in at least a few different languages such as error codes, checked/unchecked exceptions, tagged unions, polymorphic variants etc.
+
+Estimated reading time: 60 to 90 mins.
+____
+
+== link:https://github.com/learnk8s/xlskubectl[xlskubectl — a spreadsheet to control your Kubernetes cluster]
+
+[quote]
+____
+xlskubectl integrates Google Spreadsheet with Kubernetes.
+
+You can finally administer your cluster from the same spreadsheet that you use to track your expenses.
+____
+
+== link:https://thelibre.news/foss-infrastructure-is-under-attack-by-ai-companies/[FOSS infrastructure is under attack by AI companies]
+
+[quote]
+____
+The rest of the article is pretty impressive too; they talk about crawlers downloading tens of terabytes of data within a few days, or more. It's hard to block them entirely, since they use various different IPs.
+____
+
+== link:https://devblogs.microsoft.com/oldnewthing/20250318-00/?p=110975[Why didn’t Windows 95 setup use a miniature version of Windows 95 as its fallback GUI?]
+
+[quote]
+____
+One of the reactions to my discussion of link:https://devblogs.microsoft.com/oldnewthing/20241112-00/?p=110507[Why Windows 95 setup used three operating systems] (and oh there were many) was my explanation that a miniature version of Windows 3.1 was used to get MS-DOS customers upgrading to Windows 95. But why not use a miniature version of Windows 95?
+____
+
+== link:https://byroot.github.io/performance/2025/03/21/database-protocols.html[Database protocols are underwhelming]
+
+[quote]
+____
+However one database-adjacent topic I don’t think I’ve ever seen any discussions about, and that I think could be improved, is the protocols exposed by these databases to execute queries. Relational databases are very impressive pieces of technology, but their client protocol makes me wonder if they ever considered being used by anything other than a human typing commands in a CLI interface.
+____

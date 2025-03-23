@@ -9,14 +9,14 @@ v1.0, 24-12-29
 
 [quote]
 ____
-Contrary to popular belief, we’ve found it’s often safer to leave the most delicate transformations to bots. There are certain fixes we’ve automated as part of postprocessing, even though they aren’t strictly necessary, because we want to minimize the temptation for human (i.e., error-prone) intervention. One example is condensing long chains of null checks: The resulting Kotlin code isn’t more correct, but it’s less susceptible to a well-meaning developer accidentally dropping a negation.
+Contrary to popular belief, we've found it's often safer to leave the most delicate transformations to bots. There are certain fixes we've automated as part of postprocessing, even though they aren't strictly necessary, because we want to minimize the temptation for human (i.e., error-prone) intervention. One example is condensing long chains of null checks: The resulting Kotlin code isn't more correct, but it's less susceptible to a well-meaning developer accidentally dropping a negation.
 ____
 
 == link:https://lethain.com/migrations/[Migrations: the sole scalable fix to tech debt.]
 
 [quote]
 ____
-As a result you switch tools a lot, and your ability to migrate to new software can easily become the defining constraint for your overall velocity. Given their importance, we don’t talk about running migrations very often; let’s remedy that!
+As a result you switch tools a lot, and your ability to migrate to new software can easily become the defining constraint for your overall velocity. Given their importance, we don't talk about running migrations very often; let's remedy that!
 ____
 
 == link:https://www.baldurbjarnason.com/notes/2024/interim-3/[Interim note 3: text-based media in the age of showmanship]
