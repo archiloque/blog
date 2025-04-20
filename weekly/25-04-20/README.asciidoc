@@ -1,0 +1,142 @@
+= Links - 20^th^ April 2025
+Julien Kirch
+v1.0, 2025-04-20
+:article_lang: en
+:figure-caption!:
+:article_description: Scrolling, open source mythology, costs of reliability, MCP, wicked features, spotlight, scaling PostgreSQL, data synchronization, shared understanding, on-call
+
+== link:https://navigation-queues-navigation-cues.f451.studio[Navigation queues]
+
+[quote]
+____
+Long before infinite scrolling or pull-to-refresh, the scrollbar solved the web's first scaling problem: how to situate yourself within content that stretched beyond the visible screen. Somewhere along the way, the usage changed and became a fuel for motion. A motion I can't really control and a motion I can't really resist.
+Getting lost is a rational fear. I will miss knowing where I am. I will miss the sense that I am tethered to something, that I am not just scrolling but moving with intention.
+____
+
+== link:https://lgug2z.com/articles/on-open-source-mythology/[On open source mythology]
+
+[quote]
+____
+There are two points of popular open source mythology this post will share my experience with:
+
+- People won't use your project if you don't use an Open Source Initiative-approved license
+- People won't contribute to to your project if you don't use an Open Source Initiative-approved license
+____
+
+== link:https://srconstantin.wordpress.com/2019/07/20/the-costs-of-reliability/[The costs of reliability]
+
+[quote]
+____
+I think it has a very mundane explanation; it's always more expensive to have to _meet a specific commitment_ than merely to _do something valuable_.
+____
+
+[quote]
+____
+. People given an open-ended mandate to do what they like can be far more efficient than people working to spec… __at the cost of__ unpredictable output with no guarantees of getting what you need when you need it. (See: academic research.)
+. Things that come with fewer guarantees of reliable performance can be cheaper in the average use case… __at the cost of__ completely letting you down when they occasionally fail. (See: prototype or beta-version technology.)
+. Activities within highly cooperative social environments can be more efficient… __at the cost of__ not scaling to more adversarial environments where you have to spend more resources on defending against attacks. (See: Eternal September)
+. Having an "`opportunistic`" policy of taking whatever opportunities come along (for instance, hanging out in a public place and chatting with whomever comes along and seems interesting, vs. scheduling appointments) allows you to make use of time that others have to spend doing "`nothing`"… __at the cost of__ never being able to commit to activities that need time blocked out in advance.
+. Sharing high-fixed-cost items (like cars) can be more efficient than owning… __at the cost of__ not having a guarantee that they'll always be available when you need them.
+____
+
+== link:https://blog.sshh.io/p/everything-wrong-with-mcp[Everything wrong with MCP]
+
+[quote]
+____
+In this post and as an MCP-fan, I'll enumerate some of these issues and some important considerations for the future of the standard, developers, and users. Some of these may not even be completely MCP-specific but I'll focus on it, since it's how many people will first encounter these problems.
+____
+
+== link:https://www.seangoedecke.com/wicked-features/[Wicked features]
+
+[quote]
+____
+* Wicked features are requirements that must be considered every time you build anything else
+* They massively increase implementation complexity and coordination cost
+* Some wicked features are unavoidable, especially when selling to high-paying enterprise users
+* Others are self-inflicted by overengineering, dogma, or poor taste
+* Good engineers limit the blast radius: they prevent unnecessary wicked features, and factor the necessary ones so they don't pollute everything
+____
+
+== link:https://www.seangoedecke.com/the-spotlight/[Software engineering under the spotlight]
+
+[quote]
+____
+* Tech companies can only focus on one or two things at a time; this is the "`spotlight`"
+* Engineers who perform well under the spotlight get more visibility, rewards, and career growth
+* Some engineers chase the spotlight and become known quantities to leadership, at the cost of stability
+* Others avoid the spotlight and do good technical work quietly, but tend to be under-recognized
+* Either strategy can work, but you should be honest about the tradeoffs
+____
+
+== link:https://kmoppel.github.io/2025-04-10-postgres-scaling-roadmap/[A roadmap to scaling Postgres]
+
+[quote]
+____
+So here again my attempt on maybe saving some mosquitoes from cannonballs -- a sort of ordered guide or starting list, according to my personal "`world view`" of course, after 20K+ hours in the Postgres trenches.
+____
+
+== link:https://neighbourhood.ie/blog/2025/04/06/how-to-sync-anything[How to sync anything]
+
+[quote]
+____
+In this article I'll discuss a common naive solution to replication, why it doesn't work, and what the building blocks of a good solution look like.
+____
+
+[quote]
+____
+This is where things typically start to go wrong. To make incremental sync work correctly, it is usually necessary to think about the big picture of how you want the source and target to interact and design or adopt a protocol that fits all these needs. However, many of these replication projects are developed in an ad-hoc way, with little bits of code being added to handle particular scenarios, and the interactions and failure modes of these small changes are never looked at holistically.
+____
+
+[quote]
+____
+Broadly speaking, replication systems can be classified into two camps: state-based, and operation-based. State-based systems work by examining the current state of the source and target, and making changes to remove any differences between them. Operation-based systems rely on distributing a consistent sequence of events, or a log, to all the systems and having them build their local state off this log.
+____
+
+[quote]
+____
+This sync function must be _idempotent_, i.e. it should be safe to run any number of times against record in the source system to bring its corresponding target record up to date. This immediately fixes several problems with ad-hoc replication:
+
+* Replicating a change always works by comparing the full state of the source and target records, rather than assuming the target matched the previous source state and copying some random changes over. This makes sure your event listeners always leave the target in the correct state.
+* It's not affected by event handlers being reordered by asynchronous processing, retries, and so on. The diff/patch function always does the same thing whenever it is run: it does whatever is needed to match the target match the source.
+* If it fails due to a transient network error, a rate limit, etc, it can be retried indefinitely on an arbitrary schedule and will eventually succeed and produce the right state, as long as it inspects the state of the source record _when it runs_ rather than retaining the state from when it was first scheduled.
+* The same code path can be used for copying over all legacy data, and for reacting to future events. You either run the diff/patch function against all existing records, or against a record you know just changed. Eventually this will result in all source records being synced.
+* There is a well-defined notion of what it means for a target record to be in an incorrect state, and furthermore, the system itself can identify such states and correct them automatically. If the detection is found to be incorrect, it can be patched and re-run over existing records to resynchronise them.
+____
+
+[quote]
+____
+Notice that we now have the same code path being used to handle legacy data, new changes, and retrying in case of failures. This is an example of link:https://en.wikipedia.org/wiki/Crash-only_software[crash-only design], where you have one code path that handles "`normal`" operation and failure states. The function's starting assumption is that the target is in a bad state that needs to be identified and corrected, rather than assuming some good state and invoking an exceptional code path if an error happens. Using the same code path for all eventualities gives you a simpler system that is much more robust.
+____
+
+
+== link:https://cutlefish.substack.com/p/tbm-348-shared-understanding-at-scale[TBM 348: Shared understanding at scale]
+
+[quote]
+____
+The _Hierarchical Telephone Game_ example is very common in organizational contexts. From a control theory/information theory standpoint, there are three relevant dynamics at play:
+
+. Every layer of abstraction compresses and reshapes the message, stripping out nuance and weak signals. Compression creates clarity but risks distortion.
+. Information moves slowly through the hierarchy. When the leadership team receives a signal, it's often too late to do anything meaningful. By the time you're acting, the situation has shifted.
+. What gets passed up is shaped by what people think leaders want to hear, not necessarily what they need to hear. The result? The view from the top no longer reflects the truth on the ground.
+
+_Lesson_: In ideal circumstances, hierarchies can offer valuable clarity and compression. Each layer understands what their boss cares about and tailors the message accordingly. But in less-than-ideal circumstances, this same structure becomes a distortion engine.
+____
+
+[quote]
+____
+There's a well-established principle in control systems and human factors design: views must be coupled to the task. A "`picture of everything`" isn't useful unless it helps the operator do something specific. The failure mode is not a lack of data, it's mismatched context and role-agnostic framing.
+____
+
+== link:https://www.scottsmitelli.com/articles/take-oncall-and-shove-it/[Take this on-call rotation and shove it]
+
+[quote]
+____
+The absolute largest source of variability comes from a team's willingness to improve the on-call situation as opposed to simply accepting that things are the way they're meant to be. Some teams view every page -- no matter how trivial -- as a signal that something needs to be immediately fixed to prevent that specific thing from _ever_ happening again. Other teams view it as something that just happens as a natural consequence of supporting a product, like a smoke detector battery chirp that everybody has learned to tune out over the course of several years. It is the manifestation of technical debt that has been boiling for years, looking for a pressure relief valve to escape through, and it just happens to keep finding its release through Alex's pager.
+
+Perhaps unsurprisingly, the teams that are most willing to defend against recurring pages are also the most likely to actually perform in-depth postmortems so they can write and maintain their on-call runbooks. Sometimes the runbook is the only friend an on-call engineer has, and there's nothing more disappointing than discovering that this friend can't help fix anything.
+____
+
+[quote]
+____
+_Franz Kafka_ created literary worlds in which unbearably absurd things happen for seemingly no reason and people are expected to simply endure them as if nothing out of the ordinary is going on. His environments only _partially_ make sense, producing bureaucracies that defy any attempt at comprehension. The protagonists in his stories feel alienated and isolated. A queasy undercurrent of anxiousness and sometimes outright horror runs through his whole oeuvre. The author was likely neurotic, he destroyed approximately 90% of everything he ever wrote, then he died well ahead of when he probably should have -- leaving several substantial works unfinished. In this regard, Apache Kafka shares some similarities.
+____
