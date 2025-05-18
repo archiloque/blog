@@ -1,0 +1,123 @@
+= Links - 18^th^ May 2025
+Julien Kirch
+v1.0, 2025-05-18
+:article_lang: en
+:figure-caption!:
+:article_description: DNS database, infrastructure as code, motivation hacks, Postgres 18 asynchronous I/O, Copilot AI for SharePoint, SSL stacks, curse of knowing how, magical circles programming, programming sucks
+
+== link:https://wallabag.overthinking.club/view/65[The DNS system isn't a database and shouldn't be used as one]
+
+[quote]
+____
+It would be nice if we had a global, distributed, relatively easily queryable, consistent database system. It would make a lot of things pretty nice, especially if we could wrap some cryptography around it to make sure we were getting honest answers. However, the general DNS system is not such a database and can't be used as one, and as a result should not be pressed into service as one in protocols.
+
+DNS is designed from the ground up to lie to you in unpredictable ways, and parts of the DNS system lie to you every day. We call these lies things like 'outdated cached data' or 'geolocation based DNS' (or "`split horizon DNS`"), but they're lies, or at least inconsistent alternate versions of some truth. The same fundamental properties that allow these inconsistent alternate versions also allow for more deliberate and specific lies, and they also mean that no one can know with assurance what version of DNS anyone else is seeing.
+____
+
+== link:https://www.thoughtworks.com/insights/blog/devops/infrastructure-as-code-where-today[Infrastructure as code: Where are we today?]
+
+[quote]
+____
+I'm a bit disappointed that not many tool and technology vendors have moved beyond legacy mental models for building and managing infrastructure. Most tools and services aimed at helping infrastructure teams still encourage workflows where infrastructure specialists manually define and provision infrastructure for developers in a silo. So we still get handovers, heavily customized "snowflakes as code" environments and infrastructure as a bottleneck for delivery.
+____
+
+[quote]
+____
+Much advice around infrastructure as code focuses on designing and building new infrastructure. But where most teams struggle is managing and maintaining infrastructure over the longer term. How do you make sure that, as your systems grow, each new environment isn't built differently from older environments, to avoid creating a mess of different versions and configurations? How do you update older environments? How do you make changes to live infrastructure?
+ 
+This matters because the problem people are facing these days is less about moving to the cloud for the first time. Teams need to consolidate and clean up sprawling spaghetti messes, get costs under control, avoid accumulating technical debt in their environments and keep up with changing technologies.
+____
+
+== link:https://leadership.garden/build-systems-not-motivation/[Stop with the motivation hacks already]
+
+[quote]
+____
+The Energy Tax
+
+Every obstacle in your workflow creates what I call an "`energy tax`" -- a psychological cost paid before any actual work happens.
+
+When an engineer faces:
+
+* A test environment that's perpetually broken
+* Ambiguous requirements that change mid-sprint
+* Development environments that take days to set up
+* Approvals that bottleneck through unavailable people
+
+… their motivation gets spent before they write a single line of code.
+
+No amount of inspirational speeches can overcome dysfunctional systems.
+
+The System Advantage
+
+Systems aren't sexy. They don't make for inspirational LinkedIn posts. But they're the backbone of high-performing teams.
+
+In my most successful leadership role, we obsessed over systems:
+
+Deployment pipelines that worked reliably
+
+* Clear decision frameworks everyone understood
+* Documentation that actually reflected reality
+* Onboarding that got people productive in days, not weeks
+* Feedback mechanisms with genuine follow-through
+
+The result? We didn't need motivation hacks. The team stayed energized because their energy went into meaningful work, not fighting broken processes.
+____
+
+== link:https://pganalyze.com/blog/postgres-18-async-io[Waiting for Postgres 18: accelerating disk reads with asynchronous I/O]
+
+[quote]
+____
+With the Postgres 18 Beta 1 release this week a multi-year effort, and significant architectural shift in Postgres is taking shape: Asynchronous I/O (AIO). These capabilities are still under active development, but they represent a fundamental change in how Postgres handles I/O, offering the potential for significant performance gains, particularly in cloud environments where latency is often the bottleneck.
+____
+
+== link:https://www.pentestpartners.com/security-blog/exploiting-copilot-ai-for-sharepoint/[Exploiting Copilot AI for SharePoint]
+
+[quote]
+____
+* AI Assistants are becoming far more common
+* Copilot for SharePoint is Microsoft’s answer to generative AI assistance on SharePoint
+* Attackers will look to exploit anything they can get their hands on
+* Your current controls and logging may be insufficient
+* Be careful what you keep on platforms like SharePoint
+____
+
+== link:https://www.haproxy.com/blog/state-of-ssl-stacks[The state of SSL stacks]
+
+[quote]
+____
+A paper on this topic was prepared for internal use within HAProxy last year, and this version is now being shared publicly. Given the critical role of SSL in securing internet communication and the challenges presented by evolving SSL technologies, reverse proxies like HAProxy must continuously adapt their SSL strategies to maintain performance and compatibility, ensuring a secure and efficient experience for users. We are committed to providing ongoing updates on these developments.
+____
+
+== link:https://notashelf.dev/posts/curse-of-knowing[The curse of knowing how, or; fixing everything]
+
+[quote]
+____
+And from that moment forward, the world is broken in new and specific ways that only you can see.
+____
+
+== link:https://suberic.net/~dmm/projects/mystical/README.html[Mystical]
+
+[quote]
+____
+I wanted to make a programming language that resembled magical circles. This is more like a way to write PostScript that looks like a magical circle, but I will refer to it as Mystical in this document.
+____
+
+== link:https://www.stilldrinking.org/programming-sucks[Programming sucks]
+
+[quote]
+____
+Every programmer occasionally, when nobody's home, turns off the lights, pours a glass of scotch, puts on some light German electronica, and opens up a file on their computer. It's a different file for every programmer. Sometimes they wrote it, sometimes they found it and knew they had to save it. They read over the lines, and weep at their beauty, then the tears turn bitter as they remember the rest of the files and the inevitable collapse of all that is good and true in the world.
+
+This file is Good Code. It has sensible and consistent names for functions and variables. It's concise. It doesn't do anything obviously stupid. It has never had to live in the wild, or answer to a sales team. It does exactly one, mundane, specific thing, and it does it well. It was written by a single person, and never touched by another. It reads like poetry written by someone over thirty.
+
+Every programmer starts out writing some perfect little snowflake like this. Then they're told on Friday they need to have six hundred snowflakes written by Tuesday, so they cheat a bit here and there and maybe copy a few snowflakes and try to stick them together or they have to ask a coworker to work on one who melts it and then all the programmers' snowflakes get dumped together in some inscrutable shape and somebody leans a Picasso on it because nobody wants to see the cat urine soaking into all your broken snowflakes melting in the light of day. Next week, everybody shovels more snow on it to keep the Picasso from falling over.
+
+There's a theory that you can cure this by following standards, except there are more "`standards`" than there are things computers can actually do, and these standards are all variously improved and maligned by the personal preferences of the people coding them, so no collection of code has ever made it into the real world without doing a few dozen identical things a few dozen not even remotely similar ways. The first few weeks of any job are just figuring out how a program works even if you're familiar with every single language, framework, and standard that's involved, because standards are unicorns.
+____
+
+[quote]
+____
+I spent a few years growing up with a closet in my bedroom. The closet had an odd design. It looked normal at first, then you walked in to do closet things, and discovered that the wall on your right gave way to an alcove, making for a handy little shelf. Then you looked up, and the wall at the back of the alcove gave way again, into a crawlspace of utter nothingness, where no light could fall and which you immediately identified as the daytime retreat for every ravenous monster you kept at bay with flashlights and stuffed animals each night.
+
+This is what it is to learn programming. You get to know your useful tools, then you look around, and there are some handy new tools nearby and those tools show you the bottomless horror that was always right next to your bed.
+____
