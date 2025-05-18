@@ -5,13 +5,13 @@ v1.0, 2025-05-18
 :figure-caption!:
 :article_description: DNS database, infrastructure as code, motivation hacks, Postgres 18 asynchronous I/O, Copilot AI for SharePoint, SSL stacks, curse of knowing how, magical circles programming, programming sucks
 
-== link:https://wallabag.overthinking.club/view/65[The DNS system isn't a database and shouldn't be used as one]
+== link:https://utcc.utoronto.ca/~cks/space/blog/tech/DNSNotADatabase[The DNS system isn't a database and shouldn't be used as one]
 
 [quote]
 ____
 It would be nice if we had a global, distributed, relatively easily queryable, consistent database system. It would make a lot of things pretty nice, especially if we could wrap some cryptography around it to make sure we were getting honest answers. However, the general DNS system is not such a database and can't be used as one, and as a result should not be pressed into service as one in protocols.
 
-DNS is designed from the ground up to lie to you in unpredictable ways, and parts of the DNS system lie to you every day. We call these lies things like 'outdated cached data' or 'geolocation based DNS' (or "`split horizon DNS`"), but they're lies, or at least inconsistent alternate versions of some truth. The same fundamental properties that allow these inconsistent alternate versions also allow for more deliberate and specific lies, and they also mean that no one can know with assurance what version of DNS anyone else is seeing.
+DNS is designed from the ground up to lie to you in unpredictable ways, and parts of the DNS system lie to you every day. We call these lies things like "`outdated cached data`" or "`geolocation based DNS`" (or "`split horizon DNS`"), but they're lies, or at least inconsistent alternate versions of some truth. The same fundamental properties that allow these inconsistent alternate versions also allow for more deliberate and specific lies, and they also mean that no one can know with assurance what version of DNS anyone else is seeing.
 ____
 
 == link:https://www.thoughtworks.com/insights/blog/devops/infrastructure-as-code-where-today[Infrastructure as code: Where are we today?]
