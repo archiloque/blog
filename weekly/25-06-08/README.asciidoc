@@ -1,0 +1,52 @@
+= Links - 8^th^ June 2025
+Julien Kirch
+v1.0, 2025-06-08
+:article_lang: en
+:figure-caption!:
+:article_description: Selling formal methods, thory building, Curry-Howard mysticism, Windows registry adventures
+
+== link:https://www.galois.com/articles/what-works-and-doesnt-selling-formal-methods[What works (and doesn't) selling formal methods]
+
+[quote]
+____
+Unfortunately, a lot of developers don't care about getting to a higher level of correctness. Their current tools work great, they have priced in the existence of bugs and security flaws. The value of fewer bugs and more security is basically zero, so if a new tool costs anything at all, it's too expensive. This is even true for high assurance systems, which is always surprising to me. You'd think that for a thing that flies or drives around, you'd want that to be less buggy. But often the companies or people who build and maintain these systems genuinely don't care much, either because they've priced in the bugs or because their system is designed to be robust in the presence of bugs.
+
+A good way to understand this is that developers have a lot of competing demands, and many other things can be more important than increasing correctness or security. For example, a team might prefer to spend limited resources on shipping security features and fixes, hiring more developers for the team, paying down technical debt, or meeting upstream needs from customers. Worse, a correctness technology might make other goals more difficult and expensive. For example, rewriting in _Fancy Language X_ sounds great, but it might mean the team is much harder to staff, which is a significant cost to most organizations.
+____
+
+== link:https://jyn.dev/theory-building-without-a-mentor/[Theory building without a mentor]
+
+[quote]
+____
+Naur also says in the article:
+
+[quote]
+_____
+in a certain sense there can be no question of theory modification, only program modification
+_____
+
+i think this is wrong: theory modification is exactly what Ward Cunningham describes as "`consolidation`" in his 1992 article on link:https://c2.com/doc/oopsla92.html[Technical Debt]. i highly recommend the original article, but the basic idea is that over time, your understanding of how the program _should_ behave changes, and you modify and refactor your program to match that idea. this happens in all programs, but the modification is easier in programs with little link:https://jyn.dev/technical-debt-is-different-from-technical-risk/[technical risk].
+
+furthermore, this theory modification often happens unintentionally over time as people are added and removed from teams. as ceejbot puts it:
+
+[quote]
+_____
+This is Conway's Law over time. Teams are immutable: adding or removing a person to a team produces a different team. After enough change, the team is different enough that it no longer recognizes itself in the software system it produces. The result is people being vaguely unhappy about software that might be working perfectly well.
+_____
+
+i bring this up to note that you will never recover the _same_ theory as the original programmers (at least, not without talking to them directly). the most you can do is to recover one similar enough that it does not require large changes to the program. in other words, you are creating a new theory of the program, and may end up having to adapt the program to your new theory.
+____
+
+== link:https://liamoc.net/forest/loc-000S/index.xml[Against Curry-Howard mysticism]
+
+[quote]
+____
+Many programmers can get swept up in mysticism about Curry-Howard, overstating its consequences. Of these, I think there are two main groups: the _mathematically curious_ and the _mathematical fetishists_. The _curious_ are those who, usually through no fault of their own, have no or little experience with program specification, verification, formal methods, semantics, proofs etc, before being introduced to Curry-Howard. They then make the mistake of thinking that Curry-Howard is central to all of these new areas to them, simply because it was _their_ starting point. To a certain extent, I do understand this viewpoint — being excited about a particular topic in research is a good thing! The good thing here, is that this problem can be resolved simply by doing better education, so that programmers' first exposure to logic, for example, isn't in third year university, when puzzling out types for lambda calculus terms.
+____
+
+== link:https://googleprojectzero.blogspot.com/2024/04/the-windows-registry-adventure-1.html[The Windows registry adventure #1: introduction and research results]
+
+[quote]
+____
+And that's how the story starts. Instead of further refining the fuzzer, I made a detour to reverse engineer the registry implementation in the Windows kernel (internally known as the Configuration Manager) and learn more about its inner workings. The more I learned, the more hooked I became, and before long, I was all-in on a journey to audit as much of the registry code as possible. This series of blog posts is meant to document what I've learned about the registry, including its basic functionality, advanced features, security properties, typical bug classes, case studies of specific vulnerabilities, and exploitation techniques.
+____
