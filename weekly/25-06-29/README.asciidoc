@@ -1,0 +1,60 @@
+= Links - 29^th^ June 2025
+Julien Kirch
+v1.0, 2025-06-29
+:article_lang: en
+:figure-caption!:
+:article_description: Malleable software, being technical, eye-candy for terminals, hard mode, OpenSSH private keys
+
+== link:https://forum.malleable.systems/t/ink-switch-malleable-software-essay/340[Ink & Switch malleable software essay]
+
+[quote]
+____
+Software (aggregate) is malleable. Software (singular) has no need to be. You don’t need to read an essay by Kittler to understand that, at its core, the computer is a machine for manipulating ordered sequences of bits.
+
+The malleable part of wood-working, an oh-so-fetishized sibling to software engineering, is the wood. You can plane it, sand it, cut it, screw it, nail it, glue it, crack it, throw it. The tools are ridiculously simple (hammer, circular saw, table saw, sander, etc). The malleability is not in the tool, but between the user and the material.
+
+Software engineers trying to make "`malleable substrates for computing`" are like woodworkers trying to build the Mega-Jig, one jig that lets you build anything. It’s a fool errand and is blind to how wood-working is done by ordinary users.
+
+Using the computer is messy like a wood-shop floor. It’s impure and hard to replicate. It has side-effects. It’s not like using a closed-off Smalltalk image that can be the same everywhere. These idealized systems are homogeneous. They are Seeing Like The State. They are high modernism. They are attempts by people who like control, who are attracted to computers because they follow their orders, to impose the demand for the same amount of control onto others. It is an inability to cope with otherness, with mess, with excess.
+____
+
+== link:https://www.fightforthehuman.com/why-i-cannot-be-technical/[Why I cannot be technical]
+
+[quote]
+____
+I recognize that in these moments what Technical friends wish to do is usher me safely inside of the Technical tent. There is a core of such goodness to this, dare I even say sweetness. In many cases packaged inside of this kind of statement is a hand outstretched, seeking to extend protection to me. Mama didn’t raise no fool: I know that on any quest we should accept protection. In your outdoor voice, please continue to tell people I’m Technical. If we meet inside of a meeting or inside of a decision, and being called technical is the dividing line between people who get to stand on the high ground when the water comes in and people who don’t, I don’t care what type of line you throw down to me.
+
+However, mama didn’t raise no fool. What I know -- because my form of expertise which creates the basis for your extended hand in the first place is expertise for this exactly -- is that I cannot be Technical. Not really. This is because Technical is a structural designation that operates outside of any actual problem-solving you and I are doing together. Being Technical is about being legitimate. Or to put it more simply: it’s because you are Technical that I can’t be. We have created the identities this way. A person with a PhD in human things and who deals in human problems and human solutions cannot ever be Technical no matter how dense her statistics are, how many conferences she speaks at, and how comprehensively she has given examples of generating outcomes that are often beyond engineering to generate (change over time; impacts on humans; making legible even an imperfect approximation of just one single emotion). These things can be useful, interesting, valuable, heartrending, inspiring and memorable to tech, but they cannot be legitimate.
+____
+
+== link:https://tattoy.sh[Tattoy]
+
+[quote]
+____
+Tattoy can generally be thought of as a framework for adding eye-candy to your terminal. It is purely text-based so works in any terminal emulator that supports true colour. "`Graphics`" is rendered with UTF8 half-blocks (▀,▄). Whilst most of its effects are for getting you street credibility it also has more powerful features based around its awareness of terminal contents. For example it can detect and auto adjust text contrast whilst remaining faithful to the terminal's palette.
+
+Tattoy works with your existing shell, theme and prompt, etc. It can always and immediately toggle between its effects and your normal terminal state, allowing for easy copy-pasting for example.
+____
+
+== link:https://www.joanwestenberg.com/p/the-cult-of-hard-mode-why-simplicity-offends-tech-elites[The cult of hard mode]
+
+[quote]
+____
+We see this in the proliferation of tools and frameworks. There is a productivity stack for every ideology: Zettelkasten for the information hoarders, PARA for the organize-everything crowd, Notion for the aesthetes, Roam for the graph-brained, Obsidian for the markdown monks. And under it all is the same impulse: make it harder than it needs to be, so I can feel smarter than I am.
+
+It's not that these tools are bad. Many are quite good. Obsidian is beautiful. But the way they are used -- to signal intellectual rigor, to differentiate oneself from the casuals, to construct a lifestyle rather than solve a problem -- shows off a moral hierarchy in which difficulty equates to virtue.
+____
+
+[quote]
+____
+They pursue clarity in mission but bury it under layers of process. This is inefficient -- largely because it's protective. Complexity becomes a defense mechanism. If your system breaks, it's because it's complicated, not because you made a bad decision. If no one can understand it, that's not a failure of communication -- it's proof of depth.
+____
+
+== link:https://noratrieb.dev/blog/posts/fake-openssh-keys/[Having fun with OpenSSH private keys]
+
+[quote]
+____
+having the public key bytes in there THREE TIMES seems very silly. but the fact that the public key is in there at all is useful.
+
+maybe you've been in a situation where you've needed to find the public key file of a private key you had around, and just couldn't find it. but as I just mentioned, you don't actually need the `+.pub+` file for that, as the public key is contained in the private key. `+ssh-keygen+` can even extract it for you with `+-y+`!
+____
