@@ -1,0 +1,64 @@
+= Links - 27^th^ July 2025
+Julien Kirch
+v1.0, 2025-07-27
+:article_lang: en
+:figure-caption!:
+:article_description: distributed systems reliability glossary, grinding maintainers with AI, listening to RFC 2119, code bottleneck, PostgreSQL files
+
+
+== link:https://antithesis.com/resources/reliability_glossary/[A distributed systems reliability glossary]
+
+[quote]
+____
+This glossary is an overview of the concepts that you'll need to think about distributed systems reliability. We're writing chiefly for industry practitioners -- software developers who are learning about distributed systems testing at any stage of their careers.
+
+It's meant as a handy guide, bringing together information that was previously scattered all over the internet -- because the concepts here originate in many different disciplines (and naturally everyone's too shy to talk to people outside their field, us included). To the best of our knowledge, it's the first resource to do so. At the same time, we hope that simply putting all these ideas together in one place starts to show how they all fit together.
+____
+
+== link:https://shkspr.mobi/blog/2025/07/grinding-down-open-source-maintainers-with-ai/[Grinding down open source maintainers with AI]
+
+[quote]
+____
+* The emotional manipulation starts in the first line -- telling me how frustrated the user is.
+* It turns the blame on me for providing poor guidance.
+* Then the criticism of the tool.
+* Next, a request that I do work.
+* Finally some more emotional baggage for me to carry.
+____
+
+== link:https://ericwbailey.website/published/you-must-listen-to-rfc-2119/[You MUST listen to RFC 2119]
+
+[quote]
+____
+I found a voice actor and hired them with the task of "`Reading this very dry technical document in the most over-the-top sarcastic, passive-aggressive, condescending way possible. Like, if you think it's too much, take that feeling, ignore it, and crank things up one more notch.`"
+____
+
+== link:https://ordep.dev/posts/writing-code-was-never-the-bottleneck[Writing code was never the bottleneck]
+
+[quote]
+____
+Tools like Claude can speed up initial implementation. Still, the result is often more code flowing through systems and more pressure on the people responsible for reviewing, integrating, and maintaining it.
+
+This becomes especially clear when:
+
+* It's unclear whether the author fully understands what they submitted.
+* The generated code introduces unfamiliar patterns or breaks established conventions.
+* Edge cases and unintended side effects aren't obvious.
+
+We end up in a situation where code is more straightforward to produce but more complex to verify, which doesn't necessarily make teams move faster overall.
+____
+
+== link:https://www.atlassian.com/blog/atlassian-engineering/migrating-jira-database-platform-to-aws-aurora[Migrating the Jira database platform to AWS Aurora]
+
+[quote]
+____
+Our build and test phase proceeded without any major hassles, until one day our support team at AWS contacted us. We had a large test RDS instance that was synchronising in preparation for conversion but AWS were alerted that although synchronisation had completed, the new cluster had failed to start. From our side looking at the AWS console this failed replica instance still appeared to be a healthy, still-replicating instance, but AWS's control plane detected that the instance's startup process had timed out.
+
+The reason the startup had timed out was, unknown to us at the time, there were so many files on our source RDS database instance (and therefore, also on our new destination Aurora cluster volume) that the new read replica instance was timing out while performing a status check activity that involved enumerating all those files. The more files one had, the longer the process would take, and the higher the likelihood of hitting this startup timeout threshold. And we had millions and millions of files!
+
+In Postgres, each high-level database object like tables, indexes, and sequences are stored in at least one file on disk each: the more tables, indexes, and sequences in your database schema, the more files on disk you will have.
+
+Jira has a large number of these high-level database objects, which means that in total a single Jira database needs about 5,000 files on disk. With the large number of databases we co-host together on Jira database instances, we wound up creating substantially more files on our new Aurora cluster volumes than any other AWS customer normally would. So even if we weren't using up all the enormous space available on an Aurora cluster volume, we were still effectively pushing another boundary -- impacting our ability to convert our clusters safely.
+
+The advice from AWS was: drastically reduce your file counts on your RDS instances if you want to perform safe RDS->Aurora conversions. The only ways to reduce the file counts on the cluster volume were either to reduce the number of files per database, or to reduce the number of databases on a given instance. Because it wasn't really going to be possible to reduce the number of files per database _drastically_ (we do need to actually store our tenants' tables, after all!) the only path available to us was to reduce the number of tenants on instances to be converted, which we referred to as "`draining`".
+____
