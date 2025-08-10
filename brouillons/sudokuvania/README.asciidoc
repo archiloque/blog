@@ -88,7 +88,7 @@ I stopped at the (presumed) last grid, because I felt like the associated rework
 
 Writing the grid's configuration was the worst part, because a giant grid means lots of cues, and because you often have to scroll to see the cells coordinates, which means chances of errors, and even with good unit test coverage it may be hard to know if the bug is in your code or in the configuration.
 
-If you want to write a good solver, I suggest you to spend some time on making the configuration easy to write and to check.
+If you want to write your own solver, I suggest you to spend some time on making the configuration easy to write and to check, trying to establish similar configurations for all rules helped a lot. Being the only one using this configuration format pushed me to create shortcuts for common cases, something I would be hesitant to do on a shared project because it  means the format is less accessible.
 
 == Conclusion
 
