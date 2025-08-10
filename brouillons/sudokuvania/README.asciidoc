@@ -1,0 +1,97 @@
+= Solving Sudokuvania
+Julien Kirch
+v0.1, 2025-08-08
+:article_lang: en
+:article_image: sudokuvania.png
+:article_description: Writing a solver for a humongus Sudoku
+
+I enjoy watching videos of the link:https://www.youtube.com/@CrackingTheCryptic[Sudoku solvers of Cracking The Cryptic], and I like to write link:../solveurs/[puzzle solvers].
+
+Standard Sudokus can be very hard to solve by humans. Implementing efficient solvers for them requires a good understanding of the domain if you want to reduce the number of hypothesis to be tried.
+
+== Exotic rules
+
+But there are also lots of exotic Sudoku, which adds rules to the standards ones, or even replace some them.
+
+image::killer.png[]
+
+For example killer cages associate numbers to groups of cells, the number indicating the sum of the cells' values. Like standard rules, each of these brings new constraints to the puzzle.
+
+== Constraints & spreadsheets
+
+And it's because solving Sudoku is about the right way to use constraints to remove digits from a cell list possibilities, and how the removal of a digit in one cell has consequences on other cells.
+
+Finding _the_ digit of a cell is the more straightforward way, but not the single, for example if two cells in a single row, column or region have both the same pair of possible values, for example 1 and 7, you can deduce that these two digits are "`booked`" by these two cells and that no other cell in the same row, column or region can include them.
+
+In a way a Sudoku grid is like a spreadsheet where formulas links cells together, and each calculation is propagated to the cells linked to it, following the various rules.
+
+When/if all the direct deductions are exhausted, it's time to try hypothesis.
+Hypothesis ("`let's see what putting 2 in this cell leads to`") in Sudoku are generally not about finding the right possibility, because that would mean exploring the solution until all the grid is filled, but about find the wrong ones. Because each time you find a hypothesis that leads to an unsolvable grid, it means you can write off the related digit from the cell ("`so if there is no 2 here, what does it mean ?`").
+
+== Back to exotic rules
+
+While solving hard standard Sudoku requires deep knowledge about Sudoku, more exotic rules ones are often more about exploring intersections about several sets of rules, i.e. link:https://en.wikipedia.org/wiki/Emergent_gameplay[emergent gameplay]: instead of trying the right way to use a list of established solving mechanism, the puzzle becomes about how forging the right solving mechanism adapted to this specific puzzle.
+
+For example link:https://youtu.be/RNWRYFUGHfQ?si=ic8oRuH9Z-7_Tu5-[this series] of puzzle by Marty Sears are variations around finding a path in a Sudoku maze, have each with its own additional rules.
+
+== Back to solver
+
+From a writing a solver point of view, these exotic grids are a different type of problem: instead of being about deep Sudoku knowledge, they are about designing a system that makes writing new rules easy.
+
+For object-oriented people, it would be about creating a good `Rule` interface, with maybe a `GroupCellsRules` when a rule deals about a group of cells.
+
+For example each rule could have to implement three things :
+
+* Calculate, often at startup, which cells are concerned by the rules. For the killer cage rule it would be all the cells of all cages.
+* Calculate, often at startup, which cells should be examined when the possible values of a cell concerned by the rule is changed. For the killer cage rule it would be all the other cells that share a cage with the initial cell.
+* Calculate how a change in the possible values of a cell impact all the other linked cells
+
+Like in the spreadsheet case, this way the list of rules create a dependency graph, and as the different rules and initial cues are feed to the system, they percolate until everything is solved.
+
+But the design domain is still very constrained, and you can rely on lots of assumptions when writing the code.
+And it's sad because the fun in personal projects comes from having a very general problem to solve.
+
+== Enter Sudokuvania
+
+link:https://sudokupad.app/6u61fsw0di?setting-nogrid=1&setting-largepuzzle=1[Sudokuvania] (or see link:https://docs.google.com/document/d/1kkCESlLJRaIY8MzWWklGnDzqIW8SaO0cM-4QloaqN2w/edit?tab=t.0[here] for the link to the latest version) is a mix of Sudoku and link:https://en.wikipedia.org/wiki/Castlevania[Castlevania], or in more gamy terms, a lightly Castlevania-themed https://en.wikipedia.org/wiki/Metroidvania[metroidvania] Soduku.
+
+image::initial.png[]
+
+This humongous board is composed of interleaved grids, not all with the same sizes, and each one with its own set of rules.
+
+It heavily uses fog of war to simulate exploration, includes bosses you need to "`fight`" by solving external grids (so you can input a value in a specific cell), and hidden puzzles.
+
+It means that solving it requires traveling from one grid to another, cues are not grid-bounded, everything is a mess.
+
+I.e. a very good candidate for my "`bring me a general problem to design a solution for`" needs.
+
+== How was it?
+
+I enjoyed the iterative exploration, because even if I knew some of the constraints from the beginning (like having several puzzles of various sizes, with means they don't all start at 1,1 and that you can't hardcode the fact that all cells can be 1 to 9), discovering new ones sometimes means breaking assumptions I had taken, which means iterating on the design.
+
+Most of the time a new grid meant implementing a new rule, which took little time and thinking, and sometimes reworking the whole thing. It gave me a pleasant progression feeling, like a game with harder and easier spots.
+
+I tried to not "`cheat`" by making a very general design from the start because I probably had made wrong bets about what to generalize, and instead try to make each design step fit as much as possible to the requirements knew at the time.
+
+I didn't automate everything, because I thought that in some cases the effort would not have been worthy, for example :
+
+- The fog of war means that sometimes you know a fragment of a clue, which can gives you a constraint, but you can't specify it with the rule as implemented, for example some rules apply to cells lists and because of the fog of war you sometimes don't know the clue's direction.
+- Some grids requires deducing the form of regions.
+
+For these cases I used a trial and error approach by adding hypothesis in the grid's configuration and checking if the solving failed.
+
+The main grid rely mostly on direct clues instead of hypothesis, which means that even if it's large I didn't have to spend lots of time optimizing the rule's implementations, beyond making them efficient, for example by recalculating the direct consequences of the changed cells instead of recalculating the whole clue from scratch.
+
+I stopped at the (presumed) last grid, because I felt like the associated rework wasn't worth the enjoyment of finishing the puzzle.
+
+== The grid's configuration
+
+Writing the grid's configuration was the worst part, because a giant grid means lots of cues, and because you often have to scroll to see the cells coordinates, which means chances of errors, and even with good unit test coverage it may be hard to know if the bug is in your code or in the configuration.
+
+If you want to write a good solver, I suggest you to spend some time on making the configuration easy to write and to check.
+
+== Conclusion
+
+I had fun, it wasn't that hard, and writing the configuration sucks. If someone else creates another kind of these I'll probably try it again with another approach and language.
+
+The code is available link:https://codeberg.org/archiloque/sudokuvania-solver[here].

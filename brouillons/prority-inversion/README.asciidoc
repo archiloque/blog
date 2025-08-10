@@ -3,16 +3,19 @@ Julien Kirch
 v0.1, 2024-04-20
 :article_lang: en
 
-In computer stuff, a priority inversion is when a task with a high priority is waiting for a task with a low priority.
+In software, and more generally in queue theory, a priority inversion is when a task with a high priority is waiting for a task with a low priority.
 
-If the low priority task's is run far in the future, because the scheduling decisions rely on the priority, it means that the high priority task can wait for a long time, which defeats the whole idea of high priority.
+For example when your file explorer is blocked because a badly written enterprise antivirus is doing its scheduled scan.
 
-A way to solve the problem is to be sure there are not dependencies between those two types of tasks, because then the problems never occurs.
+If the low priority task's is run far in the future, because the scheduling decisions rely on the priority, the high priority task can wait for a long time, which defeats the whole idea of high priority.
 
-Unfortunately it's not always possible: sometimes the high priority task really needs the end result of a low priority one.
+In an ideal way you could cleanly separate the two type of tasks, ensuring this class of problem never occurs.
 
-For example when applications wants to write data to a disk, they are usually satisfied with only asking the system for the write to occur somehow.
-This means that the actual writing is being executed asynchronously later, in a low priority context.
+Unfortunately it's not always possible: sometimes the high priority task needs the end result of a low priority one, or an access to a single resource.
+
+For example when applications wants to write data to a disk, they are usually satisfied with only asking the system for the write to occur and the system answering that they will do it sooner or later, pinky promise.
+
+This means that the actual writing is executed later, in a low priority context.
 Thus when an application wanting a guarantee that some data has been written to a disk before moving on, it must wait for the whole thing to happen, which can sucks as a user when your application freeze while waiting.
 
 The standard approach in this case is to temporarily switch the low priority task priority to match the high priority task's one until the execution is done, then to change it back.
