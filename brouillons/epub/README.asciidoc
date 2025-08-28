@@ -1,0 +1,108 @@
+= An EPUB tutorial for people who wants to make their own ebooks
+
+== What it's about?
+
+I wanted to create some EPUB files for my own personal use, and I had to look at too many different documents to find the information I needed, so I decided to write the tutorial I would like I had at the beginning.
+
+This document covers the current link:https://www.w3.org/TR/epub-33/[3.3] EPUB version. It mentions technical requirements, and my understanding of the best practices.
+It is targeted at people with some technical background in current web technologies.
+
+There are lots of different and incompatible EPUB tools and this tutorial won't cover everything, so things can and will go wrong.
+
+If you want to make some EPUB files with JavaScript or TypeScript, I created a link:https://www.npmjs.com/package/@archiloque/epub-builder[library] that may help you.
+
+== Time for a lore dump
+
+Having a general sense of the format should make creating EPUB files less frustrating, which needs some background information, including some history.
+
+=== Very few "`not invented here`"
+
+When it's possible, EPUB strongly relies on industry standards, or at least industry standards from when each decision has been taken{empty}footnote:[EPUB history started in 1999], which means:
+
+- An EPUB is a ZIP file
+- The content relies on web technologies
+- There's XML
+
+This has two consequences:
+
+- The specification is very dry but not long, because it relies on other (and much longer) existing specifications
+- Creating simple EPUB files doesn't require a lot of specific tooling because you can use existing libraries and applications even if they are not EPUB-aware.
+
+=== Made in ancient time, for ancient hardware
+
+Books can include a lots of text and pictures.
+If you you want to create ebook reading devices that are not high-end computers{empty}footnote:[Remember: 1999] it means that giving access to the book content shouldn't require to read the whole file at once, and to keep all of it in memory.
+
+As some of the people working on the standard care about this use case, it is taken into account, which has some consequences on the format.
+
+=== XML, XHTML and namespaces
+
+If you had to deal with web technologies, you probably heard about HTML.
+
+XML and HTML are two descendants of the same technology called SGML, which gave them a strong family look.
+
+HTML, and especially HTML as used by browsers, can deal with syntax errors. The goal is to be able to browse websites even if their creators made mistakes.
+
+XML syntax is simpler and stricter, which is bad for people making errors, but good for software developers.
+It's because it means that this aspects of tooling can be simpler: you can expect the provided documents to have the right format and stop at the first issue.
+
+Here is not the place to tell you the great hopes people had about XML at the end of the 90's, and the great sadness that ensued.
+The short version is that XHTML 1 is a descendant of HTML 4 with an XML syntax, like two family branches joining back.
+The idea was to be able to use existing XML tools to write and prepare content for the web.
+But the stop at the first error thing meant that XHTML documents stayed a minority and the web industry went on with HTML 5 instead of XHTML 2.
+
+So if you worked with HTML, XHTLM will look very familiar, and XML will look familiar.
+
+Note: renaming HTML files as `.xhtml` won't work!
+
+The content of the EPUB files are in XHTML, and the metadata are in XML.
+
+Beyond the strictness, the thing to know about XML is namespaces, which are a way to use different set of tags and attributes in the same document while avoiding clashes.
+It works by using different prefixes for each set of tags and attributes, so each set is in its own "`name space`" , so EPUB-specific things will have an `epub:` prefix.
+
+=== Extensions & compatibility
+
+EPUB standard designed by a working group from many organizations. Having an interoperable EPUB doesn't mean that extensions aren't possible.
+
+Quite the opposite, since the standard define what parts are fixed, what parts can be freely extended, and what parts are not fixed but nobody tried to go that way so if you try good luck because you'll be alone.
+
+It as two consequences :
+
+- If you stick to the common standard and practices, things should mostly work.
+- If you open an existing EPUB files, you may find undocumented things.
+- If you want to create EPUB files for a specific system, you may have to jump through hoops.
+
+Also the EPUB standard tries to be compatible through versions, so you can have files that are valid as EPUB 3 and as EPUB 2. So EPUB-2 specific elements are deprecated and not used but still explicitly allowed.
+
+== Epubcheck
+
+link:https://www.w3.org/publishing/epubcheck/[EPUBCheck] is a free and industry standard tool to check the validity of an EPUB file.
+
+It's not very fast, and some of the error messages could be more explicit, but it's very thorough, so it's very handy when you're toying with the format. Using it as part or your book building chain could save you a lot of time.
+
+== The beginning of an EPUB file
+
+An EPUB file is a ZIP file, which is a bundle of files.
+
+The contained files can be compressed or directly stored as is, which has two consequences :
+
+- As some pictures formats like JPEG are already compressed, storing them as is avoids a useless compression step.
+- It provides an easy way to detect EPUB files (beyond checking the file extension)
+
+Many files format start with a "`magic number`": by reading the beginning of a file you can deduce its format by checking a list of known values, for example ZIP files start with `PK`.
+
+The next step is to be able to detect that a ZIP file is an EPUB files. It works by mandating that the first file in the ZIP bundle has a specific content, and that it must be stored uncompressed.
+
+As in the ZIP file the metadata that describes the files are at the end of the file, if you look at the beginning you'll get the ZIP headers followed by the content of the first file, so if it is uncompressed the whole thing works like a kind of extended magic number.
+
+So the first file of an EPUB : 
+
+- must be called `mimetype` 
+- should be `application/epub+zip`
+- must be uncompressed
+
+== No ZIP extra attributes
+
+A last word about the ZIP part: Many ZIP creation tools store metadata information in "`extra attributes`" by default, for example timestamps because the default ones have only a 2 seconds precision.
+EPUB ZIP files should not use them, so check if the tools you want to use can avoid inserting them. The Linux zip command has a `--no-extra` option for this case.
+

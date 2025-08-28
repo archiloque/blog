@@ -4,3 +4,27 @@ v1.0, 2025-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://anadodik.github.io/publication/meschers/[Meschers: Geometry Processing of Impossible Objects]
+
+[quote]
+____
+Impossible objects, geometric constructions that humans can perceive but that cannot exist in real life, have been a topic of intrigue in visual arts, perception, and graphics, yet no satisfying computer representation of such objects exists.
+
+Previous work embeds impossible objects in 3D, cutting them or twisting/bending them in the depth axis. Cutting an impossible object changes its local geometry at the cut, which can hamper downstream graphics applications, such as smoothing, while bending makes it difficult to relight the object. Both of these can invalidate geometry operations, such as distance computation.
+
+As an alternative, we introduce meschers, meshes capable of representing impossible constructions akin to those found in M.C. Escher's woodcuts. Our representation has a theoretical foundation in discrete exterior calculus and supports the use-cases above, as we demonstrate in a number of example applications. Moreover, because we can do discrete geometry processing on our representation, we can inverse-render impossible objects. We also compare our representation to cut and bend representations of impossible objects.
+____
+
+== link:https://vondra.me/posts/fun-and-weirdness-with-ssds/[Fun and weirdness with SSDs]
+
+[quote]
+____
+The behavior with SSDs is much more complicated, and heavily depends on the I/O pattern, which can have significant impact on query timings.
+
+This problem only affects index scans. Sequential and bitmap scans always read data “forward”, which works fine both with buffered and direct I/O. Only index scans can do backward scans.
+
+The index scan cost model however does not consider these effects. If it did, maybe we’d pick a different plan with an explicit Sort.
+
+Could the cost model account for these effects somehow? I can see some challenges for doing that. The behavior seems to be somewhat specific to the model/drive. And the pattern may not be known while planning the query. If we look at the `ORDER BY` clause, index correlation, would that be enough to predict the direction?
+____
