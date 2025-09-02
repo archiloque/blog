@@ -2,12 +2,12 @@
 
 == What it's about?
 
-I wanted to create some EPUB files for my own personal use, and I had to look at too many different documents to find the information I needed, so I decided to write the tutorial I would like I had at the beginning.
+I wanted to create some EPUB files for my own personal use, and I had to look at too many different documents to find the information I needed, so I decided to write the tutorial I would have had at the beginning.
 
-This document covers the current link:https://www.w3.org/TR/epub-33/[3.3] EPUB version. It mentions technical requirements, and my understanding of the best practices.
+This document covers the current link:https://www.w3.org/TR/epub-33/[3.3] EPUB version. It mentions technical requirements and my understanding of the best practices.
 It is targeted at people with some technical background in current web technologies.
 
-There are lots of different and incompatible EPUB tools and this tutorial won't cover everything (for example I won't cover right management or digital signatures), so things can and will go wrong.
+There are lots of different and incompatible EPUB tools, and this tutorial won't cover everything (for example I won't cover right management or digital signatures), so things can and will go wrong.
 
 If you spot an error, or if I missed an important information, please link:http://archiloque.net[contact me].
 
@@ -31,10 +31,10 @@ This has two consequences:
 * The specification is very dry but not long, because it relies on other (and much longer) existing specifications
 * Creating simple EPUB files doesn't require a lot of specific tooling because you can use existing libraries and applications even if they are not EPUB-aware.
 
-=== Made in ancient time, for ancient hardware
+=== Made in ancient times, for ancient hardware
 
-Books can include a lots of text and pictures.
-If you you want to create ebook reading devices that are not high-end computers{empty}footnote:[Remember: 1999] it means that giving access to the book content shouldn't require to read the whole file at once, and to keep all of it in memory.
+Books can include lots of text and pictures.
+Creating ebook reading devices that are not high-end computers{empty}footnote:[Remember: 1999]  means that giving access to the book content shouldn't require reading the whole file at once or keeping all of it in memory.
 
 As some of the people working on the standard care about this use case, it is taken into account, which has some consequences on the format.
 
@@ -47,15 +47,16 @@ XML and HTML are two descendants of the same technology called SGML, which gave 
 HTML, and especially HTML as used by browsers, can deal with syntax errors. The goal is to be able to browse websites even if their creators made mistakes.
 
 XML syntax is simpler and stricter, which is bad for people making errors, but good for software developers.
-It's because it means that this aspects of tooling can be simpler: you can expect the provided documents to have the right format and stop at the first issue.
+It's because it means that this aspect of tooling can be simpler: you can expect the provided documents to have the right format and stop at the first issue.
 
 Here is not the place to tell you the great hopes people had about XML at the end of the 90's, and the great sadness that ensued.
 The short version is that XHTML 1 is a descendant of HTML 4 with an XML syntax, like two family branches joining back.
 The idea was to be able to use existing XML tools to write and prepare content for the web.
-But the stop at the first error thing meant that XHTML documents stayed a minority and the web industry went on with HTML 5 instead of XHTML 2.
+But the stop at the first error thing meant that XHTML documents stayed a minority, and the web industry went on with HTML 5 instead of XHTML 2.
 
-So if you worked with HTML, XHTLM will look very familiar, and XML will look familiar.
-The body of the EPUB is in XHTML, and the metadata are in XML.
+So if you worked with HTML, XHTLM syntax will look very familiar, and XML will look familiar.
+
+The metadata of EPUB are in XML, and content is based of XHTML documents like this one:
 
 [source,xml]
 ----
@@ -77,19 +78,19 @@ Renaming HTML files to `.xhtml` won't work! What can work instead is using an XM
 
 The XHTML of EPUB is not limited to the tags defined in XHTML 1 but should work with any HTML 5 content (the current HTML version) written with the XML syntax, except that the default formatting of tags specific to HTML 5 may not be applied.
 
-Beyond the strictness, the thing to know about XML is namespaces, which are a way to use different set of tags and attributes in the same document while avoiding clashes.
-It works by using different prefixes for each set of tags and attributes, so each set is in its own "`name space`" , so EPUB-specific things will have an `epub:` prefix.
+Beyond the strictness, the thing to know about XML is namespaces, which are a way to use different sets of tags and attributes in the same document while avoiding clashes.
+It works by using different prefixes for each set of tags and attributes, so each set is in its own "`name space`" , so EPUB-specific tags and attributes will have an `epub:` prefix.
 
 === Extensions & compatibility
 
 EPUB standard designed by a working group from many organizations. Having an interoperable EPUB doesn't mean that extensions aren't possible.
 
-Quite the opposite, since the standard define what parts are fixed, what parts can be freely extended, and what parts are not fixed but nobody tried to go that way so if you try good luck because you'll be alone.
+Quite the opposite, since the standard defines what parts are fixed, what parts can be freely extended, and what parts are not fixed but nobody tried to go that way so if you try good luck because you'll be alone.
 
-It as three consequences :
+It has three consequences :
 
 * If you stick to the common standard and practices, things should mostly work.
-* If you open an existing EPUB files, you may find undocumented things.
+* If you open an existing EPUB file, you may find undocumented things.
 * If you want to create EPUB files for a specific system, you may have to jump through hoops.
 
 Also the EPUB standard tries to be compatible through versions, so you can have files that are valid as EPUB 3 and as EPUB 2. So EPUB-2 specific elements are deprecated and not used but still explicitly allowed.
@@ -98,7 +99,7 @@ Also the EPUB standard tries to be compatible through versions, so you can have 
 
 link:https://www.w3.org/publishing/epubcheck/[EPUBCheck] is a free and industry standard tool to check the validity of an EPUB file.
 
-It's not very fast, and some of the error messages could be more explicit, but it's very thorough, so it's very handy when you're toying with the format. Using it as part or your book building chain could save you a lot of time.
+It's not very fast, and some of the error messages could be more explicit, but it's very thorough, so it's very handy when you're toying with the format. Using it as part of your book building chain could save you a lot of time.
 
 == The beginning of an EPUB file
 
@@ -106,12 +107,12 @@ An EPUB file is a ZIP file, which is a bundle of files.
 
 The contained files can be compressed or directly stored as is, which has two consequences :
 
-* As some pictures formats like JPEG are already compressed, storing them as is avoids a useless compression step.
+* As some pictures' formats like JPEG are already compressed, storing them as is avoids a useless compression step.
 * It provides an easy way to detect EPUB files (beyond checking the file extension)
 
-Many files format start with a "`magic number`": by reading the beginning of a file you can deduce its format by checking a list of known values, for example ZIP files start with `PK`.
+Many files formats start with a "`magic number`": by reading the beginning of a file you can deduce its format by checking a list of known values, for example ZIP files start with `PK`.
 
-The next step is to be able to detect that a ZIP file is an EPUB files. It works by mandating that the first file in the ZIP bundle has a specific content, and that it must be stored uncompressed.
+The next step is to be able to detect that a ZIP file is an EPUB file. It works by mandating that the first file in the ZIP bundle has a specific content, and that it must be stored uncompressed.
 
 As in the ZIP file the metadata that describes the files are at the end of the file, if you look at the beginning you'll get the ZIP headers followed by the content of the first file, so if it is uncompressed the whole thing works like a kind of extended magic number.
 
@@ -130,7 +131,7 @@ EPUB ZIP files should not use them, so check if the tools you want to use can av
 
 A practice that used to exist but was never mandatory was to put all the EPUB content file inside a `OEPBS` directory (OEPBS, standing for Open eBook Publication Structure, was the EPUB format ancestor).
 
-Except for the files with a fixed path, you are free to put your files where you want, put it's still a good practices to organize them all in a subdirectory like `EPUB` or `CONTENT`, instead of putting them at the EPUB's root.
+Except for the files with a fixed path, you are free to put your files where you want, but it's still a good practices to organize them all in a subdirectory like `EPUB` or `CONTENT`, instead of putting them at the EPUB's root.
 
 == The OPF file
 
@@ -202,13 +203,13 @@ The first part is a set of information about the book:
 </metadata>
 ----
 
-Note: 'dc' stands for link:https://www.dublincore.org[Dublin Core] is a set of industry-standard metadata.
+Note: `dc` stands for link:https://www.dublincore.org[Dublin Core] is a set of industry-standard metadata.
 
 === Mandatory fields
 
 * One title (`dc:title``), having several titles is technically possible but support is inconsistent
-* One language (`dc:language`), using the link:https://en.wikipedia.org/wiki/IETF_language_tag[IETF format] (it represents the main language of the book, individual XHTML files or even part of XHTML files can specify their own languages)
-* One ore more identifiers `dc:identifier` that can contains a UUID a DOI an ISBN or an URL, using an URL is nowadays suggested. The `id` attribute of the identifier must have the same value as the `unique-identifier` of the OPF `package` tag, the value is not significant.
+* One language (`dc:language`), using the link:https://en.wikipedia.org/wiki/IETF_language_tag[IETF format] (it represents the main language of the book, individual XHTML files or even parts of XHTML files can specify their own languages)
+* One ore more identifiers `dc:identifier` that can contain a UUID a DOI an ISBN or an URL, using an URL is nowadays suggested. The `id` attribute of the identifier must have the same value as the `unique-identifier` of the OPF `package` tag, the value is not significant.
 
 === Optional but useful fields
 
@@ -246,33 +247,150 @@ The manifest provides an exhaustive list of all files used in the ebook, which i
 * The style sheets
 * Any other file
 
+For example if an `XHTML` file use an image not listed in the manifest, your reader may not display it, even if technically the file can be found in the EPUB file.
+
 The `mimetype`, `META-INF/container.xml` and OPF file must _not_ be listed in the manifest.
 
 The items order of the manifest is not meaningful.
 
 Each item:
 
-* Must have a unique `id` attribute used to identify it
-* Must have an `href` attribute that contains its path in the EPUB hierarchy
+* Must have a unique `id` attribute used to identify it.
+* Must have an `href` attribute that contains its path in the EPUB hierarchy.
 * Must have a `media-type` attribute that contains its type according to the link:https://en.wikipedia.org/wiki/Media_type[media type] format.
 * Can have a `properties` attribute that define specific attributes of some items, these includes:
-** `nav` for the table of content image (see link:#toc[bellow])
-** `cover-image` for the cover image (see link:#cover-image[bellow])
-* Can have a `fallback` attribute that contains the `id` of another items that will then be used as a fallback if the current item can't be displayed, for example if the initial item is an `SVG` file`, that some systems can't render, providing a 
+** `nav` for the table of content image (see link:#toc[bellow]).
+** `cover-image` for the cover image (see link:#cover-image[bellow]).
+* Can have a `fallback` attribute that contains the `id` of another item that is supposed to be used as a fallback if the current item can't be displayed. For example if the initial item is an `SVG` file` you can provide a fallback for systems that don't support this format. This feature is cool but unfortunately not supported by all readers.
 
 === Spine
+
+[source,xml]
+----
+<spine>
+    <itemref idref="part_1"/>
+    <itemref idref="part_2"/>
+</spine>
+----
+
+The spine list the XHTML documents in the reading order of the ebook.
+Each document is referenced by its manifest `id`.
 
 [#toc]
 == Table of content
 
+An EPUB file must includes a table of content (TOC) that contains links to the different parts of the book. This TOC must be an XHTML document identified in the manifest with the `properties="nav"` attribute:
+
+[source,xml]
+----
+<manifest>
+    <item id="toc" properties="nav" href="toc.xhtml" media-type="application/xhtml+xml"/>
+</manifest>
+----
+
+The TOC's content must be placed inside a `nav` tag, with the `epub:type="toc"` attribute.
+XML require that the `epub` namespace is declared in the header.
+
+The table hierarchy is defined using nested ordered lists with `ol` and `li` tags.
+
+[source,xml]
+----
+<?xml version="1.0"?>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:epub="http://www.idpf.org/2007/ops"
+    >
+
+<head>
+    <title>Table of content</title>
+</head>
+
+<body>
+    <nav epub:type="toc">
+        <h1>Table of content</h1>
+        <ol>
+            <li><a href="part_1.xhtml#id_title_1">Title 1</a>
+                <ol>
+                    <li><a href="part/part_1.xhtml#id_title_1_1">Title 1.1</a></li>
+                    <li><a href="part/part_1.xhtml#id_title_1_1">Title 1.2</a></li>
+                </ol>
+            </li>
+            <li><a href="part/part_2.xhtml#id_title_2">Title 2</a></li>
+            <li><a href="part/part_3.xhtml#id_title_3">Title 3</a></li>
+        </ol>
+    </nav>
+</body>
+
+</html>
+----
+
+The XHTML documents don't need to follow the TOC organization.
+The TOC can be omitted from the spine, in this case it's only used for navigation.
+
 [#cover-image]
 == Cover image
 
+An EPUB file can define a cover image, it is identified in the manifest with the `properties="cover-image"` attribute:
+
+[source,xml]
+----
+<manifest>
+    <item id="cover-image" href="cover-image.png" media-type="image/png" properties="cover-image"/>
+</manifest>
+----
+
+Different ebook systems have different requirements requirement regarding the cover image size.
+
 == Summary of the files so far
 
-- uncompressed `mimetype` file with fixed content
-- `META-INF/container.xml` file that provide the path to the OPF file
-- OPF file with most of metadata
-- Table of content file
+* uncompressed `mimetype` file with fixed content
+* `META-INF/container.xml` file that provide the path to the OPF file
+* OPF file with most of metadata:
+** Book metadata
+** Manifest
+** Spine
+* Table of content file
 
 == Footnotes
+
+Ebooks support "`footnotes`", which are a misnomer since they are displayed in popups, who avoid moving around like in physical books.
+
+Footnotes use XHTML links with EPUB-specific attributes :
+
+[source,xml]
+.chapter1.xhtml
+----
+<?xml version="1.0"?><!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+    <title>Chapter 1</title>
+</head>
+
+<p>Lorem<a href="notes.xhtml#note_1" epub:type="noteref">1</a> ipsum</p>
+</body>
+</html>
+----
+
+
+[source,xml]
+.notes.xhtml
+----
+<?xml version="1.0"?><!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+    <title>Notes</title>
+</head>
+
+<aside id="note_1" epub:type="footnote">Note text that will appear in the popup</aside>
+</body>
+</html>
+----
+
+Notes can appear in the same document as the main text or in a separate one, the only constraints are :
+
+- the link must be right, with the link anchor (after the `#` being the same as the note's `id`).
+- declare the `xmlns:epub="http://www.idpf.org/2007/ops"` namespace in the XHTML documents, to make the `epub:type` attributes valid.
+
+== The end
+
+That's it, happy publishing!
