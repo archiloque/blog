@@ -68,7 +68,8 @@ The metadata of EPUB are in XML, and content is based of XHTML documents like th
 </head>
 <body>
 <h1>Chapter title</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum lacus sed tristique aliquet.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Aliquam elementum lacus sed tristique aliquet.</p>
 <img src="image/1.svg"/>
 </body>
 </html>
@@ -386,7 +387,7 @@ Footnotes use XHTML links with EPUB-specific attributes :
 </html>
 ----
 
-Notes can appear in the same document as the main text or in a separate one, the only constraints are :
+Notes can appear in the same document as the main text or in a separate one, the only constraints are:
 
 - the link must be right, with the link anchor (after the `#` being the same as the note's `id`).
 - declare the `xmlns:epub="http://www.idpf.org/2007/ops"` namespace in the XHTML documents, to make the `epub:type` attributes valid.
