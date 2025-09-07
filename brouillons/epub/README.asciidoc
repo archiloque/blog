@@ -82,6 +82,18 @@ The XHTML of EPUB is not limited to the tags defined in XHTML 1 but should work 
 Beyond the strictness, the thing to know about XML is namespaces, which are a way to use different sets of tags and attributes in the same document while avoiding clashes.
 It works by using different prefixes for each set of tags and attributes, so each set is in its own "`name space`" , so EPUB-specific tags and attributes will have an `epub:` prefix.
 
+=== CSS
+
+As you've seen in the above example, CSS is supported, with each XHTML document referencing its own CSS file(s).
+
+In the same vein as HTML 5, the CSS support level is not identical on all ebook systems, for example you may have to adapt your XHTML to avoid modern CSS selectors.
+
+Most ebook systems are designed to make the default styling as readable as possible, so if you don't provide any specific CSS the result should be a standard looking ebook.
+
+When styling, also remember to take readability into account: sometimes some fancy styling can makes your text harder to read.
+
+A possible approach is to make several version of your book available, providing one version with only minimal styling would ensure everybody will be able to read it.
+
 === Extensions & compatibility
 
 EPUB standard designed by a working group from many organizations. Having an interoperable EPUB doesn't mean that extensions aren't possible.
