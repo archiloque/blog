@@ -354,7 +354,7 @@ Different ebook systems have different requirements requirement regarding the co
 
 == Footnotes
 
-Ebooks support "`footnotes`", which are a misnomer since they are displayed in popups, who avoid moving around like in physical books.
+EPUBs support "`footnotes`", which are a misnomer since they are displayed in popups, who avoid moving around like in physical books.
 
 Footnotes use XHTML links with EPUB-specific attributes :
 
@@ -371,7 +371,6 @@ Footnotes use XHTML links with EPUB-specific attributes :
 </body>
 </html>
 ----
-
 
 [source,xml]
 .notes.xhtml
@@ -391,6 +390,31 @@ Notes can appear in the same document as the main text or in a separate one, the
 
 - the link must be right, with the link anchor (after the `#` being the same as the note's `id`).
 - declare the `xmlns:epub="http://www.idpf.org/2007/ops"` namespace in the XHTML documents, to make the `epub:type` attributes valid.
+
+== Spoilers
+
+There is no native EPUB support for spoilers, but some ebook systems support the `details` tag that provide a similar feature:
+
+[source,xml]
+.notes.xhtml
+----
+<?xml version="1.0"?><!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+    <title>Spoiler example</title>
+</head>
+
+<details>
+  <summary>Click to see the spoiler</summary>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</details>
+</body>
+</html>
+----
+
+On systems that don't support them there are no good workaround, the best you can probably do is to add custom CSS formatting, but decreasing text readability is not a good idea because it creates accessibility issues.
+
+As far as I know there is no way to detect if a system support them, so there is no way to switch the CSS formatting off when a system properly supports the tag.
 
 == The end
 
