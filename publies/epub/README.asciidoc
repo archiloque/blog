@@ -1,4 +1,10 @@
-= An EPUB tutorial for people who wants to make their own ebooks
+= An EPUB tutorial for people who want to make their own ebooks
+Julien Kirch
+v0.1, 2025-09-08
+:article_lang: en
+:article_description: XML namespaces, my arch enemy
+:article_image: cover.png
+:ignore_files: book.epub, build.sh
 
 == What it's about?
 
@@ -80,7 +86,7 @@ Renaming HTML files to `.xhtml` won't work! What can work instead is using an XM
 The XHTML of EPUB is not limited to the tags defined in XHTML 1 but should work with any HTML 5 content (the current HTML version) written with the XML syntax, except that the default formatting of tags specific to HTML 5 may not be applied.
 
 Beyond the strictness, the thing to know about XML is namespaces, which are a way to use different sets of tags and attributes in the same document while avoiding clashes.
-It works by using different prefixes for each set of tags and attributes, so each set is in its own "`name space`" , so EPUB-specific tags and attributes will have an `epub:` prefix.
+It works by using different prefixes for each set of tags and attributes, so each set is in its own "`name space`", so EPUB-specific tags and attributes will have an `epub:` prefix.
 
 === CSS
 
@@ -112,7 +118,7 @@ Also the EPUB standard tries to be compatible through versions, so you can have 
 
 link:https://www.w3.org/publishing/epubcheck/[EPUBCheck] is a free and industry standard tool to check the validity of an EPUB file.
 
-It's not very fast, and some of the error messages could be more explicit, but it's very thorough, so it's very handy when you're toying with the format. Using it as part of your book building chain could save you a lot of time.
+It's not very fast, and some of the error messages could be more explicit, but it's very thorough and a bit stricter than the specification, so it's very handy when you're toying with the format. Using it as part of your book building chain could save you a lot of time.
 
 == The beginning of an EPUB file
 
@@ -140,7 +146,7 @@ So the first file of an EPUB :
 A last word about the ZIP part: Many ZIP creation tools store metadata information in "`extra attributes`" by default, for example timestamps because the default ones have only a 2 seconds precision.
 EPUB ZIP files should not use them, so check if the tools you want to use can avoid inserting them. The Linux zip command has a `--no-extra` option for this case.
 
-== EOBPS directory
+== OEPBS directory
 
 A practice that used to exist but was never mandatory was to put all the EPUB content file inside a `OEPBS` directory (OEPBS, standing for Open eBook Publication Structure, was the EPUB format ancestor).
 
@@ -158,9 +164,15 @@ The path of this file is for you to decide, and it must be specified as the `roo
 .META-INF/container.xml
 ----
 <?xml version="1.0"?>
-<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+<container
+    version="1.0" 
+    xmlns="urn:oasis:names:tc:opendocument:xmlns:container"
+    >
     <rootfiles>
-        <rootfile full-path="PATH_TO_YOUR_OPF_FILE.opf" media-type="application/oebps-package+xml" />
+        <rootfile 
+            full-path="PATH_TO_YOUR_OPF_FILE.opf" 
+            media-type="application/oebps-package+xml" 
+            />
     </rootfiles>
 </container>
 ----
@@ -173,24 +185,56 @@ The container file's path should be `META-INF/container.xml`, so the tools can b
 ----
 <!--?xml version="1.0"?-->
 <?xml version="1.0"?>
-<package version="3.0" xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId">
+<package version="3.0" 
+        xmlns="http://www.idpf.org/2007/opf" 
+        unique-identifier="BookId"
+        >
     <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
         <!-- Metadata part -->
         <dc:title>Book title title</dc:title>
         <dc:language>en</dc:language>
-        <dc:identifier id="BookId">https://example.com/ebook</dc:identifier>
+        <dc:identifier 
+            id="BookId"
+            >https://example.com/ebook</dc:identifier>
         <meta property="dcterms:modified">2025-07-31T13:39:26Z</meta>
         <dc:creator>Impressive author, Phd.</dc:creator>
         <dc:publisher>Large publisher ltd.</dc:publisher>
     </metadata>
     <manifest>
         <!-- Manifest part -->
-        <item id="toc" properties="nav" href="toc.xhtml" media-type="application/xhtml+xml"/>
-        <item id="cover-image" href="cover-image.png" media-type="image/png" properties="cover-image"/>
-        <item id="css_1" href="css/css_1.css" media-type="text/css"/>
-        <item id="image_1" href="image/1.svg" media-type="image/svg+xml" fallback="image_1_jpg"/>
-        <item id="image_1_jpg" href="image/1.jpg" media-type="image/jpeg"/>
-        <item id="part_1" href="part/part_1.xhtml" media-type="application/xhtml+xml"/>
+        <item 
+            id="toc" 
+            properties="nav" 
+            href="toc.xhtml" 
+            media-type="application/xhtml+xml"
+            />
+        <item 
+            id="cover-image" 
+            href="cover-image.png" 
+            media-type="image/png" 
+            properties="cover-image"
+            />
+        <item 
+            id="css_1" 
+            href="css/css_1.css" 
+            media-type="text/css"
+            />
+        <item
+            id="image_1"
+            href="image/1.svg"
+            media-type="image/svg+xml"
+            fallback="image_1_jpg"
+            />
+        <item 
+            id="image_1_jpg"
+            href="image/1.jpg"
+            media-type="image/jpeg"
+            />
+        <item 
+            id="part_1" 
+            href="part/part_1.xhtml" 
+            media-type="application/xhtml+xml"
+            />
     </manifest>
     <spine>
         <!-- Spine part -->
@@ -209,7 +253,9 @@ The first part is a set of information about the book:
 <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
     <dc:title>Book title title</dc:title>
     <dc:language>en-US</dc:language>
-    <dc:identifier id="BookId">https://example.com/ebook</dc:identifier>
+    <dc:identifier 
+        id="BookId"
+        >https://example.com/ebook</dc:identifier>
     <meta property="dcterms:modified">2025-07-31T13:39:26Z</meta>
     <dc:creator>Impressive author, Phd.</dc:creator>
     <dc:publisher>Large publisher ltd.</dc:publisher>
@@ -238,16 +284,39 @@ Other optional metadata can be added, like secondary contributors, the format of
 [source,xml]
 ----
 <manifest>
-    <item id="toc" properties="nav" href="toc.xhtml" media-type="application/xhtml+xml"/>
-
-    <item id="cover-image" href="cover-image.png" media-type="image/png" properties="cover-image"/>
-    
-    <item id="css_1" href="css/css_1.css" media-type="text/css"/>
-    
-    <item id="image_1" href="image/1.svg" media-type="image/svg+xml" fallback="image_1_jpg"/>
-    <item id="image_1_jpg" href="image/1.jpg" media-type="image/jpeg"/>
-    
-    <item id="part_1" href="part/part_1.xhtml" media-type="application/xhtml+xml"/>
+    <item 
+        id="toc" 
+        properties="nav" 
+        href="toc.xhtml" 
+        media-type="application/xhtml+xml"
+        />
+    <item 
+        id="cover-image" 
+        href="cover-image.png" 
+        media-type="image/png" 
+        properties="cover-image"
+        />
+    <item 
+        id="css_1" 
+        href="css/css_1.css" 
+        media-type="text/css"
+        />
+    <item
+        id="image_1"
+        href="image/1.svg"
+        media-type="image/svg+xml"
+        fallback="image_1_jpg"
+        />
+    <item 
+        id="image_1_jpg"
+        href="image/1.jpg"
+        media-type="image/jpeg"
+        />
+    <item 
+        id="part_1" 
+        href="part/part_1.xhtml" 
+        media-type="application/xhtml+xml"
+        />
 </manifest>
 ----
 
@@ -297,7 +366,12 @@ An EPUB file must includes a table of content (TOC) that contains links to the d
 [source,xml]
 ----
 <manifest>
-    <item id="toc" properties="nav" href="toc.xhtml" media-type="application/xhtml+xml"/>
+    <item
+        id="toc"
+        properties="nav"
+        href="toc.xhtml"
+        media-type="application/xhtml+xml"
+        />
 </manifest>
 ----
 
@@ -324,12 +398,28 @@ The table hierarchy is defined using nested ordered lists with `ol` and `li` tag
         <ol>
             <li><a href="part_1.xhtml#id_title_1">Title 1</a>
                 <ol>
-                    <li><a href="part/part_1.xhtml#id_title_1_1">Title 1.1</a></li>
-                    <li><a href="part/part_1.xhtml#id_title_1_1">Title 1.2</a></li>
+                    <li>
+                        <a 
+                            href="part/part_1.xhtml#id_title_1_1"
+                            >Title 1.1</a>
+                    </li>
+                    <li>
+                        <a 
+                            href="part/part_1.xhtml#id_title_1_1"
+                            >Title 1.2</a>
+                        </li>
                 </ol>
             </li>
-            <li><a href="part/part_2.xhtml#id_title_2">Title 2</a></li>
-            <li><a href="part/part_3.xhtml#id_title_3">Title 3</a></li>
+            <li>
+                <a 
+                    href="part/part_2.xhtml#id_title_2"
+                    >Title 2</a>
+                </li>
+            <li>
+                <a 
+                    href="part/part_3.xhtml#id_title_3"
+                    >Title 3</a>
+            </li>
         </ol>
     </nav>
 </body>
@@ -348,7 +438,12 @@ An EPUB file can define a cover image, it is identified in the manifest with the
 [source,xml]
 ----
 <manifest>
-    <item id="cover-image" href="cover-image.png" media-type="image/png" properties="cover-image"/>
+    <item
+        id="cover-image"
+        href="cover-image.png"
+        media-type="image/png"
+        properties="cover-image"
+        />
 </manifest>
 ----
 
@@ -374,7 +469,10 @@ Footnotes use XHTML links with EPUB-specific attributes :
 .chapter1.xhtml
 ----
 <?xml version="1.0"?><!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:epub="http://www.idpf.org/2007/ops"
+    >
 <head>
     <title>Chapter 1</title>
 </head>
@@ -388,12 +486,15 @@ Footnotes use XHTML links with EPUB-specific attributes :
 .notes.xhtml
 ----
 <?xml version="1.0"?><!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:epub="http://www.idpf.org/2007/ops"
+    >
 <head>
     <title>Notes</title>
 </head>
 
-<aside id="note_1" epub:type="footnote">Note text that will appear in the popup</aside>
+<aside id="note_1" epub:type="footnote">Note text</aside>
 </body>
 </html>
 ----
@@ -411,14 +512,17 @@ There is no native EPUB support for spoilers, but some ebook systems support the
 .notes.xhtml
 ----
 <?xml version="1.0"?><!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:epub="http://www.idpf.org/2007/ops"
+    >
 <head>
     <title>Spoiler example</title>
 </head>
 
 <details>
   <summary>Click to see the spoiler</summary>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Spoiler content.
 </details>
 </body>
 </html>
