@@ -4,3 +4,51 @@ v1.0, 2025-01-01
 :article_lang: en
 :figure-caption!:
 :article_description: 
+
+== link:https://scottstuff.net/posts/2025/05/19/ntp-limits/[The Limits of NTP Accuracy on Linux]
+
+[quote]
+____
+So, in all, I’m seeing time syncing somewhere in the 200–500 ns range across my network. The GPS time sources themselves are sometimes as far as 150 ns apart, even after compensating for systemic differences, and the network itself adds another 200–300 ns of noise.
+
+In an ideal world, it’d be cool to see ~10 ns accuracy, but it’s not really possible at any level with this hardware. My time sources aren’t that good, my network adds more systemic error than that, and when I try to measure the difference between test servers I see a couple hundred nanoseconds of noise. So 10 ns isn’t going to happen.
+
+On the other hand, though, I’m almost certainly accurate to within 1 μs across the set of 8 test servers most of the time, and I’m _absolutely_ more accurate than my original goal of 10 μs.
+____
+
+== link:https://aria.dog/barks/forklift-certified-license/[Introducing the Forklift Certified License]
+
+[quote]
+____
+Let me explain: have you heard about *Supply Chain Attacks*? They go about like this:
+
+— "`Madame Aria Salvatrice, this is GitHub here. Your javascript library `+YALP - Yet Another Left-Pad+` is used by Lockheed Martin, Monsanto, Electronic Arts, McDonald's, and Adolf Hitler.`" +
+— "`Oh that thing i wrote one day i was shitfaced lmao i haven't updated it in 8 years. Cool.`" +
+— "`And you just accepted a pull request by user `+KinkySatanicPuppygirl2+` whose profile picture depicts the character named _Leonmitchelli Galette des Rois_ from the Japanese animation series _Dog Days_ (2011).`" +
+— "`Yeag.`" +
+— "`Your library is used to generate 26 billions of yearly revenue and this latest pull request added a vulnerabiliy to a cross-site buffer privilege distributed escalation spoofing attack (CVE-8008135). They demand a fix.`" +
+— "`Lol sucks to suck. Will they pay me?`" +
+— "`No`"
+____
+
+== link:https://antocuni.eu/2025/09/24/tracing-jits-in-the-real-world--cpython-core-dev-sprint/[Tracing JITs in the real world @ CPython Core Dev Sprint]
+
+[quote]
+____
+CPython's new JIT and PyPy's JIT share fundamental similarities, as they're both tracing JITs.
+
+I spent ~7 years of my career optimizing existing code for PyPy at a high-frequency trading firm, and I realized that I'm probably one of the few people in the world with actual experience in optimizing real world Python code for a tracing JIT.
+
+I expect that some of the challenges which I faced will still be valid also for CPython, and I wanted to share my experience to make sure that CPython core devs are aware of them.
+
+One lesson which I learned is that the set of benchmarks in `pyperformance` are a good starting point, but they are not entirely representative of what you find in the wild.
+
+The main goal of the talk is not to present solutions to these problems, but to raise awareness that they exist.
+____
+
+== link:https://www.enterprisedb.com/blog/changes-not-null-postgres-18[Changes to NOT NULL in Postgres 18]
+
+[quote]
+_____
+"`So what?,`" I hear you say. "`I can easily use `ALTER TABLE aircraft ALTER COLUMN range DROP NOT NULL` if I want to drop that constraint, right? And then I don't need the constraint name at all.`" And you would be correct. However, what if you wanted to do _other_ things to that constraint? For instance, foreign keys have the ability to be created as `NOT VALID`, and validated later; this is incredibly useful if your database is in continuous operation, because such a constraint addition can be made with very little disruption to your production load, because no lengthy scan of the data needs to be made. You couldn't previously do that with not-null constraints. (Actually, you can create an invalid `CHECK` constraint, validate it, then add a not-null constraint (which doesn't require a slow scan because of the `CHECK` constraint), then drop the `CHECK` constraint. But who wants to go to all that trouble!?)
+_____
