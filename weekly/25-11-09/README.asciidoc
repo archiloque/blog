@@ -1,0 +1,84 @@
+= Links - 9^th^ November 2025
+Julien Kirch
+v1.0, 2025-11-09
+:article_lang: en
+:figure-caption!:
+:article_description: Small scripts, build systels, LLVM instruction scheduling, Java exceptions compilation, recursive macros in C, UI framework, reading code
+
+== link:https://dan.turnerhallow.co.uk/the-joy-of-small-scripts.html[The joy of small scripts]
+
+[quote]
+____
+I believe that anyone can find the joy of small scripting. There is a sense of accomplishment to bending the world to your will, even if only slightly. They solve real, if small, problems. When they break, their authors are perfectly placed to fix them. The tools themselves are surprisingly reliable, since they're built from commonly available and well-known tools. That no two are alike means there is no central failure, they tick on even as services fail. They are an expression of self-reliance and self-empowerment, even as companies seek to constrain how we use the products and services we buy. They are a joy.
+____
+
+== link:https://jyn.dev/build-system-tradeoffs[build system tradeoffs]
+
+[quote]
+____
+Nix has one more interesting property, which is that all its packages compose. You can install two different versions of the same package and that's fine because they use different store paths. They fit together like lesbians' fingers interlock.
+
+Compare this to docker, which does not compose. In docker, there is no way to say "`Inherit the build environment from multiple different source images`". The closest you can get is a "`multi-stage build`", where you explicitly copy over individual files from an earlier image to a later image. It can't blindly copy over all the files because some of them might want to end up at the same path, and touching fingers would be gay.
+____
+
+[quote]
+____
+* Most build systems do not prioritize correctness.
+* Prioritizing correctness comes with severe, hard to avoid tradeoffs.
+* Tracing build systems show the potential to avoid some of those tradeoffs, but are highly platform specific and come with tradeoffs of their own at large enough scale. Combining a tracing build system with a hermetic build system seems like the best of both worlds.
+* Writing build rules in a "`normal`" (but constrained) programming language, then serializing them to a build graph, has surprisingly few tradeoffs. I'm not sure why more build systems don't do this.
+____
+
+== link:https://myhsu.xyz/llvm-machine-scheduler-2/[Machine scheduler in LLVM -- Part II]
+
+[quote]
+____
+Making the optimal choice has always been a difficult problem in computer science (as in real life). There is a whole big field telling you how to optimize for a specific set of constraints – usually with a cost of non-trivial amount of runtime, however. Machine Scheduler, just like other parts of LLVM, prioritizes speed and perhaps maintainability over finding the absolute optimal instruction.
+
+And that, is the rationale behind the design of `+tryCandidate+` -- specifically its fixed set of comparisons done on candidates -- we've shown in the previous post. Among those heuristics and comparisons, we are particularly interested in two of them: favor the candidate with a lower _register pressure_ and pick the instruction with lower _resource pressure_. As they have a more direct connection with the goals of instruction scheduling mentioned earlier. Plus, both out-of-order and in-order cores put attentions on these items. So, without further ado, let's look at the register pressure heuristics first.
+____
+
+== link:https://purplesyringa.moe/blog/jvm-exceptions-are-weird-a-decompiler-perspective/[JVM exceptions are weird: a decompiler perspective]
+
+[quote]
+____
+Some time ago, I played around with decompiling Java class files in a more efficient manner than traditional solutions like link:https://github.com/Vineflower/vineflower[Vineflower] allow. Eventually, I wrote link:https://purplesyringa.moe/blog/recovering-control-flow-structures-without-cfgs/[an article] on my approach to decompiling control flow, which was a great performance boost for my prototype.
+
+At the time, I believed that this method can be straightforwardly extended to handling exceptional control flow, i.e. decompiling `+try+`…`+catch+` blocks. In retrospect, I should've known it wouldn't be so easy. It turns out that there are many edge cases, ranging from strange `+javac+` behavior to consequences of the JVM design and the class file format, that significantly complicate this. In this post, I'll cover these details, why simple solutions don't work, and what approach I've eventually settled on.
+____
+
+== link:https://h4x0r.org/big-mac-ro-attack/[Recursive macros in C, demystified (once the ugly crying stops 😭)]
+
+[quote]
+____
+Still, being C's only compile-time execution capability (currently), it is still both critical and important. _Critical_, in that many venerable critical systems heavily depend on them, and wouldn't compile without them. _Important_, in that it's often the only way to abstract out complexity that would lead to safety or security issues if exposed, such as automatically adding sentinels or static type checks.
+____
+
+[quote]
+____
+The C Preprocessor (which I will usually call CPP) is responsible for macro expansion and processing lines with a leading `+#+`. As we've said, it does not fully support recursion. As you might expect, that's the core of the actual problem in our first attempt. Yet, the preprocessor happily thinks it did its job. We'll see in more detail what's going on, but the crux of this particular problem is _how_ recursion is disallowed, not that it IS disallowed.
+
+The problem here is that C macros are their own programming language, being used to generate C code. The macro language doesn't model most of the interesting parts of the language, and it is quite easy to produce code that the preprocessor finds acceptable, that the compiler cannot understand (as we will see).
+
+In both these cases, the preprocessor feels like it's done its job, and passes off its work to the C compiler. The C compiler gets the generated code, and has no idea that macros were used. It calls the error as it sees it.
+
+This disconnect between the preprocessor and the compiler is one of the things that makes macros in C so unfriendly.
+____
+
+== link:https://docs.google.com/document/d/1qFrNa3wmeTn_HDj0C4nhGWy5T1DlF5J8zTrlhA0vEAc/mobilebasic[Building a UI Framework]
+
+[quote]
+____
+This document examines important design decisions for creating a new graphical UI framework.
+
+It was commissioned to answer the question of how to create a UI framework, considering four possible design goals: developer adoption, performance, display effects, and power consumption.
+
+This document has three parts. In the first part, we will cover some background material to set the context for the discussion. In the second part, we will examine each of the stated goals which provide constraints within which to consider how to design a UI framework. In the third part, we will discuss design choices, examine possible implementations, and discuss some non-technical issues within the context of the specified goals.
+____
+
+== link:https://matklad.github.io/2025/09/04/look-for-bugs.html[Look out for bugs]
+
+[quote]
+____
+The key is careful, slow reading. What you actually are doing is building the mental model of a program inside your head. Reading the source code is just an instrument for achieving that goal. I can't emphasize this enough: programming is all about building a precise understanding inside your mind, and then looking for the diff between your brain and what's in git.
+____
