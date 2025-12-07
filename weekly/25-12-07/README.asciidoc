@@ -1,0 +1,67 @@
+= Links - 7^th^ December 2025
+Julien Kirch
+v1.0, 2025-12-07
+:article_lang: en
+:figure-caption!:
+:article_description: Linux scheduler, vertical integration, failed projects, faking, plaintext
+
+== link:https://blog.maxgio.me/posts/linux-scheduler-journey/[A journey into the Linux scheduler]
+
+[quote]
+____
+One of the things I was fascinated by was how Linux is able to manage and let the CPU run thousands and thousands of processes each second. To give you an idea, right now, Linux on my laptop configured with an Intel i7-1185G7 CPU switched context 28,428 times in a second! That's fantastic, isn't it?
+
+During this journey inside Linux, I've written notes as it helps me to digest and re-process in my own way the informations I learn. Then I thought: "`Maybe they're useful to someone. Why not share them?`".
+
+So here I am with with a blog.
+____
+
+== link:https://becca.ooo/blog/vertical-integration/[Vertical integration is the only thing that matters]
+
+[quote]
+____
+On the subject of developer tooling, or perhaps computer programs more broadly, I have become increasingly convinced that vertical integration is the only thing that matters. I also think that the inability of developer productivity startups to vertically integrate their offerings has hindered their adoption and utility. I'd like to talk about what I mean by "`vertical integration`" and why we don't have it today.
+____
+
+[quote]
+____
+None of the features here are particularly shocking, but they all require cooperation between tools that aren't used to cooperating. Your test runner knows the call stack of a failing test, but it can't make that information available in a format your editor or terminal is able to consume. Your deploy system runs an optimized build and then throws away all the artifacts, so if you want to build the same commit you need to start from scratch. The compilation was already run, but your build system isn't able to grab artifacts from CI because your build system doesn't know that you have CI.
+____
+
+[quote]
+____
+Open source is also full of software freedom acolytes who insist that each tool must "`do one thing well.`" To these engineers, project A maintaining an integration with project B is a threat to the ability of users to swap out project B for a different tool; the best approach, to them, is for every tool to behave as if no other tool exists. The fact that this results in strictly less-capable tools seems to be lost on these engineers.
+
+At the same time, many open source projects are owned or funded largely by a single corporation with no motivation (or ability) to make their internal stack available externally. Any integrations in the project must therefore be compatible with the stack used by those corporations internally. For similar reasons, it is also common to see projects with test suites or build systems that cannot be used outside of the organization that funds them.
+____
+
+== link:https://deadsimpletech.com/blog/failed_software_projects[Failed software projects are strategic failures]
+
+[quote]
+____
+The thing is, projects don't usually fail like that: I'd be hard-pressed to think of any projects where the strategic underpinnings of the project are sound, the supporting logistics and suchlike behind the company work as expected and the project simply fails because despite all this being in place, the software engineers assigned to the project just aren't good enough. What usually sinks projects are mistakes like a lack of clarity about what a project is actually meant to achieve for a business, a failure to properly understand requirements, under-resourcing or a failure to provide missing capabilities, poor management and organisation and a failure to update the strategy underpinning the project when conditions change. These are all strategy-level mistakes much more than they're tactical ones.
+____
+
+== link:https://hugo.writizzy.com/p/tim-ferriss-promised-freedom-indie-hackers-are-selling-shovels[Tim Ferriss promised freedom. Indie hackers are selling shovels]
+
+[quote]
+____
+To support this mirage, we see fake screenshots showing fake revenue, fake Stripe notification popups, fake dashboards -- everything aligned with one of the mantras from the startup world: "`Fake it until you make it.`"
+
+And the worst part? Others started seeing the opportunity. The best thing isn't selling shovels -- it's running the bar where everyone comes to drink in the evening. Selling alcohol to the shovel sellers.
+
+Because now you can buy the app that lets you create fake dashboards, fake payment notifications, fake analytics panels -- everything I just mentioned. Not to mention courses teaching you how to sell courses on creating SaaS products. And now there are even apps designed to prove your MRR isn't fake.
+____
+
+== link:https://htmhell.dev/adventcalendar/2025/2/[Using the ancient evils for debugging]
+
+[quote]
+____
+On first sight that sounds like a really stupid superpower. On second sight, it still does. We look into how that element became part of HTML below. But now we will use it for one specific purpose: debugging server-side code.
+
+Of course, specialized debuggers like XDebug for PHP or built-in error pages in frameworks like Django take over the heavy lifting here. And even the good ol' `+print "<script>console.log('here!')</script>"+` is often helpful. Those tools should be high up in your utility belt.
+
+But imagine this: You are deep in your code, chasing an elusive bug that affects only part of the HTML output, and you want to spot on the rendered page exactly where it shows up. The fastest way is to put a quick `+<plaintext>+` close to the offending place, reload the page, and presto! Just scan down to where the markup starts to show through.
+
+This is especially useful to access formatted debugging output. A `+var_dump()+` in PHP, for example. Or an `+error.stack+` stack trace in NodeJS. Slap a `+<plaintext>+` in front of it before writing it to the HTML output, so that the string is immediately readable
+____
