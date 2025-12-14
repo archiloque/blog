@@ -1,9 +1,9 @@
-= Links - 7^th^ December 2025
+= Links - 14^th^ December 2025
 Julien Kirch
-v1.0, 2025-12-07
+v1.0, 2025-12-14
 :article_lang: en
 :figure-caption!:
-:article_description: Linux scheduler, vertical integration, failed projects, faking, plaintext
+:article_description: Linux scheduler, vertical integration, failed projects, faking, plaintext, Linux kernel embeding, C{plus}{plus} standard adventure, organisations
 
 == link:https://blog.maxgio.me/posts/linux-scheduler-journey/[A journey into the Linux scheduler]
 
@@ -64,4 +64,45 @@ Of course, specialized debuggers like XDebug for PHP or built-in error pages in 
 But imagine this: You are deep in your code, chasing an elusive bug that affects only part of the HTML output, and you want to spot on the rendered page exactly where it shows up. The fastest way is to put a quick `+<plaintext>+` close to the offending place, reload the page, and presto! Just scan down to where the markup starts to show through.
 
 This is especially useful to access formatted debugging output. A `+var_dump()+` in PHP, for example. Or an `+error.stack+` stack trace in NodeJS. Slap a `+<plaintext>+` in front of it before writing it to the HTML output, so that the string is immediately readable
+____
+
+== link:https://sigma-star.at/blog/2023/07/embedded-go-prog/[Let's embed a Go program into the Linux kernel]
+
+[quote]
+____
+Today, we would like to present a lesser-known feature of the Linux kernel. Instead of launching a program from a file system, regardless of whether it's virtual or not, it is also possible to embed a user-space program directly into the kernel image itself and start it from there.
+____
+
+== link:https://cppevo.dev/adventure/[C{plus}{plus} standard adventure]
+
+[quote]
+____
+Welcome to the C++ Standard Adventure!
+Explore the C++ standard as an interactive world. +
+Type "help" for a list of commands.
+____
+
+== link:https://cutlefish.substack.com/p/tbm-395-words-damned-words[TBM 395: Words! Damned Words!]
+
+[quote]
+____
+The best description of this risk I've found of reification in action is in James C. Scott's Seeing Like a State. In the book, Scott describes how organizations try to simplify complex, lived, and emergent realities to make them legible, comparable, and governable from a distance. These simplifications aren't malicious and, in many cases, are necessary. The problems arise when the model designed to support administration and control is mistaken for reality itself.
+
+That's exactly what's happening here. Labels like initiative, strategic, or BAU start as useful abstractions, created to help with funding, reporting, or coordination. But over time, they harden and are used to regulate product development in ways that are fundamentally incompatible with learning-heavy, adaptive work.
+
+[…]
+
+The problem is when rules designed for administration and protection are mistaken for a complete description of reality, and then used to override local knowledge, lived context, and good judgment.
+____
+
+[quote]
+____
+Alicia Juarrero’s work on constraints offers a useful lens here. She argues that coherence does not come from forceful causes or fixed definitions, but from enabling constraints that shape how systems evolve. These constraints create the conditions for action and learning. As patterns of interaction stabilize, they become constitutive constraints that allow an identity to hold together. Over time, some of these harden into governing constraints that regulate behavior at scale.
+____
+
+[quote]
+____
+For example, describing an initiative as "`a focused investment of capacity`" leaves open what that investment is focused on. The initiative can then be linked to outcomes, opportunities, risks, or value hypotheses without collapsing all of that meaning into the noun itself.
+
+If, instead, you define an initiative as "`a value delivery mechanism`", you lose that flexibility and hard-code assumptions about purpose and success prematurely.
 ____
