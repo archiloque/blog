@@ -1,0 +1,145 @@
+= Links - 1^st^ March 2026
+Julien Kirch
+v1.0, 2026-03-01
+:article_lang: en
+:figure-caption!:
+:article_description: CSS CPU, software is political, calendar bug, Wasm restrospective, fullsource NixOS bootstrap, phantom obligation, time tracking, Git in Postgres, optimal Caverna gameplay, window positioning protocol for Wayland
+
+== link:https://lyra.horse/x86css/[x86 CPU made in CSS]
+
+[quote]
+____
+x86CSS is a working CSS-only x86 CPU/emulator/computer. Yes, the _Cascading Style Sheets CSS_. No JavaScript required.
+____
+
+[quote]
+____
+Is CSS a programming language?
+
+Do you really need to ask at this point?
+____
+
+== link:https://www.not-so-obvious.net/software-is-political/[Software is political]
+
+[quote]
+____
+The embedding of politics into digital systems may also not seem immediately apparent. Values like parsimony or efficiency, which have long been popular in software development, may appear to be technical instead of political. An efficient tool, which requires fewer resources to run, appears to be a goal based on an objective measure. But as we see with bloated codebases and vibe-coded software, efficiency and parsimony are not universal values. Instead, they are values which fit within a system prizing low resource use, and which suddenly become less valued when quicker iteration or a simple desire to automate tasks at any cost becomes the dominant paradigm. In that world, parsimony becomes a political statement in and of itself. And the politics of efficiency is only one apparently technical concept that turns out to be political. There are myriad other embeddings of political values into software, carried out both subtly and overtly. The harvesting of data, what will be reported back and what will not be, and any number of concerns about accessibility or language, are all political concerns masquerading under the guise of features.
+____
+
+== link:https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f076ef44a44d02ed91543f820c14c2c7dff53716[rtc: rk808: Compensate for Rockchip calendar deviation on November 31st]
+
+[quote]
+____
+In A.D. 1582 Pope Gregory XIII found that the existing Julian calendar
+insufficiently represented reality, and changed the rules about
+calculating leap years to account for this. Similarly, in A.D. 2013
+Rockchip hardware engineers found that the new Gregorian calendar still
+contained flaws, and that the month of November should be counted up to
+31 days instead. Unfortunately it takes a long time for calendar changes
+to gain widespread adoption, and just like more than 300 years went by
+before the last Protestant nation implemented Greg's proposal, we will
+have to wait a while until all religions and operating system kernels
+acknowledge the inherent advantages of the Rockchip system. Until then
+we need to translate dates read from (and written to) Rockchip hardware
+back to the Gregorian format.
+____
+
+== link:https://bytecodealliance.org/articles/ten-years-of-webassembly-a-retrospective[10 years of Wasm: a retrospective]
+
+[quote]
+____
+When someone defines WebAssembly, odds are even that they’ll adapt the old joke about the Holy Roman Empire to say the technology is "`neither web, nor assembly`". That is to say, it’s neither specific to the web nor strictly an assembly language, but rather a bytecode format targeting a virtual instruction set architecture.
+____
+
+[quote]
+____
+For the group working on Wasm, the pressure to ship was intense. "`Ship as fast as you humanly can before this whole coalition falls apart`", was the prevailing sentiment, according to Wagner. 
+____
+
+== link:https://nzbr.github.io/nixos-full-source-bootstrap/thesis.pdf[A full-source bootstrap for NixOS]
+
+[quote]
+____
+In this thesis, we present our implementation of a fullsource bootstrap for the NixOS Linux distribution. We build a Linux environment with the Nix package manager from a minimal, handauditable binary seed, and then use it to install NixOS.
+____
+
+== link:https://www.terrygodier.com/phantom-obligation[Phantom obligation]
+
+[quote]
+____
+The guilt you feel for something
+no one asked you to do.
+____
+
+[quote]
+____
+The answering machine was the first phantom. That blinking light. But the ghosts were still familiar: actual humans spoke actual words expecting actual responses. The count was small (who leaves more than a few messages?) and the voices were known.
+
+Email is where the metaphor made its jump from atoms to bits. "`Inbox`" was borrowed legitimacy. It sounded like that wooden tray, so it inherited its psychology. But the wooden tray had a constraint: physical space. A desk could only hold so much. The digital inbox had no bottom. Still, mostly real obligations. Humans writing to you, expecting responses.
+____
+
+[quote]
+____
+Then Apple gave every app a weapon.
+
+The notification badge took email's unread count and made it universal. Any app could now claim urgency. A game wanting you to collect coins wore the same badge as a message from your mother. _The weight was democratized. The meaning was gutted._
+
+We invented escape hatches that became new traps. Read-later apps promised relief: save this, flee the obligation of reading it now. But the app created a new queue, a new count, a new obligation. You didn't eliminate the phantom. You moved it.
+____
+
+[quote]
+____
+I'm not here to tell you that one of these metaphors is correct and the inbox is wrong. I'm here to point out that we have more choices than we've been exercising.
+
+An interface that shows you an unread count is making an argument: that reading is something to be counted, that progress is something to be measured, that your relationship to this content is one of obligation.
+____
+
+== link:https://cutlefish.substack.com/p/tbm-403-the-seduction-and-folly-of[TBM 403: the seduction (and folly) of rollups, points, and (most) time tracking]
+
+[quote]
+____
+We are easily seduced by numbers that look like accounting. Story points. Hours. Percent allocations. Velocity. Capacity utilization. They add up. They fit in spreadsheets. They produce charts. They feel concrete.
+
+The danger is that they borrow the authority of financial accounting without actually being accounting. They are proxies, guesses, and social contracts. When we forget that, we start managing the proxy instead of the real work. We chase numbers that sum neatly rather than signals that help us understand reality. Our desire for things that "`add up`" can get in the way of understanding the system we are trying to improve.
+____
+
+[quote]
+____
+Take the difference between the allocation of time and the allocation of "`capacity`". They are different concepts. While knowing where the time went might be somewhat helpful, we need to consider capacity as something that is built, nurtured, established, and invested in over time.
+
+For example, imagine you have a temporarily assembled team of geniuses. At first, they haven’t worked together, so their capacity is low. They can spend time wherever they want, but they will be hitting a lot of friction. Now nurture that team over time, work down technical debt, invest time and energy in connecting with customers, instrument the various surface areas, and supply them with powerful context about the strategy… and suddenly you might have a LOT of capacity, and they might be creating value very efficiently.
+
+This could last until the strategy changes, maybe someone leaves, and suddenly all that well-earned capacity and potential trends to zero again. Anyway, my point is that what we would do to make capacity and the investment of capacity visible would be entirely different from what we might do to make the allocation of time visible as a tool to assist with management.
+____
+
+== link:https://nesbitt.io/2026/02/26/git-in-postgres.html[Git in Postgres]
+
+[quote]
+____
+Instead of using git as a database, what if you used a database as a git?s
+____
+
+[quote]
+____
+A self-hosted Forgejo or Gitea instance is really two systems bolted together: a web application backed by Postgres, and a collection of bare git repositories on the filesystem. Anything that needs to show git data in the web UI has to shell out to the binary and parse text, which is why something as straightforward as a blame view requires spawning a subprocess rather than running a query. If the git data lived in the same Postgres instance as everything else, that boundary disappears.
+
+Forgejo stores issues, pull requests, users, permissions, webhooks, branch protection rules, and CI status in Postgres already, and git repositories are the one thing left on the filesystem, forcing every deployment to coordinate backups between them, and the two systems scale and fail in different ways. The codebase already shows the strain: Forgejo mirrors branch metadata from git into its own database tables (`models/git/branch.go`) so it can query branches without shelling out to git every time.
+
+All git interaction goes through `modules/git`, about 15,000 lines of Go that shells out to the `git` binary and parses text output. With git data in Postgres, reading an object becomes `SELECT content FROM objects WHERE oid = $1` on the database connection Forgejo already holds, and walking commit history is a query against a materialized view rather than spawning `git log`.
+
+The deployment collapses to a single Postgres instance where `pg++_++dump` backs up forge metadata, git objects, and user data together, and replicas handle read scaling for the web UI without NFS mounts or a Gitaly-style RPC layer. The path there is a Forgejo fork replacing `modules/git` with a package that queries Postgres, where `Repository` holds a database connection and repo++_++id instead of a filesystem path and `Commit`, `Tree`, `Blob` become thin wrappers around query results.
+____
+
+== link:https://www.stephendiehl.com/posts/caverna/[Optimal Caverna gameplay via formal methods]
+
+[quote]
+____
+I always win at Caverna (Uwe Rosenberg's https://boardgamegeek.com/boardgame/102794/caverna-the-cave-farmers[classic European worker placement] tabletop board game). Always. But "`always`" just means "`every time so far`", and I needed something with more mathematical permanence. So I formalized the entire game in Lean 4 and proved that my strategy is the unique weakly dominant pure strategy across every possible game configuration. My friends think this is excessive. My friends also lose at Caverna. Unrelated, I don't get invited to board game night much anymore.
+____
+
+== link:https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requests/264[experimental: Add xx-zones protocol for area-limited window positioning]
+
+[quote]
+____
+This is a new attempt to resolve the issues plaguing multi-window applications on Wayland. Those applications want to give the compositor a hint where _specifically_ a window should be placed (or sometimes moved to), as well as whether a window should stay permanently layered above other windows _of the same application_, regardless of focus.
+____

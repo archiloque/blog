@@ -1,0 +1,70 @@
+= Links - 18^th^ January 2026
+Julien Kirch
+v1.0, 2026-01-18
+:article_lang: en
+:figure-caption!:
+:article_description: Package manager using git, handmade Graphviz, Pico GPU, PDS, control structures in programming languages, ASCII rendering
+
+== link:https://nesbitt.io/2025/12/24/package-managers-keep-using-git-as-a-database.html[Package managers keep using git as a database, it never works out]
+
+[quote]
+____
+Using git as a database is a seductive idea. You get version history for free. Pull requests give you a review workflow. It's distributed by design. GitHub will host it for free. Everyone already knows how to use it.
+
+Package managers keep falling for this. And it keeps not working out.
+____
+
+[quote]
+____
+The progression is predictable. Start with a flat directory of files. Hit filesystem limits. Implement sharding. Hit cross-platform issues. Build server-side enforcement. Build custom indexes. Eventually give up and use HTTP or an actual database. You've built a worse version of what databases already provide, spread across git hooks, CI pipelines, and bespoke tooling.
+
+None of this means git is bad. Git excels at what it was designed for: distributed collaboration on source code, with branching, merging, and offline work. The problem is using it for something else entirely. Package registries need fast point queries for metadata. Git gives you a full-document sync protocol when you need a key-value lookup.
+
+If you're building a package manager and git-as-index seems appealing, look at Cargo, Homebrew, CocoaPods, vcpkg, Go. They all had to build workarounds as they grew, causing pain for users and maintainers. The pull request workflow is nice. The version history is nice. You will hit the same walls they did.
+____
+
+== link:https://spidermonkey.dev/blog/2025/10/28/iongraph-web.html[Who needs Graphviz when you can build it yourself?]
+
+[quote]
+____
+We are not the first to visualize our compiler's internal graphs, of course, nor the first to make them interactive. But I was not satisfied with the output of common tools like link:https://graphviz.org/[Graphviz] or link:https://mermaid.js.org/[Mermaid], so I decided to create a layout algorithm specifically tailored to our needs. The resulting algorithm is simple, fast, produces surprisingly high-quality output, and can be implemented in less than a thousand lines of code. The purpose of this article is to walk you through this algorithm and the design concepts behind it.
+____
+
+== link:https://ncannasse.github.io/picogpu/[Pico GPU]
+
+[quote]
+____
+Pico GPU is a 300KB memory GPU intended to learn, experiment and have fun with shaders. It is perfect to easily create small demos or games involving 3D rendering. It can also perform GPU based sound synthesis.
+____
+
+== link:https://hackerfactor.com/blog/index.php?/archives/1085-A-Typical-PDF.html[A typical PDF]
+
+[quote]
+____
+When folks contact me about my forensic software, they typically ask the same three questions:
+
+. "`Can you detect deep fakes?`" This usually goes into a detailed discussion about how they define a deep fake, but the general conclusion is "`yes`".
+. "`Can you handle audio and video?`" Yes, but the evaluation process is a lot harder than pictures. Quality means everything, and a high quality video is usually lower quality than a low quality picture. So while the answer is technically "`yes`", the caveats multiply quickly.
+. "`Can you handle documents?`" This is where I begin to cringe. By "`documents`", they almost always mean PDF. Yes, my code can evaluate PDF files and it can often identify indications of edits. However, distinguishing real from AI or identifying specific edits is significantly harder to do. (If you thought evaluating pictures and videos was hard, wait until you try PDF files.)
+____
+
+[quote]
+____
+All of this goes back to the problem of trying to define a typical PDF document. Between different PDF generators and different PDF creation pipelines, there's virtually no consistency. You can't say that a PDF looks suspicious because it has multiple EOF lines, multiple startxref, inconsistent object enumerations, etc.
+
+There are a few ways to detect intentional PDF edits, like seeing reused object IDs, metadata indicating different edits, or changes more than a few seconds apart. But even then, the question becomes whether those edits are expected. For example, if you're filling out a PDF form, then we'd expect the edits (filled-out form) to happen long after the initial document was created. Seeing a clear indication of an edit may not be suspicious; you must take the context into consideration.
+____
+
+== link:https://xavierleroy.org/control-structures/[Control structures in programming languages: from goto to algebraic effects]
+
+[quote]
+____
+This book is a journey through the design space and history of programming languages from the perspective of control structures: the language mechanisms that enable programs to control their execution flows. Starting with the "`goto`" jumps of early programming languages and the emergence of structured programming in the 1960s, the book explores advanced control structures for imperative languages such as generators and coroutines, then develops alternate views of control in functional languages, first as continuations and their control operators, then as algebraic effects and effect handlers. Blending history, code examples, and theory, the book offers an original, comparative perspective on programming languages, as well as an extensive introduction to algebraic effects and other contemporary research topics in P.L.
+____
+
+== link:https://alexharri.com/blog/ascii-rendering[ASCII characters are not pixels: a deep dive into ASCII rendering]
+
+[quote]
+____
+We'll start with the basics of image-to-ASCII conversion and see where the common issue of blurry edges comes from. After that, I'll show you the approach I used to fix that and achieve sharp, high-quality ASCII rendering. At the end, we'll improve on that by implementing the contrast enhancement effect I showed above.
+____

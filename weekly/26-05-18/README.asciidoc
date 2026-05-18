@@ -1,0 +1,143 @@
+= Links - 18^th^ May 2026
+Julien Kirch
+v1.0, 2026-05-18
+:article_lang: en
+:figure-caption!:
+:article_description: Package registries, ROM updating, democratising software development, Microsoft mess, threat intelligence publications, error handling & concurrency
+
+== link:https://nesbitt.io/2025/12/22/package-registries-are-governance-as-a-service.html[Package registries are governance providers]
+
+[quote]
+____
+Package registries are infrastructure. They host files, serve downloads, run APIs. But they're also governance providers, and that second role gets less attention. When a registry decides who owns a disputed package name, whether an unpublished package should be restored, or how to handle a compromised maintainer account, those aren't infrastructure decisions. They're political choices with real consequences. Registries do both jobs at once: the hosting and the ruling.
+____
+
+[quote]
+____
+Infrastructure gets treated as a cost center, something to minimize and optimize. Governance requires expertise, accountability, and deliberation. The people making judgment calls about malware reports, naming disputes, and takedown requests are doing governance work. If we treat registries as governance institutions, not just infrastructure, we have to ask a different set of questions. How they're designed, who they're accountable to, and what values they encode.
+____
+
+== link:https://www.codon.org.uk/~mjg59/blog/p/to-update-blobs-or-not-to-update-blobs/[To update blobs or not to update blobs]
+
+[quote]
+____
+A lot of hardware runs non-free software. Sometimes that non-free software is in ROM. Sometimes it's in flash. Sometimes it's not stored on the device at all, it's pushed into it at runtime by another piece of hardware or by the operating system. We typically refer to this software as "`firmware`" to differentiate it from the software run on the CPU after the OS has started{empty}footnote:[Code that runs on the CPU _before_ the OS is still usually described as firmware -- UEFI is firmware even though it's executing on the CPU, which should give a strong indication that the difference between "`firmware`" and "`software`" is largely arbitrary], but a lot of it (and, these days, probably most of it) is software written in C or some other systems programming language and targeting Arm or RISC-V or maybe MIPS and even sometimes x86{empty}footnote:[And, obviously link:https://www.google.com/search?q=foone+8051[8051]]. There's no real distinction between it and any other bit of software you run, except it's generally not run within the context of the OS{empty}footnote:[Because UEFI makes everything more complicated, UEFI makes this more complicated. Triggering a UEFI runtime service involves your OS jumping into firmware code at runtime, in the same context as the OS kernel. Sometimes this will trigger a jump into System Management Mode, but other times it won't, and it's just your kernel executing code that got dumped into RAM when your system booted. ]. Anyway. It's code. I'm going to simplify things here and stop using the words "`software`" or "`firmware`" and just say "`code`" instead, because that way we don't need to worry about semantics.
+____
+
+== link:https://nondeterministic.computer/@mjg59/116334134082502494[Matthew Garrett]
+
+[quote]
+____
+Democratising software development inherently means that people are going to develop software in ways you don't like and which seem objectively wrong and welp that's also the argument people made against Linux so, it;s impossible to say if its bad or not
+
+All I'm actually saying here is that (waves broadly) a lot more people who have never opened a PR or maintained a project being in a position to either open a PR or maintaining a project is going to result in them not behaving within the social norms we've developed as a group that is, to be fair, far less insular than in the 90s but is still somewhat insular compared to society as a whole and yes we are going to have to get used to the equivalent of HTML mail and top posting
+____
+
+== link:https://isolveproblems.substack.com/p/how-microsoft-vaporized-a-trillion[How Microsoft vaporized a trillion dollars]
+
+[quote]
+____
+After a few minutes, I risked a question: Are you planning to _port_ those Windows features to Overlake? The answer was yes, or at least they were looking into it. The dev manager showed some doubt, and the man replied that they could at least "`ask a couple of junior devs to look into it`".
+
+The room remained silent for an instant. I had seen the hardware specs for the SoC on the Overlake card in my previous tenure: the RAM capacity and the power budget, which was just a tiny fraction of the TDP you can expect from a regular server CPU.
+
+The hardware folks I had spoken with told me they could only spare 4KB of dual-ported memory on the FPGA for my doorbell shared-memory communication protocol.
+
+Everything was nimble, efficient, and power-savvy, and the team I had joined 10 minutes earlier was seriously considering porting half of Windows to that tiny, fanless, Linux-running chip the size of a fingernail.
+____
+
+[quote]
+____
+I learned that they had identified 173 agents (one hundred seventy-three) as candidates for porting to Overlake.
+
+I later researched this further and found that no one at Microsoft, not a single soul, could articulate why up to 173 agents were needed to manage an Azure node, what they all did, how they interacted with one another, what their feature set was, or even why they existed in the first place.
+
+Azure sells VMs, networking, and storage at the core. Add observability and servicing, and you should be good. Everything else, SQL, K8s, AI workloads, and whatnot all build on VMs with xPU, networking, and storage, and the heavy lifting to make the magic happen is done by the good Core OS folks and the hypervisor.
+
+How the Azure folks came up with 173 agents will probably remain a mystery, but it takes a serious amount of misunderstanding to get there, and this is also how disasters are built.
+____
+
+== link:https://isolveproblems.substack.com/p/how-microsoft-vaporized-a-trillion-8f4[How Microsoft vaporized a trillion dollars, pt. 2]
+
+[quote]
+____
+Layered on this chaos was an Azure-wide mandate: all new software must be written in Rust. Some porting plans were abandoned, and many junior engineers grew excited by the new language.
+
+Critical modules at the heart of Azure's node management, a critical part of the company's flagship Cloud + AI initiative, were sometimes designed by engineers with less than a year of tenure, under leads who lacked visibility into the details.
+
+None of it shipped.
+
+The VM management software continued to run and crash on Windows, despite repeated public statements from 2023 through 2025 claiming that key components had been offloaded to the Azure Boost accelerator and rewritten in Rust.
+
+From my direct involvement, I know those claims did not reflect reality as late as the end of 2024. Of the 64 key work items identified a year earlier to reengineer the VM management stack for offload, none had been completed, and work had not even started on approximately 60 of them.
+
+The list included foundational pieces such as a key-value store, tracing, logging, and observability infrastructure.
+
+Worse, early prototypes already pulled in nearly a thousand third-party Rust crates, many of which were transitive dependencies and largely unvetted, posing potential supply-chain risks.
+____
+
+== link:https://isolveproblems.substack.com/p/how-microsoft-vaporized-a-trillion-2f5[How Microsoft vaporized a trillion dollars, pt. 4]
+
+[quote]
+____
+Upon further digging, I discovered that WireServer was maintaining in-memory caches containing unencrypted tenant data, all mixed in the same memory areas, in violation of all hostile multi-tenancy security guidelines.
+
+It is conceivable that, with a little poking, an attacker could obtain data, including secrets such as certificates, belonging to other tenants on the node.
+
+Moreover, the code was leaking cached entries and even entire caches due to misunderstood memory ownership rules, and suffered from a large number of crashes, in the order of 300,000 to 500,000 crashes per month for the WireServer web server alone across the fleet.
+
+New code was throwing C++ exceptions in a codebase that was originally exception-free. The team had coding guidelines in direct contradiction of those of the larger organization, and their testing practices didn't include long-running tests, so they missed memory leaks and other defects.
+
+The team had reached a point where it was too risky to make any code refactoring or engineering improvements. I submitted several bug fixes and refactoring, notably using smart pointers, but they were rejected for fear of breaking something.
+
+This further illustrates the pervasive gap in technical leadership throughout the organization.
+____
+
+== link:https://nesbitt.io/2026/05/15/language-registries-are-unstable-by-default.html[Language registries are unstable by default]
+
+[quote]
+____
+A registry that accepts uploads from tens of thousands of loosely verified publishers and serves the newest upload as the default resolution target within minutes is going to ship malware to consumers at some ambient rate, because that is what an unstable pool is for. We've wired that pool directly to production with no promotion step, and I find the recurring surprise harder to justify than the incidents themselves, given the design is the one distributions explicitly label as the lane you run at your own risk.
+____
+
+[quote]
+____
+Distributions ended up with stability channels because a distribution owns the integration problem: tens of thousands of packages have to boot a working operating system together, so somebody upstream of the user has to check that glibc, systemd, Python, and GNOME all agree on the world before any of it ships. The release team is a structural necessity, and once you have a release team you have promotion gates, and once you have promotion gates you have channels almost by accident.
+
+Language registries made the opposite call early on by pushing the integration problem down to each consumer's lockfile. There was never a single party whose job it was to ask whether `requests` 2.32.0 and `urllib3` 2.2.0 and `certifi` 2024.2.2 actually work together, so that question gets answered thousands of times a day in thousands of CI pipelines instead of once at the registry. With no upstream actor responsible for integration, there's nobody in a natural position to run a promotion gate either, and the registries themselves have generally link:https://nesbitt.io/2025/12/22/package-registries-are-governance-as-a-service[declined to be that actor], treating themselves as neutral pipes rather than as the governance layer a promotion policy would require.
+____
+
+[quote]
+____
+The reframe I'm after in the meantime is just an honest label on what we already have. If npm or PyPI offered two indexes tomorrow and described one of them the way Debian describes sid, as a development staging area that changes by the minute and is pointed at by people who accept they'll be the first to hit whatever breaks, I don't think many teams would deliberately aim a production build at it. Every production build is aimed at exactly that today, not because anyone weighed it against an alternative but because no alternative has ever been on the menu, and a fair amount of "`supply-chain security`" work is the industry slowly noticing it never got asked.
+____
+
+== link:https://r136a1.dev/2026/05/07/where-have-all-the-complex-malware-and-their-analyses-gone/[Where have all the complex windows malware and their analyses gone?]
+
+[quote]
+____
+There is also a glaring double standard in the world of public threat intelligence. You will find endless, meticulous reports on _Turla_ or _Lazarus_, but you will almost never find a deep-dive analysis of a new advanced Western-made framework on a major security blog. Western IT security companies often deliberately avoid publicly disclosing complex Western APT malware in the fear that doing so might blow an active law enforcement or intelligence operation targeted at dangerous criminals or terrorists.
+
+It is a certainty within the industry that Western security firms are well aware of various Western threat actors and their advanced toolkits. They actively track these groups and create detections for them within their products to ensure their customers remain protected, regardless of the attack's origin. However, they go to great lengths to avoid publicly disclosing them. Disclosing a Western-led operation is often seen as breaking an unwritten rule of professional courtesy or risking national interests, leading to a curated public history where "`advanced`" is a label reserved for adversaries, while domestic capabilities are treated as non-existent phantoms.
+
+However, this one-sided reporting creates a significant narrative blindspot driven by operational concerns. It often neglects the reality that non-Western entities might also be using their complex malware for similar purposes -- tracking high-level threats or managing national security interests. By disclosing non-Western tools like the _Turla_ tools purely as "`malicious`" while keeping Western tools entirely in the shadows, the industry creates a skewed reality. It implies that the only advanced malware being written is the work of the East, while the true peak of malware engineering -- the silent, modular ghosts of the West -- remains often hidden from public scrutiny.
+____
+
+== link:https://blog.nelhage.com/post/concurrent-error-handling/[From error-handling to structured concurrency]
+
+[quote]
+____
+What we'd like, in some sense, is to have a better place to "`forward`" the error. In a single-threaded program, that place is "`the caller.`" In the presence of concurrency, tasks don't have a caller to which they will eventually return, so what should we do instead?
+____
+
+[quote]
+____
+We've reached this conclusion in the light of the specific paradigm we're developing here, but I think it's much broader, and also fairly intuitive on reflection. In any concurrency paradigm, you will have _some_ version of "`multiple cooperating concurrent tasks,`" and that means that you need an answer to "`what happens if one of them dies unexpectedly.`" And, in turn, it's hard for me to imagine a fully-general answer other than "`we ask the other tasks to cancel and terminate early.`"
+____
+
+[quote]
+____
+My experience writing concurrent programs _outside_ of a structured concurrency framework is that it very often ends up being really frustratingly hard to just run that basic dev loop of "`run program, see dumb bug, fix dumb bug,`" precisely because dumb bugs that would, in a single-threaded program, print a nice stack trace and exit, have a bad habit of turning into deadlocks, or getting swallowed, or something more perverse. And, I find that ad-hoc attempts to _add_ error handling sometimes make things worse! For instance, I sometimes would find that the "`natural`" approach was to "`forward`" errors through some pipeline, so that we can collect all errors at the end of a big concurrent operation, and log them in one place. That approach can work, but it also sometimes means you don't find out about _any_ error until your entire program completes, which is really frustrating during development!
+
+Thus, I've found that adopting a structured concurrency approach, or at _least_ taking it as a basic mindset and paradigm, even if I may not have a "`true`" structured concurrency library in my environment, actually makes concurrent programs _drastically easier_ to write and debug in the first place, even for throwaway prototypes -- it pays dividends almost immediately, not merely "`eventually`" or "`in production.`"
+____
